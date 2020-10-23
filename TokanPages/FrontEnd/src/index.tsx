@@ -3,6 +3,9 @@ import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import { createBrowserHistory } from "history";
+import { ThemeProvider } from "@material-ui/core";
+import theme from './theme/theme';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import configureStore from "./redux/store";
 import App from "./app";
 
@@ -19,7 +22,10 @@ const store = configureStore(history);
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <App />
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <App />
+            </ThemeProvider>
         </ConnectedRouter>
     </Provider>,
     document.getElementById("root")
