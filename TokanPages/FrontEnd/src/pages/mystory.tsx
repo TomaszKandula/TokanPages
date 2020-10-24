@@ -1,18 +1,23 @@
 import React from "react";
+import Container from "@material-ui/core/Container";
 
-import HorizontalNav1 from "../components/horizontal-navs/HorizontalNav";
-import StructureContainer from "../components/structures/StructureContainer";
+import HorizontalNav from "../components/horizontal-navs/HorizontalNav";
 import Content from "../components/content/Content";
-import Footers from "../components/Footers";
+import Footer from "../components/Footer";
 
 export default function Mystory() 
 {
   
   return (    
-    <React.Fragment>     
-      <HorizontalNav1 content={null} />
-      <StructureContainer columns={[<Content content={null} />, <Footers />]} />
-    </React.Fragment>
+    <>     
+      <HorizontalNav content={null} />
+
+      <Container>
+        <Content content={null} />
+        <Footer />
+      </Container>
+
+    </>
   );
 
 }

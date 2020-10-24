@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -9,12 +8,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 
-const useStyles = makeStyles((theme) => ({}));
-
 export default function Component(props: any) 
 {
-
-  const classes = useStyles();
 
   return (
     <section>
@@ -25,8 +20,7 @@ export default function Component(props: any)
             <Typography variant="subtitle1" color="textSecondary" paragraph={true}>If you have any questions or you believe that I can do some work for you in technologies I currently work with, send me a message.</Typography>
           </Box>
           <Box>
-            <form noValidate>
-              <Grid container spacing={2}>
+          <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField variant="outlined" required fullWidth autoComplete="fname" name="firstName" id="firstName" label="First name" />
                 </Grid>
@@ -48,7 +42,6 @@ export default function Component(props: any)
                   Submit
                 </Button>
               </Box>
-            </form>
           </Box>
         </Box>
       </Container>

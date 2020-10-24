@@ -29,7 +29,7 @@ export default function Component(props: any)
         <Box py={8}>
           <Box mb={8}>
             <Typography color="primary" variant="button" component="h3" align="center" gutterBottom={true}>Technologies</Typography>
-            <Typography variant="h4" component="h2" align="center">I work primarily with below technologies</Typography>
+            <Typography variant="h4" component="h2" align="center">I work primarily with</Typography>
           </Box>
           <Grid container spacing={6}>
 
@@ -60,9 +60,9 @@ export default function Component(props: any)
             <Grid item xs={12} sm={6}>         
               <Box mb={2} display="flex" alignItems="center">
                 <StorageIcon color="primary" className={classes.icon} />
-                <Typography variant="h5" component="h3">Azure Cloud Services</Typography>
+                <Typography variant="h5" component="h3">Cloud Services</Typography>
               </Box>
-              <Typography variant="body1" component="p">I have experience with App Services, Azure Storage, Azure SQL, WebJobs, Azure Functions (C#), Application Insights.</Typography>
+              <Typography variant="body1" component="p">I have experience with Azure Cloud Services: App Services, Azure Storage, Azure SQL, WebJobs, Azure Functions (C#), Application Insights.</Typography>
             </Grid>
 
           </Grid>

@@ -25,7 +25,7 @@ export default function Content(props: { content: any; })
 
   const content = 
   {
-    "title": "Why strong tea isn\'t good for CEOs",
+    "title": "Why strong tea isn't good for CEOs",
     "date": "November 14, by Dinesh Chugtai",
     "paragraph1": "Laudantium, unde aliquam sit accusantium a explicabo maiores doloribus aut, rerum accusamus alias saepe molestias ut suscipit voluptate voluptatibus repellendus fuga vero. Error delectus odit, numquam laborum consectetur mollitia corrupti quo neque, quibusdam tempore debitis voluptatum vitae! Ea explicabo totam excepturi! Eius?",
     "paragraph2": "Alias sunt voluptas ratione modi dolore nostrum debitis nihil. Nemo, ratione repellat quia doloremque perferendis fuga cumque ex corporis laborum distinctio dolorum deserunt voluptates ea architecto ab, esse omnis quas provident. Maiores sed ipsam eos quis.",

@@ -48,13 +48,13 @@ export default function Component(props: any)
         <Box py={6} display="flex" flexWrap="wrap" alignItems="center">
           <Typography color="textSecondary" component="p" gutterBottom={false} className={classes.copy}>© 2020 Tomasz Kandula. All rights reserved.</Typography>
           <Box ml="auto" className={classes.iconsBoxRoot}>
-            <IconButton color="secondary" aria-label="GitHub">
+            <IconButton color="default" aria-label="GitHub" href="https://github.com/TomaszKandula" target="_blank">
               <GitHubIcon />
             </IconButton>
-            <IconButton color="secondary" aria-label="LinkedIn">
+            <IconButton color="default" aria-label="LinkedIn" href="https://www.linkedin.com/in/tomaszkandula/" target="_blank">
               <LinkedInIcon />
             </IconButton>
-            <IconButton color="secondary" aria-label="Instagram">
+            <IconButton color="default" aria-label="Instagram" href="https://www.instagram.com/tomkandula/" target="_blank">
               <InstagramIcon />
             </IconButton>
           </Box>

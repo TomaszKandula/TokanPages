@@ -1,36 +1,42 @@
 import React from "react";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
 
 import HorizontalNav from "../components/horizontal-navs/HorizontalNav";
-import StructureContainer from "../components/structures/StructureContainer";
-import StructureTwoColumns from "../components/structures/StructureTwoColumns";
-import Headers from "../components/Headers";
+import Header from "../components/Header";
 import Elements from "../components/Elements";
 import Features from "../components/Features";
 import Featured from "../components/Featured";
-import Contacts from "../components/Contacts";
-import Footers from "../components/Footers";
+import Contactme from "../components/Contactme";
+import Footer from "../components/Footer";
 
 export default function Index() 
 {
 
   return (
-    <React.Fragment>
+
+    <>
       <HorizontalNav content={null} />
 
-      <StructureContainer
-        columns={[
-          <StructureTwoColumns
-            column1={[<Headers />]}
-            column2={[<Elements />]}
-          />,
-          <Features />,
-          <Featured />,
-          <Contacts />,
-          <Footers />,
-        ]}
-      />
+      <Container>
 
-    </React.Fragment>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <Header />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Elements />
+          </Grid>
+        </Grid>
+
+      </Container>
+
+      <Features />
+      <Featured />
+      <Contactme />
+      <Footer />
+    </>
+
   );
 
 }
