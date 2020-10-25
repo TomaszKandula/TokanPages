@@ -5,8 +5,9 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
-    <SpaRoot>ClientApp\</SpaRoot>
+    <SpaRoot>FrontEnd\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+    <UserSecretsId>8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,6 +23,16 @@
     <None Remove="$(SpaRoot)**" />
     <None Remove="Controllers\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="FrontEnd\src\components\layout.tsx" />
+    <None Remove="FrontEnd\src\redux\store.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="FrontEnd\src\components\layout.tsx" />
+    <TypeScriptCompile Include="FrontEnd\src\redux\store.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
