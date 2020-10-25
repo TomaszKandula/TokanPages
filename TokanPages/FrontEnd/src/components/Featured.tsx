@@ -38,8 +38,8 @@ export default function Component(props: any)
 
               <Grid item xs={12} md={4}>
                 <Card>
-                  <CardActionArea href="#">
-                    <CardMedia className={classes.media} image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80" />
+                  <CardActionArea href="http://geek.justjoin.it/wysokie-widelki-clickbait-devdebata" target="_blank">
+                    <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/images/Article3.png" />
                     <CardHeader title="Just Geek IT" subheader="Widełki płacowe stanowią standard w branży..." titleTypographyProps={{gutterBottom: true}}/>
                   </CardActionArea>
                 </Card>
@@ -47,8 +47,8 @@ export default function Component(props: any)
 
               <Grid item xs={12} md={4}>
                 <Card>
-                  <CardActionArea href="#">
-                    <CardMedia className={classes.media} image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" />
+                  <CardActionArea href="https://medium.com/@tomasz.kandula/sql-injection-1bde8bb76ebc" target="_blank">
+                    <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/images/Article2.png" />
                     <CardHeader title="SQL Injection" subheader="This article will explore the issue in greater detail..." titleTypographyProps={{gutterBottom: true}} />
                   </CardActionArea>
                 </Card>
@@ -56,8 +56,8 @@ export default function Component(props: any)
 
               <Grid item xs={12} md={4}>
                 <Card>
-                  <CardActionArea href="#">
-                    <CardMedia className={classes.media} image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" />
+                  <CardActionArea href="https://medium.com/@tomasz.kandula/i-said-goodbye-to-stored-procedures-539d56350486" target="_blank">
+                    <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/images/Article1.png" />
                     <CardHeader title="Stored Procedures" subheader="I explain why I do not need them that much..." titleTypographyProps={{gutterBottom: true}} />
                     </CardActionArea>
                     </Card>

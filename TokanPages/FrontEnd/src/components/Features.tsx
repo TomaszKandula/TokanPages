@@ -4,10 +4,10 @@ import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
-import ShutterSpeedIcon from "@material-ui/icons/ShutterSpeed";
-import PublicIcon from "@material-ui/icons/Public";
+import CodeIcon from "@material-ui/icons/Code";
+import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import StorageIcon from "@material-ui/icons/Storage";
+import CloudIcon from "@material-ui/icons/Cloud";
 
 const useStyles = makeStyles((theme) => (
 {
@@ -35,31 +35,31 @@ export default function Component(props: any)
 
             <Grid item xs={12} sm={6}>
               <Box mb={2} display="flex" alignItems="center">
-                <VerifiedUserIcon color="primary" className={classes.icon} />
+                <CodeIcon color="primary" className={classes.icon} />
                 <Typography variant="h5" component="h3">Languages</Typography>
               </Box>
-              <Typography variant="body1" component="p">So far I have used (with this order): Basic, Assembler, Turbo Pascal, Delphi, VBA, C#, JavaScript, TypeScript. In my daily job I use C#, JavaScript and TypeScript.</Typography>
+              <Typography variant="body1" component="p">Today in my daily job I use <b>C#</b>, <b>JavaScript</b> and <b>TypeScript</b>. In the past I also used: Basic, Assembler, Turbo Pascal, Delphi, VBA.</Typography>
             </Grid>
 
             <Grid item xs={12} sm={6}>
               <Box mb={2} display="flex" alignItems="center">
-                <ShutterSpeedIcon color="primary" className={classes.icon} />
+                <LibraryBooksIcon color="primary" className={classes.icon} />
                 <Typography variant="h5" component="h3">Frameworks/Libraries</Typography>
               </Box>
-              <Typography variant="body1" component="p">Back-End: NET Framework 4.5 (only one project), NET Core (since version 2.0). Front-End libraries: jQuery and React/Redux. CSS Frameworks: Bootstrap, Materialize, Bulma, and Material-UI.</Typography>
+              <Typography variant="body1" component="p">Back-End: NET Framework 4.5 (for one project), NET Core (since version 2.0). Front-End libraries: jQuery and React/Redux. CSS Frameworks: Bootstrap, Materialize, Bulma, and Material-UI.</Typography>
             </Grid>
 
             <Grid item xs={12} sm={6}>
               <Box mb={2} display="flex" alignItems="center">
-                <PublicIcon color="primary" className={classes.icon} />
+                <StorageIcon color="primary" className={classes.icon} />
                 <Typography variant="h5" component="h3">OR/M</Typography>
               </Box>
-              <Typography variant="body1" component="p">I have started with Entity Framework and did only one project, in other projects I use Entity Framework Core. I prefer to use lightweight OR/M with SQL/T-SQL when necessary.</Typography>
+              <Typography variant="body1" component="p">I have started with Entity Framework and did just one project, in other projects I use Entity Framework Core. I prefer to use lightweight OR/M like Dapper and use SQL/T-SQL when necessary.</Typography>
             </Grid>
 
             <Grid item xs={12} sm={6}>         
               <Box mb={2} display="flex" alignItems="center">
-                <StorageIcon color="primary" className={classes.icon} />
+                <CloudIcon color="primary" className={classes.icon} />
                 <Typography variant="h5" component="h3">Cloud Services</Typography>
               </Box>
               <Typography variant="body1" component="p">I have experience with Azure Cloud Services: App Services, Azure Storage, Azure SQL, WebJobs, Azure Functions (C#), Application Insights.</Typography>

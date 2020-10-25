@@ -16,10 +16,9 @@ export default function Index()
   return (
 
     <>
+
       <HorizontalNav content={null} />
-
       <Container>
-
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Header />
@@ -28,13 +27,13 @@ export default function Index()
             <Elements />
           </Grid>
         </Grid>
-
       </Container>
 
       <Features />
       <Featured />
       <Contactme />
       <Footer />
+
     </>
 
   );

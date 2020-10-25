@@ -9,6 +9,7 @@ export default function Mystory()
 {
   
   return (    
+
     <>     
       <HorizontalNav content={null} />
 
@@ -18,6 +19,7 @@ export default function Mystory()
       </Container>
 
     </>
-  );
+
+);
 
 }

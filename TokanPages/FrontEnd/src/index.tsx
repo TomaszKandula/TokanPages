@@ -9,8 +9,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import configureStore from "./redux/store";
 import App from "./app";
 
-import "./styles/main.scss";
-
 // Create browser history to use in the Redux store
 const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href") as string;
 const history = createBrowserHistory({ basename: baseUrl });
