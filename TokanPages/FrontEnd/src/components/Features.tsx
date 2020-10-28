@@ -62,7 +62,7 @@ export default function Component(props: any)
                 <CloudIcon color="primary" className={classes.icon} />
                 <Typography variant="h5" component="h3">Cloud Services</Typography>
               </Box>
-              <Typography variant="body1" component="p">I have experience with Azure Cloud Services: App Services, Azure Storage, Azure SQL, WebJobs, Azure Functions (C#), Application Insights.</Typography>
+              <Typography variant="body1" component="p">I have experience with Azure Cloud Services: App Services (PaaS), Azure Storage, Azure SQL, WebJobs, Azure Functions (C#), Application Insights.</Typography>
             </Grid>
 
           </Grid>
