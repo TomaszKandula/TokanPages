@@ -17,7 +17,7 @@ export default function Component(props: any)
         <Box pt={8} pb={10}>
           <Box mb={6} textAlign="center">
             <Typography variant="h4" component="h2" gutterBottom={true}>Contact me</Typography>
-            <Typography variant="subtitle1" color="textSecondary" paragraph={true}>If you have any questions or you believe that I can do some work for you in technologies I currently work with, send me a message.</Typography>
+            <Typography variant="subtitle1" color="textSecondary" paragraph={true}>If you have any questions or you believe that I can do some paid work (or free help/advice) for you in technologies I currently work with, send me a message.</Typography>
           </Box>
           <Box>
           <Grid container spacing={2}>

@@ -1,9 +1,5 @@
 import * as React from "react";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
   
 import IndexPage from "./pages/index";
 import MystoryPage from "./pages/mystory"; 
