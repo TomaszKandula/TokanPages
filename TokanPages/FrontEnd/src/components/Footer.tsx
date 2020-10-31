@@ -11,56 +11,61 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 const useStyles = makeStyles((theme) => (
 {
 
-  root: 
-  {
-    [theme.breakpoints.down("md")]: 
-    {
-      textAlign: "center",
-    }
-  },
-  iconsBoxRoot: 
-  {
-    [theme.breakpoints.down("md")]: 
-    {
-      width: "100%",
-      marginBottom: theme.spacing(2),
-    }
-  },
-  copy: 
-  {
-    [theme.breakpoints.down("md")]: 
-    {
-      width: "100%",
-      order: 12,
-    }
-  }
+	root: 
+  	{
+		[theme.breakpoints.down("md")]: 
+    	{
+		  	textAlign: "center"
+		},
+		backgroundColor: "#f5f5f5"
+	},
+	  
+	iconsBoxRoot: 
+  	{
+    	[theme.breakpoints.down("md")]: 
+    	{
+      		width: "100%",
+      		marginBottom: theme.spacing(2),
+    	}
+  	},
+  
+	copy: 
+  	{
+    	[theme.breakpoints.down("md")]: 
+    	{
+      		width: "100%",
+      		order: 12,
+    	}
+  	}
 }
 ));
 
-export default function Component(props: any) 
+export default function Footer(props: any) 
 {
   
-  const classes = useStyles();
+	const classes = useStyles();
 
-  return (
-    <footer className={classes.root}>
-      <Container maxWidth="lg">
-        <Box py={6} display="flex" flexWrap="wrap" alignItems="center">
-          <Typography color="textSecondary" component="p" gutterBottom={false} className={classes.copy}>© 2020 Tomasz Kandula. All rights reserved.</Typography>
-          <Box ml="auto" className={classes.iconsBoxRoot}>
-            <IconButton color="default" aria-label="GitHub" href="https://github.com/TomaszKandula" target="_blank">
-              <GitHubIcon />
-            </IconButton>
-            <IconButton color="default" aria-label="LinkedIn" href="https://www.linkedin.com/in/tomaszkandula/" target="_blank">
-              <LinkedInIcon />
-            </IconButton>
-            <IconButton color="default" aria-label="Instagram" href="https://www.instagram.com/tomkandula/" target="_blank">
-              <InstagramIcon />
-            </IconButton>
-          </Box>
-        </Box>
-      </Container>
-    </footer>
+  	return (
+    	<footer className={classes.root}>
+      		<Container maxWidth="lg">
+        		<Box py={6} display="flex" flexWrap="wrap" alignItems="center">
+          			<Typography color="textSecondary" component="p" gutterBottom={false} className={classes.copy}>
+						  © 2020 Tomasz Kandula. All rights reserved.
+					</Typography>
+          			<Box ml="auto" className={classes.iconsBoxRoot}>
+            			<IconButton color="default" aria-label="GitHub" href="https://github.com/TomaszKandula" target="_blank">
+              				<GitHubIcon />
+            			</IconButton>
+            			<IconButton color="default" aria-label="LinkedIn" href="https://www.linkedin.com/in/tomaszkandula/" target="_blank">
+              				<LinkedInIcon />
+            			</IconButton>
+            			<IconButton color="default" aria-label="Instagram" href="https://www.instagram.com/tomkandula/" target="_blank">
+              				<InstagramIcon />
+            			</IconButton>
+          			</Box>
+        		</Box>
+      		</Container>
+    	</footer>
   );
 
 }
