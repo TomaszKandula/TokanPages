@@ -13,8 +13,8 @@ export default function MyStory()
 		    <HorizontalNav content={null} />
     	  	<Container>
         		<Content content={null} />
-        		<Footer />
 	      	</Container>
+			<Footer />
     	</>
 	);
 
