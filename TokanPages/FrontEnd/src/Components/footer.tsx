@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => (
     	{
 		  	textAlign: "center"
 		},
-		backgroundColor: "#f5f5f5"
+		backgroundColor: "#FFFFFF"
 	},
 	  
 	iconsBoxRoot: 

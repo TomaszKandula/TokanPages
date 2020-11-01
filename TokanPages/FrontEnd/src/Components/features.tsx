@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Divider } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -12,6 +11,10 @@ import CloudIcon from "@material-ui/icons/Cloud";
 
 const useStyles = makeStyles((theme) => (
 {
+	section:
+	{
+		backgroundColor: "#FAFAFA"
+	},
 	icon: 
   	{
     	marginRight: theme.spacing(1),
@@ -25,9 +28,8 @@ export default function Features(props: any)
 	const classes = useStyles();
 
 	return (
-	    <section>
+	    <section className={classes.section}>
       		<Container maxWidth="lg">
-			    <Divider light />
         		<Box py={8}>
           			<Box mb={8}>
             			<Typography color="primary" variant="button" component="h3" align="center" gutterBottom={true}>Technologies</Typography>
@@ -67,7 +69,7 @@ export default function Features(props: any)
             	    			<Typography variant="h5" component="h3">Cloud Services</Typography>
         	      			</Box>
     	          			<Typography variant="body1" component="p">
-								  I have experience with Azure Cloud Services: App Services (PaaS), Azure Storage, Azure SQL, WebJobs, Azure Functions (C#), Application Insights.
+								  I have experience with Azure Cloud Services: App Services (PaaS), Azure Storage, Azure SQL, CosmosDb (NoSQL), WebJobs, Azure Functions (C#), Application Insights.
 					  		</Typography>
 	            		</Grid>
           			</Grid>

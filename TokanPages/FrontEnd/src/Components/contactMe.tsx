@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -9,19 +9,29 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 
+const useStyles = makeStyles((theme) => (
+{
+	section:
+	{
+		backgroundColor: "#FAFAFA"
+	}
+}
+));
+
 export default function ContactMe(props: any) 
 {
 
+	const classes = useStyles();
+
 	return (
-    	<section>
+    	<section className={classes.section}>
       		<Container maxWidth="lg">
-		  		<Divider light />
       			<Container maxWidth="sm">
     	    		<Box pt={8} pb={10}>
 	          			<Box mb={6} textAlign="center">
             				<Typography variant="h4" component="h2" gutterBottom={true}>Contact me</Typography>
             				<Typography variant="subtitle1" color="textSecondary" paragraph={true}>
-								If you have any questions or you believe that I can do some paid work (or free help/advice) for you in technologies I currently work with, send me a message.
+								If you have any questions or you believe that I can do some work for you in technologies I currently work with, send me a message.
 							</Typography>
         	  			</Box>
     	      			<Box>
