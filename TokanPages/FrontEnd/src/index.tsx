@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import { createBrowserHistory } from "history";
 import { ThemeProvider } from "@material-ui/core";
-import theme from './Theme/theme';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import theme from "./Theme/theme";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import configureStore from "./Redux/store";
 import App from "./app";
 

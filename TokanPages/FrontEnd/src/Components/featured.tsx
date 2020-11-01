@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Divider } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
@@ -26,13 +25,12 @@ export default function Featured(props: any)
 	return (
     	<section>
       		<Container maxWidth="lg">
-			    <Divider light />
     	  		<Box pt={8} pb={10}>
 	        		<Container maxWidth="sm">
     	      			<Box textAlign="center" mb={5}>
         	    			<Typography variant="h4" component="h2" gutterBottom={true}>Featured</Typography>
             				<Typography variant="subtitle1" color="textSecondary">
-								Below you can find my lastest articles published on different portals like Medium.com or LinkedIn.
+								Below you can read various articles (either mine or where I'm featured) that has been published on different portals like Medium.com or LinkedIn.
 							</Typography>
 	          			</Box>
     	    		</Container>
@@ -42,7 +40,7 @@ export default function Featured(props: any)
               					<Grid item xs={12} md={4}>
 	                				<Card>
     	              					<CardActionArea href="http://geek.justjoin.it/wysokie-widelki-clickbait-devdebata" target="_blank">
-	    	                			<CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/images/article3.png" />
+	    	                			<CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/article3.png" />
     	    	            			<CardHeader title="Just Geek IT" subheader="Widełki płacowe stanowią standard w branży..." titleTypographyProps={{gutterBottom: true}}/>
         	    	      				</CardActionArea>
             	    				</Card>
@@ -50,7 +48,7 @@ export default function Featured(props: any)
 		              			<Grid item xs={12} md={4}>
 		                			<Card>
 		        		    	    	<CardActionArea href="https://medium.com/@tomasz.kandula/sql-injection-1bde8bb76ebc" target="_blank">
-	        		        			<CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/images/article2.png" />
+	        		        			<CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/article2.png" />
 			        		            <CardHeader title="SQL Injection" subheader="This article will explore the issue in greater detail..." titleTypographyProps={{gutterBottom: true}} />
         			        			</CardActionArea>
             	    				</Card>
@@ -58,7 +56,7 @@ export default function Featured(props: any)
               					<Grid item xs={12} md={4}>
                 					<Card>
 					        	        <CardActionArea href="https://medium.com/@tomasz.kandula/i-said-goodbye-to-stored-procedures-539d56350486" target="_blank">
-				                	    <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/images/article1.png" />
+				                	    <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/article1.png" />
                 				    	<CardHeader title="Stored Procedures" subheader="I explain why I do not need them that much..." titleTypographyProps={{gutterBottom: true}} />
 	                    				</CardActionArea>
     	                			</Card>
