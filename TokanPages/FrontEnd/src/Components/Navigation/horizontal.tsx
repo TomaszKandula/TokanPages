@@ -13,13 +13,24 @@ interface Props
 
 const useStyles = makeStyles((theme) => (
 {
-	appbar:
+	appBar:
 	{
 		background: "#1976D2"
 	},
-	toolbar: 
+	toolBar: 
 	{ 
 		justifyContent: "center", 
+	},
+	mainLogo:
+	{
+		width: 210,
+	},
+	mainLink:
+	{
+		marginTop: "10px",
+		variant:"h5", 
+		color: "inherit", 
+		underline: "none"
 	}
 }));
 
@@ -40,30 +51,13 @@ export default function HorizontalNav(props: { content: any; })
 
 	const classes = useStyles();
 
-	const content = 
-	{
-    	"brand": { image: "https://maindbstorage.blob.core.windows.net/tokanpages/images/main_logo.png", width: 165 },
-    	...props.content
-	};
-
-	let brand;
-
-	if (content.brand.image) 
-  	{
-    	brand = <img src={ content.brand.image } alt="" width={ content.brand.width } />;
-  	} 
-  	else 
-  	{
-    	brand = content.brand.text || '';
-  	}
-
 	return (
 
 		<HideOnScroll {...props}>
-			<AppBar className={classes.appbar}>
-	      		<Toolbar className={classes.toolbar}>
-        			<Link href="#" variant="h5" color="inherit" underline="none">
-          				{brand}
+			<AppBar className={classes.appBar}>
+	      		<Toolbar className={classes.toolBar}>
+        			<Link href="#" className={classes.mainLink}>
+          				<img className={classes.mainLogo} src="https://maindbstorage.blob.core.windows.net/tokanpages/images/main_logo.svg" alt="" />
         			</Link>
     	  		</Toolbar>
 	    	</AppBar>
