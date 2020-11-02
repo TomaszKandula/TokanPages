@@ -5,7 +5,9 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@types/domhandler": "^2.4.1",
     "@types/draft-js": "^0.10.44",
+    "@types/react-html-parser": "^2.0.1",
     "@types/validator": "^13.1.0",
     "axios": "^0.21.0",
     "browserslist": "^4.14.5",
