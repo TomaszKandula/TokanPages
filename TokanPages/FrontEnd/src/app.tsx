@@ -7,6 +7,8 @@ import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import MainPage from "./Pages/mainPage";
 import MyStory from "./Pages/myStory"; 
+import Terms from "./Pages/terms";
+import Policy from "./Pages/policy";
 
 interface Props 
 {
@@ -66,6 +68,8 @@ export default function App()
                 <Switch>
                   <Route exact path="/"><MainPage /></Route>
                   <Route exact path="/mystory"><MyStory /></Route>
+                  <Route exact path="/terms"><Terms /></Route>
+                  <Route exact path="/policy"><Policy /></Route>
                 </Switch>
             </Router>
             <ScrollTop>
