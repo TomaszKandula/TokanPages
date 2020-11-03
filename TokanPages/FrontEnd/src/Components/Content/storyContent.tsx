@@ -7,46 +7,47 @@ import { Divider, IconButton, makeStyles } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import ReactHtmlParser from 'react-html-parser';
 import axios from "axios";
+import * as apiUrls from "../../Shared/apis";
 
 const useStyles = makeStyles((theme) => (
 {
     divider:
     {
         marginBottom: "30px"
-    },
+	},
 	typography:
 	{
 		color: "#616161",
 		lineHeight: 2.0
 	}
-}));    
+}));
 
-export default function Content(props: { content: any; }) 
+export default function StoryContent(props: { content: any; }) 
 {
 
 	const classes = useStyles();
 
-    const [ policy, setPolicy ] = useState("Fetching content...");
-    const fetchTerms = async () => 
+    const [ story, setStory ] = useState("Fetching content...");
+    const fetchStory = async () => 
     {
-        const response = await axios.get("http://localhost:3000/static/policy.html", {method: "get", responseType: "text"});
-        setPolicy(response.data);    
+        const response = await axios.get(apiUrls.STORY_URL, {method: "get", responseType: "text"});
+        setStory(response.data);    
     }
 
-    useEffect( () => { fetchTerms() }, [ policy ] );
-
+    useEffect( () => { fetchStory() }, [ story ] );
+	
 	return (
     	<section>
       		<Container maxWidth="sm">       
 		        <Box py={12}>
-                    <Link to="/">
+					<Link to="/">
                         <IconButton>
                             <ArrowBack/>
                         </IconButton>        		
                     </Link> 
                     <Divider className={classes.divider} />
                     <Typography variant="body1" component="p" className={classes.typography}>
-                        {ReactHtmlParser(policy)}
+                        {ReactHtmlParser(story)}
                     </Typography>
         		</Box>
 			</Container>

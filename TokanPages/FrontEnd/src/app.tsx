@@ -6,9 +6,9 @@ import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import MainPage from "./Pages/mainPage";
-import MyStory from "./Pages/myStory"; 
-import Terms from "./Pages/terms";
-import Policy from "./Pages/policy";
+import StoryPage from "./Pages/storyPage"; 
+import TermsPage from "./Pages/termsPage";
+import PolicyPage from "./Pages/policyPage";
 
 interface Props 
 {
@@ -67,9 +67,9 @@ export default function App()
             <Router>
                 <Switch>
                   <Route exact path="/"><MainPage /></Route>
-                  <Route exact path="/mystory"><MyStory /></Route>
-                  <Route exact path="/terms"><Terms /></Route>
-                  <Route exact path="/policy"><Policy /></Route>
+                  <Route exact path="/mystory"><StoryPage /></Route>
+                  <Route exact path="/terms"><TermsPage /></Route>
+                  <Route exact path="/policy"><PolicyPage /></Route>
                 </Switch>
             </Router>
             <ScrollTop>

@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => (
 }
 ));
 
-export default function ContactMe(props: any) 
+export default function ContactForm(props: any) 
 {
 
 	const classes = useStyles();

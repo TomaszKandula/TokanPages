@@ -1,17 +1,17 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
 import HorizontalNav from "../Components/Navigation/horizontal";
-import Content from "../Components/Content/myStory";
-import Footer from "../Components/footer";
+import TermsContent from "../Components/Content/termsContent";
+import Footer from "../Components/Layout/footer";
 
-export default function MyStory() 
+export default function TermsPage() 
 {
   
 	return (    
     	<>     
 		    <HorizontalNav content={null} />
     	  	<Container>
-        		<Content content={null} />
+        		<TermsContent content={null} />
 	      	</Container>
       		<Footer backgroundColor="#FAFAFA" />
     	</>
