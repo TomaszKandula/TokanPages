@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => (
     	{
 		  	textAlign: "center"
 		},
-		backgroundColor: "#FFFFFF"
 	},
 	iconsBoxRoot: 
   	{
@@ -28,6 +27,7 @@ const useStyles = makeStyles((theme) => (
   	}, 
 	copy: 
   	{
+		color: "#757575",
 		[theme.breakpoints.down("md")]: 
     	{
       		width: "100%",
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => (
 	}	  
 }));
 
-export default function Footer(props: any) 
+export default function Footer(props: { backgroundColor?: string }) 
 {
   
 	const classes = useStyles();
@@ -50,9 +50,7 @@ export default function Footer(props: any)
 	{
 
 		return (
-			<Link to="/terms" className={classes.links}>
-				Terms of use
-			</Link>			
+			<Link to="/terms" className={classes.links}>Terms of use</Link>			
 		);
 
 	}
@@ -61,19 +59,17 @@ export default function Footer(props: any)
 	{
 
 		return (
-			<Link to="/policy" className={classes.links}>
-				Privacy policy
-			</Link>			
+			<Link to="/policy" className={classes.links}>Privacy policy</Link>			
 		);
 
 	}
 	
   	return (
-    	<footer className={classes.root}>
+    	<footer className={classes.root} style={{ backgroundColor: props.backgroundColor }} >
       		<Container maxWidth="lg">
 				<Box py={6} display="flex" flexWrap="wrap" alignItems="center">
-					<Typography color="textSecondary" component="p" gutterBottom={false} className={classes.copy}>
-						© 2020 Tomasz Kandula. All rights reserved. <SetTermsLink />. <SetPolicyLink />.
+					<Typography component="p" gutterBottom={false} className={classes.copy}>
+						© 2020 Tomasz Kandula | All rights reserved | <SetTermsLink /> | <SetPolicyLink />
 					</Typography>
 					<Box ml="auto" className={classes.iconsBoxRoot}>
 						<IconButton color="default" aria-label="GitHub" href="https://github.com/TomaszKandula" target="_blank">
