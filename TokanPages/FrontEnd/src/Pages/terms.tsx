@@ -13,7 +13,7 @@ export default function Terms()
     	  	<Container>
         		<Content content={null} />
 	      	</Container>
-			<Footer />
+      		<Footer backgroundColor="#FAFAFA" />
     	</>
 	);
 

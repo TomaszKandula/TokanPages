@@ -13,7 +13,7 @@ export default function MyStory()
     	  	<Container>
         		<Content content={null} />
 	      	</Container>
-			<Footer />
+      		<Footer backgroundColor="#FAFAFA" />
     	</>
 	);
 

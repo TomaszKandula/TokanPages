@@ -16,7 +16,7 @@ export default function Index()
       		<Features />
       		<Featured />
 	  		<ContactMe />
-      		<Footer />
+      		<Footer backgroundColor="#FFFFFF" />
 	    </>
     );
 
