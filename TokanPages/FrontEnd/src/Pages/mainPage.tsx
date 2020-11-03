@@ -1,10 +1,10 @@
 import React from "react";
 import HorizontalNav from "../Components/Navigation/horizontal";
-import Header from "../Components/header";
-import Features from "../Components/features";
-import Featured from "../Components/featured";
-import ContactMe from "../Components/contactMe";
-import Footer from "../Components/footer";
+import Header from "../Components/Layout/header";
+import Footer from "../Components/Layout/footer";
+import Features from "../Components/Features/features";
+import Featured from "../Components/Featured/featured";
+import ContactForm from "../Components/ContactForm/contactForm";
 import Cookies from "../Components/Cookies/cookies";
 
 export default function Index() 
@@ -16,7 +16,7 @@ export default function Index()
 			<Header />
       		<Features />
       		<Featured />
-	  		<ContactMe />
+	  		<ContactForm />
 			<Cookies />
       		<Footer backgroundColor="#FFFFFF" />
 	    </>
