@@ -11,7 +11,7 @@ export default function Policy()
     	<>     
 		    <HorizontalNav content={null} />
     	  	<Container>
-        		<Content content={null} />
+                <Content content={null} />
 	      	</Container>
 			<Footer />
     	</>
