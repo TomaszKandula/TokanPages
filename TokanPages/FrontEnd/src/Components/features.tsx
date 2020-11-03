@@ -41,7 +41,7 @@ export default function Features(props: any)
                 					<CodeIcon color="primary" className={classes.icon} />
                 					<Typography variant="h5" component="h3">Languages</Typography>
             	  				</Box>
-        	      				<Typography variant="body1" component="p">
+        	      				<Typography variant="body1" component="p" color="textSecondary">
 									  Today in my daily job I use <b>C#</b>, <b>JavaScript</b> and <b>TypeScript</b>. In the past I also used: Basic, Assembler, Turbo Pascal, Delphi, VBA.
 								</Typography>
     	        			</Grid>
@@ -50,7 +50,7 @@ export default function Features(props: any)
                 				<LibraryBooksIcon color="primary" className={classes.icon} />
                 				<Typography variant="h5" component="h3">Frameworks/Libraries</Typography>
             	  			</Box>
-        	      			<Typography variant="body1" component="p">
+        	      			<Typography variant="body1" component="p" color="textSecondary">
 								  Back-End: NET Framework 4.5 (for one project), NET Core (since version 2.0). Front-End libraries: jQuery and React/Redux. CSS Frameworks: Bootstrap, Materialize, Bulma, and Material-UI.
 							</Typography>
     	        		</Grid>
@@ -59,7 +59,7 @@ export default function Features(props: any)
                 				<StorageIcon color="primary" className={classes.icon} />
                 				<Typography variant="h5" component="h3">OR/M</Typography>
             	  			</Box>
-        	      			<Typography variant="body1" component="p">
+        	      			<Typography variant="body1" component="p" color="textSecondary">
 								  I have started with Entity Framework and did just one project, in other projects I use Entity Framework Core. I prefer to use lightweight OR/M like Dapper and use SQL/T-SQL when necessary.
 							</Typography>
     	        		</Grid>
@@ -68,7 +68,7 @@ export default function Features(props: any)
                 				<CloudIcon color="primary" className={classes.icon} />
             	    			<Typography variant="h5" component="h3">Cloud Services</Typography>
         	      			</Box>
-    	          			<Typography variant="body1" component="p">
+    	          			<Typography variant="body1" component="p" color="textSecondary">
 								  I have experience with Azure Cloud Services: App Services (PaaS), Azure Storage, Azure SQL, CosmosDb (NoSQL), WebJobs, Azure Functions (C#), Application Insights.
 					  		</Typography>
 	            		</Grid>

@@ -13,7 +13,12 @@ const useStyles = makeStyles((theme) => (
     divider:
     {
         marginBottom: "30px"
-    }
+    },
+	typography:
+	{
+		color: "#616161",
+		lineHeight: 2.0
+	}
 }));    
 
 export default function Content(props: { content: any; }) 
@@ -40,7 +45,7 @@ export default function Content(props: { content: any; })
                         </IconButton>        		
                     </Link> 
                     <Divider className={classes.divider} />
-                    <Typography variant="overline" component="span">
+                    <Typography variant="body1" component="p" className={classes.typography}>
                         {ReactHtmlParser(policy)}
                     </Typography>
         		</Box>
