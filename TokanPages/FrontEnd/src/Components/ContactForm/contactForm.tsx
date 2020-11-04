@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => (
 {
 	section:
 	{
-		backgroundColor: "#FAFAFA"
+		backgroundColor: "#FFFFFF"
 	}
 }
 ));
