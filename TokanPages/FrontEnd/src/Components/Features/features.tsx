@@ -51,7 +51,7 @@ export default function Features(props: any)
                 				<Typography variant="h5" component="h3">Frameworks/Libraries</Typography>
             	  			</Box>
         	      			<Typography variant="body1" component="p" color="textSecondary">
-								  Back-End: NET Framework 4.5 (for one project), NET Core (since version 2.0). Front-End libraries: jQuery and React/Redux. CSS Frameworks: Bootstrap, Materialize, Bulma, and Material-UI.
+								  Back-End: NET Framework 4.5 (for one project), <b>NET Core</b> (since version 2.0). Front-End libraries: jQuery and <b>React/Redux</b>. CSS Frameworks: Bootstrap, Materialize, Bulma, and <b>Material-UI</b>.
 							</Typography>
     	        		</Grid>
 	            		<Grid item xs={12} sm={6}>
@@ -60,7 +60,7 @@ export default function Features(props: any)
                 				<Typography variant="h5" component="h3">OR/M</Typography>
             	  			</Box>
         	      			<Typography variant="body1" component="p" color="textSecondary">
-								  I have started with Entity Framework and did just one project, in other projects I use Entity Framework Core. I prefer to use lightweight OR/M like Dapper and use SQL/T-SQL when necessary.
+								  I have started with Entity Framework and did just one project, in other projects I use <b>Entity Framework Core</b>. I prefer to use lightweight OR/M like Dapper and use <b>SQL/T-SQL</b> when necessary.
 							</Typography>
     	        		</Grid>
 			            <Grid item xs={12} sm={6}>         
@@ -69,7 +69,7 @@ export default function Features(props: any)
             	    			<Typography variant="h5" component="h3">Cloud Services</Typography>
         	      			</Box>
     	          			<Typography variant="body1" component="p" color="textSecondary">
-								  I have experience with Azure Cloud Services: App Services (PaaS), Azure Storage, Azure SQL, CosmosDb (NoSQL), WebJobs, Azure Functions (C#), Application Insights.
+								  I have experience with <b>Azure Cloud Services</b>: App Services (PaaS), Azure Storage, Azure SQL, CosmosDb (NoSQL), WebJobs, Azure Functions (C#), Application Insights.
 					  		</Typography>
 	            		</Grid>
           			</Grid>
