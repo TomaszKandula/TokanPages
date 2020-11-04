@@ -1,8 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Link from "@material-ui/core/Link";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Slide from "@material-ui/core/Slide";
 
@@ -56,7 +56,7 @@ export default function HorizontalNav(props: { content: any; })
 		<HideOnScroll {...props}>
 			<AppBar className={classes.appBar}>
 	      		<Toolbar className={classes.toolBar}>
-        			<Link href="#" className={classes.mainLink}>
+        			<Link to="/" className={classes.mainLink}>
           				<img className={classes.mainLogo} src="https://maindbstorage.blob.core.windows.net/tokanpages/icons/main_logo.svg" alt="" />
         			</Link>
     	  		</Toolbar>
