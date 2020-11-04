@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => (
             marginBottom: theme.spacing(2),
             paddingRight: theme.spacing(0),
         }
+    },
+    link:
+    {
+        textDecoration: "none"
     }
 }));
 
@@ -57,7 +61,7 @@ export default function Articles(props: any)
             		<Container maxWidth="lg">
                         <Grid container>
                             <Grid item xs={12} lg={6} className={classes.firstColumn}>
-                                <Card className={classes.info} elevation={1}>
+                                <Card className={classes.info} elevation={3}>
                                     <CardContent className={classes.info}>
                                         <Box display="flex" flexDirection="column" height="100%" pt={2} px={2}>
                                             <Typography variant="h5" component="h2" gutterBottom={true}>
@@ -65,11 +69,11 @@ export default function Articles(props: any)
                                             </Typography>
                                             <Box mt="auto" mb={2}>
                                                 <Typography variant="body1" component="p" color="textSecondary">
-                                                    Let's dive into Microsoft technology and programming in general. Read about architecture, design patterns, C#, SQL and other languages.
+                                                    Let's dive into Microsoft technology and programming in general. Read about architecture, design patterns, best practices, C#, SQL and other languages.
                                                 </Typography>
                                             </Box>
                                             <Box textAlign="right">
-                                                <Link to="/articles">
+                                                <Link to="/articles" className={classes.link}>
                                                     <Button color="primary" endIcon={<ArrowRightAltIcon />}>View list of articles</Button>
                                                 </Link>
                                             </Box>
@@ -80,22 +84,22 @@ export default function Articles(props: any)
                             <Grid item xs={12} lg={6}>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} md={8}>
-                                        <Card elevation={2}>
+                                        <Card elevation={4}>
                                             <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image1.jpg" />
                                         </Card>
                                     </Grid>
                                     <Grid item xs={12} md={4}>
-                                        <Card elevation={2}>
+                                        <Card elevation={4}>
                                             <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image2.jpg" />
                                         </Card>
                                     </Grid>
                                     <Grid item xs={12} md={4}>
-                                        <Card elevation={2}>
+                                        <Card elevation={4}>
                                             <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image3.jpg" />
                                         </Card>
                                     </Grid> 
                                     <Grid item xs={12} md={8}>
-                                        <Card elevation={2}>
+                                        <Card elevation={4}>
                                             <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image4.jpg" />
                                         </Card>
                                     </Grid>

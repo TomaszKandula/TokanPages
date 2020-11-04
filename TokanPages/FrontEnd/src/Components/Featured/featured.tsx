@@ -42,7 +42,7 @@ export default function Featured(props: any)
           				<Box textAlign="center">
             				<Grid container spacing={4}>
               					<Grid item xs={12} md={4}>
-	                				<Card>
+	                				<Card elevation={3}>
     	              					<CardActionArea href="http://geek.justjoin.it/wysokie-widelki-clickbait-devdebata" target="_blank">
 	    		                			<CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/article1.jpg" />
         	        				    	<CardHeader title="Stored Procedures" subheader="I explain why I do not need them that much..." titleTypographyProps={{gutterBottom: true}} />
@@ -50,7 +50,7 @@ export default function Featured(props: any)
             	    				</Card>
               					</Grid>
 		              			<Grid item xs={12} md={4}>
-		                			<Card>
+		                			<Card elevation={3}>
 		        		    	    	<CardActionArea href="https://medium.com/@tomasz.kandula/sql-injection-1bde8bb76ebc" target="_blank">
 		        		        			<CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/article2.jpg" />
 				        		            <CardHeader title="SQL Injection" subheader="This article will explore the issue in greater detail..." titleTypographyProps={{gutterBottom: true}} />
@@ -58,7 +58,7 @@ export default function Featured(props: any)
             	    				</Card>
               					</Grid>
               					<Grid item xs={12} md={4}>
-                					<Card>
+                					<Card elevation={3}>
 					        	        <CardActionArea href="https://medium.com/@tomasz.kandula/i-said-goodbye-to-stored-procedures-539d56350486" target="_blank">
 					                	    <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/article3.jpg" />
     		    	            			<CardHeader title="Just Geek IT" subheader="Widełki płacowe stanowią standard w branży..." titleTypographyProps={{gutterBottom: true}}/>
