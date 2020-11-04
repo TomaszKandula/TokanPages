@@ -9,6 +9,9 @@ import MainPage from "./Pages/mainPage";
 import StoryPage from "./Pages/storyPage"; 
 import TermsPage from "./Pages/termsPage";
 import PolicyPage from "./Pages/policyPage";
+import SigninPage from "./Pages/signinPage";
+import SignupPage from "./Pages/signupPage";
+import ResetPage from "./Pages/resetPage";
 
 interface Props 
 {
@@ -70,6 +73,9 @@ export default function App()
                   <Route exact path="/mystory"><StoryPage /></Route>
                   <Route exact path="/terms"><TermsPage /></Route>
                   <Route exact path="/policy"><PolicyPage /></Route>
+                  <Route exact path="/signin"><SigninPage /></Route>
+                  <Route exact path="/signup"><SignupPage /></Route>
+                  <Route exact path="/reset"><ResetPage /></Route>
                 </Switch>
             </Router>
             <ScrollTop>
