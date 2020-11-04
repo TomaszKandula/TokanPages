@@ -57,7 +57,7 @@ export default function HorizontalNav(props: { content: any; })
 			<AppBar className={classes.appBar}>
 	      		<Toolbar className={classes.toolBar}>
         			<Link href="#" className={classes.mainLink}>
-          				<img className={classes.mainLogo} src="https://maindbstorage.blob.core.windows.net/tokanpages/images/main_logo.svg" alt="" />
+          				<img className={classes.mainLogo} src="https://maindbstorage.blob.core.windows.net/tokanpages/icons/main_logo.svg" alt="" />
         			</Link>
     	  		</Toolbar>
 	    	</AppBar>

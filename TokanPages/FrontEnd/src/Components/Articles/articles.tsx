@@ -80,22 +80,22 @@ export default function Articles(props: any)
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} md={8}>
                                         <Card elevation={2}>
-                                            <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image1.png" />
+                                            <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image1.jpg" />
                                         </Card>
                                     </Grid>
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={2}>
-                                            <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image2.png" />
+                                            <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image2.jpg" />
                                         </Card>
                                     </Grid>
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={2}>
-                                            <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image3.png" />
+                                            <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image3.jpg" />
                                         </Card>
                                     </Grid> 
                                     <Grid item xs={12} md={8}>
                                         <Card elevation={2}>
-                                            <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image4.png" />
+                                            <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image4.jpg" />
                                         </Card>
                                     </Grid>
                                 </Grid>
