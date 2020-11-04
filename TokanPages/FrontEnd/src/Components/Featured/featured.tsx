@@ -11,6 +11,10 @@ import CardHeader from "@material-ui/core/CardHeader";
 
 const useStyles = makeStyles((theme) => (
 {
+	section:
+	{
+		backgroundColor: "#FAFAFA"
+	},
 	media: 
   	{
     	height: "256px"
@@ -23,7 +27,7 @@ export default function Featured(props: any)
 	const classes = useStyles();
 
 	return (
-    	<section>
+    	<section className={classes.section}>
       		<Container maxWidth="lg">
     	  		<Box pt={8} pb={10}>
 	        		<Container maxWidth="sm">
