@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -68,9 +69,9 @@ export default function Articles(props: any)
                                                 </Typography>
                                             </Box>
                                             <Box textAlign="right">
-                                                <Button color="primary" endIcon={<ArrowRightAltIcon />}>
-                                                    View list of articles
-                                                </Button>
+                                                <Link to="/articles">
+                                                    <Button color="primary" endIcon={<ArrowRightAltIcon />}>View list of articles</Button>
+                                                </Link>
                                             </Box>
                                         </Box>
                                     </CardContent>
