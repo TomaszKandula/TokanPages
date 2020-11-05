@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => (
     }
 }));
 
-export default function Articles(props: any) 
+export default function ArticleFeat(props: any) 
 {
   
     const classes = useStyles();

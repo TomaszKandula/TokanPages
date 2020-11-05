@@ -6,7 +6,7 @@ import Features from "../Components/Features/features";
 import Featured from "../Components/Featured/featured";
 import ContactForm from "../Components/ContactForm/contactForm";
 import Cookies from "../Components/Cookies/cookies";
-import Articles from "../Components/Articles/articles";
+import ArticleFeat from "../Components/Articles/articleFeat";
 
 export default function Index() 
 {
@@ -16,7 +16,7 @@ export default function Index()
       		<HorizontalNav content={null} />
 			<Header />
       		<Features />
-		    <Articles />
+		    <ArticleFeat />
       		<Featured />
 	  		<ContactForm />
 			<Cookies />
