@@ -46,7 +46,7 @@ export default function StoryContent(props: { content: any; })
                         </IconButton>        		
                     </Link> 
                     <Divider className={classes.divider} />
-                    <Typography variant="body1" component="p" className={classes.typography}>
+                    <Typography variant="body1" component="span" className={classes.typography}>
                         {ReactHtmlParser(story)}
                     </Typography>
         		</Box>
