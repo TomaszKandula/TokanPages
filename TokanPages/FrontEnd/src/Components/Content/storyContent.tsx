@@ -11,13 +11,18 @@ import * as apiUrls from "../../Shared/apis";
 
 const useStyles = makeStyles((theme) => (
 {
+    container:
+    {
+        maxWidth: "700px"
+    },
     divider:
     {
         marginBottom: "30px"
 	},
 	typography:
 	{
-		color: "#616161",
+        textAlign: "justify",
+        color: "#616161",
 		lineHeight: 2.0
 	}
 }));
@@ -38,7 +43,7 @@ export default function StoryContent(props: { content: any; })
 	
 	return (
     	<section>
-      		<Container maxWidth="sm">       
+      		<Container className={classes.container}>       
 		        <Box py={12}>
 					<Link to="/">
                         <IconButton>
