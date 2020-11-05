@@ -34,7 +34,7 @@ const useStyles = makeStyles(
     }
 });
 
-export default function Article(props: IArticle)
+export default function ArticleCard(props: IArticle)
 {
 
     const classes = useStyles();
