@@ -11,12 +11,17 @@ import * as apiUrls from "../../Shared/apis";
 
 const useStyles = makeStyles((theme) => (
 {
+    container:
+    {
+        maxWidth: "700px"
+    },
     divider:
     {
         marginBottom: "30px"
     },
 	typography:
 	{
+        textAlign: "justify",
 		color: "#616161",
 		lineHeight: 2.0
 	}
@@ -28,17 +33,17 @@ export default function PolicyContent(props: { content: any; })
 	const classes = useStyles();
 
     const [ policy, setPolicy ] = useState("Fetching content...");
-    const fetchTerms = async () => 
+    const fetchPolicy = async () => 
     {
         const response = await axios.get(apiUrls.POLICY_URL, {method: "get", responseType: "text"});
         setPolicy(response.data);    
     }
 
-    useEffect( () => { fetchTerms() }, [ policy ] );
+    useEffect( () => { fetchPolicy() }, [ policy ] );
 
 	return (
     	<section>
-      		<Container maxWidth="sm">       
+      		<Container className={classes.container}>       
 		        <Box py={12}>
                     <Link to="/">
                         <IconButton>
