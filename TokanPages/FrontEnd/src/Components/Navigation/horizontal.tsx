@@ -3,13 +3,7 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import Slide from "@material-ui/core/Slide";
-
-interface Props 
-{
-	children: React.ReactElement;
-}
+import HideOnScroll from "../../Shared/Scroll/hideOnScroll";
 
 const useStyles = makeStyles((theme) => (
 {
@@ -33,18 +27,6 @@ const useStyles = makeStyles((theme) => (
 		underline: "none"
 	}
 }));
-
-function HideOnScroll(props: Props) 
-{
-	const { children } = props;
-	const trigger = useScrollTrigger();
- 
-	return (
-	  <Slide appear={false} direction="down" in={!trigger}>
-			{children}
-	  </Slide>
-	);
-}
 
 export default function HorizontalNav(props: { content: any; }) 
 {
