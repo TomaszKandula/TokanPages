@@ -11,7 +11,7 @@ export default function ArticlesPage()
     	<>
 		    <HorizontalNav content={null} />
     	  	<Container>
-            <List content={null} />
+            	<List/>
 	      	</Container>
       		<Footer backgroundColor="#FAFAFA" />
 	    </>
