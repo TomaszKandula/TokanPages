@@ -5,9 +5,10 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { Divider, IconButton, makeStyles } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
-import ReactHtmlParser from 'react-html-parser';
+import ReactHtmlParser from "react-html-parser";
 import axios from "axios";
 import * as apiUrls from "../../Shared/apis";
+import { IsEmpty } from "../../Shared/helpers"; 
 
 const useStyles = makeStyles((theme) => (
 {
@@ -32,7 +33,7 @@ export default function StoryContent(props: { content: any; })
 
 	const classes = useStyles();
 
-    const [ story, setStory ] = useState("Fetching content...");
+    const [ story, setStory ] = useState("");
     const fetchStory = async () => 
     {
         const response = await axios.get(apiUrls.STORY_URL, {method: "get", responseType: "text"});
@@ -40,22 +41,34 @@ export default function StoryContent(props: { content: any; })
     }
 
     useEffect( () => { fetchStory() }, [ story ] );
-	
-	return (
-    	<section>
-      		<Container className={classes.container}>       
-		        <Box py={12}>
-					<Link to="/">
+
+    const renderStory = (text: string) => 
+    {
+        return(
+            <div data-aos="fade-up">
+                {ReactHtmlParser(text)}
+            </div>
+        );
+    }
+
+    const content = !IsEmpty(story) ? "Fetching content..." : renderStory(story);
+
+    return (
+        <section>
+            <Container className={classes.container}>       
+                <Box py={12}>
+                    <Link to="/">
                         <IconButton>
                             <ArrowBack/>
                         </IconButton>        		
                     </Link> 
                     <Divider className={classes.divider} />
                     <Typography variant="body1" component="span" className={classes.typography}>
-                        {ReactHtmlParser(story)}
+                        {content}
                     </Typography>
-        		</Box>
-			</Container>
-    	</section>
-  	);
+                </Box>
+            </Container>
+        </section>
+    );
+
 }

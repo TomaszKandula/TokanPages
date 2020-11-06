@@ -8,6 +8,7 @@ import { ArrowBack } from "@material-ui/icons";
 import ReactHtmlParser from 'react-html-parser';
 import axios from "axios";
 import * as apiUrls from "../../Shared/apis";
+import { IsEmpty } from "../../Shared/helpers"; 
 
 const useStyles = makeStyles((theme) => (
 {
@@ -31,7 +32,7 @@ export default function ArticleDetail(props: { uid: string; })
 {
 
 	const classes = useStyles();
-    const [ article, setArticle ] = useState("Fetching content...");
+    const [ article, setArticle ] = useState("");
 
     const articleUrl = `${apiUrls.STORAGE_URL}/content/articles/${props.uid}/text.html`;
 
@@ -43,6 +44,17 @@ export default function ArticleDetail(props: { uid: string; })
 
     useEffect( () => { fetchArticle() }, [ article, fetchArticle ] );
 
+    const renderArticle = (text: string) => 
+    {
+        return(
+            <div data-aos="fade-up">
+                {ReactHtmlParser(text)}
+            </div>
+        );
+    }
+
+    const content = !IsEmpty(article) ? "Fetching content..." : renderArticle(article);
+    
 	return (
     	<section>
       		<Container className={classes.container}>       
@@ -54,7 +66,7 @@ export default function ArticleDetail(props: { uid: string; })
                     </Link> 
                     <Divider className={classes.divider} />
                     <Typography variant="body1" component="span" className={classes.typography}>
-                        {ReactHtmlParser(article)}
+                        {content}
                     </Typography>
         		</Box>
 			</Container>

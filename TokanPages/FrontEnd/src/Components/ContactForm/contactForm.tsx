@@ -27,6 +27,7 @@ export default function ContactForm(props: any)
     	<section className={classes.section}>
       		<Container maxWidth="lg">
       			<Container maxWidth="sm">
+				    <div data-aos="fade-up">
     	    		<Box pt={8} pb={10}>
 	          			<Box mb={6} textAlign="center">
             				<Typography variant="h4" component="h2" gutterBottom={true}>Contact me</Typography>
@@ -57,6 +58,7 @@ export default function ContactForm(props: any)
             	  			</Box>
         	  			</Box>
     	    		</Box>
+					</div>
 	      		</Container>
       		</Container>
     	</section>

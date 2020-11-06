@@ -30,6 +30,8 @@ export default function Features(props: any)
 	return (
 	    <section className={classes.section}>
       		<Container maxWidth="lg">
+				<div data-aos="fade-up">
+
         		<Box py={8}>
           			<Box mb={8}>
             			<Typography color="primary" variant="button" component="h3" align="center" gutterBottom={true}>Technologies</Typography>
@@ -74,6 +76,8 @@ export default function Features(props: any)
 	            		</Grid>
           			</Grid>
         		</Box>
+
+				</div>
       		</Container>
     	</section>
 	);

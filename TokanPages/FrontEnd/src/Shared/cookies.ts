@@ -1,3 +1,5 @@
+import { IsEmpty } from "./helpers"; 
+
 interface ISetCookie 
 {
     ACookieName: string, 
@@ -9,11 +11,6 @@ interface ISetCookie
 
 function SetCookie(props: ISetCookie) 
 {
-
-    const IsEmpty = (AValue: string) => 
-    {
-        return typeof !AValue.trim() || typeof AValue === undefined || AValue === null;        
-    }
 
     let LDate = new Date();
     if (props.ADays)

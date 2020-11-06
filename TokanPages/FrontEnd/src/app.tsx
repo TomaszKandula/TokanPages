@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"; 
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
@@ -11,9 +11,17 @@ import SigninPage from "./Pages/signinPage";
 import SignupPage from "./Pages/signupPage";
 import ResetPage from "./Pages/resetPage";
 import ScrollToTop from "./Shared/Scroll/scrollToTop";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function App() 
 {
+
+    useEffect(() => 
+    {
+        AOS.init();
+        AOS.refresh();
+    });
 
     return (
 
