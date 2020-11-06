@@ -49,6 +49,7 @@ export default function ArticleCard(props: IArticle)
     const imageUrl = `${STORAGE_URL}/content/articles/${props.uid}/image.jpg`;
 
     return(
+        <div data-aos="fade-up">
         <Card className={classes.root} elevation={4}>
             <Grid container spacing={2}>
                 <Grid item xs={4}>
@@ -71,6 +72,7 @@ export default function ArticleCard(props: IArticle)
                 </Grid>
             </Grid>
         </Card>
+        </div>
     );
 
 }

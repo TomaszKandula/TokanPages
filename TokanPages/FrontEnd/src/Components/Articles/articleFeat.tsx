@@ -49,6 +49,7 @@ export default function ArticleFeat(props: any)
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
+                <div data-aos="fade-up">
                 <Box pt={8} pb={10}>
                     <Container maxWidth="sm">
     	      		    <Box textAlign="center" mb={5}>
@@ -108,6 +109,7 @@ export default function ArticleFeat(props: any)
                         </Grid>
     	        	</Container>
                 </Box>
+                </div>
             </Container>
         </section>
     );

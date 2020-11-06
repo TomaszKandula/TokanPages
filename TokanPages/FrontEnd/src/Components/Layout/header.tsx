@@ -90,12 +90,14 @@ export default function Header(props: any)
 				<Grid container className={classes.gridMargin}>
 			        <Grid item xs={12} sm={6}>
 						<Box className={classes.imageBox}>
-							<img className={classes.img} src="https://maindbstorage.blob.core.windows.net/tokanpages/images/tomek_bergen.jpg" alt="" />
+							<div data-aos="fade-right">
+								<img className={classes.img} src="https://maindbstorage.blob.core.windows.net/tokanpages/images/tomek_bergen.jpg" alt="" />
+							</div>
 						</Box>
 	        		</Grid>
     	    		<Grid item xs={12} sm={6}>
 						<Box className={classes.contentBox}>
-            				<Container>
+							<div data-aos="fade-left">
               					<Typography variant="overline" component="span" gutterBottom={true}>{content['header']}</Typography>
               					<Typography variant="h5" color="textSecondary" paragraph={true}>{content['description']}</Typography>
               					<Box mt={4}>
@@ -103,7 +105,7 @@ export default function Header(props: any)
                 						<Button variant="contained" className={classes.mainAction}>{content['main-action']}</Button>
 									</Link>
     		          			</Box>
-        		    		</Container>
+							</div>
           				</Box>
 	        		</Grid>
     		  	</Grid>

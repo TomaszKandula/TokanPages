@@ -8,6 +8,7 @@ import { ArrowBack } from "@material-ui/icons";
 import ReactHtmlParser from 'react-html-parser';
 import axios from "axios";
 import * as apiUrls from "../../Shared/apis";
+import { IsEmpty } from "../../Shared/helpers"; 
 
 const useStyles = makeStyles((theme) => (
 {
@@ -41,6 +42,17 @@ export default function PolicyContent(props: { content: any; })
 
     useEffect( () => { fetchPolicy() }, [ policy ] );
 
+    const renderPolicy = (text: string) => 
+    {
+        return(
+            <div data-aos="fade-up">
+                {ReactHtmlParser(text)}
+            </div>
+        );
+    }
+
+    const content = !IsEmpty(policy) ? "Fetching content..." : renderPolicy(policy);
+    
 	return (
     	<section>
       		<Container className={classes.container}>       
@@ -52,7 +64,7 @@ export default function PolicyContent(props: { content: any; })
                     </Link> 
                     <Divider className={classes.divider} />
                     <Typography variant="body1" component="span" className={classes.typography}>
-                        {ReactHtmlParser(policy)}
+                        {content}
                     </Typography>
         		</Box>
 			</Container>
