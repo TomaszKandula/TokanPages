@@ -1,8 +1,9 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
 import HorizontalNav from "../Components/Navigation/horizontal";
-import PolicyContent from "../Components/Content/policyContent";
+import StaticContent from "../Components/Content/staticContent";
 import Footer from "../Components/Layout/footer";
+import * as apiUrls from "../Shared/apis";
 
 export default function PolicyPage() 
 {
@@ -11,7 +12,7 @@ export default function PolicyPage()
         <>     
             <HorizontalNav content={null} />
             <Container>
-                <PolicyContent content={null} />
+                <StaticContent dataUrl={apiUrls.POLICY_URL} />
             </Container>
             <Footer backgroundColor="#FAFAFA" />
         </>

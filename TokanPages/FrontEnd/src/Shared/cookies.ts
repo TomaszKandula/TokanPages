@@ -2,25 +2,25 @@ import { IsEmpty } from "./helpers";
 
 interface ISetCookie 
 {
-    ACookieName: string, 
-    AValue: string, 
-    ADays: number, 
-    ASameSite: string, 
-    ASecure: string    
+    cookieName: string, 
+    value: string, 
+    days: number, 
+    sameSite: string, 
+    secure: string    
 }
 
 function SetCookie(props: ISetCookie) 
 {
 
     let LDate = new Date();
-    if (props.ADays)
+    if (props.days)
     {
 
         // We set time in miliseconds
-        LDate.setTime(LDate.getTime() + (props.ADays * 24 * 60 * 60 * 1000));
+        LDate.setTime(LDate.getTime() + (props.days * 24 * 60 * 60 * 1000));
 
-        let LSecure = !IsEmpty(props.ASecure) ? `; ${props.ASecure}` : "";
-        let LNewCookie = `${props.ACookieName}=${props.AValue}; expires=${LDate.toUTCString()}; path=/; SameSite=${props.ASameSite} ${LSecure}`;
+        let LSecure = !IsEmpty(props.secure) ? `; ${props.secure}` : "";
+        let LNewCookie = `${props.cookieName}=${props.value}; expires=${LDate.toUTCString()}; path=/; SameSite=${props.sameSite} ${LSecure}`;
 
         document.cookie = LNewCookie;
 
@@ -30,13 +30,13 @@ function SetCookie(props: ISetCookie)
 
 interface IGetCookie
 {
-    ACookieName: string
+    cookieName: string
 }
 
 function GetCookie(props: IGetCookie)
 {
 
-    let LCookieName = `${props.ACookieName}=`;
+    let LCookieName = `${props.cookieName}=`;
     let LCookieArray = document.cookie.split(";");
 
     for (let Index = 0; Index < LCookieArray.length; Index++)
@@ -62,12 +62,12 @@ function GetCookie(props: IGetCookie)
 
 interface IEraseCookie
 {
-    ACookieName: string
+    cookieName: string
 }
 
 function EraseCookie(props: IEraseCookie)
 {
-    document.cookie = `${props.ACookieName}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+    document.cookie = `${props.cookieName}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
 }
 
 export 

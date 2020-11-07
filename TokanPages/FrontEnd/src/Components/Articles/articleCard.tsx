@@ -16,7 +16,7 @@ interface IArticle
     uid: string;
 }
 
-const useStyles = makeStyles(
+const useStyles = makeStyles(() => (
 {
     root: 
     {
@@ -39,7 +39,7 @@ const useStyles = makeStyles(
         height: 150,
         maxWidth: "100%"
     }
-});
+}));
 
 export default function ArticleCard(props: IArticle)
 {

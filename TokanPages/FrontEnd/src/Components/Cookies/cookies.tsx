@@ -9,7 +9,7 @@ import CardActions from "@material-ui/core/CardActions";
 import { makeStyles } from "@material-ui/core";
 import { SetCookie, GetCookie } from "../../Shared/cookies";
 
-const useStyles = makeStyles((theme) => (
+const useStyles = makeStyles(() => (
 {
     open:
     {
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => (
     }
 }));
 
-export default function Cookies(props: any) 
+export default function Cookies() 
 {
 
     const classes = useStyles();
@@ -35,11 +35,11 @@ export default function Cookies(props: any)
         setClose(true); 
         SetCookie(
         {
-            ACookieName: "cookieConsent", 
-            AValue: "granted", 
-            ADays: 3,
-            ASameSite: "Strict",
-            ASecure: ""
+            cookieName: "cookieConsent", 
+            value: "granted", 
+            days: 3,
+            sameSite: "Strict",
+            secure: ""
         });
     }
 
@@ -72,7 +72,7 @@ export default function Cookies(props: any)
 
     }
 
-    const Content = !GetCookie({ACookieName: "cookieConsent"}) ? renderConsent() : null;
+    const Content = !GetCookie({cookieName: "cookieConsent"}) ? renderConsent() : null;
     return (<>{Content}</>);
 
 }

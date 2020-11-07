@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { Divider, IconButton, makeStyles } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
-import ReactHtmlParser from 'react-html-parser';
+import ReactHtmlParser from "react-html-parser";
 import axios from "axios";
-import * as apiUrls from "../../Shared/apis";
 import { IsEmpty } from "../../Shared/helpers"; 
 
-const useStyles = makeStyles((theme) => (
+interface IStoryContent
+{
+    dataUrl: string;
+}
+
+const useStyles = makeStyles(() => (
 {
     container:
     {
@@ -28,21 +32,22 @@ const useStyles = makeStyles((theme) => (
     }
 }));
 
-export default function TermsContent(props: { content: any; }) 
+export default function StaticContent(props: IStoryContent) 
 {
 
     const classes = useStyles();
+    const [ data, setData ] = useState("");
 
-    const [ terms, setTerms ] = useState("Fetching content...");
-    const fetchTerms = async () => 
+    const fetchData = useCallback( async () => 
     {
-        const response = await axios.get(apiUrls.TERMS_URL, {method: "get", responseType: "text"});
-        setTerms(response.data);
-    }
+        const response = await axios.get(props.dataUrl, {method: "get", responseType: "text"});
+        setData(response.data);    
+    }, 
+    [ props.dataUrl ]);
 
-    useEffect( () => { fetchTerms() }, [ terms ] );
+    useEffect( () => { fetchData() }, [ data, fetchData ] );
 
-    const renderTerms = (text: string) => 
+    const renderData = (text: string) => 
     {
         return(
             <div data-aos="fade-up">
@@ -51,8 +56,8 @@ export default function TermsContent(props: { content: any; })
         );
     }
 
-    const content = !IsEmpty(terms) ? "Fetching content..." : renderTerms(terms);
-    
+    const content = IsEmpty(data) ? "Fetching content..." : renderData(data);
+
     return (
         <section>
             <Container className={classes.container}>       
@@ -70,4 +75,5 @@ export default function TermsContent(props: { content: any; })
             </Container>
         </section>
     );
+
 }

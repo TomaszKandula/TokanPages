@@ -9,7 +9,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 
-const useStyles = makeStyles((theme) => (
+const useStyles = makeStyles(() => (
 {
     section:
     {
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => (
 }
 ));
 
-export default function ContactForm(props: any) 
+export default function ContactForm() 
 {
 
     const classes = useStyles();

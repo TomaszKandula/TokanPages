@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => (
     }
 }));
 
-export default function SigninForm(props: any) 
+export default function SigninForm() 
 {
 
     const classes = useStyles();
