@@ -5,7 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import HideOnScroll from "../../Shared/Scroll/hideOnScroll";
 
-const useStyles = makeStyles((theme) => (
+const useStyles = makeStyles(() => (
 {
     appBar:
     {
@@ -32,6 +32,7 @@ export default function HorizontalNav(props: { content: any; })
 {
 
     const classes = useStyles();
+    const imageUrl = "https://maindbstorage.blob.core.windows.net/tokanpages/icons/main_logo.svg";
 
     return (
 
@@ -39,7 +40,7 @@ export default function HorizontalNav(props: { content: any; })
             <AppBar className={classes.appBar}>
                 <Toolbar className={classes.toolBar}>
                     <Link to="/" className={classes.mainLink}>
-                        <img className={classes.mainLogo} src="https://maindbstorage.blob.core.windows.net/tokanpages/icons/main_logo.svg" alt="" />
+                        <img className={classes.mainLogo} src={imageUrl} alt="" />
                     </Link>
                 </Toolbar>
             </AppBar>

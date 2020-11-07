@@ -1,6 +1,16 @@
-function IsEmpty(AValue: string) 
+function IsEmpty(value: any): boolean 
 {
-    return typeof !AValue.trim() || typeof AValue === undefined || AValue === null;        
+
+    if (value === null 
+        || value === undefined 
+        || (value.length !== undefined && value.length === 0) 
+        || Object.keys(value).length === 0) 
+    {
+        return true;
+    }
+
+    return false;
+
 }
 
 export 

@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Zoom from "@material-ui/core/Zoom";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 
-interface Props 
+interface IScrollToTop 
 {
     children: React.ReactElement;
 }
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => (
     }
 }));
 
-export default function ScrollToTop(props: Props) 
+export default function ScrollToTop(props: IScrollToTop) 
 {
 
     const { children } = props;

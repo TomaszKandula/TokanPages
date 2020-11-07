@@ -9,7 +9,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardHeader from "@material-ui/core/CardHeader";
 
-const useStyles = makeStyles((theme) => (
+const useStyles = makeStyles(() => (
 {
     section:
     {
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => (
     }
 }));
 
-export default function Featured(props: any) 
+export default function Featured() 
 {
   
     const classes = useStyles();

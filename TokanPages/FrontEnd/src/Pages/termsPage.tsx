@@ -1,8 +1,9 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
 import HorizontalNav from "../Components/Navigation/horizontal";
-import TermsContent from "../Components/Content/termsContent";
+import StaticContent from "../Components/Content/staticContent";
 import Footer from "../Components/Layout/footer";
+import * as apiUrls from "../Shared/apis";
 
 export default function TermsPage() 
 {
@@ -11,7 +12,7 @@ export default function TermsPage()
         <>     
             <HorizontalNav content={null} />
             <Container>
-                <TermsContent content={null} />
+                <StaticContent dataUrl={apiUrls.TERMS_URL} />
             </Container>
             <Footer backgroundColor="#FAFAFA" />
         </>

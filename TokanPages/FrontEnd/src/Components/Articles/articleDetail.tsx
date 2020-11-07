@@ -10,7 +10,12 @@ import axios from "axios";
 import * as apiUrls from "../../Shared/apis";
 import { IsEmpty } from "../../Shared/helpers"; 
 
-const useStyles = makeStyles((theme) => (
+interface IArticleDetail
+{
+    uid: string;    
+}
+
+const useStyles = makeStyles(() => (
 {
     container:
     {
@@ -28,7 +33,7 @@ const useStyles = makeStyles((theme) => (
     }
 }));    
 
-export default function ArticleDetail(props: { uid: string; }) 
+export default function ArticleDetail(props: IArticleDetail) 
 {
 
     const classes = useStyles();
@@ -53,7 +58,7 @@ export default function ArticleDetail(props: { uid: string; })
         );
     }
 
-    const content = !IsEmpty(article) ? "Fetching content..." : renderArticle(article);
+    const content = IsEmpty(article) ? "Fetching content..." : renderArticle(article);
     
     return (
         <section>

@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => (
     }
 }));
 
-export default function ResetForm(props: any) 
+export default function ResetForm() 
 {
 
     const classes = useStyles();

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => (
 }
 ));
 
-export default function Features(props: any) 
+export default function Features() 
 {
 
     const classes = useStyles();

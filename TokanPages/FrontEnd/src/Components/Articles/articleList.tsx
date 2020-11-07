@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
 import ArticleCard from "./articleCard";
 
-const useStyles = makeStyles((theme) => (
+const useStyles = makeStyles(() => (
 {
     container:
     {
