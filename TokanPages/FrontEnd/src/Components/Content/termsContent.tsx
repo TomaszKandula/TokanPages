@@ -20,24 +20,24 @@ const useStyles = makeStyles((theme) => (
     {
         marginBottom: "30px"
     },
-	typography:
-	{
+    typography:
+    {
         textAlign: "justify",
         color: "#616161",
-		lineHeight: 2.0
+        lineHeight: 2.0
     }
 }));
 
 export default function TermsContent(props: { content: any; }) 
 {
 
-	const classes = useStyles();
+    const classes = useStyles();
 
     const [ terms, setTerms ] = useState("Fetching content...");
     const fetchTerms = async () => 
     {
         const response = await axios.get(apiUrls.TERMS_URL, {method: "get", responseType: "text"});
-        setTerms(response.data);    
+        setTerms(response.data);
     }
 
     useEffect( () => { fetchTerms() }, [ terms ] );
@@ -53,21 +53,21 @@ export default function TermsContent(props: { content: any; })
 
     const content = !IsEmpty(terms) ? "Fetching content..." : renderTerms(terms);
     
-	return (
-    	<section>
-      		<Container className={classes.container}>       
-		        <Box py={12}>
+    return (
+        <section>
+            <Container className={classes.container}>       
+                <Box py={12}>
                     <Link to="/">
                         <IconButton>
                             <ArrowBack/>
-                        </IconButton>        		
+                        </IconButton>
                     </Link> 
                     <Divider className={classes.divider} />
                     <Typography variant="body1" component="span" className={classes.typography}>
                         {content}
                     </Typography>
-        		</Box>
-			</Container>
-    	</section>
-  	);
+                </Box>
+            </Container>
+        </section>
+    );
 }

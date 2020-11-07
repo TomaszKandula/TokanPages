@@ -24,7 +24,6 @@ export default function App()
     });
 
     return (
-
         <>
             <Router>
                 <Switch>
@@ -44,7 +43,6 @@ export default function App()
                 </Fab>
             </ScrollToTop>
       </>
-
     );
 
 };

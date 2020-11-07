@@ -20,18 +20,18 @@ const useStyles = makeStyles((theme) => (
     {
         marginBottom: "30px"
     },
-	typography:
-	{
+    typography:
+    {
         textAlign: "justify",
         color: "#616161",
-		lineHeight: 2.0
-	}
+        lineHeight: 2.0
+    }
 }));    
 
 export default function ArticleDetail(props: { uid: string; }) 
 {
 
-	const classes = useStyles();
+    const classes = useStyles();
     const [ article, setArticle ] = useState("");
 
     const articleUrl = `${apiUrls.STORAGE_URL}/content/articles/${props.uid}/text.html`;
@@ -55,21 +55,21 @@ export default function ArticleDetail(props: { uid: string; })
 
     const content = !IsEmpty(article) ? "Fetching content..." : renderArticle(article);
     
-	return (
-    	<section>
-      		<Container className={classes.container}>       
-		        <Box py={12}>
+    return (
+        <section>
+            <Container className={classes.container}>       
+                <Box py={12}>
                     <Link to="/articles">
                         <IconButton>
                             <ArrowBack/>
-                        </IconButton>        		
+                        </IconButton>
                     </Link> 
                     <Divider className={classes.divider} />
                     <Typography variant="body1" component="span" className={classes.typography}>
                         {content}
                     </Typography>
-        		</Box>
-			</Container>
-    	</section>
-  	);
+                </Box>
+            </Container>
+        </section>
+    );
 }

@@ -50,28 +50,28 @@ export default function ArticleCard(props: IArticle)
 
     return(
         <div data-aos="fade-up">
-        <Card className={classes.root} elevation={4}>
-            <Grid container spacing={2}>
-                <Grid item xs={4}>
-                    <img className={classes.img} alt="" src={imageUrl} />
+            <Card className={classes.root} elevation={4}>
+                <Grid container spacing={2}>
+                    <Grid item xs={4}>
+                        <img className={classes.img} alt="" src={imageUrl} />
+                    </Grid>
+                    <Grid item xs={8}>
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                {props.title}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                {props.desc}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Link to={articleUrl} className={classes.link}>
+                                <Button size="small" color="primary">Read</Button>
+                            </Link>
+                        </CardActions>
+                    </Grid>
                 </Grid>
-                <Grid item xs={8}>
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {props.title}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            {props.desc}
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Link to={articleUrl} className={classes.link}>
-                            <Button size="small" color="primary">Read</Button>
-                        </Link>
-                    </CardActions>
-                </Grid>
-            </Grid>
-        </Card>
+            </Card>
         </div>
     );
 

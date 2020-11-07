@@ -7,14 +7,14 @@ import Footer from "../Components/Layout/footer";
 export default function TermsPage() 
 {
   
-	return (    
-    	<>     
-		    <HorizontalNav content={null} />
-    	  	<Container>
-        		<TermsContent content={null} />
-	      	</Container>
-      		<Footer backgroundColor="#FAFAFA" />
-    	</>
-	);
+    return (    
+        <>     
+            <HorizontalNav content={null} />
+            <Container>
+                <TermsContent content={null} />
+            </Container>
+            <Footer backgroundColor="#FAFAFA" />
+        </>
+    );
 
 }
