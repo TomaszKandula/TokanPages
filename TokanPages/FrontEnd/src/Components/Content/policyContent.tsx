@@ -20,18 +20,18 @@ const useStyles = makeStyles((theme) => (
     {
         marginBottom: "30px"
     },
-	typography:
-	{
+    typography:
+    {
         textAlign: "justify",
-		color: "#616161",
-		lineHeight: 2.0
-	}
-}));    
+        color: "#616161",
+        lineHeight: 2.0
+    }
+}));
 
 export default function PolicyContent(props: { content: any; }) 
 {
 
-	const classes = useStyles();
+    const classes = useStyles();
 
     const [ policy, setPolicy ] = useState("Fetching content...");
     const fetchPolicy = async () => 
@@ -53,21 +53,21 @@ export default function PolicyContent(props: { content: any; })
 
     const content = !IsEmpty(policy) ? "Fetching content..." : renderPolicy(policy);
     
-	return (
-    	<section>
-      		<Container className={classes.container}>       
-		        <Box py={12}>
+    return (
+        <section>
+            <Container className={classes.container}>       
+                <Box py={12}>
                     <Link to="/">
                         <IconButton>
                             <ArrowBack/>
-                        </IconButton>        		
+                        </IconButton>
                     </Link> 
                     <Divider className={classes.divider} />
                     <Typography variant="body1" component="span" className={classes.typography}>
                         {content}
                     </Typography>
-        		</Box>
-			</Container>
-    	</section>
-  	);
+                </Box>
+            </Container>
+        </section>
+    );
 }

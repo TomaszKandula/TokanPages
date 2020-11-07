@@ -11,17 +11,17 @@ import ArticleFeat from "../Components/Articles/articleFeat";
 export default function Index() 
 {
 
-	return (
-    	<>
-      		<HorizontalNav content={null} />
-			<Header />
-      		<Features />
-		    <ArticleFeat />
-      		<Featured />
-	  		<ContactForm />
-			<Cookies />
-      		<Footer backgroundColor="#FAFAFA" />
-	    </>
+    return (
+        <>
+            <HorizontalNav content={null} />
+            <Header />
+            <Features />
+            <ArticleFeat />
+            <Featured />
+            <ContactForm />
+            <Cookies />
+            <Footer backgroundColor="#FAFAFA" />
+        </>
     );
 
 }

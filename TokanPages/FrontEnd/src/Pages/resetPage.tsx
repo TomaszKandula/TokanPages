@@ -7,14 +7,14 @@ import Footer from "../Components/Layout/footer";
 export default function storyPage() 
 {
   
-	return (    
-    	<>     
-		    <HorizontalNav content={null} />
-    	  	<Container>
+    return (    
+        <>     
+            <HorizontalNav content={null} />
+            <Container>
                 <ResetForm />
-	      	</Container>
-      		<Footer backgroundColor="#FAFAFA" />
-    	</>
-	);
+            </Container>
+            <Footer backgroundColor="#FAFAFA" />
+        </>
+    );
 
 }

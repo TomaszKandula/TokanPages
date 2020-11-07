@@ -8,25 +8,25 @@ import ArticleDetail from "../Components/Articles/articleDetail";
 
 const useQuery = () => 
 {
-	return new URLSearchParams(useLocation().search);
+    return new URLSearchParams(useLocation().search);
 }
 
 export default function ArticlesPage() 
 {
 
-	let queryParam = useQuery();
-	let id = queryParam.get("id");
+    let queryParam = useQuery();
+    let id = queryParam.get("id");
 
-	const content = id ? <ArticleDetail uid={id} /> : <ArticleList />;
+    const content = id ? <ArticleDetail uid={id} /> : <ArticleList />;
 
-	return (
-    	<>
-		    <HorizontalNav content={null} />
-    	  	<Container>
-				{content}
-	      	</Container>
-      		<Footer backgroundColor="#FAFAFA" />
-	    </>
+    return (
+        <>
+            <HorizontalNav content={null} />
+            <Container>
+                {content}
+            </Container>
+            <Footer backgroundColor="#FAFAFA" />
+        </>
     );
 
 }

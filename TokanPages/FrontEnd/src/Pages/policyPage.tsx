@@ -7,14 +7,14 @@ import Footer from "../Components/Layout/footer";
 export default function PolicyPage() 
 {
   
-	return (    
-    	<>     
-		    <HorizontalNav content={null} />
-    	  	<Container>
+    return (    
+        <>     
+            <HorizontalNav content={null} />
+            <Container>
                 <PolicyContent content={null} />
-	      	</Container>
-      		<Footer backgroundColor="#FAFAFA" />
-    	</>
-	);
+            </Container>
+            <Footer backgroundColor="#FAFAFA" />
+        </>
+    );
 
 }

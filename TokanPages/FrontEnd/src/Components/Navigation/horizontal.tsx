@@ -7,43 +7,43 @@ import HideOnScroll from "../../Shared/Scroll/hideOnScroll";
 
 const useStyles = makeStyles((theme) => (
 {
-	appBar:
-	{
-		background: "#1976D2"
-	},
-	toolBar: 
-	{ 
-		justifyContent: "center", 
-	},
-	mainLogo:
-	{
-		width: 210,
-	},
-	mainLink:
-	{
-		marginTop: "10px",
-		variant:"h5", 
-		color: "inherit", 
-		underline: "none"
-	}
+    appBar:
+    {
+        background: "#1976D2"
+    },
+    toolBar: 
+    { 
+        justifyContent: "center", 
+    },
+    mainLogo:
+    {
+        width: 210,
+    },
+    mainLink:
+    {
+        marginTop: "10px",
+        variant:"h5", 
+        color: "inherit", 
+        underline: "none"
+    }
 }));
 
 export default function HorizontalNav(props: { content: any; }) 
 {
 
-	const classes = useStyles();
+    const classes = useStyles();
 
-	return (
+    return (
 
-		<HideOnScroll {...props}>
-			<AppBar className={classes.appBar}>
-	      		<Toolbar className={classes.toolBar}>
-        			<Link to="/" className={classes.mainLink}>
-          				<img className={classes.mainLogo} src="https://maindbstorage.blob.core.windows.net/tokanpages/icons/main_logo.svg" alt="" />
-        			</Link>
-    	  		</Toolbar>
-	    	</AppBar>
-		</HideOnScroll>
+        <HideOnScroll {...props}>
+            <AppBar className={classes.appBar}>
+                <Toolbar className={classes.toolBar}>
+                    <Link to="/" className={classes.mainLink}>
+                        <img className={classes.mainLogo} src="https://maindbstorage.blob.core.windows.net/tokanpages/icons/main_logo.svg" alt="" />
+                    </Link>
+                </Toolbar>
+            </AppBar>
+        </HideOnScroll>
 
     );
 

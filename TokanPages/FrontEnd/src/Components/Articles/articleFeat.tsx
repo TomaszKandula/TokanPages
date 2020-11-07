@@ -13,10 +13,10 @@ import CardContent from '@material-ui/core/CardContent';
 
 const useStyles = makeStyles((theme) => (
 {
-	section:
-	{
-		backgroundColor: "#FFFFFF"
-	},
+    section:
+    {
+        backgroundColor: "#FFFFFF"
+    },
     info: 
     {
         height: "100%",
@@ -50,65 +50,65 @@ export default function ArticleFeat(props: any)
         <section className={classes.section}>
             <Container maxWidth="lg">
                 <div data-aos="fade-up">
-                <Box pt={8} pb={10}>
-                    <Container maxWidth="sm">
-    	      		    <Box textAlign="center" mb={5}>
-        	    		    <Typography variant="h4" component="h2" gutterBottom={true}>Articles</Typography>
-            			    <Typography variant="subtitle1" color="textSecondary">
-							    I write on regular basis on various technologies I work with. I share the knowledge and experience. I believe everyone will find something interesting.
-						    </Typography>
-    	          		</Box>
-        	    	</Container>
-            		<Container maxWidth="lg">
-                        <Grid container>
-                            <Grid item xs={12} lg={6} className={classes.firstColumn}>
-                                <Card className={classes.info} elevation={3}>
-                                    <CardContent className={classes.info}>
-                                        <Box display="flex" flexDirection="column" height="100%" pt={2} px={2}>
-                                            <Typography variant="h5" component="h2" gutterBottom={true}>
-                                                Write-ups on .NET Core, Azure and databases.
-                                            </Typography>
-                                            <Box mt="auto" mb={2}>
-                                                <Typography variant="body1" component="p" color="textSecondary">
-                                                    Let's dive into Microsoft technology and programming in general. Read about architecture, design patterns, best practices, C#, SQL and other languages.
+                    <Box pt={8} pb={10}>
+                        <Container maxWidth="sm">
+                            <Box textAlign="center" mb={5}>
+                                <Typography variant="h4" component="h2" gutterBottom={true}>Articles</Typography>
+                                <Typography variant="subtitle1" color="textSecondary">
+                                    I write on regular basis on various technologies I work with. I share the knowledge and experience. I believe everyone will find something interesting.
+                                </Typography>
+                            </Box>
+                        </Container>
+                        <Container maxWidth="lg">
+                            <Grid container>
+                                <Grid item xs={12} lg={6} className={classes.firstColumn}>
+                                    <Card className={classes.info} elevation={3}>
+                                        <CardContent className={classes.info}>
+                                            <Box display="flex" flexDirection="column" height="100%" pt={2} px={2}>
+                                                <Typography variant="h5" component="h2" gutterBottom={true}>
+                                                    Write-ups on .NET Core, Azure and databases.
                                                 </Typography>
+                                                <Box mt="auto" mb={2}>
+                                                    <Typography variant="body1" component="p" color="textSecondary">
+                                                        Let's dive into Microsoft technology and programming in general. Read about architecture, design patterns, best practices, C#, SQL and other languages.
+                                                    </Typography>
+                                                </Box>
+                                                <Box textAlign="right">
+                                                    <Link to="/articles" className={classes.link}>
+                                                        <Button color="primary" endIcon={<ArrowRightAltIcon />}>View list of articles</Button>
+                                                    </Link>
+                                                </Box>
                                             </Box>
-                                            <Box textAlign="right">
-                                                <Link to="/articles" className={classes.link}>
-                                                    <Button color="primary" endIcon={<ArrowRightAltIcon />}>View list of articles</Button>
-                                                </Link>
-                                            </Box>
-                                        </Box>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item xs={12} lg={6}>
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12} md={8}>
-                                        <Card elevation={4}>
-                                            <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image1.jpg" />
-                                        </Card>
-                                    </Grid>
-                                    <Grid item xs={12} md={4}>
-                                        <Card elevation={4}>
-                                            <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image2.jpg" />
-                                        </Card>
-                                    </Grid>
-                                    <Grid item xs={12} md={4}>
-                                        <Card elevation={4}>
-                                            <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image3.jpg" />
-                                        </Card>
-                                    </Grid> 
-                                    <Grid item xs={12} md={8}>
-                                        <Card elevation={4}>
-                                            <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image4.jpg" />
-                                        </Card>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                                <Grid item xs={12} lg={6}>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={12} md={8}>
+                                            <Card elevation={4}>
+                                                <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image1.jpg" />
+                                            </Card>
+                                        </Grid>
+                                        <Grid item xs={12} md={4}>
+                                            <Card elevation={4}>
+                                                <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image2.jpg" />
+                                            </Card>
+                                        </Grid>
+                                        <Grid item xs={12} md={4}>
+                                            <Card elevation={4}>
+                                                <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image3.jpg" />
+                                            </Card>
+                                        </Grid> 
+                                        <Grid item xs={12} md={8}>
+                                            <Card elevation={4}>
+                                                <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image4.jpg" />
+                                            </Card>
+                                        </Grid>
                                     </Grid>
                                 </Grid>
                             </Grid>
-                        </Grid>
-    	        	</Container>
-                </Box>
+                        </Container>
+                    </Box>
                 </div>
             </Container>
         </section>

@@ -19,19 +19,19 @@ const useStyles = makeStyles((theme) => (
     divider:
     {
         marginBottom: "30px"
-	},
-	typography:
-	{
+    },
+    typography:
+    {
         textAlign: "justify",
         color: "#616161",
-		lineHeight: 2.0
-	}
+        lineHeight: 2.0
+    }
 }));
 
 export default function StoryContent(props: { content: any; }) 
 {
 
-	const classes = useStyles();
+    const classes = useStyles();
 
     const [ story, setStory ] = useState("");
     const fetchStory = async () => 
@@ -60,7 +60,7 @@ export default function StoryContent(props: { content: any; })
                     <Link to="/">
                         <IconButton>
                             <ArrowBack/>
-                        </IconButton>        		
+                        </IconButton>
                     </Link> 
                     <Divider className={classes.divider} />
                     <Typography variant="body1" component="span" className={classes.typography}>
