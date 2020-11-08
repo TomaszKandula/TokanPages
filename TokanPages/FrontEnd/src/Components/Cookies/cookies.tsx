@@ -6,24 +6,9 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import { makeStyles } from "@material-ui/core";
 import { SetCookie, GetCookie } from "../../Shared/cookies";
 import { IsEmpty } from "../../Shared/helpers";
-
-const useStyles = makeStyles(() => (
-{
-    open:
-    {
-        visibility: "visible",
-        opacity: 1
-    },
-    close:
-    {
-        transition: "0.3s all ease",
-        opacity: 0,
-        visibility: "hidden"
-    }
-}));
+import useStyles from "./styleCookies";
 
 export default function Cookies() 
 {

@@ -1,5 +1,5 @@
-import React from "react";
-import HorizontalNav from "../Components/Navigation/horizontal";
+import * as React from "react";
+import Navigation from "../Components/Layout/navigation";
 import Header from "../Components/Layout/header";
 import Footer from "../Components/Layout/footer";
 import Features from "../Components/Features/features";
@@ -13,7 +13,7 @@ export default function Index()
 
     return (
         <>
-            <HorizontalNav content={null} />
+            <Navigation content={null} />
             <Header />
             <Features />
             <ArticleFeat />

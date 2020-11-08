@@ -10,7 +10,7 @@ import PolicyPage from "./Pages/policyPage";
 import SigninPage from "./Pages/signinPage";
 import SignupPage from "./Pages/signupPage";
 import ResetPage from "./Pages/resetPage";
-import ScrollToTop from "./Shared/Scroll/scrollToTop";
+import ScrollTop from "./Shared/Scroll/scrollTop";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -37,11 +37,11 @@ export default function App()
                   <Route exact path="/reset"><ResetPage /></Route>
                 </Switch>
             </Router>
-            <ScrollToTop>
+            <ScrollTop>
                 <Fab color="primary" size="small" aria-label="scroll back to top">
                     <KeyboardArrowUpIcon/>
                 </Fab>
-            </ScrollToTop>
+            </ScrollTop>
       </>
     );
 
