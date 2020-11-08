@@ -1,12 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
+import * as React from "react";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import { Divider, IconButton, makeStyles } from "@material-ui/core";
+import { Divider, IconButton } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import ReactHtmlParser from 'react-html-parser';
 import axios from "axios";
+import useStyles from "./Hooks/styleArticleDetail";
 import * as apiUrls from "../../Shared/apis";
 import { IsEmpty } from "../../Shared/helpers"; 
 
@@ -15,39 +16,21 @@ interface IArticleDetail
     uid: string;    
 }
 
-const useStyles = makeStyles(() => (
-{
-    container:
-    {
-        maxWidth: "700px"
-    },
-    divider:
-    {
-        marginBottom: "30px"
-    },
-    typography:
-    {
-        textAlign: "justify",
-        color: "#616161",
-        lineHeight: 2.0
-    }
-}));    
-
 export default function ArticleDetail(props: IArticleDetail) 
 {
 
     const classes = useStyles();
-    const [ article, setArticle ] = useState("");
+    const [ article, setArticle ] = React.useState("");
 
     const articleUrl = `${apiUrls.STORAGE_URL}/content/articles/${props.uid}/text.html`;
 
-    const fetchArticle = useCallback( async () => 
+    const fetchArticle = React.useCallback( async () => 
     {
         const response = await axios.get(articleUrl, {method: "get", responseType: "text"});
         setArticle(response.data);    
     }, [ articleUrl ]);
 
-    useEffect( () => { fetchArticle() }, [ article, fetchArticle ] );
+    React.useEffect( () => { fetchArticle() }, [ article, fetchArticle ] );
 
     const renderArticle = (text: string) => 
     {

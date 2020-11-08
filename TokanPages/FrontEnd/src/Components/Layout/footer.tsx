@@ -1,45 +1,12 @@
-import React from "react";
+import * as React from "react";
 import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
-
-const useStyles = makeStyles((theme) => (
-{
-    root: 
-    {
-        [theme.breakpoints.down("md")]: 
-        {
-            textAlign: "center"
-        },
-    },
-    iconsBoxRoot: 
-    {
-        [theme.breakpoints.down("md")]: 
-        {
-            width: "100%",
-            marginBottom: theme.spacing(0),
-        }
-    }, 
-    copy: 
-    {
-        color: "#757575",
-        [theme.breakpoints.down("md")]: 
-        {
-            width: "100%",
-            order: 12,
-        }
-    },
-    links:
-    {
-        color: "#757575",
-        textDecoration: "none"
-    }
-}));
+import useStyles from "./Hooks/styleFooter";
 
 export default function Footer(props: { backgroundColor?: string }) 
 {

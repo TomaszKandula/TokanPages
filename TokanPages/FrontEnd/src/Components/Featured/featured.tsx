@@ -1,5 +1,4 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import * as React from "react";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
@@ -8,18 +7,7 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardHeader from "@material-ui/core/CardHeader";
-
-const useStyles = makeStyles(() => (
-{
-    section:
-    {
-        backgroundColor: "#FAFAFA"
-    },
-    media: 
-    {
-        height: "256px"
-    }
-}));
+import useStyles from "./styleFeatured";
 
 export default function Featured() 
 {

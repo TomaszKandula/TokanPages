@@ -1,5 +1,4 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import * as React from "react";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -8,19 +7,7 @@ import CodeIcon from "@material-ui/icons/Code";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import StorageIcon from "@material-ui/icons/Storage";
 import CloudIcon from "@material-ui/icons/Cloud";
-
-const useStyles = makeStyles((theme) => (
-{
-    section:
-    {
-        backgroundColor: "#FAFAFA"
-    },
-    icon: 
-    {
-        marginRight: theme.spacing(1),
-    }
-}
-));
+import useStyles from "./styleFeatures";
 
 export default function Features() 
 {

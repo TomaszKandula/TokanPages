@@ -1,6 +1,6 @@
-import React from "react";
+import * as React from "react";
 import Container from "@material-ui/core/Container";
-import HorizontalNav from "../Components/Navigation/horizontal";
+import Navigation from "../Components/Layout/navigation";
 import ResetForm from "../Components/Account/resetForm";
 import Footer from "../Components/Layout/footer";
 
@@ -9,7 +9,7 @@ export default function storyPage()
   
     return (    
         <>     
-            <HorizontalNav content={null} />
+            <Navigation content={null} />
             <Container>
                 <ResetForm />
             </Container>

@@ -1,7 +1,7 @@
-import React from "react";
+import * as React from "react";
 import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
-import HorizontalNav from "../Components/Navigation/horizontal";
+import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
 import ArticleList from "../Components/Articles/articleList";
 import ArticleDetail from "../Components/Articles/articleDetail";
@@ -21,7 +21,7 @@ export default function ArticlesPage()
 
     return (
         <>
-            <HorizontalNav content={null} />
+            <Navigation content={null} />
             <Container>
                 {content}
             </Container>

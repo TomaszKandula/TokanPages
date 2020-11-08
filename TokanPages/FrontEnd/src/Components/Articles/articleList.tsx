@@ -1,21 +1,10 @@
-import React from "react";
+import * as React from "react";
 import Container from "@material-ui/core/Container";
-import { Box, Divider, Grid, IconButton, makeStyles } from "@material-ui/core";
+import { Box, Divider, Grid, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
 import ArticleCard from "./articleCard";
-
-const useStyles = makeStyles(() => (
-{
-    container:
-    {
-        maxWidth: "700px"
-    },
-    divider:
-    {
-        marginBottom: "30px"
-    }
-}));
+import useStyles from "./Hooks/styleArticleList";
 
 export default function ArticleList() 
 {
