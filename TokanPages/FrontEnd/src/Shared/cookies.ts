@@ -6,25 +6,35 @@ interface ISetCookie
     value: string, 
     days: number, 
     sameSite: string, 
-    secure: string    
+    secure: string,
+    exact?: string    
 }
 
-function SetCookie(props: ISetCookie) 
+function SetCookie(props: ISetCookie): string
 {
-
+   
+    let LNewCookie = "";
     let LDate = new Date();
+
     if (props.days)
     {
 
-        // We set time in miliseconds
-        LDate.setTime(LDate.getTime() + (props.days * 24 * 60 * 60 * 1000));
+        let dateString = props.exact;
+
+        if (IsEmpty(props.exact))
+        {
+            LDate.setTime(LDate.getTime() + (props.days * 24 * 60 * 60 * 1000));
+            dateString = LDate.toUTCString();
+        }
 
         let LSecure = !IsEmpty(props.secure) ? `; ${props.secure}` : "";
-        let LNewCookie = `${props.cookieName}=${props.value}; expires=${LDate.toUTCString()}; path=/; SameSite=${props.sameSite} ${LSecure}`;
+        LNewCookie = `${props.cookieName}=${props.value}; expires=${dateString}; path=/; SameSite=${props.sameSite} ${LSecure}`;
 
         document.cookie = LNewCookie;
 
     }
+
+    return LNewCookie;
 
 }
 
@@ -33,7 +43,7 @@ interface IGetCookie
     cookieName: string
 }
 
-function GetCookie(props: IGetCookie)
+function GetCookie(props: IGetCookie): string
 {
 
     let LCookieName = `${props.cookieName}=`;
@@ -56,7 +66,7 @@ function GetCookie(props: IGetCookie)
 
     }
 
-    return null;    
+    return "";
 
 }
 

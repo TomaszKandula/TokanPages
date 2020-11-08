@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import * as React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"; 
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
@@ -17,7 +17,7 @@ import "aos/dist/aos.css";
 export default function App() 
 {
 
-    useEffect(() => 
+    React.useEffect(() => 
     {
         AOS.init();
         AOS.refresh();
