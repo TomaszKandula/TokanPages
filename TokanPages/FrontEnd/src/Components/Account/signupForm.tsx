@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -12,22 +12,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { AccountCircle } from "@material-ui/icons";
 
-const useStyles = makeStyles((theme) => (
+const useStyles = makeStyles(() => (
 {
-    tertiaryAction: 
-    {
-        [theme.breakpoints.up("sm")]: 
-        {
-            textAlign: "right"
-        }
-    },
-    actions: 
-    {
-        [theme.breakpoints.down("sm")]: 
-        {
-            marginTop: theme.spacing(3)
-        },
-    },
     card:
     {
         marginTop: 10,

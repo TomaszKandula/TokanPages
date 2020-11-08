@@ -8,6 +8,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import { makeStyles } from "@material-ui/core";
 import { SetCookie, GetCookie } from "../../Shared/cookies";
+import { IsEmpty } from "../../Shared/helpers";
 
 const useStyles = makeStyles(() => (
 {
@@ -72,7 +73,7 @@ export default function Cookies()
 
     }
 
-    const Content = !GetCookie({cookieName: "cookieConsent"}) ? renderConsent() : null;
+    const Content = IsEmpty(GetCookie({cookieName: "cookieConsent"})) ? renderConsent() : null;
     return (<>{Content}</>);
 
 }

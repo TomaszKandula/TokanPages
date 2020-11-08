@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test account component: SigninForm. Renders correctly '<SigninForm />'  1`] = `
+<section>
+  <WithStyles(ForwardRef(Container))
+    maxWidth="sm"
+  >
+    <Styled(MuiBox)
+      pb={10}
+      pt={18}
+    >
+      <WithStyles(ForwardRef(Card))
+        elevation={4}
+      >
+        <WithStyles(ForwardRef(CardContent))
+          className="makeStyles-card-3"
+        >
+          <Styled(MuiBox)
+            mb={3}
+            textAlign="center"
+          >
+            <AccountCircleIcon
+              color="primary"
+              style={
+                Object {
+                  "fontSize": 72,
+                }
+              }
+            />
+            <WithStyles(ForwardRef(Typography))
+              color="textSecondary"
+              component="h2"
+              variant="h5"
+            >
+              Sign in
+            </WithStyles(ForwardRef(Typography))>
+          </Styled(MuiBox)>
+          <Styled(MuiBox)>
+            <WithStyles(ForwardRef(Grid))
+              container={true}
+              spacing={2}
+            >
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(TextField))
+                  autoComplete="email"
+                  fullWidth={true}
+                  id="email"
+                  label="Email address"
+                  name="email"
+                  required={true}
+                  variant="outlined"
+                />
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(TextField))
+                  autoComplete="current-password"
+                  fullWidth={true}
+                  id="password"
+                  label="Password"
+                  name="password"
+                  required={true}
+                  type="password"
+                  variant="outlined"
+                />
+              </WithStyles(ForwardRef(Grid))>
+            </WithStyles(ForwardRef(Grid))>
+            <Styled(MuiBox)
+              my={2}
+            >
+              <WithStyles(ForwardRef(Button))
+                color="primary"
+                fullWidth={true}
+                variant="contained"
+              >
+                Sign in
+              </WithStyles(ForwardRef(Button))>
+            </Styled(MuiBox)>
+            <WithStyles(ForwardRef(Grid))
+              className="makeStyles-actions-2"
+              container={true}
+              spacing={2}
+            >
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                sm={6}
+                xs={12}
+              >
+                <Link
+                  to="/signup"
+                >
+                  Don't have an account?
+                </Link>
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                className="makeStyles-tertiaryAction-1"
+                item={true}
+                sm={6}
+                xs={12}
+              >
+                <Link
+                  to="/reset"
+                >
+                  Forgot password?
+                </Link>
+              </WithStyles(ForwardRef(Grid))>
+            </WithStyles(ForwardRef(Grid))>
+          </Styled(MuiBox)>
+        </WithStyles(ForwardRef(CardContent))>
+      </WithStyles(ForwardRef(Card))>
+    </Styled(MuiBox)>
+  </WithStyles(ForwardRef(Container))>
+</section>
+`;
