@@ -24,7 +24,7 @@ namespace TokanPages.BackEnd.Mailer
         public string From { get; set; }
         public string To { get; set; }
         public string Subject { get; set; }
-        private string Body { get; set; }
+        public string Body { get; set; }
 
         public async Task<Result> Send() 
         {
