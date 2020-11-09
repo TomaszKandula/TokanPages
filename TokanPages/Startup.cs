@@ -1,70 +1,107 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.ResponseCompression;
+using TokanPages.BackEnd.Logic;
+using TokanPages.BackEnd.AppLogger;
+using TokanPages.BackEnd.Middleware;
 
 namespace TokanPages
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public Startup(IConfiguration AConfiguration)
         {
-            services.AddControllers();
+            Configuration = AConfiguration;
+        }
 
-            // In production, the React files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
+        public void ConfigureServices(IServiceCollection AServices)
+        {
+
+            AServices.AddMvc(AOption => AOption.CacheProfiles
+            .Add("Standard", new CacheProfile()
+            {
+                Duration = 10,
+                Location = ResponseCacheLocation.Any,
+                NoStore = false
+            }));
+
+            AServices.AddControllers();
+
+            AServices.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "FrontEnd/build";
             });
+
+            AServices.AddMvc(AOption => AOption.EnableEndpointRouting = false)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            AServices.AddSingleton<IAppLogger, AppLogger>();
+            AServices.AddScoped<ILogicContext, LogicContext>();
+
+            AServices.AddResponseCompression(AOptions =>
+            {
+                AOptions.Providers.Add<GzipCompressionProvider>();
+            });
+
+            AServices.AddSwaggerGen(AOption =>
+            {
+                AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "TokanPagesApi", Version = "v1" });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder AApplication, IWebHostEnvironment AEnvironment)
         {
-            if (env.IsDevelopment())
+
+            AApplication.UseResponseCompression();
+            AApplication.UseMiddleware<GarbageCollector>();
+
+            if (AEnvironment.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                AApplication.UseDeveloperExceptionPage();
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                // The default HSTS value is 30 days. 
+                // You may want to change this for production scenarios, 
+                // see https://aka.ms/aspnetcore-hsts.
+                AApplication.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
-
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
+            AApplication.UseSwagger();
+            AApplication.UseSwaggerUI(AOption =>
             {
-                endpoints.MapControllerRoute(
+                AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "TokanPagesApi version 1");
+            });
+
+            AApplication.UseHttpsRedirection();
+            AApplication.UseStaticFiles();
+            AApplication.UseSpaStaticFiles();
+            AApplication.UseRouting();
+
+            AApplication.UseEndpoints(AEndpoints =>
+            {
+                AEndpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
-            app.UseSpa(spa =>
+            AApplication.UseSpa(ASpa =>
             {
-                spa.Options.SourcePath = "FrontEnd";
-
-                //if (env.IsDevelopment())
-                //{
-                //    spa.UseReactDevelopmentServer(npmScript: "start");
-                //}
+                ASpa.Options.SourcePath = "FrontEnd";
             });
+
         }
+
     }
+
 }

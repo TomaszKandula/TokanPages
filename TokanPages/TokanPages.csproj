@@ -12,6 +12,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.7" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +36,11 @@
   <ItemGroup>
     <TypeScriptCompile Include="FrontEnd\src\components\layout.tsx" />
     <TypeScriptCompile Include="FrontEnd\src\redux\store.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BackEnd\Logic\" />
+    <Folder Include="BackEnd\Helpers\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
