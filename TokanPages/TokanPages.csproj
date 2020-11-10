@@ -31,6 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="C:\Users\Tomek\.nuget\packages\microsoft.azure.cosmos\3.14.0\contentFiles\any\netstandard2.0\ThirdPartyNotice.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="FrontEnd\src\components\layout.tsx" />
     <None Remove="FrontEnd\src\redux\store.ts" />
   </ItemGroup>
