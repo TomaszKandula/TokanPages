@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using TokanPages.BackEnd.Logic;
 using TokanPages.BackEnd.Mailer;
 using TokanPages.BackEnd.Settings;
+using TokanPages.BackEnd.Database;
 using TokanPages.BackEnd.AppLogger;
 using TokanPages.BackEnd.Middleware;
 
@@ -49,6 +51,8 @@ namespace TokanPages
             AServices.AddScoped<IMailer, Mailer>();
             AServices.AddScoped<ILogicContext, LogicContext>();
             AServices.AddSingleton(Configuration.GetSection("SendGridKeys").Get<SendGridKeys>());
+            AServices.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(
+                Configuration.GetSection("CosmosDb").Get<CosmosDb>()).GetAwaiter().GetResult());
 
             AServices.AddResponseCompression(AOptions =>
             {
@@ -103,6 +107,28 @@ namespace TokanPages
             {
                 ASpa.Options.SourcePath = "FrontEnd";
             });
+
+        }
+
+        /// <summary>
+        /// Creates a Cosmos DB database and a container with the specified partition key. 
+        /// </summary>
+        /// <returns></returns>
+        private static async Task<CosmosDbService> InitializeCosmosClientInstanceAsync(CosmosDb AConfig)
+        {
+
+            var LDatabaseName = AConfig.DatabaseName;
+            var LContainerName = AConfig.ContainerName;
+            var LAccount = AConfig.Account;
+            var LKey = AConfig.Key;
+
+            var LClient = new Microsoft.Azure.Cosmos.CosmosClient(LAccount, LKey);
+            var LCosmosDbService = new CosmosDbService(LClient, LDatabaseName, LContainerName);
+
+            var LDatabase = await LClient.CreateDatabaseIfNotExistsAsync(LDatabaseName);
+            await LDatabase.Database.CreateContainerIfNotExistsAsync(LContainerName, "/uid");
+
+            return LCosmosDbService;
 
         }
 
