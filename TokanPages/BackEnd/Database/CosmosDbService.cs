@@ -46,12 +46,12 @@ namespace TokanPages.BackEnd.Database
 
         public async Task AddItemAsync(Article AItem)
         {
-            await FContainer.CreateItemAsync(AItem, new PartitionKey(AItem.Id));
+            await FContainer.CreateItemAsync<Article>(AItem, new PartitionKey(AItem.Id));
         }
 
         public async Task UpdateItemAsync(string AId, Article AItem)
         {
-            await FContainer.UpsertItemAsync(AItem, new PartitionKey(AId));
+            await FContainer.UpsertItemAsync<Article>(AItem, new PartitionKey(AId));
         }
 
         public async Task DeleteItemAsync(string AId)

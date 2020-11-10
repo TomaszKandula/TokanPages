@@ -4,8 +4,10 @@ namespace TokanPages.BackEnd.Logic
 {
 
     public interface ILogicContext 
-    { 
-    
+    {
+
+        public IArticles Articles { get;  }
+
     }
 
 }

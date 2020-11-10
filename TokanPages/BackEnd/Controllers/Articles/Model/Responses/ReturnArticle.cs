@@ -7,8 +7,8 @@ namespace TokanPages.BackEnd.Controllers.Articles.Model.Responses
     public class ReturnArticle
     {
 
-        [JsonPropertyName("articles")]
-        public ArticleItem Articles { get; set; }
+        [JsonPropertyName("article")]
+        public ArticleItem Article { get; set; }
 
         [JsonPropertyName("error")]
         public ErrorHandler Error { get; set; }

@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.Azure.Cosmos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
@@ -122,7 +123,14 @@ namespace TokanPages
             var LAccount = AConfig.Account;
             var LKey = AConfig.Key;
 
-            var LClient = new Microsoft.Azure.Cosmos.CosmosClient(LAccount, LKey);
+            var LClient = new CosmosClient(LAccount, LKey, new CosmosClientOptions()
+            {
+                SerializerOptions = new CosmosSerializationOptions()
+                {
+                    PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase
+                }
+            });
+            
             var LCosmosDbService = new CosmosDbService(LClient, LDatabaseName, LContainerName);
 
             var LDatabase = await LClient.CreateDatabaseIfNotExistsAsync(LDatabaseName);
