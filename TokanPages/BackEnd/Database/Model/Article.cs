@@ -3,11 +3,11 @@
 namespace TokanPages.BackEnd.Database.Model
 {
     
-    public class Item
+    public class Article
     {
 
-        [JsonPropertyName("uid")]
-        public string Uid { get; set; }
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
 
         [JsonPropertyName("title")]
         public string Title { get; set; }

@@ -6,8 +6,8 @@ namespace TokanPages.BackEnd.Controllers.Articles.Model
     public class ArticleItem
     {
 
-        [JsonPropertyName("uid")]
-        public string Uid { get; set; }
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
 
         [JsonPropertyName("title")]
         public string Title { get; set; }
@@ -17,6 +17,9 @@ namespace TokanPages.BackEnd.Controllers.Articles.Model
 
         [JsonPropertyName("status")]
         public string Status { get; set; }
+
+        [JsonPropertyName("likes")]
+        public int Likes { get; set; }
 
     }
 

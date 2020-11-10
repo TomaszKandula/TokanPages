@@ -17,11 +17,11 @@ namespace TokanPages.BackEnd.Database
             FContainer = ACosmosClient.GetContainer(ADatabaseName, AContainerName);
         }
 
-        public async Task<Item> GetItemAsync(string AUid)
+        public async Task<Article> GetItemAsync(string AId)
         {
             try
             {
-                ItemResponse<Item> LResponse = await FContainer.ReadItemAsync<Item>(AUid, new PartitionKey(AUid));
+                ItemResponse<Article> LResponse = await FContainer.ReadItemAsync<Article>(AId, new PartitionKey(AId));
                 return LResponse.Resource;
             }
             catch (CosmosException Exception) when (Exception.StatusCode == System.Net.HttpStatusCode.NotFound)
@@ -30,10 +30,10 @@ namespace TokanPages.BackEnd.Database
             }
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(string AQueryString)
+        public async Task<IEnumerable<Article>> GetItemsAsync(string AQueryString)
         {
-            var LQuery = FContainer.GetItemQueryIterator<Item>(new QueryDefinition(AQueryString));
-            var LResults = new List<Item>();
+            var LQuery = FContainer.GetItemQueryIterator<Article>(new QueryDefinition(AQueryString));
+            var LResults = new List<Article>();
 
             while (LQuery.HasMoreResults)
             {
@@ -44,19 +44,19 @@ namespace TokanPages.BackEnd.Database
             return LResults;
         }
 
-        public async Task AddItemAsync(Item AItem)
+        public async Task AddItemAsync(Article AItem)
         {
-            await FContainer.CreateItemAsync(AItem, new PartitionKey(AItem.Uid));
+            await FContainer.CreateItemAsync(AItem, new PartitionKey(AItem.Id));
         }
 
-        public async Task UpdateItemAsync(string AUid, Item AItem)
+        public async Task UpdateItemAsync(string AId, Article AItem)
         {
-            await FContainer.UpsertItemAsync(AItem, new PartitionKey(AUid));
+            await FContainer.UpsertItemAsync(AItem, new PartitionKey(AId));
         }
 
-        public async Task DeleteItemAsync(string AUid)
+        public async Task DeleteItemAsync(string AId)
         {
-            await FContainer.DeleteItemAsync<Item>(AUid, new PartitionKey(AUid));
+            await FContainer.DeleteItemAsync<Article>(AId, new PartitionKey(AId));
         }
 
     }
