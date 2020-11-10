@@ -1,5 +1,6 @@
 using Xunit;
 using FluentAssertions;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -33,8 +34,8 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            FMailer.From    = "contact@tomkandula.com";
-            FMailer.To      = "tomasz.kandula@gmail.com";
+            FMailer.From    = "";
+            FMailer.To      = " ";
             FMailer.Subject = "First email";
             FMailer.Body    = "Hello World!";
 
@@ -42,7 +43,7 @@ namespace BackEnd.UnitTests
             var LResult = FMailer.FieldsCheck();
 
             // Assert
-            LResult.Should().BeTrue();
+            LResult.Should().BeFalse();
 
         }
 
@@ -70,13 +71,14 @@ namespace BackEnd.UnitTests
 
         [Fact]
         public async Task Send_Test() 
-        { 
+        {
 
             // Arrange
+            var NewGuid = Guid.NewGuid();
             FMailer.From    = "contact@tomkandula.com";
             FMailer.To      = "tomasz.kandula@gmail.com";
             FMailer.Subject = "Test email";
-            FMailer.Body    = "<p>Hello World!</p>";
+            FMailer.Body    = $"<p>Hello World!</p><p>Test run: {NewGuid}</p>";
 
             // Act
             var LResult = await FMailer.Send();
