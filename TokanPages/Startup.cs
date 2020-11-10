@@ -126,7 +126,7 @@ namespace TokanPages
             var LCosmosDbService = new CosmosDbService(LClient, LDatabaseName, LContainerName);
 
             var LDatabase = await LClient.CreateDatabaseIfNotExistsAsync(LDatabaseName);
-            await LDatabase.Database.CreateContainerIfNotExistsAsync(LContainerName, "/uid");
+            await LDatabase.Database.CreateContainerIfNotExistsAsync(LContainerName, "/id");
 
             return LCosmosDbService;
 

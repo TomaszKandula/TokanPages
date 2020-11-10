@@ -7,17 +7,11 @@ namespace TokanPages.BackEnd.Database
 
     public interface ICosmosDbService
     {
-
-        Task<IEnumerable<Item>> GetItemsAsync(string query);
-
-        Task<Item> GetItemAsync(string id);
-
-        Task AddItemAsync(Item item);
-
-        Task UpdateItemAsync(string id, Item item);
-
-        Task DeleteItemAsync(string id);
-
+        Task<Article> GetItemAsync(string AId);
+        Task<IEnumerable<Article>> GetItemsAsync(string AQueryString);
+        Task AddItemAsync(Article AItem);
+        Task UpdateItemAsync(string AId, Article AItem);
+        Task DeleteItemAsync(string AId);
     }
 
 }
