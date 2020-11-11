@@ -168,7 +168,7 @@ namespace TokanPages.BackEnd.Controllers.Articles
                     : $"{LException.Message} ({LException.InnerException.Message}).";
                 LResponse.Meta.RowsAffected = 0;
                 LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
-                FAppLogger.LogFatality($"PATCH api/v1/articles/{PayLoad.Id} | Error has been raised: {LResponse.Error.ErrorDesc}");
+                FAppLogger.LogFatality($"PATCH api/v1/articles/ | Error has been raised: {LResponse.Error.ErrorDesc}");
                 return StatusCode(500, LResponse);
             }
 
@@ -183,7 +183,7 @@ namespace TokanPages.BackEnd.Controllers.Articles
             description: "Delete existing article from Articles collection.",
             type: typeof(ArticleDeleted)
         )]
-        // DELETE api/v1/articles/{id}
+        // DELETE api/v1/articles/{id}/
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveItemAsync([FromRoute] string Id)
         {
@@ -204,7 +204,7 @@ namespace TokanPages.BackEnd.Controllers.Articles
                     : $"{LException.Message} ({LException.InnerException.Message}).";
                 LResponse.Meta.RowsAffected = 0;
                 LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
-                FAppLogger.LogFatality($"PATCH api/v1/articles/{Id} | Error has been raised: {LResponse.Error.ErrorDesc}");
+                FAppLogger.LogFatality($"DELETE api/v1/articles/{Id}/ | Error has been raised: {LResponse.Error.ErrorDesc}");
                 return StatusCode(500, LResponse);
             }
 
