@@ -17,6 +17,11 @@ namespace TokanPages.BackEnd.Database
             FContainer = ACosmosClient.GetContainer(ADatabaseName, AContainerName);
         }
 
+        public CosmosDbService(Container AContainer) 
+        {
+            FContainer = AContainer;
+        }
+
         public async Task<Article> GetItemAsync(string AId)
         {
             try
