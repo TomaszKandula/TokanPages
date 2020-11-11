@@ -30,10 +30,8 @@ namespace TokanPages.BackEnd.Controllers.Articles
         /// Returns all items from Articles collection.
         /// </summary>
         /// <returns></returns>
-        [SwaggerResponse(
-            statusCode: 200,
-            description: "Returns all items from Articles collection.",
-            type: typeof(ReturnArticles)
+        [SwaggerResponse(statusCode: 200, type: typeof(ReturnArticles),
+            description: "Returns all items from Articles collection."
         )]
         // GET api/v1/articles/
         [HttpGet]
@@ -44,8 +42,13 @@ namespace TokanPages.BackEnd.Controllers.Articles
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {
+
+                FAppLogger.LogInfo("GET api/v1/articles/ | Calling CosmosDB to get all articles...");
                 LResponse.Articles = await FLogicContext.Articles.GetAllArticles();
+                LResponse.Meta.RowsAffected = LResponse.Articles.Count;
+
                 return StatusCode(200, LResponse);
+
             }
             catch (Exception LException)
             {
@@ -65,10 +68,8 @@ namespace TokanPages.BackEnd.Controllers.Articles
         /// Returns an item from Articles collection.
         /// </summary>
         /// <returns></returns>
-        [SwaggerResponse(
-            statusCode: 200,
-            description: "Returns an item from Articles collection.",
-            type: typeof(ReturnArticle)
+        [SwaggerResponse(statusCode: 200, type: typeof(ReturnArticle),
+            description: "Returns an item from Articles collection."
         )]
         // GET api/v1/articles/{id}/
         [HttpGet("{id}")]
@@ -79,8 +80,13 @@ namespace TokanPages.BackEnd.Controllers.Articles
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {
+
+                FAppLogger.LogInfo($"GET api/v1/articles/{Id}/ | Calling CosmosDB to get given article...");
                 LResponse.Article = await FLogicContext.Articles.GetSingleArticle(Id);
+                LResponse.Meta.RowsAffected = 1;
+
                 return StatusCode(200, LResponse);
+
             }
             catch (Exception LException)
             {
@@ -100,10 +106,8 @@ namespace TokanPages.BackEnd.Controllers.Articles
         /// Add new article into Articles collection.
         /// </summary>
         /// <returns></returns>
-        [SwaggerResponse(
-            statusCode: 200,
-            description: "Add new article into Articles collection.",
-            type: typeof(ArticleAdded)
+        [SwaggerResponse(statusCode: 200, type: typeof(ArticleAdded),
+            description: "Add new article into Articles collection."
         )]
         // POST api/v1/articles/
         [HttpPost]
@@ -115,7 +119,9 @@ namespace TokanPages.BackEnd.Controllers.Articles
             try
             {
 
+                FAppLogger.LogInfo("POST api/v1/articles/ | Calling CosmosDB to insert new article...");
                 LResponse.NewUid = await FLogicContext.Articles.AddNewArticle(PayLoad);
+                LResponse.Meta.RowsAffected = 1;
 
                 // Field 'PayLoad.Text' should be used to create text.html 
                 // and place on Azure Storage Blob under returned ID.
@@ -143,9 +149,8 @@ namespace TokanPages.BackEnd.Controllers.Articles
         /// </summary>
         /// <returns></returns>
         [SwaggerResponse(
-            statusCode: 200,
-            description: "Update existing article in Articles collection.",
-            type: typeof(ArticleUpdated)
+            statusCode: 200, type: typeof(ArticleUpdated),
+            description: "Update existing article in Articles collection."
         )]
         // PATCH api/v1/articles/
         [HttpPatch]
@@ -156,9 +161,14 @@ namespace TokanPages.BackEnd.Controllers.Articles
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {
+
+                FAppLogger.LogInfo("PATCH api/v1/articles/ | Calling CosmosDB to insert new article...");
                 await FLogicContext.Articles.UpdateArticle(PayLoad);
+                LResponse.Meta.RowsAffected = 1;
                 LResponse.IsSucceeded = true;
+
                 return StatusCode(200, LResponse);
+
             }
             catch (Exception LException)
             {
@@ -192,9 +202,14 @@ namespace TokanPages.BackEnd.Controllers.Articles
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {
+
+                FAppLogger.LogInfo($"DELETE api/v1/articles/{Id}/ | Calling CosmosDB to remove article...");
                 await FLogicContext.Articles.DeleteArticle(Id);
+                LResponse.Meta.RowsAffected = 1;
                 LResponse.IsSucceeded = true;
+
                 return StatusCode(200, LResponse);
+
             }
             catch (Exception LException)
             {
