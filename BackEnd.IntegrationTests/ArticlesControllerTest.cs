@@ -37,7 +37,6 @@ namespace BackEnd.IntegrationTests
             var LReturnArticles = JsonConvert.DeserializeObject<ReturnArticles>(LStringResponse);
 
             LReturnArticles.Error.ErrorDesc.Should().Be("n/a");
-            LReturnArticles.Articles.Should().HaveCount(6);
 
         }
 
@@ -123,7 +122,7 @@ namespace BackEnd.IntegrationTests
         }
 
         [Theory]
-        [InlineData("ffebce1e-c4e5-47c8-9f3a-8e45c23a6755")]
+        [InlineData("supply-wrong-id")]
         public async Task RemoveItemAsync_test(string Id) 
         {
 
@@ -137,8 +136,8 @@ namespace BackEnd.IntegrationTests
             var LStringResponse = await LResponse.Content.ReadAsStringAsync();
             var LArticleDeleted = JsonConvert.DeserializeObject<ArticleDeleted>(LStringResponse);
 
-            LArticleDeleted.Error.ErrorDesc.Should().Be("n/a");
-            LArticleDeleted.IsSucceeded.Should().BeTrue();
+            LArticleDeleted.Error.ErrorDesc.Should().NotBe("n/a");
+            LArticleDeleted.IsSucceeded.Should().BeFalse();
 
         }
 
