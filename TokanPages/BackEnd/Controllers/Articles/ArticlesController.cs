@@ -1,8 +1,11 @@
 using System;
+using System.Net;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using TokanPages.BackEnd.Logic;
+using TokanPages.BackEnd.Shared;
 using TokanPages.BackEnd.AppLogger;
 using TokanPages.BackEnd.Helpers.Statics;
 using TokanPages.BackEnd.Controllers.Articles.Model;
@@ -30,9 +33,7 @@ namespace TokanPages.BackEnd.Controllers.Articles
         /// Returns all items from Articles collection.
         /// </summary>
         /// <returns></returns>
-        [SwaggerResponse(statusCode: 200, type: typeof(ReturnArticles),
-            description: "Returns all items from Articles collection."
-        )]
+        [SwaggerResponse(statusCode: 200, type: typeof(ReturnArticles), description: "Returns all items from Articles collection.")]
         // GET api/v1/articles/
         [HttpGet]
         public async Task<IActionResult> GetItemsAsync()
@@ -43,10 +44,21 @@ namespace TokanPages.BackEnd.Controllers.Articles
             try
             {
 
-                FAppLogger.LogInfo("GET api/v1/articles/ | Calling CosmosDB to get all articles...");
-                LResponse.Articles = await FLogicContext.Articles.GetAllArticles();
+                FAppLogger.LogInfo("GET api/v1/articles/ | Calling CosmosDB to get all articles..."); 
+                var LData = await FLogicContext.Articles.GetAllArticles();
+
+                if (LData == null || !LData.Any()) 
+                {
+                    LResponse.Error.ErrorCode = Constants.Errors.EmptyList.ErrorCode;
+                    LResponse.Error.ErrorDesc = Constants.Errors.EmptyList.ErrorDesc;
+                    FAppLogger.LogWarn($"GET api/v1/articles/ | {LResponse.Error.ErrorDesc}.");
+                    return StatusCode(200, LResponse);
+                }
+
+                LResponse.Articles = LData;
                 LResponse.Meta.RowsAffected = LResponse.Articles.Count;
 
+                FAppLogger.LogInfo($"GET api/v1/articles/ | Returned: {LData.Count} articles.");
                 return StatusCode(200, LResponse);
 
             }
@@ -68,9 +80,7 @@ namespace TokanPages.BackEnd.Controllers.Articles
         /// Returns an item from Articles collection.
         /// </summary>
         /// <returns></returns>
-        [SwaggerResponse(statusCode: 200, type: typeof(ReturnArticle),
-            description: "Returns an item from Articles collection."
-        )]
+        [SwaggerResponse(statusCode: 200, type: typeof(ReturnArticle), description: "Returns an item from Articles collection.")]
         // GET api/v1/articles/{id}/
         [HttpGet("{id}")]
         public async Task<IActionResult> GetItemAsync([FromRoute] string Id)
@@ -81,10 +91,21 @@ namespace TokanPages.BackEnd.Controllers.Articles
             try
             {
 
-                FAppLogger.LogInfo($"GET api/v1/articles/{Id}/ | Calling CosmosDB to get given article...");
-                LResponse.Article = await FLogicContext.Articles.GetSingleArticle(Id);
+                FAppLogger.LogInfo($"GET api/v1/articles/{Id}/ | Calling CosmosDB to get article...");
+                var LData = await FLogicContext.Articles.GetSingleArticle(Id);
+
+                if (LData == null) 
+                {
+                    LResponse.Error.ErrorCode = Constants.Errors.NoSuchItem.ErrorCode;
+                    LResponse.Error.ErrorDesc = Constants.Errors.NoSuchItem.ErrorDesc;
+                    FAppLogger.LogWarn($"GET api/v1/articles/ | {LResponse.Error.ErrorDesc}.");
+                    return StatusCode(200, LResponse);
+                }
+
+                LResponse.Article = LData;
                 LResponse.Meta.RowsAffected = 1;
 
+                FAppLogger.LogInfo($"GET api/v1/articles/{Id} | Returned: '{LData.Title}' article.");
                 return StatusCode(200, LResponse);
 
             }
@@ -106,9 +127,7 @@ namespace TokanPages.BackEnd.Controllers.Articles
         /// Add new article into Articles collection.
         /// </summary>
         /// <returns></returns>
-        [SwaggerResponse(statusCode: 200, type: typeof(ArticleAdded),
-            description: "Add new article into Articles collection."
-        )]
+        [SwaggerResponse(statusCode: 200, type: typeof(ArticleAdded), description: "Add new article into Articles collection.")]
         // POST api/v1/articles/
         [HttpPost]
         public async Task<IActionResult> AddItemAsync([FromBody] ArticleRequest PayLoad)
@@ -119,14 +138,25 @@ namespace TokanPages.BackEnd.Controllers.Articles
             try
             {
 
-                FAppLogger.LogInfo("POST api/v1/articles/ | Calling CosmosDB to insert new article...");
-                LResponse.NewUid = await FLogicContext.Articles.AddNewArticle(PayLoad);
-                LResponse.Meta.RowsAffected = 1;
-
                 // Field 'PayLoad.Text' should be used to create text.html 
                 // and place on Azure Storage Blob under returned ID.
-                // ...call here
+                // ...
 
+                FAppLogger.LogInfo("POST api/v1/articles/ | Calling CosmosDB to insert new article...");
+                var LNewId = await FLogicContext.Articles.AddNewArticle(PayLoad);
+
+                if (LNewId == string.Empty) 
+                {
+                    LResponse.Error.ErrorCode = Constants.Errors.UnableToPost.ErrorCode;
+                    LResponse.Error.ErrorDesc = Constants.Errors.UnableToPost.ErrorDesc;
+                    FAppLogger.LogError($"POST api/v1/articles/ | {LResponse.Error.ErrorDesc}.");
+                    return StatusCode(200, LResponse);
+                }
+
+                LResponse.NewUid = LNewId;
+                LResponse.Meta.RowsAffected = 1;
+
+                FAppLogger.LogInfo($"POST api/v1/articles/ | New article has been posted under id: '{LNewId}'.");
                 return StatusCode(200, LResponse);
 
             }
@@ -148,10 +178,7 @@ namespace TokanPages.BackEnd.Controllers.Articles
         /// Update existing article in Articles collection.
         /// </summary>
         /// <returns></returns>
-        [SwaggerResponse(
-            statusCode: 200, type: typeof(ArticleUpdated),
-            description: "Update existing article in Articles collection."
-        )]
+        [SwaggerResponse(statusCode: 200, type: typeof(ArticleUpdated), description: "Update existing article in Articles collection.")]
         // PATCH api/v1/articles/
         [HttpPatch]
         public async Task<IActionResult> ChangeItemAsync([FromBody] ArticleRequest PayLoad)
@@ -162,11 +189,25 @@ namespace TokanPages.BackEnd.Controllers.Articles
             try
             {
 
-                FAppLogger.LogInfo("PATCH api/v1/articles/ | Calling CosmosDB to insert new article...");
-                await FLogicContext.Articles.UpdateArticle(PayLoad);
+                // Field 'PayLoad.Text' should be used to update text.html 
+                // that resides on Azure Storage Blob under returned ID.
+                // ...
+
+                FAppLogger.LogInfo("PATCH api/v1/articles/ | Calling CosmosDB to update article...");
+                var LStatusCode = await FLogicContext.Articles.UpdateArticle(PayLoad);
+
+                if (LStatusCode != HttpStatusCode.OK) 
+                {
+                    LResponse.Error.ErrorCode = Constants.Errors.UnableToModify.ErrorCode;
+                    LResponse.Error.ErrorDesc = Constants.Errors.UnableToModify.ErrorDesc;
+                    FAppLogger.LogError($"PATCH api/v1/articles/ | {LResponse.Error.ErrorDesc}.");
+                    return StatusCode(200, LResponse);
+                }
+
                 LResponse.Meta.RowsAffected = 1;
                 LResponse.IsSucceeded = true;
 
+                FAppLogger.LogInfo($"PATCH api/v1/articles/ | Article has been updated.");
                 return StatusCode(200, LResponse);
 
             }
@@ -188,11 +229,7 @@ namespace TokanPages.BackEnd.Controllers.Articles
         /// Delete existing article from Articles collection.
         /// </summary>
         /// <returns></returns>
-        [SwaggerResponse(
-            statusCode: 200,
-            description: "Delete existing article from Articles collection.",
-            type: typeof(ArticleDeleted)
-        )]
+        [SwaggerResponse(statusCode: 200, description: "Delete existing article from Articles collection.", type: typeof(ArticleDeleted))]
         // DELETE api/v1/articles/{id}/
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveItemAsync([FromRoute] string Id)
@@ -204,10 +241,20 @@ namespace TokanPages.BackEnd.Controllers.Articles
             {
 
                 FAppLogger.LogInfo($"DELETE api/v1/articles/{Id}/ | Calling CosmosDB to remove article...");
-                await FLogicContext.Articles.DeleteArticle(Id);
+                var LStatusCode = await FLogicContext.Articles.DeleteArticle(Id);
+
+                if (LStatusCode != HttpStatusCode.OK) 
+                {
+                    LResponse.Error.ErrorCode = Constants.Errors.UnableToRemove.ErrorCode;
+                    LResponse.Error.ErrorDesc = Constants.Errors.UnableToRemove.ErrorDesc;
+                    FAppLogger.LogError($"DELETE api/v1/articles/{Id}/ | {LResponse.Error.ErrorDesc}.");
+                    return StatusCode(200, LResponse);
+                }
+
                 LResponse.Meta.RowsAffected = 1;
                 LResponse.IsSucceeded = true;
 
+                FAppLogger.LogInfo($"DELETE api/v1/articles/{Id}/ | Article has been removed.");
                 return StatusCode(200, LResponse);
 
             }
