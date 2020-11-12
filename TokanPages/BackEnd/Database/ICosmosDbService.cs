@@ -8,11 +8,11 @@ namespace TokanPages.BackEnd.Database
 
     public interface ICosmosDbService
     {
-        Task<Article> GetItemAsync(string AId);
-        Task<IEnumerable<Article>> GetItemsAsync(string AQueryString);
-        Task<HttpStatusCode> AddItemAsync(Article AItem);
-        Task<HttpStatusCode> UpdateItemAsync(string AId, Article AItem);
-        Task<HttpStatusCode> DeleteItemAsync(string AId);
+        Task<Article> GetItem(string AId);
+        Task<IEnumerable<Article>> GetItems(string AQueryString);
+        Task<HttpStatusCode> AddItem(Article AItem);
+        Task<HttpStatusCode> UpdateItem(string AId, Article AItem);
+        Task<HttpStatusCode> DeleteItem(string AId);
     }
 
 }

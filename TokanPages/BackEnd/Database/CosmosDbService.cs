@@ -22,49 +22,87 @@ namespace TokanPages.BackEnd.Database
         {
         }
 
-        public virtual async Task<Article> GetItemAsync(string AId)
+        public virtual async Task<Article> GetItem(string AId)
         {
             try
             {
                 ItemResponse<Article> LResponse = await FContainer.ReadItemAsync<Article>(AId, new PartitionKey(AId));
                 return LResponse.Resource;
             }
-            catch (CosmosException Exception) when (Exception.StatusCode == System.Net.HttpStatusCode.NotFound)
+            catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.OK)
             {
                 return null;
             }
         }
 
-        public virtual async Task<IEnumerable<Article>> GetItemsAsync(string AQueryString)
+        public virtual async Task<IEnumerable<Article>> GetItems(string AQueryString)
         {
-            var LQuery = FContainer.GetItemQueryIterator<Article>(new QueryDefinition(AQueryString));
-            var LResults = new List<Article>();
 
-            while (LQuery.HasMoreResults)
+            try 
             {
-                var LResponse = await LQuery.ReadNextAsync();
-                LResults.AddRange(LResponse.ToList());
+
+                var LQuery = FContainer.GetItemQueryIterator<Article>(new QueryDefinition(AQueryString));
+                var LResults = new List<Article>();
+
+                while (LQuery.HasMoreResults)
+                {
+                    var LResponse = await LQuery.ReadNextAsync();
+                    LResults.AddRange(LResponse.ToList());
+                }
+
+                return LResults;
+
+            }
+            catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.OK)
+            {
+                return null;
+            }          
+            
+        }
+
+        public virtual async Task<HttpStatusCode> AddItem(Article AItem)
+        {
+
+            try 
+            {
+                var Response = await FContainer.CreateItemAsync(AItem, new PartitionKey(AItem.Id));
+                return Response.StatusCode;
+            }
+            catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.Created)
+            {
+                return LException.StatusCode;
             }
 
-            return LResults;
         }
 
-        public virtual async Task<HttpStatusCode> AddItemAsync(Article AItem)
+        public virtual async Task<HttpStatusCode> UpdateItem(string AId, Article AItem)
         {
-            var Response = await FContainer.CreateItemAsync(AItem, new PartitionKey(AItem.Id));
-            return Response.StatusCode;
+
+            try
+            {
+                var Response = await FContainer.UpsertItemAsync(AItem, new PartitionKey(AId));
+                return Response.StatusCode;
+            }
+            catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.OK)
+            {
+                return LException.StatusCode;
+            }
+
         }
 
-        public virtual async Task<HttpStatusCode> UpdateItemAsync(string AId, Article AItem)
+        public virtual async Task<HttpStatusCode> DeleteItem(string AId)
         {
-            var Response = await FContainer.UpsertItemAsync(AItem, new PartitionKey(AId));
-            return Response.StatusCode;
-        }
 
-        public virtual async Task<HttpStatusCode> DeleteItemAsync(string AId)
-        {
-            var Response = await FContainer.DeleteItemAsync<Article>(AId, new PartitionKey(AId));
-            return Response.StatusCode;
+            try
+            {
+                var Response = await FContainer.DeleteItemAsync<Article>(AId, new PartitionKey(AId));
+                return Response.StatusCode;
+            }
+            catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.NoContent)
+            {
+                return LException.StatusCode;
+            }
+
         }
 
     }
