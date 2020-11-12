@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -26,16 +27,19 @@ namespace BackEnd.UnitTests.Database
                 if (DummyArticles != null)
                 {
 
-                    var LDummies = DummyArticles.Where(R => R.Id == AId).ToList();
+                    var LDummies = DummyArticles
+                        .Where(Item => Item.Id == AId)
+                        .ToList();
+                    
                     if (!LDummies.Any()) return null;
 
                     var LReturnedArticle = new Article
                     {
-                        Id     = LDummies.Select(R => R.Id).FirstOrDefault(),
-                        Title  = LDummies.Select(R => R.Title).FirstOrDefault(),
-                        Desc   = LDummies.Select(R => R.Desc).FirstOrDefault(),
-                        Status = LDummies.Select(R => R.Status).FirstOrDefault(),
-                        Likes  = LDummies.Select(R => R.Likes).FirstOrDefault()
+                        Id     = LDummies.Select(Item => Item.Id).FirstOrDefault(),
+                        Title  = LDummies.Select(Item => Item.Title).FirstOrDefault(),
+                        Desc   = LDummies.Select(Item => Item.Desc).FirstOrDefault(),
+                        Status = LDummies.Select(Item => Item.Status).FirstOrDefault(),
+                        Likes  = LDummies.Select(Item => Item.Likes).FirstOrDefault()
                     };
 
                     return LReturnedArticle;
@@ -60,7 +64,7 @@ namespace BackEnd.UnitTests.Database
                     && !string.IsNullOrEmpty(AQueryString) 
                     && !string.IsNullOrWhiteSpace(AQueryString))
                 {
-                    return DummyArticles.Select(R => R);
+                    return DummyArticles;
                 }
                 else
                 {
@@ -80,7 +84,7 @@ namespace BackEnd.UnitTests.Database
                 if (AItem != null)
                 {
                     DummyArticles.Add(AItem);
-                    return HttpStatusCode.OK;
+                    return HttpStatusCode.Created;
                 }
                 else 
                 {
@@ -97,43 +101,35 @@ namespace BackEnd.UnitTests.Database
             return await Task.Run(() =>
             {
 
-                if (DummyArticles != null && DummyArticles.Any())
+                if (AId == null)
+                    throw new ArgumentException("Argument cannot be null.", "AId");
+
+                if (AItem == null)
+                    throw new ArgumentException("Object cannot be null.", "AItem");
+
+                if (DummyArticles == null && !DummyArticles.Any())
+                    return HttpStatusCode.BadRequest;
+
+                if (string.IsNullOrEmpty(AId) || string.IsNullOrWhiteSpace(AId)) 
+                    return HttpStatusCode.BadRequest;
+
+                foreach (var Item in DummyArticles)
                 {
 
-                    if (AItem != null)
+                    if (Item.Id == AId)
                     {
 
-                        foreach (var Item in DummyArticles) 
-                        {
-
-                            if (Item.Id == AId) 
-                            {
-
-                                Item.Id     = AItem.Id;
-                                Item.Title  = AItem.Title;
-                                Item.Desc   = AItem.Desc;
-                                Item.Status = AItem.Status;
-                                Item.Likes  = AItem.Likes;
-
-                                return HttpStatusCode.OK;
-
-                            }
-
-                        }
-
-                        return HttpStatusCode.NotFound;
-
-                    }
-                    else 
-                    {
-                        return HttpStatusCode.BadRequest;
+                        Item.Id     = AItem.Id;
+                        Item.Title  = AItem.Title;
+                        Item.Desc   = AItem.Desc;
+                        Item.Status = AItem.Status;
+                        Item.Likes  = AItem.Likes;
+                        break;
                     }
 
                 }
-                else 
-                {
-                    return HttpStatusCode.NotFound;
-                }
+
+                return HttpStatusCode.OK;
 
             });
 
@@ -145,19 +141,25 @@ namespace BackEnd.UnitTests.Database
             return await Task.Run(() =>
             {
 
+                if (AId == null)
+                    throw new ArgumentException("Argument cannot be null.", "AId");
+
                 if (DummyArticles != null && DummyArticles.Any()) 
                 {
 
-                    var ObjectToRemove = DummyArticles.Select(R => R).Where(R => R.Id == AId).ToList();
-                    if (!ObjectToRemove.Any()) return HttpStatusCode.BadRequest;
+                    var ObjectToRemove = DummyArticles
+                        .Select(Item => Item)
+                        .Where(Item => Item.Id == AId).ToList();
+
+                    if (!ObjectToRemove.Any()) return HttpStatusCode.NotFound;
 
                     DummyArticles.Remove(ObjectToRemove[0]);
-                    return HttpStatusCode.OK;
+                    return HttpStatusCode.NoContent;
 
                 }
                 else
                 {
-                    return HttpStatusCode.NotFound;
+                    return HttpStatusCode.BadRequest;
                 }
 
             });
