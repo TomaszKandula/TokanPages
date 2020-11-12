@@ -1,4 +1,6 @@
 using System;
+using System.Net;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.BackEnd.Database;
@@ -22,8 +24,9 @@ namespace TokanPages.BackEnd.Logic.Articles
         {
 
             var LItems = await FCosmosDbService.GetItemsAsync("select * from c");
-            var LResult = new List<ArticleItem> { };
+            if (LItems == null || !LItems.Any()) return null;
 
+            var LResult = new List<ArticleItem>();
             foreach (var LItem in LItems)
             {
 
@@ -48,7 +51,9 @@ namespace TokanPages.BackEnd.Logic.Articles
         {
 
             var LItem = await FCosmosDbService.GetItemAsync(Id);
-            var LResult = new ArticleItem
+            if (LItem == null) return null;
+
+            return new ArticleItem 
             {
                 Id     = LItem.Id,
                 Title  = LItem.Title,
@@ -56,8 +61,6 @@ namespace TokanPages.BackEnd.Logic.Articles
                 Status = LItem.Status,
                 Likes  = LItem.Likes
             };
-
-            return LResult;
 
         }
 
@@ -74,12 +77,18 @@ namespace TokanPages.BackEnd.Logic.Articles
                 Likes  = 0
             };
 
-            await FCosmosDbService.AddItemAsync(InsertNew);
-            return NewId;
+            if (await FCosmosDbService.AddItemAsync(InsertNew) == HttpStatusCode.Created)
+            {
+                return NewId;
+            }
+            else 
+            {
+                return string.Empty;
+            }
 
         }
 
-        public async Task UpdateArticle(ArticleRequest PayLoad) 
+        public async Task<HttpStatusCode> UpdateArticle(ArticleRequest PayLoad) 
         {
 
             var UpdatedArticle = new Article 
@@ -91,13 +100,13 @@ namespace TokanPages.BackEnd.Logic.Articles
                 Likes  = PayLoad.Likes
             };
 
-            await FCosmosDbService.UpdateItemAsync(PayLoad.Id, UpdatedArticle);
-        
+            return await FCosmosDbService.UpdateItemAsync(PayLoad.Id, UpdatedArticle);
+
         }
 
-        public async Task DeleteArticle(string Id) 
+        public async Task<HttpStatusCode> DeleteArticle(string Id) 
         {
-            await FCosmosDbService.DeleteItemAsync(Id);
+            return await FCosmosDbService.DeleteItemAsync(Id);
         }
 
     }
