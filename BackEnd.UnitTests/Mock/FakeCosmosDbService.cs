@@ -17,7 +17,7 @@ namespace BackEnd.UnitTests.Database
 
         public List<Article> DummyArticles { get; set; }
 
-        public override async Task<Article> GetItemAsync(string AId) 
+        public override async Task<Article> GetItem(string AId) 
         {
 
             return await Task.Run(() => 
@@ -50,7 +50,7 @@ namespace BackEnd.UnitTests.Database
 
         }
 
-        public override async Task<IEnumerable<Article>> GetItemsAsync(string AQueryString) 
+        public override async Task<IEnumerable<Article>> GetItems(string AQueryString) 
         {
 
             return await Task.Run(() => 
@@ -71,7 +71,7 @@ namespace BackEnd.UnitTests.Database
 
         }
 
-        public override async Task<HttpStatusCode> AddItemAsync(Article AItem)
+        public override async Task<HttpStatusCode> AddItem(Article AItem)
         {
 
             return await Task.Run(() => 
@@ -91,7 +91,7 @@ namespace BackEnd.UnitTests.Database
 
         }
 
-        public override async Task<HttpStatusCode> UpdateItemAsync(string AId, Article AItem)
+        public override async Task<HttpStatusCode> UpdateItem(string AId, Article AItem)
         {
 
             return await Task.Run(() =>
@@ -139,7 +139,7 @@ namespace BackEnd.UnitTests.Database
 
         }
 
-        public override async Task<HttpStatusCode> DeleteItemAsync(string AId)
+        public override async Task<HttpStatusCode> DeleteItem(string AId)
         {
 
             return await Task.Run(() =>
