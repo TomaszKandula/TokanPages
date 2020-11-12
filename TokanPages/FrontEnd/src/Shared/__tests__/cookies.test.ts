@@ -6,7 +6,7 @@ test("Set new cookie string.", () =>
     let LDate = new Date();   
     LDate.setTime(LDate.getTime() + (3 * 24 * 60 * 60 * 1000));
     let newExpiry = LDate.toUTCString();
-    let expectedVaue = `cookieConsent=granted; expires=${newExpiry}; path=/; SameSite=Strict `;
+    let expectedValue = `cookieConsent=granted; expires=${newExpiry}; path=/; SameSite=Strict `;
 
     expect( 
         SetCookie(
@@ -16,8 +16,8 @@ test("Set new cookie string.", () =>
             days: 3,
             sameSite: "Strict",
             secure: "",
-            exact: ""
+            exact: newExpiry
         } 
-    )).toBe(expectedVaue);
+    )).toBe(expectedValue);
 
 });
