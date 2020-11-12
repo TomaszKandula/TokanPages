@@ -1,0 +1,49 @@
+﻿namespace TokanPages.BackEnd.Shared
+{
+
+    /// <summary>
+    /// This class is responsible only for providing constants to all classes/methods etc. accross the application.
+    /// It can be a partial class if necessary; and if so, then put the module in the root folder and additional 
+    /// partials in other project folders.
+    /// </summary>    
+    public class Constants
+    {
+
+        public static class Errors 
+        {
+
+            internal class EmptyList
+            {
+                public const string ErrorCode = "empty_list";
+                public const string ErrorDesc = "There are no items on the list.";
+            }
+
+            internal class NoSuchItem
+            {
+                public const string ErrorCode = "no_such_item";
+                public const string ErrorDesc = "There is no such item.";
+            }
+
+            internal class UnableToPost
+            {
+                public const string ErrorCode = "unable_to_post";
+                public const string ErrorDesc = "Cannot insert data into database container.";
+            }
+
+            internal class UnableToModify
+            {
+                public const string ErrorCode = "unable_to_modify";
+                public const string ErrorDesc = "Cannot update data in database container.";
+            }
+
+            internal class UnableToRemove
+            {
+                public const string ErrorCode = "unable_to_remove";
+                public const string ErrorDesc = "Cannot delete data from database container.";
+            }
+
+        }
+
+    }
+
+}
