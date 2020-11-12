@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Net;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.Azure.Cosmos;
@@ -17,12 +18,11 @@ namespace TokanPages.BackEnd.Database
             FContainer = ACosmosClient.GetContainer(ADatabaseName, AContainerName);
         }
 
-        public CosmosDbService(Container AContainer) 
+        public CosmosDbService()
         {
-            FContainer = AContainer;
         }
 
-        public async Task<Article> GetItemAsync(string AId)
+        public virtual async Task<Article> GetItemAsync(string AId)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace TokanPages.BackEnd.Database
             }
         }
 
-        public async Task<IEnumerable<Article>> GetItemsAsync(string AQueryString)
+        public virtual async Task<IEnumerable<Article>> GetItemsAsync(string AQueryString)
         {
             var LQuery = FContainer.GetItemQueryIterator<Article>(new QueryDefinition(AQueryString));
             var LResults = new List<Article>();
@@ -49,19 +49,22 @@ namespace TokanPages.BackEnd.Database
             return LResults;
         }
 
-        public async Task AddItemAsync(Article AItem)
+        public virtual async Task<HttpStatusCode> AddItemAsync(Article AItem)
         {
-            await FContainer.CreateItemAsync<Article>(AItem, new PartitionKey(AItem.Id));
+            var Response = await FContainer.CreateItemAsync(AItem, new PartitionKey(AItem.Id));
+            return Response.StatusCode;
         }
 
-        public async Task UpdateItemAsync(string AId, Article AItem)
+        public virtual async Task<HttpStatusCode> UpdateItemAsync(string AId, Article AItem)
         {
-            await FContainer.UpsertItemAsync<Article>(AItem, new PartitionKey(AId));
+            var Response = await FContainer.UpsertItemAsync(AItem, new PartitionKey(AId));
+            return Response.StatusCode;
         }
 
-        public async Task DeleteItemAsync(string AId)
+        public virtual async Task<HttpStatusCode> DeleteItemAsync(string AId)
         {
-            await FContainer.DeleteItemAsync<Article>(AId, new PartitionKey(AId));
+            var Response = await FContainer.DeleteItemAsync<Article>(AId, new PartitionKey(AId));
+            return Response.StatusCode;
         }
 
     }
