@@ -1,6 +1,6 @@
 import { IsEmpty } from "../helpers";
 
-test("Given string is not mepty, expected IsEmpty: 'false'.", () => 
+test("Check if string is empty or not.", () => 
 {
     expect( IsEmpty("string") ).toBe(false);
 });
