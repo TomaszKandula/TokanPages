@@ -81,13 +81,13 @@ namespace TokanPages.BackEnd.Logic.Mailer
             var Message   = MailHelper.CreateSingleEmail(EmailFrom, EmailTo, ASubject, "", ABody);
             var LResponse = await Client.SendEmailAsync(Message);
 
-            if (LResponse.StatusCode != HttpStatusCode.OK) 
+            if (LResponse.StatusCode != HttpStatusCode.Accepted) 
             {
                 return new MailerResult
                 {
                     IsSucceeded  = false,
                     ErrorCode    = "unsuccessful_response",
-                    ErrorMessage = $"Twilio SendGrid responded with '{LResponse.StatusCode}', returned details: '{LResponse.Body}'."
+                    ErrorMessage = $"Twilio SendGrid responded with '{LResponse.StatusCode}', returned details: '{LResponse.Body.ReadAsStringAsync().Result}'."
                 };
             }
 
