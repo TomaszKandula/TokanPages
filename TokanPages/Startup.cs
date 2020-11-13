@@ -49,6 +49,7 @@ namespace TokanPages
 
             AServices.AddSingleton<IAppLogger, AppLogger>();
             AServices.AddScoped<ILogicContext, LogicContext>();            
+            AServices.AddSingleton(Configuration.GetSection("AzureStorage").Get<AzureStorage>());
             AServices.AddSingleton(Configuration.GetSection("SendGridKeys").Get<SendGridKeys>());
             AServices.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(
                 Configuration.GetSection("CosmosDb").Get<CosmosDb>()).GetAwaiter().GetResult());
