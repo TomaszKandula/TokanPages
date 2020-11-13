@@ -6,8 +6,19 @@
     /// It can be a partial class if necessary; and if so, then put the module in the root folder and additional 
     /// partials in other project folders.
     /// </summary>    
-    public class Constants
+    public static class Constants
     {
+
+        public static class Emails 
+        {
+
+            public static class Templates
+            {
+                public const string NewsletterUrl = "{StorageUrl}/content/templates/newsletter.html";
+                public const string ContactUrl    = "{StorageUrl}/content/templates/contactform.html";
+            }
+
+        }
 
         public static class Errors 
         {
