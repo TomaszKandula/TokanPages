@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
 using TokanPages.BackEnd.Logic;
+using TokanPages.BackEnd.Storage;
 using TokanPages.BackEnd.Settings;
 using TokanPages.BackEnd.Database;
 using TokanPages.BackEnd.AppLogger;
@@ -16,6 +17,7 @@ using TokanPages.BackEnd.Middleware;
 
 namespace TokanPages
 {
+
     public class Startup
     {
 
@@ -47,12 +49,13 @@ namespace TokanPages
             AServices.AddMvc(AOption => AOption.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
-            AServices.AddSingleton<IAppLogger, AppLogger>();
-            AServices.AddScoped<ILogicContext, LogicContext>();            
             AServices.AddSingleton(Configuration.GetSection("AzureStorage").Get<AzureStorage>());
             AServices.AddSingleton(Configuration.GetSection("SendGridKeys").Get<SendGridKeys>());
+            AServices.AddSingleton<IAzureStorageService, AzureStorageService>();
             AServices.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(
                 Configuration.GetSection("CosmosDb").Get<CosmosDb>()).GetAwaiter().GetResult());
+            AServices.AddSingleton<IAppLogger, AppLogger>();
+            AServices.AddScoped<ILogicContext, LogicContext>();
 
             AServices.AddResponseCompression(AOptions =>
             {
