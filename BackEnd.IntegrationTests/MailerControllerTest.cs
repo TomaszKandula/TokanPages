@@ -55,8 +55,9 @@ namespace BackEnd.IntegrationTests
             {
                 FirstName = "Tomasz",
                 LastName  = "Kandula",
+                UserEmail = "tomasz.kandula@gmail.com",
                 EmailFrom = "contact@tomkandula.com",
-                EmailTo   = "tomasz.kandula@gmail.com",
+                EmailTo   = "admin@tomkandula.com",
                 Subject   = "Test",
                 Message   = $"Test run: {LNewGuid}.",
             };
