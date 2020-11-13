@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using TokanPages.BackEnd.Settings;
 using TokanPages.BackEnd.Logic.Mailer;
+using TokanPages.BackEnd.Logic.MailChecker;
 
 namespace BackEnd.UnitTests
 {
@@ -15,6 +16,7 @@ namespace BackEnd.UnitTests
     {
 
         private readonly IMailer FMailer;
+        private readonly IMailChecker FMailChecker;
 
         public MailerTests() 
         {
@@ -26,6 +28,7 @@ namespace BackEnd.UnitTests
             var FSendGridKeys = Configuration.GetSection("SendGridKeys").Get<SendGridKeys>();
 
             FMailer = new Mailer(FSendGridKeys);
+            FMailChecker = new MailChecker();
 
         }
 
@@ -48,11 +51,11 @@ namespace BackEnd.UnitTests
         }
 
         [Fact]
-        public void CheckEmailAddresses_Test() 
+        public void IsAddressCorrect_Test() 
         {
 
             // Arrange
-            var Emails = new List<string>() 
+            var LTestEmails = new List<string>() 
             { 
                 "this is not an email",
                 "tom@tomkandula.com",
@@ -61,12 +64,27 @@ namespace BackEnd.UnitTests
             };
 
             // Act
-            var LResults = FMailer.CheckEmailAddresses(Emails);
+            var LResults = FMailChecker.IsAddressCorrect(LTestEmails);
 
             // Assert
             LResults.Should().HaveCount(4);
             LResults.Select(Addresses => Addresses.IsValid).Contains(false).Should().BeTrue();
 
+        }
+
+        [Fact]
+        public async Task IsDomainCorrect_Test() 
+        {
+
+            // Arrange
+            var LTestEmail = "john@fakedomain.oi";
+
+            // Act
+            var LResult = await FMailChecker.IsDomainCorrect(LTestEmail);
+
+            // Assert
+            LResult.Should().Be(false);
+        
         }
 
         [Fact]
