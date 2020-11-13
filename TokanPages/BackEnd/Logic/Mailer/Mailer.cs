@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using TokanPages.BackEnd.Settings;
-using TokanPages.BackEnd.Shared.Models;
+using TokanPages.BackEnd.Shared.Models.Emails;
 
 namespace TokanPages.BackEnd.Logic.Mailer
 {

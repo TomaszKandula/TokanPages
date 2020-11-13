@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace TokanPages.BackEnd.Shared
+namespace TokanPages.BackEnd.Shared.Models
 {
 
     public class ErrorHandler

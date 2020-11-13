@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.BackEnd.Shared.Models;
+using TokanPages.BackEnd.Shared.Models.Emails;
 using DnsClient;
 
 namespace TokanPages.BackEnd.Logic.MailChecker
