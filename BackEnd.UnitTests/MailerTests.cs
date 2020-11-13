@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
+using TokanPages.BackEnd.Storage;
 using TokanPages.BackEnd.Settings;
 using TokanPages.BackEnd.Logic.Mailer;
 using TokanPages.BackEnd.Logic.MailChecker;
@@ -17,17 +18,22 @@ namespace BackEnd.UnitTests
 
         private readonly IMailer FMailer;
         private readonly IMailChecker FMailChecker;
+        private readonly AzureStorage FAzureStorage;
 
         public MailerTests() 
         {
 
+            // To be removed when mocks are provided
             var Configuration = new ConfigurationBuilder()
                 .AddUserSecrets<MailerTests>()
                 .Build();
 
             var FSendGridKeys = Configuration.GetSection("SendGridKeys").Get<SendGridKeys>();
+            var FAzureStorage = Configuration.GetSection("AzureStorage").Get<AzureStorage>();
 
-            FMailer = new Mailer(FSendGridKeys);
+            var LAzureStorageService = new AzureStorageService(FAzureStorage);
+
+            FMailer = new Mailer(FSendGridKeys, LAzureStorageService);
             FMailChecker = new MailChecker();
 
         }
