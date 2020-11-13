@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Net;
+using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using TokanPages.BackEnd.Storage;
 using TokanPages.BackEnd.Settings;
+using TokanPages.BackEnd.Logic.Mailer.Model;
 using TokanPages.BackEnd.Shared.Models.Emails;
 
 namespace TokanPages.BackEnd.Logic.Mailer
@@ -13,10 +18,12 @@ namespace TokanPages.BackEnd.Logic.Mailer
     {
 
         private readonly SendGridKeys FSendGridKeys;
+        private readonly IAzureStorageService FAzureStorageService;
 
-        public Mailer(SendGridKeys ASendGridKeys) 
+        public Mailer(SendGridKeys ASendGridKeys, IAzureStorageService AAzureStorageService) 
         {
-            FSendGridKeys = ASendGridKeys;
+            FSendGridKeys        = ASendGridKeys;
+            FAzureStorageService = AAzureStorageService;
         }
 
         public string From { get; set; }
@@ -70,6 +77,30 @@ namespace TokanPages.BackEnd.Logic.Mailer
 
             return true;
 
+        }
+
+        public async Task<string> GetTemplateWithValues(string ATemplate, List<ValueTag> AValueTag)
+        {
+
+            var LStorageUrl = $"{FAzureStorageService.ReturnBasicUrl}{ATemplate}";
+            var LTemplate   = await GetFileFromUrl(LStorageUrl);
+
+            if (AValueTag == null || !AValueTag.Any()) return null;
+
+            foreach (var AItem in AValueTag) 
+            {
+                LTemplate = LTemplate.Replace(AItem.Tag, AItem.Value);
+            }
+
+            return LTemplate;
+        
+        }
+
+        public async Task<string> GetFileFromUrl(string Url) 
+        {        
+            var LHttpClient = new HttpClient();
+            var LResponse = await LHttpClient.GetAsync(Url);
+            return await LResponse.Content.ReadAsStringAsync();
         }
 
         private async Task<MailerResult> Execute(string AFrom, string ATo, string ASubject, string ABody)

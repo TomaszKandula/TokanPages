@@ -10,6 +10,7 @@ using TokanPages.BackEnd.Shared;
 using TokanPages.BackEnd.Helpers.Statics;
 using TokanPages.BackEnd.Controllers.Mailer.Model;
 using TokanPages.BackEnd.Controllers.Mailer.Model.Responses;
+using TokanPages.BackEnd.Logic.Mailer.Model;
 
 namespace TokanPages.BackEnd.Controllers.Mailer
 {
@@ -85,7 +86,18 @@ namespace TokanPages.BackEnd.Controllers.Mailer
                 FLogicContext.Mailer.From    = PayLoad.EmailFrom;
                 FLogicContext.Mailer.To      = Constants.Emails.Addresses.Personal;
                 FLogicContext.Mailer.Subject = $"New user message from {PayLoad.FirstName}";
-                FLogicContext.Mailer.Body    = PayLoad.Message;
+
+                var NewValues = new List<ValueTag>
+                { 
+                    new ValueTag { Tag = "{FIRST_NAME}", Value = PayLoad.FirstName },
+                    new ValueTag { Tag = "{LAST_NAME}", Value = PayLoad.LastName },
+                    new ValueTag { Tag = "{EMAIL_ADDRESS}", Value = PayLoad.UserEmail },
+                    new ValueTag { Tag = "{USER_MSG}", Value = PayLoad.Message },
+                    new ValueTag { Tag = "{DATE_TIME}", Value = DateTime.Now.ToString() }
+                };
+                
+                FLogicContext.Mailer.Body = await FLogicContext.Mailer
+                    .GetTemplateWithValues(Constants.Emails.Templates.ContactUrl, NewValues);
 
                 var LResult = await FLogicContext.Mailer.Send();
                 if (!LResult.IsSucceeded) 
