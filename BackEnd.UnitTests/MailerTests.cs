@@ -5,8 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
-using TokanPages.BackEnd.Mailer;
 using TokanPages.BackEnd.Settings;
+using TokanPages.BackEnd.Logic.Mailer;
 
 namespace BackEnd.UnitTests
 {

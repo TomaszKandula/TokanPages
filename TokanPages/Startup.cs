@@ -9,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
 using TokanPages.BackEnd.Logic;
-using TokanPages.BackEnd.Mailer;
 using TokanPages.BackEnd.Settings;
 using TokanPages.BackEnd.Database;
 using TokanPages.BackEnd.AppLogger;
@@ -49,8 +48,7 @@ namespace TokanPages
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             AServices.AddSingleton<IAppLogger, AppLogger>();
-            AServices.AddScoped<IMailer, Mailer>();
-            AServices.AddScoped<ILogicContext, LogicContext>();
+            AServices.AddScoped<ILogicContext, LogicContext>();            
             AServices.AddSingleton(Configuration.GetSection("SendGridKeys").Get<SendGridKeys>());
             AServices.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(
                 Configuration.GetSection("CosmosDb").Get<CosmosDb>()).GetAwaiter().GetResult());
