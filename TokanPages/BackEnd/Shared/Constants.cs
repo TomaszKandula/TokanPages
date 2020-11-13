@@ -18,6 +18,13 @@
                 public const string ContactUrl    = "{StorageUrl}/content/templates/contactform.html";
             }
 
+            public static class Addresses 
+            {
+                public const string Contact  = "contact@tomkandula.com";
+                public const string Personal = "tom@tomkandula.com";
+                public const string Admin    = "admin@tomkandula.com";
+            }
+
         }
 
         public static class Errors 
