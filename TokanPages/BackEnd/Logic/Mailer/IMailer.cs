@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.BackEnd.Mailer.Model;
+using TokanPages.BackEnd.Shared.Models;
 
-namespace TokanPages.BackEnd.Mailer
+namespace TokanPages.BackEnd.Logic.Mailer
 {
 
     public interface IMailer
@@ -11,9 +10,8 @@ namespace TokanPages.BackEnd.Mailer
         public string To { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
-        public Task<Result> Send();
+        public Task<MailerResult> Send();
         public bool FieldsCheck();
-        public List<Emails> CheckEmailAddresses(List<string> AEmailAddress);
     }
 
 }
