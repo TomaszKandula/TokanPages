@@ -23,7 +23,7 @@ namespace TokanPages.BackEnd.Storage
             FStorageAccount     = new CloudStorageAccount(FStorageCredentials, useHttps: true);
         }
 
-        public string ReturnBasicUrl { get => FAzureStorage.BasicUrl.Replace("{AccountName}", FAzureStorage.AccountName); }
+        public string ReturnBasicUrl { get => FAzureStorage.BaseUrl.Replace("{AccountName}", FAzureStorage.AccountName); }
 
         public async Task<ActionResult> UploadTextFile(string ADestContainerName, string ADestFileName, string ASrcFullFilePath) 
         {

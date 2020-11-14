@@ -52,7 +52,7 @@ namespace TokanPages
             AServices.AddSingleton(Configuration.GetSection("AzureStorage").Get<AzureStorage>());
             AServices.AddSingleton(Configuration.GetSection("SendGridKeys").Get<SendGridKeys>());
             AServices.AddSingleton<IAzureStorageService, AzureStorageService>();
-            AServices.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(
+            AServices.AddSingleton<ICosmosDbService>(StartCosmosClient(
                 Configuration.GetSection("CosmosDb").Get<CosmosDb>()).GetAwaiter().GetResult());
             AServices.AddSingleton<IAppLogger, AppLogger>();
             AServices.AddScoped<ILogicContext, LogicContext>();
@@ -117,7 +117,7 @@ namespace TokanPages
         /// Creates a Cosmos DB database and a container with the specified partition key. 
         /// </summary>
         /// <returns></returns>
-        private static async Task<CosmosDbService> InitializeCosmosClientInstanceAsync(CosmosDb AConfig)
+        private static async Task<CosmosDbService> StartCosmosClient(CosmosDb AConfig)
         {
 
             var LDatabaseName = AConfig.DatabaseName;
