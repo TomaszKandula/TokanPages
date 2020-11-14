@@ -23,9 +23,13 @@ namespace TokanPages.BackEnd.Storage
             FStorageAccount     = new CloudStorageAccount(FStorageCredentials, useHttps: true);
         }
 
+        public AzureStorageService() 
+        { 
+        }
+
         public string ReturnBasicUrl { get => FAzureStorage.BaseUrl.Replace("{AccountName}", FAzureStorage.AccountName); }
 
-        public async Task<ActionResult> UploadTextFile(string ADestContainerName, string ADestFileName, string ASrcFullFilePath) 
+        public virtual async Task<ActionResult> UploadTextFile(string ADestContainerName, string ADestFileName, string ASrcFullFilePath) 
         {
 
             try 
@@ -56,7 +60,7 @@ namespace TokanPages.BackEnd.Storage
 
         }
 
-        public async Task<ActionResult> RemoveFromStorage(string AContainerName, string AFileName) 
+        public virtual async Task<ActionResult> RemoveFromStorage(string AContainerName, string AFileName) 
         {
 
             try
