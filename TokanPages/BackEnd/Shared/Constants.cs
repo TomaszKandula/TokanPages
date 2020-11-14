@@ -14,8 +14,8 @@
 
             public static class Templates
             {
-                public const string NewsletterUrl = "/content/templates/newsletter.html";
-                public const string ContactUrl    = "/content/templates/contactform.html";
+                public const string Newsletter  = "/content/templates/newsletter.html";
+                public const string ContactForm = "/content/templates/contactform.html";
             }
 
             public static class Addresses 
