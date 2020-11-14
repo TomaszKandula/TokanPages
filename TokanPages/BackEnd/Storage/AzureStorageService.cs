@@ -27,7 +27,7 @@ namespace TokanPages.BackEnd.Storage
         { 
         }
 
-        public virtual string ReturnBasicUrl { get => FAzureStorage.BaseUrl.Replace("{AccountName}", FAzureStorage.AccountName); }
+        public virtual string GetBaseUrl { get => FAzureStorage.BaseUrl.Replace("{AccountName}", FAzureStorage.AccountName); }
 
         public virtual async Task<ActionResult> UploadTextFile(string ADestContainerName, string ADestFileName, string ASrcFullFilePath) 
         {
