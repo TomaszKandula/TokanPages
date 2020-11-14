@@ -21,11 +21,11 @@ namespace TokanPages.BackEnd.SendGrid
         {
         }
 
-        public string From { get; set; }
-        public List<string> Tos { get; set; }
-        public string Subject { get; set; }
-        public string PlainText { get; set; }
-        public string HtmlBody { get; set; }
+        public virtual string From { get; set; }
+        public virtual List<string> Tos { get; set; }
+        public virtual string Subject { get; set; }
+        public virtual string PlainText { get; set; }
+        public virtual string HtmlBody { get; set; }
 
         public virtual async Task<Response> Send() 
         {
