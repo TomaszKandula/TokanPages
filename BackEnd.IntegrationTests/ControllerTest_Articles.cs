@@ -12,12 +12,12 @@ using TokanPages.BackEnd.Controllers.Articles.Model.Responses;
 namespace BackEnd.IntegrationTests
 {
 
-    public class ArticlesControllerTest : IClassFixture<TestFixture<Startup>>
+    public class ControllerTest_Articles : IClassFixture<TestFixture<Startup>>
     {
 
         private readonly HttpClient FHttpClient;
 
-        public ArticlesControllerTest(TestFixture<Startup> ACustomFixture)
+        public ControllerTest_Articles(TestFixture<Startup> ACustomFixture)
         {
             FHttpClient = ACustomFixture.FClient;
         }
