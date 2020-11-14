@@ -1,5 +1,7 @@
 ﻿using Xunit;
 using FluentAssertions;
+using System;
+using System.IO;
 using System.Threading.Tasks;
 using TokanPages.BackEnd.Storage;
 using TokanPages.BackEnd.Settings;
@@ -30,9 +32,15 @@ namespace BackEnd.IntegrationTests
 
             // Arrange
             var LAzureStorageService = new AzureStorageService(FAzureStorage);
+            var LTestFilePath = AppDomain.CurrentDomain.BaseDirectory + "\\__tests\\dummy.txt";
+            if (!File.Exists(LTestFilePath)) 
+            {
+                using var TestFile = new StreamWriter(LTestFilePath, true);
+                TestFile.WriteLine("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+            }
 
             // Act
-            var LResult = await LAzureStorageService.UploadTextFile("tokanpages\\test", "test.txt", "I:\\Test.txt");
+            var LResult = await LAzureStorageService.UploadTextFile("tokanpages\\__tests", "dummy.txt", $"{LTestFilePath}");
 
             // Arrange
             LResult.IsSucceeded.Should().BeTrue();
@@ -47,7 +55,7 @@ namespace BackEnd.IntegrationTests
             var LAzureStorageService = new AzureStorageService(FAzureStorage);
 
             // Act
-            var LResult = await LAzureStorageService.RemoveFromStorage("tokanpages\\test", "test.txt");
+            var LResult = await LAzureStorageService.RemoveFromStorage("tokanpages\\__tests", "dummy.txt");
 
             // Arrange
             LResult.IsSucceeded.Should().BeTrue();
