@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-using Microsoft.Azure.Cosmos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
@@ -52,11 +50,12 @@ namespace TokanPages
 
             AServices.AddSingleton(Configuration.GetSection("AzureStorage").Get<AzureStorage>());
             AServices.AddSingleton(Configuration.GetSection("SendGridKeys").Get<SendGridKeys>());
-            AServices.AddScoped<ISendGridService, SendGridService>();
-            AServices.AddSingleton<IAzureStorageService, AzureStorageService>();
-            AServices.AddSingleton<ICosmosDbService>(StartCosmosClient(
-                Configuration.GetSection("CosmosDb").Get<CosmosDb>()).GetAwaiter().GetResult());
+            AServices.AddSingleton(Configuration.GetSection("CosmosDb").Get<CosmosDb>());
+
             AServices.AddSingleton<IAppLogger, AppLogger>();
+            AServices.AddScoped<ISendGridService, SendGridService>();          
+            AServices.AddScoped<IAzureStorageService, AzureStorageService>();
+            AServices.AddScoped<ICosmosDbService, CosmosDbService>();
             AServices.AddScoped<ILogicContext, LogicContext>();
 
             AServices.AddResponseCompression(AOptions =>
@@ -112,35 +111,6 @@ namespace TokanPages
             {
                 ASpa.Options.SourcePath = "FrontEnd";
             });
-
-        }
-
-        /// <summary>
-        /// Creates a Cosmos DB database and a container with the specified partition key. 
-        /// </summary>
-        /// <returns></returns>
-        private static async Task<CosmosDbService> StartCosmosClient(CosmosDb AConfig)
-        {
-
-            var LDatabaseName = AConfig.DatabaseName;
-            var LContainerName = AConfig.ContainerName;
-            var LAccount = AConfig.Account;
-            var LKey = AConfig.Key;
-
-            var LClient = new CosmosClient(LAccount, LKey, new CosmosClientOptions()
-            {
-                SerializerOptions = new CosmosSerializationOptions()
-                {
-                    PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase
-                }
-            });
-            
-            var LCosmosDbService = new CosmosDbService(LClient, LDatabaseName, LContainerName);
-
-            var LDatabase = await LClient.CreateDatabaseIfNotExistsAsync(LDatabaseName);
-            await LDatabase.Database.CreateContainerIfNotExistsAsync(LContainerName, "/id");
-
-            return LCosmosDbService;
 
         }
 
