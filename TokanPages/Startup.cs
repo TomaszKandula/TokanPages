@@ -12,6 +12,7 @@ using TokanPages.BackEnd.Logic;
 using TokanPages.BackEnd.Storage;
 using TokanPages.BackEnd.Settings;
 using TokanPages.BackEnd.Database;
+using TokanPages.BackEnd.SendGrid;
 using TokanPages.BackEnd.AppLogger;
 using TokanPages.BackEnd.Middleware;
 
@@ -51,6 +52,7 @@ namespace TokanPages
 
             AServices.AddSingleton(Configuration.GetSection("AzureStorage").Get<AzureStorage>());
             AServices.AddSingleton(Configuration.GetSection("SendGridKeys").Get<SendGridKeys>());
+            AServices.AddScoped<ISendGridService, SendGridService>();
             AServices.AddSingleton<IAzureStorageService, AzureStorageService>();
             AServices.AddSingleton<ICosmosDbService>(StartCosmosClient(
                 Configuration.GetSection("CosmosDb").Get<CosmosDb>()).GetAwaiter().GetResult());

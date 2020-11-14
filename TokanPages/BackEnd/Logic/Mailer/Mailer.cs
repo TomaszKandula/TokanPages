@@ -4,10 +4,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using SendGrid;
-using SendGrid.Helpers.Mail;
 using TokanPages.BackEnd.Storage;
-using TokanPages.BackEnd.Settings;
+using TokanPages.BackEnd.SendGrid;
 using TokanPages.BackEnd.Logic.Mailer.Model;
 using TokanPages.BackEnd.Shared.Models.Emails;
 
@@ -17,12 +15,12 @@ namespace TokanPages.BackEnd.Logic.Mailer
     public class Mailer : IMailer
     {
 
-        private readonly SendGridKeys FSendGridKeys;
+        private readonly ISendGridService     FSendGridService;
         private readonly IAzureStorageService FAzureStorageService;
 
-        public Mailer(SendGridKeys ASendGridKeys, IAzureStorageService AAzureStorageService) 
+        public Mailer(ISendGridService ASendGridService, IAzureStorageService AAzureStorageService) 
         {
-            FSendGridKeys        = ASendGridKeys;
+            FSendGridService     = ASendGridService;
             FAzureStorageService = AAzureStorageService;
         }
 
@@ -106,11 +104,12 @@ namespace TokanPages.BackEnd.Logic.Mailer
         private async Task<MailerResult> Execute(string AFrom, string ATo, string ASubject, string ABody)
         {
 
-            var Client    = new SendGridClient(FSendGridKeys.ApiKey1);
-            var EmailFrom = new EmailAddress(AFrom, AFrom);
-            var EmailTo   = new EmailAddress(ATo, ATo);
-            var Message   = MailHelper.CreateSingleEmail(EmailFrom, EmailTo, ASubject, "", ABody);
-            var LResponse = await Client.SendEmailAsync(Message);
+            FSendGridService.From     = AFrom;
+            FSendGridService.Tos      = new List<string> { ATo };
+            FSendGridService.Subject  = ASubject;
+            FSendGridService.HtmlBody = ABody;
+
+            var LResponse = await FSendGridService.Send();
 
             if (LResponse.StatusCode != HttpStatusCode.Accepted) 
             {
