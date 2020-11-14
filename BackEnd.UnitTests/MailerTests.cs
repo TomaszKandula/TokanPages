@@ -17,7 +17,7 @@ namespace BackEnd.UnitTests
     {
 
         [Fact]
-        public void FieldsCheck_Test()
+        public void ValidateInputs_Test()
         {
 
             // Arrange
@@ -31,7 +31,7 @@ namespace BackEnd.UnitTests
             FMailer.Body    = "Hello World!";
 
             // Act
-            var LResult = FMailer.FieldsCheck();
+            var LResult = FMailer.ValidateInputs();
 
             // Assert
             LResult.Should().BeFalse();
@@ -82,7 +82,7 @@ namespace BackEnd.UnitTests
         }
 
         [Fact]
-        public async Task GetTemplateWithValues_Test() 
+        public async Task MakeBody_Test() 
         {
 
             // Arrange
@@ -99,7 +99,7 @@ namespace BackEnd.UnitTests
             };
 
             // Act
-            var LResult = await FMailer.GetTemplateWithValues(LTestTemplate, LValueTag);
+            var LResult = await FMailer.MakeBody(LTestTemplate, LValueTag);
 
             // Assert
             LResult.Should().Be("This is test string to examine some method...");
@@ -118,7 +118,7 @@ namespace BackEnd.UnitTests
             FMailer.From    = "contact@tomkandula.com";
             FMailer.To      = "tomasz.kandula@gmail.com";
             FMailer.Subject = "Test email";
-            FMailer.Body    = $"<p>Hello World!</p>";
+            FMailer.Body    = "<p>Hello World!</p>";
 
             // Act
             var LResult = await FMailer.Send();

@@ -13,8 +13,8 @@ namespace TokanPages.BackEnd.Logic.Mailer
         public string Subject { get; set; }
         public string Body { get; set; }
         public Task<MailerResult> Send();
-        public bool FieldsCheck();
-        Task<string> GetTemplateWithValues(string ATemplate, List<ValueTag> AValueTag);
+        public bool ValidateInputs();
+        Task<string> MakeBody(string ATemplate, List<ValueTag> AValueTag);
     }
 
 }

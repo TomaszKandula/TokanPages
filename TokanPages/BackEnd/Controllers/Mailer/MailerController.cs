@@ -97,7 +97,7 @@ namespace TokanPages.BackEnd.Controllers.Mailer
                 };
                 
                 FLogicContext.Mailer.Body = await FLogicContext.Mailer
-                    .GetTemplateWithValues(Constants.Emails.Templates.ContactForm, NewValues);
+                    .MakeBody(Constants.Emails.Templates.ContactForm, NewValues);
 
                 var LResult = await FLogicContext.Mailer.Send();
                 if (!LResult.IsSucceeded) 

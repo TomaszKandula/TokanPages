@@ -12,7 +12,7 @@ namespace BackEnd.UnitTests.Mocks.AzureStorage
         { 
         }
 
-        public override string ReturnBasicUrl { get; }
+        public override string GetBaseUrl { get; }
 
         public override async Task<ActionResult> UploadTextFile(string ADestContainerName, string ADestFileName, string ASrcFullFilePath)
         {

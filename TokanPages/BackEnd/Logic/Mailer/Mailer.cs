@@ -35,7 +35,7 @@ namespace TokanPages.BackEnd.Logic.Mailer
             try 
             {
 
-                if (!FieldsCheck()) 
+                if (!ValidateInputs()) 
                 {
                     return new MailerResult
                     {
@@ -58,7 +58,7 @@ namespace TokanPages.BackEnd.Logic.Mailer
         
         }
 
-        public bool FieldsCheck()
+        public bool ValidateInputs()
         {
 
             if (string.IsNullOrEmpty(From)
@@ -77,10 +77,10 @@ namespace TokanPages.BackEnd.Logic.Mailer
 
         }
 
-        public async Task<string> GetTemplateWithValues(string ATemplate, List<ValueTag> AValueTag)
+        public async Task<string> MakeBody(string ATemplate, List<ValueTag> AValueTag)
         {
 
-            var LStorageUrl = $"{FAzureStorageService.ReturnBasicUrl}{ATemplate}";
+            var LStorageUrl = $"{FAzureStorageService.GetBaseUrl}{ATemplate}";
             var LTemplate   = await GetFileFromUrl(LStorageUrl);
 
             if (AValueTag == null || !AValueTag.Any()) return null;
@@ -94,11 +94,18 @@ namespace TokanPages.BackEnd.Logic.Mailer
         
         }
 
-        public async Task<string> GetFileFromUrl(string Url) 
-        {        
-            var LHttpClient = new HttpClient();
-            var LResponse = await LHttpClient.GetAsync(Url);
-            return await LResponse.Content.ReadAsStringAsync();
+        private async Task<string> GetFileFromUrl(string Url) 
+        {
+            try 
+            {
+                var LHttpClient = new HttpClient();
+                var LResponse = await LHttpClient.GetAsync(Url);
+                return await LResponse.Content.ReadAsStringAsync();
+            }
+            catch
+            {
+                return Url;
+            }
         }
 
         private async Task<MailerResult> Execute(string AFrom, string ATo, string ASubject, string ABody)
