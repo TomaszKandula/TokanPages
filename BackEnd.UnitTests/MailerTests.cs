@@ -26,7 +26,7 @@ namespace BackEnd.UnitTests
             var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
 
             FMailer.From    = "";
-            FMailer.To      = " ";
+            FMailer.Tos     = new List<string> { " " };
             FMailer.Subject = "First email";
             FMailer.Body    = "Hello World!";
 
@@ -116,7 +116,7 @@ namespace BackEnd.UnitTests
             var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
 
             FMailer.From    = "contact@tomkandula.com";
-            FMailer.To      = "tomasz.kandula@gmail.com";
+            FMailer.Tos     = new List<string> { "tomasz.kandula@gmail.com" };
             FMailer.Subject = "Test email";
             FMailer.Body    = "<p>Hello World!</p>";
 

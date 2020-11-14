@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using BackEnd.IntegrationTests.Configuration;
 using TokanPages;
 using TokanPages.BackEnd.Controllers.Mailer.Model;
@@ -57,9 +58,39 @@ namespace BackEnd.IntegrationTests
                 LastName  = "Kandula",
                 UserEmail = "tomasz.kandula@gmail.com",
                 EmailFrom = "contact@tomkandula.com",
-                EmailTo   = "admin@tomkandula.com",
+                EmailTos  = new List<string> { "admin@tomkandula.com" },
                 Subject   = "Test",
                 Message   = $"Test run: {LNewGuid}.",
+            };
+
+            // Act
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+
+            var LResponse = await FHttpClient.SendAsync(LNewRequest);
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+
+            // Assert
+            LResponse.StatusCode.Should().Be(200);
+            var LDeserialized = JsonConvert.DeserializeObject<MessagePosted>(LContent);
+            LDeserialized.IsSucceeded.Should().BeTrue();
+
+        }
+
+        [Fact]
+        public async Task SendNewsletter_Test() 
+        {
+
+            // Arrange
+            var LRequest = "/api/v1/mailer/newsletter/";
+
+            var LNewGuid = Guid.NewGuid();
+            var LPayLoad = new NewMessage
+            {
+                EmailFrom = "contact@tomkandula.com",
+                EmailTos = new List<string> { "admin@tomkandula.com", "tomasz.kandula@gmail.com" },
+                Subject = "Newsletter Test",
+                Message = $"Integration test run. ID: {LNewGuid}. Put newsletter content here.",
             };
 
             // Act
