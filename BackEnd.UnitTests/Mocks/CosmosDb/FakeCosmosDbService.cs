@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using TokanPages.BackEnd.Database;
 using TokanPages.BackEnd.Database.Model;
 
-namespace BackEnd.UnitTests.Database
+namespace BackEnd.UnitTests.Mocks.CosmosDb
 {
  
     public class FakeCosmosDbService : CosmosDbService

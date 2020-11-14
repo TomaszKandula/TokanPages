@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using TokanPages.BackEnd.Database.Model;
 
-namespace BackEnd.UnitTests.Mock
+namespace BackEnd.UnitTests.Mocks.CosmosDb
 {
 
-    public static class DummyData
+    public static class FakeCosmosDbData
     {
 
         public static List<Article> ReturnDummyArticles() 
