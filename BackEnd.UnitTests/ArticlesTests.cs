@@ -4,8 +4,7 @@ using System;
 using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
-using BackEnd.UnitTests.Mock;
-using BackEnd.UnitTests.Database;
+using BackEnd.UnitTests.Mocks.CosmosDb;
 using TokanPages.BackEnd.Logic.Articles;
 using TokanPages.BackEnd.Controllers.Articles.Model;
 
@@ -22,7 +21,7 @@ namespace BackEnd.UnitTests
             // Arrange
             var LFakeCosmosService = new FakeCosmosDbService
             {
-                DummyArticles = DummyData.ReturnDummyArticles()
+                DummyArticles = FakeCosmosDbData.ReturnDummyArticles()
             };
 
             // Act
@@ -42,7 +41,7 @@ namespace BackEnd.UnitTests
             // Arrange
             var LFakeCosmosService = new FakeCosmosDbService
             {
-                DummyArticles = DummyData.ReturnDummyArticles()
+                DummyArticles = FakeCosmosDbData.ReturnDummyArticles()
             };
 
             // Act
@@ -64,7 +63,7 @@ namespace BackEnd.UnitTests
             // Arrange
             var LFakeCosmosService = new FakeCosmosDbService
             {
-                DummyArticles = DummyData.ReturnDummyArticles()
+                DummyArticles = FakeCosmosDbData.ReturnDummyArticles()
             };
 
             var LPayLoad = new ArticleRequest 
@@ -93,7 +92,7 @@ namespace BackEnd.UnitTests
             // Arrange
             var LFakeCosmosService = new FakeCosmosDbService
             {
-                DummyArticles = DummyData.ReturnDummyArticles()
+                DummyArticles = FakeCosmosDbData.ReturnDummyArticles()
             };
 
             var LPayLoad = new ArticleRequest
@@ -122,7 +121,7 @@ namespace BackEnd.UnitTests
             // Arrange
             var LFakeCosmosService = new FakeCosmosDbService
             {
-                DummyArticles = DummyData.ReturnDummyArticles()
+                DummyArticles = FakeCosmosDbData.ReturnDummyArticles()
             };
 
             // Act
