@@ -12,22 +12,42 @@ namespace BackEnd.UnitTests.Mocks.AzureStorage
         { 
         }
 
-        public new string ReturnBasicUrl { get; }
+        public override string ReturnBasicUrl { get; }
 
         public override async Task<ActionResult> UploadTextFile(string ADestContainerName, string ADestFileName, string ASrcFullFilePath)
         {
-            return new ActionResult
+
+            return await Task.Run(() => 
             {
-                IsSucceeded = true
-            };
+
+                if (string.IsNullOrEmpty(ADestContainerName) 
+                    || string.IsNullOrEmpty(ADestFileName) 
+                    || string.IsNullOrEmpty(ASrcFullFilePath)) 
+                {
+                    return new ActionResult { IsSucceeded = false };
+                }
+
+                return new ActionResult { IsSucceeded = true };
+
+            });
+
         }
 
         public override async Task<ActionResult> RemoveFromStorage(string AContainerName, string AFileName)
         {
-            return new ActionResult
+
+            return await Task.Run(() =>
             {
-                IsSucceeded = true
-            };
+
+                if (string.IsNullOrEmpty(AContainerName) || string.IsNullOrEmpty(AFileName)) 
+                {
+                    return new ActionResult { IsSucceeded = false };
+                }
+
+                return new ActionResult { IsSucceeded = true };
+
+            });
+
         }
 
     }
