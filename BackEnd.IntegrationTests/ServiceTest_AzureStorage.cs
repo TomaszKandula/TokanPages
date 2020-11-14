@@ -10,16 +10,16 @@ using Microsoft.Extensions.Configuration;
 namespace BackEnd.IntegrationTests
 {
 
-    public class AzureStorageServiceTest
+    public class ServiceTest_AzureStorage
     {
 
         private readonly AzureStorage FAzureStorage;
 
-        public AzureStorageServiceTest()
+        public ServiceTest_AzureStorage()
         {
 
             var Configuration = new ConfigurationBuilder()
-                .AddUserSecrets<AzureStorageServiceTest>()
+                .AddUserSecrets<ServiceTest_AzureStorage>()
                 .Build();
 
             FAzureStorage = Configuration.GetSection("AzureStorage").Get<AzureStorage>();

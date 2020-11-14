@@ -12,12 +12,12 @@ using TokanPages.BackEnd.Controllers.Mailer.Model.Responses;
 namespace BackEnd.IntegrationTests
 {
 
-    public class MailerControllerTest : IClassFixture<TestFixture<Startup>>
+    public class ControllerTest_Mailer : IClassFixture<TestFixture<Startup>>
     {
 
         private readonly HttpClient FHttpClient;
 
-        public MailerControllerTest(TestFixture<Startup> ACustomFixture)
+        public ControllerTest_Mailer(TestFixture<Startup> ACustomFixture)
         {
             FHttpClient = ACustomFixture.FClient;
         }

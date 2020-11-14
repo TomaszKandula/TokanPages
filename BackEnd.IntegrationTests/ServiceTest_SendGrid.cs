@@ -11,16 +11,16 @@ using TokanPages.BackEnd.Settings;
 namespace BackEnd.IntegrationTests
 {
 
-    public class SendGridServiceTest
+    public class ServiceTest_SendGrid
     {
 
         private readonly SendGridKeys FSendGridKeys;
 
-        public SendGridServiceTest()
+        public ServiceTest_SendGrid()
         {
 
             var Configuration = new ConfigurationBuilder()
-                .AddUserSecrets<SendGridServiceTest>()
+                .AddUserSecrets<ServiceTest_SendGrid>()
                 .Build();
 
             FSendGridKeys = Configuration.GetSection("SendGridKeys").Get<SendGridKeys>();
