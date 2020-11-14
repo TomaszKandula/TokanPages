@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.Azure.Cosmos;
+using TokanPages.BackEnd.Settings;
 using TokanPages.BackEnd.Database.Model;
 
 namespace TokanPages.BackEnd.Database
@@ -13,9 +14,26 @@ namespace TokanPages.BackEnd.Database
 
         private readonly Container FContainer;
 
-        public CosmosDbService(CosmosClient ACosmosClient, string ADatabaseName, string AContainerName)
+        public CosmosDbService(CosmosDb ACosmosDb)
         {
-            FContainer = ACosmosClient.GetContainer(ADatabaseName, AContainerName);
+
+            var FCosmosDb = ACosmosDb;
+            var LAccount  = FCosmosDb.Account;
+            var LKey      = FCosmosDb.Key;
+
+            var LDatabaseName  = FCosmosDb.DatabaseName;
+            var LContainerName = FCosmosDb.ContainerName;
+
+            var LCosmosClient = new CosmosClient(LAccount, LKey, new CosmosClientOptions()
+            {
+                SerializerOptions = new CosmosSerializationOptions()
+                {
+                    PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase
+                }
+            });
+
+            FContainer = LCosmosClient.GetContainer(LDatabaseName, LContainerName);
+
         }
 
         public CosmosDbService()
@@ -24,6 +42,7 @@ namespace TokanPages.BackEnd.Database
 
         public virtual async Task<Article> GetItem(string AId)
         {
+
             try
             {
                 ItemResponse<Article> LResponse = await FContainer.ReadItemAsync<Article>(AId, new PartitionKey(AId));
@@ -33,6 +52,7 @@ namespace TokanPages.BackEnd.Database
             {
                 return null;
             }
+
         }
 
         public virtual async Task<IEnumerable<Article>> GetItems(string AQueryString)
