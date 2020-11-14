@@ -25,7 +25,7 @@ namespace TokanPages.BackEnd.Logic.Mailer
         }
 
         public string From { get; set; }
-        public string To { get; set; }
+        public List<string> Tos { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
 
@@ -44,7 +44,7 @@ namespace TokanPages.BackEnd.Logic.Mailer
                     };
                 }
 
-                return await Execute(From, To, Subject, Body);
+                return await Execute(From, Tos, Subject, Body);
 
             } 
             catch (Exception Exception) 
@@ -62,11 +62,11 @@ namespace TokanPages.BackEnd.Logic.Mailer
         {
 
             if (string.IsNullOrEmpty(From)
-                || string.IsNullOrEmpty(To)
+                || !Tos.Any()
                 || string.IsNullOrEmpty(Subject)
                 || string.IsNullOrEmpty(Body)
                 || string.IsNullOrWhiteSpace(From)
-                || string.IsNullOrWhiteSpace(To)
+                || Tos == null
                 || string.IsNullOrWhiteSpace(Subject)
                 || string.IsNullOrWhiteSpace(Body))
             {
@@ -108,11 +108,11 @@ namespace TokanPages.BackEnd.Logic.Mailer
             }
         }
 
-        private async Task<MailerResult> Execute(string AFrom, string ATo, string ASubject, string ABody)
+        private async Task<MailerResult> Execute(string AFrom, List<string> ATos, string ASubject, string ABody)
         {
 
             FSendGridService.From     = AFrom;
-            FSendGridService.Tos      = new List<string> { ATo };
+            FSendGridService.Tos      = ATos;
             FSendGridService.Subject  = ASubject;
             FSendGridService.HtmlBody = ABody;
 
