@@ -83,17 +83,17 @@ namespace TokanPages.BackEnd.Controllers.Mailer
             try
             {
 
-                FLogicContext.Mailer.From    = PayLoad.EmailFrom;
-                FLogicContext.Mailer.To      = Constants.Emails.Addresses.Personal;
+                FLogicContext.Mailer.From    = Constants.Emails.Addresses.Contact;
+                FLogicContext.Mailer.Tos     = new List<string> { Constants.Emails.Addresses.Contact };
                 FLogicContext.Mailer.Subject = $"New user message from {PayLoad.FirstName}";
 
                 var NewValues = new List<ValueTag>
                 { 
-                    new ValueTag { Tag = "{FIRST_NAME}", Value = PayLoad.FirstName },
-                    new ValueTag { Tag = "{LAST_NAME}", Value = PayLoad.LastName },
+                    new ValueTag { Tag = "{FIRST_NAME}",    Value = PayLoad.FirstName },
+                    new ValueTag { Tag = "{LAST_NAME}",     Value = PayLoad.LastName },
                     new ValueTag { Tag = "{EMAIL_ADDRESS}", Value = PayLoad.UserEmail },
-                    new ValueTag { Tag = "{USER_MSG}", Value = PayLoad.Message },
-                    new ValueTag { Tag = "{DATE_TIME}", Value = DateTime.Now.ToString() }
+                    new ValueTag { Tag = "{USER_MSG}",      Value = PayLoad.Message },
+                    new ValueTag { Tag = "{DATE_TIME}",     Value = DateTime.Now.ToString() }
                 };
                 
                 FLogicContext.Mailer.Body = await FLogicContext.Mailer
@@ -121,6 +121,60 @@ namespace TokanPages.BackEnd.Controllers.Mailer
                 LResponse.Meta.RowsAffected = 0;
                 LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
                 FAppLogger.LogFatality($"POST api/v1/mailer/message/ | Error has been raised: {LResponse.Error.ErrorDesc}");
+                return StatusCode(500, LResponse);
+            }
+
+        }
+
+        /// <summary>
+        /// Send newsletter to subscribed users.
+        /// </summary>
+        /// <returns></returns>
+        [SwaggerResponse(statusCode: 200, type: typeof(MessagePosted), description: "Send newsletter to subscribed users.")]
+        // POST api/v1/mailer/newsletter/
+        [HttpPost("newsletter")]
+        public async Task<IActionResult> SendNewsletter([FromBody] NewMessage PayLoad)
+        {
+
+            var LResponse = new MessagePosted { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
+            var LStartTime = DateTime.Now.TimeOfDay;
+            try
+            {
+
+                FLogicContext.Mailer.From    = Constants.Emails.Addresses.Contact;
+                FLogicContext.Mailer.Tos     = PayLoad.EmailTos;
+                FLogicContext.Mailer.Subject = PayLoad.Subject;
+
+                var NewValues = new List<ValueTag>
+                {
+                    new ValueTag { Tag = "{CONTENT}", Value = PayLoad.Message }
+                };
+
+                FLogicContext.Mailer.Body = await FLogicContext.Mailer
+                    .MakeBody(Constants.Emails.Templates.Newsletter, NewValues);
+
+                var LResult = await FLogicContext.Mailer.Send();
+                if (!LResult.IsSucceeded)
+                {
+                    LResponse.Error.ErrorCode = LResult.ErrorCode;
+                    LResponse.Error.ErrorDesc = LResult.ErrorMessage;
+                    FAppLogger.LogError($"POST api/v1/mailer/newsletter/ | {LResponse.Error.ErrorDesc}.");
+                    return StatusCode(200, LResponse);
+                }
+
+                LResponse.IsSucceeded = true;
+                return StatusCode(200, LResponse);
+
+            }
+            catch (Exception LException)
+            {
+                LResponse.Error.ErrorCode = LException.HResult.ToString();
+                LResponse.Error.ErrorDesc = string.IsNullOrEmpty(LException.InnerException?.Message)
+                    ? LException.Message
+                    : $"{LException.Message} ({LException.InnerException.Message}).";
+                LResponse.Meta.RowsAffected = 0;
+                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
+                FAppLogger.LogFatality($"POST api/v1/mailer/newsletter/ | Error has been raised: {LResponse.Error.ErrorDesc}");
                 return StatusCode(500, LResponse);
             }
 

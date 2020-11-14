@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace TokanPages.BackEnd.Controllers.Mailer.Model
 {
@@ -18,8 +19,8 @@ namespace TokanPages.BackEnd.Controllers.Mailer.Model
         [JsonPropertyName("emailFrom")]
         public string EmailFrom { get; set; }
 
-        [JsonPropertyName("emailTo")]
-        public string EmailTo { get; set; }
+        [JsonPropertyName("emailTos")]
+        public List<string> EmailTos { get; set; }
 
         [JsonPropertyName("subject")]
         public string Subject { get; set; }
