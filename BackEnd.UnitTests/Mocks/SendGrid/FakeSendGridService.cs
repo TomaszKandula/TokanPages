@@ -15,11 +15,11 @@ namespace BackEnd.UnitTests.Mocks.SendGrid
         {        
         }
 
-        public new string From { get; set; }
-        public new List<string> Tos { get; set; }
-        public new string Subject { get; set; }
-        public new string PlainText { get; set; }
-        public new string HtmlBody { get; set; }
+        public override string From { get; set; }
+        public override List<string> Tos { get; set; }
+        public override string Subject { get; set; }
+        public override string PlainText { get; set; }
+        public override string HtmlBody { get; set; }
 
         public override async Task<Response> Send() 
         {

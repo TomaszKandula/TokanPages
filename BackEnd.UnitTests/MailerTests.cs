@@ -8,6 +8,7 @@ using TokanPages.BackEnd.Logic.Mailer;
 using TokanPages.BackEnd.Logic.MailChecker;
 using BackEnd.UnitTests.Mocks.SendGrid;
 using BackEnd.UnitTests.Mocks.AzureStorage;
+using TokanPages.BackEnd.Logic.Mailer.Model;
 
 namespace BackEnd.UnitTests
 {
@@ -15,25 +16,15 @@ namespace BackEnd.UnitTests
     public class MailerTests
     {
 
-        private readonly IMailer FMailer;
-        private readonly IMailChecker FMailChecker;
-
-        public MailerTests() 
-        {
-
-            var FakeSendGridService = new FakeSendGridService();
-            var FakeAzureStorageService = new AzureStorageService();
-
-            FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
-            FMailChecker = new MailChecker();
-
-        }
-
         [Fact]
         public void FieldsCheck_Test()
         {
 
             // Arrange
+            var FakeSendGridService = new FakeSendGridService();
+            var FakeAzureStorageService = new FakeAzureStorageService();
+            var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
+
             FMailer.From    = "";
             FMailer.To      = " ";
             FMailer.Subject = "First email";
@@ -52,6 +43,11 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
+            var FakeSendGridService = new FakeSendGridService();
+            var FakeAzureStorageService = new FakeAzureStorageService();
+            var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
+            var FMailChecker = new MailChecker();
+
             var LTestEmails = new List<string>() 
             { 
                 "this is not an email",
@@ -74,6 +70,7 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
+            var FMailChecker = new MailChecker();
             var LTestEmail = "john@fakedomain.oi";
 
             // Act
@@ -85,15 +82,43 @@ namespace BackEnd.UnitTests
         }
 
         [Fact]
+        public async Task GetTemplateWithValues_Test() 
+        {
+
+            // Arrange
+            var FakeSendGridService = new FakeSendGridService();
+            var FakeAzureStorageService = new FakeAzureStorageService();
+            var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
+
+            var LTestTemplate = "This is {VAL1} string to {VAL2} some method...";
+
+            var LValueTag = new List<ValueTag> 
+            { 
+                new ValueTag{ Tag = "{VAL1}", Value = "test" },
+                new ValueTag{ Tag = "{VAL2}", Value = "examine" }
+            };
+
+            // Act
+            var LResult = await FMailer.GetTemplateWithValues(LTestTemplate, LValueTag);
+
+            // Assert
+            LResult.Should().Be("This is test string to examine some method...");
+
+        }
+
+        [Fact]
         public async Task Send_Test() 
         {
 
             // Arrange
-            var NewGuid = Guid.NewGuid();
+            var FakeSendGridService = new FakeSendGridService();
+            var FakeAzureStorageService = new FakeAzureStorageService();
+            var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
+
             FMailer.From    = "contact@tomkandula.com";
             FMailer.To      = "tomasz.kandula@gmail.com";
             FMailer.Subject = "Test email";
-            FMailer.Body    = $"<p>Hello World!</p><p>Test run: {NewGuid}</p>";
+            FMailer.Body    = $"<p>Hello World!</p>";
 
             // Act
             var LResult = await FMailer.Send();
