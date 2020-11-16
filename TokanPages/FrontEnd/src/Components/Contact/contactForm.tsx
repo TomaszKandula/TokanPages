@@ -8,11 +8,47 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import useStyles from "./styleContactForm";
+import { ValidateInputs } from "./validateInputs";
 
 export default function ContactForm() 
 {
 
     const classes = useStyles();
+
+    const [Form, setForm] = React.useState({ firstName: "", lastName: "", email: "", subject: "", message: "", terms: false });
+    const FormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    {
+
+        if (event.currentTarget.name !== "terms")
+        {
+            setForm({ ...Form, [event.currentTarget.name]: event.currentTarget.value});
+        }
+        else
+        {
+            setForm({ ...Form, [event.currentTarget.name]: event.currentTarget.checked});
+        }
+
+    }
+
+    const onClickEvent = () => 
+    {
+
+        let Results = ValidateInputs( 
+        { 
+            FirstName: Form.firstName,
+            LastName:  Form.lastName, 
+            Email:     Form.email, 
+            Subject:   Form.subject, 
+            Message:   Form.message, 
+            Terms:     Form.terms 
+        });
+
+        // if valid, then call API to send message (display busy screen)
+        // if not valid, display modal window with error
+
+        console.log(Results);
+
+    }
 
     return (
         <section className={classes.section}>
@@ -29,23 +65,26 @@ export default function ContactForm()
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={6}>
-                                        <TextField variant="outlined" required fullWidth autoComplete="fname" name="firstName" id="firstName" label="First name" />
+                                        <TextField onChange={FormHandler} variant="outlined" required fullWidth name="firstName" id="firstName" label="First name" autoComplete="fname" />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
-                                        <TextField variant="outlined" required fullWidth name="lastName" id="lastName" label="Last name" autoComplete="lname" />
+                                        <TextField onChange={FormHandler} variant="outlined" required fullWidth name="lastName" id="lastName" label="Last name" autoComplete="lname" />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField variant="outlined" required fullWidth name="email" id="email" label="Email address" autoComplete="email" />
+                                        <TextField onChange={FormHandler} variant="outlined" required fullWidth name="email" id="email" label="Email address" autoComplete="email" />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField variant="outlined" required multiline rows={5} fullWidth autoComplete="message" name="message" id="message" label="Message" />
+                                        <TextField onChange={FormHandler} variant="outlined" required fullWidth name="subject" id="subject" label="Subject" autoComplete="subject" />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <FormControlLabel control={<Checkbox name="terms" value="1" color="primary" />} label="I agree to the terms of use and privacy policy." />
+                                        <TextField onChange={FormHandler} variant="outlined" required multiline rows={6} fullWidth autoComplete="message" name="message" id="message" label="Message" />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <FormControlLabel control={<Checkbox onChange={FormHandler} name="terms" id="terms" color="primary" />} label="I agree to the terms of use and privacy policy." />
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    <Button type="submit" fullWidth variant="contained" color="primary">Submit</Button>
+                                    <Button onClick={onClickEvent} type="submit" fullWidth variant="contained" color="primary">Submit</Button>
                                 </Box>
                             </Box>
                         </Box>
