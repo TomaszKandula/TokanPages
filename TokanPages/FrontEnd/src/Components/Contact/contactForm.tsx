@@ -9,8 +9,10 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import useStyles from "./styleContactForm";
 import { ValidateInputs } from "./validateInputs";
+import AlertDialog from "../../Shared/Modals/alertDialog";
+import Validate from "validate.js";
 
-export default function ContactForm() 
+export default function ContactForm() //refactor this
 {
 
     const classes = useStyles();
@@ -18,21 +20,14 @@ export default function ContactForm()
     const [Form, setForm] = React.useState({ firstName: "", lastName: "", email: "", subject: "", message: "", terms: false });
     const FormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
-
-        if (event.currentTarget.name !== "terms")
-        {
-            setForm({ ...Form, [event.currentTarget.name]: event.currentTarget.value});
-        }
-        else
-        {
-            setForm({ ...Form, [event.currentTarget.name]: event.currentTarget.checked});
-        }
-
+        if (event.currentTarget.name !== "terms") { setForm({ ...Form, [event.currentTarget.name]: event.currentTarget.value}); }
+            else { setForm({ ...Form, [event.currentTarget.name]: event.currentTarget.checked}); }
     }
 
-    const onClickEvent = () => 
+    const [Modal, setModal] = React.useState({ State: false, Titile:  "", Message: "", Icon: 0 });
+    const ButtonHandler = () => 
     {
-
+        
         let Results = ValidateInputs( 
         { 
             FirstName: Form.firstName,
@@ -43,16 +38,50 @@ export default function ContactForm()
             Terms:     Form.terms 
         });
 
-        // if valid, then call API to send message (display busy screen)
-        // if not valid, display modal window with error
+        if (!Validate.isDefined(Results))
+        {
+            // call API to send message (display busy screen)
+        }
+        else
+        {
+            
+            const RenderLine = (Text: any) => 
+            {
+                let Line = Validate.isDefined(Text) ? `<li>${Text}</li>` : " ";
+                return Line;
+            }
+            
+            setModal(
+            { 
+                ...Modal, 
+                State: true, 
+                Titile: "Error", 
+                Message: 
+                    `<span>We have received following error(s):</span>
+                    <ul>
+                        ${RenderLine(Results.FirstName)}
+                        ${RenderLine(Results.LastName)}
+                        ${RenderLine(Results.Email)}
+                        ${RenderLine(Results.Subject)}
+                        ${RenderLine(Results.Message)}
+                        ${RenderLine(Results.Terms)}
+                    </ul>
+                    <span>To send an email all fields must be filled along with acceptance of Terms of Use and Privacy Policy.</span>`, 
+                Icon: 2 
+            });
+        }
+    
+    }
 
-        console.log(Results);
-
+    const ModalHandler = () => 
+    {
+        setModal({ ...Modal, State: false });
     }
 
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
+                <AlertDialog State={Modal.State} Handle={ModalHandler} Title={Modal.Titile} Message={Modal.Message} Icon={Modal.Icon} />
                 <Container maxWidth="sm">
                     <div data-aos="fade-up">
                         <Box pt={8} pb={10}>
@@ -65,26 +94,26 @@ export default function ContactForm()
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={6}>
-                                        <TextField onChange={FormHandler} variant="outlined" required fullWidth name="firstName" id="firstName" label="First name" autoComplete="fname" />
+                                        <TextField onChange={FormHandler} value={Form.firstName} variant="outlined" required fullWidth name="firstName" id="firstName" label="First name" autoComplete="fname" />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
-                                        <TextField onChange={FormHandler} variant="outlined" required fullWidth name="lastName" id="lastName" label="Last name" autoComplete="lname" />
+                                        <TextField onChange={FormHandler} value={Form.lastName} variant="outlined" required fullWidth name="lastName" id="lastName" label="Last name" autoComplete="lname" />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField onChange={FormHandler} variant="outlined" required fullWidth name="email" id="email" label="Email address" autoComplete="email" />
+                                        <TextField onChange={FormHandler} value={Form.email} variant="outlined" required fullWidth name="email" id="email" label="Email address" autoComplete="email" />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField onChange={FormHandler} variant="outlined" required fullWidth name="subject" id="subject" label="Subject" autoComplete="subject" />
+                                        <TextField onChange={FormHandler} value={Form.subject} variant="outlined" required fullWidth name="subject" id="subject" label="Subject" autoComplete="subject" />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField onChange={FormHandler} variant="outlined" required multiline rows={6} fullWidth autoComplete="message" name="message" id="message" label="Message" />
+                                        <TextField onChange={FormHandler} value={Form.message} variant="outlined" required multiline rows={6} fullWidth autoComplete="message" name="message" id="message" label="Message" />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <FormControlLabel control={<Checkbox onChange={FormHandler} name="terms" id="terms" color="primary" />} label="I agree to the terms of use and privacy policy." />
+                                        <FormControlLabel control={<Checkbox onChange={FormHandler} checked={Form.terms} name="terms" id="terms" color="primary" />} label="I agree to the terms of use and privacy policy." />
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    <Button onClick={onClickEvent} type="submit" fullWidth variant="contained" color="primary">Submit</Button>
+                                    <Button onClick={ButtonHandler} type="submit" fullWidth variant="contained" color="primary">Submit</Button>
                                 </Box>
                             </Box>
                         </Box>
