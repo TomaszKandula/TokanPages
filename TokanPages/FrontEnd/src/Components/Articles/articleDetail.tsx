@@ -9,7 +9,7 @@ import ReactHtmlParser from 'react-html-parser';
 import axios from "axios";
 import useStyles from "./Hooks/styleArticleDetail";
 import * as apiUrls from "../../Shared/apis";
-import { IsEmpty } from "../../Shared/helpers"; 
+import Validate from "validate.js";
 
 interface IArticleDetail
 {
@@ -41,7 +41,7 @@ export default function ArticleDetail(props: IArticleDetail)
         );
     }
 
-    const content = IsEmpty(article) ? "Fetching content..." : renderArticle(article);
+    const content = Validate.isEmpty(article) ? "Fetching content..." : renderArticle(article);
     
     return (
         <section>
