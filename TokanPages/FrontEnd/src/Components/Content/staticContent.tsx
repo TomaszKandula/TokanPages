@@ -7,8 +7,8 @@ import { Divider, IconButton } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import ReactHtmlParser from "react-html-parser";
 import axios from "axios";
-import { IsEmpty } from "../../Shared/helpers"; 
 import useStyles from "./styleStaticContent";
+import Validate from "validate.js";
 
 interface IStoryContent
 {
@@ -39,7 +39,7 @@ export default function StaticContent(props: IStoryContent)
         );
     }
 
-    const content = IsEmpty(data) ? "Fetching content..." : renderData(data);
+    const content = Validate.isEmpty(data) ? "Fetching content..." : renderData(data);
 
     return (
         <section>
