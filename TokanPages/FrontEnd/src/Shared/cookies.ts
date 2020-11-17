@@ -1,4 +1,4 @@
-import { IsEmpty } from "./helpers"; 
+import Validate from "validate.js";
 
 interface ISetCookie 
 {
@@ -21,13 +21,13 @@ function SetCookie(props: ISetCookie): string
 
         let dateString = props.exact;
 
-        if (IsEmpty(props.exact))
+        if (Validate.isEmpty(props.exact))
         {
             LDate.setTime(LDate.getTime() + (props.days * 24 * 60 * 60 * 1000));
             dateString = LDate.toUTCString();
         }
 
-        let LSecure = !IsEmpty(props.secure) ? `; ${props.secure}` : "";
+        let LSecure = !Validate.isEmpty(props.secure) ? `; ${props.secure}` : "";
         LNewCookie = `${props.cookieName}=${props.value}; expires=${dateString}; path=/; SameSite=${props.sameSite} ${LSecure}`;
 
         document.cookie = LNewCookie;
