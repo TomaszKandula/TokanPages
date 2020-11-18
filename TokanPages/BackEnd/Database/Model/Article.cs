@@ -21,6 +21,9 @@ namespace TokanPages.BackEnd.Database.Model
         [JsonPropertyName("likes")]
         public int Likes { get; set; }
 
+        [JsonPropertyName("readCount")]
+        public int ReadCount { get; set; }
+
     }
 
 }

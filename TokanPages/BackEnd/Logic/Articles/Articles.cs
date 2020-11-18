@@ -32,11 +32,12 @@ namespace TokanPages.BackEnd.Logic.Articles
 
                 var ArticleItem = new ArticleItem
                 {
-                    Id     = LItem.Id,
-                    Title  = LItem.Title,
-                    Desc   = LItem.Desc,
-                    Status = LItem.Status,
-                    Likes  = LItem.Likes
+                    Id        = LItem.Id,
+                    Title     = LItem.Title,
+                    Desc      = LItem.Desc,
+                    Status    = LItem.Status,
+                    Likes     = LItem.Likes,
+                    ReadCount = LItem.ReadCount
                 };
 
                 LResult.Add(ArticleItem);
@@ -55,11 +56,12 @@ namespace TokanPages.BackEnd.Logic.Articles
 
             return new ArticleItem 
             {
-                Id     = LItem.Id,
-                Title  = LItem.Title,
-                Desc   = LItem.Desc,
-                Status = LItem.Status,
-                Likes  = LItem.Likes
+                Id        = LItem.Id,
+                Title     = LItem.Title,
+                Desc      = LItem.Desc,
+                Status    = LItem.Status,
+                Likes     = LItem.Likes,
+                ReadCount = LItem.ReadCount
             };
 
         }
@@ -70,11 +72,12 @@ namespace TokanPages.BackEnd.Logic.Articles
             var NewId = Guid.NewGuid().ToString();
             var InsertNew = new Article
             {
-                Id     = NewId,
-                Title  = PayLoad.Title,
-                Desc   = PayLoad.Desc,
-                Status = PayLoad.Status,
-                Likes  = 0
+                Id        = NewId,
+                Title     = PayLoad.Title,
+                Desc      = PayLoad.Desc,
+                Status    = PayLoad.Status,
+                Likes     = 0,
+                ReadCount = 0
             };
 
             if (await FCosmosDbService.AddItem(InsertNew) == HttpStatusCode.Created)
@@ -93,11 +96,12 @@ namespace TokanPages.BackEnd.Logic.Articles
 
             var UpdatedArticle = new Article 
             { 
-                Id     = PayLoad.Id,
-                Title  = PayLoad.Title,
-                Desc   = PayLoad.Desc,
-                Status = PayLoad.Status,
-                Likes  = PayLoad.Likes
+                Id        = PayLoad.Id,
+                Title     = PayLoad.Title,
+                Desc      = PayLoad.Desc,
+                Status    = PayLoad.Status,
+                Likes     = PayLoad.Likes,
+                ReadCount = PayLoad.ReadCount
             };
 
             return await FCosmosDbService.UpdateItem(PayLoad.Id, UpdatedArticle);
