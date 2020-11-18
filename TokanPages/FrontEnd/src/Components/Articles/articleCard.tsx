@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import useStyles from "./Hooks/styleArticleCard";
-import { STORAGE_URL } from "../../Shared/apis";
+import * as Consts from "../../Shared/constants";
 
 interface IArticle
 {
@@ -21,7 +21,7 @@ export default function ArticleCard(props: IArticle)
 
     const classes = useStyles();
     const articleUrl = `/articles/?id=${props.uid}`;
-    const imageUrl = `${STORAGE_URL}/content/articles/${props.uid}/image.jpg`;
+    const imageUrl = `${Consts.APP_STORAGE}/content/articles/${props.uid}/image.jpg`;
 
     return(
         <div data-aos="fade-up">

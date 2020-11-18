@@ -2,15 +2,15 @@ const API_VER = 1;
 
 /* API | GENERAL */
 
-export const APP_URL     = `https://localhost:3000`;//refactor name: APP_FRONTEND
-export const APP_BACKEND = `https://localhost:5001`;
-export const STORAGE_URL = `https://maindbstorage.blob.core.windows.net/tokanpages`;//refactor name: APP_STORAGE
+export const APP_FRONTEND = `http://localhost:3000`;
+export const APP_BACKEND  = `https://localhost:5001`;
+export const APP_STORAGE  = `https://maindbstorage.blob.core.windows.net/tokanpages`;
 
 /* API | STATIC CONTENT */
 
-export const STORY_URL   = `${APP_URL}/static/mystory.html`;
-export const TERMS_URL   = `${APP_URL}/static/terms.html`;
-export const POLICY_URL  = `${APP_URL}/static/policy.html`;
+export const STORY_URL   = `${APP_FRONTEND}/static/mystory.html`;
+export const TERMS_URL   = `${APP_FRONTEND}/static/terms.html`;
+export const POLICY_URL  = `${APP_FRONTEND}/static/policy.html`;
 
 /* API | ARTICLES */
 
