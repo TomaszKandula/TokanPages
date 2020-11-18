@@ -20,8 +20,8 @@ function ValidateInputs(props: IValidateInputs): any
             presence: true,
             length: 
             {
-                minimum: 3,
-                message: "must be at least 3 characters"
+                minimum: 2,
+                message: "must be at least 2 characters"
             }
         },
         LastName:
@@ -29,8 +29,8 @@ function ValidateInputs(props: IValidateInputs): any
             presence: true,
             length: 
             {
-                minimum: 3,
-                message: "must be at least 3 characters"
+                minimum: 2,
+                message: "must be at least 2 characters"
             }
         },
         Email: 
@@ -54,8 +54,8 @@ function ValidateInputs(props: IValidateInputs): any
             presence: true,
             length: 
             {
-                minimum: 25,
-                message: "must be at least 25 characters"
+                minimum: 20,
+                message: "must be at least 20 characters"
             }
         },
         Terms:
