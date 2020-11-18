@@ -113,7 +113,7 @@ export default function ContactForm()
             ...Modal, 
             State: true, 
             Titile: "Warning", 
-            Message: Consts.WARN_MESSAGE.replace("{LIST}", HtmlRenderLines(ConvertPropsToFields(Results), "li")), 
+            Message: Consts.MESSAGE_OUT_WARN.replace("{LIST}", HtmlRenderLines(ConvertPropsToFields(Results), "li")), 
             Icon: 1 
         });
 
