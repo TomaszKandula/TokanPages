@@ -21,6 +21,9 @@ namespace TokanPages.BackEnd.Controllers.Articles.Model
         [JsonPropertyName("likes")]
         public int Likes { get; set; }
 
+        [JsonPropertyName("readCount")]
+        public int ReadCount { get; set; }
+
         [JsonPropertyName("text")]
         public string Text { get; set; }
 
