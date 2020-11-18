@@ -28,6 +28,6 @@ export const API_POST_NEWSLETTER = `${APP_BACKEND}/api/v${API_VER}/mailer/newsle
 
 /* MESSAGE TEMPLATES */
 
-export const WARN_MESSAGE = `<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To send an email all fields must be filled along with acceptance of Terms of Use and Privacy Policy.</span>`;
+export const MESSAGE_OUT_WARN    = `<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To send an email all fields must be filled along with acceptance of Terms of Use and Privacy Policy.</span>`;
 export const MESSAGE_OUT_SUCCESS = `The message has been sent successfully!`;
-export const MESSAGE_OUT_ERROR = `The message couldn't be sent. Error has been thrown: {ERROR}.`;
+export const MESSAGE_OUT_ERROR   = `The message couldn't be sent. Error has been thrown: {ERROR}.`;
