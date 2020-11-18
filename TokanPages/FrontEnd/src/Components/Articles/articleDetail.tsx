@@ -8,7 +8,7 @@ import { ArrowBack } from "@material-ui/icons";
 import ReactHtmlParser from 'react-html-parser';
 import axios from "axios";
 import useStyles from "./Hooks/styleArticleDetail";
-import * as apiUrls from "../../Shared/apis";
+import * as Consts from "../../Shared/constants";
 import Validate from "validate.js";
 
 interface IArticleDetail
@@ -22,7 +22,7 @@ export default function ArticleDetail(props: IArticleDetail)
     const classes = useStyles();
     const [ article, setArticle ] = React.useState("");
 
-    const articleUrl = `${apiUrls.STORAGE_URL}/content/articles/${props.uid}/text.html`;
+    const articleUrl = `${Consts.APP_STORAGE}/content/articles/${props.uid}/text.html`;
 
     const fetchArticle = React.useCallback( async () => 
     {
