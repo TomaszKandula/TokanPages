@@ -41,7 +41,7 @@ namespace BackEnd.IntegrationTests
         }
 
         [Theory]
-        [InlineData("80cc8b7b-56f6-4e9d-8e17-0dc010b892d2")]
+        [InlineData("a8db7e28-2d47-463c-9c38-c17706056f72")]
         public async Task GetItemAsync_Test(string Id) 
         {
 
@@ -72,8 +72,7 @@ namespace BackEnd.IntegrationTests
             {
                 Title  = "Integration test",
                 Desc   = $"Test run: {LNewGuid}",
-                Status = "draft",
-                Likes  = 0
+                Status = "draft"
             };
 
             // Act
@@ -100,11 +99,12 @@ namespace BackEnd.IntegrationTests
             var LNewGuid = Guid.NewGuid();
             var LPayLoad = new ArticleRequest
             {
-                Id     = "e8722b93-5f99-4fec-996b-3a3bd401079f",
+                Id     = "ce4d995c-0fba-436b-93fe-ba81c5ba0745",
                 Title  = "Integration test",
                 Desc   = $"Test run: {LNewGuid}",
                 Status = "draft",
-                Likes  = 0
+                Likes  = 10,
+                ReadCount = 100
             };
 
             // Act

@@ -46,12 +46,16 @@ namespace BackEnd.UnitTests
 
             // Act
             var LArticles = new Articles(LFakeCosmosService);
-            var LResult1 = await LArticles.GetSingleArticle("f29306f9-36fe-4935-8f86-fb448a21019c");
+            var LResult1 = await LArticles.GetSingleArticle("4d9b0aad-7b69-4f12-a5cf-7308f33cffd0");
             var LResult2 = await LArticles.GetSingleArticle(" ");
 
             // Assert
             LResult1.Should().NotBeNull();
-            LResult1.Title.Should().Be("ZXC");
+            LResult1.Title.Should().Be("MNB");
+            LResult1.Desc.Should().Be("Lorem ipsum...");
+            LResult1.Status.Should().Be("published");
+            LResult1.Likes.Should().Be(956);
+            LResult1.ReadCount.Should().Be(10561);
             LResult2.Should().BeNull();
 
         }
@@ -102,6 +106,7 @@ namespace BackEnd.UnitTests
                 Desc   = "New feature...",
                 Status = "draft",
                 Likes  = 0,
+                ReadCount = 100,
                 Text   = "New feature..."
             };
 

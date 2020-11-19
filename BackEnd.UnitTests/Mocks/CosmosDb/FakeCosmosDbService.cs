@@ -39,7 +39,8 @@ namespace BackEnd.UnitTests.Mocks.CosmosDb
                         Title  = LDummies.Select(Item => Item.Title).FirstOrDefault(),
                         Desc   = LDummies.Select(Item => Item.Desc).FirstOrDefault(),
                         Status = LDummies.Select(Item => Item.Status).FirstOrDefault(),
-                        Likes  = LDummies.Select(Item => Item.Likes).FirstOrDefault()
+                        Likes  = LDummies.Select(Item => Item.Likes).FirstOrDefault(),
+                        ReadCount = LDummies.Select(Item => Item.ReadCount).FirstOrDefault()
                     };
 
                     return LReturnedArticle;
@@ -124,6 +125,7 @@ namespace BackEnd.UnitTests.Mocks.CosmosDb
                         Item.Desc   = AItem.Desc;
                         Item.Status = AItem.Status;
                         Item.Likes  = AItem.Likes;
+                        Item.ReadCount = AItem.ReadCount;
                         break;
                     }
 
