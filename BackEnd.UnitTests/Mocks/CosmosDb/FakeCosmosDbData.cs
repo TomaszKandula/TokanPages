@@ -19,7 +19,8 @@ namespace BackEnd.UnitTests.Mocks.CosmosDb
                     Title  = "ABC",
                     Desc   = "Lorem ipsum...",
                     Status = "draft",
-                    Likes  = 0
+                    Likes  = 0,
+                    ReadCount = 0
                 },
                 new Article
                 {
@@ -27,7 +28,8 @@ namespace BackEnd.UnitTests.Mocks.CosmosDb
                     Title  = "DEF",
                     Desc   = "Lorem ipsum...",
                     Status = "draft",
-                    Likes  = 0
+                    Likes  = 0,
+                    ReadCount = 0
                 },
                 new Article
                 {
@@ -35,7 +37,8 @@ namespace BackEnd.UnitTests.Mocks.CosmosDb
                     Title  = "QWERTY",
                     Desc   = "Lorem ipsum...",
                     Status = "published",
-                    Likes  = 0
+                    Likes  = 0,
+                    ReadCount = 0
                 },
                 new Article
                 {
@@ -43,7 +46,8 @@ namespace BackEnd.UnitTests.Mocks.CosmosDb
                     Title  = "ZXC",
                     Desc   = "Lorem ipsum...",
                     Status = "draft",
-                    Likes  = 0
+                    Likes  = 0,
+                    ReadCount = 0
                 },
                 new Article
                 {
@@ -51,7 +55,8 @@ namespace BackEnd.UnitTests.Mocks.CosmosDb
                     Title  = "POI",
                     Desc   = "Lorem ipsum...",
                     Status = "draft",
-                    Likes  = 0
+                    Likes  = 0,
+                    ReadCount = 0
                 },
                 new Article
                 {
@@ -59,7 +64,8 @@ namespace BackEnd.UnitTests.Mocks.CosmosDb
                     Title  = "MNB",
                     Desc   = "Lorem ipsum...",
                     Status = "published",
-                    Likes  = 0
+                    Likes  = 956,
+                    ReadCount = 10561
                 },
 
             };
