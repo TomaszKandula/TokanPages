@@ -76,6 +76,7 @@ namespace TokanPages
 
             AApplication.UseResponseCompression();
             AApplication.UseMiddleware<GarbageCollector>();
+            AApplication.UseMiddleware<CustomCors>();
 
             if (AEnvironment.IsDevelopment())
             {
@@ -95,7 +96,6 @@ namespace TokanPages
                 AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "TokanPagesApi version 1");
             });
 
-            AApplication.UseHttpsRedirection();
             AApplication.UseStaticFiles();
             AApplication.UseSpaStaticFiles();
             AApplication.UseRouting();
@@ -109,8 +109,15 @@ namespace TokanPages
 
             AApplication.UseSpa(ASpa =>
             {
+                
                 ASpa.Options.SourcePath = "FrontEnd";
-            });
+
+                if (AEnvironment.IsDevelopment())
+                {
+                    ASpa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
+                }
+
+            });           
 
         }
 

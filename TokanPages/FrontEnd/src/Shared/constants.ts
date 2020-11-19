@@ -3,7 +3,7 @@ const API_VER = 1;
 /* API | GENERAL */
 
 export const APP_FRONTEND = `http://localhost:3000`;
-export const APP_BACKEND  = `https://localhost:5001`;
+export const APP_BACKEND  = `http://localhost:5000`;
 export const APP_STORAGE  = `https://maindbstorage.blob.core.windows.net/tokanpages`;
 
 /* API | STATIC CONTENT */
