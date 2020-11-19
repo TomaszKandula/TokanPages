@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
+using Sentry.Protocol;
 
 namespace TokanPages
 {
@@ -12,26 +13,25 @@ namespace TokanPages
     {
 
         private static IWebHostBuilder CreateWebHostBuilder(string[] ARgs) =>
-             WebHost.CreateDefaultBuilder(ARgs)
-                 .UseStartup<Startup>()
-                 .UseSerilog();
+            WebHost.CreateDefaultBuilder(ARgs)
+                .UseStartup<Startup>()
+                .UseSerilog((Context, Config) => 
+                {
+                    Config.ReadFrom.Configuration(Context.Configuration);
+                    Config.WriteTo.Sentry(Sentry => 
+                    {
+                        Sentry.SendDefaultPii = true;
+                        Sentry.MinimumBreadcrumbLevel = LogEventLevel.Information;
+                        Sentry.MinimumEventLevel = LogEventLevel.Information;
+                        Sentry.AttachStacktrace = true;
+                        Sentry.Debug = true;
+                        Sentry.DiagnosticsLevel = SentryLevel.Error;
+                    });
+                })
+                .UseSentry();
 
         public static int Main(string[] ARgs)
         {
-
-            var LAppPath = AppDomain.CurrentDomain.BaseDirectory;
-
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Information()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-                .Enrich.FromLogContext()
-                .WriteTo.File(
-                    LAppPath + "\\logs\\log-.txt",
-                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
-                    rollingInterval: RollingInterval.Day,
-                    rollOnFileSizeLimit: true,
-                    retainedFileCountLimit: null)
-                .CreateLogger();
 
             try
             {
