@@ -18,12 +18,13 @@ namespace TokanPages.BackEnd.Logic.Articles
         public Articles(ICosmosDbService ACosmosDbService)
         {
             FCosmosDbService = ACosmosDbService;
+            FCosmosDbService.InitContainer<Article>();
         }
 
         public async Task<List<ArticleItem>> GetAllArticles()
         {
 
-            var LItems = await FCosmosDbService.GetItems("select * from c");
+            var LItems = await FCosmosDbService.GetItems<Article>("select * from c");
             if (LItems == null || !LItems.Any()) return null;
 
             var LResult = new List<ArticleItem>();
@@ -51,7 +52,7 @@ namespace TokanPages.BackEnd.Logic.Articles
         public async Task<ArticleItem> GetSingleArticle(string Id)
         {
 
-            var LItem = await FCosmosDbService.GetItem(Id);
+            var LItem = await FCosmosDbService.GetItem<Article>(Id);
             if (LItem == null) return null;
 
             return new ArticleItem 
@@ -80,7 +81,7 @@ namespace TokanPages.BackEnd.Logic.Articles
                 ReadCount = 0
             };
 
-            if (await FCosmosDbService.AddItem(InsertNew) == HttpStatusCode.Created)
+            if (await FCosmosDbService.AddItem<Article>(NewId, InsertNew) == HttpStatusCode.Created)
             {
                 return NewId;
             }
@@ -104,13 +105,13 @@ namespace TokanPages.BackEnd.Logic.Articles
                 ReadCount = PayLoad.ReadCount
             };
 
-            return await FCosmosDbService.UpdateItem(PayLoad.Id, UpdatedArticle);
+            return await FCosmosDbService.UpdateItem<Article>(PayLoad.Id, UpdatedArticle);
 
         }
 
         public async Task<HttpStatusCode> DeleteArticle(string Id) 
         {
-            return await FCosmosDbService.DeleteItem(Id);
+            return await FCosmosDbService.DeleteItem<Article>(Id);
         }
 
     }
