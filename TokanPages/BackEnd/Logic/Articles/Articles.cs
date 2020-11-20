@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.BackEnd.Database;
-using TokanPages.BackEnd.Database.Model;
 using TokanPages.BackEnd.Controllers.Articles.Model;
+using ArticlesModel = TokanPages.BackEnd.Database.Model.Articles;
 
 namespace TokanPages.BackEnd.Logic.Articles
 {
@@ -18,13 +18,13 @@ namespace TokanPages.BackEnd.Logic.Articles
         public Articles(ICosmosDbService ACosmosDbService)
         {
             FCosmosDbService = ACosmosDbService;
-            FCosmosDbService.InitContainer<Article>();
+            FCosmosDbService.InitContainer<ArticlesModel>();
         }
 
         public async Task<List<ArticleItem>> GetAllArticles()
         {
 
-            var LItems = await FCosmosDbService.GetItems<Article>("select * from c");
+            var LItems = await FCosmosDbService.GetItems<ArticlesModel>("select * from c");
             if (LItems == null || !LItems.Any()) return null;
 
             var LResult = new List<ArticleItem>();
@@ -52,7 +52,7 @@ namespace TokanPages.BackEnd.Logic.Articles
         public async Task<ArticleItem> GetSingleArticle(string Id)
         {
 
-            var LItem = await FCosmosDbService.GetItem<Article>(Id);
+            var LItem = await FCosmosDbService.GetItem<ArticlesModel>(Id);
             if (LItem == null) return null;
 
             return new ArticleItem 
@@ -71,7 +71,7 @@ namespace TokanPages.BackEnd.Logic.Articles
         {
 
             var NewId = Guid.NewGuid().ToString();
-            var InsertNew = new Article
+            var InsertNew = new ArticlesModel
             {
                 Id        = NewId,
                 Title     = PayLoad.Title,
@@ -81,7 +81,7 @@ namespace TokanPages.BackEnd.Logic.Articles
                 ReadCount = 0
             };
 
-            if (await FCosmosDbService.AddItem<Article>(NewId, InsertNew) == HttpStatusCode.Created)
+            if (await FCosmosDbService.AddItem<ArticlesModel>(NewId, InsertNew) == HttpStatusCode.Created)
             {
                 return NewId;
             }
@@ -95,7 +95,7 @@ namespace TokanPages.BackEnd.Logic.Articles
         public async Task<HttpStatusCode> UpdateArticle(ArticleRequest PayLoad) 
         {
 
-            var UpdatedArticle = new Article 
+            var UpdatedArticle = new ArticlesModel
             { 
                 Id        = PayLoad.Id,
                 Title     = PayLoad.Title,
@@ -105,13 +105,13 @@ namespace TokanPages.BackEnd.Logic.Articles
                 ReadCount = PayLoad.ReadCount
             };
 
-            return await FCosmosDbService.UpdateItem<Article>(PayLoad.Id, UpdatedArticle);
+            return await FCosmosDbService.UpdateItem<ArticlesModel>(PayLoad.Id, UpdatedArticle);
 
         }
 
         public async Task<HttpStatusCode> DeleteArticle(string Id) 
         {
-            return await FCosmosDbService.DeleteItem<Article>(Id);
+            return await FCosmosDbService.DeleteItem<ArticlesModel>(Id);
         }
 
     }

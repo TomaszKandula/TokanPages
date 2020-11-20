@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.Azure.Cosmos;
@@ -36,10 +35,6 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public CosmosDbService()
-        {
-        }
-
         public void InitContainer<T>() 
         {
             // Names of CosmosDb container and item model used in the container must be the same
@@ -47,7 +42,7 @@ namespace TokanPages.BackEnd.Database
             FContainer = FCosmosClient.GetContainer(FDatabaseName, LModelName);
         }
 
-        public virtual async Task<T> GetItem<T>(string AId) where T : class
+        public async Task<T> GetItem<T>(string AId) where T : class
         {
 
             try
@@ -62,7 +57,7 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public virtual async Task<IEnumerable<T>> GetItems<T>(string AQueryString) where T : class
+        public async Task<IEnumerable<T>> GetItems<T>(string AQueryString) where T : class
         {
 
             try 
@@ -74,7 +69,7 @@ namespace TokanPages.BackEnd.Database
                 while (LQuery.HasMoreResults)
                 {
                     var LResponse = await LQuery.ReadNextAsync();
-                    LResults.AddRange(LResponse.ToList());
+                    LResults.AddRange(LResponse);
                 }
 
                 return LResults;
@@ -87,7 +82,7 @@ namespace TokanPages.BackEnd.Database
             
         }
 
-        public virtual async Task<HttpStatusCode> AddItem<T>(string AId, T AItem)
+        public async Task<HttpStatusCode> AddItem<T>(string AId, T AItem)
         {
 
             try 
@@ -102,7 +97,7 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public virtual async Task<HttpStatusCode> UpdateItem<T>(string AId, T AItem)
+        public async Task<HttpStatusCode> UpdateItem<T>(string AId, T AItem)
         {
 
             try
@@ -117,7 +112,7 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public virtual async Task<HttpStatusCode> DeleteItem<T>(string AId)
+        public async Task<HttpStatusCode> DeleteItem<T>(string AId)
         {
 
             try
