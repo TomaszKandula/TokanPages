@@ -1,10 +1,8 @@
 ﻿using System.Net;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.Azure.Cosmos;
 using TokanPages.BackEnd.Settings;
-using TokanPages.BackEnd.Database.Model;
 
 namespace TokanPages.BackEnd.Database
 {
@@ -12,7 +10,9 @@ namespace TokanPages.BackEnd.Database
     public class CosmosDbService : ICosmosDbService
     {
 
-        private readonly Container FContainer;
+        private Container FContainer { get; set; }
+        private CosmosClient FCosmosClient { get; set; }
+        private string FDatabaseName { get; set; }
 
         public CosmosDbService(CosmosDb ACosmosDb)
         {
@@ -21,10 +21,9 @@ namespace TokanPages.BackEnd.Database
             var LAccount  = FCosmosDb.Account;
             var LKey      = FCosmosDb.Key;
 
-            var LDatabaseName  = FCosmosDb.DatabaseName;
-            var LContainerName = FCosmosDb.ContainerName;
+            FDatabaseName  = FCosmosDb.DatabaseName;
 
-            var LCosmosClient = new CosmosClient(LAccount, LKey, new CosmosClientOptions()
+            FCosmosClient = new CosmosClient(LAccount, LKey, new CosmosClientOptions()
             {
                 SerializerOptions = new CosmosSerializationOptions()
                 {
@@ -32,20 +31,23 @@ namespace TokanPages.BackEnd.Database
                 }
             });
 
-            FContainer = LCosmosClient.GetContainer(LDatabaseName, LContainerName);
+            FContainer = null;
 
         }
 
-        public CosmosDbService()
+        public void InitContainer<T>() 
         {
+            // Names of CosmosDb container and item model used in the container must be the same
+            var LModelName = typeof(T).Name;
+            FContainer = FCosmosClient.GetContainer(FDatabaseName, LModelName);
         }
 
-        public virtual async Task<Article> GetItem(string AId)
+        public async Task<T> GetItem<T>(string AId) where T : class
         {
 
             try
             {
-                ItemResponse<Article> LResponse = await FContainer.ReadItemAsync<Article>(AId, new PartitionKey(AId));
+                var LResponse = await FContainer.ReadItemAsync<T>(AId, new PartitionKey(AId));
                 return LResponse.Resource;
             }
             catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.OK)
@@ -55,19 +57,19 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public virtual async Task<IEnumerable<Article>> GetItems(string AQueryString)
+        public async Task<IEnumerable<T>> GetItems<T>(string AQueryString) where T : class
         {
 
             try 
             {
 
-                var LQuery = FContainer.GetItemQueryIterator<Article>(new QueryDefinition(AQueryString));
-                var LResults = new List<Article>();
+                var LQuery = FContainer.GetItemQueryIterator<T>(new QueryDefinition(AQueryString));
+                var LResults = new List<T>();
 
                 while (LQuery.HasMoreResults)
                 {
                     var LResponse = await LQuery.ReadNextAsync();
-                    LResults.AddRange(LResponse.ToList());
+                    LResults.AddRange(LResponse);
                 }
 
                 return LResults;
@@ -80,12 +82,12 @@ namespace TokanPages.BackEnd.Database
             
         }
 
-        public virtual async Task<HttpStatusCode> AddItem(Article AItem)
+        public async Task<HttpStatusCode> AddItem<T>(string AId, T AItem)
         {
 
             try 
             {
-                var Response = await FContainer.CreateItemAsync(AItem, new PartitionKey(AItem.Id));
+                var Response = await FContainer.CreateItemAsync<T>(AItem, new PartitionKey(AId));
                 return Response.StatusCode;
             }
             catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.Created)
@@ -95,12 +97,12 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public virtual async Task<HttpStatusCode> UpdateItem(string AId, Article AItem)
+        public async Task<HttpStatusCode> UpdateItem<T>(string AId, T AItem)
         {
 
             try
             {
-                var Response = await FContainer.UpsertItemAsync(AItem, new PartitionKey(AId));
+                var Response = await FContainer.UpsertItemAsync<T>(AItem, new PartitionKey(AId));
                 return Response.StatusCode;
             }
             catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.OK)
@@ -110,12 +112,12 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public virtual async Task<HttpStatusCode> DeleteItem(string AId)
+        public async Task<HttpStatusCode> DeleteItem<T>(string AId)
         {
 
             try
             {
-                var Response = await FContainer.DeleteItemAsync<Article>(AId, new PartitionKey(AId));
+                var Response = await FContainer.DeleteItemAsync<T>(AId, new PartitionKey(AId));
                 return Response.StatusCode;
             }
             catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.NoContent)

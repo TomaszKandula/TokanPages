@@ -3,7 +3,7 @@
 namespace TokanPages.BackEnd.Database.Model
 {
     
-    public class Article
+    public class Articles
     {
 
         [JsonPropertyName("id")]

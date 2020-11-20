@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using TokanPages.BackEnd.Settings;
 using TokanPages.BackEnd.Database;
+using TokanPages.BackEnd.Database.Model;
 
 namespace BackEnd.IntegrationTests
 {
@@ -30,9 +31,10 @@ namespace BackEnd.IntegrationTests
 
             // Arrange
             var LCosmosDbService = new CosmosDbService(FCosmosDb);
+            LCosmosDbService.InitContainer<Articles>();
 
             // Act
-            var LResult = await LCosmosDbService.GetItems("select top 1 * from c");
+            var LResult = await LCosmosDbService.GetItems<Articles>("select top 1 * from c");
 
             // Assert
             LResult.Should().NotBeNull();

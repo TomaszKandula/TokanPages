@@ -4,9 +4,12 @@ using System;
 using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
-using BackEnd.UnitTests.Mocks.CosmosDb;
+using TokanPages.BackEnd.Settings;
+using TokanPages.BackEnd.Database;
 using TokanPages.BackEnd.Logic.Articles;
 using TokanPages.BackEnd.Controllers.Articles.Model;
+using ArticlesModel = TokanPages.BackEnd.Database.Model.Articles;
+using BackEnd.UnitTests.Mocks.CosmosDb;
 
 namespace BackEnd.UnitTests
 {
@@ -19,13 +22,17 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var LFakeCosmosService = new FakeCosmosDbService
+            var LDbConfig = new CosmosDb() 
             {
-                DummyArticles = FakeCosmosDbData.ReturnDummyArticles()
+                DatabaseName = CosmosDbEmulator.DatabaseName,
+                Account = CosmosDbEmulator.Account,
+                Key = CosmosDbEmulator.Key
             };
+            var LCosmosService = new CosmosDbService(LDbConfig);
+            LCosmosService.InitContainer<ArticlesModel>();
 
             // Act
-            var LArticles = new Articles(LFakeCosmosService);
+            var LArticles = new Articles(LCosmosService);
             var LResult = await LArticles.GetAllArticles();
 
             // Assert
@@ -39,13 +46,17 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var LFakeCosmosService = new FakeCosmosDbService
+            var LDbConfig = new CosmosDb()
             {
-                DummyArticles = FakeCosmosDbData.ReturnDummyArticles()
+                DatabaseName = CosmosDbEmulator.DatabaseName,
+                Account = CosmosDbEmulator.Account,
+                Key = CosmosDbEmulator.Key
             };
+            var LCosmosService = new CosmosDbService(LDbConfig);
+            LCosmosService.InitContainer<ArticlesModel>();
 
             // Act
-            var LArticles = new Articles(LFakeCosmosService);
+            var LArticles = new Articles(LCosmosService);
             var LResult1 = await LArticles.GetSingleArticle("4d9b0aad-7b69-4f12-a5cf-7308f33cffd0");
             var LResult2 = await LArticles.GetSingleArticle(" ");
 
@@ -65,10 +76,14 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var LFakeCosmosService = new FakeCosmosDbService
+            var LDbConfig = new CosmosDb()
             {
-                DummyArticles = FakeCosmosDbData.ReturnDummyArticles()
+                DatabaseName = CosmosDbEmulator.DatabaseName,
+                Account = CosmosDbEmulator.Account,
+                Key = CosmosDbEmulator.Key
             };
+            var LCosmosService = new CosmosDbService(LDbConfig);
+            LCosmosService.InitContainer<ArticlesModel>();
 
             var LPayLoad = new ArticleRequest 
             { 
@@ -79,7 +94,7 @@ namespace BackEnd.UnitTests
             };
 
             // Act
-            var LArticles = new Articles(LFakeCosmosService);
+            var LArticles = new Articles(LCosmosService);
             var LResult = await LArticles.AddNewArticle(LPayLoad);
 
             // Assert
@@ -94,10 +109,14 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var LFakeCosmosService = new FakeCosmosDbService
+            var LDbConfig = new CosmosDb()
             {
-                DummyArticles = FakeCosmosDbData.ReturnDummyArticles()
+                DatabaseName = CosmosDbEmulator.DatabaseName,
+                Account = CosmosDbEmulator.Account,
+                Key = CosmosDbEmulator.Key
             };
+            var LCosmosService = new CosmosDbService(LDbConfig);
+            LCosmosService.InitContainer<ArticlesModel>();
 
             var LPayLoad = new ArticleRequest
             {
@@ -111,7 +130,7 @@ namespace BackEnd.UnitTests
             };
 
             // Act
-            var LArticles = new Articles(LFakeCosmosService);
+            var LArticles = new Articles(LCosmosService);
             var LResult = await LArticles.UpdateArticle(LPayLoad);
 
             // Assert
@@ -124,13 +143,17 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var LFakeCosmosService = new FakeCosmosDbService
+            var LDbConfig = new CosmosDb()
             {
-                DummyArticles = FakeCosmosDbData.ReturnDummyArticles()
+                DatabaseName = CosmosDbEmulator.DatabaseName,
+                Account = CosmosDbEmulator.Account,
+                Key = CosmosDbEmulator.Key
             };
+            var LCosmosService = new CosmosDbService(LDbConfig);
+            LCosmosService.InitContainer<ArticlesModel>();
 
             // Act
-            var LArticles = new Articles(LFakeCosmosService);
+            var LArticles = new Articles(LCosmosService);
             var LResult1 = await LArticles.DeleteArticle("4d9b0aad-7b69-4f12-a5cf-7308f33cffd0");
             var LResult2 = await LArticles.DeleteArticle("this is strange id");
 
