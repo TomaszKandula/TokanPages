@@ -10,7 +10,7 @@ using TokanPages.BackEnd.Logic.Mailer.Model;
 namespace BackEnd.UnitTests
 {
 
-    public class LogicTest_MailerTests
+    public class LogicTest_Mailer
     {
 
         [Fact]
