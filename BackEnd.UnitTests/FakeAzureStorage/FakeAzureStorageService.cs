@@ -2,7 +2,7 @@
 using TokanPages.BackEnd.Storage;
 using TokanPages.BackEnd.Storage.Model;
 
-namespace BackEnd.UnitTests.Mocks.AzureStorage
+namespace BackEnd.UnitTests.FakeAzureStorage
 {
 
     public class FakeAzureStorageService : AzureStorageService

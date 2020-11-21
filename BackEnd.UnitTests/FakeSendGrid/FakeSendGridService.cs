@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using TokanPages.BackEnd.SendGrid;
 
-namespace BackEnd.UnitTests.Mocks.SendGrid
+namespace BackEnd.UnitTests.FakeSendGrid
 {
 
     public class FakeSendGridService : SendGridService
