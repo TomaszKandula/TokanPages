@@ -14,11 +14,11 @@ using BackEnd.UnitTests.Mocks.CosmosDb;
 namespace BackEnd.UnitTests
 {
 
-    public class ArticlesTests
+    public class LogicTest_ArticlesTests
     {
 
         [Fact]
-        public async Task GetAllArticles_Test()
+        public async Task Should_GetAllArticles()
         {
 
             // Arrange
@@ -42,7 +42,7 @@ namespace BackEnd.UnitTests
         }
 
         [Fact]
-        public async Task GetSingleArticle_Test() 
+        public async Task Should_GetOneArticle() 
         {
 
             // Arrange
@@ -57,22 +57,22 @@ namespace BackEnd.UnitTests
 
             // Act
             var LArticles = new Articles(LCosmosService);
-            var LResult1 = await LArticles.GetSingleArticle("4d9b0aad-7b69-4f12-a5cf-7308f33cffd0");
+            var LResult1 = await LArticles.GetSingleArticle("80cc8b7b-56f6-4e9d-8e17-0dc010b892d2");
             var LResult2 = await LArticles.GetSingleArticle(" ");
 
             // Assert
             LResult1.Should().NotBeNull();
-            LResult1.Title.Should().Be("MNB");
+            LResult1.Title.Should().Be("ABC");
             LResult1.Desc.Should().Be("Lorem ipsum...");
-            LResult1.Status.Should().Be("published");
-            LResult1.Likes.Should().Be(956);
-            LResult1.ReadCount.Should().Be(10561);
+            LResult1.Status.Should().Be("draft");
+            LResult1.Likes.Should().Be(0);
+            LResult1.ReadCount.Should().Be(0);
             LResult2.Should().BeNull();
 
         }
 
         [Fact]
-        public async Task AddNewArticle_Test() 
+        public async Task Should_AddNewArticle() 
         {
 
             // Arrange
@@ -105,7 +105,7 @@ namespace BackEnd.UnitTests
         }
 
         [Fact]
-        public async Task UpdateArticle_Test()
+        public async Task Should_UpdateArticle()
         {
 
             // Arrange
@@ -139,7 +139,7 @@ namespace BackEnd.UnitTests
         }
 
         [Fact]
-        public async Task DeleteArticle_Test() 
+        public async Task Should_DeleteArticle() 
         {
 
             // Arrange
@@ -154,15 +154,11 @@ namespace BackEnd.UnitTests
 
             // Act
             var LArticles = new Articles(LCosmosService);
-            var LResult1 = await LArticles.DeleteArticle("4d9b0aad-7b69-4f12-a5cf-7308f33cffd0");
-            var LResult2 = await LArticles.DeleteArticle("this is strange id");
+            var LResult = await LArticles.DeleteArticle("this is strange id");
 
             // Assert
-            LResult1.Should().NotBeNull();
-            LResult1.Should().Be(HttpStatusCode.NoContent);
-
-            LResult2.Should().NotBeNull();
-            LResult2.Should().Be(HttpStatusCode.NotFound);
+            LResult.Should().NotBeNull();
+            LResult.Should().Be(HttpStatusCode.NotFound);
 
         }
 
