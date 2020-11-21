@@ -2,7 +2,6 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using TokanPages.BackEnd.SendGrid;
 
 namespace BackEnd.UnitTests.Mocks.SendGrid
@@ -14,12 +13,6 @@ namespace BackEnd.UnitTests.Mocks.SendGrid
         public FakeSendGridService() 
         {        
         }
-
-        public override string From { get; set; }
-        public override List<string> Tos { get; set; }
-        public override string Subject { get; set; }
-        public override string PlainText { get; set; }
-        public override string HtmlBody { get; set; }
 
         public override async Task<Response> Send() 
         {

@@ -4,10 +4,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.BackEnd.Logic.Mailer;
 using TokanPages.BackEnd.Logic.MailChecker;
-using BackEnd.UnitTests.Mocks.SendGrid;
-using BackEnd.UnitTests.Mocks.AzureStorage;
 
 namespace BackEnd.UnitTests
 {
@@ -20,11 +17,7 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var FakeSendGridService = new FakeSendGridService();
-            var FakeAzureStorageService = new FakeAzureStorageService();
-            var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
             var FMailChecker = new MailChecker();
-
             var LTestEmails = new List<string>()
             {
                 "this is not an email",
