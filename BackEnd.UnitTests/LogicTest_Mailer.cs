@@ -1,11 +1,8 @@
 using Xunit;
 using FluentAssertions;
-using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.BackEnd.Logic.Mailer;
-using TokanPages.BackEnd.Logic.MailChecker;
 using BackEnd.UnitTests.Mocks.SendGrid;
 using BackEnd.UnitTests.Mocks.AzureStorage;
 using TokanPages.BackEnd.Logic.Mailer.Model;
@@ -13,11 +10,11 @@ using TokanPages.BackEnd.Logic.Mailer.Model;
 namespace BackEnd.UnitTests
 {
 
-    public class MailerTests
+    public class LogicTest_Mailer
     {
 
         [Fact]
-        public void ValidateInputs_Test()
+        public void Should_InvalidateInputs()
         {
 
             // Arrange
@@ -39,50 +36,7 @@ namespace BackEnd.UnitTests
         }
 
         [Fact]
-        public void IsAddressCorrect_Test() 
-        {
-
-            // Arrange
-            var FakeSendGridService = new FakeSendGridService();
-            var FakeAzureStorageService = new FakeAzureStorageService();
-            var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
-            var FMailChecker = new MailChecker();
-
-            var LTestEmails = new List<string>() 
-            { 
-                "this is not an email",
-                "tom@tomkandula.com",
-                "contact@tomkandula.com",
-                "tomasz.kandula@gmail.com"
-            };
-
-            // Act
-            var LResults = FMailChecker.IsAddressCorrect(LTestEmails);
-
-            // Assert
-            LResults.Should().HaveCount(4);
-            LResults.Select(Addresses => Addresses.IsValid).Contains(false).Should().BeTrue();
-
-        }
-
-        [Fact]
-        public async Task IsDomainCorrect_Test() 
-        {
-
-            // Arrange
-            var FMailChecker = new MailChecker();
-            var LTestEmail = "john@fakedomain.oi";
-
-            // Act
-            var LResult = await FMailChecker.IsDomainCorrect(LTestEmail);
-
-            // Assert
-            LResult.Should().Be(false);
-        
-        }
-
-        [Fact]
-        public async Task MakeBody_Test() 
+        public async Task Should_MakeBody() 
         {
 
             // Arrange
@@ -107,7 +61,7 @@ namespace BackEnd.UnitTests
         }
 
         [Fact]
-        public async Task Send_Test() 
+        public async Task Should_SendEmail() 
         {
 
             // Arrange

@@ -27,7 +27,7 @@ namespace BackEnd.IntegrationTests
         }
 
         [Fact]
-        public async Task UploadTextFile_Test() 
+        public async Task Should_UploadTextFile() 
         {
 
             // Arrange
@@ -48,7 +48,7 @@ namespace BackEnd.IntegrationTests
         }
 
         [Fact]
-        public async Task RemoveFromStorage_Test() 
+        public async Task Should_DeleteTextFile() 
         {
 
             // Arrange

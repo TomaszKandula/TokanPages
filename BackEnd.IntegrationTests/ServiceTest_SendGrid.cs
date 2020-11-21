@@ -28,17 +28,17 @@ namespace BackEnd.IntegrationTests
         }
 
         [Fact]
-        public async Task Send_Test()
+        public async Task Should_SendEmail()
         {
 
             // Arrange
             var LSendGridService = new SendGridService(FSendGridKeys);
 
             LSendGridService.From      = "contact@tomkandula.com";
-            LSendGridService.Tos       = new List<string> { "tom@tomkandula.com" };
+            LSendGridService.Tos       = new List<string> { "tom@tomkandula.com", "tomasz.kandula@gmail.com" };
             LSendGridService.Subject   = "Integration Test";
             LSendGridService.PlainText = string.Empty;
-            LSendGridService.HtmlBody  = $"<p><b>Run Test</b></p><p>ID: {Guid.NewGuid()}</p>";
+            LSendGridService.HtmlBody  = $"<p>Run test Id: {Guid.NewGuid()}</p>";
 
             // Act
             var LResult = await LSendGridService.Send();

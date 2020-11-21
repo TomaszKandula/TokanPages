@@ -25,7 +25,7 @@ namespace BackEnd.IntegrationTests
 
         [Theory]
         [InlineData("john@gmail.com")]
-        public async Task VerifyEmailAddress_Test(string Email) 
+        public async Task Should_VerifyEmailAddress(string Email) 
         {
 
             // Arrange
@@ -45,7 +45,7 @@ namespace BackEnd.IntegrationTests
         }
 
         [Fact]
-        public async Task SendMessage_Test() 
+        public async Task Should_SendUserMessage() 
         {
 
             // Arrange
@@ -57,10 +57,10 @@ namespace BackEnd.IntegrationTests
                 FirstName = "Tomasz",
                 LastName  = "Kandula",
                 UserEmail = "tomasz.kandula@gmail.com",
-                EmailFrom = "contact@tomkandula.com",
-                EmailTos  = new List<string> { "admin@tomkandula.com" },
-                Subject   = "Test",
-                Message   = $"Test run: {LNewGuid}.",
+                EmailFrom = "", // can be empty
+                EmailTos  = new List<string> { "" }, // can be empty
+                Subject   = "Integration Test / HttpClient / Endpoint",
+                Message   = $"Test run Id: {LNewGuid}.",
             };
 
             // Act
@@ -78,7 +78,7 @@ namespace BackEnd.IntegrationTests
         }
 
         [Fact]
-        public async Task SendNewsletter_Test() 
+        public async Task Should_SendNewsletter() 
         {
 
             // Arrange
@@ -89,8 +89,8 @@ namespace BackEnd.IntegrationTests
             {
                 EmailFrom = "contact@tomkandula.com",
                 EmailTos = new List<string> { "admin@tomkandula.com", "tomasz.kandula@gmail.com" },
-                Subject = "Newsletter Test",
-                Message = $"Integration test run. ID: {LNewGuid}. Put newsletter content here.",
+                Subject = "Integration Test / HttpClient / Endpoint",
+                Message = $"<p>Test run Id: {LNewGuid}.</p><p>Put newsletter content here.</p>",
             };
 
             // Act
