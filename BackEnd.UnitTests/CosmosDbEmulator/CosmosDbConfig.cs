@@ -1,7 +1,7 @@
-﻿namespace BackEnd.UnitTests.Mocks.CosmosDb
+﻿namespace BackEnd.UnitTests.CosmosDbEmulator
 {
 
-    public static class CosmosDbEmulator
+    public static class CosmosDbConfig
     {
         public const string DatabaseName = "TestDatabase";
         public const string Account = "https://localhost:8081/";

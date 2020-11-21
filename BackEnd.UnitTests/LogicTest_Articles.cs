@@ -9,7 +9,7 @@ using TokanPages.BackEnd.Database;
 using TokanPages.BackEnd.Logic.Articles;
 using TokanPages.BackEnd.Controllers.Articles.Model;
 using ArticlesModel = TokanPages.BackEnd.Database.Model.Articles;
-using BackEnd.UnitTests.Mocks.CosmosDb;
+using BackEnd.UnitTests.CosmosDbEmulator;
 
 namespace BackEnd.UnitTests
 {
@@ -24,9 +24,9 @@ namespace BackEnd.UnitTests
             // Arrange
             var LDbConfig = new CosmosDb() 
             {
-                DatabaseName = CosmosDbEmulator.DatabaseName,
-                Account = CosmosDbEmulator.Account,
-                Key = CosmosDbEmulator.Key
+                DatabaseName = CosmosDbConfig.DatabaseName,
+                Account = CosmosDbConfig.Account,
+                Key = CosmosDbConfig.Key
             };
             var LCosmosService = new CosmosDbService(LDbConfig);
             LCosmosService.InitContainer<ArticlesModel>();
@@ -48,9 +48,9 @@ namespace BackEnd.UnitTests
             // Arrange
             var LDbConfig = new CosmosDb()
             {
-                DatabaseName = CosmosDbEmulator.DatabaseName,
-                Account = CosmosDbEmulator.Account,
-                Key = CosmosDbEmulator.Key
+                DatabaseName = CosmosDbConfig.DatabaseName,
+                Account = CosmosDbConfig.Account,
+                Key = CosmosDbConfig.Key
             };
             var LCosmosService = new CosmosDbService(LDbConfig);
             LCosmosService.InitContainer<ArticlesModel>();
@@ -78,9 +78,9 @@ namespace BackEnd.UnitTests
             // Arrange
             var LDbConfig = new CosmosDb()
             {
-                DatabaseName = CosmosDbEmulator.DatabaseName,
-                Account = CosmosDbEmulator.Account,
-                Key = CosmosDbEmulator.Key
+                DatabaseName = CosmosDbConfig.DatabaseName,
+                Account = CosmosDbConfig.Account,
+                Key = CosmosDbConfig.Key
             };
             var LCosmosService = new CosmosDbService(LDbConfig);
             LCosmosService.InitContainer<ArticlesModel>();
@@ -111,9 +111,9 @@ namespace BackEnd.UnitTests
             // Arrange
             var LDbConfig = new CosmosDb()
             {
-                DatabaseName = CosmosDbEmulator.DatabaseName,
-                Account = CosmosDbEmulator.Account,
-                Key = CosmosDbEmulator.Key
+                DatabaseName = CosmosDbConfig.DatabaseName,
+                Account = CosmosDbConfig.Account,
+                Key = CosmosDbConfig.Key
             };
             var LCosmosService = new CosmosDbService(LDbConfig);
             LCosmosService.InitContainer<ArticlesModel>();
@@ -145,9 +145,9 @@ namespace BackEnd.UnitTests
             // Arrange
             var LDbConfig = new CosmosDb()
             {
-                DatabaseName = CosmosDbEmulator.DatabaseName,
-                Account = CosmosDbEmulator.Account,
-                Key = CosmosDbEmulator.Key
+                DatabaseName = CosmosDbConfig.DatabaseName,
+                Account = CosmosDbConfig.Account,
+                Key = CosmosDbConfig.Key
             };
             var LCosmosService = new CosmosDbService(LDbConfig);
             LCosmosService.InitContainer<ArticlesModel>();
