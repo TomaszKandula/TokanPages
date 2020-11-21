@@ -3,8 +3,8 @@ using FluentAssertions;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.BackEnd.Logic.Mailer;
-using BackEnd.UnitTests.Mocks.SendGrid;
-using BackEnd.UnitTests.Mocks.AzureStorage;
+using BackEnd.UnitTests.FakeSendGrid;
+using BackEnd.UnitTests.FakeAzureStorage;
 using TokanPages.BackEnd.Logic.Mailer.Model;
 
 namespace BackEnd.UnitTests
