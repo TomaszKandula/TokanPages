@@ -23,7 +23,7 @@ namespace BackEnd.IntegrationTests
         }
 
         [Fact]
-        public async Task GetItemsAsync_Test()
+        public async Task Should_GetAllItems()
         {
 
             // Arrange
@@ -42,7 +42,7 @@ namespace BackEnd.IntegrationTests
 
         [Theory]
         [InlineData("a8db7e28-2d47-463c-9c38-c17706056f72")]
-        public async Task GetItemAsync_Test(string Id) 
+        public async Task Should_GetOneItem(string Id) 
         {
 
             // Arrange
@@ -61,7 +61,7 @@ namespace BackEnd.IntegrationTests
         }
 
         [Fact]
-        public async Task AddItemAsync_Test() 
+        public async Task Should_AddNewItem() 
         {
 
             // Arrange
@@ -90,7 +90,7 @@ namespace BackEnd.IntegrationTests
         }
 
         [Fact]
-        public async Task ChangeItemAsync_Test() 
+        public async Task Should_UpdateItem() 
         {
 
             // Arrange
@@ -122,8 +122,8 @@ namespace BackEnd.IntegrationTests
         }
 
         [Theory]
-        [InlineData("supply-wrong-id")]
-        public async Task RemoveItemAsync_test(string Id) 
+        [InlineData("invalid")]
+        public async Task Should_FailToDeleteItem(string Id) 
         {
 
             // Arrange

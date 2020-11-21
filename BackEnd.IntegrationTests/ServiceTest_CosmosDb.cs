@@ -26,7 +26,7 @@ namespace BackEnd.IntegrationTests
         }
 
         [Fact]
-        public async Task ItemRead_Test()
+        public async Task Should_GetOneItem()
         {
 
             // Arrange
@@ -39,6 +39,23 @@ namespace BackEnd.IntegrationTests
             // Assert
             LResult.Should().NotBeNull();
             LResult.Should().HaveCount(1);
+
+        }
+
+        [Fact]
+        public async Task Should_GetManyItems()
+        {
+
+            // Arrange
+            var LCosmosDbService = new CosmosDbService(FCosmosDb);
+            LCosmosDbService.InitContainer<Articles>();
+
+            // Act
+            var LResult = await LCosmosDbService.GetItems<Articles>("select * from c");
+
+            // Assert
+            LResult.Should().NotBeNull();
+            LResult.Should().HaveCountGreaterThan(0);
 
         }
 
