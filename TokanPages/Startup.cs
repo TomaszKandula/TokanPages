@@ -50,6 +50,7 @@ namespace TokanPages
 
             AServices.AddSingleton(Configuration.GetSection("AzureStorage").Get<AzureStorage>());
             AServices.AddSingleton(Configuration.GetSection("SendGridKeys").Get<SendGridKeys>());
+            AServices.AddSingleton(Configuration.GetSection("SmtpServer").Get<SmtpServer>());
             AServices.AddSingleton(Configuration.GetSection("CosmosDb").Get<CosmosDb>());
 
             AServices.AddSingleton<IAppLogger, AppLogger>();
