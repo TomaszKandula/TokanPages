@@ -42,6 +42,37 @@ namespace TokanPages.BackEnd.Database
             FContainer = FCosmosClient.GetContainer(FDatabaseName, LModelName);
         }
 
+        public async Task<HttpStatusCode> CreateDatabase(string ADatabaseName) 
+        {
+
+            try
+            {
+                var LDbResponse = await FCosmosClient.CreateDatabaseIfNotExistsAsync(ADatabaseName);
+                return LDbResponse.StatusCode;
+            }
+            catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.Created)
+            {
+                return LException.StatusCode;
+            }
+
+        }
+
+        public async Task<HttpStatusCode> CreateContainer(string ADatabaseName, string AContainerName, string AId) 
+        {
+
+            try
+            {
+                var LDatabase = FCosmosClient.GetDatabase(ADatabaseName);
+                var LContainerResponse = await LDatabase.CreateContainerIfNotExistsAsync(AId, AContainerName);
+                return LContainerResponse.StatusCode;
+            }
+            catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.Created)
+            {
+                return LException.StatusCode;
+            }
+
+        }
+
         public async Task<T> GetItem<T>(string AId) where T : class
         {
 
