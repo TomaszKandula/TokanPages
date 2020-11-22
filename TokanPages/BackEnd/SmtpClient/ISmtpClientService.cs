@@ -9,6 +9,8 @@ namespace TokanPages.BackEnd.SmtpClient
     {
         string From { get; set; }
         List<string> Tos { get; set; }
+        List<string> Ccs { get; set; }
+        List<string> Bccs { get; set; }
         string Subject { get; set; }
         string PlainText { get; set; }
         string HtmlBody { get; set; }

@@ -10,9 +10,9 @@ using TokanPages.BackEnd.Logic;
 using TokanPages.BackEnd.Storage;
 using TokanPages.BackEnd.Settings;
 using TokanPages.BackEnd.Database;
-using TokanPages.BackEnd.SendGrid;
 using TokanPages.BackEnd.AppLogger;
 using TokanPages.BackEnd.Middleware;
+using TokanPages.BackEnd.SmtpClient;
 
 namespace TokanPages
 {
@@ -49,12 +49,11 @@ namespace TokanPages
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             AServices.AddSingleton(Configuration.GetSection("AzureStorage").Get<AzureStorage>());
-            AServices.AddSingleton(Configuration.GetSection("SendGridKeys").Get<SendGridKeys>());
             AServices.AddSingleton(Configuration.GetSection("SmtpServer").Get<SmtpServer>());
             AServices.AddSingleton(Configuration.GetSection("CosmosDb").Get<CosmosDb>());
 
             AServices.AddSingleton<IAppLogger, AppLogger>();
-            AServices.AddScoped<ISendGridService, SendGridService>();          
+            AServices.AddScoped<ISmtpClientService, SmtpClientService>();          
             AServices.AddScoped<IAzureStorageService, AzureStorageService>();
             AServices.AddScoped<ICosmosDbService, CosmosDbService>();
             AServices.AddScoped<ILogicContext, LogicContext>();
