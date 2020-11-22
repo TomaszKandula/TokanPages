@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using TokanPages.BackEnd.Storage.Model;
+using TokanPages.BackEnd.Shared.Models;
 
 namespace TokanPages.BackEnd.Storage
 {
