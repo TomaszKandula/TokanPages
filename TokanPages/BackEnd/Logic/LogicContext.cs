@@ -1,6 +1,6 @@
 using TokanPages.BackEnd.Storage;
 using TokanPages.BackEnd.Database;
-using TokanPages.BackEnd.SendGrid;
+using TokanPages.BackEnd.SmtpClient;
 using TokanPages.BackEnd.Logic.Mailer;
 using TokanPages.BackEnd.Logic.Articles;
 using TokanPages.BackEnd.Logic.MailChecker;
@@ -12,17 +12,17 @@ namespace TokanPages.BackEnd.Logic
     {
 
         private readonly ICosmosDbService     FCosmosDbService;
-        private readonly ISendGridService     FSendGridService;
+        private readonly ISmtpClientService   FSmtpClientService;
         private readonly IAzureStorageService FAzureStorageService;
 
         private IArticles    FArticles;
         private IMailer      FMailer;
         private IMailChecker FMailChecker;
 
-        public LogicContext(ICosmosDbService ACosmosDbService, ISendGridService ASendGridService, IAzureStorageService AAzureStorageService) 
+        public LogicContext(ICosmosDbService ACosmosDbService, ISmtpClientService ASmtpClientService, IAzureStorageService AAzureStorageService) 
         {
             FCosmosDbService     = ACosmosDbService;
-            FSendGridService     = ASendGridService;
+            FSmtpClientService   = ASmtpClientService;
             FAzureStorageService = AAzureStorageService;
         }
 
@@ -33,7 +33,7 @@ namespace TokanPages.BackEnd.Logic
 
         public IMailer Mailer 
         {
-            get { if (FMailer == null) FMailer = new Mailer.Mailer(FSendGridService, FAzureStorageService); return FMailer; }
+            get { if (FMailer == null) FMailer = new Mailer.Mailer(FSmtpClientService, FAzureStorageService); return FMailer; }
         }
 
         public IMailChecker MailChecker 

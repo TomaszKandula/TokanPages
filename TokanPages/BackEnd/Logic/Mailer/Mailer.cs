@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Net;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.BackEnd.Storage;
-using TokanPages.BackEnd.SendGrid;
+using TokanPages.BackEnd.SmtpClient;
 using TokanPages.BackEnd.Logic.Mailer.Model;
 using TokanPages.BackEnd.Shared.Models.Emails;
 
@@ -15,21 +14,23 @@ namespace TokanPages.BackEnd.Logic.Mailer
     public class Mailer : IMailer
     {
 
-        private readonly ISendGridService     FSendGridService;
+        private readonly ISmtpClientService   FSmtpClientService;
         private readonly IAzureStorageService FAzureStorageService;
 
-        public Mailer(ISendGridService ASendGridService, IAzureStorageService AAzureStorageService) 
+        public Mailer(ISmtpClientService ASmtpClientService, IAzureStorageService AAzureStorageService) 
         {
-            FSendGridService     = ASendGridService;
+            FSmtpClientService   = ASmtpClientService;
             FAzureStorageService = AAzureStorageService;
         }
 
         public string From { get; set; }
         public List<string> Tos { get; set; }
+        public List<string> Ccs { get; set; }
+        public List<string> Bccs { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
 
-        public async Task<MailerResult> Send() 
+        public async Task<ActionResult> Send() 
         {
 
             try 
@@ -37,22 +38,22 @@ namespace TokanPages.BackEnd.Logic.Mailer
 
                 if (!ValidateInputs()) 
                 {
-                    return new MailerResult
+                    return new ActionResult
                     {
-                        ErrorMessage = "No field can be empty.",
-                        ErrorCode    = "empty_field"
+                        ErrorDesc = "No field can be empty.",
+                        ErrorCode = "empty_field"
                     };
                 }
 
-                return await Execute(From, Tos, Subject, Body);
+                return await Execute(From, Tos, Ccs, Bccs, Subject, Body);
 
             } 
             catch (Exception Exception) 
             {
-                return new MailerResult
+                return new ActionResult
                 {
-                    ErrorCode    = Exception.HResult.ToString(),
-                    ErrorMessage = Exception.Message
+                    ErrorCode = Exception.HResult.ToString(),
+                    ErrorDesc = Exception.Message
                 };                
             }
         
@@ -108,30 +109,17 @@ namespace TokanPages.BackEnd.Logic.Mailer
             }
         }
 
-        private async Task<MailerResult> Execute(string AFrom, List<string> ATos, string ASubject, string ABody)
+        private async Task<ActionResult> Execute(string AFrom, List<string> ATos, List<string> ACcs, List<string> ABccs, string ASubject, string ABody)
         {
 
-            FSendGridService.From     = AFrom;
-            FSendGridService.Tos      = ATos;
-            FSendGridService.Subject  = ASubject;
-            FSendGridService.HtmlBody = ABody;
+            FSmtpClientService.From     = AFrom;
+            FSmtpClientService.Tos      = ATos;
+            FSmtpClientService.Ccs      = ACcs;
+            FSmtpClientService.Bccs     = ABccs;
+            FSmtpClientService.Subject  = ASubject;
+            FSmtpClientService.HtmlBody = ABody;
 
-            var LResponse = await FSendGridService.Send();
-
-            if (LResponse.StatusCode != HttpStatusCode.Accepted) 
-            {
-                return new MailerResult
-                {
-                    IsSucceeded  = false,
-                    ErrorCode    = "unsuccessful_response",
-                    ErrorMessage = $"Twilio SendGrid responded with '{LResponse.StatusCode}', returned details: '{LResponse.Body.ReadAsStringAsync().Result}'."
-                };
-            }
-
-            return new MailerResult
-            {
-                IsSucceeded = true
-            };
+            return await FSmtpClientService.Send();
 
         }
     }

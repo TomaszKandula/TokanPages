@@ -20,7 +20,6 @@
 
             public static class Addresses 
             {
-                public const string Mailer   = "mailer@tomkandula.com";
                 public const string Contact  = "contact@tomkandula.com";
                 public const string Personal = "tom@tomkandula.com";
                 public const string Admin    = "admin@tomkandula.com";

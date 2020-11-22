@@ -83,7 +83,7 @@ namespace TokanPages.BackEnd.Controllers.Mailer
             try
             {
 
-                FLogicContext.Mailer.From    = Constants.Emails.Addresses.Mailer;
+                FLogicContext.Mailer.From    = Constants.Emails.Addresses.Contact;
                 FLogicContext.Mailer.Tos     = new List<string> { Constants.Emails.Addresses.Contact };
                 FLogicContext.Mailer.Subject = $"New user message from {PayLoad.FirstName}";
 
@@ -103,7 +103,7 @@ namespace TokanPages.BackEnd.Controllers.Mailer
                 if (!LResult.IsSucceeded) 
                 {
                     LResponse.Error.ErrorCode = LResult.ErrorCode;
-                    LResponse.Error.ErrorDesc = LResult.ErrorMessage;
+                    LResponse.Error.ErrorDesc = LResult.ErrorDesc;
                     FAppLogger.LogError($"POST api/v1/mailer/message/ | {LResponse.Error.ErrorDesc}.");
                     return StatusCode(200, LResponse);
                 }
@@ -141,8 +141,9 @@ namespace TokanPages.BackEnd.Controllers.Mailer
             try
             {
 
-                FLogicContext.Mailer.From    = Constants.Emails.Addresses.Mailer;
-                FLogicContext.Mailer.Tos     = PayLoad.EmailTos;
+                FLogicContext.Mailer.From    = Constants.Emails.Addresses.Contact;
+                FLogicContext.Mailer.Tos     = new List<string> { Constants.Emails.Addresses.Contact };
+                FLogicContext.Mailer.Bccs    = PayLoad.EmailTos;
                 FLogicContext.Mailer.Subject = PayLoad.Subject;
 
                 var NewValues = new List<ValueTag>
@@ -157,7 +158,7 @@ namespace TokanPages.BackEnd.Controllers.Mailer
                 if (!LResult.IsSucceeded)
                 {
                     LResponse.Error.ErrorCode = LResult.ErrorCode;
-                    LResponse.Error.ErrorDesc = LResult.ErrorMessage;
+                    LResponse.Error.ErrorDesc = LResult.ErrorDesc;
                     FAppLogger.LogError($"POST api/v1/mailer/newsletter/ | {LResponse.Error.ErrorDesc}.");
                     return StatusCode(200, LResponse);
                 }

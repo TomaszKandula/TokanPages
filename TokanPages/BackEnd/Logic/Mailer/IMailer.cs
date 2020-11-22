@@ -10,9 +10,11 @@ namespace TokanPages.BackEnd.Logic.Mailer
     {
         public string From { get; set; }
         public List<string> Tos { get; set; }
+        public List<string> Ccs { get; set; }
+        public List<string> Bccs { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
-        public Task<MailerResult> Send();
+        public Task<ActionResult> Send();
         public bool ValidateInputs();
         Task<string> MakeBody(string ATemplate, List<ValueTag> AValueTag);
     }
