@@ -1,11 +1,11 @@
-﻿using System;
+﻿using MimeKit;
+using MimeKit.Text;
+using MailKit.Security;
+using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.BackEnd.Settings;
 using TokanPages.BackEnd.Shared.Models.Emails;
-using MimeKit;
-using MimeKit.Text;
-using MailKit.Security;
 
 namespace TokanPages.BackEnd.SmtpClient
 {
@@ -22,6 +22,8 @@ namespace TokanPages.BackEnd.SmtpClient
 
         public override string From { get; set; }
         public override List<string> Tos { get; set; }
+        public override List<string> Ccs { get; set; }
+        public override List<string> Bccs { get; set; }
         public override string Subject { get; set; }
         public override string PlainText { get; set; }
         public override string HtmlBody { get; set; }
@@ -29,29 +31,28 @@ namespace TokanPages.BackEnd.SmtpClient
         public override async Task<ActionResult> Send()
         {
 
-            try 
+            try
             {
 
-                var LMail = new MimeMessage();
+                var LNewMail = new MimeMessage();
 
-                LMail.From.Add(MailboxAddress.Parse(From));
-                LMail.Subject = Subject;
+                LNewMail.From.Add(MailboxAddress.Parse(From));
+                LNewMail.Subject = Subject;
 
-                foreach (var Item in Tos) 
-                {
-                    LMail.To.Add(MailboxAddress.Parse(Item));
-                }
+                foreach (var Item in Tos) LNewMail.To.Add(MailboxAddress.Parse(Item));
+                foreach (var Item in Ccs) LNewMail.Cc.Add(MailboxAddress.Parse(Item));                    
+                foreach (var Item in Bccs) LNewMail.Bcc.Add(MailboxAddress.Parse(Item));
 
                 if (!string.IsNullOrEmpty(PlainText)) 
-                    LMail.Body = new TextPart(TextFormat.Plain) { Text = PlainText };
+                    LNewMail.Body = new TextPart(TextFormat.Plain) { Text = PlainText };
 
                 if (!string.IsNullOrEmpty(HtmlBody)) 
-                    LMail.Body = new TextPart(TextFormat.Html) { Text = HtmlBody };
+                    LNewMail.Body = new TextPart(TextFormat.Html) { Text = HtmlBody };
 
                 using var LServer = new MailKit.Net.Smtp.SmtpClient();
                 LServer.Connect(FSmtpClient.Server, FSmtpClient.Port, SecureSocketOptions.SslOnConnect);
                 await LServer.AuthenticateAsync(FSmtpClient.Account, FSmtpClient.Password);
-                await LServer.SendAsync(LMail);
+                await LServer.SendAsync(LNewMail);
                 await LServer.DisconnectAsync(true);
 
                 return new ActionResult
