@@ -5,12 +5,14 @@ using TokanPages.BackEnd.Storage.Model;
 namespace BackEnd.UnitTests.FakeAzureStorage
 {
 
-    public class FakeAzureStorageService : AzureStorageService
+    public class AzureStorageService : AzureStorageObject, IAzureStorageService
     {
 
-        public FakeAzureStorageService() 
+        public AzureStorageService() 
         { 
         }
+
+        public override string GetBaseUrl { get; } = "";
 
         public override async Task<ActionResult> UploadTextFile(string ADestContainerName, string ADestFileName, string ASrcFullFilePath)
         {
