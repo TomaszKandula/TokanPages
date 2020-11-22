@@ -1,4 +1,4 @@
-﻿namespace TokanPages.BackEnd.Shared.Models.Emails
+﻿namespace TokanPages.BackEnd.Shared.Models
 {
 
     public class CheckerResult

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using TokanPages.BackEnd.Settings;
-using TokanPages.BackEnd.Storage.Model;
+using TokanPages.BackEnd.Shared.Models;
 
 namespace TokanPages.BackEnd.Storage
 {

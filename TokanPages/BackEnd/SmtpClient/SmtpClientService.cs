@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.BackEnd.Settings;
-using TokanPages.BackEnd.Shared.Models.Emails;
+using TokanPages.BackEnd.Shared.Models;
 
 namespace TokanPages.BackEnd.SmtpClient
 {

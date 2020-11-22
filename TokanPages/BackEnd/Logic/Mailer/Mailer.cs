@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.BackEnd.Storage;
 using TokanPages.BackEnd.SmtpClient;
+using TokanPages.BackEnd.Shared.Models;
 using TokanPages.BackEnd.Logic.Mailer.Model;
-using TokanPages.BackEnd.Shared.Models.Emails;
 
 namespace TokanPages.BackEnd.Logic.Mailer
 {
