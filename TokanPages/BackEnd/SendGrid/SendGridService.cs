@@ -7,7 +7,7 @@ using TokanPages.BackEnd.Settings;
 namespace TokanPages.BackEnd.SendGrid
 {
 
-    public class SendGridService : ISendGridService
+    public class SendGridService : SendGridObject, ISendGridService
     {
 
         private readonly SendGridKeys FSendGridKeys;
@@ -21,13 +21,13 @@ namespace TokanPages.BackEnd.SendGrid
         {
         }
 
-        public string From { get; set; }
-        public List<string> Tos { get; set; }
-        public string Subject { get; set; }
-        public string PlainText { get; set; }
-        public string HtmlBody { get; set; }
+        public override string From { get; set; }
+        public override List<string> Tos { get; set; }
+        public override string Subject { get; set; }
+        public override string PlainText { get; set; }
+        public override string HtmlBody { get; set; }
 
-        public virtual async Task<Response> Send() 
+        public override async Task<Response> Send() 
         {
 
             var EmailTos = new List<EmailAddress>();
