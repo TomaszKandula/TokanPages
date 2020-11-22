@@ -18,7 +18,7 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var FakeSendGridService = new FakeSendGridService();
+            var FakeSendGridService = new SendGridService();
             var FakeAzureStorageService = new AzureStorageService();
             var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
 
@@ -40,7 +40,7 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var FakeSendGridService = new FakeSendGridService();
+            var FakeSendGridService = new SendGridService();
             var FakeAzureStorageService = new AzureStorageService();
             var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
 
@@ -65,7 +65,7 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var FakeSendGridService = new FakeSendGridService();
+            var FakeSendGridService = new SendGridService();
             var FakeAzureStorageService = new AzureStorageService();
             var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
 
