@@ -2,6 +2,7 @@
 using MimeKit.Text;
 using MailKit.Security;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.BackEnd.Settings;
@@ -39,9 +40,14 @@ namespace TokanPages.BackEnd.SmtpClient
                 LNewMail.From.Add(MailboxAddress.Parse(From));
                 LNewMail.Subject = Subject;
 
-                foreach (var Item in Tos) LNewMail.To.Add(MailboxAddress.Parse(Item));
-                foreach (var Item in Ccs) LNewMail.Cc.Add(MailboxAddress.Parse(Item));                    
-                foreach (var Item in Bccs) LNewMail.Bcc.Add(MailboxAddress.Parse(Item));
+                foreach (var Item in Tos) 
+                    LNewMail.To.Add(MailboxAddress.Parse(Item));
+                
+                if (Ccs != null && !Ccs.Any())
+                    foreach (var Item in Ccs) LNewMail.Cc.Add(MailboxAddress.Parse(Item));
+
+                if (Bccs != null && !Bccs.Any())
+                    foreach (var Item in Bccs) LNewMail.Bcc.Add(MailboxAddress.Parse(Item));
 
                 if (!string.IsNullOrEmpty(PlainText)) 
                     LNewMail.Body = new TextPart(TextFormat.Plain) { Text = PlainText };
