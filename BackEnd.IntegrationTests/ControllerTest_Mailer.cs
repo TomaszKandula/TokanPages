@@ -87,8 +87,8 @@ namespace BackEnd.IntegrationTests
             var LNewGuid = Guid.NewGuid();
             var LPayLoad = new NewMessage
             {
-                EmailFrom = "contact@tomkandula.com",
-                EmailTos = new List<string> { "admin@tomkandula.com", "tomasz.kandula@gmail.com" },
+                EmailFrom = "", // can be empty
+                EmailTos = new List<string> { "tomasz.kandula@gmail.com" },
                 Subject = "Integration Test / HttpClient / Endpoint",
                 Message = $"<p>Test run Id: {LNewGuid}.</p><p>Put newsletter content here.</p>",
             };

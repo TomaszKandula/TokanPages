@@ -69,7 +69,7 @@ namespace BackEnd.UnitTests
             var FakeAzureStorageService = new AzureStorageService();
             var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
 
-            FMailer.From    = "contact@tomkandula.com";
+            FMailer.From    = "mailer@tomkandula.com";
             FMailer.Tos     = new List<string> { "tomasz.kandula@gmail.com" };
             FMailer.Subject = "Test email";
             FMailer.Body    = "<p>Hello World!</p>";
