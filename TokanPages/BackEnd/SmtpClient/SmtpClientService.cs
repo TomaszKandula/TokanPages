@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Net;
-using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.BackEnd.Settings;
 using TokanPages.BackEnd.Shared.Models.Emails;
+using MimeKit;
+using MimeKit.Text;
+using MailKit.Security;
 
 namespace TokanPages.BackEnd.SmtpClient
 {
@@ -31,34 +32,28 @@ namespace TokanPages.BackEnd.SmtpClient
             try 
             {
 
-                var LMail = new MailMessage();
-                var LServer = new System.Net.Mail.SmtpClient(FSmtpClient.Server);
+                var LMail = new MimeMessage();
 
-                LMail.From = new MailAddress(From);
+                LMail.From.Add(MailboxAddress.Parse(From));
                 LMail.Subject = Subject;
 
                 foreach (var Item in Tos) 
                 {
-                    LMail.To.Add(Item);
+                    LMail.To.Add(MailboxAddress.Parse(Item));
                 }
 
                 if (!string.IsNullOrEmpty(PlainText)) 
-                {
-                    LMail.Body = PlainText;
-                    LMail.IsBodyHtml = false;
-                }
+                    LMail.Body = new TextPart(TextFormat.Plain) { Text = PlainText };
 
                 if (!string.IsNullOrEmpty(HtmlBody)) 
-                {
-                    LMail.Body = HtmlBody;
-                    LMail.IsBodyHtml = true;
-                }
+                    LMail.Body = new TextPart(TextFormat.Html) { Text = HtmlBody };
 
-                LServer.Port = FSmtpClient.Port;
-                LServer.EnableSsl = FSmtpClient.IsSSL;
-                LServer.Credentials = new NetworkCredential(FSmtpClient.Account, FSmtpClient.Password);
+                using var LServer = new MailKit.Net.Smtp.SmtpClient();
+                LServer.Connect(FSmtpClient.Server, FSmtpClient.Port, SecureSocketOptions.SslOnConnect);
+                await LServer.AuthenticateAsync(FSmtpClient.Account, FSmtpClient.Password);
+                await LServer.SendAsync(LMail);
+                await LServer.DisconnectAsync(true);
 
-                await LServer.SendMailAsync(LMail);
                 return new ActionResult
                 {
                     IsSucceeded = true
