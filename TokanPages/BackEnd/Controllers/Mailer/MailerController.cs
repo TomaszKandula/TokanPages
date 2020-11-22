@@ -83,7 +83,7 @@ namespace TokanPages.BackEnd.Controllers.Mailer
             try
             {
 
-                FLogicContext.Mailer.From    = Constants.Emails.Addresses.Contact;
+                FLogicContext.Mailer.From    = Constants.Emails.Addresses.Mailer;
                 FLogicContext.Mailer.Tos     = new List<string> { Constants.Emails.Addresses.Contact };
                 FLogicContext.Mailer.Subject = $"New user message from {PayLoad.FirstName}";
 
@@ -141,7 +141,7 @@ namespace TokanPages.BackEnd.Controllers.Mailer
             try
             {
 
-                FLogicContext.Mailer.From    = Constants.Emails.Addresses.Contact;
+                FLogicContext.Mailer.From    = Constants.Emails.Addresses.Mailer;
                 FLogicContext.Mailer.Tos     = PayLoad.EmailTos;
                 FLogicContext.Mailer.Subject = PayLoad.Subject;
 

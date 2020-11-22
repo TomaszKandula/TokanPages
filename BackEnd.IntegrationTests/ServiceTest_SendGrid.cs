@@ -34,9 +34,9 @@ namespace BackEnd.IntegrationTests
             // Arrange
             var LSendGridService = new SendGridService(FSendGridKeys);
 
-            LSendGridService.From      = "contact@tomkandula.com";
-            LSendGridService.Tos       = new List<string> { "tom@tomkandula.com", "tomasz.kandula@gmail.com" };
-            LSendGridService.Subject   = "Integration Test";
+            LSendGridService.From      = "mailer@tomkandula.com";
+            LSendGridService.Tos       = new List<string> { "tomasz.kandula@gmail.com" };
+            LSendGridService.Subject   = "Integration Test / SendGrid service";
             LSendGridService.PlainText = string.Empty;
             LSendGridService.HtmlBody  = $"<p>Run test Id: {Guid.NewGuid()}</p>";
 
