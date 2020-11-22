@@ -18,9 +18,9 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var FakeSendGridService = new SendGridService();
+            var FakeSmtpClientService = new SmtpClientService();
             var FakeAzureStorageService = new AzureStorageService();
-            var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
+            var FMailer = new Mailer(FakeSmtpClientService, FakeAzureStorageService);
 
             FMailer.From    = "";
             FMailer.Tos     = new List<string> { " " };
@@ -40,9 +40,9 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var FakeSendGridService = new SendGridService();
+            var FakeSmtpClientService = new SmtpClientService();
             var FakeAzureStorageService = new AzureStorageService();
-            var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
+            var FMailer = new Mailer(FakeSmtpClientService, FakeAzureStorageService);
 
             var LTestTemplate = "This is {VAL1} string to {VAL2} some method...";
 
@@ -65,11 +65,11 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var FakeSendGridService = new SendGridService();
+            var FakeSmtpClientService = new SmtpClientService();
             var FakeAzureStorageService = new AzureStorageService();
-            var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
+            var FMailer = new Mailer(FakeSmtpClientService, FakeAzureStorageService);
 
-            FMailer.From    = "mailer@tomkandula.com";
+            FMailer.From    = "contact@tomkandula.com";
             FMailer.Tos     = new List<string> { "tomasz.kandula@gmail.com" };
             FMailer.Subject = "Test email";
             FMailer.Body    = "<p>Hello World!</p>";
@@ -78,7 +78,7 @@ namespace BackEnd.UnitTests
             var LResult = await FMailer.Send();
 
             // Assert
-            LResult.ErrorMessage.Should().Be("n/a");
+            LResult.ErrorDesc.Should().Be("n/a");
             LResult.IsSucceeded.Should().BeTrue();
         
         }
