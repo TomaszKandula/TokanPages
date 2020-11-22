@@ -19,7 +19,7 @@ namespace BackEnd.UnitTests
 
             // Arrange
             var FakeSendGridService = new FakeSendGridService();
-            var FakeAzureStorageService = new FakeAzureStorageService();
+            var FakeAzureStorageService = new AzureStorageService();
             var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
 
             FMailer.From    = "";
@@ -41,7 +41,7 @@ namespace BackEnd.UnitTests
 
             // Arrange
             var FakeSendGridService = new FakeSendGridService();
-            var FakeAzureStorageService = new FakeAzureStorageService();
+            var FakeAzureStorageService = new AzureStorageService();
             var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
 
             var LTestTemplate = "This is {VAL1} string to {VAL2} some method...";
@@ -66,7 +66,7 @@ namespace BackEnd.UnitTests
 
             // Arrange
             var FakeSendGridService = new FakeSendGridService();
-            var FakeAzureStorageService = new FakeAzureStorageService();
+            var FakeAzureStorageService = new AzureStorageService();
             var FMailer = new Mailer(FakeSendGridService, FakeAzureStorageService);
 
             FMailer.From    = "contact@tomkandula.com";

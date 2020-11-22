@@ -9,7 +9,7 @@ using TokanPages.BackEnd.Storage.Model;
 namespace TokanPages.BackEnd.Storage
 {
 
-    public class AzureStorageService : IAzureStorageService
+    public class AzureStorageService : AzureStorageObject, IAzureStorageService
     {
 
         private readonly AzureStorage        FAzureStorage;
@@ -27,9 +27,9 @@ namespace TokanPages.BackEnd.Storage
         { 
         }
 
-        public string GetBaseUrl { get => FAzureStorage.BaseUrl.Replace("{AccountName}", FAzureStorage.AccountName); }
+        public override string GetBaseUrl { get => FAzureStorage.BaseUrl.Replace("{AccountName}", FAzureStorage.AccountName); }
 
-        public virtual async Task<ActionResult> UploadTextFile(string ADestContainerName, string ADestFileName, string ASrcFullFilePath) 
+        public override async Task<ActionResult> UploadTextFile(string ADestContainerName, string ADestFileName, string ASrcFullFilePath) 
         {
 
             try 
@@ -60,7 +60,7 @@ namespace TokanPages.BackEnd.Storage
 
         }
 
-        public virtual async Task<ActionResult> RemoveFromStorage(string AContainerName, string AFileName) 
+        public override async Task<ActionResult> RemoveFromStorage(string AContainerName, string AFileName) 
         {
 
             try
