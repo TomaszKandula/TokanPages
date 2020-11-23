@@ -7,7 +7,7 @@ using TokanPages.BackEnd.Settings;
 namespace TokanPages.BackEnd.Database
 {
 
-    public class CosmosDbService : ICosmosDbService
+    public class CosmosDbService : CosmosDbObject, ICosmosDbService
     {
 
         private Container FContainer { get; set; }
@@ -35,14 +35,14 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public void InitContainer<T>() 
+        public override void InitContainer<T>() 
         {
             // Names of CosmosDb container and item model used in the container must be the same
             var LModelName = typeof(T).Name;
             FContainer = FCosmosClient.GetContainer(FDatabaseName, LModelName);
         }
 
-        public async Task<HttpStatusCode> CreateDatabase(string ADatabaseName) 
+        public override async Task<HttpStatusCode> CreateDatabase(string ADatabaseName) 
         {
 
             try
@@ -57,7 +57,7 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public async Task<HttpStatusCode> CreateContainer(string ADatabaseName, string AContainerName, string AId) 
+        public override async Task<HttpStatusCode> CreateContainer(string ADatabaseName, string AContainerName, string AId) 
         {
 
             try
@@ -73,7 +73,7 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public async Task<T> GetItem<T>(string AId) where T : class
+        public override async Task<T> GetItem<T>(string AId) where T : class
         {
 
             try
@@ -88,7 +88,7 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public async Task<IEnumerable<T>> GetItems<T>(string AQueryString) where T : class
+        public override async Task<IEnumerable<T>> GetItems<T>(string AQueryString) where T : class
         {
 
             try 
@@ -113,7 +113,7 @@ namespace TokanPages.BackEnd.Database
             
         }
 
-        public async Task<HttpStatusCode> AddItem<T>(string AId, T AItem)
+        public override async Task<HttpStatusCode> AddItem<T>(string AId, T AItem)
         {
 
             try 
@@ -128,7 +128,7 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public async Task<HttpStatusCode> UpdateItem<T>(string AId, T AItem)
+        public override async Task<HttpStatusCode> UpdateItem<T>(string AId, T AItem)
         {
 
             try
@@ -143,7 +143,7 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public async Task<HttpStatusCode> DeleteItem<T>(string AId)
+        public override async Task<HttpStatusCode> DeleteItem<T>(string AId)
         {
 
             try
