@@ -7,7 +7,6 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import useStyles from "./Hooks/styleArticleCard";
-import * as Consts from "../../Shared/constants";
 
 interface IArticle
 {
@@ -20,8 +19,13 @@ export default function ArticleCard(props: IArticle)
 {
 
     const classes = useStyles();
-    const articleUrl = `/articles/?id=${props.uid}`;
-    const imageUrl = `${Consts.APP_STORAGE}/content/articles/${props.uid}/image.jpg`;
+    const content = 
+    {
+        articleUrl: "/articles/?id={UID}",
+        imageUrl: "https://maindbstorage.blob.core.windows.net/tokanpages/content/articles/{UID}/image.jpg"
+    };
+    const articleUrl = content.articleUrl.replace("{UID}", props.uid);
+    const imageUrl = content.imageUrl.replace("{UID}", props.uid);
 
     return(
         <div data-aos="fade-up">

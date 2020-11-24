@@ -16,6 +16,12 @@ export default function SignupForm()
 {
 
     const classes = useStyles();
+    const content = 
+    {
+        caption: "Create a new account",
+        button: "Sign up",
+        link: "Already have an account? Sign in"
+    };
 
     return (
         <section>
@@ -26,7 +32,7 @@ export default function SignupForm()
                             <Box mb={3} textAlign="center">
                             <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    Create a new account
+                                    {content.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -49,12 +55,12 @@ export default function SignupForm()
                                 </Grid>
                                 <Box my={2}>
                                     <Button fullWidth variant="contained" color="primary">
-                                        Sign up
+                                        {content.button}
                                     </Button>
                                 </Box>
                                 <Box textAlign="right">
                                     <Link to="/signin">
-                                        Already have an account? Sign in
+                                        {content.link}
                                     </Link>
                                 </Box>
                             </Box>

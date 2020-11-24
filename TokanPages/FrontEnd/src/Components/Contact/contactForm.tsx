@@ -20,6 +20,11 @@ export default function ContactForm()
 {
 
     const classes = useStyles();
+    const content = 
+    {
+        caption: "Contact me",
+        text: "If you have any questions or you believe that I can do some work for you in technologies I currently work with, send me a message."
+    };
 
     const [Form, setForm] = React.useState({ firstName: "", lastName: "", email: "", subject: "", message: "", terms: false });   
     const [Modal, setModal] = React.useState({ State: false, Titile:  "", Message: "", Icon: 0 });
@@ -134,9 +139,11 @@ export default function ContactForm()
                     <div data-aos="fade-up">
                         <Box pt={8} pb={10}>
                             <Box mb={6} textAlign="center">
-                                <Typography variant="h4" component="h2" gutterBottom={true}>Contact me</Typography>
+                                <Typography variant="h4" component="h2" gutterBottom={true}>
+                                    {content.caption}
+                                </Typography>
                                 <Typography variant="subtitle1" color="textSecondary" paragraph={true}>
-                                    If you have any questions or you believe that I can do some work for you in technologies I currently work with, send me a message.
+                                    {content.text}
                                 </Typography>
                             </Box>
                             <Box>

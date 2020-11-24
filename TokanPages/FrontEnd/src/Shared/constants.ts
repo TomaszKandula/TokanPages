@@ -4,7 +4,6 @@ const API_VER = 1;
 
 export const APP_FRONTEND = `http://localhost:3000`;
 export const APP_BACKEND  = `http://localhost:5000`;
-export const APP_STORAGE  = `https://maindbstorage.blob.core.windows.net/tokanpages`;
 
 /* STATIC CONTENT */
 
@@ -25,21 +24,6 @@ export const API_DELETE_ARTICLE = `${APP_BACKEND}/api/v${API_VER}/articles/{id}`
 export const API_GET_INSPECTION  = `${APP_BACKEND}/api/v${API_VER}/mailer/inspection/`;
 export const API_POST_MESSAGE    = `${APP_BACKEND}/api/v${API_VER}/mailer/message/`;
 export const API_POST_NEWSLETTER = `${APP_BACKEND}/api/v${API_VER}/mailer/newsletter/`;
-
-/* OTHER ASSETS */
-
-export const IMG_LOGO   = `${APP_STORAGE}/icons/main_logo.svg`;
-export const IMG_TOMEK  = `${APP_STORAGE}/images/tomek_bergen.jpg`;
-export const IMG_ADAMA  = `${APP_STORAGE}/images/section_testimonials/adama.jpg`;
-export const IMG_JOANNA = `${APP_STORAGE}/images/section_testimonials/joanna.jpg`;
-export const IMG_SCOTT  = `${APP_STORAGE}/images/section_testimonials/scott.jpg`;
-export const IMG_FEAT1  = `${APP_STORAGE}/images/section_featured/article1.jpg`;
-export const IMG_FEAT2  = `${APP_STORAGE}/images/section_featured/article2.jpg`;
-export const IMG_FEAT3  = `${APP_STORAGE}/images/section_featured/article3.jpg`;
-export const IMG_ART1   = `${APP_STORAGE}/images/section_articles/image1.jpg`;
-export const IMG_ART2   = `${APP_STORAGE}/images/section_articles/image2.jpg`;
-export const IMG_ART3   = `${APP_STORAGE}/images/section_articles/image3.jpg`;
-export const IMG_ART4   = `${APP_STORAGE}/images/section_articles/image4.jpg`;
 
 /* MESSAGE TEMPLATES */
 

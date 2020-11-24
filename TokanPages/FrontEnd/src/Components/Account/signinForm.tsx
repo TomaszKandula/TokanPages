@@ -14,6 +14,13 @@ export default function SigninForm()
 {
 
     const classes = useStyles();
+    const content = 
+    {
+        caption: "Sign in",
+        button: "Sign in",
+        link1: "Don't have an account?",
+        link2: "Forgot password?"
+    }
 
     return (
         <section>
@@ -24,7 +31,7 @@ export default function SigninForm()
                             <Box mb={3} textAlign="center">
                                 <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    Sign in
+                                    {content.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -38,18 +45,18 @@ export default function SigninForm()
                                 </Grid>
                                 <Box my={2}>
                                     <Button fullWidth variant="contained" color="primary">
-                                        Sign in
+                                        {content.button}
                                     </Button>
                                 </Box>
                                 <Grid container spacing={2} className={classes.actions}>
                                     <Grid item xs={12} sm={6}>
                                         <Link to="/signup">
-                                            Don't have an account?
+                                            {content.link1}
                                         </Link>
                                     </Grid>
                                     <Grid item xs={12} sm={6} className={classes.tertiaryAction}>
                                         <Link to="/reset">
-                                            Forgot password?
+                                            {content.link2}
                                         </Link>
                                     </Grid>
                                 </Grid>

@@ -12,16 +12,16 @@ export default function Footer(props: { backgroundColor?: string })
 {
   
     const classes = useStyles();
-
-    const SetTermsLink = () => 
+    const content = 
     {
-        return (<Link to="/terms" className={classes.links}>Terms of use</Link>);
-    }
+        terms: "Terms of use",
+        policy: "Privacy policy",
+        copyright: "© 2020 Tomasz Kandula",
+        reserved: "All rights reserved"
+    };
 
-    const SetPolicyLink = () => 
-    {
-        return (<Link to="/policy" className={classes.links}>Privacy policy</Link>);
-    }
+    const SetTermsLink = () => { return (<Link to="/terms" className={classes.links}>{content.terms}</Link>); }
+    const SetPolicyLink = () => { return (<Link to="/policy" className={classes.links}>{content.policy}</Link>); }
 
     return (
         <footer className={classes.root} style={{ backgroundColor: props.backgroundColor }} >
@@ -29,7 +29,7 @@ export default function Footer(props: { backgroundColor?: string })
                 <div data-aos="zoom-in">
                     <Box py={6} display="flex" flexWrap="wrap" alignItems="center">
                         <Typography component="p" gutterBottom={false} className={classes.copy}>
-                            © 2020 Tomasz Kandula | All rights reserved | <SetTermsLink /> | <SetPolicyLink />
+                            {content.copyright} | {content.reserved} | <SetTermsLink /> | <SetPolicyLink />
                         </Typography>
                         <Box ml="auto" className={classes.iconsBoxRoot}>
                             <IconButton color="default" aria-label="GitHub" href="https://github.com/TomaszKandula" target="_blank">

@@ -13,6 +13,11 @@ export default function ResetForm()
 {
 
     const classes = useStyles();
+    const content = 
+    {
+        caption: "Reset password",
+        button: "Reset"
+    }; 
 
     return (
         <section>
@@ -23,7 +28,7 @@ export default function ResetForm()
                             <Box mb={3} textAlign="center">
                                 <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    Reset password
+                                    {content.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -34,7 +39,7 @@ export default function ResetForm()
                                 </Grid>
                                 <Box my={2}>
                                     <Button fullWidth variant="contained" color="primary">
-                                        Reset
+                                        {content.button}
                                     </Button>
                                 </Box>
                             </Box>

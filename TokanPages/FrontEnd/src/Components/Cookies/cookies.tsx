@@ -14,8 +14,16 @@ export default function Cookies()
 {
 
     const classes = useStyles();
-    const [ close, setClose ] = useState(false);
+    const content = 
+    {
+        caption: "Cookie Policy",
+        text: `We use cookies to personalise content, to provide social media features and to analyse our traffic. 
+               We also share information about your use of our site with our social media, advertising and analytics partners. 
+               Your consent will be valid 3 days or until you clear all the cookies from your web browser.`,
+        button: "Accept cookies"
+    };
 
+    const [ close, setClose ] = useState(false);
     const onClickEvent = () => 
     { 
         setClose(true); 
@@ -38,17 +46,15 @@ export default function Cookies()
                     <Card>
                         <CardContent>
                             <Typography variant="h5" component="h2" gutterBottom={true}>
-                                Cookie Policy
+                                {content.caption}
                             </Typography>
                             <Typography variant="subtitle1" component="p" color="textSecondary">
-                                We use cookies to personalise content, to provide social media features and to analyse our traffic. 
-                                We also share information about your use of our site with our social media, advertising and analytics partners.
-                                Your consent will be valid 3 days or until you clear all the cookies from your web browser.
+                                {content.text}
                             </Typography>            
                         </CardContent>
                         <CardActions>
                             <Button onClick={onClickEvent} color="primary">
-                                Accept cookies
+                                {content.button}
                             </Button>
                         </CardActions>
                     </Card>
@@ -58,7 +64,10 @@ export default function Cookies()
 
     }
 
-    const Content = Validate.isEmpty(GetCookie({cookieName: "cookieConsent"})) ? renderConsent() : null;
-    return (<>{Content}</>);
+    return (
+        <>
+            {Validate.isEmpty(GetCookie({cookieName: "cookieConsent"})) ? renderConsent() : null}
+        </>
+    );
 
 }
