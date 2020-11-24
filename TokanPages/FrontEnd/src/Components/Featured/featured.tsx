@@ -8,12 +8,28 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardHeader from "@material-ui/core/CardHeader";
 import useStyles from "./styleFeatured";
-import { IMG_FEAT1, IMG_FEAT2, IMG_FEAT3 } from "../../Shared/constants";
 
 export default function Featured() 
 {
   
     const classes = useStyles();
+    const content = 
+    {
+        caption: "Featured",
+        text: "My pick of three articles that I wrote and published elsewhere or articles where I'm featured. So far I can be find on Medium.com, LinkedIn and JustJoinIT.",
+        title1: "Stored Procedures",
+        subtitle1: "I explain why I do not need them that much...",
+        link1: "http://geek.justjoin.it/wysokie-widelki-clickbait-devdebata",
+        image1: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_featured/article1.jpg",
+        title2: "SQL Injection",
+        subtitle2: "This article will explore the issue in greater detail...",
+        link2: "https://medium.com/@tomasz.kandula/sql-injection-1bde8bb76ebc",
+        image2: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_featured/article2.jpg",
+        title3: "ust Geek IT",
+        subtitle3: "Widełki płacowe stanowią standard w branży...",
+        link3: "https://medium.com/@tomasz.kandula/i-said-goodbye-to-stored-procedures-539d56350486",
+        image3: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_featured/article3.jpg",
+    };
 
     return (
         <section className={classes.section}>
@@ -22,9 +38,11 @@ export default function Featured()
                     <Box pt={8} pb={10}>
                         <Container maxWidth="sm">
                             <Box textAlign="center" mb={5}>
-                                <Typography variant="h4" component="h2" gutterBottom={true}>Featured</Typography>
+                                <Typography variant="h4" component="h2" gutterBottom={true}>
+                                    {content.caption}
+                                </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
-                                    My pick of three articles that I wrote and published elsewhere or articles where I'm featured. So far I can be find on Medium.com, LinkedIn and JustJoinIT.
+                                    {content.text}
                                 </Typography>
                             </Box>
                         </Container>
@@ -33,25 +51,25 @@ export default function Featured()
                                 <Grid container spacing={4}>
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={3}>
-                                            <CardActionArea href="http://geek.justjoin.it/wysokie-widelki-clickbait-devdebata" target="_blank">
-                                                <CardMedia className={classes.media} image={IMG_FEAT1} />
-                                                <CardHeader title="Stored Procedures" subheader="I explain why I do not need them that much..." titleTypographyProps={{gutterBottom: true}} />
+                                            <CardActionArea href={content.link1} target="_blank">
+                                                <CardMedia className={classes.media} image={content.image1} />
+                                                <CardHeader title={content.title1} subheader={content.subtitle1} titleTypographyProps={{gutterBottom: true}} />
                                             </CardActionArea>
                                         </Card>
                                     </Grid>
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={3}>
-                                            <CardActionArea href="https://medium.com/@tomasz.kandula/sql-injection-1bde8bb76ebc" target="_blank">
-                                                <CardMedia className={classes.media} image={IMG_FEAT2} />
-                                                <CardHeader title="SQL Injection" subheader="This article will explore the issue in greater detail..." titleTypographyProps={{gutterBottom: true}} />
+                                            <CardActionArea href={content.link2} target="_blank">
+                                                <CardMedia className={classes.media} image={content.image2} />
+                                                <CardHeader title={content.title2} subheader={content.subtitle2} titleTypographyProps={{gutterBottom: true}} />
                                             </CardActionArea>
                                         </Card>
                                     </Grid>
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={3}>
-                                            <CardActionArea href="https://medium.com/@tomasz.kandula/i-said-goodbye-to-stored-procedures-539d56350486" target="_blank">
-                                                <CardMedia className={classes.media} image={IMG_FEAT3} />
-                                                <CardHeader title="Just Geek IT" subheader="Widełki płacowe stanowią standard w branży..." titleTypographyProps={{gutterBottom: true}}/>
+                                            <CardActionArea href={content.link3} target="_blank">
+                                                <CardMedia className={classes.media} image={content.image3} />
+                                                <CardHeader title={content.title3} subheader={content.subtitle3} titleTypographyProps={{gutterBottom: true}}/>
                                             </CardActionArea>
                                         </Card>
                                     </Grid>

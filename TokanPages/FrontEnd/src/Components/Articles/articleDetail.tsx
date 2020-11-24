@@ -8,7 +8,6 @@ import { ArrowBack } from "@material-ui/icons";
 import ReactHtmlParser from 'react-html-parser';
 import axios from "axios";
 import useStyles from "./Hooks/styleArticleDetail";
-import * as Consts from "../../Shared/constants";
 import Validate from "validate.js";
 
 interface IArticleDetail
@@ -20,10 +19,13 @@ export default function ArticleDetail(props: IArticleDetail)
 {
 
     const classes = useStyles();
+    const content = 
+    {
+        footprint: "https://maindbstorage.blob.core.windows.net/tokanpages/content/articles/{UID}/text.html"
+    };
+
     const [ article, setArticle ] = React.useState("");
-
-    const articleUrl = `${Consts.APP_STORAGE}/content/articles/${props.uid}/text.html`;
-
+    const articleUrl = content.footprint.replace("{UID}", props.uid);
     const fetchArticle = React.useCallback( async () => 
     {
         const response = await axios.get(articleUrl, {method: "get", responseType: "text"});
@@ -31,7 +33,6 @@ export default function ArticleDetail(props: IArticleDetail)
     }, [ articleUrl ]);
 
     React.useEffect( () => { fetchArticle() }, [ article, fetchArticle ] );
-
     const renderArticle = (text: string) => 
     {
         return(
@@ -40,8 +41,6 @@ export default function ArticleDetail(props: IArticleDetail)
             </div>
         );
     }
-
-    const content = Validate.isEmpty(article) ? "Fetching content..." : renderArticle(article);
     
     return (
         <section>
@@ -54,7 +53,7 @@ export default function ArticleDetail(props: IArticleDetail)
                     </Link> 
                     <Divider className={classes.divider} />
                     <Typography variant="body1" component="span" className={classes.typography}>
-                        {content}
+                        {Validate.isEmpty(article) ? "Fetching content..." : renderArticle(article)}
                     </Typography>
                 </Box>
             </Container>
