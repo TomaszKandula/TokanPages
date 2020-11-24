@@ -10,6 +10,7 @@ import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import useStyles from "./Hooks/styleArticleFeat";
+import { IMG_ART1, IMG_ART2, IMG_ART3, IMG_ART4 } from "../../Shared/constants";
 
 export default function ArticleFeat() 
 {
@@ -56,22 +57,22 @@ export default function ArticleFeat()
                                     <Grid container spacing={2}>
                                         <Grid item xs={12} md={8}>
                                             <Card elevation={4}>
-                                                <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image1.jpg" />
+                                                <CardMedia className={classes.media} image={IMG_ART1} />
                                             </Card>
                                         </Grid>
                                         <Grid item xs={12} md={4}>
                                             <Card elevation={4}>
-                                                <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image2.jpg" />
+                                                <CardMedia className={classes.media} image={IMG_ART2} />
                                             </Card>
                                         </Grid>
                                         <Grid item xs={12} md={4}>
                                             <Card elevation={4}>
-                                                <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image3.jpg" />
+                                                <CardMedia className={classes.media} image={IMG_ART3} />
                                             </Card>
                                         </Grid> 
                                         <Grid item xs={12} md={8}>
                                             <Card elevation={4}>
-                                                <CardMedia className={classes.media} image="https://maindbstorage.blob.core.windows.net/tokanpages/images/image4.jpg" />
+                                                <CardMedia className={classes.media} image={IMG_ART4} />
                                             </Card>
                                         </Grid>
                                     </Grid>

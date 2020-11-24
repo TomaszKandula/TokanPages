@@ -6,18 +6,17 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
 import useStyles from "./Hooks/styleHeader";
+import { IMG_TOMEK } from "../../Shared/constants";
 
 export default function Header() 
 {
 
     const classes = useStyles();
-
     const content = 
     {
-        "header": "Welcome to my web page",
-        "description": "Hello, my name is Tomasz but I usually go by Tom and I do programming for a living...",
-        "main-action": "Read the story",
-        "image": "https://maindbstorage.blob.core.windows.net/tokanpages/images/tomek_bergen.jpg",
+        header: "Welcome to my web page",
+        description: "Hello, my name is Tomasz but I usually go by Tom and I do programming for a living...",
+        mainAction: "Read the story"
     };
 
     return (
@@ -27,18 +26,22 @@ export default function Header()
                     <Grid item xs={12} sm={6}>
                         <Box className={classes.imageBox}>
                             <div data-aos="fade-right">
-                                <img className={classes.img} src={content["image"]} alt="" />
+                                <img className={classes.img} src={IMG_TOMEK} alt="" />
                             </div>
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Box className={classes.contentBox}>
                             <div data-aos="fade-left">
-                                <Typography variant="overline" component="span" gutterBottom={true}>{content["header"]}</Typography>
-                                <Typography variant="h5" color="textSecondary" paragraph={true}>{content["description"]}</Typography>
+                                <Typography variant="overline" component="span" gutterBottom={true}>
+                                    {content.header}
+                                </Typography>
+                                <Typography variant="h5" color="textSecondary" paragraph={true}>
+                                    {content.description}
+                                </Typography>
                                 <Box mt={4}>
                                     <Link to="/mystory" className={classes.mainLink}>
-                                        <Button variant="contained" className={classes.mainAction}>{content["main-action"]}</Button>
+                                        <Button variant="contained" className={classes.mainAction}>{content.mainAction}</Button>
                                     </Link>
                                 </Box>
                             </div>
