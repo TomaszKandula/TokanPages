@@ -26,6 +26,12 @@ export const API_GET_INSPECTION  = `${APP_BACKEND}/api/v${API_VER}/mailer/inspec
 export const API_POST_MESSAGE    = `${APP_BACKEND}/api/v${API_VER}/mailer/message/`;
 export const API_POST_NEWSLETTER = `${APP_BACKEND}/api/v${API_VER}/mailer/newsletter/`;
 
+/* TESTIMONIALS ASSETS */
+
+export const IMG_ADAMA  = `${APP_STORAGE}/images/testimonials/adama.jpg`;
+export const IMG_JOANNA = `${APP_STORAGE}/images/testimonials/joanna.jpg`;
+export const IMG_SCOTT  = `${APP_STORAGE}/images/testimonials/scott.jpg`;
+
 /* MESSAGE TEMPLATES */
 
 export const MESSAGE_OUT_WARN    = `<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To send an email all fields must be filled along with acceptance of Terms of Use and Privacy Policy.</span>`;
