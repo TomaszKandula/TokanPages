@@ -2,8 +2,10 @@
 using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
+using TokanPages.BackEnd.Shared;
 using System.Collections.Generic;
 using TokanPages.BackEnd.Database;
+using TokanPages.BackEnd.Logic.Subscribers.Model;
 using TokanPages.BackEnd.Controllers.Subscribers.Model;
 using SubscribersModel = TokanPages.BackEnd.Database.Model.Subscribers;
 
@@ -15,16 +17,16 @@ namespace TokanPages.BackEnd.Logic.Subscribers
 
         private readonly ICosmosDbService FCosmosDbService;
 
-        public Subscribers(ICosmosDbService ACosmosDbService) 
+        public Subscribers(ICosmosDbService ACosmosDbService)
         {
             FCosmosDbService = ACosmosDbService;
             FCosmosDbService.InitContainer<SubscribersModel>();
         }
 
-        public async Task<List<SubscriberItem>> GetAllSubscribers() 
+        public async Task<List<SubscriberItem>> GetAllSubscribers()
         {
 
-            var LItems = await FCosmosDbService.GetItems<SubscribersModel>("select * from c");
+            var LItems = await FCosmosDbService.GetItems<SubscribersModel>("select * from Subscribers");
             if (LItems == null || !LItems.Any()) return null;
 
             var LResult = new List<SubscriberItem>();
@@ -33,12 +35,12 @@ namespace TokanPages.BackEnd.Logic.Subscribers
 
                 var SubscriberItem = new SubscriberItem
                 {
-                    Id           = LItem.Id,
-                    Email = LItem.Email,
-                    Count        = LItem.Count,
-                    Status       = LItem.Status,
-                    Registered   = LItem.Registered,
-                    LastUpdated  = LItem.LastUpdated
+                    Id          = LItem.Id,
+                    Email       = LItem.Email,
+                    Count       = LItem.Count,
+                    Status      = LItem.Status,
+                    Registered  = LItem.Registered,
+                    LastUpdated = LItem.LastUpdated
                 };
 
                 LResult.Add(SubscriberItem);
@@ -46,11 +48,11 @@ namespace TokanPages.BackEnd.Logic.Subscribers
             }
 
             return LResult;
-        
+
         }
 
         public async Task<SubscriberItem> GetSingleSubscriber(string Id)
-        { 
+        {
 
             var LItem = await FCosmosDbService.GetItem<SubscribersModel>(Id);
             if (LItem == null) return null;
@@ -64,11 +66,21 @@ namespace TokanPages.BackEnd.Logic.Subscribers
                 Registered  = LItem.Registered,
                 LastUpdated = LItem.LastUpdated
             };
-        
+
         }
 
-        public async Task<string> AddNewSubscriber(SubscriberRequest PayLoad)
-        { 
+        public async Task<NewSubscriber> AddNewSubscriber(SubscriberRequest PayLoad)
+        {
+
+            var LQuery = $"select * from Subscribers s where s.email = \"{PayLoad.Email}\"";
+            var LItems = await FCosmosDbService.GetItems<SubscribersModel>(LQuery);
+            if (LItems.Any())
+            {
+                var LResponse = new NewSubscriber() { NewId = string.Empty };
+                LResponse.Error.ErrorCode = Constants.Errors.EmailAlreadyRegistered.ErrorCode;
+                LResponse.Error.ErrorDesc = Constants.Errors.EmailAlreadyRegistered.ErrorDesc;
+                return LResponse;
+            }
 
             var NewId = Guid.NewGuid().ToString();
             var InsertNew = new SubscribersModel
@@ -81,13 +93,25 @@ namespace TokanPages.BackEnd.Logic.Subscribers
                 LastUpdated = null
             };
 
-            if (await FCosmosDbService.AddItem<SubscribersModel>(NewId, InsertNew) == HttpStatusCode.Created)
+            var LResult = await FCosmosDbService.AddItem<SubscribersModel>(NewId, InsertNew);
+            if (LResult == HttpStatusCode.Created)
             {
-                return NewId;
+                return new NewSubscriber
+                {
+                    NewId = NewId 
+                };
             }
             else 
             {
-                return string.Empty;
+                return new NewSubscriber
+                {
+                    NewId = string.Empty,
+                    Error = new Shared.Models.ErrorHandler 
+                    { 
+                        ErrorCode = Constants.Errors.UnableToPost.ErrorCode,
+                        ErrorDesc = $"{Constants.Errors.UnableToPost.ErrorDesc} Returned status code: {LResult}."
+                    }
+                };
             }
         
         }
@@ -101,7 +125,7 @@ namespace TokanPages.BackEnd.Logic.Subscribers
                 Email       = PayLoad.Email,
                 Count       = PayLoad.Count,
                 Status      = PayLoad.Status,
-                LastUpdated = PayLoad.LastUpdated
+                LastUpdated = DateTime.Now
             };
 
             return await FCosmosDbService.UpdateItem<SubscribersModel>(PayLoad.Id, UpdatedSubscriber);

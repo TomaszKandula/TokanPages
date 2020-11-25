@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using TokanPages.BackEnd.Logic.Subscribers.Model;
 using TokanPages.BackEnd.Controllers.Subscribers.Model;
 
 namespace TokanPages.BackEnd.Logic.Subscribers
@@ -10,7 +11,7 @@ namespace TokanPages.BackEnd.Logic.Subscribers
     {
         Task<List<SubscriberItem>> GetAllSubscribers();
         Task<SubscriberItem> GetSingleSubscriber(string Id);
-        Task<string> AddNewSubscriber(SubscriberRequest PayLoad);
+        Task<NewSubscriber> AddNewSubscriber(SubscriberRequest PayLoad);
         Task<HttpStatusCode> UpdateSubscriber(SubscriberRequest PayLoad);
         Task<HttpStatusCode> DeleteSubscriber(string Id);
     }

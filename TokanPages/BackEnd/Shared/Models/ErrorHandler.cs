@@ -14,8 +14,8 @@ namespace TokanPages.BackEnd.Shared.Models
 
         public ErrorHandler()
         {
-            ErrorDesc = "n/a";
-            ErrorCode = "no_errors_found";
+            ErrorCode = Constants.Errors.Default.ErrorCode;
+            ErrorDesc = Constants.Errors.Default.ErrorDesc;
         }
 
     }

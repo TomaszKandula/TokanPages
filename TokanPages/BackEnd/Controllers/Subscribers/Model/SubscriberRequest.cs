@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace TokanPages.BackEnd.Controllers.Subscribers.Model
 {
@@ -18,9 +17,6 @@ namespace TokanPages.BackEnd.Controllers.Subscribers.Model
 
         [JsonPropertyName("count")]
         public int Count { get; set; }
-
-        [JsonPropertyName("lastUpdated")]
-        public DateTime? LastUpdated { get; set; }
 
     }
 
