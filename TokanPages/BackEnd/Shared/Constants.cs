@@ -31,6 +31,12 @@
         public static class Errors 
         {
 
+            internal class Default
+            {
+                public const string ErrorCode = "no_errors_found";
+                public const string ErrorDesc = "n/a";
+            }
+
             internal class EmptyList
             {
                 public const string ErrorCode = "empty_list";
@@ -59,6 +65,12 @@
             {
                 public const string ErrorCode = "unable_to_remove";
                 public const string ErrorDesc = "Cannot delete data from database container.";
+            }
+
+            internal class EmailAlreadyRegistered
+            {
+                public const string ErrorCode = "email_exist";
+                public const string ErrorDesc = "Email has been already registered.";
             }
 
         }

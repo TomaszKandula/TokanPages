@@ -4,6 +4,7 @@ using TokanPages.BackEnd.SmtpClient;
 using TokanPages.BackEnd.Logic.Mailer;
 using TokanPages.BackEnd.Logic.Articles;
 using TokanPages.BackEnd.Logic.MailChecker;
+using TokanPages.BackEnd.Logic.Subscribers;
 
 namespace TokanPages.BackEnd.Logic 
 {
@@ -18,6 +19,7 @@ namespace TokanPages.BackEnd.Logic
         private IArticles    FArticles;
         private IMailer      FMailer;
         private IMailChecker FMailChecker;
+        private ISubscribers FSubscribers;
 
         public LogicContext(ICosmosDbService ACosmosDbService, ISmtpClientService ASmtpClientService, IAzureStorageService AAzureStorageService) 
         {
@@ -39,6 +41,11 @@ namespace TokanPages.BackEnd.Logic
         public IMailChecker MailChecker 
         {
             get { if (FMailChecker == null) FMailChecker = new MailChecker.MailChecker(); return FMailChecker; }
+        }
+
+        public ISubscribers Subscribers
+        {
+            get { if (FSubscribers == null) FSubscribers = new Subscribers.Subscribers(FCosmosDbService); return FSubscribers; }
         }
 
     }

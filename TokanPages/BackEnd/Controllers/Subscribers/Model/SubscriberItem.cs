@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace TokanPages.BackEnd.Database.Model
+namespace TokanPages.BackEnd.Controllers.Subscribers.Model
 {
 
-    public class Subscribers
+    public class SubscriberItem
     {
 
         [JsonPropertyName("id")]
