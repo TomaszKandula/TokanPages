@@ -10,11 +10,11 @@ import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
 import axios from "axios";
 import useStyles from "./styleContactForm";
-import { ValidateInputs } from "./validateInputs";
 import AlertDialog from "../../Shared/Modals/alertDialog";
 import Validate from "validate.js";
 import * as Consts from "../../Shared/constants";
 import { ConvertPropsToFields, HtmlRenderLines } from "../../Shared/helpers";
+import { ValidateContactForm } from "../../Shared/validate";
 
 export default function ContactForm()
 {
@@ -39,7 +39,7 @@ export default function ContactForm()
     const ButtonHandler = () => 
     {
         
-        let Results = ValidateInputs( 
+        let Results = ValidateContactForm( 
         { 
             FirstName: Form.firstName,
             LastName:  Form.lastName, 
