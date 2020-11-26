@@ -51,6 +51,9 @@ namespace TokanPages.BackEnd.Controllers.Mailer
                 LResponse.IsFormatCorrect = LCheckFormat.FirstOrDefault().IsValid;
                 LResponse.IsDomainCorrect = LCheckDomain;
 
+                LResponse.Meta.RowsAffected = 1;
+                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
+
                 return StatusCode(200, LResponse);
 
             }
@@ -60,8 +63,6 @@ namespace TokanPages.BackEnd.Controllers.Mailer
                 LResponse.Error.ErrorDesc = string.IsNullOrEmpty(LException.InnerException?.Message)
                     ? LException.Message
                     : $"{LException.Message} ({LException.InnerException.Message}).";
-                LResponse.Meta.RowsAffected = 0;
-                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
                 FAppLogger.LogFatality($"GET api/v1/mailer/inspection/{Email}/ | Error has been raised: {LResponse.Error.ErrorDesc}");
                 return StatusCode(500, LResponse);
             }
@@ -109,6 +110,9 @@ namespace TokanPages.BackEnd.Controllers.Mailer
                 }
 
                 LResponse.IsSucceeded = true;
+                LResponse.Meta.RowsAffected = 1;
+                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
+
                 return StatusCode(200, LResponse);
 
             }
@@ -118,8 +122,6 @@ namespace TokanPages.BackEnd.Controllers.Mailer
                 LResponse.Error.ErrorDesc = string.IsNullOrEmpty(LException.InnerException?.Message)
                     ? LException.Message
                     : $"{LException.Message} ({LException.InnerException.Message}).";
-                LResponse.Meta.RowsAffected = 0;
-                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
                 FAppLogger.LogFatality($"POST api/v1/mailer/message/ | Error has been raised: {LResponse.Error.ErrorDesc}");
                 return StatusCode(500, LResponse);
             }
@@ -164,6 +166,9 @@ namespace TokanPages.BackEnd.Controllers.Mailer
                 }
 
                 LResponse.IsSucceeded = true;
+                LResponse.Meta.RowsAffected = 1;
+                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
+
                 return StatusCode(200, LResponse);
 
             }
@@ -173,8 +178,6 @@ namespace TokanPages.BackEnd.Controllers.Mailer
                 LResponse.Error.ErrorDesc = string.IsNullOrEmpty(LException.InnerException?.Message)
                     ? LException.Message
                     : $"{LException.Message} ({LException.InnerException.Message}).";
-                LResponse.Meta.RowsAffected = 0;
-                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
                 FAppLogger.LogFatality($"POST api/v1/mailer/newsletter/ | Error has been raised: {LResponse.Error.ErrorDesc}");
                 return StatusCode(500, LResponse);
             }
