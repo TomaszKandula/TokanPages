@@ -7,6 +7,9 @@ namespace TokanPages.BackEnd.Controllers.Articles.Model.Responses
     public class ArticleAdded
     {
 
+        [JsonPropertyName("isSucceeded")]
+        public bool IsSucceeded { get; set; }
+
         [JsonPropertyName("newUid")]
         public string NewUid { get; set; }
 

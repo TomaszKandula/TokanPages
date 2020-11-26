@@ -148,6 +148,7 @@ namespace TokanPages.BackEnd.Controllers.Subscribers
                     return StatusCode(200, LResponse);
                 }
 
+                LResponse.IsSucceeded = true;
                 LResponse.NewUid = LResult.NewId;
                 LResponse.Meta.RowsAffected = 1;
                 LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();

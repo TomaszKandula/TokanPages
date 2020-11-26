@@ -57,6 +57,7 @@ namespace TokanPages.BackEnd.Controllers.Articles
 
                 LResponse.Articles = LData;
                 LResponse.Meta.RowsAffected = LResponse.Articles.Count;
+                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
 
                 FAppLogger.LogInfo($"GET api/v1/articles/ | Returned: {LData.Count} articles.");
                 return StatusCode(200, LResponse);
@@ -68,8 +69,6 @@ namespace TokanPages.BackEnd.Controllers.Articles
                 LResponse.Error.ErrorDesc = string.IsNullOrEmpty(LException.InnerException?.Message)
                     ? LException.Message
                     : $"{LException.Message} ({LException.InnerException.Message}).";
-                LResponse.Meta.RowsAffected = 0;
-                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
                 FAppLogger.LogFatality($"GET api/v1/articles/ | Error has been raised: {LResponse.Error.ErrorDesc}");
                 return StatusCode(500, LResponse);
             }
@@ -104,6 +103,7 @@ namespace TokanPages.BackEnd.Controllers.Articles
 
                 LResponse.Article = LData;
                 LResponse.Meta.RowsAffected = 1;
+                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
 
                 FAppLogger.LogInfo($"GET api/v1/articles/{Id} | Returned: '{LData.Title}' article.");
                 return StatusCode(200, LResponse);
@@ -115,8 +115,6 @@ namespace TokanPages.BackEnd.Controllers.Articles
                 LResponse.Error.ErrorDesc = string.IsNullOrEmpty(LException.InnerException?.Message)
                     ? LException.Message
                     : $"{LException.Message} ({LException.InnerException.Message}).";
-                LResponse.Meta.RowsAffected = 0;
-                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
                 FAppLogger.LogFatality($"GET api/v1/articles/{Id}/ | Error has been raised: {LResponse.Error.ErrorDesc}");
                 return StatusCode(500, LResponse);
             }
@@ -153,8 +151,10 @@ namespace TokanPages.BackEnd.Controllers.Articles
                     return StatusCode(200, LResponse);
                 }
 
+                LResponse.IsSucceeded = true;
                 LResponse.NewUid = LNewId;
                 LResponse.Meta.RowsAffected = 1;
+                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
 
                 FAppLogger.LogInfo($"POST api/v1/articles/ | New article has been posted under id: '{LNewId}'.");
                 return StatusCode(200, LResponse);
@@ -166,8 +166,6 @@ namespace TokanPages.BackEnd.Controllers.Articles
                 LResponse.Error.ErrorDesc = string.IsNullOrEmpty(LException.InnerException?.Message)
                     ? LException.Message
                     : $"{LException.Message} ({LException.InnerException.Message}).";
-                LResponse.Meta.RowsAffected = 0;
-                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
                 FAppLogger.LogFatality($"POST api/v1/articles/ | Error has been raised: {LResponse.Error.ErrorDesc}");
                 return StatusCode(500, LResponse);
             }
@@ -204,8 +202,9 @@ namespace TokanPages.BackEnd.Controllers.Articles
                     return StatusCode(200, LResponse);
                 }
 
-                LResponse.Meta.RowsAffected = 1;
                 LResponse.IsSucceeded = true;
+                LResponse.Meta.RowsAffected = 1;
+                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
 
                 FAppLogger.LogInfo($"PATCH api/v1/articles/ | Article has been updated.");
                 return StatusCode(200, LResponse);
@@ -217,8 +216,6 @@ namespace TokanPages.BackEnd.Controllers.Articles
                 LResponse.Error.ErrorDesc = string.IsNullOrEmpty(LException.InnerException?.Message)
                     ? LException.Message
                     : $"{LException.Message} ({LException.InnerException.Message}).";
-                LResponse.Meta.RowsAffected = 0;
-                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
                 FAppLogger.LogFatality($"PATCH api/v1/articles/ | Error has been raised: {LResponse.Error.ErrorDesc}");
                 return StatusCode(500, LResponse);
             }
@@ -229,7 +226,7 @@ namespace TokanPages.BackEnd.Controllers.Articles
         /// Delete existing article from Articles collection.
         /// </summary>
         /// <returns></returns>
-        [SwaggerResponse(statusCode: 200, description: "Delete existing article from Articles collection.", type: typeof(ArticleDeleted))]
+        [SwaggerResponse(statusCode: 200, type: typeof(ArticleDeleted), description: "Delete existing article from Articles collection.")]
         // DELETE api/v1/articles/{id}/
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveItemAsync([FromRoute] string Id)
@@ -251,8 +248,9 @@ namespace TokanPages.BackEnd.Controllers.Articles
                     return StatusCode(200, LResponse);
                 }
 
-                LResponse.Meta.RowsAffected = 1;
                 LResponse.IsSucceeded = true;
+                LResponse.Meta.RowsAffected = 1;
+                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
 
                 FAppLogger.LogInfo($"DELETE api/v1/articles/{Id}/ | Article has been removed.");
                 return StatusCode(200, LResponse);
@@ -264,8 +262,6 @@ namespace TokanPages.BackEnd.Controllers.Articles
                 LResponse.Error.ErrorDesc = string.IsNullOrEmpty(LException.InnerException?.Message)
                     ? LException.Message
                     : $"{LException.Message} ({LException.InnerException.Message}).";
-                LResponse.Meta.RowsAffected = 0;
-                LResponse.Meta.ProcessingTimeSpan = (DateTime.Now.TimeOfDay - LStartTime).ToString();
                 FAppLogger.LogFatality($"DELETE api/v1/articles/{Id}/ | Error has been raised: {LResponse.Error.ErrorDesc}");
                 return StatusCode(500, LResponse);
             }
