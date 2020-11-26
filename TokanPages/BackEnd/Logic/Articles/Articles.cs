@@ -24,7 +24,7 @@ namespace TokanPages.BackEnd.Logic.Articles
         public async Task<List<ArticleItem>> GetAllArticles()
         {
 
-            var LItems = await FCosmosDbService.GetItems<ArticlesModel>("select * from c");
+            var LItems = await FCosmosDbService.GetItems<ArticlesModel>("select * from Articles");
             if (LItems == null || !LItems.Any()) return null;
 
             var LResult = new List<ArticleItem>();
