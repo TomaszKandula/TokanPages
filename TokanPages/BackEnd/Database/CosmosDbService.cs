@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.Azure.Cosmos;
@@ -70,6 +71,22 @@ namespace TokanPages.BackEnd.Database
             {
                 return LException.StatusCode;
             }
+
+        }
+
+        public override async Task<HttpStatusCode> IsItemExists<T>(string Id) where T : class
+        {
+
+            var LModelName = typeof(T).Name;
+            var LModelSymbol = LModelName[0..1].ToLower();
+            var LQuery = $"select * from {LModelName} {LModelSymbol} where {LModelSymbol}.id = \"{Id}\"";
+            var LItems = await GetItems<T>(LQuery);
+            if (!LItems.Any())
+            {
+                return HttpStatusCode.NotFound;
+            }
+
+            return HttpStatusCode.OK;
 
         }
 
