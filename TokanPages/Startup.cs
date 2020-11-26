@@ -114,7 +114,7 @@ namespace TokanPages
 
                 if (AEnvironment.IsDevelopment())
                 {
-                    ASpa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
+                    ASpa.UseProxyToSpaDevelopmentServer(Configuration.GetSection("DevelopmentOrigin").Value);
                 }
 
             });           
