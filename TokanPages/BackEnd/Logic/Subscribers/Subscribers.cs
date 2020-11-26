@@ -26,7 +26,7 @@ namespace TokanPages.BackEnd.Logic.Subscribers
         public async Task<List<SubscriberItem>> GetAllSubscribers()
         {
 
-            var LItems = await FCosmosDbService.GetItems<SubscribersModel>("select * from Subscribers");
+            var LItems = await FCosmosDbService.GetItems<SubscribersModel>($"select * from {typeof(SubscribersModel).Name}");
             if (LItems == null || !LItems.Any()) return null;
 
             var LResult = new List<SubscriberItem>();
@@ -72,7 +72,9 @@ namespace TokanPages.BackEnd.Logic.Subscribers
         public async Task<NewSubscriber> AddNewSubscriber(SubscriberRequest PayLoad)
         {
 
-            var LQuery = $"select * from Subscribers s where s.email = \"{PayLoad.Email}\"";
+            var LModelName = typeof(SubscribersModel).Name;
+            var LModelSymbol = LModelName[0..1].ToLower();
+            var LQuery = $"select * from {LModelName} {LModelSymbol} where {LModelSymbol}.email = \"{PayLoad.Email}\"";
             var LItems = await FCosmosDbService.GetItems<SubscribersModel>(LQuery);
             if (LItems.Any())
             {
@@ -117,7 +119,10 @@ namespace TokanPages.BackEnd.Logic.Subscribers
         }
 
         public async Task<HttpStatusCode> UpdateSubscriber(SubscriberRequest PayLoad)
-        { 
+        {
+
+            var LResult = await FCosmosDbService.IsItemExists<SubscribersModel>(PayLoad.Id);
+            if (LResult != HttpStatusCode.OK) return LResult;
 
             var UpdatedSubscriber = new SubscribersModel
             { 
@@ -134,6 +139,8 @@ namespace TokanPages.BackEnd.Logic.Subscribers
 
         public async Task<HttpStatusCode> DeleteSubscriber(string Id)
         {
+            var LResult = await FCosmosDbService.IsItemExists<SubscribersModel>(Id);
+            if (LResult != HttpStatusCode.OK) return LResult;
             return await FCosmosDbService.DeleteItem<SubscribersModel>(Id);
         }
 

@@ -10,6 +10,7 @@ namespace TokanPages.BackEnd.Database
         void InitContainer<T>();
         Task<HttpStatusCode> CreateDatabase(string ADatabaseName);
         Task<HttpStatusCode> CreateContainer(string ADatabaseName, string AContainerName, string AId);
+        Task<HttpStatusCode> IsItemExists<T>(string Id) where T : class;
         Task<T> GetItem<T>(string AId) where T : class;
         Task<IEnumerable<T>> GetItems<T>(string AQueryString) where T : class;
         Task<HttpStatusCode> AddItem<T>(string AId, T AItem);

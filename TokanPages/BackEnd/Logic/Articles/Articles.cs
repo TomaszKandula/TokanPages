@@ -24,7 +24,7 @@ namespace TokanPages.BackEnd.Logic.Articles
         public async Task<List<ArticleItem>> GetAllArticles()
         {
 
-            var LItems = await FCosmosDbService.GetItems<ArticlesModel>("select * from Articles");
+            var LItems = await FCosmosDbService.GetItems<ArticlesModel>($"select * from {typeof(ArticlesModel).Name}");
             if (LItems == null || !LItems.Any()) return null;
 
             var LResult = new List<ArticleItem>();
@@ -95,6 +95,9 @@ namespace TokanPages.BackEnd.Logic.Articles
         public async Task<HttpStatusCode> UpdateArticle(ArticleRequest PayLoad) 
         {
 
+            var LResult = await FCosmosDbService.IsItemExists<ArticlesModel>(PayLoad.Id);
+            if (LResult != HttpStatusCode.OK) return LResult;
+
             var UpdatedArticle = new ArticlesModel
             { 
                 Id        = PayLoad.Id,
@@ -111,6 +114,8 @@ namespace TokanPages.BackEnd.Logic.Articles
 
         public async Task<HttpStatusCode> DeleteArticle(string Id) 
         {
+            var LResult = await FCosmosDbService.IsItemExists<ArticlesModel>(Id);
+            if (LResult != HttpStatusCode.OK) return LResult;
             return await FCosmosDbService.DeleteItem<ArticlesModel>(Id);
         }
 
