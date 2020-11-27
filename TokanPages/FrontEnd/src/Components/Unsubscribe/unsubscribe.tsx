@@ -44,6 +44,7 @@ export default function Unsubscribe(props: IUnsubscribe)
         text3:   contentPre.text3, 
         button:  contentPre.button
     });
+    const [ButtonState, setButtonState] = React.useState(true);
     const [Progress, setProgress] = React.useState(false);
     const [Modal, setModal] = React.useState({ State: false, Titile:  "", Message: "", Icon: 0 });
     const ButtonHandler = () =>
@@ -54,6 +55,7 @@ export default function Unsubscribe(props: IUnsubscribe)
             return false;
         }
 
+        setButtonState(false);
         setProgress(true);
 
         axios.delete(Consts.API_DELETE_SUBSCRIBER.replace("{id}", props.uid))
@@ -62,6 +64,7 @@ export default function Unsubscribe(props: IUnsubscribe)
 
             if (response.status === 200 && response.data.isSucceeded) 
             {
+                
                 setContent(
                 {
                     caption: contentPost.caption,
@@ -73,12 +76,13 @@ export default function Unsubscribe(props: IUnsubscribe)
             }
             else
             {
+                setButtonState(true);
                 setModal(
                 { 
                     ...Modal, 
                     State: true, 
                     Titile: "Unsubscribe", 
-                    Message: Consts.NEWSLETTER_ERROR.replace("{ERROR}", response.data.error.errorDesc), 
+                    Message: Consts.SUBSCRIBER_DEL_ERROR.replace("{ERROR}", response.data.error.errorDesc), 
                     Icon: 2 
                 });
             }
@@ -87,12 +91,13 @@ export default function Unsubscribe(props: IUnsubscribe)
         .catch(function (error) 
         {
             console.error(error);
+            setButtonState(true);
             setModal(
             { 
                 ...Modal, 
                 State: true, 
                 Titile: "Error", 
-                Message: Consts.NEWSLETTER_ERROR.replace("{ERROR}", error), 
+                Message: Consts.SUBSCRIBER_DEL_ERROR.replace("{ERROR}", error), 
                 Icon: 2 
             });
         })
@@ -135,7 +140,7 @@ export default function Unsubscribe(props: IUnsubscribe)
                                     {content.text3}
                                 </Typography>
                             </Box>
-                            <Button onClick={ButtonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={Progress}>
+                            <Button onClick={ButtonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={!ButtonState}>
                                 {Progress &&  <CircularProgress size={20} />}
                                 {!Progress && content.button}
                             </Button>
