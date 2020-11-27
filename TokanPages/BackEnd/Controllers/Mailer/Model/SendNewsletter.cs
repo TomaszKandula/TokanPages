@@ -7,18 +7,6 @@ namespace TokanPages.BackEnd.Controllers.Mailer.Model
     public class SendNewsletter
     {
 
-        [JsonPropertyName("firstName")]
-        public string FirstName { get; set; }
-
-        [JsonPropertyName("lastName")]
-        public string LastName { get; set; }
-
-        [JsonPropertyName("userEmail")]
-        public string UserEmail { get; set; }
-
-        [JsonPropertyName("emailFrom")]
-        public string EmailFrom { get; set; }
-
         [JsonPropertyName("subscribersData")]
         public List<SubscriberData> SubscribersData { get; set; }
 
