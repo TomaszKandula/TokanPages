@@ -233,7 +233,7 @@ namespace TokanPages.BackEnd.Controllers.Subscribers
                 FAppLogger.LogInfo($"DELETE api/v1/subscribers/{Id}/ | Calling CosmosDB to remove subscriber...");
                 var LStatusCode = await FLogicContext.Subscribers.DeleteSubscriber(Id);
 
-                if (LStatusCode != HttpStatusCode.OK)
+                if (LStatusCode != HttpStatusCode.NoContent)
                 {
                     LResponse.Error.ErrorCode = Constants.Errors.UnableToRemove.ErrorCode;
                     LResponse.Error.ErrorDesc = Constants.Errors.UnableToRemove.ErrorDesc;
