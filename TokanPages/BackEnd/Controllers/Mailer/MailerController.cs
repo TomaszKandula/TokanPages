@@ -165,12 +165,10 @@ namespace TokanPages.BackEnd.Controllers.Mailer
                         .MakeBody(Constants.Emails.Templates.Newsletter, NewValues);
 
                     var LResult = await FLogicContext.Mailer.Send();
+
                     if (!LResult.IsSucceeded)
-                    {
-                        LResponse.Error.ErrorCode = LResult.ErrorCode;
-                        LResponse.Error.ErrorDesc = LResult.ErrorDesc;
-                        FAppLogger.LogError($"POST api/v1/mailer/newsletter/ | Error Code: {LResult.ErrorCode}. Error Desc.: '{LResult.ErrorDesc}'. Subscriber Id: {Subscriber.Id}.");
-                    }
+                        FAppLogger.LogError($"POST api/v1/mailer/newsletter/ | " +
+                            $"Error Code: {LResult.ErrorCode}. Error Desc.: '{LResult.ErrorDesc}'. Subscriber Id: {Subscriber.Id}.");
 
                     FAppLogger.LogInfo($"POST api/v1/mailer/newsletter/ | Newsletter sent to: {Subscriber.Email} (Id: {Subscriber.Id}).");
 
