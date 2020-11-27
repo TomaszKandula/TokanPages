@@ -35,12 +35,15 @@ namespace BackEnd.IntegrationTests
             var LResponse = await FHttpClient.GetAsync(LRequest);
 
             // Assert
-            var LStringResponse = await LResponse.Content.ReadAsStringAsync();
-            var LResults = JsonConvert.DeserializeObject<EmailVerified>(LStringResponse);
+            LResponse.EnsureSuccessStatusCode();
 
-            LResults.Error.ErrorDesc.Should().Be("n/a");
-            LResults.IsFormatCorrect.Should().BeTrue();
-            LResults.IsDomainCorrect.Should().BeTrue();
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+
+            var LDeserialized = JsonConvert.DeserializeObject<EmailVerified>(LContent);
+            LDeserialized.Error.ErrorDesc.Should().Be("n/a");
+            LDeserialized.IsFormatCorrect.Should().BeTrue();
+            LDeserialized.IsDomainCorrect.Should().BeTrue();
 
         }
 
@@ -51,7 +54,6 @@ namespace BackEnd.IntegrationTests
             // Arrange
             var LRequest = "/api/v1/mailer/message/";
 
-            var LNewGuid = Guid.NewGuid();
             var LPayLoad = new NewMessage
             {
                 FirstName = "Tomasz",
@@ -60,18 +62,20 @@ namespace BackEnd.IntegrationTests
                 EmailFrom = "", // can be empty
                 EmailTos  = new List<string> { "" }, // can be empty
                 Subject   = "Integration Test / HttpClient / Endpoint",
-                Message   = $"Test run Id: {LNewGuid}.",
+                Message   = $"Test run Id: {Guid.NewGuid()}.",
             };
 
             // Act
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
-
             var LResponse = await FHttpClient.SendAsync(LNewRequest);
-            var LContent = await LResponse.Content.ReadAsStringAsync();
 
             // Assert
-            LResponse.StatusCode.Should().Be(200);
+            LResponse.EnsureSuccessStatusCode();
+
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+
             var LDeserialized = JsonConvert.DeserializeObject<MessagePosted>(LContent);
             LDeserialized.IsSucceeded.Should().BeTrue();
 
@@ -84,24 +88,25 @@ namespace BackEnd.IntegrationTests
             // Arrange
             var LRequest = "/api/v1/mailer/newsletter/";
 
-            var LNewGuid = Guid.NewGuid();
             var LPayLoad = new NewMessage
             {
                 EmailFrom = "", // can be empty
-                EmailTos = new List<string> { "tomasz.kandula@gmail.com" },
-                Subject = "Integration Test / HttpClient / Endpoint",
-                Message = $"<p>Test run Id: {LNewGuid}.</p><p>Put newsletter content here.</p>",
+                EmailTos  = new List<string> { "tomasz.kandula@gmail.com" },
+                Subject   = "Integration Test / HttpClient / Endpoint",
+                Message   = $"<p>Test run Id: {Guid.NewGuid()}.</p><p>Put newsletter content here.</p>",
             };
 
             // Act
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
-
             var LResponse = await FHttpClient.SendAsync(LNewRequest);
-            var LContent = await LResponse.Content.ReadAsStringAsync();
 
             // Assert
-            LResponse.StatusCode.Should().Be(200);
+            LResponse.EnsureSuccessStatusCode();
+
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+
             var LDeserialized = JsonConvert.DeserializeObject<MessagePosted>(LContent);
             LDeserialized.IsSucceeded.Should().BeTrue();
 

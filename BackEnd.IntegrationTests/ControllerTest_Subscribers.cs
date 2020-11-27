@@ -134,7 +134,7 @@ namespace BackEnd.IntegrationTests
 
         [Theory]
         [InlineData("invalid-id")]
-        public async Task Should_notDeleteSubscriber(string Id) 
+        public async Task Should_FailToDeleteSubscriber(string Id) 
         {
 
             // Arrange

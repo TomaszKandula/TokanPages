@@ -23,7 +23,7 @@ namespace BackEnd.IntegrationTests
         }
 
         [Fact]
-        public async Task Should_GetAllItems()
+        public async Task Should_GetAllArticles()
         {
 
             // Arrange
@@ -33,16 +33,19 @@ namespace BackEnd.IntegrationTests
             var LResponse = await FHttpClient.GetAsync(LRequest);
 
             // Assert
-            var LStringResponse = await LResponse.Content.ReadAsStringAsync();
-            var LReturnArticles = JsonConvert.DeserializeObject<ReturnArticles>(LStringResponse);
+            LResponse.EnsureSuccessStatusCode();
 
-            LReturnArticles.Error.ErrorDesc.Should().Be("n/a");
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+
+            var LDeserialized = JsonConvert.DeserializeObject<ReturnArticles>(LContent);
+            LDeserialized.Error.ErrorDesc.Should().Be("n/a");
 
         }
 
         [Theory]
         [InlineData("a8db7e28-2d47-463c-9c38-c17706056f72")]
-        public async Task Should_GetOneItem(string Id) 
+        public async Task Should_GetSingleArticle(string Id) 
         {
 
             // Arrange
@@ -52,16 +55,19 @@ namespace BackEnd.IntegrationTests
             var LResponse = await FHttpClient.GetAsync(LRequest);
 
             // Assert
-            var LStringResponse = await LResponse.Content.ReadAsStringAsync();
-            var LReturnArticle = JsonConvert.DeserializeObject<ReturnArticle>(LStringResponse);
+            LResponse.EnsureSuccessStatusCode();
 
-            LReturnArticle.Error.ErrorDesc.Should().Be("n/a");
-            LReturnArticle.Article.Title.Should().Be("abc");
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+
+            var LDeserialized = JsonConvert.DeserializeObject<ReturnArticle>(LContent);
+            LDeserialized.Error.ErrorDesc.Should().Be("n/a");
+            LDeserialized.Article.Title.Should().Be("abc");
 
         }
 
         [Fact]
-        public async Task Should_AddNewItem() 
+        public async Task Should_AddNewArticle() 
         {
 
             // Arrange
@@ -78,19 +84,23 @@ namespace BackEnd.IntegrationTests
             // Act
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
-
             var LResponse = await FHttpClient.SendAsync(LNewRequest);
-            var LContent = await LResponse.Content.ReadAsStringAsync();
 
             // Assert
-            LResponse.StatusCode.Should().Be(200);
+            LResponse.EnsureSuccessStatusCode();
+
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+
             var LDeserialized = JsonConvert.DeserializeObject<ArticleAdded>(LContent);
             LDeserialized.NewUid.Should().NotBeNullOrEmpty();
+
+            Guid.TryParse(LDeserialized.NewUid, out _).Should().BeTrue();
 
         }
 
         [Fact]
-        public async Task Should_UpdateItem() 
+        public async Task Should_UpdateArticle() 
         {
 
             // Arrange
@@ -110,20 +120,22 @@ namespace BackEnd.IntegrationTests
             // Act
             var LNewRequest = new HttpRequestMessage(HttpMethod.Patch, LRequest);
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
-
             var LResponse = await FHttpClient.SendAsync(LNewRequest);
-            var LContent = await LResponse.Content.ReadAsStringAsync();
 
             // Assert
-            LResponse.StatusCode.Should().Be(200);
+            LResponse.EnsureSuccessStatusCode();
+
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+
             var LDeserialized = JsonConvert.DeserializeObject<ArticleUpdated>(LContent);
             LDeserialized.IsSucceeded.Should().BeTrue();
 
         }
 
         [Theory]
-        [InlineData("invalid")]
-        public async Task Should_FailToDeleteItem(string Id) 
+        [InlineData("invalid-id")]
+        public async Task Should_FailToDeleteArticle(string Id) 
         {
 
             // Arrange
@@ -133,11 +145,14 @@ namespace BackEnd.IntegrationTests
             var LResponse = await FHttpClient.DeleteAsync(LRequest);
 
             // Assert
-            var LStringResponse = await LResponse.Content.ReadAsStringAsync();
-            var LArticleDeleted = JsonConvert.DeserializeObject<ArticleDeleted>(LStringResponse);
+            LResponse.EnsureSuccessStatusCode();
 
-            LArticleDeleted.Error.ErrorDesc.Should().NotBe("n/a");
-            LArticleDeleted.IsSucceeded.Should().BeFalse();
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+
+            var LDeserialized = JsonConvert.DeserializeObject<ArticleDeleted>(LContent);
+            LDeserialized.Error.ErrorDesc.Should().NotBe("n/a");
+            LDeserialized.IsSucceeded.Should().BeFalse();
 
         }
 
