@@ -88,12 +88,23 @@ namespace BackEnd.IntegrationTests
             // Arrange
             var LRequest = "/api/v1/mailer/newsletter/";
 
-            var LPayLoad = new SendMessage
+            var LPayLoad = new SendNewsletter
             {
-                EmailFrom = "", // can be empty
-                EmailTos  = new List<string> { "tomasz.kandula@gmail.com" },
-                Subject   = "Integration Test / HttpClient / Endpoint",
-                Message   = $"<p>Test run Id: {Guid.NewGuid()}.</p><p>Put newsletter content here.</p>",
+                SubscribersData = new List<SubscriberData> 
+                { 
+                    new SubscriberData
+                    { 
+                        Id    = "352e356e-1865-412e-bade-a2016dfde55f",
+                        Email = "admin@tomkandula.com"
+                    },
+                    new SubscriberData
+                    {
+                        Id    = "7306a5d1-48cb-4dc4-9968-3dd8631b3b0b",
+                        Email = "tom@tomkandula.com"
+                    }
+                },
+                Subject = "Integration Test / HttpClient / Endpoint",
+                Message = $"<p>Test run Id: {Guid.NewGuid()}.</p><p>Put newsletter content here.</p>"
             };
 
             // Act
