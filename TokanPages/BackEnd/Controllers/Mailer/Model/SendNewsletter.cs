@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace TokanPages.BackEnd.Controllers.Mailer.Model
 {
 
-    public class NewMessage
+    public class SendNewsletter
     {
 
         [JsonPropertyName("firstName")]

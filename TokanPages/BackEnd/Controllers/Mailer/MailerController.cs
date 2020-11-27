@@ -79,7 +79,7 @@ namespace TokanPages.BackEnd.Controllers.Mailer
         [SwaggerResponse(statusCode: 200, type: typeof(MessagePosted), description: "Send new message from a user.")]
         // POST api/v1/mailer/message/
         [HttpPost("message")]
-        public async Task<IActionResult> SendMessage([FromBody] NewMessage PayLoad) 
+        public async Task<IActionResult> SendMessage([FromBody] SendMessage PayLoad) 
         {
 
             var LResponse = new MessagePosted { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
@@ -135,13 +135,13 @@ namespace TokanPages.BackEnd.Controllers.Mailer
         /// Send newsletter to subscribed users.
         /// </summary>
         /// <returns></returns>
-        [SwaggerResponse(statusCode: 200, type: typeof(MessagePosted), description: "Send newsletter to subscribed users.")]
+        [SwaggerResponse(statusCode: 200, type: typeof(NewsletterPosted), description: "Send newsletter to subscribed users.")]
         // POST api/v1/mailer/newsletter/
         [HttpPost("newsletter")]
-        public async Task<IActionResult> SendNewsletter([FromBody] NewMessage PayLoad)
+        public async Task<IActionResult> SendNewsletter([FromBody] SendNewsletter PayLoad)
         {
 
-            var LResponse = new MessagePosted { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
+            var LResponse = new NewsletterPosted { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {
