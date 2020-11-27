@@ -54,7 +54,7 @@ namespace BackEnd.IntegrationTests
             // Arrange
             var LRequest = "/api/v1/mailer/message/";
 
-            var LPayLoad = new NewMessage
+            var LPayLoad = new SendMessage
             {
                 FirstName = "Tomasz",
                 LastName  = "Kandula",
@@ -88,7 +88,7 @@ namespace BackEnd.IntegrationTests
             // Arrange
             var LRequest = "/api/v1/mailer/newsletter/";
 
-            var LPayLoad = new NewMessage
+            var LPayLoad = new SendMessage
             {
                 EmailFrom = "", // can be empty
                 EmailTos  = new List<string> { "tomasz.kandula@gmail.com" },
