@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using TokanPages.BackEnd.Logic;
 using TokanPages.BackEnd.AppLogger;
 using Swashbuckle.AspNetCore.Annotations;
@@ -21,13 +22,15 @@ namespace TokanPages.BackEnd.Controllers.Mailer
     public class MailerController : ControllerBase
     {
 
-        private readonly ILogicContext FLogicContext;
-        private readonly IAppLogger    FAppLogger;
+        private readonly IConfiguration FConfiguration;
+        private readonly ILogicContext  FLogicContext;
+        private readonly IAppLogger     FAppLogger;
 
-        public MailerController(ILogicContext ALogicContext, IAppLogger AAppLogger)
+        public MailerController(ILogicContext ALogicContext, IAppLogger AAppLogger, IConfiguration AConfiguration)
         {
-            FLogicContext = ALogicContext;
-            FAppLogger    = AAppLogger;
+            FLogicContext  = ALogicContext;
+            FAppLogger     = AAppLogger;
+            FConfiguration = AConfiguration;
         }
 
         /// <summary>
@@ -142,27 +145,33 @@ namespace TokanPages.BackEnd.Controllers.Mailer
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {
-
-                FLogicContext.Mailer.From    = Constants.Emails.Addresses.Contact;
-                FLogicContext.Mailer.Tos     = new List<string> { Constants.Emails.Addresses.Contact };
-                FLogicContext.Mailer.Bccs    = PayLoad.EmailTos;
-                FLogicContext.Mailer.Subject = PayLoad.Subject;
-
-                var NewValues = new List<ValueTag>
+                var UnsubscribeBaseLink = FConfiguration.GetSection("UnsubscribeBaseLink").Value;
+                foreach (var Subscriber in PayLoad.SubscribersData) 
                 {
-                    new ValueTag { Tag = "{CONTENT}", Value = PayLoad.Message }
-                };
 
-                FLogicContext.Mailer.Body = await FLogicContext.Mailer
-                    .MakeBody(Constants.Emails.Templates.Newsletter, NewValues);
+                    FLogicContext.Mailer.From = Constants.Emails.Addresses.Contact;
+                    FLogicContext.Mailer.Tos  = new List<string> { Subscriber.Email };
+                    FLogicContext.Mailer.Bccs = null;
+                    FLogicContext.Mailer.Subject = PayLoad.Subject;
 
-                var LResult = await FLogicContext.Mailer.Send();
-                if (!LResult.IsSucceeded)
-                {
-                    LResponse.Error.ErrorCode = LResult.ErrorCode;
-                    LResponse.Error.ErrorDesc = LResult.ErrorDesc;
-                    FAppLogger.LogError($"POST api/v1/mailer/newsletter/ | {LResponse.Error.ErrorDesc}.");
-                    return StatusCode(200, LResponse);
+                    var UnsubscribeLink = UnsubscribeBaseLink + Subscriber.Id;
+                    var NewValues = new List<ValueTag>
+                    {
+                        new ValueTag { Tag = "{CONTENT}", Value = PayLoad.Message },
+                        new ValueTag { Tag = "{UNSUBSCRIBE_LINK}", Value = UnsubscribeLink }
+                    };
+
+                    FLogicContext.Mailer.Body = await FLogicContext.Mailer
+                        .MakeBody(Constants.Emails.Templates.Newsletter, NewValues);
+
+                    var LResult = await FLogicContext.Mailer.Send();
+
+                    if (!LResult.IsSucceeded)
+                        FAppLogger.LogError($"POST api/v1/mailer/newsletter/ | " +
+                            $"Error Code: {LResult.ErrorCode}. Error Desc.: '{LResult.ErrorDesc}'. Subscriber Id: {Subscriber.Id}.");
+
+                    FAppLogger.LogInfo($"POST api/v1/mailer/newsletter/ | Newsletter sent to: {Subscriber.Email} (Id: {Subscriber.Id}).");
+
                 }
 
                 LResponse.IsSucceeded = true;

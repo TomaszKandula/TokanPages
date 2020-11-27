@@ -19,8 +19,8 @@ namespace TokanPages.BackEnd.Controllers.Mailer.Model
         [JsonPropertyName("emailFrom")]
         public string EmailFrom { get; set; }
 
-        [JsonPropertyName("emailTos")]
-        public List<string> EmailTos { get; set; }
+        [JsonPropertyName("subscribersData")]
+        public List<SubscriberData> SubscribersData { get; set; }
 
         [JsonPropertyName("subject")]
         public string Subject { get; set; }
