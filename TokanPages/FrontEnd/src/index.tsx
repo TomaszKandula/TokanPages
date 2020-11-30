@@ -6,7 +6,7 @@ import { createBrowserHistory } from "history";
 import { ThemeProvider } from "@material-ui/core";
 import theme from "./Theme/theme";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import configureStore from "./Redux/store";
+import configureStore from "./Redux/configureStore";
 import App from "./app";
 
 // Create browser history to use in the Redux store
