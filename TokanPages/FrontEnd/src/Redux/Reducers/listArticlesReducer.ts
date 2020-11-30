@@ -20,6 +20,8 @@ export const ListArticlesReducer: Reducer<IListArticlesState> = (state: IListArt
         case RECEIVE_ARTICLES:
             return { isLoading: false, articles: action.data };
 
+        default: return state;
+
     }
 
 }
