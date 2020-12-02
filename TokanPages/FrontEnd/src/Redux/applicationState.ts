@@ -1,3 +1,9 @@
+export interface ApplicationState 
+{
+    selectArticle: IArticle;
+    listArticles:  IArticles;
+}
+
 export interface IListArticles
 {
     listArticles: IArticles;
@@ -17,6 +23,11 @@ export interface IArticle
     status: string;
     likes:  number;
     readCount: number;
+}
+
+export interface AppThunkAction<TAction> 
+{
+    (dispatch: (action: TAction) => void, getState: () => ApplicationState): void;
 }
 
 export const initArticle = 
