@@ -3,9 +3,9 @@ import thunk from "redux-thunk";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import { History } from "history";
 import { combinedReducers } from "./Reducers/combinedReducers";
-import { initialState } from "./applicationState";
+import { ApplicationState } from "./applicationState";
 
-export default function configureStore(history: History) 
+export default function configureStore(history: History, initialState?: ApplicationState) 
 {
     
     const middleware = 

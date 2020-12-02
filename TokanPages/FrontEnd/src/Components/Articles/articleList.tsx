@@ -3,15 +3,22 @@ import Container from "@material-ui/core/Container";
 import { Box, Divider, Grid, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
-import ArticleCard from "./articleCard";
 import useStyles from "./Hooks/styleArticleList";
+import { useDispatch, useSelector } from "react-redux";
+import { IListArticles } from "Redux/applicationState";
+import { actionCreators } from "Redux/Actions/listArticlesActions";
 
 export default function ArticleList() 
 {
 
     const classes = useStyles();
-    // Temp. mock replace with API call for JSON data
-    const content =  JSON.parse('{"articles": [{"uid":"a8db7e28-2d47-463c-9c38-c17706056f72","title": "abc","desc":"mnbvcxz lkjhgfdsa poiuytrewq"},{"uid":"d2dc8a0d-1167-412b-86bd-1cf406f1ec71","title": "def","desc":"poiuytrewq lkjhgfdsa mnbvcxz"}]}');
+
+    const data = useSelector((state: IListArticles) => state.listArticles);
+    console.log(data);
+
+    const dispatch = useDispatch();
+    const fetchData = React.useCallback(() => { dispatch(actionCreators.requestArticles()); }, [dispatch]);
+    React.useEffect( () => { fetchData() }, [ fetchData ] );
 
     return (
         <section>
@@ -25,14 +32,8 @@ export default function ArticleList()
                     <Divider className={classes.divider} />
                     <Grid container justify="center">    				
                         <Grid item xs={12} sm={12}>
-                            {content.articles.map((item: { title: string; desc: string; uid: string; }) => ( 
-                                <ArticleCard 
-                                    title={item.title} 
-                                    desc={item.desc} 
-                                    uid={item.uid} 
-                                    key={item.uid} 
-                                /> 
-                            ))}
+
+
                         </Grid>
                     </Grid>
                 </Box>

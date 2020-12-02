@@ -1,20 +1,21 @@
-import { IArticles } from "Redux/applicationState";
-import { LIST_ARTICLES } from "../Actions/actionTypes";
-import { initialState } from "../applicationState";
+import { Action, Reducer } from 'redux';
+import { TKnownActions, RECEIVE_ARTICLES, REQUEST_ARTICLES } from 'Redux/Actions/listArticlesActions';
+import { IArticles, initArticles } from 'Redux/applicationState';
 
-const ListArticlesReducer = ( state = {}, { type, payload }: { type: string, payload: IArticles } ) => 
+const ListArticlesReducer: Reducer<IArticles> = (state: IArticles | undefined, incomingAction: Action): IArticles => 
 {
 
-    if (state === undefined) 
-        return initialState.listArticles;
+    if (state === undefined) return initArticles;
 
-    switch(type)
+    const action = incomingAction as TKnownActions;
+    switch(action.type)
     {
 
-        case LIST_ARTICLES: return { 
-            articles: payload.articles, 
-            isLoading: payload.isLoading 
-        }
+        case REQUEST_ARTICLES:
+            return { isLoading: true, articles: state.articles };
+
+        case RECEIVE_ARTICLES:
+            return { isLoading: false, articles: action.payload };
 
         default: return state;
 
