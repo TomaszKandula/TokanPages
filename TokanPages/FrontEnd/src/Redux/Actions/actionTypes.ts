@@ -1,0 +1,2 @@
+export const LIST_ARTICLES  = "LIST_ARTICLES";
+export const SELECT_ARTICLE = "SELECT_ARTICLE";

@@ -1,27 +1,57 @@
-import { ISelectArticleState } from "./State/selectArticleState";
-import { IListArticlesState } from "./State/listArticlesState";
-import { SelectArticleReducer} from "./Reducers/selectArticleReducer";
-import { ListArticlesReducer } from "./Reducers/listArticlesReducer";
-
-// The top-level state object
-export interface IApplicationState 
+export interface IListArticles
 {
-    selectArticle: ISelectArticleState | undefined;
-    listArticles: IListArticlesState | undefined;
+    listArticles: IArticles;
 }
 
-// Whenever an action is dispatched, Redux will update each top-level application state property using
-// the reducer with the matching name. It is important that the names match exactly, and that the reducer
-// acts on the corresponding IApplicationState property type.
-export const reducers = 
+export interface IArticles
 {
-    selectArticle: SelectArticleReducer,
-    listArticles: ListArticlesReducer
+    isLoading: boolean;
+    articles:  IArticle[];
+}
+
+export interface IArticle
+{
+    id:     string;
+    title:  string;
+    desc:   string;
+    status: string;
+    likes:  number;
+    readCount: number;
+}
+
+export const initArticle = 
+{
+    id:     "",
+    title:  "",
+    desc:   "",
+    status: "",
+    likes:  0,
+    readCount: 0
 };
 
-// This type can be used as a hint on action creators so that its 'dispatch' and 'getState' params are
-// correctly typed to match Redux store.
-export interface AppThunkAction<TAction> 
+export const initArticles = 
 {
-    (dispatch: (action: TAction) => void, getState: () => IApplicationState): void;
-}
+    articles:  [],
+    isLoading: false
+};
+
+export const initialState = 
+{
+
+    selectArticle:
+    {
+        id:     initArticle.id,
+        title:  initArticle.title,
+        desc:   initArticle.desc,
+        status: initArticle.status,
+        likes:  initArticle.likes,
+        readCount: initArticle.readCount
+    },
+
+    listArticles:
+    {
+        articles:  initArticles.articles,
+        isLoading: initArticles.isLoading
+    }
+
+};

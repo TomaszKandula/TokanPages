@@ -1,38 +1,29 @@
-import { Action, Reducer } from 'redux';
-import { TKnownActions, SELECT_ARTICLE, RESET_SELECTION } from "../Actions/selectArticleActions";
-import { ISelectArticleState } from "../State/selectArticleState";
+import { IArticle } from "Redux/applicationState";
+import { SELECT_ARTICLE } from "../Actions/actionTypes";
+import { initialState } from "../applicationState";
 
-export const SelectArticleReducer: Reducer<ISelectArticleState> = (state: ISelectArticleState | undefined, incomingAction: Action): ISelectArticleState => 
+const SelectArticlesReducer = ( state: {} | undefined, { type, payload }: { type: string, payload: IArticle } ) => 
 {
 
-    const defaultValues = 
-    {
-        id: "",
-        title: "",
-        desc: "",
-        status: "",
-        likes: 0,
-        readCount: 0
-    };
+    if (state === undefined) 
+        return initialState.selectArticle;
 
-    if (state === undefined) return defaultValues;
-
-    const updatedStore = 
+    switch(type)
     {
-        id: state.id,
-        title: state.title,
-        desc: state.desc,
-        status: state.status,
-        likes: state.likes,
-        readCount: state.readCount
-    } 
 
-    const action = incomingAction as TKnownActions;
-    switch (action.type) 
-    {
-        case SELECT_ARTICLE: return updatedStore;
-        case RESET_SELECTION: return defaultValues;
+        case SELECT_ARTICLE: return { 
+                id: payload.id,
+                title: payload.title,
+                desc: payload.desc,
+                status: payload.status,
+                likes: payload.likes,
+                readCount: payload.readCount
+            }
+
         default: return state;
+
     }
 
-};
+}
+
+export default SelectArticlesReducer;

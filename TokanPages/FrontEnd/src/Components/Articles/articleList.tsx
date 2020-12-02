@@ -26,7 +26,12 @@ export default function ArticleList()
                     <Grid container justify="center">    				
                         <Grid item xs={12} sm={12}>
                             {content.articles.map((item: { title: string; desc: string; uid: string; }) => ( 
-                                <ArticleCard title={item.title} desc={item.desc} uid={item.uid} key={item.uid} /> 
+                                <ArticleCard 
+                                    title={item.title} 
+                                    desc={item.desc} 
+                                    uid={item.uid} 
+                                    key={item.uid} 
+                                /> 
                             ))}
                         </Grid>
                     </Grid>
