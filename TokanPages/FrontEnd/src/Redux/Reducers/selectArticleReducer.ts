@@ -7,21 +7,18 @@ const SelectArticleReducer: Reducer<IArticle> = (state: IArticle | undefined, in
 
     if (state === undefined) return initArticle;
 
-    const updatedStore = 
-    {
-        id:      state.id,
-        title:   state.title,
-        desc:    state.desc,
-        status:  state.status,
-        likes:   state.likes,
-        readCount: state.readCount
-    } 
-
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
-        case SELECT_ARTICLE: return updatedStore;
         case RESET_SELECTION: return initArticle;
+        case SELECT_ARTICLE: return {  
+            id:        action.payload.id,
+            title:     action.payload.title,
+            desc:      action.payload.desc,
+            status:    action.payload.status,
+            likes:     action.payload.likes,
+            readCount: action.payload.readCount
+        };
         default: return state;
     }
 

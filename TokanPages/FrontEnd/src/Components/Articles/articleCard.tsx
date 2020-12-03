@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -7,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import useStyles from "./Hooks/styleArticleCard";
+import { ActionCreators } from "Redux/Actions/selectArticleActions";
 
 interface IArticle
 {
@@ -25,8 +27,18 @@ export default function ArticleCard(props: IArticle)
         articleUrl: "/articles/?id={UID}",
         imageUrl: "https://maindbstorage.blob.core.windows.net/tokanpages/content/articles/{UID}/image.jpg"
     };
+
     const articleUrl = content.articleUrl.replace("{UID}", props.uid);
     const imageUrl = content.imageUrl.replace("{UID}", props.uid);
+
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const onClickEvent = () => 
+    {
+        dispatch(ActionCreators.selectArticle(props.uid));
+        history.push(articleUrl);        
+    }
 
     return(
         <div data-aos="fade-up">
@@ -45,9 +57,7 @@ export default function ArticleCard(props: IArticle)
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Link to={articleUrl} className={classes.link}>
-                                <Button size="small" color="primary">{content.button}</Button>
-                            </Link>
+                            <Button onClick={onClickEvent} size="small" color="primary">{content.button}</Button>
                         </CardActions>
                     </Grid>
                 </Grid>

@@ -10,7 +10,7 @@ export interface IReceiveArticlesAction { type: typeof RECEIVE_ARTICLES; payload
 
 export type TKnownActions = IRequestArticlesAction | IReceiveArticlesAction;
 
-export const actionCreators = 
+export const ActionCreators = 
 {
 
     requestArticles: (): AppThunkAction<TKnownActions> => (dispatch) =>
