@@ -21,6 +21,7 @@ export default function ArticleCard(props: IArticle)
     const classes = useStyles();
     const content = 
     {
+        button: "Read",
         articleUrl: "/articles/?id={UID}",
         imageUrl: "https://maindbstorage.blob.core.windows.net/tokanpages/content/articles/{UID}/image.jpg"
     };
@@ -45,7 +46,7 @@ export default function ArticleCard(props: IArticle)
                         </CardContent>
                         <CardActions>
                             <Link to={articleUrl} className={classes.link}>
-                                <Button size="small" color="primary">Read</Button>
+                                <Button size="small" color="primary">{content.button}</Button>
                             </Link>
                         </CardActions>
                     </Grid>
