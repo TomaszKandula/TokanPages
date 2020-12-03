@@ -1,9 +1,9 @@
-const API_VER = 1;
+const API_VER = process.env.REACT_APP_API_VER;
 
 /* BASE URL */
 
-export const APP_FRONTEND = `http://localhost:3000`;
-export const APP_BACKEND  = `http://localhost:5000`;
+export const APP_FRONTEND = process.env.REACT_APP_FRONTEND;
+export const APP_BACKEND  = process.env.REACT_APP_BACKEND;
 
 /* API | ARTICLES */
 
