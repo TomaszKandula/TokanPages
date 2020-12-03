@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
 import useStyles from "./Hooks/styleArticleList";
 import { IArticle, IArticles, IListArticles } from "Redux/applicationState";
-import { actionCreators } from "Redux/Actions/listArticlesActions";
+import { ActionCreators } from "Redux/Actions/listArticlesActions";
 import ArticleCard from "./articleCard";
 
 export default function ArticleList() 
@@ -17,7 +17,7 @@ export default function ArticleList()
     const data = useSelector((state: IListArticles) => state.listArticles);
 
     const dispatch = useDispatch();
-    const fetchData = React.useCallback(() => { dispatch(actionCreators.requestArticles()); }, [dispatch]);
+    const fetchData = React.useCallback(() => { dispatch(ActionCreators.requestArticles()); }, [dispatch]);
     React.useEffect( () => { fetchData() }, [ fetchData ] );
 
     const renderContent = (data: IArticles) =>
