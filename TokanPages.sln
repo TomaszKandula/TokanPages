@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokanPages", "TokanPages\TokanPages.csproj", "{2C048600-41A0-40FC-B19C-80FF36236EA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackEnd.IntegrationTests", "BackEnd.IntegrationTests\BackEnd.IntegrationTests.csproj", "{A540F3D4-CD29-4A25-9A8A-A570FD090AB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackEnd.IntegrationTests", "BackEnd.IntegrationTests\BackEnd.IntegrationTests.csproj", "{A540F3D4-CD29-4A25-9A8A-A570FD090AB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackEnd.UnitTests", "BackEnd.UnitTests\BackEnd.UnitTests.csproj", "{BE227A61-219E-4608-B85F-ED16E32DFA17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackEnd.UnitTests", "BackEnd.UnitTests\BackEnd.UnitTests.csproj", "{BE227A61-219E-4608-B85F-ED16E32DFA17}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{11C2040B-AAE5-43B1-9996-54271698E70B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A540F3D4-CD29-4A25-9A8A-A570FD090AB8} = {11C2040B-AAE5-43B1-9996-54271698E70B}
+		{BE227A61-219E-4608-B85F-ED16E32DFA17} = {11C2040B-AAE5-43B1-9996-54271698E70B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4A63A58-F64E-4EB2-92DD-70486490D8CE}
