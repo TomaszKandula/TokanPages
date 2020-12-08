@@ -49,7 +49,7 @@ namespace TokanPages.BackEnd.Logic.Articles
 
         }
 
-        public async Task<ArticleItem> GetSingleArticle(string Id)
+        public async Task<ArticleItem> GetSingleArticle(Guid Id)
         {
 
             var LItem = await FCosmosDbService.GetItem<ArticlesModel>(Id);
@@ -67,10 +67,10 @@ namespace TokanPages.BackEnd.Logic.Articles
 
         }
 
-        public async Task<string> AddNewArticle(ArticleRequest PayLoad)
+        public async Task<Guid> AddNewArticle(ArticleRequest PayLoad)
         {
 
-            var NewId = Guid.NewGuid().ToString();
+            var NewId = Guid.NewGuid();
             var InsertNew = new ArticlesModel
             {
                 Id        = NewId,
@@ -87,7 +87,7 @@ namespace TokanPages.BackEnd.Logic.Articles
             }
             else 
             {
-                return string.Empty;
+                return Guid.Empty;
             }
 
         }
@@ -112,7 +112,7 @@ namespace TokanPages.BackEnd.Logic.Articles
 
         }
 
-        public async Task<HttpStatusCode> DeleteArticle(string Id) 
+        public async Task<HttpStatusCode> DeleteArticle(Guid Id) 
         {
             var LResult = await FCosmosDbService.IsItemExists<ArticlesModel>(Id);
             if (LResult != HttpStatusCode.OK) return LResult;

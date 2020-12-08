@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -58,13 +59,13 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public override async Task<HttpStatusCode> CreateContainer(string ADatabaseName, string AContainerName, string AId) 
+        public override async Task<HttpStatusCode> CreateContainer(string ADatabaseName, string AContainerName, Guid AId) 
         {
 
             try
             {
                 var LDatabase = FCosmosClient.GetDatabase(ADatabaseName);
-                var LContainerResponse = await LDatabase.CreateContainerIfNotExistsAsync(AId, AContainerName);
+                var LContainerResponse = await LDatabase.CreateContainerIfNotExistsAsync(AId.ToString(), AContainerName);
                 return LContainerResponse.StatusCode;
             }
             catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.Created)
@@ -74,7 +75,7 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public override async Task<HttpStatusCode> IsItemExists<T>(string Id) where T : class
+        public override async Task<HttpStatusCode> IsItemExists<T>(Guid Id) where T : class
         {
 
             var LModelName = typeof(T).Name;
@@ -90,12 +91,12 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public override async Task<T> GetItem<T>(string AId) where T : class
+        public override async Task<T> GetItem<T>(Guid AId) where T : class
         {
 
             try
             {
-                var LResponse = await FContainer.ReadItemAsync<T>(AId, new PartitionKey(AId));
+                var LResponse = await FContainer.ReadItemAsync<T>(AId.ToString(), new PartitionKey(AId.ToString()));
                 return LResponse.Resource;
             }
             catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.OK)
@@ -130,12 +131,12 @@ namespace TokanPages.BackEnd.Database
             
         }
 
-        public override async Task<HttpStatusCode> AddItem<T>(string AId, T AItem)
+        public override async Task<HttpStatusCode> AddItem<T>(Guid AId, T AItem)
         {
 
             try 
             {
-                var Response = await FContainer.CreateItemAsync<T>(AItem, new PartitionKey(AId));
+                var Response = await FContainer.CreateItemAsync<T>(AItem, new PartitionKey(AId.ToString()));
                 return Response.StatusCode;
             }
             catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.Created)
@@ -145,12 +146,12 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public override async Task<HttpStatusCode> UpdateItem<T>(string AId, T AItem)
+        public override async Task<HttpStatusCode> UpdateItem<T>(Guid AId, T AItem)
         {
 
             try
             {
-                var Response = await FContainer.UpsertItemAsync<T>(AItem, new PartitionKey(AId));
+                var Response = await FContainer.UpsertItemAsync<T>(AItem, new PartitionKey(AId.ToString()));
                 return Response.StatusCode;
             }
             catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.OK)
@@ -160,12 +161,12 @@ namespace TokanPages.BackEnd.Database
 
         }
 
-        public override async Task<HttpStatusCode> DeleteItem<T>(string AId)
+        public override async Task<HttpStatusCode> DeleteItem<T>(Guid AId)
         {
 
             try
             {
-                var Response = await FContainer.DeleteItemAsync<T>(AId, new PartitionKey(AId));
+                var Response = await FContainer.DeleteItemAsync<T>(AId.ToString(), new PartitionKey(AId.ToString()));
                 return Response.StatusCode;
             }
             catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.NoContent)

@@ -79,7 +79,7 @@ namespace TokanPages.BackEnd.Controllers.Subscribers
         [SwaggerResponse(statusCode: 200, type: typeof(ReturnSubscriber), description: "Returns an item from Subscribers collection.")]
         // GET api/v1/subscribers/{id}/
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetItemAsync([FromRoute] string Id)
+        public async Task<IActionResult> GetItemAsync([FromRoute] Guid Id)
         {
 
             var LResponse = new ReturnSubscriber { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
@@ -219,7 +219,7 @@ namespace TokanPages.BackEnd.Controllers.Subscribers
         [SwaggerResponse(statusCode: 200, type: typeof(SubscriberDeleted), description: "Delete existing subscriber from Subscribers collection.")]
         // DELETE api/v1/subscribers/{id}/
         [HttpDelete("{id}")]
-        public async Task<IActionResult> RemoveItemAsync([FromRoute] string Id)
+        public async Task<IActionResult> RemoveItemAsync([FromRoute] Guid Id)
         {
 
             var LResponse = new SubscriberDeleted { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };

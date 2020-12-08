@@ -51,7 +51,7 @@ namespace TokanPages.BackEnd.Logic.Subscribers
 
         }
 
-        public async Task<SubscriberItem> GetSingleSubscriber(string Id)
+        public async Task<SubscriberItem> GetSingleSubscriber(Guid Id)
         {
 
             var LItem = await FCosmosDbService.GetItem<SubscribersModel>(Id);
@@ -78,13 +78,13 @@ namespace TokanPages.BackEnd.Logic.Subscribers
             var LItems = await FCosmosDbService.GetItems<SubscribersModel>(LQuery);
             if (LItems.Any())
             {
-                var LResponse = new NewSubscriber() { NewId = string.Empty };
+                var LResponse = new NewSubscriber() { NewId = Guid.Empty };
                 LResponse.Error.ErrorCode = Constants.Errors.EmailAlreadyRegistered.ErrorCode;
                 LResponse.Error.ErrorDesc = Constants.Errors.EmailAlreadyRegistered.ErrorDesc;
                 return LResponse;
             }
 
-            var NewId = Guid.NewGuid().ToString();
+            var NewId = Guid.NewGuid();
             var InsertNew = new SubscribersModel
             {
                 Id          = NewId,
@@ -107,7 +107,7 @@ namespace TokanPages.BackEnd.Logic.Subscribers
             {
                 return new NewSubscriber
                 {
-                    NewId = string.Empty,
+                    NewId = Guid.Empty,
                     Error = new Shared.Models.ErrorHandler 
                     { 
                         ErrorCode = Constants.Errors.UnableToPost.ErrorCode,
@@ -137,7 +137,7 @@ namespace TokanPages.BackEnd.Logic.Subscribers
         
         }
 
-        public async Task<HttpStatusCode> DeleteSubscriber(string Id)
+        public async Task<HttpStatusCode> DeleteSubscriber(Guid Id)
         {
             var LResult = await FCosmosDbService.IsItemExists<SubscribersModel>(Id);
             if (LResult != HttpStatusCode.OK) return LResult;

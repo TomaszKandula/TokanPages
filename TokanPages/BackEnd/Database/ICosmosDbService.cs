@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
@@ -9,13 +10,13 @@ namespace TokanPages.BackEnd.Database
     {
         void InitContainer<T>();
         Task<HttpStatusCode> CreateDatabase(string ADatabaseName);
-        Task<HttpStatusCode> CreateContainer(string ADatabaseName, string AContainerName, string AId);
-        Task<HttpStatusCode> IsItemExists<T>(string Id) where T : class;
-        Task<T> GetItem<T>(string AId) where T : class;
+        Task<HttpStatusCode> CreateContainer(string ADatabaseName, string AContainerName, Guid AId);
+        Task<HttpStatusCode> IsItemExists<T>(Guid Id) where T : class;
+        Task<T> GetItem<T>(Guid AId) where T : class;
         Task<IEnumerable<T>> GetItems<T>(string AQueryString) where T : class;
-        Task<HttpStatusCode> AddItem<T>(string AId, T AItem);
-        Task<HttpStatusCode> UpdateItem<T>(string AId, T AItem);
-        Task<HttpStatusCode> DeleteItem<T>(string AId);
+        Task<HttpStatusCode> AddItem<T>(Guid AId, T AItem);
+        Task<HttpStatusCode> UpdateItem<T>(Guid AId, T AItem);
+        Task<HttpStatusCode> DeleteItem<T>(Guid AId);
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Text.Json.Serialization;
 using TokanPages.BackEnd.Shared.Models;
 
 namespace TokanPages.BackEnd.Controllers.Subscribers.Model.Responses
@@ -11,7 +12,7 @@ namespace TokanPages.BackEnd.Controllers.Subscribers.Model.Responses
         public bool IsSucceeded { get; set; }
 
         [JsonPropertyName("newUid")]
-        public string NewUid { get; set; }
+        public Guid NewUid { get; set; }
 
         [JsonPropertyName("error")]
         public ErrorHandler Error { get; set; }

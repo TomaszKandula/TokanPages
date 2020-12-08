@@ -79,7 +79,7 @@ namespace TokanPages.BackEnd.Controllers.Articles
         [SwaggerResponse(statusCode: 200, type: typeof(ReturnArticle), description: "Returns an item from Articles collection.")]
         // GET api/v1/articles/{id}/
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetItemAsync([FromRoute] string Id)
+        public async Task<IActionResult> GetItemAsync([FromRoute] Guid Id)
         {
 
             var LResponse = new ReturnArticle { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
@@ -140,7 +140,7 @@ namespace TokanPages.BackEnd.Controllers.Articles
                 FAppLogger.LogInfo("POST api/v1/articles/ | Calling CosmosDB to insert new article...");
                 var LNewId = await FLogicContext.Articles.AddNewArticle(PayLoad);
 
-                if (LNewId == string.Empty) 
+                if (LNewId == Guid.Empty) 
                 {
                     LResponse.Error.ErrorCode = Constants.Errors.UnableToPost.ErrorCode;
                     LResponse.Error.ErrorDesc = Constants.Errors.UnableToPost.ErrorDesc;
@@ -226,7 +226,7 @@ namespace TokanPages.BackEnd.Controllers.Articles
         [SwaggerResponse(statusCode: 200, type: typeof(ArticleDeleted), description: "Delete existing article from Articles collection.")]
         // DELETE api/v1/articles/{id}/
         [HttpDelete("{id}")]
-        public async Task<IActionResult> RemoveItemAsync([FromRoute] string Id)
+        public async Task<IActionResult> RemoveItemAsync([FromRoute] Guid Id)
         {
 
             var LResponse = new ArticleDeleted { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };

@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Text.Json.Serialization;
 
 namespace TokanPages.BackEnd.Controllers.Subscribers.Model
 {
@@ -7,7 +8,7 @@ namespace TokanPages.BackEnd.Controllers.Subscribers.Model
     {
 
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonPropertyName("email")]
         public string Email { get; set; }
