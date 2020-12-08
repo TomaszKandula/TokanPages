@@ -3,7 +3,6 @@ using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using TokanPages.BackEnd.Logic;
 using TokanPages.BackEnd.AppLogger;
 using Swashbuckle.AspNetCore.Annotations;
@@ -21,8 +20,8 @@ namespace TokanPages.BackEnd.Controllers.Subscribers
     public class SubscribersController : BaseController
     {
 
-        public SubscribersController(IConfiguration AConfiguration, ILogicContext ALogicContext, IAppLogger AAppLogger)
-            : base(AConfiguration, ALogicContext, AAppLogger)
+        public SubscribersController(ILogicContext ALogicContext, IAppLogger AAppLogger)
+            : base(ALogicContext, AAppLogger)
         {
         }
 

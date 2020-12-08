@@ -22,9 +22,12 @@ namespace TokanPages.BackEnd.Controllers.Mailer
     public class MailerController : BaseController
     {
 
-        public MailerController(IConfiguration AConfiguration, ILogicContext ALogicContext, IAppLogger AAppLogger)
-            : base(AConfiguration, ALogicContext, AAppLogger)
+        private readonly IConfiguration FConfiguration;
+
+        public MailerController(ILogicContext ALogicContext, IAppLogger AAppLogger, IConfiguration AConfiguration)
+            : base(ALogicContext, AAppLogger)
         {
+            FConfiguration = AConfiguration;
         }
 
         /// <summary>

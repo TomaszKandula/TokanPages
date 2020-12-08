@@ -3,7 +3,6 @@ using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Swashbuckle.AspNetCore.Annotations;
 using TokanPages.BackEnd.Logic;
 using TokanPages.BackEnd.Shared;
@@ -21,8 +20,8 @@ namespace TokanPages.BackEnd.Controllers.Articles
     public class ArticlesController : BaseController
     {
 
-        public ArticlesController(IConfiguration AConfiguration, ILogicContext ALogicContext, IAppLogger AAppLogger) 
-            : base(AConfiguration, ALogicContext, AAppLogger)
+        public ArticlesController(ILogicContext ALogicContext, IAppLogger AAppLogger) 
+            : base(ALogicContext, AAppLogger)
         {
         }
 
