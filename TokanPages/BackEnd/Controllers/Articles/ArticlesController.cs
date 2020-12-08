@@ -3,6 +3,7 @@ using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Swashbuckle.AspNetCore.Annotations;
 using TokanPages.BackEnd.Logic;
 using TokanPages.BackEnd.Shared;
@@ -17,16 +18,12 @@ namespace TokanPages.BackEnd.Controllers.Articles
     [Route("api/v1/[controller]")]
     [ApiController]
     [ResponseCache(CacheProfileName = "Standard")]
-    public class ArticlesController : ControllerBase 
+    public class ArticlesController : BaseController
     {
 
-        private readonly ILogicContext FLogicContext;
-        private readonly IAppLogger    FAppLogger;
-
-        public ArticlesController(ILogicContext ALogicContext, IAppLogger AAppLogger) 
+        public ArticlesController(IConfiguration AConfiguration, ILogicContext ALogicContext, IAppLogger AAppLogger) 
+            : base(AConfiguration, ALogicContext, AAppLogger)
         {
-            FLogicContext = ALogicContext;
-            FAppLogger    = AAppLogger;
         }
 
         /// <summary>

@@ -3,6 +3,7 @@ using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using TokanPages.BackEnd.Logic;
 using TokanPages.BackEnd.AppLogger;
 using Swashbuckle.AspNetCore.Annotations;
@@ -17,16 +18,12 @@ namespace TokanPages.BackEnd.Controllers.Subscribers
     [Route("api/v1/[controller]")]
     [ApiController]
     [ResponseCache(CacheProfileName = "Standard")]
-    public class SubscribersController : ControllerBase
+    public class SubscribersController : BaseController
     {
 
-        private readonly ILogicContext FLogicContext;
-        private readonly IAppLogger    FAppLogger;
-
-        public SubscribersController(ILogicContext ALogicContext, IAppLogger AAppLogger)
+        public SubscribersController(IConfiguration AConfiguration, ILogicContext ALogicContext, IAppLogger AAppLogger)
+            : base(AConfiguration, ALogicContext, AAppLogger)
         {
-            FLogicContext = ALogicContext;
-            FAppLogger    = AAppLogger;
         }
 
         /// <summary>

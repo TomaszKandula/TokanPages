@@ -19,18 +19,12 @@ namespace TokanPages.BackEnd.Controllers.Mailer
     [Route("api/v1/[controller]")]
     [ApiController]
     [ResponseCache(CacheProfileName = "Standard")]
-    public class MailerController : ControllerBase
+    public class MailerController : BaseController
     {
 
-        private readonly IConfiguration FConfiguration;
-        private readonly ILogicContext  FLogicContext;
-        private readonly IAppLogger     FAppLogger;
-
-        public MailerController(ILogicContext ALogicContext, IAppLogger AAppLogger, IConfiguration AConfiguration)
+        public MailerController(IConfiguration AConfiguration, ILogicContext ALogicContext, IAppLogger AAppLogger)
+            : base(AConfiguration, ALogicContext, AAppLogger)
         {
-            FLogicContext  = ALogicContext;
-            FAppLogger     = AAppLogger;
-            FConfiguration = AConfiguration;
         }
 
         /// <summary>
