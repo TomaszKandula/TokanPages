@@ -45,8 +45,8 @@ namespace BackEnd.IntegrationTests
         }
 
         [Theory]
-        [InlineData("352e356e-1865-412e-bade-a2016dfde55f")]
-        public async Task Should_GetSingleSubscriber(Guid Id)
+        [InlineData("3a7e40be-bbe2-4d1e-821e-8099fe070433")]
+        public async Task Should_GetSingleSubscriber(string Id)
         {
 
             // Arrange
@@ -132,8 +132,8 @@ namespace BackEnd.IntegrationTests
         }
 
         [Theory]
-        [InlineData("352e356e-1865-412e-bade-a2016dfde55f")]
-        public async Task Should_FailToDeleteSubscriber(Guid Id) 
+        [InlineData("352e356e-1865-412e-bade-a2016dfde55a")]
+        public async Task Should_FailToDeleteSubscriber(string Id) 
         {
 
             // Arrange

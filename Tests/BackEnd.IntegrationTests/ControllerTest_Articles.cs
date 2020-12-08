@@ -45,7 +45,7 @@ namespace BackEnd.IntegrationTests
 
         [Theory]
         [InlineData("a8db7e28-2d47-463c-9c38-c17706056f72")]
-        public async Task Should_GetSingleArticle(Guid Id) 
+        public async Task Should_GetSingleArticle(string Id) 
         {
 
             // Arrange
@@ -134,7 +134,7 @@ namespace BackEnd.IntegrationTests
 
         [Theory]
         [InlineData("ce4d995c-0fba-436b-93fe-ba81c5ba074a")]
-        public async Task Should_FailToDeleteArticle(Guid Id) 
+        public async Task Should_FailToDeleteArticle(string Id) 
         {
 
             // Arrange
