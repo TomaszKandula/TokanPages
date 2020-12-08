@@ -41,13 +41,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="FrontEnd\src\components\layout.tsx" />
-    <None Remove="FrontEnd\src\redux\store.ts" />
+    <None Remove="ClientApp\src\components\layout.tsx" />
+    <None Remove="ClientApp\src\redux\store.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="FrontEnd\src\components\layout.tsx" />
-    <TypeScriptCompile Include="FrontEnd\src\redux\store.ts" />
+    <None Include="ClientApp\.eslintrc.json" />
+    <None Include="ClientApp\package.json" />
+    <None Include="ClientApp\public\manifest.json" />
+    <None Include="ClientApp\tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\components\layout.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\redux\store.ts" />
   </ItemGroup>
 
   <ItemGroup>

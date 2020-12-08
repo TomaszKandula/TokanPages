@@ -45,7 +45,7 @@ namespace TokanPages
 
             AServices.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "FrontEnd/build";
+                configuration.RootPath = "ClientApp/build";
             });
 
             AServices.AddMvc(AOption => AOption.EnableEndpointRouting = false)
@@ -115,7 +115,7 @@ namespace TokanPages
             AApplication.UseSpa(ASpa =>
             {
                 
-                ASpa.Options.SourcePath = "FrontEnd";
+                ASpa.Options.SourcePath = "ClientApp";
 
                 if (AEnvironment.IsDevelopment())
                 {
