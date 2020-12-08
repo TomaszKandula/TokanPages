@@ -45,7 +45,7 @@ namespace BackEnd.IntegrationTests
 
         [Theory]
         [InlineData("a8db7e28-2d47-463c-9c38-c17706056f72")]
-        public async Task Should_GetSingleArticle(string Id) 
+        public async Task Should_GetSingleArticle(Guid Id) 
         {
 
             // Arrange
@@ -93,9 +93,8 @@ namespace BackEnd.IntegrationTests
             LContent.Should().NotBeNullOrEmpty();
 
             var LDeserialized = JsonConvert.DeserializeObject<ArticleAdded>(LContent);
-            LDeserialized.NewUid.Should().NotBeNullOrEmpty();
-
-            Guid.TryParse(LDeserialized.NewUid, out _).Should().BeTrue();
+            Guid.TryParse(LDeserialized.NewUid.ToString(), out _).Should().BeTrue();
+            LDeserialized.IsSucceeded.Should().BeTrue();
 
         }
 
@@ -109,7 +108,7 @@ namespace BackEnd.IntegrationTests
             var LNewGuid = Guid.NewGuid();
             var LPayLoad = new ArticleRequest
             {
-                Id     = "ce4d995c-0fba-436b-93fe-ba81c5ba0745",
+                Id     = Guid.Parse("ce4d995c-0fba-436b-93fe-ba81c5ba0745"),
                 Title  = "Integration test",
                 Desc   = $"Test run: {LNewGuid}",
                 Status = "draft",
@@ -134,8 +133,8 @@ namespace BackEnd.IntegrationTests
         }
 
         [Theory]
-        [InlineData("invalid-id")]
-        public async Task Should_FailToDeleteArticle(string Id) 
+        [InlineData("ce4d995c-0fba-436b-93fe-ba81c5ba074a")]
+        public async Task Should_FailToDeleteArticle(Guid Id) 
         {
 
             // Arrange

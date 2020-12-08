@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TokanPages\TokanPages.csproj" />
+    <ProjectReference Include="..\..\TokanPages\TokanPages.csproj" />
   </ItemGroup>
 
 </Project>

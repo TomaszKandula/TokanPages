@@ -46,7 +46,7 @@ namespace BackEnd.IntegrationTests
 
         [Theory]
         [InlineData("352e356e-1865-412e-bade-a2016dfde55f")]
-        public async Task Should_GetSingleSubscriber(string Id)
+        public async Task Should_GetSingleSubscriber(Guid Id)
         {
 
             // Arrange
@@ -77,7 +77,7 @@ namespace BackEnd.IntegrationTests
             var LNewGuid = (Guid.NewGuid()).ToString();
             var LPayLoad = new SubscriberRequest
             {
-                Id     = null,
+                Id     = Guid.Empty,
                 Email  = $"{LNewGuid[0..8]}@gmail.com",
                 Status = "inactive",
                 Count  = 0
@@ -95,9 +95,8 @@ namespace BackEnd.IntegrationTests
             LContent.Should().NotBeNullOrEmpty();
             
             var LDeserialized = JsonConvert.DeserializeObject<SubscriberAdded>(LContent);
-            LDeserialized.NewUid.Should().NotBeNullOrEmpty();
-
-            Guid.TryParse(LDeserialized.NewUid, out _).Should().BeTrue();
+            Guid.TryParse(LDeserialized.NewUid.ToString(), out _).Should().BeTrue();
+            LDeserialized.IsSucceeded.Should().BeTrue();
 
         }
 
@@ -110,7 +109,7 @@ namespace BackEnd.IntegrationTests
 
             var LPayLoad = new SubscriberRequest
             {
-                Id     = "7306a5d1-48cb-4dc4-9968-3dd8631b3b0b",
+                Id     = Guid.Parse("7306a5d1-48cb-4dc4-9968-3dd8631b3b0b"),
                 Email  = "tokan@gmail.com",
                 Status = "active",
                 Count  = 100
@@ -133,8 +132,8 @@ namespace BackEnd.IntegrationTests
         }
 
         [Theory]
-        [InlineData("invalid-id")]
-        public async Task Should_FailToDeleteSubscriber(string Id) 
+        [InlineData("352e356e-1865-412e-bade-a2016dfde55f")]
+        public async Task Should_FailToDeleteSubscriber(Guid Id) 
         {
 
             // Arrange

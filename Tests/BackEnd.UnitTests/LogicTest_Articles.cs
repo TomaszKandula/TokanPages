@@ -57,8 +57,8 @@ namespace BackEnd.UnitTests
 
             // Act
             var LArticles = new Articles(LCosmosService);
-            var LResult1 = await LArticles.GetSingleArticle("80cc8b7b-56f6-4e9d-8e17-0dc010b892d2");
-            var LResult2 = await LArticles.GetSingleArticle(" ");
+            var LResult1 = await LArticles.GetSingleArticle(Guid.Parse("80cc8b7b-56f6-4e9d-8e17-0dc010b892d2"));
+            var LResult2 = await LArticles.GetSingleArticle(Guid.Empty);
 
             // Assert
             LResult1.Should().NotBeNull();
@@ -98,14 +98,12 @@ namespace BackEnd.UnitTests
             var LResult = await LArticles.AddNewArticle(LPayLoad);
 
             // Assert
-            LResult.Should().NotBeNullOrEmpty();
-            var IsGuid = Guid.TryParse(LResult, out _);
-            IsGuid.Should().BeTrue();
+            Guid.TryParse(LResult.ToString(), out _).Should().BeTrue();
 
         }
 
         [Fact]
-        public async Task Should_UpdateArticle()
+        public async Task Should_FailToUpdateArticle()
         {
 
             // Arrange
@@ -120,7 +118,7 @@ namespace BackEnd.UnitTests
 
             var LPayLoad = new ArticleRequest
             {
-                Id     = "66ab39af-424c-454d-a942-1c2977632fb8",
+                Id     = Guid.Parse("66ab39af-424c-454d-a942-1c2977632fbc"),
                 Title  = "QWERTY",
                 Desc   = "New feature...",
                 Status = "draft",
@@ -134,12 +132,12 @@ namespace BackEnd.UnitTests
             var LResult = await LArticles.UpdateArticle(LPayLoad);
 
             // Assert
-            LResult.Should().Be(HttpStatusCode.OK);
+            LResult.Should().Be(HttpStatusCode.NotFound);
 
         }
 
         [Fact]
-        public async Task Should_DeleteArticle() 
+        public async Task Should_FailToDeleteArticle() 
         {
 
             // Arrange
@@ -154,7 +152,7 @@ namespace BackEnd.UnitTests
 
             // Act
             var LArticles = new Articles(LCosmosService);
-            var LResult = await LArticles.DeleteArticle("this is strange id");
+            var LResult = await LArticles.DeleteArticle(Guid.Parse("66ab39af-424c-454d-a942-1c2977632fbc"));
 
             // Assert
             LResult.Should().NotBeNull();

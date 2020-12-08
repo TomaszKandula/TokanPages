@@ -57,7 +57,7 @@ namespace BackEnd.UnitTests
 
             // Act
             var LSubscribers = new Subscribers(LCosmosService);
-            var LResult = await LSubscribers.GetSingleSubscriber("5b2fc2f7-36ad-49d8-9b54-63bd6d8115cd");
+            var LResult = await LSubscribers.GetSingleSubscriber(Guid.Parse("5b2fc2f7-36ad-49d8-9b54-63bd6d8115cd"));
 
             // Assert
             LResult.Should().NotBeNull();
@@ -81,7 +81,7 @@ namespace BackEnd.UnitTests
 
             var LPayLoad = new SubscriberRequest 
             { 
-                Id     = null,
+                Id     = Guid.Empty,
                 Email  = "tokan@dfds.com",
                 Status = "active",
                 Count  = 0
@@ -93,10 +93,7 @@ namespace BackEnd.UnitTests
 
             // Assert
             LResult.Should().NotBeNull();
-            LResult.NewId.Should().NotBeNullOrEmpty();
-            
-            var IsGuid = Guid.TryParse(LResult.NewId, out _);
-            IsGuid.Should().BeTrue();
+            Guid.TryParse(LResult.NewId.ToString(), out _).Should().BeTrue();
 
         }
 
@@ -116,7 +113,7 @@ namespace BackEnd.UnitTests
 
             var LPayLoad = new SubscriberRequest 
             { 
-                Id     = "5b2fc2f7-36ad-49d8-9b54-63bd6d8115cd",
+                Id     = Guid.Parse("5b2fc2f7-36ad-49d8-9b54-63bd6d8115cd"),
                 Email  = "tokan@dfds.com",
                 Status = "active",
                 Count  = 100
@@ -148,7 +145,7 @@ namespace BackEnd.UnitTests
 
             // Act
             var LSubscribers = new Subscribers(LCosmosService);
-            var LResult = await LSubscribers.DeleteSubscriber("invalid-id");
+            var LResult = await LSubscribers.DeleteSubscriber(Guid.Parse("5b2fc2f7-36ad-49d8-9b54-63bd6d8115cc"));
 
             // Assert
             LResult.Should().NotBeNull();
