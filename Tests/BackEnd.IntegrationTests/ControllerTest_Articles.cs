@@ -44,7 +44,7 @@ namespace BackEnd.IntegrationTests
         }
 
         [Theory]
-        [InlineData("a8db7e28-2d47-463c-9c38-c17706056f72")]
+        [InlineData("2f6c1fae-0bfb-458f-acc4-95ce665e623a")]
         public async Task Should_GetSingleArticle(string Id) 
         {
 
@@ -108,7 +108,7 @@ namespace BackEnd.IntegrationTests
             var LNewGuid = Guid.NewGuid();
             var LPayLoad = new ArticleRequest
             {
-                Id     = Guid.Parse("ce4d995c-0fba-436b-93fe-ba81c5ba0745"),
+                Id     = Guid.Parse("a8db7e28-2d47-463c-9c38-c17706056f72"),
                 Title  = "Integration test",
                 Desc   = $"Test run: {LNewGuid}",
                 Status = "draft",
