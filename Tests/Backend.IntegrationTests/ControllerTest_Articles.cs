@@ -62,7 +62,7 @@ namespace BackEnd.IntegrationTests
 
             var LDeserialized = JsonConvert.DeserializeObject<ReturnArticle>(LContent);
             LDeserialized.Error.ErrorDesc.Should().Be("n/a");
-            LDeserialized.Article.Title.Should().Be("abc");
+            LDeserialized.Article.Title.Should().Be("jkl");
 
         }
 
