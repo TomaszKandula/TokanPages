@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.SmtpClient.Settings;
 
-namespace BackEnd.IntegrationTests
+namespace Backend.IntegrationTests
 {
 
     public class ServiceTest_SmtpClient

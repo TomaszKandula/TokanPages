@@ -6,7 +6,7 @@ using TokanPages.Backend.Database;
 using TokanPages.Backend.Database.Settings;
 using TokanPages.Backend.Domain.Entities;
 
-namespace BackEnd.IntegrationTests
+namespace Backend.IntegrationTests
 {
 
     public class ServiceTest_CosmosDb

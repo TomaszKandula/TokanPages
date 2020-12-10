@@ -11,7 +11,7 @@ using SubscribersModel = TokanPages.Backend.Domain.Entities.Subscribers;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Database.Settings;
 
-namespace BackEnd.UnitTests
+namespace Backend.UnitTests
 {
 
     public class LogicTest_Subscribers

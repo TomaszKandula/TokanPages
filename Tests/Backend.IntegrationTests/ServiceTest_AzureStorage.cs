@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.Storage.Settings;
 
-namespace BackEnd.IntegrationTests
+namespace Backend.IntegrationTests
 {
 
     public class ServiceTest_AzureStorage

@@ -5,11 +5,11 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TokanPages;
-using BackEnd.IntegrationTests.Configuration;
+using Backend.IntegrationTests.Configuration;
 using TokanPages.Controllers.Subscribers.Model;
 using TokanPages.Controllers.Subscribers.Model.Responses;
 
-namespace BackEnd.IntegrationTests
+namespace Backend.IntegrationTests
 {
 
     public class ControllerTest_Subscribers : IClassFixture<TestFixture<Startup>>

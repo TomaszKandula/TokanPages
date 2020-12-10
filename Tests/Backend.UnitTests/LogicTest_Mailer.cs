@@ -7,7 +7,7 @@ using TokanPages.Logic.Mailer.Model;
 using Backend.UnitTests.FakeSendGrid;
 using Backend.UnitTests.FakeAzureStorage;
 
-namespace BackEnd.UnitTests
+namespace Backend.UnitTests
 {
 
     public class LogicTest_Mailer
