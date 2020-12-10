@@ -43,6 +43,11 @@ namespace TokanPages.Backend.Database
             FContainer = FCosmosClient.GetContainer(FDatabaseName, LModelName);
         }
 
+        public override void InitContainer(Container YourContainer)
+        {
+            FContainer = YourContainer;
+        }
+
         public override async Task<HttpStatusCode> CreateDatabase(string ADatabaseName) 
         {
 
