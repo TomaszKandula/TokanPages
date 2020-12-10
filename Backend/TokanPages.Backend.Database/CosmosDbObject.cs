@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Microsoft.Azure.Cosmos;
 
 namespace TokanPages.Backend.Database
 {
@@ -9,6 +10,7 @@ namespace TokanPages.Backend.Database
     public abstract class CosmosDbObject
     {
         public abstract void InitContainer<T>();
+        public abstract void InitContainer(Container YourContainer);
         public abstract Task<HttpStatusCode> CreateDatabase(string ADatabaseName);
         public abstract Task<HttpStatusCode> CreateContainer(string ADatabaseName, string AContainerName, Guid AId);
         public abstract Task<HttpStatusCode> IsItemExists<T>(Guid Id) where T : class;
