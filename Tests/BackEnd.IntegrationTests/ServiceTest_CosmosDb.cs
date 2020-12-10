@@ -2,9 +2,9 @@
 using FluentAssertions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using TokanPages.BackEnd.Settings;
-using TokanPages.BackEnd.Database;
-using TokanPages.BackEnd.Database.Model;
+using TokanPages.Backend.Database;
+using TokanPages.Backend.Database.Settings;
+using TokanPages.Backend.Domain.Entities;
 
 namespace BackEnd.IntegrationTests
 {
@@ -12,7 +12,7 @@ namespace BackEnd.IntegrationTests
     public class ServiceTest_CosmosDb
     {
 
-        private readonly CosmosDb FCosmosDb;
+        private readonly CosmosDbSettings FCosmosDbSettings;
 
         public ServiceTest_CosmosDb()
         {
@@ -21,7 +21,7 @@ namespace BackEnd.IntegrationTests
                 .AddUserSecrets<ServiceTest_CosmosDb>()
                 .Build();
 
-            FCosmosDb = Configuration.GetSection("CosmosDb").Get<CosmosDb>();
+            FCosmosDbSettings = Configuration.GetSection("CosmosDb").Get<CosmosDbSettings>();
 
         }
 
@@ -30,7 +30,7 @@ namespace BackEnd.IntegrationTests
         {
 
             // Arrange
-            var LCosmosDbService = new CosmosDbService(FCosmosDb);
+            var LCosmosDbService = new CosmosDbService(FCosmosDbSettings);
             LCosmosDbService.InitContainer<Articles>();
 
             // Act
@@ -47,7 +47,7 @@ namespace BackEnd.IntegrationTests
         {
 
             // Arrange
-            var LCosmosDbService = new CosmosDbService(FCosmosDb);
+            var LCosmosDbService = new CosmosDbService(FCosmosDbSettings);
             LCosmosDbService.InitContainer<Articles>();
 
             // Act

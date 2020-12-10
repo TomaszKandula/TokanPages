@@ -2,10 +2,10 @@ using Xunit;
 using FluentAssertions;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.BackEnd.Logic.Mailer;
-using BackEnd.UnitTests.FakeSendGrid;
-using BackEnd.UnitTests.FakeAzureStorage;
-using TokanPages.BackEnd.Logic.Mailer.Model;
+using TokanPages.Logic.Mailer;
+using TokanPages.Logic.Mailer.Model;
+using Backend.UnitTests.FakeSendGrid;
+using Backend.UnitTests.FakeAzureStorage;
 
 namespace BackEnd.UnitTests
 {

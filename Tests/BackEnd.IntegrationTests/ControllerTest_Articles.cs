@@ -6,8 +6,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using BackEnd.IntegrationTests.Configuration;
 using TokanPages;
-using TokanPages.BackEnd.Controllers.Articles.Model;
-using TokanPages.BackEnd.Controllers.Articles.Model.Responses;
+using TokanPages.Controllers.Articles.Model;
+using TokanPages.Controllers.Articles.Model.Responses;
 
 namespace BackEnd.IntegrationTests
 {

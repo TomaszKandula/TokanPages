@@ -4,12 +4,12 @@ using System;
 using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
-using TokanPages.BackEnd.Settings;
-using TokanPages.BackEnd.Database;
-using BackEnd.UnitTests.CosmosDbEmulator;
-using TokanPages.BackEnd.Logic.Subscribers;
-using TokanPages.BackEnd.Controllers.Subscribers.Model;
-using SubscribersModel = TokanPages.BackEnd.Database.Model.Subscribers;
+using Backend.UnitTests.CosmosDbEmulator;
+using TokanPages.Logic.Subscribers;
+using TokanPages.Controllers.Subscribers.Model;
+using SubscribersModel = TokanPages.Backend.Domain.Entities.Subscribers;
+using TokanPages.Backend.Database;
+using TokanPages.Backend.Database.Settings;
 
 namespace BackEnd.UnitTests
 {
@@ -22,17 +22,17 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var LDbConfig = new CosmosDb()
+            var LCosmosDbSettings = new CosmosDbSettings()
             {
                 DatabaseName = CosmosDbConfig.DatabaseName,
                 Account = CosmosDbConfig.Account,
                 Key = CosmosDbConfig.Key
             };
-            var LCosmosService = new CosmosDbService(LDbConfig);
-            LCosmosService.InitContainer<SubscribersModel>();
+            var LCosmosDbService = new CosmosDbService(LCosmosDbSettings);
+            LCosmosDbService.InitContainer<SubscribersModel>();
 
             // Act
-            var LSubscribers = new Subscribers(LCosmosService);
+            var LSubscribers = new Subscribers(LCosmosDbService);
             var LResult = await LSubscribers.GetAllSubscribers();
 
             // Assert
@@ -46,17 +46,17 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var LDbConfig = new CosmosDb()
+            var LCosmosDbSettings = new CosmosDbSettings()
             {
                 DatabaseName = CosmosDbConfig.DatabaseName,
                 Account = CosmosDbConfig.Account,
                 Key = CosmosDbConfig.Key
             };
-            var LCosmosService = new CosmosDbService(LDbConfig);
-            LCosmosService.InitContainer<SubscribersModel>();
+            var LCosmosDbService = new CosmosDbService(LCosmosDbSettings);
+            LCosmosDbService.InitContainer<SubscribersModel>();
 
             // Act
-            var LSubscribers = new Subscribers(LCosmosService);
+            var LSubscribers = new Subscribers(LCosmosDbService);
             var LResult = await LSubscribers.GetSingleSubscriber(Guid.Parse("5b2fc2f7-36ad-49d8-9b54-63bd6d8115cd"));
 
             // Assert
@@ -70,14 +70,14 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var LDbConfig = new CosmosDb()
+            var LCosmosDbSettings = new CosmosDbSettings()
             {
                 DatabaseName = CosmosDbConfig.DatabaseName,
                 Account = CosmosDbConfig.Account,
                 Key = CosmosDbConfig.Key
             };
-            var LCosmosService = new CosmosDbService(LDbConfig);
-            LCosmosService.InitContainer<SubscribersModel>();
+            var LCosmosDbService = new CosmosDbService(LCosmosDbSettings);
+            LCosmosDbService.InitContainer<SubscribersModel>();
 
             var LPayLoad = new SubscriberRequest 
             { 
@@ -88,7 +88,7 @@ namespace BackEnd.UnitTests
             };
 
             // Act
-            var LSubscribers = new Subscribers(LCosmosService);
+            var LSubscribers = new Subscribers(LCosmosDbService);
             var LResult = await LSubscribers.AddNewSubscriber(LPayLoad);
 
             // Assert
@@ -102,14 +102,14 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var LDbConfig = new CosmosDb()
+            var LCosmosDbSettings = new CosmosDbSettings()
             {
                 DatabaseName = CosmosDbConfig.DatabaseName,
                 Account = CosmosDbConfig.Account,
                 Key = CosmosDbConfig.Key
             };
-            var LCosmosService = new CosmosDbService(LDbConfig);
-            LCosmosService.InitContainer<SubscribersModel>();
+            var LCosmosDbService = new CosmosDbService(LCosmosDbSettings);
+            LCosmosDbService.InitContainer<SubscribersModel>();
 
             var LPayLoad = new SubscriberRequest 
             { 
@@ -120,7 +120,7 @@ namespace BackEnd.UnitTests
             };
 
             // Act
-            var LSubscribers = new Subscribers(LCosmosService);
+            var LSubscribers = new Subscribers(LCosmosDbService);
             var LResult = await LSubscribers.UpdateSubscriber(LPayLoad);
 
             // Assert
@@ -134,17 +134,17 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var LDbConfig = new CosmosDb()
+            var LCosmosDbSettings = new CosmosDbSettings()
             {
                 DatabaseName = CosmosDbConfig.DatabaseName,
                 Account = CosmosDbConfig.Account,
                 Key = CosmosDbConfig.Key
             };
-            var LCosmosService = new CosmosDbService(LDbConfig);
-            LCosmosService.InitContainer<SubscribersModel>();
+            var LCosmosDbService = new CosmosDbService(LCosmosDbSettings);
+            LCosmosDbService.InitContainer<SubscribersModel>();
 
             // Act
-            var LSubscribers = new Subscribers(LCosmosService);
+            var LSubscribers = new Subscribers(LCosmosDbService);
             var LResult = await LSubscribers.DeleteSubscriber(Guid.Parse("5b2fc2f7-36ad-49d8-9b54-63bd6d8115cc"));
 
             // Assert

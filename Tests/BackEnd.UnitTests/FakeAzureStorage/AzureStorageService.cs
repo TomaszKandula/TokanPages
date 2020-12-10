@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using TokanPages.BackEnd.Storage;
-using TokanPages.BackEnd.Shared.Models;
+using TokanPages.Backend.Storage;
+using TokanPages.Backend.Storage.Models;
 
-namespace BackEnd.UnitTests.FakeAzureStorage
+namespace Backend.UnitTests.FakeAzureStorage
 {
 
     public class AzureStorageService : AzureStorageObject, IAzureStorageService

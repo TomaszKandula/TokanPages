@@ -4,9 +4,9 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.BackEnd.Logic.MailChecker;
+using TokanPages.Logic.MailChecker;
 
-namespace BackEnd.UnitTests
+namespace Backend.UnitTests
 {
 
     public class LogicTest_MailChecker

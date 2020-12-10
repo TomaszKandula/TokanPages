@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.BackEnd.SmtpClient;
-using TokanPages.BackEnd.Shared.Models;
+using TokanPages.Backend.SmtpClient;
+using TokanPages.Backend.SmtpClient.Models;
 
-namespace BackEnd.UnitTests.FakeSendGrid
+namespace Backend.UnitTests.FakeSendGrid
 {
 
     public class SmtpClientService : SmtpClientObject, ISmtpClientService

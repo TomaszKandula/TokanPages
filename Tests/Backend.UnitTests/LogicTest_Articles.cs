@@ -4,14 +4,14 @@ using System;
 using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
-using TokanPages.BackEnd.Settings;
-using TokanPages.BackEnd.Database;
-using TokanPages.BackEnd.Logic.Articles;
-using TokanPages.BackEnd.Controllers.Articles.Model;
-using ArticlesModel = TokanPages.BackEnd.Database.Model.Articles;
-using BackEnd.UnitTests.CosmosDbEmulator;
+using TokanPages.Logic.Articles;
+using TokanPages.Controllers.Articles.Model;
+using ArticlesModel = TokanPages.Backend.Domain.Entities.Articles;
+using Backend.UnitTests.CosmosDbEmulator;
+using TokanPages.Backend.Database;
+using TokanPages.Backend.Database.Settings;
 
-namespace BackEnd.UnitTests
+namespace Backend.UnitTests
 {
 
     public class LogicTest_Articles
@@ -22,17 +22,17 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var LDbConfig = new CosmosDb() 
+            var LCosmosDbSettings = new CosmosDbSettings() 
             {
                 DatabaseName = CosmosDbConfig.DatabaseName,
                 Account = CosmosDbConfig.Account,
                 Key = CosmosDbConfig.Key
             };
-            var LCosmosService = new CosmosDbService(LDbConfig);
-            LCosmosService.InitContainer<ArticlesModel>();
+            var LCosmosDbService = new CosmosDbService(LCosmosDbSettings);
+            LCosmosDbService.InitContainer<ArticlesModel>();
 
             // Act
-            var LArticles = new Articles(LCosmosService);
+            var LArticles = new Articles(LCosmosDbService);
             var LResult = await LArticles.GetAllArticles();
 
             // Assert
@@ -46,17 +46,17 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var LDbConfig = new CosmosDb()
+            var LCosmosDbSettings = new CosmosDbSettings()
             {
                 DatabaseName = CosmosDbConfig.DatabaseName,
                 Account = CosmosDbConfig.Account,
                 Key = CosmosDbConfig.Key
             };
-            var LCosmosService = new CosmosDbService(LDbConfig);
-            LCosmosService.InitContainer<ArticlesModel>();
+            var LCosmosDbService = new CosmosDbService(LCosmosDbSettings);
+            LCosmosDbService.InitContainer<ArticlesModel>();
 
             // Act
-            var LArticles = new Articles(LCosmosService);
+            var LArticles = new Articles(LCosmosDbService);
             var LResult1 = await LArticles.GetSingleArticle(Guid.Parse("80cc8b7b-56f6-4e9d-8e17-0dc010b892d2"));
             var LResult2 = await LArticles.GetSingleArticle(Guid.Empty);
 
@@ -76,14 +76,14 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var LDbConfig = new CosmosDb()
+            var LCosmosDbSettings = new CosmosDbSettings()
             {
                 DatabaseName = CosmosDbConfig.DatabaseName,
                 Account = CosmosDbConfig.Account,
                 Key = CosmosDbConfig.Key
             };
-            var LCosmosService = new CosmosDbService(LDbConfig);
-            LCosmosService.InitContainer<ArticlesModel>();
+            var LCosmosDbService = new CosmosDbService(LCosmosDbSettings);
+            LCosmosDbService.InitContainer<ArticlesModel>();
 
             var LPayLoad = new ArticleRequest 
             { 
@@ -94,7 +94,7 @@ namespace BackEnd.UnitTests
             };
 
             // Act
-            var LArticles = new Articles(LCosmosService);
+            var LArticles = new Articles(LCosmosDbService);
             var LResult = await LArticles.AddNewArticle(LPayLoad);
 
             // Assert
@@ -107,14 +107,14 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var LDbConfig = new CosmosDb()
+            var LCosmosDbSettings = new CosmosDbSettings()
             {
                 DatabaseName = CosmosDbConfig.DatabaseName,
                 Account = CosmosDbConfig.Account,
                 Key = CosmosDbConfig.Key
             };
-            var LCosmosService = new CosmosDbService(LDbConfig);
-            LCosmosService.InitContainer<ArticlesModel>();
+            var LCosmosDbService = new CosmosDbService(LCosmosDbSettings);
+            LCosmosDbService.InitContainer<ArticlesModel>();
 
             var LPayLoad = new ArticleRequest
             {
@@ -128,7 +128,7 @@ namespace BackEnd.UnitTests
             };
 
             // Act
-            var LArticles = new Articles(LCosmosService);
+            var LArticles = new Articles(LCosmosDbService);
             var LResult = await LArticles.UpdateArticle(LPayLoad);
 
             // Assert
@@ -141,17 +141,17 @@ namespace BackEnd.UnitTests
         {
 
             // Arrange
-            var LDbConfig = new CosmosDb()
+            var LCosmosDbSettings = new CosmosDbSettings()
             {
                 DatabaseName = CosmosDbConfig.DatabaseName,
                 Account = CosmosDbConfig.Account,
                 Key = CosmosDbConfig.Key
             };
-            var LCosmosService = new CosmosDbService(LDbConfig);
-            LCosmosService.InitContainer<ArticlesModel>();
+            var LCosmosDbService = new CosmosDbService(LCosmosDbSettings);
+            LCosmosDbService.InitContainer<ArticlesModel>();
 
             // Act
-            var LArticles = new Articles(LCosmosService);
+            var LArticles = new Articles(LCosmosDbService);
             var LResult = await LArticles.DeleteArticle(Guid.Parse("66ab39af-424c-454d-a942-1c2977632fbc"));
 
             // Assert

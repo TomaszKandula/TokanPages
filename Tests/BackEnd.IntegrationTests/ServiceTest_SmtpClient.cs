@@ -4,8 +4,8 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
-using TokanPages.BackEnd.Settings;
-using TokanPages.BackEnd.SmtpClient;
+using TokanPages.Backend.SmtpClient;
+using TokanPages.Backend.SmtpClient.Settings;
 
 namespace BackEnd.IntegrationTests
 {
@@ -13,7 +13,7 @@ namespace BackEnd.IntegrationTests
     public class ServiceTest_SmtpClient
     {
 
-        private readonly SmtpServer FSmtpServer;
+        private readonly SmtpServerSettings FSmtpServer;
 
         public ServiceTest_SmtpClient() 
         {
@@ -22,7 +22,7 @@ namespace BackEnd.IntegrationTests
                 .AddUserSecrets<ServiceTest_SmtpClient>()
                 .Build();
 
-            FSmtpServer = Configuration.GetSection("SmtpServer").Get<SmtpServer>();
+            FSmtpServer = Configuration.GetSection("SmtpServer").Get<SmtpServerSettings>();
 
         }
 

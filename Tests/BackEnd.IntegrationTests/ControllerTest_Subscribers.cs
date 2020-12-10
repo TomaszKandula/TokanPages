@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TokanPages;
 using BackEnd.IntegrationTests.Configuration;
-using TokanPages.BackEnd.Controllers.Subscribers.Model;
-using TokanPages.BackEnd.Controllers.Subscribers.Model.Responses;
+using TokanPages.Controllers.Subscribers.Model;
+using TokanPages.Controllers.Subscribers.Model.Responses;
 
 namespace BackEnd.IntegrationTests
 {

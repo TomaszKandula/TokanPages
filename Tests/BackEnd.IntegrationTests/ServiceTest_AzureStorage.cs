@@ -3,9 +3,9 @@ using FluentAssertions;
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using TokanPages.BackEnd.Storage;
-using TokanPages.BackEnd.Settings;
 using Microsoft.Extensions.Configuration;
+using TokanPages.Backend.Storage;
+using TokanPages.Backend.Storage.Settings;
 
 namespace BackEnd.IntegrationTests
 {
@@ -13,7 +13,7 @@ namespace BackEnd.IntegrationTests
     public class ServiceTest_AzureStorage
     {
 
-        private readonly AzureStorage FAzureStorage;
+        private readonly AzureStorageSettings FAzureStorageSettings;
 
         public ServiceTest_AzureStorage()
         {
@@ -22,7 +22,7 @@ namespace BackEnd.IntegrationTests
                 .AddUserSecrets<ServiceTest_AzureStorage>()
                 .Build();
 
-            FAzureStorage = Configuration.GetSection("AzureStorage").Get<AzureStorage>();
+            FAzureStorageSettings = Configuration.GetSection("AzureStorage").Get<AzureStorageSettings>();
 
         }
 
@@ -31,7 +31,7 @@ namespace BackEnd.IntegrationTests
         {
 
             // Arrange
-            var LAzureStorageService = new AzureStorageService(FAzureStorage);
+            var LAzureStorageService = new AzureStorageService(FAzureStorageSettings);
             var LTestFilePath = AppDomain.CurrentDomain.BaseDirectory + "\\__tests\\dummy.txt";
             if (!File.Exists(LTestFilePath)) 
             {
@@ -52,7 +52,7 @@ namespace BackEnd.IntegrationTests
         {
 
             // Arrange
-            var LAzureStorageService = new AzureStorageService(FAzureStorage);
+            var LAzureStorageService = new AzureStorageService(FAzureStorageSettings);
 
             // Act
             var LResult = await LAzureStorageService.RemoveFromStorage("tokanpages\\__tests", "dummy.txt");

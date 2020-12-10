@@ -1,4 +1,4 @@
-﻿namespace BackEnd.UnitTests.CosmosDbEmulator
+﻿namespace Backend.UnitTests.CosmosDbEmulator
 {
 
     public static class CosmosDbConfig

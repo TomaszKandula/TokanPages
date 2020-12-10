@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using BackEnd.IntegrationTests.Configuration;
 using TokanPages;
-using TokanPages.BackEnd.Controllers.Mailer.Model;
-using TokanPages.BackEnd.Controllers.Mailer.Model.Responses;
+using TokanPages.Controllers.Mailer.Model;
+using TokanPages.Controllers.Mailer.Model.Responses;
 
 namespace BackEnd.IntegrationTests
 {
