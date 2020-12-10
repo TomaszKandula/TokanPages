@@ -6,13 +6,17 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
-using TokanPages.BackEnd.Logic;
-using TokanPages.BackEnd.Storage;
-using TokanPages.BackEnd.Settings;
-using TokanPages.BackEnd.Database;
-using TokanPages.BackEnd.AppLogger;
-using TokanPages.BackEnd.Middleware;
-using TokanPages.BackEnd.SmtpClient;
+
+using TokanPages.Logic;
+using TokanPages.AppLogger;
+using TokanPages.Middleware;
+
+using TokanPages.Backend.Database;
+using TokanPages.Backend.Database.Settings;
+using TokanPages.Backend.Storage;
+using TokanPages.Backend.Storage.Settings;
+using TokanPages.Backend.SmtpClient;
+using TokanPages.Backend.SmtpClient.Settings;
 
 namespace TokanPages
 {
@@ -42,20 +46,22 @@ namespace TokanPages
 
             AServices.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "FrontEnd/build";
+                configuration.RootPath = "ClientApp/build";
             });
 
             AServices.AddMvc(AOption => AOption.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
-            AServices.AddSingleton(Configuration.GetSection("AzureStorage").Get<AzureStorage>());
-            AServices.AddSingleton(Configuration.GetSection("SmtpServer").Get<SmtpServer>());
-            AServices.AddSingleton(Configuration.GetSection("CosmosDb").Get<CosmosDb>());
+            AServices.AddSingleton(Configuration.GetSection("AzureStorage").Get<AzureStorageSettings>());
+            AServices.AddSingleton(Configuration.GetSection("SmtpServer").Get<SmtpServerSettings>());
+            AServices.AddSingleton(Configuration.GetSection("CosmosDb").Get<CosmosDbSettings>());
 
-            AServices.AddSingleton<IAppLogger, AppLogger>();
+            AServices.AddSingleton<IAppLogger, AppLogger.AppLogger>();
+
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();          
             AServices.AddScoped<IAzureStorageService, AzureStorageService>();
             AServices.AddScoped<ICosmosDbService, CosmosDbService>();
+
             AServices.AddScoped<ILogicContext, LogicContext>();
 
             AServices.AddResponseCompression(AOptions =>
@@ -110,7 +116,7 @@ namespace TokanPages
             AApplication.UseSpa(ASpa =>
             {
                 
-                ASpa.Options.SourcePath = "FrontEnd";
+                ASpa.Options.SourcePath = "ClientApp";
 
                 if (AEnvironment.IsDevelopment())
                 {

@@ -1,0 +1,80 @@
+﻿namespace TokanPages.Backend.Shared
+{
+
+    /// <summary>
+    /// This class is responsible only for providing constants to all classes/methods etc. accross the application.
+    /// It can be a partial class if necessary; and if so, then put the module in the root folder and additional 
+    /// partials in other project folders.
+    /// </summary>    
+    public static class Constants
+    {
+
+        public static class Emails 
+        {
+
+            public static class Templates
+            {
+                public const string Newsletter  = "/content/templates/newsletter.html";
+                public const string ContactForm = "/content/templates/contactform.html";
+            }
+
+            public static class Addresses 
+            {
+                public const string Contact  = "contact@tomkandula.com";
+                public const string Personal = "tom@tomkandula.com";
+                public const string Admin    = "admin@tomkandula.com";
+                public const string Private  = "tomasz.kandula@gmail.com";
+            }
+
+        }
+
+        public static class Errors 
+        {
+
+            public class Default
+            {
+                public const string ErrorCode = "no_errors_found";
+                public const string ErrorDesc = "n/a";
+            }
+
+            public class EmptyList
+            {
+                public const string ErrorCode = "empty_list";
+                public const string ErrorDesc = "There are no items on the list.";
+            }
+
+            public class NoSuchItem
+            {
+                public const string ErrorCode = "no_such_item";
+                public const string ErrorDesc = "There is no such item.";
+            }
+
+            public class UnableToPost
+            {
+                public const string ErrorCode = "unable_to_post";
+                public const string ErrorDesc = "Cannot insert data into database container.";
+            }
+
+            public class UnableToModify
+            {
+                public const string ErrorCode = "unable_to_modify";
+                public const string ErrorDesc = "Cannot update data in database container.";
+            }
+
+            public class UnableToRemove
+            {
+                public const string ErrorCode = "unable_to_remove";
+                public const string ErrorDesc = "Cannot delete data from database container.";
+            }
+
+            public class EmailAlreadyRegistered
+            {
+                public const string ErrorCode = "email_exist";
+                public const string ErrorDesc = "Email has been already registered.";
+            }
+
+        }
+
+    }
+
+}
