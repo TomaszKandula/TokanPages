@@ -1,6 +1,6 @@
 ﻿using Serilog;
 
-namespace TokanPages.BackEnd.AppLogger
+namespace TokanPages.AppLogger
 {
 
     public class AppLogger : IAppLogger

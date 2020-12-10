@@ -4,14 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using TokanPages.BackEnd.Logic;
-using TokanPages.BackEnd.Shared;
-using TokanPages.BackEnd.AppLogger;
-using TokanPages.BackEnd.Helpers.Statics;
-using TokanPages.BackEnd.Controllers.Articles.Model;
-using TokanPages.BackEnd.Controllers.Articles.Model.Responses;
+using TokanPages.Logic;
+using TokanPages.AppLogger;
+using TokanPages.Controllers.Articles.Model;
+using TokanPages.Controllers.Articles.Model.Responses;
 
-namespace TokanPages.BackEnd.Controllers.Articles
+namespace TokanPages.Controllers.Articles
 {
 
     [Route("api/v1/[controller]")]

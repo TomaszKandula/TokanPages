@@ -3,9 +3,7 @@ using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.BackEnd.Database;
 using TokanPages.BackEnd.Controllers.Articles.Model;
-using ArticlesModel = TokanPages.BackEnd.Database.Model.Articles;
 
 namespace TokanPages.BackEnd.Logic.Articles
 {

@@ -1,4 +1,4 @@
-﻿namespace TokanPages.BackEnd.AppLogger
+﻿namespace TokanPages.AppLogger
 {
     /// <summary>
     /// Logger service that allows to store messages from application.

@@ -7,9 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
 
-using TokanPages.BackEnd.Logic;
-using TokanPages.BackEnd.AppLogger;
-using TokanPages.BackEnd.Middleware;
+using TokanPages.Logic;
+using TokanPages.AppLogger;
+using TokanPages.Middleware;
 
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Database.Settings;
@@ -56,7 +56,7 @@ namespace TokanPages
             AServices.AddSingleton(Configuration.GetSection("SmtpServer").Get<SmtpServerSettings>());
             AServices.AddSingleton(Configuration.GetSection("CosmosDb").Get<CosmosDbSettings>());
 
-            AServices.AddSingleton<IAppLogger, AppLogger>();
+            AServices.AddSingleton<IAppLogger, AppLogger.AppLogger>();
 
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();          
             AServices.AddScoped<IAzureStorageService, AzureStorageService>();

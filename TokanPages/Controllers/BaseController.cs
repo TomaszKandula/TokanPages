@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TokanPages.BackEnd.Logic;
-using TokanPages.BackEnd.AppLogger;
+using TokanPages.Logic;
+using TokanPages.AppLogger;
 
-namespace TokanPages.BackEnd.Controllers
+namespace TokanPages.Controllers
 {
 
     public class BaseController : ControllerBase

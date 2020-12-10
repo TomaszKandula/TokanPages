@@ -4,16 +4,14 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using TokanPages.BackEnd.Logic;
-using TokanPages.BackEnd.AppLogger;
+using TokanPages.Logic;
+using TokanPages.AppLogger;
 using Swashbuckle.AspNetCore.Annotations;
-using TokanPages.BackEnd.Shared;
-using TokanPages.BackEnd.Helpers.Statics;
 using TokanPages.BackEnd.Controllers.Mailer.Model;
 using TokanPages.BackEnd.Controllers.Mailer.Model.Responses;
 using TokanPages.BackEnd.Logic.Mailer.Model;
 
-namespace TokanPages.BackEnd.Controllers.Mailer
+namespace TokanPages.Controllers.Mailer
 {
 
     [Route("api/v1/[controller]")]

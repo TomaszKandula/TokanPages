@@ -2,10 +2,10 @@
 using System.Net;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.BackEnd.Logic.Subscribers.Model;
-using TokanPages.BackEnd.Controllers.Subscribers.Model;
+using TokanPages.Logic.Subscribers.Model;
+using TokanPages.Controllers.Subscribers.Model;
 
-namespace TokanPages.BackEnd.Logic.Subscribers
+namespace TokanPages.Logic.Subscribers
 {
 
     public interface ISubscribers

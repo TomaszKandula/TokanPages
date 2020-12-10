@@ -1,9 +1,9 @@
-using TokanPages.BackEnd.Logic.Mailer;
-using TokanPages.BackEnd.Logic.Articles;
-using TokanPages.BackEnd.Logic.MailChecker;
-using TokanPages.BackEnd.Logic.Subscribers;
+using TokanPages.Logic.Mailer;
+using TokanPages.Logic.Articles;
+using TokanPages.Logic.MailChecker;
+using TokanPages.Logic.Subscribers;
 
-namespace TokanPages.BackEnd.Logic 
+namespace TokanPages.Logic 
 {
 
     public interface ILogicContext

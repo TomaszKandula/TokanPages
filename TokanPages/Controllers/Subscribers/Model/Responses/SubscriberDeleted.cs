@@ -1,7 +1,6 @@
 ﻿using System.Text.Json.Serialization;
-using TokanPages.BackEnd.Shared.Models;
 
-namespace TokanPages.BackEnd.Controllers.Subscribers.Model.Responses
+namespace TokanPages.Controllers.Subscribers.Model.Responses
 {
  
     public class SubscriberDeleted

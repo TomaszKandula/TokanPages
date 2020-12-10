@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace TokanPages.BackEnd.Middleware
+namespace TokanPages.Middleware
 {
 
     /// <summary>

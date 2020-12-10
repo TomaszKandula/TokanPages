@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace TokanPages.BackEnd.Controllers.Articles.Model
+namespace TokanPages.Controllers.Articles.Model
 {
 
     public class ArticleItem

@@ -2,14 +2,12 @@
 using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
-using TokanPages.BackEnd.Shared;
 using System.Collections.Generic;
-using TokanPages.BackEnd.Database;
 using TokanPages.BackEnd.Logic.Subscribers.Model;
 using TokanPages.BackEnd.Controllers.Subscribers.Model;
-using SubscribersModel = TokanPages.BackEnd.Database.Model.Subscribers;
+//using SubscribersModel = TokanPages.BackEnd.Database.Model.Subscribers;
 
-namespace TokanPages.BackEnd.Logic.Subscribers
+namespace TokanPages.Logic.Subscribers
 {
 
     public class Subscribers : ISubscribers

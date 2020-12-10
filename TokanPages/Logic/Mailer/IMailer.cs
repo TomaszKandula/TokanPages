@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.BackEnd.Shared.Models;
 using TokanPages.BackEnd.Logic.Mailer.Model;
 
-namespace TokanPages.BackEnd.Logic.Mailer
+namespace TokanPages.Logic.Mailer
 {
 
     public interface IMailer

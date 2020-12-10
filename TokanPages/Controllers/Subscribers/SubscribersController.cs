@@ -3,15 +3,13 @@ using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using TokanPages.BackEnd.Logic;
-using TokanPages.BackEnd.AppLogger;
+using TokanPages.Logic;
+using TokanPages.AppLogger;
 using Swashbuckle.AspNetCore.Annotations;
-using TokanPages.BackEnd.Shared;
-using TokanPages.BackEnd.Helpers.Statics;
 using TokanPages.BackEnd.Controllers.Subscribers.Model;
 using TokanPages.BackEnd.Controllers.Subscribers.Model.Responses;
 
-namespace TokanPages.BackEnd.Controllers.Subscribers
+namespace TokanPages.Controllers.Subscribers
 {
 
     [Route("api/v1/[controller]")]

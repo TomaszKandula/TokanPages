@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace TokanPages.BackEnd.Controllers.Mailer.Model
+namespace TokanPages.Controllers.Mailer.Model
 {
 
     public class SubscriberData

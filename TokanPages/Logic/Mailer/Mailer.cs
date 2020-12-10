@@ -3,12 +3,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.BackEnd.Storage;
-using TokanPages.BackEnd.SmtpClient;
-using TokanPages.BackEnd.Shared.Models;
 using TokanPages.BackEnd.Logic.Mailer.Model;
 
-namespace TokanPages.BackEnd.Logic.Mailer
+namespace TokanPages.Logic.Mailer
 {
 
     public class Mailer : IMailer

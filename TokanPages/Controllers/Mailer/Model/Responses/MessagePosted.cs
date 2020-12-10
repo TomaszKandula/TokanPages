@@ -1,7 +1,6 @@
 ﻿using System.Text.Json.Serialization;
-using TokanPages.BackEnd.Shared.Models;
 
-namespace TokanPages.BackEnd.Controllers.Mailer.Model.Responses
+namespace TokanPages.Controllers.Mailer.Model.Responses
 {
     
     public class MessagePosted

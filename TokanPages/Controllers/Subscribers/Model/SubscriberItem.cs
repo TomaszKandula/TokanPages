@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace TokanPages.BackEnd.Controllers.Subscribers.Model
+namespace TokanPages.Controllers.Subscribers.Model
 {
 
     public class SubscriberItem

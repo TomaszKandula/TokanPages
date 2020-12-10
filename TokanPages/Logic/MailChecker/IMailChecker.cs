@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.BackEnd.Shared.Models;
 
 namespace TokanPages.BackEnd.Logic.MailChecker
 {

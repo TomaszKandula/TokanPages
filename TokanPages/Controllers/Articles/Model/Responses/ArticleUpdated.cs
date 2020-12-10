@@ -1,7 +1,6 @@
 ﻿using System.Text.Json.Serialization;
-using TokanPages.BackEnd.Shared.Models;
 
-namespace TokanPages.BackEnd.Controllers.Articles.Model.Responses
+namespace TokanPages.Controllers.Articles.Model.Responses
 {
 
     public class ArticleUpdated

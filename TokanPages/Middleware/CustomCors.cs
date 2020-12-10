@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
-namespace TokanPages.BackEnd.Middleware
+namespace TokanPages.Middleware
 {
 
     public class CustomCors
