@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
-namespace BackEnd.IntegrationTests.Configuration
+namespace Backend.IntegrationTests.Configuration
 {
 
     public class TestFixture<TStartup> : IDisposable

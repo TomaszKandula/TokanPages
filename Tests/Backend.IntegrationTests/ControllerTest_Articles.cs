@@ -4,12 +4,12 @@ using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using BackEnd.IntegrationTests.Configuration;
+using Backend.IntegrationTests.Configuration;
 using TokanPages;
 using TokanPages.Controllers.Articles.Model;
 using TokanPages.Controllers.Articles.Model.Responses;
 
-namespace BackEnd.IntegrationTests
+namespace Backend.IntegrationTests
 {
 
     public class ControllerTest_Articles : IClassFixture<TestFixture<Startup>>

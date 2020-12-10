@@ -5,12 +5,12 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using BackEnd.IntegrationTests.Configuration;
+using Backend.IntegrationTests.Configuration;
 using TokanPages;
 using TokanPages.Controllers.Mailer.Model;
 using TokanPages.Controllers.Mailer.Model.Responses;
 
-namespace BackEnd.IntegrationTests
+namespace Backend.IntegrationTests
 {
 
     public class ControllerTest_Mailer : IClassFixture<TestFixture<Startup>>
