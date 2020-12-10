@@ -3,7 +3,10 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.BackEnd.Logic.Mailer.Model;
+using TokanPages.Backend.Storage;
+using TokanPages.Logic.Mailer.Model;
+using TokanPages.Backend.SmtpClient;
+using TokanPages.Backend.SmtpClient.Models;
 
 namespace TokanPages.Logic.Mailer
 {

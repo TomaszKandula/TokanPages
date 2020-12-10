@@ -4,12 +4,13 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Swashbuckle.AspNetCore.Annotations;
 using TokanPages.Logic;
 using TokanPages.AppLogger;
-using Swashbuckle.AspNetCore.Annotations;
-using TokanPages.BackEnd.Controllers.Mailer.Model;
-using TokanPages.BackEnd.Controllers.Mailer.Model.Responses;
-using TokanPages.BackEnd.Logic.Mailer.Model;
+using TokanPages.Backend.Shared;
+using TokanPages.Logic.Mailer.Model;
+using TokanPages.Controllers.Mailer.Model;
+using TokanPages.Controllers.Mailer.Model.Responses;
 
 namespace TokanPages.Controllers.Mailer
 {
@@ -38,7 +39,7 @@ namespace TokanPages.Controllers.Mailer
         public async Task<IActionResult> VerifyEmailAddress([FromRoute] string Email) 
         {
 
-            var LResponse = new EmailVerified { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
+            var LResponse = new EmailVerified();
             var LStartTime = DateTime.Now.TimeOfDay;
             try 
             {
@@ -77,7 +78,7 @@ namespace TokanPages.Controllers.Mailer
         public async Task<IActionResult> SendMessage([FromBody] SendMessage PayLoad) 
         {
 
-            var LResponse = new MessagePosted { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
+            var LResponse = new MessagePosted();
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {
@@ -136,7 +137,7 @@ namespace TokanPages.Controllers.Mailer
         public async Task<IActionResult> SendNewsletter([FromBody] SendNewsletter PayLoad)
         {
 
-            var LResponse = new NewsletterPosted { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
+            var LResponse = new NewsletterPosted();
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {

@@ -1,4 +1,4 @@
-﻿namespace TokanPages.BackEnd.Logic.Mailer.Model
+﻿namespace TokanPages.Logic.Mailer.Model
 {
 
     public class ValueTag

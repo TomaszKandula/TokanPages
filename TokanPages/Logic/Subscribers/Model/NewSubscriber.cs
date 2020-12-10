@@ -1,7 +1,7 @@
 ﻿using System;
-using TokanPages.BackEnd.Shared.Models;
+using TokanPages.Backend.Shared.Models;
 
-namespace TokanPages.BackEnd.Logic.Subscribers.Model
+namespace TokanPages.Logic.Subscribers.Model
 {
 
     public class NewSubscriber

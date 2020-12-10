@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
 using System.Collections.Generic;
+using TokanPages.Backend.Shared.Models;
 
-namespace TokanPages.BackEnd.Logic.MailChecker
+namespace TokanPages.Logic.MailChecker
 {
 
     public interface IMailChecker

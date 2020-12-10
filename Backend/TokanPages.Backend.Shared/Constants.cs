@@ -31,43 +31,43 @@
         public static class Errors 
         {
 
-            internal class Default
+            public class Default
             {
                 public const string ErrorCode = "no_errors_found";
                 public const string ErrorDesc = "n/a";
             }
 
-            internal class EmptyList
+            public class EmptyList
             {
                 public const string ErrorCode = "empty_list";
                 public const string ErrorDesc = "There are no items on the list.";
             }
 
-            internal class NoSuchItem
+            public class NoSuchItem
             {
                 public const string ErrorCode = "no_such_item";
                 public const string ErrorDesc = "There is no such item.";
             }
 
-            internal class UnableToPost
+            public class UnableToPost
             {
                 public const string ErrorCode = "unable_to_post";
                 public const string ErrorDesc = "Cannot insert data into database container.";
             }
 
-            internal class UnableToModify
+            public class UnableToModify
             {
                 public const string ErrorCode = "unable_to_modify";
                 public const string ErrorDesc = "Cannot update data in database container.";
             }
 
-            internal class UnableToRemove
+            public class UnableToRemove
             {
                 public const string ErrorCode = "unable_to_remove";
                 public const string ErrorDesc = "Cannot delete data from database container.";
             }
 
-            internal class EmailAlreadyRegistered
+            public class EmailAlreadyRegistered
             {
                 public const string ErrorCode = "email_exist";
                 public const string ErrorDesc = "Email has been already registered.";

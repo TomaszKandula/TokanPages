@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Shared.Models
+﻿namespace TokanPages.Backend.SmtpClient.Models
 {
 
     public class ActionResult

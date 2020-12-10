@@ -3,11 +3,12 @@ using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using TokanPages.Logic;
 using TokanPages.AppLogger;
-using Swashbuckle.AspNetCore.Annotations;
-using TokanPages.BackEnd.Controllers.Subscribers.Model;
-using TokanPages.BackEnd.Controllers.Subscribers.Model.Responses;
+using TokanPages.Backend.Shared;
+using TokanPages.Controllers.Subscribers.Model;
+using TokanPages.Controllers.Subscribers.Model.Responses;
 
 namespace TokanPages.Controllers.Subscribers
 {
@@ -33,7 +34,7 @@ namespace TokanPages.Controllers.Subscribers
         public async Task<IActionResult> GetAllSubscribers() 
         {
 
-            var LResponse = new ReturnSubscribers { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
+            var LResponse = new ReturnSubscribers();
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {
@@ -79,7 +80,7 @@ namespace TokanPages.Controllers.Subscribers
         public async Task<IActionResult> GetItemAsync([FromRoute] Guid Id)
         {
 
-            var LResponse = new ReturnSubscriber { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
+            var LResponse = new ReturnSubscriber();
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {
@@ -125,7 +126,7 @@ namespace TokanPages.Controllers.Subscribers
         public async Task<IActionResult> AddItemAsync([FromBody] SubscriberRequest PayLoad)
         {
 
-            var LResponse = new SubscriberAdded { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
+            var LResponse = new SubscriberAdded();
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {
@@ -173,7 +174,7 @@ namespace TokanPages.Controllers.Subscribers
         public async Task<IActionResult> ChangeItemAsync([FromBody] SubscriberRequest PayLoad)
         {
 
-            var LResponse = new SubscriberUpdated { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
+            var LResponse = new SubscriberUpdated();
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {
@@ -219,7 +220,7 @@ namespace TokanPages.Controllers.Subscribers
         public async Task<IActionResult> RemoveItemAsync([FromRoute] Guid Id)
         {
 
-            var LResponse = new SubscriberDeleted { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
+            var LResponse = new SubscriberDeleted();
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {

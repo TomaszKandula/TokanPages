@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using TokanPages.Logic;
 using TokanPages.AppLogger;
+using TokanPages.Backend.Shared;
 using TokanPages.Controllers.Articles.Model;
 using TokanPages.Controllers.Articles.Model.Responses;
 
@@ -33,7 +34,7 @@ namespace TokanPages.Controllers.Articles
         public async Task<IActionResult> GetItemsAsync()
         {
 
-            var LResponse = new ReturnArticles { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
+            var LResponse = new ReturnArticles();
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {
@@ -79,7 +80,7 @@ namespace TokanPages.Controllers.Articles
         public async Task<IActionResult> GetItemAsync([FromRoute] Guid Id)
         {
 
-            var LResponse = new ReturnArticle { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
+            var LResponse = new ReturnArticle();
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {
@@ -125,7 +126,7 @@ namespace TokanPages.Controllers.Articles
         public async Task<IActionResult> AddItemAsync([FromBody] ArticleRequest PayLoad)
         {
 
-            var LResponse = new ArticleAdded { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
+            var LResponse = new ArticleAdded();
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {
@@ -176,7 +177,7 @@ namespace TokanPages.Controllers.Articles
         public async Task<IActionResult> ChangeItemAsync([FromBody] ArticleRequest PayLoad)
         {
 
-            var LResponse = new ArticleUpdated { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
+            var LResponse = new ArticleUpdated();
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {
@@ -226,7 +227,7 @@ namespace TokanPages.Controllers.Articles
         public async Task<IActionResult> RemoveItemAsync([FromRoute] Guid Id)
         {
 
-            var LResponse = new ArticleDeleted { Meta = { RequesterIpAddress = IpAddress.Get(HttpContext) } };
+            var LResponse = new ArticleDeleted();
             var LStartTime = DateTime.Now.TimeOfDay;
             try
             {

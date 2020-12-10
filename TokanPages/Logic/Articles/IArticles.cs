@@ -2,9 +2,9 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.BackEnd.Controllers.Articles.Model;
+using TokanPages.Controllers.Articles.Model;
 
-namespace TokanPages.BackEnd.Logic.Articles 
+namespace TokanPages.Logic.Articles 
 {
 
     public interface IArticles 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using TokanPages.Backend.Shared.Models;
 
 namespace TokanPages.Controllers.Articles.Model.Responses
 {

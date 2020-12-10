@@ -3,9 +3,11 @@ using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.BackEnd.Controllers.Articles.Model;
+using TokanPages.Controllers.Articles.Model;
+using TokanPages.Backend.Database;
+using ArticlesModel = TokanPages.Backend.Domain.Entities.Articles;
 
-namespace TokanPages.BackEnd.Logic.Articles
+namespace TokanPages.Logic.Articles
 {
 
     public class Articles : IArticles

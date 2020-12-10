@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.BackEnd.Logic.Mailer.Model;
+using TokanPages.Logic.Mailer.Model;
+using TokanPages.Backend.SmtpClient.Models;
 
 namespace TokanPages.Logic.Mailer
 {

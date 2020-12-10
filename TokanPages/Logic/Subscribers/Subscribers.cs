@@ -3,9 +3,12 @@ using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.BackEnd.Logic.Subscribers.Model;
-using TokanPages.BackEnd.Controllers.Subscribers.Model;
-//using SubscribersModel = TokanPages.BackEnd.Database.Model.Subscribers;
+using TokanPages.Backend.Shared;
+using TokanPages.Backend.Database;
+using TokanPages.Backend.Shared.Models;
+using TokanPages.Logic.Subscribers.Model;
+using TokanPages.Controllers.Subscribers.Model;
+using SubscribersModel = TokanPages.Backend.Domain.Entities.Subscribers;
 
 namespace TokanPages.Logic.Subscribers
 {
@@ -106,7 +109,7 @@ namespace TokanPages.Logic.Subscribers
                 return new NewSubscriber
                 {
                     NewId = Guid.Empty,
-                    Error = new Shared.Models.ErrorHandler 
+                    Error = new ErrorHandler 
                     { 
                         ErrorCode = Constants.Errors.UnableToPost.ErrorCode,
                         ErrorDesc = $"{Constants.Errors.UnableToPost.ErrorDesc} Returned status code: {LResult}."

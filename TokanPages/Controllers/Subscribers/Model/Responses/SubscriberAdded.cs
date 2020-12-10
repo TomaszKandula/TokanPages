@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json.Serialization;
+using TokanPages.Backend.Shared.Models;
 
 namespace TokanPages.Controllers.Subscribers.Model.Responses
 {
