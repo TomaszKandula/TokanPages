@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
+
 using TokanPages.BackEnd.Logic;
 using TokanPages.BackEnd.AppLogger;
 using TokanPages.BackEnd.Middleware;

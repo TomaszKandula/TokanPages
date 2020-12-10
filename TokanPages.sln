@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokanPages", "TokanPages\TokanPages.csproj", "{2C048600-41A0-40FC-B19C-80FF36236EA3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackEnd.IntegrationTests", "Tests\BackEnd.IntegrationTests\BackEnd.IntegrationTests.csproj", "{0776B373-3A9E-416F-A863-9865BEF45B77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.IntegrationTests", "Tests\Backend.IntegrationTests\Backend.IntegrationTests.csproj", "{0776B373-3A9E-416F-A863-9865BEF45B77}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackEnd.UnitTests", "Tests\BackEnd.UnitTests\BackEnd.UnitTests.csproj", "{AB73A669-A110-46F7-83C1-C19778D79B1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.UnitTests", "Tests\Backend.UnitTests\Backend.UnitTests.csproj", "{AB73A669-A110-46F7-83C1-C19778D79B1F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D707F460-1C70-4FA9-BC80-CC301A2145DA}"
 EndProject
