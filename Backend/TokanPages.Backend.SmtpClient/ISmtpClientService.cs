@@ -14,7 +14,9 @@ namespace TokanPages.Backend.SmtpClient
         string Subject { get; set; }
         string PlainText { get; set; }
         string HtmlBody { get; set; }
-        Task<ActionResult> Send();
+        Task<SendActionResult> Send();
+        List<CheckActionResult> IsAddressCorrect(List<string> AEmailAddress);
+        Task<bool> IsDomainCorrect(string AEmailAddress);
     }
 
 }

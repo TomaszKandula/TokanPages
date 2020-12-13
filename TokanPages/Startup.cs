@@ -1,22 +1,21 @@
+using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
-
-using TokanPages.Logic;
 using TokanPages.AppLogger;
 using TokanPages.Middleware;
-
 using TokanPages.Backend.Database;
-using TokanPages.Backend.Database.Settings;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.Storage.Settings;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.SmtpClient.Settings;
+using MediatR;
 
 namespace TokanPages
 {
@@ -54,15 +53,19 @@ namespace TokanPages
 
             AServices.AddSingleton(Configuration.GetSection("AzureStorage").Get<AzureStorageSettings>());
             AServices.AddSingleton(Configuration.GetSection("SmtpServer").Get<SmtpServerSettings>());
-            AServices.AddSingleton(Configuration.GetSection("CosmosDb").Get<CosmosDbSettings>());
 
             AServices.AddSingleton<IAppLogger, AppLogger.AppLogger>();
-
+            AServices.AddDbContext<DatabaseContext>(AOptions =>
+            {
+                AOptions.UseSqlServer(Configuration.GetConnectionString("DbConnect"),
+                AAddOptions => AAddOptions.EnableRetryOnFailure());
+            });
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();          
             AServices.AddScoped<IAzureStorageService, AzureStorageService>();
-            AServices.AddScoped<ICosmosDbService, CosmosDbService>();
 
-            AServices.AddScoped<ILogicContext, LogicContext>();
+            AServices.AddMediatR(Assembly.GetExecutingAssembly());
+
+
 
             AServices.AddResponseCompression(AOptions =>
             {
@@ -76,7 +79,6 @@ namespace TokanPages
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder AApplication, IWebHostEnvironment AEnvironment)
         {
 
@@ -90,9 +92,7 @@ namespace TokanPages
             }
             else
             {
-                // The default HSTS value is 30 days. 
-                // You may want to change this for production scenarios, 
-                // see https://aka.ms/aspnetcore-hsts.
+                // See https://aka.ms/aspnetcore-hsts.
                 AApplication.UseHsts();
             }
 
@@ -108,9 +108,7 @@ namespace TokanPages
 
             AApplication.UseEndpoints(AEndpoints =>
             {
-                AEndpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                AEndpoints.MapControllers();
             });
 
             AApplication.UseSpa(ASpa =>

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Handlers\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="mediatr" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

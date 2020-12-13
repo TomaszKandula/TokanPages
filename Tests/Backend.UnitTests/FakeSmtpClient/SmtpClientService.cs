@@ -22,7 +22,7 @@ namespace Backend.UnitTests.FakeSendGrid
         public override string PlainText { get; set; }
         public override string HtmlBody { get; set; }
 
-        public override async Task<ActionResult> Send() 
+        public override async Task<SendActionResult> Send() 
         {
 
             return await Task.Run(() => 
@@ -30,7 +30,7 @@ namespace Backend.UnitTests.FakeSendGrid
 
                 if (!Tos.Any()) 
                 {
-                    return new ActionResult 
+                    return new SendActionResult 
                     { 
                         IsSucceeded = false
                     };
@@ -38,13 +38,13 @@ namespace Backend.UnitTests.FakeSendGrid
 
                 if (string.IsNullOrEmpty(From) || string.IsNullOrEmpty(Subject)) 
                 {
-                    return new ActionResult
+                    return new SendActionResult
                     {
                         IsSucceeded = false
                     };
                 }
 
-                return new ActionResult
+                return new SendActionResult
                 {
                     IsSucceeded = true
                 };

@@ -1,20 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TokanPages.Logic;
-using TokanPages.AppLogger;
+using MediatR;
 
 namespace TokanPages.Controllers
 {
 
+    [Route("api/v1/[controller]/[action]")]
+    [ApiController]
+    [ResponseCache(CacheProfileName = "Standard")]
     public class BaseController : ControllerBase
     {
 
-        protected readonly ILogicContext FLogicContext;
-        protected readonly IAppLogger    FAppLogger;
+        protected readonly IMediator FMediator;
 
-        public BaseController(ILogicContext ALogicContext, IAppLogger AAppLogger) 
+        public BaseController(IMediator AMediator)
         {
-            FLogicContext = ALogicContext;
-            FAppLogger    = AAppLogger;
+            FMediator = AMediator;
         }
 
     }
