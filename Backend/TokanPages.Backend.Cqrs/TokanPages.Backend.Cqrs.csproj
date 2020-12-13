@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
+    <ProjectReference Include="..\TokanPages.Backend.SmtpClient\TokanPages.Backend.SmtpClient.csproj" />
   </ItemGroup>
 
 </Project>

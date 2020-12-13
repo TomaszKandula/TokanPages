@@ -1,6 +1,6 @@
 ﻿namespace TokanPages.Backend.Shared.Dto.Requests
 {
-    public class VerifyEmailAddressDto
+    public class VerifyEmailAddressRequest
     {
         public string Email { get; set; }
     }

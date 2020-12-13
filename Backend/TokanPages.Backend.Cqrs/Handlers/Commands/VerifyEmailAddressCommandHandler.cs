@@ -8,7 +8,7 @@ using MediatR;
 namespace TokanPages.Backend.Cqrs.Handlers.Commands
 {
 
-    public class VerifyEmailAddressCommandHandler : IRequestHandler<VerifyEmailAddressCommand, VerifyEmailAddressDto>
+    public class VerifyEmailAddressCommandHandler : IRequestHandler<VerifyEmailAddressCommand, VerifyEmailAddressResponse>
     {
 
         private readonly ISmtpClientService FSmtpClientService;
@@ -18,13 +18,13 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands
             FSmtpClientService = ASmtpClientService;
         }
 
-        public async Task<VerifyEmailAddressDto> Handle(VerifyEmailAddressCommand ARequest, CancellationToken ACancellationToken)
+        public async Task<VerifyEmailAddressResponse> Handle(VerifyEmailAddressCommand ARequest, CancellationToken ACancellationToken)
         {
 
             var LIsAddressCorrect = FSmtpClientService.IsAddressCorrect(new List<string> { ARequest.Email });
             var LIsDomainCorrect = await FSmtpClientService.IsDomainCorrect(ARequest.Email);
 
-            return new VerifyEmailAddressDto
+            return new VerifyEmailAddressResponse
             {
                 IsFormatCorrect = LIsAddressCorrect[0].IsValid,
                 IsDomainCorrect = LIsDomainCorrect

@@ -7,12 +7,12 @@ namespace TokanPages.Controllers
     [Route("api/v1/[controller]/[action]")]
     [ApiController]
     [ResponseCache(CacheProfileName = "Standard")]
-    public class BaseController : ControllerBase
+    public class __BaseController : ControllerBase
     {
 
         protected readonly IMediator FMediator;
 
-        public BaseController(IMediator AMediator)
+        public __BaseController(IMediator AMediator)
         {
             FMediator = AMediator;
         }

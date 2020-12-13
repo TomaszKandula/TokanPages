@@ -15,6 +15,8 @@ using TokanPages.Backend.Storage;
 using TokanPages.Backend.Storage.Settings;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.SmtpClient.Settings;
+using TokanPages.Backend.Shared.Dto.Responses;
+using TokanPages.Backend.Cqrs.Handlers.Commands;
 using MediatR;
 
 namespace TokanPages
@@ -64,8 +66,7 @@ namespace TokanPages
             AServices.AddScoped<IAzureStorageService, AzureStorageService>();
 
             AServices.AddMediatR(Assembly.GetExecutingAssembly());
-
-
+            AServices.AddTransient<IRequestHandler<VerifyEmailAddressCommand, VerifyEmailAddressResponse>, VerifyEmailAddressCommandHandler>();
 
             AServices.AddResponseCompression(AOptions =>
             {
