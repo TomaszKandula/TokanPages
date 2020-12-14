@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Shared.Dto.Responses;
+using TokanPages.Backend.Shared.Dto.Mailer;
 using MediatR;
 
-namespace TokanPages.Backend.Cqrs.Handlers.Commands
+namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
 
     public class VerifyEmailAddressCommandHandler : IRequestHandler<VerifyEmailAddressCommand, VerifyEmailAddressResponse>

@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Shared.Dto.Responses
+﻿namespace TokanPages.Backend.Shared.Dto.Mailer
 {
 
     public class VerifyEmailAddressResponse

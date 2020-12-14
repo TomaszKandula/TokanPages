@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\Queries\" />
+    <Folder Include="Handlers\Commands\Articles\" />
+    <Folder Include="Handlers\Commands\Subscribers\" />
+    <Folder Include="Handlers\Queries\Articles\" />
+    <Folder Include="Handlers\Queries\Mailer\" />
+    <Folder Include="Handlers\Queries\Subscribers\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
     <ProjectReference Include="..\TokanPages.Backend.SmtpClient\TokanPages.Backend.SmtpClient.csproj" />
+    <ProjectReference Include="..\TokanPages.Backend.Storage\TokanPages.Backend.Storage.csproj" />
   </ItemGroup>
 
 </Project>

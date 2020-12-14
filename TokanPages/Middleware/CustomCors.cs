@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
+using TokanPages.Backend.Shared.Settings;
 
 namespace TokanPages.Middleware
 {
@@ -15,11 +15,11 @@ namespace TokanPages.Middleware
             FRequestDelegate = ARequestDelegate;
         }
 
-        public Task Invoke(HttpContext AHttpContext, IConfiguration AConfiguration)
+        public Task Invoke(HttpContext AHttpContext, AppUrls AAppUrls)
         {
 
-            var LDevelopmentOrigin = AConfiguration.GetSection("DevelopmentOrigin").Value;
-            var LDeploymentOrigin  = AConfiguration.GetSection("DeploymentOrigin").Value;
+            var LDevelopmentOrigin = AAppUrls.DevelopmentOrigin;
+            var LDeploymentOrigin  = AAppUrls.DeploymentOrigin;
             var LRequestOrigin     = AHttpContext.Request.Headers["Origin"];
 
             if (LRequestOrigin == LDevelopmentOrigin || LRequestOrigin == LDeploymentOrigin)

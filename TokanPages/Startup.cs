@@ -10,13 +10,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
 using TokanPages.AppLogger;
 using TokanPages.Middleware;
-using TokanPages.Backend.Database;
 using TokanPages.Backend.Storage;
-using TokanPages.Backend.Storage.Settings;
+using TokanPages.Backend.Database;
+using TokanPages.Backend.Shared.Dto.Mailer;
 using TokanPages.Backend.SmtpClient;
+using TokanPages.Backend.Shared.Settings;
+using TokanPages.Backend.Storage.Settings;
 using TokanPages.Backend.SmtpClient.Settings;
-using TokanPages.Backend.Shared.Dto.Responses;
-using TokanPages.Backend.Cqrs.Handlers.Commands;
+using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
 using MediatR;
 
 namespace TokanPages
@@ -55,6 +56,7 @@ namespace TokanPages
 
             AServices.AddSingleton(Configuration.GetSection("AzureStorage").Get<AzureStorageSettings>());
             AServices.AddSingleton(Configuration.GetSection("SmtpServer").Get<SmtpServerSettings>());
+            AServices.AddSingleton(Configuration.GetSection("AppUrls").Get<AppUrls>());
 
             AServices.AddSingleton<IAppLogger, AppLogger.AppLogger>();
             AServices.AddDbContext<DatabaseContext>(AOptions =>
@@ -67,6 +69,9 @@ namespace TokanPages
 
             AServices.AddMediatR(Assembly.GetExecutingAssembly());
             AServices.AddTransient<IRequestHandler<VerifyEmailAddressCommand, VerifyEmailAddressResponse>, VerifyEmailAddressCommandHandler>();
+            AServices.AddTransient<IRequestHandler<SendMessageCommand, Unit>, SendMessageCommandHandler>();
+            AServices.AddTransient<IRequestHandler<SendNewsletterCommand, Unit>, SendNewsletterCommandHandler>();
+            //...
 
             AServices.AddResponseCompression(AOptions =>
             {
@@ -80,7 +85,7 @@ namespace TokanPages
 
         }
 
-        public void Configure(IApplicationBuilder AApplication, IWebHostEnvironment AEnvironment)
+        public void Configure(IApplicationBuilder AApplication, IWebHostEnvironment AEnvironment, AppUrls AAppUrls)
         {
 
             AApplication.UseResponseCompression();
@@ -119,7 +124,7 @@ namespace TokanPages
 
                 if (AEnvironment.IsDevelopment())
                 {
-                    ASpa.UseProxyToSpaDevelopmentServer(Configuration.GetSection("DevelopmentOrigin").Value);
+                    ASpa.UseProxyToSpaDevelopmentServer(AAppUrls.DevelopmentOrigin);
                 }
 
             });           

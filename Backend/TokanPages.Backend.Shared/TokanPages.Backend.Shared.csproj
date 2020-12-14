@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Dto\Articles\" />
+    <Folder Include="Dto\Subscribers\" />
+  </ItemGroup>
+
 </Project>
