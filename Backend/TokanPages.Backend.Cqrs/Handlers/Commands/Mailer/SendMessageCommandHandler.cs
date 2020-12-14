@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Linq;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.Shared;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Shared.Models;
+using TokanPages.Backend.Core.Models;
+using TokanPages.Backend.Core.TemplateHelper;
 using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
@@ -18,11 +17,14 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 
         private readonly ISmtpClientService FSmtpClientService;
         private readonly IAzureStorageService FAzureStorageService;
+        private readonly ITemplateHelper FTemplateHelper;
 
-        public SendMessageCommandHandler(ISmtpClientService ASmtpClientService, IAzureStorageService AAzureStorageService)
+        public SendMessageCommandHandler(ISmtpClientService ASmtpClientService, 
+            IAzureStorageService AAzureStorageService, ITemplateHelper ATemplateHelper)
         {
             FSmtpClientService = ASmtpClientService;
             FAzureStorageService = AAzureStorageService;
+            FTemplateHelper = ATemplateHelper;
         }
 
         public async Task<Unit> Handle(SendMessageCommand ARequest, CancellationToken ACancellationToken)
@@ -41,42 +43,12 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                     new ValueTag { Tag = "{DATE_TIME}",     Value = DateTime.UtcNow.ToString() }
                 };
 
-            FSmtpClientService.HtmlBody = await MakeBody(Constants.Emails.Templates.ContactForm, NewValues);
+            FSmtpClientService.HtmlBody = 
+                await FTemplateHelper.MakeBody(Constants.Emails.Templates.ContactForm, NewValues, FAzureStorageService.GetBaseUrl);
             await FSmtpClientService.Send();//TODO: add error handling
 
             return await Task.FromResult(Unit.Value);
 
-        }
-
-        private async Task<string> MakeBody(string ATemplate, List<ValueTag> AValueTag)
-        {
-
-            var LStorageUrl = $"{FAzureStorageService.GetBaseUrl}{ATemplate}";
-            var LTemplate = await GetFileFromUrl(LStorageUrl);
-
-            if (AValueTag == null || !AValueTag.Any()) return null;
-
-            foreach (var AItem in AValueTag)
-            {
-                LTemplate = LTemplate.Replace(AItem.Tag, AItem.Value);
-            }
-
-            return LTemplate;
-
-        }
-
-        private async Task<string> GetFileFromUrl(string Url)
-        {
-            try
-            {
-                var LHttpClient = new HttpClient();
-                var LResponse = await LHttpClient.GetAsync(Url);
-                return await LResponse.Content.ReadAsStringAsync();
-            }
-            catch
-            {
-                return Url;
-            }
         }
 
     }
