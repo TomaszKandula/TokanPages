@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
@@ -19,6 +20,7 @@ using TokanPages.Backend.Storage.Settings;
 using TokanPages.Backend.SmtpClient.Settings;
 using TokanPages.Backend.Core.TemplateHelper;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
+using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 using MediatR;
 
 namespace TokanPages
@@ -73,7 +75,8 @@ namespace TokanPages
             AServices.AddTransient<IRequestHandler<VerifyEmailAddressCommand, VerifyEmailAddressResponse>, VerifyEmailAddressCommandHandler>();
             AServices.AddTransient<IRequestHandler<SendMessageCommand, Unit>, SendMessageCommandHandler>();
             AServices.AddTransient<IRequestHandler<SendNewsletterCommand, Unit>, SendNewsletterCommandHandler>();
-            //...
+            AServices.AddTransient<IRequestHandler<GetAllArticlesCommand, IEnumerable<Backend.Domain.Entities.Articles>>, GetAllArticlesCommandHandler>();
+            AServices.AddTransient<IRequestHandler<GetArticleCommand, Backend.Domain.Entities.Articles>, GetArticleCommandHandler>();
 
             AServices.AddResponseCompression(AOptions =>
             {
