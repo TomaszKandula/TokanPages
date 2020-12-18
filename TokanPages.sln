@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokanPages.Backend.Shared",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokanPages.Backend.Cqrs", "Backend\TokanPages.Backend.Cqrs\TokanPages.Backend.Cqrs.csproj", "{CC816805-B105-4347-9917-0529B6E5E522}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Core", "Backend\TokanPages.Backend.Core\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj", "{4332380B-219A-4ABF-BD6C-BD9F56AA7E83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Core", "Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj", "{4332380B-219A-4ABF-BD6C-BD9F56AA7E83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
