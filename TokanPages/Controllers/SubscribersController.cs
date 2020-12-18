@@ -1,4 +1,12 @@
-﻿using MediatR;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using TokanPages.Backend.Cqrs.Mappers;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Shared.Dto.Subscribers;
+using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
+using MediatR;
 
 namespace TokanPages.Controllers
 {
@@ -8,10 +16,42 @@ namespace TokanPages.Controllers
 
         public SubscribersController(IMediator AMediator) : base(AMediator)
         {
-
         }
 
-        //...
+        [HttpGet]
+        public async Task<IEnumerable<Subscribers>> GetAllSubscribers()
+        {
+            var LQuery = new GetAllSubscribersQuery();
+            return await FMediator.Send(LQuery);
+        }
+
+        [HttpGet]
+        public async Task<Subscribers> GetSubscriber([FromRoute] Guid Id)
+        {
+            var LQuery = new GetSubscriberQuery { Id = Id };
+            return await FMediator.Send(LQuery);
+        }
+
+        [HttpPost]
+        public async Task<Unit> AddSubscriber([FromBody] AddSubscriberRequest APayLoad) 
+        {
+            var LCommand = SubscribersMapper.MapToAddSubscriberCommand(APayLoad);
+            return await FMediator.Send(LCommand);
+        }
+
+        [HttpPost]
+        public async Task<Unit> UpdateSubscriber([FromBody] UpdateSubscriberRequest APayLoad)
+        {
+            var LCommand = SubscribersMapper.MapToUpdateSubscriberCommand(APayLoad);
+            return await FMediator.Send(LCommand);
+        }
+
+        [HttpPost]
+        public async Task<Unit> RemoveSubscriber([FromBody] RemoveSubscriberRequest APayLoad)
+        {
+            var LCommand = SubscribersMapper.MapToRemoveSubscriberCommand(APayLoad);
+            return await FMediator.Send(LCommand);
+        }
 
     }
 

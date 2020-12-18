@@ -9,17 +9,17 @@ using MediatR;
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 {
 
-    public class GetAllArticlesCommandHandler : IRequestHandler<GetAllArticlesCommand, IEnumerable<Domain.Entities.Articles>>
+    public class GetAllArticlesQueryHandler : IRequestHandler<GetAllArticlesQuery, IEnumerable<Domain.Entities.Articles>>
     {
 
         private readonly DatabaseContext FDatabaseContext;
 
-        public GetAllArticlesCommandHandler(DatabaseContext ADatabaseContext) 
+        public GetAllArticlesQueryHandler(DatabaseContext ADatabaseContext) 
         {
             FDatabaseContext = ADatabaseContext;
         }
 
-        public async Task<IEnumerable<Domain.Entities.Articles>> Handle(GetAllArticlesCommand ARequest, CancellationToken ACancellationToken) 
+        public async Task<IEnumerable<Domain.Entities.Articles>> Handle(GetAllArticlesQuery ARequest, CancellationToken ACancellationToken) 
         {
             return await FDatabaseContext.Articles.Select(Articles => Articles).ToListAsync(ACancellationToken);
         }
