@@ -5,11 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Dto\Articles\" />
-    <Folder Include="Dto\Subscribers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\TokanPages.Backend.Core\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
   </ItemGroup>
 
