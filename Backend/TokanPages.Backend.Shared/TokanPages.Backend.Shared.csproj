@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TokanPages.Backend.Core\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
+    <ProjectReference Include="..\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
   </ItemGroup>
 
 </Project>
