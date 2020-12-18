@@ -33,21 +33,21 @@ namespace TokanPages.Controllers
         }
 
         [HttpPost]
-        public async Task<Unit> AddSubscriber([FromBody] AddSubscriberRequest APayLoad) 
+        public async Task<Unit> AddSubscriber([FromBody] AddSubscriberDto APayLoad) 
         {
             var LCommand = SubscribersMapper.MapToAddSubscriberCommand(APayLoad);
             return await FMediator.Send(LCommand);
         }
 
         [HttpPost]
-        public async Task<Unit> UpdateSubscriber([FromBody] UpdateSubscriberRequest APayLoad)
+        public async Task<Unit> UpdateSubscriber([FromBody] UpdateSubscriberDto APayLoad)
         {
             var LCommand = SubscribersMapper.MapToUpdateSubscriberCommand(APayLoad);
             return await FMediator.Send(LCommand);
         }
 
         [HttpPost]
-        public async Task<Unit> RemoveSubscriber([FromBody] RemoveSubscriberRequest APayLoad)
+        public async Task<Unit> RemoveSubscriber([FromBody] RemoveSubscriberDto APayLoad)
         {
             var LCommand = SubscribersMapper.MapToRemoveSubscriberCommand(APayLoad);
             return await FMediator.Send(LCommand);

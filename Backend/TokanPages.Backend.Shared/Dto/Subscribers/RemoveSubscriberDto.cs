@@ -3,7 +3,7 @@
 namespace TokanPages.Backend.Shared.Dto.Subscribers
 {
     
-    public class RemoveSubscriberRequest
+    public class RemoveSubscriberDto
     {
         public Guid Id { get; set; }
     }

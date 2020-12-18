@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
     public static class SubscribersMapper
     {
 
-        public static AddSubscriberCommand MapToAddSubscriberCommand(AddSubscriberRequest AModel) 
+        public static AddSubscriberCommand MapToAddSubscriberCommand(AddSubscriberDto AModel) 
         {
             return new AddSubscriberCommand
             {
@@ -15,7 +15,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
             };
         }
 
-        public static UpdateSubscriberCommand MapToUpdateSubscriberCommand(UpdateSubscriberRequest AModel) 
+        public static UpdateSubscriberCommand MapToUpdateSubscriberCommand(UpdateSubscriberDto AModel) 
         {
             return new UpdateSubscriberCommand 
             { 
@@ -26,7 +26,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
             };            
         }
 
-        public static RemoveSubscriberCommand MapToRemoveSubscriberCommand(RemoveSubscriberRequest AModel) 
+        public static RemoveSubscriberCommand MapToRemoveSubscriberCommand(RemoveSubscriberDto AModel) 
         {
             return new RemoveSubscriberCommand 
             { 

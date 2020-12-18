@@ -3,7 +3,7 @@
 namespace TokanPages.Backend.Shared.Dto.Subscribers
 {
 
-    public class UpdateSubscriberRequest
+    public class UpdateSubscriberDto
     {
         public Guid Id { get; set; }
         public string Email { get; set; }

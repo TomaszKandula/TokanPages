@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
     public static class ArticlesMapper
     {
 
-        public static AddArticleCommand MapToAddArticleCommand(AddArticleRequest AModel)
+        public static AddArticleCommand MapToAddArticleCommand(AddArticleDto AModel)
         {
             return new AddArticleCommand
             {
@@ -17,7 +17,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
             };
         }
 
-        public static UpdateArticleCommand MapToUpateArticleCommand(UpdateArticleRequest AModel)
+        public static UpdateArticleCommand MapToUpateArticleCommand(UpdateArticleDto AModel)
         {
             return new UpdateArticleCommand
             {
@@ -31,7 +31,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
             };
         }
 
-        public static RemoveArticleCommand MapToRemoveArticleCommand(RemoveArticleRequest AModel) 
+        public static RemoveArticleCommand MapToRemoveArticleCommand(RemoveArticleDto AModel) 
         {
             return new RemoveArticleCommand 
             { 

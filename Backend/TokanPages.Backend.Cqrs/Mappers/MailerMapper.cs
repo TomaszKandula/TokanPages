@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
     public static class MailerMapper
     {
 
-        public static VerifyEmailAddressCommand MapToVerifyEmailAddressCommand(VerifyEmailAddressRequest AModel) 
+        public static VerifyEmailAddressCommand MapToVerifyEmailAddressCommand(VerifyEmailAddressDto AModel) 
         {
             return new VerifyEmailAddressCommand 
             { 
@@ -15,7 +15,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
             };
         }
 
-        public static SendMessageCommand MapToSendMessageCommand(SendMessageRequest AModel) 
+        public static SendMessageCommand MapToSendMessageCommand(SendMessageDto AModel) 
         {
             return new SendMessageCommand
             {
@@ -29,7 +29,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
             };
         }
 
-        public static SendNewsletterCommand MapToSendNewsletterCommand(SendNewsletterRequest AModel) 
+        public static SendNewsletterCommand MapToSendNewsletterCommand(SendNewsletterDto AModel) 
         {
             return new SendNewsletterCommand 
             { 

@@ -3,7 +3,7 @@
 namespace TokanPages.Backend.Shared.Dto.Articles
 {
 
-    public class UpdateArticleRequest
+    public class UpdateArticleDto
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
