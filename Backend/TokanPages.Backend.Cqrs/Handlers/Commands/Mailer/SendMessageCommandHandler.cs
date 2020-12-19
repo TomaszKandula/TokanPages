@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using TokanPages.Backend.Shared;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Core.Models;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.TemplateHelper;
+using TokanPages.Backend.Core.TemplateHelper.Model;
 using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
@@ -35,13 +35,13 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
             FSmtpClientService.Tos = new List<string> { Constants.Emails.Addresses.Contact };
             FSmtpClientService.Subject = $"New user message from {ARequest.FirstName}";
 
-            var NewValues = new List<ValueTag>
+            var NewValues = new List<Item>
                 {
-                    new ValueTag { Tag = "{FIRST_NAME}",    Value = ARequest.FirstName },
-                    new ValueTag { Tag = "{LAST_NAME}",     Value = ARequest.LastName },
-                    new ValueTag { Tag = "{EMAIL_ADDRESS}", Value = ARequest.UserEmail },
-                    new ValueTag { Tag = "{USER_MSG}",      Value = ARequest.Message },
-                    new ValueTag { Tag = "{DATE_TIME}",     Value = DateTime.UtcNow.ToString() }
+                    new Item { Tag = "{FIRST_NAME}",    Value = ARequest.FirstName },
+                    new Item { Tag = "{LAST_NAME}",     Value = ARequest.LastName },
+                    new Item { Tag = "{EMAIL_ADDRESS}", Value = ARequest.UserEmail },
+                    new Item { Tag = "{USER_MSG}",      Value = ARequest.Message },
+                    new Item { Tag = "{DATE_TIME}",     Value = DateTime.UtcNow.ToString() }
                 };
 
             FSmtpClientService.HtmlBody = 

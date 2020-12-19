@@ -1,7 +1,7 @@
-﻿namespace TokanPages.Backend.Core.Models
+﻿namespace TokanPages.Backend.Core.TemplateHelper.Model
 {
 
-    public class ValueTag
+    public class Item
     {
         public string Tag { get; set; }
         public string Value { get; set; }

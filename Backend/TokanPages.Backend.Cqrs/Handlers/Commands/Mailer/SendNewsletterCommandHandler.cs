@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using TokanPages.Backend.Shared;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Core.Models;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.TemplateHelper;
+using TokanPages.Backend.Core.TemplateHelper.Model;
 using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
@@ -43,10 +43,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 FSmtpClientService.Subject = ARequest.Subject;
 
                 var UnsubscribeLink = UnsubscribeBaseLink + Subscriber.Id;
-                var NewValues = new List<ValueTag>
+                var NewValues = new List<Item>
                     {
-                        new ValueTag { Tag = "{CONTENT}", Value = ARequest.Message },
-                        new ValueTag { Tag = "{UNSUBSCRIBE_LINK}", Value = UnsubscribeLink }
+                        new Item { Tag = "{CONTENT}", Value = ARequest.Message },
+                        new Item { Tag = "{UNSUBSCRIBE_LINK}", Value = UnsubscribeLink }
                     };
 
                 FSmtpClientService.HtmlBody = 
