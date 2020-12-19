@@ -3,12 +3,11 @@ using System.Threading.Tasks;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
-using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
 {
 
-    public class GetSubscriberQueryHandler : IRequestHandler<GetSubscriberQuery, Domain.Entities.Subscribers>
+    public class GetSubscriberQueryHandler : TemplateHandler<GetSubscriberQuery, Domain.Entities.Subscribers>
     {
 
         private readonly DatabaseContext FDatabaseContext;
@@ -18,7 +17,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
             FDatabaseContext = ADatabaseContext;
         }
 
-        public async Task<Domain.Entities.Subscribers> Handle(GetSubscriberQuery ARequest, CancellationToken ACancellationToken) 
+        public override async Task<Domain.Entities.Subscribers> Handle(GetSubscriberQuery ARequest, CancellationToken ACancellationToken) 
         {
 
             var LCurrentSubscriber = await FDatabaseContext.Subscribers.FindAsync(new object[] { ARequest.Id }, ACancellationToken);

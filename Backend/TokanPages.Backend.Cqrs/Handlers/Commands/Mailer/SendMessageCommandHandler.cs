@@ -13,7 +13,7 @@ using MediatR;
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
 
-    public class SendMessageCommandHandler : IRequestHandler<SendMessageCommand, Unit>
+    public class SendMessageCommandHandler : TemplateHandler<SendMessageCommand, Unit>
     {
 
         private readonly ISmtpClientService FSmtpClientService;
@@ -28,7 +28,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
             FTemplateHelper = ATemplateHelper;
         }
 
-        public async Task<Unit> Handle(SendMessageCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(SendMessageCommand ARequest, CancellationToken ACancellationToken)
         {
 
             FSmtpClientService.From = Constants.Emails.Addresses.Contact;

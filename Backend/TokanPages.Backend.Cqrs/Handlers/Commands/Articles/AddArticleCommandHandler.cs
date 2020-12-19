@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
 using TokanPages.Backend.Database;
+using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
 
-    public class AddArticleCommandHandler : IRequestHandler<AddArticleCommand, Unit>
+    public class AddArticleCommandHandler : TemplateHandler<AddArticleCommand, Unit>
     {
 
         private readonly DatabaseContext FDatabaseContext;
@@ -17,7 +17,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             FDatabaseContext = ADatabaseContext;
         }
 
-        public async Task<Unit> Handle(AddArticleCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(AddArticleCommand ARequest, CancellationToken ACancellationToken)
         {
 
             // Field 'ARequest.Text' should be used to create text.html 

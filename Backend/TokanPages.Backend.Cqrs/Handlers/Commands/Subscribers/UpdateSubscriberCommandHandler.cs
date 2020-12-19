@@ -9,7 +9,7 @@ using MediatR;
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 {
     
-    public class UpdateSubscriberCommandHandler : IRequestHandler<UpdateSubscriberCommand, Unit>
+    public class UpdateSubscriberCommandHandler : TemplateHandler<UpdateSubscriberCommand, Unit>
     {
 
         private readonly DatabaseContext FDatabaseContext;
@@ -19,7 +19,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
             FDatabaseContext = ADatabaseContext;
         }
 
-        public async Task<Unit> Handle(UpdateSubscriberCommand ARequest, CancellationToken ACancellationToken) 
+        public override async Task<Unit> Handle(UpdateSubscriberCommand ARequest, CancellationToken ACancellationToken) 
         {
 
             var LCurrentSubscriber = await FDatabaseContext.Subscribers.FindAsync(new object[] { ARequest .Id}, ACancellationToken);
