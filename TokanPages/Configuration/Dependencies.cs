@@ -7,6 +7,7 @@ using TokanPages.Backend.Cqrs;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.SmtpClient;
+using TokanPages.Backend.Core.Behaviours;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Storage.Settings;
 using TokanPages.Backend.SmtpClient.Settings;
@@ -62,7 +63,8 @@ namespace TokanPages.Configuration
             AServices.AddMediatR(AOption => { AOption.AsScoped(); }, 
                 typeof(TemplateHandler<IRequest, Unit>).GetTypeInfo().Assembly);
 
-
+            AServices.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
+            AServices.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
 
         }
 
