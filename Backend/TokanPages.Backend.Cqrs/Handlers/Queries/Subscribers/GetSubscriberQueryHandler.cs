@@ -1,7 +1,9 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
 using TokanPages.Backend.Database;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Shared.Resources;
+using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
 {
@@ -21,8 +23,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
 
             var LCurrentSubscriber = await FDatabaseContext.Subscribers.FindAsync(new object[] { ARequest.Id }, ACancellationToken);
             if (LCurrentSubscriber == null) 
-            { 
-                // TODO: add error call
+            {
+                throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
             }
 
             return LCurrentSubscriber;

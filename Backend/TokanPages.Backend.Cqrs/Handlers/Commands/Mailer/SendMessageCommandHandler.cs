@@ -6,6 +6,8 @@ using TokanPages.Backend.Shared;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Core.Models;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.TemplateHelper;
 using MediatR;
 
@@ -45,7 +47,12 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 
             FSmtpClientService.HtmlBody = 
                 await FTemplateHelper.MakeBody(Constants.Emails.Templates.ContactForm, NewValues, FAzureStorageService.GetBaseUrl);
-            await FSmtpClientService.Send();//TODO: add error handling
+
+            var LResult = await FSmtpClientService.Send();
+            if (!LResult.IsSucceeded)
+            {
+                throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), LResult.ErrorDesc);
+            }
 
             return await Task.FromResult(Unit.Value);
 

@@ -106,6 +106,7 @@ namespace TokanPages
             AApplication.UseResponseCompression();
             AApplication.UseMiddleware<GarbageCollector>();
             AApplication.UseMiddleware<CustomCors>();
+            AApplication.UseMiddleware<ExceptionHandler>();
 
             if (AEnvironment.IsDevelopment())
             {
