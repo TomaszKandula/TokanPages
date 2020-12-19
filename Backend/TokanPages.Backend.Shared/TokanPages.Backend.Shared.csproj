@@ -23,11 +23,11 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Resources\ErrorCodes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorCodes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\ValidationCodes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ValidationCodes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

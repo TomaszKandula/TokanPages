@@ -24,7 +24,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
             var LCurrentSubscriber = await FDatabaseContext.Subscribers.FindAsync(new object[] { ARequest.Id }, ACancellationToken);
             if (LCurrentSubscriber == null) 
             {
-                throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+                throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
             }
 
             FDatabaseContext.Subscribers.Remove(LCurrentSubscriber);
