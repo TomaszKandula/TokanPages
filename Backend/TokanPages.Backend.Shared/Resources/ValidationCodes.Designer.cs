@@ -68,5 +68,68 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("DESCRIPTION_TOO_LONG", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The email address cannot be longer than 255 characters.
+        /// </summary>
+        public static string EMAIL_TOO_LONG {
+            get {
+                return ResourceManager.GetString("EMAIL_TOO_LONG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The first name cannot be longer than 255 characters.
+        /// </summary>
+        public static string FIRST_NAME_TOO_LONG {
+            get {
+                return ResourceManager.GetString("FIRST_NAME_TOO_LONG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The last name cannot be longer than 255 characters.
+        /// </summary>
+        public static string LAST_NAME_TOO_LONG {
+            get {
+                return ResourceManager.GetString("LAST_NAME_TOO_LONG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The message cannot be longer than 255 characters.
+        /// </summary>
+        public static string MESSAGE_TOO_LONG {
+            get {
+                return ResourceManager.GetString("MESSAGE_TOO_LONG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field is required.
+        /// </summary>
+        public static string REQUIRED {
+            get {
+                return ResourceManager.GetString("REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The subject length cannot be larger than 255 characters.
+        /// </summary>
+        public static string SUBJECT_TOO_LONG {
+            get {
+                return ResourceManager.GetString("SUBJECT_TOO_LONG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The title length cannot be larger than 255 characters.
+        /// </summary>
+        public static string TITLE_TOO_LONG {
+            get {
+                return ResourceManager.GetString("TITLE_TOO_LONG", resourceCulture);
+            }
+        }
     }
 }

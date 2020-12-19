@@ -120,4 +120,25 @@
   <data name="DESCRIPTION_TOO_LONG" xml:space="preserve">
     <value>The description length cannot be larger than 255 characters</value>
   </data>
+  <data name="EMAIL_TOO_LONG" xml:space="preserve">
+    <value>The email address cannot be longer than 255 characters</value>
+  </data>
+  <data name="FIRST_NAME_TOO_LONG" xml:space="preserve">
+    <value>The first name cannot be longer than 255 characters</value>
+  </data>
+  <data name="LAST_NAME_TOO_LONG" xml:space="preserve">
+    <value>The last name cannot be longer than 255 characters</value>
+  </data>
+  <data name="MESSAGE_TOO_LONG" xml:space="preserve">
+    <value>The message cannot be longer than 255 characters</value>
+  </data>
+  <data name="REQUIRED" xml:space="preserve">
+    <value>This field is required</value>
+  </data>
+  <data name="SUBJECT_TOO_LONG" xml:space="preserve">
+    <value>The subject length cannot be larger than 255 characters</value>
+  </data>
+  <data name="TITLE_TOO_LONG" xml:space="preserve">
+    <value>The title length cannot be larger than 255 characters</value>
+  </data>
 </root>
