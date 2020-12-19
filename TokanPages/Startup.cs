@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
 using TokanPages.AppLogger;
 using TokanPages.Middleware;
+using TokanPages.CustomHandlers;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.SmtpClient;
@@ -106,7 +107,7 @@ namespace TokanPages
             AApplication.UseResponseCompression();
             AApplication.UseMiddleware<GarbageCollector>();
             AApplication.UseMiddleware<CustomCors>();
-            AApplication.UseMiddleware<ExceptionHandler>();
+            AApplication.UseExceptionHandler(ExceptionHandler.Handle);
 
             if (AEnvironment.IsDevelopment())
             {
