@@ -13,7 +13,7 @@ using MediatR;
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
 
-    public class SendNewsletterCommandHandler : IRequestHandler<SendNewsletterCommand, Unit>
+    public class SendNewsletterCommandHandler : TemplateHandler<SendNewsletterCommand, Unit>
     {
 
         private readonly ISmtpClientService FSmtpClientService;
@@ -30,7 +30,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
             FAppUrls = AAppUrls;
         }
 
-        public async Task<Unit> Handle(SendNewsletterCommand ARequest, CancellationToken ACancellationToken) 
+        public override async Task<Unit> Handle(SendNewsletterCommand ARequest, CancellationToken ACancellationToken) 
         {
 
             var UnsubscribeBaseLink = FAppUrls.DeploymentOrigin + FAppUrls.UnsubscribePath;

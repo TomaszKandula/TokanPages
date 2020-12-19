@@ -7,7 +7,7 @@ using MediatR;
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 {
 
-    public class AddSubscriberCommandHandler : IRequestHandler<AddSubscriberCommand, Unit>
+    public class AddSubscriberCommandHandler : TemplateHandler<AddSubscriberCommand, Unit>
     {
 
         private readonly DatabaseContext FDatabaseContext;
@@ -17,7 +17,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
             FDatabaseContext = ADatabaseContext;
         }
 
-        public async Task<Unit> Handle(AddSubscriberCommand ARequest, CancellationToken ACancellationToken) 
+        public override async Task<Unit> Handle(AddSubscriberCommand ARequest, CancellationToken ACancellationToken) 
         {
 
             var LNewSubscriber = new Domain.Entities.Subscribers

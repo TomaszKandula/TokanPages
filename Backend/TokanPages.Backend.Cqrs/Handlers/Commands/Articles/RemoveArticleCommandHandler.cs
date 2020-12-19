@@ -8,7 +8,7 @@ using MediatR;
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
 
-    public class RemoveArticleCommandHandler : IRequestHandler<RemoveArticleCommand, Unit>
+    public class RemoveArticleCommandHandler : TemplateHandler<RemoveArticleCommand, Unit>
     {
 
         private readonly DatabaseContext FDatabaseContext;
@@ -18,7 +18,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             FDatabaseContext = ADatabaseContext;
         }
 
-        public async Task<Unit> Handle(RemoveArticleCommand ARequest, CancellationToken ACancellationToken) 
+        public override async Task<Unit> Handle(RemoveArticleCommand ARequest, CancellationToken ACancellationToken) 
         {
 
             var LCurrentArticle = await FDatabaseContext.Articles.FindAsync(ARequest.Id);

@@ -8,7 +8,7 @@ using MediatR;
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 {
 
-    public class RemoveSubscriberCommandHandler : IRequestHandler<RemoveSubscriberCommand, Unit>
+    public class RemoveSubscriberCommandHandler : TemplateHandler<RemoveSubscriberCommand, Unit>
     {
 
         private readonly DatabaseContext FDatabaseContext;
@@ -18,7 +18,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
             FDatabaseContext = ADatabaseContext;
         }
 
-        public async Task<Unit> Handle(RemoveSubscriberCommand ARequest, CancellationToken ACancellationToken) 
+        public override async Task<Unit> Handle(RemoveSubscriberCommand ARequest, CancellationToken ACancellationToken) 
         {
 
             var LCurrentSubscriber = await FDatabaseContext.Subscribers.FindAsync(new object[] { ARequest.Id }, ACancellationToken);
