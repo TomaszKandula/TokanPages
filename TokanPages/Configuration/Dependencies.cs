@@ -12,6 +12,7 @@ using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Storage.Settings;
 using TokanPages.Backend.SmtpClient.Settings;
 using TokanPages.Backend.Core.TemplateHelper;
+using FluentValidation;
 using MediatR;
 
 namespace TokanPages.Configuration
@@ -26,6 +27,7 @@ namespace TokanPages.Configuration
             SetupLogger(AServices);
             SetupDatabase(AServices, AConfiguration);
             SetupServices(AServices);
+            SetupValidators(AServices);
             SetupMediatR(AServices);
         }
 
@@ -55,6 +57,11 @@ namespace TokanPages.Configuration
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();
             AServices.AddScoped<IAzureStorageService, AzureStorageService>();
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
+        }
+
+        private static void SetupValidators(IServiceCollection AServices)
+        {
+            AServices.AddValidatorsFromAssemblyContaining<TemplateHandler<IRequest, Unit>>(ServiceLifetime.Scoped);
         }
 
         private static void SetupMediatR(IServiceCollection AServices) 
