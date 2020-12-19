@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TokanPages.AppLogger;
 using TokanPages.Backend.Cqrs;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.SmtpClient;
+using TokanPages.Backend.Core.AppLogger;
 using TokanPages.Backend.Core.Behaviours;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Storage.Settings;
@@ -38,7 +38,7 @@ namespace TokanPages.Configuration
 
         private static void SetupLogger(IServiceCollection AServices) 
         {
-            AServices.AddSingleton<IAppLogger, AppLogger.AppLogger>();
+            AServices.AddSingleton<ILogger, Logger>();
         }
 
         private static void SetupDatabase(IServiceCollection AServices, IConfiguration AConfiguration) 

@@ -1,9 +1,9 @@
-﻿namespace TokanPages.AppLogger
+﻿namespace TokanPages.Backend.Core.AppLogger
 {
     /// <summary>
     /// Logger service that allows to store messages from application.
     /// </summary>
-    public interface IAppLogger
+    public interface ILogger
     {
 
         /// <summary>

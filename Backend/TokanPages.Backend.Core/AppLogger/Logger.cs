@@ -1,9 +1,9 @@
 ﻿using Serilog;
 
-namespace TokanPages.AppLogger
+namespace TokanPages.Backend.Core.AppLogger
 {
 
-    public class AppLogger : IAppLogger
+    public class Logger : ILogger
     {
 
         public void LogDebug(string AMessage)
