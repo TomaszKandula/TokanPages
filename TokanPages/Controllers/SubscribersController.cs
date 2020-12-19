@@ -25,7 +25,7 @@ namespace TokanPages.Controllers
             return await FMediator.Send(LQuery);
         }
 
-        [HttpGet]
+        [HttpGet("{Id}")]
         public async Task<Subscribers> GetSubscriber([FromRoute] Guid Id)
         {
             var LQuery = new GetSubscriberQuery { Id = Id };

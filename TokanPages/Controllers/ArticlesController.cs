@@ -25,7 +25,7 @@ namespace TokanPages.Controllers
             return await FMediator.Send(LQuery);
         }
 
-        [HttpGet]
+        [HttpGet("{Id}")]
         public async Task<Articles> GetArticle([FromRoute] Guid Id)
         {
             var LQuery = new GetArticleQuery { Id = Id};
