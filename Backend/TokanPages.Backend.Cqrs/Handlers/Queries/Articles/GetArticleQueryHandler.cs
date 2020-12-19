@@ -24,7 +24,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
             var LCurrentArticle = await FDatabaseContext.Articles.FindAsync(new object[] { ARequest.Id }, ACancellationToken);
             if (LCurrentArticle == null) 
             {
-                throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+                throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
             }
 
             return LCurrentArticle;

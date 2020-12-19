@@ -21,6 +21,7 @@ namespace TokanPages.CustomHandlers
 
                 var LExceptionHandlerPathFeature = AHttpContext.Features.Get<IExceptionHandlerPathFeature>();
                 var LException = LExceptionHandlerPathFeature.Error;
+                AHttpContext.Response.ContentType = "application/json";
 
                 string LResult;
                 switch (LException)

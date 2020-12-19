@@ -21,7 +21,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
 
         public async Task<IEnumerable<Domain.Entities.Subscribers>> Handle(GetAllSubscribersQuery ARequest, CancellationToken ACancellationToken) 
         {
-            return await FDatabaseContext.Subscribers.Select(Subscribers => Subscribers).ToListAsync();
+            return await FDatabaseContext.Subscribers.Select(Subscribers => Subscribers).ToListAsync(ACancellationToken);
         }
 
     }

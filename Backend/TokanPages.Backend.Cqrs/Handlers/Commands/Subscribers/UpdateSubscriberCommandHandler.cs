@@ -33,7 +33,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
             LCurrentSubscriber.IsActivated = ARequest.IsActivated;
             LCurrentSubscriber.LastUpdated = DateTime.UtcNow;
 
-            await FDatabaseContext.SaveChangesAsync();
+            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(Unit.Value);
 
         }

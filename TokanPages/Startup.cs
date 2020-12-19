@@ -107,27 +107,21 @@ namespace TokanPages
             AApplication.UseResponseCompression();
             AApplication.UseMiddleware<GarbageCollector>();
             AApplication.UseMiddleware<CustomCors>();
-            AApplication.UseExceptionHandler(ExceptionHandler.Handle);
 
             if (AEnvironment.IsDevelopment())
-            {
                 AApplication.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                // See https://aka.ms/aspnetcore-hsts.
-                AApplication.UseHsts();
-            }
+
+            AApplication.UseExceptionHandler(ExceptionHandler.Handle);
+            AApplication.UseHttpsRedirection();
+            AApplication.UseStaticFiles();
+            AApplication.UseSpaStaticFiles();
+            AApplication.UseRouting();
 
             AApplication.UseSwagger();
             AApplication.UseSwaggerUI(AOption =>
             {
                 AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "TokanPagesApi version 1");
             });
-
-            AApplication.UseStaticFiles();
-            AApplication.UseSpaStaticFiles();
-            AApplication.UseRouting();
 
             AApplication.UseEndpoints(AEndpoints =>
             {
