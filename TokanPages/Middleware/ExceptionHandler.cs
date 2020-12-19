@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Diagnostics;
-using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Models;
+using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using Newtonsoft.Json;
 
@@ -13,10 +13,22 @@ namespace TokanPages.Middleware
     public class ExceptionHandler
     {
 
-        public async Task Invoke(HttpContext AHttpContext)
+        private readonly RequestDelegate FRequestDelegate;
+
+        public ExceptionHandler(RequestDelegate ARequestDelegate)
+        {
+            FRequestDelegate = ARequestDelegate;
+        }
+
+        public Task Invoke(HttpContext AHttpContext)
         {
 
             var LExceptionHandlerPathFeature = AHttpContext.Features.Get<IExceptionHandlerPathFeature>();
+            if (LExceptionHandlerPathFeature == null)
+            {
+                return FRequestDelegate(AHttpContext);
+            }
+
             var LException = LExceptionHandlerPathFeature.Error;
 
             string LResult;           
@@ -49,7 +61,7 @@ namespace TokanPages.Middleware
 
             }
 
-            await AHttpContext.Response.WriteAsync(LResult);
+            return AHttpContext.Response.WriteAsync(LResult);
 
         }
 
