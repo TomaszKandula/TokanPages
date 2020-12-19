@@ -79,6 +79,15 @@ namespace TokanPages.Backend.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to save file on Azure Blob Storage.
+        /// </summary>
+        public static string CANNOT_SAVE_TO_AZURE_STORAGE {
+            get {
+                return ResourceManager.GetString("CANNOT_SAVE_TO_AZURE_STORAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unexpected error.
         /// </summary>
         public static string ERROR_UNEXPECTED {

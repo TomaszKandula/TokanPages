@@ -123,6 +123,9 @@
   <data name="ARTICLE_DOES_NOT_EXISTS" xml:space="preserve">
     <value>Requested article does not exists</value>
   </data>
+  <data name="CANNOT_SAVE_TO_AZURE_STORAGE" xml:space="preserve">
+    <value>Failed to save file on Azure Blob Storage</value>
+  </data>
   <data name="ERROR_UNEXPECTED" xml:space="preserve">
     <value>Unexpected error</value>
   </data>
