@@ -31,7 +31,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
             };
 
             await FDatabaseContext.Subscribers.AddAsync(LNewSubscriber);
-            await FDatabaseContext.SaveChangesAsync();
+            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 
             return await Task.FromResult(Unit.Value);
         

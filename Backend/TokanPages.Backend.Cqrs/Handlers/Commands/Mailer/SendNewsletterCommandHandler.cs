@@ -7,7 +7,6 @@ using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Core.Models;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.TemplateHelper;
 using MediatR;
 
@@ -56,7 +55,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 var LResult = await FSmtpClientService.Send();
                 if (!LResult.IsSucceeded) 
                 {
-                    throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), LResult.ErrorDesc);
+                    throw new BusinessException(nameof(CommonErrorCodes.ERROR_MAILER), LResult.ErrorDesc);
                 }
 
             }

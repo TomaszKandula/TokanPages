@@ -3,6 +3,7 @@
 
     public static class CommonErrorCodes
     {
+        public const string ERROR_MAILER = nameof(ERROR_MAILER);
         public const string ERROR_UNEXEPCTED = nameof(ERROR_UNEXEPCTED);
         public const string ERROR_INVALID_DATA = nameof(ERROR_INVALID_DATA);
         public const string ERROR_UNAUTHORIZED_CONTEXT = nameof(ERROR_UNAUTHORIZED_CONTEXT);
