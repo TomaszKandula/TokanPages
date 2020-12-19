@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.Backend.Core.Models;
+using TokanPages.Backend.Core.TemplateHelper.Model;
 
 namespace TokanPages.Backend.Core.TemplateHelper
 {
@@ -10,15 +10,15 @@ namespace TokanPages.Backend.Core.TemplateHelper
     public class TemplateHelper : ITemplateHelper
     {
 
-        public async Task<string> MakeBody(string ATemplate, List<ValueTag> AValueTag, string ATemplateSource)
+        public async Task<string> MakeBody(string ATemplate, List<Item> AItems, string ATemplateSource)
         {
 
             var LStorageUrl = $"{ATemplateSource}{ATemplate}";
             var LTemplate = await GetFileFromUrl(LStorageUrl);
 
-            if (AValueTag == null || !AValueTag.Any()) return null;
+            if (AItems == null || !AItems.Any()) return null;
 
-            foreach (var AItem in AValueTag)
+            foreach (var AItem in AItems)
             {
                 LTemplate = LTemplate.Replace(AItem.Tag, AItem.Value);
             }
