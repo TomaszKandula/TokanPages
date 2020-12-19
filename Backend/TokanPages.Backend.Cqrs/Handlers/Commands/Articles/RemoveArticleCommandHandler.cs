@@ -1,6 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using TokanPages.Backend.Database;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Shared.Resources;
 using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
@@ -22,7 +24,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             var LCurrentArticle = await FDatabaseContext.Articles.FindAsync(ARequest.Id);
             if (LCurrentArticle == null)
             {
-                // TODO: add error call
+                throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
             }
 
             FDatabaseContext.Articles.Remove(LCurrentArticle);

@@ -2,6 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using TokanPages.Backend.Database;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Shared.Resources;
 using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
@@ -22,8 +24,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 
             var LCurrentSubscriber = await FDatabaseContext.Subscribers.FindAsync(new object[] { ARequest .Id}, ACancellationToken);
             if (LCurrentSubscriber == null) 
-            { 
-                // Add error call
+            {
+                throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
             }
 
             LCurrentSubscriber.Email = ARequest.Email;
