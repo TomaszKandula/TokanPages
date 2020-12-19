@@ -70,11 +70,29 @@ namespace TokanPages.Backend.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Requested article does not exists.
+        /// </summary>
+        public static string ARTICLE_DOES_NOT_EXISTS {
+            get {
+                return ResourceManager.GetString("ARTICLE_DOES_NOT_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unexpected error.
         /// </summary>
         public static string ERROR_UNEXPECTED {
             get {
                 return ResourceManager.GetString("ERROR_UNEXPECTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Requested subscriber does not exists.
+        /// </summary>
+        public static string SUBSCRIBER_DOES_NOT_EXISTS {
+            get {
+                return ResourceManager.GetString("SUBSCRIBER_DOES_NOT_EXISTS", resourceCulture);
             }
         }
     }
