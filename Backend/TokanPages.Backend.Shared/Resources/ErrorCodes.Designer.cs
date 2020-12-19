@@ -59,7 +59,7 @@ namespace TokanPages.Backend.Shared.Resources {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Access denied.
         /// </summary>
