@@ -31,6 +31,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
+            RuleFor(Field => Field.ImageToUpload)
+                .NotEmpty()
+                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+                .WithMessage(ValidationCodes.REQUIRED);
+
         }
 
     }
