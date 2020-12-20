@@ -6,8 +6,10 @@ using TokanPages.Backend.Shared;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.FileUtility;
 using TokanPages.Backend.Core.TemplateHelper;
 using TokanPages.Backend.Core.TemplateHelper.Model;
+using Templates = TokanPages.Backend.Shared.Constants.Emails.Templates;
 using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
@@ -19,13 +21,15 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
         private readonly ISmtpClientService FSmtpClientService;
         private readonly IAzureStorageService FAzureStorageService;
         private readonly ITemplateHelper FTemplateHelper;
+        private readonly IFileUtility FFileUtility;
 
         public SendMessageCommandHandler(ISmtpClientService ASmtpClientService, 
-            IAzureStorageService AAzureStorageService, ITemplateHelper ATemplateHelper)
+            IAzureStorageService AAzureStorageService, ITemplateHelper ATemplateHelper, IFileUtility AFileUtility)
         {
             FSmtpClientService = ASmtpClientService;
             FAzureStorageService = AAzureStorageService;
             FTemplateHelper = ATemplateHelper;
+            FFileUtility = AFileUtility;
         }
 
         public override async Task<Unit> Handle(SendMessageCommand ARequest, CancellationToken ACancellationToken)
@@ -44,8 +48,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                     new Item { Tag = "{DATE_TIME}",     Value = DateTime.UtcNow.ToString() }
                 };
 
-            FSmtpClientService.HtmlBody = 
-                await FTemplateHelper.MakeBody(Constants.Emails.Templates.ContactForm, NewValues, FAzureStorageService.GetBaseUrl);
+            var LTemplateFromUrl = await FFileUtility.GetFileFromUrl($"{FAzureStorageService.GetBaseUrl}{Templates.ContactForm}", ACancellationToken);
+            FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, NewValues);
 
             var LResult = await FSmtpClientService.Send();
             if (!LResult.IsSucceeded)

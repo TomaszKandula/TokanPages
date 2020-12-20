@@ -16,19 +16,20 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
         private readonly DatabaseContext FDatabaseContext;
         private readonly IAzureStorageService FAzureStorageService;
+        private readonly IFileUtility FFileUtility;
 
-        public AddArticleCommandHandler(DatabaseContext ADatabaseContext, IAzureStorageService AAzureStorageService) 
+        public AddArticleCommandHandler(DatabaseContext ADatabaseContext, IAzureStorageService AAzureStorageService, IFileUtility AFileUtility) 
         {
             FDatabaseContext = ADatabaseContext;
             FAzureStorageService = AAzureStorageService;
+            FFileUtility = AFileUtility;
         }
 
         public override async Task<Unit> Handle(AddArticleCommand ARequest, CancellationToken ACancellationToken)
         {
 
             var LNewId = Guid.NewGuid();
-            var LFileUtility = new FileUtility();
-            var LTempFile = await LFileUtility.SaveToFile("__upload", LNewId.ToString(), ARequest.Text);
+            var LTempFile = await FFileUtility.SaveToFile("__upload", LNewId.ToString(), ARequest.Text);
 
             var LResult = await FAzureStorageService.UploadTextFile($"tokanpages\\content\\articles\\{LNewId}", "text.html", $"{LTempFile}");
             if (!LResult.IsSucceeded) 

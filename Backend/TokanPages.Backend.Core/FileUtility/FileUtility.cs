@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TokanPages.Backend.Core.FileUtility
@@ -28,6 +30,13 @@ namespace TokanPages.Backend.Core.FileUtility
 
             return LTempFilePath;
 
+        }
+
+        public async Task<string> GetFileFromUrl(string AUrl, CancellationToken ACancellationToken)
+        {
+            using var LHttpClient = new HttpClient();
+            var LResponse = await LHttpClient.GetAsync(AUrl, ACancellationToken);
+            return await LResponse.Content.ReadAsStringAsync();
         }
 
     }
