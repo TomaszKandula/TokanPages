@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using TokanPages.Backend.Storage.Models;
 
 namespace TokanPages.Backend.Storage
@@ -7,8 +8,8 @@ namespace TokanPages.Backend.Storage
     public interface IAzureStorageService
     {
         string GetBaseUrl { get; }
-        Task<ActionResult> UploadTextFile(string ADestContainerName, string ADestFileName, string ASrcFullFilePath);
-        Task<ActionResult> RemoveFromStorage(string AContainerName, string AFileName);
+        Task<ActionResult> UploadFile(string ADestContainerName, string ADestFileName, string ASrcFullFilePath, string AContentType, CancellationToken ACancellationToken);
+        Task<ActionResult> RemoveFromStorage(string AContainerName, string AFileName, CancellationToken ACancellationToken);
     }
 
 }
