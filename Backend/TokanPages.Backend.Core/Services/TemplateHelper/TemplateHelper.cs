@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using TokanPages.Backend.Core.TemplateHelper.Model;
+using TokanPages.Backend.Core.Services.TemplateHelper.Model;
 
 namespace TokanPages.Backend.Core.Services.TemplateHelper
 {

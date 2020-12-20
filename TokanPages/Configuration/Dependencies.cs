@@ -10,9 +10,9 @@ using TokanPages.Backend.Core.AppLogger;
 using TokanPages.Backend.Core.Behaviours;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Storage.Settings;
-using TokanPages.Backend.Core.FileUtility;
 using TokanPages.Backend.SmtpClient.Settings;
-using TokanPages.Backend.Core.TemplateHelper;
+using TokanPages.Backend.Core.Services.FileUtility;
+using TokanPages.Backend.Core.Services.TemplateHelper;
 using FluentValidation;
 using MediatR;
 
