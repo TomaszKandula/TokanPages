@@ -25,27 +25,33 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             FFileUtility = AFileUtility;
         }
 
-        public override async Task<Unit> Handle(UpdateArticleCommand ARequest, CancellationToken ACancellationToken) 
+        public override async Task<Unit> Handle(UpdateArticleCommand ARequest, CancellationToken ACancellationToken)
         {
 
             var LCurrentArticle = await FDatabaseContext.Articles.FindAsync(ARequest.Id);
-            if (LCurrentArticle == null) 
+            if (LCurrentArticle == null)
             {
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
             }
 
-            var LTextContent = await FFileUtility.SaveToFile("__upload", $"{ARequest.Id}.txt", ARequest.TextToUpload);
-            var LTextUpload = await FAzureStorageService.UploadFile($"tokanpages\\content\\articles\\{ARequest.Id}", "text.html", $"{LTextContent}", "text/html", ACancellationToken);
-            if (!LTextUpload.IsSucceeded)
+            if (!string.IsNullOrEmpty(ARequest.TextToUpload))
             {
-                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LTextUpload.ErrorDesc);
+                var LTextContent = await FFileUtility.SaveToFile("__upload", $"{ARequest.Id}.txt", ARequest.TextToUpload);
+                var LTextUpload = await FAzureStorageService.UploadFile($"tokanpages\\content\\articles\\{ARequest.Id}", "text.html", $"{LTextContent}", "text/html", ACancellationToken);
+                if (!LTextUpload.IsSucceeded)
+                {
+                    throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LTextUpload.ErrorDesc);
+                }
             }
 
-            var LImageContent = await FFileUtility.SaveToFile("__upload", $"{ARequest.Id}.jpg", ARequest.ImageToUpload);
-            var LImageUpload = await FAzureStorageService.UploadFile($"tokanpages\\content\\articles\\{ARequest.Id}", "image.jpeg", $"{LImageContent}", "image/jpeg", ACancellationToken);
-            if (!LImageUpload.IsSucceeded)
+            if (!string.IsNullOrEmpty(ARequest.ImageToUpload))
             {
-                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LImageUpload.ErrorDesc);
+                var LImageContent = await FFileUtility.SaveToFile("__upload", $"{ARequest.Id}.jpg", ARequest.ImageToUpload);
+                var LImageUpload = await FAzureStorageService.UploadFile($"tokanpages\\content\\articles\\{ARequest.Id}", "image.jpeg", $"{LImageContent}", "image/jpeg", ACancellationToken);
+                if (!LImageUpload.IsSucceeded)
+                {
+                    throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LImageUpload.ErrorDesc);
+                }
             }
 
             LCurrentArticle.Title = ARequest.Title;
