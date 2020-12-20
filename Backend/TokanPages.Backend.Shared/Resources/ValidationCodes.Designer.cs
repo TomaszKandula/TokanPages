@@ -97,6 +97,15 @@ namespace TokanPages.Backend.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This field must be greater than zero.
+        /// </summary>
+        public static string LESS_THAN_ZERO {
+            get {
+                return ResourceManager.GetString("LESS_THAN_ZERO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The message cannot be longer than 255 characters.
         /// </summary>
         public static string MESSAGE_TOO_LONG {

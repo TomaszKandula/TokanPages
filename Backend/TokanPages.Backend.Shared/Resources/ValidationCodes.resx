@@ -129,6 +129,9 @@
   <data name="LAST_NAME_TOO_LONG" xml:space="preserve">
     <value>The last name cannot be longer than 255 characters</value>
   </data>
+  <data name="LESS_THAN_ZERO" xml:space="preserve">
+    <value>This field must be greater than zero</value>
+  </data>
   <data name="MESSAGE_TOO_LONG" xml:space="preserve">
     <value>The message cannot be longer than 255 characters</value>
   </data>
