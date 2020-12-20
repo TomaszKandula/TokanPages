@@ -36,20 +36,15 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(Field => Field.IsPublished)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
-
             RuleFor(Field => Field.Likes)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
+                .GreaterThan(-1)
+                .WithErrorCode(nameof(ValidationCodes.LESS_THAN_ZERO))
+                .WithMessage(ValidationCodes.LESS_THAN_ZERO);
 
             RuleFor(Field => Field.ReadCount)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
+                .GreaterThan(-1)
+                .WithErrorCode(nameof(ValidationCodes.LESS_THAN_ZERO))
+                .WithMessage(ValidationCodes.LESS_THAN_ZERO);
 
         }
 

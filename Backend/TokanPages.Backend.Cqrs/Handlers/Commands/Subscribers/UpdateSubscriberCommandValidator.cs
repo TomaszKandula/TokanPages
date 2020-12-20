@@ -23,15 +23,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
                 .WithErrorCode(nameof(ValidationCodes.EMAIL_TOO_LONG))
                 .WithMessage(ValidationCodes.EMAIL_TOO_LONG);
 
-            RuleFor(Field => Field.IsActivated)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
-
             RuleFor(Field => Field.Count)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
+                .GreaterThan(-1)
+                .WithErrorCode(nameof(ValidationCodes.LESS_THAN_ZERO))
+                .WithMessage(ValidationCodes.LESS_THAN_ZERO);
 
         }
 
