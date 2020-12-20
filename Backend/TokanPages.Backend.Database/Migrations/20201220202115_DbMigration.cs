@@ -16,7 +16,9 @@ namespace TokanPages.Backend.Database.Migrations
                     Description = table.Column<string>(maxLength: 255, nullable: false),
                     IsPublished = table.Column<bool>(nullable: false),
                     Likes = table.Column<int>(nullable: false),
-                    ReadCount = table.Column<int>(nullable: false)
+                    ReadCount = table.Column<int>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {
