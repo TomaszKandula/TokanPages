@@ -4,13 +4,13 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TokanPages.Backend.Core.FileUtility
+namespace TokanPages.Backend.Core.Services.FileUtility
 {
 
     public class FileUtility : IFileUtility
     {
 
-        public async Task<string> SaveToFile(string ATemporaryDir, string AFileName, string ATextContent) 
+        public virtual async Task<string> SaveToFile(string ATemporaryDir, string AFileName, string ATextContent) 
         {
 
             var LTempFileName = $"{AFileName}.txt";
@@ -32,7 +32,7 @@ namespace TokanPages.Backend.Core.FileUtility
 
         }
 
-        public async Task<string> GetFileFromUrl(string AUrl, CancellationToken ACancellationToken)
+        public virtual async Task<string> GetFileFromUrl(string AUrl, CancellationToken ACancellationToken)
         {
             using var LHttpClient = new HttpClient();
             var LResponse = await LHttpClient.GetAsync(AUrl, ACancellationToken);
