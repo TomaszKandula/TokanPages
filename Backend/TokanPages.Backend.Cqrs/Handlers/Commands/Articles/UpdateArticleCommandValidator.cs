@@ -31,7 +31,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 .WithErrorCode(nameof(ValidationCodes.DESCRIPTION_TOO_LONG))
                 .WithMessage(ValidationCodes.DESCRIPTION_TOO_LONG);
 
-            RuleFor(Field => Field.Text)
+            RuleFor(Field => Field.TextToUpload)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

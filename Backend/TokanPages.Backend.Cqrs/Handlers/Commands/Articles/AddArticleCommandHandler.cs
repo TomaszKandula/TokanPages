@@ -18,7 +18,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         private readonly IAzureStorageService FAzureStorageService;
         private readonly IFileUtility FFileUtility;
 
-        public AddArticleCommandHandler(DatabaseContext ADatabaseContext, IAzureStorageService AAzureStorageService, IFileUtility AFileUtility) 
+        public AddArticleCommandHandler(DatabaseContext ADatabaseContext, 
+            IAzureStorageService AAzureStorageService, IFileUtility AFileUtility) 
         {
             FDatabaseContext = ADatabaseContext;
             FAzureStorageService = AAzureStorageService;
@@ -29,12 +30,19 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         {
 
             var LNewId = Guid.NewGuid();
-            var LTempFile = await FFileUtility.SaveToFile("__upload", LNewId.ToString(), ARequest.Text);
 
-            var LResult = await FAzureStorageService.UploadFile($"tokanpages\\content\\articles\\{LNewId}", "text.html", $"{LTempFile}", "text/html", ACancellationToken);
-            if (!LResult.IsSucceeded) 
+            var LTextContent = await FFileUtility.SaveToFile("__upload", $"{LNewId}.txt", ARequest.TextToUpload);
+            var LTextUpload = await FAzureStorageService.UploadFile($"tokanpages\\content\\articles\\{LNewId}", "text.html", $"{LTextContent}", "text/html", ACancellationToken);
+            if (!LTextUpload.IsSucceeded) 
             {
-                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LResult.ErrorDesc);
+                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LTextUpload.ErrorDesc);
+            }
+
+            var LImageContent = await FFileUtility.SaveToFile("__upload", $"{LNewId}.jpg", ARequest.ImageToUpload);
+            var LImageUpload = await FAzureStorageService.UploadFile($"tokanpages\\content\\articles\\{LNewId}", "image.jpeg", $"{LImageContent}", "image/jpeg", ACancellationToken);
+            if (!LImageUpload.IsSucceeded)
+            {
+                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LImageUpload.ErrorDesc);
             }
 
             var LNewArticle = new Domain.Entities.Articles

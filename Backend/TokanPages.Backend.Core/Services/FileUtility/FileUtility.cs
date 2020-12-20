@@ -13,7 +13,7 @@ namespace TokanPages.Backend.Core.Services.FileUtility
         public virtual async Task<string> SaveToFile(string ATemporaryDir, string AFileName, string ATextContent) 
         {
 
-            var LTempFileName = $"{AFileName}.txt";
+            var LTempFileName = $"{AFileName}";
 
             var LBaseDirectory = AppDomain.CurrentDomain.BaseDirectory + $"\\{ATemporaryDir}";
             if (!Directory.Exists(LBaseDirectory))
