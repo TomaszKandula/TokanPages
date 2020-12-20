@@ -10,6 +10,7 @@ using TokanPages.Backend.Core.AppLogger;
 using TokanPages.Backend.Core.Behaviours;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Storage.Settings;
+using TokanPages.Backend.Core.FileUtility;
 using TokanPages.Backend.SmtpClient.Settings;
 using TokanPages.Backend.Core.TemplateHelper;
 using FluentValidation;
@@ -57,6 +58,7 @@ namespace TokanPages.Configuration
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();
             AServices.AddScoped<IAzureStorageService, AzureStorageService>();
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
+            AServices.AddScoped<IFileUtility, FileUtility>();
         }
 
         private static void SetupValidators(IServiceCollection AServices)
