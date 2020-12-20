@@ -6,9 +6,9 @@ using TokanPages.Backend.Storage;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.FileUtility;
-using TokanPages.Backend.Core.TemplateHelper;
-using TokanPages.Backend.Core.TemplateHelper.Model;
+using TokanPages.Backend.Core.Services.FileUtility;
+using TokanPages.Backend.Core.Services.TemplateHelper;
+using TokanPages.Backend.Core.Services.TemplateHelper.Model;
 using Templates = TokanPages.Backend.Shared.Constants.Emails.Templates;
 using MediatR;
 

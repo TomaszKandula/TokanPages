@@ -4,7 +4,7 @@ using TokanPages.Backend.Storage;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Core.FileUtility;
+using TokanPages.Backend.Core.Services.FileUtility;
 using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
