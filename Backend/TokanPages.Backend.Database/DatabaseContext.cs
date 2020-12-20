@@ -32,6 +32,10 @@ namespace TokanPages.Backend.Database
                 AEntity.Property(e => e.Title)
                     .IsRequired()
                     .HasMaxLength(255);
+
+                AEntity.Property(e => e.CreatedAt).HasColumnType("datetime");
+
+                AEntity.Property(e => e.UpdatedAt).HasColumnType("datetime");
             });
 
             AModelBuilder.Entity<Subscribers>(AEntity =>

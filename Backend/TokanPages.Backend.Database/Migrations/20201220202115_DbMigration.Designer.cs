@@ -10,7 +10,7 @@ using TokanPages.Backend.Database;
 namespace TokanPages.Backend.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20201220135952_DbMigration")]
+    [Migration("20201220202115_DbMigration")]
     partial class DbMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,9 @@ namespace TokanPages.Backend.Database.Migrations
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -44,6 +47,9 @@ namespace TokanPages.Backend.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
 
                     b.HasKey("Id");
 

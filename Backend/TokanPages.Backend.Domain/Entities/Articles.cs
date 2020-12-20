@@ -10,5 +10,7 @@ namespace TokanPages.Backend.Domain.Entities
         public bool IsPublished { get; set; }
         public int Likes { get; set; }
         public int ReadCount { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }
