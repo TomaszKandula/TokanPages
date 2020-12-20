@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage.Blob;
 using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Storage.Settings;
 
@@ -29,7 +31,7 @@ namespace TokanPages.Backend.Storage
 
         public override string GetBaseUrl { get => FAzureStorage.BaseUrl.Replace("{AccountName}", FAzureStorage.AccountName); }
 
-        public override async Task<ActionResult> UploadTextFile(string ADestContainerName, string ADestFileName, string ASrcFullFilePath) 
+        public override async Task<ActionResult> UploadFile(string ADestContainerName, string ADestFileName, string ASrcFullFilePath, string AContentType, CancellationToken ACancellationToken) 
         {
 
             try 
@@ -40,8 +42,8 @@ namespace TokanPages.Backend.Storage
                 var LBlockBlob  = LContainer.GetBlockBlobReference(ADestFileName);
                 var LFileStream = File.OpenRead(ASrcFullFilePath);
 
-                LBlockBlob.Properties.ContentType = "text/html";
-                await LBlockBlob.UploadFromStreamAsync(LFileStream);
+                LBlockBlob.Properties.ContentType = AContentType;
+                await LBlockBlob.UploadFromStreamAsync(LFileStream, null, null, null, ACancellationToken);
 
                 return new ActionResult 
                 { 
@@ -60,7 +62,7 @@ namespace TokanPages.Backend.Storage
 
         }
 
-        public override async Task<ActionResult> RemoveFromStorage(string AContainerName, string AFileName) 
+        public override async Task<ActionResult> RemoveFromStorage(string AContainerName, string AFileName, CancellationToken ACancellationToken) 
         {
 
             try
@@ -70,7 +72,7 @@ namespace TokanPages.Backend.Storage
                 var LContainer  = LBlobClient.GetContainerReference(AContainerName);
                 var LBlockBlob  = LContainer.GetBlockBlobReference(AFileName);
 
-                await LBlockBlob.DeleteIfExistsAsync();
+                await LBlockBlob.DeleteIfExistsAsync(DeleteSnapshotsOption.None, null, null, null, ACancellationToken);
 
                 return new ActionResult
                 {
