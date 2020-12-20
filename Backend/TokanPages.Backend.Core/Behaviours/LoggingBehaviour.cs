@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using TokanPages.Backend.Core.AppLogger;
+using TokanPages.Backend.Core.Services.AppLogger;
 using MediatR;
 
 namespace TokanPages.Backend.Core.Behaviours
