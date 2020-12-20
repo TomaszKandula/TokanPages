@@ -52,7 +52,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             {
                 Id = LNewId,
                 Title = ARequest.Title,
-                Description = ARequest.Desc,
+                Description = ARequest.Description,
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0
