@@ -13,7 +13,8 @@ namespace TokanPages.Backend.Cqrs.Mappers
             {
                 Title = AModel.Title,
                 Description = AModel.Description,
-                Text = AModel.Text
+                TextToUpload = AModel.TextToUpload,
+                ImageToUpload = AModel.ImageToUpload
             };
         }
 
@@ -24,7 +25,8 @@ namespace TokanPages.Backend.Cqrs.Mappers
                 Id = AModel.Id,
                 Title = AModel.Title,
                 Description = AModel.Description,
-                Text = AModel.Text,
+                TextToUpload = AModel.TextToUpload,
+                ImageToUpload = AModel.ImageToUpload,
                 IsPublished = AModel.IsPublished,
                 Likes = AModel.Likes,
                 ReadCount = AModel.ReadCount
