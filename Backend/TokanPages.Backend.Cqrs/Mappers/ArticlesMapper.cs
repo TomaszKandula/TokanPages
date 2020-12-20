@@ -12,7 +12,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
             return new AddArticleCommand
             {
                 Title = AModel.Title,
-                Desc = AModel.Desc,
+                Description = AModel.Description,
                 Text = AModel.Text
             };
         }
