@@ -6,8 +6,10 @@ using TokanPages.Backend.Storage;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.FileUtility;
 using TokanPages.Backend.Core.TemplateHelper;
 using TokanPages.Backend.Core.TemplateHelper.Model;
+using Templates = TokanPages.Backend.Shared.Constants.Emails.Templates;
 using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
@@ -19,14 +21,16 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
         private readonly ISmtpClientService FSmtpClientService;
         private readonly IAzureStorageService FAzureStorageService;
         private readonly ITemplateHelper FTemplateHelper;
+        private readonly IFileUtility FFileUtility;
         private readonly AppUrls FAppUrls;
 
         public SendNewsletterCommandHandler(ISmtpClientService ASmtpClientService, 
-            IAzureStorageService AAzureStorageService, ITemplateHelper ATemplateHelper, AppUrls AAppUrls) 
+            IAzureStorageService AAzureStorageService, ITemplateHelper ATemplateHelper, AppUrls AAppUrls, IFileUtility AFileUtility) 
         {
             FSmtpClientService = ASmtpClientService;
             FAzureStorageService = AAzureStorageService;
             FTemplateHelper = ATemplateHelper;
+            FFileUtility = AFileUtility;
             FAppUrls = AAppUrls;
         }
 
@@ -49,9 +53,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                         new Item { Tag = "{UNSUBSCRIBE_LINK}", Value = UnsubscribeLink }
                     };
 
-                FSmtpClientService.HtmlBody = 
-                    await FTemplateHelper.MakeBody(Constants.Emails.Templates.Newsletter, NewValues, FAzureStorageService.GetBaseUrl);
-                
+                var LTemplateFromUrl = await FFileUtility.GetFileFromUrl($"{FAzureStorageService.GetBaseUrl}{Templates.Newsletter}", ACancellationToken);
+                FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, NewValues);
+
                 var LResult = await FSmtpClientService.Send();
                 if (!LResult.IsSucceeded) 
                 {

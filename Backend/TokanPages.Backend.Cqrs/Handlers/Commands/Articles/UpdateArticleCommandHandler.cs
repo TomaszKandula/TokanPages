@@ -15,11 +15,13 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
         private readonly DatabaseContext FDatabaseContext;
         private readonly IAzureStorageService FAzureStorageService;
+        private readonly IFileUtility FFileUtility;
 
-        public UpdateArticleCommandHandler(DatabaseContext ADatabaseContext, IAzureStorageService AAzureStorageService) 
+        public UpdateArticleCommandHandler(DatabaseContext ADatabaseContext, IAzureStorageService AAzureStorageService, IFileUtility AFileUtility) 
         {
             FDatabaseContext = ADatabaseContext;
             FAzureStorageService = AAzureStorageService;
+            FFileUtility = AFileUtility;
         }
 
         public override async Task<Unit> Handle(UpdateArticleCommand ARequest, CancellationToken ACancellationToken) 
@@ -31,9 +33,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
             }
 
-            var LFileUtility = new FileUtility();
-            var LTempFile = await LFileUtility.SaveToFile("__upload", ARequest.Id.ToString(), ARequest.Text);
-
+            var LTempFile = await FFileUtility.SaveToFile("__upload", ARequest.Id.ToString(), ARequest.Text);
             var LResult = await FAzureStorageService.UploadTextFile($"tokanpages\\content\\articles\\{ARequest.Id}", "text.html", $"{LTempFile}");
             if (!LResult.IsSucceeded)
             {
