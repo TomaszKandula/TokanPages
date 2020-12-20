@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TokanPages.Backend.Core.TemplateHelper.Model;
 
-namespace TokanPages.Backend.Core.TemplateHelper
+namespace TokanPages.Backend.Core.Services.TemplateHelper
 {
 
     public interface ITemplateHelper

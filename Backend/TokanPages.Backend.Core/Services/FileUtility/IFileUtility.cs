@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace TokanPages.Backend.Core.FileUtility
+namespace TokanPages.Backend.Core.Services.FileUtility
 {
     public interface IFileUtility
     {
