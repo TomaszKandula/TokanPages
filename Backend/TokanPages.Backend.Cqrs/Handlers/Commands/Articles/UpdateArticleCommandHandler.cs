@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.Database;
@@ -59,6 +60,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             LCurrentArticle.IsPublished = ARequest.IsPublished;
             LCurrentArticle.Likes = ARequest.Likes;
             LCurrentArticle.ReadCount = ARequest.ReadCount;
+            LCurrentArticle.UpdatedAt = DateTime.UtcNow;
 
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(Unit.Value);

@@ -52,7 +52,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 Description = ARequest.Description,
                 IsPublished = false,
                 Likes = 0,
-                ReadCount = 0
+                ReadCount = 0,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = null
             };
 
             FDatabaseContext.Articles.Add(LNewArticle);
