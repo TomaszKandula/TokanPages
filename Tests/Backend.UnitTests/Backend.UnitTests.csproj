@@ -22,4 +22,12 @@
     <ProjectReference Include="..\..\TokanPages\TokanPages.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Handlers\Articles\" />
+    <Folder Include="Handlers\Mailer\" />
+    <Folder Include="Handlers\Subscribers\" />
+    <Folder Include="Validators\Mailer\" />
+    <Folder Include="Validators\Subscribers\" />
+  </ItemGroup>
+
 </Project>
