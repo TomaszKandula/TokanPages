@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +19,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 
         public override async Task<IEnumerable<Domain.Entities.Articles>> Handle(GetAllArticlesQuery ARequest, CancellationToken ACancellationToken) 
         {
-            return await FDatabaseContext.Articles.Select(Articles => Articles).ToListAsync(ACancellationToken);
+            return await FDatabaseContext.Articles.AsNoTracking().ToListAsync(ACancellationToken);
         }
 
     }

@@ -32,7 +32,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
             }
 
-            return LCurrentArticle.Single();
+            return LCurrentArticle.First();
 
         }
 
