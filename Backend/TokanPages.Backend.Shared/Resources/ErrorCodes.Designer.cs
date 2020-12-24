@@ -97,6 +97,15 @@ namespace TokanPages.Backend.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The string must be BASE64.
+        /// </summary>
+        public static string INVALID_BASE64 {
+            get {
+                return ResourceManager.GetString("INVALID_BASE64", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Requested subscriber does not exists.
         /// </summary>
         public static string SUBSCRIBER_DOES_NOT_EXISTS {
