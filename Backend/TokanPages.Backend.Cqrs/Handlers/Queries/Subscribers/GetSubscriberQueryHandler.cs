@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
 {
@@ -20,13 +22,17 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
         public override async Task<Domain.Entities.Subscribers> Handle(GetSubscriberQuery ARequest, CancellationToken ACancellationToken) 
         {
 
-            var LCurrentSubscriber = await FDatabaseContext.Subscribers.FindAsync(new object[] { ARequest.Id }, ACancellationToken);
-            if (LCurrentSubscriber == null) 
+            var LCurrentSubscriber = await FDatabaseContext.Subscribers
+                .AsNoTracking()
+                .Where(ASubscribers => ASubscribers.Id == ARequest.Id)
+                .ToListAsync(ACancellationToken);
+
+            if (!LCurrentSubscriber.Any()) 
             {
                 throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
             }
 
-            return LCurrentSubscriber;
+            return LCurrentSubscriber.Single();
 
         }
 

@@ -34,7 +34,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             var LCurrentArticle = await FDatabaseContext.Articles
                 .AsNoTracking()
                 .Where(Articles => Articles.Id == ARequest.Id).
-                ToListAsync();
+                ToListAsync(ACancellationToken);
 
             if (!LCurrentArticle.Any())
             {
