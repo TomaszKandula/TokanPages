@@ -32,7 +32,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         {
 
             var LCurrentArticle = await FDatabaseContext.Articles
-                .AsNoTracking()
                 .Where(Articles => Articles.Id == ARequest.Id).
                 ToListAsync(ACancellationToken);
 
@@ -73,16 +72,14 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
             }
 
-            var LUpdatedArticle = new Domain.Entities.Articles 
-            {
-                Title = ARequest.Title,
-                Description = ARequest.Description,
-                IsPublished = ARequest.IsPublished,
-                Likes = ARequest.Likes,
-                ReadCount = ARequest.ReadCount,
-                UpdatedAt = DateTime.UtcNow
-            };
+            LCurrentArticle.First().Title = ARequest.Title;
+            LCurrentArticle.First().Description = ARequest.Description;
+            LCurrentArticle.First().IsPublished = ARequest.IsPublished;
+            LCurrentArticle.First().Likes = ARequest.Likes;
+            LCurrentArticle.First().ReadCount = ARequest.ReadCount;
+            LCurrentArticle.First().UpdatedAt = DateTime.UtcNow;
 
+            FDatabaseContext.Articles.Attach(LCurrentArticle.First()).State = EntityState.Modified;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(Unit.Value);
         

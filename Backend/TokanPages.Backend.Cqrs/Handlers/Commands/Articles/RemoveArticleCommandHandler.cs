@@ -33,7 +33,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             }
 
             FDatabaseContext.Articles.Remove(LCurrentArticle.Single());
-
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(Unit.Value);
 
