@@ -1,5 +1,7 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
@@ -21,13 +23,16 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         public override async Task<Unit> Handle(RemoveArticleCommand ARequest, CancellationToken ACancellationToken) 
         {
 
-            var LCurrentArticle = await FDatabaseContext.Articles.FindAsync(ARequest.Id);
-            if (LCurrentArticle == null)
+            var LCurrentArticle = await FDatabaseContext.Articles
+                .Where(Articles => Articles.Id == ARequest.Id)
+                .ToListAsync();
+
+            if (!LCurrentArticle.Any())
             {
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
             }
 
-            FDatabaseContext.Articles.Remove(LCurrentArticle);
+            FDatabaseContext.Articles.Remove(LCurrentArticle.Single());
 
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(Unit.Value);

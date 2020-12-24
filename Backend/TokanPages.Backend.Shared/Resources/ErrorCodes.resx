@@ -129,6 +129,9 @@
   <data name="ERROR_UNEXPECTED" xml:space="preserve">
     <value>Unexpected error</value>
   </data>
+  <data name="INVALID_BASE64" xml:space="preserve">
+    <value>The string must be BASE64</value>
+  </data>
   <data name="SUBSCRIBER_DOES_NOT_EXISTS" xml:space="preserve">
     <value>Requested subscriber does not exists</value>
   </data>
