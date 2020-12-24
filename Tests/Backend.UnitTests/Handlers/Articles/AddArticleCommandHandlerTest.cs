@@ -28,7 +28,7 @@ namespace Backend.UnitTests.Handlers.Articles
         }
 
         [Fact]
-        public async Task AddArticle_WhenAllFieldsAreProvided_ShouldExecuteSaveAsyncOnce() 
+        public async Task AddArticle_WhenFieldsAreProvidedWithBase64Image_ShouldExecuteSaveAsyncOnce() 
         {
 
             // Arrange
@@ -68,7 +68,7 @@ namespace Backend.UnitTests.Handlers.Articles
         }
 
         [Fact]
-        public async Task AddArticle_WhenNoImageToUpload_ShouldThrowError()
+        public async Task AddArticle_WhenFieldsAreProvidedWithNoBase64Image_ShouldThrowError()
         {
 
             // Arrange
