@@ -1,10 +1,10 @@
-﻿using System.Threading;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
 {
