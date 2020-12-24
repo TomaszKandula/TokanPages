@@ -34,7 +34,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 
             FDatabaseContext.Subscribers.Remove(LCurrentSubscriber.First());
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-
             return await Task.FromResult(Unit.Value);
         
         }

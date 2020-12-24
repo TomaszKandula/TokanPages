@@ -32,7 +32,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
                 throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
             }
 
-            return LCurrentSubscriber.Single();
+            return LCurrentSubscriber.First();
 
         }
 
