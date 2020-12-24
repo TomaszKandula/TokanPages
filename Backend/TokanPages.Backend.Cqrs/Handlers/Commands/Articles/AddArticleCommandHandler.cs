@@ -51,7 +51,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LImageUpload.ErrorDesc);
             }
 
-            var LNewArticle = new Domain.Entities.Articles
+            FDatabaseContext.Articles.Add(new Domain.Entities.Articles
             {
                 Id = LNewId,
                 Title = ARequest.Title,
@@ -61,11 +61,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 ReadCount = 0,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = null
-            };
+            });
 
-            FDatabaseContext.Articles.Add(LNewArticle);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-
             return await Task.FromResult(Unit.Value);
 
         }
