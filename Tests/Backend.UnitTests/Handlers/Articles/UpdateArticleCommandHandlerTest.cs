@@ -3,30 +3,21 @@ using Moq;
 using MockQueryable.Moq;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
-using Backend.UnitTests.FakeDatabase;
-using TokanPages.Backend.Database;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
-using TokanPages.Backend.Storage;
-using TokanPages.Backend.Core.Services.FileUtility;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using TokanPages.Backend.Database;
+using TokanPages.Backend.Storage;
 using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Services.FileUtility;
+using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
 namespace Backend.UnitTests.Handlers.Articles
 {
 
     public class UpdateArticleCommandHandlerTest
     {
-
-        private readonly Mock<DatabaseContext> FDatabaseContext;
-
-        public UpdateArticleCommandHandlerTest()
-        {
-            FDatabaseContext = new Mock<DatabaseContext>();
-            var LArticlesDbSet = DummyLoad.GetArticles().AsQueryable().BuildMockDbSet();
-            FDatabaseContext.Setup(DatabaseContext => DatabaseContext.Articles).Returns(LArticlesDbSet.Object);
-        }
 
         [Fact]
         public async Task UpdateArticle_WhenArticleExists_ShouldUpdate() 
@@ -44,6 +35,36 @@ namespace Backend.UnitTests.Handlers.Articles
                 Likes = 0,
                 ReadCount = 0
             };
+
+            var LDatabaseContext = new Mock<DatabaseContext>();
+            var LDummyLoad = new List<TokanPages.Backend.Domain.Entities.Articles>
+            {
+                new TokanPages.Backend.Domain.Entities.Articles
+                {
+                    Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
+                    Title = "Why C# is great?",
+                    Description = "More on C#",
+                    IsPublished = false,
+                    Likes = 0,
+                    ReadCount = 0,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = null
+                },
+                new TokanPages.Backend.Domain.Entities.Articles
+                {
+                    Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
+                    Title = "NET Core 5 is coming",
+                    Description = "What's new?",
+                    IsPublished = false,
+                    Likes = 0,
+                    ReadCount = 0,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = null
+                }
+            };
+
+            var LArticlesDbSet = LDummyLoad.AsQueryable().BuildMockDbSet();
+            LDatabaseContext.Setup(AMainDbContext => AMainDbContext.Articles).Returns(LArticlesDbSet.Object);
 
             // Act
             var LMockedStorage = new Mock<AzureStorageService>();
@@ -63,13 +84,13 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
 
-            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(FDatabaseContext.Object, LMockedStorage.Object, LMockedUtility.Object);
+            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(LDatabaseContext.Object, LMockedStorage.Object, LMockedUtility.Object);
 
             // Act
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
 
             // Assert
-            FDatabaseContext.Verify(DbContext => DbContext.SaveChangesAsync(CancellationToken.None), Times.Once);
+            LDatabaseContext.Verify(DbContext => DbContext.SaveChangesAsync(CancellationToken.None), Times.Once);
 
         }
 
@@ -90,6 +111,25 @@ namespace Backend.UnitTests.Handlers.Articles
                 ReadCount = 0
             };
 
+            var LDatabaseContext = new Mock<DatabaseContext>();
+            var LDummyLoad = new List<TokanPages.Backend.Domain.Entities.Articles>
+            {
+                new TokanPages.Backend.Domain.Entities.Articles
+                {
+                    Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
+                    Title = "NET Core 5 is coming",
+                    Description = "What's new?",
+                    IsPublished = false,
+                    Likes = 0,
+                    ReadCount = 0,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = null
+                }
+            };
+
+            var LArticlesDbSet = LDummyLoad.AsQueryable().BuildMockDbSet();
+            LDatabaseContext.Setup(AMainDbContext => AMainDbContext.Articles).Returns(LArticlesDbSet.Object);
+
             // Act
             var LMockedStorage = new Mock<AzureStorageService>();
             var LMockedUtility = new Mock<FileUtility>();
@@ -108,7 +148,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
 
-            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(FDatabaseContext.Object, LMockedStorage.Object, LMockedUtility.Object);
+            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(LDatabaseContext.Object, LMockedStorage.Object, LMockedUtility.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None));
@@ -132,6 +172,25 @@ namespace Backend.UnitTests.Handlers.Articles
                 ReadCount = 0
             };
 
+            var LDatabaseContext = new Mock<DatabaseContext>();
+            var LDummyLoad = new List<TokanPages.Backend.Domain.Entities.Articles>
+            {
+                new TokanPages.Backend.Domain.Entities.Articles
+                {
+                    Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
+                    Title = "NET Core 5 is coming",
+                    Description = "What's new?",
+                    IsPublished = false,
+                    Likes = 0,
+                    ReadCount = 0,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = null
+                }
+            };
+
+            var LArticlesDbSet = LDummyLoad.AsQueryable().BuildMockDbSet();
+            LDatabaseContext.Setup(AMainDbContext => AMainDbContext.Articles).Returns(LArticlesDbSet.Object);
+
             // Act
             var LMockedStorage = new Mock<AzureStorageService>();
             var LMockedUtility = new Mock<FileUtility>();
@@ -150,7 +209,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
 
-            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(FDatabaseContext.Object, LMockedStorage.Object, LMockedUtility.Object);
+            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(LDatabaseContext.Object, LMockedStorage.Object, LMockedUtility.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None));
