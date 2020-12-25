@@ -13,7 +13,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
     {
 
         [Fact]
-        public async Task AddSubscriber_WhenEmailIsProvided_ShouldAdd() 
+        public async Task AddSubscriber_WhenEmailIsProvided_ShouldAddEntity() 
         {
 
             // Arrange

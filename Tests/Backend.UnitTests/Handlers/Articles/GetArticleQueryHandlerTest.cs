@@ -13,7 +13,7 @@ namespace Backend.UnitTests.Handlers.Articles
     {
 
         [Fact]
-        public async Task GetArticle_WhenIdIsCorrect_ShouldReturnArticle() 
+        public async Task GetArticle_WhenIdIsCorrect_ShouldReturnEntity() 
         {
 
             // Arrange
@@ -23,7 +23,8 @@ namespace Backend.UnitTests.Handlers.Articles
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
-            LDatabaseContext.Articles.Add(new TokanPages.Backend.Domain.Entities.Articles
+            var LTestDate = DateTime.Now;
+            var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
                 Title = "NET Core 5 is coming",
@@ -31,9 +32,10 @@ namespace Backend.UnitTests.Handlers.Articles
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0,
-                CreatedAt = DateTime.Now,
+                CreatedAt = LTestDate,
                 UpdatedAt = null
-            });
+            };
+            LDatabaseContext.Articles.Add(LArticles);
             LDatabaseContext.SaveChanges();
 
             var LGetArticleQueryHandler = new GetArticleQueryHandler(LDatabaseContext);
@@ -43,13 +45,13 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Assert
             LResults.Should().NotBeNull();
-            LResults.Title.Should().Be("NET Core 5 is coming");
-            LResults.Description.Should().Be("What's new?");
+            LResults.Title.Should().Be(LArticles.Title);
+            LResults.Description.Should().Be(LArticles.Description);
             LResults.IsPublished.Should().BeFalse();
-            LResults.Likes.Should().Be(0);
-            LResults.ReadCount.Should().Be(0);
+            LResults.Likes.Should().Be(LArticles.Likes);
+            LResults.ReadCount.Should().Be(LArticles.ReadCount);
             LResults.UpdatedAt.Should().BeNull();
-            LResults.CreatedAt.Should().HaveYear(2020);
+            LResults.CreatedAt.Should().Be(LTestDate);
 
         }
 

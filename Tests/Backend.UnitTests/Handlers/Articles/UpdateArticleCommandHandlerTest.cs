@@ -17,7 +17,7 @@ namespace Backend.UnitTests.Handlers.Articles
     {
 
         [Fact]
-        public async Task UpdateArticle_WhenArticleExists_ShouldUpdate() 
+        public async Task UpdateArticle_WhenArticleExists_ShouldUpdateEntity() 
         {
 
             // Arrange

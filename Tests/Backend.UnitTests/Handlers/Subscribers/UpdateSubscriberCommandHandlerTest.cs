@@ -13,7 +13,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
     {
 
         [Fact]
-        public async Task UpdateSubscriber_WhenIdIsCorrect_ShouldUpdate()
+        public async Task UpdateSubscriber_WhenIdIsCorrect_ShouldUpdateEntity()
         {
 
             // Arrange
