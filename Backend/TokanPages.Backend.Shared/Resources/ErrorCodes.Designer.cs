@@ -113,5 +113,14 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("SUBSCRIBER_DOES_NOT_EXISTS", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Requested user does not exists.
+        /// </summary>
+        public static string USER_DOES_NOT_EXISTS {
+            get {
+                return ResourceManager.GetString("USER_DOES_NOT_EXISTS", resourceCulture);
+            }
+        }
     }
 }
