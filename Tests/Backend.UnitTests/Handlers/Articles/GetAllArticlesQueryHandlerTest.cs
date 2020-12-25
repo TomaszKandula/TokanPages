@@ -1,19 +1,15 @@
 ﻿using Xunit;
 using FluentAssertions;
-using Moq;
-using MockQueryable.Moq;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.Backend.Database;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 
 namespace Backend.UnitTests.Handlers.Articles
 {
 
-    public class GetAllArticlesQueryHandlerTest
+    public class GetAllArticlesQueryHandlerTest : TestBase
     {
 
         [Fact]
@@ -21,10 +17,10 @@ namespace Backend.UnitTests.Handlers.Articles
         {
 
             // Arrange
-            var LDatabaseContext = new Mock<DatabaseContext>();
+            var LDatabaseContext = GetTestDatabaseContext();
             var LGetAllArticlesQuery = new GetAllArticlesQuery { };
-            var LGetAllArticlesQueryHandler = new GetAllArticlesQueryHandler(LDatabaseContext.Object);
-            var LDummyLoad = new List<TokanPages.Backend.Domain.Entities.Articles>
+            var LGetAllArticlesQueryHandler = new GetAllArticlesQueryHandler(LDatabaseContext);
+            LDatabaseContext.Articles.AddRange(new List<TokanPages.Backend.Domain.Entities.Articles>
             {
                 new TokanPages.Backend.Domain.Entities.Articles
                 {
@@ -48,10 +44,8 @@ namespace Backend.UnitTests.Handlers.Articles
                     CreatedAt = DateTime.Now,
                     UpdatedAt = null
                 }
-            };
-
-            var LArticlesDbSet = LDummyLoad.AsQueryable().BuildMockDbSet();
-            LDatabaseContext.Setup(AMainDbContext => AMainDbContext.Articles).Returns(LArticlesDbSet.Object);
+            });
+            LDatabaseContext.SaveChanges();
 
             // Act
             var LResults = await LGetAllArticlesQueryHandler.Handle(LGetAllArticlesQuery, CancellationToken.None);
