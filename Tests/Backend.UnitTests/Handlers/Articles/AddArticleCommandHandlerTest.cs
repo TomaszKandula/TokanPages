@@ -17,7 +17,7 @@ namespace Backend.UnitTests.Handlers.Articles
     {
 
         [Fact]
-        public async Task AddArticle_WhenFieldsAreProvidedWithBase64Image_ShouldExecuteSaveAsyncOnce() 
+        public async Task AddArticle_WhenFieldsAreProvidedWithBase64Image_ShouldAddEntity() 
         {
 
             // Arrange
