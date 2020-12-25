@@ -140,5 +140,14 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("TITLE_TOO_LONG", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The user alias cannot be longer than 255 characters.
+        /// </summary>
+        public static string USERALIAS_TOO_LONG {
+            get {
+                return ResourceManager.GetString("USERALIAS_TOO_LONG", resourceCulture);
+            }
+        }
     }
 }

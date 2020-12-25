@@ -135,4 +135,7 @@
   <data name="SUBSCRIBER_DOES_NOT_EXISTS" xml:space="preserve">
     <value>Requested subscriber does not exists</value>
   </data>
+  <data name="USER_DOES_NOT_EXISTS" xml:space="preserve">
+    <value>Requested user does not exists</value>
+  </data>
 </root>

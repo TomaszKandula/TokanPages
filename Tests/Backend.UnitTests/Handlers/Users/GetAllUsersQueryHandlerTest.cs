@@ -1,0 +1,62 @@
+﻿using Xunit;
+using FluentAssertions;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
+
+namespace Backend.UnitTests.Handlers.Users
+{
+
+    public class GetAllUsersQueryHandlerTest : TestBase
+    {
+
+        [Fact]
+        public async Task GetAllArticles_ShouldReturnCollection()
+        {
+
+            // Arrange
+            var LDatabaseContext = GetTestDatabaseContext();
+            var LGetAllUsersQuery = new GetAllUsersQuery { };
+            var LGetAllUsersQueryHandler = new GetAllUsersQueryHandler(LDatabaseContext);
+            LDatabaseContext.Users.AddRange(new List<TokanPages.Backend.Domain.Entities.Users>
+            {
+                new TokanPages.Backend.Domain.Entities.Users
+                {
+                    Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
+                    EmailAddress = "ester1990@gmail.com",
+                    UserAlias = "ester1990",
+                    FirstName = "Ester",
+                    LastName = "Exposito",
+                    IsActivated = true,
+                    Registered = DateTime.Now,
+                    LastUpdated = null,
+                    LastLogged = null
+                },
+                new TokanPages.Backend.Domain.Entities.Users
+                {
+                    Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
+                    EmailAddress = "tokan@gmail.com",
+                    UserAlias = "tokan",
+                    FirstName = "Tom",
+                    LastName = "Tom",
+                    IsActivated = true,
+                    Registered = DateTime.Now,
+                    LastUpdated = null,
+                    LastLogged = null
+                }
+            });
+            LDatabaseContext.SaveChanges();
+
+            // Act
+            var LResults = await LGetAllUsersQueryHandler.Handle(LGetAllUsersQuery, CancellationToken.None);
+
+            // Assert
+            LResults.Should().NotBeNull();
+            LResults.Should().HaveCount(2);
+
+        }
+
+    }
+}

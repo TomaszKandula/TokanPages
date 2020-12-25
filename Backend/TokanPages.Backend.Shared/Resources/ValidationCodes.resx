@@ -144,4 +144,7 @@
   <data name="TITLE_TOO_LONG" xml:space="preserve">
     <value>The title length cannot be larger than 255 characters</value>
   </data>
+  <data name="USERALIAS_TOO_LONG" xml:space="preserve">
+    <value>The user alias cannot be longer than 255 characters</value>
+  </data>
 </root>
