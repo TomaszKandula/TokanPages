@@ -8,8 +8,8 @@ namespace TokanPages.Backend.Storage
     public interface IAzureStorageService
     {
         string GetBaseUrl { get; }
-        Task<ActionResult> UploadFile(string ADestContainerName, string ADestFileName, string ASrcFullFilePath, string AContentType, CancellationToken ACancellationToken);
-        Task<ActionResult> RemoveFromStorage(string AContainerName, string AFileName, CancellationToken ACancellationToken);
+        Task<ActionResult> UploadFile(string ADestContainerReference, string ADestFileName, string ASrcFullFilePath, string AContentType, CancellationToken ACancellationToken);
+        Task<ActionResult> RemoveFromStorage(string AContainerReference, string AFileName, CancellationToken ACancellationToken);
     }
 
 }
