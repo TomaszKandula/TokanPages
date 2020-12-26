@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TokanPages.Backend.Database;
 
 namespace TokanPages.Backend.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201226153156_AddSeedData")]
+    partial class AddSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,31 +60,31 @@ namespace TokanPages.Backend.Database.Migrations
                         {
                             Id = new Guid("731a6665-1c80-44e5-af6e-4d8331efe028"),
                             CreatedAt = new DateTime(2020, 1, 10, 12, 15, 15, 0, DateTimeKind.Unspecified),
-                            Description = "Description",
+                            Description = "No JAVA needed anymore...",
                             IsPublished = false,
                             Likes = 0,
                             ReadCount = 0,
-                            Title = "Title"
+                            Title = "Why C# is great?"
                         },
                         new
                         {
                             Id = new Guid("7494688a-994c-4905-9073-8c68811ec839"),
                             CreatedAt = new DateTime(2020, 1, 25, 5, 9, 19, 0, DateTimeKind.Unspecified),
-                            Description = "Description",
+                            Description = "Use C# for everything...",
                             IsPublished = false,
                             Likes = 0,
                             ReadCount = 0,
-                            Title = "Title"
+                            Title = "Say goodbay to PHP"
                         },
                         new
                         {
                             Id = new Guid("f6493f03-0e85-466c-970b-6f1a07001173"),
                             CreatedAt = new DateTime(2020, 9, 12, 22, 1, 33, 0, DateTimeKind.Unspecified),
-                            Description = "Description",
+                            Description = "Deep dive...",
                             IsPublished = false,
                             Likes = 0,
                             ReadCount = 0,
-                            Title = "Title"
+                            Title = "Records in C# 9.0"
                         });
                 });
 

@@ -11,8 +11,8 @@ namespace TokanPages.Backend.Database.Seeders
         public class Dummy1
         {
             public static Guid Id = Guid.Parse("731a6665-1c80-44e5-af6e-4d8331efe028");
-            public static string Title = nameof(Title);
-            public static string Description = nameof(Description);
+            public static string Title = "Why C# is great?";
+            public static string Description = "No JAVA needed anymore...";
             public static DateTime Created = DateTime.Parse("2020-01-10 12:15:15");
             public static DateTime? LastUpdated = null;
             public static bool IsPublished = false;
@@ -23,8 +23,8 @@ namespace TokanPages.Backend.Database.Seeders
         public class Dummy2
         {
             public static Guid Id = Guid.Parse("7494688a-994c-4905-9073-8c68811ec839");
-            public static string Title = nameof(Title);
-            public static string Description = nameof(Description);
+            public static string Title = "Say goodbay to PHP";
+            public static string Description = "Use C# for everything...";
             public static DateTime Created = DateTime.Parse("2020-01-25 05:09:19");
             public static DateTime? LastUpdated = null;
             public static bool IsPublished = false;
@@ -35,8 +35,8 @@ namespace TokanPages.Backend.Database.Seeders
         public class Dummy3
         {
             public static Guid Id = Guid.Parse("f6493f03-0e85-466c-970b-6f1a07001173");
-            public static string Title = nameof(Title);
-            public static string Description = nameof(Description);
+            public static string Title = "Records in C# 9.0";
+            public static string Description = "Deep dive...";
             public static DateTime Created = DateTime.Parse("2020-09-12 22:01:33");
             public static DateTime? LastUpdated = null;
             public static bool IsPublished = false;
