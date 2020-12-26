@@ -1,9 +1,10 @@
 ﻿using Xunit;
 using FluentAssertions;
+using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 using TokanPages;
-using Newtonsoft.Json;
+using TokanPages.Backend.Shared.Dto.Articles;
 
 namespace Backend.IntegrationTests.Handlers.Articles
 {
@@ -18,7 +19,35 @@ namespace Backend.IntegrationTests.Handlers.Articles
             FHttpClient = ACustomFixture.FClient;
         }
 
-        //...
+        [Fact]
+        public async Task AddArticle_WhenAllFieldsAreCorrect_ShouldReturnEmptyObject()
+        {
+
+            // Arrange
+            var LRequest = $"/api/v1/articles/addarticle/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+
+            var LPayLoad = new AddArticleDto
+            {
+                Title = "Title",
+                Description = "Description",
+                TextToUpload = "TextToUpload",
+                ImageToUpload = "+DLnpYzLUHeUfXB4LgE1mA=="
+            };
+
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+
+            // Act
+            var LResponse = await FHttpClient.SendAsync(LNewRequest);
+
+            // Assert
+            LResponse.EnsureSuccessStatusCode();
+
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+            LContent.Should().Be("{}");
+
+        }
 
     }
 
