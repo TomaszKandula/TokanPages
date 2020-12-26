@@ -1,9 +1,12 @@
 ﻿using Xunit;
 using FluentAssertions;
+using Newtonsoft.Json;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using TokanPages;
-using Newtonsoft.Json;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Database.Seeders;
 
 namespace Backend.IntegrationTests.Handlers.Users
 {
@@ -19,11 +22,12 @@ namespace Backend.IntegrationTests.Handlers.Users
         }
 
         [Fact]
-        public async Task GetUser_WhenIdIsCorrect_ShouldReturnJsonObject() 
+        public async Task GetUser_WhenIdIsCorrect_ShouldReturnEntityAsJsonObject() 
         {
 
             // Arrange
-            var LRequest = $"/api/v1/users/getuser/99780F77-3522-4E65-9FFD-9467EA448404/";
+            var LTestUserId = UsersSeeder.Dummy1.Id;
+            var LRequest = $"/api/v1/users/getuser/{LTestUserId}/";
 
             // Act
             var LResponse = await FHttpClient.GetAsync(LRequest);
@@ -36,6 +40,25 @@ namespace Backend.IntegrationTests.Handlers.Users
             
             var LDeserialized = JsonConvert.DeserializeObject<TokanPages.Backend.Domain.Entities.Users>(LContent);
             LDeserialized.Should().NotBeNull();
+
+        }
+
+        [Fact]
+        public async Task GetUser_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError()
+        {
+
+            // Arrange
+            var LRequest = $"/api/v1/users/getuser/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
+
+            // Act
+            var LResponse = await FHttpClient.GetAsync(LRequest);
+
+            // Assert
+            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+            LContent.Should().Contain(ErrorCodes.USER_DOES_NOT_EXISTS);
 
         }
 

@@ -1,9 +1,10 @@
 ﻿using Xunit;
 using FluentAssertions;
+using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 using TokanPages;
-using Newtonsoft.Json;
+using TokanPages.Backend.Shared.Dto.Subscribers;
 
 namespace Backend.IntegrationTests.Handlers.Subscribers
 {
@@ -18,7 +19,32 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
             FHttpClient = ACustomFixture.FClient;
         }
 
-        //...
+        [Fact]
+        public async Task AddSubscriber_WhenAllFieldsAreCorrect_ShouldReturnEmptyObject() 
+        {
+
+            // Arrange
+            var LRequest = $"/api/v1/subscribers/addsubscriber/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+
+            var LPayLoad = new AddSubscriberDto
+            {
+                Email = "tokan@gmail.com"
+            };
+
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+
+            // Act
+            var LResponse = await FHttpClient.SendAsync(LNewRequest);
+
+            // Assert
+            LResponse.EnsureSuccessStatusCode();
+
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+            LContent.Should().Be("{}");
+
+        }
 
     }
 
