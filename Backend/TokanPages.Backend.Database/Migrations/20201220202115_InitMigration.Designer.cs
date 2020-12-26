@@ -10,8 +10,8 @@ using TokanPages.Backend.Database;
 namespace TokanPages.Backend.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20201220202115_DbMigration")]
-    partial class DbMigration
+    [Migration("20201220202115_InitMigration")]
+    partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
