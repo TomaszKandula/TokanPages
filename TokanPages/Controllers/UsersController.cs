@@ -19,7 +19,7 @@ namespace TokanPages.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Users>> GetAllArticles()
+        public async Task<IEnumerable<Users>> GetAllUsers()
         {
             var LQuery = new GetAllUsersQuery();
             return await FMediator.Send(LQuery);
