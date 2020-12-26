@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Database.Seeders;
 
 namespace TokanPages.Backend.Database
 {
@@ -21,66 +23,19 @@ namespace TokanPages.Backend.Database
 
         protected override void OnModelCreating(ModelBuilder AModelBuilder)
         {
-            AModelBuilder.Entity<Articles>(AEntity =>
-            {
-                AEntity.Property(e => e.Id).ValueGeneratedNever();
 
-                AEntity.Property(e => e.Description)
-                    .IsRequired()
-                    .HasMaxLength(255);
+            base.OnModelCreating(AModelBuilder);
+            ApplyConfiguration(AModelBuilder);
 
-                AEntity.Property(e => e.Title)
-                    .IsRequired()
-                    .HasMaxLength(255);
+            new UsersSeeder().Seed(AModelBuilder);
+            new ArticlesSeeder().Seed(AModelBuilder);
+            new SubscribersSeeder().Seed(AModelBuilder);
 
-                AEntity.Property(e => e.CreatedAt).HasColumnType("datetime");
+        }
 
-                AEntity.Property(e => e.UpdatedAt).HasColumnType("datetime");
-            });
-
-            AModelBuilder.Entity<Subscribers>(AEntity =>
-            {
-                AEntity.Property(e => e.Id).ValueGeneratedNever();
-
-                AEntity.Property(e => e.Email)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                AEntity.Property(e => e.LastUpdated).HasColumnType("datetime");
-
-                AEntity.Property(e => e.Registered).HasColumnType("datetime");
-            });
-
-            AModelBuilder.Entity<Users>(AEntity =>
-            {
-                AEntity.Property(e => e.Id).ValueGeneratedNever();
-
-                AEntity.Property(e => e.EmailAddress)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                AEntity.Property(e => e.FirstName)
-                    .IsRequired()
-                    .HasMaxLength(255);
-
-                AEntity.Property(e => e.LastLogged).HasColumnType("datetime");
-
-                AEntity.Property(e => e.LastName)
-                    .IsRequired()
-                    .HasMaxLength(255);
-
-                AEntity.Property(e => e.LastUpdated).HasColumnType("datetime");
-
-                AEntity.Property(e => e.Registered).HasColumnType("datetime");
-
-                AEntity.Property(e => e.UserAlias)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-            });
-
+        protected void ApplyConfiguration(ModelBuilder AModelBuilder) 
+        {
+            AModelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
     }
