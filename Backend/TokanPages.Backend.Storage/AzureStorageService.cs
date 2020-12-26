@@ -14,31 +14,35 @@ namespace TokanPages.Backend.Storage
     public class AzureStorageService : AzureStorageObject, IAzureStorageService
     {
 
-        private readonly AzureStorageSettings FAzureStorage;
-        private readonly CloudStorageAccount  FStorageAccount;
+        private readonly AzureStorageSettings FAzureStorageSettings;
+        private readonly CloudStorageAccount  FCloudStorageAccount;
         private readonly StorageCredentials   FStorageCredentials;
 
         public AzureStorageService(AzureStorageSettings AAzureStorage) 
         {
-            FAzureStorage       = AAzureStorage;
-            FStorageCredentials = new StorageCredentials(FAzureStorage.AccountName, FAzureStorage.AccountKey);
-            FStorageAccount     = new CloudStorageAccount(FStorageCredentials, useHttps: true);
+            FAzureStorageSettings = AAzureStorage;
+            FStorageCredentials   = new StorageCredentials(FAzureStorageSettings.AccountName, FAzureStorageSettings.AccountKey);
+            FCloudStorageAccount  = new CloudStorageAccount(FStorageCredentials, useHttps: true);
         }
 
         public AzureStorageService() 
         { 
         }
 
-        public override string GetBaseUrl { get => FAzureStorage.BaseUrl.Replace("{AccountName}", FAzureStorage.AccountName); }
+        public override string GetBaseUrl { get => FAzureStorageSettings.BaseUrl
+                .Replace("{AccountName}", FAzureStorageSettings.AccountName)
+                .Replace("{ContainerName}", FAzureStorageSettings.ContainerName); }
 
-        public override async Task<ActionResult> UploadFile(string ADestContainerName, string ADestFileName, string ASrcFullFilePath, string AContentType, CancellationToken ACancellationToken) 
+        public override async Task<ActionResult> UploadFile(string ADestContainerReference, string ADestFileName, string ASrcFullFilePath, string AContentType, CancellationToken ACancellationToken) 
         {
 
             try 
             {
 
-                var LBlobClient = FStorageAccount.CreateCloudBlobClient();
-                var LContainer  = LBlobClient.GetContainerReference(ADestContainerName);
+                var LFullReference = FAzureStorageSettings.ContainerName + "\\" + ADestContainerReference;
+
+                var LBlobClient = FCloudStorageAccount.CreateCloudBlobClient();
+                var LContainer  = LBlobClient.GetContainerReference(LFullReference);
                 var LBlockBlob  = LContainer.GetBlockBlobReference(ADestFileName);
                 var LFileStream = File.OpenRead(ASrcFullFilePath);
 
@@ -62,14 +66,16 @@ namespace TokanPages.Backend.Storage
 
         }
 
-        public override async Task<ActionResult> RemoveFromStorage(string AContainerName, string AFileName, CancellationToken ACancellationToken) 
+        public override async Task<ActionResult> RemoveFromStorage(string AContainerReference, string AFileName, CancellationToken ACancellationToken) 
         {
 
             try
             {
 
-                var LBlobClient = FStorageAccount.CreateCloudBlobClient();
-                var LContainer  = LBlobClient.GetContainerReference(AContainerName);
+                var LFullReference = FAzureStorageSettings.ContainerName + "\\" + AContainerReference;
+
+                var LBlobClient = FCloudStorageAccount.CreateCloudBlobClient();
+                var LContainer  = LBlobClient.GetContainerReference(LFullReference);
                 var LBlockBlob  = LContainer.GetBlockBlobReference(AFileName);
 
                 await LBlockBlob.DeleteIfExistsAsync(DeleteSnapshotsOption.None, null, null, null, ACancellationToken);
