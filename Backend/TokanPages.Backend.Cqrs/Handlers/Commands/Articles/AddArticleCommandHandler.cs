@@ -6,12 +6,11 @@ using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.Services.FileUtility;
-using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
 
-    public class AddArticleCommandHandler : TemplateHandler<AddArticleCommand, Unit>
+    public class AddArticleCommandHandler : TemplateHandler<AddArticleCommand, Guid>
     {
 
         private readonly DatabaseContext FDatabaseContext;
@@ -26,7 +25,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             FFileUtility = AFileUtility;
         }
 
-        public override async Task<Unit> Handle(AddArticleCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Guid> Handle(AddArticleCommand ARequest, CancellationToken ACancellationToken)
         {
 
             var LImageBase64Check = FFileUtility.IsBase64String(ARequest.ImageToUpload);
@@ -64,7 +63,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             });
 
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-            return await Task.FromResult(Unit.Value);
+            return await Task.FromResult(LNewId);
 
         }
 

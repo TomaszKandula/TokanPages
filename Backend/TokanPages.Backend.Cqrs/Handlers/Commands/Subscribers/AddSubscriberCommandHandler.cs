@@ -2,12 +2,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using TokanPages.Backend.Database;
-using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 {
 
-    public class AddSubscriberCommandHandler : TemplateHandler<AddSubscriberCommand, Unit>
+    public class AddSubscriberCommandHandler : TemplateHandler<AddSubscriberCommand, Guid>
     {
 
         private readonly DatabaseContext FDatabaseContext;
@@ -17,13 +16,14 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
             FDatabaseContext = ADatabaseContext;
         }
 
-        public override async Task<Unit> Handle(AddSubscriberCommand ARequest, CancellationToken ACancellationToken) 
+        public override async Task<Guid> Handle(AddSubscriberCommand ARequest, CancellationToken ACancellationToken) 
         {
 
+            var LNewId = Guid.NewGuid();
             var LNewSubscriber = new Domain.Entities.Subscribers
             {
                 Email = ARequest.Email,
-                Id = Guid.NewGuid(),
+                Id = LNewId,
                 Count = 0,
                 IsActivated = true,
                 LastUpdated = null,
@@ -32,7 +32,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 
             await FDatabaseContext.Subscribers.AddAsync(LNewSubscriber);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-            return await Task.FromResult(Unit.Value);
+            return await Task.FromResult(LNewId);
         
         }
 
