@@ -3,6 +3,7 @@ using FluentAssertions;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Backend.TestData;
 using TokanPages;
 using TokanPages.Backend.Shared.Dto.Subscribers;
 
@@ -29,7 +30,7 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
 
             var LPayLoad = new AddSubscriberDto
             {
-                Email = "tokan1@gmail.com"
+                Email = DataProvider.GetRandomEmail()
             };
 
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
@@ -42,6 +43,7 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
+            GuidTest.Check(LContent).Should().BeTrue();
 
         }
 

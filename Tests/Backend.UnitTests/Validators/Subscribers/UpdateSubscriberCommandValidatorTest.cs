@@ -1,6 +1,7 @@
 ﻿using System;
 using Xunit;
 using FluentAssertions;
+using Backend.TestData;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
@@ -18,7 +19,7 @@ namespace Backend.UnitTests.Validators.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand 
             { 
                 Id = Guid.NewGuid(),
-                Email = "tokan@dfds.com",
+                Email = DataProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 0
             };
@@ -40,7 +41,7 @@ namespace Backend.UnitTests.Validators.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.Empty,
-                Email = "tokan@dfds.com",
+                Email = DataProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 0
             };
@@ -109,7 +110,7 @@ namespace Backend.UnitTests.Validators.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.NewGuid(),
-                Email = "tokan@dfds.com",
+                Email = DataProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = -1
             };

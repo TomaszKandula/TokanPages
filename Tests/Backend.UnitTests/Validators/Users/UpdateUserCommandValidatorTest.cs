@@ -1,6 +1,7 @@
 ﻿using Xunit;
 using FluentAssertions;
 using System;
+using Backend.TestData;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
@@ -18,10 +19,10 @@ namespace Backend.UnitTests.Validators.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = "tokan@dfds.com",
-                UserAlias = "tokan",
-                FirstName = "Tomasz",
-                LastName = "Kandula"
+                EmailAddress = DataProvider.GetRandomEmail(),
+                UserAlias = DataProvider.GetRandomString(),
+                FirstName = DataProvider.GetRandomString(),
+                LastName = DataProvider.GetRandomString()
             };
 
             // Act
@@ -42,9 +43,9 @@ namespace Backend.UnitTests.Validators.Users
             {
                 Id = Guid.NewGuid(),
                 EmailAddress = string.Empty,
-                UserAlias = "tokan",
-                FirstName = "Tomasz",
-                LastName = "Kandula"
+                UserAlias = DataProvider.GetRandomString(),
+                FirstName = DataProvider.GetRandomString(),
+                LastName = DataProvider.GetRandomString()
             };
 
             // Act
@@ -66,9 +67,9 @@ namespace Backend.UnitTests.Validators.Users
             {
                 Id = Guid.NewGuid(),
                 EmailAddress = new string('T', 256),
-                UserAlias = "tokan",
-                FirstName = "Tomasz",
-                LastName = "Kandula"
+                UserAlias = DataProvider.GetRandomString(),
+                FirstName = DataProvider.GetRandomString(),
+                LastName = DataProvider.GetRandomString()
             };
 
             // Act
@@ -89,10 +90,10 @@ namespace Backend.UnitTests.Validators.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = "tokan@dfds.com",
+                EmailAddress = DataProvider.GetRandomEmail(),
                 UserAlias = string.Empty,
-                FirstName = "Tomasz",
-                LastName = "Kandula"
+                FirstName = DataProvider.GetRandomString(),
+                LastName = DataProvider.GetRandomString()
             };
 
             // Act
@@ -113,10 +114,10 @@ namespace Backend.UnitTests.Validators.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = "tokan@dfds.com",
-                UserAlias = new string('T', 256),
-                FirstName = "Tomasz",
-                LastName = "Kandula"
+                EmailAddress = DataProvider.GetRandomEmail(),
+                UserAlias = DataProvider.GetRandomString(256),
+                FirstName = DataProvider.GetRandomString(),
+                LastName = DataProvider.GetRandomString()
             };
 
             // Act
@@ -137,10 +138,10 @@ namespace Backend.UnitTests.Validators.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = "tokan@dfds.com",
-                UserAlias = "tokan",
+                EmailAddress = DataProvider.GetRandomEmail(),
+                UserAlias = DataProvider.GetRandomString(),
                 FirstName = string.Empty,
-                LastName = "Kandula"
+                LastName = DataProvider.GetRandomString()
             };
 
             // Act
@@ -161,10 +162,10 @@ namespace Backend.UnitTests.Validators.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = "tokan@dfds.com",
-                UserAlias = "tokan",
-                FirstName = new string('T', 256),
-                LastName = "Kandula"
+                EmailAddress = DataProvider.GetRandomEmail(),
+                UserAlias = DataProvider.GetRandomString(),
+                FirstName = DataProvider.GetRandomString(256),
+                LastName = DataProvider.GetRandomString()
             };
 
             // Act
@@ -185,9 +186,9 @@ namespace Backend.UnitTests.Validators.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = "tokan@dfds.com",
-                UserAlias = "tokan",
-                FirstName = "Tomasz",
+                EmailAddress = DataProvider.GetRandomEmail(),
+                UserAlias = DataProvider.GetRandomString(),
+                FirstName = DataProvider.GetRandomString(),
                 LastName = string.Empty
             };
 
@@ -209,10 +210,10 @@ namespace Backend.UnitTests.Validators.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = "tokan@dfds.com",
-                UserAlias = "tokan",
-                FirstName = "Tomasz",
-                LastName = new string('T', 256)
+                EmailAddress = DataProvider.GetRandomEmail(),
+                UserAlias = DataProvider.GetRandomString(),
+                FirstName = DataProvider.GetRandomString(),
+                LastName = DataProvider.GetRandomString(256)
             };
 
             // Act

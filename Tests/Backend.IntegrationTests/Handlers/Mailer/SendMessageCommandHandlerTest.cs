@@ -5,6 +5,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Backend.TestData;
 using TokanPages;
 using TokanPages.Backend.Shared.Dto.Mailer;
 
@@ -31,11 +32,11 @@ namespace Backend.IntegrationTests.Handlers.Mailer
 
             var LPayLoad = new SendMessageDto
             {
-                FirstName = "Tomasz",
-                LastName = "Kandula",
-                UserEmail = "tomasz.kandula@gmail.com",
-                EmailFrom = "contact@tomkandula.com",
-                EmailTos = new List<string> { "" }, // can be empty
+                FirstName = DataProvider.GetRandomString(),
+                LastName = DataProvider.GetRandomString(),
+                UserEmail = DataProvider.GetRandomEmail(),
+                EmailFrom = DataProvider.GetRandomEmail(),
+                EmailTos = new List<string> { string.Empty },
                 Subject = "Integration Test / HttpClient / Endpoint",
                 Message = $"Test run Id: {Guid.NewGuid()}.",
             };

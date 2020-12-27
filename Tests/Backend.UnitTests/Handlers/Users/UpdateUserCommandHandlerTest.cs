@@ -3,6 +3,7 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Backend.TestData;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
@@ -20,10 +21,10 @@ namespace Backend.UnitTests.Handlers.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
-                EmailAddress = "ester1990@gmail.com",
-                UserAlias = "Ester1990",
-                FirstName = "Ester",
-                LastName = "Exposito",
+                EmailAddress = DataProvider.GetRandomEmail(),
+                UserAlias = DataProvider.GetRandomString(),
+                FirstName = DataProvider.GetRandomString(),
+                LastName = DataProvider.GetRandomString(),
                 IsActivated = true,
             };
 
@@ -31,10 +32,10 @@ namespace Backend.UnitTests.Handlers.Users
             var LUser = new TokanPages.Backend.Domain.Entities.Users
             {
                 Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
-                EmailAddress = "ester.exposito@gmail.com",
-                UserAlias = "Ester",
-                FirstName = "Ester",
-                LastName = "Exposito",
+                EmailAddress = DataProvider.GetRandomEmail(),
+                UserAlias = DataProvider.GetRandomString(),
+                FirstName = DataProvider.GetRandomString(),
+                LastName = DataProvider.GetRandomString(),
                 IsActivated = true,
                 Registered = DateTime.Now,
                 LastUpdated = null,
@@ -69,10 +70,10 @@ namespace Backend.UnitTests.Handlers.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.Parse("1edb4c7d-8cf0-4811-b721-af5caf74d7a8"),
-                EmailAddress = "ester1990@gmail.com",
-                UserAlias = "Ester1990",
-                FirstName = "Ester",
-                LastName = "Exposito",
+                EmailAddress = DataProvider.GetRandomEmail(),
+                UserAlias = DataProvider.GetRandomString(),
+                FirstName = DataProvider.GetRandomString(),
+                LastName = DataProvider.GetRandomString(),
                 IsActivated = true,
             };
 
@@ -80,10 +81,10 @@ namespace Backend.UnitTests.Handlers.Users
             var LUser = new TokanPages.Backend.Domain.Entities.Users
             {
                 Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
-                EmailAddress = "ester.exposito@gmail.com",
-                UserAlias = "Ester",
-                FirstName = "Ester",
-                LastName = "Exposito",
+                EmailAddress = DataProvider.GetRandomEmail(),
+                UserAlias = DataProvider.GetRandomString(),
+                FirstName = DataProvider.GetRandomString(),
+                LastName = DataProvider.GetRandomString(),
                 IsActivated = true,
                 Registered = DateTime.Now,
                 LastUpdated = null,
@@ -104,14 +105,14 @@ namespace Backend.UnitTests.Handlers.Users
         {
 
             // Arrange
-            var LTestEmail = "ester1990@gmail.com";
+            var LTestEmail = DataProvider.GetRandomEmail();
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
                 EmailAddress = LTestEmail,
-                UserAlias = "Ester1990",
-                FirstName = "Ester",
-                LastName = "Exposito",
+                UserAlias = DataProvider.GetRandomString(),
+                FirstName = DataProvider.GetRandomString(),
+                LastName = DataProvider.GetRandomString(),
                 IsActivated = true,
             };
 
@@ -120,9 +121,9 @@ namespace Backend.UnitTests.Handlers.Users
             {
                 Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
                 EmailAddress = LTestEmail,
-                UserAlias = "Ester",
-                FirstName = "Ester",
-                LastName = "Exposito",
+                UserAlias = DataProvider.GetRandomString(),
+                FirstName = DataProvider.GetRandomString(),
+                LastName = DataProvider.GetRandomString(),
                 IsActivated = true,
                 Registered = DateTime.Now,
                 LastUpdated = null,

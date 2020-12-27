@@ -1,5 +1,6 @@
 ﻿using Xunit;
 using FluentAssertions;
+using Backend.TestData;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
@@ -16,7 +17,7 @@ namespace Backend.UnitTests.Validators.Subscribers
             // Arrange
             var LAddSubscriberCommand = new AddSubscriberCommand 
             { 
-                Email = "tokan@dfds.com"
+                Email = DataProvider.GetRandomEmail()
             };
 
             // Act

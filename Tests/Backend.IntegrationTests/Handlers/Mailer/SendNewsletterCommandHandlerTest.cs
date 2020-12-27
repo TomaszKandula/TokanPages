@@ -5,6 +5,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Backend.TestData;
 using TokanPages;
 using TokanPages.Backend.Shared.Dto.Mailer;
 using TokanPages.Backend.Shared.Models;
@@ -34,15 +35,16 @@ namespace Backend.IntegrationTests.Handlers.Mailer
             {
                 SubscriberInfo = new List<SubscriberInfo>
                 {
+                    // Provide existing test emails to preview incoming messages
                     new SubscriberInfo
                     {
-                        Id    = "352e356e-1865-412e-bade-a2016dfde55f",
-                        Email = "admin@tomkandula.com"
+                        Id    = Guid.NewGuid().ToString(),
+                        Email = DataProvider.GetRandomEmail()
                     },
                     new SubscriberInfo
                     {
-                        Id    = "7306a5d1-48cb-4dc4-9968-3dd8631b3b0b",
-                        Email = "tom@tomkandula.com"
+                        Id    = Guid.NewGuid().ToString(),
+                        Email = DataProvider.GetRandomEmail()
                     }
                 },
                 Subject = "Integration Test / HttpClient / Endpoint",

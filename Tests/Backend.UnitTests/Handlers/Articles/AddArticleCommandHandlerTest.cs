@@ -4,6 +4,7 @@ using FluentAssertions;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Backend.TestData;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Core.Exceptions;
@@ -23,10 +24,10 @@ namespace Backend.UnitTests.Handlers.Articles
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = "Title",
-                Description = "Description",
-                TextToUpload = "TextToUpload",
-                ImageToUpload = "+DLnpYzLUHeUfXB4LgE1mA=="
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
+                TextToUpload = DataProvider.GetRandomString(),
+                ImageToUpload = DataProvider.Base64Encode(DataProvider.GetRandomString())
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -68,10 +69,10 @@ namespace Backend.UnitTests.Handlers.Articles
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = "Title",
-                Description = "Description",
-                TextToUpload = "TextToUpload",
-                ImageToUpload = "ImageToUpload"
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
+                TextToUpload = DataProvider.GetRandomString(),
+                ImageToUpload = DataProvider.GetRandomString(3)
             };
 
             var LDatabaseContext = GetTestDatabaseContext();

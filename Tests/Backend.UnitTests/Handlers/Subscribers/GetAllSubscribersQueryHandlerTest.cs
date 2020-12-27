@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
+using Backend.TestData;
 
 namespace Backend.UnitTests.Handlers.Subscribers
 {
@@ -25,7 +26,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
                 new TokanPages.Backend.Domain.Entities.Subscribers
                 {
                     Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                    Email = "ester.exposito@gmail.com",
+                    Email = DataProvider.GetRandomEmail(),
                     IsActivated = true,
                     Count = 10,
                     Registered = DateTime.Now,
@@ -34,7 +35,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
                 new TokanPages.Backend.Domain.Entities.Subscribers
                 {
                     Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
-                    Email = "freddie.mercury@gmail.com",
+                    Email = DataProvider.GetRandomEmail(),
                     IsActivated = true,
                     Count = 100,
                     Registered = DateTime.Now,
