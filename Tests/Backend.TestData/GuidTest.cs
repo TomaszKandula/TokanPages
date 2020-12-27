@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Backend.TestData
 {
@@ -8,7 +8,8 @@ namespace Backend.TestData
 
         public static bool Check(string AValue) 
         {
-            return Guid.TryParse(AValue, out var _);
+            var LValue = AValue.Replace("\"", "");
+            return Guid.TryParse(LValue, out var _);
         }
 
     }
