@@ -39,7 +39,7 @@ namespace TestDataProvider
 				.Select(AString => AString[FRandom.Next(AString.Length)])
 				.ToArray());
 
-			if (string.IsNullOrEmpty(APrefix) || string.IsNullOrWhiteSpace(APrefix)) 
+			if (!string.IsNullOrEmpty(APrefix) || !string.IsNullOrWhiteSpace(APrefix)) 
 				return APrefix + LString;
 
 			return LString;
