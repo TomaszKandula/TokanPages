@@ -33,6 +33,16 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
             }
 
+            var LEmailCollection = await FDatabaseContext.Users
+                .AsNoTracking()
+                .Where(AUsers => AUsers.EmailAddress == ARequest.EmailAddress)
+                .ToListAsync(ACancellationToken);
+
+            if (LEmailCollection.Count > 1)
+            {
+                throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
+            }
+
             LCurrentUser.First().EmailAddress = ARequest.EmailAddress;
             LCurrentUser.First().UserAlias = ARequest.UserAlias;
             LCurrentUser.First().FirstName = ARequest.FirstName;

@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Database;
-using MediatR;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 {
     
-    public class AddUserCommandHandler : TemplateHandler<AddUserCommand, Unit>
+    public class AddUserCommandHandler : TemplateHandler<AddUserCommand, Guid>
     {
 
         private readonly DatabaseContext FDatabaseContext;
@@ -17,8 +20,19 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             FDatabaseContext = ADatabaseContext;
         }
 
-        public override async Task<Unit> Handle(AddUserCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Guid> Handle(AddUserCommand ARequest, CancellationToken ACancellationToken)
         {
+
+            var LEmailCollection = await FDatabaseContext.Users
+                .AsNoTracking()
+                .Where(AUsers => AUsers.EmailAddress == ARequest.EmailAddress)
+                .ToListAsync(ACancellationToken);
+            
+            if (LEmailCollection.Count > 1) 
+            {
+                throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
+            }
+
             var LNewId = Guid.NewGuid();
             var LNewUser = new Domain.Entities.Users
             { 
@@ -34,8 +48,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             };
 
             FDatabaseContext.Users.Add(LNewUser);
-            await FDatabaseContext.SaveChangesAsync();
-            return await Task.FromResult(Unit.Value);
+            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            return await Task.FromResult(LNewId);
 
         }
 

@@ -1,9 +1,10 @@
-﻿using MediatR;
+﻿using System;
+using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 {
     
-    public class AddUserCommand : IRequest<Unit>
+    public class AddUserCommand : IRequest<Guid>
     {
         public string UserAlias { get; set; }
         public string FirstName { get; set; }
