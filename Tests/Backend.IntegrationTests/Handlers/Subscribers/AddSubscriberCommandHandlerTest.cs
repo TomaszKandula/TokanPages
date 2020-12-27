@@ -20,7 +20,7 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
         }
 
         [Fact]
-        public async Task AddSubscriber_WhenAllFieldsAreCorrect_ShouldReturnEmptyObject() 
+        public async Task AddSubscriber_WhenAllFieldsAreCorrect_ShouldReturnNewGuid() 
         {
 
             // Arrange
@@ -29,7 +29,7 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
 
             var LPayLoad = new AddSubscriberDto
             {
-                Email = "tokan@gmail.com"
+                Email = "tokan1@gmail.com"
             };
 
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
@@ -42,7 +42,6 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Be("{}");
 
         }
 

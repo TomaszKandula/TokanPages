@@ -20,7 +20,7 @@ namespace Backend.IntegrationTests.Handlers.Users
         }
 
         [Fact]
-        public async Task AddUser_WhenAllFieldsAreProvided_ShouldReturnEmptyObject() 
+        public async Task AddUser_WhenAllFieldsAreProvided_ShouldReturnNewGuid() 
         {
 
             // Arrange
@@ -29,7 +29,7 @@ namespace Backend.IntegrationTests.Handlers.Users
 
             var LPayLoad = new AddUserDto 
             { 
-                EmailAddress = "tokan@gmail.com",
+                EmailAddress = "tokan2@gmail.com",
                 UserAlias = "test alias",
                 FirstName = "test name",
                 LastName = "test name"
@@ -45,7 +45,6 @@ namespace Backend.IntegrationTests.Handlers.Users
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Be("{}");
 
         }
 

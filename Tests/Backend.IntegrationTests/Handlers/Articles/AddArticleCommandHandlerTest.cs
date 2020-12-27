@@ -20,7 +20,7 @@ namespace Backend.IntegrationTests.Handlers.Articles
         }
 
         [Fact]
-        public async Task AddArticle_WhenAllFieldsAreCorrect_ShouldReturnEmptyObject()
+        public async Task AddArticle_WhenAllFieldsAreCorrect_ShouldReturnNewGuid()
         {
 
             // Arrange
@@ -45,7 +45,6 @@ namespace Backend.IntegrationTests.Handlers.Articles
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Be("{}");
 
         }
 
