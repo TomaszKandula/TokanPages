@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace TestDataProvider
+namespace Backend.TestData
 {
     
     public static class DataProvider
