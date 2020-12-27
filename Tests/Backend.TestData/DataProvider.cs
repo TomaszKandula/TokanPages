@@ -30,12 +30,20 @@ namespace TestDataProvider
 			return FRandom.Next(AMin, AMax);
 		}
 
-		public static string GetRandomString(int ALength)
+		public static string GetRandomString(int ALength, string APrefix = "")
 		{
+
 			const string LChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-			return new string(Enumerable.Repeat(LChars, ALength)
+
+			var LString = new string(Enumerable.Repeat(LChars, ALength)
 				.Select(AString => AString[FRandom.Next(AString.Length)])
-                                .ToArray());
+				.ToArray());
+
+			if (string.IsNullOrEmpty(APrefix) || string.IsNullOrWhiteSpace(APrefix)) 
+				return APrefix + LString;
+
+			return LString;
+
 		}
 
 		public static byte[] GenerateRandomByteArray(int ASizeInKb = 12)
