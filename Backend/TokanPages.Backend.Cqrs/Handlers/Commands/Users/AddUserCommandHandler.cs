@@ -28,7 +28,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 .Where(AUsers => AUsers.EmailAddress == ARequest.EmailAddress)
                 .ToListAsync(ACancellationToken);
             
-            if (LEmailCollection.Count > 1) 
+            if (LEmailCollection.Count == 1) 
             {
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
             }
