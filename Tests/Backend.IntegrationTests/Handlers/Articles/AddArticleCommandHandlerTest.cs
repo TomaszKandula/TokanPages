@@ -3,6 +3,7 @@ using FluentAssertions;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Backend.TestData;
 using TokanPages;
 using TokanPages.Backend.Shared.Dto.Articles;
 
@@ -29,10 +30,10 @@ namespace Backend.IntegrationTests.Handlers.Articles
 
             var LPayLoad = new AddArticleDto
             {
-                Title = "Title",
-                Description = "Description",
-                TextToUpload = "TextToUpload",
-                ImageToUpload = "+DLnpYzLUHeUfXB4LgE1mA=="
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
+                TextToUpload = DataProvider.GetRandomString(150),
+                ImageToUpload = DataProvider.Base64Encode(DataProvider.GetRandomString(255))
             };
 
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
@@ -45,6 +46,7 @@ namespace Backend.IntegrationTests.Handlers.Articles
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
+            GuidTest.Check(LContent).Should().BeTrue();
 
         }
 

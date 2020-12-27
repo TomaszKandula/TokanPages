@@ -5,6 +5,7 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Backend.TestData;
 using TokanPages;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.Dto.Articles;
@@ -33,10 +34,10 @@ namespace Backend.IntegrationTests.Handlers.Articles
             var LPayLoad = new UpdateArticleDto
             {
                 Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
-                Title = "test",
-                Description = "test",
-                TextToUpload = "AAA",
-                ImageToUpload = "+DLnpYzLUHeUfXB4LgE1mA==",
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
+                TextToUpload = DataProvider.GetRandomString(150),
+                ImageToUpload = DataProvider.Base64Encode(DataProvider.GetRandomString(255)),
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0

@@ -3,6 +3,7 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Backend.TestData;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
@@ -26,8 +27,8 @@ namespace Backend.UnitTests.Handlers.Articles
             LDatabaseContext.Articles.Add(new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Title = "Why C# is great?",
-                Description = "More on C#",
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0,
@@ -62,8 +63,8 @@ namespace Backend.UnitTests.Handlers.Articles
             LDatabaseContext.Articles.Add(new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
-                Title = "NET Core 5 is coming",
-                Description = "What's new?",
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0,

@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using FluentAssertions;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Backend.TestData;
 using TokanPages;
 using TokanPages.Backend.Shared.Dto.Users;
 
@@ -29,10 +30,10 @@ namespace Backend.IntegrationTests.Handlers.Users
 
             var LPayLoad = new AddUserDto 
             { 
-                EmailAddress = "tokan2@gmail.com",
-                UserAlias = "test alias",
-                FirstName = "test name",
-                LastName = "test name"
+                EmailAddress = DataProvider.GetRandomEmail(),
+                UserAlias = DataProvider.GetRandomString(),
+                FirstName = DataProvider.GetRandomString(),
+                LastName = DataProvider.GetRandomString()
             };
 
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");

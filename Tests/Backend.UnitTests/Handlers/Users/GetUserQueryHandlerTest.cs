@@ -3,6 +3,7 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Backend.TestData;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 
@@ -27,10 +28,10 @@ namespace Backend.UnitTests.Handlers.Users
             var LUsers = new TokanPages.Backend.Domain.Entities.Users 
             { 
                 Id = Guid.Parse("f985772e-4207-41f6-a5f3-d2c2b52d4033"),
-                EmailAddress = "ester1990@gmail.com",
-                UserAlias = "ester1990",
-                FirstName = "Ester",
-                LastName = "Exposito",
+                EmailAddress = DataProvider.GetRandomEmail(),
+                UserAlias = DataProvider.GetRandomString(),
+                FirstName = DataProvider.GetRandomString(),
+                LastName = DataProvider.GetRandomString(),
                 IsActivated = true,
                 Registered = LTestDate,
                 LastUpdated = null,
@@ -72,10 +73,10 @@ namespace Backend.UnitTests.Handlers.Users
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
                 Id = Guid.Parse("f985772e-4207-41f6-a5f3-d2c2b52d4033"),
-                EmailAddress = "ester1990@gmail.com",
-                UserAlias = "ester1990",
-                FirstName = "Ester",
-                LastName = "Exposito",
+                EmailAddress = DataProvider.GetRandomEmail(),
+                UserAlias = DataProvider.GetRandomString(),
+                FirstName = DataProvider.GetRandomString(),
+                LastName = DataProvider.GetRandomString(),
                 IsActivated = true,
                 Registered = DateTime.Now,
                 LastUpdated = null,

@@ -5,6 +5,7 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Backend.TestData;
 using TokanPages;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.Dto.Subscribers;
@@ -33,7 +34,7 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
             var LPayLoad = new UpdateSubscriberDto
             {
                 Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
-                Email = "tokan@gmail.com",
+                Email = DataProvider.GetRandomEmail(),
                 Count = 0,
                 IsActivated = true
             };

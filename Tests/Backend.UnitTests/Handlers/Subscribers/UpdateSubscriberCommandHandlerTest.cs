@@ -3,6 +3,7 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Backend.TestData;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
@@ -20,7 +21,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Email = "ester1990@gmail.com",
+                Email = DataProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10
             };
@@ -29,7 +30,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Email = "ester.exposito@gmail.com",
+                Email = DataProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,
@@ -61,7 +62,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.Parse("32fcefec-4c26-48bb-8717-31447cfda471"),
-                Email = "ester.exposito@gmail.com",
+                Email = DataProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10
             };
@@ -70,7 +71,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Email = "ester.exposito@gmail.com",
+                Email = DataProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,
@@ -91,7 +92,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
         {
 
             // Arrange
-            var LTestEmail = "tokan@dfds.com";
+            var LTestEmail = DataProvider.GetRandomEmail();
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),

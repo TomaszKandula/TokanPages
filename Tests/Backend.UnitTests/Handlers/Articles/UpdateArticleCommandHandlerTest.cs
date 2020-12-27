@@ -9,6 +9,7 @@ using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
+using Backend.TestData;
 
 namespace Backend.UnitTests.Handlers.Articles
 {
@@ -24,10 +25,10 @@ namespace Backend.UnitTests.Handlers.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand 
             { 
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Title = "New Title",
-                Description = "New Description",
-                TextToUpload = "AAA",
-                ImageToUpload = "+DLnpYzLUHeUfXB4LgE1mA==",
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
+                TextToUpload = DataProvider.GetRandomString(150),
+                ImageToUpload = DataProvider.Base64Encode(DataProvider.GetRandomString(255)),
                 IsPublished = false,
                 Likes = 100,
                 ReadCount = 100
@@ -37,8 +38,8 @@ namespace Backend.UnitTests.Handlers.Articles
             LDatabaseContext.Articles.Add(new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Title = "Why C# is great?",
-                Description = "More on C#",
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0,
@@ -90,10 +91,10 @@ namespace Backend.UnitTests.Handlers.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.Parse("a54aa009-2894-407f-90ad-5f07a3145203"),
-                Title = "",
-                Description = "",
-                TextToUpload = "AAA",
-                ImageToUpload = "+DLnpYzLUHeUfXB4LgE1mA==",
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
+                TextToUpload = DataProvider.GetRandomString(150),
+                ImageToUpload = DataProvider.Base64Encode(DataProvider.GetRandomString(255)),
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0
@@ -103,8 +104,8 @@ namespace Backend.UnitTests.Handlers.Articles
             LDatabaseContext.Articles.Add(new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
-                Title = "NET Core 5 is coming",
-                Description = "What's new?",
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0,
@@ -145,10 +146,10 @@ namespace Backend.UnitTests.Handlers.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.Parse("a54aa009-2894-407f-90ad-5f07a3145203"),
-                Title = "",
-                Description = "",
-                TextToUpload = "AAA",
-                ImageToUpload = "BBB",
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
+                TextToUpload = DataProvider.GetRandomString(150),
+                ImageToUpload = DataProvider.GetRandomString(255),
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0
@@ -158,8 +159,8 @@ namespace Backend.UnitTests.Handlers.Articles
             LDatabaseContext.Articles.Add(new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
-                Title = "NET Core 5 is coming",
-                Description = "What's new?",
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0,

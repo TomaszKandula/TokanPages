@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Backend.TestData;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
@@ -20,7 +21,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             // Arrange
             var LAddSubscriberCommand = new AddSubscriberCommand 
             { 
-                Email = "tokan@dfds.com"
+                Email = DataProvider.GetRandomEmail()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -49,7 +50,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
         {
 
             // Arrange
-            var LTestEmail = "tokan@dfds.com";
+            var LTestEmail = DataProvider.GetRandomEmail();
             var LAddSubscriberCommand = new AddSubscriberCommand
             {
                 Email = LTestEmail

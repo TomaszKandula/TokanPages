@@ -4,6 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Backend.TestData;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 
 namespace Backend.UnitTests.Handlers.Users
@@ -25,10 +26,10 @@ namespace Backend.UnitTests.Handlers.Users
                 new TokanPages.Backend.Domain.Entities.Users
                 {
                     Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                    EmailAddress = "ester1990@gmail.com",
-                    UserAlias = "ester1990",
-                    FirstName = "Ester",
-                    LastName = "Exposito",
+                    EmailAddress = DataProvider.GetRandomEmail(),
+                    UserAlias = DataProvider.GetRandomString(),
+                    FirstName = DataProvider.GetRandomString(),
+                    LastName = DataProvider.GetRandomString(),
                     IsActivated = true,
                     Registered = DateTime.Now,
                     LastUpdated = null,
@@ -37,10 +38,10 @@ namespace Backend.UnitTests.Handlers.Users
                 new TokanPages.Backend.Domain.Entities.Users
                 {
                     Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
-                    EmailAddress = "tokan@gmail.com",
-                    UserAlias = "tokan",
-                    FirstName = "Tom",
-                    LastName = "Tom",
+                    EmailAddress = DataProvider.GetRandomEmail(),
+                    UserAlias = DataProvider.GetRandomString(),
+                    FirstName = DataProvider.GetRandomString(),
+                    LastName = DataProvider.GetRandomString(),
                     IsActivated = true,
                     Registered = DateTime.Now,
                     LastUpdated = null,

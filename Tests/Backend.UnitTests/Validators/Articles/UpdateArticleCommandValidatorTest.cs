@@ -1,6 +1,7 @@
 ﻿using Xunit;
 using System;
 using FluentAssertions;
+using Backend.TestData;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
@@ -18,10 +19,10 @@ namespace Backend.UnitTests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.NewGuid(),
-                Title = "Title",
-                Description = "Description",
-                TextToUpload = "AAA",
-                ImageToUpload = "BBB",
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
+                TextToUpload = DataProvider.GetRandomString(),
+                ImageToUpload = DataProvider.GetRandomString(),
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0
@@ -44,10 +45,10 @@ namespace Backend.UnitTests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.Empty,
-                Title = "Title",
-                Description = "Description",
-                TextToUpload = "AAA",
-                ImageToUpload = "BBB",
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
+                TextToUpload = DataProvider.GetRandomString(),
+                ImageToUpload = DataProvider.GetRandomString(),
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0
@@ -72,9 +73,9 @@ namespace Backend.UnitTests.Validators.Articles
             {
                 Id = Guid.NewGuid(),
                 Title = string.Empty,
-                Description = "Description",
-                TextToUpload = "AAA",
-                ImageToUpload = "BBB",
+                Description = DataProvider.GetRandomString(),
+                TextToUpload = DataProvider.GetRandomString(),
+                ImageToUpload = DataProvider.GetRandomString(),
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0
@@ -98,10 +99,10 @@ namespace Backend.UnitTests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.NewGuid(),
-                Title = new string('T', 256),
-                Description = "Description",
-                TextToUpload = "AAA",
-                ImageToUpload = "BBB",
+                Title = DataProvider.GetRandomString(256),
+                Description = DataProvider.GetRandomString(),
+                TextToUpload = DataProvider.GetRandomString(),
+                ImageToUpload = DataProvider.GetRandomString(),
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0
@@ -125,10 +126,10 @@ namespace Backend.UnitTests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.NewGuid(),
-                Title = "Title",
+                Title = DataProvider.GetRandomString(),
                 Description = string.Empty,
-                TextToUpload = "AAA",
-                ImageToUpload = "BBB",
+                TextToUpload = DataProvider.GetRandomString(),
+                ImageToUpload = DataProvider.GetRandomString(),
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0
@@ -152,10 +153,10 @@ namespace Backend.UnitTests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.NewGuid(),
-                Title = "Title",
-                Description = new string('T', 256),
-                TextToUpload = "AAA",
-                ImageToUpload = "BBB",
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(256),
+                TextToUpload = DataProvider.GetRandomString(),
+                ImageToUpload = DataProvider.GetRandomString(),
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0
@@ -179,10 +180,10 @@ namespace Backend.UnitTests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.NewGuid(),
-                Title = "Title",
-                Description = "Description",
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
                 TextToUpload = string.Empty,
-                ImageToUpload = "BBB",
+                ImageToUpload = DataProvider.GetRandomString(),
                 IsPublished = false,
                 Likes = 0,
                 ReadCount = 0
@@ -205,9 +206,9 @@ namespace Backend.UnitTests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.NewGuid(),
-                Title = "Title",
-                Description = "Description",
-                TextToUpload = "AAA",
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
+                TextToUpload = DataProvider.GetRandomString(),
                 ImageToUpload = string.Empty,
                 IsPublished = false,
                 Likes = 0,
@@ -231,9 +232,9 @@ namespace Backend.UnitTests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.NewGuid(),
-                Title = "Title",
-                Description = "Description",
-                TextToUpload = "AAA",
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
+                TextToUpload = DataProvider.GetRandomString(),
                 ImageToUpload = string.Empty,
                 IsPublished = false,
                 Likes = -1,
@@ -258,9 +259,9 @@ namespace Backend.UnitTests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.NewGuid(),
-                Title = "Title",
-                Description = "Description",
-                TextToUpload = "AAA",
+                Title = DataProvider.GetRandomString(),
+                Description = DataProvider.GetRandomString(),
+                TextToUpload = DataProvider.GetRandomString(),
                 ImageToUpload = string.Empty,
                 IsPublished = false,
                 Likes = 0,
