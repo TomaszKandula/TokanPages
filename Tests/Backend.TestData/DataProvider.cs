@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace Backend.TestData
 {
@@ -15,9 +16,9 @@ namespace Backend.TestData
 			return FRandom.Next(AMin, AMax + 1);
 		}
 
-		public static string GetRandomEmail(string ADomain)
+		public static string GetRandomEmail(int ALength = 12, string ADomain = "gmail.com")
 		{
-			return $"{GetRandomString(8)}@{ADomain}";
+			return $"{GetRandomString(ALength)}@{ADomain}";
 		}
 
 		public static decimal GetRandomDecimal(int AMin = 0, int AMax = 9999)
@@ -28,6 +29,8 @@ namespace Backend.TestData
 		public static string GetRandomString(int ALength = 12, string APrefix = "")
 		{
 
+			if (ALength == 0) return string.Empty;
+			
 			const string LChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 			var LString = new string(Enumerable.Repeat(LChars, ALength)
@@ -73,6 +76,18 @@ namespace Backend.TestData
 
 			return (T)LValues.GetValue(LRandom.Next(LValues.Length));
 
+		}
+
+		public static string Base64Encode(string APlainText)
+		{
+			var LPlainTextBytes = Encoding.UTF8.GetBytes(APlainText);
+			return Convert.ToBase64String(LPlainTextBytes);
+		}
+
+		public static string Base64Decode(string ABase64EncodedData)
+		{
+			var LBase64EncodedBytes = Convert.FromBase64String(ABase64EncodedData);
+			return Encoding.UTF8.GetString(LBase64EncodedBytes);
 		}
 
 	}
