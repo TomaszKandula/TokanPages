@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\TokanPages\TokanPages.csproj" />
+    <ProjectReference Include="..\Backend.TestData\Backend.TestData.csproj" />
   </ItemGroup>
 
 </Project>
