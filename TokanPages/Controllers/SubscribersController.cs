@@ -33,7 +33,7 @@ namespace TokanPages.Controllers
         }
 
         [HttpPost]
-        public async Task<Unit> AddSubscriber([FromBody] AddSubscriberDto APayLoad) 
+        public async Task<Guid> AddSubscriber([FromBody] AddSubscriberDto APayLoad) 
         {
             var LCommand = SubscribersMapper.MapToAddSubscriberCommand(APayLoad);
             return await FMediator.Send(LCommand);
