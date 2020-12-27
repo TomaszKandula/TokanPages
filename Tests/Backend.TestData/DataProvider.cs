@@ -10,12 +10,12 @@ namespace TestDataProvider
 
 		private static Random FRandom = new Random();
 
-		public static int GenerateRandomInt(int AMin = 0, int AMax = 10)
+		public static int GenerateRandomInt(int AMin = 0, int AMax = 12)
 		{
 			return FRandom.Next(AMin, AMax + 1);
 		}
 
-		public static string GenerateRandomString(int ALength = 10)
+		public static string GenerateRandomString(int ALength = 12)
 		{
 			return GetRandomString(ALength);
 		}
@@ -25,7 +25,7 @@ namespace TestDataProvider
 			return $"{GetRandomString(8)}@{ADomain}";
 		}
 
-		public static decimal GenerateRandomDecimal(int AMin = 0, int AMax = 1000)
+		public static decimal GenerateRandomDecimal(int AMin = 0, int AMax = 9999)
 		{
 			return FRandom.Next(AMin, AMax);
 		}
@@ -34,27 +34,28 @@ namespace TestDataProvider
 		{
 			const string LChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 			return new string(Enumerable.Repeat(LChars, ALength)
-				.Select(s => s[FRandom.Next(s.Length)]).ToArray());
+				.Select(AString => AString[FRandom.Next(AString.Length)])
+                                .ToArray());
 		}
 
-		public static byte[] GenerateRandomByteArray(int ASizeInKb = 10)
+		public static byte[] GenerateRandomByteArray(int ASizeInKb = 12)
 		{
 			var LByteBuffer = new byte[ASizeInKb * 1024];
 			FRandom.NextBytes(LByteBuffer);
 			return LByteBuffer;
 		}
 
-		public static MemoryStream GenerateRandomStreamData(int ASizeInKb = 10)
+		public static MemoryStream GenerateRandomStreamData(int ASizeInKb = 12)
 		{
 			var LByteBuffer = GenerateRandomByteArray(ASizeInKb);
 			return new MemoryStream(LByteBuffer);
 		}
 
-		public static DateTime GenerateRandomDate(DateTime? AMin = null, DateTime? AMax = null)
+		public static DateTime GenerateRandomDate(DateTime? AMin = null, DateTime? AMax = null, int ADefaultYear = 2020)
 		{
 
-			if (!AMin.HasValue) AMin = new DateTime(2020, 1, 1);
-			if (!AMax.HasValue) AMax = new DateTime(2020, 12, 31);
+			if (!AMin.HasValue) AMin = new DateTime(ADefaultYear, 1, 1);
+			if (!AMax.HasValue) AMax = new DateTime(ADefaultYear, 12, 31);
 
 			var LDayRange = (AMax - AMin).Value.Days;
 			return AMin.Value.AddDays(FRandom.Next(0, LDayRange));
