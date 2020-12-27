@@ -20,9 +20,9 @@ namespace TestDataProvider
 			return GetRandomString(ALength);
 		}
 
-		public static string GenerateRandomEmail()
+		public static string GenerateRandomEmail(string ADomain)
 		{
-			return $"{GetRandomString(8)}@gmail.com";
+			return $"{GetRandomString(8)}@{ADomain}";
 		}
 
 		public static decimal GenerateRandomDecimal(int AMin = 0, int AMax = 1000)
