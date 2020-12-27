@@ -10,27 +10,22 @@ namespace TestDataProvider
 
 		private static Random FRandom = new Random();
 
-		public static int GenerateRandomInt(int AMin = 0, int AMax = 12)
+		public static int GetRandomInt(int AMin = 0, int AMax = 12)
 		{
 			return FRandom.Next(AMin, AMax + 1);
 		}
 
-		public static string GenerateRandomString(int ALength = 12)
-		{
-			return GetRandomString(ALength);
-		}
-
-		public static string GenerateRandomEmail(string ADomain)
+		public static string GetRandomEmail(string ADomain)
 		{
 			return $"{GetRandomString(8)}@{ADomain}";
 		}
 
-		public static decimal GenerateRandomDecimal(int AMin = 0, int AMax = 9999)
+		public static decimal GetRandomDecimal(int AMin = 0, int AMax = 9999)
 		{
 			return FRandom.Next(AMin, AMax);
 		}
 
-		public static string GetRandomString(int ALength, string APrefix = "")
+		public static string GetRandomString(int ALength = 12, string APrefix = "")
 		{
 
 			const string LChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -46,20 +41,20 @@ namespace TestDataProvider
 
 		}
 
-		public static byte[] GenerateRandomByteArray(int ASizeInKb = 12)
+		public static byte[] GetRandomByteArray(int ASizeInKb = 12)
 		{
 			var LByteBuffer = new byte[ASizeInKb * 1024];
 			FRandom.NextBytes(LByteBuffer);
 			return LByteBuffer;
 		}
 
-		public static MemoryStream GenerateRandomStreamData(int ASizeInKb = 12)
+		public static MemoryStream GetRandomStreamData(int ASizeInKb = 12)
 		{
-			var LByteBuffer = GenerateRandomByteArray(ASizeInKb);
+			var LByteBuffer = GetRandomByteArray(ASizeInKb);
 			return new MemoryStream(LByteBuffer);
 		}
 
-		public static DateTime GenerateRandomDate(DateTime? AMin = null, DateTime? AMax = null, int ADefaultYear = 2020)
+		public static DateTime GetRandomDate(DateTime? AMin = null, DateTime? AMax = null, int ADefaultYear = 2020)
 		{
 
 			if (!AMin.HasValue) AMin = new DateTime(ADefaultYear, 1, 1);
@@ -70,7 +65,7 @@ namespace TestDataProvider
 
 		}
 
-		public static T GenerateRandomEnum<T>()
+		public static T GetRandomEnum<T>()
 		{
 
 			var LRandom = new Random();
