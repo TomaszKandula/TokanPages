@@ -88,6 +88,15 @@ namespace TokanPages.Backend.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This email address is already used.
+        /// </summary>
+        public static string EMAIL_ADDRESS_ALREADY_EXISTS {
+            get {
+                return ResourceManager.GetString("EMAIL_ADDRESS_ALREADY_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unexpected error.
         /// </summary>
         public static string ERROR_UNEXPECTED {

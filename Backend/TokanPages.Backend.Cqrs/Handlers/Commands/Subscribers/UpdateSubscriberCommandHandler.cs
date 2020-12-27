@@ -33,6 +33,16 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
                 throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
             }
 
+            var LEmailCollection = await FDatabaseContext.Subscribers
+                .AsNoTracking()
+                .Where(AUsers => AUsers.Email == ARequest.Email)
+                .ToListAsync(ACancellationToken);
+
+            if (LEmailCollection.Count > 1)
+            {
+                throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
+            }
+
             LCurrentSubscriber.First().Email = ARequest.Email;
             LCurrentSubscriber.First().Count = ARequest.Count;
             LCurrentSubscriber.First().IsActivated = ARequest.IsActivated;

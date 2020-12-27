@@ -126,6 +126,9 @@
   <data name="CANNOT_SAVE_TO_AZURE_STORAGE" xml:space="preserve">
     <value>Failed to save file on Azure Blob Storage</value>
   </data>
+  <data name="EMAIL_ADDRESS_ALREADY_EXISTS" xml:space="preserve">
+    <value>This email address is already used</value>
+  </data>
   <data name="ERROR_UNEXPECTED" xml:space="preserve">
     <value>Unexpected error</value>
   </data>
