@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
 namespace Backend.UnitTests.Handlers.Subscribers
@@ -19,7 +20,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             // Arrange
             var LAddSubscriberCommand = new AddSubscriberCommand 
             { 
-                Email = "tokan@dfds.com"    
+                Email = "tokan@dfds.com"
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -40,6 +41,37 @@ namespace Backend.UnitTests.Handlers.Subscribers
             LSubscribersEntity[0].Registered.Should().HaveMonth(DateTime.Now.Month);
             LSubscribersEntity[0].Registered.Should().HaveYear(DateTime.Now.Year);
             LSubscribersEntity[0].LastUpdated.Should().BeNull();
+
+        }
+
+        [Fact]
+        public async Task AddSubscriber_WhenEmailExists_ShouldThrowError()
+        {
+
+            // Arrange
+            var LTestEmail = "tokan@dfds.com";
+            var LAddSubscriberCommand = new AddSubscriberCommand
+            {
+                Email = LTestEmail
+            };
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
+            { 
+                Id = Guid.Parse("ec2ebd48-3bf4-45a9-9030-f8ad52c5a8f8"),
+                Email = LTestEmail,
+                IsActivated = true,
+                Count = 0,
+                Registered = DateTime.Now,
+                LastUpdated = null
+            };
+            LDatabaseContext.Subscribers.Add(LSubscribers);
+            LDatabaseContext.SaveChanges();
+
+            var LAddSubscriberCommandHandler = new AddSubscriberCommandHandler(LDatabaseContext);
+
+            // Act & Assert
+            await Assert.ThrowsAsync<BusinessException>(() => LAddSubscriberCommandHandler.Handle(LAddSubscriberCommand, CancellationToken.None));
 
         }
 

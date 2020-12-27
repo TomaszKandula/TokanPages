@@ -86,6 +86,40 @@ namespace Backend.UnitTests.Handlers.Subscribers
 
         }
 
+        [Fact]
+        public async Task UpdateSubscriber_WhenEmailExists_ShouldThrowError()
+        {
+
+            // Arrange
+            var LTestEmail = "tokan@dfds.com";
+            var LUpdateSubscriberCommand = new UpdateSubscriberCommand
+            {
+                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
+                Email = LTestEmail,
+                IsActivated = true,
+                Count = 10
+            };
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
+            {
+                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
+                Email = LTestEmail,
+                IsActivated = true,
+                Count = 50,
+                Registered = DateTime.Now,
+                LastUpdated = null
+            };
+            LDatabaseContext.Subscribers.Add(LSubscribers);
+            LDatabaseContext.SaveChanges();
+
+            var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext);
+
+            // Act & Assert
+            await Assert.ThrowsAsync<BusinessException>(() => LUpdateSubscriberCommandHandler.Handle(LUpdateSubscriberCommand, CancellationToken.None));
+
+        }
+
     }
 
 }

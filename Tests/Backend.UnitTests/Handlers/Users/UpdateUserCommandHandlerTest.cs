@@ -99,6 +99,45 @@ namespace Backend.UnitTests.Handlers.Users
 
         }
 
+        [Fact]
+        public async Task UpdateUser_WhenEmailExists_ShouldThrowError()
+        {
+
+            // Arrange
+            var LTestEmail = "ester1990@gmail.com";
+            var LUpdateUserCommand = new UpdateUserCommand
+            {
+                Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
+                EmailAddress = LTestEmail,
+                UserAlias = "Ester1990",
+                FirstName = "Ester",
+                LastName = "Exposito",
+                IsActivated = true,
+            };
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            var LUser = new TokanPages.Backend.Domain.Entities.Users
+            {
+                Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
+                EmailAddress = LTestEmail,
+                UserAlias = "Ester",
+                FirstName = "Ester",
+                LastName = "Exposito",
+                IsActivated = true,
+                Registered = DateTime.Now,
+                LastUpdated = null,
+                LastLogged = null
+            };
+            LDatabaseContext.Users.Add(LUser);
+            LDatabaseContext.SaveChanges();
+
+            var LUpdateUserCommandHandler = new UpdateUserCommandHandler(LDatabaseContext);
+
+            // Act & Assert
+            await Assert.ThrowsAsync<BusinessException>(() => LUpdateUserCommandHandler.Handle(LUpdateUserCommand, CancellationToken.None));
+
+        }
+
     }
 
 }
