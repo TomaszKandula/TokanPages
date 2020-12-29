@@ -10,6 +10,7 @@ namespace Backend.UnitTests
 
         private readonly DbContextOptionsBuilder<DatabaseContext> FDatabaseOptions = new DbContextOptionsBuilder<DatabaseContext>()
             .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
+            .EnableSensitiveDataLogging()
             .UseInMemoryDatabase(Guid.NewGuid().ToString());
 
         public DatabaseContext CreateDatabaseContext()
