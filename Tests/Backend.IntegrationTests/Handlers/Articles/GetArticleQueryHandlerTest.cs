@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using TokanPages;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Database.Seeders;
+using TokanPages.Backend.Database.Dummies;
 
 namespace Backend.IntegrationTests.Handlers.Articles
 {
@@ -26,7 +26,7 @@ namespace Backend.IntegrationTests.Handlers.Articles
         {
 
             // Arrange
-            var LTestUserId = ArticlesSeeder.Dummy1.Id;
+            var LTestUserId = Article1.Id;
             var LRequest = $"/api/v1/articles/getarticle/{LTestUserId}/";
 
             // Act
