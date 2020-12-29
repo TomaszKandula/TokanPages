@@ -32,12 +32,12 @@ namespace TokanPages.Backend.Database.Seeders
                     },
                     new Subscribers
                     {
-                        Id = Dummies.Subscribers2.Id,
-                        Email = Dummies.Subscribers2.Email,
-                        IsActivated = Dummies.Subscribers2.IsActivated,
-                        Count = Dummies.Subscribers2.Count,
-                        Registered = Dummies.Subscribers2.Registered,
-                        LastUpdated = Dummies.Subscribers2.LastUpdated
+                        Id = Dummies.Subscribers3.Id,
+                        Email = Dummies.Subscribers3.Email,
+                        IsActivated = Dummies.Subscribers3.IsActivated,
+                        Count = Dummies.Subscribers3.Count,
+                        Registered = Dummies.Subscribers3.Registered,
+                        LastUpdated = Dummies.Subscribers3.LastUpdated
                     }
                 );
 
