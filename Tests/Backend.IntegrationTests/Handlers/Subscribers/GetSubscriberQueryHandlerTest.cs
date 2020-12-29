@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using TokanPages;
-using TokanPages.Backend.Database.Seeders;
+using TokanPages.Backend.Database.Dummies;
 using TokanPages.Backend.Shared.Resources;
 
 namespace Backend.IntegrationTests.Handlers.Subscribers
@@ -26,7 +26,7 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
         {
 
             // Arrange
-            var LTestUserId = SubscribersSeeder.Dummy1.Id;
+            var LTestUserId = Subscribers1.Id;
             var LRequest = $"/api/v1/subscribers/getsubscriber/{LTestUserId}/";
 
             // Act
