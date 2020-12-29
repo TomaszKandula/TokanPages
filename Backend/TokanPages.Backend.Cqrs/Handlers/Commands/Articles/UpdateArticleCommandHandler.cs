@@ -44,7 +44,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             {
 
                 var LTextContent = await FFileUtility.SaveToFile("__upload", $"{ARequest.Id}.txt", ARequest.TextToUpload);
-                var LTextUpload = await FAzureStorageService.UploadFile($"content\\articles\\{ARequest.Id}", "text.html", LTextContent, "text/html", ACancellationToken);
+                var LTextUpload = await FAzureStorageService.UploadFile($"content\\articles\\{ARequest.Id.ToString().ToLower()}", "text.html", LTextContent, "text/html", ACancellationToken);
 
                 if (!LTextUpload.IsSucceeded)
                 {
@@ -64,7 +64,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
                 var LImageContent = await FFileUtility.SaveToFile("__upload", $"{ARequest.Id}.jpg", ARequest.ImageToUpload);
 
-                var LImageUpload = await FAzureStorageService.UploadFile($"content\\articles\\{ARequest.Id}", "image.jpeg", LImageContent, "image/jpeg", ACancellationToken);
+                var LImageUpload = await FAzureStorageService.UploadFile($"content\\articles\\{ARequest.Id.ToString().ToLower()}", "image.jpeg", LImageContent, "image/jpeg", ACancellationToken);
                 if (!LImageUpload.IsSucceeded)
                 {
                     throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LImageUpload.ErrorDesc);

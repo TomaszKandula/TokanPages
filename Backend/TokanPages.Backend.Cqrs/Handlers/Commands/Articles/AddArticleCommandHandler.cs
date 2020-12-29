@@ -37,14 +37,14 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             var LNewId = Guid.NewGuid();
 
             var LTextContent = await FFileUtility.SaveToFile("__upload", $"{LNewId}.txt", ARequest.TextToUpload);
-            var LTextUpload = await FAzureStorageService.UploadFile($"content\\articles\\{LNewId}", "text.html", LTextContent, "text/html", ACancellationToken);
+            var LTextUpload = await FAzureStorageService.UploadFile($"content\\articles\\{LNewId.ToString().ToLower()}", "text.html", LTextContent, "text/html", ACancellationToken);
             if (!LTextUpload.IsSucceeded) 
             {
                 throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LTextUpload.ErrorDesc);
             }
 
             var LImageContent = await FFileUtility.SaveToFile("__upload", $"{LNewId}.jpg", ARequest.ImageToUpload);
-            var LImageUpload = await FAzureStorageService.UploadFile($"content\\articles\\{LNewId}", "image.jpeg", LImageContent, "image/jpeg", ACancellationToken);
+            var LImageUpload = await FAzureStorageService.UploadFile($"content\\articles\\{LNewId.ToString().ToLower()}", "image.jpeg", LImageContent, "image/jpeg", ACancellationToken);
             if (!LImageUpload.IsSucceeded)
             {
                 throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LImageUpload.ErrorDesc);
