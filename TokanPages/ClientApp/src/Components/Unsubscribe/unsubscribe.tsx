@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
 import useStyles from "./styledUnsubscribe";
 import AlertDialog from "../../Shared/Modals/alertDialog";
-import * as Consts from "../../Shared/constants";
+import { API_COMMAND_REMOVE_SUBSCRIBER, SUBSCRIBER_DEL_ERROR } from "../../Shared/constants";
 import axios from "axios";
 
 interface IUnsubscribe
@@ -58,7 +58,7 @@ export default function Unsubscribe(props: IUnsubscribe)
         setButtonState(false);
         setProgress(true);
 
-        axios.post(Consts.API_COMMAND_REMOVE_SUBSCRIBER, 
+        axios.post(API_COMMAND_REMOVE_SUBSCRIBER, 
         { 
             id: props.uid
         })
@@ -85,7 +85,7 @@ export default function Unsubscribe(props: IUnsubscribe)
                 ...Modal, 
                 State: true, 
                 Titile: "Unsubscribe | Error", 
-                Message: Consts.SUBSCRIBER_DEL_ERROR.replace("{ERROR}", error.response.data.ErrorMessage),
+                Message: SUBSCRIBER_DEL_ERROR.replace("{ERROR}", error.response.data.ErrorMessage),
                 Icon: 2 
             });
         })

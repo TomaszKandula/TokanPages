@@ -11,8 +11,8 @@ import Validate from "validate.js";
 import AlertDialog from "Shared/Modals/alertDialog";
 import { ValidateEmail } from "Shared/validate";
 import { ConvertPropsToFields, HtmlRenderLines } from "Shared/helpers";
-import * as Consts from "../../Shared/constants";
 import axios from "axios";
+import { API_COMMAND_ADD_SUBSCRIBER, NEWSLETTER_SUCCESS, NEWSLETTER_ERROR, NEWSLETTER_WARN } from "../../Shared/constants";
 
 export default function Newsletter()
 {
@@ -48,7 +48,7 @@ export default function Newsletter()
         {
             setProgress(true);
 
-            axios.post(Consts.API_COMMAND_ADD_SUBSCRIBER, 
+            axios.post(API_COMMAND_ADD_SUBSCRIBER, 
             {
                 email: Form.email
             })
@@ -61,7 +61,7 @@ export default function Newsletter()
                         ...Modal, 
                         State: true, 
                         Titile: "Newsletter", 
-                        Message: Consts.NEWSLETTER_SUCCESS, 
+                        Message: NEWSLETTER_SUCCESS, 
                         Icon: 0 
                     });
                 }
@@ -74,7 +74,7 @@ export default function Newsletter()
                     ...Modal, 
                     State: true, 
                     Titile: "Newsletter | Error", 
-                    Message: Consts.NEWSLETTER_ERROR.replace("{ERROR}", error.response.data.ErrorMessage),
+                    Message: NEWSLETTER_ERROR.replace("{ERROR}", error.response.data.ErrorMessage),
                     Icon: 2 
                 });
             })
@@ -92,7 +92,7 @@ export default function Newsletter()
             ...Modal, 
             State: true, 
             Titile: "Warning", 
-            Message: Consts.NEWSLETTER_WARN.replace("{LIST}", HtmlRenderLines(ConvertPropsToFields(Results), "li")), 
+            Message: NEWSLETTER_WARN.replace("{LIST}", HtmlRenderLines(ConvertPropsToFields(Results), "li")), 
             Icon: 1 
         });
 
