@@ -12,9 +12,9 @@ import axios from "axios";
 import useStyles from "./styleContactForm";
 import AlertDialog from "../../Shared/Modals/alertDialog";
 import Validate from "validate.js";
-import * as Consts from "../../Shared/constants";
 import { ConvertPropsToFields, HtmlRenderLines } from "../../Shared/helpers";
 import { ValidateContactForm } from "../../Shared/validate";
+import {  API_COMMAND_SEND_MESSAGE, MESSAGE_OUT_SUCCESS, MESSAGE_OUT_ERROR, MESSAGE_OUT_WARN } from "../../Shared/constants";
 
 export default function ContactForm()
 {
@@ -52,13 +52,13 @@ export default function ContactForm()
         {
             setProgress(true);
 
-            axios.post(Consts.API_COMMAND_SEND_MESSAGE, 
+            axios.post(API_COMMAND_SEND_MESSAGE, 
             {
                 firstName: Form.firstName,
                 lastName:  Form.lastName,
                 userEmail: Form.email,
-                emailFrom: "",
-                emailTos:  [""],
+                emailFrom: Form.email,
+                emailTos:  [Form.email],
                 subject:   Form.subject,
                 message:   Form.message
             })
@@ -71,7 +71,7 @@ export default function ContactForm()
                         ...Modal, 
                         State: true, 
                         Titile: "Contact Form", 
-                        Message: Consts.MESSAGE_OUT_SUCCESS, 
+                        Message: MESSAGE_OUT_SUCCESS, 
                         Icon: 0 
                     });
                 }
@@ -84,7 +84,7 @@ export default function ContactForm()
                     ...Modal, 
                     State: true, 
                     Titile: "Contact Form | Error", 
-                    Message: Consts.MESSAGE_OUT_ERROR.replace("{ERROR}", error.response.data.ErrorMessage), 
+                    Message: MESSAGE_OUT_ERROR.replace("{ERROR}", error.response.data.ErrorMessage), 
                     Icon: 2 
                 });
             })
@@ -102,7 +102,7 @@ export default function ContactForm()
             ...Modal, 
             State: true, 
             Titile: "Warning", 
-            Message: Consts.MESSAGE_OUT_WARN.replace("{LIST}", HtmlRenderLines(ConvertPropsToFields(Results), "li")), 
+            Message: MESSAGE_OUT_WARN.replace("{LIST}", HtmlRenderLines(ConvertPropsToFields(Results), "li")), 
             Icon: 1 
         });
 
