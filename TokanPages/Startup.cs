@@ -66,9 +66,6 @@ namespace TokanPages
             AApplication.UseMiddleware<GarbageCollector>();
             AApplication.UseMiddleware<CustomCors>();
 
-            if (AEnvironment.IsDevelopment())
-                AApplication.UseDeveloperExceptionPage();
-
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);
             AApplication.UseHttpsRedirection();
             AApplication.UseStaticFiles();
