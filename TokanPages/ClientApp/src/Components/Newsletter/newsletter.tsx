@@ -49,7 +49,7 @@ export default function Newsletter()
             
             setProgress(true);
 
-            axios.post(Consts.API_POST_SUBSCRIBER, 
+            axios.post(Consts.API_COMMAND_ADD_SUBSCRIBER, 
             {
                 id: null,
                 email: Form.email,
@@ -59,7 +59,7 @@ export default function Newsletter()
             .then(function (response) 
             {
 
-                if (response.status === 200 && response.data.isSucceeded) 
+                if (response.status === 200) 
                 {
                     setModal(
                     { 
@@ -77,7 +77,7 @@ export default function Newsletter()
                         ...Modal, 
                         State: true, 
                         Titile: "Newsletter", 
-                        Message: Consts.NEWSLETTER_ERROR.replace("{ERROR}", response.data.error.errorDesc), 
+                        Message: Consts.NEWSLETTER_ERROR.replace("{ERROR}", response.data.ErrorMessage), 
                         Icon: 0 
                     });           
                 }

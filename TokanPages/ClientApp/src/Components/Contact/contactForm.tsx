@@ -54,7 +54,7 @@ export default function ContactForm()
             
             setProgress(true);
 
-            axios.post(Consts.API_POST_MESSAGE, 
+            axios.post(Consts.API_COMMAND_SEND_MESSAGE, 
             {
                 firstName: Form.firstName,
                 lastName:  Form.lastName,
@@ -67,7 +67,7 @@ export default function ContactForm()
             .then(function (response) 
             {
 
-                if (response.status === 200 && response.data.isSucceeded) 
+                if (response.status === 200) 
                 {
                     setModal(
                     { 
@@ -85,7 +85,7 @@ export default function ContactForm()
                         ...Modal, 
                         State: true, 
                         Titile: "Contact Form", 
-                        Message: Consts.MESSAGE_OUT_ERROR.replace("{ERROR}", response.data.error.errorDesc), 
+                        Message: Consts.MESSAGE_OUT_ERROR.replace("{ERROR}", response.data.ErrorMessage), 
                         Icon: 0 
                     });           
                 }

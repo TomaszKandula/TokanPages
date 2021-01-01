@@ -21,7 +21,7 @@ export default function ArticleList()
     React.useEffect( () => { fetchData() }, [ fetchData ] );
 
     const renderContent = (data: IArticles) =>
-    {      
+    {
         return(
             <>
                 {data.articles.map((item: IArticle) => ( 
@@ -32,18 +32,18 @@ export default function ArticleList()
                         key={item.id}
                     />
                 ))}
-            </>           
+            </>
         );
     }
 
     return (
         <section>
-            <Container className={classes.container}>       
-                <Box pt={12} pb={8}>             
+            <Container className={classes.container}>
+                <Box pt={12} pb={8}>
                     <Link to="/">
                         <IconButton>
                             <ArrowBack/>
-                        </IconButton>      
+                        </IconButton>
                     </Link> 
                     <Divider className={classes.divider} />
                     <Grid container justify="center">
