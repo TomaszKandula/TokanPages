@@ -48,7 +48,6 @@ namespace TokanPages.Configuration
         {
             AServices.AddDbContext<DatabaseContext>(AOptions =>
             {
-                AOptions.EnableSensitiveDataLogging();
                 AOptions.UseSqlServer(AConfiguration.GetConnectionString("DbConnect"),
                 AAddOptions => AAddOptions.EnableRetryOnFailure());
             });
