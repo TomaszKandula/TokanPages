@@ -46,19 +46,14 @@ export default function Newsletter()
 
         if (!Validate.isDefined(Results))
         {
-            
             setProgress(true);
 
             axios.post(Consts.API_COMMAND_ADD_SUBSCRIBER, 
             {
-                id: null,
-                email: Form.email,
-                status: "active",
-                count: 0
+                email: Form.email
             })
             .then(function (response) 
             {
-
                 if (response.status === 200) 
                 {
                     setModal(
@@ -68,20 +63,8 @@ export default function Newsletter()
                         Titile: "Newsletter", 
                         Message: Consts.NEWSLETTER_SUCCESS, 
                         Icon: 0 
-                    });                      
+                    });
                 }
-                else
-                {
-                    setModal(
-                    { 
-                        ...Modal, 
-                        State: true, 
-                        Titile: "Newsletter", 
-                        Message: Consts.NEWSLETTER_ERROR.replace("{ERROR}", response.data.ErrorMessage), 
-                        Icon: 0 
-                    });           
-                }
-
             })
             .catch(function (error) 
             {
@@ -90,8 +73,8 @@ export default function Newsletter()
                 { 
                     ...Modal, 
                     State: true, 
-                    Titile: "Error", 
-                    Message: Consts.NEWSLETTER_ERROR.replace("{ERROR}", error), 
+                    Titile: "Newsletter | Error", 
+                    Message: Consts.NEWSLETTER_ERROR.replace("{ERROR}", error.response.data.ErrorMessage),
                     Icon: 2 
                 });
             })
@@ -102,7 +85,6 @@ export default function Newsletter()
             });  
 
             return true;
-
         }
 
         setModal(
@@ -115,7 +97,6 @@ export default function Newsletter()
         });
 
         return false;
-
     }
 
     return (

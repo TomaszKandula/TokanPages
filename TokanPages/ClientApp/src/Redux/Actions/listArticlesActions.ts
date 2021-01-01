@@ -20,21 +20,20 @@ export const ActionCreators =
 
         axios.get(API_QUERY_GET_ARTICLES, {method: "get", responseType: "json"})
         .then(function (response)
-        {
-               
-            if (response.status === 200)
+        {              
+            if (response.status >= 200 && response.status <= 299)
             {
                 dispatch({ type: RECEIVE_ARTICLES, payload: response.data });
             }
-            else
+            else if (response.status >= 300 && response.status <= 399)
             {
-                console.error(response.data.ErrorMessage);   
+                // handle redirects
             }
-
         })
         .catch(function (error)
         {
             console.error(error);
+            console.error(error.response.data.ErrorMessage);
         });
 
     }
