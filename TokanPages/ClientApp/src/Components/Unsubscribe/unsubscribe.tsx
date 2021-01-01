@@ -58,11 +58,13 @@ export default function Unsubscribe(props: IUnsubscribe)
         setButtonState(false);
         setProgress(true);
 
-        axios.delete(Consts.API_DELETE_SUBSCRIBER.replace("{id}", props.uid))
-        .then(function (response) 
+        axios.post(Consts.API_COMMAND_REMOVE_SUBSCRIBER, 
+        { 
+            id: props.uid
+        }).then(function (response) 
         {
 
-            if (response.status === 200 && response.data.isSucceeded) 
+            if (response.status === 200) 
             {
                 
                 setContent(
@@ -82,7 +84,7 @@ export default function Unsubscribe(props: IUnsubscribe)
                     ...Modal, 
                     State: true, 
                     Titile: "Unsubscribe", 
-                    Message: Consts.SUBSCRIBER_DEL_ERROR.replace("{ERROR}", response.data.error.errorDesc), 
+                    Message: Consts.SUBSCRIBER_DEL_ERROR.replace("{ERROR}", response.data.ErrorMessage), 
                     Icon: 2 
                 });
             }

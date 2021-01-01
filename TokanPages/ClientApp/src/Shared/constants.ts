@@ -7,25 +7,33 @@ export const APP_BACKEND  = process.env.REACT_APP_BACKEND;
 
 /* API | ARTICLES */
 
-export const API_GET_ARTICLES   = `${APP_BACKEND}/api/v${API_VER}/articles/`;
-export const API_GET_ARTICLE    = `${APP_BACKEND}/api/v${API_VER}/articles/{id}`;
-export const API_POST_ARTICLE   = `${APP_BACKEND}/api/v${API_VER}/articles/`;
-export const API_PATCH_ARTICLE  = `${APP_BACKEND}/api/v${API_VER}/articles/`;
-export const API_DELETE_ARTICLE = `${APP_BACKEND}/api/v${API_VER}/articles/{id}`;
+export const API_QUERY_GET_ARTICLES     = `${APP_BACKEND}/api/v${API_VER}/articles/GetAllArticles/`;
+export const API_QUERY_GET_ARTICLE      = `${APP_BACKEND}/api/v${API_VER}/articles/GetArticle/{id}/`;
+export const API_COMMAND_ADD_ARTICLE    = `${APP_BACKEND}/api/v${API_VER}/articles/AddArticle/`;
+export const API_COMMAND_UPDATE_ARTICLE = `${APP_BACKEND}/api/v${API_VER}/articles/UpdateArticle/`;
+export const API_COMMAND_REMOVE_ARTICLE = `${APP_BACKEND}/api/v${API_VER}/articles/RemoveArticle/`;
 
-/* API | MAILER */
+/* API | USERS */
 
-export const API_GET_INSPECTION  = `${APP_BACKEND}/api/v${API_VER}/mailer/inspection/`;
-export const API_POST_MESSAGE    = `${APP_BACKEND}/api/v${API_VER}/mailer/message/`;
-export const API_POST_NEWSLETTER = `${APP_BACKEND}/api/v${API_VER}/mailer/newsletter/`;
+export const API_QUERY_GET_USERS     = `${APP_BACKEND}/api/v${API_VER}/users/GetAllUsers/`;
+export const API_QUERY_GET_USER      = `${APP_BACKEND}/api/v${API_VER}/users/GetUser/{id}/`;
+export const API_COMMAND_ADD_USER    = `${APP_BACKEND}/api/v${API_VER}/users/AddUser/`;
+export const API_COMMAND_UPDATE_USER = `${APP_BACKEND}/api/v${API_VER}/users/UpdateUser/`;
+export const API_COMMAND_REMOVE_USER = `${APP_BACKEND}/api/v${API_VER}/users/RemoveUser/`;
 
 /* API | SUBSCRIBERS */
 
-export const API_GET_SUBSCRIBERS   = `${APP_BACKEND}/api/v${API_VER}/subscribers/`;
-export const API_GET_SUBSCRIBER    = `${APP_BACKEND}/api/v${API_VER}/subscribers/{id}`;
-export const API_POST_SUBSCRIBER   = `${APP_BACKEND}/api/v${API_VER}/subscribers/`;
-export const API_PATCH_SUBSCRIBER  = `${APP_BACKEND}/api/v${API_VER}/subscribers/`;
-export const API_DELETE_SUBSCRIBER = `${APP_BACKEND}/api/v${API_VER}/subscribers/{id}`;
+export const API_QUERY_GET_SUBSCRIBERS     = `${APP_BACKEND}/api/v${API_VER}/subscribers/GetAllSubscribers/`;
+export const API_QUERY_GET_SUBSCRIBER      = `${APP_BACKEND}/api/v${API_VER}/subscribers/GetSubscriber/{id}/`;
+export const API_COMMAND_ADD_SUBSCRIBER    = `${APP_BACKEND}/api/v${API_VER}/subscribers/AddSubscriber/`;
+export const API_COMMAND_UPDATE_SUBSCRIBER = `${APP_BACKEND}/api/v${API_VER}/subscribers/UpdateSubscriber/`;
+export const API_COMMAND_REMOVE_SUBSCRIBER = `${APP_BACKEND}/api/v${API_VER}/subscribers/RemoveSubscriber/`;
+
+/* API | MAILER */
+
+export const API_COMMAND_VERIFY_EMAIL    = `${APP_BACKEND}/api/v${API_VER}/mailer/VerifyEmailAddress/`;
+export const API_COMMAND_SEND_MESSAGE    = `${APP_BACKEND}/api/v${API_VER}/mailer/SendMessage/`;
+export const API_COMMAND_SEND_NEWSLETTER = `${APP_BACKEND}/api/v${API_VER}/mailer/SendNewsletter/`;
 
 /* STATIC CONTENT */
 
