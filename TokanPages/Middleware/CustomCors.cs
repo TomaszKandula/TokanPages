@@ -27,7 +27,7 @@ namespace TokanPages.Middleware
 
                 AHttpContext.Response.Headers.Add("Access-Control-Allow-Origin", LRequestOrigin);
                 AHttpContext.Response.Headers.Add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-                AHttpContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
+                AHttpContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST");
                 AHttpContext.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
                 AHttpContext.Response.Headers.Add("Access-Control-Max-Age", "86400");
 
