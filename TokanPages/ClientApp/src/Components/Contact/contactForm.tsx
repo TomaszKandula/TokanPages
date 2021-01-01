@@ -38,7 +38,6 @@ export default function ContactForm()
 
     const ButtonHandler = () => 
     {
-        
         let Results = ValidateContactForm( 
         { 
             FirstName: Form.firstName,
@@ -51,7 +50,6 @@ export default function ContactForm()
 
         if (!Validate.isDefined(Results))
         {
-            
             setProgress(true);
 
             axios.post(Consts.API_COMMAND_SEND_MESSAGE, 
@@ -66,7 +64,6 @@ export default function ContactForm()
             })
             .then(function (response) 
             {
-
                 if (response.status === 200) 
                 {
                     setModal(
@@ -76,20 +73,8 @@ export default function ContactForm()
                         Titile: "Contact Form", 
                         Message: Consts.MESSAGE_OUT_SUCCESS, 
                         Icon: 0 
-                    });                      
+                    });
                 }
-                else
-                {
-                    setModal(
-                    { 
-                        ...Modal, 
-                        State: true, 
-                        Titile: "Contact Form", 
-                        Message: Consts.MESSAGE_OUT_ERROR.replace("{ERROR}", response.data.ErrorMessage), 
-                        Icon: 0 
-                    });           
-                }
-
             })
             .catch(function (error) 
             {
@@ -98,8 +83,8 @@ export default function ContactForm()
                 { 
                     ...Modal, 
                     State: true, 
-                    Titile: "Error", 
-                    Message: Consts.MESSAGE_OUT_ERROR.replace("{ERROR}", error), 
+                    Titile: "Contact Form | Error", 
+                    Message: Consts.MESSAGE_OUT_ERROR.replace("{ERROR}", error.response.data.ErrorMessage), 
                     Icon: 2 
                 });
             })
@@ -110,7 +95,6 @@ export default function ContactForm()
             });  
 
             return true;
-
         }
 
         setModal(
@@ -123,7 +107,6 @@ export default function ContactForm()
         });
 
         return false;
-        
     }
 
     const ModalHandler = () => 

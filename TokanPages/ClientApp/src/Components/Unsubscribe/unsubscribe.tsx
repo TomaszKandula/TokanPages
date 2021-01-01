@@ -61,12 +61,11 @@ export default function Unsubscribe(props: IUnsubscribe)
         axios.post(Consts.API_COMMAND_REMOVE_SUBSCRIBER, 
         { 
             id: props.uid
-        }).then(function (response) 
+        })
+        .then(function (response) 
         {
-
             if (response.status === 200) 
             {
-                
                 setContent(
                 {
                     caption: contentPost.caption,
@@ -76,19 +75,6 @@ export default function Unsubscribe(props: IUnsubscribe)
                     button:  contentPost.button
                 });
             }
-            else
-            {
-                setButtonState(true);
-                setModal(
-                { 
-                    ...Modal, 
-                    State: true, 
-                    Titile: "Unsubscribe", 
-                    Message: Consts.SUBSCRIBER_DEL_ERROR.replace("{ERROR}", response.data.ErrorMessage), 
-                    Icon: 2 
-                });
-            }
-
         })
         .catch(function (error) 
         {
@@ -98,15 +84,15 @@ export default function Unsubscribe(props: IUnsubscribe)
             { 
                 ...Modal, 
                 State: true, 
-                Titile: "Error", 
-                Message: Consts.SUBSCRIBER_DEL_ERROR.replace("{ERROR}", error), 
+                Titile: "Unsubscribe | Error", 
+                Message: Consts.SUBSCRIBER_DEL_ERROR.replace("{ERROR}", error.response.data.ErrorMessage),
                 Icon: 2 
             });
         })
         .then(function () 
         {
             setProgress(false);
-        });            
+        });
 
         return true;
 
@@ -121,7 +107,7 @@ export default function Unsubscribe(props: IUnsubscribe)
                 <Box py={15}>
                     <Card elevation={4}>
                         <CardContent className={classes.card}>
-                        <Box textAlign="center" mb={3}>                           
+                        <Box textAlign="center" mb={3}>
                             <Box mt={2} mb={2}>
                                 <Typography variant="h4" component="h4" gutterBottom={true}>
                                     {content.caption}
