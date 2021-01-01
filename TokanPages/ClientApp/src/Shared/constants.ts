@@ -4,6 +4,7 @@ const API_VER = process.env.REACT_APP_API_VER;
 
 export const APP_FRONTEND = process.env.REACT_APP_FRONTEND;
 export const APP_BACKEND  = process.env.REACT_APP_BACKEND;
+export const APP_STORAGE  = process.env.REACT_APP_STORAGE;
 
 /* API | ARTICLES */
 
@@ -37,9 +38,9 @@ export const API_COMMAND_SEND_NEWSLETTER = `${APP_BACKEND}/api/v${API_VER}/maile
 
 /* STATIC CONTENT */
 
-export const STORY_URL  = `${APP_FRONTEND}/static/mystory.html`;
-export const TERMS_URL  = `${APP_FRONTEND}/static/terms.html`;
-export const POLICY_URL = `${APP_FRONTEND}/static/policy.html`;
+export const STORY_URL  = `${APP_STORAGE}/content/mystory.html`;
+export const TERMS_URL  = `${APP_STORAGE}/content/terms.html`;
+export const POLICY_URL = `${APP_STORAGE}/content/policy.html`;
 
 /* MESSAGE TEMPLATES */
 
