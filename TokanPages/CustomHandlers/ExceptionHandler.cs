@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
+using TokanPages.Backend.Shared.Cors;
 using TokanPages.Backend.Core.Models;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
@@ -53,6 +54,7 @@ namespace TokanPages.CustomHandlers
 
                 }
 
+                CorsHeaders.Ensure(AHttpContext);
                 await AHttpContext.Response.WriteAsync(LResult);
 
             });
