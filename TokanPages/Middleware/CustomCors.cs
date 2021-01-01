@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using TokanPages.Backend.Shared.Cors;
 using TokanPages.Backend.Shared.Settings;
 
 namespace TokanPages.Middleware
@@ -25,11 +26,7 @@ namespace TokanPages.Middleware
             if (LRequestOrigin == LDevelopmentOrigin || LRequestOrigin == LDeploymentOrigin)
             {
 
-                AHttpContext.Response.Headers.Add("Access-Control-Allow-Origin", LRequestOrigin);
-                AHttpContext.Response.Headers.Add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-                AHttpContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
-                AHttpContext.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
-                AHttpContext.Response.Headers.Add("Access-Control-Max-Age", "86400");
+                CorsHeaders.Ensure(AHttpContext);
 
                 if (AHttpContext.Request.Method == "OPTIONS") 
                 {

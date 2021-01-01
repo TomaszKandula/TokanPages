@@ -62,14 +62,11 @@ namespace TokanPages
         public void Configure(IApplicationBuilder AApplication, IWebHostEnvironment AEnvironment, AppUrls AAppUrls)
         {
 
-            AApplication.UseResponseCompression();
+            AApplication.UseExceptionHandler(ExceptionHandler.Handle);
             AApplication.UseMiddleware<GarbageCollector>();
             AApplication.UseMiddleware<CustomCors>();
 
-            if (AEnvironment.IsDevelopment())
-                AApplication.UseDeveloperExceptionPage();
-
-            AApplication.UseExceptionHandler(ExceptionHandler.Handle);
+            AApplication.UseResponseCompression();
             AApplication.UseHttpsRedirection();
             AApplication.UseStaticFiles();
             AApplication.UseSpaStaticFiles();
