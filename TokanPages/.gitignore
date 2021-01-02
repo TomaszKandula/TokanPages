@@ -10,11 +10,14 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
-# Development
+# Development environment files
 __runbackend.bat
 
-# Deployment
+# Deployment environment files
 appsettings.Production.json
+
+# Test environment files
+appsettings.Test.json
 
 # Build results
 [Dd]ebug/
