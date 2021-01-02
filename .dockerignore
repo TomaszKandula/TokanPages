@@ -2,6 +2,7 @@
 .vs/
 TokanPages/bin/
 TokanPages/obj/
+TokanPages/ClientApp/node_modules/
 Backend/TokanPages.Backend.Core/bin/
 Backend/TokanPages.Backend.Core/obj/
 Backend/TokanPages.Backend.Cqrs/bin/
