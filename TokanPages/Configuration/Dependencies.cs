@@ -32,6 +32,16 @@ namespace TokanPages.Configuration
             SetupMediatR(AServices);
         }
 
+        public static void RegisterForTests(IServiceCollection AServices, IConfiguration AConfiguration) 
+        {
+            SetupAppSettings(AServices, AConfiguration);
+            SetupLogger(AServices);
+            SetupDatabaseForTest(AServices);
+            SetupServices(AServices);
+            SetupValidators(AServices);
+            SetupMediatR(AServices);
+        }
+
         private static void SetupAppSettings(IServiceCollection AServices, IConfiguration AConfiguration) 
         {
             AServices.AddSingleton(AConfiguration.GetSection("AzureStorage").Get<AzureStorageSettings>());
@@ -50,6 +60,17 @@ namespace TokanPages.Configuration
             {
                 AOptions.UseSqlServer(AConfiguration.GetConnectionString("DbConnect"),
                 AAddOptions => AAddOptions.EnableRetryOnFailure());
+            });
+        }
+
+        private static void SetupDatabaseForTest(IServiceCollection AServices)
+        {
+            var DatabaseName = "DatabaseForIntegrationTest";
+            AServices.AddDbContext<DatabaseContext>(AOptions =>
+            {
+                AOptions.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
+                AOptions.EnableSensitiveDataLogging();
+                AOptions.UseInMemoryDatabase(DatabaseName);
             });
         }
 

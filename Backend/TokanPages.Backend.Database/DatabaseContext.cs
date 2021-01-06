@@ -13,10 +13,6 @@ namespace TokanPages.Backend.Database
         {
         }
 
-        public DatabaseContext()
-        {
-        }
-
         public virtual DbSet<Articles> Articles { get; set; }
         public virtual DbSet<Subscribers> Subscribers { get; set; }
         public virtual DbSet<Users> Users { get; set; }

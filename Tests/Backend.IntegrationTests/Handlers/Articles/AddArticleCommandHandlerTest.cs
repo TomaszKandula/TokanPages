@@ -10,14 +10,14 @@ using TokanPages.Backend.Shared.Dto.Articles;
 namespace Backend.IntegrationTests.Handlers.Articles
 {
 
-    public class AddArticleCommandHandlerTest : IClassFixture<TestFixture<Startup>>
+    public class AddArticleCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
 
-        private readonly HttpClient FHttpClient;
+        private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
-        public AddArticleCommandHandlerTest(TestFixture<Startup> ACustomFixture)
+        public AddArticleCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
         {
-            FHttpClient = ACustomFixture.FClient;
+            FWebAppFactory = AWebAppFactory;
         }
 
         [Fact]
@@ -36,10 +36,11 @@ namespace Backend.IntegrationTests.Handlers.Articles
                 ImageToUpload = DataProvider.Base64Encode(DataProvider.GetRandomString(255))
             };
 
+            var LHttpClient = FWebAppFactory.CreateClient();
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await FHttpClient.SendAsync(LNewRequest);
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
             LResponse.EnsureSuccessStatusCode();

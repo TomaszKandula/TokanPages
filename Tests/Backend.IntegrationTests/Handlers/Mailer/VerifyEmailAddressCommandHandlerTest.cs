@@ -10,14 +10,14 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
 namespace Backend.IntegrationTests.Handlers.Mailer
 {
 
-    public class VerifyEmailAddressCommandHandlerTest : IClassFixture<TestFixture<Startup>>
+    public class VerifyEmailAddressCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
 
-        private readonly HttpClient FHttpClient;
+        private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
-        public VerifyEmailAddressCommandHandlerTest(TestFixture<Startup> ACustomFixture)
+        public VerifyEmailAddressCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
         {
-            FHttpClient = ACustomFixture.FClient;
+            FWebAppFactory = AWebAppFactory;
         }
 
         [Theory]
@@ -28,16 +28,13 @@ namespace Backend.IntegrationTests.Handlers.Mailer
             // Arrange
             var LRequest = $"/api/v1/mailer/verifyemailaddress/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
-
-            var LPayLoad = new VerifyEmailAddressDto 
-            { 
-                Email = Email
-            };
+            var LPayLoad = new VerifyEmailAddressDto { Email = Email };
+            var LHttpClient = FWebAppFactory.CreateClient();
 
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await FHttpClient.SendAsync(LNewRequest);
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
             LResponse.EnsureSuccessStatusCode();
