@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +11,7 @@ using TokanPages.Middleware;
 using TokanPages.Configuration;
 using TokanPages.CustomHandlers;
 using TokanPages.Backend.Shared.Settings;
+using TokanPages.Backend.Database.Initialize;
 
 namespace TokanPages
 {
@@ -17,15 +19,15 @@ namespace TokanPages
     public class Startup
     {
 
-        private IConfiguration Configuration { get; }
-        private IWebHostEnvironment Environment { get; }
-        private bool IsIntegrationTesting { get; }
-            = System.Environment.GetEnvironmentVariable("ASPNETCORE_WEBAPPLICATIONFACTORY") == "IntegrationTest";
+        private readonly IConfiguration FConfiguration;
+        private readonly IWebHostEnvironment FEnvironment;
+        private readonly bool IsIntegrationTesting = Environment
+            .GetEnvironmentVariable("ASPNETCORE_WEBAPPLICATIONFACTORY") == "IntegrationTest";
 
         public Startup(IConfiguration AConfiguration, IWebHostEnvironment AEnvironment)
         {
-            Configuration = AConfiguration;
-            Environment = AEnvironment;
+            FConfiguration = AConfiguration;
+            FEnvironment = AEnvironment;
         }
 
         public void ConfigureServices(IServiceCollection AServices)
@@ -46,14 +48,14 @@ namespace TokanPages
 
             if (IsIntegrationTesting)
             {
-                Dependencies.RegisterForTests(AServices, Configuration);
+                Dependencies.RegisterForTests(AServices, FConfiguration);
             }
             else 
             {
-                Dependencies.Register(AServices, Configuration);
+                Dependencies.Register(AServices, FConfiguration);
             }
 
-            if (Environment.IsDevelopment()) 
+            if (FEnvironment.IsDevelopment()) 
             {
                 AServices.AddSwaggerGen(AOption =>
                 {
@@ -66,6 +68,16 @@ namespace TokanPages
         public void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
         {
 
+            var LScopeFactory = AApplication.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+            using var LScope = LScopeFactory.CreateScope();
+            var LDatabaseInitializer = LScope.ServiceProvider.GetService<IDbInitializer>();
+            LDatabaseInitializer.Initialize();
+
+            if (FEnvironment.IsDevelopment() || IsIntegrationTesting)
+            {
+                LDatabaseInitializer.SeedData();
+            }
+
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);
             AApplication.UseMiddleware<GarbageCollector>();
             AApplication.UseMiddleware<CustomCors>();
@@ -76,7 +88,7 @@ namespace TokanPages
             AApplication.UseSpaStaticFiles();
             AApplication.UseRouting();
 
-            if (Environment.IsDevelopment())
+            if (FEnvironment.IsDevelopment() || IsIntegrationTesting)
             {
                 AApplication.UseSwagger();
                 AApplication.UseSwaggerUI(AOption =>
@@ -95,7 +107,7 @@ namespace TokanPages
                 
                 ASpa.Options.SourcePath = "ClientApp";
 
-                if (Environment.IsDevelopment())
+                if (FEnvironment.IsDevelopment() || IsIntegrationTesting)
                 {
                     ASpa.UseProxyToSpaDevelopmentServer(AAppUrls.DevelopmentOrigin);
                 }

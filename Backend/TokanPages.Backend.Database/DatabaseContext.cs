@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Domain.Entities;
-using TokanPages.Backend.Database.Seeders;
 
 namespace TokanPages.Backend.Database
 {
@@ -19,14 +18,8 @@ namespace TokanPages.Backend.Database
 
         protected override void OnModelCreating(ModelBuilder AModelBuilder)
         {
-
             base.OnModelCreating(AModelBuilder);
             ApplyConfiguration(AModelBuilder);
-
-            new UsersSeeder().Seed(AModelBuilder);
-            new ArticlesSeeder().Seed(AModelBuilder);
-            new SubscribersSeeder().Seed(AModelBuilder);
-
         }
 
         protected void ApplyConfiguration(ModelBuilder AModelBuilder) 

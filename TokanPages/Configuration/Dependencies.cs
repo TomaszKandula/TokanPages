@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +11,7 @@ using TokanPages.Backend.Core.Behaviours;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Storage.Settings;
 using TokanPages.Backend.SmtpClient.Settings;
+using TokanPages.Backend.Database.Initialize;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Core.Services.TemplateHelper;
@@ -65,7 +67,7 @@ namespace TokanPages.Configuration
 
         private static void SetupDatabaseForTest(IServiceCollection AServices)
         {
-            var DatabaseName = "DatabaseForIntegrationTest";
+            var DatabaseName = Guid.NewGuid().ToString();
             AServices.AddDbContext<DatabaseContext>(AOptions =>
             {
                 AOptions.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
@@ -80,6 +82,7 @@ namespace TokanPages.Configuration
             AServices.AddScoped<IAzureStorageService, AzureStorageService>();
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
             AServices.AddScoped<IFileUtility, FileUtility>();
+            AServices.AddScoped<IDbInitializer, DbInitializer>();
         }
 
         private static void SetupValidators(IServiceCollection AServices)
