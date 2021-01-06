@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +11,7 @@ using TokanPages.Middleware;
 using TokanPages.Configuration;
 using TokanPages.CustomHandlers;
 using TokanPages.Backend.Shared.Settings;
+using TokanPages.Backend.Database.Initialize;
 
 namespace TokanPages
 {
@@ -17,11 +19,15 @@ namespace TokanPages
     public class Startup
     {
 
-        public IConfiguration Configuration { get; }
+        private readonly IConfiguration FConfiguration;
+        private readonly IWebHostEnvironment FEnvironment;
+        private readonly bool IsIntegrationTesting = Environment
+            .GetEnvironmentVariable("ASPNETCORE_WEBAPPLICATIONFACTORY") == "IntegrationTest";
 
-        public Startup(IConfiguration AConfiguration)
+        public Startup(IConfiguration AConfiguration, IWebHostEnvironment AEnvironment)
         {
-            Configuration = AConfiguration;
+            FConfiguration = AConfiguration;
+            FEnvironment = AEnvironment;
         }
 
         public void ConfigureServices(IServiceCollection AServices)
@@ -35,32 +41,42 @@ namespace TokanPages
                     NoStore = false 
                 }));
 
-            AServices.AddMvc(AOption => AOption.EnableEndpointRouting = false)
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            AServices.AddMvc();
+            AServices.AddControllers();          
+            AServices.AddSpaStaticFiles(AConfiguration => { AConfiguration.RootPath = "ClientApp/build"; });
+            AServices.AddResponseCompression(AOptions => { AOptions.Providers.Add<GzipCompressionProvider>(); });
 
-            Dependencies.Register(AServices, Configuration);
+            if (IsIntegrationTesting)
+            {
+                Dependencies.RegisterForTests(AServices, FConfiguration);
+            }
+            else 
+            {
+                Dependencies.Register(AServices, FConfiguration);
+            }
 
-            AServices.AddControllers();
-            
-            AServices.AddSpaStaticFiles(configuration => 
-            { 
-                configuration.RootPath = "ClientApp/build"; 
-            });
-            
-            AServices.AddResponseCompression(AOptions => 
-            { 
-                AOptions.Providers.Add<GzipCompressionProvider>(); 
-            });
-            
-            AServices.AddSwaggerGen(AOption => 
-            { 
-                AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "TokanPagesApi", Version = "v1" }); 
-            });
+            if (FEnvironment.IsDevelopment()) 
+            {
+                AServices.AddSwaggerGen(AOption =>
+                {
+                    AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "TokanPagesApi", Version = "v1" });
+                });
+            }
 
         }
 
-        public void Configure(IApplicationBuilder AApplication, IWebHostEnvironment AEnvironment, AppUrls AAppUrls)
+        public void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
         {
+
+            var LScopeFactory = AApplication.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+            using var LScope = LScopeFactory.CreateScope();
+            var LDatabaseInitializer = LScope.ServiceProvider.GetService<IDbInitializer>();
+            LDatabaseInitializer.Initialize();
+
+            if (FEnvironment.IsDevelopment() || IsIntegrationTesting)
+            {
+                LDatabaseInitializer.SeedData();
+            }
 
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);
             AApplication.UseMiddleware<GarbageCollector>();
@@ -72,11 +88,14 @@ namespace TokanPages
             AApplication.UseSpaStaticFiles();
             AApplication.UseRouting();
 
-            AApplication.UseSwagger();
-            AApplication.UseSwaggerUI(AOption =>
+            if (FEnvironment.IsDevelopment() || IsIntegrationTesting)
             {
-                AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "TokanPagesApi version 1");
-            });
+                AApplication.UseSwagger();
+                AApplication.UseSwaggerUI(AOption =>
+                {
+                    AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "TokanPagesApi version 1");
+                });
+            }
 
             AApplication.UseEndpoints(AEndpoints =>
             {
@@ -88,7 +107,7 @@ namespace TokanPages
                 
                 ASpa.Options.SourcePath = "ClientApp";
 
-                if (AEnvironment.IsDevelopment())
+                if (FEnvironment.IsDevelopment() || IsIntegrationTesting)
                 {
                     ASpa.UseProxyToSpaDevelopmentServer(AAppUrls.DevelopmentOrigin);
                 }

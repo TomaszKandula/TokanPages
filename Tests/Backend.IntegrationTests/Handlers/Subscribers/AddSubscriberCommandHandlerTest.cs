@@ -10,14 +10,14 @@ using TokanPages.Backend.Shared.Dto.Subscribers;
 namespace Backend.IntegrationTests.Handlers.Subscribers
 {
 
-    public class AddSubscriberCommandHandlerTest : IClassFixture<TestFixture<Startup>>
+    public class AddSubscriberCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
 
-        private readonly HttpClient FHttpClient;
+        private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
-        public AddSubscriberCommandHandlerTest(TestFixture<Startup> ACustomFixture)
+        public AddSubscriberCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
         {
-            FHttpClient = ACustomFixture.FClient;
+            FWebAppFactory = AWebAppFactory;
         }
 
         [Fact]
@@ -27,16 +27,13 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
             // Arrange
             var LRequest = $"/api/v1/subscribers/addsubscriber/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            var LPayLoad = new AddSubscriberDto { Email = DataProvider.GetRandomEmail() };
 
-            var LPayLoad = new AddSubscriberDto
-            {
-                Email = DataProvider.GetRandomEmail()
-            };
-
+            var LHttpClient = FWebAppFactory.CreateClient();
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await FHttpClient.SendAsync(LNewRequest);
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
             LResponse.EnsureSuccessStatusCode();
