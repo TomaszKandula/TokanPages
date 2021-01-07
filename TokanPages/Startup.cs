@@ -88,7 +88,7 @@ namespace TokanPages
             AApplication.UseSpaStaticFiles();
             AApplication.UseRouting();
 
-            if (FEnvironment.IsDevelopment() || IsIntegrationTesting)
+            if (FEnvironment.IsDevelopment())
             {
                 AApplication.UseSwagger();
                 AApplication.UseSwaggerUI(AOption =>
@@ -107,7 +107,7 @@ namespace TokanPages
                 
                 ASpa.Options.SourcePath = "ClientApp";
 
-                if (FEnvironment.IsDevelopment() || IsIntegrationTesting)
+                if (FEnvironment.IsDevelopment())
                 {
                     ASpa.UseProxyToSpaDevelopmentServer(AAppUrls.DevelopmentOrigin);
                 }
