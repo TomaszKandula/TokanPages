@@ -46,7 +46,7 @@ namespace TokanPages
             AServices.AddSpaStaticFiles(AConfiguration => { AConfiguration.RootPath = "ClientApp/build"; });
             AServices.AddResponseCompression(AOptions => { AOptions.Providers.Add<GzipCompressionProvider>(); });
 
-            if (IsIntegrationTesting)
+            if (FEnvironment.IsDevelopment() || IsIntegrationTesting)
             {
                 Dependencies.RegisterForTests(AServices, FConfiguration);
             }
@@ -104,14 +104,11 @@ namespace TokanPages
 
             AApplication.UseSpa(ASpa =>
             {
-                
                 ASpa.Options.SourcePath = "ClientApp";
-
                 if (FEnvironment.IsDevelopment())
                 {
                     ASpa.UseProxyToSpaDevelopmentServer(AAppUrls.DevelopmentOrigin);
                 }
-
             });           
 
         }
