@@ -13,12 +13,6 @@
 # Development environment files
 __runbackend.bat
 
-# Deployment environment files
-appsettings.Production.json
-
-# Test environment files
-appsettings.Test.json
-
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
