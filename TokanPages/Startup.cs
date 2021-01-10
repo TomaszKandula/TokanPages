@@ -22,7 +22,7 @@ namespace TokanPages
         private readonly IConfiguration FConfiguration;
         private readonly IWebHostEnvironment FEnvironment;
         private readonly bool IsIntegrationTesting = Environment
-            .GetEnvironmentVariable("ASPNETCORE_WEBAPPLICATIONFACTORY") == "IntegrationTest";
+            .GetEnvironmentVariable("ASPNETCORE_STAGING") == "IntegrationTest";
 
         public Startup(IConfiguration AConfiguration, IWebHostEnvironment AEnvironment)
         {
