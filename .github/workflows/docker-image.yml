@@ -20,7 +20,7 @@ jobs:
         REACT_APP_FRONTEND: ${{ secrets.REACT_APP_FRONTEND }}
         REACT_APP_STORAGE: ${{ secrets.REACT_APP_STORAGE }}
       with:
-         filename: ${{ github.workspace }}/TokanPages/ClientApp/.env
+         filename: ${{ github.workspace }}/ClientApp/.env
 
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: microsoft/variable-substitution@v1
