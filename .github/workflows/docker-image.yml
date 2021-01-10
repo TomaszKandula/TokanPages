@@ -56,5 +56,5 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build . --file dockerfile -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/tokanpages:${{ github.sha }}
+        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/tokanpages:${{ github.sha }}
         docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/tokanpages:${{ github.sha }}
