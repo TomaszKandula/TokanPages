@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Newtonsoft.Json;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TokanPages;
 using TokanPages.Backend.Shared.Resources;
@@ -10,14 +11,14 @@ using TokanPages.Backend.Database.Dummies;
 namespace Backend.IntegrationTests.Handlers.Articles
 {
 
-    public class GetArticleQueryHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class GetArticleQueryHandlerTest : IClassFixture<TestFixture<Startup>>
     {
 
-        private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
+        private readonly HttpClient FHttpClient;
 
-        public GetArticleQueryHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
+        public GetArticleQueryHandlerTest(TestFixture<Startup> ACustomFixture)
         {
-            FWebAppFactory = AWebAppFactory;
+            FHttpClient = ACustomFixture.FClient;
         }
 
         [Fact]
@@ -27,10 +28,9 @@ namespace Backend.IntegrationTests.Handlers.Articles
             // Arrange
             var LTestUserId = Article1.Id;
             var LRequest = $"/api/v1/articles/getarticle/{LTestUserId}/";
-            var LHttpClient = FWebAppFactory.CreateClient();
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
+            var LResponse = await FHttpClient.GetAsync(LRequest);
 
             // Assert
             LResponse.EnsureSuccessStatusCode();
@@ -48,11 +48,10 @@ namespace Backend.IntegrationTests.Handlers.Articles
         {
 
             // Arrange
-            var LHttpClient = FWebAppFactory.CreateClient();
             var LRequest = $"/api/v1/articles/getarticle/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
+            var LResponse = await FHttpClient.GetAsync(LRequest);
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);

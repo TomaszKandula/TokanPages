@@ -38,9 +38,9 @@ namespace Backend.UnitTests.Handlers.Subscribers
             LSubscribersEntity[0].Email.Should().Be(LAddSubscriberCommand.Email);
             LSubscribersEntity[0].Count.Should().Be(0);
             LSubscribersEntity[0].IsActivated.Should().BeTrue();
-            LSubscribersEntity[0].Registered.Should().HaveDay(DateTime.UtcNow.Day);
-            LSubscribersEntity[0].Registered.Should().HaveMonth(DateTime.UtcNow.Month);
-            LSubscribersEntity[0].Registered.Should().HaveYear(DateTime.UtcNow.Year);
+            LSubscribersEntity[0].Registered.Should().HaveDay(DateTime.Now.Day);
+            LSubscribersEntity[0].Registered.Should().HaveMonth(DateTime.Now.Month);
+            LSubscribersEntity[0].Registered.Should().HaveYear(DateTime.Now.Year);
             LSubscribersEntity[0].LastUpdated.Should().BeNull();
 
         }

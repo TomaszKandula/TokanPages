@@ -1,5 +1,6 @@
 ﻿using Xunit;
 using FluentAssertions;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TokanPages;
 using Newtonsoft.Json;
@@ -8,14 +9,14 @@ using System.Collections.Generic;
 namespace Backend.IntegrationTests.Handlers.Articles
 {
     
-    public class GetAllArticlesQueryHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class GetAllArticlesQueryHandlerTest : IClassFixture<TestFixture<Startup>>
     {
 
-        private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
+        private readonly HttpClient FHttpClient;
 
-        public GetAllArticlesQueryHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
+        public GetAllArticlesQueryHandlerTest(TestFixture<Startup> ACustomFixture)
         {
-            FWebAppFactory = AWebAppFactory;
+            FHttpClient = ACustomFixture.FClient;
         }
 
         [Fact]
@@ -26,8 +27,7 @@ namespace Backend.IntegrationTests.Handlers.Articles
             var LRequest = $"/api/v1/articles/getallarticles/";
 
             // Act
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(LRequest);
+            var LResponse = await FHttpClient.GetAsync(LRequest);
 
             // Assert
             LResponse.EnsureSuccessStatusCode();

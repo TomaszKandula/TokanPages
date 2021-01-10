@@ -12,14 +12,14 @@ using TokanPages.Backend.Shared.Dto.Mailer;
 namespace Backend.IntegrationTests.Handlers.Mailer
 {
 
-    public class SendMessageCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class SendMessageCommandHandlerTest : IClassFixture<TestFixture<Startup>>
     {
 
-        private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
+        private readonly HttpClient FHttpClient;
 
-        public SendMessageCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
+        public SendMessageCommandHandlerTest(TestFixture<Startup> ACustomFixture)
         {
-            FWebAppFactory = AWebAppFactory;
+            FHttpClient = ACustomFixture.FClient;
         }
 
         [Fact]
@@ -41,11 +41,9 @@ namespace Backend.IntegrationTests.Handlers.Mailer
                 Message = $"Test run Id: {Guid.NewGuid()}.",
             };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-
             // Act
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+            var LResponse = await FHttpClient.SendAsync(LNewRequest);
 
             // Assert
             LResponse.EnsureSuccessStatusCode();

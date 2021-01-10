@@ -13,14 +13,14 @@ using TokanPages.Backend.Shared.Resources;
 namespace Backend.IntegrationTests.Handlers.Users
 {
 
-    public class UpdateUserCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class UpdateUserCommandHandlerTest : IClassFixture<TestFixture<Startup>>
     {
 
-        private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
+        private readonly HttpClient FHttpClient;
 
-        public UpdateUserCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
+        public UpdateUserCommandHandlerTest(TestFixture<Startup> ACustomFixture)
         {
-            FWebAppFactory = AWebAppFactory;
+            FHttpClient = ACustomFixture.FClient;
         }
 
         [Fact]
@@ -41,11 +41,10 @@ namespace Backend.IntegrationTests.Handlers.Users
                 IsActivated = true
             };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+            var LResponse = await FHttpClient.SendAsync(LNewRequest);
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);

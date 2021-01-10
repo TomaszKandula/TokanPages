@@ -10,9 +10,6 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
-# Development environment files
-__runbackend.bat
-
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

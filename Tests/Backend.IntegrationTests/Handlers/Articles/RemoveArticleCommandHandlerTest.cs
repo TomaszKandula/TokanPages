@@ -12,14 +12,14 @@ using TokanPages.Backend.Shared.Resources;
 namespace Backend.IntegrationTests.Handlers.Articles
 {
 
-    public class RemoveArticleCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class RemoveArticleCommandHandlerTest : IClassFixture<TestFixture<Startup>>
     {
 
-        private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
+        private readonly HttpClient FHttpClient;
 
-        public RemoveArticleCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
+        public RemoveArticleCommandHandlerTest(TestFixture<Startup> ACustomFixture)
         {
-            FWebAppFactory = AWebAppFactory;
+            FHttpClient = ACustomFixture.FClient;
         }
 
         [Fact]
@@ -35,11 +35,10 @@ namespace Backend.IntegrationTests.Handlers.Articles
                 Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2")
             };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+            var LResponse = await FHttpClient.SendAsync(LNewRequest);
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);

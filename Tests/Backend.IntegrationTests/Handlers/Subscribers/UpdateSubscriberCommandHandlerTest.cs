@@ -13,14 +13,14 @@ using TokanPages.Backend.Shared.Dto.Subscribers;
 namespace Backend.IntegrationTests.Handlers.Subscribers
 {
 
-    public class UpdateSubscriberCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class UpdateSubscriberCommandHandlerTest : IClassFixture<TestFixture<Startup>>
     {
 
-        private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
+        private readonly HttpClient FHttpClient;
 
-        public UpdateSubscriberCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
+        public UpdateSubscriberCommandHandlerTest(TestFixture<Startup> ACustomFixture)
         {
-            FWebAppFactory = AWebAppFactory;
+            FHttpClient = ACustomFixture.FClient;
         }
 
         [Fact]
@@ -39,11 +39,10 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
                 IsActivated = true
             };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+            var LResponse = await FHttpClient.SendAsync(LNewRequest);
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);

@@ -19,8 +19,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 
         public override async Task<IEnumerable<Domain.Entities.Articles>> Handle(GetAllArticlesQuery ARequest, CancellationToken ACancellationToken) 
         {
-            var LArticles = await FDatabaseContext.Articles.AsNoTracking().ToListAsync(ACancellationToken);
-            return LArticles;
+            return await FDatabaseContext.Articles.AsNoTracking().ToListAsync(ACancellationToken);
         }
 
     }

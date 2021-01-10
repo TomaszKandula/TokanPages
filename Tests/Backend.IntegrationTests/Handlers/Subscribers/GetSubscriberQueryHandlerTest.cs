@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Newtonsoft.Json;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TokanPages;
 using TokanPages.Backend.Database.Dummies;
@@ -10,14 +11,14 @@ using TokanPages.Backend.Shared.Resources;
 namespace Backend.IntegrationTests.Handlers.Subscribers
 {
 
-    public class GetSubscriberQueryHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class GetSubscriberQueryHandlerTest : IClassFixture<TestFixture<Startup>>
     {
 
-        private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
+        private readonly HttpClient FHttpClient;
 
-        public GetSubscriberQueryHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
+        public GetSubscriberQueryHandlerTest(TestFixture<Startup> ACustomFixture)
         {
-            FWebAppFactory = AWebAppFactory;
+            FHttpClient = ACustomFixture.FClient;
         }
 
         [Fact]
@@ -27,10 +28,9 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
             // Arrange
             var LTestUserId = Subscribers1.Id;
             var LRequest = $"/api/v1/subscribers/getsubscriber/{LTestUserId}/";
-            var LHttpClient = FWebAppFactory.CreateClient();
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
+            var LResponse = await FHttpClient.GetAsync(LRequest);
 
             // Assert
             LResponse.EnsureSuccessStatusCode();
@@ -49,10 +49,9 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
 
             // Arrange
             var LRequest = $"/api/v1/subscribers/getsubscriber/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
-            var LHttpClient = FWebAppFactory.CreateClient();
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
+            var LResponse = await FHttpClient.GetAsync(LRequest);
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);

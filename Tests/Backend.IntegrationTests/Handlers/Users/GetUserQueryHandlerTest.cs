@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Newtonsoft.Json;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TokanPages;
 using TokanPages.Backend.Shared.Resources;
@@ -10,14 +11,14 @@ using TokanPages.Backend.Database.Dummies;
 namespace Backend.IntegrationTests.Handlers.Users
 {
 
-    public class GetUserQueryHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class GetUserQueryHandlerTest : IClassFixture<TestFixture<Startup>>
     {
 
-        private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
+        private readonly HttpClient FHttpClient;
 
-        public GetUserQueryHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory) 
+        public GetUserQueryHandlerTest(TestFixture<Startup> ACustomFixture) 
         {
-            FWebAppFactory = AWebAppFactory;
+            FHttpClient = ACustomFixture.FClient;
         }
 
         [Fact]
@@ -27,10 +28,9 @@ namespace Backend.IntegrationTests.Handlers.Users
             // Arrange
             var LTestUserId = User1.Id;
             var LRequest = $"/api/v1/users/getuser/{LTestUserId}/";
-            var LHttpClient = FWebAppFactory.CreateClient();
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
+            var LResponse = await FHttpClient.GetAsync(LRequest);
 
             // Assert
             LResponse.EnsureSuccessStatusCode();
@@ -49,10 +49,9 @@ namespace Backend.IntegrationTests.Handlers.Users
 
             // Arrange
             var LRequest = $"/api/v1/users/getuser/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
-            var LHttpClient = FWebAppFactory.CreateClient();
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
+            var LResponse = await FHttpClient.GetAsync(LRequest);
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
