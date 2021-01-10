@@ -10,14 +10,14 @@ using TokanPages.Backend.Shared.Dto.Users;
 namespace Backend.IntegrationTests.Handlers.Users
 {
 
-    public class AddUserCommandHandlerTest : IClassFixture<TestFixture<Startup>>
+    public class AddUserCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
 
-        private readonly HttpClient FHttpClient;
+        private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
-        public AddUserCommandHandlerTest(TestFixture<Startup> ACustomFixture)
+        public AddUserCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
         {
-            FHttpClient = ACustomFixture.FClient;
+            FWebAppFactory = AWebAppFactory;
         }
 
         [Fact]
@@ -36,10 +36,11 @@ namespace Backend.IntegrationTests.Handlers.Users
                 LastName = DataProvider.GetRandomString()
             };
 
+            var LHttpClient = FWebAppFactory.CreateClient();
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await FHttpClient.SendAsync(LNewRequest);
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
             LResponse.EnsureSuccessStatusCode();

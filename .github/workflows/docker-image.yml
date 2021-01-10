@@ -1,0 +1,63 @@
+name: Docker Image CI
+
+on:
+  release:
+    types: [created]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
+    - name: Variable substitution appsettings file for Staging (NET Core)
+      uses: microsoft/variable-substitution@v1
+      with:
+        files: ${{ github.workspace }}/TokanPages/appsettings.Staging.json
+      env:
+        AzureStorage.AccountName: "${{ secrets.AZURESTORAGE__ACCOUNTNAME }}"
+        AzureStorage.AccountKey: "${{ secrets.AZURESTORAGE__ACCOUNTKEY }}"
+        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL }}"
+        AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME_TEST }}"
+        Sentry.Dsn: "${{ secrets.SENTRY__DSN_TEST }}"
+        SmtpServer.Account: "${{ secrets.SMTPSERVER__ACCOUNT }}"
+        SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD }}"
+        SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT }}"
+        SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER }}"
+
+    - name: Variable substitution appsettings file for Production (NET Core)
+      uses: microsoft/variable-substitution@v1
+      with:
+        files: ${{ github.workspace }}/TokanPages/appsettings.Production.json
+      env:
+        AppUrls.UnsubscribePath: "${{ secrets.APPURLS__UNSUBSCRIBEPATH}}"
+        AppUrls.DevelopmentOrigin: "${{ secrets.APPURLS__DEVELOPMENTORIGIN }}"
+        AppUrls.DeploymentOrigin: "${{ secrets.APPURLS__DEPLOYMENTORIGIN }}"
+        AzureStorage.AccountName: "${{ secrets.AZURESTORAGE__ACCOUNTNAME }}"
+        AzureStorage.AccountKey: "${{ secrets.AZURESTORAGE__ACCOUNTKEY }}"
+        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL }}"
+        AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME }}"
+        Sentry.Dsn: "${{ secrets.SENTRY__DSN }}"
+        ConnectionStrings.DbConnect: "${{ secrets.CONNECTIONSTRING__PROD }}"
+        SmtpServer.Account: "${{ secrets.SMTPSERVER__ACCOUNT }}"
+        SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD }}"
+        SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT }}"
+        SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER }}"
+
+    - name: Variable substitution .env for ClientApp (CRA)
+      uses: falnyr/replace-env-vars-action@master
+      env: 
+        REACT_APP_API_VER: ${{ secrets.REACT_APP_API_VER }}
+        REACT_APP_BACKEND: ${{ secrets.REACT_APP_BACKEND }}
+        REACT_APP_FRONTEND: ${{ secrets.REACT_APP_FRONTEND }}
+        REACT_APP_STORAGE: ${{ secrets.REACT_APP_STORAGE }}
+      with:
+         filename: ${{ github.workspace }}/TokanPages/ClientApp/.env
+
+    - name: Build the Docker image
+      run: docker build . --file dockerfile --tag tokanpages:$(date +%s)
