@@ -1,11 +1,11 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using TokanPages.Backend.Shared.Environment;
 
 namespace Backend.IntegrationTests
 {
@@ -20,9 +20,7 @@ namespace Backend.IntegrationTests
                 .ConfigureAppConfiguration(AConfig =>
                 {
 
-                    var LEnvironment = "IntegrationTest";
-                    Environment.SetEnvironmentVariable("ASPNETCORE_STAGING", LEnvironment);
-
+                    EnvironmentVariables.SetStaging();
                     var LStartupAssembly = typeof(TStartup).GetTypeInfo().Assembly;
                     var LTestConfig = new ConfigurationBuilder()
                         .AddJsonFile("appsettings.Staging.json", optional: true, reloadOnChange: true)

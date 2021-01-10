@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
@@ -12,6 +11,7 @@ using TokanPages.Configuration;
 using TokanPages.CustomHandlers;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Database.Initialize;
+using TokanPages.Backend.Shared.Environment;
 
 namespace TokanPages
 {
@@ -21,8 +21,6 @@ namespace TokanPages
 
         private readonly IConfiguration FConfiguration;
         private readonly IWebHostEnvironment FEnvironment;
-        private readonly bool IsIntegrationTesting = Environment
-            .GetEnvironmentVariable("ASPNETCORE_STAGING") == "IntegrationTest";
 
         public Startup(IConfiguration AConfiguration, IWebHostEnvironment AEnvironment)
         {
@@ -46,7 +44,7 @@ namespace TokanPages
             AServices.AddSpaStaticFiles(AConfiguration => { AConfiguration.RootPath = "ClientApp/build"; });
             AServices.AddResponseCompression(AOptions => { AOptions.Providers.Add<GzipCompressionProvider>(); });
 
-            if (FEnvironment.IsDevelopment() || IsIntegrationTesting)
+            if (FEnvironment.IsDevelopment() || EnvironmentVariables.IsStaging())
             {
                 Dependencies.RegisterForTests(AServices, FConfiguration);
             }
@@ -73,7 +71,7 @@ namespace TokanPages
             var LDatabaseInitializer = LScope.ServiceProvider.GetService<IDbInitializer>();
             LDatabaseInitializer.Initialize();
 
-            if (FEnvironment.IsDevelopment() || IsIntegrationTesting)
+            if (FEnvironment.IsDevelopment() || EnvironmentVariables.IsStaging())
             {
                 LDatabaseInitializer.SeedData();
             }
