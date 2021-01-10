@@ -11,11 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: microsoft/variable-substitution@v1
       with:
-        files: appsettings.Staging.json
+        files: ${{ github.workspace }}/TokanPages/appsettings.Staging.json
       env:
         AzureStorage.AccountName: "${{ secrets.AZURESTORAGE__ACCOUNTNAME }}"
         AzureStorage.AccountKey: "${{ secrets.AZURESTORAGE__ACCOUNTKEY }}"
@@ -30,7 +33,7 @@ jobs:
     - name: Variable substitution appsettings file for Production (NET Core)
       uses: microsoft/variable-substitution@v1
       with:
-        files: appsettings.Production.json
+        files: ${{ github.workspace }}/TokanPages/appsettings.Production.json
       env:
         AppUrls.UnsubscribePath: "${{ secrets.APPURLS__UNSUBSCRIBEPATH}}"
         AppUrls.DevelopmentOrigin: "${{ secrets.APPURLS__DEVELOPMENTORIGIN }}"
@@ -48,7 +51,6 @@ jobs:
 
     - name: Variable substitution .env for ClientApp (CRA)
       run: sed -i 's/{REACT_APP_API_VER}/${{ secrets.REACT_APP_API_VER }}/' -i 's/{REACT_APP_BACKEND}/${{ secrets.REACT_APP_BACKEND }}/' -i 's/{REACT_APP_FRONTEND}/${{ secrets.REACT_APP_FRONTEND }}/' -i 's/{REACT_APP_STORAGE}/${{ secrets.REACT_APP_STORAGE }}/' ${{ github.workspace }}/TokanPages/ClientApp/.env
-      
-    - uses: actions/checkout@v2
+    
     - name: Build the Docker image
       run: docker build . --file dockerfile --tag tokanpages:$(date +%s)
