@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using TokanPages.Backend.Shared.Cors;
 using TokanPages.Backend.Shared.Settings;
@@ -19,15 +20,16 @@ namespace TokanPages.Middleware
         public Task Invoke(HttpContext AHttpContext, AppUrls AAppUrls)
         {
 
-            var LDevelopmentOrigin = AAppUrls.DevelopmentOrigin;
-            var LDeploymentOrigin  = AAppUrls.DeploymentOrigin;
-            var LRequestOrigin     = AHttpContext.Request.Headers["Origin"];
+            var LDevelopmentOrigins = AAppUrls.DevelopmentOrigin.Split(';').ToList();
+            var LDeploymentOrigins = AAppUrls.DeploymentOrigin.Split(';').ToList();
+            var LRequestOrigin = AHttpContext.Request.Headers["Origin"];
 
-            if (LRequestOrigin == LDevelopmentOrigin || LRequestOrigin == LDeploymentOrigin)
+            if (LDevelopmentOrigins.Contains(LRequestOrigin) || LDeploymentOrigins.Contains(LRequestOrigin))
             {
 
                 CorsHeaders.Ensure(AHttpContext);
 
+                // Necessary for pre-flight
                 if (AHttpContext.Request.Method == "OPTIONS") 
                 {
                     AHttpContext.Response.StatusCode = 200;
