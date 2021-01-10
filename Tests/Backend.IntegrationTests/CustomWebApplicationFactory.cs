@@ -21,10 +21,11 @@ namespace Backend.IntegrationTests
                 {
 
                     var LEnvironment = "IntegrationTest";
-                    Environment.SetEnvironmentVariable("ASPNETCORE_WEBAPPLICATIONFACTORY", LEnvironment);
+                    Environment.SetEnvironmentVariable("ASPNETCORE_STAGING", LEnvironment);
 
                     var LStartupAssembly = typeof(TStartup).GetTypeInfo().Assembly;
                     var LTestConfig = new ConfigurationBuilder()
+                        .AddJsonFile("appsettings.Staging.json", optional: true, reloadOnChange: true)
                         .AddUserSecrets(LStartupAssembly)
                         .AddEnvironmentVariables()
                         .Build();
