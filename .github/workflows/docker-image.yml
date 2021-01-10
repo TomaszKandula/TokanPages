@@ -15,7 +15,7 @@ jobs:
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: microsoft/variable-substitution@v1
       with:
-        files: ${{ github.workspace }}/TokanPages/appsettings.Staging.json
+        files: appsettings.Staging.json
       env:
         AzureStorage.AccountName: "${{ secrets.AZURESTORAGE__ACCOUNTNAME }}"
         AzureStorage.AccountKey: "${{ secrets.AZURESTORAGE__ACCOUNTKEY }}"
@@ -30,7 +30,7 @@ jobs:
     - name: Variable substitution appsettings file for Production (NET Core)
       uses: microsoft/variable-substitution@v1
       with:
-        files: ${{ github.workspace }}/TokanPages/appsettings.Production.json
+        files: appsettings.Production.json
       env:
         AppUrls.UnsubscribePath: "${{ secrets.APPURLS__UNSUBSCRIBEPATH}}"
         AppUrls.DevelopmentOrigin: "${{ secrets.APPURLS__DEVELOPMENTORIGIN }}"
