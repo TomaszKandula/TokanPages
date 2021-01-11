@@ -52,9 +52,9 @@ jobs:
     - name: Build and push Docker image (also runs frontend and backend tests)
       uses: azure/docker-login@v1
       with:
-        login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-        username: ${{ secrets.REGISTRY_USERNAME }}
+        login-server: tokanpages.azurecr.io
+        username: tokanpages
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build . -t tokandocker/tokanpages:${{ github.sha }}
-        docker push tokandocker/tokanpages:${{ github.sha }}
+        docker build . -t tokanpages.azurecr.io/tokanpages:${{ github.sha }}
+        docker push tokanpages.azurecr.io/tokanpages:${{ github.sha }}
