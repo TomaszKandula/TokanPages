@@ -8,6 +8,7 @@ import useStyles from "./Hooks/styleArticleList";
 import { IArticle, IArticles, IListArticles } from "Redux/applicationState";
 import { ActionCreators } from "Redux/Actions/listArticlesActions";
 import ArticleCard from "./articleCard";
+import CenteredCircularLoader from "Shared/ProgressBar/centeredCircularLoader";
 
 export default function ArticleList() 
 {
@@ -48,7 +49,7 @@ export default function ArticleList()
                     <Divider className={classes.divider} />
                     <Grid container justify="center">
                         <Grid item xs={12} sm={12}>
-                            {data.isLoading ? "Fetching content..." : renderContent(data)}
+                            {data.isLoading ? <CenteredCircularLoader /> : renderContent(data)}
                         </Grid>
                     </Grid>
                 </Box>
