@@ -25,7 +25,7 @@ export default function Featured()
         subtitle2: "This article will explore the issue in greater detail...",
         link2: "https://medium.com/@tomasz.kandula/sql-injection-1bde8bb76ebc",
         image2: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_featured/article2.jpg",
-        title3: "ust Geek IT",
+        title3: "Just Geek IT",
         subtitle3: "Widełki płacowe stanowią standard w branży...",
         link3: "https://medium.com/@tomasz.kandula/i-said-goodbye-to-stored-procedures-539d56350486",
         image3: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_featured/article3.jpg",
