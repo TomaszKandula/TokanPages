@@ -9,6 +9,7 @@ import ReactHtmlParser from 'react-html-parser';
 import axios from "axios";
 import useStyles from "./Hooks/styleArticleDetail";
 import Validate from "validate.js";
+import CenteredCircularLoader from "Shared/ProgressBar/centeredCircularLoader";
 
 interface IArticleDetail
 {
@@ -37,11 +38,13 @@ export default function ArticleDetail(props: IArticleDetail)
     {
         return(
             <div data-aos="fade-up">
-                {ReactHtmlParser(text)}
+                <Typography variant="body1" component="span" className={classes.typography}>
+                    {ReactHtmlParser(text)}
+                </Typography>
             </div>
         );
     }
-    
+
     return (
         <section>
             <Container className={classes.container}>       
@@ -52,9 +55,7 @@ export default function ArticleDetail(props: IArticleDetail)
                         </IconButton>
                     </Link> 
                     <Divider className={classes.divider} />
-                    <Typography variant="body1" component="span" className={classes.typography}>
-                        {Validate.isEmpty(article) ? "Fetching content..." : renderArticle(article)}
-                    </Typography>
+                    {Validate.isEmpty(article) ? <CenteredCircularLoader /> : renderArticle(article)}
                 </Box>
             </Container>
         </section>

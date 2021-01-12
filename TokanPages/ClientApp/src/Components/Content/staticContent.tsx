@@ -9,6 +9,7 @@ import ReactHtmlParser from "react-html-parser";
 import axios from "axios";
 import useStyles from "./styleStaticContent";
 import Validate from "validate.js";
+import CenteredCircularLoader from "Shared/ProgressBar/centeredCircularLoader";
 
 interface IStoryContent
 {
@@ -24,7 +25,7 @@ export default function StaticContent(props: IStoryContent)
     const fetchData = React.useCallback( async () => 
     {
         const response = await axios.get(props.dataUrl, {method: "get", responseType: "text"});
-        setData(response.data);    
+        setData(response.data);
     }, 
     [ props.dataUrl ]);
 
@@ -34,12 +35,12 @@ export default function StaticContent(props: IStoryContent)
     {
         return(
             <div data-aos="fade-up">
-                {ReactHtmlParser(text)}
+                <Typography variant="body1" component="span" className={classes.typography}>
+                    {ReactHtmlParser(text)}
+                </Typography>
             </div>
         );
     }
-
-    const content = Validate.isEmpty(data) ? "Fetching content..." : renderData(data);
 
     return (
         <section>
@@ -51,9 +52,7 @@ export default function StaticContent(props: IStoryContent)
                         </IconButton>
                     </Link> 
                     <Divider className={classes.divider} />
-                    <Typography variant="body1" component="span" className={classes.typography}>
-                        {content}
-                    </Typography>
+                    {Validate.isEmpty(data) ? <CenteredCircularLoader /> : renderData(data)}
                 </Box>
             </Container>
         </section>
