@@ -18,14 +18,14 @@ export default function Testimonials()
         photo1: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_testimonials/joanna.jpg",
         name1: "Joanna Strzyzewska",
         occupation1: "Senior Digital Tax Specialist",
-        text1: `Tomek is very motivated, has wide IT knowledge and is constantly developing in new technologies. 
+        text1: `Tomasz is very motivated, has wide IT knowledge and is constantly developing in new technologies. 
                 I have seen many examples of his talent. He is also a good and friendly co-worker and colleague. 
                 I can recommend Tomek not only because of his technical and programming skillset but also
                 because of his attitude towards changes and best practices.`,
         photo2: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_testimonials/adama.jpg",
         name2: "Adama Sow",
         occupation2: "Full-stack Developer chez DFDS POLSKA",
-        text2: `Tomek have done very good work in NET Core, Azure. He is really helpful. I would recommend him.`,
+        text2: `Tomasz have done very good work in NET Core, Azure. He is really helpful. I would recommend him.`,
         photo3: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_testimonials/scott.jpg",
         name3: "Scott Lumsden",
         occupation3: "Customer Service | Contact Center | Vendor Manager | BPO",
