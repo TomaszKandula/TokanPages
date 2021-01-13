@@ -19,9 +19,9 @@ namespace TokanPages.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Articles>> GetAllArticles() 
+        public async Task<IEnumerable<Articles>> GetAllArticles([FromQuery] bool AIsPublished = true) 
         {
-            var LQuery = new GetAllArticlesQuery();
+            var LQuery = new GetAllArticlesQuery { IsPublished = AIsPublished };
             return await FMediator.Send(LQuery);
         }
 
