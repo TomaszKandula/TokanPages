@@ -19,7 +19,7 @@ export default function Featured()
         text: "My pick of three articles that I wrote and published elsewhere or articles where I'm featured. So far I can be find on Medium.com, LinkedIn and JustJoinIT.",
         title1: "Stored Procedures",
         subtitle1: "I explain why I do not need them that much...",
-        link1: "http://geek.justjoin.it/wysokie-widelki-clickbait-devdebata",
+        link1: "https://medium.com/@tomasz.kandula/i-said-goodbye-to-stored-procedures-539d56350486",
         image1: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_featured/article1.jpg",
         title2: "SQL Injection",
         subtitle2: "This article will explore the issue in greater detail...",
@@ -27,7 +27,7 @@ export default function Featured()
         image2: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_featured/article2.jpg",
         title3: "Just Geek IT",
         subtitle3: "Widełki płacowe stanowią standard w branży...",
-        link3: "https://medium.com/@tomasz.kandula/i-said-goodbye-to-stored-procedures-539d56350486",
+        link3: "http://geek.justjoin.it/wysokie-widelki-clickbait-devdebata",
         image3: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_featured/article3.jpg",
     };
 
