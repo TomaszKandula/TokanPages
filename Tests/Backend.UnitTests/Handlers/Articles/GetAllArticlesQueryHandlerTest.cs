@@ -19,7 +19,7 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Arrange
             var LDatabaseContext = GetTestDatabaseContext();
-            var LGetAllArticlesQuery = new GetAllArticlesQuery { };
+            var LGetAllArticlesQuery = new GetAllArticlesQuery { IsPublished = false };
             var LGetAllArticlesQueryHandler = new GetAllArticlesQueryHandler(LDatabaseContext);
             LDatabaseContext.Articles.AddRange(new List<TokanPages.Backend.Domain.Entities.Articles>
             {

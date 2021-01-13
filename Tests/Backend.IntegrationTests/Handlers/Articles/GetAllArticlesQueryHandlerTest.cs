@@ -23,7 +23,7 @@ namespace Backend.IntegrationTests.Handlers.Articles
         {
 
             // Arrange
-            var LRequest = $"/api/v1/articles/getallarticles/";
+            var LRequest = $"/api/v1/articles/getallarticles/?AIsPublished=false";
 
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
