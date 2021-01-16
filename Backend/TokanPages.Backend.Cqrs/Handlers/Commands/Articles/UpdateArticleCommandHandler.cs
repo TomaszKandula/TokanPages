@@ -43,8 +43,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             if (!string.IsNullOrEmpty(ARequest.TextToUpload))
             {
 
-                var LTextContent = await FFileUtility.SaveToFile("__upload", $"{ARequest.Id}.txt", ARequest.TextToUpload);
-                var LTextUpload = await FAzureStorageService.UploadFile($"content\\articles\\{ARequest.Id.ToString().ToLower()}", "text.html", LTextContent, "text/html", ACancellationToken);
+                var LTextContent = await FFileUtility.SaveToFile("__upload", $"{ARequest.Id}.json", ARequest.TextToUpload);
+                var LTextUpload = await FAzureStorageService.UploadFile($"content\\articles\\{ARequest.Id.ToString().ToLower()}", "text.json", LTextContent, "application/json", ACancellationToken);
 
                 if (!LTextUpload.IsSucceeded)
                 {
