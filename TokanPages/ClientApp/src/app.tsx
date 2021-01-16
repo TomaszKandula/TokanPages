@@ -11,6 +11,7 @@ import SigninPage from "./Pages/signinPage";
 import SignupPage from "./Pages/signupPage";
 import ResetPage from "./Pages/resetPage";
 import UnsubscribePage from "./Pages/unsubscribePage";
+import NotFoundPage from "./Pages/notFoundPage";
 import ScrollTop from "./Shared/Scroll/scrollTop";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -37,6 +38,7 @@ export default function App()
                   <Route exact path="/signup"><SignupPage /></Route>
                   <Route exact path="/reset"><ResetPage /></Route>
                   <Route exact path="/unsubscribe"><UnsubscribePage /></Route>
+                  <Route component={NotFoundPage} />
                 </Switch>
             </Router>
             <ScrollTop>
