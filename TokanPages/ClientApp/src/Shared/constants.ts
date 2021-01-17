@@ -38,9 +38,9 @@ export const API_COMMAND_SEND_NEWSLETTER = `${APP_BACKEND}/api/v${API_VER}/maile
 
 /* STATIC CONTENT */
 
-export const STORY_URL  = `${APP_STORAGE}/content/mystory.html`;
-export const TERMS_URL  = `${APP_STORAGE}/content/terms.html`;
-export const POLICY_URL = `${APP_STORAGE}/content/policy.html`;
+export const STORY_URL  = `${APP_STORAGE}/content/mystory.json`;
+export const TERMS_URL  = `${APP_STORAGE}/content/terms.json`;
+export const POLICY_URL = `${APP_STORAGE}/content/policy.json`;
 
 /* MESSAGE TEMPLATES */
 
