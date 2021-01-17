@@ -2,14 +2,14 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
 import { Divider, IconButton } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
-import ReactHtmlParser from "react-html-parser";
 import axios from "axios";
-import useStyles from "./styleStaticContent";
 import Validate from "validate.js";
-import CenteredCircularLoader from "Shared/ProgressBar/centeredCircularLoader";
+import useStyles from "./styleStaticContent";
+import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoader";
+import { RenderContent } from "../../Shared/ContentRender/renderContent";
+import { ITextObject } from "../../Shared/ContentRender/Model/textModel";
 
 interface IStoryContent
 {
@@ -20,31 +20,18 @@ export default function StaticContent(props: IStoryContent)
 {
 
     const classes = useStyles();
-    const [ data, setData ] = React.useState("");
+    const [ data, setData ] = React.useState<ITextObject>({ items: [] });
 
     const fetchData = React.useCallback( async () => 
     {
-        const response = await axios.get(props.dataUrl, {method: "get", responseType: "text"});
+        const response = await axios.get<ITextObject>(props.dataUrl, {method: "get", responseType: "json"});
         setData(response.data);
-    }, 
-    [ props.dataUrl ]);
-
-    React.useEffect( () => { fetchData() }, [ data, fetchData ] );
-
-    const renderData = (text: string) => 
-    {
-        return(
-            <div data-aos="fade-up">
-                <Typography variant="body1" component="span" className={classes.typography}>
-                    {ReactHtmlParser(text)}
-                </Typography>
-            </div>
-        );
-    }
+    }, [ props.dataUrl ]);
+    React.useEffect( () => { fetchData() }, [ data.items.length, fetchData ] );
 
     return (
         <section>
-            <Container className={classes.container}>       
+            <Container className={classes.container}>
                 <Box py={12}>
                     <Link to="/">
                         <IconButton>
@@ -52,7 +39,9 @@ export default function StaticContent(props: IStoryContent)
                         </IconButton>
                     </Link> 
                     <Divider className={classes.divider} />
-                    {Validate.isEmpty(data) ? <CenteredCircularLoader /> : renderData(data)}
+                    {Validate.isEmpty(data) 
+                        ? <CenteredCircularLoader /> 
+                        : <div className={classes.typography}>{RenderContent(data)}</div>}
                 </Box>
             </Container>
         </section>
