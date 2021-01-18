@@ -13,7 +13,7 @@ import { ActionCreators } from "Redux/Actions/selectArticleActions";
 interface IArticle
 {
     title: string;
-    desc: string;
+    description: string;
     uid: string;
 }
 
@@ -49,11 +49,11 @@ export default function ArticleCard(props: IArticle)
                     </Grid>
                     <Grid item xs={8}>
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
+                            <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
                                 {props.title}
                             </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                {props.desc}
+                            <Typography variant="body2" color="textSecondary" component="p" className={classes.description}>
+                                {props.description}
                             </Typography>
                         </CardContent>
                         <CardActions>

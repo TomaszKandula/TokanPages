@@ -1,7 +1,7 @@
 export interface ApplicationState 
 {
     selectArticle: IArticle;
-    listArticles:  IArticles;
+    listArticles: IArticles;
 }
 
 export interface IListArticles
@@ -12,17 +12,19 @@ export interface IListArticles
 export interface IArticles
 {
     isLoading: boolean;
-    articles:  IArticle[];
+    articles: IArticle[];
 }
 
 export interface IArticle
 {
-    id:     string;
-    title:  string;
-    desc:   string;
-    status: string;
-    likes:  number;
+    id: string;
+    title: string;
+    description: string;
+    isPublished: boolean;
+    likes: number;
     readCount: number;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface AppThunkAction<TAction> 
@@ -32,17 +34,19 @@ export interface AppThunkAction<TAction>
 
 export const initArticle = 
 {
-    id:     "",
-    title:  "",
-    desc:   "",
-    status: "",
+    id: "",
+    title: "",
+    description: "",
+    isPublished: false,
     likes:  0,
-    readCount: 0
+    readCount: 0,
+    createdAt: "",
+    updatedAt: ""
 };
 
 export const initArticles = 
 {
-    articles:  [],
+    articles: [],
     isLoading: false
 };
 
@@ -51,12 +55,14 @@ export const initialState =
 
     selectArticle:
     {
-        id:     initArticle.id,
-        title:  initArticle.title,
-        desc:   initArticle.desc,
-        status: initArticle.status,
-        likes:  initArticle.likes,
-        readCount: initArticle.readCount
+        id: initArticle.id,
+        title: initArticle.title,
+        description: initArticle.description,
+        isPublished: initArticle.isPublished,
+        likes: initArticle.likes,
+        readCount: initArticle.readCount,
+        createdAt: initArticle.createdAt,
+        updatedAt: initArticle.updatedAt
     },
 
     listArticles:

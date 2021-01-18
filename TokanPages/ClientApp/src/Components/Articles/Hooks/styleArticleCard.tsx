@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(() => (
+const useStyles = makeStyles((theme) => (
 {
     root: 
     {
@@ -22,6 +22,28 @@ const useStyles = makeStyles(() => (
         objectFit: "cover",
         height: 150,
         maxWidth: "100%"
+    },
+    title:
+    {
+        [theme.breakpoints.down("md")]:
+        {
+            fontSize: "1.2rem"
+        },
+        [theme.breakpoints.down("sm")]:
+        {
+            fontSize: "1.0rem"
+        }
+    },
+    description:
+    {
+        [theme.breakpoints.down("md")]:
+        {
+            fontSize: "0.85rem"
+        },
+        [theme.breakpoints.down("sm")]:
+        {
+            fontSize: "0.75rem"
+        }
     }
 }));
 
