@@ -14,7 +14,6 @@ export default function ArticleList()
 {
 
     const classes = useStyles();
-
     const data = useSelector((state: IListArticles) => state.listArticles);
 
     const dispatch = useDispatch();
@@ -28,7 +27,7 @@ export default function ArticleList()
                 {data.articles.map((item: IArticle) => ( 
                     <ArticleCard 
                         title={item.title}
-                        desc={item.desc}
+                        description={item.description}
                         uid={item.id}
                         key={item.id}
                     />
