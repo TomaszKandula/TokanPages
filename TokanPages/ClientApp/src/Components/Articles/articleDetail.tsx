@@ -46,7 +46,7 @@ export default function ArticleDetail(props: IArticleDetail)
                     <Divider className={classes.divider} />
                     {Validate.isEmpty(article.items) 
                         ? <CenteredCircularLoader /> 
-                        : <div className={classes.typography}>{RenderContent(article)}</div>}
+                        : <div className={classes.typography}>{RenderContent(article, classes.typography)}</div>}
                 </Box>
             </Container>
         </section>

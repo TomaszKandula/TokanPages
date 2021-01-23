@@ -41,7 +41,7 @@ export default function StaticContent(props: IStoryContent)
                     <Divider className={classes.divider} />
                     {Validate.isEmpty(data) 
                         ? <CenteredCircularLoader /> 
-                        : <div className={classes.typography}>{RenderContent(data)}</div>}
+                        : <div className={classes.typography}>{RenderContent(data, classes.typography)}</div>}
                 </Box>
             </Container>
         </section>
