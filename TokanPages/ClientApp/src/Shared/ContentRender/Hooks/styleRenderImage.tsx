@@ -2,13 +2,11 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => (
 {
-    container:
+    card:
     {
-        maxWidth: "700px"
-    },
-    divider:
-    {
-        marginBottom: "30px"
+        borderRadius: 0,
+        marginTop: "40px",
+        marginBottom: "40px"
     }
 }));    
 

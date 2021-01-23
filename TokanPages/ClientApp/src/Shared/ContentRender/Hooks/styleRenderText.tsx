@@ -2,13 +2,12 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => (
 {
-    container:
+    typography:
     {
-        maxWidth: "700px"
-    },
-    divider:
-    {
-        marginBottom: "30px"
+        fontSize: 19,
+        textAlign: "left",
+        color: "#616161",
+        lineHeight: 2.2
     }
 }));    
 

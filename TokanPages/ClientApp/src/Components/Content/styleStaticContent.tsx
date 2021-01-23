@@ -9,12 +9,6 @@ const useStyles = makeStyles(() => (
     divider:
     {
         marginBottom: "30px"
-    },
-    typography:
-    {
-        textAlign: "justify",
-        color: "#616161",
-        lineHeight: 2.0
     }
 }));
 

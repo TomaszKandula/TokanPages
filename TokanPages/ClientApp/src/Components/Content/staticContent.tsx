@@ -21,7 +21,6 @@ export default function StaticContent(props: IStoryContent)
 
     const classes = useStyles();
     const [ data, setData ] = React.useState<ITextObject>({ items: [] });
-
     const fetchData = React.useCallback( async () => 
     {
         const response = await axios.get<ITextObject>(props.dataUrl, {method: "get", responseType: "json"});
@@ -41,7 +40,7 @@ export default function StaticContent(props: IStoryContent)
                     <Divider className={classes.divider} />
                     {Validate.isEmpty(data) 
                         ? <CenteredCircularLoader /> 
-                        : <div className={classes.typography}>{RenderContent(data, classes.typography)}</div>}
+                        : <RenderContent items={data.items}/>}
                 </Box>
             </Container>
         </section>
