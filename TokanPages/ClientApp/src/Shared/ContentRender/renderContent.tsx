@@ -5,7 +5,7 @@ import { RenderImage } from "./Renderers/renderImage";
 import { RenderCode } from "./Renderers/renderCode";
 import { Languages } from "../../Shared/languageList";
 
-export function RenderContent(jsonObject: ITextObject | undefined)
+export function RenderContent(jsonObject: ITextObject | undefined, textStyleName: string)
 {
 
     if (jsonObject === undefined)
@@ -16,7 +16,7 @@ export function RenderContent(jsonObject: ITextObject | undefined)
     let renderBuffer: JSX.Element[] = [];
     jsonObject.items.forEach(item => 
     {
-        if (item.type === "html") renderBuffer.push(RenderText(item));
+        if (item.type === "html") renderBuffer.push(RenderText(item, textStyleName));
         if (item.type === "image") renderBuffer.push(RenderImage(item));
         if (Languages.includes(item.type)) renderBuffer.push(RenderCode(item)); 
     });
