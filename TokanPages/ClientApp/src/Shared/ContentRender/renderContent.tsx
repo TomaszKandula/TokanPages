@@ -3,9 +3,10 @@ import { ITextObject } from "./Model/textModel";
 import { RenderText } from "./Renderers/renderText";
 import { RenderImage } from "./Renderers/renderImage";
 import { RenderCode } from "./Renderers/renderCode";
+import { RenderSeparator } from "./Renderers/renderSeparator";
 import { Languages } from "../../Shared/languageList";
 
-export function RenderContent(jsonObject: ITextObject | undefined, textStyleName: string)
+export function RenderContent(jsonObject: ITextObject | undefined)
 {
 
     if (jsonObject === undefined)
@@ -16,9 +17,10 @@ export function RenderContent(jsonObject: ITextObject | undefined, textStyleName
     let renderBuffer: JSX.Element[] = [];
     jsonObject.items.forEach(item => 
     {
-        if (item.type === "html") renderBuffer.push(RenderText(item, textStyleName));
-        if (item.type === "image") renderBuffer.push(RenderImage(item));
-        if (Languages.includes(item.type)) renderBuffer.push(RenderCode(item)); 
+        if (item.type === "separator") renderBuffer.push(<RenderSeparator key={item.id} />);
+        if (item.type === "html") renderBuffer.push(<RenderText key={item.id} id={item.id} type={item.type} value={item.value} />);
+        if (item.type === "image") renderBuffer.push(<RenderImage key={item.id} id={item.id} type={item.type} value={item.value} />);
+        if (Languages.includes(item.type)) renderBuffer.push(<RenderCode key={item.id} id={item.id} type={item.type} value={item.value} />); 
     });
 
     return(
