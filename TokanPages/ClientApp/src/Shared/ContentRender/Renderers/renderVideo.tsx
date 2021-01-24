@@ -14,16 +14,23 @@ export function RenderVideo(props: ITextItem)
         setImageState(false);
     }
 
+    const renderDescription = () => 
+    {
+        return(
+            <CardContent>
+                <Typography component="p" variant="body2" className={classes.text}>
+                    {props.text}
+               </Typography>
+           </CardContent>
+       );
+    }
+
     return(
         <Card elevation={3} classes={{ root: classes.card }}>
             {ImageState 
                 ? <CardMedia component="img" image={props.prop} onClick={imageClick} className={classes.image} /> 
                 : <CardMedia component="video" src={props.value} controls autoPlay />}
-             <CardContent>
-                 <Typography component="p" variant="body2" className={classes.text}>
-                     {Validate.isEmpty(props.text) ? null : props.text}
-                </Typography>
-            </CardContent>
+            {Validate.isEmpty(props.text) ? null : renderDescription()}
        </Card>
     );
 
