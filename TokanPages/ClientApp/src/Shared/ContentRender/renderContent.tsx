@@ -18,11 +18,50 @@ export function RenderContent(jsonObject: ITextObject | undefined)
     let renderBuffer: JSX.Element[] = [];
     jsonObject.items.forEach(item => 
     {
-        if (item.type === "separator") renderBuffer.push(<RenderSeparator key={item.id} />);
-        if (item.type === "html") renderBuffer.push(<RenderText key={item.id} id={item.id} type={item.type} value={item.value} prop={item.prop} />);
-        if (item.type === "image") renderBuffer.push(<RenderImage key={item.id} id={item.id} type={item.type} value={item.value} prop={item.prop} />);
-        if (item.type === "video") renderBuffer.push(<RenderVideo key={item.id} id={item.id} type={item.type} value={item.value} prop={item.prop} />);
-        if (Languages.includes(item.type)) renderBuffer.push(<RenderCode key={item.id} id={item.id} type={item.type} value={item.value} prop={item.prop} />); 
+        if (item.type === "separator") renderBuffer.push(
+            <RenderSeparator 
+                key={item.id} 
+            />);
+
+        if (item.type === "html") renderBuffer.push(
+            <RenderText 
+                key={item.id} 
+                id={item.id} 
+                type={item.type} 
+                value={item.value} 
+                prop={item.prop} 
+                text={item.text} 
+            />);
+
+        if (item.type === "image") renderBuffer.push(
+            <RenderImage 
+                key={item.id} 
+                id={item.id} 
+                type={item.type} 
+                value={item.value} 
+                prop={item.prop} 
+                text={item.text} 
+            />);
+
+        if (item.type === "video") renderBuffer.push(
+            <RenderVideo 
+                key={item.id} 
+                id={item.id} 
+                type={item.type} 
+                value={item.value} 
+                prop={item.prop} 
+                text={item.text} 
+            />);
+
+        if (Languages.includes(item.type)) renderBuffer.push(
+            <RenderCode 
+                key={item.id} 
+                id={item.id} 
+                type={item.type} 
+                value={item.value} 
+                prop={item.prop} 
+                text={item.text} 
+            />); 
     });
 
     return(

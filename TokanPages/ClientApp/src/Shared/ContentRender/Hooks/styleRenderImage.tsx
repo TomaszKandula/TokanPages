@@ -7,7 +7,16 @@ const useStyles = makeStyles(() => (
         borderRadius: 0,
         marginTop: "40px",
         marginBottom: "40px"
+    },
+    text:
+    {
+        color: "#9E9E9E",
+        paddingTop: "1px",
+        paddingBottom: "1px",
+        paddingLeft: "10px",
+        paddingRight: "10px",
+        lineHeight: 1.8
     }
-}));    
+}));
 
 export default useStyles;
