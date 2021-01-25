@@ -38,5 +38,5 @@ export
 {
     ConvertPropsToFields,
     HtmlRenderLine,
-    HtmlRenderLines
+    HtmlRenderLines,
 }

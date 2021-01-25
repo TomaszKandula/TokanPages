@@ -1,16 +1,16 @@
 import { Action, Reducer } from "redux";
 import { RESET_SELECTION, SELECT_ARTICLE, TKnownActions } from "Redux/Actions/selectArticleActions";
-import { IArticle, initArticle } from "Redux/applicationState";
+import { IArticle, ArticleDefaultValues } from "Redux/applicationState";
 
 const SelectArticleReducer: Reducer<IArticle> = (state: IArticle | undefined, incomingAction: Action): IArticle => 
 {
 
-    if (state === undefined) return initArticle;
+    if (state === undefined) return ArticleDefaultValues;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
-        case RESET_SELECTION: return initArticle;
+        case RESET_SELECTION: return ArticleDefaultValues;
         case SELECT_ARTICLE: return {  
             id: action.payload.id,
             title: action.payload.title,

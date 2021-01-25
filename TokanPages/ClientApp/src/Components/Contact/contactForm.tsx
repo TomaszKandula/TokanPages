@@ -8,27 +8,40 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
-import axios from "axios";
-import useStyles from "./styleContactForm";
-import AlertDialog from "../../Shared/Modals/alertDialog";
 import Validate from "validate.js";
-import { ConvertPropsToFields, HtmlRenderLines } from "../../Shared/helpers";
+import useStyles from "./styleContactForm";
 import { ValidateContactForm } from "../../Shared/validate";
-import {  API_COMMAND_SEND_MESSAGE, MESSAGE_OUT_SUCCESS, MESSAGE_OUT_ERROR, MESSAGE_OUT_WARN } from "../../Shared/constants";
+import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
+import { GetMessageOutWarning } from "../../Shared/Modals/messageHelper";
+import { SendMessage } from "../../Api/Services/mailer";
 
 export default function ContactForm()
 {
 
     const classes = useStyles();
+    const formDefaultValues =
+    {
+        firstName: "", 
+        lastName: "", 
+        email: "", 
+        subject: "", 
+        message: "", 
+        terms: false
+    };
     const content = 
     {
         caption: "Contact me",
         text: "If you have any questions or you believe that I can do some work for you in technologies I currently work with, send me a message."
     };
 
-    const [Form, setForm] = React.useState({ firstName: "", lastName: "", email: "", subject: "", message: "", terms: false });   
-    const [Modal, setModal] = React.useState({ State: false, Titile:  "", Message: "", Icon: 0 });
+    const [Form, setForm] = React.useState(formDefaultValues);   
+    const [Modal, setModal] = React.useState(modalDefaultValues);
     const [Progress, setProgress] = React.useState(false);
+
+    const ModalHandler = () => 
+    {
+        setModal(modalDefaultValues);
+    }
 
     const FormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
@@ -36,9 +49,9 @@ export default function ContactForm()
             else { setForm({ ...Form, [event.currentTarget.name]: event.currentTarget.checked}); }
     }
 
-    const ButtonHandler = () => 
+    const ButtonHandler = async () => 
     {
-        let Results = ValidateContactForm( 
+        let validationResult = ValidateContactForm( 
         { 
             FirstName: Form.firstName,
             LastName:  Form.lastName, 
@@ -48,52 +61,22 @@ export default function ContactForm()
             Terms:     Form.terms 
         });
 
-        if (!Validate.isDefined(Results))
+        if (!Validate.isDefined(validationResult))
         {
-            setProgress(true);
 
-            axios.post(API_COMMAND_SEND_MESSAGE, 
+            setProgress(true);
+            setModal(await SendMessage(
             {
                 firstName: Form.firstName,
-                lastName:  Form.lastName,
+                lastName: Form.lastName,
                 userEmail: Form.email,
                 emailFrom: Form.email,
-                emailTos:  [Form.email],
-                subject:   Form.subject,
-                message:   Form.message
-            })
-            .then(function (response) 
-            {
-                if (response.status === 200) 
-                {
-                    setModal(
-                    { 
-                        ...Modal, 
-                        State: true, 
-                        Titile: "Contact Form", 
-                        Message: MESSAGE_OUT_SUCCESS, 
-                        Icon: 0 
-                    });
-                }
-            })
-            .catch(function (error) 
-            {
-                console.error(error);
-                setModal(
-                { 
-                    ...Modal, 
-                    State: true, 
-                    Titile: "Contact Form | Error", 
-                    Message: MESSAGE_OUT_ERROR.replace("{ERROR}", error.response.data.ErrorMessage), 
-                    Icon: 2 
-                });
-            })
-            .then(function () 
-            {
-                setProgress(false);
-                setForm({ firstName: "", lastName: "", email: "", subject: "", message: "", terms: false });
-            });  
-
+                emailTos: [Form.email],
+                subject: Form.subject,
+                message: Form.message
+            }));
+            setProgress(false);
+            setForm(formDefaultValues);
             return true;
         }
 
@@ -102,16 +85,11 @@ export default function ContactForm()
             ...Modal, 
             State: true, 
             Titile: "Warning", 
-            Message: MESSAGE_OUT_WARN.replace("{LIST}", HtmlRenderLines(ConvertPropsToFields(Results), "li")), 
+            Message: GetMessageOutWarning(validationResult), 
             Icon: 1 
         });
 
         return false;
-    }
-
-    const ModalHandler = () => 
-    {
-        setModal({ ...Modal, State: false });
     }
 
     return (

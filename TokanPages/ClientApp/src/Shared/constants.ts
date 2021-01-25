@@ -45,9 +45,11 @@ export const POLICY_URL = `${APP_STORAGE}/content/policy.json`;
 /* MESSAGE TEMPLATES */
 
 export const MESSAGE_OUT_SUCCESS  = `<p>Congratulations!</p><p>The message has been sent successfully, we will try to respond as soon as possible.</p>`;
-export const MESSAGE_OUT_WARN     = `<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To send an email all fields must be filled along with acceptance of Terms of Use and Privacy Policy.</span>`;
+export const MESSAGE_OUT_WARNING  = `<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To send an email all fields must be filled along with acceptance of Terms of Use and Privacy Policy.</span>`;
 export const MESSAGE_OUT_ERROR    = `<p>Ouch!</p><p>The message could not be sent.</p><p>{ERROR}.</p>`;
 export const NEWSLETTER_SUCCESS   = `<p>Congratulations!</p><p>You have been added to the newsletter.</p>`;
-export const NEWSLETTER_WARN      = `<span>The newsletter could not be setup, following warning(s) received:</span><ul>{LIST}</ul><span>Please make sure the email is valid and you have access to it.</span>`;
+export const NEWSLETTER_WARNING   = `<span>The newsletter could not be setup, following warning(s) received:</span><ul>{LIST}</ul><span>Please make sure the email is valid and you have access to it.</span>`;
 export const NEWSLETTER_ERROR     = `<p>Ouch!</p><p>The newsletter could not be setup.</p><p>{ERROR}.</p>`;
 export const SUBSCRIBER_DEL_ERROR = `<p>We could not remove your email from our newsletter list.</p><p{ERROR}.</p><p>Please contact us to resolve the issue.</p>`;
+export const UNEXPECTED_STATUS    = `Received unexpected status code: {STATUS_CODE}. Please contact IT Support`;
+export const UNEXPECTED_ERROR     = `Unexpected error`;
