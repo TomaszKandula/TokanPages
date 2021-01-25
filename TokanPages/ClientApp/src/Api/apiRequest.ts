@@ -1,5 +1,5 @@
 import axios, { Method } from "axios";
-import { UNEXPECTED_ERROR, UNEXPECTED_STATUS } from "../Shared/constants";
+import { UNEXPECTED_ERROR } from "../Shared/constants";
 import { GetUnexpectedStatusCode } from "../Shared/Modals/messageHelper";
 import { IError } from "./Models";
 
@@ -24,7 +24,7 @@ export default async function ApiRequest(request: IRequest): Promise<IResult>
         isSucceeded: false, 
         error: 
         { 
-            ErrorCode: nameof(UNEXPECTED_ERROR), 
+            ErrorCode: "UNEXPECTED_ERROR", 
             ErrorMessage: UNEXPECTED_ERROR, 
             ValidationErrors: [] 
         } 
@@ -58,7 +58,7 @@ export default async function ApiRequest(request: IRequest): Promise<IResult>
                 isSucceeded: false, 
                 error:  
                 {
-                    ErrorCode: nameof(UNEXPECTED_STATUS), 
+                    ErrorCode: "UNEXPECTED_STATUS", 
                     ErrorMessage: GetUnexpectedStatusCode(response.status), 
                     ValidationErrors: [] 
                 }
