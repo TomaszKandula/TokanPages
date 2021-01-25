@@ -32,7 +32,7 @@ export interface AppThunkAction<TAction>
     (dispatch: (action: TAction) => void, getState: () => ApplicationState): void;
 }
 
-export const initArticle = 
+export const ArticleDefaultValues: IArticle = 
 {
     id: "",
     title: "",
@@ -44,31 +44,31 @@ export const initArticle =
     updatedAt: ""
 };
 
-export const initArticles = 
+export const ArticlesDefaultValues: IArticles = 
 {
     articles: [],
     isLoading: false
 };
 
-export const initialState = 
+export const DefaultAppState = 
 {
 
     selectArticle:
     {
-        id: initArticle.id,
-        title: initArticle.title,
-        description: initArticle.description,
-        isPublished: initArticle.isPublished,
-        likes: initArticle.likes,
-        readCount: initArticle.readCount,
-        createdAt: initArticle.createdAt,
-        updatedAt: initArticle.updatedAt
+        id: ArticleDefaultValues.id,
+        title: ArticleDefaultValues.title,
+        description: ArticleDefaultValues.description,
+        isPublished: ArticleDefaultValues.isPublished,
+        likes: ArticleDefaultValues.likes,
+        readCount: ArticleDefaultValues.readCount,
+        createdAt: ArticleDefaultValues.createdAt,
+        updatedAt: ArticleDefaultValues.updatedAt
     },
 
     listArticles:
     {
-        articles:  initArticles.articles,
-        isLoading: initArticles.isLoading
+        articles:  ArticlesDefaultValues.articles,
+        isLoading: ArticlesDefaultValues.isLoading
     }
 
 };

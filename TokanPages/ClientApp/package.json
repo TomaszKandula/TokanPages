@@ -48,6 +48,7 @@
     "@types/react-router-dom": "^5.1.6",
     "@types/react-syntax-highlighter": "^13.5.0",
     "@types/reactstrap": "8.7.1",
+    "@types/ts-nameof": "^4.2.1",
     "@typescript-eslint/parser": "^2.5.0",
     "cross-env": "6.0.3",
     "enzyme": "^3.11.0",

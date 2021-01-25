@@ -11,13 +11,29 @@ import ErrorIcon from '@material-ui/icons/Error';
 import useStyles from "./Hooks/styleAlertDialog";
 import { Divider, Typography } from "@material-ui/core";
 
-interface IAlertDialog
+export interface IAlertDialog
 {
-    State:   boolean,
-    Handle:  any,
-    Title:   string,
+    State: boolean,
+    Handle: any,
+    Title: string,
     Message: string,
-    Icon:    number
+    Icon: number
+}
+
+export interface IAlertModal
+{
+    State: boolean;
+    Titile: string; 
+    Message: string; 
+    Icon: number;
+}
+
+export const modalDefaultValues: IAlertModal = 
+{
+    State: false, 
+    Titile:  "", 
+    Message: "", 
+    Icon: 0
 }
 
 export default function AlertDialog(props: IAlertDialog) 

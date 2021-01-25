@@ -88,7 +88,7 @@ function ValidateContactForm(props: IValidateInputs): any
         }
     };
 
-    let Results = Validate(
+    const results = Validate(
     {
         FirstName: props.FirstName,
         LastName:  props.LastName,
@@ -99,7 +99,7 @@ function ValidateContactForm(props: IValidateInputs): any
     }, 
     Constraints);
 
-    return Results;
+    return results;
 
 }
 
