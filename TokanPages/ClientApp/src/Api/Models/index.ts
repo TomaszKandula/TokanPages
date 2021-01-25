@@ -13,3 +13,5 @@ export type { IRemoveSubscriberDto } from "./Subscribers/removeSubscriberDto";
 export type { IAddUserDto } from "./Users/addUserDto";
 export type { IUpdateUserDto } from "./Users/updateUserDto";
 export type { IRemoveUserDto } from "./Users/removeUserDto";
+
+export type { IError } from "./Error/error";

@@ -1,7 +1,7 @@
 import axios, { Method } from "axios";
 import { UNEXPECTED_ERROR, UNEXPECTED_STATUS } from "../Shared/constants";
 import { GetUnexpectedStatusCode } from "../Shared/Modals/messageHelper";
-import { IError } from "./Models/Error/error";
+import { IError } from "./Models";
 
 export interface IRequest
 {
