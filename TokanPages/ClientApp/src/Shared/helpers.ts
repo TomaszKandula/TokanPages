@@ -2,14 +2,12 @@ import Validate from "validate.js";
 
 const ConvertPropsToFields = (InputObject: any) =>
 {
-
     let resultArray: any[] = [];
 
     for (let Property in InputObject) 
         resultArray = resultArray.concat(InputObject[Property]); 
     
     return resultArray;
-
 }
 
 const HtmlRenderLine = (Tag: string, Text: string | undefined) => 
@@ -19,7 +17,6 @@ const HtmlRenderLine = (Tag: string, Text: string | undefined) =>
 
 const HtmlRenderLines = (InputArray: any[], Tag: string) =>
 {
-
     let result: string = "";
     let htmlLine: string = "";
 
@@ -31,7 +28,6 @@ const HtmlRenderLines = (InputArray: any[], Tag: string) =>
     }
 
     return result;
-
 }
 
 export 

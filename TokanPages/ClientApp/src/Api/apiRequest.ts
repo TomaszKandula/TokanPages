@@ -18,7 +18,6 @@ export interface IResult
 
 export default async function ApiRequest(request: IRequest): Promise<IResult>
 {
-   
     let results: IResult = 
     { 
         isSucceeded: false, 
@@ -81,5 +80,4 @@ export default async function ApiRequest(request: IRequest): Promise<IResult>
     });
     
     return results;
-
 }

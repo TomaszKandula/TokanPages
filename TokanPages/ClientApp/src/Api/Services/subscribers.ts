@@ -1,12 +1,15 @@
 import ApiRequest from "../../Api/apiRequest";
 import { IAlertModal } from "../../Shared/Modals/alertDialog";
-import { IAddSubscriberDto, IUpdateSubscriberDto } from "../../Api/Models";
-import { API_COMMAND_ADD_SUBSCRIBER, API_COMMAND_UPDATE_SUBSCRIBER } from "../../Shared/constants";
+import { IAddSubscriberDto, IUpdateSubscriberDto, IRemoveSubscriberDto } from "../../Api/Models";
 import { GetNewsletterError, GetNewsletterSuccess } from "../../Shared/Modals/messageHelper";
+import { 
+    API_COMMAND_ADD_SUBSCRIBER, 
+    API_COMMAND_REMOVE_SUBSCRIBER, 
+    API_COMMAND_UPDATE_SUBSCRIBER 
+} from "../../Shared/constants";
 
-export async function AddSubscriber(PayLoad: IAddSubscriberDto): Promise<IAlertModal>
+export const AddNewSubscriber = async (PayLoad: IAddSubscriberDto): Promise<IAlertModal> =>
 {
-
     const apiRequest = ApiRequest(
     { 
         method: "POST", 
@@ -37,12 +40,10 @@ export async function AddSubscriber(PayLoad: IAddSubscriberDto): Promise<IAlertM
             Icon: 2 
         };
     }
-
 }
 
-export async function UpdateSubscriberData(PayLoad: IUpdateSubscriberDto): Promise<IAlertModal>
+export const UpdateSubscriberData = async (PayLoad: IUpdateSubscriberDto): Promise<IAlertModal> =>
 {
-
     const apiRequest = ApiRequest(
     { 
         method: "POST", 
@@ -76,5 +77,38 @@ export async function UpdateSubscriberData(PayLoad: IUpdateSubscriberDto): Promi
             Icon: 2 
         };
     }
+}
 
+export const RemoveSubscriberData = async (PayLoad: IRemoveSubscriberDto): Promise<IAlertModal> =>
+{
+    const apiRequest = ApiRequest(
+    { 
+        method: "POST", 
+        url: API_COMMAND_REMOVE_SUBSCRIBER, 
+        data: 
+        { 
+            id: PayLoad.id
+        } 
+    });
+
+    const results = await apiRequest;
+
+    if (results.isSucceeded)
+    {
+        return { 
+            State: true, 
+            Titile: "Unsubscribe", 
+            Message: GetNewsletterSuccess(), 
+            Icon: 0 
+        };
+    }
+    else
+    {
+        return { 
+            State: true, 
+            Titile: "Unsubscribe | Error", 
+            Message: GetNewsletterError(results.error.ErrorMessage), 
+            Icon: 2 
+        };
+    }
 }

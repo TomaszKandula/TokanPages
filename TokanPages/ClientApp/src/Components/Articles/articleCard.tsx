@@ -8,37 +8,35 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import useStyles from "./Hooks/styleArticleCard";
-import { ActionCreators } from "Redux/Actions/selectArticleActions";
+import { ActionCreators } from "../../Redux/Actions/selectArticleActions";
+import { ARTICLE_PATH, IMAGE_URL } from "../../Shared/constants";
 
-interface IArticle
+export interface IArticleCard
 {
     title: string;
     description: string;
-    uid: string;
+    id: string;
 }
 
-export default function ArticleCard(props: IArticle)
+export default function ArticleCard(props: IArticleCard)
 {
-
     const classes = useStyles();
     const content = 
     {
-        button: "Read",
-        articleUrl: "/articles/?id={UID}",
-        imageUrl: "https://maindbstorage.blob.core.windows.net/tokanpages/content/articles/{UID}/image.jpg"
+        button: "Read"
     };
 
-    const articleUrl = content.articleUrl.replace("{UID}", props.uid);
-    const imageUrl = content.imageUrl.replace("{UID}", props.uid);
+    const articleUrl = ARTICLE_PATH.replace("{ID}", props.id);
+    const imageUrl = IMAGE_URL.replace("{ID}", props.id);
 
     const dispatch = useDispatch();
     const history = useHistory();
 
     const onClickEvent = () => 
     {
-        dispatch(ActionCreators.selectArticle(props.uid));
+        dispatch(ActionCreators.selectArticle(props.id));
         history.push(articleUrl);        
-    }
+    };
 
     return(
         <div data-aos="fade-up">
@@ -64,5 +62,4 @@ export default function ArticleCard(props: IArticle)
             </Card>
         </div>
     );
-
 }

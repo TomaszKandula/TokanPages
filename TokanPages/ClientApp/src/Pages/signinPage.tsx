@@ -5,10 +5,9 @@ import SigninForm from "../Components/Account/signinForm";
 import Footer from "../Components/Layout/footer";
 
 export default function storyPage() 
-{
-  
-    return (    
-        <>     
+{  
+    return (
+        <>
             <Navigation content={null} />
             <Container>
                 <SigninForm />
@@ -16,5 +15,4 @@ export default function storyPage()
             <Footer backgroundColor="#FAFAFA" />
         </>
     );
-
 }

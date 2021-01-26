@@ -2,7 +2,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => (
 {
-
     gridMargin:
     {
         marginTop: "65px"
@@ -60,7 +59,6 @@ const useStyles = makeStyles((theme) => (
         height: 400,
         maxWidth: "100%"
     }
-}
-));
+}));
 
 export default useStyles;

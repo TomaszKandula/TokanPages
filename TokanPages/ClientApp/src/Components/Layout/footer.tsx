@@ -8,20 +8,39 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import useStyles from "./Hooks/styleFooter";
 
-export default function Footer(props: { backgroundColor?: string }) 
+export interface IFooter
 {
-  
+    backgroundColor?: string
+}
+
+export default function Footer(props: IFooter) 
+{
     const classes = useStyles();
     const content = 
     {
         terms: "Terms of use",
         policy: "Privacy policy",
-        copyright: "© 2020 Tomasz Kandula",
+        copyright: "© 2020 - 2021 Tomasz Kandula",
         reserved: "All rights reserved"
     };
 
-    const SetTermsLink = () => { return (<Link to="/terms" className={classes.links}>{content.terms}</Link>); }
-    const SetPolicyLink = () => { return (<Link to="/policy" className={classes.links}>{content.policy}</Link>); }
+    const SetTermsLink = () => 
+    { 
+        return (
+            <Link to="/terms" className={classes.links}>
+                {content.terms}
+            </Link>
+        ); 
+    };
+
+    const SetPolicyLink = () => 
+    { 
+        return (
+            <Link to="/policy" className={classes.links}>
+                {content.policy}
+                </Link>
+        );
+    };
 
     return (
         <footer className={classes.root} style={{ backgroundColor: props.backgroundColor }} >
@@ -44,5 +63,4 @@ export default function Footer(props: { backgroundColor?: string })
             </Container>
         </footer>
     );
-
 }

@@ -10,20 +10,19 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Validate from "validate.js";
-import AlertDialog, { modalDefaultValues } from "Shared/Modals/alertDialog";
+import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import useStyles from "./styleUpdateSubscription";
 import { UpdateSubscriberData } from "../../Api/Services/subscribers";
 import { ValidateEmail } from "../../Shared/validate";
 import { GetNewsletterWarning } from "../../Shared/Modals/messageHelper";
 
-interface IUpdateSubscription
+export interface IUpdateSubscription
 {
-    uid: string | null;
+    id: string | null;
 }
 
 export default function UpdateSubscriber(props: IUpdateSubscription)
 {
-
     const classes = useStyles();
     const content = 
     {
@@ -43,16 +42,16 @@ export default function UpdateSubscriber(props: IUpdateSubscription)
     const FormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
         setForm({ ...Form, [event.currentTarget.name]: event.currentTarget.value });
-    }
+    };
 
     const ModalHandler = () => 
     { 
         setModal(modalDefaultValues); 
-    }
+    };
 
     const ButtonHandler = async () =>
     {
-        if (props.uid == null)
+        if (props.id == null)
         {
             return false;
         }
@@ -66,7 +65,7 @@ export default function UpdateSubscriber(props: IUpdateSubscription)
 
             setModal(await UpdateSubscriberData(
             { 
-                id: props.uid, 
+                id: props.id, 
                 email: Form.email, 
                 isActivated: true, 
                 count: 0 
@@ -88,7 +87,7 @@ export default function UpdateSubscriber(props: IUpdateSubscription)
         });
 
         return false;
-    }
+    };
 
     return (
         <section>
@@ -122,5 +121,4 @@ export default function UpdateSubscriber(props: IUpdateSubscription)
             </Container>
         </section>
     );
-
 }

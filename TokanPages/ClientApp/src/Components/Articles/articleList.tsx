@@ -5,20 +5,28 @@ import { Box, Divider, Grid, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
 import useStyles from "./Hooks/styleArticleList";
-import { IArticle, IArticles, IListArticles } from "Redux/applicationState";
-import { ActionCreators } from "Redux/Actions/listArticlesActions";
+import { IArticle, IArticles, IListArticles } from "../../Redux/applicationState";
+import { ActionCreators } from "../../Redux/Actions/listArticlesActions";
 import ArticleCard from "./articleCard";
-import CenteredCircularLoader from "Shared/ProgressBar/centeredCircularLoader";
+import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoader";
 
 export default function ArticleList() 
 {
-
     const classes = useStyles();
     const data = useSelector((state: IListArticles) => state.listArticles);
 
     const dispatch = useDispatch();
-    const fetchData = React.useCallback(() => { dispatch(ActionCreators.requestArticles()); }, [dispatch]);
-    React.useEffect( () => { fetchData() }, [ fetchData ] );
+    const fetchData = React.useCallback(() => 
+    { 
+        dispatch(ActionCreators.requestArticles()); 
+    }, 
+    [dispatch]);
+    
+    React.useEffect(() => 
+    { 
+        fetchData() 
+    }, 
+    [ fetchData ]);
 
     const renderContent = (data: IArticles) =>
     {
@@ -28,7 +36,7 @@ export default function ArticleList()
                     <ArticleCard 
                         title={item.title}
                         description={item.description}
-                        uid={item.id}
+                        id={item.id}
                         key={item.id}
                     />
                 ))}
@@ -48,7 +56,9 @@ export default function ArticleList()
                     <Divider className={classes.divider} />
                     <Grid container justify="center">
                         <Grid item xs={12} sm={12}>
-                            {data.isLoading ? <CenteredCircularLoader /> : renderContent(data)}
+                            {data.isLoading 
+                                ? <CenteredCircularLoader /> 
+                                : renderContent(data)}
                         </Grid>
                     </Grid>
                 </Box>

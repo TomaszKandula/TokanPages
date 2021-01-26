@@ -38,7 +38,6 @@ export const modalDefaultValues: IAlertModal =
 
 export default function AlertDialog(props: IAlertDialog) 
 {
-
     const classes = useStyles();
     const RenderIcon = () => 
     {
@@ -73,5 +72,4 @@ export default function AlertDialog(props: IAlertDialog)
             </DialogActions>
         </Dialog>
     );
-
 }

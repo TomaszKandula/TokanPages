@@ -52,7 +52,6 @@ export const ArticlesDefaultValues: IArticles =
 
 export const DefaultAppState = 
 {
-
     selectArticle:
     {
         id: ArticleDefaultValues.id,
@@ -70,5 +69,4 @@ export const DefaultAppState =
         articles:  ArticlesDefaultValues.articles,
         isLoading: ArticlesDefaultValues.isLoading
     }
-
 };

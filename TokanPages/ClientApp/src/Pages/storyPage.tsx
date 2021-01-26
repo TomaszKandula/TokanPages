@@ -6,10 +6,9 @@ import Footer from "../Components/Layout/footer";
 import * as Consts from "../Shared/constants";
 
 export default function StoryPage() 
-{
-  
-    return (    
-        <>     
+{ 
+    return (
+        <>
             <Navigation content={null} />
             <Container>
                 <StaticContent dataUrl={Consts.STORY_URL} />
@@ -17,5 +16,4 @@ export default function StoryPage()
             <Footer backgroundColor="#FAFAFA" />
         </>
     );
-
 }

@@ -2,7 +2,6 @@ import * as helpers from "../helpers";
 
 describe("Verify helper methods.", () => 
 {
-
     test("Should convert object props to an array of fields values.", () => 
     {
     
@@ -48,5 +47,4 @@ describe("Verify helper methods.", () =>
         expect(helpers.HtmlRenderLines(TestArray, TestTag)).toBe(Expectation);
     
     });
-
 });

@@ -6,9 +6,8 @@ import Footer from "../Components/Layout/footer";
 
 export default function storyPage() 
 {
-  
-    return (    
-        <>     
+    return (
+        <>
             <Navigation content={null} />
             <Container>
                 <SignupForm />
@@ -16,5 +15,4 @@ export default function storyPage()
             <Footer backgroundColor="#FAFAFA" />
         </>
     );
-
 }

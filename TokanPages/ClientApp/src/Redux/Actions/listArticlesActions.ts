@@ -1,6 +1,6 @@
-import { AppThunkAction, IArticle } from "Redux/applicationState";
-import { API_QUERY_GET_ARTICLES } from "Shared/constants";
 import axios from "axios";
+import { AppThunkAction, IArticle } from "../../Redux/applicationState";
+import { API_QUERY_GET_ARTICLES } from "../../Shared/constants";
 
 export const REQUEST_ARTICLES = "REQUEST_ARTICLES";
 export const RECEIVE_ARTICLES = "RECEIVE_ARTICLES";
@@ -12,13 +12,15 @@ export type TKnownActions = IRequestArticlesAction | IReceiveArticlesAction;
 
 export const ActionCreators = 
 {
-
     requestArticles: (): AppThunkAction<TKnownActions> => (dispatch) =>
     {
-
         dispatch({ type: REQUEST_ARTICLES });
 
-        axios.get(API_QUERY_GET_ARTICLES, {method: "get", responseType: "json"})
+        axios.get(API_QUERY_GET_ARTICLES, 
+        {
+            method: "GET", 
+            responseType: "json"
+        })
         .then(function (response)
         {              
             if (response.status >= 200 && response.status <= 299)
@@ -35,7 +37,5 @@ export const ActionCreators =
             console.error(error);
             console.error(error.response.data.ErrorMessage);
         });
-
     }
-
 };

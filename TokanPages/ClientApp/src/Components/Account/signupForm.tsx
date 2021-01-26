@@ -14,7 +14,6 @@ import useStyles from "./Hooks/styleSignupForm";
 
 export default function SignupForm() 
 {
-
     const classes = useStyles();
     const content = 
     {
@@ -70,5 +69,4 @@ export default function SignupForm()
             </Container>
         </section>  
     );
-
 }

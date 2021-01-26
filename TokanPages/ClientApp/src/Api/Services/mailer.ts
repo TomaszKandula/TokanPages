@@ -4,9 +4,8 @@ import { ISendMessageDto } from "../../Api/Models";
 import { API_COMMAND_SEND_MESSAGE } from "../../Shared/constants";
 import { GetMessageOutError, GetMessageOutSuccess } from "../../Shared/Modals/messageHelper";
 
-export async function SendMessage(PayLoad: ISendMessageDto): Promise<IAlertModal>
+export const SendMessage = async (PayLoad: ISendMessageDto): Promise<IAlertModal> =>
 {
-
     const apiRequest = ApiRequest(
     { 
         method: "POST", 
@@ -43,5 +42,4 @@ export async function SendMessage(PayLoad: ISendMessageDto): Promise<IAlertModal
             Icon: 2 
         };
     }
-
 }

@@ -13,11 +13,10 @@ const useQuery = () =>
 
 export default function ArticlesPage() 
 {
+    const queryParam = useQuery();
+    const id = queryParam.get("id");
 
-    let queryParam = useQuery();
-    let id = queryParam.get("id");
-
-    const content = id ? <ArticleDetail uid={id} /> : <ArticleList />;
+    const content = id ? <ArticleDetail id={id} /> : <ArticleList />;
 
     return (
         <>
@@ -28,5 +27,4 @@ export default function ArticlesPage()
             <Footer backgroundColor="#FAFAFA" />
         </>
     );
-
 }

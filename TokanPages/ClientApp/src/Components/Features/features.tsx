@@ -10,22 +10,21 @@ import CloudIcon from "@material-ui/icons/Cloud";
 import ReactHtmlParser from 'react-html-parser';
 import useStyles from "./styleFeatures";
 
-export default function Features() 
+export default function Features()
 {
-
     const classes = useStyles();
     const content = 
     {
         caption: "Technologies",
         header: "I work primarily with",
         title1: "Languages",
-        text1: "Today in my daily job I use <b>C#</b>, <b>JavaScript</b> and <b>TypeScript</b>. In the past I also used: Basic, Assembler, Turbo Pascal, Delphi, VBA.",
+        text1: "Today in my daily job I use <b>C#</b>, <b>JavaScript</b> and <b>TypeScript</b>. In the past I also used: Basic, Assembler, Turbo Pascal for non-commercial projects and Delphi, VBA for commercial projects.",
         title2: "Frameworks/Libraries",
         text2: "Back-End: NET Framework 4.5 (for one project), <b>NET Core</b> (since version 2.0). Front-End libraries: jQuery and <b>React/Redux</b>. CSS Frameworks: Bootstrap, Materialize, Bulma, and <b>Material-UI</b>.",
         title3: "OR/M",
         text3: "I have started with Entity Framework and did just one project, in other projects I use <b>Entity Framework Core</b>. I prefer to use lightweight OR/M like Dapper and use <b>SQL/T-SQL</b> when necessary.",
         title4: "Cloud Services",
-        text4: "I have experience with <b>Azure Cloud Services</b>: App Services (PaaS), Azure Storage, Azure SQL, CosmosDb (NoSQL), WebJobs, Azure Functions (C#), Application Insights."
+        text4: "I have experience with <b>Azure Cloud Services</b>: App Services (PaaS), Azure Storage, Azure SQL, CosmosDb (NoSQL), WebJobs, Azure Functions (C#), Application Insights, Azure Containers with Docker images."
     };
 
     return (
@@ -92,5 +91,4 @@ export default function Features()
             </Container>
         </section>
     );
-
 }

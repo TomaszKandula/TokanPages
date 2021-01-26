@@ -12,7 +12,6 @@ import ArticleFeat from "../Components/Articles/articleFeat";
 
 export default function Index() 
 {
-
     return (
         <>
             <Navigation content={null} />
@@ -27,5 +26,4 @@ export default function Index()
             <Footer backgroundColor="#FAFAFA" />
         </>
     );
-
 }

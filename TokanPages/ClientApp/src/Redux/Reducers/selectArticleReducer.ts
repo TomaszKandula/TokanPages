@@ -1,10 +1,9 @@
 import { Action, Reducer } from "redux";
-import { RESET_SELECTION, SELECT_ARTICLE, TKnownActions } from "Redux/Actions/selectArticleActions";
-import { IArticle, ArticleDefaultValues } from "Redux/applicationState";
+import { RESET_SELECTION, SELECT_ARTICLE, TKnownActions } from "../../Redux/Actions/selectArticleActions";
+import { IArticle, ArticleDefaultValues } from "../../Redux/applicationState";
 
 const SelectArticleReducer: Reducer<IArticle> = (state: IArticle | undefined, incomingAction: Action): IArticle => 
 {
-
     if (state === undefined) return ArticleDefaultValues;
 
     const action = incomingAction as TKnownActions;
@@ -23,7 +22,6 @@ const SelectArticleReducer: Reducer<IArticle> = (state: IArticle | undefined, in
         };
         default: return state;
     }
-
 };
 
 export default SelectArticleReducer;

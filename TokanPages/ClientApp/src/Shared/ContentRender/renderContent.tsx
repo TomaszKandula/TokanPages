@@ -9,7 +9,6 @@ import { Languages } from "../../Shared/languageList";
 
 export function RenderContent(jsonObject: ITextObject | undefined)
 {
-
     if (jsonObject === undefined)
     {
         return(<div>Cannot render content.</div>);
@@ -69,5 +68,4 @@ export function RenderContent(jsonObject: ITextObject | undefined)
             {renderBuffer}
         </div>
     );
-
 }

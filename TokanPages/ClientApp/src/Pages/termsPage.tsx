@@ -7,9 +7,8 @@ import * as Consts from "../Shared/constants";
 
 export default function TermsPage() 
 {
-  
-    return (    
-        <>     
+    return (
+        <>
             <Navigation content={null} />
             <Container>
                 <StaticContent dataUrl={Consts.TERMS_URL} />
@@ -17,5 +16,4 @@ export default function TermsPage()
             <Footer backgroundColor="#FAFAFA" />
         </>
     );
-
 }

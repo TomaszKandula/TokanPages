@@ -6,18 +6,16 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
 import useStyles from "./styledUnsubscribe";
-import AlertDialog from "../../Shared/Modals/alertDialog";
-import { API_COMMAND_REMOVE_SUBSCRIBER, SUBSCRIBER_DEL_ERROR } from "../../Shared/constants";
-import axios from "axios";
+import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
+import { RemoveSubscriberData } from "Api/Services/subscribers";
 
-interface IUnsubscribe
+export interface IUnsubscribe
 {
-    uid: string | null;    
+    id: string | null;    
 }
 
 export default function Unsubscribe(props: IUnsubscribe)
 {
-
     const classes = useStyles();
     const contentPre = 
     {
@@ -36,7 +34,7 @@ export default function Unsubscribe(props: IUnsubscribe)
         button: "Unsubscribe Now"
     };
 
-    const [content, setContent] = React.useState(
+    const [Content, setContent] = React.useState(
     { 
         caption: contentPre.caption,
         text1:   contentPre.text1, 
@@ -46,11 +44,16 @@ export default function Unsubscribe(props: IUnsubscribe)
     });
     const [ButtonState, setButtonState] = React.useState(true);
     const [Progress, setProgress] = React.useState(false);
-    const [Modal, setModal] = React.useState({ State: false, Titile:  "", Message: "", Icon: 0 });
-    const ButtonHandler = () =>
-    {
+    const [Modal, setModal] = React.useState(modalDefaultValues);
 
-        if (props.uid == null)
+    const ModalHandler = () => 
+    { 
+        setModal(modalDefaultValues); 
+    }
+
+    const ButtonHandler = async () =>
+    {
+        if (props.id == null)
         {
             return false;
         }
@@ -58,47 +61,23 @@ export default function Unsubscribe(props: IUnsubscribe)
         setButtonState(false);
         setProgress(true);
 
-        axios.post(API_COMMAND_REMOVE_SUBSCRIBER, 
+        setModal(await RemoveSubscriberData(
         { 
-            id: props.uid
-        })
-        .then(function (response) 
+            id: props.id 
+        }));
+
+        setContent(
         {
-            if (response.status === 200) 
-            {
-                setContent(
-                {
-                    caption: contentPost.caption,
-                    text1:   contentPost.text1, 
-                    text2:   contentPost.text2, 
-                    text3:   contentPost.text3, 
-                    button:  contentPost.button
-                });
-            }
-        })
-        .catch(function (error) 
-        {
-            console.error(error);
-            setButtonState(true);
-            setModal(
-            { 
-                ...Modal, 
-                State: true, 
-                Titile: "Unsubscribe | Error", 
-                Message: SUBSCRIBER_DEL_ERROR.replace("{ERROR}", error.response.data.ErrorMessage),
-                Icon: 2 
-            });
-        })
-        .then(function () 
-        {
-            setProgress(false);
+            caption: contentPost.caption,
+            text1:   contentPost.text1, 
+            text2:   contentPost.text2, 
+            text3:   contentPost.text3, 
+            button:  contentPost.button
         });
 
+        setProgress(false);
         return true;
-
-    }
-
-    const ModalHandler = () => { setModal({ ...Modal, State: false }); }
+    };
 
     return (
         <section className={classes.section}>
@@ -110,27 +89,27 @@ export default function Unsubscribe(props: IUnsubscribe)
                         <Box textAlign="center" mb={3}>
                             <Box mt={2} mb={2}>
                                 <Typography variant="h4" component="h4" gutterBottom={true}>
-                                    {content.caption}
+                                    {Content.caption}
                                 </Typography>
                             </Box>
                             <Box mt={5} mb={2}>
                                 <Typography variant="h6" component="h6" color="textSecondary">
-                                    {content.text1}
+                                    {Content.text1}
                                 </Typography>
                             </Box>
                             <Box mt={5} mb={2}>
                                 <Typography variant="body1" color="textSecondary">
-                                    {content.text2}
+                                    {Content.text2}
                                 </Typography>
                             </Box>
                             <Box mt={5} mb={7}>
                                 <Typography variant="body1" color="textSecondary">
-                                    {content.text3}
+                                    {Content.text3}
                                 </Typography>
                             </Box>
                             <Button onClick={ButtonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={!ButtonState}>
                                 {Progress &&  <CircularProgress size={20} />}
-                                {!Progress && content.button}
+                                {!Progress && Content.button}
                             </Button>
                         </Box>
                         </CardContent>
@@ -139,5 +118,4 @@ export default function Unsubscribe(props: IUnsubscribe)
             </Container>
         </section>
     );
-
 }

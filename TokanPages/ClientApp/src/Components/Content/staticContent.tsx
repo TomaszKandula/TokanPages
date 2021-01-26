@@ -11,22 +11,34 @@ import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoa
 import { RenderContent } from "../../Shared/ContentRender/renderContent";
 import { ITextObject } from "../../Shared/ContentRender/Model/textModel";
 
-interface IStoryContent
+export interface IStoryContent
 {
     dataUrl: string;
 }
 
 export default function StaticContent(props: IStoryContent) 
 {
-
     const classes = useStyles();
     const [ data, setData ] = React.useState<ITextObject>({ items: [] });
-    const fetchData = React.useCallback( async () => 
+
+    const fetchData = React.useCallback(async () => 
     {
-        const response = await axios.get<ITextObject>(props.dataUrl, {method: "get", responseType: "json"});
+        const response = await axios.get<ITextObject>(
+        props.dataUrl, 
+        {
+            method: "GET", 
+            responseType: "json"
+        });
+
         setData(response.data);
-    }, [ props.dataUrl ]);
-    React.useEffect( () => { fetchData() }, [ data.items.length, fetchData ] );
+    }, 
+    [ props.dataUrl ]);
+
+    React.useEffect(() => 
+    { 
+        fetchData() 
+    }, 
+    [ data.items.length, fetchData ]);
 
     return (
         <section>
@@ -45,5 +57,4 @@ export default function StaticContent(props: IStoryContent)
             </Container>
         </section>
     );
-
 }

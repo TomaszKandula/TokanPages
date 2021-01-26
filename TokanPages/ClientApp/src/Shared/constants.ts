@@ -36,11 +36,20 @@ export const API_COMMAND_VERIFY_EMAIL    = `${APP_BACKEND}/api/v${API_VER}/maile
 export const API_COMMAND_SEND_MESSAGE    = `${APP_BACKEND}/api/v${API_VER}/mailer/SendMessage/`;
 export const API_COMMAND_SEND_NEWSLETTER = `${APP_BACKEND}/api/v${API_VER}/mailer/SendNewsletter/`;
 
-/* STATIC CONTENT */
+/* CONTENT */
 
-export const STORY_URL  = `${APP_STORAGE}/content/mystory.json`;
-export const TERMS_URL  = `${APP_STORAGE}/content/terms.json`;
-export const POLICY_URL = `${APP_STORAGE}/content/policy.json`;
+export const STORY_URL   = `${APP_STORAGE}/content/mystory.json`;
+export const TERMS_URL   = `${APP_STORAGE}/content/terms.json`;
+export const POLICY_URL  = `${APP_STORAGE}/content/policy.json`;
+export const ARTICLE_URL = `${APP_STORAGE}/content/articles/{ID}/text.json`;
+export const IMAGE_URL   = `${APP_STORAGE}/content/articles/{ID}/image.jpg`;
+
+/* PATHS */
+
+export const ARTICLE_PATH      = `/articles/?id={ID}`;
+export const IMAGES_PATH       = `${APP_STORAGE}/images/`;
+export const TESTIMONIALS_PATH = `${APP_STORAGE}/images/section_testimonials/`;
+export const ICONS_PATH        = `${APP_STORAGE}/icons/`;
 
 /* MESSAGE TEMPLATES */
 

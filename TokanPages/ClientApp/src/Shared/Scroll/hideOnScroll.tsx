@@ -2,14 +2,13 @@ import * as React from "react";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Slide from "@material-ui/core/Slide";
 
-interface IHideOnScroll 
+export interface IHideOnScroll 
 {
     children: React.ReactElement;
 }
 
 export default function HideOnScroll(props: IHideOnScroll) 
 {
-
     const { children } = props;
     const trigger = useScrollTrigger();
  
@@ -18,5 +17,4 @@ export default function HideOnScroll(props: IHideOnScroll)
             {children}
         </Slide>
     );
-
 }

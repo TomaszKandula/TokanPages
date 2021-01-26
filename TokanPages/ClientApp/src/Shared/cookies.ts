@@ -12,7 +12,6 @@ interface ISetCookie
 
 function SetCookie(props: ISetCookie): string
 {
-   
     let LNewCookie = "";
     let LDate = new Date();
 
@@ -35,7 +34,6 @@ function SetCookie(props: ISetCookie): string
     }
 
     return LNewCookie;
-
 }
 
 interface IGetCookie
@@ -45,7 +43,6 @@ interface IGetCookie
 
 function GetCookie(props: IGetCookie): string
 {
-
     let LCookieName = `${props.cookieName}=`;
     let LCookieArray = document.cookie.split(";");
 
@@ -67,7 +64,6 @@ function GetCookie(props: IGetCookie): string
     }
 
     return "";
-
 }
 
 interface IEraseCookie
