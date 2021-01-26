@@ -6,10 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
 {
-
     public class GetAllUsersQueryHandler : TemplateHandler<GetAllUsersQuery, IEnumerable<Domain.Entities.Users>>
     {
-
         private readonly DatabaseContext FDatabaseContext;
 
         public GetAllUsersQueryHandler(DatabaseContext ADatabaseContext) 
@@ -22,7 +20,5 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
             var LUsers = await FDatabaseContext.Users.AsNoTracking().ToListAsync(ACancellationToken);
             return LUsers;
         }
-
     }
-
 }

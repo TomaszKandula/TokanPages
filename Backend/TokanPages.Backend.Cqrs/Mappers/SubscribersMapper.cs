@@ -3,10 +3,8 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
 namespace TokanPages.Backend.Cqrs.Mappers
 {
-
     public static class SubscribersMapper
     {
-
         public static AddSubscriberCommand MapToAddSubscriberCommand(AddSubscriberDto AModel) 
         {
             return new AddSubscriberCommand
@@ -33,7 +31,5 @@ namespace TokanPages.Backend.Cqrs.Mappers
                 Id = AModel.Id
             };        
         }
-
     }
-
 }

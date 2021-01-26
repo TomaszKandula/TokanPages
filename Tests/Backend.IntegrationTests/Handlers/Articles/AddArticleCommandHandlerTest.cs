@@ -9,10 +9,8 @@ using TokanPages.Backend.Shared.Dto.Articles;
 
 namespace Backend.IntegrationTests.Handlers.Articles
 {
-
     public class AddArticleCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public AddArticleCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
@@ -23,7 +21,6 @@ namespace Backend.IntegrationTests.Handlers.Articles
         [Fact]
         public async Task AddArticle_WhenAllFieldsAreCorrect_ShouldReturnNewGuid()
         {
-
             // Arrange
             var LRequest = $"/api/v1/articles/addarticle/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
@@ -48,9 +45,6 @@ namespace Backend.IntegrationTests.Handlers.Articles
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             GuidTest.Check(LContent).Should().BeTrue();
-
         }
-
     }
-
 }

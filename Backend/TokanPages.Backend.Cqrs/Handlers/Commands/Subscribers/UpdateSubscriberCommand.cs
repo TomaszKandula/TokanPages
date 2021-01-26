@@ -3,7 +3,6 @@ using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 {
-
     public class UpdateSubscriberCommand : IRequest<Unit>
     {
         public Guid Id { get; set; }
@@ -11,5 +10,4 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
         public bool? IsActivated { get; set; }
         public int? Count { get; set; }
     }
-
 }

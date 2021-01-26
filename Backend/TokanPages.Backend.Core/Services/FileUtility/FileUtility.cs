@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace TokanPages.Backend.Core.Services.FileUtility
 {
-
     public class FileUtility : IFileUtility
     {
-
         public virtual async Task<string> SaveToFile(string ATemporaryDir, string AFileName, string ATextContent) 
         {
-
             var LTempFileName = $"{AFileName}";
 
             var LBaseDirectory = AppDomain.CurrentDomain.BaseDirectory + $"\\{ATemporaryDir}";
@@ -29,7 +26,6 @@ namespace TokanPages.Backend.Core.Services.FileUtility
             }
 
             return LTempFilePath;
-
         }
 
         public virtual async Task<string> GetFileFromUrl(string AUrl, CancellationToken ACancellationToken)
@@ -39,12 +35,10 @@ namespace TokanPages.Backend.Core.Services.FileUtility
             return await LResponse.Content.ReadAsStringAsync();
         }
 
-        public bool IsBase64String(string ABase64)
+        public virtual bool IsBase64String(string ABase64)
         {
             var LBuffer = new Span<byte>(new byte[ABase64.Length]);
             return Convert.TryFromBase64String(ABase64, LBuffer, out _);
         }
-
     }
-
 }

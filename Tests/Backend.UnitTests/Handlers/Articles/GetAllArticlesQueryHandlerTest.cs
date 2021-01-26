@@ -9,14 +9,11 @@ using Backend.TestData;
 
 namespace Backend.UnitTests.Handlers.Articles
 {
-
     public class GetAllArticlesQueryHandlerTest : TestBase
     {
-
         [Fact]
         public async Task GetAllArticles_ShouldReturnCollection() 
         {
-
             // Arrange
             var LDatabaseContext = GetTestDatabaseContext();
             var LGetAllArticlesQuery = new GetAllArticlesQuery { IsPublished = false };
@@ -54,9 +51,6 @@ namespace Backend.UnitTests.Handlers.Articles
             // Assert
             LResults.Should().NotBeNull();
             LResults.Should().HaveCount(2);
-
         }
-
     }
-
 }

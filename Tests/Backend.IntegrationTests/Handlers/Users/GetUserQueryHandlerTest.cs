@@ -9,10 +9,8 @@ using TokanPages.Backend.Database.Dummies;
 
 namespace Backend.IntegrationTests.Handlers.Users
 {
-
     public class GetUserQueryHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public GetUserQueryHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory) 
@@ -23,7 +21,6 @@ namespace Backend.IntegrationTests.Handlers.Users
         [Fact]
         public async Task GetUser_WhenIdIsCorrect_ShouldReturnEntityAsJsonObject() 
         {
-
             // Arrange
             var LTestUserId = User1.Id;
             var LRequest = $"/api/v1/users/getuser/{LTestUserId}/";
@@ -40,13 +37,11 @@ namespace Backend.IntegrationTests.Handlers.Users
             
             var LDeserialized = JsonConvert.DeserializeObject<TokanPages.Backend.Domain.Entities.Users>(LContent);
             LDeserialized.Should().NotBeNull();
-
         }
 
         [Fact]
         public async Task GetUser_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError()
         {
-
             // Arrange
             var LRequest = $"/api/v1/users/getuser/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -60,9 +55,6 @@ namespace Backend.IntegrationTests.Handlers.Users
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Contain(ErrorCodes.USER_DOES_NOT_EXISTS);
-
         }
-
     }
-
 }

@@ -2,10 +2,8 @@
 
 namespace TokanPages.Backend.Core.Models
 {
-
     public sealed class ValidationError
     {
-
         public string PropertyName { get; }
         public string ErrorCode { get; }
         public string ErrorMessage { get; }
@@ -20,7 +18,5 @@ namespace TokanPages.Backend.Core.Models
         public ValidationError(ValidationFailure AValidationFailure) : this(AValidationFailure.PropertyName, AValidationFailure.ErrorCode, AValidationFailure.ErrorMessage)
         { 
         }
-
     }
-
 }

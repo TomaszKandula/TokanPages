@@ -9,5 +9,4 @@ namespace TokanPages.Backend.Core.Services.FileUtility
         Task<string> GetFileFromUrl(string AUrl, CancellationToken ACancellationToken);
         bool IsBase64String(string ABase64);
     }
-
 }

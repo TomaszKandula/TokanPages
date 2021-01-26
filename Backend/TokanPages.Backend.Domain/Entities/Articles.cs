@@ -1,13 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using TokanPages.Backend.Core.Entities;
 
 namespace TokanPages.Backend.Domain.Entities
 {
-    public partial class Articles
+    public partial class Articles : Entity<Guid>
     {
-
-        public Guid Id { get; set; }
-
         [Required]
         [MaxLength(255)]
         public string Title { get; set; }
@@ -25,6 +23,5 @@ namespace TokanPages.Backend.Domain.Entities
         public DateTime CreatedAt { get; set; }
 
         public DateTime? UpdatedAt { get; set; }
-
     }
 }

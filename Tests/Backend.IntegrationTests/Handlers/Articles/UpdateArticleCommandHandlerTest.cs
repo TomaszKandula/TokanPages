@@ -12,10 +12,8 @@ using TokanPages.Backend.Shared.Dto.Articles;
 
 namespace Backend.IntegrationTests.Handlers.Articles
 {
-
     public class UpdateArticleCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public UpdateArticleCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
@@ -26,7 +24,6 @@ namespace Backend.IntegrationTests.Handlers.Articles
         [Fact]
         public async Task UpdateArticle_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError()
         {
-
             // Arrange
             var LRequest = $"/api/v1/articles/updatearticle/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
@@ -55,9 +52,6 @@ namespace Backend.IntegrationTests.Handlers.Articles
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
-
         }
-
     }
-
 }

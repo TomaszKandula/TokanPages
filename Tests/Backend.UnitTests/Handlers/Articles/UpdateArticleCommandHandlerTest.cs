@@ -13,14 +13,11 @@ using Backend.TestData;
 
 namespace Backend.UnitTests.Handlers.Articles
 {
-
     public class UpdateArticleCommandHandlerTest : TestBase
     {
-
         [Fact]
         public async Task UpdateArticle_WhenArticleExists_ShouldUpdateEntity() 
         {
-
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand 
             { 
@@ -80,13 +77,11 @@ namespace Backend.UnitTests.Handlers.Articles
             LArticesEntity.IsPublished.Should().Be(LUpdateArticleCommand.IsPublished);
             LArticesEntity.Likes.Should().Be(LUpdateArticleCommand.Likes);
             LArticesEntity.ReadCount.Should().Be(LUpdateArticleCommand.ReadCount);
-
         }
 
         [Fact]
         public async Task UpdateArticle_WhenArticleNotExists_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
@@ -135,13 +130,11 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None));
-
         }
 
         [Fact]
         public async Task UpdateArticle_WhenImageBase64IsInvalid_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
@@ -190,9 +183,6 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None));
-
         }
-
     }
-
 }

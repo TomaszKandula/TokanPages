@@ -4,13 +4,10 @@ using TokanPages.Backend.Core.Services.TemplateHelper.Model;
 
 namespace TokanPages.Backend.Core.Services.TemplateHelper
 {
-
     public class TemplateHelper : ITemplateHelper
     {
-
         public virtual string MakeBody(string LTemplate, List<Item> AItems)
         {
-
             if (AItems == null || !AItems.Any()) return null;
 
             foreach (var AItem in AItems)
@@ -19,9 +16,6 @@ namespace TokanPages.Backend.Core.Services.TemplateHelper
             }
 
             return LTemplate;
-
         }
-
     }
-
 }

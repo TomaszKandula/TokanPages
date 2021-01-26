@@ -2,7 +2,6 @@
 
 namespace TokanPages.Backend.Shared.Dto.Articles
 {
-
     public class UpdateArticleDto
     {
         public Guid Id { get; set; }
@@ -14,5 +13,4 @@ namespace TokanPages.Backend.Shared.Dto.Articles
         public int Likes { get; set; }
         public int ReadCount { get; set; }
     }
-
 }

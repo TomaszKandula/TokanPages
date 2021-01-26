@@ -12,10 +12,9 @@ using TokanPages.Backend.Shared.Models;
 
 namespace Backend.IntegrationTests.Handlers.Mailer
 {
-    
+   
     public class SendNewsletterCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public SendNewsletterCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
@@ -26,7 +25,6 @@ namespace Backend.IntegrationTests.Handlers.Mailer
         [Fact]
         public async Task SendNewsletter_WhenEmailsAreProvided_ShouldReturnEmptyJsonObject()
         {
-
             // Arrange
             var LRequest = "/api/v1/mailer/sendnewsletter/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
@@ -63,9 +61,6 @@ namespace Backend.IntegrationTests.Handlers.Mailer
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Be("{}");
-
         }
-
     }
-
 }

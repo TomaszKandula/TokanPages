@@ -6,14 +6,11 @@ using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 
 namespace Backend.UnitTests.Validators.Users
 {
-
     public class GetUserQueryValidatorTest
     {
-
         [Fact]
         public void GetUser_WhenIdIsCorrect_ShouldFinishSuccessfull()
         {
-
             // Arrange
             var LGetUserQuery = new GetUserQuery
             {
@@ -26,13 +23,11 @@ namespace Backend.UnitTests.Validators.Users
 
             // Assert
             LResult.Errors.Should().BeEmpty();
-
         }
 
         [Fact]
         public void GetUser_WhenIdIsEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LGetUserQuery = new GetUserQuery
             {
@@ -46,9 +41,6 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
-
     }
-
 }

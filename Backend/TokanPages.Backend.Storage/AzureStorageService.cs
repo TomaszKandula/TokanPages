@@ -10,10 +10,8 @@ using TokanPages.Backend.Storage.Settings;
 
 namespace TokanPages.Backend.Storage
 {
-
     public class AzureStorageService : AzureStorageObject, IAzureStorageService
     {
-
         private readonly AzureStorageSettings FAzureStorageSettings;
         private readonly CloudStorageAccount  FCloudStorageAccount;
         private readonly StorageCredentials   FStorageCredentials;
@@ -35,10 +33,8 @@ namespace TokanPages.Backend.Storage
 
         public override async Task<ActionResult> UploadFile(string ADestContainerReference, string ADestFileName, string ASrcFullFilePath, string AContentType, CancellationToken ACancellationToken) 
         {
-
             try 
             {
-
                 var LFullReference = FAzureStorageSettings.ContainerName + "\\" + ADestContainerReference;
 
                 var LBlobClient = FCloudStorageAccount.CreateCloudBlobClient();
@@ -53,7 +49,6 @@ namespace TokanPages.Backend.Storage
                 { 
                     IsSucceeded = true
                 };
-
             }
             catch (Exception LException)
             {
@@ -63,15 +58,12 @@ namespace TokanPages.Backend.Storage
                     ErrorDesc = LException.Message
                 };
             }
-
         }
 
         public override async Task<ActionResult> RemoveFromStorage(string AContainerReference, string AFileName, CancellationToken ACancellationToken) 
         {
-
             try
             {
-
                 var LFullReference = FAzureStorageSettings.ContainerName + "\\" + AContainerReference;
 
                 var LBlobClient = FCloudStorageAccount.CreateCloudBlobClient();
@@ -84,7 +76,6 @@ namespace TokanPages.Backend.Storage
                 {
                     IsSucceeded = true
                 };
-
             }
             catch (Exception LException)
             {
@@ -94,9 +85,6 @@ namespace TokanPages.Backend.Storage
                     ErrorDesc = LException.Message
                 };
             }
-
         }
-
     }
-
 }

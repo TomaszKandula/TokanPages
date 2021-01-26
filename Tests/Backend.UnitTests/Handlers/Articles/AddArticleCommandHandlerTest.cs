@@ -13,14 +13,11 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
 namespace Backend.UnitTests.Handlers.Articles
 {
-
     public class AddArticleCommandHandlerTest : TestBase
     {
-
         [Fact]
         public async Task AddArticle_WhenFieldsAreProvidedWithBase64Image_ShouldAddEntity() 
         {
-
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
@@ -59,13 +56,11 @@ namespace Backend.UnitTests.Handlers.Articles
             LArticesEntity.Should().HaveCount(1);
             LArticesEntity[0].Title.Should().Be(LAddArticleCommand.Title);
             LArticesEntity[0].Description.Should().Be(LAddArticleCommand.Description);
-
         }
 
         [Fact]
         public async Task AddArticle_WhenFieldsAreProvidedWithNoBase64Image_ShouldThrowError()
         {
-
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
@@ -97,9 +92,6 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LAddArticleCommandHandler.Handle(LAddArticleCommand, CancellationToken.None));
-
         }
-
     }
-
 }

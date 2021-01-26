@@ -8,10 +8,8 @@ using Sentry.Protocol;
 
 namespace TokanPages
 {
-
     public class Program
     {
-
         private static IWebHostBuilder CreateWebHostBuilder(string[] ARgs) =>
             WebHost.CreateDefaultBuilder(ARgs)
                 .UseStartup<Startup>()
@@ -32,7 +30,6 @@ namespace TokanPages
 
         public static int Main(string[] ARgs)
         {
-
             try
             {
                 Log.Information("Starting WebHost...");
@@ -48,8 +45,6 @@ namespace TokanPages
             {
                 Log.CloseAndFlush();
             }
-
         }
-
     }
 }

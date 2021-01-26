@@ -3,13 +3,10 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 {
-
     public class AddUserCommandValidator : AbstractValidator<AddUserCommand>
     {
-
         public AddUserCommandValidator() 
         {
-
             RuleFor(Field => Field.EmailAddress)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
@@ -41,9 +38,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 .MaximumLength(255)
                 .WithErrorCode(nameof(ValidationCodes.LAST_NAME_TOO_LONG))
                 .WithMessage(ValidationCodes.LAST_NAME_TOO_LONG);
-
         }
-
     }
-
 }

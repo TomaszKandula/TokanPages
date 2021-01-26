@@ -9,14 +9,11 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
 namespace Backend.UnitTests.Handlers.Users
 {
-
     public class RemoveUserCommandHandlerTest : TestBase
     {
-
         [Fact]
         public async Task RemoveUser_WhenIdIsCorrect_ShouldRemoveEntity() 
         {
-
             // Arrange
             var LRemoveUserCommand = new RemoveUserCommand 
             { 
@@ -48,13 +45,11 @@ namespace Backend.UnitTests.Handlers.Users
             var LAssertDbContext = GetTestDatabaseContext();
             var LResults = LAssertDbContext.Users.Find(LRemoveUserCommand.Id);
             LResults.Should().BeNull();
-
         }
 
         [Fact]
         public async Task RemoveUser_WhenIdIsIncorrect_ShouldThrowError()
         {
-
             // Arrange
             var LRemoveUserCommand = new RemoveUserCommand
             {
@@ -66,9 +61,6 @@ namespace Backend.UnitTests.Handlers.Users
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LRemoveUserCommandHandler.Handle(LRemoveUserCommand, CancellationToken.None));
-
         }
-
     }
-
 }

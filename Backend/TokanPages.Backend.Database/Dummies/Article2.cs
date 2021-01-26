@@ -2,7 +2,6 @@
 
 namespace TokanPages.Backend.Database.Dummies
 {
-
     public class Article2
     {
         public static Guid Id = Guid.Parse("7494688a-994c-4905-9073-8c68811ec839");
@@ -14,5 +13,4 @@ namespace TokanPages.Backend.Database.Dummies
         public static int Likes = 0;
         public static int ReadCount = 0;
     }
-
 }

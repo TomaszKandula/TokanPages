@@ -1,6 +1,5 @@
 ﻿namespace TokanPages.Backend.Core.Exceptions
 {
-
     public static class CommonErrorCodes
     {
         public const string ERROR_MAILER = nameof(ERROR_MAILER);
@@ -11,5 +10,4 @@
         public const string ERROR_VALIDATION_NOT_EMPTY = nameof(ERROR_VALIDATION_NOT_EMPTY);
         public const string ERROR_VALIDATION_INCORRECT_FORMAT = nameof(ERROR_VALIDATION_INCORRECT_FORMAT);
     }
-
 }

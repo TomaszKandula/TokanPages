@@ -9,10 +9,8 @@ using TokanPages.Backend.Core.Services.FileUtility;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
-
     public class AddArticleCommandHandler : TemplateHandler<AddArticleCommand, Guid>
     {
-
         private readonly DatabaseContext FDatabaseContext;
         private readonly IAzureStorageService FAzureStorageService;
         private readonly IFileUtility FFileUtility;
@@ -27,7 +25,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
         public override async Task<Guid> Handle(AddArticleCommand ARequest, CancellationToken ACancellationToken)
         {
-
             var LImageBase64Check = FFileUtility.IsBase64String(ARequest.ImageToUpload);
             if (!LImageBase64Check) 
             {
@@ -36,15 +33,21 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
             var LNewId = Guid.NewGuid();
 
-            var LTextContent = await FFileUtility.SaveToFile("__upload", $"{LNewId}.json", ARequest.TextToUpload);
-            var LTextUpload = await FAzureStorageService.UploadFile($"content\\articles\\{LNewId.ToString().ToLower()}", "text.json", LTextContent, "application/json", ACancellationToken);
+            var LTextContent = await FFileUtility
+                .SaveToFile("__upload", $"{LNewId}.json", ARequest.TextToUpload);
+            var LTextUpload = await FAzureStorageService
+                .UploadFile($"content\\articles\\{LNewId.ToString().ToLower()}", "text.json", LTextContent, "application/json", ACancellationToken);
+
             if (!LTextUpload.IsSucceeded) 
             {
                 throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LTextUpload.ErrorDesc);
             }
 
-            var LImageContent = await FFileUtility.SaveToFile("__upload", $"{LNewId}.jpg", ARequest.ImageToUpload);
-            var LImageUpload = await FAzureStorageService.UploadFile($"content\\articles\\{LNewId.ToString().ToLower()}", "image.jpeg", LImageContent, "image/jpeg", ACancellationToken);
+            var LImageContent = await FFileUtility
+                .SaveToFile("__upload", $"{LNewId}.jpg", ARequest.ImageToUpload);
+            var LImageUpload = await FAzureStorageService
+                .UploadFile($"content\\articles\\{LNewId.ToString().ToLower()}", "image.jpeg", LImageContent, "image/jpeg", ACancellationToken);
+
             if (!LImageUpload.IsSucceeded)
             {
                 throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LImageUpload.ErrorDesc);
@@ -64,9 +67,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(LNewId);
-
         }
-
     }
-
 }

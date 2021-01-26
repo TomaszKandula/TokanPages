@@ -6,14 +6,11 @@ using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 
 namespace Backend.UnitTests.Validators.Articles
 {
-
     public class GetArticleQueryValidatorTest
     {
-
         [Fact]
         public void GetArticle_WhenIdIsCorrect_ShouldFinishSuccessfull() 
         {
-
             // Arrange
             var LGetArticleQuery = new GetArticleQuery 
             { 
@@ -26,13 +23,11 @@ namespace Backend.UnitTests.Validators.Articles
 
             // Assert
             LResult.Errors.Should().BeEmpty();
-
         }
 
         [Fact]
         public void GetArticle_WhenIdIsIncorrect_ShouldThrowError()
         {
-
             // Arrange
             var LGetArticleQuery = new GetArticleQuery
             {
@@ -46,9 +41,6 @@ namespace Backend.UnitTests.Validators.Articles
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
-
     }
-
 }

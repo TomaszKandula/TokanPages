@@ -3,7 +3,6 @@ using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
-
     public class UpdateArticleCommand : IRequest<Unit>
     {
         public Guid Id { get; set; }
@@ -15,5 +14,4 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         public int Likes { get; set; }
         public int ReadCount { get; set; }
     }
-
 }

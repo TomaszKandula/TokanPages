@@ -4,7 +4,6 @@ using TokanPages.Backend.SmtpClient.Models;
 
 namespace TokanPages.Backend.SmtpClient
 {
-
     public abstract class SmtpClientObject
     {
         public abstract string From { get; set; }
@@ -18,5 +17,4 @@ namespace TokanPages.Backend.SmtpClient
         public abstract List<CheckActionResult> IsAddressCorrect(List<string> AEmailAddress);
         public abstract Task<bool> IsDomainCorrect(string AEmailAddress);
     }
-
 }

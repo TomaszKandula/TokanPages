@@ -4,10 +4,8 @@ using TokanPages.Backend.Database.Seeders;
 
 namespace TokanPages.Backend.Database.Initialize
 {
-
     public class DbInitializer : IDbInitializer
     {
-
         private readonly IServiceScopeFactory FScopeFactory;
 
         public DbInitializer(IServiceScopeFactory AScopeFactory)
@@ -17,7 +15,6 @@ namespace TokanPages.Backend.Database.Initialize
 
         public void Initialize()
         {
-
             using var LServiceScope = FScopeFactory.CreateScope();
             using var LDatabaseContext = LServiceScope.ServiceProvider.GetService<DatabaseContext>();
 
@@ -25,12 +22,10 @@ namespace TokanPages.Backend.Database.Initialize
             {
                 LDatabaseContext.Database.Migrate();
             }
-
         }
 
         public void SeedData()
         {
-
             using var LServiceScope = FScopeFactory.CreateScope();
             using var LDatabaseContext = LServiceScope.ServiceProvider.GetService<DatabaseContext>();
 
@@ -44,9 +39,6 @@ namespace TokanPages.Backend.Database.Initialize
                 LDatabaseContext.Subscribers.AddRange(SubscribersSeeder.SeedSubscribers());
 
             LDatabaseContext.SaveChanges();
-
         }
-
     }
-
 }

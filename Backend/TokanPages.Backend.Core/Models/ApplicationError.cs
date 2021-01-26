@@ -4,10 +4,8 @@ using FluentValidation.Results;
 
 namespace TokanPages.Backend.Core.Models
 {
-
     public sealed class ApplicationError
     {
-
         public string ErrorMessage { get; set; }
         public string ErrorCode { get; set; }
 
@@ -23,7 +21,5 @@ namespace TokanPages.Backend.Core.Models
         {
             ValidationErrors = AValidationResult.Errors.Select(AError => new ValidationError(AError)).ToList();
         }
-
     }
-
 }

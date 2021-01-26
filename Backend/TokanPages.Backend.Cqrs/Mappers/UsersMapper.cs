@@ -3,10 +3,8 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
 namespace TokanPages.Backend.Cqrs.Mappers
 {
-
     public static class UsersMapper
     {
-
         public static AddUserCommand MapToAddUserCommand(AddUserDto AModel) 
         {
             return new AddUserCommand 
@@ -38,7 +36,5 @@ namespace TokanPages.Backend.Cqrs.Mappers
                 Id = AModel.Id
             };
         }
-
     }
-
 }

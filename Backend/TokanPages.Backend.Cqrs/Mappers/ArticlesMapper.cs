@@ -3,10 +3,8 @@ using TokanPages.Backend.Shared.Dto.Articles;
 
 namespace TokanPages.Backend.Cqrs.Mappers
 {
-
     public static class ArticlesMapper
     {
-
         public static AddArticleCommand MapToAddArticleCommand(AddArticleDto AModel)
         {
             return new AddArticleCommand
@@ -40,7 +38,5 @@ namespace TokanPages.Backend.Cqrs.Mappers
                 Id = AModel.Id
             };
         }
-
     }
-
 }

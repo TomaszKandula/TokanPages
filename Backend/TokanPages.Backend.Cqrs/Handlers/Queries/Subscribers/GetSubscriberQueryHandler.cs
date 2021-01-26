@@ -8,10 +8,8 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
 {
-
     public class GetSubscriberQueryHandler : TemplateHandler<GetSubscriberQuery, Domain.Entities.Subscribers>
     {
-
         private readonly DatabaseContext FDatabaseContext;
 
         public GetSubscriberQueryHandler(DatabaseContext ADatabaseContext) 
@@ -21,7 +19,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
 
         public override async Task<Domain.Entities.Subscribers> Handle(GetSubscriberQuery ARequest, CancellationToken ACancellationToken) 
         {
-
             var LCurrentSubscriber = await FDatabaseContext.Subscribers
                 .AsNoTracking()
                 .Where(ASubscribers => ASubscribers.Id == ARequest.Id)
@@ -33,9 +30,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
             }
 
             return LCurrentSubscriber.First();
-
         }
-
     }
-
 }

@@ -5,14 +5,11 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace Backend.UnitTests.Validators.Mailer
 {
-
     public class VerifyEmailAddressCommandValidatorTest
     {
-
         [Fact]
         public void VerifyEmailAddress_WhenEmailIsGiven_ShouldFinishSuccessfull() 
         {
-
             // Arrange
             var LVerifyEmailAddressCommand = new VerifyEmailAddressCommand 
             { 
@@ -25,13 +22,11 @@ namespace Backend.UnitTests.Validators.Mailer
 
             // Assert
             LResult.Errors.Should().BeEmpty();
-
         }
 
         [Fact]
         public void VerifyEmailAddress_WhenEmailIsEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LVerifyEmailAddressCommand = new VerifyEmailAddressCommand
             {
@@ -45,13 +40,11 @@ namespace Backend.UnitTests.Validators.Mailer
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void VerifyEmailAddress_WhenEmailTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LVerifyEmailAddressCommand = new VerifyEmailAddressCommand
             {
@@ -65,9 +58,6 @@ namespace Backend.UnitTests.Validators.Mailer
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
-
         }
-
     }
-
 }

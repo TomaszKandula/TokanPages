@@ -5,7 +5,6 @@
     /// </summary>
     public interface ILogger
     {
-
         /// <summary>
         /// Debug infomration to log storage with current datetime stamp.
         /// </summary>
@@ -35,7 +34,5 @@
         /// </summary>
         /// <param name="AMessage"></param>
         void LogFatality(string AMessage);
-
     }
-
 }

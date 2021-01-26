@@ -7,10 +7,8 @@ using MediatR;
 
 namespace TokanPages.Controllers
 {
-
     public class MailerController : __BaseController
     {
-
         public MailerController(IMediator AMediator) : base(AMediator)
         {
         }
@@ -35,7 +33,5 @@ namespace TokanPages.Controllers
             var LCommand = MailerMapper.MapToSendNewsletterCommand(APayLoad);
             return await FMediator.Send(LCommand);
         }
-
     }
-
 }

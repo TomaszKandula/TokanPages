@@ -20,10 +20,8 @@ using MediatR;
 
 namespace TokanPages.Configuration
 {
-
     public static class Dependencies
     {
-
         public static void Register(IServiceCollection AServices, IConfiguration AConfiguration) 
         {
             SetupAppSettings(AServices, AConfiguration);
@@ -92,15 +90,11 @@ namespace TokanPages.Configuration
 
         private static void SetupMediatR(IServiceCollection AServices) 
         {
-
             AServices.AddMediatR(AOption => { AOption.AsScoped(); }, 
                 typeof(TemplateHandler<IRequest, Unit>).GetTypeInfo().Assembly);
 
             AServices.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
             AServices.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
-
         }
-
     }
-
 }

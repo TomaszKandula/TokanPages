@@ -4,15 +4,11 @@ using TokanPages.Backend.Domain.Entities;
 
 namespace TokanPages.Backend.Database.Mappings
 {
-
     public class UsersConfiguration : IEntityTypeConfiguration<Users>
     {
-
         public void Configure(EntityTypeBuilder<Users> AModelBuilder)
         {
             AModelBuilder.Property(e => e.Id).ValueGeneratedNever();
         }
-
     }
-
 }

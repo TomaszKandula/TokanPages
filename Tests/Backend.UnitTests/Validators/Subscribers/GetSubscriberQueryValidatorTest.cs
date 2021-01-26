@@ -6,14 +6,11 @@ using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
 
 namespace Backend.UnitTests.Validators.Subscribers
 {
-
     public class GetSubscriberQueryValidatorTest
     {
-
         [Fact]
         public void GetSubscriber_WhenIdIsCorrect_ShouldFinishSuccessfull() 
         {
-
             // Arrange
             var LGetSubscriberQuery = new GetSubscriberQuery 
             { 
@@ -26,13 +23,11 @@ namespace Backend.UnitTests.Validators.Subscribers
 
             // Assert
             LResult.Errors.Should().BeEmpty();
-
         }
 
         [Fact]
         public void GetSubscriber_WhenIdIsEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LGetSubscriberQuery = new GetSubscriberQuery
             {
@@ -46,9 +41,6 @@ namespace Backend.UnitTests.Validators.Subscribers
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
-
     }
-
 }

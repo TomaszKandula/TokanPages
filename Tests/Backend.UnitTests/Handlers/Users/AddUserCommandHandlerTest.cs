@@ -9,15 +9,12 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
 namespace Backend.UnitTests.Handlers.Users
-{
-    
+{   
     public class AddUserCommandHandlerTest : TestBase
     {
-
         [Fact]
         public async Task AddUser_WhenFieldsAreProvided_ShouldAddEntity() 
         {
-
             // Arrange
             var LAddUserCommand = new AddUserCommand 
             {
@@ -46,13 +43,11 @@ namespace Backend.UnitTests.Handlers.Users
             LResult[0].IsActivated.Should().BeTrue();
             LResult[0].LastLogged.Should().BeNull();
             LResult[0].LastUpdated.Should().BeNull();
-
         }
 
         [Fact]
         public async Task AddUser_WhenEmailExists_ShouldThrowError()
         {
-
             // Arrange
             var LTestEmail = DataProvider.GetRandomEmail();
             var LAddUserCommand = new AddUserCommand
@@ -83,9 +78,6 @@ namespace Backend.UnitTests.Handlers.Users
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LAddUserCommandHandler.Handle(LAddUserCommand, CancellationToken.None));
-
         }
-
     }
-
 }

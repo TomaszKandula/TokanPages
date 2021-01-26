@@ -9,10 +9,8 @@ using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 {
-
     public class RemoveSubscriberCommandHandler : TemplateHandler<RemoveSubscriberCommand, Unit>
     {
-
         private readonly DatabaseContext FDatabaseContext;
 
         public RemoveSubscriberCommandHandler(DatabaseContext ADatabaseContext) 
@@ -22,7 +20,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 
         public override async Task<Unit> Handle(RemoveSubscriberCommand ARequest, CancellationToken ACancellationToken) 
         {
-
             var LCurrentSubscriber = await FDatabaseContext.Subscribers
                 .Where(ASubscribers => ASubscribers.Id == ARequest.Id)
                 .ToListAsync(ACancellationToken);
@@ -35,9 +32,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
             FDatabaseContext.Subscribers.Remove(LCurrentSubscriber.First());
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(Unit.Value);
-        
+       
         }
-
     }
-
 }

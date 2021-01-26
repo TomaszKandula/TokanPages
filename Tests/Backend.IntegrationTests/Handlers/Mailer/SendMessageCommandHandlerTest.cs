@@ -11,10 +11,8 @@ using TokanPages.Backend.Shared.Dto.Mailer;
 
 namespace Backend.IntegrationTests.Handlers.Mailer
 {
-
     public class SendMessageCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public SendMessageCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
@@ -25,7 +23,6 @@ namespace Backend.IntegrationTests.Handlers.Mailer
         [Fact]
         public async Task SendUserMessage_WhenEmailIsProvided_ShouldReturnEmptyJsonObject()
         {
-
             // Arrange
             var LRequest = "/api/v1/mailer/sendmessage/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
@@ -53,9 +50,6 @@ namespace Backend.IntegrationTests.Handlers.Mailer
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Be("{}");
-
         }
-
     }
-
 }

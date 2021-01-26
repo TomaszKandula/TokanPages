@@ -4,10 +4,8 @@ using TokanPages.Backend.Database;
 
 namespace Backend.UnitTests
 {
-
     internal class DatabaseContextFactory
     {
-
         private readonly DbContextOptionsBuilder<DatabaseContext> FDatabaseOptions = new DbContextOptionsBuilder<DatabaseContext>()
             .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
             .EnableSensitiveDataLogging()
@@ -17,7 +15,5 @@ namespace Backend.UnitTests
         {
             return new DatabaseContext(FDatabaseOptions.Options);
         }
-
     }
-
 }

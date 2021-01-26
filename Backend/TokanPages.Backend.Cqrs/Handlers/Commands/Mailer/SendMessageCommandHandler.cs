@@ -14,10 +14,8 @@ using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
-
     public class SendMessageCommandHandler : TemplateHandler<SendMessageCommand, Unit>
     {
-
         private readonly ISmtpClientService FSmtpClientService;
         private readonly IAzureStorageService FAzureStorageService;
         private readonly ITemplateHelper FTemplateHelper;
@@ -34,7 +32,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 
         public override async Task<Unit> Handle(SendMessageCommand ARequest, CancellationToken ACancellationToken)
         {
-
             FSmtpClientService.From = Constants.Emails.Addresses.Contact;
             FSmtpClientService.Tos = new List<string> { Constants.Emails.Addresses.Contact };
             FSmtpClientService.Subject = $"New user message from {ARequest.FirstName}";
@@ -58,9 +55,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
             }
 
             return await Task.FromResult(Unit.Value);
-
         }
-
     }
-
 }

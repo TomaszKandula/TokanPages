@@ -11,10 +11,8 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace Backend.IntegrationTests.Handlers.Users
 {
-
     public class RemoveUserCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public RemoveUserCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
@@ -25,7 +23,6 @@ namespace Backend.IntegrationTests.Handlers.Users
         [Fact]
         public async Task RemoveUser_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError() 
         {
-
             // Arrange
             var LRequest = $"/api/v1/users/removeuser/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
@@ -47,9 +44,6 @@ namespace Backend.IntegrationTests.Handlers.Users
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Contain(ErrorCodes.USER_DOES_NOT_EXISTS);
-
         }
-
     }
-
 }

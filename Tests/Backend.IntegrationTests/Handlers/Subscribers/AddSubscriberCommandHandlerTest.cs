@@ -9,10 +9,8 @@ using TokanPages.Backend.Shared.Dto.Subscribers;
 
 namespace Backend.IntegrationTests.Handlers.Subscribers
 {
-
     public class AddSubscriberCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public AddSubscriberCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
@@ -23,7 +21,6 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
         [Fact]
         public async Task AddSubscriber_WhenAllFieldsAreCorrect_ShouldReturnNewGuid() 
         {
-
             // Arrange
             var LRequest = $"/api/v1/subscribers/addsubscriber/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
@@ -41,9 +38,6 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             GuidTest.Check(LContent).Should().BeTrue();
-
         }
-
     }
-
 }

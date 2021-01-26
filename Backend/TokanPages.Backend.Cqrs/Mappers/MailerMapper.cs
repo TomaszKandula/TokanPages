@@ -3,10 +3,8 @@ using TokanPages.Backend.Shared.Dto.Mailer;
 
 namespace TokanPages.Backend.Cqrs.Mappers
 {
-
     public static class MailerMapper
     {
-
         public static VerifyEmailAddressCommand MapToVerifyEmailAddressCommand(VerifyEmailAddressDto AModel) 
         {
             return new VerifyEmailAddressCommand 
@@ -38,7 +36,5 @@ namespace TokanPages.Backend.Cqrs.Mappers
                 Message = AModel.Message
             };
         }
-
     }
-
 }

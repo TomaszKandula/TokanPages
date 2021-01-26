@@ -6,14 +6,11 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
 namespace Backend.UnitTests.Validators.Articles
 {
-
     public class AddArticleCommandValidatorTest
     {
-
         [Fact]
         public void ValidateAddArticle_WhenAllFieldsAreCorrect_ShouldFinishSuccessfully() 
         {
-
             // Arrange
             var LAddArticleCommand = new AddArticleCommand 
             { 
@@ -29,13 +26,11 @@ namespace Backend.UnitTests.Validators.Articles
 
             // Assert
             LResult.Errors.Should().BeEmpty();
-
         }
 
         [Fact]
         public void ValidateAddArticle_WhenDescriptionTooLong_ShouldThrowError() 
         {
-
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
@@ -52,13 +47,11 @@ namespace Backend.UnitTests.Validators.Articles
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.DESCRIPTION_TOO_LONG));
-
         }
 
         [Fact]
         public void ValidateAddArticle_WhenTitleTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
@@ -75,13 +68,11 @@ namespace Backend.UnitTests.Validators.Articles
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.TITLE_TOO_LONG));
-
         }
 
         [Fact]
         public void ValidateAddArticle_WhenDescriptionEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
@@ -98,13 +89,11 @@ namespace Backend.UnitTests.Validators.Articles
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void ValidateAddArticle_WhenTitleEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
@@ -121,13 +110,11 @@ namespace Backend.UnitTests.Validators.Articles
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void ValidateAddArticle_WhenTextToUploadEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
@@ -144,13 +131,11 @@ namespace Backend.UnitTests.Validators.Articles
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void ValidateAddArticle_WhenImageToUploadEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
@@ -167,9 +152,6 @@ namespace Backend.UnitTests.Validators.Articles
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
-
     }
-
 }

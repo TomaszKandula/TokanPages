@@ -9,13 +9,10 @@ using TokanPages.Backend.Shared.Environment;
 
 namespace Backend.IntegrationTests
 {
-
     public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
     {
-
         protected override IWebHostBuilder CreateWebHostBuilder()
         {
-
             var LBuilder = WebHost.CreateDefaultBuilder()
                 .ConfigureAppConfiguration(AConfig =>
                 {
@@ -35,9 +32,6 @@ namespace Backend.IntegrationTests
                 .UseTestServer();
 
             return LBuilder;
-
         }
-
     }
-
 }

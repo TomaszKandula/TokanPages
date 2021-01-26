@@ -7,14 +7,11 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
 namespace Backend.UnitTests.Validators.Articles
 {
-
     public class UpdateArticleCommandValidatorTest
     {
-
         [Fact]
         public void UpdateArticle_WhenAllFieldsAreCorrect_ShouldFinishSuccessfull() 
         {
-
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
@@ -34,13 +31,11 @@ namespace Backend.UnitTests.Validators.Articles
 
             // Assert
             LResult.Errors.Should().BeEmpty();
-
         }
 
         [Fact]
         public void UpdateArticle_WhenIdIsEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
@@ -61,13 +56,11 @@ namespace Backend.UnitTests.Validators.Articles
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void UpdateArticle_WhenTitleIsEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
@@ -88,13 +81,11 @@ namespace Backend.UnitTests.Validators.Articles
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void UpdateArticle_WhenTitleIsTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
@@ -115,13 +106,11 @@ namespace Backend.UnitTests.Validators.Articles
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.TITLE_TOO_LONG));
-
         }
 
         [Fact]
         public void UpdateArticle_WhenDescriptionIsEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
@@ -142,13 +131,11 @@ namespace Backend.UnitTests.Validators.Articles
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void UpdateArticle_WhenDescriptionIsTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
@@ -169,13 +156,11 @@ namespace Backend.UnitTests.Validators.Articles
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.DESCRIPTION_TOO_LONG));
-
         }
 
         [Fact]
         public void UpdateArticle_WhenTextToUploadIsEmpty_ShouldFinishSuccessfull()
         {
-
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
@@ -195,13 +180,11 @@ namespace Backend.UnitTests.Validators.Articles
 
             // Assert
             LResult.Errors.Should().BeEmpty();
-
         }
 
         [Fact]
         public void UpdateArticle_WhenImageToUploadIsEmpty_ShouldFinishSuccessfull()
         {
-
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
@@ -221,13 +204,11 @@ namespace Backend.UnitTests.Validators.Articles
 
             // Assert
             LResult.Errors.Should().BeEmpty();
-
         }
 
         [Fact]
         public void UpdateArticle_WhenLikesIsLessThanZero_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
@@ -248,13 +229,11 @@ namespace Backend.UnitTests.Validators.Articles
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LESS_THAN_ZERO));
-
         }
 
         [Fact]
         public void UpdateArticle_WhenReadCountIsLessThanZero_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
@@ -275,9 +254,6 @@ namespace Backend.UnitTests.Validators.Articles
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LESS_THAN_ZERO));
-
         }
-
     }
-
 }

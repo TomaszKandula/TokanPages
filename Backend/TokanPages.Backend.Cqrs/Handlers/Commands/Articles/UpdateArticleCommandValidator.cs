@@ -3,13 +3,10 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
-
     public class UpdateArticleCommandValidator : AbstractValidator<UpdateArticleCommand>
     {
-
         public UpdateArticleCommandValidator()
         {
-
             RuleFor(Field => Field.Id)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
@@ -40,9 +37,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 .GreaterThan(-1)
                 .WithErrorCode(nameof(ValidationCodes.LESS_THAN_ZERO))
                 .WithMessage(ValidationCodes.LESS_THAN_ZERO);
-
         }
-
     }
-
 }

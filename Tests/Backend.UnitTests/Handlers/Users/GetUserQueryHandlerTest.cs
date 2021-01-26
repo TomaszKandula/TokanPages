@@ -9,14 +9,11 @@ using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 
 namespace Backend.UnitTests.Handlers.Users
 {
-
     public class GetUserQueryHandlerTest : TestBase
     {
-
         [Fact]
         public async Task GetUser_WhenIdIsCorrect_ShouldReturnEntity() 
         {
-
             // Arrange
             var LGetUserQuery = new GetUserQuery
             {
@@ -56,13 +53,11 @@ namespace Backend.UnitTests.Handlers.Users
             LResult.Registered.Should().Be(LTestDate);
             LResult.LastUpdated.Should().BeNull();
             LResult.LastLogged.Should().BeNull();
-
         }
 
         [Fact]
         public async Task GetUser_WhenIdIsIncorrect_ShouldThrowError()
         {
-
             // Arrange
             var LGetUserQuery = new GetUserQuery
             {
@@ -90,9 +85,6 @@ namespace Backend.UnitTests.Handlers.Users
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LGetUserQueryHandler.Handle(LGetUserQuery, CancellationToken.None));
-
         }
-
     }
-
 }
