@@ -9,14 +9,11 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
 namespace Backend.UnitTests.Handlers.Subscribers
 {
-    
     public class UpdateSubscriberCommandHandlerTest : TestBase
     {
-
         [Fact]
         public async Task UpdateSubscriber_WhenIdIsCorrect_ShouldUpdateEntity()
         {
-
             // Arrange
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
@@ -48,16 +45,55 @@ namespace Backend.UnitTests.Handlers.Subscribers
             var LSubscribersEntity = LAssertDbContext.Subscribers.Find(LUpdateSubscriberCommand.Id);
 
             LSubscribersEntity.Should().NotBeNull();
+            LSubscribersEntity.IsActivated.Should().BeTrue();
             LSubscribersEntity.Email.Should().Be(LUpdateSubscriberCommand.Email);
             LSubscribersEntity.Count.Should().Be(LUpdateSubscriberCommand.Count);
             LSubscribersEntity.LastUpdated.Should().NotBeNull();
+        }
 
+        [Fact]
+        public async Task UpdateSubscriber_WhenIdIsCorrectAndCountIsNullAndIsActivatedIsNull_ShouldUpdateEntity()
+        {
+            // Arrange
+            var LUpdateSubscriberCommand = new UpdateSubscriberCommand
+            {
+                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
+                Email = DataProvider.GetRandomEmail(),
+                IsActivated = null,
+                Count = null
+            };
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
+            {
+                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
+                Email = DataProvider.GetRandomEmail(),
+                IsActivated = true,
+                Count = 50,
+                Registered = DateTime.Now,
+                LastUpdated = null
+            };
+            LDatabaseContext.Subscribers.Add(LSubscribers);
+            LDatabaseContext.SaveChanges();
+
+            // Act
+            var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext);
+            await LUpdateSubscriberCommandHandler.Handle(LUpdateSubscriberCommand, CancellationToken.None);
+
+            // Assert
+            var LAssertDbContext = GetTestDatabaseContext();
+            var LSubscribersEntity = LAssertDbContext.Subscribers.Find(LUpdateSubscriberCommand.Id);
+
+            LSubscribersEntity.Should().NotBeNull();
+            LSubscribersEntity.IsActivated.Should().BeTrue();
+            LSubscribersEntity.Email.Should().Be(LUpdateSubscriberCommand.Email);
+            LSubscribersEntity.Count.Should().Be(LSubscribers.Count);
+            LSubscribersEntity.LastUpdated.Should().NotBeNull();
         }
 
         [Fact]
         public async Task UpdateSubscriber_WhenIdIsIncorrect_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
@@ -84,13 +120,11 @@ namespace Backend.UnitTests.Handlers.Subscribers
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LUpdateSubscriberCommandHandler.Handle(LUpdateSubscriberCommand, CancellationToken.None));
-
         }
 
         [Fact]
         public async Task UpdateSubscriber_WhenEmailExists_ShouldThrowError()
         {
-
             // Arrange
             var LTestEmail = DataProvider.GetRandomEmail();
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
@@ -118,9 +152,6 @@ namespace Backend.UnitTests.Handlers.Subscribers
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LUpdateSubscriberCommandHandler.Handle(LUpdateSubscriberCommand, CancellationToken.None));
-
         }
-
     }
-
 }
