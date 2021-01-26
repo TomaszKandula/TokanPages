@@ -73,8 +73,8 @@ namespace Backend.UnitTests.Handlers.Articles
 
             LArticesEntity.Should().NotBeNull();
             LArticesEntity.Title.Should().Be(LUpdateArticleCommand.Title);
-            LArticesEntity.Description.Should().Be(LUpdateArticleCommand.Description);
-            LArticesEntity.IsPublished.Should().Be(LUpdateArticleCommand.IsPublished);
+            LArticesEntity.Description.Should().Be(LUpdateArticleCommand.Description); 
+            LArticesEntity.IsPublished.Should().BeFalse();
             LArticesEntity.Likes.Should().Be(LUpdateArticleCommand.Likes);
             LArticesEntity.ReadCount.Should().Be(LUpdateArticleCommand.ReadCount);
         }

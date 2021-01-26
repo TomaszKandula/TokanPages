@@ -30,9 +30,28 @@ const HtmlRenderLines = (InputArray: any[], Tag: string) =>
     return result;
 }
 
+const FormatDateTime = (value: string): string =>
+{
+    const options = 
+    { 
+        day: "2-digit", 
+        month: "2-digit", 
+        year: "numeric", 
+        hour: "2-digit", 
+        minute: "2-digit" 
+    };
+    const datetime = value ? new Date(value) : null;
+
+    let result = "n/a";
+    if (datetime) result = datetime.toLocaleDateString("en-US", options);
+
+    return result;
+}
+
 export 
 {
     ConvertPropsToFields,
     HtmlRenderLine,
     HtmlRenderLines,
+    FormatDateTime
 }

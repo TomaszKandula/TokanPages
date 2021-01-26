@@ -28,11 +28,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
         public override async Task<Unit> Handle(UpdateArticleCommand ARequest, CancellationToken ACancellationToken)
         {
-            var LCurrentArticle = await FDatabaseContext.Articles
+            var LCurrentArticles = await FDatabaseContext.Articles
                 .Where(Articles => Articles.Id == ARequest.Id)
                 .ToListAsync(ACancellationToken);
 
-            if (!LCurrentArticle.Any())
+            if (!LCurrentArticles.Any())
             {
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
             }
@@ -69,14 +69,20 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 }
             }
 
-            LCurrentArticle.First().Title = ARequest.Title;
-            LCurrentArticle.First().Description = ARequest.Description;
-            LCurrentArticle.First().IsPublished = ARequest.IsPublished;
-            LCurrentArticle.First().Likes = ARequest.Likes;
-            LCurrentArticle.First().ReadCount = ARequest.ReadCount;
-            LCurrentArticle.First().UpdatedAt = DateTime.UtcNow;
+            var LCurrentArticle = LCurrentArticles.First();
 
-            FDatabaseContext.Articles.Attach(LCurrentArticle.First()).State = EntityState.Modified;
+            LCurrentArticle.Title = ARequest.Title ?? LCurrentArticle.Title;
+            LCurrentArticle.Description = ARequest.Description ?? LCurrentArticle.Description;
+            LCurrentArticle.IsPublished = ARequest.IsPublished ?? LCurrentArticle.IsPublished;
+            LCurrentArticle.Likes = ARequest.Likes ?? LCurrentArticle.Likes;
+            LCurrentArticle.ReadCount = ARequest.ReadCount ?? LCurrentArticle.ReadCount;
+
+            if (ARequest.Title != null && ARequest.Description != null)
+            {
+                LCurrentArticle.UpdatedAt = DateTime.UtcNow;
+            }
+
+            FDatabaseContext.Articles.Attach(LCurrentArticle).State = EntityState.Modified;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(Unit.Value);       
         }
