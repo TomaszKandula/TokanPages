@@ -7,10 +7,9 @@ using TokanPages;
 
 namespace Backend.IntegrationTests.Handlers.Subscribers
 {
- 
+
     public class GetAllSubscribersQueryHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public GetAllSubscribersQueryHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
@@ -21,7 +20,6 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
         [Fact]
         public async Task GetAllUsers_ShouldReturnCollection()
         {
-
             // Arrange
             var LRequest = $"/api/v1/subscribers/getallsubscribers/";
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -38,9 +36,6 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
             var LDeserialized = JsonConvert.DeserializeObject<IEnumerable<TokanPages.Backend.Domain.Entities.Subscribers>>(LContent);
             LDeserialized.Should().NotBeNullOrEmpty();
             LDeserialized.Should().HaveCountGreaterThan(0);
-
         }
-
     }
-
 }

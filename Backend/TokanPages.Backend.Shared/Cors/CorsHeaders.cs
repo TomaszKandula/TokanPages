@@ -2,10 +2,8 @@
 
 namespace TokanPages.Backend.Shared.Cors
 {
-
     public static class CorsHeaders
     {
-
         public static string AccessControlAllowOrigin = "Access-Control-Allow-Origin";
         public static string AccessControlAllowHeaders = "Access-Control-Allow-Headers";
         public static string AccessControlAllowMethods = "Access-Control-Allow-Methods";
@@ -14,7 +12,6 @@ namespace TokanPages.Backend.Shared.Cors
 
         public static void Ensure(HttpContext AHttpContext)
         {
-
             var LGetAllowOrigin = AHttpContext.Response.Headers[AccessControlAllowOrigin];
             var LGetAllowHeaders = AHttpContext.Response.Headers[AccessControlAllowHeaders];
             var LGetAllowMethods = AHttpContext.Response.Headers[AccessControlAllowMethods];
@@ -42,9 +39,6 @@ namespace TokanPages.Backend.Shared.Cors
 
             if (LGetMaxAge.Count == 0 && LRequestOrigin.Count != 0)
                 AHttpContext.Response.Headers.Add(AccessControlMaxAge, LSetMaxAge);
-
         }
-
     }
-
 }

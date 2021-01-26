@@ -6,10 +6,8 @@ using TokanPages.Backend.Shared.Settings;
 
 namespace TokanPages.Middleware
 {
-
     public class CustomCors
     {
-
         private readonly RequestDelegate FRequestDelegate;
 
         public CustomCors(RequestDelegate ARequestDelegate) 
@@ -19,7 +17,6 @@ namespace TokanPages.Middleware
 
         public Task Invoke(HttpContext AHttpContext, AppUrls AAppUrls)
         {
-
             var LDevelopmentOrigins = AAppUrls.DevelopmentOrigin.Split(';').ToList();
             var LDeploymentOrigins = AAppUrls.DeploymentOrigin.Split(';').ToList();
             var LRequestOrigin = AHttpContext.Request.Headers["Origin"];
@@ -39,9 +36,6 @@ namespace TokanPages.Middleware
             }
 
             return FRequestDelegate(AHttpContext);
-
         }
-
     }
-
 }

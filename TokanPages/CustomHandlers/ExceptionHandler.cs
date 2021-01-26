@@ -10,16 +10,12 @@ using Newtonsoft.Json;
 
 namespace TokanPages.CustomHandlers
 {
-
     public static class ExceptionHandler
     {
-
         public static void Handle(IApplicationBuilder AApplication)
         {
-
             AApplication.Run(async AHttpContext => 
             {
-
                 var LExceptionHandlerPathFeature = AHttpContext.Features.Get<IExceptionHandlerPathFeature>();
                 var LException = LExceptionHandlerPathFeature.Error;
                 AHttpContext.Response.ContentType = "application/json";
@@ -56,11 +52,7 @@ namespace TokanPages.CustomHandlers
 
                 CorsHeaders.Ensure(AHttpContext);
                 await AHttpContext.Response.WriteAsync(LResult);
-
             });
-
         }
-
     }
-
 }

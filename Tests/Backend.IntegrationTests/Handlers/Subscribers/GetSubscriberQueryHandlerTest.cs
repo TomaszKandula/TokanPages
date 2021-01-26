@@ -9,10 +9,8 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace Backend.IntegrationTests.Handlers.Subscribers
 {
-
     public class GetSubscriberQueryHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public GetSubscriberQueryHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
@@ -23,7 +21,6 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
         [Fact]
         public async Task GetSubscriber_WhenIdIsCorrect_ShouldReturnEntityAsJsonObject() 
         {
-
             // Arrange
             var LTestUserId = Subscribers1.Id;
             var LRequest = $"/api/v1/subscribers/getsubscriber/{LTestUserId}/";
@@ -40,13 +37,11 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
 
             var LDeserialized = JsonConvert.DeserializeObject<TokanPages.Backend.Domain.Entities.Subscribers>(LContent);
             LDeserialized.Should().NotBeNull();
-
         }
 
         [Fact]
         public async Task GetSubscriber_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError()
         {
-
             // Arrange
             var LRequest = $"/api/v1/subscribers/getsubscriber/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -60,9 +55,6 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Contain(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
-
         }
-
     }
-
 }

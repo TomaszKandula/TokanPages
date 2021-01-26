@@ -6,14 +6,11 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
 namespace Backend.UnitTests.Validators.Users
 {
-
     public class RemoveUserCommandValidatorTest
     {
-
         [Fact]
         public void RemoveUser_WhenIdIsCorrect_ShouldFinishSuccessfull()
         {
-
             // Arrange
             var LRemoveUserCommand = new RemoveUserCommand
             {
@@ -26,13 +23,11 @@ namespace Backend.UnitTests.Validators.Users
 
             // Assert
             LResult.Errors.Should().BeEmpty();
-
         }
 
         [Fact]
         public void RemoveUser_WhenIdIsEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LRemoveUserCommand = new RemoveUserCommand
             {
@@ -46,9 +41,6 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
-
     }
-
 }

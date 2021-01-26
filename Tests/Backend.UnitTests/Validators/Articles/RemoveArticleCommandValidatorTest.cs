@@ -6,14 +6,11 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
 namespace Backend.UnitTests.Validators.Articles
 {
-
     public class RemoveArticleCommandValidatorTest
     {
-
         [Fact]
         public void RemoveArticle_WhenIdIsCorrect_ShouldFinishSuccessfully() 
         {
-
             // Arrange
             var LRemoveArticleCommand = new RemoveArticleCommand
             {
@@ -26,13 +23,11 @@ namespace Backend.UnitTests.Validators.Articles
 
             // Assert
             LResult.Errors.Should().BeEmpty();
-
         }
 
         [Fact]
         public void RemoveArticle_WhenIdIsIncorrect_ShouldThrowError()
         {
-
             // Arrange
             var LRemoveArticleCommand = new RemoveArticleCommand
             {
@@ -46,9 +41,6 @@ namespace Backend.UnitTests.Validators.Articles
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
-
     }
-
 }

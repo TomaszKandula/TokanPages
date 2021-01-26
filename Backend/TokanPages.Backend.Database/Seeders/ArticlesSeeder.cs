@@ -3,13 +3,10 @@ using TokanPages.Backend.Domain.Entities;
 
 namespace TokanPages.Backend.Database.Seeders
 {
-
     public class ArticlesSeeder
     {
-
         public static List<Articles> SeedArticles()
         {
-
             return new List<Articles>
             {
                 new Articles
@@ -46,9 +43,6 @@ namespace TokanPages.Backend.Database.Seeders
                     UpdatedAt = Dummies.Article3.LastUpdated
                 }
             };
-
         }
-
     }
-
 }

@@ -9,10 +9,8 @@ using TokanPages.Backend.Shared.Dto.Users;
 
 namespace Backend.IntegrationTests.Handlers.Users
 {
-
     public class AddUserCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public AddUserCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
@@ -23,7 +21,6 @@ namespace Backend.IntegrationTests.Handlers.Users
         [Fact]
         public async Task AddUser_WhenAllFieldsAreProvided_ShouldReturnNewGuid() 
         {
-
             // Arrange
             var LRequest = $"/api/v1/users/adduser/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
@@ -47,9 +44,6 @@ namespace Backend.IntegrationTests.Handlers.Users
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
-
         }
-
     }
-
 }

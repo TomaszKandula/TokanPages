@@ -9,14 +9,11 @@ using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
 
 namespace Backend.UnitTests.Handlers.Subscribers
 {
-
     public class GetSubscriberQueryHandlerTest : TestBase
     {
-
         [Fact]
         public async Task GetSubscriber_WhenIdIsCorrect_ShouldReturnEntity() 
         {
-
             // Arrange
             var LGetSubscriberQuery = new GetSubscriberQuery
             {
@@ -48,13 +45,11 @@ namespace Backend.UnitTests.Handlers.Subscribers
             LResults.Count.Should().Be(LSubscribers.Count);
             LResults.Registered.Should().Be(LTestDate);
             LResults.LastUpdated.Should().BeNull();
-
         }
 
         [Fact]
         public async Task GetSubscriber_WhenIdIsIncorrect_ShouldThrowError()
         {
-
             // Arrange
             var LGetSubscriberQuery = new GetSubscriberQuery
             {
@@ -78,9 +73,6 @@ namespace Backend.UnitTests.Handlers.Subscribers
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LGetSubscriberQueryHandler.Handle(LGetSubscriberQuery, CancellationToken.None));
-
         }
-
     }
-
 }

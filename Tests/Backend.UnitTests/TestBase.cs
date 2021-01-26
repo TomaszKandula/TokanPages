@@ -6,14 +6,12 @@ namespace Backend.UnitTests
 {
     public class TestBase
     {
-
         protected IServiceProvider FServiceProvider;
         protected IServiceScope FServiceScope;
         private readonly DatabaseContextFactory FDatabaseContextFactory;
 
         public TestBase() 
         {
-
             var LServices = new ServiceCollection();
 
             LServices.AddSingleton<DatabaseContextFactory>();
@@ -27,14 +25,11 @@ namespace Backend.UnitTests
             FServiceScope = LServiceProvider.CreateScope();
             FServiceProvider = FServiceScope.ServiceProvider;
             FDatabaseContextFactory = FServiceProvider.GetService<DatabaseContextFactory>();
-
         }
 
         protected DatabaseContext GetTestDatabaseContext()
         {
             return FDatabaseContextFactory.CreateDatabaseContext();
         }
-
     }
-
 }

@@ -8,15 +8,12 @@ using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
 using Backend.TestData;
 
 namespace Backend.UnitTests.Handlers.Subscribers
-{
-    
+{   
     public class GetAllSubscribersQueryHandlerTest : TestBase
     {
-
         [Fact]
         public async Task GetAllSubscribers_ShouldReturnCollection()
         {
-
             // Arrange
             var LDatabaseContext = GetTestDatabaseContext();
             var LGetAllSubscribersQuery = new GetAllSubscribersQuery { };
@@ -51,9 +48,6 @@ namespace Backend.UnitTests.Handlers.Subscribers
             // Assert
             LResults.Should().NotBeNull();
             LResults.Should().HaveCount(2);
-
         }
-
     }
-
 }

@@ -4,11 +4,9 @@ using TokanPages.Backend.Core.Services.AppLogger;
 using MediatR;
 
 namespace TokanPages.Backend.Core.Behaviours
-{
-    
+{   
     public class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
-
         private readonly ILogger FLogger;
 
         public LoggingBehaviour(ILogger ALogger) 
@@ -24,5 +22,4 @@ namespace TokanPages.Backend.Core.Behaviours
             return LResponse;
         }
     }
-
 }

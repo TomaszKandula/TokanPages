@@ -15,10 +15,8 @@ using TokanPages.Backend.Shared.Environment;
 
 namespace TokanPages
 {
-
     public class Startup
     {
-
         private readonly IConfiguration FConfiguration;
         private readonly IWebHostEnvironment FEnvironment;
 
@@ -30,7 +28,6 @@ namespace TokanPages
 
         public void ConfigureServices(IServiceCollection AServices)
         {
-
             AServices.AddMvc(AOption => AOption.CacheProfiles
                 .Add("Standard", new CacheProfile() 
                 { 
@@ -60,12 +57,10 @@ namespace TokanPages
                     AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "TokanPagesApi", Version = "v1" });
                 });
             }
-
         }
 
         public void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
         {
-
             var LScopeFactory = AApplication.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
             using var LScope = LScopeFactory.CreateScope();
             var LDatabaseInitializer = LScope.ServiceProvider.GetService<IDbInitializer>();
@@ -108,9 +103,6 @@ namespace TokanPages
                     ASpa.UseProxyToSpaDevelopmentServer(AAppUrls.DevelopmentOrigin);
                 }
             });           
-
         }
-
     }
-
 }

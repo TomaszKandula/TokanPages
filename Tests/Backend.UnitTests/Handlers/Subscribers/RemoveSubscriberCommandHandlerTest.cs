@@ -9,14 +9,11 @@ using TokanPages.Backend.Core.Exceptions;
 
 namespace Backend.UnitTests.Handlers.Subscribers
 {
-
     public class RemoveSubscriberCommandHandlerTest : TestBase
     {
-
         [Fact]
         public async Task RemoveSubscriber_WhenIdIsCorrect_ShouldRemoveEntity() 
         {
-
             // Arrange
             var LRemoveSubscriberCommand = new RemoveSubscriberCommand 
             { 
@@ -44,13 +41,11 @@ namespace Backend.UnitTests.Handlers.Subscribers
             var LAssertDbContext = GetTestDatabaseContext();
             var LSubscribersEntity = LAssertDbContext.Subscribers.Find(LRemoveSubscriberCommand.Id);
             LSubscribersEntity.Should().BeNull();
-
         }
 
         [Fact]
         public async Task RemoveSubscriber_WhenIdIsIncorrect_ShouldThrowError()
         {
-
             // Arrange
             var LRemoveSubscriberCommand = new RemoveSubscriberCommand
             {
@@ -62,9 +57,6 @@ namespace Backend.UnitTests.Handlers.Subscribers
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LRemoveSubscriberCommandHandler.Handle(LRemoveSubscriberCommand, CancellationToken.None));
-
         }
-
     }
-
 }

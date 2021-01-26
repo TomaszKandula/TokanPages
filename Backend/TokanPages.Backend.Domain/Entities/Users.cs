@@ -1,13 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using TokanPages.Backend.Core.Entities;
 
 namespace TokanPages.Backend.Domain.Entities
 {
-    public partial class Users
+    public partial class Users : Entity<Guid>
     {
-
-        public Guid Id { get; set; }
-
         [Required]
         [MaxLength(255)]
         public string UserAlias { get; set; }
@@ -31,6 +29,5 @@ namespace TokanPages.Backend.Domain.Entities
         public DateTime? LastLogged { get; set; }
 
         public DateTime? LastUpdated { get; set; }
-
     }
 }

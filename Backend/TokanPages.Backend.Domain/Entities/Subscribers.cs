@@ -1,13 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using TokanPages.Backend.Core.Entities;
 
 namespace TokanPages.Backend.Domain.Entities
 {
-    public partial class Subscribers
+    public partial class Subscribers : Entity<Guid>
     {
-
-        public Guid Id { get; set; }
-
         [Required]
         [MaxLength(255)]
         public string Email { get; set; }
@@ -19,6 +17,5 @@ namespace TokanPages.Backend.Domain.Entities
         public DateTime Registered { get; set; }
 
         public DateTime? LastUpdated { get; set; }
-
     }
 }

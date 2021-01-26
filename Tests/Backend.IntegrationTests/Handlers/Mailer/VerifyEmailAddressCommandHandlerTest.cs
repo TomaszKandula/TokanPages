@@ -9,10 +9,8 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
 
 namespace Backend.IntegrationTests.Handlers.Mailer
 {
-
     public class VerifyEmailAddressCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public VerifyEmailAddressCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
@@ -24,7 +22,6 @@ namespace Backend.IntegrationTests.Handlers.Mailer
         [InlineData("john@gmail.com")]
         public async Task VerifyEmailAddress_WhenEmailIsCorrect_ShouldReturnResultsAsJsonObject(string Email)
         {
-
             // Arrange
             var LRequest = $"/api/v1/mailer/verifyemailaddress/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
@@ -45,9 +42,6 @@ namespace Backend.IntegrationTests.Handlers.Mailer
             var LDeserialized = JsonConvert.DeserializeObject<VerifyEmailAddressCommandResult>(LContent);
             LDeserialized.IsFormatCorrect.Should().BeTrue();
             LDeserialized.IsDomainCorrect.Should().BeTrue();
-
         }
-
     }
-
 }

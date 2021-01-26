@@ -9,14 +9,11 @@ using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 
 namespace Backend.UnitTests.Handlers.Articles
 {
-
     public class GetArticleQueryHandlerTest : TestBase
     {
-
         [Fact]
         public async Task GetArticle_WhenIdIsCorrect_ShouldReturnEntity() 
         {
-
             // Arrange
             var LGetArticleQuery = new GetArticleQuery 
             { 
@@ -53,13 +50,11 @@ namespace Backend.UnitTests.Handlers.Articles
             LResults.ReadCount.Should().Be(LArticles.ReadCount);
             LResults.UpdatedAt.Should().BeNull();
             LResults.CreatedAt.Should().Be(LTestDate);
-
         }
 
         [Fact]
         public async Task GetArticle_WhenIdIsIncorrect_ShouldThrowError()
         {
-
             // Arrange
             var LGetArticleQuery = new GetArticleQuery
             {
@@ -84,9 +79,6 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LGetArticleQueryHandler.Handle(LGetArticleQuery, CancellationToken.None));
-
         }
-
     }
-
 }

@@ -6,14 +6,11 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
 namespace Backend.UnitTests.Validators.Subscribers
 {
-
     public class RemoveSubscriberCommandValidatorTest
     {
-
         [Fact]
         public void RemoveSubscriber_WhenIdIsCorrect_ShouldFinishSuccessfull() 
         {
-
             // Arrange
             var LRemoveSubscriberCommand = new RemoveSubscriberCommand 
             { 
@@ -26,13 +23,11 @@ namespace Backend.UnitTests.Validators.Subscribers
 
             // Assert
             LResult.Errors.Should().BeEmpty();
-
         }
 
         [Fact]
         public void RemoveSubscriber_WhenIdIsEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LRemoveSubscriberCommand = new RemoveSubscriberCommand
             {
@@ -46,9 +41,6 @@ namespace Backend.UnitTests.Validators.Subscribers
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
-
     }
-
 }

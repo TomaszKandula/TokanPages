@@ -7,10 +7,8 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
 namespace Backend.UnitTests.Validators.Users
 {
-
     public class UpdateUserCommandValidatorTest
     {
-
         [Fact]
         public void UpdateUser_WhenAllFieldsAreCorrect_ShouldFinishSuccessfull()
         {
@@ -31,13 +29,11 @@ namespace Backend.UnitTests.Validators.Users
 
             // Assert
             LResults.Errors.Should().BeEmpty();
-
         }
 
         [Fact]
         public void UpdateUser_WhenEmailAddressIsEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
             {
@@ -55,13 +51,11 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResults.Errors.Count.Should().Be(1);
             LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void UpdateUser_WhenEmailAddressIsTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
             {
@@ -79,13 +73,11 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResults.Errors.Count.Should().Be(1);
             LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
-
         }
 
         [Fact]
         public void UpdateUser_WhenUserAliasIsEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
             {
@@ -103,13 +95,11 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResults.Errors.Count.Should().Be(1);
             LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void UpdateUser_WhenUserAliasIsTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
             {
@@ -127,13 +117,11 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResults.Errors.Count.Should().Be(1);
             LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.USERALIAS_TOO_LONG));
-
         }
 
         [Fact]
         public void UpdateUser_WhenFirstNameIsEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
             {
@@ -151,13 +139,11 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResults.Errors.Count.Should().Be(1);
             LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void UpdateUser_WhenFirstNameIsTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
             {
@@ -175,13 +161,11 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResults.Errors.Count.Should().Be(1);
             LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.FIRST_NAME_TOO_LONG));
-
         }
 
         [Fact]
         public void UpdateUser_WhenLastNameIsEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
             {
@@ -199,13 +183,11 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResults.Errors.Count.Should().Be(1);
             LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void UpdateUser_WhenLastNameIsTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
             {
@@ -223,9 +205,6 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResults.Errors.Count.Should().Be(1);
             LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LAST_NAME_TOO_LONG));
-
         }
-
     }
-
 }

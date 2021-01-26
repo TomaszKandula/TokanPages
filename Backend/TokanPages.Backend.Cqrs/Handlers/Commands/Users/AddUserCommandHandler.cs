@@ -8,11 +8,9 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
-{
-    
+{   
     public class AddUserCommandHandler : TemplateHandler<AddUserCommand, Guid>
     {
-
         private readonly DatabaseContext FDatabaseContext;
 
         public AddUserCommandHandler(DatabaseContext ADatabaseContext) 
@@ -22,7 +20,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         public override async Task<Guid> Handle(AddUserCommand ARequest, CancellationToken ACancellationToken)
         {
-
             var LEmailCollection = await FDatabaseContext.Users
                 .AsNoTracking()
                 .Where(AUsers => AUsers.EmailAddress == ARequest.EmailAddress)
@@ -50,9 +47,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             FDatabaseContext.Users.Add(LNewUser);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(LNewId);
-
         }
-
     }
-
 }

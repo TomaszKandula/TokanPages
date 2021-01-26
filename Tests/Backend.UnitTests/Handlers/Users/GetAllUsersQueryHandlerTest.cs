@@ -9,14 +9,11 @@ using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 
 namespace Backend.UnitTests.Handlers.Users
 {
-
     public class GetAllUsersQueryHandlerTest : TestBase
     {
-
         [Fact]
         public async Task GetAllArticles_ShouldReturnCollection()
         {
-
             // Arrange
             var LDatabaseContext = GetTestDatabaseContext();
             var LGetAllUsersQuery = new GetAllUsersQuery { };
@@ -56,8 +53,6 @@ namespace Backend.UnitTests.Handlers.Users
             // Assert
             LResults.Should().NotBeNull();
             LResults.Should().HaveCount(2);
-
         }
-
     }
 }

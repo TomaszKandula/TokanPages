@@ -10,10 +10,8 @@ using MediatR;
 
 namespace TokanPages.Controllers
 {
-
     public class ArticlesController : __BaseController
     {
-
         public ArticlesController(IMediator AMediator) : base(AMediator)
         {        
         }
@@ -52,7 +50,5 @@ namespace TokanPages.Controllers
             var LCommand = ArticlesMapper.MapToRemoveArticleCommand(APayLoad);
             return await FMediator.Send(LCommand);
         }
-
     }
-
 }

@@ -2,7 +2,6 @@
 
 namespace TokanPages.Backend.Database.Dummies
 {
-
     public class Subscribers3
     {
         public static Guid Id = Guid.Parse("8a40f1b0-f983-4e51-9bfe-aeb5a5aee1bf");
@@ -12,5 +11,4 @@ namespace TokanPages.Backend.Database.Dummies
         public static bool IsActivated = false;
         public static int Count = 0;
     }
-
 }

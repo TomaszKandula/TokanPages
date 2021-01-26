@@ -10,10 +10,8 @@ using MediatR;
 
 namespace TokanPages.Controllers
 {
-
     public class SubscribersController : __BaseController
     {
-
         public SubscribersController(IMediator AMediator) : base(AMediator)
         {
         }
@@ -52,7 +50,5 @@ namespace TokanPages.Controllers
             var LCommand = SubscribersMapper.MapToRemoveSubscriberCommand(APayLoad);
             return await FMediator.Send(LCommand);
         }
-
     }
-
 }

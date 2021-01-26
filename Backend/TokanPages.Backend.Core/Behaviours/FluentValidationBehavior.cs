@@ -6,12 +6,9 @@ using ValidationException = TokanPages.Backend.Core.Exceptions.ValidationExcepti
 
 namespace TokanPages.Backend.Core.Behaviours
 {
-
     public class FluentValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
-
         private readonly IValidator<TRequest> FValidator;
-
 
         public FluentValidationBehavior(IValidator<TRequest> AValidator = null) 
         {
@@ -35,7 +32,5 @@ namespace TokanPages.Backend.Core.Behaviours
 
             return ANext();
         }
-
     }
-
 }

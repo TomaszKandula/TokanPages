@@ -3,13 +3,10 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
-
     public class SendMessageCommandValidator : AbstractValidator<SendMessageCommand>
     {
-
         public SendMessageCommandValidator() 
         {
-
             RuleFor(Field => Field.FirstName)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
@@ -62,9 +59,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 .MaximumLength(255)
                 .WithErrorCode(nameof(ValidationCodes.MESSAGE_TOO_LONG))
                 .WithMessage(ValidationCodes.MESSAGE_TOO_LONG);
-
         }
-
     }
-
 }

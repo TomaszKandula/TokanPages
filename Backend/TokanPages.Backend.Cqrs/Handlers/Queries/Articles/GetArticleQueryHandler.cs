@@ -8,10 +8,8 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 {
-
     public class GetArticleQueryHandler : TemplateHandler<GetArticleQuery, Domain.Entities.Articles>
     {
-
         private readonly DatabaseContext FDatabaseContext;
 
         public GetArticleQueryHandler(DatabaseContext ADatabaseContext)
@@ -21,7 +19,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 
         public override async Task<Domain.Entities.Articles> Handle(GetArticleQuery ARequest, CancellationToken ACancellationToken)
         {
-
             var LCurrentArticle = await FDatabaseContext.Articles
                 .AsNoTracking()
                 .Where(AArticles => AArticles.Id == ARequest.Id)
@@ -33,9 +30,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
             }
 
             return LCurrentArticle.First();
-
         }
-
     }
-
 }

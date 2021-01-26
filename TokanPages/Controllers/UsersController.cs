@@ -10,10 +10,8 @@ using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 
 namespace TokanPages.Controllers
 {
-
     public class UsersController : __BaseController
     {
-
         public UsersController(IMediator AMediator) : base(AMediator)
         { 
         }
@@ -52,7 +50,5 @@ namespace TokanPages.Controllers
             var LCommand = UsersMapper.MapToRemoveUserCommand(APayLoad);
             return await FMediator.Send(LCommand);
         }
-
     }
-
 }

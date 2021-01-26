@@ -10,14 +10,11 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
 namespace Backend.UnitTests.Handlers.Subscribers
 {
-
     public class AddSubscriberCommandHandlerTest : TestBase
     {
-
         [Fact]
         public async Task AddSubscriber_WhenEmailIsProvided_ShouldAddEntity() 
         {
-
             // Arrange
             var LAddSubscriberCommand = new AddSubscriberCommand 
             { 
@@ -42,13 +39,11 @@ namespace Backend.UnitTests.Handlers.Subscribers
             LSubscribersEntity[0].Registered.Should().HaveMonth(DateTime.UtcNow.Month);
             LSubscribersEntity[0].Registered.Should().HaveYear(DateTime.UtcNow.Year);
             LSubscribersEntity[0].LastUpdated.Should().BeNull();
-
         }
 
         [Fact]
         public async Task AddSubscriber_WhenEmailExists_ShouldThrowError()
         {
-
             // Arrange
             var LTestEmail = DataProvider.GetRandomEmail();
             var LAddSubscriberCommand = new AddSubscriberCommand
@@ -73,9 +68,6 @@ namespace Backend.UnitTests.Handlers.Subscribers
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LAddSubscriberCommandHandler.Handle(LAddSubscriberCommand, CancellationToken.None));
-
         }
-
     }
-
 }

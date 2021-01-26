@@ -12,10 +12,8 @@ using TokanPages.Backend.SmtpClient.Models;
 
 namespace TokanPages.Backend.SmtpClient
 {
-
     public class SmtpClientService : SmtpClientObject, ISmtpClientService
     {
-
         private readonly SmtpServerSettings FSmtpServerSettings;
 
         public SmtpClientService(SmtpServerSettings ASmtpServerSettings)
@@ -33,10 +31,8 @@ namespace TokanPages.Backend.SmtpClient
 
         public override async Task<SendActionResult> Send()
         {
-
             try
             {
-
                 var LNewMail = new MimeMessage();
 
                 LNewMail.From.Add(MailboxAddress.Parse(From));
@@ -67,7 +63,6 @@ namespace TokanPages.Backend.SmtpClient
                 {
                     IsSucceeded = true
                 };
-
             } 
             catch (Exception LException)
             {
@@ -78,17 +73,13 @@ namespace TokanPages.Backend.SmtpClient
                     ErrorDesc = LException.Message
                 };
             }
-
         }
 
         public override List<CheckActionResult> IsAddressCorrect(List<string> AEmailAddress)
         {
-
             var Results = new List<CheckActionResult>();
-
             foreach (var Item in AEmailAddress)
             {
-
                 try
                 {
                     var LEmailAddress = new MailAddress(Item);
@@ -98,19 +89,14 @@ namespace TokanPages.Backend.SmtpClient
                 {
                     Results.Add(new CheckActionResult { EmailAddress = Item, IsValid = false });
                 }
-
             }
-
             return Results;
-
         }
 
         public override async Task<bool> IsDomainCorrect(string AEmailAddress)
         {
-
             try
             {
-
                 var LLookupClient = new LookupClient();
 
                 var LGetEmailDomain = AEmailAddress.Split("@");
@@ -129,17 +115,11 @@ namespace TokanPages.Backend.SmtpClient
                 var LIsRecordMx = LRecordMx.Any();
 
                 return LIsRecordA || LIsRecordAaaa || LIsRecordMx;
-
             }
             catch (DnsResponseException)
             {
                 return false;
             }
-
         }
-
-
-
     }
-
 }

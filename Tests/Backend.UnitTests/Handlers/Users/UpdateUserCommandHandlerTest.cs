@@ -9,14 +9,11 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
 namespace Backend.UnitTests.Handlers.Users
 {
-
     public class UpdateUserCommandHandlerTest : TestBase
     {
-
         [Fact]
         public async Task UpdateUser_WhenIdIsCorrect_ShouldUpdateEntity()
         {
-
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
             {
@@ -59,13 +56,11 @@ namespace Backend.UnitTests.Handlers.Users
             LUserEntity.LastName.Should().Be(LUpdateUserCommand.LastName);
             LUserEntity.IsActivated.Should().BeTrue();
             LUserEntity.LastUpdated.Should().NotBeNull();
-
         }
 
         [Fact]
         public async Task UpdateUser_WhenIdIsIncorrect_ShouldThrowError()
         {
-
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
             {
@@ -97,13 +92,11 @@ namespace Backend.UnitTests.Handlers.Users
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LUpdateUserCommandHandler.Handle(LUpdateUserCommand, CancellationToken.None));
-
         }
 
         [Fact]
         public async Task UpdateUser_WhenEmailExists_ShouldThrowError()
         {
-
             // Arrange
             var LTestEmail = DataProvider.GetRandomEmail();
             var LUpdateUserCommand = new UpdateUserCommand
@@ -136,9 +129,6 @@ namespace Backend.UnitTests.Handlers.Users
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LUpdateUserCommandHandler.Handle(LUpdateUserCommand, CancellationToken.None));
-
         }
-
     }
-
 }

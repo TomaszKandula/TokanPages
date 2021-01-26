@@ -6,11 +6,9 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Backend.IntegrationTests.Handlers.Articles
-{
-    
+{   
     public class GetAllArticlesQueryHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public GetAllArticlesQueryHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
@@ -21,7 +19,6 @@ namespace Backend.IntegrationTests.Handlers.Articles
         [Fact]
         public async Task GetAllArticles_ShouldReturnCollection()
         {
-
             // Arrange
             var LRequest = $"/api/v1/articles/getallarticles/?AIsPublished=false";
 
@@ -38,9 +35,6 @@ namespace Backend.IntegrationTests.Handlers.Articles
             var LDeserialized = JsonConvert.DeserializeObject<IEnumerable<TokanPages.Backend.Domain.Entities.Articles>>(LContent);
             LDeserialized.Should().NotBeNullOrEmpty();
             LDeserialized.Should().HaveCountGreaterThan(0);
-
         }
-
     }
-
 }

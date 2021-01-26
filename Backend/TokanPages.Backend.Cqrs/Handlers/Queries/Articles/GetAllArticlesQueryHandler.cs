@@ -7,10 +7,8 @@ using TokanPages.Backend.Database;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 {
-
     public class GetAllArticlesQueryHandler : TemplateHandler<GetAllArticlesQuery, IEnumerable<Domain.Entities.Articles>>
     {
-
         private readonly DatabaseContext FDatabaseContext;
 
         public GetAllArticlesQueryHandler(DatabaseContext ADatabaseContext) 
@@ -20,10 +18,12 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 
         public override async Task<IEnumerable<Domain.Entities.Articles>> Handle(GetAllArticlesQuery ARequest, CancellationToken ACancellationToken) 
         {
-            var LArticles = await FDatabaseContext.Articles.AsNoTracking().Where(Articles => Articles.IsPublished == ARequest.IsPublished).ToListAsync(ACancellationToken);
+            var LArticles = await FDatabaseContext.Articles
+                .AsNoTracking()
+                .Where(Articles => Articles.IsPublished == ARequest.IsPublished)
+                .ToListAsync(ACancellationToken);
+
             return LArticles;
         }
-
     }
-
 }

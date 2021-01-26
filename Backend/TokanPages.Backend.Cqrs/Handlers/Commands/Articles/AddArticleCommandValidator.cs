@@ -3,13 +3,10 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
-
     public class AddArticleCommandValidator : AbstractValidator<AddArticleCommand>
     {
-
         public AddArticleCommandValidator() 
         {
-
             RuleFor(Field => Field.Title)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
@@ -35,9 +32,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
-
         }
-
     }
-
 }

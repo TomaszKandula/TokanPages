@@ -14,10 +14,8 @@ using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
-
     public class SendNewsletterCommandHandler : TemplateHandler<SendNewsletterCommand, Unit>
     {
-
         private readonly ISmtpClientService FSmtpClientService;
         private readonly IAzureStorageService FAzureStorageService;
         private readonly ITemplateHelper FTemplateHelper;
@@ -36,7 +34,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 
         public override async Task<Unit> Handle(SendNewsletterCommand ARequest, CancellationToken ACancellationToken) 
         {
-
             var UnsubscribeBaseLink = FAppUrls.DeploymentOrigin + FAppUrls.UnsubscribePath;
             foreach (var Subscriber in ARequest.SubscriberInfo)
             {
@@ -61,13 +58,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 {
                     throw new BusinessException(nameof(CommonErrorCodes.ERROR_MAILER), LResult.ErrorDesc);
                 }
-
             }
 
             return await Task.FromResult(Unit.Value);
-
         }
-
     }
-
 }

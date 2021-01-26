@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 
 namespace Backend.TestData
-{
-    
+{   
     public static class DataProvider
     {
-
 		private static Random FRandom = new Random();
 
 		public static int GetRandomInt(int AMin = 0, int AMax = 12)
@@ -28,7 +26,6 @@ namespace Backend.TestData
 
 		public static string GetRandomString(int ALength = 12, string APrefix = "")
 		{
-
 			if (ALength == 0) return string.Empty;
 			
 			const string LChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -41,7 +38,6 @@ namespace Backend.TestData
 				return APrefix + LString;
 
 			return LString;
-
 		}
 
 		public static byte[] GetRandomByteArray(int ASizeInKb = 12)
@@ -59,23 +55,18 @@ namespace Backend.TestData
 
 		public static DateTime GetRandomDate(DateTime? AMin = null, DateTime? AMax = null, int ADefaultYear = 2020)
 		{
-
 			if (!AMin.HasValue) AMin = new DateTime(ADefaultYear, 1, 1);
 			if (!AMax.HasValue) AMax = new DateTime(ADefaultYear, 12, 31);
 
 			var LDayRange = (AMax - AMin).Value.Days;
 			return AMin.Value.AddDays(FRandom.Next(0, LDayRange));
-
 		}
 
 		public static T GetRandomEnum<T>()
 		{
-
 			var LRandom = new Random();
 			var LValues = Enum.GetValues(typeof(T));
-
 			return (T)LValues.GetValue(LRandom.Next(LValues.Length));
-
 		}
 
 		public static string Base64Encode(string APlainText)
@@ -89,7 +80,5 @@ namespace Backend.TestData
 			var LBase64EncodedBytes = Convert.FromBase64String(ABase64EncodedData);
 			return Encoding.UTF8.GetString(LBase64EncodedBytes);
 		}
-
 	}
-
 }

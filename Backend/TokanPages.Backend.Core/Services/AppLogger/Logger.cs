@@ -2,10 +2,8 @@
 
 namespace TokanPages.Backend.Core.Services.AppLogger
 {
-
     public class Logger : ILogger
     {
-
         public virtual void LogDebug(string AMessage)
         {
             Log.Debug(AMessage);
@@ -30,7 +28,5 @@ namespace TokanPages.Backend.Core.Services.AppLogger
         {
             Log.Fatal(AMessage);
         }
-
     }
-
 }

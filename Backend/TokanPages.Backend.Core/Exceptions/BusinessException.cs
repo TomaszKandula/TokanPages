@@ -2,7 +2,6 @@
 
 namespace TokanPages.Backend.Core.Exceptions
 {
-
     public class BusinessException : Exception
     {
         public string ErrorCode { get; }
@@ -11,7 +10,5 @@ namespace TokanPages.Backend.Core.Exceptions
         {
             ErrorCode = AErrorCode;
         }
-
     }
-
 }

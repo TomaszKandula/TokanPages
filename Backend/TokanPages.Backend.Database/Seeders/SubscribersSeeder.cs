@@ -3,13 +3,10 @@ using TokanPages.Backend.Domain.Entities;
 
 namespace TokanPages.Backend.Database.Seeders
 {
-
     public class SubscribersSeeder
     {
-
         public static List<Subscribers> SeedSubscribers()
         {
-
             return new List<Subscribers>
             {
                 new Subscribers
@@ -40,9 +37,6 @@ namespace TokanPages.Backend.Database.Seeders
                     LastUpdated = Dummies.Subscribers3.LastUpdated
                 }
             };
-
         }
-
     }
-
 }

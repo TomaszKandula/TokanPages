@@ -2,7 +2,6 @@
 
 namespace TokanPages.Backend.Shared.Dto.Mailer
 {
-
     public class SendMessageDto
     {
         public string FirstName { get; set; }
@@ -13,5 +12,4 @@ namespace TokanPages.Backend.Shared.Dto.Mailer
         public string Subject { get; set; }
         public string Message { get; set; }
     }
-
 }

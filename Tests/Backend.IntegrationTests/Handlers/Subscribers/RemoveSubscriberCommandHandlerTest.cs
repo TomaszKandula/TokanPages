@@ -11,10 +11,8 @@ using TokanPages.Backend.Shared.Dto.Subscribers;
 
 namespace Backend.IntegrationTests.Handlers.Subscribers
 {
-
     public class RemoveSubscriberCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public RemoveSubscriberCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
@@ -25,7 +23,6 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
         [Fact]
         public async Task RemoveSubscriber_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError()
         {
-
             // Arrange
             var LRequest = $"/api/v1/subscribers/removesubscriber/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
@@ -47,9 +44,6 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Contain(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
-
         }
-
     }
-
 }

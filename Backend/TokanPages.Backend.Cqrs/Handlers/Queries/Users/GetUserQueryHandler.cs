@@ -8,10 +8,8 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
 {
-
     public class GetUserQueryHandler : TemplateHandler<GetUserQuery, Domain.Entities.Users>
     {
-
         private readonly DatabaseContext FDatabaseContext;
 
         public GetUserQueryHandler(DatabaseContext ADatabaseContext) 
@@ -21,7 +19,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
 
         public override async Task<Domain.Entities.Users> Handle(GetUserQuery ARequest, CancellationToken ACancellationToken)
         {
-
             var LCurrentUser = await FDatabaseContext.Users
                 .AsNoTracking()
                 .Where(AUser => AUser.Id == ARequest.Id)
@@ -33,8 +30,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
             }
 
             return LCurrentUser.First();
-
         }
     }
-
 }

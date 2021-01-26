@@ -9,10 +9,8 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 {
-
     public class AddSubscriberCommandHandler : TemplateHandler<AddSubscriberCommand, Guid>
     {
-
         private readonly DatabaseContext FDatabaseContext;
 
         public AddSubscriberCommandHandler(DatabaseContext ADatabaseContext) 
@@ -22,7 +20,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 
         public override async Task<Guid> Handle(AddSubscriberCommand ARequest, CancellationToken ACancellationToken) 
         {
-
             var LEmailCollection = await FDatabaseContext.Subscribers
                 .AsNoTracking()
                 .Where(AUsers => AUsers.Email == ARequest.Email)
@@ -46,10 +43,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 
             await FDatabaseContext.Subscribers.AddAsync(LNewSubscriber);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-            return await Task.FromResult(LNewId);
-        
+            return await Task.FromResult(LNewId);        
         }
-
     }
-
 }

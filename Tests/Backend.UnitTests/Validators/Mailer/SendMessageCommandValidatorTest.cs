@@ -7,14 +7,11 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
 
 namespace Backend.UnitTests.Validators.Mailer
 {
-
     public class SendMessageCommandValidatorTest
     {
-
         [Fact]
         public void SendMessage_WhenAllFieldsAreCorrect_ShouldFinishSuccessful() 
         {
-
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
@@ -33,13 +30,11 @@ namespace Backend.UnitTests.Validators.Mailer
 
             // Assert
             LResult.Errors.Should().BeEmpty();
-
         }
 
         [Fact]
         public void SendMessage_WhenFirstNameEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
@@ -59,13 +54,11 @@ namespace Backend.UnitTests.Validators.Mailer
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void SendMessage_WhenFirstNameTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
@@ -85,13 +78,11 @@ namespace Backend.UnitTests.Validators.Mailer
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.FIRST_NAME_TOO_LONG));
-
         }
 
         [Fact]
         public void SendMessage_WhenLastNameEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
@@ -111,13 +102,11 @@ namespace Backend.UnitTests.Validators.Mailer
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void SendMessage_WhenLastNameTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
@@ -137,13 +126,11 @@ namespace Backend.UnitTests.Validators.Mailer
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LAST_NAME_TOO_LONG));
-
         }
 
         [Fact]
         public void SendMessage_WhenUserEmailEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
@@ -163,13 +150,11 @@ namespace Backend.UnitTests.Validators.Mailer
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void SendMessage_WhenUserEmailTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
@@ -189,13 +174,11 @@ namespace Backend.UnitTests.Validators.Mailer
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
-
         }
 
         [Fact]
         public void SendMessage_WhenEmailFromEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
@@ -215,13 +198,11 @@ namespace Backend.UnitTests.Validators.Mailer
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void SendMessage_WhenEmailFromTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
@@ -241,13 +222,11 @@ namespace Backend.UnitTests.Validators.Mailer
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
-
         }
 
         [Fact]
         public void SendMessage_WhenSubjectEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
@@ -267,13 +246,11 @@ namespace Backend.UnitTests.Validators.Mailer
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void SendMessage_WhenSubjectTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
@@ -293,13 +270,11 @@ namespace Backend.UnitTests.Validators.Mailer
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.SUBJECT_TOO_LONG));
-
         }
 
         [Fact]
         public void SendMessage_WhenMessageEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
@@ -319,13 +294,11 @@ namespace Backend.UnitTests.Validators.Mailer
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void SendMessage_WhenMessageTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
@@ -345,13 +318,11 @@ namespace Backend.UnitTests.Validators.Mailer
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.MESSAGE_TOO_LONG));
-
         }
 
         [Fact]
         public void SendMessage_WhenEmailTosEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
@@ -371,9 +342,6 @@ namespace Backend.UnitTests.Validators.Mailer
             // Assert
             LResult.Errors.Count.Should().Be(1);
             LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
-
     }
-
 }

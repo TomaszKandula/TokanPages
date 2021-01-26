@@ -1,8 +1,7 @@
 ﻿using System;
 
 namespace TokanPages.Backend.Database.Dummies
-{
-    
+{   
     public class Subscribers1
     {
         public static Guid Id = Guid.Parse("098a9c38-c31d-4a29-b5a7-5d02a1a1f7ae");
@@ -12,5 +11,4 @@ namespace TokanPages.Backend.Database.Dummies
         public static bool IsActivated = false;
         public static int Count = 0;
     }
-
 }

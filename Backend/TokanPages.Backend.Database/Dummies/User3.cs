@@ -2,7 +2,6 @@
 
 namespace TokanPages.Backend.Database.Dummies
 {
-
     public class User3
     {
         public static Guid Id = Guid.Parse("3d047a17-9865-47f1-acb3-53b08539e7c9");
@@ -15,5 +14,4 @@ namespace TokanPages.Backend.Database.Dummies
         public static DateTime? LastLogged = DateTime.Parse("2020-05-12 15:05:03");
         public static DateTime? LastUpdated = null;
     }
-
 }

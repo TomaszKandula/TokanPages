@@ -1,6 +1,5 @@
 ﻿namespace TokanPages.Backend.Shared.Environment
 {
-
     /// <summary>
     /// Allows to setting and getting environemntal variables.
     /// It is used when application is bootstrapped in memory for E2E tests.
@@ -8,7 +7,6 @@
     /// </summary>
     public static class EnvironmentVariables
     {
-
         private const string StagingValue = "Staging";
         private const string StagingKey = "ASPNETCORE_STAGING";
 
@@ -21,7 +19,5 @@
         {
             System.Environment.SetEnvironmentVariable(StagingKey, StagingValue);
         }
-
     }
-
 }

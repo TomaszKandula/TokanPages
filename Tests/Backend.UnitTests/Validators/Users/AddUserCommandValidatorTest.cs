@@ -5,15 +5,12 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
 namespace Backend.UnitTests.Validators.Users
-{
-    
+{   
     public class AddUserCommandValidatorTest
     {
-
         [Fact]
         public void AddUser_WhenAllFieldsAreCorrect_ShouldFinishSuccessfull() 
         {
-
             // Arrange
             var LAddUserCommand = new AddUserCommand 
             { 
@@ -29,13 +26,11 @@ namespace Backend.UnitTests.Validators.Users
 
             // Assert
             LResults.Errors.Should().BeEmpty();
-
         }
 
         [Fact]
         public void AddUser_WhenEmailAddressIsEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LAddUserCommand = new AddUserCommand
             {
@@ -52,13 +47,11 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResults.Errors.Count.Should().Be(1);
             LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void AddUser_WhenEmailAddressIsTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LAddUserCommand = new AddUserCommand
             {
@@ -75,13 +68,11 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResults.Errors.Count.Should().Be(1);
             LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
-
         }
 
         [Fact]
         public void AddUser_WhenUserAliasIsEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LAddUserCommand = new AddUserCommand
             {
@@ -98,13 +89,11 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResults.Errors.Count.Should().Be(1);
             LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void AddUser_WhenUserAliasIsTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LAddUserCommand = new AddUserCommand
             {
@@ -121,13 +110,11 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResults.Errors.Count.Should().Be(1);
             LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.USERALIAS_TOO_LONG));
-
         }
 
         [Fact]
         public void AddUser_WhenFirstNameIsEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LAddUserCommand = new AddUserCommand
             {
@@ -144,13 +131,11 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResults.Errors.Count.Should().Be(1);
             LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void AddUser_WhenFirstNameIsTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LAddUserCommand = new AddUserCommand
             {
@@ -167,13 +152,11 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResults.Errors.Count.Should().Be(1);
             LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.FIRST_NAME_TOO_LONG));
-
         }
 
         [Fact]
         public void AddUser_WhenLastNameIsEmpty_ShouldThrowError()
         {
-
             // Arrange
             var LAddUserCommand = new AddUserCommand
             {
@@ -190,13 +173,11 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResults.Errors.Count.Should().Be(1);
             LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-
         }
 
         [Fact]
         public void AddUser_WhenLastNameIsTooLong_ShouldThrowError()
         {
-
             // Arrange
             var LAddUserCommand = new AddUserCommand
             {
@@ -213,9 +194,6 @@ namespace Backend.UnitTests.Validators.Users
             // Assert
             LResults.Errors.Count.Should().Be(1);
             LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LAST_NAME_TOO_LONG));
-
         }
-
     }
-
 }

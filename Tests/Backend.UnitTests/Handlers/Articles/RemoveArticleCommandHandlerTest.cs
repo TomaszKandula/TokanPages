@@ -9,14 +9,11 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
 namespace Backend.UnitTests.Handlers.Articles
 {
-
     public class RemoveArticleCommandHandlerTest : TestBase
     {
-
         [Fact]
         public async Task RemoveArticle_WhenIdIsCorrect_ShouldRemoveEntity() 
         {
-
             // Arrange
             var LRemoveArticleCommand = new RemoveArticleCommand
             {
@@ -46,13 +43,11 @@ namespace Backend.UnitTests.Handlers.Articles
             var LAssertDbContext = GetTestDatabaseContext();
             var LArticesEntity = LAssertDbContext.Articles.Find(LRemoveArticleCommand.Id);
             LArticesEntity.Should().BeNull();
-
         }
 
         [Fact]
         public async Task RemoveArticle_WhenIdIsIncorrect_ShouldThrowError()
         {
-
             // Arrange
             var LRemoveArticleCommand = new RemoveArticleCommand
             {
@@ -77,9 +72,6 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LRemoveArticleCommandHandler.Handle(LRemoveArticleCommand, CancellationToken.None));
-
         }
-
     }
-
 }

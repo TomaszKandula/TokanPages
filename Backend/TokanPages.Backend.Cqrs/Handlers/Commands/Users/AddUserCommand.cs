@@ -2,8 +2,7 @@
 using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
-{
-    
+{   
     public class AddUserCommand : IRequest<Guid>
     {
         public string UserAlias { get; set; }
@@ -11,5 +10,4 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
     }
-
 }

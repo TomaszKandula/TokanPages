@@ -2,7 +2,6 @@
 
 namespace TokanPages.Backend.Shared.Dto.Users
 {
-
     public class UpdateUserDto
     {
         public Guid Id { get; set; }
@@ -12,5 +11,4 @@ namespace TokanPages.Backend.Shared.Dto.Users
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
     }
-
 }

@@ -10,10 +10,8 @@ using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 {
-
     public class UpdateUserCommandHandler : TemplateHandler<UpdateUserCommand, Unit>
     {
-
         private readonly DatabaseContext FDatabaseContext;
 
         public UpdateUserCommandHandler(DatabaseContext ADatabaseContext) 
@@ -23,7 +21,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         public override async Task<Unit> Handle(UpdateUserCommand ARequest, CancellationToken ACancellationToken)
         {
-
             var LCurrentUser = await FDatabaseContext.Users
                 .Where(AUser => AUser.Id == ARequest.Id)
                 .ToListAsync(ACancellationToken);
@@ -53,9 +50,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             FDatabaseContext.Users.Attach(LCurrentUser.First()).State = EntityState.Modified;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(Unit.Value);
-
         }
-
     }
-
 }
