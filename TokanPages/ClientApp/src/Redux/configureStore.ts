@@ -7,7 +7,6 @@ import { ApplicationState } from "./applicationState";
 
 export default function configureStore(history: History, initialState?: ApplicationState) 
 {
-    
     const middleware = 
     [
         thunk,
@@ -26,12 +25,11 @@ export default function configureStore(history: History, initialState?: Applicat
     if (windowIfDefined && windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__) 
     {
         enhancers.push(windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__());
-    }
+    };
 
     return createStore(
         rootReducer,
         initialState,
         compose(applyMiddleware(...middleware), ...enhancers)
     );
-
 }

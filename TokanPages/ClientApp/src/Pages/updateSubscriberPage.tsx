@@ -12,7 +12,6 @@ const useQuery = () =>
 
 export default function UpdateSubscriberPage()
 {
-
     const queryParam = useQuery();
     const id = queryParam.get("id");
 
@@ -20,10 +19,9 @@ export default function UpdateSubscriberPage()
         <>
             <Navigation content={null} />
             <Container>
-                <UpdateSubscriber uid={id} />
+                <UpdateSubscriber id={id} />
             </Container>
             <Footer backgroundColor="#FAFAFA" />
         </>
     );
-
 }

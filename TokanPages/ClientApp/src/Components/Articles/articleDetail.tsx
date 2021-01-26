@@ -10,29 +10,37 @@ import useStyles from "./Hooks/styleArticleDetail";
 import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoader";
 import { RenderContent } from "../../Shared/ContentRender/renderContent";
 import { ITextObject } from "../../Shared/ContentRender/Model/textModel";
+import { ARTICLE_URL } from "../../Shared/constants";
 
-interface IArticleDetail
+export interface IArticleDetail
 {
-    uid: string;
+    id: string;
 }
 
 export default function ArticleDetail(props: IArticleDetail) 
 {
-
     const classes = useStyles();
-    const content = 
-    {
-        footprint: "https://maindbstorage.blob.core.windows.net/tokanpages/content/articles/{UID}/text.json"
-    };
-
+    const articleUrl = ARTICLE_URL.replace("{ID}", props.id);
     const [ article, setArticle ] = React.useState<ITextObject>({ items: [] });
-    const articleUrl = content.footprint.replace("{UID}", props.uid);
+    
     const fetchArticle = React.useCallback( async () => 
     {
-        const response = await axios.get<ITextObject>(articleUrl, {method: "get", responseType: "json"});
-        setArticle(response.data);    
-    }, [ articleUrl ]);
-    React.useEffect( () => { fetchArticle() }, [ article.items.length, fetchArticle ] );
+        const response = await axios.get<ITextObject>(
+        articleUrl, 
+        {
+            method: "GET", 
+            responseType: "json"
+        });
+
+        setArticle(response.data);
+    }, 
+    [ articleUrl ]);
+    
+    React.useEffect(() => 
+    { 
+        fetchArticle() 
+    }, 
+    [ article.items.length, fetchArticle ] );
 
     return (
         <section>

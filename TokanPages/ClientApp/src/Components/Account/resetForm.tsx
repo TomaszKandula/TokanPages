@@ -11,7 +11,6 @@ import useStyles from "./Hooks/styleResetForm";
 
 export default function ResetForm() 
 {
-
     const classes = useStyles();
     const content = 
     {
@@ -49,5 +48,4 @@ export default function ResetForm()
             </Container>
         </section>
     );
-
 }

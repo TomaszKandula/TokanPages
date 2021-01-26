@@ -11,7 +11,6 @@ import useStyles from "./styleFeatured";
 
 export default function Featured() 
 {
-  
     const classes = useStyles();
     const content = 
     {
@@ -81,5 +80,4 @@ export default function Featured()
             </Container>
         </section>
     );
-
 }

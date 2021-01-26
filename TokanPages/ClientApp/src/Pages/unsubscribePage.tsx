@@ -12,18 +12,16 @@ const useQuery = () =>
 
 export default function UnsubscribePage()
 {
-
-    let queryParam = useQuery();
-    let id = queryParam.get("id");
+    const queryParam = useQuery();
+    const id = queryParam.get("id");
 
     return(
         <>
             <Navigation content={null} />
             <Container>
-                <Unsubscribe uid={id} />
+                <Unsubscribe id={id} />
             </Container>
             <Footer backgroundColor="#FAFAFA" />
         </>
     );
-
 }

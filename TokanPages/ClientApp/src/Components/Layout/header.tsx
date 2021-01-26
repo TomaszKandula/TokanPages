@@ -6,18 +6,20 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
 import useStyles from "./Hooks/styleHeader";
+import { IMAGES_PATH } from "../../Shared/constants";
 
 export default function Header() 
 {
-
     const classes = useStyles();
     const content = 
     {
-        photo: "https://maindbstorage.blob.core.windows.net/tokanpages/images/tomek_bergen.jpg",
+        photo: "tomek_bergen.jpg",
         caption: "Welcome to my web page",
         description: "Hello, my name is Tomasz but I usually go by Tom and I do programming for a living...",
         action: "Read the story"
     };
+
+    const photo = IMAGES_PATH + content.photo;
 
     return (
         <section>
@@ -26,7 +28,7 @@ export default function Header()
                     <Grid item xs={12} sm={6}>
                         <Box className={classes.imageBox}>
                             <div data-aos="fade-right">
-                                <img className={classes.img} src={content.photo} alt="" />
+                                <img className={classes.img} src={photo} alt="" />
                             </div>
                         </Box>
                     </Grid>
@@ -51,5 +53,4 @@ export default function Header()
             </Container>
         </section>
 	);
-
 }

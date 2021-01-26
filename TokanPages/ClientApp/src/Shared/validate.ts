@@ -2,8 +2,7 @@ import Validate from "validate.js";
 
 function ValidateEmail(email: string): any
 {
-
-    let Constraints = 
+    let constraints = 
     {
         Email: 
         {
@@ -14,25 +13,23 @@ function ValidateEmail(email: string): any
         }
     };
 
-    let Results = Validate({ Email: email }, Constraints);
-    return Results;
-
+    return Validate({ Email: email }, constraints);
 }
 
-interface IValidateInputs
+interface IValidateContactForm
 {
     FirstName: string;
-    LastName:  string;
-    Email:     string;
-    Subject:   string;
-    Message:   string;
-    Terms:     boolean;
+    LastName: string;
+    Email: string;
+    Subject: string;
+    Message: string;
+    Terms: boolean;
 }
 
-function ValidateContactForm(props: IValidateInputs): any
+function ValidateContactForm(props: IValidateContactForm): any
 {
 
-    let Constraints = 
+    let constraints = 
     {
         FirstName:
         {
@@ -88,7 +85,7 @@ function ValidateContactForm(props: IValidateInputs): any
         }
     };
 
-    const results = Validate(
+    return Validate(
     {
         FirstName: props.FirstName,
         LastName:  props.LastName,
@@ -97,10 +94,7 @@ function ValidateContactForm(props: IValidateInputs): any
         Message:   props.Message,
         Terms:     props.Terms
     }, 
-    Constraints);
-
-    return results;
-
+    constraints);
 }
 
 export 

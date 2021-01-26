@@ -3,14 +3,13 @@ import Zoom from "@material-ui/core/Zoom";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import useStyles from "./styleScrollTop";
 
-interface IScrollTop 
+export interface IScrollTop 
 {
     children: React.ReactElement;
 }
 
 export default function ScrollTop(props: IScrollTop) 
 {
-
     const { children } = props;
     const classes = useStyles();
 
@@ -22,14 +21,12 @@ export default function ScrollTop(props: IScrollTop)
   
     const handleClick = (event: React.MouseEvent<HTMLDivElement>) => 
     {
-
         const anchor = ((event.target as HTMLDivElement).ownerDocument || document).querySelector("#back-to-top-anchor");
   
         if (anchor) 
         {
             anchor.scrollIntoView({ behavior: "smooth"});
         }
-
     };
   
     return (

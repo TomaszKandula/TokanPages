@@ -19,7 +19,6 @@ import "aos/dist/aos.css";
 
 export default function App() 
 {
-
     React.useEffect(() => 
     {
         AOS.init();
@@ -48,7 +47,6 @@ export default function App()
                     <KeyboardArrowUpIcon/>
                 </Fab>
             </ScrollTop>
-      </>
+        </>
     );
-
 };

@@ -10,12 +10,11 @@ import useStyles from "./styledNewsletter";
 import Validate from "validate.js";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { ValidateEmail } from "../../Shared/validate";
-import { AddSubscriber } from "../../Api/Services/subscribers";
+import { AddNewSubscriber } from "../../Api/Services/subscribers";
 import { GetNewsletterWarning } from "../../Shared/Modals/messageHelper";
 
 export default function Newsletter()
 {
-
     const classes = useStyles();
     const formDefaultValues = 
     {
@@ -44,15 +43,19 @@ export default function Newsletter()
 
     const ButtonHandler = async () =>
     {
-
         let Results = ValidateEmail(Form.email);
 
         if (!Validate.isDefined(Results))
         {
             setProgress(true);
-            setModal(await AddSubscriber({ email: Form.email }));
+            setModal(await AddNewSubscriber(
+            { 
+                email: Form.email 
+            }));
+
             setProgress(false); 
             setForm(formDefaultValues);
+
             return true;
         }
 

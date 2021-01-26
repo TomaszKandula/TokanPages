@@ -2,7 +2,6 @@ import { SetCookie } from "../cookies";
 
 test("Set new cookie string.", () => 
 {
-
     let LDate = new Date();   
     LDate.setTime(LDate.getTime() + (3 * 24 * 60 * 60 * 1000));
     let newExpiry = LDate.toUTCString();
@@ -19,5 +18,4 @@ test("Set new cookie string.", () =>
             exact: newExpiry
         } 
     )).toBe(expectedValue);
-
 });

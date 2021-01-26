@@ -12,7 +12,6 @@ import useStyles from "./Hooks/styleSigninForm";
 
 export default function SigninForm() 
 {
-
     const classes = useStyles();
     const content = 
     {
@@ -20,7 +19,7 @@ export default function SigninForm()
         button: "Sign in",
         link1: "Don't have an account?",
         link2: "Forgot password?"
-    }
+    };
 
     return (
         <section>
@@ -67,5 +66,4 @@ export default function SigninForm()
             </Container>
         </section>
     );
-
 }

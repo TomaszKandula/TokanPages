@@ -2,10 +2,9 @@ import { ValidateEmail, ValidateContactForm } from "../validate";
 
 describe("Verify validation methods.", () => 
 {
-
     it("Should validate email address.", () => 
     {
-        const TestEmail = "freddie.mercury@queen.com";       
+        const TestEmail = "freddie.mercury@queen.com";
         expect(ValidateEmail(TestEmail)).toBeUndefined();
     });
 
@@ -17,7 +16,6 @@ describe("Verify validation methods.", () =>
 
     it("Should validate Contact Form fields.", () => 
     {
-
         const FirstName: string = "Ester";
         const LastName:  string = "Exposito";
         const Email:     string = "ester.exposito@gmail.com";
@@ -34,12 +32,10 @@ describe("Verify validation methods.", () =>
             Message:   Message, 
             Terms:     Terms 
         })).toBeUndefined();
-
     });
 
     it("Should not validate Contact Form fields.", () => 
     {
-
         const FirstName: string = "";
         const LastName:  string = "Deacon";
         const Email:     string = "john@gmail";
@@ -56,7 +52,5 @@ describe("Verify validation methods.", () =>
             Message:   Message, 
             Terms:     Terms 
         })).toBeDefined();
-        
     });
-
 });

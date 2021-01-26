@@ -6,13 +6,12 @@ import Validate from "validate.js";
 
 export function RenderVideo(props: ITextItem)
 {
-
     const classes = useStyles();
     const [ImageState, setImageState] = React.useState(true);
     const imageClick = () => 
     {
         setImageState(false);
-    }
+    };
 
     const renderDescription = () => 
     {
@@ -23,15 +22,16 @@ export function RenderVideo(props: ITextItem)
                </Typography>
            </CardContent>
        );
-    }
+    };
 
     return(
         <Card elevation={3} classes={{ root: classes.card }}>
             {ImageState 
                 ? <CardMedia component="img" image={props.prop} onClick={imageClick} className={classes.image} /> 
                 : <CardMedia component="video" src={props.value} controls autoPlay />}
-            {Validate.isEmpty(props.text) ? null : renderDescription()}
+            {Validate.isEmpty(props.text) 
+                ? null 
+                : renderDescription()}
        </Card>
     );
-
 }

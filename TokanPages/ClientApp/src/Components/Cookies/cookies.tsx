@@ -12,7 +12,6 @@ import useStyles from "./styleCookies";
 
 export default function Cookies() 
 {
-
     const classes = useStyles();
     const content = 
     {
@@ -35,13 +34,12 @@ export default function Cookies()
             sameSite: "Strict",
             secure: ""
         });
-    }
+    };
 
     const renderConsent = () => 
     {
-
         return (		
-            <Box position="fixed" width="100%" bottom={0} p={2} zIndex="modal" className={ close ? classes.close : classes.open }>
+            <Box position="fixed" width="100%" bottom={0} p={2} zIndex="modal" className={close ? classes.close : classes.open}>
                 <Container maxWidth="md">
                     <Card>
                         <CardContent>
@@ -61,13 +59,13 @@ export default function Cookies()
                 </Container>
             </Box>
         );
-
     }
 
     return (
         <>
-            {Validate.isEmpty(GetCookie({cookieName: "cookieConsent"})) ? renderConsent() : null}
+            {Validate.isEmpty(GetCookie({cookieName: "cookieConsent"})) 
+                ? renderConsent() 
+                : null}
         </>
     );
-
 }

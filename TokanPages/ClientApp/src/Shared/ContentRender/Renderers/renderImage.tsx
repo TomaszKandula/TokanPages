@@ -24,5 +24,4 @@ export function RenderImage(props: ITextItem)
             {Validate.isEmpty(props.text) ? null : renderDescription()}
         </Card>
     );
-
 }

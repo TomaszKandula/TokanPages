@@ -2,25 +2,25 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => (
 {
-        InfoIcon:
-        {
-            color: "#2196F3",
-            marginRight: "15px"
-        },
-        WarningIcon:
-        {
-            color: "#FFC107",
-            marginRight: "15px"
-        },
-        ErrorIcon:
-        {
-            color: "#F50057",
-            marginRight: "15px"
-        },
-        Typography:
-        {
-            color: "#757575",
-        }
+    InfoIcon:
+    {
+        color: "#2196F3",
+        marginRight: "15px"
+    },
+    WarningIcon:
+    {
+        color: "#FFC107",
+        marginRight: "15px"
+    },
+    ErrorIcon:
+    {
+        color: "#F50057",
+        marginRight: "15px"
+    },
+    Typography:
+    {
+        color: "#757575",
+    }
 }));
 
 export default useStyles;

@@ -13,7 +13,6 @@ import useStyles from "./Hooks/styleArticleFeat";
 
 export default function ArticleFeat() 
 {
-  
     const classes = useStyles();
     const content = 
     {
@@ -99,5 +98,4 @@ export default function ArticleFeat()
             </Container>
         </section>
     );
-
 }

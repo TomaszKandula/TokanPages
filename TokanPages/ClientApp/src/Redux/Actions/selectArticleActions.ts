@@ -1,4 +1,4 @@
-import { AppThunkAction, IArticle } from "Redux/applicationState";
+import { AppThunkAction, IArticle } from "../../Redux/applicationState";
 
 export const SELECT_ARTICLE  = "SELECT_ARTICLE";
 export const RESET_SELECTION = "RESET_SELECTION";
@@ -10,7 +10,6 @@ export type TKnownActions = ISelectArticle | IResetSelection;
 
 export const ActionCreators = 
 {
-
     resetSelection: () => ({ type: RESET_SELECTION } as IResetSelection),
     selectArticle: (id: string): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
@@ -25,7 +24,5 @@ export const ActionCreators =
                 break;
             }
         }
-
     }
-
 };

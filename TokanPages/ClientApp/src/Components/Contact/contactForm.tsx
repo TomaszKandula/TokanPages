@@ -17,7 +17,6 @@ import { SendMessage } from "../../Api/Services/mailer";
 
 export default function ContactForm()
 {
-
     const classes = useStyles();
     const formDefaultValues =
     {
@@ -41,13 +40,13 @@ export default function ContactForm()
     const ModalHandler = () => 
     {
         setModal(modalDefaultValues);
-    }
+    };
 
     const FormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
         if (event.currentTarget.name !== "terms") { setForm({ ...Form, [event.currentTarget.name]: event.currentTarget.value}); }
             else { setForm({ ...Form, [event.currentTarget.name]: event.currentTarget.checked}); }
-    }
+    };
 
     const ButtonHandler = async () => 
     {
@@ -90,7 +89,7 @@ export default function ContactForm()
         });
 
         return false;
-    }
+    };
 
     return (
         <section className={classes.section}>
@@ -141,5 +140,4 @@ export default function ContactForm()
             </Container>
         </section>
     );
-
 }
