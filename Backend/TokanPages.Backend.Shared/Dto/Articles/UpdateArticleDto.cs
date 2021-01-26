@@ -9,8 +9,8 @@ namespace TokanPages.Backend.Shared.Dto.Articles
         public string Description { get; set; }
         public string TextToUpload { get; set; }
         public string ImageToUpload { get; set; }
-        public bool IsPublished { get; set; }
-        public int Likes { get; set; }
-        public int ReadCount { get; set; }
+        public bool? IsPublished { get; set; }
+        public int? Likes { get; set; }
+        public int? ReadCount { get; set; }
     }
 }

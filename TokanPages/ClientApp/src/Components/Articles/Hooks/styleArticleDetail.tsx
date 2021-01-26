@@ -8,7 +8,8 @@ const useStyles = makeStyles(() => (
     },
     divider:
     {
-        marginBottom: "30px"
+        marginTop: "20px",
+        marginBottom: "10px"
     }
 }));    
 
