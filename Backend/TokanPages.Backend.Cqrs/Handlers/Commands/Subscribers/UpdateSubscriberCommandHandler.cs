@@ -10,10 +10,8 @@ using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 {
-    
     public class UpdateSubscriberCommandHandler : TemplateHandler<UpdateSubscriberCommand, Unit>
     {
-
         private readonly DatabaseContext FDatabaseContext;
 
         public UpdateSubscriberCommandHandler(DatabaseContext ADatabaseContext) 
@@ -23,7 +21,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 
         public override async Task<Unit> Handle(UpdateSubscriberCommand ARequest, CancellationToken ACancellationToken) 
         {
-
             var LCurrentSubscriber = await FDatabaseContext.Subscribers
                 .Where(ASubscribers => ASubscribers.Id == ARequest.Id)
                 .ToListAsync(ACancellationToken);
@@ -44,16 +41,13 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
             }
 
             LCurrentSubscriber.First().Email = ARequest.Email;
-            LCurrentSubscriber.First().Count = ARequest.Count;
-            LCurrentSubscriber.First().IsActivated = ARequest.IsActivated;
+            LCurrentSubscriber.First().Count = ARequest.Count ?? LCurrentSubscriber.First().Count;
+            LCurrentSubscriber.First().IsActivated = ARequest.IsActivated ?? LCurrentSubscriber.First().IsActivated;
             LCurrentSubscriber.First().LastUpdated = DateTime.UtcNow;
 
             FDatabaseContext.Subscribers.Attach(LCurrentSubscriber.First()).State = EntityState.Modified;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(Unit.Value);
-
         }
-
     }
-
 }

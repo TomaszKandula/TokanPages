@@ -12,10 +12,8 @@ using TokanPages.Backend.Shared.Dto.Subscribers;
 
 namespace Backend.IntegrationTests.Handlers.Subscribers
 {
-
     public class UpdateSubscriberCommandHandlerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public UpdateSubscriberCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
@@ -26,7 +24,6 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
         [Fact]
         public async Task UpdateSubscriber_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError()
         {
-
             // Arrange
             var LRequest = $"/api/v1/subscribers/updatesubscriber/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
@@ -35,8 +32,8 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
             {
                 Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
                 Email = DataProvider.GetRandomEmail(),
-                Count = 0,
-                IsActivated = true
+                Count = null,
+                IsActivated = null
             };
 
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -51,9 +48,6 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Contain(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
-
         }
-
     }
-
 }
