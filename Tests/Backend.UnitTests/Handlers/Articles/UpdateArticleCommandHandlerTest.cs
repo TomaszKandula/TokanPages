@@ -27,12 +27,12 @@ namespace Backend.UnitTests.Handlers.Articles
                 TextToUpload = DataProvider.GetRandomString(150),
                 ImageToUpload = DataProvider.Base64Encode(DataProvider.GetRandomString(255)),
                 IsPublished = false,
-                Likes = 100,
-                ReadCount = 100
+                AddToLikes = 100,
+                UpReadCount = true
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
-            LDatabaseContext.Articles.Add(new TokanPages.Backend.Domain.Entities.Articles
+            var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
                 Title = DataProvider.GetRandomString(),
@@ -42,7 +42,9 @@ namespace Backend.UnitTests.Handlers.Articles
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null
-            });
+            };
+
+            LDatabaseContext.Articles.Add(LArticles);
             LDatabaseContext.SaveChanges();
 
             var LMockedStorage = new Mock<AzureStorageService>();
@@ -75,8 +77,8 @@ namespace Backend.UnitTests.Handlers.Articles
             LArticesEntity.Title.Should().Be(LUpdateArticleCommand.Title);
             LArticesEntity.Description.Should().Be(LUpdateArticleCommand.Description); 
             LArticesEntity.IsPublished.Should().BeFalse();
-            LArticesEntity.Likes.Should().Be(LUpdateArticleCommand.Likes);
-            LArticesEntity.ReadCount.Should().Be(LUpdateArticleCommand.ReadCount);
+            LArticesEntity.Likes.Should().Be(100);
+            LArticesEntity.ReadCount.Should().Be(1);
         }
 
         [Fact]
@@ -91,8 +93,8 @@ namespace Backend.UnitTests.Handlers.Articles
                 TextToUpload = DataProvider.GetRandomString(150),
                 ImageToUpload = DataProvider.Base64Encode(DataProvider.GetRandomString(255)),
                 IsPublished = false,
-                Likes = 0,
-                ReadCount = 0
+                AddToLikes = 0,
+                UpReadCount = false
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -144,8 +146,8 @@ namespace Backend.UnitTests.Handlers.Articles
                 TextToUpload = DataProvider.GetRandomString(150),
                 ImageToUpload = DataProvider.GetRandomString(255),
                 IsPublished = false,
-                Likes = 0,
-                ReadCount = 0
+                AddToLikes = 0,
+                UpReadCount = false
             };
 
             var LDatabaseContext = GetTestDatabaseContext();

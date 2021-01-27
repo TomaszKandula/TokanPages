@@ -34,21 +34,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                     .WithMessage(ValidationCodes.DESCRIPTION_TOO_LONG);
             });
 
-            When(Field => Field.Likes != null, () => 
-            {
-                RuleFor(Field => Field.Likes)
-                    .GreaterThan(-1)
-                    .WithErrorCode(nameof(ValidationCodes.LESS_THAN_ZERO))
-                    .WithMessage(ValidationCodes.LESS_THAN_ZERO);
-            });
-
-            When(Field => Field.ReadCount != null, () =>
-            {
-                RuleFor(Field => Field.ReadCount)
-                    .GreaterThan(-1)
-                    .WithErrorCode(nameof(ValidationCodes.LESS_THAN_ZERO))
-                    .WithMessage(ValidationCodes.LESS_THAN_ZERO);
-            });
+            RuleFor(Field => Field.AddToLikes)
+                .GreaterThan(-1)
+                .WithErrorCode(nameof(ValidationCodes.LESS_THAN_ZERO))
+                .WithMessage(ValidationCodes.LESS_THAN_ZERO);
         }
     }
 }
