@@ -74,28 +74,28 @@ export default function ArticleDetail(props: IArticleDetail)
         <section>
             <Container className={classes.container}>
                 <Box py={12}>
-                    <Link to="/articles">
-                        <IconButton>
-                            <ArrowBack/>
-                        </IconButton>
-                    </Link> 
+                    <Grid container spacing={3}>
+                        <Grid item xs={6}>
+                            <Link to="/articles">
+                                <IconButton>
+                                    <ArrowBack/>
+                                </IconButton>
+                            </Link> 
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Typography className={classes.readCount} component="p" variant="subtitle1" align="right">
+                                Read: {details.readCount}
+                            </Typography>
+                        </Grid>
+                    </Grid>
                     <Divider className={classes.divider} />
                     <Box mb={5}>
-                        <Grid container spacing={3}>
-                            <Grid item xs={6}>
-                                <Typography component="p" variant="subtitle1">
-                                    Published at: {FormatDateTime(details.createdAt)}
-                                </Typography>
-                                <Typography component="p" variant="subtitle2" color="textSecondary">
-                                    Updated at: {FormatDateTime(details.updatedAt)}
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Typography component="p" variant="subtitle1" align="right">
-                                    Read: {details.readCount}
-                                </Typography>
-                            </Grid>
-                        </Grid>
+                        <Typography component="p" variant="subtitle1">
+                            Published at: {FormatDateTime(details.createdAt)}
+                        </Typography>
+                        <Typography component="p" variant="subtitle2" color="textSecondary">
+                            Updated at: {FormatDateTime(details.updatedAt)}
+                        </Typography>
                     </Box>
                     {renderContent()}
                 </Box>
