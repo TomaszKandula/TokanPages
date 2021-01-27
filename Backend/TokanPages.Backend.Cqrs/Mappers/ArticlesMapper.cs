@@ -26,8 +26,8 @@ namespace TokanPages.Backend.Cqrs.Mappers
                 TextToUpload = AModel.TextToUpload,
                 ImageToUpload = AModel.ImageToUpload,
                 IsPublished = AModel.IsPublished,
-                Likes = AModel.Likes,
-                ReadCount = AModel.ReadCount
+                AddToLikes = AModel.AddToLikes,
+                UpReadCount = AModel.UpReadCount
             };
         }
 

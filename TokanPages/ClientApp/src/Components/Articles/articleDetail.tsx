@@ -52,7 +52,8 @@ export default function ArticleDetail(props: IArticleDetail)
         await UpdateArticle(
         {
             id: props.id,
-            readCount: details.readCount + 1
+            addToLikes: 0,
+            upReadCount: true
         });
     };
 

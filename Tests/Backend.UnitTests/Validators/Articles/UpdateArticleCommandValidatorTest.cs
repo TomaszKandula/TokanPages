@@ -21,8 +21,8 @@ namespace Backend.UnitTests.Validators.Articles
                 TextToUpload = DataProvider.GetRandomString(),
                 ImageToUpload = DataProvider.GetRandomString(),
                 IsPublished = false,
-                Likes = 0,
-                ReadCount = 0
+                AddToLikes = 0,
+                UpReadCount = false
             };
 
             // Act
@@ -45,8 +45,8 @@ namespace Backend.UnitTests.Validators.Articles
                 TextToUpload = DataProvider.GetRandomString(),
                 ImageToUpload = DataProvider.GetRandomString(),
                 IsPublished = false,
-                Likes = 0,
-                ReadCount = 0
+                AddToLikes = 0,
+                UpReadCount = false
             };
 
             // Act
@@ -70,8 +70,8 @@ namespace Backend.UnitTests.Validators.Articles
                 TextToUpload = DataProvider.GetRandomString(),
                 ImageToUpload = DataProvider.GetRandomString(),
                 IsPublished = false,
-                Likes = 0,
-                ReadCount = 0
+                AddToLikes = 0,
+                UpReadCount = false
             };
 
             // Act
@@ -95,8 +95,8 @@ namespace Backend.UnitTests.Validators.Articles
                 TextToUpload = DataProvider.GetRandomString(),
                 ImageToUpload = DataProvider.GetRandomString(),
                 IsPublished = false,
-                Likes = 0,
-                ReadCount = 0
+                AddToLikes = 0,
+                UpReadCount = false
             };
 
             // Act
@@ -120,8 +120,8 @@ namespace Backend.UnitTests.Validators.Articles
                 TextToUpload = DataProvider.GetRandomString(),
                 ImageToUpload = DataProvider.GetRandomString(),
                 IsPublished = false,
-                Likes = 0,
-                ReadCount = 0
+                AddToLikes = 0,
+                UpReadCount = false
             };
 
             // Act
@@ -145,8 +145,8 @@ namespace Backend.UnitTests.Validators.Articles
                 TextToUpload = DataProvider.GetRandomString(),
                 ImageToUpload = DataProvider.GetRandomString(),
                 IsPublished = false,
-                Likes = 0,
-                ReadCount = 0
+                AddToLikes = 0,
+                UpReadCount = false
             };
 
             // Act
@@ -170,8 +170,8 @@ namespace Backend.UnitTests.Validators.Articles
                 TextToUpload = string.Empty,
                 ImageToUpload = DataProvider.GetRandomString(),
                 IsPublished = false,
-                Likes = 0,
-                ReadCount = 0
+                AddToLikes = 0,
+                UpReadCount = false
             };
 
             // Act
@@ -194,8 +194,8 @@ namespace Backend.UnitTests.Validators.Articles
                 TextToUpload = DataProvider.GetRandomString(),
                 ImageToUpload = string.Empty,
                 IsPublished = false,
-                Likes = 0,
-                ReadCount = 0
+                AddToLikes = 0,
+                UpReadCount = false
             };
 
             // Act
@@ -218,33 +218,8 @@ namespace Backend.UnitTests.Validators.Articles
                 TextToUpload = DataProvider.GetRandomString(),
                 ImageToUpload = string.Empty,
                 IsPublished = false,
-                Likes = -1,
-                ReadCount = 0
-            };
-
-            // Act
-            var LValidator = new UpdateArticleCommandValidator();
-            var LResult = LValidator.Validate(LUpdateArticleCommand);
-
-            // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LESS_THAN_ZERO));
-        }
-
-        [Fact]
-        public void UpdateArticle_WhenReadCountIsLessThanZero_ShouldThrowError()
-        {
-            // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand
-            {
-                Id = Guid.NewGuid(),
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
-                TextToUpload = DataProvider.GetRandomString(),
-                ImageToUpload = string.Empty,
-                IsPublished = false,
-                Likes = 0,
-                ReadCount = -1
+                AddToLikes = -1,
+                UpReadCount = false
             };
 
             // Act

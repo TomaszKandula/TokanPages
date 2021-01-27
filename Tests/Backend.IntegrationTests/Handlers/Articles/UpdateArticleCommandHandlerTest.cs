@@ -36,8 +36,8 @@ namespace Backend.IntegrationTests.Handlers.Articles
                 TextToUpload = DataProvider.GetRandomString(150),
                 ImageToUpload = DataProvider.Base64Encode(DataProvider.GetRandomString(255)),
                 IsPublished = false,
-                Likes = 0,
-                ReadCount = 0
+                AddToLikes = 0,
+                UpReadCount = false
             };
 
             var LHttpClient = FWebAppFactory.CreateClient();

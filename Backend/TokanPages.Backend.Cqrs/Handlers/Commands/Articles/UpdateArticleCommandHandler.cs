@@ -74,8 +74,12 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             LCurrentArticle.Title = ARequest.Title ?? LCurrentArticle.Title;
             LCurrentArticle.Description = ARequest.Description ?? LCurrentArticle.Description;
             LCurrentArticle.IsPublished = ARequest.IsPublished ?? LCurrentArticle.IsPublished;
-            LCurrentArticle.Likes = ARequest.Likes ?? LCurrentArticle.Likes;
-            LCurrentArticle.ReadCount = ARequest.ReadCount ?? LCurrentArticle.ReadCount;
+            LCurrentArticle.Likes = LCurrentArticle.Likes + ARequest.AddToLikes;
+
+            if (ARequest.UpReadCount.HasValue && ARequest.UpReadCount == true) 
+            {
+                LCurrentArticle.ReadCount++;
+            }
 
             if (ARequest.Title != null && ARequest.Description != null)
             {

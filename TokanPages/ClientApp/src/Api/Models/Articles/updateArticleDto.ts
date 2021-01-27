@@ -6,8 +6,8 @@ interface IUpdateArticleDto
     textToUpload?: string;
     imageToUpload?: string;
     isPublished?: boolean;
-    likes?: number;
-    readCount?: number;
+    addToLikes: number;
+    upReadCount?: boolean;
 }
 
 export type { IUpdateArticleDto }

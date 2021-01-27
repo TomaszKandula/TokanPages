@@ -18,8 +18,8 @@ export const UpdateArticle = async (PayLoad: IUpdateArticleDto): Promise<IAlertM
             textToUpload: PayLoad.textToUpload,
             imageToUpload: PayLoad.imageToUpload,
             isPublished: PayLoad.isPublished,
-            likes: PayLoad.likes,
-            readCount: PayLoad.readCount
+            addToLikes: PayLoad.addToLikes,
+            upReadCount: PayLoad.upReadCount
         }
     });
 
