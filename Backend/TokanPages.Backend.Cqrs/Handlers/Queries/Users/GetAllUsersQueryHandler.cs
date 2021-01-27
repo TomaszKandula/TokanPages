@@ -17,7 +17,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
 
         public override async Task<IEnumerable<Domain.Entities.Users>> Handle(GetAllUsersQuery ARequest, CancellationToken ACancellationToken)
         {
-            var LUsers = await FDatabaseContext.Users.AsNoTracking().ToListAsync(ACancellationToken);
+            var LUsers = await FDatabaseContext.Users
+                .AsNoTracking()
+                .ToListAsync(ACancellationToken);
+            
             return LUsers;
         }
     }

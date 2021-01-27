@@ -28,11 +28,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
         public override async Task<Unit> Handle(UpdateArticleCommand ARequest, CancellationToken ACancellationToken)
         {
-            var LCurrentArticles = await FDatabaseContext.Articles
+            var LArticles = await FDatabaseContext.Articles
                 .Where(Articles => Articles.Id == ARequest.Id)
                 .ToListAsync(ACancellationToken);
 
-            if (!LCurrentArticles.Any())
+            if (!LArticles.Any())
             {
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
             }
@@ -69,7 +69,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 }
             }
 
-            var LCurrentArticle = LCurrentArticles.First();
+            var LCurrentArticle = LArticles.First();
 
             LCurrentArticle.Title = ARequest.Title ?? LCurrentArticle.Title;
             LCurrentArticle.Description = ARequest.Description ?? LCurrentArticle.Description;
