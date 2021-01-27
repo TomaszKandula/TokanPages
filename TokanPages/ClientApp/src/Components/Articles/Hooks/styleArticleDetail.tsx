@@ -10,7 +10,11 @@ const useStyles = makeStyles(() => (
     {
         marginTop: "20px",
         marginBottom: "10px"
+    },
+    readCount:
+    {
+        paddingTop: "10px"
     }
-}));    
+}));
 
 export default useStyles;
