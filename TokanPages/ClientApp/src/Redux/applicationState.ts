@@ -1,4 +1,6 @@
-export interface ApplicationState 
+import { ITextItem } from "Shared/ContentRender/Model/textModel";
+
+export interface IApplicationState 
 {
     selectArticle: IArticle;
     listArticles: IArticles;
@@ -9,13 +11,19 @@ export interface IListArticles
     listArticles: IArticles;
 }
 
+export interface IArticle
+{
+    isLoading: boolean;
+    article: IArticleItem;
+}
+
 export interface IArticles
 {
     isLoading: boolean;
-    articles: IArticle[];
+    articles: IArticleItem[];
 }
 
-export interface IArticle
+export interface IArticleItem
 {
     id: string;
     title: string;
@@ -25,45 +33,51 @@ export interface IArticle
     readCount: number;
     createdAt: string;
     updatedAt: string;
+    text: ITextItem[];
 }
 
 export interface AppThunkAction<TAction> 
 {
-    (dispatch: (action: TAction) => void, getState: () => ApplicationState): void;
+    (dispatch: (action: TAction) => void, getState: () => IApplicationState): void;
 }
 
 export const ArticleDefaultValues: IArticle = 
 {
-    id: "",
-    title: "",
-    description: "",
-    isPublished: false,
-    likes:  0,
-    readCount: 0,
-    createdAt: "",
-    updatedAt: ""
+    isLoading: false,
+    article:
+    {
+        id: "",
+        title: "",
+        description: "",
+        isPublished: false,
+        likes:  0,
+        readCount: 0,
+        createdAt: "",
+        updatedAt: "",
+        text: []
+    }
 };
 
 export const ArticlesDefaultValues: IArticles = 
 {
-    articles: [],
-    isLoading: false
+    isLoading: false,
+    articles: []
 };
 
 export const DefaultAppState = 
 {
     selectArticle:
     {
-        id: ArticleDefaultValues.id,
-        title: ArticleDefaultValues.title,
-        description: ArticleDefaultValues.description,
-        isPublished: ArticleDefaultValues.isPublished,
-        likes: ArticleDefaultValues.likes,
-        readCount: ArticleDefaultValues.readCount,
-        createdAt: ArticleDefaultValues.createdAt,
-        updatedAt: ArticleDefaultValues.updatedAt
+        id: ArticleDefaultValues.article.id,
+        title: ArticleDefaultValues.article.title,
+        description: ArticleDefaultValues.article.description,
+        isPublished: ArticleDefaultValues.article.isPublished,
+        likes: ArticleDefaultValues.article.likes,
+        readCount: ArticleDefaultValues.article.readCount,
+        createdAt: ArticleDefaultValues.article.createdAt,
+        updatedAt: ArticleDefaultValues.article.updatedAt,
+        text: ArticleDefaultValues.article.text
     },
-
     listArticles:
     {
         articles:  ArticlesDefaultValues.articles,

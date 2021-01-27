@@ -5,7 +5,7 @@ import { Box, Divider, Grid, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
 import useStyles from "./Hooks/styleArticleList";
-import { IArticle, IArticles, IListArticles } from "../../Redux/applicationState";
+import { IArticleItem, IArticles, IListArticles } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/listArticlesActions";
 import ArticleCard from "./articleCard";
 import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoader";
@@ -32,7 +32,7 @@ export default function ArticleList()
     {
         return(
             <>
-                {data.articles.map((item: IArticle) => ( 
+                {data.articles.map((item: IArticleItem) => ( 
                     <ArticleCard 
                         title={item.title}
                         description={item.description}
