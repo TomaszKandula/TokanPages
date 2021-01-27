@@ -21,11 +21,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         public override async Task<Unit> Handle(UpdateUserCommand ARequest, CancellationToken ACancellationToken)
         {
-            var LCurrentUser = await FDatabaseContext.Users
+            var LUsers = await FDatabaseContext.Users
                 .Where(AUser => AUser.Id == ARequest.Id)
                 .ToListAsync(ACancellationToken);
 
-            if (!LCurrentUser.Any())
+            if (!LUsers.Any())
             {
                 throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
             }
@@ -40,14 +40,16 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
             }
 
-            LCurrentUser.First().EmailAddress = ARequest.EmailAddress;
-            LCurrentUser.First().UserAlias = ARequest.UserAlias;
-            LCurrentUser.First().FirstName = ARequest.FirstName;
-            LCurrentUser.First().LastName = ARequest.LastName;
-            LCurrentUser.First().IsActivated = ARequest.IsActivated;
-            LCurrentUser.First().LastUpdated = DateTime.UtcNow;
+            var LCurrentUser = LUsers.First();
 
-            FDatabaseContext.Users.Attach(LCurrentUser.First()).State = EntityState.Modified;
+            LCurrentUser.EmailAddress = ARequest.EmailAddress ?? LCurrentUser.EmailAddress;
+            LCurrentUser.UserAlias = ARequest.UserAlias ?? LCurrentUser.UserAlias;
+            LCurrentUser.FirstName = ARequest.FirstName ?? LCurrentUser.FirstName;
+            LCurrentUser.LastName = ARequest.LastName ?? LCurrentUser.LastName;
+            LCurrentUser.IsActivated = ARequest.IsActivated;
+            LCurrentUser.LastUpdated = DateTime.UtcNow;
+
+            FDatabaseContext.Users.Attach(LCurrentUser).State = EntityState.Modified;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(Unit.Value);
         }

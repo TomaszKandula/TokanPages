@@ -21,11 +21,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 
         public override async Task<Unit> Handle(UpdateSubscriberCommand ARequest, CancellationToken ACancellationToken) 
         {
-            var LCurrentSubscriber = await FDatabaseContext.Subscribers
+            var LSubscribers = await FDatabaseContext.Subscribers
                 .Where(ASubscribers => ASubscribers.Id == ARequest.Id)
                 .ToListAsync(ACancellationToken);
 
-            if (!LCurrentSubscriber.Any()) 
+            if (!LSubscribers.Any()) 
             {
                 throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
             }
@@ -40,12 +40,14 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
             }
 
-            LCurrentSubscriber.First().Email = ARequest.Email;
-            LCurrentSubscriber.First().Count = ARequest.Count ?? LCurrentSubscriber.First().Count;
-            LCurrentSubscriber.First().IsActivated = ARequest.IsActivated ?? LCurrentSubscriber.First().IsActivated;
-            LCurrentSubscriber.First().LastUpdated = DateTime.UtcNow;
+            var LCurrentSubscriber = LSubscribers.First();
 
-            FDatabaseContext.Subscribers.Attach(LCurrentSubscriber.First()).State = EntityState.Modified;
+            LCurrentSubscriber.Email = ARequest.Email;
+            LCurrentSubscriber.Count = ARequest.Count ?? LCurrentSubscriber.Count;
+            LCurrentSubscriber.IsActivated = ARequest.IsActivated ?? LCurrentSubscriber.IsActivated;
+            LCurrentSubscriber.LastUpdated = DateTime.UtcNow;
+
+            FDatabaseContext.Subscribers.Attach(LCurrentSubscriber).State = EntityState.Modified;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(Unit.Value);
         }
