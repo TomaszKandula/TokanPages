@@ -1,12 +1,12 @@
 import axios from "axios";
-import { AppThunkAction, IArticle } from "../../Redux/applicationState";
+import { AppThunkAction, IArticleItem } from "../../Redux/applicationState";
 import { API_QUERY_GET_ARTICLES } from "../../Shared/constants";
 
 export const REQUEST_ARTICLES = "REQUEST_ARTICLES";
 export const RECEIVE_ARTICLES = "RECEIVE_ARTICLES";
 
 export interface IRequestArticlesAction { type: typeof REQUEST_ARTICLES; }
-export interface IReceiveArticlesAction { type: typeof RECEIVE_ARTICLES; payload: IArticle[]; }
+export interface IReceiveArticlesAction { type: typeof RECEIVE_ARTICLES; payload: IArticleItem[]; }
 
 export type TKnownActions = IRequestArticlesAction | IReceiveArticlesAction;
 

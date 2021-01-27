@@ -7,15 +7,21 @@ import { RenderVideo } from "./Renderers/renderVideo";
 import { RenderSeparator } from "./Renderers/renderSeparator";
 import { Languages } from "../../Shared/languageList";
 
-export function RenderContent(jsonObject: ITextObject | undefined)
+export function RenderContent(textObject: ITextObject | undefined)
 {
-    if (jsonObject === undefined)
+
+    if (textObject === undefined)
     {
         return(<div>Cannot render content.</div>);
     }
-    
+
+    if (textObject.items.length === 0)
+    {
+        return(<></>);
+    }
+
     let renderBuffer: JSX.Element[] = [];
-    jsonObject.items.forEach(item => 
+    textObject.items.forEach(item => 
     {
         if (item.type === "separator") renderBuffer.push(
             <RenderSeparator 
@@ -63,9 +69,5 @@ export function RenderContent(jsonObject: ITextObject | undefined)
             />); 
     });
 
-    return(
-        <div data-aos="fade-up">
-            {renderBuffer}
-        </div>
-    );
+    return(<>{renderBuffer}</>);
 }

@@ -1,18 +1,16 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import { Divider, Grid, IconButton, Typography } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
-import axios from "axios";
 import Validate from "validate.js";
 import useStyles from "./Hooks/styleArticleDetail";
-import { ApplicationState } from "../../Redux/applicationState";
+import { IApplicationState } from "../../Redux/applicationState";
+import { ActionCreators } from "../../Redux/Actions/selectArticleActions";
 import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoader";
 import { RenderContent } from "../../Shared/ContentRender/renderContent";
-import { ITextObject } from "../../Shared/ContentRender/Model/textModel";
-import { ARTICLE_URL } from "../../Shared/constants";
 import { FormatDateTime } from "../../Shared/helpers";
 import { UpdateArticle } from "../../Api/Services/articles";
 
@@ -24,29 +22,14 @@ export interface IArticleDetail
 export default function ArticleDetail(props: IArticleDetail) 
 {
     const classes = useStyles();
-    const articleUrl = ARTICLE_URL.replace("{ID}", props.id);
-    const [ article, setArticle ] = React.useState<ITextObject>({ items: [] });
-    const details = useSelector((state: ApplicationState) => state.selectArticle);
+    const selection = useSelector((state: IApplicationState) => state.selectArticle);
+    const dispatch = useDispatch();
 
-    const fetchArticle = React.useCallback( async () => 
+    if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
     {
-        const response = await axios.get<ITextObject>(
-        articleUrl, 
-        {
-            method: "GET", 
-            responseType: "json"
-        });
-
-        setArticle(response.data);
-    }, 
-    [ articleUrl ]);
+        dispatch(ActionCreators.selectArticle(props.id));
+    }
     
-    React.useEffect(() => 
-    { 
-        fetchArticle() 
-    }, 
-    [ article.items.length, fetchArticle ] );
-
     const updateReadCount = async () => 
     {
         await UpdateArticle(
@@ -59,14 +42,14 @@ export default function ArticleDetail(props: IArticleDetail)
 
     const renderContent = () =>
     {
-        if (Validate.isEmpty(article.items))
+        if (Validate.isEmpty(selection.article.id) || selection.isLoading)
         {
             return(<CenteredCircularLoader />);
         }
         else
         {
             updateReadCount();
-            return(<RenderContent items={article.items} />);
+            return(<RenderContent items={selection.article.text} />);
         }
     };
 
@@ -84,20 +67,22 @@ export default function ArticleDetail(props: IArticleDetail)
                         </Grid>
                         <Grid item xs={6}>
                             <Typography className={classes.readCount} component="p" variant="subtitle1" align="right">
-                                Read: {details.readCount}
+                                Read: {selection.article.readCount}
                             </Typography>
                         </Grid>
                     </Grid>
                     <Divider className={classes.divider} />
                     <Box mb={5}>
                         <Typography component="p" variant="subtitle1">
-                            Published at: {FormatDateTime(details.createdAt)}
+                            Published at: {FormatDateTime(selection.article.createdAt)}
                         </Typography>
                         <Typography component="p" variant="subtitle2" color="textSecondary">
-                            Updated at: {FormatDateTime(details.updatedAt)}
+                            Updated at: {FormatDateTime(selection.article.updatedAt)}
                         </Typography>
                     </Box>
-                    {renderContent()}
+                    <div data-aos="fade-up">
+                        {renderContent()}
+                    </div>
                 </Box>
             </Container>
         </section>
