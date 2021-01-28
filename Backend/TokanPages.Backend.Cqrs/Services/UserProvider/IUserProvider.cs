@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
     public interface IUserProvider
     {
         string GetRequestIpAddress();
-        Guid GetUserId();
+        Guid? GetUserId();
         Users GetUserData();
     }
 }
