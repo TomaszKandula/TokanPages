@@ -81,7 +81,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             LCurrentArticle.Description = ARequest.Description ?? LCurrentArticle.Description;
             LCurrentArticle.IsPublished = ARequest.IsPublished ?? LCurrentArticle.IsPublished;
 
-            var IsAnonymousUser = FUserProvider.GetUserId() == Guid.Empty;
+            var IsAnonymousUser = FUserProvider.GetUserId() == null;
 
             var LArticleLikes = await FDatabaseContext.Likes
                 .Where(Likes => Likes.ArticleId == ARequest.Id)
@@ -91,7 +91,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 .ToListAsync(ACancellationToken);
 
             if (!LArticleLikes.Any()) AddNewArticleLikes(IsAnonymousUser, LArticleLikes, ARequest);
-            else UpdateCurrentArticleLikes(IsAnonymousUser, LArticleLikes.First(), ARequest.AddToLikes);
+                else UpdateCurrentArticleLikes(IsAnonymousUser, LArticleLikes.First(), ARequest.AddToLikes);
 
             if (ARequest.UpReadCount.HasValue && ARequest.UpReadCount == true)
             {
@@ -114,7 +114,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             {
                 Id = Guid.NewGuid(),
                 ArticleId = ARequest.Id,
-                UserId = null,
+                UserId = FUserProvider.GetUserId(),
                 IpAddress = FUserProvider.GetRequestIpAddress(),
                 LikeCount = ARequest.AddToLikes > LLikesLimit ? LLikesLimit : ARequest.AddToLikes
             });

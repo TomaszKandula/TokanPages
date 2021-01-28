@@ -27,10 +27,10 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
                 .ToString();
         }
 
-        public virtual Guid GetUserId() 
+        public virtual Guid? GetUserId() 
         {
             // TODO: return logged user id
-            return Guid.Empty;
+            return null;
         }
 
         public virtual Users GetUserData() 
