@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using TokanPages.Backend.Core.Entities;
 
@@ -6,6 +7,11 @@ namespace TokanPages.Backend.Domain.Entities
 {
     public partial class Articles : Entity<Guid>
     {
+        public Articles() 
+        {
+            Likes = new HashSet<Likes>();
+        }
+
         [Required]
         [MaxLength(255)]
         public string Title { get; set; }
@@ -23,6 +29,9 @@ namespace TokanPages.Backend.Domain.Entities
         public DateTime? UpdatedAt { get; set; }
 
         public Guid UserId { get; set; }
+
         public Users User { get; set; }
+
+        public ICollection<Likes> Likes { get; set; }
     }
 }

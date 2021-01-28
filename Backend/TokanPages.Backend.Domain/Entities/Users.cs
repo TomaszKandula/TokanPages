@@ -10,6 +10,7 @@ namespace TokanPages.Backend.Domain.Entities
         public Users() 
         {
             Articles = new HashSet<Articles>();
+            Likes = new HashSet<Likes>();
         }
 
         [Required]
@@ -37,5 +38,7 @@ namespace TokanPages.Backend.Domain.Entities
         public DateTime? LastUpdated { get; set; }
 
         public ICollection<Articles> Articles { get; set; }
+
+        public ICollection<Likes> Likes { get; set; }
     }
 }
