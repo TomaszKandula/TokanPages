@@ -13,7 +13,11 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
             FHttpContextAccessor = AHttpContextAccessor;
         }
 
-        public string GetRequestIpAddress() 
+        public UserProvider() 
+        { 
+        }
+
+        public virtual string GetRequestIpAddress() 
         {
             return FHttpContextAccessor
                 .HttpContext
@@ -23,13 +27,13 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
                 .ToString();
         }
 
-        public Guid GetUserId() 
+        public virtual Guid GetUserId() 
         {
             // TODO: return logged user id
             return Guid.Empty;
         }
 
-        public Users GetUserData() 
+        public virtual Users GetUserData() 
         {
             // TODO: return basic data
             return new Users();
