@@ -34,19 +34,21 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 
         public override async Task<Unit> Handle(SendNewsletterCommand ARequest, CancellationToken ACancellationToken) 
         {
+            var UpdateSubscriberBaseLink = FAppUrls.DeploymentOrigin + FAppUrls.UpdateSubscriberPath;
             var UnsubscribeBaseLink = FAppUrls.DeploymentOrigin + FAppUrls.UnsubscribePath;
             foreach (var Subscriber in ARequest.SubscriberInfo)
             {
-
                 FSmtpClientService.From = Constants.Emails.Addresses.Contact;
                 FSmtpClientService.Tos = new List<string> { Subscriber.Email };
                 FSmtpClientService.Bccs = null;
                 FSmtpClientService.Subject = ARequest.Subject;
 
+                var UpdateSubscriberLink = UpdateSubscriberBaseLink + Subscriber.Id;
                 var UnsubscribeLink = UnsubscribeBaseLink + Subscriber.Id;
                 var NewValues = new List<Item>
                     {
                         new Item { Tag = "{CONTENT}", Value = ARequest.Message },
+                        new Item { Tag = "{UPDATE_EMAIL_LINK}", Value = UpdateSubscriberLink },
                         new Item { Tag = "{UNSUBSCRIBE_LINK}", Value = UnsubscribeLink }
                     };
 
