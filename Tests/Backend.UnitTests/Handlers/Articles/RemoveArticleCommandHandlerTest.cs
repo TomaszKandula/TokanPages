@@ -27,7 +27,6 @@ namespace Backend.UnitTests.Handlers.Articles
                 Title = DataProvider.GetRandomString(),
                 Description = DataProvider.GetRandomString(),
                 IsPublished = false,
-                Likes = 0,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null
@@ -61,7 +60,6 @@ namespace Backend.UnitTests.Handlers.Articles
                 Title = DataProvider.GetRandomString(),
                 Description = DataProvider.GetRandomString(),
                 IsPublished = false,
-                Likes = 0,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null

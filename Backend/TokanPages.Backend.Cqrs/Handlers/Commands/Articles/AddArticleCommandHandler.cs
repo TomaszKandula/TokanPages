@@ -59,7 +59,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 Title = ARequest.Title,
                 Description = ARequest.Description,
                 IsPublished = false,
-                Likes = 0,
                 ReadCount = 0,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = null

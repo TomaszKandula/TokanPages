@@ -28,7 +28,6 @@ namespace Backend.UnitTests.Handlers.Articles
                 Title = DataProvider.GetRandomString(),
                 Description = DataProvider.GetRandomString(),
                 IsPublished = false,
-                Likes = 0,
                 ReadCount = 0,
                 CreatedAt = LTestDate,
                 UpdatedAt = null
@@ -46,7 +45,6 @@ namespace Backend.UnitTests.Handlers.Articles
             LResults.Title.Should().Be(LArticles.Title);
             LResults.Description.Should().Be(LArticles.Description);
             LResults.IsPublished.Should().BeFalse();
-            LResults.Likes.Should().Be(LArticles.Likes);
             LResults.ReadCount.Should().Be(LArticles.ReadCount);
             LResults.UpdatedAt.Should().BeNull();
             LResults.CreatedAt.Should().Be(LTestDate);
@@ -68,7 +66,6 @@ namespace Backend.UnitTests.Handlers.Articles
                 Title = DataProvider.GetRandomString(),
                 Description = DataProvider.GetRandomString(),
                 IsPublished = false,
-                Likes = 0,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null
