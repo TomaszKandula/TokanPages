@@ -21,5 +21,8 @@ namespace TokanPages.Backend.Domain.Entities
         public DateTime CreatedAt { get; set; }
 
         public DateTime? UpdatedAt { get; set; }
+
+        public Guid UserId { get; set; }
+        public Users User { get; set; }
     }
 }
