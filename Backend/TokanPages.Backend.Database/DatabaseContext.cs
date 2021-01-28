@@ -13,6 +13,7 @@ namespace TokanPages.Backend.Database
         public virtual DbSet<Articles> Articles { get; set; }
         public virtual DbSet<Subscribers> Subscribers { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Likes> Likes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder AModelBuilder)
         {
