@@ -35,6 +35,7 @@ jobs:
       with:
         files: ${{ github.workspace }}/TokanPages/appsettings.Production.json
       env:
+        AppUrls.UpdateSubscriberPath: "${{ secrets.APPURLS__UPDATESUBSCRIBERPATH}}"
         AppUrls.UnsubscribePath: "${{ secrets.APPURLS__UNSUBSCRIBEPATH}}"
         AppUrls.DevelopmentOrigin: "${{ secrets.APPURLS__DEVELOPMENTORIGIN }}"
         AppUrls.DeploymentOrigin: "${{ secrets.APPURLS__DEPLOYMENTORIGIN }}"
@@ -49,7 +50,7 @@ jobs:
         SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT }}"
         SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER }}"
 
-    - name: Build and push Docker image (also runs frontend and backend tests)
+    - name: Build and push Docker image (runs frontend & backend tests)
       uses: azure/docker-login@v1
       with:
         login-server: tokanpages.azurecr.io
