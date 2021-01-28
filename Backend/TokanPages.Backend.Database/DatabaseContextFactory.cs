@@ -8,7 +8,7 @@ namespace TokanPages.Backend.Database
         public DatabaseContext CreateDbContext(string[] args)
         {
             var LOptionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-            LOptionsBuilder.UseSqlServer("Server=tcp:mian-srv.database.windows.net,1433;Initial Catalog=tokanpages-db;Persist Security Info=False;User ID=AdminDb;Password=Timex#099#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            LOptionsBuilder.UseSqlServer("");
             return new DatabaseContext(LOptionsBuilder.Options);
         }
     }
