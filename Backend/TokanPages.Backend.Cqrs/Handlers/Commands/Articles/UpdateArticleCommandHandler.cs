@@ -74,7 +74,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             LCurrentArticle.Title = ARequest.Title ?? LCurrentArticle.Title;
             LCurrentArticle.Description = ARequest.Description ?? LCurrentArticle.Description;
             LCurrentArticle.IsPublished = ARequest.IsPublished ?? LCurrentArticle.IsPublished;
-            LCurrentArticle.Likes = LCurrentArticle.Likes + ARequest.AddToLikes;
+            //LCurrentArticle.Likes = LCurrentArticle.Likes + ARequest.AddToLikes; // TODO: save likes to diff. table
 
             if (ARequest.UpReadCount.HasValue && ARequest.UpReadCount == true) 
             {
