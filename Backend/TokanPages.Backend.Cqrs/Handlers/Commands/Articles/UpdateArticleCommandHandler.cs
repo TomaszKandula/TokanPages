@@ -2,28 +2,34 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.Services.FileUtility;
+using TokanPages.Backend.Cqrs.Services.UserProvider;
 using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
-{   
+{
     public class UpdateArticleCommandHandler : TemplateHandler<UpdateArticleCommand, Unit>
     {
         private readonly DatabaseContext FDatabaseContext;
         private readonly IAzureStorageService FAzureStorageService;
         private readonly IFileUtility FFileUtility;
+        private readonly IUserProvider FUserProvider;
 
-        public UpdateArticleCommandHandler(DatabaseContext ADatabaseContext, 
-            IAzureStorageService AAzureStorageService, IFileUtility AFileUtility) 
+        public UpdateArticleCommandHandler(DatabaseContext ADatabaseContext,
+            IAzureStorageService AAzureStorageService, IFileUtility AFileUtility,
+            IUserProvider AUserProvider)
         {
             FDatabaseContext = ADatabaseContext;
             FAzureStorageService = AAzureStorageService;
             FFileUtility = AFileUtility;
+            FUserProvider = AUserProvider;
         }
 
         public override async Task<Unit> Handle(UpdateArticleCommand ARequest, CancellationToken ACancellationToken)
@@ -74,9 +80,20 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             LCurrentArticle.Title = ARequest.Title ?? LCurrentArticle.Title;
             LCurrentArticle.Description = ARequest.Description ?? LCurrentArticle.Description;
             LCurrentArticle.IsPublished = ARequest.IsPublished ?? LCurrentArticle.IsPublished;
-            //LCurrentArticle.Likes = LCurrentArticle.Likes + ARequest.AddToLikes; // TODO: save likes to diff. table
 
-            if (ARequest.UpReadCount.HasValue && ARequest.UpReadCount == true) 
+            var IsAnonymousUser = FUserProvider.GetUserId() == Guid.Empty;
+
+            var LArticleLikes = await FDatabaseContext.Likes
+                .Where(Likes => Likes.ArticleId == ARequest.Id)
+                .WhereIfElse(IsAnonymousUser,
+                    Likes => Likes.IpAddress == FUserProvider.GetRequestIpAddress(),
+                    Likes => Likes.UserId == FUserProvider.GetUserId())
+                .ToListAsync(ACancellationToken);
+
+            if (!LArticleLikes.Any()) AddNewArticleLikes(LArticleLikes, ARequest);
+            else UpdateCurrentArticleLikes(IsAnonymousUser, LArticleLikes.First(), ARequest.AddToLikes);
+
+            if (ARequest.UpReadCount.HasValue && ARequest.UpReadCount == true)
             {
                 LCurrentArticle.ReadCount++;
             }
@@ -86,9 +103,27 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 LCurrentArticle.UpdatedAt = DateTime.UtcNow;
             }
 
-            FDatabaseContext.Articles.Attach(LCurrentArticle).State = EntityState.Modified;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-            return await Task.FromResult(Unit.Value);       
+            return await Task.FromResult(Unit.Value);
+        }
+
+        private void AddNewArticleLikes(List<Domain.Entities.Likes> AEntity, UpdateArticleCommand ARequest)
+        {
+            AEntity.Add(new Domain.Entities.Likes
+            {
+                Id = Guid.NewGuid(),
+                ArticleId = ARequest.Id,
+                UserId = null,
+                IpAddress = FUserProvider.GetRequestIpAddress(),
+                LikeCount = ARequest.AddToLikes
+            });
+        }
+
+        private void UpdateCurrentArticleLikes(bool AIsAnonymousUser, Domain.Entities.Likes AEntity, int ALikesToBeAdded)
+        {
+            var LLikesLimit = AIsAnonymousUser ? 25 : 50;
+            var LCountSum = AEntity.LikeCount + ALikesToBeAdded;
+            AEntity.LikeCount = LCountSum >= LLikesLimit ? LLikesLimit : ALikesToBeAdded;
         }
     }
 }

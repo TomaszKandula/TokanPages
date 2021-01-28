@@ -8,6 +8,7 @@ using TokanPages.Backend.Storage;
 using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Services.FileUtility;
+using TokanPages.Backend.Cqrs.Services.UserProvider;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 using Backend.TestData;
 
@@ -48,6 +49,7 @@ namespace Backend.UnitTests.Handlers.Articles
 
             var LMockedStorage = new Mock<AzureStorageService>();
             var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
                 It.IsAny<string>(),
@@ -63,7 +65,15 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
 
-            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(LDatabaseContext, LMockedStorage.Object, LMockedUtility.Object);
+            LMockedUserProvider
+                .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
+                .Returns("255.255.255.255");
+
+            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
+                LDatabaseContext, 
+                LMockedStorage.Object, 
+                LMockedUtility.Object, 
+                LMockedUserProvider.Object);
 
             // Act
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
@@ -110,6 +120,7 @@ namespace Backend.UnitTests.Handlers.Articles
 
             var LMockedStorage = new Mock<AzureStorageService>();
             var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
                 It.IsAny<string>(),
@@ -125,7 +136,15 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
 
-            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(LDatabaseContext, LMockedStorage.Object, LMockedUtility.Object);
+            LMockedUserProvider
+                .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
+                .Returns("255.255.255.255");
+
+            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
+                LDatabaseContext, 
+                LMockedStorage.Object, 
+                LMockedUtility.Object, 
+                LMockedUserProvider.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None));
@@ -162,6 +181,7 @@ namespace Backend.UnitTests.Handlers.Articles
 
             var LMockedStorage = new Mock<AzureStorageService>();
             var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
                 It.IsAny<string>(),
@@ -177,7 +197,15 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
 
-            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(LDatabaseContext, LMockedStorage.Object, LMockedUtility.Object);
+            LMockedUserProvider
+                .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
+                .Returns("255.255.255.255");
+
+            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
+                LDatabaseContext, 
+                LMockedStorage.Object, 
+                LMockedUtility.Object, 
+                LMockedUserProvider.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None));

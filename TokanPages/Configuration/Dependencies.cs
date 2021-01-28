@@ -17,6 +17,7 @@ using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Core.Services.TemplateHelper;
 using FluentValidation;
 using MediatR;
+using TokanPages.Backend.Cqrs.Services.UserProvider;
 
 namespace TokanPages.Configuration
 {
@@ -76,11 +77,13 @@ namespace TokanPages.Configuration
 
         private static void SetupServices(IServiceCollection AServices) 
         {
+            AServices.AddHttpContextAccessor();
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();
             AServices.AddScoped<IAzureStorageService, AzureStorageService>();
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
             AServices.AddScoped<IFileUtility, FileUtility>();
             AServices.AddScoped<IDbInitializer, DbInitializer>();
+            AServices.AddScoped<IUserProvider, UserProvider>();
         }
 
         private static void SetupValidators(IServiceCollection AServices)
