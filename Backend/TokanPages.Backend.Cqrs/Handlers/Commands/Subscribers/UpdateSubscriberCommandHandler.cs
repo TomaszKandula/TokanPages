@@ -47,7 +47,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
             LCurrentSubscriber.IsActivated = ARequest.IsActivated ?? LCurrentSubscriber.IsActivated;
             LCurrentSubscriber.LastUpdated = DateTime.UtcNow;
 
-            FDatabaseContext.Subscribers.Attach(LCurrentSubscriber).State = EntityState.Modified;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(Unit.Value);
         }

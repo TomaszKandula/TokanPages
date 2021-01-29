@@ -49,7 +49,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             LCurrentUser.IsActivated = ARequest.IsActivated;
             LCurrentUser.LastUpdated = DateTime.UtcNow;
 
-            FDatabaseContext.Users.Attach(LCurrentUser).State = EntityState.Modified;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(Unit.Value);
         }
