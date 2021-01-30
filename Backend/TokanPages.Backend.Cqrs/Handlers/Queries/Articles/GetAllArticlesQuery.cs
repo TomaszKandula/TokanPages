@@ -3,7 +3,7 @@ using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 {
-    public class GetAllArticlesQuery : IRequest<IEnumerable<Domain.Entities.Articles>>
+    public class GetAllArticlesQuery : IRequest<IEnumerable<GetAllArticlesQueryResult>>
     {
         public bool IsPublished { get; set; }
     }

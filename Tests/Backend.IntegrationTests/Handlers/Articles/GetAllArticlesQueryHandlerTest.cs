@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using TokanPages;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 
 namespace Backend.IntegrationTests.Handlers.Articles
 {   
@@ -32,7 +33,7 @@ namespace Backend.IntegrationTests.Handlers.Articles
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
 
-            var LDeserialized = JsonConvert.DeserializeObject<IEnumerable<TokanPages.Backend.Domain.Entities.Articles>>(LContent);
+            var LDeserialized = JsonConvert.DeserializeObject<IEnumerable<GetAllArticlesQueryResult>>(LContent);
             LDeserialized.Should().NotBeNullOrEmpty();
             LDeserialized.Should().HaveCountGreaterThan(0);
         }

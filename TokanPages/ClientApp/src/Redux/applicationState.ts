@@ -23,16 +23,26 @@ export interface IArticles
     articles: IArticleItem[];
 }
 
+export interface IAuthor
+{
+    aliasName: string;
+    avatarName: string;
+    firstName: string;
+    lastName: string;
+    registered: string;
+}
+
 export interface IArticleItem
 {
     id: string;
     title: string;
     description: string;
     isPublished: boolean;
-    likes: number;
+    likeCount: number;
     readCount: number;
     createdAt: string;
     updatedAt: string;
+    author: IAuthor;
     text: ITextItem[];
 }
 
@@ -50,10 +60,18 @@ export const ArticleDefaultValues: IArticle =
         title: "",
         description: "",
         isPublished: false,
-        likes:  0,
+        likeCount:  0,
         readCount: 0,
         createdAt: "",
         updatedAt: "",
+        author: 
+        { 
+            aliasName: "", 
+            avatarName: "",
+            firstName: "",
+            lastName: "",
+            registered: ""
+        },
         text: []
     }
 };
@@ -72,10 +90,11 @@ export const DefaultAppState =
         title: ArticleDefaultValues.article.title,
         description: ArticleDefaultValues.article.description,
         isPublished: ArticleDefaultValues.article.isPublished,
-        likes: ArticleDefaultValues.article.likes,
+        likeCount: ArticleDefaultValues.article.likeCount,
         readCount: ArticleDefaultValues.article.readCount,
         createdAt: ArticleDefaultValues.article.createdAt,
         updatedAt: ArticleDefaultValues.article.updatedAt,
+        author: ArticleDefaultValues.article.author,
         text: ArticleDefaultValues.article.text
     },
     listArticles:

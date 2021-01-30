@@ -50,6 +50,7 @@ export const ARTICLE_PATH      = `/articles/?id={ID}`;
 export const IMAGES_PATH       = `${APP_STORAGE}/images/`;
 export const TESTIMONIALS_PATH = `${APP_STORAGE}/images/section_testimonials/`;
 export const ICONS_PATH        = `${APP_STORAGE}/icons/`;
+export const AVATARS_PATH      = `${APP_STORAGE}/content/avatars/`;
 
 /* MESSAGE TEMPLATES */
 

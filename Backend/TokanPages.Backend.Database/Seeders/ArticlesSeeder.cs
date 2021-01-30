@@ -18,7 +18,7 @@ namespace TokanPages.Backend.Database.Seeders
                     ReadCount = Dummies.Article1.ReadCount,
                     CreatedAt = Dummies.Article1.Created,
                     UpdatedAt = Dummies.Article1.LastUpdated,
-                    UserId = Dummies.User1.Id
+                    UserId = Dummies.Article1.UserId
                 },
                 new Articles
                 {
@@ -29,7 +29,7 @@ namespace TokanPages.Backend.Database.Seeders
                     ReadCount = Dummies.Article2.ReadCount,
                     CreatedAt = Dummies.Article2.Created,
                     UpdatedAt = Dummies.Article2.LastUpdated,
-                    UserId = Dummies.User2.Id
+                    UserId = Dummies.Article2.UserId
                 },
                 new Articles
                 {
@@ -40,7 +40,7 @@ namespace TokanPages.Backend.Database.Seeders
                     ReadCount = Dummies.Article3.ReadCount,
                     CreatedAt = Dummies.Article3.Created,
                     UpdatedAt = Dummies.Article3.LastUpdated,
-                    UserId = Dummies.User3.Id
+                    UserId = Dummies.Article3.UserId
                 }
             };
         }

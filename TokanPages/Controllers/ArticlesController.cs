@@ -17,14 +17,14 @@ namespace TokanPages.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Articles>> GetAllArticles([FromQuery] bool AIsPublished = true) 
+        public async Task<IEnumerable<GetAllArticlesQueryResult>> GetAllArticles([FromQuery] bool AIsPublished = true) 
         {
             var LQuery = new GetAllArticlesQuery { IsPublished = AIsPublished };
             return await FMediator.Send(LQuery);
         }
 
         [HttpGet("{Id}")]
-        public async Task<Articles> GetArticle([FromRoute] Guid Id)
+        public async Task<GetArticleQueryResult> GetArticle([FromRoute] Guid Id)
         {
             var LQuery = new GetArticleQuery { Id = Id};
             return await FMediator.Send(LQuery);

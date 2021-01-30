@@ -12,5 +12,6 @@ namespace TokanPages.Backend.Database.Dummies
         public static bool IsPublished = false;
         public static int Likes = 0;
         public static int ReadCount = 0;
+        public static Guid UserId = User2.Id;
     }
 }

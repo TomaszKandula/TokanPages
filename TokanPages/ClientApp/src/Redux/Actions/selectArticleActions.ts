@@ -34,13 +34,18 @@ export const ActionCreators =
                     title: detailsResponse.data.title,
                     description: detailsResponse.data.description,
                     isPublished: detailsResponse.data.isPublished,
-                    likes: detailsResponse.data.likes,
+                    likeCount: detailsResponse.data.likeCount,
                     readCount: detailsResponse.data.readCount,
                     createdAt: detailsResponse.data.createdAt,
                     updatedAt: detailsResponse.data.updatedAt,
+                    author: detailsResponse.data.author,
                     text: textResponse.data.items
                 };
                 dispatch({ type: RECEIVE_ARTICLE, payload: combineData });
+            }
+            else
+            {
+                // TODO: handle other statuses
             }
         }))
         .catch(error => 
