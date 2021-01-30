@@ -48,12 +48,14 @@ export default function ArticleList()
         <section>
             <Container className={classes.container}>
                 <Box pt={12} pb={8}>
-                    <Link to="/">
-                        <IconButton>
-                            <ArrowBack/>
-                        </IconButton>
-                    </Link> 
-                    <Divider className={classes.divider} />
+                    <div data-aos="fade-down">
+                        <Link to="/">
+                            <IconButton>
+                                <ArrowBack/>
+                            </IconButton>
+                        </Link> 
+                        <Divider className={classes.divider} />
+                    </div>
                     <Grid container justify="center">
                         <Grid item xs={12} sm={12}>
                             {data.isLoading 
