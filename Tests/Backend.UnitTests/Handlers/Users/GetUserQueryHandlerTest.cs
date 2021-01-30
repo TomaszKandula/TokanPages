@@ -45,8 +45,8 @@ namespace Backend.UnitTests.Handlers.Users
 
             // Assert
             LResult.Should().NotBeNull();
-            LResult.EmailAddress.Should().Be(LUsers.EmailAddress);
-            LResult.UserAlias.Should().Be(LUsers.UserAlias);
+            LResult.Email.Should().Be(LUsers.EmailAddress);
+            LResult.AliasName.Should().Be(LUsers.UserAlias);
             LResult.FirstName.Should().Be(LUsers.FirstName);
             LResult.LastName.Should().Be(LUsers.LastName);
             LResult.IsActivated.Should().BeTrue();

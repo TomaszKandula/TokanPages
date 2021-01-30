@@ -42,7 +42,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             LResults.Should().NotBeNull();
             LResults.Email.Should().Be(LSubscribers.Email);
             LResults.IsActivated.Should().BeTrue();
-            LResults.Count.Should().Be(LSubscribers.Count);
+            LResults.NewsletterCount.Should().Be(LSubscribers.Count);
             LResults.Registered.Should().Be(LTestDate);
             LResults.LastUpdated.Should().BeNull();
         }

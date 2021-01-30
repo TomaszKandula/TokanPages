@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TokanPages;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Database.Dummies;
+using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 
 namespace Backend.IntegrationTests.Handlers.Users
 {
@@ -35,7 +36,7 @@ namespace Backend.IntegrationTests.Handlers.Users
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             
-            var LDeserialized = JsonConvert.DeserializeObject<TokanPages.Backend.Domain.Entities.Users>(LContent);
+            var LDeserialized = JsonConvert.DeserializeObject<GetUserQueryResult>(LContent);
             LDeserialized.Should().NotBeNull();
         }
 
