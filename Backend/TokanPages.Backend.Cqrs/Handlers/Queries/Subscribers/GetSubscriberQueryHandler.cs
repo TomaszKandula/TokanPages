@@ -8,7 +8,7 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
 {
-    public class GetSubscriberQueryHandler : TemplateHandler<GetSubscriberQuery, Domain.Entities.Subscribers>
+    public class GetSubscriberQueryHandler : TemplateHandler<GetSubscriberQuery, GetSubscriberQueryResult>
     {
         private readonly DatabaseContext FDatabaseContext;
 
@@ -17,11 +17,20 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
             FDatabaseContext = ADatabaseContext;
         }
 
-        public override async Task<Domain.Entities.Subscribers> Handle(GetSubscriberQuery ARequest, CancellationToken ACancellationToken) 
+        public override async Task<GetSubscriberQueryResult> Handle(GetSubscriberQuery ARequest, CancellationToken ACancellationToken) 
         {
             var LCurrentSubscriber = await FDatabaseContext.Subscribers
                 .AsNoTracking()
                 .Where(ASubscribers => ASubscribers.Id == ARequest.Id)
+                .Select(Fields => new GetSubscriberQueryResult 
+                { 
+                    Id = Fields.Id,
+                    Email = Fields.Email,
+                    IsActivated = Fields.IsActivated,
+                    NewsletterCount = Fields.Count,
+                    Registered = Fields.Registered,
+                    LastUpdated = Fields.LastUpdated
+                })
                 .ToListAsync(ACancellationToken);
 
             if (!LCurrentSubscriber.Any()) 

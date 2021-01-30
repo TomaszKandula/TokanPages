@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.Database;
@@ -6,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
 {
-    public class GetAllUsersQueryHandler : TemplateHandler<GetAllUsersQuery, IEnumerable<Domain.Entities.Users>>
+    public class GetAllUsersQueryHandler : TemplateHandler<GetAllUsersQuery, IEnumerable<GetAllUsersQueryResult>>
     {
         private readonly DatabaseContext FDatabaseContext;
 
@@ -15,10 +16,17 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
             FDatabaseContext = ADatabaseContext;
         }
 
-        public override async Task<IEnumerable<Domain.Entities.Users>> Handle(GetAllUsersQuery ARequest, CancellationToken ACancellationToken)
+        public override async Task<IEnumerable<GetAllUsersQueryResult>> Handle(GetAllUsersQuery ARequest, CancellationToken ACancellationToken)
         {
             var LUsers = await FDatabaseContext.Users
                 .AsNoTracking()
+                .Select(Fields => new GetAllUsersQueryResult 
+                { 
+                    Id = Fields.Id,
+                    AliasName = Fields.UserAlias,
+                    Email = Fields.EmailAddress,
+                    IsActivated = Fields.IsActivated
+                })
                 .ToListAsync(ACancellationToken);
             
             return LUsers;

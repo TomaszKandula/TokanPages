@@ -8,7 +8,7 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
 {
-    public class GetUserQueryHandler : TemplateHandler<GetUserQuery, Domain.Entities.Users>
+    public class GetUserQueryHandler : TemplateHandler<GetUserQuery, GetUserQueryResult>
     {
         private readonly DatabaseContext FDatabaseContext;
 
@@ -17,11 +17,23 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
             FDatabaseContext = ADatabaseContext;
         }
 
-        public override async Task<Domain.Entities.Users> Handle(GetUserQuery ARequest, CancellationToken ACancellationToken)
+        public override async Task<GetUserQueryResult> Handle(GetUserQuery ARequest, CancellationToken ACancellationToken)
         {
             var LCurrentUser = await FDatabaseContext.Users
                 .AsNoTracking()
                 .Where(AUser => AUser.Id == ARequest.Id)
+                .Select(Fields => new GetUserQueryResult
+                {
+                    Id = Fields.Id,
+                    Email = Fields.EmailAddress,
+                    AliasName = Fields.UserAlias,
+                    IsActivated = Fields.IsActivated,
+                    FirstName = Fields.FirstName,
+                    LastName = Fields.LastName,
+                    Registered = Fields.Registered,
+                    LastUpdated = Fields.LastUpdated,
+                    LastLogged = Fields.LastLogged
+                })
                 .ToListAsync(ACancellationToken);
 
             if (!LCurrentUser.Any())

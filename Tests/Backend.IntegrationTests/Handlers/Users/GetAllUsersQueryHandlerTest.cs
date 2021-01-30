@@ -3,6 +3,7 @@ using FluentAssertions;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 using TokanPages;
 
 namespace Backend.IntegrationTests.Handlers.Users
@@ -32,7 +33,7 @@ namespace Backend.IntegrationTests.Handlers.Users
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
 
-            var LDeserialized = JsonConvert.DeserializeObject<IEnumerable<TokanPages.Backend.Domain.Entities.Users>>(LContent);
+            var LDeserialized = JsonConvert.DeserializeObject<IEnumerable<GetAllUsersQueryResult>>(LContent);
             LDeserialized.Should().NotBeNullOrEmpty();
             LDeserialized.Should().HaveCountGreaterThan(0);
         }

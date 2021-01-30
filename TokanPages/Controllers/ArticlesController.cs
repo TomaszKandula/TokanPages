@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Cqrs.Mappers;
-using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Dto.Articles;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 using MediatR;
