@@ -44,15 +44,19 @@ export default function StaticContent(props: IStoryContent)
         <section>
             <Container className={classes.container}>
                 <Box py={12}>
-                    <Link to="/">
-                        <IconButton>
-                            <ArrowBack/>
-                        </IconButton>
-                    </Link> 
-                    <Divider className={classes.divider} />
-                    {Validate.isEmpty(data) 
-                        ? <CenteredCircularLoader /> 
-                        : <RenderContent items={data.items}/>}
+                    <div data-aos="fade-down">
+                        <Link to="/">
+                            <IconButton>
+                                <ArrowBack/>
+                            </IconButton>
+                        </Link> 
+                        <Divider className={classes.divider} />
+                    </div>                    
+                    <div data-aos="fade-up">
+                        {Validate.isEmpty(data) 
+                            ? <CenteredCircularLoader /> 
+                            : <RenderContent items={data.items}/>}
+                    </div>
                 </Box>
             </Container>
         </section>
