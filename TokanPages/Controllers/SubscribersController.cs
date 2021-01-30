@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.Cqrs.Mappers;
-using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Dto.Subscribers;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
 using MediatR;
@@ -17,14 +16,14 @@ namespace TokanPages.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Subscribers>> GetAllSubscribers()
+        public async Task<IEnumerable<GetAllSubscribersQueryResult>> GetAllSubscribers()
         {
             var LQuery = new GetAllSubscribersQuery();
             return await FMediator.Send(LQuery);
         }
 
         [HttpGet("{Id}")]
-        public async Task<Subscribers> GetSubscriber([FromRoute] Guid Id)
+        public async Task<GetSubscriberQueryResult> GetSubscriber([FromRoute] Guid Id)
         {
             var LQuery = new GetSubscriberQuery { Id = Id };
             return await FMediator.Send(LQuery);
