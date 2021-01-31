@@ -13,5 +13,7 @@ namespace TokanPages.Backend.Database.Dummies
         public static bool IsActivated = true;
         public static DateTime? LastLogged = DateTime.Parse("2020-03-22 12:00:15");
         public static DateTime? LastUpdated = DateTime.Parse("2020-05-21 05:09:11");
+        public static string AvatarName = null;
+        public static string ShortBio = "Software Developer";
     }
 }

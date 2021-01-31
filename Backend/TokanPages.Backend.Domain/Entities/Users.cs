@@ -37,6 +37,12 @@ namespace TokanPages.Backend.Domain.Entities
 
         public DateTime? LastUpdated { get; set; }
 
+        [MaxLength(255)]
+        public string AvatarName { get; set; }
+
+        [MaxLength(255)]
+        public string ShortBio { get; set; }
+
         public ICollection<Articles> Articles { get; set; }
 
         public ICollection<Likes> Likes { get; set; }
