@@ -96,14 +96,14 @@ export default function ArticleDetail(props: IArticleDetail)
                             </Grid>
                         </Grid>
                         <Divider className={classes.dividerTop} />
-                        <Grid container spacing={3}>
-                            <Grid item xs={1}>
+                        <Grid container spacing={2}>
+                            <Grid item>
                                 <Box onMouseEnter={openPopover} onMouseLeave={closePopover}>
                                     {renderAvatar()}
                                 </Box>
                             </Grid>
-                            <Grid item xs={11}>
-                                <Typography className={classes.aliasName} component="p" variant="subtitle1" align="left">
+                            <Grid item xs zeroMinWidth>
+                                <Typography className={classes.aliasName} component="div" variant="subtitle1" align="left">
                                     <Box fontWeight="fontWeightBold">
                                         {selection.article.author.aliasName}
                                     </Box>
@@ -126,7 +126,7 @@ export default function ArticleDetail(props: IArticleDetail)
                                             Last name: {selection.article.author.lastName}
                                         </Typography>
                                         <Typography component="p" variant="subtitle2" color="textSecondary">
-                                            Registered at: {FormatDateTime(selection.article.author.registered)}
+                                            Registered at: {FormatDateTime(selection.article.author.registered, false)}
                                         </Typography>
                                     </Box>
                                 </Popover>
@@ -134,10 +134,10 @@ export default function ArticleDetail(props: IArticleDetail)
                         </Grid>
                         <Box mt={1} mb={5}>
                             <Typography component="p" variant="subtitle1">
-                                Published at: {FormatDateTime(selection.article.createdAt)}
+                                Published at: {FormatDateTime(selection.article.createdAt, true)}
                             </Typography>
                             <Typography component="p" variant="subtitle2" color="textSecondary">
-                                Updated at: {FormatDateTime(selection.article.updatedAt)}
+                                Updated at: {FormatDateTime(selection.article.updatedAt, true)}
                             </Typography>
                         </Box>
                     </div>

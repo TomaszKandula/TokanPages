@@ -30,9 +30,9 @@ const HtmlRenderLines = (InputArray: any[], Tag: string) =>
     return result;
 }
 
-const FormatDateTime = (value: string): string =>
+const FormatDateTime = (value: string, hasTimeVisible: boolean): string =>
 {
-    const options = 
+    const formatWithTime = 
     { 
         day: "2-digit", 
         month: "2-digit", 
@@ -40,6 +40,15 @@ const FormatDateTime = (value: string): string =>
         hour: "2-digit", 
         minute: "2-digit" 
     };
+
+    const formatWithoutTime = 
+    {
+        day: "2-digit", 
+        month: "2-digit", 
+        year: "numeric"
+    };
+
+    const options = hasTimeVisible ? formatWithTime : formatWithoutTime;    
     const datetime = value ? new Date(value) : null;
 
     let result = "n/a";

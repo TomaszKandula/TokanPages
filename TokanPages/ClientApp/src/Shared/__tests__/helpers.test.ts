@@ -47,6 +47,14 @@ describe("Verify helper methods.", () =>
         const sourceDateTime: string = "2020-01-10T12:15:15";
         const expectation: string = "01/10/2020, 12:15 PM";
 
-        expect(helpers.FormatDateTime(sourceDateTime)).toBe(expectation);
+        expect(helpers.FormatDateTime(sourceDateTime, true)).toBe(expectation);
+    });
+
+    test("Should return formatted date time: 01/10/2020", () =>
+    {
+        const sourceDateTime: string = "2020-01-10T12:15:15";
+        const expectation: string = "01/10/2020";
+
+        expect(helpers.FormatDateTime(sourceDateTime, false)).toBe(expectation);
     });
 });
