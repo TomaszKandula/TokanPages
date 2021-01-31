@@ -29,6 +29,7 @@ export interface IAuthor
     avatarName: string;
     firstName: string;
     lastName: string;
+    shortBio: string;
     registered: string;
 }
 
@@ -70,6 +71,7 @@ export const ArticleDefaultValues: IArticle =
             avatarName: "",
             firstName: "",
             lastName: "",
+            shortBio: "",
             registered: ""
         },
         text: []

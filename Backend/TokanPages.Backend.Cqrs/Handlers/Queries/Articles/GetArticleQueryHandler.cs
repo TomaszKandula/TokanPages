@@ -41,9 +41,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
                     Author = new GetUserDto 
                     { 
                         AliasName = Fields.User.UserAlias,
-                        AvatarName = "", // TODO: add new column with current user avatar name
+                        AvatarName = Fields.User.AvatarName,
                         FirstName = Fields.User.FirstName,
                         LastName = Fields.User.LastName,
+                        ShortBio = Fields.User.ShortBio,
                         Registered = Fields.User.Registered
                     }
                 })
