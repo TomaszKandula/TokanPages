@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
-import { Divider, Grid, IconButton, Typography } from "@material-ui/core";
+import { Divider, Grid, IconButton, Popover, Typography } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import PersonIcon from "@material-ui/icons/Person";
 import Validate from "validate.js";
@@ -24,14 +24,26 @@ export interface IArticleDetail
 export default function ArticleDetail(props: IArticleDetail) 
 {
     const classes = useStyles();
+    const [popover, setPopover] = React.useState<HTMLElement | null>(null);
     const selection = useSelector((state: IApplicationState) => state.selectArticle);
     const dispatch = useDispatch();
+    const open = Boolean(popover);
 
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
     {
         dispatch(ActionCreators.selectArticle(props.id));
     }
     
+    const openPopover = (event: React.MouseEvent<HTMLElement, MouseEvent>) => 
+    {
+        setPopover(event.currentTarget);
+    };
+
+    const closePopover = () => 
+    {
+        setPopover(null);
+    };
+
     const updateReadCount = async () => 
     {
         await UpdateArticle(
@@ -86,12 +98,38 @@ export default function ArticleDetail(props: IArticleDetail)
                         <Divider className={classes.dividerTop} />
                         <Grid container spacing={3}>
                             <Grid item xs={1}>
-                                {renderAvatar()}
+                                <Box onMouseEnter={openPopover} onMouseLeave={closePopover}>
+                                    {renderAvatar()}
+                                </Box>
                             </Grid>
                             <Grid item xs={11}>
                                 <Typography className={classes.aliasName} component="p" variant="subtitle1" align="left">
-                                    {selection.article.author.aliasName}
+                                    <Box fontWeight="fontWeightBold">
+                                        {selection.article.author.aliasName}
+                                    </Box>
                                 </Typography>
+                                <Popover
+                                    id="mouse-over-popover"
+                                    className={classes.popover}
+                                    open={open}
+                                    anchorEl={popover}
+                                    anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                                    transformOrigin={{ vertical: "top", horizontal: "left" }}
+                                    onClose={closePopover}
+                                    disableRestoreFocus
+                                >
+                                    <Box mt={2} mb={2} ml={3} mr={3} >
+                                        <Typography component="p" variant="subtitle2" color="textSecondary">
+                                            First name: {selection.article.author.firstName}
+                                        </Typography>
+                                        <Typography component="p" variant="subtitle2" color="textSecondary">
+                                            Last name: {selection.article.author.lastName}
+                                        </Typography>
+                                        <Typography component="p" variant="subtitle2" color="textSecondary">
+                                            Registered at: {FormatDateTime(selection.article.author.registered)}
+                                        </Typography>
+                                    </Box>
+                                </Popover>
                             </Grid>
                         </Grid>
                         <Box mt={1} mb={5}>
@@ -107,7 +145,7 @@ export default function ArticleDetail(props: IArticleDetail)
                         {renderContent()}
                     </div>
                     <Divider className={classes.dividerBottom} />
-                    <Typography component="p" variant="subtitle2">
+                    <Typography component="p" variant="subtitle1">
                         Votes: {selection.article.likeCount}
                     </Typography>
                 </Box>
