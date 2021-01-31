@@ -22,8 +22,7 @@ const useStyles = makeStyles(() => (
     },
     aliasName:
     {
-        paddingTop: "10px",
-        paddingLeft: "10px"
+        paddingTop: "10px"
     },
     avatar:
     {
