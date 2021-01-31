@@ -92,7 +92,7 @@ namespace Backend.UnitTests.Handlers.Articles
             LResults.CreatedAt.Should().Be(LTestDate);
             LResults.LikeCount.Should().Be(25);
             LResults.Author.AliasName.Should().Be(LUserAlias);
-            LResults.Author.AvatarName.Should().BeEmpty();
+            LResults.Author.AvatarName.Should().BeNull();
         }
 
         [Fact]
