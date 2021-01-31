@@ -24,11 +24,17 @@ const useStyles = makeStyles(() => (
     {
         paddingTop: "10px"
     },
-    avatar:
+    avatarSmall:
     {
         color: "#1975D2",
         width: "48px", 
         height: "48px"
+    },
+    avatarLarge:
+    {
+        color: "#1975D2",
+        width: "96px", 
+        height: "96px"
     },
     popover:
     {

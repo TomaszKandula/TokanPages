@@ -65,15 +65,27 @@ export default function ArticleDetail(props: IArticleDetail)
         return(<RenderContent items={selection.article.text} />);
     };
 
-    const renderAvatar = () =>
+    const renderAvatar = (isLargeScale: boolean) =>
     {
+        const className = isLargeScale ? classes.avatarLarge : classes.avatarSmall;
+
         if (Validate.isEmpty(selection.article.author.avatarName))
         {
-            return(<><PersonIcon className={classes.avatar} /></>);
+            return(<><PersonIcon className={className} /></>);
         }
 
         const avatarUrl = AVATARS_PATH + selection.article.author.avatarName;
-        return(<><img className={classes.avatar} src={avatarUrl} alt="" /></>);
+        return(<><img className={className} src={avatarUrl} alt="" /></>);
+    };
+
+    const renderAuthorName = () => 
+    {
+        const fullNameWithAlias = selection.article.author.firstName + " '" 
+            + selection.article.author.aliasName + "' " 
+            + selection.article.author.lastName;
+        return selection.article.author.firstName && selection.article.author.lastName 
+            ? fullNameWithAlias
+            : selection.article.author.aliasName;
     };
 
     return (
@@ -99,7 +111,7 @@ export default function ArticleDetail(props: IArticleDetail)
                         <Grid container spacing={2}>
                             <Grid item>
                                 <Box onMouseEnter={openPopover} onMouseLeave={closePopover}>
-                                    {renderAvatar()}
+                                    {renderAvatar(false)}
                                 </Box>
                             </Grid>
                             <Grid item xs zeroMinWidth>
@@ -144,10 +156,29 @@ export default function ArticleDetail(props: IArticleDetail)
                     <div data-aos="fade-up">
                         {renderContent()}
                     </div>
-                    <Divider className={classes.dividerBottom} />
                     <Typography component="p" variant="subtitle1">
                         Votes: {selection.article.likeCount}
                     </Typography>
+                    <Divider className={classes.dividerBottom} />
+                    <Grid container spacing={2}>
+                        <Grid item>
+                            {renderAvatar(true)}
+                        </Grid>
+                        <Grid item xs zeroMinWidth>
+                            <Typography className={classes.aliasName} component="span" variant="h6" align="left" color="textSecondary">
+                                Written by
+                            </Typography>
+                            <Box fontWeight="fontWeightBold">
+                                <Typography className={classes.aliasName} component="span" variant="h6" align="left">
+                                    {renderAuthorName()}
+                                </Typography>
+                            </Box>
+                            <Typography className={classes.aliasName} component="span" variant="subtitle1" align="left" color="textSecondary">
+                                About the author: {selection.article.author.shortBio}
+                            </Typography>
+                        </Grid>
+                    </Grid>
+
                 </Box>
             </Container>
         </section>
