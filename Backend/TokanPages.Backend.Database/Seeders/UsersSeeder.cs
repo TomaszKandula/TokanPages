@@ -19,7 +19,9 @@ namespace TokanPages.Backend.Database.Seeders
                     LastName = Dummies.User1.LastName,
                     Registered = Dummies.User1.Registered,
                     LastLogged = Dummies.User1.LastLogged,
-                    LastUpdated = Dummies.User1.LastUpdated
+                    LastUpdated = Dummies.User1.LastUpdated,
+                    AvatarName = Dummies.User1.AvatarName,
+                    ShortBio = Dummies.User1.ShortBio
                 },
                 new Users
                 {
@@ -31,7 +33,9 @@ namespace TokanPages.Backend.Database.Seeders
                     LastName = Dummies.User2.LastName,
                     Registered = Dummies.User2.Registered,
                     LastLogged = Dummies.User2.LastLogged,
-                    LastUpdated = Dummies.User2.LastUpdated
+                    LastUpdated = Dummies.User2.LastUpdated,
+                    AvatarName = Dummies.User2.AvatarName,
+                    ShortBio = Dummies.User2.ShortBio
                 },
                 new Users
                 {
@@ -43,7 +47,9 @@ namespace TokanPages.Backend.Database.Seeders
                     LastName = Dummies.User3.LastName,
                     Registered = Dummies.User3.Registered,
                     LastLogged = Dummies.User3.LastLogged,
-                    LastUpdated = Dummies.User3.LastUpdated
+                    LastUpdated = Dummies.User3.LastUpdated,
+                    AvatarName = Dummies.User3.AvatarName,
+                    ShortBio = Dummies.User3.ShortBio
                 }
             };
         }
