@@ -13,7 +13,7 @@ namespace TokanPages.Backend.Database.Initialize
             FScopeFactory = AScopeFactory;
         }
 
-        public void Initialize()
+        public void StartMigration()
         {
             using var LServiceScope = FScopeFactory.CreateScope();
             using var LDatabaseContext = LServiceScope.ServiceProvider.GetService<DatabaseContext>();
