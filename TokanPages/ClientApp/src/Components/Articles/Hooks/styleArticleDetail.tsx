@@ -22,13 +22,18 @@ const useStyles = makeStyles(() => (
     },
     aliasName:
     {
-        paddingTop: "5px"
+        paddingTop: "10px",
+        paddingLeft: "10px"
     },
     avatar:
     {
         color: "#1975D2",
-        width: "32px", 
-        height: "32px"
+        width: "48px", 
+        height: "48px"
+    },
+    popover:
+    {
+        pointerEvents: "none"
     }
 }));
 
