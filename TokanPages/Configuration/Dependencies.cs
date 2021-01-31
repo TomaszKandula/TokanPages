@@ -14,10 +14,10 @@ using TokanPages.Backend.SmtpClient.Settings;
 using TokanPages.Backend.Database.Initialize;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
+using TokanPages.Backend.Cqrs.Services.UserProvider;
 using TokanPages.Backend.Core.Services.TemplateHelper;
 using FluentValidation;
 using MediatR;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
 
 namespace TokanPages.Configuration
 {

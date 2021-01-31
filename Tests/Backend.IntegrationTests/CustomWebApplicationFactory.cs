@@ -16,7 +16,6 @@ namespace Backend.IntegrationTests
             var LBuilder = WebHost.CreateDefaultBuilder()
                 .ConfigureAppConfiguration(AConfig =>
                 {
-
                     EnvironmentVariables.SetStaging();
                     var LStartupAssembly = typeof(TStartup).GetTypeInfo().Assembly;
                     var LTestConfig = new ConfigurationBuilder()
@@ -26,7 +25,6 @@ namespace Backend.IntegrationTests
                         .Build();
 
                     AConfig.AddConfiguration(LTestConfig);
-
                 })
                 .UseStartup<TStartup>()
                 .UseTestServer();
