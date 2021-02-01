@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using Backend.TestData;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
+using Moq;
+using TokanPages.Backend.Cqrs.Services.UserProvider;
 
 namespace Backend.UnitTests.Handlers.Articles
 {
@@ -77,7 +79,12 @@ namespace Backend.UnitTests.Handlers.Articles
             LDatabaseContext.Likes.AddRange(LLikes);
             LDatabaseContext.SaveChanges();
 
-            var LGetArticleQueryHandler = new GetArticleQueryHandler(LDatabaseContext);
+            var LMockedUserProvider = new Mock<UserProvider>();
+            LMockedUserProvider
+                .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
+                .Returns("255.255.255.255");
+
+            var LGetArticleQueryHandler = new GetArticleQueryHandler(LDatabaseContext, LMockedUserProvider.Object);
 
             // Act
             var LResults = await LGetArticleQueryHandler.Handle(LGetArticleQuery, CancellationToken.None);
@@ -88,6 +95,7 @@ namespace Backend.UnitTests.Handlers.Articles
             LResults.Description.Should().Be(LArticles.Description);
             LResults.IsPublished.Should().BeFalse();
             LResults.ReadCount.Should().Be(LArticles.ReadCount);
+            LResults.UserLikes.Should().Be(10);
             LResults.UpdatedAt.Should().BeNull();
             LResults.CreatedAt.Should().Be(LTestDate);
             LResults.LikeCount.Should().Be(25);
@@ -118,7 +126,12 @@ namespace Backend.UnitTests.Handlers.Articles
             });
             LDatabaseContext.SaveChanges();
 
-            var LGetArticleQueryHandler = new GetArticleQueryHandler(LDatabaseContext);
+            var LMockedUserProvider = new Mock<UserProvider>();
+            LMockedUserProvider
+                .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
+                .Returns("255.255.255.255");
+
+            var LGetArticleQueryHandler = new GetArticleQueryHandler(LDatabaseContext, LMockedUserProvider.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => LGetArticleQueryHandler.Handle(LGetArticleQuery, CancellationToken.None));

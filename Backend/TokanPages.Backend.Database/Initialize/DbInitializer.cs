@@ -38,6 +38,9 @@ namespace TokanPages.Backend.Database.Initialize
             if (!LDatabaseContext.Subscribers.AnyAsync().GetAwaiter().GetResult())
                 LDatabaseContext.Subscribers.AddRange(SubscribersSeeder.SeedSubscribers());
 
+            if (!LDatabaseContext.Likes.AnyAsync().GetAwaiter().GetResult())
+                LDatabaseContext.Likes.AddRange(LikesSeeder.SeedLikes());
+
             LDatabaseContext.SaveChanges();
         }
     }
