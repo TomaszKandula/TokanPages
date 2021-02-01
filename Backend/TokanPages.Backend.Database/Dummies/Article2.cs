@@ -10,7 +10,6 @@ namespace TokanPages.Backend.Database.Dummies
         public static DateTime Created = DateTime.Parse("2020-01-25 05:09:19");
         public static DateTime? LastUpdated = null;
         public static bool IsPublished = false;
-        public static int Likes = 0;
         public static int ReadCount = 0;
         public static Guid UserId = User2.Id;
     }

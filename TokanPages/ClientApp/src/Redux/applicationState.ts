@@ -40,6 +40,7 @@ export interface IArticleItem
     description: string;
     isPublished: boolean;
     likeCount: number;
+    userLikes: number;
     readCount: number;
     createdAt: string;
     updatedAt: string;
@@ -62,6 +63,7 @@ export const ArticleDefaultValues: IArticle =
         description: "",
         isPublished: false,
         likeCount:  0,
+        userLikes: 0,
         readCount: 0,
         createdAt: "",
         updatedAt: "",
@@ -93,6 +95,7 @@ export const DefaultAppState =
         description: ArticleDefaultValues.article.description,
         isPublished: ArticleDefaultValues.article.isPublished,
         likeCount: ArticleDefaultValues.article.likeCount,
+        userLikes: ArticleDefaultValues.article.userLikes,
         readCount: ArticleDefaultValues.article.readCount,
         createdAt: ArticleDefaultValues.article.createdAt,
         updatedAt: ArticleDefaultValues.article.updatedAt,

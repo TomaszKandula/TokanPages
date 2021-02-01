@@ -35,6 +35,7 @@ export const ActionCreators =
                     description: detailsResponse.data.description,
                     isPublished: detailsResponse.data.isPublished,
                     likeCount: detailsResponse.data.likeCount,
+                    userLikes: detailsResponse.data.userLikes,
                     readCount: detailsResponse.data.readCount,
                     createdAt: detailsResponse.data.createdAt,
                     updatedAt: detailsResponse.data.updatedAt,
