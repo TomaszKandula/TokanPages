@@ -2,16 +2,22 @@ import axios from "axios";
 import { API_QUERY_GET_ARTICLE, ARTICLE_URL } from "../../Shared/constants";
 import { AppThunkAction, IArticleItem } from "../../Redux/applicationState";
 
+export const RESET_SELECTION = "RESET_SELECTION";
 export const REQUEST_ARTICLE = "REQUEST_ARTICLE";
 export const RECEIVE_ARTICLE = "RECEIVE_ARTICLE";
 
+export interface IResetSelection { type: typeof RESET_SELECTION; }
 export interface IRequestArticleAction { type: typeof REQUEST_ARTICLE; }
 export interface IReceiveArticleAction { type: typeof RECEIVE_ARTICLE; payload: IArticleItem; }
 
-export type TKnownActions = IRequestArticleAction | IReceiveArticleAction;
+export type TKnownActions = IResetSelection | IRequestArticleAction | IReceiveArticleAction;
 
 export const ActionCreators = 
 {
+    resetSelection: (): AppThunkAction<TKnownActions> => (dispatch) =>
+    {
+        dispatch({ type: RESET_SELECTION });
+    },   
     selectArticle: (id: string): AppThunkAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: REQUEST_ARTICLE });

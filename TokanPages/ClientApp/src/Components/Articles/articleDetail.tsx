@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import { Divider, Grid, IconButton, Popover, Typography } from "@material-ui/core";
@@ -27,12 +27,20 @@ export default function ArticleDetail(props: IArticleDetail)
     const classes = useStyles();
     const selection = useSelector((state: IApplicationState) => state.selectArticle);
     const [popover, setPopover] = React.useState<HTMLElement | null>(null);
-    const [likes, setLikes] = React.useState(selection.article.likeCount);
-    const [userLikes, setUserLikes] = React.useState(selection.article.userLikes);
+    const [likes, setLikes] = React.useState(0);
+    const [userLikes, setUserLikes] = React.useState(0);
+    const history = useHistory();
     const dispatch = useDispatch();
     const open = Boolean(popover);
     const isAnonymous = true; // TODO: use authorization feature
-    
+
+    React.useEffect(() => 
+    { 
+        setLikes(selection.article.likeCount);
+        setUserLikes(selection.article.userLikes);
+    }, 
+    [ selection.article.likeCount, selection.article.userLikes ]);
+
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
     {
         dispatch(ActionCreators.selectArticle(props.id));
@@ -50,6 +58,12 @@ export default function ArticleDetail(props: IArticleDetail)
             setUserLikes(userLikes + 1);
             // TODO: invoke batch processing
         }
+    };
+
+    const backToList = () =>
+    {
+        dispatch(ActionCreators.resetSelection());
+        history.push("/articles");
     };
 
     const openPopover = (event: React.MouseEvent<HTMLElement, MouseEvent>) => 
@@ -113,11 +127,9 @@ export default function ArticleDetail(props: IArticleDetail)
                     <div data-aos="fade-down">
                         <Grid container spacing={3}>
                             <Grid item xs={6}>
-                                <Link to="/articles">
-                                    <IconButton>
-                                        <ArrowBack/>
-                                    </IconButton>
-                                </Link> 
+                                <IconButton onClick={backToList}>
+                                    <ArrowBack  /> 
+                                </IconButton>
                             </Grid>
                             <Grid item xs={6}>
                                 <Typography className={classes.readCount} component="p" variant="subtitle1" align="right">
@@ -205,7 +217,6 @@ export default function ArticleDetail(props: IArticleDetail)
                             </Typography>
                         </Grid>
                     </Grid>
-
                 </Box>
             </Container>
         </section>
