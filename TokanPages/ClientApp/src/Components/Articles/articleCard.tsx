@@ -35,7 +35,7 @@ export default function ArticleCard(props: IArticleCard)
     const onClickEvent = () => 
     {
         dispatch(ActionCreators.selectArticle(props.id));
-        history.push(articleUrl);        
+        history.push(articleUrl);
     };
 
     return(
