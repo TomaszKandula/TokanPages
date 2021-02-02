@@ -7,6 +7,12 @@
     /// </summary>    
     public static class Constants
     {
+        public static class Likes 
+        {
+            public const int LikesLimitForAnonym = 25;
+            public const int LikesLimitForUser = 50;
+        }
+        
         public static class Emails 
         {
             public static class Templates

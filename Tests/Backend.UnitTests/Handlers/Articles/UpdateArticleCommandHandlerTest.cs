@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using TokanPages.Backend.Shared;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Core.Exceptions;
@@ -157,7 +158,6 @@ namespace Backend.UnitTests.Handlers.Articles
             var LArticesEntity = LAssertDbContext.Articles.Find(LUpdateArticleCommand.Id);
 
             LArticesEntity.Should().NotBeNull();
-            var LikesLimitForAnonym = 25;
 
             LLikesEntity.Should().HaveCount(1);
             LLikesEntity[0].IpAddress.Should().Be(LIpAddress);
@@ -165,7 +165,7 @@ namespace Backend.UnitTests.Handlers.Articles
             if (ALikes == 10) 
                 LLikesEntity[0].LikeCount.Should().Be(10);
             if (ALikes == 50)
-                LLikesEntity[0].LikeCount.Should().Be(LikesLimitForAnonym);
+                LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LikesLimitForAnonym);
         }
 
         [Theory]
@@ -239,7 +239,6 @@ namespace Backend.UnitTests.Handlers.Articles
             var LArticesEntity = LAssertDbContext.Articles.Find(LUpdateArticleCommand.Id);
 
             LArticesEntity.Should().NotBeNull();
-            var LikesLimitForUser = 50;
 
             LLikesEntity.Should().HaveCount(1);
             LLikesEntity[0].IpAddress.Should().Be(LIpAddress);
@@ -247,7 +246,7 @@ namespace Backend.UnitTests.Handlers.Articles
             if (ALikes == 10)
                 LLikesEntity[0].LikeCount.Should().Be(10);
             if (ALikes == 70)
-                LLikesEntity[0].LikeCount.Should().Be(LikesLimitForUser);
+                LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LikesLimitForUser);
         }
 
         [Theory]
@@ -328,7 +327,6 @@ namespace Backend.UnitTests.Handlers.Articles
             var LArticesEntity = LAssertDbContext.Articles.Find(LUpdateArticleCommand.Id);
 
             LArticesEntity.Should().NotBeNull();
-            var LikesLimitForAnonym = 25;
 
             LLikesEntity.Should().HaveCount(1);
             LLikesEntity[0].IpAddress.Should().Be(LIpAddress);
@@ -336,7 +334,7 @@ namespace Backend.UnitTests.Handlers.Articles
             if (ALikes == 10)
                 LLikesEntity[0].LikeCount.Should().Be(LExistingLikes + ALikes);
             if (ALikes == 50)
-                LLikesEntity[0].LikeCount.Should().Be(LikesLimitForAnonym);
+                LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LikesLimitForAnonym);
         }
 
         [Theory]
@@ -422,7 +420,6 @@ namespace Backend.UnitTests.Handlers.Articles
             var LArticesEntity = LAssertDbContext.Articles.Find(LUpdateArticleCommand.Id);
 
             LArticesEntity.Should().NotBeNull();
-            var LikesLimitForUser = 50;
 
             LLikesEntity.Should().HaveCount(1);
             LLikesEntity[0].IpAddress.Should().Be(LIpAddress);
@@ -430,7 +427,7 @@ namespace Backend.UnitTests.Handlers.Articles
             if (ALikes == 10)
                 LLikesEntity[0].LikeCount.Should().Be(LExistingLikes + ALikes);
             if (ALikes == 50)
-                LLikesEntity[0].LikeCount.Should().Be(LikesLimitForUser);
+                LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LikesLimitForUser);
         }
 
         [Fact]
