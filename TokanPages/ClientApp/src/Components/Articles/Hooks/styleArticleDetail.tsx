@@ -36,6 +36,13 @@ const useStyles = makeStyles(() => (
         width: "96px", 
         height: "96px"
     },
+    thumbsMedium:
+    {
+        color: "#9E9E9E",
+        cursor: "pointer",
+        width: "24px", 
+        height: "24px"
+    },
     popover:
     {
         pointerEvents: "none"

@@ -6,6 +6,7 @@ import Box from "@material-ui/core/Box";
 import { Divider, Grid, IconButton, Popover, Typography } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import PersonIcon from "@material-ui/icons/Person";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Validate from "validate.js";
 import useStyles from "./Hooks/styleArticleDetail";
 import { IApplicationState } from "../../Redux/applicationState";
@@ -14,7 +15,7 @@ import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoa
 import { RenderContent } from "../../Shared/ContentRender/renderContent";
 import { FormatDateTime } from "../../Shared/helpers";
 import { UpdateArticle } from "../../Api/Services/articles";
-import { AVATARS_PATH } from "../../Shared/constants";
+import { AVATARS_PATH, LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../Shared/constants";
 
 export interface IArticleDetail
 {
@@ -24,16 +25,33 @@ export interface IArticleDetail
 export default function ArticleDetail(props: IArticleDetail) 
 {
     const classes = useStyles();
-    const [popover, setPopover] = React.useState<HTMLElement | null>(null);
     const selection = useSelector((state: IApplicationState) => state.selectArticle);
+    const [popover, setPopover] = React.useState<HTMLElement | null>(null);
+    const [likes, setLikes] = React.useState(selection.article.likeCount);
+    const [userLikes, setUserLikes] = React.useState(selection.article.userLikes);
     const dispatch = useDispatch();
     const open = Boolean(popover);
-
+    const isAnonymous = true; // TODO: use authorization feature
+    
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
     {
         dispatch(ActionCreators.selectArticle(props.id));
     }
-    
+
+    const thumbsUp = () =>
+    {       
+        let likesToAdd = isAnonymous 
+            ? LIKES_LIMIT_FOR_ANONYM - userLikes 
+            : LIKES_LIMIT_FOR_USER - userLikes;
+
+        if (likesToAdd > 0) 
+        {
+            setLikes(likes + 1);
+            setUserLikes(userLikes + 1);
+            // TODO: invoke batch processing
+        }
+    };
+
     const openPopover = (event: React.MouseEvent<HTMLElement, MouseEvent>) => 
     {
         setPopover(event.currentTarget);
@@ -156,9 +174,18 @@ export default function ArticleDetail(props: IArticleDetail)
                     <div data-aos="fade-up">
                         {renderContent()}
                     </div>
-                    <Typography component="p" variant="subtitle1">
-                        Votes: {selection.article.likeCount}
-                    </Typography>
+                    <Box mt={5}>
+                        <Grid container spacing={2}>
+                            <Grid item>
+                                <ThumbUpIcon className={classes.thumbsMedium} onClick={thumbsUp} />
+                            </Grid>
+                            <Grid item xs zeroMinWidth>
+                                <Typography component="p" variant="subtitle1">
+                                    {likes}
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    </Box>
                     <Divider className={classes.dividerBottom} />
                     <Grid container spacing={2}>
                         <Grid item>
