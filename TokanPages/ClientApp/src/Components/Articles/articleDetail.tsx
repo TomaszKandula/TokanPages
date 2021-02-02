@@ -32,6 +32,7 @@ export default function ArticleDetail(props: IArticleDetail)
     }
 
     const [popover, setPopover] = React.useState<HTMLElement | null>(null);
+    const [totalThumbs, setTotalThumbs] = React.useState(0);
     const [totalLikes, setTotalLikes] = React.useState(0);
     const [userLikes, setUserLikes] = React.useState(0);
     const [thumbClicked, setThumbsClicked] = React.useState(false);
@@ -60,13 +61,14 @@ export default function ArticleDetail(props: IArticleDetail)
 
     React.useEffect(() => 
     { 
-        const intervalId = setTimeout(() => 
+        const intervalId = setInterval(() => 
         { 
             if (userLikes === 0 || !thumbClicked) return;
             updateUserLikes(); 
+            setUserLikes(0);
             setThumbsClicked(false);
         }, 
-        5000)
+        3000);
         
         return(() => { clearInterval(intervalId) });
     }, 
@@ -93,13 +95,14 @@ export default function ArticleDetail(props: IArticleDetail)
     const thumbsUp = () =>
     {
         let likesToAdd = isAnonymous 
-            ? LIKES_LIMIT_FOR_ANONYM - userLikes 
-            : LIKES_LIMIT_FOR_USER - userLikes;
+            ? LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs
+            : LIKES_LIMIT_FOR_USER - selection.article.userLikes - totalThumbs;
 
         if (likesToAdd > 0) 
         {
             setTotalLikes(totalLikes + 1);
             setUserLikes(userLikes + 1);
+            setTotalThumbs(totalThumbs + 1);
             setThumbsClicked(true);
         }
     };
