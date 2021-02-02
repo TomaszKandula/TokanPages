@@ -25,7 +25,7 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
                 return "127.0.0.1";
             }
 
-            return LRemoteIpAddress;
+            return LRemoteIpAddress.Split(':')[0];
         }
 
         public virtual Guid? GetUserId() 
