@@ -1,11 +1,12 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import { Divider, Grid, IconButton, Popover, Typography } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import PersonIcon from "@material-ui/icons/Person";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Validate from "validate.js";
 import useStyles from "./Hooks/styleArticleDetail";
 import { IApplicationState } from "../../Redux/applicationState";
@@ -14,7 +15,7 @@ import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoa
 import { RenderContent } from "../../Shared/ContentRender/renderContent";
 import { FormatDateTime } from "../../Shared/helpers";
 import { UpdateArticle } from "../../Api/Services/articles";
-import { AVATARS_PATH } from "../../Shared/constants";
+import { AVATARS_PATH, LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../Shared/constants";
 
 export interface IArticleDetail
 {
@@ -23,17 +24,92 @@ export interface IArticleDetail
 
 export default function ArticleDetail(props: IArticleDetail) 
 {
-    const classes = useStyles();
-    const [popover, setPopover] = React.useState<HTMLElement | null>(null);
-    const selection = useSelector((state: IApplicationState) => state.selectArticle);
     const dispatch = useDispatch();
-    const open = Boolean(popover);
-
+    const selection = useSelector((state: IApplicationState) => state.selectArticle);
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
     {
         dispatch(ActionCreators.selectArticle(props.id));
     }
-    
+
+    const [popover, setPopover] = React.useState<HTMLElement | null>(null);
+    const [totalLikes, setTotalLikes] = React.useState(0);
+    const [userLikes, setUserLikes] = React.useState(0);
+    const [thumbClicked, setThumbsClicked] = React.useState(false);
+
+    const classes = useStyles();
+    const history = useHistory();
+    const open = Boolean(popover);
+    const isAnonymous = true; // TODO: use authorization feature
+
+    React.useEffect(() => 
+    { 
+        setTotalLikes(selection.article.likeCount);
+    }, 
+    [ selection.article.likeCount ]);
+
+    const updateUserLikes = React.useCallback(async () => 
+    {
+        await UpdateArticle(
+        {
+            id: props.id,
+            addToLikes: userLikes,
+            upReadCount: false
+        });   
+    }, 
+    [ userLikes, props.id ]);
+
+    React.useEffect(() => 
+    { 
+        const intervalId = setTimeout(() => 
+        { 
+            if (userLikes === 0 || !thumbClicked) return;
+            updateUserLikes(); 
+            setThumbsClicked(false);
+        }, 
+        5000)
+        
+        return(() => { clearInterval(intervalId) });
+    }, 
+    [ userLikes, thumbClicked, updateUserLikes ]);
+
+    const updateReadCount = React.useCallback(async () => 
+    {
+        await UpdateArticle(
+        {
+            id: props.id,
+            addToLikes: 0,
+            upReadCount: true
+        });
+    }, 
+    [ props.id ]);
+
+    React.useEffect(() => 
+    {
+        if (selection.isLoading) return;
+        updateReadCount();
+    }, 
+    [ selection.isLoading, updateReadCount ]);
+
+    const thumbsUp = () =>
+    {
+        let likesToAdd = isAnonymous 
+            ? LIKES_LIMIT_FOR_ANONYM - userLikes 
+            : LIKES_LIMIT_FOR_USER - userLikes;
+
+        if (likesToAdd > 0) 
+        {
+            setTotalLikes(totalLikes + 1);
+            setUserLikes(userLikes + 1);
+            setThumbsClicked(true);
+        }
+    };
+
+    const backToList = () =>
+    {
+        dispatch(ActionCreators.resetSelection());
+        history.push("/articles");
+    };
+
     const openPopover = (event: React.MouseEvent<HTMLElement, MouseEvent>) => 
     {
         setPopover(event.currentTarget);
@@ -44,16 +120,6 @@ export default function ArticleDetail(props: IArticleDetail)
         setPopover(null);
     };
 
-    const updateReadCount = async () => 
-    {
-        await UpdateArticle(
-        {
-            id: props.id,
-            addToLikes: 0,
-            upReadCount: true
-        });
-    };
-
     const renderContent = () =>
     {
         if (Validate.isEmpty(selection.article.id) || selection.isLoading)
@@ -61,7 +127,6 @@ export default function ArticleDetail(props: IArticleDetail)
             return(<CenteredCircularLoader />);
         }
  
-        updateReadCount();
         return(<RenderContent items={selection.article.text} />);
     };
 
@@ -95,11 +160,9 @@ export default function ArticleDetail(props: IArticleDetail)
                     <div data-aos="fade-down">
                         <Grid container spacing={3}>
                             <Grid item xs={6}>
-                                <Link to="/articles">
-                                    <IconButton>
-                                        <ArrowBack/>
-                                    </IconButton>
-                                </Link> 
+                                <IconButton onClick={backToList}>
+                                    <ArrowBack  /> 
+                                </IconButton>
                             </Grid>
                             <Grid item xs={6}>
                                 <Typography className={classes.readCount} component="p" variant="subtitle1" align="right">
@@ -156,9 +219,18 @@ export default function ArticleDetail(props: IArticleDetail)
                     <div data-aos="fade-up">
                         {renderContent()}
                     </div>
-                    <Typography component="p" variant="subtitle1">
-                        Votes: {selection.article.likeCount}
-                    </Typography>
+                    <Box mt={5}>
+                        <Grid container spacing={2}>
+                            <Grid item>
+                                <ThumbUpIcon className={classes.thumbsMedium} onClick={thumbsUp} />
+                            </Grid>
+                            <Grid item xs zeroMinWidth>
+                                <Typography component="p" variant="subtitle1">
+                                    {totalLikes}
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    </Box>
                     <Divider className={classes.dividerBottom} />
                     <Grid container spacing={2}>
                         <Grid item>
@@ -178,7 +250,6 @@ export default function ArticleDetail(props: IArticleDetail)
                             </Typography>
                         </Grid>
                     </Grid>
-
                 </Box>
             </Container>
         </section>

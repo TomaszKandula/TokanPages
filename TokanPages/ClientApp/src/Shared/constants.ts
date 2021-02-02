@@ -70,3 +70,8 @@ export const SUBSCRIBER_DEL_ERROR = `<p>We could not remove your email from our 
 
 export const UNEXPECTED_STATUS = `Received unexpected status code: {STATUS_CODE}. Please contact IT Support`;
 export const UNEXPECTED_ERROR  = `Unexpected error`;
+
+/* OTHER */
+
+export const LIKES_LIMIT_FOR_ANONYM = 25;
+export const LIKES_LIMIT_FOR_USER = 50;

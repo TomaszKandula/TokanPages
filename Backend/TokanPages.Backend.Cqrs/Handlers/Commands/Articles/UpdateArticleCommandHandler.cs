@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Shared;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
@@ -112,7 +113,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
         private void AddNewArticleLikes(bool AIsAnonymousUser, UpdateArticleCommand ARequest)
         {
-            var LLikesLimit = AIsAnonymousUser ? 25 : 50;
+            var LLikesLimit = AIsAnonymousUser 
+                ? Constants.Likes.LikesLimitForAnonym 
+                : Constants.Likes.LikesLimitForUser;
+            
             var LEntity = new Domain.Entities.Likes
             {
                 Id = Guid.NewGuid(),
@@ -126,7 +130,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
         private void UpdateCurrentArticleLikes(bool AIsAnonymousUser, Domain.Entities.Likes AEntity, int ALikesToBeAdded)
         {
-            var LLikesLimit = AIsAnonymousUser ? 25 : 50;
+            var LLikesLimit = AIsAnonymousUser 
+                ? Constants.Likes.LikesLimitForAnonym 
+                : Constants.Likes.LikesLimitForUser;
+            
             var LLikesSum = AEntity.LikeCount + ALikesToBeAdded;
             AEntity.LikeCount = LLikesSum > LLikesLimit ? LLikesLimit : LLikesSum;
         }
