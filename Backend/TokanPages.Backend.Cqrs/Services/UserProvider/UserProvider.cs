@@ -19,12 +19,14 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
 
         public virtual string GetRequestIpAddress() 
         {
-            return FHttpContextAccessor
-                .HttpContext
-                .Connection
-                .RemoteIpAddress
-                .MapToIPv4()
-                .ToString();
+            var LRemoteIpAddress = FHttpContextAccessor.HttpContext.Connection.RemoteIpAddress;
+            if (LRemoteIpAddress == null) 
+            {
+                return "127.0.0.1";            
+            }
+
+            return FHttpContextAccessor.HttpContext.Connection.RemoteIpAddress
+                .MapToIPv4().ToString();
         }
 
         public virtual Guid? GetUserId() 
