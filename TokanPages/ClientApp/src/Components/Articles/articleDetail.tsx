@@ -24,39 +24,83 @@ export interface IArticleDetail
 
 export default function ArticleDetail(props: IArticleDetail) 
 {
-    const classes = useStyles();
-    const selection = useSelector((state: IApplicationState) => state.selectArticle);
-    const [popover, setPopover] = React.useState<HTMLElement | null>(null);
-    const [likes, setLikes] = React.useState(0);
-    const [userLikes, setUserLikes] = React.useState(0);
-    const history = useHistory();
     const dispatch = useDispatch();
-    const open = Boolean(popover);
-    const isAnonymous = true; // TODO: use authorization feature
-
-    React.useEffect(() => 
-    { 
-        setLikes(selection.article.likeCount);
-        setUserLikes(selection.article.userLikes);
-    }, 
-    [ selection.article.likeCount, selection.article.userLikes ]);
-
+    const selection = useSelector((state: IApplicationState) => state.selectArticle);
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
     {
         dispatch(ActionCreators.selectArticle(props.id));
     }
 
+    const [popover, setPopover] = React.useState<HTMLElement | null>(null);
+    const [totalLikes, setTotalLikes] = React.useState(0);
+    const [userLikes, setUserLikes] = React.useState(0);
+    const [thumbClicked, setThumbsClicked] = React.useState(false);
+
+    const classes = useStyles();
+    const history = useHistory();
+    const open = Boolean(popover);
+    const isAnonymous = true; // TODO: use authorization feature
+
+    React.useEffect(() => 
+    { 
+        setTotalLikes(selection.article.likeCount);
+    }, 
+    [ selection.article.likeCount ]);
+
+    const updateUserLikes = React.useCallback(async () => 
+    {
+        await UpdateArticle(
+        {
+            id: props.id,
+            addToLikes: userLikes,
+            upReadCount: false
+        });   
+    }, 
+    [ userLikes, props.id ]);
+
+    React.useEffect(() => 
+    { 
+        const intervalId = setTimeout(() => 
+        { 
+            if (userLikes === 0 || !thumbClicked) return;
+            updateUserLikes(); 
+            setThumbsClicked(false);
+        }, 
+        5000)
+        
+        return(() => { clearInterval(intervalId) });
+    }, 
+    [ userLikes, thumbClicked, updateUserLikes ]);
+
+    const updateReadCount = React.useCallback(async () => 
+    {
+        await UpdateArticle(
+        {
+            id: props.id,
+            addToLikes: 0,
+            upReadCount: true
+        });
+    }, 
+    [ props.id ]);
+
+    React.useEffect(() => 
+    {
+        if (selection.isLoading) return;
+        updateReadCount();
+    }, 
+    [ selection.isLoading, updateReadCount ]);
+
     const thumbsUp = () =>
-    {       
+    {
         let likesToAdd = isAnonymous 
             ? LIKES_LIMIT_FOR_ANONYM - userLikes 
             : LIKES_LIMIT_FOR_USER - userLikes;
 
         if (likesToAdd > 0) 
         {
-            setLikes(likes + 1);
+            setTotalLikes(totalLikes + 1);
             setUserLikes(userLikes + 1);
-            // TODO: invoke batch processing
+            setThumbsClicked(true);
         }
     };
 
@@ -76,16 +120,6 @@ export default function ArticleDetail(props: IArticleDetail)
         setPopover(null);
     };
 
-    const updateReadCount = async () => 
-    {
-        await UpdateArticle(
-        {
-            id: props.id,
-            addToLikes: 0,
-            upReadCount: true
-        });
-    };
-
     const renderContent = () =>
     {
         if (Validate.isEmpty(selection.article.id) || selection.isLoading)
@@ -93,7 +127,6 @@ export default function ArticleDetail(props: IArticleDetail)
             return(<CenteredCircularLoader />);
         }
  
-        updateReadCount();
         return(<RenderContent items={selection.article.text} />);
     };
 
@@ -193,7 +226,7 @@ export default function ArticleDetail(props: IArticleDetail)
                             </Grid>
                             <Grid item xs zeroMinWidth>
                                 <Typography component="p" variant="subtitle1">
-                                    {likes}
+                                    {totalLikes}
                                 </Typography>
                             </Grid>
                         </Grid>
