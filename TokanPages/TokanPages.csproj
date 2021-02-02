@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="9.3.0" />
+    <PackageReference Include="GST.Library.Middleware.HttpOverrides" Version="3.0.0" />
     <PackageReference Include="mediatr" Version="9.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.7" />

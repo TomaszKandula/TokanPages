@@ -12,6 +12,8 @@ using TokanPages.CustomHandlers;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Shared.Environment;
 using TokanPages.Backend.Database.Initialize;
+using GST.Library.Middleware.HttpOverrides;
+using GST.Library.Middleware.HttpOverrides.Builder;
 
 namespace TokanPages
 {
@@ -73,6 +75,12 @@ namespace TokanPages
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);
             AApplication.UseMiddleware<GarbageCollector>();
             AApplication.UseMiddleware<CustomCors>();
+
+            AApplication.UseGSTForwardedHeaders(new GST.Library.Middleware.HttpOverrides.Builder.ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XRealIp,
+                ForceXForxardedOrRealIp = true,
+            });
 
             AApplication.UseResponseCompression();
             AApplication.UseHttpsRedirection();
