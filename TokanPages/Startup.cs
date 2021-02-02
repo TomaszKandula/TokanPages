@@ -1,9 +1,11 @@
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
 using TokanPages.Middleware;
@@ -12,8 +14,8 @@ using TokanPages.CustomHandlers;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Shared.Environment;
 using TokanPages.Backend.Database.Initialize;
-using GST.Library.Middleware.HttpOverrides;
-using GST.Library.Middleware.HttpOverrides.Builder;
+using System.Linq;
+using System.Net.Sockets;
 
 namespace TokanPages
 {
@@ -59,6 +61,22 @@ namespace TokanPages
                     AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "TokanPagesApi", Version = "v1" });
                 });
             }
+
+            var LHostName = Dns.GetHostName();
+            var LAddresses = Dns.GetHostEntry(LHostName).AddressList
+                .Where(x => x.AddressFamily == AddressFamily.InterNetwork)
+                .ToList();
+
+            AServices.Configure<ForwardedHeadersOptions>(AOptions =>
+            {
+                AOptions.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+                AOptions.ForwardLimit = null;
+
+                foreach (var LAddress in LAddresses) 
+                {
+                    AOptions.KnownProxies.Add(LAddress);
+                }
+            });
         }
 
         public void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
@@ -72,15 +90,10 @@ namespace TokanPages
                 LDatabaseInitializer.SeedData();
             }
 
+            AApplication.UseForwardedHeaders();
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);
             AApplication.UseMiddleware<GarbageCollector>();
             AApplication.UseMiddleware<CustomCors>();
-
-            AApplication.UseGSTForwardedHeaders(new GST.Library.Middleware.HttpOverrides.Builder.ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XRealIp,
-                ForceXForxardedOrRealIp = true,
-            });
 
             AApplication.UseResponseCompression();
             AApplication.UseHttpsRedirection();
