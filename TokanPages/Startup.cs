@@ -1,4 +1,6 @@
 using System.Net;
+using System.Linq;
+using System.Net.Sockets;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
@@ -14,8 +16,6 @@ using TokanPages.CustomHandlers;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Shared.Environment;
 using TokanPages.Backend.Database.Initialize;
-using System.Linq;
-using System.Net.Sockets;
 
 namespace TokanPages
 {
@@ -62,6 +62,8 @@ namespace TokanPages
                 });
             }
 
+            // Since this app is meant to run in Docker only
+            // We get the Docker's internal network IP(s)
             var LHostName = Dns.GetHostName();
             var LAddresses = Dns.GetHostEntry(LHostName).AddressList
                 .Where(x => x.AddressFamily == AddressFamily.InterNetwork)
@@ -71,6 +73,7 @@ namespace TokanPages
             {
                 AOptions.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
                 AOptions.ForwardLimit = null;
+                AOptions.RequireHeaderSymmetry = false;
 
                 foreach (var LAddress in LAddresses) 
                 {
