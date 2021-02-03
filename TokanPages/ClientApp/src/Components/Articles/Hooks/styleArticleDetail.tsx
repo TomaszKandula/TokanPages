@@ -43,6 +43,10 @@ const useStyles = makeStyles(() => (
         width: "24px", 
         height: "24px"
     },
+    likesTip:
+    {
+        fontSize: "1.5em"
+    },
     popover:
     {
         pointerEvents: "none"

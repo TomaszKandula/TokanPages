@@ -3,7 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
-import { Avatar, Divider, Grid, IconButton, Popover, Typography } from "@material-ui/core";
+import { 
+    Avatar,
+    Divider, 
+    Grid, 
+    IconButton, 
+    Popover, 
+    Tooltip, 
+    Typography 
+} from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Validate from "validate.js";
@@ -14,7 +22,13 @@ import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoa
 import { RenderContent } from "../../Shared/ContentRender/renderContent";
 import { FormatDateTime } from "../../Shared/helpers";
 import { UpdateArticle } from "../../Api/Services/articles";
-import { AVATARS_PATH, LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../Shared/constants";
+import { 
+    AVATARS_PATH, 
+    LIKES_LIMIT_FOR_ANONYM, 
+    LIKES_LIMIT_FOR_USER,
+    LIKES_TIP_FOR_ANONYM,
+    LIKES_TIP_FOR_USER 
+} from "../../Shared/constants";
 
 export interface IArticleDetail
 {
@@ -225,7 +239,14 @@ export default function ArticleDetail(props: IArticleDetail)
                     <Box mt={5}>
                         <Grid container spacing={2}>
                             <Grid item>
-                                <ThumbUpIcon className={classes.thumbsMedium} onClick={thumbsUp} />
+                                <Tooltip title=
+                                    {<span className={classes.likesTip}>
+                                        {isAnonymous 
+                                            ? LIKES_TIP_FOR_ANONYM 
+                                            : LIKES_TIP_FOR_USER}
+                                    </span>} arrow>
+                                    <ThumbUpIcon className={classes.thumbsMedium} onClick={thumbsUp} />
+                                </Tooltip>
                             </Grid>
                             <Grid item xs zeroMinWidth>
                                 <Typography component="p" variant="subtitle1">
