@@ -26,13 +26,13 @@ const useStyles = makeStyles(() => (
     },
     avatarSmall:
     {
-        color: "#1975D2",
+        color: "#FFFFFF",
         width: "48px", 
         height: "48px"
     },
     avatarLarge:
     {
-        color: "#1975D2",
+        color: "#FFFFFF",
         width: "96px", 
         height: "96px"
     },

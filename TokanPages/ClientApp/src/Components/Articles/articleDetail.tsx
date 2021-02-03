@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
-import { Divider, Grid, IconButton, Popover, Typography } from "@material-ui/core";
+import { Avatar, Divider, Grid, IconButton, Popover, Typography } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
-import PersonIcon from "@material-ui/icons/Person";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Validate from "validate.js";
 import useStyles from "./Hooks/styleArticleDetail";
@@ -40,6 +39,7 @@ export default function ArticleDetail(props: IArticleDetail)
     const classes = useStyles();
     const history = useHistory();
     const open = Boolean(popover);
+    const userLetter = selection.article.author.aliasName.charAt(0).toUpperCase();
     const isAnonymous = true; // TODO: use authorization feature
 
     React.useEffect(() => 
@@ -139,11 +139,11 @@ export default function ArticleDetail(props: IArticleDetail)
 
         if (Validate.isEmpty(selection.article.author.avatarName))
         {
-            return(<><PersonIcon className={className} /></>);
+            return(<Avatar className={className}>{userLetter}</Avatar>);
         }
 
         const avatarUrl = AVATARS_PATH + selection.article.author.avatarName;
-        return(<><img className={className} src={avatarUrl} alt="" /></>);
+        return(<><Avatar className={className} src={avatarUrl} alt="" /></>);
     };
 
     const renderAuthorName = () => 
