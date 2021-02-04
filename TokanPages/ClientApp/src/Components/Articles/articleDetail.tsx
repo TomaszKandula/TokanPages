@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+import Emoji from "react-emoji-render";
 import Validate from "validate.js";
 import useStyles from "./Hooks/styleArticleDetail";
 import { IApplicationState } from "../../Redux/applicationState";
@@ -27,7 +28,8 @@ import {
     LIKES_LIMIT_FOR_ANONYM, 
     LIKES_LIMIT_FOR_USER,
     LIKES_TIP_FOR_ANONYM,
-    LIKES_TIP_FOR_USER 
+    LIKES_TIP_FOR_USER,
+    MAX_LIKES_REACHED
 } from "../../Shared/constants";
 
 export interface IArticleDetail
@@ -49,6 +51,7 @@ export default function ArticleDetail(props: IArticleDetail)
     const [totalLikes, setTotalLikes] = React.useState(0);
     const [userLikes, setUserLikes] = React.useState(0);
     const [thumbClicked, setThumbsClicked] = React.useState(false);
+    const [likesLeft, setLikesLeft] = React.useState(0);
 
     const classes = useStyles();
     const history = useHistory();
@@ -61,6 +64,16 @@ export default function ArticleDetail(props: IArticleDetail)
         setTotalLikes(selection.article.likeCount);
     }, 
     [ selection.article.likeCount ]);
+
+    React.useEffect(() => 
+    { 
+        let likesLeft = isAnonymous 
+            ? LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs
+            : LIKES_LIMIT_FOR_USER - selection.article.userLikes - totalThumbs;
+
+        setLikesLeft(likesLeft);
+    }, 
+    [ selection.article.userLikes, isAnonymous, totalThumbs ]);
 
     const updateUserLikes = React.useCallback(async () => 
     {
@@ -170,6 +183,19 @@ export default function ArticleDetail(props: IArticleDetail)
             : selection.article.author.aliasName;
     };
 
+    const renderLikesLeft = () =>
+    {
+        const textLikesLeft = isAnonymous 
+            ? LIKES_TIP_FOR_ANONYM.replace("{LEFT_LIKES}", likesLeft.toString()) 
+            : LIKES_TIP_FOR_USER.replace("{LEFT_LIKES}", likesLeft.toString());
+
+        const textOut = likesLeft === 0 
+            ? MAX_LIKES_REACHED 
+            : textLikesLeft;
+
+        return(textOut);
+    };
+
     return (
         <section>
             <Container className={classes.container}>
@@ -241,9 +267,7 @@ export default function ArticleDetail(props: IArticleDetail)
                             <Grid item>
                                 <Tooltip title=
                                     {<span className={classes.likesTip}>
-                                        {isAnonymous 
-                                            ? LIKES_TIP_FOR_ANONYM 
-                                            : LIKES_TIP_FOR_USER}
+                                        {<Emoji text={renderLikesLeft()}/>}
                                     </span>} arrow>
                                     <ThumbUpIcon className={classes.thumbsMedium} onClick={thumbsUp} />
                                 </Tooltip>
