@@ -19,7 +19,7 @@ Website exposing my programming interests (mostly Microsoft technologies) mainly
 
 The client app uses functional approach and React Hooks.
 
-Test are provided, but there is no full coverage yet.
+Tests are provided, but there is no full coverage yet.
 
 ### Back-end
 
