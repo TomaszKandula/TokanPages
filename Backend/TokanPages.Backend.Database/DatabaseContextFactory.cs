@@ -16,10 +16,10 @@ namespace TokanPages.Backend.Database
                 .AddEnvironmentVariables()
                 .Build();
 
-            var ConnectionString = LBuilder.GetConnectionString("DbConnect");
+            var LConnectionString = LBuilder.GetConnectionString("DbConnect");
 
             var LOptionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-            LOptionsBuilder.UseSqlServer(ConnectionString);
+            LOptionsBuilder.UseSqlServer(LConnectionString);
             
             return new DatabaseContext(LOptionsBuilder.Options);
         }
