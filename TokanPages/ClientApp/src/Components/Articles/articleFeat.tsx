@@ -19,7 +19,7 @@ export default function ArticleFeat()
         title: "Articles",
         desc: "I write on regular basis on various technologies I work with. I share the knowledge and experience. I believe everyone will find something interesting.",
         text1: "Write-ups on .NET Core, Azure and databases.",
-        text2: "Let's dive into Microsoft technology and programming in general. Read about architecture, design patterns, best practices, C#, SQL and other languages.",
+        text2: "Let's dive into Microsoft technology, programming and history of software. Read about computer sceince, stories, architecture, design patterns, best practices, C#, SQL and other languages.",
         button: "View list of articles",
         image1: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_articles/image1.jpg",
         image2: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_articles/image2.jpg",
