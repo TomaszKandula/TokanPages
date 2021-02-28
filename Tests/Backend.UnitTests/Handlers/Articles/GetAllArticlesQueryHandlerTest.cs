@@ -32,7 +32,7 @@ namespace Backend.UnitTests.Handlers.Articles
                     Description = DataProvider.GetRandomString(),
                     IsPublished = false,
                     ReadCount = 0,
-                    CreatedAt = DateTime.Now,
+                    CreatedAt = DateTime.Now.AddDays(-10),
                     UpdatedAt = null,
                     UserId = Guid.NewGuid()
                 },
@@ -43,7 +43,7 @@ namespace Backend.UnitTests.Handlers.Articles
                     Description = DataProvider.GetRandomString(),
                     IsPublished = false,
                     ReadCount = 0,
-                    CreatedAt = DateTime.Now,
+                    CreatedAt = DateTime.Now.AddDays(-15),
                     UpdatedAt = null,
                     UserId = Guid.NewGuid()
                 }
