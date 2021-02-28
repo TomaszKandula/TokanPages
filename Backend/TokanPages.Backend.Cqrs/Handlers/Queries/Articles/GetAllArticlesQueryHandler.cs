@@ -31,6 +31,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
                     CreatedAt = Fields.CreatedAt,
                     UpdatedAt = Fields.UpdatedAt
                 })
+                .OrderByDescending(Articles => Articles.CreatedAt)
                 .ToListAsync(ACancellationToken);
 
             return LArticles; 
