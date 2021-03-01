@@ -41,6 +41,17 @@ namespace TokanPages.Backend.Database.Seeders
                     CreatedAt = Dummies.Article3.Created,
                     UpdatedAt = Dummies.Article3.LastUpdated,
                     UserId = Dummies.Article3.UserId
+                },
+                new Articles
+                {
+                    Id = Dummies.Article4.Id,
+                    Title = Dummies.Article4.Title,
+                    Description = Dummies.Article4.Description,
+                    IsPublished = Dummies.Article4.IsPublished,
+                    ReadCount = Dummies.Article4.ReadCount,
+                    CreatedAt = Dummies.Article4.Created,
+                    UpdatedAt = Dummies.Article4.LastUpdated,
+                    UserId = Dummies.Article4.UserId
                 }
             };
         }
