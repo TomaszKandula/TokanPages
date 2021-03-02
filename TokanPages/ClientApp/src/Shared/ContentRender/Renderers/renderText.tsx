@@ -7,9 +7,10 @@ import useStyles from "../Hooks/styleRenderText";
 export function RenderText(props: ITextItem)
 {
     const classes = useStyles();
+    const data: string = props.value as string; 
     return(
         <Typography variant="body1" component="span" className={classes.typography}>
-            {ReactHtmlParser(props.value)}
+            {ReactHtmlParser(data)}
         </Typography>
     );
 }
