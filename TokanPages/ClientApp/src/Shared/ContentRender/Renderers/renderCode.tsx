@@ -8,10 +8,11 @@ import useStyles from "../Hooks/styleRenderCode";
 export function RenderCode(props: ITextItem)
 {
     const classes = useStyles();
+    const data: string = props.value as string; 
     return(
         <Card elevation={3} classes={{ root: classes.card }}>
             <SyntaxHighlighter className={classes.syntaxHighlighter} style={github} language={props.type} showLineNumbers={true}>
-                {atob(props.value)}
+                {atob(data)}
             </SyntaxHighlighter>
         </Card>
     );

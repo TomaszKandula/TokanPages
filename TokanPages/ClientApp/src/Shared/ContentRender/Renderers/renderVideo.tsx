@@ -7,6 +7,7 @@ import Validate from "validate.js";
 export function RenderVideo(props: ITextItem)
 {
     const classes = useStyles();
+    const data: string = props.value as string; 
     const [ImageState, setImageState] = React.useState(true);
     const imageClick = () => 
     {
@@ -28,7 +29,7 @@ export function RenderVideo(props: ITextItem)
         <Card elevation={3} classes={{ root: classes.card }}>
             {ImageState 
                 ? <CardMedia component="img" image={props.prop} onClick={imageClick} className={classes.image} /> 
-                : <CardMedia component="video" src={props.value} controls autoPlay />}
+                : <CardMedia component="video" src={data} controls autoPlay />}
             {Validate.isEmpty(props.text) 
                 ? null 
                 : renderDescription()}

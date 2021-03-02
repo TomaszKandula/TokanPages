@@ -7,6 +7,7 @@ import Validate from "validate.js";
 export function RenderImage(props: ITextItem)
 {
     const classes = useStyles();
+    const data: string = props.value as string; 
     const renderDescription = () => 
     {
         return(
@@ -20,7 +21,7 @@ export function RenderImage(props: ITextItem)
 
     return(
         <Card elevation={3} classes={{ root: classes.card }}>
-            <CardMedia component="img" image={props.value} alt="" />
+            <CardMedia component="img" image={data} alt="" />
             {Validate.isEmpty(props.text) ? null : renderDescription()}
         </Card>
     );

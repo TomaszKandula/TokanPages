@@ -7,9 +7,16 @@ interface ITextItem
 {
     id: string,
     type: string;
-    value: string;
+    value: string | IRowItem[];
     prop: string;
     text: string;
 }
 
-export type { ITextObject, ITextItem }
+interface IRowItem
+{
+    column0: string;
+    column1: string;
+    column2: string;
+}
+
+export type { ITextObject, ITextItem, IRowItem }
