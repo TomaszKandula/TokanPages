@@ -87,8 +87,10 @@ const TextObjectToRawText = (textObject: ITextObject | undefined): string | unde
     return aggregatedText.trimStart().trimEnd();
 }
 
-const CountWords = (inputText: string): number => 
+const CountWords = (inputText: string | undefined): number => 
 {
+    if (inputText === undefined) return 0;
+
     inputText = inputText.replace(/(^\s*)|(\s*$)/gi,"");
     inputText = inputText.replace(/[ ]{2,}/gi," ");
     inputText = inputText.replace(/\n /,"\n");
@@ -98,6 +100,7 @@ const CountWords = (inputText: string): number =>
 
 const GetReadTime = (countWords: number, wordsPerMinute: number): string =>
 {
+    if (countWords === 0) return "0";
     let result: number = 0;
     result = countWords / wordsPerMinute;
     return result.toFixed(2);

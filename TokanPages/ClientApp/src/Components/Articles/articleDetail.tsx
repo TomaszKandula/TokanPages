@@ -21,7 +21,8 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/selectArticleActions";
 import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoader";
 import { RenderContent } from "../../Shared/ContentRender/renderContent";
-import { FormatDateTime } from "../../Shared/helpers";
+import { CountWords, FormatDateTime, GetReadTime, TextObjectToRawText } from "../../Shared/helpers";
+import { ITextObject } from "../../Shared/ContentRender/Model/textModel";
 import { UpdateArticle } from "../../Api/Services/articles";
 import { 
     AVATARS_PATH, 
@@ -29,7 +30,8 @@ import {
     LIKES_LIMIT_FOR_USER,
     LIKES_TIP_FOR_ANONYM,
     LIKES_TIP_FOR_USER,
-    MAX_LIKES_REACHED
+    MAX_LIKES_REACHED,
+    WORDS_PER_MINUTE
 } from "../../Shared/constants";
 
 export interface IArticleDetail
@@ -196,6 +198,20 @@ export default function ArticleDetail(props: IArticleDetail)
         return(textOut);
     };
 
+    const returnReadTime = (): string =>
+    {
+        let textObject: ITextObject = 
+        { 
+            items: [{ id: "", type: "", value: "", prop: "", text: "" }]
+        };
+        
+        textObject.items = selection.article.text;
+        const rawText = TextObjectToRawText(textObject);
+        const words = CountWords(rawText);
+
+        return GetReadTime(words, WORDS_PER_MINUTE);
+    }
+
     return (
         <section>
             <Container className={classes.container}>
@@ -251,6 +267,9 @@ export default function ArticleDetail(props: IArticleDetail)
                             </Grid>
                         </Grid>
                         <Box mt={1} mb={5}>
+                            <Typography component="p" variant="subtitle1">
+                                Read time: {returnReadTime()} min.
+                            </Typography>
                             <Typography component="p" variant="subtitle1">
                                 Published at: {FormatDateTime(selection.article.createdAt, true)}
                             </Typography>
