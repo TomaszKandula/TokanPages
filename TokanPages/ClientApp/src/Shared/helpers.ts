@@ -1,4 +1,5 @@
 import Validate from "validate.js";
+import { ITextObject } from "./ContentRender/Model/textModel";
 
 const ConvertPropsToFields = (InputObject: any) =>
 {
@@ -57,10 +58,61 @@ const FormatDateTime = (value: string, hasTimeVisible: boolean): string =>
     return result;
 }
 
+const TextObjectToRawText = (textObject: ITextObject | undefined): string | undefined => 
+{
+    if (textObject === undefined)
+    {
+        return undefined;
+    }
+
+    if (textObject.items.length === 0)
+    {
+        return undefined;
+    }
+
+    let rawText: string = "";
+    let htmlText: string = "";
+    let aggregatedText: string = "";
+    
+    textObject.items.forEach(item => 
+    {
+        if (item.type === "html")
+        {
+            htmlText = item.value as string;
+            rawText = htmlText.replace(/<[^>]+>/g, " ");
+            aggregatedText = aggregatedText + " " + rawText;
+        }
+    });
+
+    return aggregatedText.trimStart().trimEnd();
+}
+
+const CountWords = (inputText: string | undefined): number => 
+{
+    if (inputText === undefined) return 0;
+
+    inputText = inputText.replace(/(^\s*)|(\s*$)/gi,"");
+    inputText = inputText.replace(/[ ]{2,}/gi," ");
+    inputText = inputText.replace(/\n /,"\n");
+
+    return inputText.split(" ").length;
+}
+
+const GetReadTime = (countWords: number, wordsPerMinute: number): string =>
+{
+    if (countWords === 0) return "0";
+    let result: number = 0;
+    result = countWords / wordsPerMinute;
+    return result.toFixed(2);
+}
+
 export 
 {
     ConvertPropsToFields,
     HtmlRenderLine,
     HtmlRenderLines,
-    FormatDateTime
+    FormatDateTime,
+    TextObjectToRawText,
+    CountWords,
+    GetReadTime
 }
