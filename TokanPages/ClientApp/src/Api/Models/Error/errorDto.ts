@@ -1,4 +1,4 @@
-interface IError 
+interface IErrorDto 
 {
     ErrorCode: string;
     ErrorMessage: string;
@@ -12,4 +12,4 @@ interface IValidationErrors
     ErrorMessage: string;
 }
 
-export type { IError }
+export type { IErrorDto }

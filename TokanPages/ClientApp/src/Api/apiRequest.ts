@@ -1,7 +1,7 @@
 import axios, { Method } from "axios";
 import { UNEXPECTED_ERROR } from "../Shared/constants";
 import { GetUnexpectedStatusCode } from "../Shared/Modals/messageHelper";
-import { IError } from "./Models";
+import { IErrorDto } from "./Models";
 
 export interface IRequest
 {
@@ -13,7 +13,7 @@ export interface IRequest
 export interface IResult
 {
     isSucceeded: boolean;
-    error: IError;
+    error: IErrorDto;
 }
 
 export default async function ApiRequest(request: IRequest): Promise<IResult>
