@@ -1,6 +1,6 @@
 import { IFeatured } from "Api/Models"
 
-const featuredInitValues: IFeatured =
+export const featuredInitValues: IFeatured =
 {
     content:
     {
@@ -20,5 +20,3 @@ const featuredInitValues: IFeatured =
         image3: ""    
     }    
 }
-
-export { featuredInitValues }

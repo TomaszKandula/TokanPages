@@ -1,6 +1,6 @@
 import { IResetForm } from "Api/Models"
 
-const resetFormInitValues: IResetForm = 
+export const resetFormInitValues: IResetForm = 
 {
     content:
     {
@@ -8,5 +8,3 @@ const resetFormInitValues: IResetForm =
         button: ""
     }
 }
-
-export { resetFormInitValues }

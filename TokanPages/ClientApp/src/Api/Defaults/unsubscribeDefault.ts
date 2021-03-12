@@ -1,6 +1,6 @@
 import { IUnsubscribe } from "Api/Models"
 
-const unsubscribeInitValues: IUnsubscribe = 
+export const unsubscribeInitValues: IUnsubscribe = 
 {
     content:
     {
@@ -22,5 +22,3 @@ const unsubscribeInitValues: IUnsubscribe =
         }
     }
 }
-
-export { unsubscribeInitValues }

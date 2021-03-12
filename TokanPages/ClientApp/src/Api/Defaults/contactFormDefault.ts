@@ -1,6 +1,6 @@
 import { IContactForm } from "Api/Models"
 
-const contactFormInitValues: IContactForm =
+export const contactFormInitValues: IContactForm =
 {
     content:
     {
@@ -8,5 +8,3 @@ const contactFormInitValues: IContactForm =
         text: ""
     }    
 }
-
-export { contactFormInitValues }

@@ -1,6 +1,6 @@
 import { ITestimonials } from "Api/Models"
 
-const testimonialsInitValues: ITestimonials = 
+export const testimonialsInitValues: ITestimonials = 
 {
     content:
     {
@@ -20,5 +20,3 @@ const testimonialsInitValues: ITestimonials =
         text3: ""
         }
 }
-
-export { testimonialsInitValues }
