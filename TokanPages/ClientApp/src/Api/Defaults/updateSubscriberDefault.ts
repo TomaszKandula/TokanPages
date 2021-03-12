@@ -1,6 +1,6 @@
 import { IUpdateSubscriber } from "Api/Models"
 
-const updateSubscriberInitValues: IUpdateSubscriber = 
+export const updateSubscriberInitValues: IUpdateSubscriber = 
 {
     content:
     {
@@ -8,5 +8,3 @@ const updateSubscriberInitValues: IUpdateSubscriber =
         button: ""
     }
 }
-
-export { updateSubscriberInitValues }

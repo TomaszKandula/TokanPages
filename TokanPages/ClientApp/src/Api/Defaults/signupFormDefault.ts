@@ -1,6 +1,6 @@
 import { ISignupForm } from "Api/Models"
 
-const signupFormInitValues: ISignupForm = 
+export const signupFormInitValues: ISignupForm = 
 {
     content:
     {
@@ -10,5 +10,3 @@ const signupFormInitValues: ISignupForm =
         link2: ""
     }
 }
-
-export { signupFormInitValues }

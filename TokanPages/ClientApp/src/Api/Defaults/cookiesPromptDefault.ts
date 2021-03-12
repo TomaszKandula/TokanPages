@@ -1,6 +1,6 @@
 import { ICookiesPrompt } from "Api/Models"
 
-const cookiesPromptInitValues: ICookiesPrompt =
+export const cookiesPromptInitValues: ICookiesPrompt =
 {
     content: 
     {
@@ -9,5 +9,3 @@ const cookiesPromptInitValues: ICookiesPrompt =
         button: ""
     }
 }
-
-export { cookiesPromptInitValues }

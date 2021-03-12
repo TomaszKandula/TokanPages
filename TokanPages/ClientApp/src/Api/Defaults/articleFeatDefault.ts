@@ -15,5 +15,3 @@ const articleFeatInitValues: IArticleFeat =
         image4: ""
     }
 }
-
-export { articleFeatInitValues }

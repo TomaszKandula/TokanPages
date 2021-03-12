@@ -1,6 +1,6 @@
 import { INewsletter } from "Api/Models"
 
-const newsletterInitValues: INewsletter = 
+export const newsletterInitValues: INewsletter = 
 {
     content:
     {
@@ -9,5 +9,3 @@ const newsletterInitValues: INewsletter =
         button: ""
     }
 }
-
-export { newsletterInitValues }

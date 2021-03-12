@@ -1,6 +1,6 @@
 import { ISigninForm } from "Api/Models"
 
-const signinFormInitValues: ISigninForm = 
+export const signinFormInitValues: ISigninForm = 
 {
     content:
     {
@@ -10,5 +10,3 @@ const signinFormInitValues: ISigninForm =
         link2: ""
     }
 }
-
-export { signinFormInitValues }
