@@ -1,4 +1,4 @@
-import ApiRequest from "../../Api/apiRequest";
+import { apiRequest } from "../requests";
 import { IAlertModal } from "../../Shared/Modals/alertDialog";
 import { ISendMessageDto } from "../../Api/Models";
 import { API_COMMAND_SEND_MESSAGE } from "../../Shared/constants";
@@ -6,7 +6,7 @@ import { GetMessageOutError, GetMessageOutSuccess } from "../../Shared/Modals/me
 
 export const SendMessage = async (PayLoad: ISendMessageDto): Promise<IAlertModal> =>
 {
-    const apiRequest = ApiRequest(
+    const request = apiRequest(
     { 
         method: "POST", 
         url: API_COMMAND_SEND_MESSAGE, 
@@ -22,24 +22,16 @@ export const SendMessage = async (PayLoad: ISendMessageDto): Promise<IAlertModal
         }
     });
 
-    const results = await apiRequest;
-
-    if (results.isSucceeded)
-    {
-        return { 
-            State: true, 
-            Titile: "Contact Form", 
-            Message: GetMessageOutSuccess(), 
-            Icon: 0 
-        };
-    }
-    else
-    {
-        return { 
-            State: true, 
-            Titile: "Contact Form | Error", 
-            Message: GetMessageOutError(results.error.ErrorMessage), 
-            Icon: 2 
-        };
-    }
+    const results = await request;
+    return results.isSucceeded ? { 
+        State: true, 
+        Titile: "Contact Form", 
+        Message: GetMessageOutSuccess(), 
+        Icon: 0 
+    } : { 
+        State: true, 
+        Titile: "Contact Form | Error", 
+        Message: GetMessageOutError(results.error.ErrorMessage), 
+        Icon: 2 
+    };
 }

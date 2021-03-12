@@ -10,21 +10,30 @@ import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import useStyles from "./Hooks/styleArticleFeat";
+import { getArticleFeatText } from "../../Api/Services/";
+import { articleFeatInitValues } from "../../Api/Defaults";
 
 export default function ArticleFeat() 
 {
     const classes = useStyles();
-    const content = 
+    const [component, setComponent] = React.useState(articleFeatInitValues);
+
+    const updateContent = React.useCallback(async () => 
     {
-        title: "Articles",
-        desc: "I write on regular basis on various technologies I work with. I share the knowledge and experience. I believe everyone will find something interesting.",
-        text1: "Write-ups on .NET Core, Azure and databases.",
-        text2: "Let's dive into Microsoft technology, programming and history of software. Read about computer sceince, stories, architecture, design patterns, best practices, C#, SQL and other languages.",
-        button: "View list of articles",
-        image1: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_articles/image1.jpg",
-        image2: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_articles/image2.jpg",
-        image3: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_articles/image3.jpg",
-        image4: "https://maindbstorage.blob.core.windows.net/tokanpages/images/section_articles/image4.jpg"
+        setComponent(await getArticleFeatText());
+    }, [ ]);
+
+    React.useEffect(() => 
+    {
+        updateContent();
+    }, 
+    [ updateContent ]);
+    
+    const renderCardMedia = (imageSource: string): JSX.Element | null =>
+    {
+        return imageSource === "" 
+            ? null 
+            : <CardMedia className={classes.media} image={imageSource} />;
     };
 
     return (
@@ -35,10 +44,10 @@ export default function ArticleFeat()
                         <Container maxWidth="sm">
                             <Box textAlign="center" mb={5}>
                                 <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {content.title}
+                                    {component.content.title}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
-                                    {content.desc}
+                                    {component.content.desc}
                                 </Typography>
                             </Box>
                         </Container>
@@ -49,17 +58,17 @@ export default function ArticleFeat()
                                         <CardContent className={classes.info}>
                                             <Box display="flex" flexDirection="column" height="100%" pt={2} px={2}>
                                                 <Typography variant="h5" component="h2" gutterBottom={true}>
-                                                    {content.text1}
+                                                    {component.content.text1}
                                                 </Typography>
                                                 <Box mt="auto" mb={2}>
                                                     <Typography variant="body1" component="p" color="textSecondary">
-                                                        {content.text2}
+                                                        {component.content.text2}
                                                     </Typography>
                                                 </Box>
                                                 <Box textAlign="right">
                                                     <Link to="/articles" className={classes.link}>
                                                         <Button color="primary" endIcon={<ArrowRightAltIcon />}>
-                                                            {content.button}
+                                                            {component.content.button}
                                                         </Button>
                                                     </Link>
                                                 </Box>
@@ -71,22 +80,22 @@ export default function ArticleFeat()
                                     <Grid container spacing={2}>
                                         <Grid item xs={12} md={8}>
                                             <Card elevation={4}>
-                                                <CardMedia className={classes.media} image={content.image1} />
+                                                {renderCardMedia(component.content.image1)}
                                             </Card>
                                         </Grid>
                                         <Grid item xs={12} md={4}>
                                             <Card elevation={4}>
-                                                <CardMedia className={classes.media} image={content.image2} />
+                                                {renderCardMedia(component.content.image2)}
                                             </Card>
                                         </Grid>
                                         <Grid item xs={12} md={4}>
                                             <Card elevation={4}>
-                                                <CardMedia className={classes.media} image={content.image3} />
+                                                {renderCardMedia(component.content.image3)}
                                             </Card>
                                         </Grid> 
                                         <Grid item xs={12} md={8}>
                                             <Card elevation={4}>
-                                                <CardMedia className={classes.media} image={content.image4} />
+                                                {renderCardMedia(component.content.image4)}
                                             </Card>
                                         </Grid>
                                     </Grid>

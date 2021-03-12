@@ -14,6 +14,8 @@ import { ValidateContactForm } from "../../Shared/validate";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { GetMessageOutWarning } from "../../Shared/Modals/messageHelper";
 import { SendMessage } from "../../Api/Services/mailer";
+import { getContactFormText } from "../../Api/Services/";
+import { contactFormInitValues } from "../../Api/Defaults";
 
 export default function ContactForm()
 {
@@ -27,52 +29,58 @@ export default function ContactForm()
         message: "", 
         terms: false
     };
-    const content = 
+
+    const [component, setComponent] = React.useState(contactFormInitValues);
+    const [form, setForm] = React.useState(formDefaultValues);   
+    const [modal, setModal] = React.useState(modalDefaultValues);
+    const [progress, setProgress] = React.useState(false);
+
+    const updateContent = React.useCallback(async () => 
     {
-        caption: "Contact me",
-        text: "If you have any questions or you believe that I can do some work for you in technologies I currently work with, send me a message."
-    };
+        setComponent(await getContactFormText());
+    }, [ ]);
 
-    const [Form, setForm] = React.useState(formDefaultValues);   
-    const [Modal, setModal] = React.useState(modalDefaultValues);
-    const [Progress, setProgress] = React.useState(false);
+    React.useEffect(() => 
+    {
+        updateContent();
+    }, 
+    [ updateContent ]);
 
-    const ModalHandler = () => 
+    const modalHandler = () => 
     {
         setModal(modalDefaultValues);
     };
 
-    const FormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
-        if (event.currentTarget.name !== "terms") { setForm({ ...Form, [event.currentTarget.name]: event.currentTarget.value}); }
-            else { setForm({ ...Form, [event.currentTarget.name]: event.currentTarget.checked}); }
+        if (event.currentTarget.name !== "terms") { setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value}); }
+            else { setForm({ ...form, [event.currentTarget.name]: event.currentTarget.checked}); }
     };
 
-    const ButtonHandler = async () => 
+    const buttonHandler = async () => 
     {
         let validationResult = ValidateContactForm( 
         { 
-            FirstName: Form.firstName,
-            LastName:  Form.lastName, 
-            Email:     Form.email, 
-            Subject:   Form.subject, 
-            Message:   Form.message, 
-            Terms:     Form.terms 
+            FirstName: form.firstName,
+            LastName:  form.lastName, 
+            Email:     form.email, 
+            Subject:   form.subject, 
+            Message:   form.message, 
+            Terms:     form.terms 
         });
 
         if (!Validate.isDefined(validationResult))
         {
-
             setProgress(true);
             setModal(await SendMessage(
             {
-                firstName: Form.firstName,
-                lastName: Form.lastName,
-                userEmail: Form.email,
-                emailFrom: Form.email,
-                emailTos: [Form.email],
-                subject: Form.subject,
-                message: Form.message
+                firstName: form.firstName,
+                lastName: form.lastName,
+                userEmail: form.email,
+                emailFrom: form.email,
+                emailTos: [form.email],
+                subject: form.subject,
+                message: form.message
             }));
             setProgress(false);
             setForm(formDefaultValues);
@@ -81,7 +89,7 @@ export default function ContactForm()
 
         setModal(
         { 
-            ...Modal, 
+            ...modal, 
             State: true, 
             Titile: "Warning", 
             Message: GetMessageOutWarning(validationResult), 
@@ -94,43 +102,43 @@ export default function ContactForm()
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
-                <AlertDialog State={Modal.State} Handle={ModalHandler} Title={Modal.Titile} Message={Modal.Message} Icon={Modal.Icon} />
+                <AlertDialog State={modal.State} Handle={modalHandler} Title={modal.Titile} Message={modal.Message} Icon={modal.Icon} />
                 <Container maxWidth="sm">
                     <div data-aos="fade-up">
                         <Box pt={8} pb={10}>
                             <Box mb={6} textAlign="center">
                                 <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {content.caption}
+                                    {component.content.caption}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary" paragraph={true}>
-                                    {content.text}
+                                    {component.content.text}
                                 </Typography>
                             </Box>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={6}>
-                                        <TextField onChange={FormHandler} value={Form.firstName} variant="outlined" required fullWidth name="firstName" id="firstName" label="First name" autoComplete="fname" />
+                                        <TextField onChange={formHandler} value={form.firstName} variant="outlined" required fullWidth name="firstName" id="firstName" label="First name" autoComplete="fname" />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
-                                        <TextField onChange={FormHandler} value={Form.lastName} variant="outlined" required fullWidth name="lastName" id="lastName" label="Last name" autoComplete="lname" />
+                                        <TextField onChange={formHandler} value={form.lastName} variant="outlined" required fullWidth name="lastName" id="lastName" label="Last name" autoComplete="lname" />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField onChange={FormHandler} value={Form.email} variant="outlined" required fullWidth name="email" id="email" label="Email address" autoComplete="email" />
+                                        <TextField onChange={formHandler} value={form.email} variant="outlined" required fullWidth name="email" id="email" label="Email address" autoComplete="email" />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField onChange={FormHandler} value={Form.subject} variant="outlined" required fullWidth name="subject" id="subject" label="Subject" autoComplete="subject" />
+                                        <TextField onChange={formHandler} value={form.subject} variant="outlined" required fullWidth name="subject" id="subject" label="Subject" autoComplete="subject" />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField onChange={FormHandler} value={Form.message} variant="outlined" required multiline rows={6} fullWidth autoComplete="message" name="message" id="message" label="Message" />
+                                        <TextField onChange={formHandler} value={form.message} variant="outlined" required multiline rows={6} fullWidth autoComplete="message" name="message" id="message" label="Message" />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <FormControlLabel control={<Checkbox onChange={FormHandler} checked={Form.terms} name="terms" id="terms" color="primary" />} label="I agree to the terms of use and privacy policy." />
+                                        <FormControlLabel control={<Checkbox onChange={formHandler} checked={form.terms} name="terms" id="terms" color="primary" />} label="I agree to the terms of use and privacy policy." />
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    <Button onClick={ButtonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={Progress}>
-                                        {Progress &&  <CircularProgress size={20} />}
-                                        {!Progress && "Submit"}
+                                    <Button onClick={buttonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={progress}>
+                                        {progress &&  <CircularProgress size={20} />}
+                                        {!progress && "Submit"}
                                     </Button>
                                 </Box>
                             </Box>

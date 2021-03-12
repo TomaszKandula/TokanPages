@@ -1,4 +1,4 @@
-interface ICookies
+interface ICookiesPrompt
 {
     content: IContent;
 }
@@ -10,4 +10,4 @@ interface IContent
     button: string;
 }
 
-export type { ICookies }
+export type { ICookiesPrompt }

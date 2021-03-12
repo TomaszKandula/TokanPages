@@ -18,7 +18,7 @@ export type { IErrorDto } from "./Error/errorDto";
 
 export type { IArticleFeat } from "./Components/articleFeat";
 export type { IContactForm } from "./Components/contactForm";
-export type { ICookies } from "./Components/cookies";
+export type { ICookiesPrompt } from "./Components/cookiesPrompt";
 export type { IFeatured } from "./Components/featured";
 export type { IFeatures } from "./Components/features";
 export type { INewsletter } from "./Components/newsletter";
@@ -28,3 +28,6 @@ export type { ISignupForm } from "./Components/signupForm";
 export type { ITestimonials } from "./Components/testimonials";
 export type { IUnsubscribe } from "./Components/unsubscribe";
 export type { IUpdateSubscriber } from "./Components/updateSubscriber";
+
+export type { IApiRequest } from "./Requests/apiRequest";
+export type { IApiResult } from "./Requests/apiResult";

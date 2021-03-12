@@ -36,7 +36,22 @@ export const API_COMMAND_VERIFY_EMAIL = `${APP_BACKEND}/api/v${API_VER}/mailer/V
 export const API_COMMAND_SEND_MESSAGE = `${APP_BACKEND}/api/v${API_VER}/mailer/SendMessage/`;
 export const API_COMMAND_SEND_NEWSLETTER = `${APP_BACKEND}/api/v${API_VER}/mailer/SendNewsletter/`;
 
-/* CONTENT */
+/* COMPONENTS CONTENT */
+
+export const GET_ARTICLE_FEAT_TEXT = `${APP_STORAGE}/content/components/articleFeat.json`;
+export const GET_CONTACT_FORM_TEXT = `${APP_STORAGE}/content/components/contactForm.json`;
+export const GET_COOKIES_PROMPT_TEXT = `${APP_STORAGE}/content/components/cookiesPrompt.json`;
+export const GET_FEATURED_TEXT = `${APP_STORAGE}/content/components/featured.json`;
+export const GET_FEATURES_TEXT = `${APP_STORAGE}/content/components/features.json`;
+export const GET_NEWSLETTER_TEXT = `${APP_STORAGE}/content/components/newsletter.json`;
+export const GET_RESET_FORM_TEXT = `${APP_STORAGE}/content/components/resetForm.json`;
+export const GET_SIGNIN_FORM_TEXT = `${APP_STORAGE}/content/components/signinForm.json`;
+export const GET_SIGNUP_FORM_TEXT = `${APP_STORAGE}/content/components/signupForm.json`;
+export const GET_TESTIMONIALS_TEXT = `${APP_STORAGE}/content/components/testimonials.json`;
+export const GET_UNSUBSCRIBE_TEXT = `${APP_STORAGE}/content/components/unsubscribe.json`;
+export const GET_UPDATE_SUBSCRIBER_TEXT = `${APP_STORAGE}/content/components/updateSubscriber.json`;
+
+/* URLS */
 
 export const STORY_URL = `${APP_STORAGE}/content/mystory.json`;
 export const TERMS_URL = `${APP_STORAGE}/content/terms.json`;
@@ -51,9 +66,8 @@ export const IMAGES_PATH = `${APP_STORAGE}/images/`;
 export const TESTIMONIALS_PATH = `${APP_STORAGE}/images/section_testimonials/`;
 export const ICONS_PATH = `${APP_STORAGE}/icons/`;
 export const AVATARS_PATH = `${APP_STORAGE}/content/avatars/`;
-export const COMPONENTS_PATH = `${APP_STORAGE}/content/components/`;
 
-/* MESSAGE TEMPLATES */
+/* MESSAGES AND TEMPLATES */
 
 export const MESSAGE_OUT_SUCCESS = `<p>Congratulations!</p><p>The message has been sent successfully, we will try to respond as soon as possible.</p>`;
 export const MESSAGE_OUT_WARNING = `<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To send an email all fields must be filled along with acceptance of Terms of Use and Privacy Policy.</span>`;
