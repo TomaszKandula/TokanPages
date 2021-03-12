@@ -1,4 +1,4 @@
-import ApiRequest from "../../Api/apiRequest";
+import { apiRequest } from "../requests";
 import { IAlertModal } from "../../Shared/Modals/alertDialog";
 import { IAddSubscriberDto, IUpdateSubscriberDto, IRemoveSubscriberDto } from "../../Api/Models";
 import { GetNewsletterError, GetNewsletterSuccess } from "../../Shared/Modals/messageHelper";
@@ -10,7 +10,7 @@ import {
 
 export const AddNewSubscriber = async (PayLoad: IAddSubscriberDto): Promise<IAlertModal> =>
 {
-    const apiRequest = ApiRequest(
+    const request = apiRequest(
     { 
         method: "POST", 
         url: API_COMMAND_ADD_SUBSCRIBER, 
@@ -20,31 +20,23 @@ export const AddNewSubscriber = async (PayLoad: IAddSubscriberDto): Promise<IAle
         } 
     });
 
-    const results = await apiRequest;
-
-    if (results.isSucceeded)
-    {
-        return { 
-            State: true, 
-            Titile: "Newsletter", 
-            Message: GetNewsletterSuccess(), 
-            Icon: 0 
-        };
-    }
-    else
-    {
-        return { 
-            State: true, 
-            Titile: "Newsletter | Error", 
-            Message: GetNewsletterError(results.error.ErrorMessage), 
-            Icon: 2 
-        };
-    }
+    const results = await request;
+    return results.isSucceeded ? { 
+        State: true, 
+        Titile: "Newsletter", 
+        Message: GetNewsletterSuccess(), 
+        Icon: 0 
+    } : { 
+        State: true, 
+        Titile: "Newsletter | Error", 
+        Message: GetNewsletterError(results.error.ErrorMessage), 
+        Icon: 2 
+    };
 }
 
 export const UpdateSubscriberData = async (PayLoad: IUpdateSubscriberDto): Promise<IAlertModal> =>
 {
-    const apiRequest = ApiRequest(
+    const request = apiRequest(
     { 
         method: "POST", 
         url: API_COMMAND_UPDATE_SUBSCRIBER, 
@@ -57,31 +49,23 @@ export const UpdateSubscriberData = async (PayLoad: IUpdateSubscriberDto): Promi
         } 
     });
 
-    const results = await apiRequest;
-
-    if (results.isSucceeded)
-    {
-        return { 
-            State: true, 
-            Titile: "Subscriber email update", 
-            Message: GetNewsletterSuccess(), 
-            Icon: 0 
-        };
-    }
-    else
-    {
-        return { 
-            State: true, 
-            Titile: "Subscriber email update | Error", 
-            Message: GetNewsletterError(results.error.ErrorMessage), 
-            Icon: 2 
-        };
-    }
+    const results = await request;
+    return results.isSucceeded ? { 
+        State: true, 
+        Titile: "Subscriber email update", 
+        Message: GetNewsletterSuccess(), 
+        Icon: 0 
+    } : { 
+        State: true, 
+        Titile: "Subscriber email update | Error", 
+        Message: GetNewsletterError(results.error.ErrorMessage), 
+        Icon: 2 
+    };
 }
 
 export const RemoveSubscriberData = async (PayLoad: IRemoveSubscriberDto): Promise<IAlertModal> =>
 {
-    const apiRequest = ApiRequest(
+    const request = apiRequest(
     { 
         method: "POST", 
         url: API_COMMAND_REMOVE_SUBSCRIBER, 
@@ -91,24 +75,16 @@ export const RemoveSubscriberData = async (PayLoad: IRemoveSubscriberDto): Promi
         } 
     });
 
-    const results = await apiRequest;
-
-    if (results.isSucceeded)
-    {
-        return { 
-            State: true, 
-            Titile: "Unsubscribe", 
-            Message: GetNewsletterSuccess(), 
-            Icon: 0 
-        };
-    }
-    else
-    {
-        return { 
-            State: true, 
-            Titile: "Unsubscribe | Error", 
-            Message: GetNewsletterError(results.error.ErrorMessage), 
-            Icon: 2 
-        };
-    }
+    const results = await request;
+    return results.isSucceeded ? { 
+        State: true, 
+        Titile: "Unsubscribe", 
+        Message: GetNewsletterSuccess(), 
+        Icon: 0 
+    } : { 
+        State: true, 
+        Titile: "Unsubscribe | Error", 
+        Message: GetNewsletterError(results.error.ErrorMessage), 
+        Icon: 2 
+    };
 }
