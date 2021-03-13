@@ -17,10 +17,12 @@ import {
     getFeaturedText, 
     getFeaturesText, 
     getNewsletterText, 
-    getTestimonialsText
+    getTestimonialsText,
+    getHeaderText
 } from "../Api/Services/";
 import { 
     navigationDefault,
+    headerDefault,
     articleFeatDefault, 
     contactFormDefault, 
     cookiesPromptDefault, 
@@ -37,6 +39,7 @@ export default function Index()
     const mountedRef = React.useRef(true);
 
     const [navigation, setNavigation] = React.useState(navigationDefault);
+    const [header, setHeader] = React.useState(headerDefault);
     const [articles, setArticles] = React.useState(articleFeatDefault);
     const [features, setFeatures] = React.useState(featuresDefault);
     const [featured, setFeatured] = React.useState(featuredDefault);
@@ -49,6 +52,7 @@ export default function Index()
     {
         if (!mountedRef.current) return;
         setNavigation(await getNavigationText());
+        setHeader(await getHeaderText());
         setArticles(await getArticleFeatText());
         setFeatures(await getFeaturesText());
         setFeatured(await getFeaturedText());
@@ -73,7 +77,7 @@ export default function Index()
     return (
         <>
             <Navigation content={navigation.content} />
-            <Header />
+            <Header content={header.content} />
             <Features content={features.content} />
             <ArticleFeat content={articles.content} />
             <Featured content={featured.content} />

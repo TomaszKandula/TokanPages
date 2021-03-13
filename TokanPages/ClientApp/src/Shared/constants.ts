@@ -39,6 +39,7 @@ export const API_COMMAND_SEND_NEWSLETTER = `${APP_BACKEND}/api/v${API_VER}/maile
 /* COMPONENTS CONTENT */
 
 export const GET_NAVIGATION_TEXT = `${APP_STORAGE}/content/components/navigation.json`;
+export const GET_HEADER_TEXT = `${APP_STORAGE}/content/components/header.json`;
 export const GET_ARTICLE_FEAT_TEXT = `${APP_STORAGE}/content/components/articleFeat.json`;
 export const GET_CONTACT_FORM_TEXT = `${APP_STORAGE}/content/components/contactForm.json`;
 export const GET_COOKIES_PROMPT_TEXT = `${APP_STORAGE}/content/components/cookiesPrompt.json`;
