@@ -6,7 +6,6 @@ export const signupFormDefault: ISignupForm =
     {
         caption: "",
         button: "",
-        link1: "",
-        link2: ""
+        link: ""
     }
 }
