@@ -1,4 +1,4 @@
-interface IArticleFeat
+export interface IArticleFeat
 {
     content: IContent;
 }
@@ -15,5 +15,3 @@ interface IContent
     image3: string;
     image4: string;
 }
-
-export type { IArticleFeat }

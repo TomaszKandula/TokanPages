@@ -1,6 +1,6 @@
 import { IFeatured } from "Api/Models"
 
-export const featuredInitValues: IFeatured =
+export const featuredDefault: IFeatured =
 {
     content:
     {

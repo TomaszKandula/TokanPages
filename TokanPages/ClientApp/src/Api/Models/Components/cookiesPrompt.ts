@@ -1,4 +1,4 @@
-interface ICookiesPrompt
+export interface ICookiesPrompt
 {
     content: IContent;
 }
@@ -10,5 +10,3 @@ interface IContent
     button: string;
     days: number;
 }
-
-export type { ICookiesPrompt }

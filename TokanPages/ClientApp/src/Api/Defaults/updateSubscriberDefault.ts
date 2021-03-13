@@ -1,6 +1,6 @@
 import { IUpdateSubscriber } from "Api/Models"
 
-export const updateSubscriberInitValues: IUpdateSubscriber = 
+export const updateSubscriberDefault: IUpdateSubscriber = 
 {
     content:
     {

@@ -1,6 +1,6 @@
 import { INewsletter } from "Api/Models"
 
-export const newsletterInitValues: INewsletter = 
+export const newsletterDefault: INewsletter = 
 {
     content:
     {

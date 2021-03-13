@@ -5,43 +5,23 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
-import useStyles from "./styledUnsubscribe";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
-import { RemoveSubscriberData } from "Api/Services/subscribers";
+import { RemoveSubscriberData } from "../../Api/Services/subscribers";
+import { IUnsubscribe } from "../../Api/Models";
+import useStyles from "./styledUnsubscribe";
 
-export interface IUnsubscribe
-{
-    id: string | null;    
-}
-
-export default function Unsubscribe(props: IUnsubscribe)
+export default function Unsubscribe(id: string | null, props: IUnsubscribe)
 {
     const classes = useStyles();
-    const contentPre = 
-    {
-        caption: "Cancel your subscribtion",
-        text1: "We are sorry to see you go...", 
-        text2: "...but we understand there are circumstances when you need to stop your service. If for any reason you were unhappy with our service, please let us know what we can fo to improve it.",
-        text3: "Please contact us should you have any questions or to let us know how we might improve our service.",
-        button: "Unsubscribe Now"
-    };
-    const contentPost = 
-    {
-        caption: "Subscribtion cancelled",
-        text1: "We are sorry to see you go...", 
-        text2: "...your email address has been remove from our list. You will no longer receive any emails from us. ",
-        text3: "Please contact us should you have any questions or to let us know how we might improve our service.",
-        button: "Unsubscribe Now"
-    };
-
     const [Content, setContent] = React.useState(
     { 
-        caption: contentPre.caption,
-        text1:   contentPre.text1, 
-        text2:   contentPre.text2, 
-        text3:   contentPre.text3, 
-        button:  contentPre.button
+        caption: props.content.contentPre.caption,
+        text1:   props.content.contentPre.text1, 
+        text2:   props.content.contentPre.text2, 
+        text3:   props.content.contentPre.text3, 
+        button:  props.content.contentPre.button
     });
+
     const [ButtonState, setButtonState] = React.useState(true);
     const [Progress, setProgress] = React.useState(false);
     const [Modal, setModal] = React.useState(modalDefaultValues);
@@ -53,7 +33,7 @@ export default function Unsubscribe(props: IUnsubscribe)
 
     const ButtonHandler = async () =>
     {
-        if (props.id == null)
+        if (id == null)
         {
             return false;
         }
@@ -63,16 +43,16 @@ export default function Unsubscribe(props: IUnsubscribe)
 
         setModal(await RemoveSubscriberData(
         { 
-            id: props.id 
+            id: id 
         }));
 
         setContent(
         {
-            caption: contentPost.caption,
-            text1:   contentPost.text1, 
-            text2:   contentPost.text2, 
-            text3:   contentPost.text3, 
-            button:  contentPost.button
+            caption: props.content.contentPost.caption,
+            text1:   props.content.contentPost.text1, 
+            text2:   props.content.contentPost.text2, 
+            text3:   props.content.contentPost.text3, 
+            button:  props.content.contentPost.button
         });
 
         setProgress(false);

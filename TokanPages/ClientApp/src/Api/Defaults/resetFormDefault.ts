@@ -1,6 +1,6 @@
 import { IResetForm } from "Api/Models"
 
-export const resetFormInitValues: IResetForm = 
+export const resetFormDefault: IResetForm = 
 {
     content:
     {

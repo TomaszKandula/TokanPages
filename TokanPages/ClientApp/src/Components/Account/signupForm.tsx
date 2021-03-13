@@ -10,18 +10,12 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { AccountCircle } from "@material-ui/icons";
+import { ISignupForm } from "../../Api/Models";
 import useStyles from "./Hooks/styleSignupForm";
 
-export default function SignupForm() 
+export default function SignupForm(props: ISignupForm) 
 {
     const classes = useStyles();
-    const content = 
-    {
-        caption: "Create a new account",
-        button: "Sign up",
-        link: "Already have an account? Sign in"
-    };
-
     return (
         <section>
             <Container maxWidth="sm">
@@ -31,7 +25,7 @@ export default function SignupForm()
                             <Box mb={3} textAlign="center">
                             <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    {content.caption}
+                                    {props.content.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -54,12 +48,12 @@ export default function SignupForm()
                                 </Grid>
                                 <Box my={2}>
                                     <Button fullWidth variant="contained" color="primary">
-                                        {content.button}
+                                        {props.content.button}
                                     </Button>
                                 </Box>
                                 <Box textAlign="right">
                                     <Link to="/signin">
-                                        {content.link}
+                                        {props.content.link1}
                                     </Link>
                                 </Box>
                             </Box>
