@@ -53,7 +53,7 @@ export default function SignupForm(props: ISignupForm)
                                 </Box>
                                 <Box textAlign="right">
                                     <Link to="/signin">
-                                        {props.content.link1}
+                                        {props.content.link}
                                     </Link>
                                 </Box>
                             </Box>
