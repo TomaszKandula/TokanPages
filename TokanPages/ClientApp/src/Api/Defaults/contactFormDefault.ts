@@ -5,6 +5,7 @@ export const contactFormInitValues: IContactForm =
     content:
     {
         caption: "",
-        text: ""
+        text: "",
+        button: ""
     }    
 }

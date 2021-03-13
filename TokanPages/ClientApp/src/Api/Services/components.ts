@@ -38,7 +38,7 @@ export const getContactFormText = async (): Promise<IContactForm> =>
     return await getDataFromUrl(GET_CONTACT_FORM_TEXT);
 };
 
-export const getCookiesText = async (): Promise<ICookiesPrompt> =>
+export const getCookiesPromptText = async (): Promise<ICookiesPrompt> =>
 {
     return await getDataFromUrl(GET_COOKIES_PROMPT_TEXT);
 };

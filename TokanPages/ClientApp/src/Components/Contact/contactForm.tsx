@@ -9,42 +9,30 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
 import Validate from "validate.js";
-import useStyles from "./styleContactForm";
 import { ValidateContactForm } from "../../Shared/validate";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { GetMessageOutWarning } from "../../Shared/Modals/messageHelper";
 import { SendMessage } from "../../Api/Services/mailer";
-import { getContactFormText } from "../../Api/Services/";
-import { contactFormInitValues } from "../../Api/Defaults";
+import { IContactForm } from "../../Api/Models";
+import useStyles from "./styleContactForm";
 
-export default function ContactForm()
+const formDefaultValues =
+{
+    firstName: "", 
+    lastName: "", 
+    email: "", 
+    subject: "", 
+    message: "", 
+    terms: false
+};
+
+export default function ContactForm(props: IContactForm)
 {
     const classes = useStyles();
-    const formDefaultValues =
-    {
-        firstName: "", 
-        lastName: "", 
-        email: "", 
-        subject: "", 
-        message: "", 
-        terms: false
-    };
 
-    const [component, setComponent] = React.useState(contactFormInitValues);
     const [form, setForm] = React.useState(formDefaultValues);   
     const [modal, setModal] = React.useState(modalDefaultValues);
     const [progress, setProgress] = React.useState(false);
-
-    const updateContent = React.useCallback(async () => 
-    {
-        setComponent(await getContactFormText());
-    }, [ ]);
-
-    React.useEffect(() => 
-    {
-        updateContent();
-    }, 
-    [ updateContent ]);
 
     const modalHandler = () => 
     {
@@ -108,10 +96,10 @@ export default function ContactForm()
                         <Box pt={8} pb={10}>
                             <Box mb={6} textAlign="center">
                                 <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {component.content.caption}
+                                    {props.content.caption}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary" paragraph={true}>
-                                    {component.content.text}
+                                    {props.content.text}
                                 </Typography>
                             </Box>
                             <Box>
@@ -138,7 +126,7 @@ export default function ContactForm()
                                 <Box my={2}>
                                     <Button onClick={buttonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={progress}>
                                         {progress &&  <CircularProgress size={20} />}
-                                        {!progress && "Submit"}
+                                        {!progress && props.content.button}
                                     </Button>
                                 </Box>
                             </Box>

@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -6,51 +6,47 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { CircularProgress } from "@material-ui/core";
-import useStyles from "./styledNewsletter";
 import Validate from "validate.js";
-import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { ValidateEmail } from "../../Shared/validate";
+import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
+import { INewsletter } from "../../Api/Models";
 import { AddNewSubscriber } from "../../Api/Services/subscribers";
 import { GetNewsletterWarning } from "../../Shared/Modals/messageHelper";
+import useStyles from "./styledNewsletter";
 
-export default function Newsletter()
+const formDefaultValues = 
+{
+    email: ""
+};
+
+export default function Newsletter(props: INewsletter)
 {
     const classes = useStyles();
-    const formDefaultValues = 
-    {
-        email: ""    
-    };
-    const content = 
-    {
-        caption: "Join the newsletter!",
-        text: "We will never share your email address.",
-        button: "Subscribe",
-    };
-
-    const [Form, setForm] = React.useState(formDefaultValues);   
-    const [Modal, setModal] = React.useState(modalDefaultValues);
-    const [Progress, setProgress] = React.useState(false);
     
-    const ModalHandler = () => 
+    const [form, setForm] = React.useState(formDefaultValues);   
+    const [modal, setModal] = React.useState(modalDefaultValues);
+    const [progress, setProgress] = React.useState(false);
+
+    const modalHandler = () => 
     {
         setModal(modalDefaultValues); 
-    }
+    };
 
-    const FormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
-        setForm({ ...Form, [event.currentTarget.name]: event.currentTarget.value });
-    }
+        setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
+    };
 
-    const ButtonHandler = async () =>
+    const buttonHandler = async () =>
     {
-        let Results = ValidateEmail(Form.email);
+        let Results = ValidateEmail(form.email);
 
         if (!Validate.isDefined(Results))
         {
             setProgress(true);
             setModal(await AddNewSubscriber(
             { 
-                email: Form.email 
+                email: form.email 
             }));
 
             setProgress(false); 
@@ -68,21 +64,21 @@ export default function Newsletter()
         });
 
         return false;
-    }
+    };
 
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
-                <AlertDialog State={Modal.State} Handle={ModalHandler} Title={Modal.Titile} Message={Modal.Message} Icon={Modal.Icon} />
+                <AlertDialog State={modal.State} Handle={modalHandler} Title={modal.Titile} Message={modal.Message} Icon={modal.Icon} />
                 <div data-aos="fade-up">
                     <Box py={8} textAlign="center">
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={5}>
                                 <Typography variant="h4" component="h2">
-                                    {content.caption}
+                                    {props.content.caption}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
-                                    {content.text}
+                                {props.content.text}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={7}>
@@ -90,12 +86,12 @@ export default function Newsletter()
                                     <Box my="auto" width="100%">              
                                         <Grid container spacing={2}>
                                             <Grid item xs={12} sm={7}>
-                                                <TextField onChange={FormHandler} value={Form.email} variant="outlined" required fullWidth size="small" name="email" id="email_newletter" label="Email address" autoComplete="email" />
+                                                <TextField onChange={formHandler} value={form.email} variant="outlined" required fullWidth size="small" name="email" id="email_newletter" label="Email address" autoComplete="email" />
                                             </Grid>
                                             <Grid item xs={12} sm={5}>
-                                                <Button onClick={ButtonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={Progress}>
-                                                    {Progress &&  <CircularProgress size={20} />}
-                                                    {!Progress && content.button}
+                                                <Button onClick={buttonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={progress}>
+                                                    {progress &&  <CircularProgress size={20} />}
+                                                    {!progress && props.content.button}
                                                 </Button>
                                             </Grid>
                                         </Grid>

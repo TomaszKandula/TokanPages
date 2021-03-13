@@ -6,6 +6,7 @@ export const cookiesPromptInitValues: ICookiesPrompt =
     {
         caption: "",
         text: "",
-        button: ""
+        button: "",
+        days: 0
     }
 }
