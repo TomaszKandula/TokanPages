@@ -11,28 +11,20 @@ import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Validate from "validate.js";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
-import useStyles from "./styleUpdateSubscription";
 import { UpdateSubscriberData } from "../../Api/Services/subscribers";
 import { ValidateEmail } from "../../Shared/validate";
 import { GetNewsletterWarning } from "../../Shared/Modals/messageHelper";
+import { IUpdateSubscriber } from "../../Api/Models";
+import useStyles from "./styleUpdateSubscription";
 
-export interface IUpdateSubscription
+const formDefaultValues =
 {
-    id: string | null;
-}
+    email: ""
+};
 
-export default function UpdateSubscriber(props: IUpdateSubscription)
+export default function UpdateSubscriber(id: string | null, props: IUpdateSubscriber)
 {
     const classes = useStyles();
-    const content = 
-    {
-        caption: "Update subscription email",
-        button: "Update"
-    }; 
-    const formDefaultValues =
-    {
-        email: ""
-    };
 
     const [Form, setForm] = React.useState(formDefaultValues);
     const [ButtonState, setButtonState] = React.useState(true);
@@ -51,7 +43,7 @@ export default function UpdateSubscriber(props: IUpdateSubscription)
 
     const ButtonHandler = async () =>
     {
-        if (props.id == null)
+        if (id == null)
         {
             return false;
         }
@@ -65,7 +57,7 @@ export default function UpdateSubscriber(props: IUpdateSubscription)
 
             setModal(await UpdateSubscriberData(
             { 
-                id: props.id, 
+                id: id, 
                 email: Form.email, 
                 isActivated: true, 
                 count: 0 
@@ -99,7 +91,7 @@ export default function UpdateSubscriber(props: IUpdateSubscription)
                             <Box mb={3} textAlign="center">
                                 <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    {content.caption}
+                                    {props.content.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -111,7 +103,7 @@ export default function UpdateSubscriber(props: IUpdateSubscription)
                                 <Box my={2}>
                                     <Button onClick={ButtonHandler} fullWidth variant="contained" color="primary" disabled={!ButtonState}>
                                         {Progress &&  <CircularProgress size={20} />}
-                                        {!Progress && content.button}
+                                        {!Progress && props.content.button}
                                     </Button>
                                 </Box>
                             </Box>
