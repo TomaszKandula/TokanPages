@@ -1,6 +1,6 @@
 import { IFeatures } from "Api/Models"
 
-export const featuresInitValues: IFeatures =
+export const featuresDefault: IFeatures =
 {
     content:
     {

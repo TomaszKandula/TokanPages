@@ -1,6 +1,6 @@
 import { ISigninForm } from "Api/Models"
 
-export const signinFormInitValues: ISigninForm = 
+export const signinFormDefault: ISigninForm = 
 {
     content:
     {

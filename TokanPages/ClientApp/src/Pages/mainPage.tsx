@@ -19,13 +19,13 @@ import {
     getTestimonialsText
 } from "../Api/Services/";
 import { 
-    articleFeatInitValues, 
-    contactFormInitValues, 
-    cookiesPromptInitValues, 
-    featuredInitValues, 
-    featuresInitValues, 
-    newsletterInitValues, 
-    testimonialsInitValues
+    articleFeatDefault, 
+    contactFormDefault, 
+    cookiesPromptDefault, 
+    featuredDefault, 
+    featuresDefault, 
+    newsletterDefault, 
+    testimonialsDefault
 } from "../Api/Defaults";
 
 import AOS from "aos";
@@ -34,13 +34,13 @@ export default function Index()
 {
     const mountedRef = React.useRef(true);
 
-    const [articles, setArticles] = React.useState(articleFeatInitValues);
-    const [features, setFeatures] = React.useState(featuresInitValues);
-    const [featured, setFeatured] = React.useState(featuredInitValues);
-    const [testimonials, setTestimonials] = React.useState(testimonialsInitValues);
-    const [contactForm, setContactForm] = React.useState(contactFormInitValues);
-    const [cookiesPrompt, setCookiesPrompt] = React.useState(cookiesPromptInitValues);
-    const [newsletter, setNewsletter] = React.useState(newsletterInitValues);
+    const [articles, setArticles] = React.useState(articleFeatDefault);
+    const [features, setFeatures] = React.useState(featuresDefault);
+    const [featured, setFeatured] = React.useState(featuredDefault);
+    const [testimonials, setTestimonials] = React.useState(testimonialsDefault);
+    const [contactForm, setContactForm] = React.useState(contactFormDefault);
+    const [cookiesPrompt, setCookiesPrompt] = React.useState(cookiesPromptDefault);
+    const [newsletter, setNewsletter] = React.useState(newsletterDefault);
 
     const updateContent = React.useCallback(async () => 
     {

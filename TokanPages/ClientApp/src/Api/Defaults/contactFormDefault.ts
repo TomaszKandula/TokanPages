@@ -1,6 +1,6 @@
 import { IContactForm } from "Api/Models"
 
-export const contactFormInitValues: IContactForm =
+export const contactFormDefault: IContactForm =
 {
     content:
     {

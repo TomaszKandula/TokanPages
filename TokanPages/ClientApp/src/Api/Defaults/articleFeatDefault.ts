@@ -1,6 +1,6 @@
 import { IArticleFeat } from "Api/Models"
 
-export const articleFeatInitValues: IArticleFeat =
+export const articleFeatDefault: IArticleFeat =
 {
     content: 
     {
