@@ -1,5 +1,5 @@
 import { IApiResult } from "Api/Models"
-import { UNEXPECTED_ERROR } from "Shared/constants"
+import { UNEXPECTED_ERROR } from "../../Shared/constants"
 
 export const getUnexpectedErrorObject = (): IApiResult =>
 {

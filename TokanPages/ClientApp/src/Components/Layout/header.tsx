@@ -8,7 +8,7 @@ import Grid from "@material-ui/core/Grid/Grid";
 import { IMAGES_PATH } from "../../Shared/constants";
 import { IHeader } from "../../Api/Models";
 import useStyles from "./Hooks/styleHeader";
-import { renderImage } from "Shared/Components/renderImage";
+import { renderImage } from "../../Shared/Components/renderImage";
 
 export default function Header(props: IHeader) 
 {

@@ -31,9 +31,7 @@ exports[`Test account component: ResetForm. Renders correctly '<ResetForm />'  1
               color="textSecondary"
               component="h2"
               variant="h5"
-            >
-              Reset password
-            </WithStyles(ForwardRef(Typography))>
+            />
           </Styled(MuiBox)>
           <Styled(MuiBox)>
             <WithStyles(ForwardRef(Grid))
@@ -62,9 +60,7 @@ exports[`Test account component: ResetForm. Renders correctly '<ResetForm />'  1
                 color="primary"
                 fullWidth={true}
                 variant="contained"
-              >
-                Reset
-              </WithStyles(ForwardRef(Button))>
+              />
             </Styled(MuiBox)>
           </Styled(MuiBox)>
         </WithStyles(ForwardRef(CardContent))>
