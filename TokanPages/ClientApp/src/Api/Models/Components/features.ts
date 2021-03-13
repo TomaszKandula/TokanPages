@@ -1,4 +1,4 @@
-interface IFeatures
+export interface IFeatures
 {
     content: IContent;
 }
@@ -16,5 +16,3 @@ interface IContent
     title4: string;
     text4: string;
 }
-
-export type { IFeatures }

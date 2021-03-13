@@ -1,4 +1,4 @@
-interface ITestimonials
+export interface ITestimonials
 {
     content: IContent;
 }
@@ -20,5 +20,3 @@ interface IContent
     occupation3: string;
     text3: string;
 }
-
-export type { ITestimonials }

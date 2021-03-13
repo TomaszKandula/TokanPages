@@ -1,4 +1,4 @@
-interface IFeatured
+export interface IFeatured
 {
     content: IContent;
 }
@@ -20,5 +20,3 @@ interface IContent
     link3: string;
     image3: string;
 }
-
-export type { IFeatured }

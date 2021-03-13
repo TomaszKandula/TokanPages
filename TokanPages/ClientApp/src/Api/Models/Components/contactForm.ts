@@ -1,4 +1,4 @@
-interface IContactForm
+export interface IContactForm
 {
     content: IContent;
 }
@@ -9,5 +9,3 @@ interface IContent
     text: string;
     button: string;
 }
-
-export type { IContactForm }

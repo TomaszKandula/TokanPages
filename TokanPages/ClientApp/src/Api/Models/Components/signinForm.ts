@@ -1,4 +1,4 @@
-interface ISigninForm
+export interface ISigninForm
 {
     content: IContent;
 }
@@ -10,5 +10,3 @@ interface IContent
     link1: string;
     link2: string;
 }
-
-export type { ISigninForm }

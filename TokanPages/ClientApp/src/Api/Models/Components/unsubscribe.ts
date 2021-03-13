@@ -1,4 +1,4 @@
-interface IUnsubscribe
+export interface IUnsubscribe
 {
     content: IContent;
 }
@@ -17,5 +17,3 @@ interface IContentFields
     text3: string;
     button: string;
 }
-
-export type { IUnsubscribe }
