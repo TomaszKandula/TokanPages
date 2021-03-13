@@ -31,9 +31,7 @@ exports[`Test account component: SignupForm. Renders correctly '<SignupForm />' 
               color="textSecondary"
               component="h2"
               variant="h5"
-            >
-              Create a new account
-            </WithStyles(ForwardRef(Typography))>
+            />
           </Styled(MuiBox)>
           <Styled(MuiBox)>
             <WithStyles(ForwardRef(Grid))
@@ -122,18 +120,14 @@ exports[`Test account component: SignupForm. Renders correctly '<SignupForm />' 
                 color="primary"
                 fullWidth={true}
                 variant="contained"
-              >
-                Sign up
-              </WithStyles(ForwardRef(Button))>
+              />
             </Styled(MuiBox)>
             <Styled(MuiBox)
               textAlign="right"
             >
               <Link
                 to="/signin"
-              >
-                Already have an account? Sign in
-              </Link>
+              />
             </Styled(MuiBox)>
           </Styled(MuiBox)>
         </WithStyles(ForwardRef(CardContent))>

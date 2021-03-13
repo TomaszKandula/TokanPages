@@ -1,5 +1,5 @@
 import { IApiResult } from "Api/Models"
-import { GetUnexpectedStatusCode } from "Shared/Modals/messageHelper"
+import { GetUnexpectedStatusCode } from "../../Shared/Modals/messageHelper"
 
 export const getUnexpectedStatusObject = (statusCode: number): IApiResult =>
 {

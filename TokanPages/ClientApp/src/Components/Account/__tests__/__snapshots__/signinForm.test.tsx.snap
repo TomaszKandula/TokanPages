@@ -31,9 +31,7 @@ exports[`Test account component: SigninForm. Renders correctly '<SigninForm />' 
               color="textSecondary"
               component="h2"
               variant="h5"
-            >
-              Sign in
-            </WithStyles(ForwardRef(Typography))>
+            />
           </Styled(MuiBox)>
           <Styled(MuiBox)>
             <WithStyles(ForwardRef(Grid))
@@ -77,9 +75,7 @@ exports[`Test account component: SigninForm. Renders correctly '<SigninForm />' 
                 color="primary"
                 fullWidth={true}
                 variant="contained"
-              >
-                Sign in
-              </WithStyles(ForwardRef(Button))>
+              />
             </Styled(MuiBox)>
             <WithStyles(ForwardRef(Grid))
               className="makeStyles-actions-2"
@@ -93,9 +89,7 @@ exports[`Test account component: SigninForm. Renders correctly '<SigninForm />' 
               >
                 <Link
                   to="/signup"
-                >
-                  Don't have an account?
-                </Link>
+                />
               </WithStyles(ForwardRef(Grid))>
               <WithStyles(ForwardRef(Grid))
                 className="makeStyles-tertiaryAction-1"
@@ -105,9 +99,7 @@ exports[`Test account component: SigninForm. Renders correctly '<SigninForm />' 
               >
                 <Link
                   to="/reset"
-                >
-                  Forgot password?
-                </Link>
+                />
               </WithStyles(ForwardRef(Grid))>
             </WithStyles(ForwardRef(Grid))>
           </Styled(MuiBox)>
