@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import * as React from "react";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -8,21 +8,13 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import { SetCookie, GetCookie } from "../../Shared/cookies";
 import Validate from "validate.js";
+import { ICookiesPrompt } from "../../Api/Models";
 import useStyles from "./styleCookies";
 
-export default function Cookies() 
+export default function Cookies(props: ICookiesPrompt) 
 {
     const classes = useStyles();
-    const content = 
-    {
-        caption: "Cookie Policy",
-        text: `We use cookies to personalise content, to provide social media features and to analyse our traffic. 
-               We also share information about your use of our site with our social media, advertising and analytics partners. 
-               Your consent will be valid 3 days or until you clear all the cookies from your web browser.`,
-        button: "Accept cookies"
-    };
-
-    const [ close, setClose ] = useState(false);
+    const [close, setClose] = React.useState(false);
     const onClickEvent = () => 
     { 
         setClose(true); 
@@ -30,13 +22,13 @@ export default function Cookies()
         {
             cookieName: "cookieConsent", 
             value: "granted", 
-            days: 3,
+            days: props.content.days,
             sameSite: "Strict",
             secure: ""
         });
     };
 
-    const renderConsent = () => 
+    const renderConsent = (): JSX.Element => 
     {
         return (		
             <Box position="fixed" width="100%" bottom={0} p={2} zIndex="modal" className={close ? classes.close : classes.open}>
@@ -44,15 +36,15 @@ export default function Cookies()
                     <Card>
                         <CardContent>
                             <Typography variant="h5" component="h2" gutterBottom={true}>
-                                {content.caption}
+                                {props.content.caption}
                             </Typography>
                             <Typography variant="subtitle1" component="p" color="textSecondary">
-                                {content.text}
+                                {props.content.text}
                             </Typography>            
                         </CardContent>
                         <CardActions>
                             <Button onClick={onClickEvent} color="primary">
-                                {content.button}
+                                {props.content.button}
                             </Button>
                         </CardActions>
                     </Card>

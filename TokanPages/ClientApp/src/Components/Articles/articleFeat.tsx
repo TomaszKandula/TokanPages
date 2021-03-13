@@ -7,35 +7,14 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
+import { IArticleFeat } from "../../Api/Models";
+import { renderCardMedia } from "../../Shared/Components/renderCardMedia";
 import useStyles from "./Hooks/styleArticleFeat";
-import { getArticleFeatText } from "../../Api/Services/";
-import { articleFeatInitValues } from "../../Api/Defaults";
 
-export default function ArticleFeat() 
+export default function ArticleFeat(props: IArticleFeat) 
 {
     const classes = useStyles();
-    const [component, setComponent] = React.useState(articleFeatInitValues);
-
-    const updateContent = React.useCallback(async () => 
-    {
-        setComponent(await getArticleFeatText());
-    }, [ ]);
-
-    React.useEffect(() => 
-    {
-        updateContent();
-    }, 
-    [ updateContent ]);
-    
-    const renderCardMedia = (imageSource: string): JSX.Element | null =>
-    {
-        return imageSource === "" 
-            ? null 
-            : <CardMedia className={classes.media} image={imageSource} />;
-    };
-
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
@@ -44,10 +23,10 @@ export default function ArticleFeat()
                         <Container maxWidth="sm">
                             <Box textAlign="center" mb={5}>
                                 <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {component.content.title}
+                                    {props.content.title}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
-                                    {component.content.desc}
+                                    {props.content.desc}
                                 </Typography>
                             </Box>
                         </Container>
@@ -58,17 +37,17 @@ export default function ArticleFeat()
                                         <CardContent className={classes.info}>
                                             <Box display="flex" flexDirection="column" height="100%" pt={2} px={2}>
                                                 <Typography variant="h5" component="h2" gutterBottom={true}>
-                                                    {component.content.text1}
+                                                    {props.content.text1}
                                                 </Typography>
                                                 <Box mt="auto" mb={2}>
                                                     <Typography variant="body1" component="p" color="textSecondary">
-                                                        {component.content.text2}
+                                                        {props.content.text2}
                                                     </Typography>
                                                 </Box>
                                                 <Box textAlign="right">
                                                     <Link to="/articles" className={classes.link}>
                                                         <Button color="primary" endIcon={<ArrowRightAltIcon />}>
-                                                            {component.content.button}
+                                                            {props.content.button}
                                                         </Button>
                                                     </Link>
                                                 </Box>
@@ -80,22 +59,22 @@ export default function ArticleFeat()
                                     <Grid container spacing={2}>
                                         <Grid item xs={12} md={8}>
                                             <Card elevation={4}>
-                                                {renderCardMedia(component.content.image1)}
+                                                {renderCardMedia(props.content.image1, classes.media)}
                                             </Card>
                                         </Grid>
                                         <Grid item xs={12} md={4}>
                                             <Card elevation={4}>
-                                                {renderCardMedia(component.content.image2)}
+                                                {renderCardMedia(props.content.image2, classes.media)}
                                             </Card>
                                         </Grid>
                                         <Grid item xs={12} md={4}>
                                             <Card elevation={4}>
-                                                {renderCardMedia(component.content.image3)}
+                                                {renderCardMedia(props.content.image3, classes.media)}
                                             </Card>
                                         </Grid> 
                                         <Grid item xs={12} md={8}>
                                             <Card elevation={4}>
-                                                {renderCardMedia(component.content.image4)}
+                                                {renderCardMedia(props.content.image4, classes.media)}
                                             </Card>
                                         </Grid>
                                     </Grid>
