@@ -5,6 +5,8 @@ import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
 import ArticleList from "../Components/Articles/articleList";
 import ArticleDetail from "../Components/Articles/articleDetail";
+import { getNavigationText } from "../Api/Services";
+import { navigationDefault } from "../Api/Defaults";
 
 const useQuery = () => 
 {
@@ -15,12 +17,28 @@ export default function ArticlesPage()
 {
     const queryParam = useQuery();
     const id = queryParam.get("id");
+    const content = id 
+        ? <ArticleDetail id={id} /> 
+        : <ArticleList />;
 
-    const content = id ? <ArticleDetail id={id} /> : <ArticleList />;
+    const mountedRef = React.useRef(true);
+    const [navigation, setNavigation] = React.useState(navigationDefault);
+    const updateContent = React.useCallback(async () => 
+    {
+        if (!mountedRef.current) return;
+        setNavigation(await getNavigationText());
+    }, [ ]);
+
+    React.useEffect(() => 
+    {
+        updateContent();
+        return () => { mountedRef.current = false; };
+    }, 
+    [ updateContent ]);
 
     return (
         <>
-            <Navigation content={null} />
+            <Navigation content={navigation.content} />
             <Container>
                 {content}
             </Container>

@@ -4,8 +4,8 @@ import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
 import Unsubscribe from "../Components/Unsubscribe/unsubscribe";
-import { unsubscribeDefault } from "../Api/Defaults";
-import { getUnsubscribeText } from "../Api/Services";
+import { navigationDefault, unsubscribeDefault } from "../Api/Defaults";
+import { getNavigationText, getUnsubscribeText } from "../Api/Services";
 
 const useQuery = () => 
 {
@@ -19,11 +19,13 @@ export default function UnsubscribePage()
 
     const mountedRef = React.useRef(true);
     const [unsubscribePage, SetUnsubscribePage] = React.useState(unsubscribeDefault);
+    const [navigation, setNavigation] = React.useState(navigationDefault);
 
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
         SetUnsubscribePage(await getUnsubscribeText());
+        setNavigation(await getNavigationText());
     }, [ ]);
 
     React.useEffect(() => 
@@ -34,7 +36,7 @@ export default function UnsubscribePage()
 
     return(
         <>
-            <Navigation content={null} />
+            <Navigation content={navigation.content} />
             <Container>
                 <Unsubscribe {...id} content={unsubscribePage.content} />
             </Container>

@@ -6,6 +6,8 @@ export { RemoveSubscriberData } from "./subscribers";
 
 export { SendMessage } from "./mailer";
 
+export { getNavigationText } from "./components";
+export { getHeaderText } from "./components";
 export { getArticleFeatText } from "./components";
 export { getContactFormText } from "./components";
 export { getCookiesPromptText } from "./components";
