@@ -4,8 +4,8 @@ import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
 import UpdateSubscriber from "Components/UpdateSubscription/updateSubscriber";
-import { updateSubscriberDefault } from "../Api/Defaults";
-import { getUpdateSubscriberText } from "../Api/Services";
+import { navigationDefault, updateSubscriberDefault } from "../Api/Defaults";
+import { getNavigationText, getUpdateSubscriberText } from "../Api/Services";
 
 const useQuery = () => 
 {
@@ -19,11 +19,13 @@ export default function UpdateSubscriberPage()
 
     const mountedRef = React.useRef(true);
     const [updateSubscriberPage, setUpdateSubscriberPage] = React.useState(updateSubscriberDefault);
+    const [navigation, setNavigation] = React.useState(navigationDefault);
 
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
         setUpdateSubscriberPage(await getUpdateSubscriberText());
+        setNavigation(await getNavigationText());
     }, [ ]);
 
     React.useEffect(() => 
@@ -34,7 +36,7 @@ export default function UpdateSubscriberPage()
 
     return(
         <>
-            <Navigation content={null} />
+            <Navigation content={navigation.content} />
             <Container>
                 <UpdateSubscriber {...id} content={updateSubscriberPage.content} />
             </Container>

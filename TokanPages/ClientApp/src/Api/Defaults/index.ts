@@ -1,3 +1,4 @@
+export { navigationDefault } from "./navigationDefault";
 export { articleFeatDefault} from "./articleFeatDefault";
 export { contactFormDefault } from "./contactFormDefault";
 export { cookiesPromptDefault } from "./cookiesPromptDefault";

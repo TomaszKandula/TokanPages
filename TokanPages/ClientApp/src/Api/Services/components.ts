@@ -1,5 +1,6 @@
 import { getDataFromUrl } from "../requests";
 import { 
+    INavigation,
     IArticleFeat, 
     IContactForm, 
     ICookiesPrompt,
@@ -14,6 +15,7 @@ import {
     IUpdateSubscriber
 } from "../../Api/Models";
 import { 
+    GET_NAVIGATION_TEXT,
     GET_ARTICLE_FEAT_TEXT, 
     GET_CONTACT_FORM_TEXT, 
     GET_COOKIES_PROMPT_TEXT,
@@ -27,6 +29,11 @@ import {
     GET_UNSUBSCRIBE_TEXT,
     GET_UPDATE_SUBSCRIBER_TEXT
 } from "../../Shared/constants";
+
+export const getNavigationText = async (): Promise<INavigation> =>
+{
+    return await getDataFromUrl(GET_NAVIGATION_TEXT);
+};
 
 export const getArticleFeatText = async (): Promise<IArticleFeat> =>
 {

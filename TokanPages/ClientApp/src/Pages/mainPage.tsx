@@ -10,6 +10,7 @@ import ContactForm from "../Components/Contact/contactForm";
 import Cookies from "../Components/Cookies/cookies";
 import ArticleFeat from "../Components/Articles/articleFeat";
 import { 
+    getNavigationText,
     getArticleFeatText, 
     getContactFormText, 
     getCookiesPromptText, 
@@ -19,6 +20,7 @@ import {
     getTestimonialsText
 } from "../Api/Services/";
 import { 
+    navigationDefault,
     articleFeatDefault, 
     contactFormDefault, 
     cookiesPromptDefault, 
@@ -34,6 +36,7 @@ export default function Index()
 {
     const mountedRef = React.useRef(true);
 
+    const [navigation, setNavigation] = React.useState(navigationDefault);
     const [articles, setArticles] = React.useState(articleFeatDefault);
     const [features, setFeatures] = React.useState(featuresDefault);
     const [featured, setFeatured] = React.useState(featuredDefault);
@@ -45,6 +48,7 @@ export default function Index()
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
+        setNavigation(await getNavigationText());
         setArticles(await getArticleFeatText());
         setFeatures(await getFeaturesText());
         setFeatured(await getFeaturedText());
@@ -68,7 +72,7 @@ export default function Index()
 
     return (
         <>
-            <Navigation content={null} />
+            <Navigation content={navigation.content} />
             <Header />
             <Features content={features.content} />
             <ArticleFeat content={articles.content} />

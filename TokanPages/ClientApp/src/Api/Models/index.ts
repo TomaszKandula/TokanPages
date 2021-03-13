@@ -16,6 +16,7 @@ export type { IRemoveUserDto } from "./Users/removeUserDto";
 
 export type { IErrorDto } from "./Error/errorDto";
 
+export type { INavigation} from "./Components/navigation";
 export type { IArticleFeat } from "./Components/articleFeat";
 export type { IContactForm } from "./Components/contactForm";
 export type { ICookiesPrompt } from "./Components/cookiesPrompt";
