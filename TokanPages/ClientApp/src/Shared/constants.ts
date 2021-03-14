@@ -38,20 +38,20 @@ export const API_COMMAND_SEND_NEWSLETTER = `${APP_BACKEND}/api/v${API_VER}/maile
 
 /* COMPONENTS CONTENT */
 
-export const GET_NAVIGATION_TEXT = `${APP_STORAGE}/content/components/navigation.json`;
-export const GET_HEADER_TEXT = `${APP_STORAGE}/content/components/header.json`;
-export const GET_ARTICLE_FEAT_TEXT = `${APP_STORAGE}/content/components/articleFeat.json`;
-export const GET_CONTACT_FORM_TEXT = `${APP_STORAGE}/content/components/contactForm.json`;
-export const GET_COOKIES_PROMPT_TEXT = `${APP_STORAGE}/content/components/cookiesPrompt.json`;
-export const GET_FEATURED_TEXT = `${APP_STORAGE}/content/components/featured.json`;
-export const GET_FEATURES_TEXT = `${APP_STORAGE}/content/components/features.json`;
-export const GET_NEWSLETTER_TEXT = `${APP_STORAGE}/content/components/newsletter.json`;
-export const GET_RESET_FORM_TEXT = `${APP_STORAGE}/content/components/resetForm.json`;
-export const GET_SIGNIN_FORM_TEXT = `${APP_STORAGE}/content/components/signinForm.json`;
-export const GET_SIGNUP_FORM_TEXT = `${APP_STORAGE}/content/components/signupForm.json`;
-export const GET_TESTIMONIALS_TEXT = `${APP_STORAGE}/content/components/testimonials.json`;
-export const GET_UNSUBSCRIBE_TEXT = `${APP_STORAGE}/content/components/unsubscribe.json`;
-export const GET_UPDATE_SUBSCRIBER_TEXT = `${APP_STORAGE}/content/components/updateSubscriber.json`;
+export const GET_NAVIGATION_CONTENT = `${APP_STORAGE}/content/components/navigation.json`;
+export const GET_HEADER_CONTENT = `${APP_STORAGE}/content/components/header.json`;
+export const GET_ARTICLE_FEAT_CONTENT = `${APP_STORAGE}/content/components/articleFeat.json`;
+export const GET_CONTACT_FORM_CONTENT = `${APP_STORAGE}/content/components/contactForm.json`;
+export const GET_COOKIES_PROMPT_CONTENT = `${APP_STORAGE}/content/components/cookiesPrompt.json`;
+export const GET_FEATURED_CONTENT = `${APP_STORAGE}/content/components/featured.json`;
+export const GET_FEATURES_CONTENT = `${APP_STORAGE}/content/components/features.json`;
+export const GET_NEWSLETTER_CONTENT = `${APP_STORAGE}/content/components/newsletter.json`;
+export const GET_RESET_FORM_CONTENT = `${APP_STORAGE}/content/components/resetForm.json`;
+export const GET_SIGNIN_FORM_CONTENT = `${APP_STORAGE}/content/components/signinForm.json`;
+export const GET_SIGNUP_FORM_CONTENT = `${APP_STORAGE}/content/components/signupForm.json`;
+export const GET_TESTIMONIALS_CONTENT = `${APP_STORAGE}/content/components/testimonials.json`;
+export const GET_UNSUBSCRIBE_CONTENT = `${APP_STORAGE}/content/components/unsubscribe.json`;
+export const GET_UPDATE_SUBSCRIBER_CONTENT = `${APP_STORAGE}/content/components/updateSubscriber.json`;
 
 /* URLS */
 

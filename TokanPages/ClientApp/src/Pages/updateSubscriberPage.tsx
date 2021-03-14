@@ -5,7 +5,7 @@ import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
 import UpdateSubscriber from "Components/UpdateSubscription/updateSubscriber";
 import { navigationDefault, updateSubscriberDefault } from "../Api/Defaults";
-import { getNavigationText, getUpdateSubscriberText } from "../Api/Services";
+import { getNavigationContent, getUpdateSubscriberContent } from "../Api/Services";
 
 const useQuery = () => 
 {
@@ -18,14 +18,14 @@ export default function UpdateSubscriberPage()
     const id = queryParam.get("id");
 
     const mountedRef = React.useRef(true);
-    const [updateSubscriberPage, setUpdateSubscriberPage] = React.useState(updateSubscriberDefault);
-    const [navigation, setNavigation] = React.useState(navigationDefault);
+    const [updateSubscriberPage, setUpdateSubscriberContent] = React.useState(updateSubscriberDefault);
+    const [navigation, setNavigationContent] = React.useState(navigationDefault);
 
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
-        setUpdateSubscriberPage(await getUpdateSubscriberText());
-        setNavigation(await getNavigationText());
+        setUpdateSubscriberContent(await getUpdateSubscriberContent());
+        setNavigationContent(await getNavigationContent());
     }, [ ]);
 
     React.useEffect(() => 

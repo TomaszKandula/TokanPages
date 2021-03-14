@@ -5,7 +5,7 @@ import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
 import ArticleList from "../Components/Articles/articleList";
 import ArticleDetail from "../Components/Articles/articleDetail";
-import { getNavigationText } from "../Api/Services";
+import { getNavigationContent } from "../Api/Services";
 import { navigationDefault } from "../Api/Defaults";
 
 const useQuery = () => 
@@ -22,11 +22,11 @@ export default function ArticlesPage()
         : <ArticleList />;
 
     const mountedRef = React.useRef(true);
-    const [navigation, setNavigation] = React.useState(navigationDefault);
+    const [navigation, setNavigationContent] = React.useState(navigationDefault);
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
-        setNavigation(await getNavigationText());
+        setNavigationContent(await getNavigationContent());
     }, [ ]);
 
     React.useEffect(() => 

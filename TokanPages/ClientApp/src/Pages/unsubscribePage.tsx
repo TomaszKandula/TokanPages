@@ -5,7 +5,7 @@ import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
 import Unsubscribe from "../Components/Unsubscribe/unsubscribe";
 import { navigationDefault, unsubscribeDefault } from "../Api/Defaults";
-import { getNavigationText, getUnsubscribeText } from "../Api/Services";
+import { getNavigationContent, getUnsubscribeContent } from "../Api/Services";
 
 const useQuery = () => 
 {
@@ -18,14 +18,14 @@ export default function UnsubscribePage()
     const id = queryParam.get("id");
 
     const mountedRef = React.useRef(true);
-    const [unsubscribePage, SetUnsubscribePage] = React.useState(unsubscribeDefault);
-    const [navigation, setNavigation] = React.useState(navigationDefault);
+    const [unsubscribePage, SetUnsubscribePageContent] = React.useState(unsubscribeDefault);
+    const [navigation, setNavigationContent] = React.useState(navigationDefault);
 
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
-        SetUnsubscribePage(await getUnsubscribeText());
-        setNavigation(await getNavigationText());
+        SetUnsubscribePageContent(await getUnsubscribeContent());
+        setNavigationContent(await getNavigationContent());
     }, [ ]);
 
     React.useEffect(() => 

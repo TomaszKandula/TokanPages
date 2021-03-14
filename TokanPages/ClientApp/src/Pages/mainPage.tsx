@@ -10,15 +10,15 @@ import ContactForm from "../Components/Contact/contactForm";
 import Cookies from "../Components/Cookies/cookies";
 import ArticleFeat from "../Components/Articles/articleFeat";
 import { 
-    getNavigationText,
-    getArticleFeatText, 
-    getContactFormText, 
-    getCookiesPromptText, 
-    getFeaturedText, 
-    getFeaturesText, 
-    getNewsletterText, 
-    getTestimonialsText,
-    getHeaderText
+    getNavigationContent,
+    getArticleFeatContent, 
+    getContactFormContent, 
+    getCookiesPromptContent, 
+    getFeaturedContent, 
+    getFeaturesContent, 
+    getNewsletterContent, 
+    getTestimonialsContent,
+    getHeaderContent
 } from "../Api/Services/";
 import { 
     navigationDefault,
@@ -38,28 +38,28 @@ export default function Index()
 {
     const mountedRef = React.useRef(true);
 
-    const [navigation, setNavigation] = React.useState(navigationDefault);
-    const [header, setHeader] = React.useState(headerDefault);
-    const [articles, setArticles] = React.useState(articleFeatDefault);
-    const [features, setFeatures] = React.useState(featuresDefault);
-    const [featured, setFeatured] = React.useState(featuredDefault);
-    const [testimonials, setTestimonials] = React.useState(testimonialsDefault);
-    const [contactForm, setContactForm] = React.useState(contactFormDefault);
-    const [cookiesPrompt, setCookiesPrompt] = React.useState(cookiesPromptDefault);
-    const [newsletter, setNewsletter] = React.useState(newsletterDefault);
+    const [navigation, setNavigationContent] = React.useState(navigationDefault);
+    const [header, setHeaderContent] = React.useState(headerDefault);
+    const [articles, setArticlesContent] = React.useState(articleFeatDefault);
+    const [features, setFeaturesContent] = React.useState(featuresDefault);
+    const [featured, setFeaturedContent] = React.useState(featuredDefault);
+    const [testimonials, setTestimonialsContent] = React.useState(testimonialsDefault);
+    const [contactForm, setContactFormContent] = React.useState(contactFormDefault);
+    const [cookiesPrompt, setCookiesPromptContent] = React.useState(cookiesPromptDefault);
+    const [newsletter, setNewsletterContent] = React.useState(newsletterDefault);
 
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
-        setNavigation(await getNavigationText());
-        setHeader(await getHeaderText());
-        setArticles(await getArticleFeatText());
-        setFeatures(await getFeaturesText());
-        setFeatured(await getFeaturedText());
-        setTestimonials(await getTestimonialsText());
-        setContactForm(await getContactFormText());
-        setCookiesPrompt(await getCookiesPromptText());
-        setNewsletter(await getNewsletterText());
+        setNavigationContent(await getNavigationContent());
+        setHeaderContent(await getHeaderContent());
+        setArticlesContent(await getArticleFeatContent());
+        setFeaturesContent(await getFeaturesContent());
+        setFeaturedContent(await getFeaturedContent());
+        setTestimonialsContent(await getTestimonialsContent());
+        setContactFormContent(await getContactFormContent());
+        setCookiesPromptContent(await getCookiesPromptContent());
+        setNewsletterContent(await getNewsletterContent());
     }, [ ]);
 
     React.useEffect(() => 
