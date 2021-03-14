@@ -16,88 +16,88 @@ import {
     IUpdateSubscriber
 } from "../../Api/Models";
 import { 
-    GET_NAVIGATION_TEXT,
-    GET_HEADER_TEXT,
-    GET_ARTICLE_FEAT_TEXT, 
-    GET_CONTACT_FORM_TEXT, 
-    GET_COOKIES_PROMPT_TEXT,
-    GET_FEATURED_TEXT,
-    GET_FEATURES_TEXT,
-    GET_NEWSLETTER_TEXT,
-    GET_RESET_FORM_TEXT,
-    GET_SIGNIN_FORM_TEXT,
-    GET_SIGNUP_FORM_TEXT,
-    GET_TESTIMONIALS_TEXT,
-    GET_UNSUBSCRIBE_TEXT,
-    GET_UPDATE_SUBSCRIBER_TEXT
+    GET_NAVIGATION_CONTENT,
+    GET_HEADER_CONTENT,
+    GET_ARTICLE_FEAT_CONTENT, 
+    GET_CONTACT_FORM_CONTENT, 
+    GET_COOKIES_PROMPT_CONTENT,
+    GET_FEATURED_CONTENT,
+    GET_FEATURES_CONTENT,
+    GET_NEWSLETTER_CONTENT,
+    GET_RESET_FORM_CONTENT,
+    GET_SIGNIN_FORM_CONTENT,
+    GET_SIGNUP_FORM_CONTENT,
+    GET_TESTIMONIALS_CONTENT,
+    GET_UNSUBSCRIBE_CONTENT,
+    GET_UPDATE_SUBSCRIBER_CONTENT
 } from "../../Shared/constants";
 
-export const getNavigationText = async (): Promise<INavigation> =>
+export const getNavigationContent = async (): Promise<INavigation> =>
 {
-    return await getDataFromUrl(GET_NAVIGATION_TEXT);
+    return await getDataFromUrl(GET_NAVIGATION_CONTENT);
 };
 
-export const getHeaderText = async (): Promise<IHeader> =>
+export const getHeaderContent = async (): Promise<IHeader> =>
 {
-    return await getDataFromUrl(GET_HEADER_TEXT);
+    return await getDataFromUrl(GET_HEADER_CONTENT);
 };
 
-export const getArticleFeatText = async (): Promise<IArticleFeat> =>
+export const getArticleFeatContent = async (): Promise<IArticleFeat> =>
 {
-    return await getDataFromUrl(GET_ARTICLE_FEAT_TEXT); 
+    return await getDataFromUrl(GET_ARTICLE_FEAT_CONTENT); 
 };
 
-export const getContactFormText = async (): Promise<IContactForm> =>
+export const getContactFormContent = async (): Promise<IContactForm> =>
 {
-    return await getDataFromUrl(GET_CONTACT_FORM_TEXT);
+    return await getDataFromUrl(GET_CONTACT_FORM_CONTENT);
 };
 
-export const getCookiesPromptText = async (): Promise<ICookiesPrompt> =>
+export const getCookiesPromptContent = async (): Promise<ICookiesPrompt> =>
 {
-    return await getDataFromUrl(GET_COOKIES_PROMPT_TEXT);
+    return await getDataFromUrl(GET_COOKIES_PROMPT_CONTENT);
 };
 
-export const getFeaturedText = async (): Promise<IFeatured> =>
+export const getFeaturedContent = async (): Promise<IFeatured> =>
 {
-    return await getDataFromUrl(GET_FEATURED_TEXT);
+    return await getDataFromUrl(GET_FEATURED_CONTENT);
 };
 
-export const getFeaturesText = async (): Promise<IFeatures> =>
+export const getFeaturesContent = async (): Promise<IFeatures> =>
 {
-    return await getDataFromUrl(GET_FEATURES_TEXT);
+    return await getDataFromUrl(GET_FEATURES_CONTENT);
 };
 
-export const getNewsletterText = async (): Promise<INewsletter> =>
+export const getNewsletterContent = async (): Promise<INewsletter> =>
 {
-    return await getDataFromUrl(GET_NEWSLETTER_TEXT);
+    return await getDataFromUrl(GET_NEWSLETTER_CONTENT);
 };
 
-export const getResetFormText = async (): Promise<IResetForm> =>
+export const getResetFormContent = async (): Promise<IResetForm> =>
 {
-    return await getDataFromUrl(GET_RESET_FORM_TEXT);
+    return await getDataFromUrl(GET_RESET_FORM_CONTENT);
 };
 
-export const getSigninFormText = async (): Promise<ISigninForm> =>
+export const getSigninFormContent = async (): Promise<ISigninForm> =>
 {
-    return await getDataFromUrl(GET_SIGNIN_FORM_TEXT);
+    return await getDataFromUrl(GET_SIGNIN_FORM_CONTENT);
 };
 
-export const getSignupFormText = async (): Promise<ISignupForm> =>
+export const getSignupFormContent = async (): Promise<ISignupForm> =>
 {
-    return await getDataFromUrl(GET_SIGNUP_FORM_TEXT);
+    return await getDataFromUrl(GET_SIGNUP_FORM_CONTENT);
 };
 
-export const getTestimonialsText = async (): Promise<ITestimonials> =>
+export const getTestimonialsContent = async (): Promise<ITestimonials> =>
 {
-    return await getDataFromUrl(GET_TESTIMONIALS_TEXT);
+    return await getDataFromUrl(GET_TESTIMONIALS_CONTENT);
 };
 
-export const getUnsubscribeText = async (): Promise<IUnsubscribe> =>
+export const getUnsubscribeContent = async (): Promise<IUnsubscribe> =>
 {
-    return await getDataFromUrl(GET_UNSUBSCRIBE_TEXT);
+    return await getDataFromUrl(GET_UNSUBSCRIBE_CONTENT);
 };
 
-export const getUpdateSubscriberText = async (): Promise<IUpdateSubscriber> =>
+export const getUpdateSubscriberContent = async (): Promise<IUpdateSubscriber> =>
 {
-    return await getDataFromUrl(GET_UPDATE_SUBSCRIBER_TEXT);
+    return await getDataFromUrl(GET_UPDATE_SUBSCRIBER_CONTENT);
 };

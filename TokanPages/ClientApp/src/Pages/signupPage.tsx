@@ -4,19 +4,19 @@ import Navigation from "../Components/Layout/navigation";
 import SignupForm from "../Components/Account/signupForm";
 import Footer from "../Components/Layout/footer";
 import { navigationDefault, signupFormDefault } from "../Api/Defaults";
-import { getNavigationText, getSignupFormText } from "../Api/Services";
+import { getNavigationContent, getSignupFormContent } from "../Api/Services";
 
 export default function SignupPage() 
 {
     const mountedRef = React.useRef(true);
-    const [signupForm, setSignupForm] = React.useState(signupFormDefault);
-    const [navigation, setNavigation] = React.useState(navigationDefault);
+    const [signupForm, setSignupFormContent] = React.useState(signupFormDefault);
+    const [navigation, setNavigationContent] = React.useState(navigationDefault);
 
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
-        setSignupForm(await getSignupFormText());
-        setNavigation(await getNavigationText());
+        setSignupFormContent(await getSignupFormContent());
+        setNavigationContent(await getNavigationContent());
     }, [ ]);
 
     React.useEffect(() => 
