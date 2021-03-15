@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core";
+import { CustomColours } from "Theme/customColours";
 
 const useStyles = makeStyles(() => (
 {
@@ -10,7 +11,7 @@ const useStyles = makeStyles(() => (
     },
     text:
     {
-        color: "#9E9E9E",
+        color: CustomColours.typography.gray1,
         paddingTop: "1px",
         paddingBottom: "1px",
         paddingLeft: "10px",

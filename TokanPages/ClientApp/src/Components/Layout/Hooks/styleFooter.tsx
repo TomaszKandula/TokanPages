@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { CustomColours } from "Theme/customColours";
 
 const useStyles = makeStyles((theme) => (
 {
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => (
     }, 
     copy: 
     {
-        color: "#757575",
+        color: CustomColours.typography.gray2,
         [theme.breakpoints.down("md")]: 
         {
             width: "100%",
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => (
     },
     links:
     {
-        color: "#757575",
+        color: CustomColours.typography.gray2,
         textDecoration: "none"
     }
 }));
