@@ -3,16 +3,16 @@ import {
     makeStyles, 
     withStyles, 
     TableCell, 
-    TableRow, 
-    Theme 
+    TableRow
 } from "@material-ui/core";
+import { CustomColours } from "Theme/customColours";
 
-const StyledTableCell = withStyles((theme: Theme) => createStyles(
+const StyledTableCell = withStyles(() => createStyles(
 {
     head: 
     {
-        backgroundColor: "#1976D2",
-        color: theme.palette.common.white,
+        backgroundColor: CustomColours.background.gray1,
+        color: CustomColours.typography.white,
         fontSize: 18,
         fontWeight: "bold"
     },
@@ -23,13 +23,13 @@ const StyledTableCell = withStyles((theme: Theme) => createStyles(
 }),
 )(TableCell);
 
-const StyledTableRow = withStyles((theme: Theme) => createStyles(
+const StyledTableRow = withStyles(() => createStyles(
 {
     root: 
     {
         '&:nth-of-type(odd)': 
         {
-            backgroundColor: theme.palette.action.hover,
+            backgroundColor: CustomColours.background.lightGray2,
         },
     },
 }),

@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core";
+import { CustomColours } from "../../../Theme/customColours";
 
 const useStyles = makeStyles(() => (
 {
@@ -26,19 +27,19 @@ const useStyles = makeStyles(() => (
     },
     avatarSmall:
     {
-        color: "#FFFFFF",
+        color: CustomColours.typography.white,
         width: "48px", 
         height: "48px"
     },
     avatarLarge:
     {
-        color: "#FFFFFF",
+        color: CustomColours.typography.white,
         width: "96px", 
         height: "96px"
     },
     thumbsMedium:
     {
-        color: "#9E9E9E",
+        color: CustomColours.background.gray1,
         cursor: "pointer",
         width: "24px", 
         height: "24px"

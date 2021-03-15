@@ -1,10 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { CustomColours } from "../../Theme/customColours";
 
 const useStyles = makeStyles((theme) => (
 {
     section:
     {
-        backgroundColor: "#FFFFFF"
+        backgroundColor: CustomColours.background.white
     },
     img:
     {
