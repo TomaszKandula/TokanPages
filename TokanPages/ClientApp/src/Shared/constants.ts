@@ -95,4 +95,4 @@ export const LIKES_LIMIT_FOR_USER = 50;
 export const LIKES_TIP_FOR_ANONYM = `You may give up to {LEFT_LIKES} thumbs up!`;
 export const LIKES_TIP_FOR_USER = `You may give up to {LEFT_LIKES} thumbs up!`;
 export const MAX_LIKES_REACHED = `You've reached max thumbs up :)`;
-export const WORDS_PER_MINUTE = 165;
+export const WORDS_PER_MINUTE = 265;
