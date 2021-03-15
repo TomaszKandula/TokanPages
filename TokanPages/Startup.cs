@@ -66,7 +66,7 @@ namespace TokanPages
             // We get the Docker's internal network IP(s)
             var LHostName = Dns.GetHostName();
             var LAddresses = Dns.GetHostEntry(LHostName).AddressList
-                .Where(x => x.AddressFamily == AddressFamily.InterNetwork)
+                .Where(AIpAddress => AIpAddress.AddressFamily == AddressFamily.InterNetwork)
                 .ToList();
 
             AServices.Configure<ForwardedHeadersOptions>(AOptions =>

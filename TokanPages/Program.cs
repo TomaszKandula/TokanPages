@@ -12,17 +12,17 @@ namespace TokanPages
         private static IWebHostBuilder CreateWebHostBuilder(string[] ARgs) =>
             WebHost.CreateDefaultBuilder(ARgs)
                 .UseStartup<Startup>()
-                .UseSerilog((Context, Config) => 
+                .UseSerilog((AContext, AConfig) => 
                 {
-                    Config.ReadFrom.Configuration(Context.Configuration);
-                    Config.WriteTo.Sentry(Sentry => 
+                    AConfig.ReadFrom.Configuration(AContext.Configuration);
+                    AConfig.WriteTo.Sentry(ASentry => 
                     {
-                        Sentry.SendDefaultPii = true;
-                        Sentry.MinimumBreadcrumbLevel = LogEventLevel.Information;
-                        Sentry.MinimumEventLevel = LogEventLevel.Information;
-                        Sentry.AttachStacktrace = true;
-                        Sentry.Debug = true;
-                        Sentry.DiagnosticsLevel = SentryLevel.Error;
+                        ASentry.SendDefaultPii = true;
+                        ASentry.MinimumBreadcrumbLevel = LogEventLevel.Information;
+                        ASentry.MinimumEventLevel = LogEventLevel.Information;
+                        ASentry.AttachStacktrace = true;
+                        ASentry.Debug = true;
+                        ASentry.DiagnosticsLevel = SentryLevel.Error;
                     });
                 })
                 .UseSentry();
@@ -37,7 +37,7 @@ namespace TokanPages
             }
             catch (Exception LException)
             {
-                Log.Fatal(LException, "WebHost has been terminated unexpectedly.");
+                Log.Fatal(LException, "WebHost has been terminated unexpectedly");
                 return 1;
             }
             finally
