@@ -8,6 +8,7 @@ export { SendMessage } from "./mailer";
 
 export { getNavigationContent } from "./components";
 export { getHeaderContent } from "./components";
+export { getFooterContent } from "./components";
 export { getArticleFeatContent } from "./components";
 export { getContactFormContent } from "./components";
 export { getCookiesPromptContent } from "./components";

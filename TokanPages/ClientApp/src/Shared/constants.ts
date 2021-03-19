@@ -40,6 +40,7 @@ export const API_COMMAND_SEND_NEWSLETTER = `${APP_BACKEND}/api/v${API_VER}/maile
 
 export const GET_NAVIGATION_CONTENT = `${APP_STORAGE}/content/components/navigation.json`;
 export const GET_HEADER_CONTENT = `${APP_STORAGE}/content/components/header.json`;
+export const GET_FOOTER_CONTENT = `${APP_STORAGE}/content/components/footer.json`;
 export const GET_ARTICLE_FEAT_CONTENT = `${APP_STORAGE}/content/components/articleFeat.json`;
 export const GET_CONTACT_FORM_CONTENT = `${APP_STORAGE}/content/components/contactForm.json`;
 export const GET_COOKIES_PROMPT_CONTENT = `${APP_STORAGE}/content/components/cookiesPrompt.json`;

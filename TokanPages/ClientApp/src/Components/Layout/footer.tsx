@@ -6,29 +6,17 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import { IFooter } from "../../Api/Models";
 import useStyles from "./Hooks/styleFooter";
 
-export interface IFooter
-{
-    backgroundColor?: string
-}
-
-export default function Footer(props: IFooter) 
+export default function Footer(props: { footer: IFooter, backgroundColor: string }) 
 {
     const classes = useStyles();
-    const content = 
-    {
-        terms: "Terms of use",
-        policy: "Privacy policy",
-        copyright: "© 2020 - 2021 Tomasz Kandula",
-        reserved: "All rights reserved"
-    };
-
     const SetTermsLink = () => 
     { 
         return (
             <Link to="/terms" className={classes.links}>
-                {content.terms}
+                {props.footer.content.terms}
             </Link>
         ); 
     };
@@ -37,8 +25,8 @@ export default function Footer(props: IFooter)
     { 
         return (
             <Link to="/policy" className={classes.links}>
-                {content.policy}
-                </Link>
+                {props.footer.content.policy}
+            </Link>
         );
     };
 
@@ -48,13 +36,21 @@ export default function Footer(props: IFooter)
                 <div data-aos="zoom-in">
                     <Box py={6} display="flex" flexWrap="wrap" alignItems="center">
                         <Typography component="p" gutterBottom={false} className={classes.copy}>
-                            {content.copyright} | {content.reserved} | <SetTermsLink /> | <SetPolicyLink />
+                            {props.footer.content.copyright} | {props.footer.content.reserved} | <SetTermsLink /> | <SetPolicyLink />
                         </Typography>
                         <Box ml="auto" className={classes.iconsBoxRoot}>
-                            <IconButton color="default" aria-label="GitHub" href="https://github.com/TomaszKandula" target="_blank">
+                            <IconButton 
+                                color="default" 
+                                aria-label={props.footer.content.icons.firstIcon.name} 
+                                href={props.footer.content.icons.firstIcon.link} 
+                                target="_blank">
                                 <GitHubIcon />
                             </IconButton>
-                            <IconButton color="default" aria-label="LinkedIn" href="https://www.linkedin.com/in/tomaszkandula/" target="_blank">
+                            <IconButton 
+                                color="default" 
+                                aria-label={props.footer.content.icons.secondIcon.name} 
+                                href={props.footer.content.icons.secondIcon.link} 
+                                target="_blank">
                                 <LinkedInIcon />
                             </IconButton>
                         </Box>

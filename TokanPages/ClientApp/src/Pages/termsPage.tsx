@@ -4,18 +4,20 @@ import Navigation from "../Components/Layout/navigation";
 import StaticContent from "../Components/Content/staticContent";
 import Footer from "../Components/Layout/footer";
 import * as Consts from "../Shared/constants";
-import { navigationDefault } from "../Api/Defaults";
-import { getNavigationContent } from "../Api/Services";
+import { footerDefault, navigationDefault } from "../Api/Defaults";
+import { getFooterContent, getNavigationContent } from "../Api/Services";
 
 export default function TermsPage() 
 {
     const mountedRef = React.useRef(true);
     const [navigation, setNavigationContent] = React.useState(navigationDefault);
+    const [footer, setFooterContent] = React.useState(footerDefault);
 
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
         setNavigationContent(await getNavigationContent());
+        setFooterContent(await getFooterContent());
     }, [ ]);
 
     React.useEffect(() => 
@@ -31,7 +33,7 @@ export default function TermsPage()
             <Container>
                 <StaticContent dataUrl={Consts.TERMS_URL} />
             </Container>
-            <Footer backgroundColor="#FAFAFA" />
+            <Footer footer={footer} backgroundColor="#FAFAFA" />
         </>
     );
 }
