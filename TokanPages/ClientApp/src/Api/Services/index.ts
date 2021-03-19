@@ -21,3 +21,4 @@ export { getSignupFormContent } from "./components";
 export { getTestimonialsContent } from "./components";
 export { getUnsubscribeContent } from "./components";
 export { getUpdateSubscriberContent } from "./components";
+export { getNotFoundContent } from "./components";

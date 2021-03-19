@@ -14,7 +14,8 @@ import {
     ISignupForm,
     ITestimonials,
     IUnsubscribe,
-    IUpdateSubscriber
+    IUpdateSubscriber,
+    INotFound
 } from "../../Api/Models";
 import { 
     GET_NAVIGATION_CONTENT,
@@ -31,7 +32,8 @@ import {
     GET_SIGNUP_FORM_CONTENT,
     GET_TESTIMONIALS_CONTENT,
     GET_UNSUBSCRIBE_CONTENT,
-    GET_UPDATE_SUBSCRIBER_CONTENT
+    GET_UPDATE_SUBSCRIBER_CONTENT,
+    GET_NOTFOUND_CONTENT
 } from "../../Shared/constants";
 
 export const getNavigationContent = async (): Promise<INavigation> =>
@@ -107,4 +109,9 @@ export const getUnsubscribeContent = async (): Promise<IUnsubscribe> =>
 export const getUpdateSubscriberContent = async (): Promise<IUpdateSubscriber> =>
 {
     return await getDataFromUrl(GET_UPDATE_SUBSCRIBER_CONTENT);
+};
+
+export const getNotFoundContent = async (): Promise<INotFound> =>
+{
+    return await getDataFromUrl(GET_NOTFOUND_CONTENT);
 };
