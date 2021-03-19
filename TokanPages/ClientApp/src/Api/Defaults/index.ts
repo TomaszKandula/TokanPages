@@ -13,3 +13,4 @@ export { signupFormDefault } from "./signupFormDefault";
 export { testimonialsDefault } from "./testimonialsDefault";
 export { unsubscribeDefault } from "./unsubscribeDefault";
 export { updateSubscriberDefault } from "./updateSubscriberDefault";
+export { notFoundDefault } from "./notFoundDefault";
