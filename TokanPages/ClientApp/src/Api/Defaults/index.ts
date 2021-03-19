@@ -1,5 +1,6 @@
 export { navigationDefault } from "./navigationDefault";
 export { headerDefault } from "./headerDefault";
+export { footerDefault } from "./footerDefault";
 export { articleFeatDefault} from "./articleFeatDefault";
 export { contactFormDefault } from "./contactFormDefault";
 export { cookiesPromptDefault } from "./cookiesPromptDefault";

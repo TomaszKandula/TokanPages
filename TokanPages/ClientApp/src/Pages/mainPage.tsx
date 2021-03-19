@@ -23,6 +23,7 @@ import {
 import { 
     navigationDefault,
     headerDefault,
+    footerDefault,
     articleFeatDefault, 
     contactFormDefault, 
     cookiesPromptDefault, 
@@ -33,6 +34,7 @@ import {
 } from "../Api/Defaults";
 
 import AOS from "aos";
+import { getFooterContent } from "Api/Services/components";
 
 export default function Index() 
 {
@@ -40,6 +42,7 @@ export default function Index()
 
     const [navigation, setNavigationContent] = React.useState(navigationDefault);
     const [header, setHeaderContent] = React.useState(headerDefault);
+    const [footer, setFooterContent] = React.useState(footerDefault);
     const [articles, setArticlesContent] = React.useState(articleFeatDefault);
     const [features, setFeaturesContent] = React.useState(featuresDefault);
     const [featured, setFeaturedContent] = React.useState(featuredDefault);
@@ -53,6 +56,7 @@ export default function Index()
         if (!mountedRef.current) return;
         setNavigationContent(await getNavigationContent());
         setHeaderContent(await getHeaderContent());
+        setFooterContent(await getFooterContent());
         setArticlesContent(await getArticleFeatContent());
         setFeaturesContent(await getFeaturesContent());
         setFeaturedContent(await getFeaturedContent());
@@ -85,7 +89,7 @@ export default function Index()
             <Newsletter content={newsletter.content} />
             <ContactForm content={contactForm.content} />
             <Cookies content={cookiesPrompt.content} />
-            <Footer backgroundColor="#FAFAFA" />
+            <Footer footer={footer} backgroundColor="#FAFAFA" />
         </>
     );
 }

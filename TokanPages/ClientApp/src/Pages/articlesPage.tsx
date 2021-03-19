@@ -5,8 +5,8 @@ import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
 import ArticleList from "../Components/Articles/articleList";
 import ArticleDetail from "../Components/Articles/articleDetail";
-import { getNavigationContent } from "../Api/Services";
-import { navigationDefault } from "../Api/Defaults";
+import { getFooterContent, getNavigationContent } from "../Api/Services";
+import { footerDefault, navigationDefault } from "../Api/Defaults";
 
 const useQuery = () => 
 {
@@ -23,10 +23,13 @@ export default function ArticlesPage()
 
     const mountedRef = React.useRef(true);
     const [navigation, setNavigationContent] = React.useState(navigationDefault);
+    const [footer, setFooterContent] = React.useState(footerDefault);
+
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
         setNavigationContent(await getNavigationContent());
+        setFooterContent(await getFooterContent());
     }, [ ]);
 
     React.useEffect(() => 
@@ -42,7 +45,7 @@ export default function ArticlesPage()
             <Container>
                 {content}
             </Container>
-            <Footer backgroundColor="#FAFAFA" />
+            <Footer footer={footer} backgroundColor="#FAFAFA" />
         </>
     );
 }

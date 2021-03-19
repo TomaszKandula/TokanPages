@@ -2,6 +2,7 @@ import { getDataFromUrl } from "../requests";
 import { 
     INavigation,
     IHeader,
+    IFooter,
     IArticleFeat, 
     IContactForm, 
     ICookiesPrompt,
@@ -18,6 +19,7 @@ import {
 import { 
     GET_NAVIGATION_CONTENT,
     GET_HEADER_CONTENT,
+    GET_FOOTER_CONTENT,
     GET_ARTICLE_FEAT_CONTENT, 
     GET_CONTACT_FORM_CONTENT, 
     GET_COOKIES_PROMPT_CONTENT,
@@ -40,6 +42,11 @@ export const getNavigationContent = async (): Promise<INavigation> =>
 export const getHeaderContent = async (): Promise<IHeader> =>
 {
     return await getDataFromUrl(GET_HEADER_CONTENT);
+};
+
+export const getFooterContent = async (): Promise<IFooter> =>
+{
+    return await getDataFromUrl(GET_FOOTER_CONTENT);
 };
 
 export const getArticleFeatContent = async (): Promise<IArticleFeat> =>
