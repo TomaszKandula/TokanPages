@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Build & run tests (dev)
 
 on:
   pull_request:
