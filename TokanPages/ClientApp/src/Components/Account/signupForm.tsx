@@ -58,7 +58,7 @@ export default function SignupForm(props: { signupForm: ISignupForm, isLoading: 
                                     <Grid item xs={12}>
                                         <FormControlLabel 
                                             control={<Checkbox name="terms" value="1" color="primary" />} 
-                                            label="I agree to the terms of use and privacy policy." 
+                                            label={props.signupForm.content.label} 
                                         />
                                     </Grid>
                                 </Grid>

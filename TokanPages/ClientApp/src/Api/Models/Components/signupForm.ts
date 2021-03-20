@@ -8,4 +8,5 @@ interface IContent
     caption: string;
     button: string;
     link: string;
+    label: string;
 }
