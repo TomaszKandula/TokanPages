@@ -43,8 +43,8 @@ export default function Index()
     const [navigation, setNavigationContent] = React.useState({ data: navigationDefault, isLoading: true });
     const [header, setHeaderContent] = React.useState({ data: headerDefault, isLoading: true });
     const [footer, setFooterContent] = React.useState({ data: footerDefault, isLoading: true });
-    const [articles, setArticlesContent] = React.useState({ data: articleFeatDefault, isLoading: true });   
-    const [features, setFeaturesContent] = React.useState({ data: featuresDefault, isLoading: true });    
+    const [articles, setArticlesContent] = React.useState({ data: articleFeatDefault, isLoading: true });
+    const [features, setFeaturesContent] = React.useState({ data: featuresDefault, isLoading: true });
     const [featured, setFeaturedContent] = React.useState({ data: featuredDefault, isLoading: true });
     const [testimonials, setTestimonialsContent] = React.useState({ data: testimonialsDefault, isLoading: true });
     const [newsletter, setNewsletterContent] = React.useState({ data: newsletterDefault, isLoading: true });
@@ -58,7 +58,7 @@ export default function Index()
         setHeaderContent({ data: await getHeaderContent(), isLoading: false });
         setFooterContent({ data: await getFooterContent(), isLoading: false });
         setArticlesContent({ data: await getArticleFeatContent(), isLoading: false });
-        setFeaturesContent({ data: await getFeaturesContent(), isLoading: false });        
+        setFeaturesContent({ data: await getFeaturesContent(), isLoading: false });
         setFeaturedContent({ data: await getFeaturedContent(), isLoading: false });
         setTestimonialsContent({ data: await getTestimonialsContent(), isLoading: false });
         setNewsletterContent({ data: await getNewsletterContent(), isLoading: false });
