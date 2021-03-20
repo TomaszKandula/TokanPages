@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test account component: SigninForm. Renders correctly '<SigninForm />'  1`] = `
+exports[`Test account component: SigninForm. Renders correctly '<SigninForm />' when content is loaded. 1`] = `
 <section>
   <WithStyles(ForwardRef(Container))
     maxWidth="sm"

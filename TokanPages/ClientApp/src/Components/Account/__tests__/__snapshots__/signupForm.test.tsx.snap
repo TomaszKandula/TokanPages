@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test account component: SignupForm. Renders correctly '<SignupForm />'  1`] = `
+exports[`Test account component: SignupForm. Renders correctly '<SignupForm />' when content is loaded. 1`] = `
 <section>
   <WithStyles(ForwardRef(Container))
     maxWidth="sm"
@@ -109,7 +109,7 @@ exports[`Test account component: SignupForm. Renders correctly '<SignupForm />' 
                       value="1"
                     />
                   }
-                  label="I agree to the terms of use and privacy policy."
+                  label=""
                 />
               </WithStyles(ForwardRef(Grid))>
             </WithStyles(ForwardRef(Grid))>
