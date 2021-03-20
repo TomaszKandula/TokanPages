@@ -6,9 +6,9 @@ import { resetFormDefault } from "../../../Api/Defaults";
 
 describe("Test account component: ResetForm.", () => 
 {
-    it("Renders correctly '<ResetForm />' ", () => 
+    it("Renders correctly '<ResetForm />' when content is loaded.", () => 
     {
-        const tree = shallow(<ResetForm content={resetFormDefault.content} />);
+        const tree = shallow(<ResetForm resetForm={resetFormDefault} isLoading={false} />);
         expect(tree).toMatchSnapshot();
     });
 });
