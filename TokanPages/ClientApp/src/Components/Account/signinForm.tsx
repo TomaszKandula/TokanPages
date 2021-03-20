@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { Card, CardContent } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
+import Skeleton from "@material-ui/lab/Skeleton";
 import { ISigninForm } from "../../Api/Models";
 import useStyles from "./Hooks/styleSigninForm";
 
@@ -23,32 +24,38 @@ export default function SigninForm(props: { signinForm: ISigninForm, isLoading: 
                             <Box mb={3} textAlign="center">
                                 <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    {props.signinForm.content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.signinForm.content.caption}
                                 </Typography>
                             </Box>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        <TextField variant="outlined" required fullWidth name="email" id="email" label="Email address" autoComplete="email" />
+                                        <TextField 
+                                            variant="outlined" required fullWidth 
+                                            name="email" id="email" label="Email address" autoComplete="email" 
+                                        />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField variant="outlined" required fullWidth name="password" id="password" label="Password" type="password" autoComplete="current-password" />
+                                        <TextField 
+                                            variant="outlined" required fullWidth 
+                                            name="password" id="password" label="Password" type="password" autoComplete="current-password" 
+                                        />
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
                                     <Button fullWidth variant="contained" color="primary">
-                                        {props.signinForm.content.button}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.signinForm.content.button}
                                     </Button>
                                 </Box>
                                 <Grid container spacing={2} className={classes.actions}>
                                     <Grid item xs={12} sm={6}>
                                         <Link to="/signup">
-                                            {props.signinForm.content.link1}
+                                            {props.isLoading ? <Skeleton variant="text" /> : props.signinForm.content.link1}
                                         </Link>
                                     </Grid>
                                     <Grid item xs={12} sm={6} className={classes.tertiaryAction}>
                                         <Link to="/reset">
-                                            {props.signinForm.content.link2}
+                                            {props.isLoading ? <Skeleton variant="text" /> : props.signinForm.content.link2}
                                         </Link>
                                     </Grid>
                                 </Grid>

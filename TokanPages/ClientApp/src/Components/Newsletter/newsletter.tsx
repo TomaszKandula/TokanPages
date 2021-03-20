@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { CircularProgress } from "@material-ui/core";
+import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
 import { ValidateEmail } from "../../Shared/validate";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
@@ -81,10 +82,10 @@ export default function Newsletter(props: { newsletter: INewsletter, isLoading: 
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={5}>
                                 <Typography variant="h4" component="h2">
-                                    {props.newsletter.content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.newsletter.content.caption}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
-                                {props.newsletter.content.text}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.newsletter.content.text}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={7}>
@@ -93,16 +94,9 @@ export default function Newsletter(props: { newsletter: INewsletter, isLoading: 
                                         <Grid container spacing={2}>
                                             <Grid item xs={12} sm={7}>
                                                 <TextField 
-                                                    onChange={formHandler} 
-                                                    value={form.email} 
-                                                    variant="outlined" 
-                                                    required 
-                                                    fullWidth 
-                                                    size="small" 
-                                                    name="email" 
-                                                    id="email_newletter" 
-                                                    label="Email address" 
-                                                    autoComplete="email" 
+                                                    onChange={formHandler} value={form.email} variant="outlined" 
+                                                    required fullWidth size="small" name="email" id="email_newletter" 
+                                                    label="Email address" autoComplete="email" 
                                                 />
                                             </Grid>
                                             <Grid item xs={12} sm={5}>

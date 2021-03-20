@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import Skeleton from "@material-ui/lab/Skeleton";
 import { IArticleFeat } from "../../Api/Models";
 import { renderCardMedia } from "../../Shared/Components/renderCardMedia";
 import useStyles from "./Hooks/styleArticleFeat";
@@ -23,10 +24,10 @@ export default function ArticleFeat(props: { articles: IArticleFeat, isLoading: 
                         <Container maxWidth="sm">
                             <Box textAlign="center" mb={5}>
                                 <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {props.articles.content.title}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.articles.content.title}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
-                                    {props.articles.content.desc}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.articles.content.desc}
                                 </Typography>
                             </Box>
                         </Container>
@@ -37,17 +38,17 @@ export default function ArticleFeat(props: { articles: IArticleFeat, isLoading: 
                                         <CardContent className={classes.info}>
                                             <Box display="flex" flexDirection="column" height="100%" pt={2} px={2}>
                                                 <Typography variant="h5" component="h2" gutterBottom={true}>
-                                                    {props.articles.content.text1}
+                                                    {props.isLoading ? <Skeleton variant="text" /> : props.articles.content.text1}
                                                 </Typography>
                                                 <Box mt="auto" mb={2}>
                                                     <Typography variant="body1" component="p" color="textSecondary">
-                                                        {props.articles.content.text2}
+                                                        {props.isLoading ? <Skeleton variant="text" /> : props.articles.content.text2}
                                                     </Typography>
                                                 </Box>
                                                 <Box textAlign="right">
                                                     <Link to="/articles" className={classes.link}>
                                                         <Button color="primary" endIcon={<ArrowRightAltIcon />}>
-                                                            {props.articles.content.button}
+                                                            {props.isLoading ? <Skeleton variant="text" /> : props.articles.content.button}
                                                         </Button>
                                                     </Link>
                                                 </Box>
@@ -59,22 +60,30 @@ export default function ArticleFeat(props: { articles: IArticleFeat, isLoading: 
                                     <Grid container spacing={2}>
                                         <Grid item xs={12} md={8}>
                                             <Card elevation={4}>
-                                                {renderCardMedia(props.articles.content.image1, classes.media)}
+                                                {props.isLoading 
+                                                    ? <Skeleton variant="rect" height="128px" /> 
+                                                    : renderCardMedia(props.articles.content.image1, classes.media)}
                                             </Card>
                                         </Grid>
                                         <Grid item xs={12} md={4}>
                                             <Card elevation={4}>
-                                                {renderCardMedia(props.articles.content.image2, classes.media)}
+                                                {props.isLoading 
+                                                    ? <Skeleton variant="rect" height="128px" /> 
+                                                    : renderCardMedia(props.articles.content.image2, classes.media)}
                                             </Card>
                                         </Grid>
                                         <Grid item xs={12} md={4}>
                                             <Card elevation={4}>
-                                                {renderCardMedia(props.articles.content.image3, classes.media)}
+                                                {props.isLoading 
+                                                    ? <Skeleton variant="rect" height="128px" /> 
+                                                    : renderCardMedia(props.articles.content.image3, classes.media)}
                                             </Card>
                                         </Grid> 
                                         <Grid item xs={12} md={8}>
                                             <Card elevation={4}>
-                                                {renderCardMedia(props.articles.content.image4, classes.media)}
+                                                {props.isLoading 
+                                                    ? <Skeleton variant="rect" height="128px" /> 
+                                                    : renderCardMedia(props.articles.content.image4, classes.media)}
                                             </Card>
                                         </Grid>
                                     </Grid>
