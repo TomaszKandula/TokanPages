@@ -3,7 +3,6 @@ import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import SignupForm from "../Components/Account/signupForm";
 import Footer from "../Components/Layout/footer";
-import { CustomColours } from "../Theme/customColours";
 import { footerDefault, navigationDefault, signupFormDefault } from "../Api/Defaults";
 import { getFooterContent, getNavigationContent, getSignupFormContent } from "../Api/Services";
 
@@ -34,7 +33,7 @@ export default function SignupPage()
             <Container>
                 <SignupForm signupForm={signupForm.data} isLoading={signupForm.isLoading} />
             </Container>
-            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor={CustomColours.background.gray1} />
+            <Footer footer={footer.data} isLoading={footer.isLoading} />
         </>
     );
 }

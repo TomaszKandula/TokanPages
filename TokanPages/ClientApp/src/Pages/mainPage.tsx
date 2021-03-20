@@ -34,7 +34,6 @@ import {
     cookiesPromptDefault
 } from "../Api/Defaults";
 
-import { CustomColours } from "../Theme/customColours";
 import AOS from "aos";
 
 export default function Index() 
@@ -90,7 +89,7 @@ export default function Index()
             <Newsletter newsletter={newsletter.data} isLoading={newsletter.isLoading} />
             <ContactForm contactForm={contactForm.data} isLoading={contactForm.isLoading} />
             <Cookies cookiesPrompt={cookiesPrompt.data} isLoading={cookiesPrompt.isLoading} />
-            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor={CustomColours.background.gray1} />
+            <Footer footer={footer.data} isLoading={footer.isLoading} />
         </>
     );
 }

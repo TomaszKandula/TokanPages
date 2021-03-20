@@ -43,7 +43,7 @@ export default function UpdateSubscriberPage()
             <Container>
                 <UpdateSubscriber id={id} updateSubscriber={updateSubscriber.data} isLoading={updateSubscriber.isLoading} />
             </Container>
-            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor={CustomColours.background.gray1} />
+            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor={CustomColours.background.lightGray1} />
         </>
     );
 }

@@ -4,7 +4,6 @@ import Navigation from "../Components/Layout/navigation";
 import StaticContent from "../Components/Content/staticContent";
 import Footer from "../Components/Layout/footer";
 import * as Consts from "../Shared/constants";
-import { CustomColours } from "../Theme/customColours";
 import { footerDefault, navigationDefault } from "../Api/Defaults";
 import { getFooterContent, getNavigationContent } from "../Api/Services";
 
@@ -34,7 +33,7 @@ export default function StoryPage()
             <Container>
                 <StaticContent dataUrl={Consts.STORY_URL} />
             </Container>
-            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor={CustomColours.background.gray1} />
+            <Footer footer={footer.data} isLoading={footer.isLoading} />
         </>
     );
 }

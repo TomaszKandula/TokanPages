@@ -6,12 +6,17 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import { CustomColours } from "../../Theme/customColours";
 import { IFooter } from "../../Api/Models";
 import useStyles from "./Hooks/styleFooter";
 
-export default function Footer(props: { footer: IFooter, isLoading: boolean, backgroundColor: string }) 
+export default function Footer(props: { footer: IFooter, isLoading: boolean, backgroundColor?: string | undefined }) 
 {
     const classes = useStyles();
+    const backgroundColor: string = !props.backgroundColor 
+        ? CustomColours.background.lightGray1 
+        : props.backgroundColor as string;
+
     const SetTermsLink = () => 
     { 
         return (
@@ -31,7 +36,7 @@ export default function Footer(props: { footer: IFooter, isLoading: boolean, bac
     };
 
     return (
-        <footer className={classes.root} style={{ backgroundColor: props.backgroundColor }} >
+        <footer className={classes.root} style={{ backgroundColor: backgroundColor }} >
             <Container maxWidth="lg">
                 <div data-aos="zoom-in">
                     <Box py={6} display="flex" flexWrap="wrap" alignItems="center">
