@@ -4,6 +4,7 @@ import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
 import Unsubscribe from "../Components/Unsubscribe/unsubscribe";
+import { CustomColours } from "../Theme/customColours";
 import { footerDefault, navigationDefault, unsubscribeDefault } from "../Api/Defaults";
 import { getFooterContent, getNavigationContent, getUnsubscribeContent } from "../Api/Services";
 
@@ -42,7 +43,7 @@ export default function UnsubscribePage()
             <Container>
                 <Unsubscribe id={id} unsubscribe={unsubscribe.data} isLoading={unsubscribe.isLoading} />
             </Container>
-            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor="#FAFAFA" />
+            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor={CustomColours.background.gray1} />
         </>
     );
 }

@@ -3,7 +3,8 @@ import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
-import UpdateSubscriber from "Components/UpdateSubscription/updateSubscriber";
+import UpdateSubscriber from "../Components/UpdateSubscription/updateSubscriber";
+import { CustomColours } from "../Theme/customColours";
 import { footerDefault, navigationDefault, updateSubscriberDefault } from "../Api/Defaults";
 import { getFooterContent, getNavigationContent, getUpdateSubscriberContent } from "../Api/Services";
 
@@ -42,7 +43,7 @@ export default function UpdateSubscriberPage()
             <Container>
                 <UpdateSubscriber id={id} updateSubscriber={updateSubscriber.data} isLoading={updateSubscriber.isLoading} />
             </Container>
-            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor="#FAFAFA" />
+            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor={CustomColours.background.gray1} />
         </>
     );
 }

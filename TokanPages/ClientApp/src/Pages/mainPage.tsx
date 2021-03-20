@@ -11,30 +11,31 @@ import Cookies from "../Components/Cookies/cookies";
 import ArticleFeat from "../Components/Articles/articleFeat";
 import { 
     getNavigationContent,
-    getArticleFeatContent, 
-    getContactFormContent, 
-    getCookiesPromptContent, 
-    getFeaturedContent, 
-    getFeaturesContent, 
-    getNewsletterContent, 
+    getHeaderContent,
+    getFooterContent,
+    getArticleFeatContent,
+    getFeaturesContent,
+    getFeaturedContent,
     getTestimonialsContent,
-    getHeaderContent
+    getNewsletterContent,
+    getContactFormContent,
+    getCookiesPromptContent
 } from "../Api/Services/";
 import { 
     navigationDefault,
     headerDefault,
     footerDefault,
-    articleFeatDefault, 
-    contactFormDefault, 
-    cookiesPromptDefault, 
-    featuredDefault, 
+    articleFeatDefault,
     featuresDefault, 
-    newsletterDefault, 
-    testimonialsDefault
+    featuredDefault,
+    testimonialsDefault,
+    newsletterDefault,
+    contactFormDefault,
+    cookiesPromptDefault
 } from "../Api/Defaults";
 
+import { CustomColours } from "../Theme/customColours";
 import AOS from "aos";
-import { getFooterContent } from "Api/Services/components";
 
 export default function Index() 
 {
@@ -89,7 +90,7 @@ export default function Index()
             <Newsletter newsletter={newsletter.data} isLoading={newsletter.isLoading} />
             <ContactForm contactForm={contactForm.data} isLoading={contactForm.isLoading} />
             <Cookies cookiesPrompt={cookiesPrompt.data} isLoading={cookiesPrompt.isLoading} />
-            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor="#FAFAFA" />
+            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor={CustomColours.background.gray1} />
         </>
     );
 }

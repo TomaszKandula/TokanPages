@@ -4,6 +4,7 @@ import Navigation from "../Components/Layout/navigation";
 import StaticContent from "../Components/Content/staticContent";
 import Footer from "../Components/Layout/footer";
 import * as Consts from "../Shared/constants";
+import { CustomColours } from "../Theme/customColours";
 import { footerDefault, navigationDefault } from "../Api/Defaults";
 import { getFooterContent, getNavigationContent } from "../Api/Services";
 
@@ -33,7 +34,7 @@ export default function TermsPage()
             <Container>
                 <StaticContent dataUrl={Consts.TERMS_URL} />
             </Container>
-            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor="#FAFAFA" />
+            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor={CustomColours.background.gray1} />
         </>
     );
 }
