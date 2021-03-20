@@ -19,7 +19,7 @@ const formDefaultValues =
     email: ""
 };
 
-export default function Newsletter(props: INewsletter)
+export default function Newsletter(props: { newsletter: INewsletter, isLoading: boolean })
 {
     const classes = useStyles();
     
@@ -69,29 +69,46 @@ export default function Newsletter(props: INewsletter)
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
-                <AlertDialog State={modal.State} Handle={modalHandler} Title={modal.Titile} Message={modal.Message} Icon={modal.Icon} />
+                <AlertDialog 
+                    State={modal.State} 
+                    Handle={modalHandler} 
+                    Title={modal.Titile} 
+                    Message={modal.Message} 
+                    Icon={modal.Icon} 
+                />
                 <div data-aos="fade-up">
                     <Box py={8} textAlign="center">
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={5}>
                                 <Typography variant="h4" component="h2">
-                                    {props.content.caption}
+                                    {props.newsletter.content.caption}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
-                                {props.content.text}
+                                {props.newsletter.content.text}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={7}>
                                 <Box display="flex" height="100%">
-                                    <Box my="auto" width="100%">              
+                                    <Box my="auto" width="100%">
                                         <Grid container spacing={2}>
                                             <Grid item xs={12} sm={7}>
-                                                <TextField onChange={formHandler} value={form.email} variant="outlined" required fullWidth size="small" name="email" id="email_newletter" label="Email address" autoComplete="email" />
+                                                <TextField 
+                                                    onChange={formHandler} 
+                                                    value={form.email} 
+                                                    variant="outlined" 
+                                                    required 
+                                                    fullWidth 
+                                                    size="small" 
+                                                    name="email" 
+                                                    id="email_newletter" 
+                                                    label="Email address" 
+                                                    autoComplete="email" 
+                                                />
                                             </Grid>
                                             <Grid item xs={12} sm={5}>
                                                 <Button onClick={buttonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={progress}>
                                                     {progress &&  <CircularProgress size={20} />}
-                                                    {!progress && props.content.button}
+                                                    {!progress && props.newsletter.content.button}
                                                 </Button>
                                             </Grid>
                                         </Grid>

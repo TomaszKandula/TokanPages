@@ -17,19 +17,16 @@ export default function ArticlesPage()
 {
     const queryParam = useQuery();
     const id = queryParam.get("id");
-    const content = id 
-        ? <ArticleDetail id={id} /> 
-        : <ArticleList />;
-
+    const content = id ? <ArticleDetail id={id} /> : <ArticleList />;
     const mountedRef = React.useRef(true);
-    const [navigation, setNavigationContent] = React.useState(navigationDefault);
-    const [footer, setFooterContent] = React.useState(footerDefault);
+    const [navigation, setNavigationContent] = React.useState({ data: navigationDefault, isLoading: true });
+    const [footer, setFooterContent] = React.useState({ data: footerDefault, isLoading: true });
 
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
-        setNavigationContent(await getNavigationContent());
-        setFooterContent(await getFooterContent());
+        setNavigationContent({ data: await getNavigationContent(), isLoading: false });
+        setFooterContent({ data: await getFooterContent(), isLoading: false });
     }, [ ]);
 
     React.useEffect(() => 
@@ -41,11 +38,11 @@ export default function ArticlesPage()
 
     return (
         <>
-            <Navigation content={navigation.content} />
+            <Navigation navigation={navigation.data} isLoading={navigation.isLoading} />
             <Container>
                 {content}
             </Container>
-            <Footer footer={footer} backgroundColor="#FAFAFA" />
+            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor="#FAFAFA" />
         </>
     );
 }

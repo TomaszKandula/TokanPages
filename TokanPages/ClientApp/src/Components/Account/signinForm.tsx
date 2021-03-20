@@ -11,7 +11,7 @@ import { AccountCircle } from "@material-ui/icons";
 import { ISigninForm } from "../../Api/Models";
 import useStyles from "./Hooks/styleSigninForm";
 
-export default function SigninForm(props: ISigninForm) 
+export default function SigninForm(props: { signinForm: ISigninForm, isLoading: boolean }) 
 {
     const classes = useStyles();
     return (
@@ -23,7 +23,7 @@ export default function SigninForm(props: ISigninForm)
                             <Box mb={3} textAlign="center">
                                 <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    {props.content.caption}
+                                    {props.signinForm.content.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -37,18 +37,18 @@ export default function SigninForm(props: ISigninForm)
                                 </Grid>
                                 <Box my={2}>
                                     <Button fullWidth variant="contained" color="primary">
-                                        {props.content.button}
+                                        {props.signinForm.content.button}
                                     </Button>
                                 </Box>
                                 <Grid container spacing={2} className={classes.actions}>
                                     <Grid item xs={12} sm={6}>
                                         <Link to="/signup">
-                                            {props.content.link1}
+                                            {props.signinForm.content.link1}
                                         </Link>
                                     </Grid>
                                     <Grid item xs={12} sm={6} className={classes.tertiaryAction}>
                                         <Link to="/reset">
-                                            {props.content.link2}
+                                            {props.signinForm.content.link2}
                                         </Link>
                                     </Grid>
                                 </Grid>

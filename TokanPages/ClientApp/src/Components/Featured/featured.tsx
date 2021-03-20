@@ -10,7 +10,7 @@ import { renderCardMedia } from "../../Shared/Components/renderCardMedia";
 import { IFeatured } from "../../Api/Models";
 import useStyles from "./styleFeatured";
 
-export default function Featured(props: IFeatured) 
+export default function Featured(props: { featured: IFeatured, isLoading: boolean }) 
 {
     const classes = useStyles();
     return (
@@ -21,10 +21,10 @@ export default function Featured(props: IFeatured)
                         <Container maxWidth="sm">
                             <Box textAlign="center" mb={5}>
                                 <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {props.content.caption}
+                                    {props.featured.content.caption}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
-                                    {props.content.text}
+                                    {props.featured.content.text}
                                 </Typography>
                             </Box>
                         </Container>
@@ -33,25 +33,37 @@ export default function Featured(props: IFeatured)
                                 <Grid container spacing={4}>
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={3}>
-                                            <CardActionArea href={props.content.link1} target="_blank">
-                                                {renderCardMedia(props.content.image1, classes.media)}
-                                                <CardHeader title={props.content.title1} subheader={props.content.subtitle1} titleTypographyProps={{gutterBottom: true}} />
+                                            <CardActionArea href={props.featured.content.link1} target="_blank">
+                                                {renderCardMedia(props.featured.content.image1, classes.media)}
+                                                <CardHeader 
+                                                    title={props.featured.content.title1} 
+                                                    subheader={props.featured.content.subtitle1} 
+                                                    titleTypographyProps={{gutterBottom: true}} 
+                                                />
                                             </CardActionArea>
                                         </Card>
                                     </Grid>
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={3}>
-                                            <CardActionArea href={props.content.link2} target="_blank">
-                                                {renderCardMedia(props.content.image2, classes.media)}
-                                                <CardHeader title={props.content.title2} subheader={props.content.subtitle2} titleTypographyProps={{gutterBottom: true}} />
+                                            <CardActionArea href={props.featured.content.link2} target="_blank">
+                                                {renderCardMedia(props.featured.content.image2, classes.media)}
+                                                <CardHeader 
+                                                    title={props.featured.content.title2} 
+                                                    subheader={props.featured.content.subtitle2} 
+                                                    titleTypographyProps={{gutterBottom: true}} 
+                                                />
                                             </CardActionArea>
                                         </Card>
                                     </Grid>
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={3}>
-                                            <CardActionArea href={props.content.link3} target="_blank">
-                                                {renderCardMedia(props.content.image3, classes.media)}
-                                                <CardHeader title={props.content.title3} subheader={props.content.subtitle3} titleTypographyProps={{gutterBottom: true}}/>
+                                            <CardActionArea href={props.featured.content.link3} target="_blank">
+                                                {renderCardMedia(props.featured.content.image3, classes.media)}
+                                                <CardHeader 
+                                                    title={props.featured.content.title3} 
+                                                    subheader={props.featured.content.subtitle3} 
+                                                    titleTypographyProps={{gutterBottom: true}}
+                                                />
                                             </CardActionArea>
                                         </Card>
                                     </Grid>

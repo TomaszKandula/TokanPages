@@ -18,16 +18,16 @@ export default function UpdateSubscriberPage()
     const id = queryParam.get("id");
 
     const mountedRef = React.useRef(true);
-    const [updateSubscriberPage, setUpdateSubscriberContent] = React.useState(updateSubscriberDefault);
-    const [navigation, setNavigationContent] = React.useState(navigationDefault);
-    const [footer, setFooterContent] = React.useState(footerDefault);
+    const [updateSubscriber, setUpdateSubscriberContent] = React.useState({ data: updateSubscriberDefault, isLoading: true });
+    const [navigation, setNavigationContent] = React.useState({ data: navigationDefault, isLoading: true });
+    const [footer, setFooterContent] = React.useState({ data: footerDefault, isLoading: true });
 
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
-        setUpdateSubscriberContent(await getUpdateSubscriberContent());
-        setNavigationContent(await getNavigationContent());
-        setFooterContent(await getFooterContent());
+        setUpdateSubscriberContent({ data: await getUpdateSubscriberContent(), isLoading: false });
+        setNavigationContent({ data: await getNavigationContent(), isLoading: false });
+        setFooterContent({ data: await getFooterContent(), isLoading: false });
     }, [ ]);
 
     React.useEffect(() => 
@@ -38,11 +38,11 @@ export default function UpdateSubscriberPage()
 
     return(
         <>
-            <Navigation content={navigation.content} />
+            <Navigation navigation={navigation.data} isLoading={navigation.isLoading} />
             <Container>
-                <UpdateSubscriber {...id} content={updateSubscriberPage.content} />
+                <UpdateSubscriber id={id} updateSubscriber={updateSubscriber.data} isLoading={updateSubscriber.isLoading} />
             </Container>
-            <Footer footer={footer} backgroundColor="#FAFAFA" />
+            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor="#FAFAFA" />
         </>
     );
 }

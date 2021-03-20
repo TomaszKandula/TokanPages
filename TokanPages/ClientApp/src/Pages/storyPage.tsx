@@ -10,14 +10,14 @@ import { getFooterContent, getNavigationContent } from "../Api/Services";
 export default function StoryPage() 
 { 
     const mountedRef = React.useRef(true);
-    const [navigation, setNavigationContent] = React.useState(navigationDefault);
-    const [footer, setFooterContent] = React.useState(footerDefault);
+    const [navigation, setNavigationContent] = React.useState({ data: navigationDefault, isLoading: true });
+    const [footer, setFooterContent] = React.useState({ data: footerDefault, isLoading: true });
 
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
-        setNavigationContent(await getNavigationContent());
-        setFooterContent(await getFooterContent());
+        setNavigationContent({ data: await getNavigationContent(), isLoading: false });
+        setFooterContent({ data: await getFooterContent(), isLoading: false });
     }, [ ]);
 
     React.useEffect(() => 
@@ -29,11 +29,11 @@ export default function StoryPage()
 
     return (
         <>
-            <Navigation content={navigation.content} />
+            <Navigation navigation={navigation.data} isLoading={navigation.isLoading} />
             <Container>
                 <StaticContent dataUrl={Consts.STORY_URL} />
             </Container>
-            <Footer footer={footer} backgroundColor="#FAFAFA" />
+            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor="#FAFAFA" />
         </>
     );
 }

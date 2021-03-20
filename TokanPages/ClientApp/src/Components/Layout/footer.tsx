@@ -9,7 +9,7 @@ import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import { IFooter } from "../../Api/Models";
 import useStyles from "./Hooks/styleFooter";
 
-export default function Footer(props: { footer: IFooter, backgroundColor: string }) 
+export default function Footer(props: { footer: IFooter, isLoading: boolean, backgroundColor: string }) 
 {
     const classes = useStyles();
     const SetTermsLink = () => 

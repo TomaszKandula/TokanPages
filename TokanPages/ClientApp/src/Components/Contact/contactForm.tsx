@@ -26,7 +26,7 @@ const formDefaultValues =
     terms: false
 };
 
-export default function ContactForm(props: IContactForm)
+export default function ContactForm(props: { contactForm: IContactForm, isLoading: boolean })
 {
     const classes = useStyles();
 
@@ -96,10 +96,10 @@ export default function ContactForm(props: IContactForm)
                         <Box pt={8} pb={10}>
                             <Box mb={6} textAlign="center">
                                 <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {props.content.caption}
+                                    {props.contactForm.content.caption}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary" paragraph={true}>
-                                    {props.content.text}
+                                    {props.contactForm.content.text}
                                 </Typography>
                             </Box>
                             <Box>
@@ -126,7 +126,7 @@ export default function ContactForm(props: IContactForm)
                                 <Box my={2}>
                                     <Button onClick={buttonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={progress}>
                                         {progress &&  <CircularProgress size={20} />}
-                                        {!progress && props.content.button}
+                                        {!progress && props.contactForm.content.button}
                                     </Button>
                                 </Box>
                             </Box>

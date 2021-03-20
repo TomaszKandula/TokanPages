@@ -9,16 +9,16 @@ import { getFooterContent, getNavigationContent, getResetFormContent } from "../
 export default function ResetPage() 
 {
     const mountedRef = React.useRef(true);
-    const [resetForm, setResetFormContent] = React.useState(resetFormDefault);
-    const [navigation, setNavigationContent] = React.useState(navigationDefault);
-    const [footer, setFooterContent] = React.useState(footerDefault);
+    const [resetForm, setResetFormContent] = React.useState({ data: resetFormDefault, isLoading: true });
+    const [navigation, setNavigationContent] = React.useState({ data: navigationDefault, isLoading: true });
+    const [footer, setFooterContent] = React.useState({ data: footerDefault, isLoading: true });
 
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
-        setResetFormContent(await getResetFormContent());
-        setNavigationContent(await getNavigationContent());
-        setFooterContent(await getFooterContent());
+        setResetFormContent({ data: await getResetFormContent(), isLoading: false });
+        setNavigationContent({ data: await getNavigationContent(), isLoading: false });
+        setFooterContent({ data: await getFooterContent(), isLoading: false });
     }, [ ]);
 
     React.useEffect(() => 
@@ -29,11 +29,11 @@ export default function ResetPage()
 
     return (
         <>     
-            <Navigation content={navigation.content} />
+            <Navigation navigation={navigation.data} isLoading={navigation.isLoading} />
             <Container>
-                <ResetForm content={resetForm.content} />
+                <ResetForm resetForm={resetForm.data} isLoading={resetForm.isLoading} />
             </Container>
-            <Footer footer={footer} backgroundColor="#FAFAFA" />
+            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor="#FAFAFA" />
         </>
     );
 }

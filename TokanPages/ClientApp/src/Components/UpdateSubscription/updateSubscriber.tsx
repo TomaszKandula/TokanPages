@@ -22,7 +22,7 @@ const formDefaultValues =
     email: ""
 };
 
-export default function UpdateSubscriber(id: string | null, props: IUpdateSubscriber)
+export default function UpdateSubscriber(props: { id: string | null, updateSubscriber: IUpdateSubscriber, isLoading: boolean })
 {
     const classes = useStyles();
 
@@ -43,7 +43,7 @@ export default function UpdateSubscriber(id: string | null, props: IUpdateSubscr
 
     const ButtonHandler = async () =>
     {
-        if (id == null)
+        if (props.id == null)
         {
             return false;
         }
@@ -57,7 +57,7 @@ export default function UpdateSubscriber(id: string | null, props: IUpdateSubscr
 
             setModal(await UpdateSubscriberData(
             { 
-                id: id, 
+                id: props.id, 
                 email: Form.email, 
                 isActivated: true, 
                 count: 0 
@@ -91,7 +91,7 @@ export default function UpdateSubscriber(id: string | null, props: IUpdateSubscr
                             <Box mb={3} textAlign="center">
                                 <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    {props.content.caption}
+                                    {props.updateSubscriber.content.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -103,7 +103,7 @@ export default function UpdateSubscriber(id: string | null, props: IUpdateSubscr
                                 <Box my={2}>
                                     <Button onClick={ButtonHandler} fullWidth variant="contained" color="primary" disabled={!ButtonState}>
                                         {Progress &&  <CircularProgress size={20} />}
-                                        {!Progress && props.content.button}
+                                        {!Progress && props.updateSubscriber.content.button}
                                     </Button>
                                 </Box>
                             </Box>

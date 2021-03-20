@@ -9,16 +9,16 @@ import { getFooterContent, getNavigationContent, getSigninFormContent } from "..
 export default function SigninPage() 
 {  
     const mountedRef = React.useRef(true);
-    const [signinForm, setSigninFormContent] = React.useState(signinFormDefault);
-    const [navigation, setNavigationContent] = React.useState(navigationDefault);
-    const [footer, setFooterContent] = React.useState(footerDefault);
+    const [signinForm, setSigninFormContent] = React.useState({ data: signinFormDefault, isLoading: true });
+    const [navigation, setNavigationContent] = React.useState({ data: navigationDefault, isLoading: true });
+    const [footer, setFooterContent] = React.useState({ data: footerDefault, isLoading: true });
 
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
-        setSigninFormContent(await getSigninFormContent());
-        setNavigationContent(await getNavigationContent());
-        setFooterContent(await getFooterContent());
+        setSigninFormContent({ data: await getSigninFormContent(), isLoading: false });
+        setNavigationContent({ data: await getNavigationContent(), isLoading: false });
+        setFooterContent({ data: await getFooterContent(), isLoading: false });
     }, [ ]);
 
     React.useEffect(() => 
@@ -29,11 +29,11 @@ export default function SigninPage()
 
     return (
         <>
-            <Navigation content={navigation.content} />
+            <Navigation navigation={navigation.data} isLoading={navigation.isLoading} />
             <Container>
-                <SigninForm content={signinForm.content}  />
+                <SigninForm signinForm={signinForm.data} isLoading={signinForm.isLoading} />
             </Container>
-            <Footer footer={footer} backgroundColor="#FAFAFA" />
+            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor="#FAFAFA" />
         </>
     );
 }

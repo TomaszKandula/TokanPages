@@ -18,16 +18,16 @@ export default function UnsubscribePage()
     const id = queryParam.get("id");
 
     const mountedRef = React.useRef(true);
-    const [unsubscribePage, SetUnsubscribePageContent] = React.useState(unsubscribeDefault);
-    const [navigation, setNavigationContent] = React.useState(navigationDefault);
-    const [footer, setFooterContent] = React.useState(footerDefault);
+    const [unsubscribe, SetUnsubscribePageContent] = React.useState({ data: unsubscribeDefault, isLoading: true });
+    const [navigation, setNavigationContent] = React.useState({ data: navigationDefault, isLoading: true });
+    const [footer, setFooterContent] = React.useState({ data: footerDefault, isLoading: true });
 
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
-        SetUnsubscribePageContent(await getUnsubscribeContent());
-        setNavigationContent(await getNavigationContent());
-        setFooterContent(await getFooterContent());
+        SetUnsubscribePageContent({ data: await getUnsubscribeContent(), isLoading: false });
+        setNavigationContent({ data: await getNavigationContent(), isLoading: false });
+        setFooterContent({ data: await getFooterContent(), isLoading: false });
     }, [ ]);
 
     React.useEffect(() => 
@@ -38,11 +38,11 @@ export default function UnsubscribePage()
 
     return(
         <>
-            <Navigation content={navigation.content} />
+            <Navigation navigation={navigation.data} isLoading={navigation.isLoading} />
             <Container>
-                <Unsubscribe {...id} content={unsubscribePage.content} />
+                <Unsubscribe id={id} unsubscribe={unsubscribe.data} isLoading={unsubscribe.isLoading} />
             </Container>
-            <Footer footer={footer} backgroundColor="#FAFAFA" />
+            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor="#FAFAFA" />
         </>
     );
 }
