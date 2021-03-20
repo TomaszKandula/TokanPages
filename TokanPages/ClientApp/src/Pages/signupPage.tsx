@@ -3,22 +3,23 @@ import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import SignupForm from "../Components/Account/signupForm";
 import Footer from "../Components/Layout/footer";
+import { CustomColours } from "../Theme/customColours";
 import { footerDefault, navigationDefault, signupFormDefault } from "../Api/Defaults";
 import { getFooterContent, getNavigationContent, getSignupFormContent } from "../Api/Services";
 
 export default function SignupPage() 
 {
     const mountedRef = React.useRef(true);
-    const [signupForm, setSignupFormContent] = React.useState(signupFormDefault);
-    const [navigation, setNavigationContent] = React.useState(navigationDefault);
-    const [footer, setFooterContent] = React.useState(footerDefault);
+    const [signupForm, setSignupFormContent] = React.useState({ data: signupFormDefault, isLoading: true });
+    const [navigation, setNavigationContent] = React.useState({ data: navigationDefault, isLoading: true });
+    const [footer, setFooterContent] = React.useState({ data: footerDefault, isLoading: true });
 
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
-        setSignupFormContent(await getSignupFormContent());
-        setNavigationContent(await getNavigationContent());
-        setFooterContent(await getFooterContent());
+        setSignupFormContent({ data: await getSignupFormContent(), isLoading: false });
+        setNavigationContent({ data: await getNavigationContent(), isLoading: false });
+        setFooterContent({ data: await getFooterContent(), isLoading: false });
     }, [ ]);
 
     React.useEffect(() => 
@@ -29,11 +30,11 @@ export default function SignupPage()
 
     return (
         <>
-            <Navigation content={navigation.content} />
+            <Navigation navigation={navigation.data} isLoading={navigation.isLoading} />
             <Container>
-                <SignupForm content={signupForm.content} />
+                <SignupForm signupForm={signupForm.data} isLoading={signupForm.isLoading} />
             </Container>
-            <Footer footer={footer} backgroundColor="#FAFAFA" />
+            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor={CustomColours.background.gray1} />
         </>
     );
 }

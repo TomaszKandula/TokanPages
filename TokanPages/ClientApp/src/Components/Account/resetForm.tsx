@@ -10,7 +10,7 @@ import { AccountCircle } from "@material-ui/icons";
 import { IResetForm } from "../../Api/Models";
 import useStyles from "./Hooks/styleResetForm";
 
-export default function ResetForm(props: IResetForm) 
+export default function ResetForm(props: { resetForm: IResetForm, isLoading: boolean }) 
 {
     const classes = useStyles();
     return (
@@ -22,7 +22,7 @@ export default function ResetForm(props: IResetForm)
                             <Box mb={3} textAlign="center">
                                 <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    {props.content.caption}
+                                    {props.resetForm.content.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -33,7 +33,7 @@ export default function ResetForm(props: IResetForm)
                                 </Grid>
                                 <Box my={2}>
                                     <Button fullWidth variant="contained" color="primary">
-                                        {props.content.button}
+                                        {props.resetForm.content.button}
                                     </Button>
                                 </Box>
                             </Box>

@@ -10,16 +10,16 @@ import { RemoveSubscriberData } from "../../Api/Services/subscribers";
 import { IUnsubscribe } from "../../Api/Models";
 import useStyles from "./styledUnsubscribe";
 
-export default function Unsubscribe(id: string | null, props: IUnsubscribe)
+export default function Unsubscribe(props: { id: string | null, unsubscribe: IUnsubscribe, isLoading: boolean })
 {
     const classes = useStyles();
     const [Content, setContent] = React.useState(
     { 
-        caption: props.content.contentPre.caption,
-        text1:   props.content.contentPre.text1, 
-        text2:   props.content.contentPre.text2, 
-        text3:   props.content.contentPre.text3, 
-        button:  props.content.contentPre.button
+        caption: props.unsubscribe.content.contentPre.caption,
+        text1:   props.unsubscribe.content.contentPre.text1, 
+        text2:   props.unsubscribe.content.contentPre.text2, 
+        text3:   props.unsubscribe.content.contentPre.text3, 
+        button:  props.unsubscribe.content.contentPre.button
     });
 
     const [ButtonState, setButtonState] = React.useState(true);
@@ -33,7 +33,7 @@ export default function Unsubscribe(id: string | null, props: IUnsubscribe)
 
     const ButtonHandler = async () =>
     {
-        if (id == null)
+        if (props.id == null)
         {
             return false;
         }
@@ -43,16 +43,16 @@ export default function Unsubscribe(id: string | null, props: IUnsubscribe)
 
         setModal(await RemoveSubscriberData(
         { 
-            id: id 
+            id: props.id 
         }));
 
         setContent(
         {
-            caption: props.content.contentPost.caption,
-            text1:   props.content.contentPost.text1, 
-            text2:   props.content.contentPost.text2, 
-            text3:   props.content.contentPost.text3, 
-            button:  props.content.contentPost.button
+            caption: props.unsubscribe.content.contentPost.caption,
+            text1:   props.unsubscribe.content.contentPost.text1, 
+            text2:   props.unsubscribe.content.contentPost.text2, 
+            text3:   props.unsubscribe.content.contentPost.text3, 
+            button:  props.unsubscribe.content.contentPost.button
         });
 
         setProgress(false);

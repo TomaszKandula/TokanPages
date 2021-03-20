@@ -12,7 +12,7 @@ import { IArticleFeat } from "../../Api/Models";
 import { renderCardMedia } from "../../Shared/Components/renderCardMedia";
 import useStyles from "./Hooks/styleArticleFeat";
 
-export default function ArticleFeat(props: IArticleFeat) 
+export default function ArticleFeat(props: { articles: IArticleFeat, isLoading: boolean }) 
 {
     const classes = useStyles();
     return (
@@ -23,10 +23,10 @@ export default function ArticleFeat(props: IArticleFeat)
                         <Container maxWidth="sm">
                             <Box textAlign="center" mb={5}>
                                 <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {props.content.title}
+                                    {props.articles.content.title}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
-                                    {props.content.desc}
+                                    {props.articles.content.desc}
                                 </Typography>
                             </Box>
                         </Container>
@@ -37,17 +37,17 @@ export default function ArticleFeat(props: IArticleFeat)
                                         <CardContent className={classes.info}>
                                             <Box display="flex" flexDirection="column" height="100%" pt={2} px={2}>
                                                 <Typography variant="h5" component="h2" gutterBottom={true}>
-                                                    {props.content.text1}
+                                                    {props.articles.content.text1}
                                                 </Typography>
                                                 <Box mt="auto" mb={2}>
                                                     <Typography variant="body1" component="p" color="textSecondary">
-                                                        {props.content.text2}
+                                                        {props.articles.content.text2}
                                                     </Typography>
                                                 </Box>
                                                 <Box textAlign="right">
                                                     <Link to="/articles" className={classes.link}>
                                                         <Button color="primary" endIcon={<ArrowRightAltIcon />}>
-                                                            {props.content.button}
+                                                            {props.articles.content.button}
                                                         </Button>
                                                     </Link>
                                                 </Box>
@@ -59,22 +59,22 @@ export default function ArticleFeat(props: IArticleFeat)
                                     <Grid container spacing={2}>
                                         <Grid item xs={12} md={8}>
                                             <Card elevation={4}>
-                                                {renderCardMedia(props.content.image1, classes.media)}
+                                                {renderCardMedia(props.articles.content.image1, classes.media)}
                                             </Card>
                                         </Grid>
                                         <Grid item xs={12} md={4}>
                                             <Card elevation={4}>
-                                                {renderCardMedia(props.content.image2, classes.media)}
+                                                {renderCardMedia(props.articles.content.image2, classes.media)}
                                             </Card>
                                         </Grid>
                                         <Grid item xs={12} md={4}>
                                             <Card elevation={4}>
-                                                {renderCardMedia(props.content.image3, classes.media)}
+                                                {renderCardMedia(props.articles.content.image3, classes.media)}
                                             </Card>
                                         </Grid> 
                                         <Grid item xs={12} md={8}>
                                             <Card elevation={4}>
-                                                {renderCardMedia(props.content.image4, classes.media)}
+                                                {renderCardMedia(props.articles.content.image4, classes.media)}
                                             </Card>
                                         </Grid>
                                     </Grid>

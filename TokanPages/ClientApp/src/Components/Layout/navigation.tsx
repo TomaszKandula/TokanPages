@@ -8,7 +8,7 @@ import { renderImage } from "../../Shared/Components/renderImage";
 import { INavigation } from "../../Api/Models/Components/navigation";
 import useStyles from "./Hooks/styleNavigation";
 
-export default function Navigation(props: INavigation) 
+export default function Navigation(props: { navigation: INavigation, isLoading: boolean }) 
 {
     const classes = useStyles();
     return (
@@ -17,7 +17,7 @@ export default function Navigation(props: INavigation)
                 <Toolbar className={classes.toolBar}>
                     <Link to="/" className={classes.mainLink}>
                         <div data-aos="fade-down">
-                            {renderImage(ICONS_PATH, props.content.logo, classes.mainLogo)}
+                            {renderImage(ICONS_PATH, props.navigation.content.logo, classes.mainLogo)}
                         </div>
                     </Link>
                 </Toolbar>

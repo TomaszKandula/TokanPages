@@ -13,7 +13,7 @@ import { AccountCircle } from "@material-ui/icons";
 import { ISignupForm } from "../../Api/Models";
 import useStyles from "./Hooks/styleSignupForm";
 
-export default function SignupForm(props: ISignupForm) 
+export default function SignupForm(props: { signupForm: ISignupForm, isLoading: boolean }) 
 {
     const classes = useStyles();
     return (
@@ -25,7 +25,7 @@ export default function SignupForm(props: ISignupForm)
                             <Box mb={3} textAlign="center">
                             <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    {props.content.caption}
+                                    {props.signupForm.content.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -48,12 +48,12 @@ export default function SignupForm(props: ISignupForm)
                                 </Grid>
                                 <Box my={2}>
                                     <Button fullWidth variant="contained" color="primary">
-                                        {props.content.button}
+                                        {props.signupForm.content.button}
                                     </Button>
                                 </Box>
                                 <Box textAlign="right">
                                     <Link to="/signin">
-                                        {props.content.link}
+                                        {props.signupForm.content.link}
                                     </Link>
                                 </Box>
                             </Box>
