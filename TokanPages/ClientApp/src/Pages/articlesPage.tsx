@@ -5,7 +5,6 @@ import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
 import ArticleList from "../Components/Articles/articleList";
 import ArticleDetail from "../Components/Articles/articleDetail";
-import { CustomColours } from "../Theme/customColours";
 import { getFooterContent, getNavigationContent } from "../Api/Services";
 import { footerDefault, navigationDefault } from "../Api/Defaults";
 
@@ -43,7 +42,7 @@ export default function ArticlesPage()
             <Container>
                 {content}
             </Container>
-            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor={CustomColours.background.gray1} />
+            <Footer footer={footer.data} isLoading={footer.isLoading} />
         </>
     );
 }

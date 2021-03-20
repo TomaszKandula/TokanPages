@@ -3,7 +3,6 @@ import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import SigninForm from "../Components/Account/signinForm";
 import Footer from "../Components/Layout/footer";
-import { CustomColours } from "../Theme/customColours";
 import { footerDefault, navigationDefault, signinFormDefault } from "../Api/Defaults";
 import { getFooterContent, getNavigationContent, getSigninFormContent } from "../Api/Services";
 
@@ -34,7 +33,7 @@ export default function SigninPage()
             <Container>
                 <SigninForm signinForm={signinForm.data} isLoading={signinForm.isLoading} />
             </Container>
-            <Footer footer={footer.data} isLoading={footer.isLoading} backgroundColor={CustomColours.background.gray1} />
+            <Footer footer={footer.data} isLoading={footer.isLoading} />
         </>
     );
 }
