@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { UpdateSubscriberData } from "../../Api/Services/subscribers";
@@ -91,13 +92,16 @@ export default function UpdateSubscriber(props: { id: string | null, updateSubsc
                             <Box mb={3} textAlign="center">
                                 <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    {props.updateSubscriber.content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.updateSubscriber.content.caption}
                                 </Typography>
                             </Box>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        <TextField onChange={FormHandler} value={Form.email} variant="outlined" required fullWidth name="email" id="email" label="Email address" autoComplete="email" />
+                                        <TextField 
+                                            onChange={FormHandler} value={Form.email} variant="outlined" required fullWidth 
+                                            name="email" id="email" label="Email address" autoComplete="email" 
+                                        />
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>

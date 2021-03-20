@@ -5,6 +5,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
+import Skeleton from "@material-ui/lab/Skeleton";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { RemoveSubscriberData } from "../../Api/Services/subscribers";
 import { IUnsubscribe } from "../../Api/Models";
@@ -69,22 +70,22 @@ export default function Unsubscribe(props: { id: string | null, unsubscribe: IUn
                         <Box textAlign="center" mb={3}>
                             <Box mt={2} mb={2}>
                                 <Typography variant="h4" component="h4" gutterBottom={true}>
-                                    {Content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : Content.caption}
                                 </Typography>
                             </Box>
                             <Box mt={5} mb={2}>
                                 <Typography variant="h6" component="h6" color="textSecondary">
-                                    {Content.text1}
+                                    {props.isLoading ? <Skeleton variant="text" /> : Content.text1}
                                 </Typography>
                             </Box>
                             <Box mt={5} mb={2}>
                                 <Typography variant="body1" color="textSecondary">
-                                    {Content.text2}
+                                    {props.isLoading ? <Skeleton variant="text" /> : Content.text2}
                                 </Typography>
                             </Box>
                             <Box mt={5} mb={7}>
                                 <Typography variant="body1" color="textSecondary">
-                                    {Content.text3}
+                                    {props.isLoading ? <Skeleton variant="text" /> : Content.text3}
                                 </Typography>
                             </Box>
                             <Button onClick={ButtonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={!ButtonState}>

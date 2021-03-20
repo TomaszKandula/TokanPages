@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardHeader from "@material-ui/core/CardHeader";
+import Skeleton from "@material-ui/lab/Skeleton";
 import { renderCardMedia } from "../../Shared/Components/renderCardMedia";
 import { IFeatured } from "../../Api/Models";
 import useStyles from "./styleFeatured";
@@ -21,10 +22,10 @@ export default function Featured(props: { featured: IFeatured, isLoading: boolea
                         <Container maxWidth="sm">
                             <Box textAlign="center" mb={5}>
                                 <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {props.featured.content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.featured.content.caption}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
-                                    {props.featured.content.text}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.featured.content.text}
                                 </Typography>
                             </Box>
                         </Container>
@@ -34,7 +35,9 @@ export default function Featured(props: { featured: IFeatured, isLoading: boolea
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={3}>
                                             <CardActionArea href={props.featured.content.link1} target="_blank">
-                                                {renderCardMedia(props.featured.content.image1, classes.media)}
+                                                {props.isLoading 
+                                                    ? <Skeleton variant="rect" height="256px" /> 
+                                                    : renderCardMedia(props.featured.content.image1, classes.media)}
                                                 <CardHeader 
                                                     title={props.featured.content.title1} 
                                                     subheader={props.featured.content.subtitle1} 
@@ -46,7 +49,9 @@ export default function Featured(props: { featured: IFeatured, isLoading: boolea
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={3}>
                                             <CardActionArea href={props.featured.content.link2} target="_blank">
-                                                {renderCardMedia(props.featured.content.image2, classes.media)}
+                                                {props.isLoading 
+                                                    ? <Skeleton variant="rect" height="256px" /> 
+                                                    : renderCardMedia(props.featured.content.image2, classes.media)}
                                                 <CardHeader 
                                                     title={props.featured.content.title2} 
                                                     subheader={props.featured.content.subtitle2} 
@@ -58,7 +63,9 @@ export default function Featured(props: { featured: IFeatured, isLoading: boolea
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={3}>
                                             <CardActionArea href={props.featured.content.link3} target="_blank">
-                                                {renderCardMedia(props.featured.content.image3, classes.media)}
+                                                {props.isLoading 
+                                                    ? <Skeleton variant="rect" height="256px" /> 
+                                                    : renderCardMedia(props.featured.content.image3, classes.media)}
                                                 <CardHeader 
                                                     title={props.featured.content.title3} 
                                                     subheader={props.featured.content.subtitle3} 

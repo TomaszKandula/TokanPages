@@ -8,6 +8,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
+import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
 import { ValidateContactForm } from "../../Shared/validate";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
@@ -96,31 +97,49 @@ export default function ContactForm(props: { contactForm: IContactForm, isLoadin
                         <Box pt={8} pb={10}>
                             <Box mb={6} textAlign="center">
                                 <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {props.contactForm.content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.contactForm.content.caption}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary" paragraph={true}>
-                                    {props.contactForm.content.text}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.contactForm.content.text}
                                 </Typography>
                             </Box>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={6}>
-                                        <TextField onChange={formHandler} value={form.firstName} variant="outlined" required fullWidth name="firstName" id="firstName" label="First name" autoComplete="fname" />
+                                        <TextField 
+                                            onChange={formHandler} value={form.firstName} variant="outlined" 
+                                            required fullWidth name="firstName" id="firstName" label="First name" autoComplete="fname" 
+                                        />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
-                                        <TextField onChange={formHandler} value={form.lastName} variant="outlined" required fullWidth name="lastName" id="lastName" label="Last name" autoComplete="lname" />
+                                        <TextField 
+                                            onChange={formHandler} value={form.lastName} variant="outlined" 
+                                            required fullWidth name="lastName" id="lastName" label="Last name" autoComplete="lname" 
+                                        />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField onChange={formHandler} value={form.email} variant="outlined" required fullWidth name="email" id="email" label="Email address" autoComplete="email" />
+                                        <TextField 
+                                            onChange={formHandler} value={form.email} variant="outlined" 
+                                            required fullWidth name="email" id="email" label="Email address" autoComplete="email" 
+                                        />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField onChange={formHandler} value={form.subject} variant="outlined" required fullWidth name="subject" id="subject" label="Subject" autoComplete="subject" />
+                                        <TextField 
+                                            onChange={formHandler} value={form.subject} variant="outlined" 
+                                            required fullWidth name="subject" id="subject" label="Subject" autoComplete="subject" 
+                                        />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField onChange={formHandler} value={form.message} variant="outlined" required multiline rows={6} fullWidth autoComplete="message" name="message" id="message" label="Message" />
+                                        <TextField 
+                                            onChange={formHandler} value={form.message} variant="outlined" 
+                                            required multiline rows={6} fullWidth autoComplete="message" name="message" id="message" label="Message" 
+                                        />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <FormControlLabel control={<Checkbox onChange={formHandler} checked={form.terms} name="terms" id="terms" color="primary" />} label="I agree to the terms of use and privacy policy." />
+                                        <FormControlLabel 
+                                            control={<Checkbox onChange={formHandler} checked={form.terms} name="terms" id="terms" color="primary" />} 
+                                            label="I agree to the terms of use and privacy policy." 
+                                        />
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>

@@ -10,6 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { AccountCircle } from "@material-ui/icons";
+import Skeleton from "@material-ui/lab/Skeleton";
 import { ISignupForm } from "../../Api/Models";
 import useStyles from "./Hooks/styleSignupForm";
 
@@ -25,35 +26,50 @@ export default function SignupForm(props: { signupForm: ISignupForm, isLoading: 
                             <Box mb={3} textAlign="center">
                             <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    {props.signupForm.content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.signupForm.content.caption}
                                 </Typography>
                             </Box>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={6}>
-                                        <TextField variant="outlined" required fullWidth autoComplete="fname" name="firstName" id="firstName" label="First name" />
+                                        <TextField 
+                                            variant="outlined" required fullWidth 
+                                            autoComplete="fname" name="firstName" id="firstName" label="First name" 
+                                        />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
-                                        <TextField variant="outlined" required fullWidth name="lastName" id="lastName" label="Last name" autoComplete="lname" />
+                                        <TextField 
+                                            variant="outlined" required fullWidth 
+                                            name="lastName" id="lastName" label="Last name" autoComplete="lname" 
+                                        />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField variant="outlined" required fullWidth name="email" id="email" label="Email address" autoComplete="email" />
+                                        <TextField 
+                                            variant="outlined" required fullWidth 
+                                            name="email" id="email" label="Email address" autoComplete="email" 
+                                        />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField variant="outlined" required fullWidth name="password" id="password" label="Password" type="password" autoComplete="current-password" />
+                                        <TextField 
+                                            variant="outlined" required fullWidth 
+                                            name="password" id="password" label="Password" type="password" autoComplete="current-password" 
+                                        />
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <FormControlLabel control={<Checkbox name="terms" value="1" color="primary" />} label="I agree to the terms of use and privacy policy." />
+                                        <FormControlLabel 
+                                            control={<Checkbox name="terms" value="1" color="primary" />} 
+                                            label="I agree to the terms of use and privacy policy." 
+                                        />
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
                                     <Button fullWidth variant="contained" color="primary">
-                                        {props.signupForm.content.button}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.signupForm.content.button}
                                     </Button>
                                 </Box>
                                 <Box textAlign="right">
                                     <Link to="/signin">
-                                        {props.signupForm.content.link}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.signupForm.content.link}
                                     </Link>
                                 </Box>
                             </Box>
