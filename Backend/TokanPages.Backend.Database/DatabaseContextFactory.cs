@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Database
 {
     public class DatabaseContextFactory : IDesignTimeDbContextFactory<DatabaseContext>
     {
-        public DatabaseContext CreateDbContext(string[] args)
+        public DatabaseContext CreateDbContext(string[] Args)
         {
             var LEnvironment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
             var LBuilder = new ConfigurationBuilder()
