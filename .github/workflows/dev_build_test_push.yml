@@ -1,4 +1,4 @@
-name: Build, test & publish image (dev)
+name: Build, test & push image (dev)
 
 on:
   release:
