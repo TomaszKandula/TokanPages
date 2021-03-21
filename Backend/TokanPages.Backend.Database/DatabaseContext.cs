@@ -4,9 +4,9 @@ using TokanPages.Backend.Domain.Entities;
 
 namespace TokanPages.Backend.Database
 {
-    public partial class DatabaseContext : DbContext
+    public class DatabaseContext : DbContext
     {
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
+        public DatabaseContext(DbContextOptions<DatabaseContext> AOptions) : base(AOptions)
         {
         }
 
@@ -21,7 +21,7 @@ namespace TokanPages.Backend.Database
             ApplyConfiguration(AModelBuilder);
         }
 
-        protected void ApplyConfiguration(ModelBuilder AModelBuilder) 
+        private void ApplyConfiguration(ModelBuilder AModelBuilder) 
         {
             AModelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
