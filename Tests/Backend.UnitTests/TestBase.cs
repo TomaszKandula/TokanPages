@@ -1,16 +1,13 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using TokanPages.Backend.Database;
 
 namespace Backend.UnitTests
 {
     public class TestBase
     {
-        protected IServiceProvider FServiceProvider;
-        protected IServiceScope FServiceScope;
         private readonly DatabaseContextFactory FDatabaseContextFactory;
 
-        public TestBase() 
+        protected TestBase() 
         {
             var LServices = new ServiceCollection();
 
@@ -21,10 +18,9 @@ namespace Backend.UnitTests
                 return LFactory.CreateDatabaseContext();
             });
 
-            var LServiceProvider = LServices.BuildServiceProvider(true);
-            FServiceScope = LServiceProvider.CreateScope();
-            FServiceProvider = FServiceScope.ServiceProvider;
-            FDatabaseContextFactory = FServiceProvider.GetService<DatabaseContextFactory>();
+            var LServiceScope = LServices.BuildServiceProvider(true).CreateScope();
+            var LServiceProvider = LServiceScope.ServiceProvider;
+            FDatabaseContextFactory = LServiceProvider.GetService<DatabaseContextFactory>();
         }
 
         protected DatabaseContext GetTestDatabaseContext()
