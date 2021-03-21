@@ -1,0 +1,69 @@
+name: Build, test and publish (master)
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
+    - name: Variable substitution appsettings file for Staging (NET Core)
+      uses: microsoft/variable-substitution@v1
+      with:
+        files: ${{ github.workspace }}/TokanPages/appsettings.Staging.json
+      env:
+        AzureStorage.AccountName: "${{ secrets.AZURESTORAGE__ACCOUNTNAME }}"
+        AzureStorage.AccountKey: "${{ secrets.AZURESTORAGE__ACCOUNTKEY }}"
+        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL }}"
+        AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME_TEST }}"
+        Sentry.Dsn: "${{ secrets.SENTRY__DSN_TEST }}"
+        SmtpServer.Account: "${{ secrets.SMTPSERVER__ACCOUNT }}"
+        SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD }}"
+        SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT }}"
+        SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER }}"
+
+    - name: Variable substitution appsettings file for Production (NET Core)
+      uses: microsoft/variable-substitution@v1
+      with:
+        files: ${{ github.workspace }}/TokanPages/appsettings.Production.json
+      env:
+        AppUrls.UpdateSubscriberPath: "${{ secrets.APPURLS__UPDATESUBSCRIBERPATH}}"
+        AppUrls.UnsubscribePath: "${{ secrets.APPURLS__UNSUBSCRIBEPATH}}"
+        AppUrls.DevelopmentOrigin: "${{ secrets.APPURLS__DEVELOPMENTORIGIN }}"
+        AppUrls.DeploymentOrigin: "${{ secrets.APPURLS__DEPLOYMENTORIGIN }}"
+        AzureStorage.AccountName: "${{ secrets.AZURESTORAGE__ACCOUNTNAME }}"
+        AzureStorage.AccountKey: "${{ secrets.AZURESTORAGE__ACCOUNTKEY }}"
+        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL }}"
+        AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME }}"
+        Sentry.Dsn: "${{ secrets.SENTRY__DSN }}"
+        ConnectionStrings.DbConnect: "${{ secrets.CONNECTIONSTRING__PROD }}"
+        SmtpServer.Account: "${{ secrets.SMTPSERVER__ACCOUNT }}"
+        SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD }}"
+        SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT }}"
+        SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER }}"
+
+    - name: Build and push Docker image (runs frontend & backend tests)
+      uses: azure/docker-login@v1
+      with:
+        login-server: tokanpages.azurecr.io
+        username: tokanpages
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+    - run: |
+        docker build . -t tokanpages.azurecr.io/tokanpages:${{ github.sha }}
+        docker push tokanpages.azurecr.io/tokanpages:${{ github.sha }}
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'tokanpages'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+        images: 'tokanpages.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_aed9a2e5be5d4d22b978c0e31c541078 }}/tokanpages:${{ github.sha }}'
