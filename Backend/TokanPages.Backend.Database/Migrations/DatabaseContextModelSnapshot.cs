@@ -19,6 +19,32 @@ namespace TokanPages.Backend.Database.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Albums", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PhotoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PhotoId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Albums");
+                });
+
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Articles", b =>
                 {
                     b.Property<Guid>("Id")
@@ -82,6 +108,108 @@ namespace TokanPages.Backend.Database.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Likes");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.PhotoCategories", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(60)")
+                        .HasMaxLength(60);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PhotoCategories");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.PhotoGears", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Aperture")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("BodyModel")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("BodyVendor")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("FilmIso")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FocalLength")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LensName")
+                        .HasColumnType("nvarchar(60)")
+                        .HasMaxLength(60);
+
+                    b.Property<string>("LensVendor")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("ShutterSpeed")
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PhotoGears");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photos", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateTaken")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Keywords")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<Guid>("PhotoCategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PhotoGearId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PhotoUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PhotoCategoryId");
+
+                    b.HasIndex("PhotoGearId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Photos");
                 });
 
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Subscribers", b =>
@@ -161,6 +289,21 @@ namespace TokanPages.Backend.Database.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Albums", b =>
+                {
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Photos", "Photo")
+                        .WithMany("Albums")
+                        .HasForeignKey("PhotoId")
+                        .HasConstraintName("FK_Albums_Photos")
+                        .IsRequired();
+
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users", "User")
+                        .WithMany("Albums")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_Albums_Users")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Articles", b =>
                 {
                     b.HasOne("TokanPages.Backend.Domain.Entities.Users", "User")
@@ -182,6 +325,27 @@ namespace TokanPages.Backend.Database.Migrations
                         .WithMany("Likes")
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK_Likes_Users");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photos", b =>
+                {
+                    b.HasOne("TokanPages.Backend.Domain.Entities.PhotoCategories", "PhotoCategory")
+                        .WithMany("Photos")
+                        .HasForeignKey("PhotoCategoryId")
+                        .HasConstraintName("FK_Photos_PhotoCategories")
+                        .IsRequired();
+
+                    b.HasOne("TokanPages.Backend.Domain.Entities.PhotoGears", "PhotoGear")
+                        .WithMany("Photos")
+                        .HasForeignKey("PhotoGearId")
+                        .HasConstraintName("FK_Photos_PhotoGears")
+                        .IsRequired();
+
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users", "User")
+                        .WithMany("Photos")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_Photos_Users")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
