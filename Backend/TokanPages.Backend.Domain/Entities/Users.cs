@@ -11,6 +11,8 @@ namespace TokanPages.Backend.Domain.Entities
         {
             Articles = new HashSet<Articles>();
             Likes = new HashSet<Likes>();
+            Photos = new HashSet<Photos>();
+            Albums = new HashSet<Albums>();
         }
 
         [Required]
@@ -46,5 +48,9 @@ namespace TokanPages.Backend.Domain.Entities
         public ICollection<Articles> Articles { get; set; }
 
         public ICollection<Likes> Likes { get; set; }
+        
+        public ICollection<Photos> Photos { get; set; }
+        
+        public ICollection<Albums> Albums { get; set; }
     }
 }

@@ -14,6 +14,10 @@ namespace TokanPages.Backend.Database
         public virtual DbSet<Subscribers> Subscribers { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Likes> Likes { get; set; }
+        public virtual DbSet<Albums> Albums { get; set; }
+        public virtual DbSet<Photos> Photos { get; set; }
+        public virtual DbSet<PhotoGears> PhotoGears { get; set; }
+        public virtual DbSet<PhotoCategories> PhotoCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder AModelBuilder)
         {
