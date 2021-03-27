@@ -40,6 +40,9 @@ namespace TokanPages.Backend.Database.Initialize
 
             if (!LDatabaseContext.Likes.AnyAsync().GetAwaiter().GetResult())
                 LDatabaseContext.Likes.AddRange(LikesSeeder.SeedLikes());
+            
+            if (!LDatabaseContext.PhotoCategories.AnyAsync().GetAwaiter().GetResult())
+                LDatabaseContext.PhotoCategories.AddRange(PhotoCategoriesSeeder.SeedPhotoCategories());
 
             LDatabaseContext.SaveChanges();
         }
