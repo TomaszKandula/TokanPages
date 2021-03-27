@@ -13,8 +13,8 @@ namespace TokanPages.Backend.Database
     public class DatabaseContextFactory : IDesignTimeDbContextFactory<DatabaseContext>
     {
         /// <summary>
-        /// This method requires connection string defined in either AppSettings.json or User Secret
-        /// that is referenced in project file (user secret file can be shared between projects).
+        /// This method requires connection string defined in either AppSettings.json (linked)
+        /// or User Secret that is referenced in project file (user secret file can be shared between projects).
         /// </summary>
         /// <param name="ARgs"></param>
         /// <returns></returns>
