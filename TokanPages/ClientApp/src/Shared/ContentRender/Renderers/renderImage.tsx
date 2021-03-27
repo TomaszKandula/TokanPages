@@ -21,8 +21,12 @@ export function RenderImage(props: ITextItem)
 
     return(
         <Card elevation={3} classes={{ root: classes.card }}>
-            <CardMedia component="img" image={data} alt="" />
-            {Validate.isEmpty(props.text) ? null : renderDescription()}
+            {Validate.isEmpty(props.prop) 
+                ? <CardMedia component="img" image={data} alt="image" /> 
+                : <CardMedia component="img" image={data} alt="image" className={classes.image} onClick={() => { window.open(props.prop, "_blank") }}/> }
+            {Validate.isEmpty(props.text) 
+                ? null 
+                : renderDescription()}
         </Card>
     );
 }

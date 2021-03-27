@@ -9,6 +9,10 @@ const useStyles = makeStyles(() => (
         marginTop: "40px",
         marginBottom: "40px"
     },
+    image:
+    {
+        cursor: "pointer"
+    },
     text:
     {
         color: CustomColours.typography.gray1,
