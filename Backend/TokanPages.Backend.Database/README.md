@@ -16,3 +16,5 @@ previous migration on local branch and we need to remove such migration, it is b
 In such case EF Core will perform downgrade database then we can perform `remove-migration`.
 
 Important: do not modify manually migrations and auto-generated scripts by EF Core.
+
+Note: alternatively, you can run `dotnet ef database update` in PowerShell terminal outside of IDE.
