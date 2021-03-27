@@ -5,14 +5,26 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace TokanPages.Backend.Database
 {
+    /// <summary>
+    /// A factory for creating derived DbContext instances when performing
+    /// database migrations (add, update, remove) from terminal (using dotnet command).
+    /// <see href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.design.idesigntimedbcontextfactory-1?view=efcore-5.0"/>
+    /// </summary>
     public class DatabaseContextFactory : IDesignTimeDbContextFactory<DatabaseContext>
     {
-        public DatabaseContext CreateDbContext(string[] Args)
+        /// <summary>
+        /// This method requires connection string defined in either AppSettings.json or User Secret
+        /// that is referenced in project file (user secret file can be shared between projects).
+        /// </summary>
+        /// <param name="ARgs"></param>
+        /// <returns></returns>
+        public DatabaseContext CreateDbContext(string[] ARgs)
         {
             var LEnvironment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
             var LBuilder = new ConfigurationBuilder()
                 .AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{LEnvironment}.json", optional: true, reloadOnChange: true)
+                .AddUserSecrets<DatabaseContext>()
                 .AddEnvironmentVariables()
                 .Build();
 
