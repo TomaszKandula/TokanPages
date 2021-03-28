@@ -154,7 +154,7 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LLikesEntity = LAssertDbContext.Likes.Where(x => x.ArticleId == LArticles.Id).ToList();
+            var LLikesEntity = LAssertDbContext.ArticleLikes.Where(x => x.ArticleId == LArticles.Id).ToList();
             var LArticesEntity = LAssertDbContext.Articles.Find(LUpdateArticleCommand.Id);
 
             LArticesEntity.Should().NotBeNull();
@@ -235,7 +235,7 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LLikesEntity = LAssertDbContext.Likes.Where(x => x.ArticleId == LArticles.Id).ToList();
+            var LLikesEntity = LAssertDbContext.ArticleLikes.Where(x => x.ArticleId == LArticles.Id).ToList();
             var LArticesEntity = LAssertDbContext.Articles.Find(LUpdateArticleCommand.Id);
 
             LArticesEntity.Should().NotBeNull();
@@ -277,7 +277,7 @@ namespace Backend.UnitTests.Handlers.Articles
 
             var LIpAddress = "255.255.255.255";
             var LExistingLikes = 10;
-            var LLikes = new TokanPages.Backend.Domain.Entities.Likes 
+            var LLikes = new TokanPages.Backend.Domain.Entities.ArticleLikes 
             { 
                 Id = Guid.NewGuid(),
                 ArticleId = LArticleId,
@@ -287,7 +287,7 @@ namespace Backend.UnitTests.Handlers.Articles
             };
 
             LDatabaseContext.Articles.Add(LArticles);
-            LDatabaseContext.Likes.Add(LLikes);
+            LDatabaseContext.ArticleLikes.Add(LLikes);
             LDatabaseContext.SaveChanges();
 
             var LMockedStorage = new Mock<AzureStorageService>();
@@ -323,7 +323,7 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LLikesEntity = LAssertDbContext.Likes.Where(x => x.ArticleId == LArticles.Id).ToList();
+            var LLikesEntity = LAssertDbContext.ArticleLikes.Where(x => x.ArticleId == LArticles.Id).ToList();
             var LArticesEntity = LAssertDbContext.Articles.Find(LUpdateArticleCommand.Id);
 
             LArticesEntity.Should().NotBeNull();
@@ -366,7 +366,7 @@ namespace Backend.UnitTests.Handlers.Articles
             var LIpAddress = "255.255.255.255";
             var LUserId = Guid.Parse("c5ac0f04-6346-4676-a82b-0710099d08f6");
             var LExistingLikes = 10;
-            var LLikes = new TokanPages.Backend.Domain.Entities.Likes
+            var LLikes = new TokanPages.Backend.Domain.Entities.ArticleLikes
             {
                 Id = Guid.NewGuid(),
                 ArticleId = LArticleId,
@@ -376,7 +376,7 @@ namespace Backend.UnitTests.Handlers.Articles
             };
 
             LDatabaseContext.Articles.Add(LArticles);
-            LDatabaseContext.Likes.Add(LLikes);
+            LDatabaseContext.ArticleLikes.Add(LLikes);
             LDatabaseContext.SaveChanges();
 
             var LMockedStorage = new Mock<AzureStorageService>();
@@ -416,7 +416,7 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LLikesEntity = LAssertDbContext.Likes.Where(x => x.ArticleId == LArticles.Id).ToList();
+            var LLikesEntity = LAssertDbContext.ArticleLikes.Where(x => x.ArticleId == LArticles.Id).ToList();
             var LArticesEntity = LAssertDbContext.Articles.Find(LUpdateArticleCommand.Id);
 
             LArticesEntity.Should().NotBeNull();

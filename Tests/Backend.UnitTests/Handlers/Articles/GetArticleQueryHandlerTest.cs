@@ -54,9 +54,9 @@ namespace Backend.UnitTests.Handlers.Articles
                 LastUpdated = null
             };
 
-            var LLikes = new List<TokanPages.Backend.Domain.Entities.Likes> 
+            var LLikes = new List<TokanPages.Backend.Domain.Entities.ArticleLikes> 
             { 
-                new TokanPages.Backend.Domain.Entities.Likes
+                new TokanPages.Backend.Domain.Entities.ArticleLikes
                 {
                     Id = Guid.NewGuid(),
                     ArticleId = ArticleId,
@@ -64,7 +64,7 @@ namespace Backend.UnitTests.Handlers.Articles
                     LikeCount = 10,
                     IpAddress = "255.255.255.255"
                 },
-                new TokanPages.Backend.Domain.Entities.Likes
+                new TokanPages.Backend.Domain.Entities.ArticleLikes
                 {
                     Id = Guid.NewGuid(),
                     ArticleId = ArticleId,
@@ -76,7 +76,7 @@ namespace Backend.UnitTests.Handlers.Articles
             
             LDatabaseContext.Articles.Add(LArticles);
             LDatabaseContext.Users.Add(LUsers);
-            LDatabaseContext.Likes.AddRange(LLikes);
+            LDatabaseContext.ArticleLikes.AddRange(LLikes);
             LDatabaseContext.SaveChanges();
 
             var LMockedUserProvider = new Mock<UserProvider>();
