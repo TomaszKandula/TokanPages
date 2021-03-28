@@ -26,7 +26,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
         {
             var IsAnonymousUser = FUserProvider.GetUserId() == null;
 
-            var LGetArticleLikes = await FDatabaseContext.Likes
+            var LGetArticleLikes = await FDatabaseContext.ArticleLikes
                 .Where(Likes => Likes.ArticleId == ARequest.Id)
                 .WhereIfElse(IsAnonymousUser,
                     Likes => Likes.IpAddress == FUserProvider.GetRequestIpAddress(),
@@ -38,7 +38,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 
             var LCurrentArticle = await FDatabaseContext.Articles
                 .AsNoTracking()
-                .Include(ALikes => ALikes.Likes)
+                .Include(ALikes => ALikes.ArticleLikes)
                 .Include(AUsers => AUsers.User)
                 .Where(AArticles => AArticles.Id == ARequest.Id)
                 .Select(Fields => new GetArticleQueryResult
@@ -50,7 +50,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
                     CreatedAt = Fields.CreatedAt,
                     UpdatedAt = Fields.UpdatedAt,
                     ReadCount = Fields.ReadCount,
-                    LikeCount = Fields.Likes
+                    LikeCount = Fields.ArticleLikes
                         .Where(ALikes => ALikes.ArticleId == ARequest.Id)
                         .Select(ALikes => ALikes.LikeCount)
                         .Sum(),

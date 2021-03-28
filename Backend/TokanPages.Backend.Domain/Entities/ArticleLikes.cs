@@ -4,7 +4,7 @@ using TokanPages.Backend.Core.Entities;
 
 namespace TokanPages.Backend.Domain.Entities
 {
-    public class Likes : Entity<Guid>
+    public class ArticleLikes : Entity<Guid>
     {
         [Required]
         public Guid ArticleId { get; set; }
