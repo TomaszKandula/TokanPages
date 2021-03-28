@@ -91,7 +91,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
             var IsAnonymousUser = FUserProvider.GetUserId() == null;
             
-            var LArticleLikes = await FDatabaseContext.Likes
+            var LArticleLikes = await FDatabaseContext.ArticleLikes
                 .Where(Likes => Likes.ArticleId == ARequest.Id)
                 .WhereIfElse(IsAnonymousUser,
                     Likes => Likes.IpAddress == FUserProvider.GetRequestIpAddress(),
@@ -117,7 +117,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 ? Constants.Likes.LikesLimitForAnonym 
                 : Constants.Likes.LikesLimitForUser;
             
-            var LEntity = new Domain.Entities.Likes
+            var LEntity = new Domain.Entities.ArticleLikes
             {
                 Id = Guid.NewGuid(),
                 ArticleId = ARequest.Id,
@@ -125,10 +125,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 IpAddress = FUserProvider.GetRequestIpAddress(),
                 LikeCount = ARequest.AddToLikes > LLikesLimit ? LLikesLimit : ARequest.AddToLikes
             };
-            FDatabaseContext.Likes.Add(LEntity);
+            FDatabaseContext.ArticleLikes.Add(LEntity);
         }
 
-        private void UpdateCurrentArticleLikes(bool AIsAnonymousUser, Domain.Entities.Likes AEntity, int ALikesToBeAdded)
+        private void UpdateCurrentArticleLikes(bool AIsAnonymousUser, Domain.Entities.ArticleLikes AEntity, int ALikesToBeAdded)
         {
             var LLikesLimit = AIsAnonymousUser 
                 ? Constants.Likes.LikesLimitForAnonym 
