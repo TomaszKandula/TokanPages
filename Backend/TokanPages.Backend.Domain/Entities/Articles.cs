@@ -9,7 +9,7 @@ namespace TokanPages.Backend.Domain.Entities
     {
         public Articles() 
         {
-            Likes = new HashSet<Likes>();
+            ArticleLikes = new HashSet<ArticleLikes>();
         }
 
         [Required]
@@ -32,6 +32,6 @@ namespace TokanPages.Backend.Domain.Entities
 
         public Users User { get; set; }
 
-        public ICollection<Likes> Likes { get; set; }
+        public ICollection<ArticleLikes> ArticleLikes { get; set; }
     }
 }

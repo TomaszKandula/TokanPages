@@ -28,7 +28,8 @@ namespace Backend.IntegrationTests.Handlers.Mailer
             var LPayLoad = new VerifyEmailAddressDto { Email = Email };
             var LHttpClient = FWebAppFactory.CreateClient();
 
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), 
+                System.Text.Encoding.Default, "application/json");
 
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);

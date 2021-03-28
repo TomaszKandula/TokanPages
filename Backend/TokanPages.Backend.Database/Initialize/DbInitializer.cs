@@ -38,8 +38,11 @@ namespace TokanPages.Backend.Database.Initialize
             if (!LDatabaseContext.Subscribers.AnyAsync().GetAwaiter().GetResult())
                 LDatabaseContext.Subscribers.AddRange(SubscribersSeeder.SeedSubscribers());
 
-            if (!LDatabaseContext.Likes.AnyAsync().GetAwaiter().GetResult())
-                LDatabaseContext.Likes.AddRange(LikesSeeder.SeedLikes());
+            if (!LDatabaseContext.ArticleLikes.AnyAsync().GetAwaiter().GetResult())
+                LDatabaseContext.ArticleLikes.AddRange(ArticleLikesSeeder.SeedArticleLikes());
+            
+            if (!LDatabaseContext.PhotoCategories.AnyAsync().GetAwaiter().GetResult())
+                LDatabaseContext.PhotoCategories.AddRange(PhotoCategoriesSeeder.SeedPhotoCategories());
 
             LDatabaseContext.SaveChanges();
         }
