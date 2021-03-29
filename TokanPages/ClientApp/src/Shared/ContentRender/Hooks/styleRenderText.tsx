@@ -3,11 +3,22 @@ import { CustomColours } from "Theme/customColours";
 
 const useStyles = makeStyles(() => (
 {
-    typography:
+    common:
     {
         fontSize: 19,
         textAlign: "left",
-        color: CustomColours.typography.darkGray1,
+        color: CustomColours.typography.darkGray1
+    },
+    title:
+    {
+        lineHeight: 0.5
+    },
+    subTitle:
+    {
+        lineHeight: 0.5
+    },
+    paragraph:
+    {
         lineHeight: 2.2
     }
 }));    
