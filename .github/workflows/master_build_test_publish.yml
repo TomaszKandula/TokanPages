@@ -63,7 +63,7 @@ jobs:
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'tokanpages'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A7A62C804E254A3585C01C5E7962812B }}
-        images: 'tokanpages.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_aed9a2e5be5d4d22b978c0e31c541078 }}/tokanpages:${{ github.sha }}'
+        app-name: tokanpages
+        slot-name: production
+        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+        images: tokanpages.azurecr.io/tokanpages:${{ github.sha }}
