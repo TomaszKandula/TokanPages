@@ -18,6 +18,9 @@ export function RenderText(props: ITextItem)
         case "subtitle":
             itemStyle = classes.subTitle;
             break;
+        case "header":
+            itemStyle = classes.header;
+            break;
         default:
             itemStyle = classes.paragraph;
     };
