@@ -11,7 +11,9 @@ const useStyles = makeStyles(() => (
     },
     title:
     {
-        lineHeight: 0.7
+        fontSize: 28,
+        fontWeight: "bold",
+        lineHeight: 0.5
     },
     subTitle:
     {
@@ -19,7 +21,9 @@ const useStyles = makeStyles(() => (
     },
     header:
     {
-        lineHeight: 2.3
+        fontSize: 25,
+        fontWeight: "bold",
+        lineHeight: 1.0
     },
     paragraph:
     {
