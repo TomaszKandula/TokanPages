@@ -30,7 +30,7 @@ export default function Newsletter(props: { newsletter: INewsletter, isLoading: 
 
     const modalHandler = () => 
     {
-        setModal(modalDefaultValues); 
+        setModal({ ...modal, State: false}); 
     };
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
