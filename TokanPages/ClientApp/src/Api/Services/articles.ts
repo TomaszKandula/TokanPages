@@ -26,12 +26,12 @@ export const UpdateArticle = async (PayLoad: IUpdateArticleDto): Promise<IAlertM
     const results = await request;
     return results.isSucceeded ? { 
         State: true, 
-        Titile: "Update Article", 
+        Title: "Update Article", 
         Message: GetUpdateArticleSuccess(), 
         Icon: 0 
     } : { 
         State: true, 
-        Titile: "Update Article | Error", 
+        Title: "Update Article | Error", 
         Message: GetUpdateArticleError(results.error.ErrorMessage), 
         Icon: 2 
     };

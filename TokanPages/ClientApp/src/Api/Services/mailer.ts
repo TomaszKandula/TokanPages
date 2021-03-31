@@ -25,12 +25,12 @@ export const SendMessage = async (PayLoad: ISendMessageDto): Promise<IAlertModal
     const results = await request;
     return results.isSucceeded ? { 
         State: true, 
-        Titile: "Contact Form", 
+        Title: "Contact Form", 
         Message: GetMessageOutSuccess(), 
         Icon: 0 
     } : { 
         State: true, 
-        Titile: "Contact Form | Error", 
+        Title: "Contact Form | Error", 
         Message: GetMessageOutError(results.error.ErrorMessage), 
         Icon: 2 
     };

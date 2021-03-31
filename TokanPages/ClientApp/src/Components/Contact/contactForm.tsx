@@ -37,7 +37,7 @@ export default function ContactForm(props: { contactForm: IContactForm, isLoadin
 
     const modalHandler = () => 
     {
-        setModal(modalDefaultValues);
+        setModal({ ...modal, State: false});
     };
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
@@ -78,9 +78,8 @@ export default function ContactForm(props: { contactForm: IContactForm, isLoadin
 
         setModal(
         { 
-            ...modal, 
             State: true, 
-            Titile: "Warning", 
+            Title: "Warning", 
             Message: GetMessageOutWarning(validationResult), 
             Icon: 1 
         });
@@ -91,7 +90,7 @@ export default function ContactForm(props: { contactForm: IContactForm, isLoadin
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
-                <AlertDialog State={modal.State} Handle={modalHandler} Title={modal.Titile} Message={modal.Message} Icon={modal.Icon} />
+                <AlertDialog State={modal.State} Handle={modalHandler} Title={modal.Title} Message={modal.Message} Icon={modal.Icon} />
                 <Container maxWidth="sm">
                     <div data-aos="fade-up">
                         <Box pt={8} pb={10}>

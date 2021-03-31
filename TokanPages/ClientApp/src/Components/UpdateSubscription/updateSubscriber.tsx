@@ -74,7 +74,7 @@ export default function UpdateSubscriber(props: { id: string | null, updateSubsc
         setModal(
         { 
             State: true, 
-            Titile: "Warning", 
+            Title: "Warning", 
             Message: GetNewsletterWarning(validationResult), 
             Icon: 1 
         });
@@ -85,7 +85,7 @@ export default function UpdateSubscriber(props: { id: string | null, updateSubsc
     return (
         <section>
             <Container maxWidth="sm">
-                <AlertDialog State={Modal.State} Handle={ModalHandler} Title={Modal.Titile} Message={Modal.Message} Icon={Modal.Icon} />
+                <AlertDialog State={Modal.State} Handle={ModalHandler} Title={Modal.Title} Message={Modal.Message} Icon={Modal.Icon} />
                 <Box pt={18} pb={10}>
                     <Card elevation={4}>
                         <CardContent className={classes.card}>
