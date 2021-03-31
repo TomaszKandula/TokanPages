@@ -23,12 +23,12 @@ export const AddNewSubscriber = async (PayLoad: IAddSubscriberDto): Promise<IAle
     const results = await request;
     return results.isSucceeded ? { 
         State: true, 
-        Titile: "Newsletter", 
+        Title: "Newsletter", 
         Message: GetNewsletterSuccess(), 
         Icon: 0 
     } : { 
         State: true, 
-        Titile: "Newsletter | Error", 
+        Title: "Newsletter | Error", 
         Message: GetNewsletterError(results.error.ErrorMessage), 
         Icon: 2 
     };
@@ -52,12 +52,12 @@ export const UpdateSubscriberData = async (PayLoad: IUpdateSubscriberDto): Promi
     const results = await request;
     return results.isSucceeded ? { 
         State: true, 
-        Titile: "Subscriber email update", 
+        Title: "Subscriber email update", 
         Message: GetNewsletterSuccess(), 
         Icon: 0 
     } : { 
         State: true, 
-        Titile: "Subscriber email update | Error", 
+        Title: "Subscriber email update | Error", 
         Message: GetNewsletterError(results.error.ErrorMessage), 
         Icon: 2 
     };
@@ -78,12 +78,12 @@ export const RemoveSubscriberData = async (PayLoad: IRemoveSubscriberDto): Promi
     const results = await request;
     return results.isSucceeded ? { 
         State: true, 
-        Titile: "Unsubscribe", 
+        Title: "Unsubscribe", 
         Message: GetNewsletterSuccess(), 
         Icon: 0 
     } : { 
         State: true, 
-        Titile: "Unsubscribe | Error", 
+        Title: "Unsubscribe | Error", 
         Message: GetNewsletterError(results.error.ErrorMessage), 
         Icon: 2 
     };

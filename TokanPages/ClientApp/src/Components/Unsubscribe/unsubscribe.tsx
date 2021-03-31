@@ -63,7 +63,7 @@ export default function Unsubscribe(props: { id: string | null, unsubscribe: IUn
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">
-                <AlertDialog State={Modal.State} Handle={ModalHandler} Title={Modal.Titile} Message={Modal.Message} Icon={Modal.Icon} />
+                <AlertDialog State={Modal.State} Handle={ModalHandler} Title={Modal.Title} Message={Modal.Message} Icon={Modal.Icon} />
                 <Box py={15}>
                     <Card elevation={4}>
                         <CardContent className={classes.card}>

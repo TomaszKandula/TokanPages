@@ -59,7 +59,7 @@ export default function Newsletter(props: { newsletter: INewsletter, isLoading: 
         setModal(
         { 
             State: true, 
-            Titile: "Warning", 
+            Title: "Warning", 
             Message: GetNewsletterWarning(Results), 
             Icon: 1 
         });
@@ -73,7 +73,7 @@ export default function Newsletter(props: { newsletter: INewsletter, isLoading: 
                 <AlertDialog 
                     State={modal.State} 
                     Handle={modalHandler} 
-                    Title={modal.Titile} 
+                    Title={modal.Title} 
                     Message={modal.Message} 
                     Icon={modal.Icon} 
                 />

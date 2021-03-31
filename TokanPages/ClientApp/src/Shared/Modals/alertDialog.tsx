@@ -23,7 +23,7 @@ export interface IAlertDialog
 export interface IAlertModal
 {
     State: boolean;
-    Titile: string; 
+    Title: string; 
     Message: string; 
     Icon: number;
 }
@@ -31,7 +31,7 @@ export interface IAlertModal
 export const modalDefaultValues: IAlertModal = 
 {
     State: false, 
-    Titile:  "", 
+    Title:  "", 
     Message: "", 
     Icon: 0
 }
