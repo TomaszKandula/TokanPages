@@ -13,11 +13,11 @@ const useStyles = makeStyles(() => (
     {
         fontSize: 28,
         fontWeight: "bold",
-        lineHeight: 0.5
+        lineHeight: 1.0
     },
     subTitle:
     {
-        lineHeight: 0.5
+        lineHeight: 1.0
     },
     header:
     {

@@ -23,7 +23,7 @@ export function RenderText(props: ITextItem)
     const renderSubtitle = (): JSX.Element => 
     {
         return (
-            <Box mb={7}>
+            <Box mt={-1} mb={7}>
                 <Typography variant="body1" component="span" className={`${classes.common} ${classes.subTitle}`}>
                     {ReactHtmlParser(data)}
                 </Typography>
