@@ -1,44 +1,4 @@
 import axios from "axios";
-import { IApiRequest, IApiResult } from "./Models";
-import { 
-    getEmptyObject, 
-    getUnexpectedErrorObject, 
-    getUnexpectedStatusObject } 
-from "./Objects";
-
-const apiRequest = async (request: IApiRequest): Promise<IApiResult> =>
-{
-    let results: IApiResult = getUnexpectedErrorObject();
-
-    await axios(
-    { 
-        method: request.method, 
-        url: request.url, 
-        data: request.data
-    })
-    .then(function (response) 
-    {
-        results = response.status === 200 
-            ? getEmptyObject() 
-            : getUnexpectedStatusObject(response.status);
-    })
-    .catch(function (error) 
-    {
-        console.error(error);
-        results = 
-        {
-            isSucceeded: false, 
-            error:  
-            {
-                ErrorCode: error.response.data.ErrorCode, 
-                ErrorMessage: error.response.data.ErrorMessage, 
-                ValidationErrors: error.response.data.ValidationErrors
-            }
-        };
-    });
-    
-    return results;
-}
 
 const getDataFromUrl = async (url: string): Promise<any> =>
 {
@@ -59,4 +19,4 @@ const getDataFromUrl = async (url: string): Promise<any> =>
     return result;
 }
 
-export { apiRequest, getDataFromUrl }
+export { getDataFromUrl }
