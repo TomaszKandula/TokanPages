@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -12,9 +13,10 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
 import { ValidateContactForm } from "../../Shared/validate";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
-import { GetMessageOutWarning } from "../../Shared/Modals/messageHelper";
-import { SendMessage } from "../../Api/Services/mailer";
-import { IContactForm } from "../../Api/Models";
+import { GetMessageOutSuccess, GetMessageOutWarning } from "../../Shared/Modals/messageHelper";
+import { IContactForm, ISendMessageDto } from "../../Api/Models";
+import { ISendMessage } from "../../Redux/applicationState";
+import { ActionCreators } from "../../Redux/Actions/sendMessageAction";
 import useStyles from "./styleContactForm";
 
 const formDefaultValues =
@@ -35,33 +37,32 @@ export default function ContactForm(props: { contactForm: IContactForm, isLoadin
     const [modal, setModal] = React.useState(modalDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
-    const modalHandler = () => 
-    {
-        setModal({ ...modal, State: false});
-    };
+    const sendMessageState = useSelector((state: ISendMessage) => state);
+    const dispatch = useDispatch();
 
-    const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    const sendMessage = React.useCallback((payload: ISendMessageDto) => 
     {
-        if (event.currentTarget.name !== "terms") { setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value}); }
-            else { setForm({ ...form, [event.currentTarget.name]: event.currentTarget.checked}); }
-    };
+        dispatch(ActionCreators.sendMessage(payload));
+    }, 
+    [ dispatch ]);
 
-    const buttonHandler = async () => 
-    {
-        let validationResult = ValidateContactForm( 
-        { 
-            FirstName: form.firstName,
-            LastName:  form.lastName, 
-            Email:     form.email, 
-            Subject:   form.subject, 
-            Message:   form.message, 
-            Terms:     form.terms 
-        });
-
-        if (!Validate.isDefined(validationResult))
+    React.useEffect(() => 
+    { 
+        if (!sendMessageState.isSendingMessage && progress) 
         {
-            setProgress(true);
-            setModal(await SendMessage(
+            setProgress(false);
+            setForm(formDefaultValues);
+            setModal(
+            { 
+                State: true, 
+                Title: "Contact Form", 
+                Message: GetMessageOutSuccess(), 
+                Icon: 0 
+            });
+        }
+        
+        if (!sendMessageState.isSendingMessage && !sendMessageState.hasSentMessage && progress)
+            sendMessage(
             {
                 firstName: form.firstName,
                 lastName: form.lastName,
@@ -70,10 +71,38 @@ export default function ContactForm(props: { contactForm: IContactForm, isLoadin
                 emailTos: [form.email],
                 subject: form.subject,
                 message: form.message
-            }));
-            setProgress(false);
-            setForm(formDefaultValues);
-            return true;
+            });
+    }, 
+    [ sendMessage, sendMessageState, progress, form ]);
+
+    const modalHandler = () => 
+    {
+        setModal({ ...modal, State: false});
+    };
+
+    const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    {
+        if (event.currentTarget.name !== "terms") 
+            { setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value}); }
+                else { setForm({ ...form, [event.currentTarget.name]: event.currentTarget.checked}); }
+    };
+
+    const buttonHandler = async () => 
+    {
+        let validationResult = ValidateContactForm( 
+        { 
+            FirstName: form.firstName,
+            LastName: form.lastName, 
+            Email: form.email, 
+            Subject: form.subject, 
+            Message: form.message, 
+            Terms: form.terms 
+        });
+
+        if (!Validate.isDefined(validationResult))
+        {
+            setProgress(true);
+            return;
         }
 
         setModal(
@@ -83,8 +112,6 @@ export default function ContactForm(props: { contactForm: IContactForm, isLoadin
             Message: GetMessageOutWarning(validationResult), 
             Icon: 1 
         });
-
-        return false;
     };
 
     return (

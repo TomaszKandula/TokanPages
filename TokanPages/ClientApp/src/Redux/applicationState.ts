@@ -48,10 +48,18 @@ export interface IArticleItem
     text: ITextItem[];
 }
 
+export interface ISendMessage
+{
+    isSendingMessage: boolean;
+    hasSentMessage: boolean;
+}
+
 export interface AppThunkAction<TAction> 
 {
     (dispatch: (action: TAction) => void, getState: () => IApplicationState): void;
 }
+
+// APPLICATION STATE DEFAULTS
 
 export const ArticleDefaultValues: IArticle = 
 {
@@ -108,3 +116,9 @@ export const DefaultAppState =
         isLoading: ArticlesDefaultValues.isLoading
     }
 };
+
+export const SendMessageDefaultValues: ISendMessage = 
+{
+    isSendingMessage: false,
+    hasSentMessage: false
+}
