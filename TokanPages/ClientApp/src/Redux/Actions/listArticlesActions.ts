@@ -1,5 +1,6 @@
 import axios from "axios";
-import { AppThunkAction, IArticleItem } from "../../Redux/applicationState";
+import { IArticleItem } from "../../Redux/States/articleState";
+import { AppThunkAction } from "../../Redux/applicationState";
 import { API_QUERY_GET_ARTICLES } from "../../Shared/constants";
 
 export const REQUEST_ARTICLES = "REQUEST_ARTICLES";

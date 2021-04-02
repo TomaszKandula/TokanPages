@@ -11,12 +11,12 @@ import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
+import { ActionCreators } from "../../Redux/Actions/sendMessageAction";
+import { IApplicationState } from "../../Redux/applicationState";
 import { ValidateContactForm } from "../../Shared/validate";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { GetMessageOutSuccess, GetMessageOutWarning } from "../../Shared/Modals/messageHelper";
 import { IContactForm, ISendMessageDto } from "../../Api/Models";
-import { ISendMessage } from "../../Redux/applicationState";
-import { ActionCreators } from "../../Redux/Actions/sendMessageAction";
 import useStyles from "./styleContactForm";
 
 const formDefaultValues =
@@ -37,7 +37,7 @@ export default function ContactForm(props: { contactForm: IContactForm, isLoadin
     const [modal, setModal] = React.useState(modalDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
-    const sendMessageState = useSelector((state: ISendMessage) => state);
+    const sendMessageState = useSelector((state: IApplicationState) => state.sendMessage);
     const dispatch = useDispatch();
 
     const sendMessage = React.useCallback((payload: ISendMessageDto) => 

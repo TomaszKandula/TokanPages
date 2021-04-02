@@ -1,6 +1,7 @@
 import { Action, Reducer } from "redux";
+import { SendMessageDefaultValues } from "../../Redux/Defaults/sendMessageDefault";
+import { ISendMessage } from "../../Redux/States/sendMessageState";
 import { TKnownActions, API_SEND_MESSAGE, API_SEND_MESSAGE_RESPONSE } from "../../Redux/Actions/sendMessageAction";
-import { SendMessageDefaultValues, ISendMessage } from "../../Redux/applicationState";
 
 const SendMessageReducer: Reducer<ISendMessage> = (state: ISendMessage | undefined, incomingAction: Action): ISendMessage => 
 {

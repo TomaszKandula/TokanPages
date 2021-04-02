@@ -9,12 +9,12 @@ import TextField from "@material-ui/core/TextField";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
+import { IApplicationState } from "../../Redux/applicationState";
+import { ActionCreators } from "../../Redux/Actions/addSubscriberAction";
 import { ValidateEmail } from "../../Shared/validate";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { GetNewsletterSuccess, GetNewsletterWarning } from "../../Shared/Modals/messageHelper";
 import { IAddSubscriberDto, INewsletter } from "../../Api/Models";
-import { IAddSubscriber } from "../../Redux/applicationState";
-import { ActionCreators } from "../../Redux/Actions/addSubscriberAction";
 import useStyles from "./styledNewsletter";
 
 const formDefaultValues = 
@@ -30,7 +30,7 @@ export default function Newsletter(props: { newsletter: INewsletter, isLoading: 
     const [modal, setModal] = React.useState(modalDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
-    const addSubscriberState = useSelector((state: IAddSubscriber) => state);
+    const addSubscriberState = useSelector((state: IApplicationState) => state.addSubscriber);
     const dispatch = useDispatch();
 
     const addSubscriber = React.useCallback((payload: IAddSubscriberDto) => 

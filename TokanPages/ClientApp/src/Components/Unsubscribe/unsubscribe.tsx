@@ -7,11 +7,11 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { IApplicationState } from "../../Redux/applicationState";
+import { ActionCreators } from "../../Redux/Actions/removeSubscriberAction";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { GetNewsletterSuccess } from "../../Shared/Modals/messageHelper";
 import { IRemoveSubscriberDto, IUnsubscribe } from "../../Api/Models";
-import { IRemoveSubscriber } from "../../Redux/applicationState";
-import { ActionCreators } from "../../Redux/Actions/removeSubscriberAction";
 import useStyles from "./styledUnsubscribe";
 
 export default function Unsubscribe(props: { id: string, unsubscribe: IUnsubscribe, isLoading: boolean })
@@ -41,7 +41,7 @@ export default function Unsubscribe(props: { id: string, unsubscribe: IUnsubscri
     const [progress, setProgress] = React.useState(false);
     const [modal, setModal] = React.useState(modalDefaultValues);
 
-    const removeSubscriberState = useSelector((state: IRemoveSubscriber) => state);
+    const removeSubscriberState = useSelector((state: IApplicationState) => state).removeSubscriber;
     const dispatch = useDispatch();
 
     const removeSubscriber = React.useCallback((payload: IRemoveSubscriberDto) => 

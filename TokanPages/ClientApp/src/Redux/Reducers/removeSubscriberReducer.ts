@@ -1,6 +1,7 @@
 import { Action, Reducer } from "redux";
+import { RemoveSubscriberDefaultValues } from "../../Redux/Defaults/removeSubscriberDefault";
+import { IRemoveSubscriber } from "../../Redux/States/removeSubscriberState";
 import { TKnownActions, API_REMOVE_SUBSCRIBER, API_REMOVE_SUBSCRIBER_RESPONSE } from "../Actions/removeSubscriberAction";
-import { RemoveSubscriberDefaultValues, IRemoveSubscriber,  } from "../applicationState";
 
 const RemoveSubscriberReducer: Reducer<IRemoveSubscriber> = (state: IRemoveSubscriber | undefined, incomingAction: Action): IRemoveSubscriber => 
 {

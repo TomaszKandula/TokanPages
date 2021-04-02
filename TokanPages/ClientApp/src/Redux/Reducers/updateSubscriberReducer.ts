@@ -1,6 +1,7 @@
 import { Action, Reducer } from "redux";
+import { UpdateSubscriberDefaultValues } from "../../Redux/Defaults/updateSubscriberDefault";
+import { IUpdateSubscriber } from "../../Redux/States/updateSubscriberState";
 import { TKnownActions, API_UPDATE_SUBSCRIBER, API_UPDATE_SUBSCRIBER_RESPONSE } from "../Actions/updateSubscriberAction";
-import { UpdateSubscriberDefaultValues, IUpdateSubscriber,  } from "../applicationState";
 
 const UpdateSubscriberReducer: Reducer<IUpdateSubscriber> = (state: IUpdateSubscriber | undefined, incomingAction: Action): IUpdateSubscriber => 
 {

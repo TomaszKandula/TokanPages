@@ -12,12 +12,12 @@ import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
+import { IApplicationState } from "../../Redux/applicationState";
+import { ActionCreators } from "../../Redux/Actions/updateSubscriberAction";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { ValidateEmail } from "../../Shared/validate";
 import { GetNewsletterSuccess, GetNewsletterWarning } from "../../Shared/Modals/messageHelper";
 import { IUpdateSubscriber as IUpdateSubscriberContent, IUpdateSubscriberDto } from "../../Api/Models";
-import { ActionCreators } from "../../Redux/Actions/updateSubscriberAction";
-import { IUpdateSubscriber } from "../../Redux/applicationState";
 import useStyles from "./styleUpdateSubscription";
 
 const formDefaultValues =
@@ -34,7 +34,7 @@ export default function UpdateSubscriber(props: { id: string, updateSubscriber: 
     const [progress, setProgress] = React.useState(false);
     const [modal, setModal] = React.useState(modalDefaultValues);
 
-    const updateSubscriberState = useSelector((state: IUpdateSubscriber) => state);
+    const updateSubscriberState = useSelector((state: IApplicationState) => state.updateSubscriber);
     const dispatch = useDispatch();
 
     const updateSubscriber = React.useCallback((payload: IUpdateSubscriberDto) => 

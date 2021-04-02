@@ -1,6 +1,7 @@
 import { Action, Reducer } from "redux";
+import { AddSubscriberDefaultValues } from "../../Redux/Defaults/addSubscriberDefault";
+import { IAddSubscriber } from "../../Redux/States/addSubscriberState";
 import { TKnownActions, API_ADD_SUBSCRIBER, API_ADD_SUBSCRIBER_RESPONSE } from "../Actions/addSubscriberAction";
-import { AddSubscriberDefaultValues, IAddSubscriber,  } from "../applicationState";
 
 const AddSubscriberReducer: Reducer<IAddSubscriber> = (state: IAddSubscriber | undefined, incomingAction: Action): IAddSubscriber => 
 {

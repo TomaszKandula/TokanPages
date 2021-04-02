@@ -1,6 +1,7 @@
 import { Action, Reducer } from "redux";
+import { UpdateArticleDefaultValues } from "../../Redux/Defaults/updateArticleDefault";
+import { IUpdateArticle } from "../../Redux/States/updateArticleState";
 import { TKnownActions, API_UPDATE_ARTICLE, API_UPDATE_ARTICLE_RESPONSE } from "../Actions/updateArticleActions";
-import { UpdateArticleDefaultValues, IUpdateArticle } from "../applicationState";
 
 const UpdateArticleReducer: Reducer<IUpdateArticle> = (state: IUpdateArticle | undefined, incomingAction: Action): IUpdateArticle => 
 {
