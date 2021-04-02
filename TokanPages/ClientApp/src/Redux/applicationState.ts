@@ -72,6 +72,12 @@ export interface IRemoveSubscriber
     hasRemovedSubscriber: boolean;
 }
 
+export interface IUpdateArticle
+{
+    isUpdatingArticle: boolean;
+    hasUpdatedArticle: boolean;
+}
+
 export interface AppThunkAction<TAction> 
 {
     (dispatch: (action: TAction) => void, getState: () => IApplicationState): void;
@@ -157,4 +163,10 @@ export const RemoveSubscriberDefaultValues: IRemoveSubscriber =
 {
     isRemovingSubscriber: false,
     hasRemovedSubscriber: false
+}
+
+export const UpdateArticleDefaultValues: IUpdateArticle = 
+{
+    isUpdatingArticle: false,
+    hasUpdatedArticle: false
 }

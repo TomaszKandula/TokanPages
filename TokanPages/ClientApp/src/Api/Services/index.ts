@@ -1,5 +1,3 @@
-export { UpdateArticle } from "./articles";//TODO: remove
-
 export { getNavigationContent } from "./components";
 export { getHeaderContent } from "./components";
 export { getFooterContent } from "./components";
