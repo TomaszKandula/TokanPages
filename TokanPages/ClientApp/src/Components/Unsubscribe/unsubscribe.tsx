@@ -16,16 +16,27 @@ import useStyles from "./styledUnsubscribe";
 
 export default function Unsubscribe(props: { id: string, unsubscribe: IUnsubscribe, isLoading: boolean })
 {
-    const classes = useStyles();
-    const [content, setContent] = React.useState(
+    const contentPre = 
     { 
         caption: props.unsubscribe.content.contentPre.caption,
         text1:   props.unsubscribe.content.contentPre.text1, 
         text2:   props.unsubscribe.content.contentPre.text2, 
         text3:   props.unsubscribe.content.contentPre.text3, 
         button:  props.unsubscribe.content.contentPre.button
-    });
+    };
 
+    const contentPost = 
+    {
+        caption: props.unsubscribe.content.contentPost.caption,
+        text1:   props.unsubscribe.content.contentPost.text1, 
+        text2:   props.unsubscribe.content.contentPost.text2, 
+        text3:   props.unsubscribe.content.contentPost.text3, 
+        button:  props.unsubscribe.content.contentPost.button
+    };
+
+    const classes = useStyles();
+
+    const [content, setContent] = React.useState(contentPre);
     const [buttonState, setButtonState] = React.useState(true);
     const [progress, setProgress] = React.useState(false);
     const [modal, setModal] = React.useState(modalDefaultValues);
@@ -45,14 +56,7 @@ export default function Unsubscribe(props: { id: string, unsubscribe: IUnsubscri
         {
             setProgress(false);
             setButtonState(true);
-            setContent(
-            {
-                caption: props.unsubscribe.content.contentPost.caption,
-                text1:   props.unsubscribe.content.contentPost.text1, 
-                text2:   props.unsubscribe.content.contentPost.text2, 
-                text3:   props.unsubscribe.content.contentPost.text3, 
-                button:  props.unsubscribe.content.contentPost.button
-            });
+            setContent(contentPost);
             setModal(
             { 
                 State: true, 
@@ -66,14 +70,14 @@ export default function Unsubscribe(props: { id: string, unsubscribe: IUnsubscri
             && !removeSubscriberState.hasRemovedSubscriber && progress)
                 removeSubscriber({ id: props.id });
     }, 
-    [ removeSubscriber, removeSubscriberState, progress, props.id ]);
+    [ removeSubscriber, removeSubscriberState, progress, props.id, contentPost ]);
 
     const modalHandler = () => 
     { 
         setModal(modalDefaultValues); 
     }
 
-    const buttonHandler = async () =>
+    const buttonHandler = () =>
     {
         if (props.id == null)
             return;
