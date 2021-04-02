@@ -15,7 +15,7 @@ const useQuery = () =>
 export default function UpdateSubscriberPage()
 {
     const queryParam = useQuery();
-    const id = queryParam.get("id");
+    const id = queryParam.get("id") as string; 
 
     const mountedRef = React.useRef(true);
     const [updateSubscriber, setUpdateSubscriberContent] = React.useState({ data: updateSubscriberDefault, isLoading: true });

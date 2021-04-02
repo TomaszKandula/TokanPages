@@ -1,8 +1,4 @@
-export { UpdateArticle } from "./articles";
-
-export { AddNewSubscriber } from "./subscribers";
-export { UpdateSubscriberData } from "./subscribers";
-export { RemoveSubscriberData } from "./subscribers";
+export { UpdateArticle } from "./articles";//TODO: remove
 
 export { getNavigationContent } from "./components";
 export { getHeaderContent } from "./components";

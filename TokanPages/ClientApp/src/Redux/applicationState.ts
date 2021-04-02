@@ -54,6 +54,24 @@ export interface ISendMessage
     hasSentMessage: boolean;
 }
 
+export interface IAddSubscriber
+{
+    isAddingSubscriber: boolean;
+    hasAddedSubscriber: boolean;
+}
+
+export interface IUpdateSubscriber
+{
+    isUpdatingSubscriber: boolean;
+    hasUpdatedSubscriber: boolean;
+}
+
+export interface IRemoveSubscriber
+{
+    isRemovingSubscriber: boolean;
+    hasRemovedSubscriber: boolean;
+}
+
 export interface AppThunkAction<TAction> 
 {
     (dispatch: (action: TAction) => void, getState: () => IApplicationState): void;
@@ -121,4 +139,22 @@ export const SendMessageDefaultValues: ISendMessage =
 {
     isSendingMessage: false,
     hasSentMessage: false
+}
+
+export const AddSubscriberDefaultValues: IAddSubscriber = 
+{
+    isAddingSubscriber: false,
+    hasAddedSubscriber: false
+}
+
+export const UpdateSubscriberDefaultValues: IUpdateSubscriber = 
+{
+    isUpdatingSubscriber: false,
+    hasUpdatedSubscriber: false
+}
+
+export const RemoveSubscriberDefaultValues: IRemoveSubscriber = 
+{
+    isRemovingSubscriber: false,
+    hasRemovedSubscriber: false
 }
