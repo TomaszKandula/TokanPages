@@ -48,6 +48,7 @@ export default function ContactForm(props: { contactForm: IContactForm, isLoadin
 
     React.useEffect(() => 
     { 
+        if (sendMessageState === undefined) return;
         if (!sendMessageState.isSendingMessage && progress) 
         {
             setProgress(false);

@@ -41,6 +41,7 @@ export default function Newsletter(props: { newsletter: INewsletter, isLoading: 
 
     React.useEffect(() => 
     { 
+        if (addSubscriberState === undefined) return;
         if (!addSubscriberState.isAddingSubscriber 
             && addSubscriberState.hasAddedSubscriber && progress) 
         {
