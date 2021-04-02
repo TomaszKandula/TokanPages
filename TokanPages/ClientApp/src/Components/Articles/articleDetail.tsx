@@ -18,12 +18,12 @@ import Emoji from "react-emoji-render";
 import Validate from "validate.js";
 import useStyles from "./Hooks/styleArticleDetail";
 import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators } from "../../Redux/Actions/selectArticleActions";
+import { ActionCreators as SelectArticleActions } from "../../Redux/Actions/selectArticleActions";
+import { ActionCreators as UpdateArticleAction } from "../../Redux/Actions/updateArticleActions";
 import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoader";
 import { RenderContent } from "../../Shared/ContentRender/renderContent";
 import { CountWords, FormatDateTime, GetReadTime, TextObjectToRawText } from "../../Shared/helpers";
 import { ITextObject } from "../../Shared/ContentRender/Model/textModel";
-import { UpdateArticle } from "../../Api/Services/articles";
 import { 
     AVATARS_PATH, 
     LIKES_LIMIT_FOR_ANONYM, 
@@ -45,7 +45,7 @@ export default function ArticleDetail(props: IArticleDetail)
     const selection = useSelector((state: IApplicationState) => state.selectArticle);
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
     {
-        dispatch(ActionCreators.selectArticle(props.id));
+        dispatch(SelectArticleActions.selectArticle(props.id));
     }
 
     const [popover, setPopover] = React.useState<HTMLElement | null>(null);
@@ -79,14 +79,14 @@ export default function ArticleDetail(props: IArticleDetail)
 
     const updateUserLikes = React.useCallback(async () => 
     {
-        await UpdateArticle(
+        dispatch(UpdateArticleAction.updateArticle(
         {
             id: props.id,
             addToLikes: userLikes,
             upReadCount: false
-        });   
+        }));
     }, 
-    [ userLikes, props.id ]);
+    [ dispatch, userLikes, props.id ]);
 
     React.useEffect(() => 
     { 
@@ -105,14 +105,14 @@ export default function ArticleDetail(props: IArticleDetail)
 
     const updateReadCount = React.useCallback(async () => 
     {
-        await UpdateArticle(
+        dispatch(UpdateArticleAction.updateArticle(
         {
             id: props.id,
             addToLikes: 0,
             upReadCount: true
-        });
+        }));
     }, 
-    [ props.id ]);
+    [ dispatch, props.id ]);
 
     React.useEffect(() => 
     {
@@ -138,7 +138,7 @@ export default function ArticleDetail(props: IArticleDetail)
 
     const backToList = () =>
     {
-        dispatch(ActionCreators.resetSelection());
+        dispatch(SelectArticleActions.resetSelection());
         history.push("/articles");
     };
 

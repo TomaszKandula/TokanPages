@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -8,11 +9,12 @@ import TextField from "@material-ui/core/TextField";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
+import { IApplicationState } from "../../Redux/applicationState";
+import { ActionCreators } from "../../Redux/Actions/addSubscriberAction";
 import { ValidateEmail } from "../../Shared/validate";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
-import { INewsletter } from "../../Api/Models";
-import { AddNewSubscriber } from "../../Api/Services/subscribers";
-import { GetNewsletterWarning } from "../../Shared/Modals/messageHelper";
+import { GetNewsletterSuccess, GetNewsletterWarning } from "../../Shared/Modals/messageHelper";
+import { IAddSubscriberDto, INewsletter } from "../../Api/Models";
 import useStyles from "./styledNewsletter";
 
 const formDefaultValues = 
@@ -28,6 +30,38 @@ export default function Newsletter(props: { newsletter: INewsletter, isLoading: 
     const [modal, setModal] = React.useState(modalDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
+    const addSubscriberState = useSelector((state: IApplicationState) => state.addSubscriber);
+    const dispatch = useDispatch();
+
+    const addSubscriber = React.useCallback((payload: IAddSubscriberDto) => 
+    {
+        dispatch(ActionCreators.addSubscriber(payload));
+    }, 
+    [ dispatch ]);
+
+    React.useEffect(() => 
+    { 
+        if (addSubscriberState === undefined) return;
+        if (!addSubscriberState.isAddingSubscriber 
+            && addSubscriberState.hasAddedSubscriber && progress) 
+        {
+            setProgress(false);
+            setForm(formDefaultValues);
+            setModal(
+            { 
+                State: true, 
+                Title: "Newsletter", 
+                Message: GetNewsletterSuccess(), 
+                Icon: 0 
+            });
+        }
+        
+        if (!addSubscriberState.isAddingSubscriber 
+            && !addSubscriberState.hasAddedSubscriber && progress)
+                addSubscriber({ email: form.email });
+    }, 
+    [ addSubscriber, addSubscriberState, progress, form ]);
+
     const modalHandler = () => 
     {
         setModal({ ...modal, State: false}); 
@@ -38,22 +72,14 @@ export default function Newsletter(props: { newsletter: INewsletter, isLoading: 
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
     };
 
-    const buttonHandler = async () =>
+    const buttonHandler = () =>
     {
         let Results = ValidateEmail(form.email);
 
         if (!Validate.isDefined(Results))
         {
             setProgress(true);
-            setModal(await AddNewSubscriber(
-            { 
-                email: form.email 
-            }));
-
-            setProgress(false); 
-            setForm(formDefaultValues);
-
-            return true;
+            return;
         }
 
         setModal(
@@ -63,8 +89,6 @@ export default function Newsletter(props: { newsletter: INewsletter, isLoading: 
             Message: GetNewsletterWarning(Results), 
             Icon: 1 
         });
-
-        return false;
     };
 
     return (

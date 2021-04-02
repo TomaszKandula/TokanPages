@@ -15,7 +15,7 @@ const useQuery = () =>
 export default function UnsubscribePage()
 {
     const queryParam = useQuery();
-    const id = queryParam.get("id");
+    const id = queryParam.get("id") as string;
 
     const mountedRef = React.useRef(true);
     const [unsubscribe, SetUnsubscribePageContent] = React.useState({ data: unsubscribeDefault, isLoading: true });

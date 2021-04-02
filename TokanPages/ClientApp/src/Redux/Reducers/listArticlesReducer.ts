@@ -1,6 +1,7 @@
 import { Action, Reducer } from "redux";
+import { IArticles } from "Redux/States/articleState";
+import { ArticlesDefaultValues } from "../../Redux/Defaults/articlesDefault";
 import { TKnownActions, RECEIVE_ARTICLES, REQUEST_ARTICLES } from "../../Redux/Actions/listArticlesActions";
-import { IArticles, ArticlesDefaultValues } from "../../Redux/applicationState";
 
 const ListArticlesReducer: Reducer<IArticles> = (state: IArticles | undefined, incomingAction: Action): IArticles => 
 {
