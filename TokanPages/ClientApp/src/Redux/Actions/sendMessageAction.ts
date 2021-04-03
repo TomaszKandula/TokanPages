@@ -4,15 +4,21 @@ import { ISendMessageDto } from "../../Api/Models";
 import { API_COMMAND_SEND_MESSAGE } from "../../Shared/constants";
 
 export const API_SEND_MESSAGE = "API_SEND_MESSAGE";
+export const API_SEND_MESSAGE_CLEAR = "API_SEND_MESSAGE_CLEAR";
 export const API_SEND_MESSAGE_RESPONSE = "API_SEND_MESSAGE_RESPONSE";
 
 export interface IApiSendMessage { type: typeof API_SEND_MESSAGE }
+export interface IApiSendMessageClear { type: typeof API_SEND_MESSAGE_CLEAR }
 export interface IApiSendMessageResponse { type: typeof API_SEND_MESSAGE_RESPONSE, hasSentMessage: boolean }
 
-export type TKnownActions = IApiSendMessage | IApiSendMessageResponse;
+export type TKnownActions = IApiSendMessage | IApiSendMessageClear | IApiSendMessageResponse;
 
 export const ActionCreators = 
 {
+    sendMessageClear: ():  AppThunkAction<TKnownActions> => async (dispatch) => 
+    {
+        dispatch({ type: API_SEND_MESSAGE_CLEAR });
+    },
     sendMessage: (payload: ISendMessageDto):  AppThunkAction<TKnownActions> => async (dispatch) => 
     {
         dispatch({ type: API_SEND_MESSAGE });

@@ -1,7 +1,8 @@
 import { Action, Reducer } from "redux";
 import { combinedDefaults } from "../../Redux/Defaults/combinedDefaults";
 import { ISendMessage } from "../../Redux/States/sendMessageState";
-import { TKnownActions, API_SEND_MESSAGE, API_SEND_MESSAGE_RESPONSE } from "../../Redux/Actions/sendMessageAction";
+import { SendMessageEnum } from "../../Redux/Enums/sendMessageEnum";
+import { TKnownActions, API_SEND_MESSAGE, API_SEND_MESSAGE_RESPONSE, API_SEND_MESSAGE_CLEAR } from "../../Redux/Actions/sendMessageAction";
 
 const SendMessageReducer: Reducer<ISendMessage> = (state: ISendMessage | undefined, incomingAction: Action): ISendMessage => 
 {
@@ -10,11 +11,14 @@ const SendMessageReducer: Reducer<ISendMessage> = (state: ISendMessage | undefin
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
+        case API_SEND_MESSAGE_CLEAR:
+            return combinedDefaults.sendMessage;
+            
         case API_SEND_MESSAGE:
-            return { isSendingMessage: true, hasSentMessage: state.hasSentMessage };
+            return { isSendingMessage: SendMessageEnum.inProgress, hasSentMessage: state.hasSentMessage };
 
         case API_SEND_MESSAGE_RESPONSE:
-            return { isSendingMessage: false, hasSentMessage: action.hasSentMessage };
+            return { isSendingMessage: SendMessageEnum.hasFinished, hasSentMessage: action.hasSentMessage };
 
         default: return state;
     }
