@@ -11,10 +11,10 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/removeSubscriberAction";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { GetNewsletterSuccess } from "../../Shared/Modals/messageHelper";
-import { IRemoveSubscriberDto, IUnsubscribe } from "../../Api/Models";
+import { IRemoveSubscriberDto, IUnsubscribeContentDto } from "../../Api/Models";
 import useStyles from "./styledUnsubscribe";
 
-export default function Unsubscribe(props: { id: string, unsubscribe: IUnsubscribe, isLoading: boolean })
+export default function Unsubscribe(props: { id: string, unsubscribe: IUnsubscribeContentDto, isLoading: boolean })
 {
     const contentPre = 
     { 

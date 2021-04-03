@@ -3,15 +3,15 @@ import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import SignupForm from "../Components/Account/signupForm";
 import Footer from "../Components/Layout/footer";
-import { footerDefault, navigationDefault, signupFormDefault } from "../Api/Defaults";
+import { footerContentDefault, navigationContentDefault, signupFormContentDefault } from "../Api/Defaults";
 import { getFooterContent, getNavigationContent, getSignupFormContent } from "../Api/Services";
 
 export default function SignupPage() 
 {
     const mountedRef = React.useRef(true);
-    const [signupForm, setSignupFormContent] = React.useState({ data: signupFormDefault, isLoading: true });
-    const [navigation, setNavigationContent] = React.useState({ data: navigationDefault, isLoading: true });
-    const [footer, setFooterContent] = React.useState({ data: footerDefault, isLoading: true });
+    const [signupForm, setSignupFormContent] = React.useState({ data: signupFormContentDefault, isLoading: true });
+    const [navigation, setNavigationContent] = React.useState({ data: navigationContentDefault, isLoading: true });
+    const [footer, setFooterContent] = React.useState({ data: footerContentDefault, isLoading: true });
 
     const updateContent = React.useCallback(async () => 
     {

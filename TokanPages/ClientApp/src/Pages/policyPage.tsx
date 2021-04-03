@@ -4,14 +4,14 @@ import Navigation from "../Components/Layout/navigation";
 import StaticContent from "../Components/Content/staticContent";
 import Footer from "../Components/Layout/footer";
 import { POLICY_URL } from "../Shared/constants";
-import { footerDefault, navigationDefault } from "../Api/Defaults";
+import { footerContentDefault, navigationContentDefault } from "../Api/Defaults";
 import { getNavigationContent, getFooterContent } from "../Api/Services";
 
 export default function PolicyPage() 
 {
     const mountedRef = React.useRef(true);
-    const [navigation, setNavigationContent] = React.useState({ data: navigationDefault, isLoading: true });
-    const [footer, setFooterContent] = React.useState({ data: footerDefault, isLoading: true });
+    const [navigation, setNavigationContent] = React.useState({ data: navigationContentDefault, isLoading: true });
+    const [footer, setFooterContent] = React.useState({ data: footerContentDefault, isLoading: true });
 
     const updateContent = React.useCallback(async () => 
     {

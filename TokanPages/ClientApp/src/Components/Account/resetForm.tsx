@@ -8,10 +8,10 @@ import TextField from "@material-ui/core/TextField";
 import { Card, CardContent } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IResetForm } from "../../Api/Models";
+import { IResetFormContentDto } from "../../Api/Models";
 import useStyles from "./Hooks/styleResetForm";
 
-export default function ResetForm(props: { resetForm: IResetForm, isLoading: boolean }) 
+export default function ResetForm(props: { resetForm: IResetFormContentDto, isLoading: boolean }) 
 {
     const classes = useStyles();
     return (

@@ -9,10 +9,10 @@ import TextField from "@material-ui/core/TextField";
 import { Card, CardContent } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { ISigninForm } from "../../Api/Models";
+import { ISigninFormContentDto } from "../../Api/Models";
 import useStyles from "./Hooks/styleSigninForm";
 
-export default function SigninForm(props: { signinForm: ISigninForm, isLoading: boolean }) 
+export default function SigninForm(props: { signinForm: ISigninFormContentDto, isLoading: boolean }) 
 {
     const classes = useStyles();
     return (

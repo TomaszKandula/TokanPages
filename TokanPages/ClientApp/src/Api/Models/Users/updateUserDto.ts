@@ -1,4 +1,4 @@
-interface IUpdateUserDto
+export interface IUpdateUserDto
 {
     id: string;
     userAlias: string;
@@ -7,5 +7,3 @@ interface IUpdateUserDto
     lastName: string;
     emailAddress: string;
 }
-
-export type { IUpdateUserDto }

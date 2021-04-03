@@ -22,16 +22,16 @@ import {
     getCookiesPromptContent
 } from "../Api/Services/";
 import { 
-    navigationDefault,
-    headerDefault,
-    footerDefault,
-    articleFeatDefault,
-    featuresDefault, 
-    featuredDefault,
-    testimonialsDefault,
-    newsletterDefault,
-    contactFormDefault,
-    cookiesPromptDefault
+    navigationContentDefault,
+    headerContentDefault,
+    footerContentDefault,
+    articleFeatContentDefault,
+    featuresContentDefault, 
+    featuredContentDefault,
+    testimonialsContentDefault,
+    newsletterContentDefault,
+    contactFormContentDefault,
+    cookiesPromptContentDefault
 } from "../Api/Defaults";
 
 import AOS from "aos";
@@ -40,16 +40,16 @@ export default function Index()
 {
     const mountedRef = React.useRef(true);
 
-    const [navigation, setNavigationContent] = React.useState({ data: navigationDefault, isLoading: true });
-    const [header, setHeaderContent] = React.useState({ data: headerDefault, isLoading: true });
-    const [footer, setFooterContent] = React.useState({ data: footerDefault, isLoading: true });
-    const [articles, setArticlesContent] = React.useState({ data: articleFeatDefault, isLoading: true });
-    const [features, setFeaturesContent] = React.useState({ data: featuresDefault, isLoading: true });
-    const [featured, setFeaturedContent] = React.useState({ data: featuredDefault, isLoading: true });
-    const [testimonials, setTestimonialsContent] = React.useState({ data: testimonialsDefault, isLoading: true });
-    const [newsletter, setNewsletterContent] = React.useState({ data: newsletterDefault, isLoading: true });
-    const [contactForm, setContactFormContent] = React.useState({ data: contactFormDefault, isLoading: true });
-    const [cookiesPrompt, setCookiesPromptContent] = React.useState({ data: cookiesPromptDefault, isLoading: true });
+    const [navigation, setNavigationContent] = React.useState({ data: navigationContentDefault, isLoading: true });
+    const [header, setHeaderContent] = React.useState({ data: headerContentDefault, isLoading: true });
+    const [footer, setFooterContent] = React.useState({ data: footerContentDefault, isLoading: true });
+    const [articles, setArticlesContent] = React.useState({ data: articleFeatContentDefault, isLoading: true });
+    const [features, setFeaturesContent] = React.useState({ data: featuresContentDefault, isLoading: true });
+    const [featured, setFeaturedContent] = React.useState({ data: featuredContentDefault, isLoading: true });
+    const [testimonials, setTestimonialsContent] = React.useState({ data: testimonialsContentDefault, isLoading: true });
+    const [newsletter, setNewsletterContent] = React.useState({ data: newsletterContentDefault, isLoading: true });
+    const [contactForm, setContactFormContent] = React.useState({ data: contactFormContentDefault, isLoading: true });
+    const [cookiesPrompt, setCookiesPromptContent] = React.useState({ data: cookiesPromptContentDefault, isLoading: true });
  
     const updateContent = React.useCallback(async () => 
     {

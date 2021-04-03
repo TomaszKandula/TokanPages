@@ -4,14 +4,14 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Carousel } from "react-responsive-carousel";
-import { ITestimonials } from "../../Api/Models";
+import { ITestimonialsContentDto } from "../../Api/Models";
 import { renderImage } from "../../Shared/Components/renderImage";
 import { TESTIMONIALS_PATH } from "../../Shared/constants";
 import useStyles from "./styledTestimonials";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./overrideCarousel.css";
 
-export default function Testimonials(props: { testimonials: ITestimonials, isLoading: boolean })
+export default function Testimonials(props: { testimonials: ITestimonialsContentDto, isLoading: boolean })
 {
     const classes = useStyles();
     return(

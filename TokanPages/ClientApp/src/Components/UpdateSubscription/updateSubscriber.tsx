@@ -17,7 +17,7 @@ import { ActionCreators } from "../../Redux/Actions/updateSubscriberAction";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { ValidateEmail } from "../../Shared/validate";
 import { GetNewsletterSuccess, GetNewsletterWarning } from "../../Shared/Modals/messageHelper";
-import { IUpdateSubscriber as IUpdateSubscriberContent, IUpdateSubscriberDto } from "../../Api/Models";
+import { IUpdateSubscriberContentDto, IUpdateSubscriberDto } from "../../Api/Models";
 import useStyles from "./styleUpdateSubscription";
 
 const formDefaultValues =
@@ -25,7 +25,7 @@ const formDefaultValues =
     email: ""
 };
 
-export default function UpdateSubscriber(props: { id: string, updateSubscriber: IUpdateSubscriberContent, isLoading: boolean })
+export default function UpdateSubscriber(props: { id: string, updateSubscriber: IUpdateSubscriberContentDto, isLoading: boolean })
 {
     const classes = useStyles();
 

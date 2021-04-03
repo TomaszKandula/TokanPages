@@ -1,8 +1,8 @@
 import { getDataFromUrl } from "../request";
-import { IContactForm } from "../../Api/Models";
+import { IContactFormContentDto } from "../../Api/Models";
 import { GET_CONTACT_FORM_CONTENT } from "../../Shared/constants";
 
-export const getContactFormContent = async (): Promise<IContactForm> =>
+export const getContactFormContent = async (): Promise<IContactFormContentDto> =>
 {
     return await getDataFromUrl(GET_CONTACT_FORM_CONTENT);
 };

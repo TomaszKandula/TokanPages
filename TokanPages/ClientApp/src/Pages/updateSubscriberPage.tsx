@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
 import UpdateSubscriber from "../Components/UpdateSubscription/updateSubscriber";
-import { footerDefault, navigationDefault, updateSubscriberDefault } from "../Api/Defaults";
+import { footerContentDefault, navigationContentDefault, updateSubscriberContentDefault } from "../Api/Defaults";
 import { getFooterContent, getNavigationContent, getUpdateSubscriberContent } from "../Api/Services";
 
 const useQuery = () => 
@@ -18,9 +18,9 @@ export default function UpdateSubscriberPage()
     const id = queryParam.get("id") as string; 
 
     const mountedRef = React.useRef(true);
-    const [updateSubscriber, setUpdateSubscriberContent] = React.useState({ data: updateSubscriberDefault, isLoading: true });
-    const [navigation, setNavigationContent] = React.useState({ data: navigationDefault, isLoading: true });
-    const [footer, setFooterContent] = React.useState({ data: footerDefault, isLoading: true });
+    const [updateSubscriber, setUpdateSubscriberContent] = React.useState({ data: updateSubscriberContentDefault, isLoading: true });
+    const [navigation, setNavigationContent] = React.useState({ data: navigationContentDefault, isLoading: true });
+    const [footer, setFooterContent] = React.useState({ data: footerContentDefault, isLoading: true });
 
     const updateContent = React.useCallback(async () => 
     {

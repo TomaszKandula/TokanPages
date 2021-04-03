@@ -5,10 +5,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 import HideOnScroll from "../../Shared/Scroll/hideOnScroll";
 import { ICONS_PATH } from "../../Shared/constants";
 import { renderImage } from "../../Shared/Components/renderImage";
-import { INavigation } from "../../Api/Models/Components/navigation";
+import { INavigationContentDto } from "../../Api/Models/";
 import useStyles from "./Hooks/styleNavigation";
 
-export default function Navigation(props: { navigation: INavigation, isLoading: boolean }) 
+export default function Navigation(props: { navigation: INavigationContentDto, isLoading: boolean }) 
 {
     const classes = useStyles();
     return (

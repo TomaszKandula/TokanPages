@@ -8,10 +8,10 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import { SetCookie, GetCookie } from "../../Shared/cookies";
 import Validate from "validate.js";
-import { ICookiesPrompt } from "../../Api/Models";
+import { ICookiesPromptContentDto } from "../../Api/Models";
 import useStyles from "./styleCookies";
 
-export default function Cookies(props: { cookiesPrompt: ICookiesPrompt, isLoading: boolean }) 
+export default function Cookies(props: { cookiesPrompt: ICookiesPromptContentDto, isLoading: boolean }) 
 {
     const classes = useStyles();
     const [close, setClose] = React.useState(false);

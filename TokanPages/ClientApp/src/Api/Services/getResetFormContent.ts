@@ -1,8 +1,8 @@
 import { getDataFromUrl } from "../request";
-import { IResetForm } from "../../Api/Models";
+import { IResetFormContentDto } from "../../Api/Models";
 import { GET_RESET_FORM_CONTENT } from "../../Shared/constants";
 
-export const getResetFormContent = async (): Promise<IResetForm> =>
+export const getResetFormContent = async (): Promise<IResetFormContentDto> =>
 {
     return await getDataFromUrl(GET_RESET_FORM_CONTENT);
 };

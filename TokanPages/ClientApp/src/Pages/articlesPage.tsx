@@ -6,7 +6,7 @@ import Footer from "../Components/Layout/footer";
 import ArticleList from "../Components/Articles/articleList";
 import ArticleDetail from "../Components/Articles/articleDetail";
 import { getFooterContent, getNavigationContent } from "../Api/Services";
-import { footerDefault, navigationDefault } from "../Api/Defaults";
+import { footerContentDefault, navigationContentDefault } from "../Api/Defaults";
 
 const useQuery = () => 
 {
@@ -19,8 +19,8 @@ export default function ArticlesPage()
     const id = queryParam.get("id");
     const content = id ? <ArticleDetail id={id} /> : <ArticleList />;
     const mountedRef = React.useRef(true);
-    const [navigation, setNavigationContent] = React.useState({ data: navigationDefault, isLoading: true });
-    const [footer, setFooterContent] = React.useState({ data: footerDefault, isLoading: true });
+    const [navigation, setNavigationContent] = React.useState({ data: navigationContentDefault, isLoading: true });
+    const [footer, setFooterContent] = React.useState({ data: footerContentDefault, isLoading: true });
 
     const updateContent = React.useCallback(async () => 
     {

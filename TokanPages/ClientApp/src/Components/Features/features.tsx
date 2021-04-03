@@ -9,10 +9,10 @@ import StorageIcon from "@material-ui/icons/Storage";
 import CloudIcon from "@material-ui/icons/Cloud";
 import Skeleton from "@material-ui/lab/Skeleton";
 import ReactHtmlParser from "react-html-parser";
-import { IFeatures } from "../../Api/Models";
+import { IFeaturesContentDto } from "../../Api/Models";
 import useStyles from "./styleFeatures";
 
-export default function Features(props: { features: IFeatures, isLoading: boolean })
+export default function Features(props: { features: IFeaturesContentDto, isLoading: boolean })
 {
     const classes = useStyles();
     return (
