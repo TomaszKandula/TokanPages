@@ -11,8 +11,8 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/addSubscriberAction";
-import { AddSubscriberEnum } from "../../Redux/Enums/addSubscriberEnum";
 import { ValidateEmail } from "../../Shared/validate";
+import { OperationStatuses } from "../../Shared/Enums";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { GetNewsletterSuccess, GetNewsletterWarning, GetNewsletterError } from "../../Shared/Modals/messageHelper";
 import { IAddSubscriberDto, INewsletterContentDto } from "../../Api/Models";
@@ -49,13 +49,13 @@ export default function Newsletter(props: { newsletter: INewsletterContentDto, i
         if (addSubscriberState === undefined) 
             return;
 
-        if (addSubscriberState.isAddingSubscriber === AddSubscriberEnum.notStarted && progress)
+        if (addSubscriberState.isAddingSubscriber === OperationStatuses.notStarted && progress)
         {
             addSubscriber({ email: form.email });
             return;
         }
             
-        if (addSubscriberState.isAddingSubscriber === AddSubscriberEnum.hasFinished)
+        if (addSubscriberState.isAddingSubscriber === OperationStatuses.hasFinished)
         {
             setProgress(false);
             setForm(formDefaultValues);

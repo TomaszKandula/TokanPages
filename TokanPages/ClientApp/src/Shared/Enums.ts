@@ -1,4 +1,4 @@
-export enum SendMessageEnum 
+export enum OperationStatuses 
 {
     notStarted,
     inProgress,
