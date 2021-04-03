@@ -13,9 +13,10 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
 import { ActionCreators } from "../../Redux/Actions/sendMessageAction";
 import { IApplicationState } from "../../Redux/applicationState";
+import { SendMessageEnum } from "../../Redux/Enums/sendMessageEnum";
 import { ValidateContactForm } from "../../Shared/validate";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
-import { GetMessageOutSuccess, GetMessageOutWarning } from "../../Shared/Modals/messageHelper";
+import { GetMessageOutSuccess, GetMessageOutWarning, GetMessageOutError } from "../../Shared/Modals/messageHelper";
 import { IContactFormContentDto, ISendMessageDto } from "../../Api/Models";
 import useStyles from "./styleContactForm";
 
@@ -37,32 +38,25 @@ export default function ContactForm(props: { contactForm: IContactFormContentDto
     const [modal, setModal] = React.useState(modalDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
+    const showSuccess = (text: string) => { setModal({ State: true, Title: "Contact Form", Message: text, Icon: 0 }); };
+    const showWarning = (text: string) => { setModal({ State: true, Title: "Warning", Message: text, Icon: 1 }); };
+    const showError = (text: string) => { setModal({ State: true, Title: "Error", Message: text, Icon: 2 }); };
+
     const sendMessageState = useSelector((state: IApplicationState) => state.sendMessage);
     const dispatch = useDispatch();
 
     const sendMessage = React.useCallback((payload: ISendMessageDto) => 
-    {
-        dispatch(ActionCreators.sendMessage(payload));
-    }, 
-    [ dispatch ]);
+        { dispatch(ActionCreators.sendMessage(payload)); }, [ dispatch ]);
 
+    const sendMessageClear = React.useCallback(() => 
+        { dispatch(ActionCreators.sendMessageClear()); }, [ dispatch ]);
+        
     React.useEffect(() => 
     { 
         if (sendMessageState === undefined) return;
-        if (!sendMessageState.isSendingMessage && progress) 
+
+        if (sendMessageState.isSendingMessage === SendMessageEnum.notStarted && progress)
         {
-            setProgress(false);
-            setForm(formDefaultValues);
-            setModal(
-            { 
-                State: true, 
-                Title: "Contact Form", 
-                Message: GetMessageOutSuccess(), 
-                Icon: 0 
-            });
-        }
-        
-        if (!sendMessageState.isSendingMessage && !sendMessageState.hasSentMessage && progress)
             sendMessage(
             {
                 firstName: form.firstName,
@@ -73,13 +67,29 @@ export default function ContactForm(props: { contactForm: IContactFormContentDto
                 subject: form.subject,
                 message: form.message
             });
+            return;
+        }
+
+        if (sendMessageState.isSendingMessage === SendMessageEnum.hasFinished)
+        {
+            setProgress(false);
+            setForm(formDefaultValues);
+
+            if (sendMessageState.hasSentMessage)
+            {
+                showSuccess(GetMessageOutSuccess());
+                sendMessageClear();
+                return;
+            }
+
+            showError(GetMessageOutError("Cannot send message"));//TODO: impl. proper error message
+            sendMessageClear();
+        }
     }, 
-    [ sendMessage, sendMessageState, progress, form ]);
+    [ sendMessage, sendMessageClear, sendMessageState, progress, form ]);
 
     const modalHandler = () => 
-    {
-        setModal({ ...modal, State: false});
-    };
+        { setModal({ ...modal, State: false}); };
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
@@ -106,13 +116,7 @@ export default function ContactForm(props: { contactForm: IContactFormContentDto
             return;
         }
 
-        setModal(
-        { 
-            State: true, 
-            Title: "Warning", 
-            Message: GetMessageOutWarning(validationResult), 
-            Icon: 1 
-        });
+        showWarning(GetMessageOutWarning(validationResult));
     };
 
     return (
