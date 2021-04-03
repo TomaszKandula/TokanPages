@@ -1,11 +1,11 @@
 import { Action, Reducer } from "redux";
-import { IArticles } from "Redux/States/articleState";
-import { ArticlesDefaultValues } from "../../Redux/Defaults/articlesDefault";
+import { combinedDefaults } from "../../Redux/Defaults/combinedDefaults";
+import { IArticles } from "../../Redux/States/listArticlesState";
 import { TKnownActions, RECEIVE_ARTICLES, REQUEST_ARTICLES } from "../../Redux/Actions/listArticlesActions";
 
 const ListArticlesReducer: Reducer<IArticles> = (state: IArticles | undefined, incomingAction: Action): IArticles => 
 {
-    if (state === undefined) return ArticlesDefaultValues;
+    if (state === undefined) return combinedDefaults.listArticles;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

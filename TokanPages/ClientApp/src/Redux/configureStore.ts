@@ -3,10 +3,15 @@ import thunk from "redux-thunk";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import { History } from "history";
 import { combinedReducers } from "./Reducers/combinedReducers";
+import { combinedDefaults } from "./Defaults/combinedDefaults";
 import { IApplicationState } from "./applicationState";
 
 export default function configureStore(history: History, initialState?: IApplicationState) 
 {
+    const initialAppState = initialState === undefined 
+        ? combinedDefaults 
+        : initialState;
+    
     const middleware = 
     [
         thunk,
@@ -29,7 +34,7 @@ export default function configureStore(history: History, initialState?: IApplica
 
     return createStore(
         rootReducer,
-        initialState,
+        initialAppState,
         compose(applyMiddleware(...middleware), ...enhancers)
     );
 }

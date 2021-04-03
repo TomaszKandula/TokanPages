@@ -13,7 +13,7 @@ export type TKnownActions = IApiSendMessage | IApiSendMessageResponse;
 
 export const ActionCreators = 
 {
-    sendMessage: (PayLoad: ISendMessageDto):  AppThunkAction<TKnownActions> => async (dispatch) => 
+    sendMessage: (payload: ISendMessageDto):  AppThunkAction<TKnownActions> => async (dispatch) => 
     {
         dispatch({ type: API_SEND_MESSAGE });
 
@@ -23,13 +23,13 @@ export const ActionCreators =
             url: API_COMMAND_SEND_MESSAGE, 
             data: 
             { 
-                firstName: PayLoad.firstName,
-                lastName:  PayLoad.lastName,
-                userEmail: PayLoad.userEmail,
-                emailFrom: PayLoad.emailFrom,
-                emailTos:  PayLoad.emailTos,
-                subject:   PayLoad.subject,
-                message:   PayLoad.message
+                firstName: payload.firstName,
+                lastName:  payload.lastName,
+                userEmail: payload.userEmail,
+                emailFrom: payload.emailFrom,
+                emailTos:  payload.emailTos,
+                subject:   payload.subject,
+                message:   payload.message
             }
         })
         .then(function (response) 
