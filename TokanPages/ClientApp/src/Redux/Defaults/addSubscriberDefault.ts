@@ -1,8 +1,8 @@
-import { AddSubscriberEnum } from "Redux/Enums/addSubscriberEnum";
 import { IAddSubscriber } from "../../Redux/States/addSubscriberState";
+import { OperationStatuses } from "../../Shared/Enums";
 
 export const AddSubscriberDefault: IAddSubscriber = 
 {
-    isAddingSubscriber: AddSubscriberEnum.notStarted,
+    isAddingSubscriber: OperationStatuses.notStarted,
     hasAddedSubscriber: false
 }

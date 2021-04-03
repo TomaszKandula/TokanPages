@@ -1,7 +1,7 @@
-import { SendMessageEnum } from "../../Redux/Enums/sendMessageEnum";
+import { OperationStatuses } from "../../Shared/Enums";
 
 export interface ISendMessage
 {
-    isSendingMessage: SendMessageEnum;
+    isSendingMessage: OperationStatuses;
     hasSentMessage: boolean;
 }

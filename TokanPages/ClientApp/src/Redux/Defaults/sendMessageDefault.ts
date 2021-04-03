@@ -1,8 +1,8 @@
-import { SendMessageEnum } from "../../Redux/Enums/sendMessageEnum";
 import { ISendMessage } from "../../Redux/States/sendMessageState";
+import { OperationStatuses } from "../../Shared/Enums";
 
 export const SendMessageStateDefault: ISendMessage = 
 {
-    isSendingMessage: SendMessageEnum.notStarted,
+    isSendingMessage: OperationStatuses.notStarted,
     hasSentMessage: false
 }

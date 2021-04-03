@@ -13,7 +13,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
 import { ActionCreators } from "../../Redux/Actions/sendMessageAction";
 import { IApplicationState } from "../../Redux/applicationState";
-import { SendMessageEnum } from "../../Redux/Enums/sendMessageEnum";
+import { OperationStatuses } from "../../Shared/Enums";
 import { ValidateContactForm } from "../../Shared/validate";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { GetMessageOutSuccess, GetMessageOutWarning, GetMessageOutError } from "../../Shared/Modals/messageHelper";
@@ -55,7 +55,7 @@ export default function ContactForm(props: { contactForm: IContactFormContentDto
     { 
         if (sendMessageState === undefined) return;
 
-        if (sendMessageState.isSendingMessage === SendMessageEnum.notStarted && progress)
+        if (sendMessageState.isSendingMessage === OperationStatuses.notStarted && progress)
         {
             sendMessage(
             {
@@ -70,7 +70,7 @@ export default function ContactForm(props: { contactForm: IContactFormContentDto
             return;
         }
 
-        if (sendMessageState.isSendingMessage === SendMessageEnum.hasFinished)
+        if (sendMessageState.isSendingMessage === OperationStatuses.hasFinished)
         {
             setProgress(false);
             setForm(formDefaultValues);
