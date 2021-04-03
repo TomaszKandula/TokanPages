@@ -13,7 +13,7 @@ export type TKnownActions = IApiUpdateSubscriber | IApiUpdateSubscriberResponse;
 
 export const ActionCreators = 
 {
-    updateSubscriber: (payLoad: IUpdateSubscriberDto):  AppThunkAction<TKnownActions> => async (dispatch) => 
+    updateSubscriber: (payload: IUpdateSubscriberDto):  AppThunkAction<TKnownActions> => async (dispatch) => 
     {
         dispatch({ type: API_UPDATE_SUBSCRIBER });
 
@@ -23,7 +23,7 @@ export const ActionCreators =
             url: API_COMMAND_UPDATE_SUBSCRIBER, 
             data: 
             { 
-                email: payLoad.email 
+                email: payload.email 
             }
         })
         .then(function (response) 

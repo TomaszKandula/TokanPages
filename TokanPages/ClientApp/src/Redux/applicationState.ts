@@ -1,4 +1,5 @@
-import { IArticle, IArticles } from "./States/articleState";
+import { IArticle } from "./States/selectArticleState";
+import { IArticles } from "./States/listArticlesState";
 import { ISendMessage } from "./States/sendMessageState";
 import { IAddSubscriber } from "./States/addSubscriberState";
 import { IUpdateSubscriber } from "./States/updateSubscriberState";

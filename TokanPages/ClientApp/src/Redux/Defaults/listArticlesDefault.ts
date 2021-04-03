@@ -1,4 +1,4 @@
-import { IArticles } from "../../Redux/States/articleState";
+import { IArticles } from "../../Redux/States/listArticlesState";
 
 export const ArticlesDefaultValues: IArticles = 
 {
