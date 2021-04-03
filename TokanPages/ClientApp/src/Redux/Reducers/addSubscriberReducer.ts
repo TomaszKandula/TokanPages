@@ -1,7 +1,8 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "Redux/Defaults/combinedDefaults";
+import { combinedDefaults } from "../../Redux/Defaults/combinedDefaults";
+import { AddSubscriberEnum } from "../../Redux/Enums/addSubscriberEnum";
 import { IAddSubscriber } from "../../Redux/States/addSubscriberState";
-import { TKnownActions, API_ADD_SUBSCRIBER, API_ADD_SUBSCRIBER_RESPONSE } from "../Actions/addSubscriberAction";
+import { TKnownActions, API_ADD_SUBSCRIBER, API_ADD_SUBSCRIBER_RESPONSE, API_ADD_SUBSCRIBER_CLEAR } from "../Actions/addSubscriberAction";
 
 const AddSubscriberReducer: Reducer<IAddSubscriber> = (state: IAddSubscriber | undefined, incomingAction: Action): IAddSubscriber => 
 {
@@ -10,11 +11,14 @@ const AddSubscriberReducer: Reducer<IAddSubscriber> = (state: IAddSubscriber | u
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
+        case API_ADD_SUBSCRIBER_CLEAR:
+            return combinedDefaults.addSubscriber;
+
         case API_ADD_SUBSCRIBER:
-            return { isAddingSubscriber: true, hasAddedSubscriber: state.hasAddedSubscriber };
+            return { isAddingSubscriber: AddSubscriberEnum.inProgress, hasAddedSubscriber: state.hasAddedSubscriber };
 
         case API_ADD_SUBSCRIBER_RESPONSE:
-            return { isAddingSubscriber: false, hasAddedSubscriber: action.hasAddedSubscriber };
+            return { isAddingSubscriber: AddSubscriberEnum.hasFinished, hasAddedSubscriber: action.hasAddedSubscriber };
 
         default: return state;
     }

@@ -1,5 +1,7 @@
+import { AddSubscriberEnum } from "../../Redux/Enums/addSubscriberEnum";
+
 export interface IAddSubscriber
 {
-    isAddingSubscriber: boolean;
+    isAddingSubscriber: AddSubscriberEnum;
     hasAddedSubscriber: boolean;
 }

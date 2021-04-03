@@ -11,9 +11,10 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/addSubscriberAction";
+import { AddSubscriberEnum } from "../../Redux/Enums/addSubscriberEnum";
 import { ValidateEmail } from "../../Shared/validate";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
-import { GetNewsletterSuccess, GetNewsletterWarning } from "../../Shared/Modals/messageHelper";
+import { GetNewsletterSuccess, GetNewsletterWarning, GetNewsletterError } from "../../Shared/Modals/messageHelper";
 import { IAddSubscriberDto, INewsletterContentDto } from "../../Api/Models";
 import useStyles from "./styledNewsletter";
 
@@ -30,65 +31,65 @@ export default function Newsletter(props: { newsletter: INewsletterContentDto, i
     const [modal, setModal] = React.useState(modalDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
+    const showSuccess = (text: string) => { setModal({ State: true, Title: "Newsletter", Message: text, Icon: 0 }); };
+    const showWarning = (text: string) => { setModal({ State: true, Title: "Warning", Message: text, Icon: 1 }); };
+    const showError = (text: string) => { setModal({ State: true, Title: "Error", Message: text, Icon: 2 }); };
+
     const addSubscriberState = useSelector((state: IApplicationState) => state.addSubscriber);
     const dispatch = useDispatch();
 
     const addSubscriber = React.useCallback((payload: IAddSubscriberDto) => 
-    {
-        dispatch(ActionCreators.addSubscriber(payload));
-    }, 
-    [ dispatch ]);
+        { dispatch(ActionCreators.addSubscriber(payload)); }, [ dispatch ]);
+
+    const addSubscriberClear = React.useCallback(() => 
+        { dispatch(ActionCreators.addSubscriberClear()); }, [ dispatch ]);
 
     React.useEffect(() => 
     { 
-        if (addSubscriberState === undefined) return;
-        if (!addSubscriberState.isAddingSubscriber 
-            && addSubscriberState.hasAddedSubscriber && progress) 
+        if (addSubscriberState === undefined) 
+            return;
+
+        if (addSubscriberState.isAddingSubscriber === AddSubscriberEnum.notStarted && progress)
+        {
+            addSubscriber({ email: form.email });
+            return;
+        }
+            
+        if (addSubscriberState.isAddingSubscriber === AddSubscriberEnum.hasFinished)
         {
             setProgress(false);
             setForm(formDefaultValues);
-            setModal(
-            { 
-                State: true, 
-                Title: "Newsletter", 
-                Message: GetNewsletterSuccess(), 
-                Icon: 0 
-            });
+
+            if (addSubscriberState.hasAddedSubscriber)
+            {
+                showSuccess(GetNewsletterSuccess());
+                addSubscriberClear();
+                return;
+            }
+
+            showError(GetNewsletterError("Cannot add subscription"));//TODO: impl. proper error message
+            addSubscriberClear();
         }
-        
-        if (!addSubscriberState.isAddingSubscriber 
-            && !addSubscriberState.hasAddedSubscriber && progress)
-                addSubscriber({ email: form.email });
     }, 
-    [ addSubscriber, addSubscriberState, progress, form ]);
+    [ addSubscriber, addSubscriberClear, addSubscriberState, progress, form ]);
 
     const modalHandler = () => 
-    {
-        setModal({ ...modal, State: false}); 
-    };
+        { setModal({ ...modal, State: false}); };
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
-    {
-        setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
-    };
+        { setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value }); };
 
     const buttonHandler = () =>
     {
-        let Results = ValidateEmail(form.email);
+        let results = ValidateEmail(form.email);
 
-        if (!Validate.isDefined(Results))
+        if (!Validate.isDefined(results))
         {
             setProgress(true);
             return;
         }
 
-        setModal(
-        { 
-            State: true, 
-            Title: "Warning", 
-            Message: GetNewsletterWarning(Results), 
-            Icon: 1 
-        });
+        showWarning(GetNewsletterWarning(results));
     };
 
     return (
