@@ -1,6 +1,6 @@
 import { IUpdateSubscriber } from "../../Redux/States/updateSubscriberState";
 
-export const UpdateSubscriberDefaultValues: IUpdateSubscriber = 
+export const UpdateSubscriberDefault: IUpdateSubscriber = 
 {
     isUpdatingSubscriber: false,
     hasUpdatedSubscriber: false

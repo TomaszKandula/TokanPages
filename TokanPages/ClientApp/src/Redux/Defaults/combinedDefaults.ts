@@ -1,18 +1,18 @@
-import { ArticleDefaultValues } from "./selectArticleDefault";
-import { ArticlesDefaultValues } from "./listArticlesDefault";
-import { UpdateArticleDefaultValues } from "./updateArticleDefault";
-import { SendMessageDefaultValues } from "./sendMessageDefault";
-import { addSubscriberDefault } from "./addSubscriberDefault";
-import { UpdateSubscriberDefaultValues } from "./updateSubscriberDefault";
-import { RemoveSubscriberDefaultValues } from "./removeSubscriberDefault";
+import { SelectArticleDefault } from "./selectArticleDefault";
+import { ListArticlesDefault } from "./listArticlesDefault";
+import { UpdateArticleDefault } from "./updateArticleDefault";
+import { SendMessageStateDefault } from "./sendMessageDefault";
+import { AddSubscriberDefault } from "./addSubscriberDefault";
+import { UpdateSubscriberDefault } from "./updateSubscriberDefault";
+import { RemoveSubscriberDefault } from "./removeSubscriberDefault";
 
 export const combinedDefaults = 
 {
-    selectArticle: ArticleDefaultValues,
-    listArticles: ArticlesDefaultValues,
-    updateArticle: UpdateArticleDefaultValues,
-    sendMessage: SendMessageDefaultValues,
-    addSubscriber: addSubscriberDefault,
-    updateSubscriber: UpdateSubscriberDefaultValues,
-    removeSubscriber: RemoveSubscriberDefaultValues
+    selectArticle: SelectArticleDefault,
+    listArticles: ListArticlesDefault,
+    updateArticle: UpdateArticleDefault,
+    sendMessage: SendMessageStateDefault,
+    addSubscriber: AddSubscriberDefault,
+    updateSubscriber: UpdateSubscriberDefault,
+    removeSubscriber: RemoveSubscriberDefault
 };

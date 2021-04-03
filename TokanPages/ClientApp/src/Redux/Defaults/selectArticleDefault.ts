@@ -1,6 +1,6 @@
 import { IArticle } from "Redux/States/selectArticleState";
 
-export const ArticleDefaultValues: IArticle = 
+export const SelectArticleDefault: IArticle = 
 {
     isLoading: false,
     article:

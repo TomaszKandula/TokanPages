@@ -1,6 +1,6 @@
 import { IArticles } from "../../Redux/States/listArticlesState";
 
-export const ArticlesDefaultValues: IArticles = 
+export const ListArticlesDefault: IArticles = 
 {
     isLoading: false,
     articles: []
