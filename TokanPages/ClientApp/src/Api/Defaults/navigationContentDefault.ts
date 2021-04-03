@@ -1,6 +1,6 @@
 import { INavigationContentDto } from "../Models/Components/navigationContentDto";
 
-export const navigationDefault: INavigationContentDto = 
+export const navigationContentDefault: INavigationContentDto = 
 {
     content:
     {

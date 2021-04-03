@@ -1,6 +1,6 @@
-import { IArticleFeatContentDto } from "../../Api/Models"
+import { IArticleFeatContentDto } from "../Models"
 
-export const articleFeatDefault: IArticleFeatContentDto =
+export const articleFeatContentDefault: IArticleFeatContentDto =
 {
     content: 
     {

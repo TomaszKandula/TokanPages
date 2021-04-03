@@ -3,15 +3,15 @@ import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import ResetForm from "../Components/Account/resetForm";
 import Footer from "../Components/Layout/footer";
-import { footerDefault, navigationDefault, resetFormDefault } from "../Api/Defaults";
+import { footerContentDefault, navigationContentDefault, resetFormContentDefault } from "../Api/Defaults";
 import { getFooterContent, getNavigationContent, getResetFormContent } from "../Api/Services";
 
 export default function ResetPage() 
 {
     const mountedRef = React.useRef(true);
-    const [resetForm, setResetFormContent] = React.useState({ data: resetFormDefault, isLoading: true });
-    const [navigation, setNavigationContent] = React.useState({ data: navigationDefault, isLoading: true });
-    const [footer, setFooterContent] = React.useState({ data: footerDefault, isLoading: true });
+    const [resetForm, setResetFormContent] = React.useState({ data: resetFormContentDefault, isLoading: true });
+    const [navigation, setNavigationContent] = React.useState({ data: navigationContentDefault, isLoading: true });
+    const [footer, setFooterContent] = React.useState({ data: footerContentDefault, isLoading: true });
 
     const updateContent = React.useCallback(async () => 
     {

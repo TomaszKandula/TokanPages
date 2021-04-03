@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { Box, Button, Container, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { notFoundDefault } from "../Api/Defaults";
+import { notFoundContentDefault } from "../Api/Defaults";
 import { getNotFoundContent } from "../Api/Services";
 
 const useStyles = makeStyles(() => (
@@ -17,7 +17,7 @@ export default function NotFoundPage()
 {
     const classes = useStyles();   
     const mountedRef = React.useRef(true);
-    const [notFound, setNotFoundContent] = React.useState(notFoundDefault);
+    const [notFound, setNotFoundContent] = React.useState(notFoundContentDefault);
 
     const updateContent = React.useCallback(async () => 
     {

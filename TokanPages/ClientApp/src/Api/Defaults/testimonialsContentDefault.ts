@@ -1,6 +1,6 @@
-import { ITestimonialsContentDto } from "../../Api/Models"
+import { ITestimonialsContentDto } from "../Models"
 
-export const testimonialsDefault: ITestimonialsContentDto = 
+export const testimonialsContentDefault: ITestimonialsContentDto = 
 {
     content:
     {

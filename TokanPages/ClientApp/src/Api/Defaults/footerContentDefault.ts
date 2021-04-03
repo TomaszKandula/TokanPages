@@ -1,6 +1,6 @@
-import { IFooterContentDto } from "../../Api/Models"
+import { IFooterContentDto } from "../Models"
 
-export const footerDefault: IFooterContentDto =
+export const footerContentDefault: IFooterContentDto =
 {
     content:
     {
