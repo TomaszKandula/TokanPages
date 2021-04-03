@@ -32,6 +32,3 @@ export type { ITestimonials } from "./Components/testimonials";
 export type { IUnsubscribe } from "./Components/unsubscribe";
 export type { IUpdateSubscriber } from "./Components/updateSubscriber";
 export type { INotFound } from "./Components/notFound";
-
-export type { IApiRequest } from "./Requests/apiRequest";
-export type { IApiResult } from "./Requests/apiResult";
