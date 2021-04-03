@@ -1,6 +1,6 @@
-import { INavigation } from "Api/Models/Components/navigation";
+import { INavigationContentDto } from "../Models/Components/navigationContentDto";
 
-export const navigationDefault: INavigation = 
+export const navigationDefault: INavigationContentDto = 
 {
     content:
     {

@@ -16,7 +16,7 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ValidateContactForm } from "../../Shared/validate";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { GetMessageOutSuccess, GetMessageOutWarning } from "../../Shared/Modals/messageHelper";
-import { IContactForm, ISendMessageDto } from "../../Api/Models";
+import { IContactFormContentDto, ISendMessageDto } from "../../Api/Models";
 import useStyles from "./styleContactForm";
 
 const formDefaultValues =
@@ -29,7 +29,7 @@ const formDefaultValues =
     terms: false
 };
 
-export default function ContactForm(props: { contactForm: IContactForm, isLoading: boolean })
+export default function ContactForm(props: { contactForm: IContactFormContentDto, isLoading: boolean })
 {
     const classes = useStyles();
 

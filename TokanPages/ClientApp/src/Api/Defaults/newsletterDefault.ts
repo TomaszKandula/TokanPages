@@ -1,6 +1,6 @@
-import { INewsletter } from "Api/Models"
+import { INewsletterContentDto } from "../../Api/Models"
 
-export const newsletterDefault: INewsletter = 
+export const newsletterDefault: INewsletterContentDto = 
 {
     content:
     {

@@ -1,6 +1,6 @@
-import { ICookiesPrompt } from "Api/Models"
+import { ICookiesPromptContentDto } from "../../Api/Models"
 
-export const cookiesPromptDefault: ICookiesPrompt =
+export const cookiesPromptDefault: ICookiesPromptContentDto =
 {
     content: 
     {

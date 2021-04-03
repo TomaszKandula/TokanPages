@@ -1,6 +1,6 @@
-import { IResetForm } from "Api/Models"
+import { IResetFormContentDto } from "../../Api/Models"
 
-export const resetFormDefault: IResetForm = 
+export const resetFormDefault: IResetFormContentDto = 
 {
     content:
     {

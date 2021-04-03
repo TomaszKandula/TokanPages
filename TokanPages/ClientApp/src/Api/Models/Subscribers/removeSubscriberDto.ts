@@ -1,6 +1,4 @@
-interface IRemoveSubscriberDto 
+export interface IRemoveSubscriberDto 
 {
     id: string;
 }
-
-export type { IRemoveSubscriberDto }

@@ -1,8 +1,8 @@
 import { getDataFromUrl } from "../request";
-import { INotFound } from "../../Api/Models";
+import { INotFoundContentDto } from "../../Api/Models";
 import { GET_NOTFOUND_CONTENT } from "../../Shared/constants";
 
-export const getNotFoundContent = async (): Promise<INotFound> =>
+export const getNotFoundContent = async (): Promise<INotFoundContentDto> =>
 {
     return await getDataFromUrl(GET_NOTFOUND_CONTENT);
 };

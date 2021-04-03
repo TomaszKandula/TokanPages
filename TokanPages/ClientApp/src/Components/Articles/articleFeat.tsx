@@ -9,11 +9,11 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IArticleFeat } from "../../Api/Models";
+import { IArticleFeatContentDto } from "../../Api/Models";
 import { renderCardMedia } from "../../Shared/Components/renderCardMedia";
 import useStyles from "./Hooks/styleArticleFeat";
 
-export default function ArticleFeat(props: { articles: IArticleFeat, isLoading: boolean }) 
+export default function ArticleFeat(props: { articles: IArticleFeatContentDto, isLoading: boolean }) 
 {
     const classes = useStyles();
     return (

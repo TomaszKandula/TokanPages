@@ -1,6 +1,6 @@
-import { IFeatures } from "Api/Models"
+import { IFeaturesContentDto } from "../../Api/Models"
 
-export const featuresDefault: IFeatures =
+export const featuresDefault: IFeaturesContentDto =
 {
     content:
     {

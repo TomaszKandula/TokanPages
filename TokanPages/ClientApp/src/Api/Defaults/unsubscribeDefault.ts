@@ -1,6 +1,6 @@
-import { IUnsubscribe } from "Api/Models"
+import { IUnsubscribeContentDto } from "../../Api/Models"
 
-export const unsubscribeDefault: IUnsubscribe = 
+export const unsubscribeDefault: IUnsubscribeContentDto = 
 {
     content:
     {

@@ -1,6 +1,6 @@
-import { IContactForm } from "Api/Models"
+import { IContactFormContentDto } from "../../Api/Models"
 
-export const contactFormDefault: IContactForm =
+export const contactFormDefault: IContactFormContentDto =
 {
     content:
     {

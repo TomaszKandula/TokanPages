@@ -1,4 +1,4 @@
-interface IUpdateArticleDto 
+export interface IUpdateArticleDto 
 {
     id: string;
     title?: string;
@@ -9,5 +9,3 @@ interface IUpdateArticleDto
     addToLikes: number;
     upReadCount?: boolean;
 }
-
-export type { IUpdateArticleDto }

@@ -14,7 +14,7 @@ import { ActionCreators } from "../../Redux/Actions/addSubscriberAction";
 import { ValidateEmail } from "../../Shared/validate";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { GetNewsletterSuccess, GetNewsletterWarning } from "../../Shared/Modals/messageHelper";
-import { IAddSubscriberDto, INewsletter } from "../../Api/Models";
+import { IAddSubscriberDto, INewsletterContentDto } from "../../Api/Models";
 import useStyles from "./styledNewsletter";
 
 const formDefaultValues = 
@@ -22,7 +22,7 @@ const formDefaultValues =
     email: ""
 };
 
-export default function Newsletter(props: { newsletter: INewsletter, isLoading: boolean })
+export default function Newsletter(props: { newsletter: INewsletterContentDto, isLoading: boolean })
 {
     const classes = useStyles();
     

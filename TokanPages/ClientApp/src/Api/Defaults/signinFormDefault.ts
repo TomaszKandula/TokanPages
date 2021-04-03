@@ -1,6 +1,6 @@
-import { ISigninForm } from "Api/Models"
+import { ISigninFormContentDto } from "../../Api/Models"
 
-export const signinFormDefault: ISigninForm = 
+export const signinFormDefault: ISigninFormContentDto = 
 {
     content:
     {

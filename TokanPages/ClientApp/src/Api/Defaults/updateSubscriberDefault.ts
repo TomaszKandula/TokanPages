@@ -1,6 +1,6 @@
-import { IUpdateSubscriber } from "Api/Models"
+import { IUpdateSubscriberContentDto } from "../../Api/Models"
 
-export const updateSubscriberDefault: IUpdateSubscriber = 
+export const updateSubscriberDefault: IUpdateSubscriberContentDto = 
 {
     content:
     {

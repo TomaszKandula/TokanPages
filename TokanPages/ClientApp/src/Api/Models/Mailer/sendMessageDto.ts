@@ -1,4 +1,4 @@
-interface ISendMessageDto
+export interface ISendMessageDto
 {
     firstName: string;
     lastName: string;
@@ -8,5 +8,3 @@ interface ISendMessageDto
     subject: string;
     message: string; 
 }
-
-export type { ISendMessageDto }

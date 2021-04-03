@@ -6,11 +6,11 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
 import { IMAGES_PATH } from "../../Shared/constants";
-import { IHeader } from "../../Api/Models";
+import { IHeaderContentDto } from "../../Api/Models";
 import useStyles from "./Hooks/styleHeader";
 import { renderImage } from "../../Shared/Components/renderImage";
 
-export default function Header(props: { header: IHeader, isLoading: boolean }) 
+export default function Header(props: { header: IHeaderContentDto, isLoading: boolean }) 
 {
     const classes = useStyles();
     return (

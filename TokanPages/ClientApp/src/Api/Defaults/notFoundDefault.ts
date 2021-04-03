@@ -1,6 +1,6 @@
-import { INotFound } from "Api/Models"
+import { INotFoundContentDto } from "../../Api/Models"
 
-export const notFoundDefault: INotFound =
+export const notFoundDefault: INotFoundContentDto =
 {
     content:
     {

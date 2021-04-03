@@ -1,6 +1,6 @@
-import { ISignupForm } from "Api/Models"
+import { ISignupFormContentDto } from "../../Api/Models"
 
-export const signupFormDefault: ISignupForm = 
+export const signupFormDefault: ISignupFormContentDto = 
 {
     content:
     {

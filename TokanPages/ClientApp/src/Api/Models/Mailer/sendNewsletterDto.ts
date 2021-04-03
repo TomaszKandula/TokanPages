@@ -1,14 +1,8 @@
-interface ISendNewsletterDto
+import { ISubscriberInfoDto } from "./subscriberInfoDto";
+
+export interface ISendNewsletterDto
 {
-    subscriberInfo: ISubscriberInfo[];
+    subscriberInfo: ISubscriberInfoDto[];
     subject: string;
     message: string;
 }
-
-interface ISubscriberInfo
-{
-    email: string;
-    id: string;
-}
-
-export type { ISendNewsletterDto }

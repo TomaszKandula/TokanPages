@@ -8,10 +8,10 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardHeader from "@material-ui/core/CardHeader";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { renderCardMedia } from "../../Shared/Components/renderCardMedia";
-import { IFeatured } from "../../Api/Models";
+import { IFeaturedContentDto } from "../../Api/Models";
 import useStyles from "./styleFeatured";
 
-export default function Featured(props: { featured: IFeatured, isLoading: boolean }) 
+export default function Featured(props: { featured: IFeaturedContentDto, isLoading: boolean }) 
 {
     const classes = useStyles();
     return (

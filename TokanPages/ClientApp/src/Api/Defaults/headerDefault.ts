@@ -1,6 +1,6 @@
-import { IHeader } from "Api/Models";
+import { IHeaderContentDto } from "../../Api/Models";
 
-export const headerDefault: IHeader =
+export const headerDefault: IHeaderContentDto =
 {
     content:
     {
