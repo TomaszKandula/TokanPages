@@ -14,7 +14,7 @@ import UnsubscribePage from "./Pages/unsubscribePage";
 import UpdateSubscriberPage from "./Pages/updateSubscriberPage";
 import NotFoundPage from "./Pages/notFoundPage";
 import ScrollTop from "./Shared/Scroll/scrollTop";
-import ApplicationToast from "./Shared/Components/Toasts/applicationToast";
+import ApplicationErrorToast from "./Shared/Components/Toasts/applicationErrorToast";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -45,7 +45,7 @@ export default function App()
                   <Route component={NotFoundPage} />
                 </Switch>
             </Router>
-            <ApplicationToast />
+            <ApplicationErrorToast />
             <ScrollTop>
                 <Fab color="primary" size="small" aria-label="scroll back to top">
                     <KeyboardArrowUpIcon/>
