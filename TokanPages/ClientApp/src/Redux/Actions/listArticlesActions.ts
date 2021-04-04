@@ -5,11 +5,17 @@ import { API_QUERY_GET_ARTICLES } from "../../Shared/constants";
 
 export const REQUEST_ARTICLES = "REQUEST_ARTICLES";
 export const RECEIVE_ARTICLES = "RECEIVE_ARTICLES";
+export const REQUEST_ARTICLES_ERROR = "REQUEST_ARTICLES_ERROR";
 
 export interface IRequestArticlesAction { type: typeof REQUEST_ARTICLES; }
 export interface IReceiveArticlesAction { type: typeof RECEIVE_ARTICLES; payload: IArticleItem[]; }
+export interface IRequestArticlesError { type: typeof REQUEST_ARTICLES_ERROR, errorObject: any }
 
-export type TKnownActions = IRequestArticlesAction | IReceiveArticlesAction;
+export type TKnownActions = 
+    IRequestArticlesAction | 
+    IReceiveArticlesAction | 
+    IRequestArticlesError
+;
 
 export const ActionCreators = 
 {
@@ -22,21 +28,16 @@ export const ActionCreators =
             method: "GET", 
             responseType: "json"
         })
-        .then(function (response)
+        .then(response =>
         {              
-            if (response.status >= 200 && response.status <= 299)
-            {
-                dispatch({ type: RECEIVE_ARTICLES, payload: response.data });
-            }
-            else if (response.status >= 300 && response.status <= 399)
-            {
-                // handle redirects
-            }
+            return response.status === 200
+                ? dispatch({ type: RECEIVE_ARTICLES, payload: response.data })
+                : dispatch({ type: REQUEST_ARTICLES_ERROR, errorObject: "Unexpected status code" });//TODO: add error object
+
         })
-        .catch(function (error)
+        .catch(error =>
         {
-            console.error(error);
-            console.error(error.response.data.ErrorMessage);
+            dispatch({ type: REQUEST_ARTICLES_ERROR, errorObject: error });
         });
     }
 };

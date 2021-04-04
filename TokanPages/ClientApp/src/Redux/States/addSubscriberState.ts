@@ -4,4 +4,5 @@ export interface IAddSubscriber
 {
     isAddingSubscriber: OperationStatuses;
     hasAddedSubscriber: boolean;
+    attachedErrorObject: any;
 }

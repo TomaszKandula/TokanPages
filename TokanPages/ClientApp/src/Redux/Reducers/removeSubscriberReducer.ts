@@ -1,7 +1,12 @@
 import { Action, Reducer } from "redux";
 import { combinedDefaults } from "../combinedDefaults";
 import { IRemoveSubscriber } from "../../Redux/States/removeSubscriberState";
-import { TKnownActions, API_REMOVE_SUBSCRIBER, API_REMOVE_SUBSCRIBER_RESPONSE } from "../Actions/removeSubscriberAction";
+import { 
+    TKnownActions, 
+    API_REMOVE_SUBSCRIBER, 
+    API_REMOVE_SUBSCRIBER_RESPONSE, 
+    REMOVE_SUBSCRIBER_ERROR 
+} from "../Actions/removeSubscriberAction";
 
 const RemoveSubscriberReducer: Reducer<IRemoveSubscriber> = (state: IRemoveSubscriber | undefined, incomingAction: Action): IRemoveSubscriber => 
 {
@@ -11,10 +16,25 @@ const RemoveSubscriberReducer: Reducer<IRemoveSubscriber> = (state: IRemoveSubsc
     switch (action.type) 
     {
         case API_REMOVE_SUBSCRIBER:
-            return { isRemovingSubscriber: true, hasRemovedSubscriber: state.hasRemovedSubscriber };
+            return { 
+                isRemovingSubscriber: true, 
+                hasRemovedSubscriber: state.hasRemovedSubscriber, 
+                attachedErrorObject: state.attachedErrorObject 
+            };
 
         case API_REMOVE_SUBSCRIBER_RESPONSE:
-            return { isRemovingSubscriber: false, hasRemovedSubscriber: action.hasRemovedSubscriber };
+            return { 
+                isRemovingSubscriber: false, 
+                hasRemovedSubscriber: action.hasRemovedSubscriber, 
+                attachedErrorObject: { } 
+            };
+
+        case REMOVE_SUBSCRIBER_ERROR:
+            return { 
+                isRemovingSubscriber: false, 
+                hasRemovedSubscriber: false, 
+                attachedErrorObject: action.errorObject 
+            };
 
         default: return state;
     }

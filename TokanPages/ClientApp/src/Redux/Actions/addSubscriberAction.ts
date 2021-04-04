@@ -6,12 +6,19 @@ import { API_COMMAND_ADD_SUBSCRIBER } from "../../Shared/constants";
 export const API_ADD_SUBSCRIBER = "API_ADD_SUBSCRIBER";
 export const API_ADD_SUBSCRIBER_CLEAR = "API_ADD_SUBSCRIBER_CLEAR";
 export const API_ADD_SUBSCRIBER_RESPONSE = "API_ADD_SUBSCRIBER_RESPONSE";
+export const ADD_SUBSCRIBER_ERROR = "ADD_SUBSCRIBER_ERROR";
 
 export interface IApiAddSubscriber { type: typeof API_ADD_SUBSCRIBER }
 export interface IApiAddSubscriberClear { type: typeof API_ADD_SUBSCRIBER_CLEAR }
 export interface IApiAddSubscriberResponse { type: typeof API_ADD_SUBSCRIBER_RESPONSE, hasAddedSubscriber: boolean }
+export interface IAddSubscriberError { type: typeof ADD_SUBSCRIBER_ERROR, errorObject: any }
 
-export type TKnownActions = IApiAddSubscriber | IApiAddSubscriberClear | IApiAddSubscriberResponse;
+export type TKnownActions = 
+    IApiAddSubscriber | 
+    IApiAddSubscriberClear | 
+    IApiAddSubscriberResponse | 
+    IAddSubscriberError
+;
 
 export const ActionCreators = 
 {
@@ -27,27 +34,17 @@ export const ActionCreators =
         { 
             method: "POST", 
             url: API_COMMAND_ADD_SUBSCRIBER, 
-            data: 
-            { 
-                email: payload.email 
-            }
+            data: { email: payload.email }
         })
-        .then(function (response) 
+        .then(response => 
         {
-            if (response.status === 200)
-            {
-                dispatch({ type: API_ADD_SUBSCRIBER_RESPONSE, hasAddedSubscriber: true });
-            }
-            else
-            {
-                dispatch({ type: API_ADD_SUBSCRIBER_RESPONSE, hasAddedSubscriber: false });
-                console.log(response.status); //TODO: add proper status code handling
-            }
+            return response.status === 200 
+                ? dispatch({ type: API_ADD_SUBSCRIBER_RESPONSE, hasAddedSubscriber: true })
+                : dispatch({ type: ADD_SUBSCRIBER_ERROR, errorObject: "Unexpected status code" });//TODO: add object error for unexpected status code
         })
-        .catch(function (error) 
+        .catch(error => 
         {
-            dispatch({ type: API_ADD_SUBSCRIBER_RESPONSE, hasAddedSubscriber: false });
-            console.log(error); //TODO: add proper error handling
-        });     
+            dispatch({ type: ADD_SUBSCRIBER_ERROR, errorObject: error });
+        });
     }
 }

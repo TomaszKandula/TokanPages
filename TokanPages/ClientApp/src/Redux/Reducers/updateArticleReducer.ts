@@ -1,7 +1,12 @@
 import { Action, Reducer } from "redux";
 import { combinedDefaults } from "../combinedDefaults";
 import { IUpdateArticle } from "../../Redux/States/updateArticleState";
-import { TKnownActions, API_UPDATE_ARTICLE, API_UPDATE_ARTICLE_RESPONSE } from "../Actions/updateArticleActions";
+import { 
+    TKnownActions, 
+    API_UPDATE_ARTICLE, 
+    API_UPDATE_ARTICLE_RESPONSE, 
+    UPDATE_ARTICLE_ERROR
+} from "../Actions/updateArticleActions";
 
 const UpdateArticleReducer: Reducer<IUpdateArticle> = (state: IUpdateArticle | undefined, incomingAction: Action): IUpdateArticle => 
 {
@@ -11,10 +16,25 @@ const UpdateArticleReducer: Reducer<IUpdateArticle> = (state: IUpdateArticle | u
     switch (action.type) 
     {
         case API_UPDATE_ARTICLE:
-            return { isUpdatingArticle: true, hasUpdatedArticle: state.hasUpdatedArticle };
+            return { 
+                isUpdatingArticle: true, 
+                hasUpdatedArticle: state.hasUpdatedArticle,
+                attachedErrorObject: state.attachedErrorObject
+            };
 
         case API_UPDATE_ARTICLE_RESPONSE:
-            return { isUpdatingArticle: false, hasUpdatedArticle: action.hasUpdatedArticle };
+            return { 
+                isUpdatingArticle: false, 
+                hasUpdatedArticle: action.hasUpdatedArticle,
+                attachedErrorObject: { } 
+            };
+
+        case UPDATE_ARTICLE_ERROR:
+            return { 
+                isUpdatingArticle: false, 
+                hasUpdatedArticle: false,
+                attachedErrorObject: action.errorObject 
+            };
 
         default: return state;
     }

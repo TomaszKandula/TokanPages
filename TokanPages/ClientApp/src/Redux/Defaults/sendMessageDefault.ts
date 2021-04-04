@@ -4,5 +4,6 @@ import { OperationStatuses } from "../../Shared/Enums";
 export const SendMessageStateDefault: ISendMessage = 
 {
     isSendingMessage: OperationStatuses.notStarted,
-    hasSentMessage: false
+    hasSentMessage: false,
+    attachedErrorObject: { }
 }

@@ -2,7 +2,13 @@ import { Action, Reducer } from "redux";
 import { combinedDefaults } from "../combinedDefaults";
 import { IAddSubscriber } from "../../Redux/States/addSubscriberState";
 import { OperationStatuses } from "../../Shared/Enums";
-import { TKnownActions, API_ADD_SUBSCRIBER, API_ADD_SUBSCRIBER_RESPONSE, API_ADD_SUBSCRIBER_CLEAR } from "../Actions/addSubscriberAction";
+import { 
+    TKnownActions, 
+    API_ADD_SUBSCRIBER, 
+    API_ADD_SUBSCRIBER_RESPONSE, 
+    API_ADD_SUBSCRIBER_CLEAR, 
+    ADD_SUBSCRIBER_ERROR 
+} from "../Actions/addSubscriberAction";
 
 const AddSubscriberReducer: Reducer<IAddSubscriber> = (state: IAddSubscriber | undefined, incomingAction: Action): IAddSubscriber => 
 {
@@ -15,10 +21,25 @@ const AddSubscriberReducer: Reducer<IAddSubscriber> = (state: IAddSubscriber | u
             return combinedDefaults.addSubscriber;
 
         case API_ADD_SUBSCRIBER:
-            return { isAddingSubscriber: OperationStatuses.inProgress, hasAddedSubscriber: state.hasAddedSubscriber };
+            return { 
+                isAddingSubscriber: OperationStatuses.inProgress, 
+                hasAddedSubscriber: state.hasAddedSubscriber, 
+                attachedErrorObject: state.attachedErrorObject
+            };
 
         case API_ADD_SUBSCRIBER_RESPONSE:
-            return { isAddingSubscriber: OperationStatuses.hasFinished, hasAddedSubscriber: action.hasAddedSubscriber };
+            return { 
+                isAddingSubscriber: OperationStatuses.hasFinished, 
+                hasAddedSubscriber: action.hasAddedSubscriber, 
+                attachedErrorObject: { }
+            };
+
+        case ADD_SUBSCRIBER_ERROR:
+            return { 
+                isAddingSubscriber: OperationStatuses.hasFailed, 
+                hasAddedSubscriber: false, 
+                attachedErrorObject: action.errorObject 
+            };
 
         default: return state;
     }

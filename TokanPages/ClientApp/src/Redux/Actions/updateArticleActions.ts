@@ -5,11 +5,17 @@ import { API_COMMAND_UPDATE_ARTICLE } from "../../Shared/constants";
 
 export const API_UPDATE_ARTICLE = "API_UPDATE_ARTICLE";
 export const API_UPDATE_ARTICLE_RESPONSE = "API_UPDATE_ARTICLE_RESPONSE";
+export const UPDATE_ARTICLE_ERROR = "UPDATE_ARTICLE_ERROR";
 
 export interface IApiUpdateArticle { type: typeof API_UPDATE_ARTICLE }
 export interface IApiUpdateArticleResponse { type: typeof API_UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: boolean }
+export interface IUpdateArticleError { type: typeof UPDATE_ARTICLE_ERROR, errorObject: any }
 
-export type TKnownActions = IApiUpdateArticle | IApiUpdateArticleResponse;
+export type TKnownActions = 
+    IApiUpdateArticle | 
+    IApiUpdateArticleResponse | 
+    IUpdateArticleError
+;
 
 export const ActionCreators = 
 {
@@ -33,22 +39,15 @@ export const ActionCreators =
                 upReadCount: payload.upReadCount
             }
         })
-        .then(function (response) 
+        .then(response => 
         {
-            if (response.status === 200)
-            {
-                dispatch({ type: API_UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: true });
-            }
-            else
-            {
-                dispatch({ type: API_UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: false });
-                console.log(response.status); //TODO: add proper status code handling
-            }
+            return response.status === 200
+                ? dispatch({ type: API_UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: true })
+                : dispatch({ type: UPDATE_ARTICLE_ERROR, errorObject: "Unexpected status code" });//TODO: add error object
         })
-        .catch(function (error) 
+        .catch(error =>
         {
-            dispatch({ type: API_UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: false });
-            console.log(error); //TODO: add proper error handling
+            dispatch({ type: UPDATE_ARTICLE_ERROR, errorObject: error });
         });     
     }
 }

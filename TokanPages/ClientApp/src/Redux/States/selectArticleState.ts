@@ -4,4 +4,5 @@ export interface IArticle
 {
     isLoading: boolean;
     article: IArticleItem;
+    attachedErrorObject: any;
 }
