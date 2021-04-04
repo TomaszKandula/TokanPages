@@ -5,3 +5,10 @@ export enum OperationStatus
     hasFinished,
     hasFailed
 }
+
+export enum IconType
+{
+    info,
+    warning,
+    error,
+}
