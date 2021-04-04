@@ -5,11 +5,17 @@ import { API_COMMAND_REMOVE_SUBSCRIBER } from "../../Shared/constants";
 
 export const API_REMOVE_SUBSCRIBER = "API_REMOVE_SUBSCRIBER";
 export const API_REMOVE_SUBSCRIBER_RESPONSE = "API_REMOVE_SUBSCRIBER_RESPONSE";
+export const REMOVE_SUBSCRIBER_ERROR = "REMOVE_SUBSCRIBER_ERROR";
 
 export interface IApiRemoveSubscriber { type: typeof API_REMOVE_SUBSCRIBER }
 export interface IApiRemoveSubscriberResponse { type: typeof API_REMOVE_SUBSCRIBER_RESPONSE, hasRemovedSubscriber: boolean }
+export interface IRemoveSubscriberError { type: typeof REMOVE_SUBSCRIBER_ERROR, errorObject: any }
 
-export type TKnownActions = IApiRemoveSubscriber | IApiRemoveSubscriberResponse;
+export type TKnownActions = 
+    IApiRemoveSubscriber | 
+    IApiRemoveSubscriberResponse | 
+    IRemoveSubscriberError
+;
 
 export const ActionCreators = 
 {
@@ -26,22 +32,16 @@ export const ActionCreators =
                 id: payload.id
             }
         })
-        .then(function (response) 
+        .then(response =>
         {
-            if (response.status === 200)
-            {
-                dispatch({ type: API_REMOVE_SUBSCRIBER_RESPONSE, hasRemovedSubscriber: true });
-            }
-            else
-            {
-                dispatch({ type: API_REMOVE_SUBSCRIBER_RESPONSE, hasRemovedSubscriber: false });
-                console.log(response.status); //TODO: add proper status code handling
-            }
+            return response.status === 200
+                ? dispatch({ type: API_REMOVE_SUBSCRIBER_RESPONSE, hasRemovedSubscriber: true })
+                : dispatch({ type: REMOVE_SUBSCRIBER_ERROR, errorObject: "Unexpected status code" });//TODO: add error object
+
         })
-        .catch(function (error) 
+        .catch(error =>
         {
-            dispatch({ type: API_REMOVE_SUBSCRIBER_RESPONSE, hasRemovedSubscriber: false });
-            console.log(error); //TODO: add proper error handling
+            dispatch({ type: REMOVE_SUBSCRIBER_ERROR, errorObject: error });
         });     
     }
 }

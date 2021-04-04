@@ -6,12 +6,19 @@ import { API_COMMAND_SEND_MESSAGE } from "../../Shared/constants";
 export const API_SEND_MESSAGE = "API_SEND_MESSAGE";
 export const API_SEND_MESSAGE_CLEAR = "API_SEND_MESSAGE_CLEAR";
 export const API_SEND_MESSAGE_RESPONSE = "API_SEND_MESSAGE_RESPONSE";
+export const SEND_MESSAGE_ERROR = "SEND_MESSAGE_ERROR";
 
 export interface IApiSendMessage { type: typeof API_SEND_MESSAGE }
 export interface IApiSendMessageClear { type: typeof API_SEND_MESSAGE_CLEAR }
 export interface IApiSendMessageResponse { type: typeof API_SEND_MESSAGE_RESPONSE, hasSentMessage: boolean }
+export interface ISendMessageError { type: typeof SEND_MESSAGE_ERROR, errorObject: any }
 
-export type TKnownActions = IApiSendMessage | IApiSendMessageClear | IApiSendMessageResponse;
+export type TKnownActions = 
+    IApiSendMessage | 
+    IApiSendMessageClear | 
+    IApiSendMessageResponse |
+    ISendMessageError
+;
 
 export const ActionCreators = 
 {
@@ -38,22 +45,16 @@ export const ActionCreators =
                 message:   payload.message
             }
         })
-        .then(function (response) 
+        .then(response => 
         {
-            if (response.status === 200)
-            {
-                dispatch({ type: API_SEND_MESSAGE_RESPONSE, hasSentMessage: true });
-            }
-            else
-            {
-                dispatch({ type: API_SEND_MESSAGE_RESPONSE, hasSentMessage: false });
-                console.log(response.status); //TODO: add proper status code handling
-            }
+            return response.status === 200
+                ? dispatch({ type: API_SEND_MESSAGE_RESPONSE, hasSentMessage: true })
+                : dispatch({ type: SEND_MESSAGE_ERROR, errorObject: "Unexpected status code" });//TODO: add object error
+ 
         })
-        .catch(function (error) 
+        .catch(error => 
         {
-            dispatch({ type: API_SEND_MESSAGE_RESPONSE, hasSentMessage: false });
-            console.log(error); //TODO: add proper error handling
+            dispatch({ type: SEND_MESSAGE_ERROR, errorObject: error });
         });     
     }
 }

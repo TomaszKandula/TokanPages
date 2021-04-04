@@ -10,6 +10,7 @@ import WarningIcon from '@material-ui/icons/Warning';
 import ErrorIcon from '@material-ui/icons/Error';
 import useStyles from "./Hooks/styleAlertDialog";
 import { Divider, Typography } from "@material-ui/core";
+import { IconType } from "../../Shared/enums";
 
 export interface IAlertDialog
 {
@@ -17,7 +18,7 @@ export interface IAlertDialog
     Handle: any,
     Title: string,
     Message: string,
-    Icon: number
+    Icon: IconType
 }
 
 export interface IAlertModal
@@ -25,15 +26,15 @@ export interface IAlertModal
     State: boolean;
     Title: string; 
     Message: string; 
-    Icon: number;
+    Icon: IconType;
 }
 
-export const modalDefaultValues: IAlertModal = 
+export const alertModalDefault: IAlertModal = 
 {
     State: false, 
     Title:  "", 
     Message: "", 
-    Icon: 0
+    Icon: IconType.info
 }
 
 export default function AlertDialog(props: IAlertDialog) 
@@ -43,9 +44,9 @@ export default function AlertDialog(props: IAlertDialog)
     {
         switch (props.Icon)
         {
-            case 0: return(<InfoIcon className={classes.InfoIcon} />);
-            case 1: return(<WarningIcon className={classes.WarningIcon} />);
-            case 2: return(<ErrorIcon className={classes.ErrorIcon} />);
+            case IconType.info: return(<InfoIcon className={classes.InfoIcon} />);
+            case IconType.warning: return(<WarningIcon className={classes.WarningIcon} />);
+            case IconType.error: return(<ErrorIcon className={classes.ErrorIcon} />);
             default: return(<InfoIcon className={classes.InfoIcon} />);
         }        
     };   

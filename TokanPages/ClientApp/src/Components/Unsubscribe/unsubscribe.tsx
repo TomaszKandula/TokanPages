@@ -9,7 +9,8 @@ import { Card, CardContent } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/removeSubscriberAction";
-import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
+import { IconType } from "../../Shared/enums";
+import AlertDialog, { alertModalDefault } from "../../Shared/Modals/alertDialog";
 import { GetNewsletterSuccess } from "../../Shared/Modals/messageHelper";
 import { IRemoveSubscriberDto, IUnsubscribeContentDto } from "../../Api/Models";
 import useStyles from "./styledUnsubscribe";
@@ -39,7 +40,7 @@ export default function Unsubscribe(props: { id: string, unsubscribe: IUnsubscri
     const [content, setContent] = React.useState(contentPre);
     const [buttonState, setButtonState] = React.useState(true);
     const [progress, setProgress] = React.useState(false);
-    const [modal, setModal] = React.useState(modalDefaultValues);
+    const [modal, setModal] = React.useState(alertModalDefault);
 
     const removeSubscriberState = useSelector((state: IApplicationState) => state).removeSubscriber;
     const dispatch = useDispatch();
@@ -62,7 +63,7 @@ export default function Unsubscribe(props: { id: string, unsubscribe: IUnsubscri
                 State: true, 
                 Title: "Remove subscriber", 
                 Message: GetNewsletterSuccess(), 
-                Icon: 0 
+                Icon: IconType.info
             });
         }
         
@@ -74,7 +75,7 @@ export default function Unsubscribe(props: { id: string, unsubscribe: IUnsubscri
 
     const modalHandler = () => 
     { 
-        setModal(modalDefaultValues); 
+        setModal(alertModalDefault); 
     }
 
     const buttonHandler = () =>

@@ -24,5 +24,6 @@ export const SelectArticleDefault: IArticle =
             registered: ""
         },
         text: []
-    }
+    },
+    attachedErrorObject: { }
 };

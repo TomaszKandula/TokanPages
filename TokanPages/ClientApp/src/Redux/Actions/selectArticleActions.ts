@@ -6,12 +6,19 @@ import { API_QUERY_GET_ARTICLE, ARTICLE_URL } from "../../Shared/constants";
 export const RESET_SELECTION = "RESET_SELECTION";
 export const REQUEST_ARTICLE = "REQUEST_ARTICLE";
 export const RECEIVE_ARTICLE = "RECEIVE_ARTICLE";
+export const REQUEST_ARTICLE_ERROR = "REQUEST_ARTICLE_ERROR";
 
 export interface IResetSelection { type: typeof RESET_SELECTION; }
 export interface IRequestArticleAction { type: typeof REQUEST_ARTICLE; }
 export interface IReceiveArticleAction { type: typeof RECEIVE_ARTICLE; payload: IArticleItem; }
+export interface IRequestArticleError { type: typeof REQUEST_ARTICLE_ERROR, errorObject: any }
 
-export type TKnownActions = IResetSelection | IRequestArticleAction | IReceiveArticleAction;
+export type TKnownActions = 
+    IResetSelection | 
+    IRequestArticleAction | 
+    IReceiveArticleAction | 
+    IRequestArticleError
+;
 
 export const ActionCreators = 
 {
@@ -53,13 +60,12 @@ export const ActionCreators =
             }
             else
             {
-                // TODO: handle other statuses
+                dispatch({ type: REQUEST_ARTICLE_ERROR, errorObject: "Unexpected status code" });//TODO: add object error
             }
         }))
         .catch(error => 
         {
-            console.error(error);
-            console.error(error.response.data.ErrorMessage);
+            dispatch({ type: REQUEST_ARTICLE_ERROR, errorObject: error });
         });
     }
 };

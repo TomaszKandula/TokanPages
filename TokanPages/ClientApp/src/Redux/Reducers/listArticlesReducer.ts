@@ -1,7 +1,12 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "../../Redux/Defaults/combinedDefaults";
+import { combinedDefaults } from "../combinedDefaults";
 import { IArticles } from "../../Redux/States/listArticlesState";
-import { TKnownActions, RECEIVE_ARTICLES, REQUEST_ARTICLES } from "../../Redux/Actions/listArticlesActions";
+import { 
+    TKnownActions, 
+    RECEIVE_ARTICLES, 
+    REQUEST_ARTICLES, 
+    REQUEST_ARTICLES_ERROR 
+} from "../../Redux/Actions/listArticlesActions";
 
 const ListArticlesReducer: Reducer<IArticles> = (state: IArticles | undefined, incomingAction: Action): IArticles => 
 {
@@ -11,10 +16,25 @@ const ListArticlesReducer: Reducer<IArticles> = (state: IArticles | undefined, i
     switch(action.type)
     {
         case REQUEST_ARTICLES:
-            return { isLoading: true, articles: state.articles };
+            return { 
+                isLoading: true, 
+                articles: state.articles,
+                attachedErrorObject: state.attachedErrorObject
+            };
 
         case RECEIVE_ARTICLES:
-            return { isLoading: false, articles: action.payload };
+            return { 
+                isLoading: false, 
+                articles: action.payload,
+                attachedErrorObject: { }
+            };
+
+        case REQUEST_ARTICLES_ERROR:
+            return { 
+                isLoading: false, 
+                articles: state.articles,
+                attachedErrorObject: action.errorObject 
+            };
 
         default: return state;
     }

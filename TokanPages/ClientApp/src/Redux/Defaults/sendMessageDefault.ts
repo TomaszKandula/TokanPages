@@ -1,8 +1,9 @@
 import { ISendMessage } from "../../Redux/States/sendMessageState";
-import { OperationStatuses } from "../../Shared/Enums";
+import { OperationStatus } from "../../Shared/enums";
 
 export const SendMessageStateDefault: ISendMessage = 
 {
-    isSendingMessage: OperationStatuses.notStarted,
-    hasSentMessage: false
+    isSendingMessage: OperationStatus.notStarted,
+    hasSentMessage: false,
+    attachedErrorObject: { }
 }

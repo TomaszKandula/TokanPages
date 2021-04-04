@@ -12,8 +12,8 @@ import Validate from "validate.js";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/addSubscriberAction";
 import { ValidateEmail } from "../../Shared/validate";
-import { OperationStatuses } from "../../Shared/Enums";
-import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
+import { OperationStatus, IconType } from "../../Shared/enums";
+import AlertDialog, { alertModalDefault } from "../../Shared/Modals/alertDialog";
 import { GetNewsletterSuccess, GetNewsletterWarning, GetNewsletterError } from "../../Shared/Modals/messageHelper";
 import { IAddSubscriberDto, INewsletterContentDto } from "../../Api/Models";
 import useStyles from "./styledNewsletter";
@@ -28,12 +28,12 @@ export default function Newsletter(props: { newsletter: INewsletterContentDto, i
     const classes = useStyles();
     
     const [form, setForm] = React.useState(formDefaultValues);   
-    const [modal, setModal] = React.useState(modalDefaultValues);
+    const [modal, setModal] = React.useState(alertModalDefault);
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => { setModal({ State: true, Title: "Newsletter", Message: text, Icon: 0 }); };
-    const showWarning = (text: string) => { setModal({ State: true, Title: "Warning", Message: text, Icon: 1 }); };
-    const showError = (text: string) => { setModal({ State: true, Title: "Error", Message: text, Icon: 2 }); };
+    const showSuccess = (text: string) => { setModal({ State: true, Title: "Newsletter", Message: text, Icon: IconType.info }); };
+    const showWarning = (text: string) => { setModal({ State: true, Title: "Warning", Message: text, Icon: IconType.warning }); };
+    const showError = (text: string) => { setModal({ State: true, Title: "Error", Message: text, Icon: IconType.error }); };
 
     const addSubscriberState = useSelector((state: IApplicationState) => state.addSubscriber);
     const dispatch = useDispatch();
@@ -46,28 +46,29 @@ export default function Newsletter(props: { newsletter: INewsletterContentDto, i
 
     React.useEffect(() => 
     { 
-        if (addSubscriberState === undefined) 
-            return;
+        if (addSubscriberState === undefined) return;
 
-        if (addSubscriberState.isAddingSubscriber === OperationStatuses.notStarted && progress)
+        if (addSubscriberState.isAddingSubscriber === OperationStatus.notStarted && progress)
         {
             addSubscriber({ email: form.email });
             return;
         }
             
-        if (addSubscriberState.isAddingSubscriber === OperationStatuses.hasFinished)
+        if (addSubscriberState.isAddingSubscriber === OperationStatus.hasFinished 
+            || addSubscriberState.isAddingSubscriber === OperationStatus.hasFailed)
         {
             setProgress(false);
             setForm(formDefaultValues);
 
-            if (addSubscriberState.hasAddedSubscriber)
+            if (addSubscriberState.hasAddedSubscriber 
+                && addSubscriberState.isAddingSubscriber === OperationStatus.hasFinished)
             {
                 showSuccess(GetNewsletterSuccess());
                 addSubscriberClear();
                 return;
             }
 
-            showError(GetNewsletterError("Cannot add subscription"));//TODO: impl. proper error message
+            showError(GetNewsletterError(addSubscriberState.attachedErrorObject));
             addSubscriberClear();
         }
     }, 

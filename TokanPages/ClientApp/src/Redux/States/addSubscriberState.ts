@@ -1,7 +1,8 @@
-import { OperationStatuses } from "../../Shared/Enums";
+import { OperationStatus } from "../../Shared/enums";
 
 export interface IAddSubscriber
 {
-    isAddingSubscriber: OperationStatuses;
+    isAddingSubscriber: OperationStatus;
     hasAddedSubscriber: boolean;
+    attachedErrorObject: any;
 }
