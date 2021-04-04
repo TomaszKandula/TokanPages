@@ -1,7 +1,7 @@
 import { Action, Reducer } from "redux";
-import { IRaiseError } from "./raiseErrorState";
-import { RaiseErrorDefault } from "./raiseErrorDefault";
-import { TKnownActions } from "./raiseErrorAction";
+import { IRaiseError } from "../States/raiseErrorState";
+import { RaiseErrorDefault } from "../Defaults/raiseErrorDefault";
+import { TKnownActions } from "../Actions/raiseErrorAction";
 
 const RaiseErrorReducer: Reducer<IRaiseError> = (state: IRaiseError | undefined, incomingAction: Action): IRaiseError => 
 {

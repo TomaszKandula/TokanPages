@@ -1,4 +1,4 @@
-import { IRaiseError } from "./raiseErrorState";
+import { IRaiseError } from "../States/raiseErrorState";
 import { NO_ERRORS } from "../../Shared/constants";
 
 export const RaiseErrorDefault: IRaiseError = 

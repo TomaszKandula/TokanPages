@@ -5,7 +5,7 @@ import { IAddSubscriber } from "./States/addSubscriberState";
 import { IUpdateSubscriber } from "./States/updateSubscriberState";
 import { IRemoveSubscriber } from "./States/removeSubscriberState";
 import { IUpdateArticle } from "./States/updateArticleState";
-import { IRaiseError } from "./Errors/raiseErrorState";
+import { IRaiseError } from "./States/raiseErrorState";
 
 export interface IApplicationState 
 {

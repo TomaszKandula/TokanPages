@@ -5,7 +5,7 @@ import { SendMessageStateDefault } from "./Defaults/sendMessageDefault";
 import { AddSubscriberDefault } from "./Defaults/addSubscriberDefault";
 import { UpdateSubscriberDefault } from "./Defaults/updateSubscriberDefault";
 import { RemoveSubscriberDefault } from "./Defaults/removeSubscriberDefault";
-import { RaiseErrorDefault } from "./Errors/raiseErrorDefault";
+import { RaiseErrorDefault } from "./Defaults/raiseErrorDefault";
 
 export const combinedDefaults = 
 {
