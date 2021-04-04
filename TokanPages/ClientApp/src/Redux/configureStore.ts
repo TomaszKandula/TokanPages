@@ -2,7 +2,7 @@
 import thunk from "redux-thunk";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import { History } from "history";
-import { combinedReducers } from "./Reducers/combinedReducers";
+import { combinedReducers } from "./combinedReducers";
 import { combinedDefaults } from "./Defaults/combinedDefaults";
 import { IApplicationState } from "./applicationState";
 
