@@ -23,7 +23,7 @@ import { ActionCreators as UpdateArticleAction } from "../../Redux/Actions/updat
 import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoader";
 import { RenderContent } from "../../Shared/ContentRender/renderContent";
 import { CountWords, FormatDateTime, GetReadTime, TextObjectToRawText } from "../../Shared/helpers";
-import { ITextObject } from "../../Shared/ContentRender/Model/textModel";
+import { ITextObject } from "../../Shared/ContentRender/Models/textModel";
 import { 
     AVATARS_PATH, 
     LIKES_LIMIT_FOR_ANONYM, 

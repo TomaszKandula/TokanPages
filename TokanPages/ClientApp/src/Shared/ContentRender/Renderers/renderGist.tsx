@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Card } from "@material-ui/core";
-import { ITextItem } from "../Model/textModel";
+import { ITextItem } from "../Models/textModel";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { getDataFromUrl } from "../../../Api/request";

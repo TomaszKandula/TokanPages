@@ -1,6 +1,6 @@
 import axios from "axios";
 import { AppThunkAction } from "../../Redux/applicationState";
-import { IArticleItem } from "../../Redux/States/Common/articleItem";
+import { IArticleItem } from "../../Shared/ContentRender/Models/articleItemModel";
 import { API_QUERY_GET_ARTICLE, ARTICLE_URL } from "../../Shared/constants";
 
 export const RESET_SELECTION = "RESET_SELECTION";
