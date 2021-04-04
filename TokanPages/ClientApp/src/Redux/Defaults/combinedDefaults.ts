@@ -5,9 +5,11 @@ import { SendMessageStateDefault } from "./sendMessageDefault";
 import { AddSubscriberDefault } from "./addSubscriberDefault";
 import { UpdateSubscriberDefault } from "./updateSubscriberDefault";
 import { RemoveSubscriberDefault } from "./removeSubscriberDefault";
+import { RaiseErrorDefault } from "../../Redux/Errors/raiseErrorDefault";
 
 export const combinedDefaults = 
 {
+    raiseError: RaiseErrorDefault,
     selectArticle: SelectArticleDefault,
     listArticles: ListArticlesDefault,
     updateArticle: UpdateArticleDefault,
