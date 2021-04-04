@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ITextObject } from "./Model/textModel";
+import { ITextObject } from "./Models/textModel";
 import { RenderText } from "./Renderers/renderText";
 import { RenderGist } from "./Renderers/renderGist";
 import { RenderTable } from "./Renderers/renderTable";

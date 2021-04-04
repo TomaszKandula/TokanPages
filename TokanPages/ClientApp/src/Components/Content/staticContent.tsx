@@ -9,14 +9,9 @@ import Validate from "validate.js";
 import useStyles from "./styleStaticContent";
 import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoader";
 import { RenderContent } from "../../Shared/ContentRender/renderContent";
-import { ITextObject } from "../../Shared/ContentRender/Model/textModel";
+import { ITextObject } from "../../Shared/ContentRender/Models/textModel";
 
-export interface IStoryContent
-{
-    dataUrl: string;
-}
-
-export default function StaticContent(props: IStoryContent) 
+export default function StaticContent(props: { dataUrl: string }) 
 {
     const classes = useStyles();
     const [ data, setData ] = React.useState<ITextObject>({ items: [] });

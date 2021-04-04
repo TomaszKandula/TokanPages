@@ -1,4 +1,4 @@
-import { IArticleItem } from "./Common/articleItem";
+import { IArticleItem } from "../../Shared/ContentRender/Models/articleItemModel";
 
 export interface IArticles
 {

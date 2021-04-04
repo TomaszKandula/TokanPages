@@ -7,7 +7,7 @@ import { ArrowBack } from "@material-ui/icons";
 import useStyles from "./Hooks/styleArticleList";
 import { ActionCreators } from "../../Redux/Actions/listArticlesActions";
 import { IArticles } from "../../Redux/States/listArticlesState";
-import { IArticleItem } from "../../Redux/States/Common/articleItem";
+import { IArticleItem } from "../../Shared/ContentRender/Models/articleItemModel";
 import { IApplicationState } from "../../Redux/applicationState";
 import ArticleCard from "./articleCard";
 import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoader";

@@ -1,5 +1,5 @@
 import Validate from "validate.js";
-import { ITextObject } from "./ContentRender/Model/textModel";
+import { ITextObject } from "./ContentRender/Models/textModel";
 
 const ConvertPropsToFields = (InputObject: any) =>
 {

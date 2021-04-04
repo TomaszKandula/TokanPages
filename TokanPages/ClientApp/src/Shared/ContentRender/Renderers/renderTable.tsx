@@ -2,7 +2,7 @@ import * as React from "react";
 import Paper from "@material-ui/core/Paper";
 import { Table, TableBody, TableContainer, TableHead, TableRow } from "@material-ui/core";
 import { useStyles, StyledTableRow, StyledTableCell } from "../Hooks/styledRenderTable";
-import { IRowItem, ITextItem } from "../Model/textModel";
+import { IRowItem, ITextItem } from "../Models/textModel";
 
 export function RenderTable(props: ITextItem)
 {

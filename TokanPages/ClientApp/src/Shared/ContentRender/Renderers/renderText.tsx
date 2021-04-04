@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box, Typography } from "@material-ui/core";
 import ReactHtmlParser from "react-html-parser";
-import { ITextItem } from "../Model/textModel";
+import { ITextItem } from "../Models/textModel";
 import useStyles from "../Hooks/styleRenderText";
 
 export function RenderText(props: ITextItem)

@@ -1,5 +1,5 @@
-import { ITextItem } from "../../../Shared/ContentRender/Model/textModel";
-import { IAuthor } from "./author";
+import { ITextItem } from "./textModel";
+import { IAuthor } from "./authorModel";
 
 export interface IArticleItem
 {
