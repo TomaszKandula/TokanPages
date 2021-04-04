@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "../../Redux/Defaults/combinedDefaults";
+import { combinedDefaults } from "../combinedDefaults";
 import { IRemoveSubscriber } from "../../Redux/States/removeSubscriberState";
 import { TKnownActions, API_REMOVE_SUBSCRIBER, API_REMOVE_SUBSCRIBER_RESPONSE } from "../Actions/removeSubscriberAction";
 

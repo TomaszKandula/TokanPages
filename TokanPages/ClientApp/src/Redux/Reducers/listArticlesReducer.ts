@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "../../Redux/Defaults/combinedDefaults";
+import { combinedDefaults } from "../combinedDefaults";
 import { IArticles } from "../../Redux/States/listArticlesState";
 import { TKnownActions, RECEIVE_ARTICLES, REQUEST_ARTICLES } from "../../Redux/Actions/listArticlesActions";
 

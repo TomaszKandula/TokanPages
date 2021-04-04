@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "../../Redux/Defaults/combinedDefaults";
+import { combinedDefaults } from "../combinedDefaults";
 import { IUpdateArticle } from "../../Redux/States/updateArticleState";
 import { TKnownActions, API_UPDATE_ARTICLE, API_UPDATE_ARTICLE_RESPONSE } from "../Actions/updateArticleActions";
 
