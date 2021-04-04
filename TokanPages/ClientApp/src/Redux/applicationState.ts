@@ -5,11 +5,9 @@ import { IAddSubscriber } from "./States/addSubscriberState";
 import { IUpdateSubscriber } from "./States/updateSubscriberState";
 import { IRemoveSubscriber } from "./States/removeSubscriberState";
 import { IUpdateArticle } from "./States/updateArticleState";
-import { IRaiseError } from "./States/raiseErrorState";
 
 export interface IApplicationState 
 {
-    raiseError: IRaiseError;
     selectArticle: IArticle;
     listArticles: IArticles;
     updateArticle: IUpdateArticle,
