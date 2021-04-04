@@ -70,19 +70,21 @@ export default function ContactForm(props: { contactForm: IContactFormContentDto
             return;
         }
 
-        if (sendMessageState.isSendingMessage === OperationStatus.hasFinished)
+        if (sendMessageState.isSendingMessage === OperationStatus.hasFinished 
+            || sendMessageState.isSendingMessage === OperationStatus.hasFailed)
         {
             setProgress(false);
             setForm(formDefaultValues);
 
-            if (sendMessageState.hasSentMessage)
+            if (sendMessageState.hasSentMessage 
+                && sendMessageState.isSendingMessage === OperationStatus.hasFinished)
             {
                 showSuccess(GetMessageOutSuccess());
                 sendMessageClear();
                 return;
             }
 
-            showError(GetMessageOutError("Cannot send message"));//TODO: impl. proper error message
+            showError(GetMessageOutError(sendMessageState.attachedErrorObject));
             sendMessageClear();
         }
     }, 

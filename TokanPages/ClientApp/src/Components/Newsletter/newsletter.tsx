@@ -46,8 +46,7 @@ export default function Newsletter(props: { newsletter: INewsletterContentDto, i
 
     React.useEffect(() => 
     { 
-        if (addSubscriberState === undefined) 
-            return;
+        if (addSubscriberState === undefined) return;
 
         if (addSubscriberState.isAddingSubscriber === OperationStatus.notStarted && progress)
         {
@@ -55,19 +54,21 @@ export default function Newsletter(props: { newsletter: INewsletterContentDto, i
             return;
         }
             
-        if (addSubscriberState.isAddingSubscriber === OperationStatus.hasFinished)
+        if (addSubscriberState.isAddingSubscriber === OperationStatus.hasFinished 
+            || addSubscriberState.isAddingSubscriber === OperationStatus.hasFailed)
         {
             setProgress(false);
             setForm(formDefaultValues);
 
-            if (addSubscriberState.hasAddedSubscriber)
+            if (addSubscriberState.hasAddedSubscriber 
+                && addSubscriberState.isAddingSubscriber === OperationStatus.hasFinished)
             {
                 showSuccess(GetNewsletterSuccess());
                 addSubscriberClear();
                 return;
             }
 
-            showError(GetNewsletterError("Cannot add subscription"));//TODO: impl. proper error message
+            showError(GetNewsletterError(addSubscriberState.attachedErrorObject));
             addSubscriberClear();
         }
     }, 
