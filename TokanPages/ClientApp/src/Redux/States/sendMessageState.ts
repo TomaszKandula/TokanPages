@@ -1,8 +1,8 @@
-import { OperationStatuses } from "../../Shared/Enums";
+import { OperationStatus } from "../../Shared/Enums";
 
 export interface ISendMessage
 {
-    isSendingMessage: OperationStatuses;
+    isSendingMessage: OperationStatus;
     hasSentMessage: boolean;
     attachedErrorObject: any;
 }

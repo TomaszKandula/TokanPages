@@ -1,7 +1,7 @@
 import { Action, Reducer } from "redux";
 import { combinedDefaults } from "../combinedDefaults";
 import { IAddSubscriber } from "../../Redux/States/addSubscriberState";
-import { OperationStatuses } from "../../Shared/Enums";
+import { OperationStatus } from "../../Shared/Enums";
 import { 
     TKnownActions, 
     API_ADD_SUBSCRIBER, 
@@ -22,21 +22,21 @@ const AddSubscriberReducer: Reducer<IAddSubscriber> = (state: IAddSubscriber | u
 
         case API_ADD_SUBSCRIBER:
             return { 
-                isAddingSubscriber: OperationStatuses.inProgress, 
+                isAddingSubscriber: OperationStatus.inProgress, 
                 hasAddedSubscriber: state.hasAddedSubscriber, 
                 attachedErrorObject: state.attachedErrorObject
             };
 
         case API_ADD_SUBSCRIBER_RESPONSE:
             return { 
-                isAddingSubscriber: OperationStatuses.hasFinished, 
+                isAddingSubscriber: OperationStatus.hasFinished, 
                 hasAddedSubscriber: action.hasAddedSubscriber, 
                 attachedErrorObject: { }
             };
 
         case ADD_SUBSCRIBER_ERROR:
             return { 
-                isAddingSubscriber: OperationStatuses.hasFailed, 
+                isAddingSubscriber: OperationStatus.hasFailed, 
                 hasAddedSubscriber: false, 
                 attachedErrorObject: action.errorObject 
             };

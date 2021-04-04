@@ -1,4 +1,4 @@
-export enum OperationStatuses 
+export enum OperationStatus 
 {
     notStarted,
     inProgress,

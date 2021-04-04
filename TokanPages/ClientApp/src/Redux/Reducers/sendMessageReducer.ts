@@ -1,7 +1,7 @@
 import { Action, Reducer } from "redux";
 import { combinedDefaults } from "../combinedDefaults";
 import { ISendMessage } from "../../Redux/States/sendMessageState";
-import { OperationStatuses } from "../../Shared/Enums";
+import { OperationStatus } from "../../Shared/Enums";
 import { 
     TKnownActions, 
     API_SEND_MESSAGE, 
@@ -22,21 +22,21 @@ const SendMessageReducer: Reducer<ISendMessage> = (state: ISendMessage | undefin
             
         case API_SEND_MESSAGE:
             return { 
-                isSendingMessage: OperationStatuses.inProgress, 
+                isSendingMessage: OperationStatus.inProgress, 
                 hasSentMessage: state.hasSentMessage,
                 attachedErrorObject: state.attachedErrorObject 
             };
 
         case API_SEND_MESSAGE_RESPONSE:
             return { 
-                isSendingMessage: OperationStatuses.hasFinished, 
+                isSendingMessage: OperationStatus.hasFinished, 
                 hasSentMessage: action.hasSentMessage, 
                 attachedErrorObject: { } 
             };
 
         case SEND_MESSAGE_ERROR:
             return { 
-                isSendingMessage: OperationStatuses.hasFailed, 
+                isSendingMessage: OperationStatus.hasFailed, 
                 hasSentMessage: false, 
                 attachedErrorObject: action.errorObject
             };
