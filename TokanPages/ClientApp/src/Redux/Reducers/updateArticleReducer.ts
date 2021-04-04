@@ -5,7 +5,6 @@ import {
     TKnownActions, 
     API_UPDATE_ARTICLE, 
     API_UPDATE_ARTICLE_RESPONSE, 
-    UPDATE_ARTICLE_ERROR
 } from "../Actions/updateArticleActions";
 
 const UpdateArticleReducer: Reducer<IUpdateArticle> = (state: IUpdateArticle | undefined, incomingAction: Action): IUpdateArticle => 
@@ -27,13 +26,6 @@ const UpdateArticleReducer: Reducer<IUpdateArticle> = (state: IUpdateArticle | u
                 isUpdatingArticle: false, 
                 hasUpdatedArticle: action.hasUpdatedArticle,
                 attachedErrorObject: { } 
-            };
-
-        case UPDATE_ARTICLE_ERROR:
-            return { 
-                isUpdatingArticle: false, 
-                hasUpdatedArticle: false,
-                attachedErrorObject: action.errorObject 
             };
 
         default: return state;
