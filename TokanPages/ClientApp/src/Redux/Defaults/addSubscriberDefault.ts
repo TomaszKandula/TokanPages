@@ -1,5 +1,5 @@
 import { IAddSubscriber } from "../../Redux/States/addSubscriberState";
-import { OperationStatus } from "../../Shared/Enums";
+import { OperationStatus } from "../../Shared/enums";
 
 export const AddSubscriberDefault: IAddSubscriber = 
 {

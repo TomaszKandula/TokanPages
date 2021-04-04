@@ -1,7 +1,7 @@
 import { Action, Reducer } from "redux";
 import { combinedDefaults } from "../combinedDefaults";
 import { IAddSubscriber } from "../../Redux/States/addSubscriberState";
-import { OperationStatus } from "../../Shared/Enums";
+import { OperationStatus } from "../../Shared/enums";
 import { 
     TKnownActions, 
     API_ADD_SUBSCRIBER, 

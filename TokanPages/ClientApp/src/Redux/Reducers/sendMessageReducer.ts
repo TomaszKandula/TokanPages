@@ -1,7 +1,7 @@
 import { Action, Reducer } from "redux";
 import { combinedDefaults } from "../combinedDefaults";
 import { ISendMessage } from "../../Redux/States/sendMessageState";
-import { OperationStatus } from "../../Shared/Enums";
+import { OperationStatus } from "../../Shared/enums";
 import { 
     TKnownActions, 
     API_SEND_MESSAGE, 

@@ -1,4 +1,4 @@
-import { OperationStatus } from "../../Shared/Enums";
+import { OperationStatus } from "../../Shared/enums";
 
 export interface IAddSubscriber
 {

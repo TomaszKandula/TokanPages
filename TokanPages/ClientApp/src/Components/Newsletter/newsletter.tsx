@@ -12,7 +12,7 @@ import Validate from "validate.js";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/addSubscriberAction";
 import { ValidateEmail } from "../../Shared/validate";
-import { OperationStatus } from "../../Shared/Enums";
+import { OperationStatus } from "../../Shared/enums";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { GetNewsletterSuccess, GetNewsletterWarning, GetNewsletterError } from "../../Shared/Modals/messageHelper";
 import { IAddSubscriberDto, INewsletterContentDto } from "../../Api/Models";

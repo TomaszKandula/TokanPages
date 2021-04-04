@@ -13,7 +13,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
 import { ActionCreators } from "../../Redux/Actions/sendMessageAction";
 import { IApplicationState } from "../../Redux/applicationState";
-import { OperationStatus } from "../../Shared/Enums";
+import { OperationStatus } from "../../Shared/enums";
 import { ValidateContactForm } from "../../Shared/validate";
 import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
 import { GetMessageOutSuccess, GetMessageOutWarning, GetMessageOutError } from "../../Shared/Modals/messageHelper";
