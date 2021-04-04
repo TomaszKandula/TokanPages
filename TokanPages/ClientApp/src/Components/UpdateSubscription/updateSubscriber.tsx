@@ -14,7 +14,8 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/updateSubscriberAction";
-import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
+import AlertDialog, { alertModalDefault } from "../../Shared/Modals/alertDialog";
+import { IconType } from "../../Shared/enums";
 import { ValidateEmail } from "../../Shared/validate";
 import { GetNewsletterSuccess, GetNewsletterWarning } from "../../Shared/Modals/messageHelper";
 import { IUpdateSubscriberContentDto, IUpdateSubscriberDto } from "../../Api/Models";
@@ -32,7 +33,7 @@ export default function UpdateSubscriber(props: { id: string, updateSubscriber: 
     const [form, setForm] = React.useState(formDefaultValues);
     const [buttonState, setButtonState] = React.useState(true);
     const [progress, setProgress] = React.useState(false);
-    const [modal, setModal] = React.useState(modalDefaultValues);
+    const [modal, setModal] = React.useState(alertModalDefault);
 
     const updateSubscriberState = useSelector((state: IApplicationState) => state.updateSubscriber);
     const dispatch = useDispatch();
@@ -56,7 +57,7 @@ export default function UpdateSubscriber(props: { id: string, updateSubscriber: 
                 State: true, 
                 Title: "Update subscriber", 
                 Message: GetNewsletterSuccess(), 
-                Icon: 0 
+                Icon: IconType.info 
             });
         }
         
@@ -73,7 +74,7 @@ export default function UpdateSubscriber(props: { id: string, updateSubscriber: 
 
     const modalHandler = () => 
     { 
-        setModal(modalDefaultValues); 
+        setModal(alertModalDefault); 
     };
 
     const buttonHandler = () =>
@@ -95,7 +96,7 @@ export default function UpdateSubscriber(props: { id: string, updateSubscriber: 
             State: true, 
             Title: "Warning", 
             Message: GetNewsletterWarning(validationResult), 
-            Icon: 1 
+            Icon: IconType.warning
         });
     };
 

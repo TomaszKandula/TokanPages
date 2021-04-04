@@ -13,9 +13,10 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
 import { ActionCreators } from "../../Redux/Actions/sendMessageAction";
 import { IApplicationState } from "../../Redux/applicationState";
+import { IconType } from "../../Shared/enums";
 import { OperationStatus } from "../../Shared/enums";
 import { ValidateContactForm } from "../../Shared/validate";
-import AlertDialog, { modalDefaultValues } from "../../Shared/Modals/alertDialog";
+import AlertDialog, { alertModalDefault } from "../../Shared/Modals/alertDialog";
 import { GetMessageOutSuccess, GetMessageOutWarning, GetMessageOutError } from "../../Shared/Modals/messageHelper";
 import { IContactFormContentDto, ISendMessageDto } from "../../Api/Models";
 import useStyles from "./styleContactForm";
@@ -35,12 +36,12 @@ export default function ContactForm(props: { contactForm: IContactFormContentDto
     const classes = useStyles();
 
     const [form, setForm] = React.useState(formDefaultValues);   
-    const [modal, setModal] = React.useState(modalDefaultValues);
+    const [modal, setModal] = React.useState(alertModalDefault);
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => { setModal({ State: true, Title: "Contact Form", Message: text, Icon: 0 }); };
-    const showWarning = (text: string) => { setModal({ State: true, Title: "Warning", Message: text, Icon: 1 }); };
-    const showError = (text: string) => { setModal({ State: true, Title: "Error", Message: text, Icon: 2 }); };
+    const showSuccess = (text: string) => { setModal({ State: true, Title: "Contact Form", Message: text, Icon: IconType.info }); };
+    const showWarning = (text: string) => { setModal({ State: true, Title: "Warning", Message: text, Icon: IconType.warning }); };
+    const showError = (text: string) => { setModal({ State: true, Title: "Error", Message: text, Icon: IconType.error }); };
 
     const sendMessageState = useSelector((state: IApplicationState) => state.sendMessage);
     const dispatch = useDispatch();
