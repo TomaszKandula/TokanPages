@@ -6,6 +6,7 @@ import { AddSubscriberDefault } from "./Defaults/addSubscriberDefault";
 import { UpdateSubscriberDefault } from "./Defaults/updateSubscriberDefault";
 import { RemoveSubscriberDefault } from "./Defaults/removeSubscriberDefault";
 import { RaiseErrorDefault } from "./Defaults/raiseErrorDefault";
+import { GetStaticContentDefault } from "./Defaults/getStaticContentDefault";
 
 export const combinedDefaults = 
 {
@@ -16,5 +17,6 @@ export const combinedDefaults =
     sendMessage: SendMessageStateDefault,
     addSubscriber: AddSubscriberDefault,
     updateSubscriber: UpdateSubscriberDefault,
-    removeSubscriber: RemoveSubscriberDefault
+    removeSubscriber: RemoveSubscriberDefault,
+    getStaticContent: GetStaticContentDefault
 };

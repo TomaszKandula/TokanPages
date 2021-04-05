@@ -6,6 +6,7 @@ import UpdateSubscriberReducer from "./Reducers/updateSubscriberReducer";
 import RemoveSubscriberReducer from "./Reducers/removeSubscriberReducer";
 import UpdateArticleReducer from "./Reducers/updateArticleReducer";
 import RaiseErrorReducer from "./Reducers/raiseErrorReducer";
+import GetStaticContentReducer from "./Reducers/getStaticContentReducer";
 
 export const combinedReducers = 
 {
@@ -16,5 +17,6 @@ export const combinedReducers =
     addSubscriber: AddSubscriberReducer,
     updateSubscriber: UpdateSubscriberReducer,
     removeSubscriber: RemoveSubscriberReducer,
-    updateArticle: UpdateArticleReducer
+    updateArticle: UpdateArticleReducer,
+    getStaticContent: GetStaticContentReducer
 };
