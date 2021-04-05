@@ -16,7 +16,7 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { OperationStatus, IconType } from "../../Shared/enums";
 import { ValidateContactForm } from "../../Shared/validate";
 import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
-import { GetMessageOutSuccess, GetMessageOutWarning, GetMessageOutError } from "../../Shared/messageHelper";
+import { MessageOutSuccess, MessageOutWarning, MessageOutError } from "../../Shared/messageHelper";
 import { IContactFormContentDto, ISendMessageDto } from "../../Api/Models";
 import useStyles from "./styleContactForm";
 
@@ -79,12 +79,12 @@ export default function ContactForm(props: { contactForm: IContactFormContentDto
             if (sendMessageState.hasSentMessage 
                 && sendMessageState.isSendingMessage === OperationStatus.hasFinished)
             {
-                showSuccess(GetMessageOutSuccess());
+                showSuccess(MessageOutSuccess());
                 sendMessageClear();
                 return;
             }
 
-            showError(GetMessageOutError(sendMessageState.attachedErrorObject));
+            showError(MessageOutError(sendMessageState.attachedErrorObject));
             sendMessageClear();
         }
     }, 
@@ -118,7 +118,7 @@ export default function ContactForm(props: { contactForm: IContactFormContentDto
             return;
         }
 
-        showWarning(GetMessageOutWarning(validationResult));
+        showWarning(MessageOutWarning(validationResult));
     };
 
     return (

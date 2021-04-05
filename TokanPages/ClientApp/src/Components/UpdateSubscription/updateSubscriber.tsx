@@ -17,7 +17,7 @@ import { ActionCreators } from "../../Redux/Actions/updateSubscriberAction";
 import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
 import { IconType } from "../../Shared/enums";
 import { ValidateEmail } from "../../Shared/validate";
-import { GetNewsletterSuccess, GetNewsletterWarning } from "../../Shared/messageHelper";
+import { NewsletterSuccess, NewsletterWarning } from "../../Shared/messageHelper";
 import { IUpdateSubscriberContentDto, IUpdateSubscriberDto } from "../../Api/Models";
 import useStyles from "./styleUpdateSubscription";
 
@@ -56,7 +56,7 @@ export default function UpdateSubscriber(props: { id: string, updateSubscriber: 
             { 
                 State: true, 
                 Title: "Update subscriber", 
-                Message: GetNewsletterSuccess(), 
+                Message: NewsletterSuccess(), 
                 Icon: IconType.info 
             });
         }
@@ -95,7 +95,7 @@ export default function UpdateSubscriber(props: { id: string, updateSubscriber: 
         { 
             State: true, 
             Title: "Warning", 
-            Message: GetNewsletterWarning(validationResult), 
+            Message: NewsletterWarning(validationResult), 
             Icon: IconType.warning
         });
     };

@@ -11,7 +11,7 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/removeSubscriberAction";
 import { IconType } from "../../Shared/enums";
 import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
-import { GetNewsletterSuccess } from "../../Shared/messageHelper";
+import { NewsletterSuccess } from "../../Shared/messageHelper";
 import { IRemoveSubscriberDto, IUnsubscribeContentDto } from "../../Api/Models";
 import useStyles from "./styledUnsubscribe";
 
@@ -62,7 +62,7 @@ export default function Unsubscribe(props: { id: string, unsubscribe: IUnsubscri
             { 
                 State: true, 
                 Title: "Remove subscriber", 
-                Message: GetNewsletterSuccess(), 
+                Message: NewsletterSuccess(), 
                 Icon: IconType.info
             });
         }

@@ -3,7 +3,7 @@ import { AppThunkAction } from "../applicationState";
 import { IUpdateArticleDto } from "../../Api/Models";
 import { API_COMMAND_UPDATE_ARTICLE } from "../../Shared/constants";
 import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
-import { GetUnexpectedStatusCode } from "../../Shared/messageHelper";
+import { UnexpectedStatusCode } from "../../Shared/messageHelper";
 
 export const UPDATE_ARTICLE = "UPDATE_ARTICLE";
 export const UPDATE_ARTICLE_RESPONSE = "UPDATE_ARTICLE_RESPONSE";
@@ -43,7 +43,7 @@ export const ActionCreators =
         {
             return response.status === 200
                 ? dispatch({ type: UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: true })
-                : dispatch({ type: RAISE_ERROR, errorObject: GetUnexpectedStatusCode(response.status) });
+                : dispatch({ type: RAISE_ERROR, errorObject: UnexpectedStatusCode(response.status) });
         })
         .catch(error =>
         {

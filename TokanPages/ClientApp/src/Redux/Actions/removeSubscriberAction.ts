@@ -2,7 +2,7 @@ import axios from "axios";
 import { AppThunkAction } from "../applicationState";
 import { IRemoveSubscriberDto } from "../../Api/Models";
 import { API_COMMAND_REMOVE_SUBSCRIBER } from "../../Shared/constants";
-import { GetUnexpectedStatusCode } from "../../Shared/messageHelper";
+import { UnexpectedStatusCode } from "../../Shared/messageHelper";
 
 export const REMOVE_SUBSCRIBER = "REMOVE_SUBSCRIBER";
 export const REMOVE_SUBSCRIBER_RESPONSE = "REMOVE_SUBSCRIBER_RESPONSE";
@@ -34,7 +34,7 @@ export const ActionCreators =
         {
             return response.status === 200
                 ? dispatch({ type: REMOVE_SUBSCRIBER_RESPONSE, hasRemovedSubscriber: true })
-                : dispatch({ type: REMOVE_SUBSCRIBER_ERROR, errorObject: GetUnexpectedStatusCode(response.status) });
+                : dispatch({ type: REMOVE_SUBSCRIBER_ERROR, errorObject: UnexpectedStatusCode(response.status) });
 
         })
         .catch(error =>
