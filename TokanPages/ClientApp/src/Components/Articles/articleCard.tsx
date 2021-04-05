@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import useStyles from "./Hooks/styleArticleCard";
-import { ActionCreators } from "../../Redux/Actions/selectArticleActions";
+import { ActionCreators } from "../../Redux/Actions/selectArticleAction";
 import { ARTICLE_PATH, IMAGE_URL } from "../../Shared/constants";
 
 export interface IArticleCard

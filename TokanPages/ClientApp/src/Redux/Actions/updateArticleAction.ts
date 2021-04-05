@@ -4,11 +4,11 @@ import { IUpdateArticleDto } from "../../Api/Models";
 import { API_COMMAND_UPDATE_ARTICLE } from "../../Shared/constants";
 import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
 
-export const API_UPDATE_ARTICLE = "API_UPDATE_ARTICLE";
-export const API_UPDATE_ARTICLE_RESPONSE = "API_UPDATE_ARTICLE_RESPONSE";
+export const UPDATE_ARTICLE = "UPDATE_ARTICLE";
+export const UPDATE_ARTICLE_RESPONSE = "UPDATE_ARTICLE_RESPONSE";
 
-export interface IApiUpdateArticle { type: typeof API_UPDATE_ARTICLE }
-export interface IApiUpdateArticleResponse { type: typeof API_UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: boolean }
+export interface IApiUpdateArticle { type: typeof UPDATE_ARTICLE }
+export interface IApiUpdateArticleResponse { type: typeof UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: boolean }
 
 export type TKnownActions = 
     IApiUpdateArticle | 
@@ -20,7 +20,7 @@ export const ActionCreators =
 {
     updateArticle: (payload: IUpdateArticleDto):  AppThunkAction<TKnownActions> => async (dispatch) => 
     {
-        dispatch({ type: API_UPDATE_ARTICLE });
+        dispatch({ type: UPDATE_ARTICLE });
 
         await axios(
         { 
@@ -41,7 +41,7 @@ export const ActionCreators =
         .then(response => 
         {
             return response.status === 200
-                ? dispatch({ type: API_UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: true })
+                ? dispatch({ type: UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: true })
                 : dispatch({ type: RAISE_ERROR, errorObject: "Unexpected status code" });//TODO: add error object
         })
         .catch(error =>

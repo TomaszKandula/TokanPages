@@ -3,14 +3,14 @@ import { AppThunkAction } from "../applicationState";
 import { IAddSubscriberDto } from "../../Api/Models";
 import { API_COMMAND_ADD_SUBSCRIBER } from "../../Shared/constants";
 
-export const API_ADD_SUBSCRIBER = "API_ADD_SUBSCRIBER";
-export const API_ADD_SUBSCRIBER_CLEAR = "API_ADD_SUBSCRIBER_CLEAR";
-export const API_ADD_SUBSCRIBER_RESPONSE = "API_ADD_SUBSCRIBER_RESPONSE";
+export const ADD_SUBSCRIBER = "ADD_SUBSCRIBER";
+export const ADD_SUBSCRIBER_CLEAR = "ADD_SUBSCRIBER_CLEAR";
+export const ADD_SUBSCRIBER_RESPONSE = "ADD_SUBSCRIBER_RESPONSE";
 export const ADD_SUBSCRIBER_ERROR = "ADD_SUBSCRIBER_ERROR";
 
-export interface IApiAddSubscriber { type: typeof API_ADD_SUBSCRIBER }
-export interface IApiAddSubscriberClear { type: typeof API_ADD_SUBSCRIBER_CLEAR }
-export interface IApiAddSubscriberResponse { type: typeof API_ADD_SUBSCRIBER_RESPONSE, hasAddedSubscriber: boolean }
+export interface IApiAddSubscriber { type: typeof ADD_SUBSCRIBER }
+export interface IApiAddSubscriberClear { type: typeof ADD_SUBSCRIBER_CLEAR }
+export interface IApiAddSubscriberResponse { type: typeof ADD_SUBSCRIBER_RESPONSE, hasAddedSubscriber: boolean }
 export interface IAddSubscriberError { type: typeof ADD_SUBSCRIBER_ERROR, errorObject: any }
 
 export type TKnownActions = 
@@ -24,11 +24,11 @@ export const ActionCreators =
 {
     addSubscriberClear: ():  AppThunkAction<TKnownActions> => async (dispatch) => 
     {
-        dispatch({ type: API_ADD_SUBSCRIBER_CLEAR });
+        dispatch({ type: ADD_SUBSCRIBER_CLEAR });
     },    
     addSubscriber: (payload: IAddSubscriberDto):  AppThunkAction<TKnownActions> => async (dispatch) => 
     {
-        dispatch({ type: API_ADD_SUBSCRIBER });
+        dispatch({ type: ADD_SUBSCRIBER });
 
         await axios(
         { 
@@ -39,7 +39,7 @@ export const ActionCreators =
         .then(response => 
         {
             return response.status === 200 
-                ? dispatch({ type: API_ADD_SUBSCRIBER_RESPONSE, hasAddedSubscriber: true })
+                ? dispatch({ type: ADD_SUBSCRIBER_RESPONSE, hasAddedSubscriber: true })
                 : dispatch({ type: ADD_SUBSCRIBER_ERROR, errorObject: "Unexpected status code" });//TODO: add object error for unexpected status code
         })
         .catch(error => 

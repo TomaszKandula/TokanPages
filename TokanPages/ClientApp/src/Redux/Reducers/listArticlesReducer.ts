@@ -5,7 +5,7 @@ import {
     TKnownActions, 
     RECEIVE_ARTICLES, 
     REQUEST_ARTICLES, 
-} from "../../Redux/Actions/listArticlesActions";
+} from "../Actions/listArticlesAction";
 
 const ListArticlesReducer: Reducer<IArticles> = (state: IArticles | undefined, incomingAction: Action): IArticles => 
 {
@@ -17,15 +17,13 @@ const ListArticlesReducer: Reducer<IArticles> = (state: IArticles | undefined, i
         case REQUEST_ARTICLES:
             return { 
                 isLoading: true, 
-                articles: state.articles,
-                attachedErrorObject: state.attachedErrorObject
+                articles: state.articles
             };
 
         case RECEIVE_ARTICLES:
             return { 
                 isLoading: false, 
-                articles: action.payload,
-                attachedErrorObject: { }
+                articles: action.payload
             };
 
         default: return state;

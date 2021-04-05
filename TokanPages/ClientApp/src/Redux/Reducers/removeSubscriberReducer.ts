@@ -3,8 +3,8 @@ import { combinedDefaults } from "../combinedDefaults";
 import { IRemoveSubscriber } from "../../Redux/States/removeSubscriberState";
 import { 
     TKnownActions, 
-    API_REMOVE_SUBSCRIBER, 
-    API_REMOVE_SUBSCRIBER_RESPONSE, 
+    REMOVE_SUBSCRIBER, 
+    REMOVE_SUBSCRIBER_RESPONSE, 
     REMOVE_SUBSCRIBER_ERROR 
 } from "../Actions/removeSubscriberAction";
 
@@ -15,14 +15,14 @@ const RemoveSubscriberReducer: Reducer<IRemoveSubscriber> = (state: IRemoveSubsc
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
-        case API_REMOVE_SUBSCRIBER:
+        case REMOVE_SUBSCRIBER:
             return { 
                 isRemovingSubscriber: true, 
                 hasRemovedSubscriber: state.hasRemovedSubscriber, 
                 attachedErrorObject: state.attachedErrorObject 
             };
 
-        case API_REMOVE_SUBSCRIBER_RESPONSE:
+        case REMOVE_SUBSCRIBER_RESPONSE:
             return { 
                 isRemovingSubscriber: false, 
                 hasRemovedSubscriber: action.hasRemovedSubscriber, 

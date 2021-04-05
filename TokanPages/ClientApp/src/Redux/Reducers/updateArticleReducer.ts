@@ -3,9 +3,9 @@ import { combinedDefaults } from "../combinedDefaults";
 import { IUpdateArticle } from "../../Redux/States/updateArticleState";
 import { 
     TKnownActions, 
-    API_UPDATE_ARTICLE, 
-    API_UPDATE_ARTICLE_RESPONSE, 
-} from "../Actions/updateArticleActions";
+    UPDATE_ARTICLE, 
+    UPDATE_ARTICLE_RESPONSE, 
+} from "../Actions/updateArticleAction";
 
 const UpdateArticleReducer: Reducer<IUpdateArticle> = (state: IUpdateArticle | undefined, incomingAction: Action): IUpdateArticle => 
 {
@@ -14,18 +14,16 @@ const UpdateArticleReducer: Reducer<IUpdateArticle> = (state: IUpdateArticle | u
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
-        case API_UPDATE_ARTICLE:
+        case UPDATE_ARTICLE:
             return { 
                 isUpdatingArticle: true, 
-                hasUpdatedArticle: state.hasUpdatedArticle,
-                attachedErrorObject: state.attachedErrorObject
+                hasUpdatedArticle: state.hasUpdatedArticle
             };
 
-        case API_UPDATE_ARTICLE_RESPONSE:
+        case UPDATE_ARTICLE_RESPONSE:
             return { 
                 isUpdatingArticle: false, 
-                hasUpdatedArticle: action.hasUpdatedArticle,
-                attachedErrorObject: { } 
+                hasUpdatedArticle: action.hasUpdatedArticle
             };
 
         default: return state;
