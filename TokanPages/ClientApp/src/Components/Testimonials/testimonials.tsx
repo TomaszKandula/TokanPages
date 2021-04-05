@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Carousel } from "react-responsive-carousel";
 import { ITestimonialsContentDto } from "../../Api/Models";
-import { renderImage } from "../../Shared/Components/renderImage";
+import { renderImage } from "../../Shared/Components/CustomImage/customImage";
 import { TESTIMONIALS_PATH } from "../../Shared/constants";
 import useStyles from "./styledTestimonials";
 import "react-responsive-carousel/lib/styles/carousel.min.css";

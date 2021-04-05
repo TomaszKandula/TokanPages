@@ -13,7 +13,7 @@ import ResetPage from "./Pages/resetPage";
 import UnsubscribePage from "./Pages/unsubscribePage";
 import UpdateSubscriberPage from "./Pages/updateSubscriberPage";
 import NotFoundPage from "./Pages/notFoundPage";
-import ScrollTop from "./Shared/Scroll/scrollTop";
+import ScrollTop from "./Shared/Components/Scroll/scrollTop";
 import ApplicationErrorToast from "./Shared/Components/Toasts/applicationErrorToast";
 import AOS from "aos";
 import "aos/dist/aos.css";

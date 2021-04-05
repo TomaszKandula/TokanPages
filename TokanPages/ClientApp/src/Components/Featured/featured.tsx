@@ -7,7 +7,7 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardHeader from "@material-ui/core/CardHeader";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { renderCardMedia } from "../../Shared/Components/renderCardMedia";
+import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
 import { IFeaturedContentDto } from "../../Api/Models";
 import useStyles from "./styleFeatured";
 

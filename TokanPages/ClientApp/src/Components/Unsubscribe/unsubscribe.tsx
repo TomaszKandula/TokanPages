@@ -10,8 +10,8 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/removeSubscriberAction";
 import { IconType } from "../../Shared/enums";
-import AlertDialog, { alertModalDefault } from "../../Shared/Modals/alertDialog";
-import { GetNewsletterSuccess } from "../../Shared/Modals/messageHelper";
+import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
+import { GetNewsletterSuccess } from "../../Shared/messageHelper";
 import { IRemoveSubscriberDto, IUnsubscribeContentDto } from "../../Api/Models";
 import useStyles from "./styledUnsubscribe";
 

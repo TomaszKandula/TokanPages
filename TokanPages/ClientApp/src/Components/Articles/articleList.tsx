@@ -7,10 +7,10 @@ import { ArrowBack } from "@material-ui/icons";
 import useStyles from "./Hooks/styleArticleList";
 import { ActionCreators } from "../../Redux/Actions/listArticlesAction";
 import { IArticles } from "../../Redux/States/listArticlesState";
-import { IArticleItem } from "../../Shared/ContentRender/Models/articleItemModel";
+import { IArticleItem } from "../../Shared/Components/ContentRender/Models/articleItemModel";
 import { IApplicationState } from "../../Redux/applicationState";
 import ArticleCard from "./articleCard";
-import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoader";
+import CenteredCircularLoader from "../../Shared/Components/ProgressBar/centeredCircularLoader";
 
 export default function ArticleList() 
 {

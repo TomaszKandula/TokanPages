@@ -20,10 +20,10 @@ import useStyles from "./Hooks/styleArticleDetail";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as SelectArticleActions } from "../../Redux/Actions/selectArticleAction";
 import { ActionCreators as UpdateArticleAction } from "../../Redux/Actions/updateArticleAction";
-import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoader";
-import { RenderContent } from "../../Shared/ContentRender/renderContent";
+import CenteredCircularLoader from "../../Shared/Components/ProgressBar/centeredCircularLoader";
+import { RenderContent } from "../../Shared/Components/ContentRender/renderContent";
 import { CountWords, FormatDateTime, GetReadTime, TextObjectToRawText } from "../../Shared/helpers";
-import { ITextObject } from "../../Shared/ContentRender/Models/textModel";
+import { ITextObject } from "../../Shared/Components/ContentRender/Models/textModel";
 import { 
     AVATARS_PATH, 
     LIKES_LIMIT_FOR_ANONYM, 

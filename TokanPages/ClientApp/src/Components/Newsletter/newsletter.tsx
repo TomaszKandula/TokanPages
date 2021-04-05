@@ -13,8 +13,8 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/addSubscriberAction";
 import { ValidateEmail } from "../../Shared/validate";
 import { OperationStatus, IconType } from "../../Shared/enums";
-import AlertDialog, { alertModalDefault } from "../../Shared/Modals/alertDialog";
-import { GetNewsletterSuccess, GetNewsletterWarning, GetNewsletterError } from "../../Shared/Modals/messageHelper";
+import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
+import { GetNewsletterSuccess, GetNewsletterWarning, GetNewsletterError } from "../../Shared/messageHelper";
 import { IAddSubscriberDto, INewsletterContentDto } from "../../Api/Models";
 import useStyles from "./styledNewsletter";
 

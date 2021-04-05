@@ -1,4 +1,4 @@
-import { ConvertPropsToFields, HtmlRenderLines } from "../../Shared/helpers";
+import { ConvertPropsToFields, HtmlRenderLines } from "./helpers";
 import { 
     MESSAGE_OUT_ERROR, 
     MESSAGE_OUT_SUCCESS, 

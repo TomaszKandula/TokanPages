@@ -14,10 +14,10 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/updateSubscriberAction";
-import AlertDialog, { alertModalDefault } from "../../Shared/Modals/alertDialog";
+import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
 import { IconType } from "../../Shared/enums";
 import { ValidateEmail } from "../../Shared/validate";
-import { GetNewsletterSuccess, GetNewsletterWarning } from "../../Shared/Modals/messageHelper";
+import { GetNewsletterSuccess, GetNewsletterWarning } from "../../Shared/messageHelper";
 import { IUpdateSubscriberContentDto, IUpdateSubscriberDto } from "../../Api/Models";
 import useStyles from "./styleUpdateSubscription";
 
