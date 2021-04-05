@@ -5,7 +5,7 @@ import {
     TKnownActions, 
     UPDATE_ARTICLE, 
     UPDATE_ARTICLE_RESPONSE, 
-} from "../Actions/updateArticleActions";
+} from "../Actions/updateArticleAction";
 
 const UpdateArticleReducer: Reducer<IUpdateArticle> = (state: IUpdateArticle | undefined, incomingAction: Action): IUpdateArticle => 
 {

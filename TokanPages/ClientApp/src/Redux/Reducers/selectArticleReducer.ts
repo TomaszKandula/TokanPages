@@ -6,7 +6,7 @@ import {
     REQUEST_ARTICLE, 
     RECEIVE_ARTICLE, 
     RESET_SELECTION, 
-} from "../../Redux/Actions/selectArticleActions";
+} from "../Actions/selectArticleAction";
 
 const SelectArticleReducer: Reducer<IArticle> = (state: IArticle | undefined, incomingAction: Action): IArticle => 
 {

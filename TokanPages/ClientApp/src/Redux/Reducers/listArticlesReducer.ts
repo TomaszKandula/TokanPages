@@ -5,7 +5,7 @@ import {
     TKnownActions, 
     RECEIVE_ARTICLES, 
     REQUEST_ARTICLES, 
-} from "../../Redux/Actions/listArticlesActions";
+} from "../Actions/listArticlesAction";
 
 const ListArticlesReducer: Reducer<IArticles> = (state: IArticles | undefined, incomingAction: Action): IArticles => 
 {
