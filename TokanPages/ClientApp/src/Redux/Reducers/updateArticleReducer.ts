@@ -17,15 +17,13 @@ const UpdateArticleReducer: Reducer<IUpdateArticle> = (state: IUpdateArticle | u
         case UPDATE_ARTICLE:
             return { 
                 isUpdatingArticle: true, 
-                hasUpdatedArticle: state.hasUpdatedArticle,
-                attachedErrorObject: state.attachedErrorObject
+                hasUpdatedArticle: state.hasUpdatedArticle
             };
 
         case UPDATE_ARTICLE_RESPONSE:
             return { 
                 isUpdatingArticle: false, 
-                hasUpdatedArticle: action.hasUpdatedArticle,
-                attachedErrorObject: { } 
+                hasUpdatedArticle: action.hasUpdatedArticle
             };
 
         default: return state;

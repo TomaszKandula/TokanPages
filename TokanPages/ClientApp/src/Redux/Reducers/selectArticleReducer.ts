@@ -21,15 +21,13 @@ const SelectArticleReducer: Reducer<IArticle> = (state: IArticle | undefined, in
         case REQUEST_ARTICLE:
             return { 
                 isLoading: true, 
-                article: state.article, 
-                attachedErrorObject: state.attachedErrorObject 
+                article: state.article 
             };
 
         case RECEIVE_ARTICLE:
             return { 
                 isLoading: false, 
-                article: action.payload, 
-                attachedErrorObject: { } 
+                article: action.payload
             };
         
         default: return state;
