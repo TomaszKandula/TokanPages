@@ -10,7 +10,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IArticleFeatContentDto } from "../../Api/Models";
-import { renderCardMedia } from "../../Shared/Components/renderCardMedia";
+import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
 import useStyles from "./Hooks/styleArticleFeat";
 
 export default function ArticleFeat(props: { articles: IArticleFeatContentDto, isLoading: boolean }) 
