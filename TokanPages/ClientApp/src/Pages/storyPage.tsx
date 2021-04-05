@@ -3,7 +3,7 @@ import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import StaticContent from "../Components/Content/staticContent";
 import Footer from "../Components/Layout/footer";
-import * as Consts from "../Shared/constants";
+import { REQUEST_STORY } from "../Redux/Actions/getStaticContentAction";
 import { footerContentDefault, navigationContentDefault } from "../Api/Defaults";
 import { getFooterContent, getNavigationContent } from "../Api/Services";
 
@@ -31,7 +31,7 @@ export default function StoryPage()
         <>
             <Navigation navigation={navigation.data} isLoading={navigation.isLoading} />
             <Container>
-                <StaticContent dataUrl={Consts.STORY_URL} />
+                <StaticContent content={REQUEST_STORY} />
             </Container>
             <Footer footer={footer.data} isLoading={footer.isLoading} />
         </>

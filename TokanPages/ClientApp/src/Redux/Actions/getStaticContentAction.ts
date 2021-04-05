@@ -32,15 +32,21 @@ export type TKnownActions =
     TErrorActions
 ;
 
-export type TKnownContent = 
+export type TReceiveContent = 
     typeof RECEIVE_STORY | 
     typeof RECEIVE_TERMS | 
     typeof RECEIVE_POLICY
 ;
 
+export type TRequestContent = 
+    typeof REQUEST_STORY | 
+    typeof REQUEST_TERMS | 
+    typeof REQUEST_POLICY
+;
+
 const GetDataFromUr = 
 {
-    getContent: (url: string, type: TKnownContent):  AppThunkAction<TKnownActions> => async (dispatch) => 
+    getContent: (url: string, type: TReceiveContent):  AppThunkAction<TKnownActions> => async (dispatch) => 
     {
         axios.get(url, 
         {
