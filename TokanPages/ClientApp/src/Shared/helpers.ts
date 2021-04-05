@@ -120,7 +120,10 @@ const GetErrorMessage = (errorObject: any): string =>
             ? UNEXPECTED_ERROR 
             : parsedJson.ErrorMessage;
 
-        if (parsedJson.ValidationErrors !== null) result = VALIDATION_ERRORS;
+        if (parsedJson.ValidationErrors !== null) 
+        {
+            result = result + ", " + VALIDATION_ERRORS + ".";
+        }
     }
 
     return result;

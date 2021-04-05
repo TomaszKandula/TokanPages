@@ -88,7 +88,7 @@ export const UPDATE_ARTICLE_ERROR = `<p>Ouch!</p><p>The article could not be upd
 export const SUBSCRIBER_DEL_ERROR = `<p>We could not remove your email from our newsletter list.</p><p{ERROR}.</p><p>Please contact us to resolve the issue.</p>`;
 
 export const UNEXPECTED_STATUS = `Received unexpected status code: {STATUS_CODE}. Please contact IT Support`;
-export const UNEXPECTED_ERROR = `Unexpected error`;
+export const UNEXPECTED_ERROR = `Unexpected error occured`;
 export const VALIDATION_ERRORS = `Validation errors have been found`;
 
 /* OTHER */

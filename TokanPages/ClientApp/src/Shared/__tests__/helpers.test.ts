@@ -1,5 +1,7 @@
 import * as helpers from "../helpers";
 import { ITextObject } from "Shared/Components/ContentRender/Models/textModel";
+import { IErrorDto } from "../../Api/Models";
+import { VALIDATION_ERRORS } from "../../Shared/constants";
 
 describe("Verify helper methods.", () => 
 {
@@ -94,5 +96,59 @@ describe("Verify helper methods.", () =>
         const wordsPerMinute = 130;
         const expectation: string = "5.38";
         expect(helpers.GetReadTime(wordsNumber, wordsPerMinute)).toBe(expectation);
+    });
+
+    test("Should return translated error message", () => 
+    {
+        const jsonObject: string = `
+        {
+            "response": 
+            {
+                "data":
+                {
+                    "ErrorCode": "USERNAME_ALREADY_EXISTS",
+                    "ErrorMessage": "This user name already exists",
+                    "ValidationErrors": null
+                }
+            }
+        }`
+
+        const textObject: IErrorDto = JSON.parse(jsonObject) as IErrorDto;
+        const expectation: string = "This user name already exists";
+
+        expect(helpers.GetErrorMessage(textObject)).toBe(expectation);
+    });
+
+    test("Should return translated error message with validation errors", () => 
+    {
+        const jsonObject: string = `
+        {
+            "response": 
+            {
+                "data":
+                {
+                    "ErrorCode": "CANNOT_ADD_DATA",
+                    "ErrorMessage": "Cannot add invalid data",
+                    "ValidationErrors": 
+                    [
+                        {
+                            "PropertyName": "Id",
+                            "ErrorCode": "INVALID_GUID",
+                            "ErrorMessage": "Must be GUID"
+                        },
+                        {
+                            "PropertyName": "UserAge",
+                            "ErrorCode": "INVALID_NUMBER",
+                            "ErrorMessage": "Cannot be negative number"
+                        }
+                    ]
+                }
+            }            
+        }`
+
+        const textObject: IErrorDto = JSON.parse(jsonObject) as IErrorDto;
+        const expectation: string = "Cannot add invalid data, " + VALIDATION_ERRORS + ".";
+
+        expect(helpers.GetErrorMessage(textObject)).toBe(expectation);
     });
 });
