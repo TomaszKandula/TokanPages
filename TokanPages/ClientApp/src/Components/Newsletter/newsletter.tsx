@@ -14,7 +14,7 @@ import { ActionCreators } from "../../Redux/Actions/addSubscriberAction";
 import { ValidateEmail } from "../../Shared/validate";
 import { OperationStatus, IconType } from "../../Shared/enums";
 import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
-import { GetNewsletterSuccess, GetNewsletterWarning, GetNewsletterError } from "../../Shared/messageHelper";
+import { NewsletterSuccess, NewsletterWarning, NewsletterError } from "../../Shared/textWrappers";
 import { IAddSubscriberDto, INewsletterContentDto } from "../../Api/Models";
 import useStyles from "./styledNewsletter";
 
@@ -63,12 +63,12 @@ export default function Newsletter(props: { newsletter: INewsletterContentDto, i
             if (addSubscriberState.hasAddedSubscriber 
                 && addSubscriberState.isAddingSubscriber === OperationStatus.hasFinished)
             {
-                showSuccess(GetNewsletterSuccess());
+                showSuccess(NewsletterSuccess());
                 addSubscriberClear();
                 return;
             }
 
-            showError(GetNewsletterError(addSubscriberState.attachedErrorObject));
+            showError(NewsletterError(addSubscriberState.attachedErrorObject));
             addSubscriberClear();
         }
     }, 
@@ -90,7 +90,7 @@ export default function Newsletter(props: { newsletter: INewsletterContentDto, i
             return;
         }
 
-        showWarning(GetNewsletterWarning(results));
+        showWarning(NewsletterWarning(results));
     };
 
     return (
