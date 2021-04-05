@@ -2,22 +2,21 @@ import axios from "axios";
 import { AppThunkAction } from "../../Redux/applicationState";
 import { IArticleItem } from "../../Shared/ContentRender/Models/articleItemModel";
 import { API_QUERY_GET_ARTICLE, ARTICLE_URL } from "../../Shared/constants";
+import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
 
 export const RESET_SELECTION = "RESET_SELECTION";
 export const REQUEST_ARTICLE = "REQUEST_ARTICLE";
 export const RECEIVE_ARTICLE = "RECEIVE_ARTICLE";
-export const REQUEST_ARTICLE_ERROR = "REQUEST_ARTICLE_ERROR";
 
 export interface IResetSelection { type: typeof RESET_SELECTION; }
 export interface IRequestArticleAction { type: typeof REQUEST_ARTICLE; }
 export interface IReceiveArticleAction { type: typeof RECEIVE_ARTICLE; payload: IArticleItem; }
-export interface IRequestArticleError { type: typeof REQUEST_ARTICLE_ERROR, errorObject: any }
 
 export type TKnownActions = 
     IResetSelection | 
     IRequestArticleAction | 
     IReceiveArticleAction | 
-    IRequestArticleError
+    TErrorActions
 ;
 
 export const ActionCreators = 
@@ -60,12 +59,12 @@ export const ActionCreators =
             }
             else
             {
-                dispatch({ type: REQUEST_ARTICLE_ERROR, errorObject: "Unexpected status code" });//TODO: add object error
+                dispatch({ type: RAISE_ERROR, errorObject: "Unexpected status code" });//TODO: add object error
             }
         }))
         .catch(error => 
         {
-            dispatch({ type: REQUEST_ARTICLE_ERROR, errorObject: error });
+            dispatch({ type: RAISE_ERROR, errorObject: error });
         });
     }
 };

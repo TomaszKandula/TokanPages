@@ -6,7 +6,6 @@ import {
     REQUEST_ARTICLE, 
     RECEIVE_ARTICLE, 
     RESET_SELECTION, 
-    REQUEST_ARTICLE_ERROR 
 } from "../../Redux/Actions/selectArticleActions";
 
 const SelectArticleReducer: Reducer<IArticle> = (state: IArticle | undefined, incomingAction: Action): IArticle => 
@@ -33,13 +32,6 @@ const SelectArticleReducer: Reducer<IArticle> = (state: IArticle | undefined, in
                 attachedErrorObject: { } 
             };
         
-        case REQUEST_ARTICLE_ERROR:
-            return { 
-                isLoading: false, 
-                article: state.article, 
-                attachedErrorObject: action.errorObject 
-            };
-
         default: return state;
     }
 };

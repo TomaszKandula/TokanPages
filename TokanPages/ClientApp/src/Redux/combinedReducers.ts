@@ -5,9 +5,11 @@ import AddSubscriberReducer from "./Reducers/addSubscriberReducer";
 import UpdateSubscriberReducer from "./Reducers/updateSubscriberReducer";
 import RemoveSubscriberReducer from "./Reducers/removeSubscriberReducer";
 import UpdateArticleReducer from "./Reducers/updateArticleReducer";
+import RaiseErrorReducer from "./Reducers/raiseErrorReducer";
 
 export const combinedReducers = 
 {
+    raiseError: RaiseErrorReducer,
     selectArticle: SelectArticlesReducer,
     listArticles: ListArticlesReducer,
     sendMessage: SendMessageReducer,
