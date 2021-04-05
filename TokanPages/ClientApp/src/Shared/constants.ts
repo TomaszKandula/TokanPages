@@ -88,7 +88,8 @@ export const UPDATE_ARTICLE_ERROR = `<p>Ouch!</p><p>The article could not be upd
 export const SUBSCRIBER_DEL_ERROR = `<p>We could not remove your email from our newsletter list.</p><p{ERROR}.</p><p>Please contact us to resolve the issue.</p>`;
 
 export const UNEXPECTED_STATUS = `Received unexpected status code: {STATUS_CODE}. Please contact IT Support`;
-export const UNEXPECTED_ERROR = `Unexpected error`;
+export const UNEXPECTED_ERROR = `Unexpected error occured`;
+export const VALIDATION_ERRORS = `Validation errors have been found`;
 
 /* OTHER */
 
@@ -98,5 +99,5 @@ export const LIKES_TIP_FOR_ANONYM = `You may give up to {LEFT_LIKES} thumbs up!`
 export const LIKES_TIP_FOR_USER = `You may give up to {LEFT_LIKES} thumbs up!`;
 export const MAX_LIKES_REACHED = `You've reached max thumbs up :)`;
 export const WORDS_PER_MINUTE = 265;
-export const RECEIVED_ERROR_MESSAGE = "RECEIVED_ERROR_MESSAGE";
-export const NO_ERRORS = "NO_ERRORS";
+export const RECEIVED_ERROR_MESSAGE = `RECEIVED_ERROR_MESSAGE`;
+export const NO_ERRORS = `NO_ERRORS`;

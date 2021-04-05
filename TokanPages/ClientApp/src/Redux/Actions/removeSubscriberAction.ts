@@ -3,6 +3,7 @@ import { AppThunkAction } from "../applicationState";
 import { IRemoveSubscriberDto } from "../../Api/Models";
 import { API_COMMAND_REMOVE_SUBSCRIBER } from "../../Shared/constants";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
+import { GetErrorMessage } from "../../Shared/helpers";
 
 export const REMOVE_SUBSCRIBER = "REMOVE_SUBSCRIBER";
 export const REMOVE_SUBSCRIBER_RESPONSE = "REMOVE_SUBSCRIBER_RESPONSE";
@@ -39,7 +40,7 @@ export const ActionCreators =
         })
         .catch(error =>
         {
-            dispatch({ type: REMOVE_SUBSCRIBER_ERROR, errorObject: error });
+            dispatch({ type: REMOVE_SUBSCRIBER_ERROR, errorObject: GetErrorMessage(error) });
         });     
     }
 }

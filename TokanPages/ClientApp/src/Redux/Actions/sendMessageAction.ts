@@ -3,6 +3,7 @@ import { AppThunkAction } from "../../Redux/applicationState";
 import { ISendMessageDto } from "../../Api/Models";
 import { API_COMMAND_SEND_MESSAGE } from "../../Shared/constants";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
+import { GetErrorMessage } from "../../Shared/helpers";
 
 export const API_SEND_MESSAGE = "API_SEND_MESSAGE";
 export const API_SEND_MESSAGE_CLEAR = "API_SEND_MESSAGE_CLEAR";
@@ -55,7 +56,7 @@ export const ActionCreators =
         })
         .catch(error => 
         {
-            dispatch({ type: SEND_MESSAGE_ERROR, errorObject: error });
+            dispatch({ type: SEND_MESSAGE_ERROR, errorObject: GetErrorMessage(error) });
         });     
     }
 }
