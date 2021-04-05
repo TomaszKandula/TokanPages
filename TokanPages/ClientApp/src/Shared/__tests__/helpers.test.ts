@@ -1,5 +1,5 @@
 import * as helpers from "../helpers";
-import { ITextObject } from "Shared/ContentRender/Models/textModel";
+import { ITextObject } from "Shared/Components/ContentRender/Models/textModel";
 
 describe("Verify helper methods.", () => 
 {
