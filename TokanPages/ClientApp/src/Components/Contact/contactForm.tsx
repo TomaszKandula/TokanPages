@@ -15,8 +15,8 @@ import { ActionCreators } from "../../Redux/Actions/sendMessageAction";
 import { IApplicationState } from "../../Redux/applicationState";
 import { OperationStatus, IconType } from "../../Shared/enums";
 import { ValidateContactForm } from "../../Shared/validate";
-import AlertDialog, { alertModalDefault } from "../../Shared/Modals/alertDialog";
-import { GetMessageOutSuccess, GetMessageOutWarning, GetMessageOutError } from "../../Shared/Modals/messageHelper";
+import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
+import { GetMessageOutSuccess, GetMessageOutWarning, GetMessageOutError } from "../../Shared/messageHelper";
 import { IContactFormContentDto, ISendMessageDto } from "../../Api/Models";
 import useStyles from "./styleContactForm";
 
