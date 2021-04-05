@@ -15,65 +15,80 @@ import {
 
 // EMAIL MESSAGES
 
-export function GetMessageOutSuccess(): string
+const GetMessageOutSuccess = (): string =>
 {
     return MESSAGE_OUT_SUCCESS;
 }
 
-export function GetMessageOutWarning(object: any): string
+const GetMessageOutWarning = (object: any): string =>
 {
     return MESSAGE_OUT_WARNING.replace("{LIST}", HtmlRenderLines(ConvertPropsToFields(object), "li"));
 }
 
-export function GetMessageOutError(error: string): string
+const GetMessageOutError = (error: string): string =>
 {
     return MESSAGE_OUT_ERROR.replace("{ERROR}", error);
 }
 
 // NEWSLETTERS
 
-export function GetNewsletterSuccess(): string
+const GetNewsletterSuccess = (): string =>
 {
     return NEWSLETTER_SUCCESS;
 }
 
-export function GetNewsletterWarning(object: any): string
+const GetNewsletterWarning = (object: any): string =>
 {
     return NEWSLETTER_WARNING.replace("{LIST}", HtmlRenderLines(ConvertPropsToFields(object), "li"));
 }
 
-export function GetNewsletterError(error: string): string
+const GetNewsletterError = (error: string): string =>
 {
     return NEWSLETTER_ERROR.replace("{ERROR}", error);
 }
 
 // SUBSCRIBERS
 
-export function GetSubscriberOnDeleteError(error: string): string
+const GetSubscriberOnDeleteError = (error: string): string =>
 {
     return SUBSCRIBER_DEL_ERROR.replace("{ERROR}", error);
 }
 
 // ARTICLES
 
-export function GetUpdateArticleSuccess(): string
+const GetUpdateArticleSuccess = (): string =>
 {
     return UPDATE_ARTICLE_SUCCESS;
 }
 
-export function GetUpdateArticleWarning(object: any): string
+const GetUpdateArticleWarning = (object: any): string =>
 {
     return UPDATE_ARTICLE_WARNING.replace("{LIST}", HtmlRenderLines(ConvertPropsToFields(object), "li"));
 }
 
-export function GetUpdateArticleError(error: string): string
+const GetUpdateArticleError = (error: string): string =>
 {
     return UPDATE_ARTICLE_ERROR.replace("{ERROR}", error);
 }
 
 // OTHER
 
-export function GetUnexpectedStatusCode(statusCode: number): string
+const GetUnexpectedStatusCode = (statusCode: number): string =>
 {
     return UNEXPECTED_STATUS.replace("{STATUS_CODE}", statusCode.toString());
+}
+
+export 
+{
+    GetMessageOutSuccess,
+    GetMessageOutWarning,
+    GetMessageOutError,
+    GetNewsletterSuccess,
+    GetNewsletterWarning,
+    GetNewsletterError,
+    GetSubscriberOnDeleteError,
+    GetUpdateArticleSuccess,
+    GetUpdateArticleWarning,
+    GetUpdateArticleError,
+    GetUnexpectedStatusCode
 }
