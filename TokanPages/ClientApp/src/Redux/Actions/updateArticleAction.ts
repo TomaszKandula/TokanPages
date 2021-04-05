@@ -3,7 +3,7 @@ import { AppThunkAction } from "../applicationState";
 import { IUpdateArticleDto } from "../../Api/Models";
 import { API_COMMAND_UPDATE_ARTICLE } from "../../Shared/constants";
 import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
-import { UnexpectedStatusCode } from "../../Shared/messageHelper";
+import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 
 export const UPDATE_ARTICLE = "UPDATE_ARTICLE";
 export const UPDATE_ARTICLE_RESPONSE = "UPDATE_ARTICLE_RESPONSE";

@@ -2,7 +2,7 @@ import axios from "axios";
 import { AppThunkAction } from "../../Redux/applicationState";
 import { ISendMessageDto } from "../../Api/Models";
 import { API_COMMAND_SEND_MESSAGE } from "../../Shared/constants";
-import { UnexpectedStatusCode } from "../../Shared/messageHelper";
+import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 
 export const API_SEND_MESSAGE = "API_SEND_MESSAGE";
 export const API_SEND_MESSAGE_CLEAR = "API_SEND_MESSAGE_CLEAR";

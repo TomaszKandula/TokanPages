@@ -11,7 +11,7 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/removeSubscriberAction";
 import { IconType } from "../../Shared/enums";
 import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
-import { NewsletterSuccess } from "../../Shared/messageHelper";
+import { NewsletterSuccess } from "../../Shared/textWrappers";
 import { IRemoveSubscriberDto, IUnsubscribeContentDto } from "../../Api/Models";
 import useStyles from "./styledUnsubscribe";
 

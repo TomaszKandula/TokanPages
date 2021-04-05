@@ -3,7 +3,7 @@ import { AppThunkAction } from "../applicationState";
 import { IArticleItem } from "../../Shared/Components/ContentRender/Models/articleItemModel";
 import { API_QUERY_GET_ARTICLES } from "../../Shared/constants";
 import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
-import { UnexpectedStatusCode } from "../../Shared/messageHelper";
+import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 
 export const REQUEST_ARTICLES = "REQUEST_ARTICLES";
 export const RECEIVE_ARTICLES = "RECEIVE_ARTICLES";

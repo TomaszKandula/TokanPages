@@ -2,7 +2,7 @@ import axios from "axios";
 import { AppThunkAction } from "../applicationState";
 import { IRemoveSubscriberDto } from "../../Api/Models";
 import { API_COMMAND_REMOVE_SUBSCRIBER } from "../../Shared/constants";
-import { UnexpectedStatusCode } from "../../Shared/messageHelper";
+import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 
 export const REMOVE_SUBSCRIBER = "REMOVE_SUBSCRIBER";
 export const REMOVE_SUBSCRIBER_RESPONSE = "REMOVE_SUBSCRIBER_RESPONSE";

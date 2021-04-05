@@ -2,7 +2,7 @@ import axios from "axios";
 import { AppThunkAction } from "../applicationState";
 import { IUpdateSubscriberDto } from "../../Api/Models";
 import { API_COMMAND_UPDATE_SUBSCRIBER } from "../../Shared/constants";
-import { UnexpectedStatusCode } from "../../Shared/messageHelper";
+import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 
 export const UPDATE_SUBSCRIBER = "UPDATE_SUBSCRIBER";
 export const UPDATE_SUBSCRIBER_RESPONSE = "UPDATE_SUBSCRIBER_RESPONSE";

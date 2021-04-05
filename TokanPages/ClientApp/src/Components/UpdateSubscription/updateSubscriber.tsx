@@ -17,7 +17,7 @@ import { ActionCreators } from "../../Redux/Actions/updateSubscriberAction";
 import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
 import { IconType } from "../../Shared/enums";
 import { ValidateEmail } from "../../Shared/validate";
-import { NewsletterSuccess, NewsletterWarning } from "../../Shared/messageHelper";
+import { NewsletterSuccess, NewsletterWarning } from "../../Shared/textWrappers";
 import { IUpdateSubscriberContentDto, IUpdateSubscriberDto } from "../../Api/Models";
 import useStyles from "./styleUpdateSubscription";
 

@@ -3,7 +3,7 @@ import { AppThunkAction } from "../applicationState";
 import { IArticleItem } from "../../Shared/Components/ContentRender/Models/articleItemModel";
 import { API_QUERY_GET_ARTICLE, ARTICLE_URL } from "../../Shared/constants";
 import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
-import { UnexpectedStatusCode } from "../../Shared/messageHelper";
+import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 
 export const RESET_SELECTION = "RESET_SELECTION";
 export const REQUEST_ARTICLE = "REQUEST_ARTICLE";
