@@ -8,7 +8,7 @@ import { ArrowBack } from "@material-ui/icons";
 import Validate from "validate.js";
 import CenteredCircularLoader from "../../Shared/Components/ProgressBar/centeredCircularLoader";
 import { RenderContent } from "../../Shared/Components/ContentRender/renderContent";
-import { ITextItem } from "../../Shared/Components/ContentRender/Models/textModel";
+import { ITextObject } from "../../Shared/Components/ContentRender/Models/textModel";
 import useStyles from "./styleStaticContent";
 import { IApplicationState } from "../../Redux/applicationState";
 import { 
@@ -22,7 +22,7 @@ import {
 export default function StaticContent(props: { content: TRequestContent }) 
 {
     const classes = useStyles();
-    const [ data, setData ] = React.useState<ITextItem[]>([]);
+    const [ data, setData ] = React.useState<ITextObject>({ items: [] });
 
     const dispatch = useDispatch();
     const getStaticContentState = useSelector((state: IApplicationState) => state.getStaticContent);
@@ -37,7 +37,7 @@ export default function StaticContent(props: { content: TRequestContent })
                     dispatch(ActionCreators.getStoryContent());
                     return;
                 }
-                setData(getStaticContentState.story.items);
+                setData(getStaticContentState.story);
             break;
 
             case REQUEST_TERMS: 
@@ -46,7 +46,7 @@ export default function StaticContent(props: { content: TRequestContent })
                     dispatch(ActionCreators.getTermsContent());
                     return;
                 }
-                setData(getStaticContentState.terms.items);
+                setData(getStaticContentState.terms);
             break;
     
             case REQUEST_POLICY: 
@@ -55,13 +55,13 @@ export default function StaticContent(props: { content: TRequestContent })
                     dispatch(ActionCreators.getPolicyContent());
                     return;
                 }
-                setData(getStaticContentState.policy.items);
+                setData(getStaticContentState.policy);
             break;
         }
     }, 
     [ dispatch, getStaticContentState, props.content ]);
 
-    React.useEffect(() => { fetchData() }, [ data.length, fetchData ]);
+    React.useEffect(() => { fetchData() }, [ data.items.length, fetchData ]);
 
     return (
         <section>
@@ -78,7 +78,7 @@ export default function StaticContent(props: { content: TRequestContent })
                     <div data-aos="fade-up">
                         {Validate.isEmpty(data) 
                             ? <CenteredCircularLoader /> 
-                            : <RenderContent items={data}/>}
+                            : <RenderContent items={data.items}/>}
                     </div>
                 </Box>
             </Container>

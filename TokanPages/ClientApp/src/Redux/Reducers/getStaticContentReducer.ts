@@ -27,7 +27,7 @@ const GetStaticContentReducer: Reducer<IGetStaticContent> = (state: IGetStaticCo
         case RECEIVE_STORY:
             return { 
                 ...state,
-                story: { isLoading: false, items: action.payload }
+                story: { isLoading: false, items: action.payload.items }
             }
 
         case REQUEST_TERMS:
@@ -39,7 +39,7 @@ const GetStaticContentReducer: Reducer<IGetStaticContent> = (state: IGetStaticCo
         case RECEIVE_TERMS:
             return { 
                 ...state,
-                terms: { isLoading: false, items: action.payload }
+                terms: { isLoading: false, items: action.payload.items }
             }
         
         case REQUEST_POLICY:
@@ -51,7 +51,7 @@ const GetStaticContentReducer: Reducer<IGetStaticContent> = (state: IGetStaticCo
         case RECEIVE_POLICY:
             return { 
                 ...state,
-                policy: { isLoading: false, items: action.payload }
+                policy: { isLoading: false, items: action.payload.items }
             }
 
         default: return state;

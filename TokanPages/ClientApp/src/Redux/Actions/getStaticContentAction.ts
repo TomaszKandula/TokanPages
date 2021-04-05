@@ -1,10 +1,10 @@
-import axios from "axios";
 import { AppThunkAction } from "../applicationState";
-import { ITextItem } from "../../Shared/Components/ContentRender/Models/textModel";
+import { ITextObject } from "../../Shared/Components/ContentRender/Models/textModel";
 import { GetErrorMessage } from "../../Shared/helpers";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 import { POLICY_URL, STORY_URL, TERMS_URL } from "../../Shared/constants";
 import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
+import { GetData } from "../../Api/request";
 
 export const REQUEST_STORY = "REQUEST_STORY";
 export const REQUEST_TERMS = "REQUEST_TERMS";
@@ -18,9 +18,9 @@ export interface IRequestStory { type: typeof REQUEST_STORY }
 export interface IRequestTerms { type: typeof REQUEST_TERMS }
 export interface IRequestPolicy { type: typeof REQUEST_POLICY }
 
-export interface IReceiveStory { type: typeof RECEIVE_STORY, payload: ITextItem[] }
-export interface IReceiveTerms { type: typeof RECEIVE_TERMS, payload: ITextItem[] }
-export interface IReceivePolicy { type: typeof RECEIVE_POLICY, payload: ITextItem[] }
+export interface IReceiveStory { type: typeof RECEIVE_STORY, payload: ITextObject }
+export interface IReceiveTerms { type: typeof RECEIVE_TERMS, payload: ITextObject }
+export interface IReceivePolicy { type: typeof RECEIVE_POLICY, payload: ITextObject }
 
 export type TKnownActions = 
     IRequestStory | 
@@ -44,43 +44,35 @@ export type TRequestContent =
     typeof REQUEST_POLICY
 ;
 
-const GetDataFromUr = 
+const DispatchCall = async (dispatch: any, url: string, request: TRequestContent, receive: TReceiveContent) =>
 {
-    getContent: (url: string, type: TReceiveContent):  AppThunkAction<TKnownActions> => async (dispatch) => 
+    dispatch({ type: request });
+
+    let result = await GetData(url);
+
+    if (result.error !== null)
     {
-        axios.get(url, 
-        {
-            method: "GET", 
-            responseType: "json"
-        })
-        .then(response =>
-        {
-            return response.status === 200
-                ? dispatch({ type: type, payload: response.data })
-                : dispatch({ type: RAISE_ERROR, errorObject: UnexpectedStatusCode(response.status) });   
-            })
-        .catch(error =>
-        {
-            dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(error) });
-        });
+        dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(result.error) });
+        return;
     }
+
+    return result.status === 200
+        ? dispatch({ type: receive, payload: result.data })
+        : dispatch({ type: RAISE_ERROR, errorObject: UnexpectedStatusCode(result.status as number) });   
 }
 
 export const ActionCreators = 
 {
-    getStoryContent: ():  AppThunkAction<TKnownActions> => (dispatch) => 
+    getStoryContent: ():  AppThunkAction<TKnownActions> => async (dispatch) => 
     {
-        dispatch({ type: REQUEST_STORY });
-        GetDataFromUr.getContent(STORY_URL, RECEIVE_STORY);
+        DispatchCall(dispatch, STORY_URL, REQUEST_STORY, RECEIVE_STORY);
     },
-    getTermsContent: ():  AppThunkAction<TKnownActions> => (dispatch) => 
+    getTermsContent: ():  AppThunkAction<TKnownActions> => async (dispatch) => 
     {
-        dispatch({ type: REQUEST_TERMS });
-        GetDataFromUr.getContent(TERMS_URL, RECEIVE_TERMS);
+        DispatchCall(dispatch, TERMS_URL, REQUEST_TERMS, RECEIVE_TERMS);
     },
-    getPolicyContent: ():  AppThunkAction<TKnownActions> => (dispatch) => 
+    getPolicyContent: ():  AppThunkAction<TKnownActions> => async (dispatch) => 
     {
-        dispatch({ type: REQUEST_POLICY });
-        GetDataFromUr.getContent(POLICY_URL, RECEIVE_POLICY);
+        DispatchCall(dispatch, POLICY_URL, REQUEST_POLICY, RECEIVE_POLICY);
     }
 }
