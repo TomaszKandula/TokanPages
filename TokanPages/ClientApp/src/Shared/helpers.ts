@@ -1,5 +1,7 @@
 import Validate from "validate.js";
 import { ITextObject } from "./Components/ContentRender/Models/textModel";
+import { IErrorDto } from "../Api/Models";
+import { UNEXPECTED_ERROR, VALIDATION_ERRORS } from "./constants";
 
 const ConvertPropsToFields = (InputObject: any) =>
 {
@@ -106,6 +108,24 @@ const GetReadTime = (countWords: number, wordsPerMinute: number): string =>
     return result.toFixed(2);
 }
 
+const GetErrorMessage = (errorObject: any): string =>
+{
+    console.error(errorObject);
+    let result: string = UNEXPECTED_ERROR;
+
+    if (errorObject?.response?.data)
+    {
+        const parsedJson: IErrorDto = errorObject.response.data as IErrorDto;
+        result = Validate.isEmpty(parsedJson.ErrorMessage) 
+            ? UNEXPECTED_ERROR 
+            : parsedJson.ErrorMessage;
+
+        if (parsedJson.ValidationErrors !== null) result = VALIDATION_ERRORS;
+    }
+
+    return result;
+}
+
 export 
 {
     ConvertPropsToFields,
@@ -114,5 +134,6 @@ export
     FormatDateTime,
     TextObjectToRawText,
     CountWords,
-    GetReadTime
+    GetReadTime,
+    GetErrorMessage
 }

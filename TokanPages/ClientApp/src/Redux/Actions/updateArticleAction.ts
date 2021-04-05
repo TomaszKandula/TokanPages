@@ -4,6 +4,7 @@ import { IUpdateArticleDto } from "../../Api/Models";
 import { API_COMMAND_UPDATE_ARTICLE } from "../../Shared/constants";
 import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
+import { GetErrorMessage } from "../../Shared/helpers";
 
 export const UPDATE_ARTICLE = "UPDATE_ARTICLE";
 export const UPDATE_ARTICLE_RESPONSE = "UPDATE_ARTICLE_RESPONSE";
@@ -47,7 +48,7 @@ export const ActionCreators =
         })
         .catch(error =>
         {
-            dispatch({ type: RAISE_ERROR, errorObject: error });
+            dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(error) });
         });     
     }
 }

@@ -4,6 +4,7 @@ import { IArticleItem } from "../../Shared/Components/ContentRender/Models/artic
 import { API_QUERY_GET_ARTICLES } from "../../Shared/constants";
 import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
+import { GetErrorMessage } from "../../Shared/helpers";
 
 export const REQUEST_ARTICLES = "REQUEST_ARTICLES";
 export const RECEIVE_ARTICLES = "RECEIVE_ARTICLES";
@@ -37,7 +38,7 @@ export const ActionCreators =
         })
         .catch(error =>
         {
-            dispatch({ type: RAISE_ERROR, errorObject: error });
+            dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(error) });
         });
     }
 };

@@ -28,7 +28,7 @@ export default function ApplicationErrorToast()
         if (raiseErrorState === undefined) return; 
         
         if (raiseErrorState.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
-            setState({ isOpen: true, errorMessage: raiseErrorState.attachedErrorObject?.ErrorMessage });
+            setState({ isOpen: true, errorMessage: raiseErrorState.attachedErrorObject });
 
         if (raiseErrorState.defaultErrorMessage === RECEIVED_ERROR_MESSAGE && !state.isOpen)
             clearError();
