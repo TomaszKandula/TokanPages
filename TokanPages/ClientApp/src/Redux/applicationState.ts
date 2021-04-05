@@ -6,6 +6,7 @@ import { IUpdateSubscriber } from "./States/updateSubscriberState";
 import { IRemoveSubscriber } from "./States/removeSubscriberState";
 import { IUpdateArticle } from "./States/updateArticleState";
 import { IRaiseError } from "./States/raiseErrorState";
+import { IGetStaticContent } from "./States/getStaticContentState";
 
 export interface IApplicationState 
 {
@@ -16,7 +17,8 @@ export interface IApplicationState
     sendMessage: ISendMessage,
     addSubscriber: IAddSubscriber,
     updateSubscriber: IUpdateSubscriber,
-    removeSubscriber: IRemoveSubscriber
+    removeSubscriber: IRemoveSubscriber,
+    getStaticContent: IGetStaticContent
 }
 
 export interface AppThunkAction<TAction> 

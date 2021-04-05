@@ -3,7 +3,7 @@ import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import StaticContent from "../Components/Content/staticContent";
 import Footer from "../Components/Layout/footer";
-import { POLICY_URL } from "../Shared/constants";
+import { REQUEST_POLICY } from "../Redux/Actions/getStaticContentAction";
 import { footerContentDefault, navigationContentDefault } from "../Api/Defaults";
 import { getNavigationContent, getFooterContent } from "../Api/Services";
 
@@ -31,7 +31,7 @@ export default function PolicyPage()
         <>     
             <Navigation navigation={navigation.data} isLoading={navigation.isLoading} />
             <Container>
-                <StaticContent dataUrl={POLICY_URL} />
+                <StaticContent content={REQUEST_POLICY} />
             </Container>
             <Footer footer={footer.data} isLoading={footer.isLoading} />
         </>
