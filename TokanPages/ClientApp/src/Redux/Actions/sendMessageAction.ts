@@ -2,6 +2,7 @@ import axios from "axios";
 import { AppThunkAction } from "../../Redux/applicationState";
 import { ISendMessageDto } from "../../Api/Models";
 import { API_COMMAND_SEND_MESSAGE } from "../../Shared/constants";
+import { GetUnexpectedStatusCode } from "../../Shared/messageHelper";
 
 export const API_SEND_MESSAGE = "API_SEND_MESSAGE";
 export const API_SEND_MESSAGE_CLEAR = "API_SEND_MESSAGE_CLEAR";
@@ -49,7 +50,7 @@ export const ActionCreators =
         {
             return response.status === 200
                 ? dispatch({ type: API_SEND_MESSAGE_RESPONSE, hasSentMessage: true })
-                : dispatch({ type: SEND_MESSAGE_ERROR, errorObject: "Unexpected status code" });//TODO: add object error
+                : dispatch({ type: SEND_MESSAGE_ERROR, errorObject: GetUnexpectedStatusCode(response.status) });
  
         })
         .catch(error => 

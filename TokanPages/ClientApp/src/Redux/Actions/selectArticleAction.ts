@@ -3,6 +3,7 @@ import { AppThunkAction } from "../applicationState";
 import { IArticleItem } from "../../Shared/Components/ContentRender/Models/articleItemModel";
 import { API_QUERY_GET_ARTICLE, ARTICLE_URL } from "../../Shared/constants";
 import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
+import { GetUnexpectedStatusCode } from "../../Shared/messageHelper";
 
 export const RESET_SELECTION = "RESET_SELECTION";
 export const REQUEST_ARTICLE = "REQUEST_ARTICLE";
@@ -59,7 +60,15 @@ export const ActionCreators =
             }
             else
             {
-                dispatch({ type: RAISE_ERROR, errorObject: "Unexpected status code" });//TODO: add object error
+                if (detailsResponse.status !== 200) dispatch(
+                { 
+                    type: RAISE_ERROR, errorObject: GetUnexpectedStatusCode(detailsResponse.status) 
+                });
+
+                if (textResponse.status !== 200) dispatch(
+                { 
+                    type: RAISE_ERROR, errorObject: GetUnexpectedStatusCode(textResponse.status) 
+                });
             }
         }))
         .catch(error => 

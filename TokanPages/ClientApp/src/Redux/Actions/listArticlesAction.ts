@@ -3,6 +3,7 @@ import { AppThunkAction } from "../applicationState";
 import { IArticleItem } from "../../Shared/Components/ContentRender/Models/articleItemModel";
 import { API_QUERY_GET_ARTICLES } from "../../Shared/constants";
 import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
+import { GetUnexpectedStatusCode } from "../../Shared/messageHelper";
 
 export const REQUEST_ARTICLES = "REQUEST_ARTICLES";
 export const RECEIVE_ARTICLES = "RECEIVE_ARTICLES";
@@ -28,10 +29,10 @@ export const ActionCreators =
             responseType: "json"
         })
         .then(response =>
-        {              
+        {
             return response.status === 200
                 ? dispatch({ type: RECEIVE_ARTICLES, payload: response.data })
-                : dispatch({ type: RAISE_ERROR, errorObject: "Unexpected status code" });//TODO: add error object
+                : dispatch({ type: RAISE_ERROR, errorObject: GetUnexpectedStatusCode(response.status) });
 
         })
         .catch(error =>

@@ -75,5 +75,5 @@ export function GetUpdateArticleError(error: string): string
 
 export function GetUnexpectedStatusCode(statusCode: number): string
 {
-    return UNEXPECTED_STATUS.replace("{ERROR}", statusCode.toString());
+    return UNEXPECTED_STATUS.replace("{STATUS_CODE}", statusCode.toString());
 }
