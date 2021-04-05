@@ -7,7 +7,7 @@ import { ArrowBack } from "@material-ui/icons";
 import axios from "axios";
 import Validate from "validate.js";
 import useStyles from "./styleStaticContent";
-import CenteredCircularLoader from "../../Shared/ProgressBar/centeredCircularLoader";
+import CenteredCircularLoader from "../../Shared/Components/ProgressBar/centeredCircularLoader";
 import { RenderContent } from "../../Shared/ContentRender/renderContent";
 import { ITextObject } from "../../Shared/ContentRender/Models/textModel";
 
