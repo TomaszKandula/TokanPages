@@ -45,23 +45,27 @@ namespace TokanPages
             AServices.AddSpaStaticFiles(AConfiguration => { AConfiguration.RootPath = "ClientApp/build"; });
             AServices.AddResponseCompression(AOptions => { AOptions.Providers.Add<GzipCompressionProvider>(); });
 
-            if (FEnvironment.IsDevelopment() || EnvironmentVariables.IsStaging())
+            // For E2E testing only when application is bootstrapped in memory
+            if (EnvironmentVariables.IsStaging())
+                Dependencies.RegisterForTests(AServices, FConfiguration);
+            
+            // Local development
+            if (FEnvironment.IsDevelopment())
             {
                 Dependencies.RegisterForTests(AServices, FConfiguration);
-            }
-            else 
-            {
-                Dependencies.Register(AServices, FConfiguration);
-            }
 
-            if (FEnvironment.IsDevelopment()) 
-            {
                 AServices.AddSwaggerGen(AOption =>
                 {
                     AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "TokanPagesApi", Version = "v1" });
                 });
             }
 
+            // Production and Staging (deployment slots only)
+            if (!FEnvironment.IsProduction() && !FEnvironment.IsStaging()) 
+                return;
+            
+            Dependencies.Register(AServices, FConfiguration);
+                
             // Since this app is meant to run in Docker only
             // We get the Docker's internal network IP(s)
             var LHostName = Dns.GetHostName();
@@ -89,9 +93,7 @@ namespace TokanPages
             var LDatabaseInitializer = LScope.ServiceProvider.GetService<IDbInitializer>();
 
             if (FEnvironment.IsDevelopment() || EnvironmentVariables.IsStaging())
-            {
                 LDatabaseInitializer.SeedData();
-            }
 
             AApplication.UseForwardedHeaders();
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);
@@ -108,23 +110,17 @@ namespace TokanPages
             {
                 AApplication.UseSwagger();
                 AApplication.UseSwaggerUI(AOption =>
-                {
-                    AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "TokanPagesApi version 1");
-                });
+                    AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "TokanPagesApi version 1"));
             }
 
-            AApplication.UseEndpoints(AEndpoints =>
-            {
-                AEndpoints.MapControllers();
-            });
+            AApplication.UseEndpoints(AEndpoints => 
+                AEndpoints.MapControllers());
 
             AApplication.UseSpa(ASpa =>
             {
                 ASpa.Options.SourcePath = "ClientApp";
                 if (FEnvironment.IsDevelopment())
-                {
                     ASpa.UseProxyToSpaDevelopmentServer(AAppUrls.DevelopmentOrigin);
-                }
             });           
         }
     }
