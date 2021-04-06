@@ -23,21 +23,22 @@ namespace TokanPages.Configuration
 {
     public static class Dependencies
     {
-        public static void Register(IServiceCollection AServices, IConfiguration AConfiguration) 
+        public static void Register(IServiceCollection AServices, IConfiguration AConfiguration)
         {
-            SetupAppSettings(AServices, AConfiguration);
-            SetupLogger(AServices);
+            CommonServices(AServices, AConfiguration);
             SetupDatabase(AServices, AConfiguration);
-            SetupServices(AServices);
-            SetupValidators(AServices);
-            SetupMediatR(AServices);
         }
 
         public static void RegisterForTests(IServiceCollection AServices, IConfiguration AConfiguration) 
         {
+            CommonServices(AServices, AConfiguration);
+            SetupDatabaseForTest(AServices);
+        }
+
+        private static void CommonServices(IServiceCollection AServices, IConfiguration AConfiguration)
+        {
             SetupAppSettings(AServices, AConfiguration);
             SetupLogger(AServices);
-            SetupDatabaseForTest(AServices);
             SetupServices(AServices);
             SetupValidators(AServices);
             SetupMediatR(AServices);
@@ -66,12 +67,12 @@ namespace TokanPages.Configuration
 
         private static void SetupDatabaseForTest(IServiceCollection AServices)
         {
-            var DatabaseName = Guid.NewGuid().ToString();
+            var LDatabaseName = Guid.NewGuid().ToString();
             AServices.AddDbContext<DatabaseContext>(AOptions =>
             {
                 AOptions.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
                 AOptions.EnableSensitiveDataLogging();
-                AOptions.UseInMemoryDatabase(DatabaseName);
+                AOptions.UseInMemoryDatabase(LDatabaseName);
             });
         }
 
