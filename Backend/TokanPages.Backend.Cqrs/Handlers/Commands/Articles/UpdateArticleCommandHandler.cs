@@ -114,8 +114,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         private void AddNewArticleLikes(bool AIsAnonymousUser, UpdateArticleCommand ARequest)
         {
             var LLikesLimit = AIsAnonymousUser 
-                ? Constants.Likes.LikesLimitForAnonym 
-                : Constants.Likes.LikesLimitForUser;
+                ? Constants.Likes.LIKES_LIMIT_FOR_ANONYMOUS 
+                : Constants.Likes.LIKES_LIMIT_FOR_USER;
             
             var LEntity = new Domain.Entities.ArticleLikes
             {
@@ -131,8 +131,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         private void UpdateCurrentArticleLikes(bool AIsAnonymousUser, Domain.Entities.ArticleLikes AEntity, int ALikesToBeAdded)
         {
             var LLikesLimit = AIsAnonymousUser 
-                ? Constants.Likes.LikesLimitForAnonym 
-                : Constants.Likes.LikesLimitForUser;
+                ? Constants.Likes.LIKES_LIMIT_FOR_ANONYMOUS 
+                : Constants.Likes.LIKES_LIMIT_FOR_USER;
             
             var LLikesSum = AEntity.LikeCount + ALikesToBeAdded;
             AEntity.LikeCount = LLikesSum > LLikesLimit ? LLikesLimit : LLikesSum;

@@ -38,7 +38,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
             var UnsubscribeBaseLink = FAppUrls.DeploymentOrigin + FAppUrls.UnsubscribePath;
             foreach (var Subscriber in ARequest.SubscriberInfo)
             {
-                FSmtpClientService.From = Constants.Emails.Addresses.Contact;
+                FSmtpClientService.From = Constants.Emails.Addresses.CONTACT;
                 FSmtpClientService.Tos = new List<string> { Subscriber.Email };
                 FSmtpClientService.Bccs = null;
                 FSmtpClientService.Subject = ARequest.Subject;
@@ -52,7 +52,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                         new Item { Tag = "{UNSUBSCRIBE_LINK}", Value = UnsubscribeLink }
                     };
 
-                var LTemplateFromUrl = await FFileUtility.GetFileFromUrl($"{FAzureStorageService.GetBaseUrl}{Templates.Newsletter}", ACancellationToken);
+                var LTemplateFromUrl = await FFileUtility.GetFileFromUrl($"{FAzureStorageService.GetBaseUrl}{Templates.NEWSLETTER}", ACancellationToken);
                 FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, NewValues);
 
                 var LResult = await FSmtpClientService.Send();

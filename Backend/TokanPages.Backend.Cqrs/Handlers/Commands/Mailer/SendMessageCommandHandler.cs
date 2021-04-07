@@ -32,8 +32,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 
         public override async Task<Unit> Handle(SendMessageCommand ARequest, CancellationToken ACancellationToken)
         {
-            FSmtpClientService.From = Constants.Emails.Addresses.Contact;
-            FSmtpClientService.Tos = new List<string> { Constants.Emails.Addresses.Contact };
+            FSmtpClientService.From = Constants.Emails.Addresses.CONTACT;
+            FSmtpClientService.Tos = new List<string> { Constants.Emails.Addresses.CONTACT };
             FSmtpClientService.Subject = $"New user message from {ARequest.FirstName}";
 
             var NewValues = new List<Item>
@@ -45,7 +45,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                     new Item { Tag = "{DATE_TIME}",     Value = DateTime.UtcNow.ToString() }
                 };
 
-            var LTemplateFromUrl = await FFileUtility.GetFileFromUrl($"{FAzureStorageService.GetBaseUrl}{Templates.ContactForm}", ACancellationToken);
+            var LTemplateFromUrl = await FFileUtility.GetFileFromUrl($"{FAzureStorageService.GetBaseUrl}{Templates.CONTACT_FORM}", ACancellationToken);
             FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, NewValues);
 
             var LResult = await FSmtpClientService.Send();

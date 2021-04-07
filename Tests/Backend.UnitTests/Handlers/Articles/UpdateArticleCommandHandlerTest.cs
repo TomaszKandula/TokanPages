@@ -174,7 +174,7 @@ namespace Backend.UnitTests.Handlers.Articles
                     LLikesEntity[0].LikeCount.Should().Be(10);
                     break;
                 case 50:
-                    LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LikesLimitForAnonym);
+                    LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LIKES_LIMIT_FOR_ANONYMOUS);
                     break;
             }
         }
@@ -265,7 +265,7 @@ namespace Backend.UnitTests.Handlers.Articles
                     LLikesEntity[0].LikeCount.Should().Be(10);
                     break;
                 case 70:
-                    LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LikesLimitForUser);
+                    LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LIKES_LIMIT_FOR_USER);
                     break;
             }
         }
@@ -364,7 +364,7 @@ namespace Backend.UnitTests.Handlers.Articles
                     LLikesEntity[0].LikeCount.Should().Be(EXISTING_LIKES + ALikes);
                     break;
                 case 50:
-                    LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LikesLimitForAnonym);
+                    LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LIKES_LIMIT_FOR_ANONYMOUS);
                     break;
             }
         }
@@ -469,7 +469,7 @@ namespace Backend.UnitTests.Handlers.Articles
                     LLikesEntity[0].LikeCount.Should().Be(EXISTING_LIKES + ALikes);
                     break;
                 case 50:
-                    LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LikesLimitForUser);
+                    LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LIKES_LIMIT_FOR_USER);
                     break;
             }
         }
