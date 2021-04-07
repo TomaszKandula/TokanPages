@@ -1,11 +1,13 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Http;
 using TokanPages.Backend.Shared.Cors;
 using TokanPages.Backend.Shared.Settings;
 
 namespace TokanPages.Middleware
 {
+    [UsedImplicitly]
     public class CustomCors
     {
         private readonly RequestDelegate FRequestDelegate;
@@ -21,21 +23,17 @@ namespace TokanPages.Middleware
             var LDeploymentOrigins = AAppUrls.DeploymentOrigin.Split(';').ToList();
             var LRequestOrigin = AHttpContext.Request.Headers["Origin"];
 
-            if (LDevelopmentOrigins.Contains(LRequestOrigin) || LDeploymentOrigins.Contains(LRequestOrigin))
-            {
+            if (!LDevelopmentOrigins.Contains(LRequestOrigin) && !LDeploymentOrigins.Contains(LRequestOrigin))
+                return FRequestDelegate(AHttpContext);
+            
+            CorsHeaders.Ensure(AHttpContext);
 
-                CorsHeaders.Ensure(AHttpContext);
-
-                // Necessary for pre-flight
-                if (AHttpContext.Request.Method == "OPTIONS") 
-                {
-                    AHttpContext.Response.StatusCode = 200;
-                    return AHttpContext.Response.WriteAsync("OK");
-                }
-
-            }
-
-            return FRequestDelegate(AHttpContext);
+            // Necessary for pre-flight
+            if (AHttpContext.Request.Method != "OPTIONS") 
+                return FRequestDelegate(AHttpContext);
+                
+            AHttpContext.Response.StatusCode = 200;
+            return AHttpContext.Response.WriteAsync("OK");
         }
     }
 }

@@ -9,9 +9,7 @@ namespace TokanPages.Controllers
 {
     public class MailerController : __BaseController
     {
-        public MailerController(IMediator AMediator) : base(AMediator)
-        {
-        }
+        public MailerController(IMediator AMediator) : base(AMediator) { }
 
         [HttpPost]
         public async Task<VerifyEmailAddressCommandResult> VerifyEmailAddress([FromBody] VerifyEmailAddressDto APayLoad) 

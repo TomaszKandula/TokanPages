@@ -17,24 +17,24 @@ namespace TokanPages.CustomHandlers
             AApplication.Run(async AHttpContext => 
             {
                 var LExceptionHandlerPathFeature = AHttpContext.Features.Get<IExceptionHandlerPathFeature>();
-                var LException = LExceptionHandlerPathFeature.Error;
+                var LErrorException = LExceptionHandlerPathFeature.Error;
                 AHttpContext.Response.ContentType = "application/json";
 
                 string LResult;
-                switch (LException)
+                switch (LErrorException)
                 {
 
-                    case ValidationException AException:
+                    case ValidationException LException:
                         {
-                            var LAppError = new ApplicationError(AException.ErrorCode, AException.Message, AException.ValidationResult);
+                            var LAppError = new ApplicationError(LException.ErrorCode, LException.Message, LException.ValidationResult);
                             LResult = JsonConvert.SerializeObject(LAppError);
                             AHttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                             break;
                         }
 
-                    case BusinessException AException:
+                    case BusinessException LException:
                         {
-                            var LAppError = new ApplicationError(AException.ErrorCode, AException.Message);
+                            var LAppError = new ApplicationError(LException.ErrorCode, LException.Message);
                             LResult = JsonConvert.SerializeObject(LAppError);
                             AHttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                             break;

@@ -42,8 +42,8 @@ namespace TokanPages
 
             AServices.AddMvc();
             AServices.AddControllers();          
-            AServices.AddSpaStaticFiles(AConfiguration => { AConfiguration.RootPath = "ClientApp/build"; });
-            AServices.AddResponseCompression(AOptions => { AOptions.Providers.Add<GzipCompressionProvider>(); });
+            AServices.AddSpaStaticFiles(AOptions => AOptions.RootPath = "ClientApp/build");
+            AServices.AddResponseCompression(AOptions => AOptions.Providers.Add<GzipCompressionProvider>());
 
             // For E2E testing only when application is bootstrapped in memory
             if (EnvironmentVariables.IsStaging())
@@ -55,9 +55,7 @@ namespace TokanPages
                 Dependencies.RegisterForTests(AServices, FConfiguration);
 
                 AServices.AddSwaggerGen(AOption =>
-                {
-                    AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "TokanPagesApi", Version = "v1" });
-                });
+                    AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "TokanPagesApi", Version = "v1" }));
             }
 
             // Production and Staging (deployment slots only)
@@ -80,9 +78,7 @@ namespace TokanPages
                 AOptions.RequireHeaderSymmetry = false;
 
                 foreach (var LAddress in LAddresses) 
-                {
                     AOptions.KnownProxies.Add(LAddress);
-                }
             });
         }
 
