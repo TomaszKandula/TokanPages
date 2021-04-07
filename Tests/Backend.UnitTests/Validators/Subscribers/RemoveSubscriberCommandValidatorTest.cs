@@ -9,7 +9,7 @@ namespace Backend.UnitTests.Validators.Subscribers
     public class RemoveSubscriberCommandValidatorTest
     {
         [Fact]
-        public void RemoveSubscriber_WhenIdIsCorrect_ShouldFinishSuccessfull() 
+        public void RemoveSubscriber_WhenIdIsCorrect_ShouldFinishSuccessful() 
         {
             // Arrange
             var LRemoveSubscriberCommand = new RemoveSubscriberCommand 

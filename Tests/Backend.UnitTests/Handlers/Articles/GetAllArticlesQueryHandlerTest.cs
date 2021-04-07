@@ -49,8 +49,8 @@ namespace Backend.UnitTests.Handlers.Articles
                 }
             };
 
-            LDatabaseContext.Articles.AddRange(LArticles);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Articles.AddRangeAsync(LArticles);
+            await LDatabaseContext.SaveChangesAsync();
 
             // Act
             var LResults = (await LGetAllArticlesQueryHandler.Handle(LGetAllArticlesQuery, CancellationToken.None)).ToList();

@@ -4,6 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
 using Backend.TestData;
 
@@ -16,7 +17,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
         {
             // Arrange
             var LDatabaseContext = GetTestDatabaseContext();
-            var LGetAllSubscribersQuery = new GetAllSubscribersQuery { };
+            var LGetAllSubscribersQuery = new GetAllSubscribersQuery();
             var LGetAllSubscribersQueryHandler = new GetAllSubscribersQueryHandler(LDatabaseContext);
             var LSubscribers = new List<TokanPages.Backend.Domain.Entities.Subscribers>
             {
@@ -39,15 +40,16 @@ namespace Backend.UnitTests.Handlers.Subscribers
                     LastUpdated = null
                 }
             };
-            LDatabaseContext.Subscribers.AddRange(LSubscribers);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Subscribers.AddRangeAsync(LSubscribers);
+            await LDatabaseContext.SaveChangesAsync();
 
             // Act
             var LResults = await LGetAllSubscribersQueryHandler.Handle(LGetAllSubscribersQuery, CancellationToken.None);
 
             // Assert
-            LResults.Should().NotBeNull();
-            LResults.Should().HaveCount(2);
+            var LGetAllSubscribersQueryResults = LResults as GetAllSubscribersQueryResult[] ?? LResults.ToArray();
+            LGetAllSubscribersQueryResults.Should().NotBeNull();
+            LGetAllSubscribersQueryResults.Should().HaveCount(2);
         }
     }
 }

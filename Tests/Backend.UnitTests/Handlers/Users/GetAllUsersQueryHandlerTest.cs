@@ -4,6 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 using Backend.TestData;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 
@@ -16,9 +17,9 @@ namespace Backend.UnitTests.Handlers.Users
         {
             // Arrange
             var LDatabaseContext = GetTestDatabaseContext();
-            var LGetAllUsersQuery = new GetAllUsersQuery { };
+            var LGetAllUsersQuery = new GetAllUsersQuery();
             var LGetAllUsersQueryHandler = new GetAllUsersQueryHandler(LDatabaseContext);
-            LDatabaseContext.Users.AddRange(new List<TokanPages.Backend.Domain.Entities.Users>
+            await LDatabaseContext.Users.AddRangeAsync(new List<TokanPages.Backend.Domain.Entities.Users>
             {
                 new TokanPages.Backend.Domain.Entities.Users
                 {
@@ -45,14 +46,15 @@ namespace Backend.UnitTests.Handlers.Users
                     LastLogged = null
                 }
             });
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.SaveChangesAsync();
 
             // Act
             var LResults = await LGetAllUsersQueryHandler.Handle(LGetAllUsersQuery, CancellationToken.None);
 
             // Assert
-            LResults.Should().NotBeNull();
-            LResults.Should().HaveCount(2);
+            var LGetAllUsersQueryResults = LResults.ToList();
+            LGetAllUsersQueryResults.Should().NotBeNull();
+            LGetAllUsersQueryResults.Should().HaveCount(2);
         }
     }
 }

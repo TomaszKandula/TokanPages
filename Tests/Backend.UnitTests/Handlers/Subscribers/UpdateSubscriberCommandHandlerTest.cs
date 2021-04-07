@@ -33,8 +33,8 @@ namespace Backend.UnitTests.Handlers.Subscribers
                 Registered = DateTime.Now,
                 LastUpdated = null
             };
-            LDatabaseContext.Subscribers.Add(LSubscribers);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
+            await LDatabaseContext.SaveChangesAsync();
 
             // Act
             var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext);
@@ -42,7 +42,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LSubscribersEntity = LAssertDbContext.Subscribers.Find(LUpdateSubscriberCommand.Id);
+            var LSubscribersEntity = await LAssertDbContext.Subscribers.FindAsync(LUpdateSubscriberCommand.Id);
 
             LSubscribersEntity.Should().NotBeNull();
             LSubscribersEntity.IsActivated.Should().BeTrue();
@@ -73,8 +73,8 @@ namespace Backend.UnitTests.Handlers.Subscribers
                 Registered = DateTime.Now,
                 LastUpdated = null
             };
-            LDatabaseContext.Subscribers.Add(LSubscribers);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
+            await LDatabaseContext.SaveChangesAsync();
 
             // Act
             var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext);
@@ -82,7 +82,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LSubscribersEntity = LAssertDbContext.Subscribers.Find(LUpdateSubscriberCommand.Id);
+            var LSubscribersEntity = await LAssertDbContext.Subscribers.FindAsync(LUpdateSubscriberCommand.Id);
 
             LSubscribersEntity.Should().NotBeNull();
             LSubscribersEntity.IsActivated.Should().BeTrue();
@@ -113,13 +113,14 @@ namespace Backend.UnitTests.Handlers.Subscribers
                 Registered = DateTime.Now,
                 LastUpdated = null
             };
-            LDatabaseContext.Subscribers.Add(LSubscribers);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
+            await LDatabaseContext.SaveChangesAsync();
 
             var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LUpdateSubscriberCommandHandler.Handle(LUpdateSubscriberCommand, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LUpdateSubscriberCommandHandler.Handle(LUpdateSubscriberCommand, CancellationToken.None));
         }
 
         [Fact]
@@ -145,13 +146,14 @@ namespace Backend.UnitTests.Handlers.Subscribers
                 Registered = DateTime.Now,
                 LastUpdated = null
             };
-            LDatabaseContext.Subscribers.Add(LSubscribers);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
+            await LDatabaseContext.SaveChangesAsync();
 
             var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LUpdateSubscriberCommandHandler.Handle(LUpdateSubscriberCommand, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LUpdateSubscriberCommandHandler.Handle(LUpdateSubscriberCommand, CancellationToken.None));
         }
     }
 }

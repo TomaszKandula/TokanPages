@@ -10,7 +10,7 @@ namespace Backend.UnitTests.Validators.Articles
     public class UpdateArticleCommandValidatorTest
     {
         [Fact]
-        public void UpdateArticle_WhenAllFieldsAreCorrect_ShouldFinishSuccessfull() 
+        public void UpdateArticle_WhenAllFieldsAreCorrect_ShouldFinishSuccessful() 
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
@@ -159,7 +159,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void UpdateArticle_WhenTextToUploadIsEmpty_ShouldFinishSuccessfull()
+        public void UpdateArticle_WhenTextToUploadIsEmpty_ShouldFinishSuccessful()
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
@@ -183,7 +183,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void UpdateArticle_WhenImageToUploadIsEmpty_ShouldFinishSuccessfull()
+        public void UpdateArticle_WhenImageToUploadIsEmpty_ShouldFinishSuccessful()
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand

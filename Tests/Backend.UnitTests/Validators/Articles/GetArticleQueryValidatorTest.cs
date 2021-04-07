@@ -9,7 +9,7 @@ namespace Backend.UnitTests.Validators.Articles
     public class GetArticleQueryValidatorTest
     {
         [Fact]
-        public void GetArticle_WhenIdIsCorrect_ShouldFinishSuccessfull() 
+        public void GetArticle_WhenIdIsCorrect_ShouldFinishSuccessful() 
         {
             // Arrange
             var LGetArticleQuery = new GetArticleQuery 

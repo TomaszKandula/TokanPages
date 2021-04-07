@@ -11,7 +11,7 @@ namespace Backend.UnitTests.Validators.Mailer
     public class SendNewsletterCommandValidatorTest
     {
         [Fact]
-        public void SendNewsletter_WhenAllFieldsAreCorrect_ShouldFinishSuccessfull() 
+        public void SendNewsletter_WhenAllFieldsAreCorrect_ShouldFinishSuccessful() 
         {
             // Arrange
             var LSendNewsletterCommand = new SendNewsletterCommand

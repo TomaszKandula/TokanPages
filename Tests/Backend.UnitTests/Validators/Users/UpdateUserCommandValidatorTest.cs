@@ -10,7 +10,7 @@ namespace Backend.UnitTests.Validators.Users
     public class UpdateUserCommandValidatorTest
     {
         [Fact]
-        public void UpdateUser_WhenAllFieldsAreCorrect_ShouldFinishSuccessfull()
+        public void UpdateUser_WhenAllFieldsAreCorrect_ShouldFinishSuccessful()
         {
 
             // Arrange

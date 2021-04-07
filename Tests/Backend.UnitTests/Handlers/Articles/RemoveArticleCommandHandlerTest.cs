@@ -21,7 +21,7 @@ namespace Backend.UnitTests.Handlers.Articles
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
-            LDatabaseContext.Articles.Add(new TokanPages.Backend.Domain.Entities.Articles
+            await LDatabaseContext.Articles.AddAsync(new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
                 Title = DataProvider.GetRandomString(),
@@ -31,7 +31,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null
             });
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.SaveChangesAsync();
 
             var LRemoveArticleCommandHandler = new RemoveArticleCommandHandler(LDatabaseContext);
 
@@ -40,8 +40,8 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LArticesEntity = LAssertDbContext.Articles.Find(LRemoveArticleCommand.Id);
-            LArticesEntity.Should().BeNull();
+            var LArticlesEntity = LAssertDbContext.Articles.Find(LRemoveArticleCommand.Id);
+            LArticlesEntity.Should().BeNull();
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace Backend.UnitTests.Handlers.Articles
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
-            LDatabaseContext.Articles.Add(new TokanPages.Backend.Domain.Entities.Articles
+            await LDatabaseContext.Articles.AddAsync(new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
                 Title = DataProvider.GetRandomString(),
@@ -64,7 +64,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null
             });
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.SaveChangesAsync();
 
             var LRemoveArticleCommandHandler = new RemoveArticleCommandHandler(LDatabaseContext);
 
