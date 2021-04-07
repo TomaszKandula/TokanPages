@@ -25,7 +25,7 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
         public async Task UpdateSubscriber_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError()
         {
             // Arrange
-            var LRequest = $"/api/v1/subscribers/updatesubscriber/";
+            var LRequest = "/api/v1/subscribers/updatesubscriber/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
             var LPayLoad = new UpdateSubscriberDto

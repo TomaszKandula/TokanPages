@@ -22,11 +22,11 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
         public async Task GetAllUsers_ShouldReturnCollection()
         {
             // Arrange
-            var LRequest = $"/api/v1/subscribers/getallsubscribers/";
+            const string REQUEST = "/api/v1/subscribers/getallsubscribers/";
             var LHttpClient = FWebAppFactory.CreateClient();
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
+            var LResponse = await LHttpClient.GetAsync(REQUEST);
 
             // Assert
             LResponse.EnsureSuccessStatusCode();

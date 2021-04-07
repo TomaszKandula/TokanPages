@@ -22,8 +22,8 @@ namespace Backend.IntegrationTests.Handlers.Articles
         public async Task AddArticle_WhenAllFieldsAreCorrect_ShouldReturnNewGuid()
         {
             // Arrange
-            var LRequest = $"/api/v1/articles/addarticle/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            const string REQUEST = "/api/v1/articles/addarticle/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
 
             var LPayLoad = new AddArticleDto
             {

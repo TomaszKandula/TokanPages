@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Shared.Environment;
 
 namespace Backend.IntegrationTests
 {
+    [UsedImplicitly]
     public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
     {
         protected override IWebHostBuilder CreateWebHostBuilder()

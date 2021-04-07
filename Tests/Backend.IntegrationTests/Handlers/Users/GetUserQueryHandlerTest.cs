@@ -44,11 +44,11 @@ namespace Backend.IntegrationTests.Handlers.Users
         public async Task GetUser_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError()
         {
             // Arrange
-            var LRequest = $"/api/v1/users/getuser/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
+            const string REQUEST = "/api/v1/users/getuser/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
             var LHttpClient = FWebAppFactory.CreateClient();
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
+            var LResponse = await LHttpClient.GetAsync(REQUEST);
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);

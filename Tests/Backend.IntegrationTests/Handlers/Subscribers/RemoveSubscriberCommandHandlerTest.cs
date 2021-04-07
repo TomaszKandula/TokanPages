@@ -24,7 +24,7 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
         public async Task RemoveSubscriber_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError()
         {
             // Arrange
-            var LRequest = $"/api/v1/subscribers/removesubscriber/";
+            var LRequest = "/api/v1/subscribers/removesubscriber/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
             var LPayLoad = new RemoveSubscriberDto
