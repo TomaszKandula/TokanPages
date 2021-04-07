@@ -22,8 +22,8 @@ namespace TokanPages.Backend.Database
         {
             var LEnvironment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
             var LBuilder = new ConfigurationBuilder()
-                .AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{LEnvironment}.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.json", true, true)
+                .AddJsonFile($"appsettings.{LEnvironment}.json", true, true)
                 .AddUserSecrets<DatabaseContext>()
                 .AddEnvironmentVariables()
                 .Build();
