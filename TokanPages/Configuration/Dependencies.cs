@@ -94,7 +94,7 @@ namespace TokanPages.Configuration
 
         private static void SetupMediatR(IServiceCollection AServices) 
         {
-            AServices.AddMediatR(AOption => { AOption.AsScoped(); }, 
+            AServices.AddMediatR(AOption => AOption.AsScoped(), 
                 typeof(TemplateHandler<IRequest, Unit>).GetTypeInfo().Assembly);
 
             AServices.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
