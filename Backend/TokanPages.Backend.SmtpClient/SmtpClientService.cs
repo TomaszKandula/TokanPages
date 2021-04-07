@@ -38,14 +38,14 @@ namespace TokanPages.Backend.SmtpClient
                 LNewMail.From.Add(MailboxAddress.Parse(From));
                 LNewMail.Subject = Subject;
 
-                foreach (var Item in Tos) 
-                    LNewMail.To.Add(MailboxAddress.Parse(Item));
+                foreach (var LItem in Tos) 
+                    LNewMail.To.Add(MailboxAddress.Parse(LItem));
                 
                 if (Ccs != null && !Ccs.Any())
-                    foreach (var Item in Ccs) LNewMail.Cc.Add(MailboxAddress.Parse(Item));
+                    foreach (var LItem in Ccs) LNewMail.Cc.Add(MailboxAddress.Parse(LItem));
 
                 if (Bccs != null && !Bccs.Any())
-                    foreach (var Item in Bccs) LNewMail.Bcc.Add(MailboxAddress.Parse(Item));
+                    foreach (var LItem in Bccs) LNewMail.Bcc.Add(MailboxAddress.Parse(LItem));
 
                 if (!string.IsNullOrEmpty(PlainText)) 
                     LNewMail.Body = new TextPart(TextFormat.Plain) { Text = PlainText };
@@ -54,15 +54,12 @@ namespace TokanPages.Backend.SmtpClient
                     LNewMail.Body = new TextPart(TextFormat.Html) { Text = HtmlBody };
 
                 using var LServer = new MailKit.Net.Smtp.SmtpClient();
-                LServer.Connect(FSmtpServerSettings.Server, FSmtpServerSettings.Port, SecureSocketOptions.SslOnConnect);
+                await LServer.ConnectAsync(FSmtpServerSettings.Server, FSmtpServerSettings.Port, SecureSocketOptions.SslOnConnect);
                 await LServer.AuthenticateAsync(FSmtpServerSettings.Account, FSmtpServerSettings.Password);
                 await LServer.SendAsync(LNewMail);
                 await LServer.DisconnectAsync(true);
 
-                return new SendActionResult
-                {
-                    IsSucceeded = true
-                };
+                return new SendActionResult { IsSucceeded = true };
             } 
             catch (Exception LException)
             {
@@ -77,20 +74,20 @@ namespace TokanPages.Backend.SmtpClient
 
         public override List<CheckActionResult> IsAddressCorrect(List<string> AEmailAddress)
         {
-            var Results = new List<CheckActionResult>();
-            foreach (var Item in AEmailAddress)
+            var LResults = new List<CheckActionResult>();
+            foreach (var LItem in AEmailAddress)
             {
                 try
                 {
-                    var LEmailAddress = new MailAddress(Item);
-                    Results.Add(new CheckActionResult { EmailAddress = Item, IsValid = true });
+                    var LEmailAddress = new MailAddress(LItem);
+                    LResults.Add(new CheckActionResult { EmailAddress = LItem, IsValid = true });
                 }
                 catch (FormatException)
                 {
-                    Results.Add(new CheckActionResult { EmailAddress = Item, IsValid = false });
+                    LResults.Add(new CheckActionResult { EmailAddress = LItem, IsValid = false });
                 }
             }
-            return Results;
+            return LResults;
         }
 
         public override async Task<bool> IsDomainCorrect(string AEmailAddress)
