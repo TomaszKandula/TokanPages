@@ -52,10 +52,10 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LArticesEntity = LAssertDbContext.Articles.ToList();
-            LArticesEntity.Should().HaveCount(1);
-            LArticesEntity[0].Title.Should().Be(LAddArticleCommand.Title);
-            LArticesEntity[0].Description.Should().Be(LAddArticleCommand.Description);
+            var LArticlesEntity = LAssertDbContext.Articles.ToList();
+            LArticlesEntity.Should().HaveCount(1);
+            LArticlesEntity[0].Title.Should().Be(LAddArticleCommand.Title);
+            LArticlesEntity[0].Description.Should().Be(LAddArticleCommand.Description);
         }
 
         [Fact]
