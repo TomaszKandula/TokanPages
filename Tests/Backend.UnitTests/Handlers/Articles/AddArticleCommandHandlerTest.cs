@@ -91,7 +91,8 @@ namespace Backend.UnitTests.Handlers.Articles
             var LAddArticleCommandHandler = new AddArticleCommandHandler(LDatabaseContext, LMockedStorage.Object, LMockedUtility.Object);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LAddArticleCommandHandler.Handle(LAddArticleCommand, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LAddArticleCommandHandler.Handle(LAddArticleCommand, CancellationToken.None));
         }
     }
 }

@@ -4,7 +4,6 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Linq;
 using Backend.TestData;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 
@@ -52,9 +51,8 @@ namespace Backend.UnitTests.Handlers.Users
             var LResults = await LGetAllUsersQueryHandler.Handle(LGetAllUsersQuery, CancellationToken.None);
 
             // Assert
-            var LGetAllUsersQueryResults = LResults.ToList();
-            LGetAllUsersQueryResults.Should().NotBeNull();
-            LGetAllUsersQueryResults.Should().HaveCount(2);
+            LResults.Should().NotBeNull();
+            LResults.Should().HaveCount(2);
         }
     }
 }

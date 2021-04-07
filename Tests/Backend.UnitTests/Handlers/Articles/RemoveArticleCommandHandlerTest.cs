@@ -40,7 +40,7 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LArticlesEntity = LAssertDbContext.Articles.Find(LRemoveArticleCommand.Id);
+            var LArticlesEntity = await LAssertDbContext.Articles.FindAsync(LRemoveArticleCommand.Id);
             LArticlesEntity.Should().BeNull();
         }
 
@@ -69,7 +69,8 @@ namespace Backend.UnitTests.Handlers.Articles
             var LRemoveArticleCommandHandler = new RemoveArticleCommandHandler(LDatabaseContext);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LRemoveArticleCommandHandler.Handle(LRemoveArticleCommand, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LRemoveArticleCommandHandler.Handle(LRemoveArticleCommand, CancellationToken.None));
         }
     }
 }

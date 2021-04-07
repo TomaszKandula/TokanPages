@@ -134,7 +134,8 @@ namespace Backend.UnitTests.Handlers.Articles
             var LGetArticleQueryHandler = new GetArticleQueryHandler(LDatabaseContext, LMockedUserProvider.Object);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LGetArticleQueryHandler.Handle(LGetArticleQuery, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LGetArticleQueryHandler.Handle(LGetArticleQuery, CancellationToken.None));
         }
     }
 }

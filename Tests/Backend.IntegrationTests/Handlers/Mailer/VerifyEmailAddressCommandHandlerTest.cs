@@ -20,12 +20,12 @@ namespace Backend.IntegrationTests.Handlers.Mailer
 
         [Theory]
         [InlineData("john@gmail.com")]
-        public async Task VerifyEmailAddress_WhenEmailIsCorrect_ShouldReturnResultsAsJsonObject(string Email)
+        public async Task VerifyEmailAddress_WhenEmailIsCorrect_ShouldReturnResultsAsJsonObject(string AEmail)
         {
             // Arrange
-            var LRequest = $"/api/v1/mailer/verifyemailaddress/";
+            var LRequest = "/api/v1/mailer/verifyemailaddress/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
-            var LPayLoad = new VerifyEmailAddressDto { Email = Email };
+            var LPayLoad = new VerifyEmailAddressDto { Email = AEmail };
             var LHttpClient = FWebAppFactory.CreateClient();
 
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), 

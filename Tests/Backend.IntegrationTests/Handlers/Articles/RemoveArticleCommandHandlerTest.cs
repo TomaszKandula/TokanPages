@@ -24,7 +24,7 @@ namespace Backend.IntegrationTests.Handlers.Articles
         public async Task RemoveSubscriber_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError()
         {
             // Arrange
-            var LRequest = $"/api/v1/articles/removearticle/";
+            var LRequest = "/api/v1/articles/removearticle/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
             var LPayLoad = new RemoveArticleDto

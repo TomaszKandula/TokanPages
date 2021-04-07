@@ -25,7 +25,7 @@ namespace Backend.IntegrationTests.Handlers.Articles
         public async Task UpdateArticle_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError()
         {
             // Arrange
-            var LRequest = $"/api/v1/articles/updatearticle/";
+            var LRequest = "/api/v1/articles/updatearticle/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
             var LPayLoad = new UpdateArticleDto
