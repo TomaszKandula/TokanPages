@@ -11,9 +11,7 @@ namespace TokanPages.Controllers
 {
     public class ArticlesController : __BaseController
     {
-        public ArticlesController(IMediator AMediator) : base(AMediator)
-        {        
-        }
+        public ArticlesController(IMediator AMediator) : base(AMediator) { }
 
         [HttpGet]
         public async Task<IEnumerable<GetAllArticlesQueryResult>> GetAllArticles([FromQuery] bool AIsPublished = true) 
@@ -22,10 +20,10 @@ namespace TokanPages.Controllers
             return await FMediator.Send(LQuery);
         }
 
-        [HttpGet("{Id}")]
-        public async Task<GetArticleQueryResult> GetArticle([FromRoute] Guid Id)
+        [HttpGet("{AId}")]
+        public async Task<GetArticleQueryResult> GetArticle([FromRoute] Guid AId)
         {
-            var LQuery = new GetArticleQuery { Id = Id};
+            var LQuery = new GetArticleQuery { Id = AId};
             return await FMediator.Send(LQuery);
         }
 

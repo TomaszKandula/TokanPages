@@ -35,8 +35,8 @@ namespace Backend.UnitTests.Handlers.Users
                 LastLogged = null
             };
 
-            LDatabaseContext.Users.Add(LUsers);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Users.AddAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
 
             var LGetUserQueryHandler = new GetUserQueryHandler(LDatabaseContext);
 
@@ -78,13 +78,14 @@ namespace Backend.UnitTests.Handlers.Users
                 LastLogged = null
             };
 
-            LDatabaseContext.Users.Add(LUsers);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Users.AddAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
 
             var LGetUserQueryHandler = new GetUserQueryHandler(LDatabaseContext);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LGetUserQueryHandler.Handle(LGetUserQuery, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LGetUserQueryHandler.Handle(LGetUserQuery, CancellationToken.None));
         }
     }
 }

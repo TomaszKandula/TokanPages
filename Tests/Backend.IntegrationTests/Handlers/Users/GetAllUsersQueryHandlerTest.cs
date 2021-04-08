@@ -21,7 +21,7 @@ namespace Backend.IntegrationTests.Handlers.Users
         public async Task GetAllUsers_ShouldReturnCollection() 
         {
             // Arrange
-            var LRequest = $"/api/v1/users/getallusers/";
+            var LRequest = "/api/v1/users/getallusers/";
             var LHttpClient = FWebAppFactory.CreateClient();
 
             // Act

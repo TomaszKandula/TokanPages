@@ -61,13 +61,14 @@ namespace Backend.UnitTests.Handlers.Subscribers
                 Registered = DateTime.Now,
                 LastUpdated = null
             };
-            LDatabaseContext.Subscribers.Add(LSubscribers);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
+            await LDatabaseContext.SaveChangesAsync();
 
             var LAddSubscriberCommandHandler = new AddSubscriberCommandHandler(LDatabaseContext);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LAddSubscriberCommandHandler.Handle(LAddSubscriberCommand, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LAddSubscriberCommandHandler.Handle(LAddSubscriberCommand, CancellationToken.None));
         }
     }
 }

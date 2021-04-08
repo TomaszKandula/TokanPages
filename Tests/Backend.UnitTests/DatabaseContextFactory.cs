@@ -12,8 +12,6 @@ namespace Backend.UnitTests
             .UseInMemoryDatabase(Guid.NewGuid().ToString());
 
         public DatabaseContext CreateDatabaseContext()
-        {
-            return new DatabaseContext(FDatabaseOptions.Options);
-        }
+            =>  new DatabaseContext(FDatabaseOptions.Options);
     }
 }

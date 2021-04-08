@@ -3,9 +3,9 @@ using TokanPages.Backend.Domain.Entities;
 
 namespace TokanPages.Backend.Database.Seeders
 {
-    public class PhotoCategoriesSeeder
+    public static class PhotoCategoriesSeeder
     {
-        public static List<PhotoCategories> SeedPhotoCategories()
+        public static IEnumerable<PhotoCategories> SeedPhotoCategories()
         {
             return new List<PhotoCategories>
             {

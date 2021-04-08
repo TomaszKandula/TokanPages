@@ -9,7 +9,7 @@ namespace Backend.UnitTests.Validators.Users
     public class AddUserCommandValidatorTest
     {
         [Fact]
-        public void AddUser_WhenAllFieldsAreCorrect_ShouldFinishSuccessfull() 
+        public void AddUser_WhenAllFieldsAreCorrect_ShouldFinishSuccessful() 
         {
             // Arrange
             var LAddUserCommand = new AddUserCommand 

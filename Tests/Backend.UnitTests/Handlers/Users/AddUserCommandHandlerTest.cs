@@ -71,13 +71,14 @@ namespace Backend.UnitTests.Handlers.Users
                 LastUpdated = null,
                 LastLogged = null
             };
-            LDatabaseContext.Users.Add(LUsers);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Users.AddAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
 
             var LAddUserCommandHandler = new AddUserCommandHandler(LDatabaseContext);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LAddUserCommandHandler.Handle(LAddUserCommand, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LAddUserCommandHandler.Handle(LAddUserCommand, CancellationToken.None));
         }
     }
 }

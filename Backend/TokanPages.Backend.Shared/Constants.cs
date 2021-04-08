@@ -9,24 +9,24 @@
     {
         public static class Likes 
         {
-            public const int LikesLimitForAnonym = 25;
-            public const int LikesLimitForUser = 50;
+            public const int LIKES_LIMIT_FOR_ANONYMOUS = 25;
+            public const int LIKES_LIMIT_FOR_USER = 50;
         }
         
         public static class Emails 
         {
             public static class Templates
             {
-                public const string Newsletter = "/content/templates/newsletter.html";
-                public const string ContactForm = "/content/templates/contactform.html";
+                public const string NEWSLETTER = "/content/templates/newsletter.html";
+                public const string CONTACT_FORM = "/content/templates/contactform.html";
             }
 
             public static class Addresses 
             {
-                public const string Contact = "contact@tomkandula.com";
-                public const string Personal = "tom@tomkandula.com";
-                public const string Admin = "admin@tomkandula.com";
-                public const string Private = "tomasz.kandula@gmail.com";
+                public const string CONTACT = "contact@tomkandula.com";
+                public const string PERSONAL = "tom@tomkandula.com";
+                public const string ADMIN = "admin@tomkandula.com";
+                public const string PRIVATE = "tomasz.kandula@gmail.com";
             }
         }
     }

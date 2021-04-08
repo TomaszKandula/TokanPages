@@ -82,7 +82,7 @@ namespace TokanPages.Configuration
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();
             AServices.AddScoped<IAzureStorageService, AzureStorageService>();
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
-            AServices.AddScoped<IFileUtility, FileUtility>();
+            AServices.AddScoped<IFileUtilityService, FileUtilityService>();
             AServices.AddScoped<IDbInitializer, DbInitializer>();
             AServices.AddScoped<IUserProvider, UserProvider>();
         }
@@ -94,7 +94,7 @@ namespace TokanPages.Configuration
 
         private static void SetupMediatR(IServiceCollection AServices) 
         {
-            AServices.AddMediatR(AOption => { AOption.AsScoped(); }, 
+            AServices.AddMediatR(AOption => AOption.AsScoped(), 
                 typeof(TemplateHandler<IRequest, Unit>).GetTypeInfo().Assembly);
 
             AServices.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));

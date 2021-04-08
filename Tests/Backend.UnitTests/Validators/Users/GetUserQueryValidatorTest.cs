@@ -9,7 +9,7 @@ namespace Backend.UnitTests.Validators.Users
     public class GetUserQueryValidatorTest
     {
         [Fact]
-        public void GetUser_WhenIdIsCorrect_ShouldFinishSuccessfull()
+        public void GetUser_WhenIdIsCorrect_ShouldFinishSuccessful()
         {
             // Arrange
             var LGetUserQuery = new GetUserQuery

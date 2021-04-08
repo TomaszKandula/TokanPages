@@ -24,8 +24,8 @@ namespace Backend.IntegrationTests.Handlers.Users
         public async Task RemoveUser_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError() 
         {
             // Arrange
-            var LRequest = $"/api/v1/users/removeuser/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            const string REQUEST = "/api/v1/users/removeuser/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
 
             var LPayLoad = new RemoveUserDto
             {

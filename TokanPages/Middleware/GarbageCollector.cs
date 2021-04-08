@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Http;
 
 namespace TokanPages.Middleware
@@ -9,7 +10,8 @@ namespace TokanPages.Middleware
     /// after every endpoint call. It shall improve memory utilisation 
     /// in Azure App Service (release large objects faster).
     /// </summary>
-    public sealed class GarbageCollector
+    [UsedImplicitly]
+    public class GarbageCollector
     {
         private readonly RequestDelegate FRequestDelegate;
 

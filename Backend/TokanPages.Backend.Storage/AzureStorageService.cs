@@ -13,23 +13,21 @@ namespace TokanPages.Backend.Storage
     public class AzureStorageService : AzureStorageObject, IAzureStorageService
     {
         private readonly AzureStorageSettings FAzureStorageSettings;
-        private readonly CloudStorageAccount  FCloudStorageAccount;
-        private readonly StorageCredentials   FStorageCredentials;
+        private readonly CloudStorageAccount FCloudStorageAccount;
 
         public AzureStorageService(AzureStorageSettings AAzureStorage) 
         {
             FAzureStorageSettings = AAzureStorage;
-            FStorageCredentials   = new StorageCredentials(FAzureStorageSettings.AccountName, FAzureStorageSettings.AccountKey);
-            FCloudStorageAccount  = new CloudStorageAccount(FStorageCredentials, useHttps: true);
+            var LStorageCredentials = new StorageCredentials(FAzureStorageSettings.AccountName, FAzureStorageSettings.AccountKey);
+            FCloudStorageAccount = new CloudStorageAccount(LStorageCredentials, true);
         }
 
-        public AzureStorageService() 
-        { 
-        }
+        public AzureStorageService() { }
 
-        public override string GetBaseUrl { get => FAzureStorageSettings.BaseUrl
+        public override string GetBaseUrl =>
+            FAzureStorageSettings.BaseUrl
                 .Replace("{AccountName}", FAzureStorageSettings.AccountName)
-                .Replace("{ContainerName}", FAzureStorageSettings.ContainerName); }
+                .Replace("{ContainerName}", FAzureStorageSettings.ContainerName);
 
         public override async Task<ActionResult> UploadFile(string ADestContainerReference, string ADestFileName, string ASrcFullFilePath, string AContentType, CancellationToken ACancellationToken) 
         {
@@ -45,10 +43,7 @@ namespace TokanPages.Backend.Storage
                 LBlockBlob.Properties.ContentType = AContentType;
                 await LBlockBlob.UploadFromStreamAsync(LFileStream, null, null, null, ACancellationToken);
 
-                return new ActionResult 
-                { 
-                    IsSucceeded = true
-                };
+                return new ActionResult { IsSucceeded = true };
             }
             catch (Exception LException)
             {
@@ -72,10 +67,7 @@ namespace TokanPages.Backend.Storage
 
                 await LBlockBlob.DeleteIfExistsAsync(DeleteSnapshotsOption.None, null, null, null, ACancellationToken);
 
-                return new ActionResult
-                {
-                    IsSucceeded = true
-                };
+                return new ActionResult { IsSucceeded = true };
             }
             catch (Exception LException)
             {

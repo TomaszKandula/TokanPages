@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using Moq;
+using Xunit;
 using FluentAssertions;
 using System;
 using System.Threading;
@@ -7,7 +8,6 @@ using System.Collections.Generic;
 using Backend.TestData;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
-using Moq;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
 
 namespace Backend.UnitTests.Handlers.Articles
@@ -18,20 +18,20 @@ namespace Backend.UnitTests.Handlers.Articles
         public async Task GetArticle_WhenIdIsCorrect_ShouldReturnEntity() 
         {
             // Arrange
-            var ArticleId = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841");
+            var LArticleId = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841");
             var LGetArticleQuery = new GetArticleQuery 
             { 
-                Id = ArticleId
+                Id = LArticleId
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
             var LTestDate = DateTime.Now;
             var LUserId = Guid.Parse("d3e2543c-d454-40b6-b8c9-eb1a8845cc62");
-            var LUserAlias = "Ester";
+            const string USER_ALIAS = "Ester";
             
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
-                Id = ArticleId,
+                Id = LArticleId,
                 Title = DataProvider.GetRandomString(),
                 Description = DataProvider.GetRandomString(),
                 IsPublished = false,
@@ -48,7 +48,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 LastName = DataProvider.GetRandomString(),
                 IsActivated = true,
                 EmailAddress = DataProvider.GetRandomEmail(),
-                UserAlias = LUserAlias,
+                UserAlias = USER_ALIAS,
                 Registered = DataProvider.GetRandomDate(),
                 LastLogged = null,
                 LastUpdated = null
@@ -59,7 +59,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 new TokanPages.Backend.Domain.Entities.ArticleLikes
                 {
                     Id = Guid.NewGuid(),
-                    ArticleId = ArticleId,
+                    ArticleId = LArticleId,
                     UserId = null,
                     LikeCount = 10,
                     IpAddress = "255.255.255.255"
@@ -67,17 +67,17 @@ namespace Backend.UnitTests.Handlers.Articles
                 new TokanPages.Backend.Domain.Entities.ArticleLikes
                 {
                     Id = Guid.NewGuid(),
-                    ArticleId = ArticleId,
+                    ArticleId = LArticleId,
                     UserId = null,
                     LikeCount = 15,
                     IpAddress = "1.1.1.1"
                 }
             };
             
-            LDatabaseContext.Articles.Add(LArticles);
-            LDatabaseContext.Users.Add(LUsers);
-            LDatabaseContext.ArticleLikes.AddRange(LLikes);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Articles.AddAsync(LArticles);
+            await LDatabaseContext.Users.AddAsync(LUsers);
+            await LDatabaseContext.ArticleLikes.AddRangeAsync(LLikes);
+            await LDatabaseContext.SaveChangesAsync();
 
             var LMockedUserProvider = new Mock<UserProvider>();
             LMockedUserProvider
@@ -99,7 +99,7 @@ namespace Backend.UnitTests.Handlers.Articles
             LResults.UpdatedAt.Should().BeNull();
             LResults.CreatedAt.Should().Be(LTestDate);
             LResults.LikeCount.Should().Be(25);
-            LResults.Author.AliasName.Should().Be(LUserAlias);
+            LResults.Author.AliasName.Should().Be(USER_ALIAS);
             LResults.Author.AvatarName.Should().BeNull();
         }
 
@@ -113,7 +113,7 @@ namespace Backend.UnitTests.Handlers.Articles
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
-            LDatabaseContext.Articles.Add(new TokanPages.Backend.Domain.Entities.Articles
+            await LDatabaseContext.Articles.AddAsync(new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
                 Title = DataProvider.GetRandomString(),
@@ -124,7 +124,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 UpdatedAt = null,
                 UserId = Guid.NewGuid()
             });
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.SaveChangesAsync();
 
             var LMockedUserProvider = new Mock<UserProvider>();
             LMockedUserProvider
@@ -134,7 +134,8 @@ namespace Backend.UnitTests.Handlers.Articles
             var LGetArticleQueryHandler = new GetArticleQueryHandler(LDatabaseContext, LMockedUserProvider.Object);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LGetArticleQueryHandler.Handle(LGetArticleQuery, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LGetArticleQueryHandler.Handle(LGetArticleQuery, CancellationToken.None));
         }
     }
 }

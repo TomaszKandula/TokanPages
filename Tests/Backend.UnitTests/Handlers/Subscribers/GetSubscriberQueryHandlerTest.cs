@@ -31,8 +31,8 @@ namespace Backend.UnitTests.Handlers.Subscribers
                 Registered = LTestDate,
                 LastUpdated = null
             };
-            LDatabaseContext.Subscribers.Add(LSubscribers);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
+            await LDatabaseContext.SaveChangesAsync();
 
             // Act
             var LGetSubscriberQueryHandler = new GetSubscriberQueryHandler(LDatabaseContext);
@@ -66,13 +66,14 @@ namespace Backend.UnitTests.Handlers.Subscribers
                 Registered = DateTime.Now,
                 LastUpdated = null
             };
-            LDatabaseContext.Subscribers.Add(LSubscribers);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
+            await LDatabaseContext.SaveChangesAsync();
 
             var LGetSubscriberQueryHandler = new GetSubscriberQueryHandler(LDatabaseContext);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LGetSubscriberQueryHandler.Handle(LGetSubscriberQuery, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LGetSubscriberQueryHandler.Handle(LGetSubscriberQuery, CancellationToken.None));
         }
     }
 }

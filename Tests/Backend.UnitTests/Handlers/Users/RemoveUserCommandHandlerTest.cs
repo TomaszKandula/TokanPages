@@ -33,8 +33,8 @@ namespace Backend.UnitTests.Handlers.Users
                 LastUpdated = null,
                 LastLogged = null
             };
-            LDatabaseContext.Users.Add(LUsers);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Users.AddAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
 
             var LRemoveUserCommandHandler = new RemoveUserCommandHandler(LDatabaseContext);
 
@@ -43,7 +43,7 @@ namespace Backend.UnitTests.Handlers.Users
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LResults = LAssertDbContext.Users.Find(LRemoveUserCommand.Id);
+            var LResults = await LAssertDbContext.Users.FindAsync(LRemoveUserCommand.Id);
             LResults.Should().BeNull();
         }
 
@@ -60,7 +60,8 @@ namespace Backend.UnitTests.Handlers.Users
             var LRemoveUserCommandHandler = new RemoveUserCommandHandler(LDatabaseContext);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LRemoveUserCommandHandler.Handle(LRemoveUserCommand, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LRemoveUserCommandHandler.Handle(LRemoveUserCommand, CancellationToken.None));
         }
     }
 }

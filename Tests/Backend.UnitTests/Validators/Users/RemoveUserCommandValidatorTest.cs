@@ -9,7 +9,7 @@ namespace Backend.UnitTests.Validators.Users
     public class RemoveUserCommandValidatorTest
     {
         [Fact]
-        public void RemoveUser_WhenIdIsCorrect_ShouldFinishSuccessfull()
+        public void RemoveUser_WhenIdIsCorrect_ShouldFinishSuccessful()
         {
             // Arrange
             var LRemoveUserCommand = new RemoveUserCommand

@@ -21,11 +21,11 @@ namespace Backend.IntegrationTests.Handlers.Articles
         public async Task GetAllArticles_ShouldReturnCollection()
         {
             // Arrange
-            var LRequest = $"/api/v1/articles/getallarticles/?AIsPublished=false";
+            const string REQUEST = "/api/v1/articles/getallarticles/?AIsPublished=false";
 
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(LRequest);
+            var LResponse = await LHttpClient.GetAsync(REQUEST);
 
             // Assert
             LResponse.EnsureSuccessStatusCode();

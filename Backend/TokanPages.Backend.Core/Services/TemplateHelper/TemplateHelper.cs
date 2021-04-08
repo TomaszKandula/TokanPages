@@ -4,18 +4,14 @@ using TokanPages.Backend.Core.Services.TemplateHelper.Model;
 
 namespace TokanPages.Backend.Core.Services.TemplateHelper
 {
-    public class TemplateHelper : ITemplateHelper
+    public sealed class TemplateHelper : ITemplateHelper
     {
-        public virtual string MakeBody(string LTemplate, List<Item> AItems)
+        public string MakeBody(string ATemplate, List<Item> AItems)
         {
             if (AItems == null || !AItems.Any()) return null;
 
-            foreach (var AItem in AItems)
-            {
-                LTemplate = LTemplate.Replace(AItem.Tag, AItem.Value);
-            }
-
-            return LTemplate;
+            return AItems.Aggregate(ATemplate, (ACurrent, AItem) 
+                => ACurrent.Replace(AItem.Tag, AItem.Value));
         }
     }
 }

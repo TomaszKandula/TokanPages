@@ -20,14 +20,14 @@ namespace Backend.UnitTests.Handlers.Articles
             var LGetAllArticlesQuery = new GetAllArticlesQuery { IsPublished = false };
             var LGetAllArticlesQueryHandler = new GetAllArticlesQueryHandler(LDatabaseContext);
 
-            var FirstArticleId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
-            var SecondArticleId = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841");
+            var LFirstArticleId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
+            var LSecondArticleId = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841");
 
             var LArticles = new List<TokanPages.Backend.Domain.Entities.Articles>
             {
                 new TokanPages.Backend.Domain.Entities.Articles
                 {
-                    Id = FirstArticleId,
+                    Id = LFirstArticleId,
                     Title = DataProvider.GetRandomString(),
                     Description = DataProvider.GetRandomString(),
                     IsPublished = false,
@@ -38,7 +38,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 },
                 new TokanPages.Backend.Domain.Entities.Articles
                 {
-                    Id = SecondArticleId,
+                    Id = LSecondArticleId,
                     Title = DataProvider.GetRandomString(),
                     Description = DataProvider.GetRandomString(),
                     IsPublished = false,
@@ -49,8 +49,8 @@ namespace Backend.UnitTests.Handlers.Articles
                 }
             };
 
-            LDatabaseContext.Articles.AddRange(LArticles);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Articles.AddRangeAsync(LArticles);
+            await LDatabaseContext.SaveChangesAsync();
 
             // Act
             var LResults = (await LGetAllArticlesQueryHandler.Handle(LGetAllArticlesQuery, CancellationToken.None)).ToList();
@@ -58,8 +58,8 @@ namespace Backend.UnitTests.Handlers.Articles
             // Assert
             LResults.Should().NotBeNull();
             LResults.Should().HaveCount(2);
-            LResults[0].Id.Should().Be(FirstArticleId);
-            LResults[1].Id.Should().Be(SecondArticleId);
+            LResults[0].Id.Should().Be(LFirstArticleId);
+            LResults[1].Id.Should().Be(LSecondArticleId);
         }
     }
 }

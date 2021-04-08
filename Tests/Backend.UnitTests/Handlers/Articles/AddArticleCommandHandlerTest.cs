@@ -8,6 +8,7 @@ using Backend.TestData;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
@@ -24,12 +25,12 @@ namespace Backend.UnitTests.Handlers.Articles
                 Title = DataProvider.GetRandomString(),
                 Description = DataProvider.GetRandomString(),
                 TextToUpload = DataProvider.GetRandomString(),
-                ImageToUpload = DataProvider.Base64Encode(DataProvider.GetRandomString())
+                ImageToUpload = DataProvider.GetRandomString().ToBase64Encode()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
                 It.IsAny<string>(),
@@ -52,10 +53,10 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LArticesEntity = LAssertDbContext.Articles.ToList();
-            LArticesEntity.Should().HaveCount(1);
-            LArticesEntity[0].Title.Should().Be(LAddArticleCommand.Title);
-            LArticesEntity[0].Description.Should().Be(LAddArticleCommand.Description);
+            var LArticlesEntity = LAssertDbContext.Articles.ToList();
+            LArticlesEntity.Should().HaveCount(1);
+            LArticlesEntity[0].Title.Should().Be(LAddArticleCommand.Title);
+            LArticlesEntity[0].Description.Should().Be(LAddArticleCommand.Description);
         }
 
         [Fact]
@@ -67,12 +68,12 @@ namespace Backend.UnitTests.Handlers.Articles
                 Title = DataProvider.GetRandomString(),
                 Description = DataProvider.GetRandomString(),
                 TextToUpload = DataProvider.GetRandomString(),
-                ImageToUpload = DataProvider.GetRandomString(3)
+                ImageToUpload = "úK¼Æ½t$bþÍs*L2ÕÊª"
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
                 It.IsAny<string>(),
@@ -91,7 +92,8 @@ namespace Backend.UnitTests.Handlers.Articles
             var LAddArticleCommandHandler = new AddArticleCommandHandler(LDatabaseContext, LMockedStorage.Object, LMockedUtility.Object);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LAddArticleCommandHandler.Handle(LAddArticleCommand, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LAddArticleCommandHandler.Handle(LAddArticleCommand, CancellationToken.None));
         }
     }
 }

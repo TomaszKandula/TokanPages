@@ -9,6 +9,7 @@ using TokanPages.Backend.Shared;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
@@ -28,7 +29,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 Title = DataProvider.GetRandomString(),
                 Description = DataProvider.GetRandomString(),
                 TextToUpload = DataProvider.GetRandomString(150),
-                ImageToUpload = DataProvider.Base64Encode(DataProvider.GetRandomString(255)),
+                ImageToUpload = DataProvider.GetRandomString(255).ToBase64Encode(),
                 IsPublished = false,
                 AddToLikes = 0,
                 UpReadCount = true
@@ -47,11 +48,11 @@ namespace Backend.UnitTests.Handlers.Articles
                 UserId = Guid.NewGuid()
             };
 
-            LDatabaseContext.Articles.Add(LArticles);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Articles.AddAsync(LArticles);
+            await LDatabaseContext.SaveChangesAsync();
 
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
@@ -83,13 +84,14 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LArticesEntity = LAssertDbContext.Articles.Find(LUpdateArticleCommand.Id);
+            var LArticlesEntity = await LAssertDbContext.Articles
+                .FindAsync(LUpdateArticleCommand.Id);
 
-            LArticesEntity.Should().NotBeNull();
-            LArticesEntity.Title.Should().Be(LUpdateArticleCommand.Title);
-            LArticesEntity.Description.Should().Be(LUpdateArticleCommand.Description); 
-            LArticesEntity.IsPublished.Should().BeFalse();
-            LArticesEntity.ReadCount.Should().Be(1);
+            LArticlesEntity.Should().NotBeNull();
+            LArticlesEntity.Title.Should().Be(LUpdateArticleCommand.Title);
+            LArticlesEntity.Description.Should().Be(LUpdateArticleCommand.Description); 
+            LArticlesEntity.IsPublished.Should().BeFalse();
+            LArticlesEntity.ReadCount.Should().Be(1);
         }
 
         [Theory]
@@ -117,11 +119,11 @@ namespace Backend.UnitTests.Handlers.Articles
                 UserId = Guid.NewGuid()
             };
 
-            LDatabaseContext.Articles.Add(LArticles);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Articles.AddAsync(LArticles);
+            await LDatabaseContext.SaveChangesAsync();
 
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
@@ -138,10 +140,10 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
 
-            var LIpAddress = "255.255.255.255";
+            const string IP_ADDRESS = "255.255.255.255";
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
-                .Returns(LIpAddress);
+                .Returns(IP_ADDRESS);
 
             var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
                 LDatabaseContext,
@@ -154,18 +156,28 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LLikesEntity = LAssertDbContext.ArticleLikes.Where(x => x.ArticleId == LArticles.Id).ToList();
-            var LArticesEntity = LAssertDbContext.Articles.Find(LUpdateArticleCommand.Id);
+            var LLikesEntity = LAssertDbContext.ArticleLikes
+                .Where(AArticleLikes => AArticleLikes.ArticleId == LArticles.Id)
+                .ToList();
 
-            LArticesEntity.Should().NotBeNull();
+            var LArticlesEntity = await LAssertDbContext.Articles
+                .FindAsync(LUpdateArticleCommand.Id);
+
+            LArticlesEntity.Should().NotBeNull();
 
             LLikesEntity.Should().HaveCount(1);
-            LLikesEntity[0].IpAddress.Should().Be(LIpAddress);
+            LLikesEntity[0].IpAddress.Should().Be(IP_ADDRESS);
             LLikesEntity[0].UserId.Should().BeNull();
-            if (ALikes == 10) 
-                LLikesEntity[0].LikeCount.Should().Be(10);
-            if (ALikes == 50)
-                LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LikesLimitForAnonym);
+
+            switch (ALikes)
+            {
+                case 10:
+                    LLikesEntity[0].LikeCount.Should().Be(10);
+                    break;
+                case 50:
+                    LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LIKES_LIMIT_FOR_ANONYMOUS);
+                    break;
+            }
         }
 
         [Theory]
@@ -194,11 +206,11 @@ namespace Backend.UnitTests.Handlers.Articles
                 UserId = Guid.NewGuid()
             };
 
-            LDatabaseContext.Articles.Add(LArticles);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Articles.AddAsync(LArticles);
+            await LDatabaseContext.SaveChangesAsync();
 
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
@@ -215,10 +227,10 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
 
-            var LIpAddress = "255.255.255.255";
+            const string IP_ADDRESS = "255.255.255.255";
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
-                .Returns(LIpAddress);
+                .Returns(IP_ADDRESS);
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
@@ -235,18 +247,28 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LLikesEntity = LAssertDbContext.ArticleLikes.Where(x => x.ArticleId == LArticles.Id).ToList();
-            var LArticesEntity = LAssertDbContext.Articles.Find(LUpdateArticleCommand.Id);
+            var LLikesEntity = LAssertDbContext.ArticleLikes
+                .Where(AArticleLikes => AArticleLikes.ArticleId == LArticles.Id)
+                .ToList();
+            
+            var LArticlesEntity = await LAssertDbContext.Articles
+                .FindAsync(LUpdateArticleCommand.Id);
 
-            LArticesEntity.Should().NotBeNull();
+            LArticlesEntity.Should().NotBeNull();
 
             LLikesEntity.Should().HaveCount(1);
-            LLikesEntity[0].IpAddress.Should().Be(LIpAddress);
+            LLikesEntity[0].IpAddress.Should().Be(IP_ADDRESS);
             LLikesEntity[0].UserId.Should().Be(LUserId);
-            if (ALikes == 10)
-                LLikesEntity[0].LikeCount.Should().Be(10);
-            if (ALikes == 70)
-                LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LikesLimitForUser);
+            
+            switch (ALikes)
+            {
+                case 10:
+                    LLikesEntity[0].LikeCount.Should().Be(10);
+                    break;
+                case 70:
+                    LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LIKES_LIMIT_FOR_USER);
+                    break;
+            }
         }
 
         [Theory]
@@ -275,23 +297,24 @@ namespace Backend.UnitTests.Handlers.Articles
                 UserId = Guid.NewGuid()
             };
 
-            var LIpAddress = "255.255.255.255";
-            var LExistingLikes = 10;
+            const string IP_ADDRESS = "255.255.255.255";
+            const int EXISTING_LIKES = 10;
+            
             var LLikes = new TokanPages.Backend.Domain.Entities.ArticleLikes 
             { 
                 Id = Guid.NewGuid(),
                 ArticleId = LArticleId,
                 UserId = null,
-                IpAddress = LIpAddress,
-                LikeCount = LExistingLikes
+                IpAddress = IP_ADDRESS,
+                LikeCount = EXISTING_LIKES
             };
 
-            LDatabaseContext.Articles.Add(LArticles);
-            LDatabaseContext.ArticleLikes.Add(LLikes);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Articles.AddAsync(LArticles);
+            await LDatabaseContext.ArticleLikes.AddAsync(LLikes);
+            await LDatabaseContext.SaveChangesAsync();
 
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
@@ -310,7 +333,7 @@ namespace Backend.UnitTests.Handlers.Articles
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
-                .Returns(LIpAddress);
+                .Returns(IP_ADDRESS);
 
             var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
                 LDatabaseContext,
@@ -323,18 +346,28 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LLikesEntity = LAssertDbContext.ArticleLikes.Where(x => x.ArticleId == LArticles.Id).ToList();
-            var LArticesEntity = LAssertDbContext.Articles.Find(LUpdateArticleCommand.Id);
+            var LLikesEntity = LAssertDbContext.ArticleLikes
+                .Where(AArticleLikes => AArticleLikes.ArticleId == LArticles.Id)
+                .ToList();
+            
+            var LArticlesEntity = await LAssertDbContext.Articles
+                .FindAsync(LUpdateArticleCommand.Id);
 
-            LArticesEntity.Should().NotBeNull();
+            LArticlesEntity.Should().NotBeNull();
 
             LLikesEntity.Should().HaveCount(1);
-            LLikesEntity[0].IpAddress.Should().Be(LIpAddress);
+            LLikesEntity[0].IpAddress.Should().Be(IP_ADDRESS);
             LLikesEntity[0].UserId.Should().BeNull();
-            if (ALikes == 10)
-                LLikesEntity[0].LikeCount.Should().Be(LExistingLikes + ALikes);
-            if (ALikes == 50)
-                LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LikesLimitForAnonym);
+            
+            switch (ALikes)
+            {
+                case 10:
+                    LLikesEntity[0].LikeCount.Should().Be(EXISTING_LIKES + ALikes);
+                    break;
+                case 50:
+                    LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LIKES_LIMIT_FOR_ANONYMOUS);
+                    break;
+            }
         }
 
         [Theory]
@@ -363,24 +396,26 @@ namespace Backend.UnitTests.Handlers.Articles
                 UserId = Guid.NewGuid()
             };
 
-            var LIpAddress = "255.255.255.255";
+            const string IP_ADDRESS = "255.255.255.255";
+            const int EXISTING_LIKES = 10;
+
             var LUserId = Guid.Parse("c5ac0f04-6346-4676-a82b-0710099d08f6");
-            var LExistingLikes = 10;
+            
             var LLikes = new TokanPages.Backend.Domain.Entities.ArticleLikes
             {
                 Id = Guid.NewGuid(),
                 ArticleId = LArticleId,
                 UserId = LUserId,
-                IpAddress = LIpAddress,
-                LikeCount = LExistingLikes
+                IpAddress = IP_ADDRESS,
+                LikeCount = EXISTING_LIKES
             };
 
-            LDatabaseContext.Articles.Add(LArticles);
-            LDatabaseContext.ArticleLikes.Add(LLikes);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Articles.AddAsync(LArticles);
+            await LDatabaseContext.ArticleLikes.AddAsync(LLikes);
+            await LDatabaseContext.SaveChangesAsync();
 
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
@@ -399,7 +434,7 @@ namespace Backend.UnitTests.Handlers.Articles
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
-                .Returns(LIpAddress);
+                .Returns(IP_ADDRESS);
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
@@ -416,18 +451,28 @@ namespace Backend.UnitTests.Handlers.Articles
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LLikesEntity = LAssertDbContext.ArticleLikes.Where(x => x.ArticleId == LArticles.Id).ToList();
-            var LArticesEntity = LAssertDbContext.Articles.Find(LUpdateArticleCommand.Id);
+            var LLikesEntity = LAssertDbContext.ArticleLikes
+                .Where(AArticleLikes => AArticleLikes.ArticleId == LArticles.Id)
+                .ToList();
+            
+            var LArticlesEntity = await LAssertDbContext.Articles
+                .FindAsync(LUpdateArticleCommand.Id);
 
-            LArticesEntity.Should().NotBeNull();
+            LArticlesEntity.Should().NotBeNull();
 
             LLikesEntity.Should().HaveCount(1);
-            LLikesEntity[0].IpAddress.Should().Be(LIpAddress);
+            LLikesEntity[0].IpAddress.Should().Be(IP_ADDRESS);
             LLikesEntity[0].UserId.Should().Be(LUserId);
-            if (ALikes == 10)
-                LLikesEntity[0].LikeCount.Should().Be(LExistingLikes + ALikes);
-            if (ALikes == 50)
-                LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LikesLimitForUser);
+            
+            switch (ALikes)
+            {
+                case 10:
+                    LLikesEntity[0].LikeCount.Should().Be(EXISTING_LIKES + ALikes);
+                    break;
+                case 50:
+                    LLikesEntity[0].LikeCount.Should().Be(Constants.Likes.LIKES_LIMIT_FOR_USER);
+                    break;
+            }
         }
 
         [Fact]
@@ -440,14 +485,14 @@ namespace Backend.UnitTests.Handlers.Articles
                 Title = DataProvider.GetRandomString(),
                 Description = DataProvider.GetRandomString(),
                 TextToUpload = DataProvider.GetRandomString(150),
-                ImageToUpload = DataProvider.Base64Encode(DataProvider.GetRandomString(255)),
+                ImageToUpload = DataProvider.GetRandomString(255).ToBase64Encode(),
                 IsPublished = false,
                 AddToLikes = 0,
                 UpReadCount = false
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
-            LDatabaseContext.Articles.Add(new TokanPages.Backend.Domain.Entities.Articles
+            await LDatabaseContext.Articles.AddAsync(new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
                 Title = DataProvider.GetRandomString(),
@@ -458,10 +503,11 @@ namespace Backend.UnitTests.Handlers.Articles
                 UpdatedAt = null,
                 UserId = Guid.NewGuid()
             });
-            LDatabaseContext.SaveChanges();
+            
+            await LDatabaseContext.SaveChangesAsync();
 
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
@@ -489,7 +535,8 @@ namespace Backend.UnitTests.Handlers.Articles
                 LMockedUserProvider.Object);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() => 
+                LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None));
         }
 
         [Fact]
@@ -502,14 +549,14 @@ namespace Backend.UnitTests.Handlers.Articles
                 Title = DataProvider.GetRandomString(),
                 Description = DataProvider.GetRandomString(),
                 TextToUpload = DataProvider.GetRandomString(150),
-                ImageToUpload = DataProvider.GetRandomString(255),
+                ImageToUpload = "úK¼Æ½t$bþÍs*L2ÕÊª",
                 IsPublished = false,
                 AddToLikes = 0,
                 UpReadCount = false
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
-            LDatabaseContext.Articles.Add(new TokanPages.Backend.Domain.Entities.Articles
+            await LDatabaseContext.Articles.AddAsync(new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
                 Title = DataProvider.GetRandomString(),
@@ -520,10 +567,11 @@ namespace Backend.UnitTests.Handlers.Articles
                 UpdatedAt = null,
                 UserId = Guid.NewGuid()
             });
-            LDatabaseContext.SaveChanges();
+            
+            await LDatabaseContext.SaveChangesAsync();
 
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
@@ -551,7 +599,8 @@ namespace Backend.UnitTests.Handlers.Articles
                 LMockedUserProvider.Object);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None));
         }
     }
 }

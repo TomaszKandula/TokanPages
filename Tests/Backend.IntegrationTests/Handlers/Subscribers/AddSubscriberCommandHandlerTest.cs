@@ -22,8 +22,8 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
         public async Task AddSubscriber_WhenAllFieldsAreCorrect_ShouldReturnNewGuid() 
         {
             // Arrange
-            var LRequest = $"/api/v1/subscribers/addsubscriber/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            const string REQUEST = "/api/v1/subscribers/addsubscriber/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
             var LPayLoad = new AddSubscriberDto { Email = DataProvider.GetRandomEmail() };
 
             var LHttpClient = FWebAppFactory.CreateClient();

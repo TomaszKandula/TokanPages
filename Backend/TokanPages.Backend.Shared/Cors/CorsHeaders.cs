@@ -4,41 +4,41 @@ namespace TokanPages.Backend.Shared.Cors
 {
     public static class CorsHeaders
     {
-        public static string AccessControlAllowOrigin = "Access-Control-Allow-Origin";
-        public static string AccessControlAllowHeaders = "Access-Control-Allow-Headers";
-        public static string AccessControlAllowMethods = "Access-Control-Allow-Methods";
-        public static string AccessControlAllowCredentials = "Access-Control-Allow-Credentials";
-        public static string AccessControlMaxAge = "Access-Control-Max-Age";
+        private const string ACCESS_CONTROL_ALLOW_ORIGIN = "Access-Control-Allow-Origin";
+        private const string ACCESS_CONTROL_ALLOW_HEADERS = "Access-Control-Allow-Headers";
+        private const string ACCESS_CONTROL_ALLOW_METHODS = "Access-Control-Allow-Methods";
+        private const string ACCESS_CONTROL_ALLOW_CREDENTIALS = "Access-Control-Allow-Credentials";
+        private const string ACCESS_CONTROL_MAX_AGE = "Access-Control-Max-Age";
 
         public static void Ensure(HttpContext AHttpContext)
         {
-            var LGetAllowOrigin = AHttpContext.Response.Headers[AccessControlAllowOrigin];
-            var LGetAllowHeaders = AHttpContext.Response.Headers[AccessControlAllowHeaders];
-            var LGetAllowMethods = AHttpContext.Response.Headers[AccessControlAllowMethods];
-            var LGetAllowCredentials = AHttpContext.Response.Headers[AccessControlAllowCredentials];
-            var LGetMaxAge = AHttpContext.Response.Headers[AccessControlMaxAge];
+            var LGetAllowOrigin = AHttpContext.Response.Headers[ACCESS_CONTROL_ALLOW_ORIGIN];
+            var LGetAllowHeaders = AHttpContext.Response.Headers[ACCESS_CONTROL_ALLOW_HEADERS];
+            var LGetAllowMethods = AHttpContext.Response.Headers[ACCESS_CONTROL_ALLOW_METHODS];
+            var LGetAllowCredentials = AHttpContext.Response.Headers[ACCESS_CONTROL_ALLOW_CREDENTIALS];
+            var LGetMaxAge = AHttpContext.Response.Headers[ACCESS_CONTROL_MAX_AGE];
 
             var LRequestOrigin = AHttpContext.Request.Headers["Origin"];
 
-            const string LSetAllowHeaders = "Origin, X-Requested-With, Content-Type, Accept";
-            const string LSetAllowMethods = "GET, POST";
-            const string LSetCredentials = "true";
-            const string LSetMaxAge = "86400";
+            const string SET_ALLOW_HEADERS = "Origin, X-Requested-With, Content-Type, Accept";
+            const string SET_ALLOW_METHODS = "GET, POST";
+            const string SET_CREDENTIALS = "true";
+            const string SET_MAX_AGE = "86400";
 
             if (LGetAllowOrigin.Count == 0)
-                AHttpContext.Response.Headers.Add(AccessControlAllowOrigin, LRequestOrigin);
+                AHttpContext.Response.Headers.Add(ACCESS_CONTROL_ALLOW_ORIGIN, LRequestOrigin);
 
             if (LGetAllowHeaders.Count == 0 && LRequestOrigin.Count != 0)
-                AHttpContext.Response.Headers.Add(AccessControlAllowHeaders, LSetAllowHeaders);
+                AHttpContext.Response.Headers.Add(ACCESS_CONTROL_ALLOW_HEADERS, SET_ALLOW_HEADERS);
 
             if (LGetAllowMethods.Count == 0 && LRequestOrigin.Count != 0)
-                AHttpContext.Response.Headers.Add(AccessControlAllowMethods, LSetAllowMethods);
+                AHttpContext.Response.Headers.Add(ACCESS_CONTROL_ALLOW_METHODS, SET_ALLOW_METHODS);
 
             if (LGetAllowCredentials.Count == 0 && LRequestOrigin.Count != 0)
-                AHttpContext.Response.Headers.Add(AccessControlAllowCredentials, LSetCredentials);
+                AHttpContext.Response.Headers.Add(ACCESS_CONTROL_ALLOW_CREDENTIALS, SET_CREDENTIALS);
 
             if (LGetMaxAge.Count == 0 && LRequestOrigin.Count != 0)
-                AHttpContext.Response.Headers.Add(AccessControlMaxAge, LSetMaxAge);
+                AHttpContext.Response.Headers.Add(ACCESS_CONTROL_MAX_AGE, SET_MAX_AGE);
         }
     }
 }

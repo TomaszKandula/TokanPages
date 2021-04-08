@@ -16,7 +16,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
         {
             // Arrange
             var LDatabaseContext = GetTestDatabaseContext();
-            var LGetAllSubscribersQuery = new GetAllSubscribersQuery { };
+            var LGetAllSubscribersQuery = new GetAllSubscribersQuery();
             var LGetAllSubscribersQueryHandler = new GetAllSubscribersQueryHandler(LDatabaseContext);
             var LSubscribers = new List<TokanPages.Backend.Domain.Entities.Subscribers>
             {
@@ -39,8 +39,8 @@ namespace Backend.UnitTests.Handlers.Subscribers
                     LastUpdated = null
                 }
             };
-            LDatabaseContext.Subscribers.AddRange(LSubscribers);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Subscribers.AddRangeAsync(LSubscribers);
+            await LDatabaseContext.SaveChangesAsync();
 
             // Act
             var LResults = await LGetAllSubscribersQueryHandler.Handle(LGetAllSubscribersQuery, CancellationToken.None);

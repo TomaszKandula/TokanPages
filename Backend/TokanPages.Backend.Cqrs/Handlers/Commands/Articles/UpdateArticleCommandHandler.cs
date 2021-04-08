@@ -19,16 +19,16 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     {
         private readonly DatabaseContext FDatabaseContext;
         private readonly IAzureStorageService FAzureStorageService;
-        private readonly IFileUtility FFileUtility;
+        private readonly IFileUtilityService FFileUtilityService;
         private readonly IUserProvider FUserProvider;
 
         public UpdateArticleCommandHandler(DatabaseContext ADatabaseContext,
-            IAzureStorageService AAzureStorageService, IFileUtility AFileUtility,
+            IAzureStorageService AAzureStorageService, IFileUtilityService AFileUtilityService,
             IUserProvider AUserProvider)
         {
             FDatabaseContext = ADatabaseContext;
             FAzureStorageService = AAzureStorageService;
-            FFileUtility = AFileUtility;
+            FFileUtilityService = AFileUtilityService;
             FUserProvider = AUserProvider;
         }
 
@@ -45,7 +45,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
             if (!string.IsNullOrEmpty(ARequest.TextToUpload))
             {
-                var LTextContent = await FFileUtility
+                var LTextContent = await FFileUtilityService
                     .SaveToFile("__upload", $"{ARequest.Id}.json", ARequest.TextToUpload);
                 var LTextUpload = await FAzureStorageService
                     .UploadFile($"content\\articles\\{ARequest.Id.ToString().ToLower()}", "text.json", LTextContent, "application/json", ACancellationToken);
@@ -58,13 +58,13 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
             if (!string.IsNullOrEmpty(ARequest.ImageToUpload))
             {
-                var LImageBase64Check = FFileUtility.IsBase64String(ARequest.ImageToUpload);
+                var LImageBase64Check = ARequest.ImageToUpload.IsBase64String();
                 if (!LImageBase64Check)
                 {
                     throw new BusinessException(nameof(ErrorCodes.INVALID_BASE64), ErrorCodes.INVALID_BASE64);
                 }
 
-                var LImageContent = await FFileUtility
+                var LImageContent = await FFileUtilityService
                     .SaveToFile("__upload", $"{ARequest.Id}.jpg", ARequest.ImageToUpload);
                 var LImageUpload = await FAzureStorageService
                     .UploadFile($"content\\articles\\{ARequest.Id.ToString().ToLower()}", "image.jpeg", LImageContent, "image/jpeg", ACancellationToken);
@@ -114,8 +114,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         private void AddNewArticleLikes(bool AIsAnonymousUser, UpdateArticleCommand ARequest)
         {
             var LLikesLimit = AIsAnonymousUser 
-                ? Constants.Likes.LikesLimitForAnonym 
-                : Constants.Likes.LikesLimitForUser;
+                ? Constants.Likes.LIKES_LIMIT_FOR_ANONYMOUS 
+                : Constants.Likes.LIKES_LIMIT_FOR_USER;
             
             var LEntity = new Domain.Entities.ArticleLikes
             {
@@ -131,8 +131,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         private void UpdateCurrentArticleLikes(bool AIsAnonymousUser, Domain.Entities.ArticleLikes AEntity, int ALikesToBeAdded)
         {
             var LLikesLimit = AIsAnonymousUser 
-                ? Constants.Likes.LikesLimitForAnonym 
-                : Constants.Likes.LikesLimitForUser;
+                ? Constants.Likes.LIKES_LIMIT_FOR_ANONYMOUS 
+                : Constants.Likes.LIKES_LIMIT_FOR_USER;
             
             var LLikesSum = AEntity.LikeCount + ALikesToBeAdded;
             AEntity.LikeCount = LLikesSum > LLikesLimit ? LLikesLimit : LLikesSum;

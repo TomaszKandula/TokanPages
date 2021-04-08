@@ -16,9 +16,9 @@ namespace Backend.UnitTests.Handlers.Users
         {
             // Arrange
             var LDatabaseContext = GetTestDatabaseContext();
-            var LGetAllUsersQuery = new GetAllUsersQuery { };
+            var LGetAllUsersQuery = new GetAllUsersQuery();
             var LGetAllUsersQueryHandler = new GetAllUsersQueryHandler(LDatabaseContext);
-            LDatabaseContext.Users.AddRange(new List<TokanPages.Backend.Domain.Entities.Users>
+            await LDatabaseContext.Users.AddRangeAsync(new List<TokanPages.Backend.Domain.Entities.Users>
             {
                 new TokanPages.Backend.Domain.Entities.Users
                 {
@@ -45,7 +45,7 @@ namespace Backend.UnitTests.Handlers.Users
                     LastLogged = null
                 }
             });
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.SaveChangesAsync();
 
             // Act
             var LResults = await LGetAllUsersQueryHandler.Handle(LGetAllUsersQuery, CancellationToken.None);

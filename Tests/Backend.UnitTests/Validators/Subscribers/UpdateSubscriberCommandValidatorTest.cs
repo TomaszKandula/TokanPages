@@ -10,7 +10,7 @@ namespace Backend.UnitTests.Validators.Subscribers
     public class UpdateSubscriberCommandValidatorTest
     {
         [Fact]
-        public void UpdateSubscriber_WhenAllFieldsAreCorrect_ShouldFinishSuccessfull() 
+        public void UpdateSubscriber_WhenAllFieldsAreCorrect_ShouldFinishSuccessful() 
         {
             // Arrange
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand 
@@ -30,7 +30,7 @@ namespace Backend.UnitTests.Validators.Subscribers
         }
 
         [Fact]
-        public void UpdateSubscriber_WhenAllFieldsAreCorrectAndCountIsNull_ShouldFinishSuccessfull()
+        public void UpdateSubscriber_WhenAllFieldsAreCorrectAndCountIsNull_ShouldFinishSuccessful()
         {
             // Arrange
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
@@ -113,7 +113,7 @@ namespace Backend.UnitTests.Validators.Subscribers
         }
 
         [Fact]
-        public void UpdateSubscriber_WhenCountIsessThanZero_ShouldThrowError()
+        public void UpdateSubscriber_WhenCountIsLessThanZero_ShouldThrowError()
         {
             // Arrange
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand

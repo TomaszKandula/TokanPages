@@ -31,8 +31,6 @@ namespace TokanPages.Backend.Database
         }
 
         private void ApplyConfiguration(ModelBuilder AModelBuilder) 
-        {
-            AModelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        }
+            => AModelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }

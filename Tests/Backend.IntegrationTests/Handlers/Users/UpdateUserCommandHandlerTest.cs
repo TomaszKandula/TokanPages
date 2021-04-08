@@ -25,8 +25,8 @@ namespace Backend.IntegrationTests.Handlers.Users
         public async Task UpdateUser_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError() 
         {
             // Arrange
-            var LRequest = $"/api/v1/users/updateuser/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            const string REQUEST = "/api/v1/users/updateuser/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
 
             var LPayLoad = new UpdateUserDto
             {

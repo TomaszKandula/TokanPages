@@ -11,9 +11,7 @@ namespace TokanPages.Controllers
 {
     public class UsersController : __BaseController
     {
-        public UsersController(IMediator AMediator) : base(AMediator)
-        { 
-        }
+        public UsersController(IMediator AMediator) : base(AMediator) { }
 
         [HttpGet]
         public async Task<IEnumerable<GetAllUsersQueryResult>> GetAllUsers()
@@ -22,10 +20,10 @@ namespace TokanPages.Controllers
             return await FMediator.Send(LQuery);
         }
 
-        [HttpGet("{Id}")]
-        public async Task<GetUserQueryResult> GetUser([FromRoute] Guid Id)
+        [HttpGet("{AId}")]
+        public async Task<GetUserQueryResult> GetUser([FromRoute] Guid AId)
         {
-            var LQuery = new GetUserQuery { Id = Id };
+            var LQuery = new GetUserQuery { Id = AId };
             return await FMediator.Send(LQuery);
         }
 

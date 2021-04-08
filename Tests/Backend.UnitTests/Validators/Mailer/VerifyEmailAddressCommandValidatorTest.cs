@@ -8,7 +8,7 @@ namespace Backend.UnitTests.Validators.Mailer
     public class VerifyEmailAddressCommandValidatorTest
     {
         [Fact]
-        public void VerifyEmailAddress_WhenEmailIsGiven_ShouldFinishSuccessfull() 
+        public void VerifyEmailAddress_WhenEmailIsGiven_ShouldFinishSuccessful() 
         {
             // Arrange
             var LVerifyEmailAddressCommand = new VerifyEmailAddressCommand 

@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Database.MigrationRunner
 {
     internal static class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
             Console.WriteLine("Starting Database Migration...");
 
@@ -20,7 +20,7 @@ namespace TokanPages.Backend.Database.MigrationRunner
             RunDatabaseContext<DatabaseContext>(LConnectionString, "DbConnect");
         }
 
-        static void RunDatabaseContext<T>(string AConnectionString, string AContextName) where T : DbContext
+        private static void RunDatabaseContext<T>(string AConnectionString, string AContextName) where T : DbContext
         {
             Console.WriteLine($"[{AContextName}] Connection string found...");
             Console.WriteLine($"[{AContextName}] Creating Context...");
@@ -32,13 +32,11 @@ namespace TokanPages.Backend.Database.MigrationRunner
             var LDatabaseContext = (T)Activator.CreateInstance(typeof(T), LDatabaseContextOptions);
             Console.WriteLine($"[{AContextName}] Context created successfully!");
 
-            if (!LDatabaseContext.Database.CanConnect())
-            {
+            if (LDatabaseContext != null && !LDatabaseContext.Database.CanConnect())
                 Console.WriteLine($"[{AContextName}] Cannot connect to the database.");
-            }
 
             Console.WriteLine($"[{AContextName}] Database update started...");
-            LDatabaseContext.Database.Migrate();
+            LDatabaseContext?.Database.Migrate();
             Console.WriteLine($"[{AContextName}] Finished Database Migration.");
         }
     }

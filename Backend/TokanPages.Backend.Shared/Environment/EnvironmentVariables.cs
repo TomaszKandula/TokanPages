@@ -7,8 +7,8 @@
     /// </summary>
     public static class EnvironmentVariables
     {
-        private const string StagingValue = "Staging";
-        private const string StagingKey = "ASPNETCORE_STAGING";
+        private const string STAGING_VALUE = "Staging";
+        private const string STAGING_KEY = "ASPNETCORE_STAGING";
 
         /// <summary>
         /// Checks whenever staging environment variable is set
@@ -16,9 +16,7 @@
         /// </summary>
         /// <returns>Bool</returns>
         public static bool IsStaging() 
-        {
-            return System.Environment.GetEnvironmentVariable("ASPNETCORE_STAGING") == StagingValue;
-        }
+            =>  System.Environment.GetEnvironmentVariable(STAGING_KEY) == STAGING_VALUE;
 
         /// <summary>
         /// Assigns "STAGING" value to "ASPNETCORE_STAGING" variable that will be
@@ -26,8 +24,6 @@
         /// </summary>
         /// <returns>Void</returns>
         public static void SetStaging()
-        {
-            System.Environment.SetEnvironmentVariable(StagingKey, StagingValue);
-        }
+            => System.Environment.SetEnvironmentVariable(STAGING_KEY, STAGING_VALUE);
     }
 }

@@ -38,8 +38,9 @@ namespace Backend.UnitTests.Handlers.Users
                 LastUpdated = null,
                 LastLogged = null
             };
-            LDatabaseContext.Users.Add(LUser);
-            LDatabaseContext.SaveChanges();
+
+            await LDatabaseContext.Users.AddAsync(LUser);
+            await LDatabaseContext.SaveChangesAsync();
 
             // Act
             var LUpdateUserCommandHandler = new UpdateUserCommandHandler(LDatabaseContext);
@@ -47,7 +48,7 @@ namespace Backend.UnitTests.Handlers.Users
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LUserEntity = LAssertDbContext.Users.Find(LUpdateUserCommand.Id);
+            var LUserEntity = await LAssertDbContext.Users.FindAsync(LUpdateUserCommand.Id);
 
             LUserEntity.Should().NotBeNull();
             LUserEntity.EmailAddress.Should().Be(LUpdateUserCommand.EmailAddress);
@@ -85,13 +86,14 @@ namespace Backend.UnitTests.Handlers.Users
                 LastUpdated = null,
                 LastLogged = null
             };
-            LDatabaseContext.Users.Add(LUser);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Users.AddAsync(LUser);
+            await LDatabaseContext.SaveChangesAsync();
 
             var LUpdateUserCommandHandler = new UpdateUserCommandHandler(LDatabaseContext);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LUpdateUserCommandHandler.Handle(LUpdateUserCommand, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LUpdateUserCommandHandler.Handle(LUpdateUserCommand, CancellationToken.None));
         }
 
         [Fact]
@@ -122,13 +124,15 @@ namespace Backend.UnitTests.Handlers.Users
                 LastUpdated = null,
                 LastLogged = null
             };
-            LDatabaseContext.Users.Add(LUser);
-            LDatabaseContext.SaveChanges();
+            
+            await LDatabaseContext.Users.AddAsync(LUser);
+            await LDatabaseContext.SaveChangesAsync();
 
             var LUpdateUserCommandHandler = new UpdateUserCommandHandler(LDatabaseContext);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LUpdateUserCommandHandler.Handle(LUpdateUserCommand, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LUpdateUserCommandHandler.Handle(LUpdateUserCommand, CancellationToken.None));
         }
     }
 }

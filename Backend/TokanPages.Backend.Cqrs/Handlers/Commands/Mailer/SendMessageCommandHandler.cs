@@ -19,21 +19,21 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
         private readonly ISmtpClientService FSmtpClientService;
         private readonly IAzureStorageService FAzureStorageService;
         private readonly ITemplateHelper FTemplateHelper;
-        private readonly IFileUtility FFileUtility;
+        private readonly IFileUtilityService FFileUtilityService;
 
         public SendMessageCommandHandler(ISmtpClientService ASmtpClientService, 
-            IAzureStorageService AAzureStorageService, ITemplateHelper ATemplateHelper, IFileUtility AFileUtility)
+            IAzureStorageService AAzureStorageService, ITemplateHelper ATemplateHelper, IFileUtilityService AFileUtilityService)
         {
             FSmtpClientService = ASmtpClientService;
             FAzureStorageService = AAzureStorageService;
             FTemplateHelper = ATemplateHelper;
-            FFileUtility = AFileUtility;
+            FFileUtilityService = AFileUtilityService;
         }
 
         public override async Task<Unit> Handle(SendMessageCommand ARequest, CancellationToken ACancellationToken)
         {
-            FSmtpClientService.From = Constants.Emails.Addresses.Contact;
-            FSmtpClientService.Tos = new List<string> { Constants.Emails.Addresses.Contact };
+            FSmtpClientService.From = Constants.Emails.Addresses.CONTACT;
+            FSmtpClientService.Tos = new List<string> { Constants.Emails.Addresses.CONTACT };
             FSmtpClientService.Subject = $"New user message from {ARequest.FirstName}";
 
             var NewValues = new List<Item>
@@ -45,13 +45,13 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                     new Item { Tag = "{DATE_TIME}",     Value = DateTime.UtcNow.ToString() }
                 };
 
-            var LTemplateFromUrl = await FFileUtility.GetFileFromUrl($"{FAzureStorageService.GetBaseUrl}{Templates.ContactForm}", ACancellationToken);
+            var LTemplateFromUrl = await FFileUtilityService.GetFileFromUrl($"{FAzureStorageService.GetBaseUrl}{Templates.CONTACT_FORM}", ACancellationToken);
             FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, NewValues);
 
             var LResult = await FSmtpClientService.Send();
             if (!LResult.IsSucceeded)
             {
-                throw new BusinessException(nameof(CommonErrorCodes.ERROR_MAILER), LResult.ErrorDesc);
+                throw new BusinessException(nameof(CommonErrorCodes.MAILER_ERROR), LResult.ErrorDesc);
             }
 
             return await Task.FromResult(Unit.Value);

@@ -30,8 +30,8 @@ namespace Backend.UnitTests.Handlers.Subscribers
                 Registered = DateTime.Now,
                 LastUpdated = null
             };
-            LDatabaseContext.Subscribers.Add(LSubscribers);
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
+            await LDatabaseContext.SaveChangesAsync();
 
             // Act
             var LRemoveSubscriberCommandHandler = new RemoveSubscriberCommandHandler(LDatabaseContext);
@@ -39,7 +39,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
 
             // Assert
             var LAssertDbContext = GetTestDatabaseContext();
-            var LSubscribersEntity = LAssertDbContext.Subscribers.Find(LRemoveSubscriberCommand.Id);
+            var LSubscribersEntity = await LAssertDbContext.Subscribers.FindAsync(LRemoveSubscriberCommand.Id);
             LSubscribersEntity.Should().BeNull();
         }
 
@@ -56,7 +56,8 @@ namespace Backend.UnitTests.Handlers.Subscribers
             var LRemoveSubscriberCommandHandler = new RemoveSubscriberCommandHandler(LDatabaseContext);
 
             // Act & Assert
-            await Assert.ThrowsAsync<BusinessException>(() => LRemoveSubscriberCommandHandler.Handle(LRemoveSubscriberCommand, CancellationToken.None));
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LRemoveSubscriberCommandHandler.Handle(LRemoveSubscriberCommand, CancellationToken.None));
         }
     }
 }

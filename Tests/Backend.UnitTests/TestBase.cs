@@ -24,8 +24,6 @@ namespace Backend.UnitTests
         }
 
         protected DatabaseContext GetTestDatabaseContext()
-        {
-            return FDatabaseContextFactory.CreateDatabaseContext();
-        }
+            =>  FDatabaseContextFactory.CreateDatabaseContext();
     }
 }
