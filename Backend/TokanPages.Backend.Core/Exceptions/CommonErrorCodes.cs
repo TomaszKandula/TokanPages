@@ -2,12 +2,12 @@
 {
     public static class CommonErrorCodes
     {
-        public const string ERROR_MAILER = nameof(ERROR_MAILER);
-        public const string ERROR_UNEXEPCTED = nameof(ERROR_UNEXEPCTED);
-        public const string ERROR_INVALID_DATA = nameof(ERROR_INVALID_DATA);
-        public const string ERROR_UNAUTHORIZED_CONTEXT = nameof(ERROR_UNAUTHORIZED_CONTEXT);
-        public const string ERROR_VALIDATION = nameof(ERROR_VALIDATION);
-        public const string ERROR_VALIDATION_NOT_EMPTY = nameof(ERROR_VALIDATION_NOT_EMPTY);
-        public const string ERROR_VALIDATION_INCORRECT_FORMAT = nameof(ERROR_VALIDATION_INCORRECT_FORMAT);
+        public const string MAILER_ERROR = nameof(MAILER_ERROR);
+        public const string UNEXPECTED_ERROR = nameof(UNEXPECTED_ERROR);
+        public const string INVALID_DATA = nameof(INVALID_DATA);
+        public const string UNAUTHORIZED_CONTEXT_ERROR = nameof(UNAUTHORIZED_CONTEXT_ERROR);
+        public const string VALIDATION_ERROR = nameof(VALIDATION_ERROR);
+        public const string VALIDATION_ERROR_NOT_EMPTY = nameof(VALIDATION_ERROR_NOT_EMPTY);
+        public const string VALIDATION_ERROR_INCORRECT_FORMAT = nameof(VALIDATION_ERROR_INCORRECT_FORMAT);
     }
 }

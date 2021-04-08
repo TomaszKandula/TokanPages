@@ -58,7 +58,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 var LResult = await FSmtpClientService.Send();
                 if (!LResult.IsSucceeded) 
                 {
-                    throw new BusinessException(nameof(CommonErrorCodes.ERROR_MAILER), LResult.ErrorDesc);
+                    throw new BusinessException(nameof(CommonErrorCodes.MAILER_ERROR), LResult.ErrorDesc);
                 }
             }
 

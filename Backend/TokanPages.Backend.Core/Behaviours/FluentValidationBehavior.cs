@@ -17,18 +17,13 @@ namespace TokanPages.Backend.Core.Behaviours
 
         public Task<TResponse> Handle(TRequest ARequest, CancellationToken ACancellationToken, RequestHandlerDelegate<TResponse> ANext)
         {
-            if (FValidator == null)
-            {
-                return ANext();
-            }
+            if (FValidator == null) return ANext();
 
             var LValidationContext = new ValidationContext<TRequest>(ARequest);
             var LValidationResults = FValidator.Validate(LValidationContext);
 
             if (!LValidationResults.IsValid)
-            {
                 throw new ValidationException(LValidationResults);
-            }
 
             return ANext();
         }

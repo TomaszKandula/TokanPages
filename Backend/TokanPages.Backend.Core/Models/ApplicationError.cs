@@ -7,19 +7,22 @@ namespace TokanPages.Backend.Core.Models
     public sealed class ApplicationError
     {
         public string ErrorMessage { get; set; }
+
         public string ErrorCode { get; set; }
 
         public IEnumerable<ValidationError> ValidationErrors { get; set; }
 
-        public ApplicationError(string errorCode, string errorMessage)
+        public ApplicationError(string AErrorCode, string AErrorMessage)
         {
-            ErrorCode = errorCode;
-            ErrorMessage = errorMessage;
+            ErrorCode = AErrorCode;
+            ErrorMessage = AErrorMessage;
         }
 
         public ApplicationError(string AErrorCode, string AErrorMessage, ValidationResult AValidationResult) : this(AErrorCode, AErrorMessage)
         {
-            ValidationErrors = AValidationResult.Errors.Select(AError => new ValidationError(AError)).ToList();
+            ValidationErrors = AValidationResult.Errors
+                .Select(AValidationFailure => new ValidationError(AValidationFailure))
+                .ToList();
         }
     }
 }
