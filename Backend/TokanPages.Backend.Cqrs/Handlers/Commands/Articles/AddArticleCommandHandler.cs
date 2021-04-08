@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.Services.FileUtility;
 
@@ -25,7 +26,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
         public override async Task<Guid> Handle(AddArticleCommand ARequest, CancellationToken ACancellationToken)
         {
-            var LImageBase64Check = FFileUtilityService.IsBase64String(ARequest.ImageToUpload);
+            var LImageBase64Check = ARequest.ImageToUpload.IsBase64String();
             if (!LImageBase64Check) 
             {
                 throw new BusinessException(nameof(ErrorCodes.INVALID_BASE64), ErrorCodes.INVALID_BASE64);

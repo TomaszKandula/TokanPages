@@ -7,6 +7,5 @@ namespace TokanPages.Backend.Core.Services.FileUtility
     {
         public abstract Task<string> SaveToFile(string ATemporaryDir, string AFileName, string ATextContent);
         public abstract Task<string> GetFileFromUrl(string AUrl, CancellationToken ACancellationToken);
-        public abstract bool IsBase64String(string ABase64);
     }
 }

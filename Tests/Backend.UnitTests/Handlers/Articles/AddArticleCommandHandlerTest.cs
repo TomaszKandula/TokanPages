@@ -8,6 +8,7 @@ using Backend.TestData;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
@@ -24,7 +25,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 Title = DataProvider.GetRandomString(),
                 Description = DataProvider.GetRandomString(),
                 TextToUpload = DataProvider.GetRandomString(),
-                ImageToUpload = DataProvider.Base64Encode(DataProvider.GetRandomString())
+                ImageToUpload = DataProvider.GetRandomString().ToBase64Encode()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();

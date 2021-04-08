@@ -31,11 +31,5 @@ namespace TokanPages.Backend.Core.Services.FileUtility
             var LResponse = await LHttpClient.GetAsync(AUrl, ACancellationToken);
             return await LResponse.Content.ReadAsStringAsync();
         }
-
-        public override bool IsBase64String(string ABase64)
-        {
-            var LBuffer = new Span<byte>(new byte[ABase64.Length]);
-            return Convert.TryFromBase64String(ABase64, LBuffer, out _);
-        }
     }
 }

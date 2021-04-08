@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Backend.TestData
 {   
@@ -54,18 +53,6 @@ namespace Backend.TestData
 			var LRandom = new Random();
 			var LValues = Enum.GetValues(typeof(T));
 			return (T)LValues.GetValue(LRandom.Next(LValues.Length));
-		}
-
-		public static string Base64Encode(string APlainText)
-		{
-			var LPlainTextBytes = Encoding.UTF8.GetBytes(APlainText);
-			return Convert.ToBase64String(LPlainTextBytes);
-		}
-
-		public static string Base64Decode(string ABase64EncodedData)
-		{
-			var LBase64EncodedBytes = Convert.FromBase64String(ABase64EncodedData);
-			return Encoding.UTF8.GetString(LBase64EncodedBytes);
 		}
 		
 		private static byte[] GetRandomByteArray(int ASizeInKb = 12)

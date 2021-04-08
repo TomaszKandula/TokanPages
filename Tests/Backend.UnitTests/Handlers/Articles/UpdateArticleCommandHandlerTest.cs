@@ -9,6 +9,7 @@ using TokanPages.Backend.Shared;
 using TokanPages.Backend.Storage;
 using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
@@ -28,7 +29,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 Title = DataProvider.GetRandomString(),
                 Description = DataProvider.GetRandomString(),
                 TextToUpload = DataProvider.GetRandomString(150),
-                ImageToUpload = DataProvider.Base64Encode(DataProvider.GetRandomString(255)),
+                ImageToUpload = DataProvider.GetRandomString(255).ToBase64Encode(),
                 IsPublished = false,
                 AddToLikes = 0,
                 UpReadCount = true
@@ -484,7 +485,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 Title = DataProvider.GetRandomString(),
                 Description = DataProvider.GetRandomString(),
                 TextToUpload = DataProvider.GetRandomString(150),
-                ImageToUpload = DataProvider.Base64Encode(DataProvider.GetRandomString(255)),
+                ImageToUpload = DataProvider.GetRandomString(255).ToBase64Encode(),
                 IsPublished = false,
                 AddToLikes = 0,
                 UpReadCount = false
