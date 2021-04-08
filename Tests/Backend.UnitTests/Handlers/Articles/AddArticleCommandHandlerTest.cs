@@ -29,7 +29,7 @@ namespace Backend.UnitTests.Handlers.Articles
 
             var LDatabaseContext = GetTestDatabaseContext();
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
                 It.IsAny<string>(),
@@ -72,7 +72,7 @@ namespace Backend.UnitTests.Handlers.Articles
 
             var LDatabaseContext = GetTestDatabaseContext();
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
                 It.IsAny<string>(),

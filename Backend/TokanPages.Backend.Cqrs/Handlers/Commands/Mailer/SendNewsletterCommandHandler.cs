@@ -19,16 +19,16 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
         private readonly ISmtpClientService FSmtpClientService;
         private readonly IAzureStorageService FAzureStorageService;
         private readonly ITemplateHelper FTemplateHelper;
-        private readonly IFileUtility FFileUtility;
+        private readonly IFileUtilityService FFileUtilityService;
         private readonly AppUrls FAppUrls;
 
         public SendNewsletterCommandHandler(ISmtpClientService ASmtpClientService, 
-            IAzureStorageService AAzureStorageService, ITemplateHelper ATemplateHelper, AppUrls AAppUrls, IFileUtility AFileUtility) 
+            IAzureStorageService AAzureStorageService, ITemplateHelper ATemplateHelper, AppUrls AAppUrls, IFileUtilityService AFileUtilityService) 
         {
             FSmtpClientService = ASmtpClientService;
             FAzureStorageService = AAzureStorageService;
             FTemplateHelper = ATemplateHelper;
-            FFileUtility = AFileUtility;
+            FFileUtilityService = AFileUtilityService;
             FAppUrls = AAppUrls;
         }
 
@@ -52,7 +52,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                         new Item { Tag = "{UNSUBSCRIBE_LINK}", Value = UnsubscribeLink }
                     };
 
-                var LTemplateFromUrl = await FFileUtility.GetFileFromUrl($"{FAzureStorageService.GetBaseUrl}{Templates.NEWSLETTER}", ACancellationToken);
+                var LTemplateFromUrl = await FFileUtilityService.GetFileFromUrl($"{FAzureStorageService.GetBaseUrl}{Templates.NEWSLETTER}", ACancellationToken);
                 FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, NewValues);
 
                 var LResult = await FSmtpClientService.Send();

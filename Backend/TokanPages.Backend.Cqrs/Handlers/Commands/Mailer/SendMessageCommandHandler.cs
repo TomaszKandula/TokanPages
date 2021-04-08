@@ -19,15 +19,15 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
         private readonly ISmtpClientService FSmtpClientService;
         private readonly IAzureStorageService FAzureStorageService;
         private readonly ITemplateHelper FTemplateHelper;
-        private readonly IFileUtility FFileUtility;
+        private readonly IFileUtilityService FFileUtilityService;
 
         public SendMessageCommandHandler(ISmtpClientService ASmtpClientService, 
-            IAzureStorageService AAzureStorageService, ITemplateHelper ATemplateHelper, IFileUtility AFileUtility)
+            IAzureStorageService AAzureStorageService, ITemplateHelper ATemplateHelper, IFileUtilityService AFileUtilityService)
         {
             FSmtpClientService = ASmtpClientService;
             FAzureStorageService = AAzureStorageService;
             FTemplateHelper = ATemplateHelper;
-            FFileUtility = AFileUtility;
+            FFileUtilityService = AFileUtilityService;
         }
 
         public override async Task<Unit> Handle(SendMessageCommand ARequest, CancellationToken ACancellationToken)
@@ -45,7 +45,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                     new Item { Tag = "{DATE_TIME}",     Value = DateTime.UtcNow.ToString() }
                 };
 
-            var LTemplateFromUrl = await FFileUtility.GetFileFromUrl($"{FAzureStorageService.GetBaseUrl}{Templates.CONTACT_FORM}", ACancellationToken);
+            var LTemplateFromUrl = await FFileUtilityService.GetFileFromUrl($"{FAzureStorageService.GetBaseUrl}{Templates.CONTACT_FORM}", ACancellationToken);
             FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, NewValues);
 
             var LResult = await FSmtpClientService.Send();

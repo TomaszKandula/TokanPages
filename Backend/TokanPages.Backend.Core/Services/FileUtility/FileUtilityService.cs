@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TokanPages.Backend.Core.Services.FileUtility
 {
-    public sealed class FileUtility : IFileUtility
+    public class FileUtilityService : FileUtilityObject, IFileUtilityService
     {
-        public async Task<string> SaveToFile(string ATemporaryDir, string AFileName, string ATextContent) 
+        public override async Task<string> SaveToFile(string ATemporaryDir, string AFileName, string ATextContent) 
         {
             var LTempFileName = $"{AFileName}";
 
@@ -25,14 +25,14 @@ namespace TokanPages.Backend.Core.Services.FileUtility
             return LTempFilePath;
         }
 
-        public async Task<string> GetFileFromUrl(string AUrl, CancellationToken ACancellationToken)
+        public override async Task<string> GetFileFromUrl(string AUrl, CancellationToken ACancellationToken)
         {
             using var LHttpClient = new HttpClient();
             var LResponse = await LHttpClient.GetAsync(AUrl, ACancellationToken);
             return await LResponse.Content.ReadAsStringAsync();
         }
 
-        public bool IsBase64String(string ABase64)
+        public override bool IsBase64String(string ABase64)
         {
             var LBuffer = new Span<byte>(new byte[ABase64.Length]);
             return Convert.TryFromBase64String(ABase64, LBuffer, out _);

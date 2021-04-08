@@ -82,7 +82,7 @@ namespace TokanPages.Configuration
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();
             AServices.AddScoped<IAzureStorageService, AzureStorageService>();
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
-            AServices.AddScoped<IFileUtility, FileUtility>();
+            AServices.AddScoped<IFileUtilityService, FileUtilityService>();
             AServices.AddScoped<IDbInitializer, DbInitializer>();
             AServices.AddScoped<IUserProvider, UserProvider>();
         }

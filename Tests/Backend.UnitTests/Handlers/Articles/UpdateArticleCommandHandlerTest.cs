@@ -51,7 +51,7 @@ namespace Backend.UnitTests.Handlers.Articles
             await LDatabaseContext.SaveChangesAsync();
 
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
@@ -122,7 +122,7 @@ namespace Backend.UnitTests.Handlers.Articles
             await LDatabaseContext.SaveChangesAsync();
 
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
@@ -209,7 +209,7 @@ namespace Backend.UnitTests.Handlers.Articles
             await LDatabaseContext.SaveChangesAsync();
 
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
@@ -313,7 +313,7 @@ namespace Backend.UnitTests.Handlers.Articles
             await LDatabaseContext.SaveChangesAsync();
 
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
@@ -414,7 +414,7 @@ namespace Backend.UnitTests.Handlers.Articles
             await LDatabaseContext.SaveChangesAsync();
 
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
@@ -506,7 +506,7 @@ namespace Backend.UnitTests.Handlers.Articles
             await LDatabaseContext.SaveChangesAsync();
 
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
@@ -570,7 +570,7 @@ namespace Backend.UnitTests.Handlers.Articles
             await LDatabaseContext.SaveChangesAsync();
 
             var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtility>();
+            var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
