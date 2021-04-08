@@ -68,7 +68,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 Title = DataProvider.GetRandomString(),
                 Description = DataProvider.GetRandomString(),
                 TextToUpload = DataProvider.GetRandomString(),
-                ImageToUpload = DataProvider.GetRandomString(3)
+                ImageToUpload = "úK¼Æ½t$bþÍs*L2ÕÊª"
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
