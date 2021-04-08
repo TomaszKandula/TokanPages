@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Backend.TestData;
 using TokanPages;
+using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Dto.Articles;
 
 namespace Backend.IntegrationTests.Handlers.Articles
@@ -30,7 +31,7 @@ namespace Backend.IntegrationTests.Handlers.Articles
                 Title = DataProvider.GetRandomString(),
                 Description = DataProvider.GetRandomString(),
                 TextToUpload = DataProvider.GetRandomString(150),
-                ImageToUpload = DataProvider.Base64Encode(DataProvider.GetRandomString(255))
+                ImageToUpload = DataProvider.GetRandomString(255).ToBase64Encode()
             };
 
             var LHttpClient = FWebAppFactory.CreateClient();
