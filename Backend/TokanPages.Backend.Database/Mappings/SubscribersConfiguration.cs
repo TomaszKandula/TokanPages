@@ -8,7 +8,7 @@ namespace TokanPages.Backend.Database.Mappings
     {
         public void Configure(EntityTypeBuilder<Subscribers> AModelBuilder)
         {
-            AModelBuilder.Property(e => e.Id).ValueGeneratedNever();
+            AModelBuilder.Property(ASubscribers => ASubscribers.Id).ValueGeneratedNever();
         }
     }
 }

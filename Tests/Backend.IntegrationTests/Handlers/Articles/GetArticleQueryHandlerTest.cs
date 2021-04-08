@@ -23,7 +23,7 @@ namespace Backend.IntegrationTests.Handlers.Articles
         public async Task GetArticle_WhenIdIsCorrect_ShouldReturnEntityAsJsonObject()
         {
             // Arrange
-            var LTestUserId = Article1.Id;
+            var LTestUserId = Article1.FId;
             var LRequest = $"/api/v1/articles/getarticle/{LTestUserId}/";
             var LHttpClient = FWebAppFactory.CreateClient();
 

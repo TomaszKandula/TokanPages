@@ -8,18 +8,18 @@ namespace TokanPages.Backend.Database.Mappings
     {
         public void Configure(EntityTypeBuilder<Albums> AModelBuilder)
         {
-            AModelBuilder.Property(e => e.Id).ValueGeneratedOnAdd();
+            AModelBuilder.Property(AAlbums => AAlbums.Id).ValueGeneratedOnAdd();
             AModelBuilder
-                .HasOne(e => e.User)
-                .WithMany(d => d.Albums)
-                .HasForeignKey(e => e.UserId)
+                .HasOne(AAlbums => AAlbums.User)
+                .WithMany(AUsers => AUsers.Albums)
+                .HasForeignKey(AAlbums => AAlbums.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Albums_Users");
 
             AModelBuilder
-                .HasOne(e => e.Photo)
-                .WithMany(d => d.Albums)
-                .HasForeignKey(e => e.PhotoId)
+                .HasOne(AAlbums => AAlbums.Photo)
+                .WithMany(APhotos => APhotos.Albums)
+                .HasForeignKey(AAlbums => AAlbums.PhotoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Albums_Photos");
         }

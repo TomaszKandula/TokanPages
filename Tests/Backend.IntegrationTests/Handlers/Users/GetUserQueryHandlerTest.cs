@@ -23,7 +23,7 @@ namespace Backend.IntegrationTests.Handlers.Users
         public async Task GetUser_WhenIdIsCorrect_ShouldReturnEntityAsJsonObject() 
         {
             // Arrange
-            var LTestUserId = User1.Id;
+            var LTestUserId = User1.FId;
             var LRequest = $"/api/v1/users/getuser/{LTestUserId}/";
             var LHttpClient = FWebAppFactory.CreateClient();
 

@@ -8,11 +8,12 @@ namespace TokanPages.Backend.Database.Mappings
     {
         public void Configure(EntityTypeBuilder<Articles> AModelBuilder)
         {
-            AModelBuilder.Property(e => e.Id).ValueGeneratedNever();
+            AModelBuilder.Property(AArticles => AArticles.Id).ValueGeneratedNever();
+            
             AModelBuilder
-                .HasOne(e => e.User)
-                .WithMany(d => d.Articles)
-                .HasForeignKey(e => e.UserId)
+                .HasOne(AArticles => AArticles.User)
+                .WithMany(AUsers => AUsers.Articles)
+                .HasForeignKey(AArticles => AArticles.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Articles_Users");
         }

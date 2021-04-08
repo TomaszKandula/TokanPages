@@ -8,7 +8,7 @@ namespace TokanPages.Backend.Database.Mappings
     {
         public void Configure(EntityTypeBuilder<PhotoCategories> AModelBuilder)
         {
-            AModelBuilder.Property(e => e.Id).ValueGeneratedOnAdd();
+            AModelBuilder.Property(APhotoCategories => APhotoCategories.Id).ValueGeneratedOnAdd();
         }
     }
 }

@@ -8,25 +8,26 @@ namespace TokanPages.Backend.Database.Mappings
     {
         public void Configure(EntityTypeBuilder<Photos> AModelBuilder)
         {
-            AModelBuilder.Property(e => e.Id).ValueGeneratedOnAdd();
+            AModelBuilder.Property(APhotos => APhotos.Id).ValueGeneratedOnAdd();
+
             AModelBuilder
-                .HasOne(e => e.User)
-                .WithMany(d => d.Photos)
-                .HasForeignKey(e => e.UserId)
+                .HasOne(APhotos => APhotos.User)
+                .WithMany(AUsers => AUsers.Photos)
+                .HasForeignKey(APhotos => APhotos.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Photos_Users");
             
             AModelBuilder
-                .HasOne(e => e.PhotoGear)
-                .WithMany(d => d.Photos)
-                .HasForeignKey(e => e.PhotoGearId)
+                .HasOne(APhotos => APhotos.PhotoGear)
+                .WithMany(APhotoGears => APhotoGears.Photos)
+                .HasForeignKey(APhotos => APhotos.PhotoGearId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Photos_PhotoGears");
             
             AModelBuilder
-                .HasOne(e => e.PhotoCategory)
-                .WithMany(d => d.Photos)
-                .HasForeignKey(e => e.PhotoCategoryId)
+                .HasOne(APhotos => APhotos.PhotoCategory)
+                .WithMany(APhotoCategories => APhotoCategories.Photos)
+                .HasForeignKey(APhotos => APhotos.PhotoCategoryId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Photos_PhotoCategories");
         }

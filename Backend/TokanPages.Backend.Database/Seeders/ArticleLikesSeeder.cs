@@ -4,43 +4,43 @@ using TokanPages.Backend.Database.Dummies;
 
 namespace TokanPages.Backend.Database.Seeders
 {
-    public class ArticleLikesSeeder
+    public static class ArticleLikesSeeder
     {
-        public static List<ArticleLikes> SeedArticleLikes() 
+        public static IEnumerable<ArticleLikes> SeedArticleLikes() 
         {
             return new List<ArticleLikes>
             {
                 new ArticleLikes
                 {
-                    Id = ArticleLikes1.Id,
-                    ArticleId = ArticleLikes1.ArticleId,
-                    UserId = ArticleLikes1.UserId,
-                    IpAddress = ArticleLikes1.IpAddress,
-                    LikeCount = ArticleLikes1.LikeCount
+                    Id = ArticleLikes1.FId,
+                    ArticleId = ArticleLikes1.FArticleId,
+                    UserId = ArticleLikes1.FUserId,
+                    IpAddress = ArticleLikes1.IP_ADDRESS,
+                    LikeCount = ArticleLikes1.LIKE_COUNT
                 },
                 new ArticleLikes
                 {
-                    Id = ArticleLikes2.Id,
-                    ArticleId = ArticleLikes2.ArticleId,
-                    UserId = ArticleLikes2.UserId,
-                    IpAddress = ArticleLikes2.IpAddress,
-                    LikeCount = ArticleLikes2.LikeCount
+                    Id = ArticleLikes2.FId,
+                    ArticleId = ArticleLikes2.FArticleId,
+                    UserId = ArticleLikes2.FUserId,
+                    IpAddress = ArticleLikes2.IP_ADDRESS,
+                    LikeCount = ArticleLikes2.LIKE_COUNT
                 },
                 new ArticleLikes
                 {
-                    Id = ArticleLikes3.Id,
-                    ArticleId = ArticleLikes3.ArticleId,
-                    UserId = ArticleLikes3.UserId,
-                    IpAddress = ArticleLikes3.IpAddress,
-                    LikeCount = ArticleLikes3.LikeCount
+                    Id = ArticleLikes3.FId,
+                    ArticleId = ArticleLikes3.FArticleId,
+                    UserId = ArticleLikes3.FUserId,
+                    IpAddress = ArticleLikes3.IP_ADDRESS,
+                    LikeCount = ArticleLikes3.LIKE_COUNT
                 },
                 new ArticleLikes
                 {
-                    Id = ArticleLikes4.Id,
-                    ArticleId = ArticleLikes4.ArticleId,
-                    UserId = ArticleLikes4.UserId,
-                    IpAddress = ArticleLikes4.IpAddress,
-                    LikeCount = ArticleLikes4.LikeCount
+                    Id = ArticleLikes4.FId,
+                    ArticleId = ArticleLikes4.FArticleId,
+                    UserId = ArticleLikes4.FUserId,
+                    IpAddress = ArticleLikes4.IP_ADDRESS,
+                    LikeCount = ArticleLikes4.LIKE_COUNT
                 }
             };
         }
