@@ -9,6 +9,7 @@ using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Storage.AzureStorage;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Core.Services.DateTimeService;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
@@ -31,6 +32,7 @@ namespace Backend.UnitTests.Handlers.Articles
             var LDatabaseContext = GetTestDatabaseContext();
             var LMockedStorage = new Mock<AzureStorageService>();
             var LMockedUtility = new Mock<FileUtilityService>();
+            var LMockedDateTime = new Mock<DateTimeService>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
                 It.IsAny<string>(),
@@ -45,8 +47,9 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<string>(),
                 It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
-
-            var LAddArticleCommandHandler = new AddArticleCommandHandler(LDatabaseContext, LMockedStorage.Object, LMockedUtility.Object);
+            
+            var LAddArticleCommandHandler = new AddArticleCommandHandler(LDatabaseContext, 
+                LMockedStorage.Object, LMockedUtility.Object, LMockedDateTime.Object);
 
             // Act
             await LAddArticleCommandHandler.Handle(LAddArticleCommand, CancellationToken.None);
@@ -74,6 +77,7 @@ namespace Backend.UnitTests.Handlers.Articles
             var LDatabaseContext = GetTestDatabaseContext();
             var LMockedStorage = new Mock<AzureStorageService>();
             var LMockedUtility = new Mock<FileUtilityService>();
+            var LMockedDateTime = new Mock<DateTimeService>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
                 It.IsAny<string>(),
@@ -89,7 +93,8 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<CancellationToken>()))
                 .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
 
-            var LAddArticleCommandHandler = new AddArticleCommandHandler(LDatabaseContext, LMockedStorage.Object, LMockedUtility.Object);
+            var LAddArticleCommandHandler = new AddArticleCommandHandler(LDatabaseContext, 
+                LMockedStorage.Object, LMockedUtility.Object, LMockedDateTime.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() 
