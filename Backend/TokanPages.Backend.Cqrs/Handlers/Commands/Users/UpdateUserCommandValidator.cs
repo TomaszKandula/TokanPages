@@ -7,12 +7,12 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     {
         public UpdateUserCommandValidator() 
         {
-            RuleFor(Field => Field.Id)
+            RuleFor(AField => AField.Id)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(Field => Field.UserAlias)
+            RuleFor(AField => AField.UserAlias)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -20,7 +20,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 .WithErrorCode(nameof(ValidationCodes.USERALIAS_TOO_LONG))
                 .WithMessage(ValidationCodes.USERALIAS_TOO_LONG);
 
-            RuleFor(Field => Field.FirstName)
+            RuleFor(AField => AField.FirstName)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -28,7 +28,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 .WithErrorCode(nameof(ValidationCodes.FIRST_NAME_TOO_LONG))
                 .WithMessage(ValidationCodes.FIRST_NAME_TOO_LONG);
 
-            RuleFor(Field => Field.LastName)
+            RuleFor(AField => AField.LastName)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -36,7 +36,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 .WithErrorCode(nameof(ValidationCodes.LAST_NAME_TOO_LONG))
                 .WithMessage(ValidationCodes.LAST_NAME_TOO_LONG);
 
-            RuleFor(Field => Field.EmailAddress)
+            RuleFor(AField => AField.EmailAddress)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)

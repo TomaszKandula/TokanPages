@@ -14,9 +14,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
         private readonly DatabaseContext FDatabaseContext;
 
         public RemoveUserCommandHandler(DatabaseContext ADatabaseContext) 
-        {
-            FDatabaseContext = ADatabaseContext;
-        }
+            => FDatabaseContext = ADatabaseContext;
 
         public override async Task<Unit> Handle(RemoveUserCommand ARequest, CancellationToken ACancellationToken)
         {
@@ -25,9 +23,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 .ToListAsync(ACancellationToken);
 
             if (!LCurrentUser.Any())
-            {
                 throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
-            }
 
             FDatabaseContext.Users.Remove(LCurrentUser.First());
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);

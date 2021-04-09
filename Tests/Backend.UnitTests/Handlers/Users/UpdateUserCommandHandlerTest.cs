@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using Moq;
+using Xunit;
 using FluentAssertions;
 using System;
 using System.Threading;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using Backend.TestData;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
+using TokanPages.Backend.Core.Services.DateTimeService;
 
 namespace Backend.UnitTests.Handlers.Users
 {
@@ -43,7 +45,8 @@ namespace Backend.UnitTests.Handlers.Users
             await LDatabaseContext.SaveChangesAsync();
 
             // Act
-            var LUpdateUserCommandHandler = new UpdateUserCommandHandler(LDatabaseContext);
+            var LMockedDateTime = new Mock<DateTimeService>();
+            var LUpdateUserCommandHandler = new UpdateUserCommandHandler(LDatabaseContext, LMockedDateTime.Object);
             await LUpdateUserCommandHandler.Handle(LUpdateUserCommand, CancellationToken.None);
 
             // Assert
@@ -89,7 +92,8 @@ namespace Backend.UnitTests.Handlers.Users
             await LDatabaseContext.Users.AddAsync(LUser);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LUpdateUserCommandHandler = new UpdateUserCommandHandler(LDatabaseContext);
+            var LMockedDateTime = new Mock<DateTimeService>();
+            var LUpdateUserCommandHandler = new UpdateUserCommandHandler(LDatabaseContext, LMockedDateTime.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() 
@@ -128,7 +132,8 @@ namespace Backend.UnitTests.Handlers.Users
             await LDatabaseContext.Users.AddAsync(LUser);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LUpdateUserCommandHandler = new UpdateUserCommandHandler(LDatabaseContext);
+            var LMockedDateTime = new Mock<DateTimeService>();
+            var LUpdateUserCommandHandler = new UpdateUserCommandHandler(LDatabaseContext, LMockedDateTime.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() 
