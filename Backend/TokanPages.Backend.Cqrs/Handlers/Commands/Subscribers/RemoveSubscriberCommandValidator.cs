@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
     {
         public RemoveSubscriberCommandValidator() 
         {
-            RuleFor(Field => Field.Id)
+            RuleFor(AField => AField.Id)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

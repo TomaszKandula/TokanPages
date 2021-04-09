@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
     {
         public AddSubscriberCommandValidator() 
         {
-            RuleFor(Field => Field.Email)
+            RuleFor(AField => AField.Email)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)

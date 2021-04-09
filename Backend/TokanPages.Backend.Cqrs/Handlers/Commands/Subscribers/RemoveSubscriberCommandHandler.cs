@@ -14,9 +14,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
         private readonly DatabaseContext FDatabaseContext;
 
         public RemoveSubscriberCommandHandler(DatabaseContext ADatabaseContext) 
-        {
-            FDatabaseContext = ADatabaseContext;
-        }
+            => FDatabaseContext = ADatabaseContext;
 
         public override async Task<Unit> Handle(RemoveSubscriberCommand ARequest, CancellationToken ACancellationToken) 
         {
@@ -25,9 +23,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
                 .ToListAsync(ACancellationToken);
             
             if (!LCurrentSubscriber.Any())
-            {
                 throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
-            }
 
             FDatabaseContext.Subscribers.Remove(LCurrentSubscriber.First());
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);

@@ -7,12 +7,12 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
     {
         public UpdateSubscriberCommandValidator() 
         {
-            RuleFor(Field => Field.Id)
+            RuleFor(AField => AField.Id)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(Field => Field.Email)
+            RuleFor(AField => AField.Email)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -20,9 +20,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
                 .WithErrorCode(nameof(ValidationCodes.EMAIL_TOO_LONG))
                 .WithMessage(ValidationCodes.EMAIL_TOO_LONG);
 
-            When(Field => Field.Count != null, () => 
+            When(AField => AField.Count != null, () => 
             {
-                RuleFor(Field => Field.Count)
+                RuleFor(AField => AField.Count)
                     .GreaterThan(-1)
                     .WithErrorCode(nameof(ValidationCodes.LESS_THAN_ZERO))
                     .WithMessage(ValidationCodes.LESS_THAN_ZERO);

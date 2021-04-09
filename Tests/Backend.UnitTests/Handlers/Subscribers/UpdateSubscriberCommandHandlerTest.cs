@@ -1,10 +1,12 @@
-﻿using Xunit;
+﻿using Moq;
+using Xunit;
 using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Backend.TestData;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Services.DateTimeService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
 namespace Backend.UnitTests.Handlers.Subscribers
@@ -37,7 +39,8 @@ namespace Backend.UnitTests.Handlers.Subscribers
             await LDatabaseContext.SaveChangesAsync();
 
             // Act
-            var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext);
+            var LMockedDateTime = new Mock<DateTimeService>();
+            var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext, LMockedDateTime.Object);
             await LUpdateSubscriberCommandHandler.Handle(LUpdateSubscriberCommand, CancellationToken.None);
 
             // Assert
@@ -77,7 +80,8 @@ namespace Backend.UnitTests.Handlers.Subscribers
             await LDatabaseContext.SaveChangesAsync();
 
             // Act
-            var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext);
+            var LMockedDateTime = new Mock<DateTimeService>();
+            var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext, LMockedDateTime.Object);
             await LUpdateSubscriberCommandHandler.Handle(LUpdateSubscriberCommand, CancellationToken.None);
 
             // Assert
@@ -116,7 +120,8 @@ namespace Backend.UnitTests.Handlers.Subscribers
             await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext);
+            var LMockedDateTime = new Mock<DateTimeService>();
+            var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext, LMockedDateTime.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() 
@@ -149,7 +154,8 @@ namespace Backend.UnitTests.Handlers.Subscribers
             await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext);
+            var LMockedDateTime = new Mock<DateTimeService>();
+            var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext, LMockedDateTime.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() 
