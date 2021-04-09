@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using TokanPages.Backend.Storage.Models;
 
-namespace TokanPages.Backend.Storage
+namespace TokanPages.Backend.Storage.AzureStorage
 {
     public abstract class AzureStorageObject
     {

@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.Shared;
-using TokanPages.Backend.Storage;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Storage.AzureStorage;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Core.Services.TemplateHelper;
 using TokanPages.Backend.Core.Services.TemplateHelper.Model;

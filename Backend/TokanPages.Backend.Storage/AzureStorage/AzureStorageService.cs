@@ -8,7 +8,7 @@ using Microsoft.WindowsAzure.Storage.Blob;
 using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Storage.Settings;
 
-namespace TokanPages.Backend.Storage
+namespace TokanPages.Backend.Storage.AzureStorage
 {
     public class AzureStorageService : AzureStorageObject, IAzureStorageService
     {
