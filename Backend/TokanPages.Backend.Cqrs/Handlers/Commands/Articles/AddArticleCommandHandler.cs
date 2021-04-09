@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using TokanPages.Backend.Storage;
+using TokanPages.Backend.Storage.AzureStorage;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
