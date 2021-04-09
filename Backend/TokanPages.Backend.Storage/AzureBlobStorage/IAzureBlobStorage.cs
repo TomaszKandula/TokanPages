@@ -1,7 +1,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace TokanPages.Backend.Storage.AzureBobStorage
+namespace TokanPages.Backend.Storage.AzureBlobStorage
 {
     public interface IAzureBlobStorage
     {

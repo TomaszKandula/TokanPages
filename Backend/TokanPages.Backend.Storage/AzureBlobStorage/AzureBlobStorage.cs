@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 
-namespace TokanPages.Backend.Storage.AzureBobStorage
+namespace TokanPages.Backend.Storage.AzureBlobStorage
 {
     public class AzureBlobStorage : IAzureBlobStorage
     {
