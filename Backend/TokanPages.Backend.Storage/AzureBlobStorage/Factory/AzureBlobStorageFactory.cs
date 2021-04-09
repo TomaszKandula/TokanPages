@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Storage.AzureBobStorage.Factory
+namespace TokanPages.Backend.Storage.AzureBlobStorage.Factory
 {
     public class AzureBlobStorageFactory : IAzureBlobStorageFactory
     {
