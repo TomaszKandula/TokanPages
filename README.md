@@ -24,7 +24,7 @@ Tests are provided, but there is no full coverage yet.
 ### Back-end
 
 1. WebAPI (NET Core 3.1 / C#).
-1. Azure SQL Database.
+1. Azure SQL Database (ORM in use: EF Core).
 1. Azure Blob Storage.
 1. MediatR library.
 1. CQRS pattern with no event sourcing.
