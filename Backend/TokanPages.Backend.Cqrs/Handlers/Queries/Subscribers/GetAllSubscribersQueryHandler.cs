@@ -12,20 +12,18 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
         private readonly DatabaseContext FDatabaseContext;
 
         public GetAllSubscribersQueryHandler(DatabaseContext ADatabaseContext) 
-        {
-            FDatabaseContext = ADatabaseContext;
-        }
+            => FDatabaseContext = ADatabaseContext;
 
         public override async Task<IEnumerable<GetAllSubscribersQueryResult>> Handle(GetAllSubscribersQuery ARequest, CancellationToken ACancellationToken) 
         {
             var LSubscribers = await FDatabaseContext.Subscribers
                 .AsNoTracking()
-                .Select(Fields => new GetAllSubscribersQueryResult 
+                .Select(AFields => new GetAllSubscribersQueryResult 
                 { 
-                    Id = Fields.Id,
-                    Email = Fields.Email,
-                    IsActivated = Fields.IsActivated,
-                    NewsletterCount = Fields.Count
+                    Id = AFields.Id,
+                    Email = AFields.Email,
+                    IsActivated = AFields.IsActivated,
+                    NewsletterCount = AFields.Count
                 })
                 .ToListAsync(ACancellationToken);
             

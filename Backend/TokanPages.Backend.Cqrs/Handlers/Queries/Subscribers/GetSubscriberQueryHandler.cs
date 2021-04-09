@@ -13,30 +13,26 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
         private readonly DatabaseContext FDatabaseContext;
 
         public GetSubscriberQueryHandler(DatabaseContext ADatabaseContext) 
-        {
-            FDatabaseContext = ADatabaseContext;
-        }
+            => FDatabaseContext = ADatabaseContext;
 
         public override async Task<GetSubscriberQueryResult> Handle(GetSubscriberQuery ARequest, CancellationToken ACancellationToken) 
         {
             var LCurrentSubscriber = await FDatabaseContext.Subscribers
                 .AsNoTracking()
                 .Where(ASubscribers => ASubscribers.Id == ARequest.Id)
-                .Select(Fields => new GetSubscriberQueryResult 
+                .Select(AFields => new GetSubscriberQueryResult 
                 { 
-                    Id = Fields.Id,
-                    Email = Fields.Email,
-                    IsActivated = Fields.IsActivated,
-                    NewsletterCount = Fields.Count,
-                    Registered = Fields.Registered,
-                    LastUpdated = Fields.LastUpdated
+                    Id = AFields.Id,
+                    Email = AFields.Email,
+                    IsActivated = AFields.IsActivated,
+                    NewsletterCount = AFields.Count,
+                    Registered = AFields.Registered,
+                    LastUpdated = AFields.LastUpdated
                 })
                 .ToListAsync(ACancellationToken);
 
             if (!LCurrentSubscriber.Any()) 
-            {
                 throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
-            }
 
             return LCurrentSubscriber.First();
         }

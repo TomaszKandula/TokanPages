@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
     {
         public GetUserQueryValidator() 
         {
-            RuleFor(Field => Field.Id)
+            RuleFor(AField => AField.Id)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

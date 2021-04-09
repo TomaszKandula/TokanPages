@@ -24,53 +24,53 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 
         public override async Task<GetArticleQueryResult> Handle(GetArticleQuery ARequest, CancellationToken ACancellationToken)
         {
-            var IsAnonymousUser = FUserProvider.GetUserId() == null;
+            var LIsAnonymousUser = FUserProvider.GetUserId() == null;
 
             var LGetArticleLikes = await FDatabaseContext.ArticleLikes
-                .Where(Likes => Likes.ArticleId == ARequest.Id)
-                .WhereIfElse(IsAnonymousUser,
-                    Likes => Likes.IpAddress == FUserProvider.GetRequestIpAddress(),
-                    Likes => Likes.UserId == FUserProvider.GetUserId())
+                .Where(ALikes => ALikes.ArticleId == ARequest.Id)
+                .WhereIfElse(LIsAnonymousUser,
+                    ALikes => ALikes.IpAddress == FUserProvider.GetRequestIpAddress(),
+                    ALikes => ALikes.UserId == FUserProvider.GetUserId())
                 .Select(ALikes => ALikes.LikeCount)
                 .ToListAsync(ACancellationToken);
 
-            var LArticleLikes = !LGetArticleLikes.Any() ? 0 : LGetArticleLikes.FirstOrDefault();
+            var LArticleLikes = !LGetArticleLikes.Any() 
+                ? 0 
+                : LGetArticleLikes.FirstOrDefault();
 
             var LCurrentArticle = await FDatabaseContext.Articles
                 .AsNoTracking()
                 .Include(ALikes => ALikes.ArticleLikes)
                 .Include(AUsers => AUsers.User)
                 .Where(AArticles => AArticles.Id == ARequest.Id)
-                .Select(Fields => new GetArticleQueryResult
+                .Select(AFields => new GetArticleQueryResult
                 {
-                    Id = Fields.Id,
-                    Title = Fields.Title,
-                    Description = Fields.Description,
-                    IsPublished = Fields.IsPublished,
-                    CreatedAt = Fields.CreatedAt,
-                    UpdatedAt = Fields.UpdatedAt,
-                    ReadCount = Fields.ReadCount,
-                    LikeCount = Fields.ArticleLikes
+                    Id = AFields.Id,
+                    Title = AFields.Title,
+                    Description = AFields.Description,
+                    IsPublished = AFields.IsPublished,
+                    CreatedAt = AFields.CreatedAt,
+                    UpdatedAt = AFields.UpdatedAt,
+                    ReadCount = AFields.ReadCount,
+                    LikeCount = AFields.ArticleLikes
                         .Where(ALikes => ALikes.ArticleId == ARequest.Id)
                         .Select(ALikes => ALikes.LikeCount)
                         .Sum(),
                     UserLikes = LArticleLikes,
                     Author = new GetUserDto
                     {
-                        AliasName = Fields.User.UserAlias,
-                        AvatarName = Fields.User.AvatarName,
-                        FirstName = Fields.User.FirstName,
-                        LastName = Fields.User.LastName,
-                        ShortBio = Fields.User.ShortBio,
-                        Registered = Fields.User.Registered
+                        AliasName = AFields.User.UserAlias,
+                        AvatarName = AFields.User.AvatarName,
+                        FirstName = AFields.User.FirstName,
+                        LastName = AFields.User.LastName,
+                        ShortBio = AFields.User.ShortBio,
+                        Registered = AFields.User.Registered
                     }
                 })
                 .ToListAsync(ACancellationToken);
 
             if (!LCurrentArticle.Any())
-            {
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
-            }
 
             return LCurrentArticle.First();
         }

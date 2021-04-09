@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
     {
         public GetArticleQueryValidator() 
         {
-            RuleFor(Field => Field.Id)
+            RuleFor(AField => AField.Id)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
