@@ -16,6 +16,7 @@ using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
 using TokanPages.Backend.Core.Services.TemplateHelper;
+using TokanPages.Backend.Core.Services.DateTimeService;
 using FluentValidation;
 using MediatR;
 
@@ -83,6 +84,7 @@ namespace TokanPages.Configuration
             AServices.AddScoped<IAzureStorageService, AzureStorageService>();
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
             AServices.AddScoped<IFileUtilityService, FileUtilityService>();
+            AServices.AddScoped<IDateTimeService, DateTimeService>();
             AServices.AddScoped<IDbInitializer, DbInitializer>();
             AServices.AddScoped<IUserProvider, UserProvider>();
         }
