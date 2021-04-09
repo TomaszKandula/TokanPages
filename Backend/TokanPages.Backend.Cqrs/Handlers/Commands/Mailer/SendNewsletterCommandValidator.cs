@@ -7,12 +7,12 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
     {
         public SendNewsletterCommandValidator() 
         {
-            RuleFor(Field => Field.SubscriberInfo)
+            RuleFor(AField => AField.SubscriberInfo)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(Field => Field.Subject)
+            RuleFor(AField => AField.Subject)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -20,7 +20,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 .WithErrorCode(nameof(ValidationCodes.SUBJECT_TOO_LONG))
                 .WithMessage(ValidationCodes.SUBJECT_TOO_LONG);
 
-            RuleFor(Field => Field.Message)
+            RuleFor(AField => AField.Message)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)

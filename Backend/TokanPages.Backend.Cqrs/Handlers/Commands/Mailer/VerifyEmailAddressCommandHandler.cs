@@ -10,9 +10,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
         private readonly ISmtpClientService FSmtpClientService;
 
         public VerifyEmailAddressCommandHandler(ISmtpClientService ASmtpClientService) 
-        {
-            FSmtpClientService = ASmtpClientService;
-        }
+            => FSmtpClientService = ASmtpClientService;
 
         public override async Task<VerifyEmailAddressCommandResult> Handle(VerifyEmailAddressCommand ARequest, CancellationToken ACancellationToken)
         {

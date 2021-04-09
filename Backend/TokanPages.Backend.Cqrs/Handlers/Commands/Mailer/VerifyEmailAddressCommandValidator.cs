@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
     {
         public VerifyEmailAddressCommandValidator() 
         {
-            RuleFor(Field => Field.Email)
+            RuleFor(AField => AField.Email)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
