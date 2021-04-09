@@ -12,26 +12,24 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
         private readonly DatabaseContext FDatabaseContext;
 
         public GetAllArticlesQueryHandler(DatabaseContext ADatabaseContext) 
-        {
-            FDatabaseContext = ADatabaseContext;
-        }
+            => FDatabaseContext = ADatabaseContext;
 
         public override async Task<IEnumerable<GetAllArticlesQueryResult>> Handle(GetAllArticlesQuery ARequest, CancellationToken ACancellationToken) 
         {
             var LArticles = await FDatabaseContext.Articles
                 .AsNoTracking()
-                .Where(Articles => Articles.IsPublished == ARequest.IsPublished)
-                .Select(Fields => new GetAllArticlesQueryResult 
+                .Where(AArticles => AArticles.IsPublished == ARequest.IsPublished)
+                .Select(AFields => new GetAllArticlesQueryResult 
                 { 
-                    Id = Fields.Id,
-                    Title = Fields.Title,
-                    Description = Fields.Description,
-                    IsPublished = Fields.IsPublished,
-                    ReadCount = Fields.ReadCount,
-                    CreatedAt = Fields.CreatedAt,
-                    UpdatedAt = Fields.UpdatedAt
+                    Id = AFields.Id,
+                    Title = AFields.Title,
+                    Description = AFields.Description,
+                    IsPublished = AFields.IsPublished,
+                    ReadCount = AFields.ReadCount,
+                    CreatedAt = AFields.CreatedAt,
+                    UpdatedAt = AFields.UpdatedAt
                 })
-                .OrderByDescending(Articles => Articles.CreatedAt)
+                .OrderByDescending(AArticles => AArticles.CreatedAt)
                 .ToListAsync(ACancellationToken);
 
             return LArticles; 

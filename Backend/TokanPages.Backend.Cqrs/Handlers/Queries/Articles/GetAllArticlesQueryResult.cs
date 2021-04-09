@@ -1,5 +1,4 @@
 ﻿using System;
-using TokanPages.Backend.Shared.Dto.Users;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 {

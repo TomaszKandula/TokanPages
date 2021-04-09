@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using Moq;
+using Xunit;
 using FluentAssertions;
 using System;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Backend.TestData;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Services.DateTimeService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
 namespace Backend.UnitTests.Handlers.Subscribers
@@ -22,7 +24,14 @@ namespace Backend.UnitTests.Handlers.Subscribers
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
-            var LAddSubscriberCommandHandler = new AddSubscriberCommandHandler(LDatabaseContext);
+            var LMockedDateTime = new Mock<DateTimeService>();
+
+            const string TEST_DATE_TIME = "2020-01-01";
+            LMockedDateTime
+                .Setup(ADateTime => ADateTime.Now)
+                .Returns(DateTime.Parse(TEST_DATE_TIME));
+            
+            var LAddSubscriberCommandHandler = new AddSubscriberCommandHandler(LDatabaseContext, LMockedDateTime.Object);
 
             // Act
             await LAddSubscriberCommandHandler.Handle(LAddSubscriberCommand, CancellationToken.None);
@@ -35,9 +44,9 @@ namespace Backend.UnitTests.Handlers.Subscribers
             LSubscribersEntity[0].Email.Should().Be(LAddSubscriberCommand.Email);
             LSubscribersEntity[0].Count.Should().Be(0);
             LSubscribersEntity[0].IsActivated.Should().BeTrue();
-            LSubscribersEntity[0].Registered.Should().HaveDay(DateTime.UtcNow.Day);
-            LSubscribersEntity[0].Registered.Should().HaveMonth(DateTime.UtcNow.Month);
-            LSubscribersEntity[0].Registered.Should().HaveYear(DateTime.UtcNow.Year);
+            LSubscribersEntity[0].Registered.Should().HaveDay(DateTime.Parse(TEST_DATE_TIME).Day);
+            LSubscribersEntity[0].Registered.Should().HaveMonth(DateTime.Parse(TEST_DATE_TIME).Month);
+            LSubscribersEntity[0].Registered.Should().HaveYear(DateTime.Parse(TEST_DATE_TIME).Year);
             LSubscribersEntity[0].LastUpdated.Should().BeNull();
         }
 
@@ -64,7 +73,8 @@ namespace Backend.UnitTests.Handlers.Subscribers
             await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LAddSubscriberCommandHandler = new AddSubscriberCommandHandler(LDatabaseContext);
+            var LMockedDateTime = new Mock<DateTimeService>();
+            var LAddSubscriberCommandHandler = new AddSubscriberCommandHandler(LDatabaseContext, LMockedDateTime.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() 

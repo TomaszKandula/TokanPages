@@ -11,8 +11,9 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Storage.AzureStorage;
 using TokanPages.Backend.Core.Services.FileUtility;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
+using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 using Backend.TestData;
 
 namespace Backend.UnitTests.Handlers.Articles
@@ -54,6 +55,7 @@ namespace Backend.UnitTests.Handlers.Articles
             var LMockedStorage = new Mock<AzureStorageService>();
             var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedDateTime = new Mock<DateTimeService>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
                 It.IsAny<string>(),
@@ -77,7 +79,8 @@ namespace Backend.UnitTests.Handlers.Articles
                 LDatabaseContext, 
                 LMockedStorage.Object, 
                 LMockedUtility.Object, 
-                LMockedUserProvider.Object);
+                LMockedUserProvider.Object, 
+                LMockedDateTime.Object);
 
             // Act
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
@@ -125,6 +128,7 @@ namespace Backend.UnitTests.Handlers.Articles
             var LMockedStorage = new Mock<AzureStorageService>();
             var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedDateTime = new Mock<DateTimeService>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
                 It.IsAny<string>(),
@@ -149,7 +153,8 @@ namespace Backend.UnitTests.Handlers.Articles
                 LDatabaseContext,
                 LMockedStorage.Object,
                 LMockedUtility.Object,
-                LMockedUserProvider.Object);
+                LMockedUserProvider.Object,
+                LMockedDateTime.Object);
 
             // Act
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
@@ -212,6 +217,7 @@ namespace Backend.UnitTests.Handlers.Articles
             var LMockedStorage = new Mock<AzureStorageService>();
             var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedDateTime = new Mock<DateTimeService>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
                 It.IsAny<string>(),
@@ -240,7 +246,8 @@ namespace Backend.UnitTests.Handlers.Articles
                 LDatabaseContext,
                 LMockedStorage.Object,
                 LMockedUtility.Object,
-                LMockedUserProvider.Object);
+                LMockedUserProvider.Object, 
+                LMockedDateTime.Object);
 
             // Act
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
@@ -316,6 +323,7 @@ namespace Backend.UnitTests.Handlers.Articles
             var LMockedStorage = new Mock<AzureStorageService>();
             var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedDateTime = new Mock<DateTimeService>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
                 It.IsAny<string>(),
@@ -339,7 +347,8 @@ namespace Backend.UnitTests.Handlers.Articles
                 LDatabaseContext,
                 LMockedStorage.Object,
                 LMockedUtility.Object,
-                LMockedUserProvider.Object);
+                LMockedUserProvider.Object,
+                LMockedDateTime.Object);
 
             // Act
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
@@ -417,6 +426,7 @@ namespace Backend.UnitTests.Handlers.Articles
             var LMockedStorage = new Mock<AzureStorageService>();
             var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedDateTime = new Mock<DateTimeService>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
                 It.IsAny<string>(),
@@ -444,7 +454,8 @@ namespace Backend.UnitTests.Handlers.Articles
                 LDatabaseContext,
                 LMockedStorage.Object,
                 LMockedUtility.Object,
-                LMockedUserProvider.Object);
+                LMockedUserProvider.Object, 
+                LMockedDateTime.Object);
 
             // Act
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
@@ -509,6 +520,7 @@ namespace Backend.UnitTests.Handlers.Articles
             var LMockedStorage = new Mock<AzureStorageService>();
             var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedDateTime = new Mock<DateTimeService>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
                 It.IsAny<string>(),
@@ -532,7 +544,8 @@ namespace Backend.UnitTests.Handlers.Articles
                 LDatabaseContext, 
                 LMockedStorage.Object, 
                 LMockedUtility.Object, 
-                LMockedUserProvider.Object);
+                LMockedUserProvider.Object, 
+                LMockedDateTime.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() => 
@@ -573,6 +586,7 @@ namespace Backend.UnitTests.Handlers.Articles
             var LMockedStorage = new Mock<AzureStorageService>();
             var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedDateTime = new Mock<DateTimeService>();
 
             LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
                 It.IsAny<string>(),
@@ -596,7 +610,8 @@ namespace Backend.UnitTests.Handlers.Articles
                 LDatabaseContext, 
                 LMockedStorage.Object, 
                 LMockedUtility.Object, 
-                LMockedUserProvider.Object);
+                LMockedUserProvider.Object, 
+                LMockedDateTime.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() 

@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
     {
         public GetSubscriberQueryValidator() 
         {
-            RuleFor(Field => Field.Id)
+            RuleFor(AField => AField.Id)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

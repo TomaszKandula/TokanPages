@@ -14,20 +14,16 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         private readonly DatabaseContext FDatabaseContext;
 
         public RemoveArticleCommandHandler(DatabaseContext ADatabaseContext) 
-        {
-            FDatabaseContext = ADatabaseContext;
-        }
+            => FDatabaseContext = ADatabaseContext;
 
         public override async Task<Unit> Handle(RemoveArticleCommand ARequest, CancellationToken ACancellationToken) 
         {
             var LCurrentArticle = await FDatabaseContext.Articles
-                .Where(Articles => Articles.Id == ARequest.Id)
+                .Where(AArticles => AArticles.Id == ARequest.Id)
                 .ToListAsync(ACancellationToken);
 
             if (!LCurrentArticle.Any())
-            {
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
-            }
 
             FDatabaseContext.Articles.Remove(LCurrentArticle.Single());
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using TokanPages.Backend.Storage.AzureStorage;
 using TokanPages.Backend.Database;
+using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Storage.AzureStorage;
 using TokanPages.Backend.Core.Services.FileUtility;
+using TokanPages.Backend.Core.Services.DateTimeService;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
@@ -15,44 +17,28 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         private readonly DatabaseContext FDatabaseContext;
         private readonly IAzureStorageService FAzureStorageService;
         private readonly IFileUtilityService FFileUtilityService;
+        private readonly IDateTimeService FDateTimeService;
 
-        public AddArticleCommandHandler(DatabaseContext ADatabaseContext, 
-            IAzureStorageService AAzureStorageService, IFileUtilityService AFileUtilityService) 
+        public AddArticleCommandHandler(DatabaseContext ADatabaseContext, IAzureStorageService AAzureStorageService, 
+            IFileUtilityService AFileUtilityService, IDateTimeService ADateTimeService) 
         {
             FDatabaseContext = ADatabaseContext;
             FAzureStorageService = AAzureStorageService;
             FFileUtilityService = AFileUtilityService;
+            FDateTimeService = ADateTimeService;
         }
 
         public override async Task<Guid> Handle(AddArticleCommand ARequest, CancellationToken ACancellationToken)
         {
-            var LImageBase64Check = ARequest.ImageToUpload.IsBase64String();
-            if (!LImageBase64Check) 
-            {
-                throw new BusinessException(nameof(ErrorCodes.INVALID_BASE64), ErrorCodes.INVALID_BASE64);
-            }
-
             var LNewId = Guid.NewGuid();
 
-            var LTextContent = await FFileUtilityService
-                .SaveToFile("__upload", $"{LNewId}.json", ARequest.TextToUpload);
-            var LTextUpload = await FAzureStorageService
-                .UploadFile($"content\\articles\\{LNewId.ToString().ToLower()}", "text.json", LTextContent, "application/json", ACancellationToken);
+            var LUploadText = await UploadText(LNewId, ARequest.TextToUpload, ACancellationToken);
+            if (!LUploadText.IsSucceeded) 
+                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LUploadText.ErrorDesc);
 
-            if (!LTextUpload.IsSucceeded) 
-            {
-                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LTextUpload.ErrorDesc);
-            }
-
-            var LImageContent = await FFileUtilityService
-                .SaveToFile("__upload", $"{LNewId}.jpg", ARequest.ImageToUpload);
-            var LImageUpload = await FAzureStorageService
-                .UploadFile($"content\\articles\\{LNewId.ToString().ToLower()}", "image.jpeg", LImageContent, "image/jpeg", ACancellationToken);
-
-            if (!LImageUpload.IsSucceeded)
-            {
-                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LImageUpload.ErrorDesc);
-            }
+            var LUploadImage = await UploadImage(LNewId, ARequest.ImageToUpload, ACancellationToken);
+            if (!LUploadImage.IsSucceeded)
+                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LUploadImage.ErrorDesc);
 
             FDatabaseContext.Articles.Add(new Domain.Entities.Articles
             {
@@ -61,12 +47,41 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 Description = ARequest.Description,
                 IsPublished = false,
                 ReadCount = 0,
-                CreatedAt = DateTime.UtcNow,
+                CreatedAt = FDateTimeService.Now,
                 UpdatedAt = null
             });
 
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(LNewId);
+        }
+
+        private async Task<ActionResult> UploadText(Guid AId, string ATextToUpload, CancellationToken ACancellationToken)
+        {
+            var LTextContent = await FFileUtilityService
+                .SaveToFile("__upload", $"{AId}.json", ATextToUpload);
+
+            return await FAzureStorageService
+                .UploadFile(
+                    $"content\\articles\\{AId.ToString().ToLower()}", 
+                    "text.json", 
+                    LTextContent, 
+                    "application/json", 
+                    ACancellationToken);
+        }
+
+        private async Task<ActionResult> UploadImage(Guid AId, string AImageToUpload, CancellationToken ACancellationToken)
+        {
+            if (!AImageToUpload.IsBase64String()) 
+                throw new BusinessException(nameof(ErrorCodes.INVALID_BASE64), ErrorCodes.INVALID_BASE64);
+            
+            var LImageContent = await FFileUtilityService
+                .SaveToFile("__upload", $"{AId}.jpg", AImageToUpload);
+
+            return await FAzureStorageService
+                .UploadFile(
+                    $"content\\articles\\{AId.ToString().ToLower()}", 
+                    "image.jpeg", 
+                    LImageContent, "image/jpeg", ACancellationToken);
         }
     }
 }

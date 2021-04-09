@@ -6,16 +6,19 @@ using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Core.Services.DateTimeService;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 {   
     public class AddUserCommandHandler : TemplateHandler<AddUserCommand, Guid>
     {
         private readonly DatabaseContext FDatabaseContext;
+        private readonly IDateTimeService FDateTimeService;
 
-        public AddUserCommandHandler(DatabaseContext ADatabaseContext) 
+        public AddUserCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService) 
         {
             FDatabaseContext = ADatabaseContext;
+            FDateTimeService = ADateTimeService;
         }
 
         public override async Task<Guid> Handle(AddUserCommand ARequest, CancellationToken ACancellationToken)
@@ -26,9 +29,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 .ToListAsync(ACancellationToken);
             
             if (LEmailCollection.Count == 1) 
-            {
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
-            }
 
             var LNewId = Guid.NewGuid();
             var LNewUser = new Domain.Entities.Users
@@ -39,7 +40,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 UserAlias = ARequest.UserAlias,
                 FirstName = ARequest.FirstName,
                 LastName = ARequest.LastName,
-                Registered = DateTime.UtcNow,
+                Registered = FDateTimeService.Now,
                 LastUpdated = null,
                 LastLogged = null
             };

@@ -12,20 +12,18 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
         private readonly DatabaseContext FDatabaseContext;
 
         public GetAllUsersQueryHandler(DatabaseContext ADatabaseContext) 
-        {
-            FDatabaseContext = ADatabaseContext;
-        }
+            => FDatabaseContext = ADatabaseContext;
 
         public override async Task<IEnumerable<GetAllUsersQueryResult>> Handle(GetAllUsersQuery ARequest, CancellationToken ACancellationToken)
         {
             var LUsers = await FDatabaseContext.Users
                 .AsNoTracking()
-                .Select(Fields => new GetAllUsersQueryResult 
+                .Select(AFields => new GetAllUsersQueryResult 
                 { 
-                    Id = Fields.Id,
-                    AliasName = Fields.UserAlias,
-                    Email = Fields.EmailAddress,
-                    IsActivated = Fields.IsActivated
+                    Id = AFields.Id,
+                    AliasName = AFields.UserAlias,
+                    Email = AFields.EmailAddress,
+                    IsActivated = AFields.IsActivated
                 })
                 .ToListAsync(ACancellationToken);
             

@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using Moq;
+using Xunit;
 using FluentAssertions;
 using System;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 using Backend.TestData;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
+using TokanPages.Backend.Core.Services.DateTimeService;
 
 namespace Backend.UnitTests.Handlers.Users
 {   
@@ -25,7 +27,8 @@ namespace Backend.UnitTests.Handlers.Users
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
-            var LAddUserCommandHandler = new AddUserCommandHandler(LDatabaseContext);
+            var LMockedDateTime = new Mock<DateTimeService>();
+            var LAddUserCommandHandler = new AddUserCommandHandler(LDatabaseContext, LMockedDateTime.Object);
 
             // Act
             await LAddUserCommandHandler.Handle(LAddUserCommand, CancellationToken.None);
@@ -74,7 +77,8 @@ namespace Backend.UnitTests.Handlers.Users
             await LDatabaseContext.Users.AddAsync(LUsers);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LAddUserCommandHandler = new AddUserCommandHandler(LDatabaseContext);
+            var LMockedDateTime = new Mock<DateTimeService>();
+            var LAddUserCommandHandler = new AddUserCommandHandler(LDatabaseContext, LMockedDateTime.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() 

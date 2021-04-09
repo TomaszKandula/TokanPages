@@ -22,8 +22,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
         private readonly IFileUtilityService FFileUtilityService;
         private readonly AppUrls FAppUrls;
 
-        public SendNewsletterCommandHandler(ISmtpClientService ASmtpClientService, 
-            IAzureStorageService AAzureStorageService, ITemplateHelper ATemplateHelper, AppUrls AAppUrls, IFileUtilityService AFileUtilityService) 
+        public SendNewsletterCommandHandler(ISmtpClientService ASmtpClientService, IAzureStorageService AAzureStorageService, 
+            ITemplateHelper ATemplateHelper, AppUrls AAppUrls, IFileUtilityService AFileUtilityService) 
         {
             FSmtpClientService = ASmtpClientService;
             FAzureStorageService = AAzureStorageService;
@@ -34,32 +34,32 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 
         public override async Task<Unit> Handle(SendNewsletterCommand ARequest, CancellationToken ACancellationToken) 
         {
-            var UpdateSubscriberBaseLink = FAppUrls.DeploymentOrigin + FAppUrls.UpdateSubscriberPath;
-            var UnsubscribeBaseLink = FAppUrls.DeploymentOrigin + FAppUrls.UnsubscribePath;
-            foreach (var Subscriber in ARequest.SubscriberInfo)
+            var LUpdateSubscriberBaseLink = FAppUrls.DeploymentOrigin + FAppUrls.UpdateSubscriberPath;
+            var LUnsubscribeBaseLink = FAppUrls.DeploymentOrigin + FAppUrls.UnsubscribePath;
+            
+            foreach (var LSubscriber in ARequest.SubscriberInfo)
             {
                 FSmtpClientService.From = Constants.Emails.Addresses.CONTACT;
-                FSmtpClientService.Tos = new List<string> { Subscriber.Email };
+                FSmtpClientService.Tos = new List<string> { LSubscriber.Email };
                 FSmtpClientService.Bccs = null;
                 FSmtpClientService.Subject = ARequest.Subject;
 
-                var UpdateSubscriberLink = UpdateSubscriberBaseLink + Subscriber.Id;
-                var UnsubscribeLink = UnsubscribeBaseLink + Subscriber.Id;
-                var NewValues = new List<Item>
-                    {
-                        new Item { Tag = "{CONTENT}", Value = ARequest.Message },
-                        new Item { Tag = "{UPDATE_EMAIL_LINK}", Value = UpdateSubscriberLink },
-                        new Item { Tag = "{UNSUBSCRIBE_LINK}", Value = UnsubscribeLink }
-                    };
+                var LUpdateSubscriberLink = LUpdateSubscriberBaseLink + LSubscriber.Id;
+                var LUnsubscribeLink = LUnsubscribeBaseLink + LSubscriber.Id;
+                var LNewValues = new List<Item>
+                {
+                    new Item { Tag = "{CONTENT}", Value = ARequest.Message },
+                    new Item { Tag = "{UPDATE_EMAIL_LINK}", Value = LUpdateSubscriberLink },
+                    new Item { Tag = "{UNSUBSCRIBE_LINK}", Value = LUnsubscribeLink }
+                };
 
-                var LTemplateFromUrl = await FFileUtilityService.GetFileFromUrl($"{FAzureStorageService.GetBaseUrl}{Templates.NEWSLETTER}", ACancellationToken);
-                FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, NewValues);
+                var LUrl = $"{FAzureStorageService.GetBaseUrl}{Templates.NEWSLETTER}";
+                var LTemplateFromUrl = await FFileUtilityService.GetFileFromUrl(LUrl, ACancellationToken);
+                FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, LNewValues);
 
                 var LResult = await FSmtpClientService.Send();
                 if (!LResult.IsSucceeded) 
-                {
                     throw new BusinessException(nameof(CommonErrorCodes.MAILER_ERROR), LResult.ErrorDesc);
-                }
             }
 
             return await Task.FromResult(Unit.Value);

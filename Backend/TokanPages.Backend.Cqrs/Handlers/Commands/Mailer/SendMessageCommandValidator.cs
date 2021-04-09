@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
     {
         public SendMessageCommandValidator() 
         {
-            RuleFor(Field => Field.FirstName)
+            RuleFor(AField => AField.FirstName)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -15,7 +15,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 .WithErrorCode(nameof(ValidationCodes.FIRST_NAME_TOO_LONG))
                 .WithMessage(ValidationCodes.FIRST_NAME_TOO_LONG);
 
-            RuleFor(Field => Field.LastName)
+            RuleFor(AField => AField.LastName)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -23,7 +23,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 .WithErrorCode(nameof(ValidationCodes.LAST_NAME_TOO_LONG))
                 .WithMessage(ValidationCodes.LAST_NAME_TOO_LONG);
 
-            RuleFor(Field => Field.UserEmail)
+            RuleFor(AField => AField.UserEmail)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -31,7 +31,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 .WithErrorCode(nameof(ValidationCodes.EMAIL_TOO_LONG))
                 .WithMessage(ValidationCodes.EMAIL_TOO_LONG);
 
-            RuleFor(Field => Field.EmailFrom)
+            RuleFor(AField => AField.EmailFrom)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -39,12 +39,12 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 .WithErrorCode(nameof(ValidationCodes.EMAIL_TOO_LONG))
                 .WithMessage(ValidationCodes.EMAIL_TOO_LONG);
 
-            RuleFor(Field => Field.EmailTos)
+            RuleFor(AField => AField.EmailTos)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(Field => Field.Subject)
+            RuleFor(AField => AField.Subject)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -52,7 +52,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 .WithErrorCode(nameof(ValidationCodes.SUBJECT_TOO_LONG))
                 .WithMessage(ValidationCodes.SUBJECT_TOO_LONG);
 
-            RuleFor(Field => Field.Message)
+            RuleFor(AField => AField.Message)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)

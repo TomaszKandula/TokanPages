@@ -6,16 +6,19 @@ using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Core.Services.DateTimeService;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 {
     public class AddSubscriberCommandHandler : TemplateHandler<AddSubscriberCommand, Guid>
     {
         private readonly DatabaseContext FDatabaseContext;
-
-        public AddSubscriberCommandHandler(DatabaseContext ADatabaseContext) 
+        private readonly IDateTimeService FDateTimeService;
+        
+        public AddSubscriberCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService) 
         {
             FDatabaseContext = ADatabaseContext;
+            FDateTimeService = ADateTimeService;
         }
 
         public override async Task<Guid> Handle(AddSubscriberCommand ARequest, CancellationToken ACancellationToken) 
@@ -26,9 +29,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
                 .ToListAsync(ACancellationToken);
 
             if (LEmailCollection.Count == 1)
-            {
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
-            }
 
             var LNewId = Guid.NewGuid();
             var LNewSubscriber = new Domain.Entities.Subscribers
@@ -38,10 +39,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
                 Count = 0,
                 IsActivated = true,
                 LastUpdated = null,
-                Registered = DateTime.UtcNow
+                Registered = FDateTimeService.Now
             };
 
-            await FDatabaseContext.Subscribers.AddAsync(LNewSubscriber);
+            await FDatabaseContext.Subscribers.AddAsync(LNewSubscriber, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(LNewId);        
         }
