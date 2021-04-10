@@ -1,6 +1,6 @@
 ﻿namespace TokanPages.Backend.Storage.Models
 {
-    public class ActionResult
+    public class StorageActionResult
     {
         public bool IsSucceeded { get; set; }
         public string ErrorCode { get; set; }

@@ -55,7 +55,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             return await Task.FromResult(LNewId);
         }
 
-        private async Task<ActionResult> UploadText(Guid AId, string ATextToUpload, CancellationToken ACancellationToken)
+        private async Task<StorageActionResult> UploadText(Guid AId, string ATextToUpload, CancellationToken ACancellationToken)
         {
             var LTextContent = await FFileUtilityService
                 .SaveToFile("__upload", $"{AId}.json", ATextToUpload);
@@ -69,7 +69,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                     ACancellationToken);
         }
 
-        private async Task<ActionResult> UploadImage(Guid AId, string AImageToUpload, CancellationToken ACancellationToken)
+        private async Task<StorageActionResult> UploadImage(Guid AId, string AImageToUpload, CancellationToken ACancellationToken)
         {
             if (!AImageToUpload.IsBase64String()) 
                 throw new BusinessException(nameof(ErrorCodes.INVALID_BASE64), ErrorCodes.INVALID_BASE64);
