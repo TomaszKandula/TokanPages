@@ -19,8 +19,8 @@ COPY . ./
 RUN dotnet restore
 
 # Build and run all tests
-RUN dotnet build -c Release --no-restore --environment="staging"
-RUN dotnet test -c Release --no-build --no-restore --environment="staging"
+RUN dotnet build -c Release --no-restore
+RUN dotnet test -c Release --no-build --no-restore
 
 # Publish build
 RUN dotnet publish -c Release -o out
