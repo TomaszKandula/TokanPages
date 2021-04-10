@@ -5,7 +5,7 @@ using TokanPages.Backend.Shared;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Storage.AzureStorage;
+using TokanPages.Backend.Storage.Settings;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Core.Services.TemplateHelper;
 using TokanPages.Backend.Core.Services.TemplateHelper.Model;
@@ -17,18 +17,18 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
     public class SendNewsletterCommandHandler : TemplateHandler<SendNewsletterCommand, Unit>
     {
         private readonly ISmtpClientService FSmtpClientService;
-        private readonly IAzureStorageService FAzureStorageService;
         private readonly ITemplateHelper FTemplateHelper;
         private readonly IFileUtilityService FFileUtilityService;
+        private readonly AzureStorageSettings FAzureStorageSettings;
         private readonly AppUrls FAppUrls;
 
-        public SendNewsletterCommandHandler(ISmtpClientService ASmtpClientService, IAzureStorageService AAzureStorageService, 
-            ITemplateHelper ATemplateHelper, AppUrls AAppUrls, IFileUtilityService AFileUtilityService) 
+        public SendNewsletterCommandHandler(ISmtpClientService ASmtpClientService, ITemplateHelper ATemplateHelper, 
+            IFileUtilityService AFileUtilityService, AzureStorageSettings AAzureStorageSettings, AppUrls AAppUrls) 
         {
             FSmtpClientService = ASmtpClientService;
-            FAzureStorageService = AAzureStorageService;
             FTemplateHelper = ATemplateHelper;
             FFileUtilityService = AFileUtilityService;
+            FAzureStorageSettings = AAzureStorageSettings;
             FAppUrls = AAppUrls;
         }
 
@@ -53,7 +53,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                     new Item { Tag = "{UNSUBSCRIBE_LINK}", Value = LUnsubscribeLink }
                 };
 
-                var LUrl = $"{FAzureStorageService.GetBaseUrl}{Templates.NEWSLETTER}";
+                var LUrl = $"{FAzureStorageSettings.BaseUrl}{Templates.NEWSLETTER}";
                 var LTemplateFromUrl = await FFileUtilityService.GetFileFromUrl(LUrl, ACancellationToken);
                 FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, LNewValues);
 

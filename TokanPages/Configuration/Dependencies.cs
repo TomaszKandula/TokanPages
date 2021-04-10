@@ -11,7 +11,6 @@ using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Storage.Settings;
 using TokanPages.Backend.SmtpClient.Settings;
 using TokanPages.Backend.Database.Initialize;
-using TokanPages.Backend.Storage.AzureStorage;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
@@ -81,7 +80,6 @@ namespace TokanPages.Configuration
             AServices.AddHttpContextAccessor();
             
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();
-            AServices.AddScoped<IAzureStorageService, AzureStorageService>();
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
             AServices.AddScoped<IFileUtilityService, FileUtilityService>();
             AServices.AddScoped<IDateTimeService, DateTimeService>();
