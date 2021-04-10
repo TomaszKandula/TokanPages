@@ -91,7 +91,7 @@ namespace TokanPages.Configuration
             AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
             {
                 var LAzureStorageSettings = AProvider.GetRequiredService<AzureStorageSettings>();
-                return new AzureBlobStorageFactory(LAzureStorageSettings.ConnectionStrings);
+                return new AzureBlobStorageFactory(LAzureStorageSettings.ConnectionString, LAzureStorageSettings.ContainerName);
             });
         }
 
