@@ -9,10 +9,7 @@ namespace TokanPages.Backend.Core.Behaviours
     {
         private readonly ILogger FLogger;
 
-        public LoggingBehaviour(ILogger ALogger) 
-        {
-            FLogger = ALogger;
-        }
+        public LoggingBehaviour(ILogger ALogger) => FLogger = ALogger;
 
         public async Task<TResponse> Handle(TRequest ARequest, CancellationToken ACancellationToken, RequestHandlerDelegate<TResponse> ANext)
         {
