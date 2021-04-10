@@ -2,23 +2,23 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using TokanPages.Backend.Shared;
 
 namespace TokanPages.Backend.Storage.AzureBlobStorage
 {
     public class AzureBlobStorage : IAzureBlobStorage
     {
         private readonly CloudBlobContainer FContainer;
-
+       
         public AzureBlobStorage(string AConnectionString, string AContainerName)
             => FContainer = CloudStorageAccount
                 .Parse(AConnectionString)
                 .CreateCloudBlobClient()
                 .GetContainerReference(AContainerName);
-        
-        
-        public async Task<StorageByteContent> ReadAllBytesAsync(string AFilePath)
+
+        public async Task<StorageByteContent> ReadAllBytes(string ASourceFilePath)
         {
-            var LBlob = FContainer.GetBlockBlobReference(AFilePath);
+            var LBlob = FContainer.GetBlockBlobReference(ASourceFilePath);
 
             if (!await LBlob.ExistsAsync())
                 return null;
@@ -34,9 +34,9 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
             };
         }
 
-        public async Task<StorageStreamContent> OpenReadAsync(string AFilePath)
+        public async Task<StorageStreamContent> OpenRead(string ASourceFilePath)
         {
-            var LBlob = FContainer.GetBlockBlobReference(AFilePath);
+            var LBlob = FContainer.GetBlockBlobReference(ASourceFilePath);
             var LStream = await LBlob.OpenReadAsync();
             var LContentType = LBlob.Properties.ContentType;
 
@@ -47,35 +47,36 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
             };
         }
 
-        public async Task UploadFileAsync(Stream AStream, string AFilePath, string AContentType, long AMaxLength)
+        public async Task UploadFile(Stream ASourceStream, string ADestinationPath, string AContentType, long AMaxLength)
         {
-            var LBlob = FContainer.GetBlockBlobReference(AFilePath);
+            var LBlob = FContainer.GetBlockBlobReference(ADestinationPath);
             LBlob.Properties.ContentType = AContentType;
 
             var LMaxSizeCondition = new AccessCondition { IfMaxSizeLessThanOrEqual = AMaxLength };
             var LMaxSizeOption = new BlobRequestOptions { SingleBlobUploadThresholdInBytes = AMaxLength };
 
             var LOperationContext = new OperationContext();
-            await LBlob.UploadFromStreamAsync(AStream, LMaxSizeCondition, LMaxSizeOption, LOperationContext);
+            await LBlob.UploadFromStreamAsync(ASourceStream, LMaxSizeCondition, LMaxSizeOption, LOperationContext);
         }
 
-        public async Task UploadFileAsync(Stream AStream, string ADestinationFilePath, string AContentType = "application/octet-stream")
+        public async Task UploadFile(Stream ASourceStream, string ADestinationPath, string AContentType = Constants.ContentTypes.STREAM)
         {
-            var LBlob = FContainer.GetBlockBlobReference(ADestinationFilePath);
+            var LBlob = FContainer.GetBlockBlobReference(ADestinationPath);
             LBlob.Properties.ContentType = AContentType;
-            await LBlob.UploadFromStreamAsync(AStream);
+            await LBlob.UploadFromStreamAsync(ASourceStream);
         }
 
-        public async Task<string> GetFileContentType(string AFilePath)
+        public async Task<string> GetFileContentType(string ASourceFilePath)
         {
-            var LBlockBlobReference = FContainer.GetBlockBlobReference(AFilePath);
+            var LBlockBlobReference = FContainer.GetBlockBlobReference(ASourceFilePath);
             await LBlockBlobReference.FetchAttributesAsync();
 
             return LBlockBlobReference.Properties.ContentType;
         }
 
-        public async Task<bool> DeleteFileAsync(string AFilePath)
-            => await FContainer.GetBlockBlobReference(AFilePath)
+        public async Task<bool> DeleteFile(string ASourceFilePath)
+            => await FContainer
+                .GetBlockBlobReference(ASourceFilePath)
                 .DeleteIfExistsAsync();
     }
 }

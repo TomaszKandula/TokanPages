@@ -1,15 +1,16 @@
 using System.IO;
 using System.Threading.Tasks;
+using TokanPages.Backend.Shared;
 
 namespace TokanPages.Backend.Storage.AzureBlobStorage
 {
     public interface IAzureBlobStorage
     {
-        Task<StorageByteContent> ReadAllBytesAsync(string AFilePath);
-        Task<StorageStreamContent> OpenReadAsync(string AFilePath);
-        Task UploadFileAsync(Stream AStream, string AFilePath, string AContentType, long AMaxLength);
-        Task UploadFileAsync(Stream AStream, string ADestinationFilePath, string AContentType = "application/octet-stream");
-        Task<string> GetFileContentType(string AFilePath);
-        Task<bool> DeleteFileAsync(string AFilePath);    
+        Task<StorageByteContent> ReadAllBytes(string ASourceFilePath);
+        Task<StorageStreamContent> OpenRead(string ASourceFilePath);
+        Task UploadFile(Stream ASourceStream, string ADestinationPath, string AContentType, long AMaxLength);
+        Task UploadFile(Stream ASourceStream, string ADestinationPath, string AContentType = Constants.ContentTypes.STREAM);
+        Task<string> GetFileContentType(string ASourceFilePath);
+        Task<bool> DeleteFile(string ASourceFilePath);    
     }
 }
