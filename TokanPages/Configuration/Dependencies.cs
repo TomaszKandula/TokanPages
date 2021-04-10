@@ -17,6 +17,7 @@ using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
 using TokanPages.Backend.Core.Services.TemplateHelper;
 using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
 using FluentValidation;
 using MediatR;
 
@@ -53,9 +54,7 @@ namespace TokanPages.Configuration
         }
 
         private static void SetupLogger(IServiceCollection AServices) 
-        {
-            AServices.AddSingleton<ILogger, Logger>();
-        }
+            => AServices.AddSingleton<ILogger, Logger>();
 
         private static void SetupDatabase(IServiceCollection AServices, IConfiguration AConfiguration) 
         {
@@ -80,6 +79,7 @@ namespace TokanPages.Configuration
         private static void SetupServices(IServiceCollection AServices) 
         {
             AServices.AddHttpContextAccessor();
+            
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();
             AServices.AddScoped<IAzureStorageService, AzureStorageService>();
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
@@ -87,12 +87,16 @@ namespace TokanPages.Configuration
             AServices.AddScoped<IDateTimeService, DateTimeService>();
             AServices.AddScoped<IDbInitializer, DbInitializer>();
             AServices.AddScoped<IUserProvider, UserProvider>();
+           
+            AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
+            {
+                var LAzureStorageSettings = AProvider.GetRequiredService<AzureStorageSettings>();
+                return new AzureBlobStorageFactory(LAzureStorageSettings.ConnectionStrings);
+            });
         }
 
         private static void SetupValidators(IServiceCollection AServices)
-        {
-            AServices.AddValidatorsFromAssemblyContaining<TemplateHandler<IRequest, Unit>>(ServiceLifetime.Scoped);
-        }
+            => AServices.AddValidatorsFromAssemblyContaining<TemplateHandler<IRequest, Unit>>(ServiceLifetime.Scoped);
 
         private static void SetupMediatR(IServiceCollection AServices) 
         {
