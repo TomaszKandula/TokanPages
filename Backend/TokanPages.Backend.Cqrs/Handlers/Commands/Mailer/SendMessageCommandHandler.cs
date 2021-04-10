@@ -6,6 +6,7 @@ using TokanPages.Backend.Shared;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Storage.Settings;
+using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Core.Services.TemplateHelper;
 using TokanPages.Backend.Core.Services.DateTimeService;
@@ -17,6 +18,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
     public class SendMessageCommandHandler : TemplateHandler<SendMessageCommand, Unit>
     {
+        private readonly ILogger FLogger;
         private readonly ISmtpClientService FSmtpClientService;
         private readonly ITemplateHelper FTemplateHelper;
         private readonly IFileUtilityService FFileUtilityService;
@@ -24,13 +26,15 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
         private readonly AzureStorageSettings FAzureStorageSettings;
         
         public SendMessageCommandHandler(ISmtpClientService ASmtpClientService, ITemplateHelper ATemplateHelper, 
-            IFileUtilityService AFileUtilityService, IDateTimeService ADateTimeService, AzureStorageSettings AAzureStorageSettings)
+            IFileUtilityService AFileUtilityService, IDateTimeService ADateTimeService, 
+            AzureStorageSettings AAzureStorageSettings, ILogger ALogger)
         {
             FSmtpClientService = ASmtpClientService;
             FTemplateHelper = ATemplateHelper;
             FFileUtilityService = AFileUtilityService;
             FDateTimeService = ADateTimeService;
             FAzureStorageSettings = AAzureStorageSettings;
+            FLogger = ALogger;
         }
 
         public override async Task<Unit> Handle(SendMessageCommand ARequest, CancellationToken ACancellationToken)
@@ -49,6 +53,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
             };
 
             var LUrl = $"{FAzureStorageSettings.BaseUrl}{Templates.CONTACT_FORM}";
+            FLogger.LogInfo($"Getting email template from URL: {LUrl}.");
+
             var LTemplateFromUrl = await FFileUtilityService.GetFileFromUrl(LUrl, ACancellationToken);
             FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, LNewValues);
 

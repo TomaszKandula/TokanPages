@@ -6,6 +6,7 @@ using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Storage.Settings;
+using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Core.Services.TemplateHelper;
 using TokanPages.Backend.Core.Services.TemplateHelper.Model;
@@ -16,15 +17,18 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
     public class SendNewsletterCommandHandler : TemplateHandler<SendNewsletterCommand, Unit>
     {
+        private readonly ILogger FLogger;
         private readonly ISmtpClientService FSmtpClientService;
         private readonly ITemplateHelper FTemplateHelper;
         private readonly IFileUtilityService FFileUtilityService;
         private readonly AzureStorageSettings FAzureStorageSettings;
         private readonly AppUrls FAppUrls;
 
-        public SendNewsletterCommandHandler(ISmtpClientService ASmtpClientService, ITemplateHelper ATemplateHelper, 
-            IFileUtilityService AFileUtilityService, AzureStorageSettings AAzureStorageSettings, AppUrls AAppUrls) 
+        public SendNewsletterCommandHandler(ILogger ALogger, ISmtpClientService ASmtpClientService, 
+            ITemplateHelper ATemplateHelper, IFileUtilityService AFileUtilityService, 
+            AzureStorageSettings AAzureStorageSettings, AppUrls AAppUrls)
         {
+            FLogger = ALogger;
             FSmtpClientService = ASmtpClientService;
             FTemplateHelper = ATemplateHelper;
             FFileUtilityService = AFileUtilityService;
@@ -36,6 +40,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
         {
             var LUpdateSubscriberBaseLink = FAppUrls.DeploymentOrigin + FAppUrls.UpdateSubscriberPath;
             var LUnsubscribeBaseLink = FAppUrls.DeploymentOrigin + FAppUrls.UnsubscribePath;
+
+            FLogger.LogInfo($"Update subscriber base URL: {LUpdateSubscriberBaseLink}.");
+            FLogger.LogInfo($"Unsubscribe base URL: {LUnsubscribeBaseLink}.");
             
             foreach (var LSubscriber in ARequest.SubscriberInfo)
             {
@@ -54,6 +61,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 };
 
                 var LUrl = $"{FAzureStorageSettings.BaseUrl}{Templates.NEWSLETTER}";
+                FLogger.LogInfo($"Getting newsletter template from URL: {LUrl}.");
+                
                 var LTemplateFromUrl = await FFileUtilityService.GetFileFromUrl(LUrl, ACancellationToken);
                 FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, LNewValues);
 
