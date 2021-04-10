@@ -5,7 +5,7 @@ using System.Globalization;
 using TokanPages.Backend.Shared;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Storage.AzureStorage;
+using TokanPages.Backend.Storage.Settings;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Core.Services.TemplateHelper;
 using TokanPages.Backend.Core.Services.DateTimeService;
@@ -18,19 +18,19 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
     public class SendMessageCommandHandler : TemplateHandler<SendMessageCommand, Unit>
     {
         private readonly ISmtpClientService FSmtpClientService;
-        private readonly IAzureStorageService FAzureStorageService;
         private readonly ITemplateHelper FTemplateHelper;
         private readonly IFileUtilityService FFileUtilityService;
         private readonly IDateTimeService FDateTimeService;
+        private readonly AzureStorageSettings FAzureStorageSettings;
         
-        public SendMessageCommandHandler(ISmtpClientService ASmtpClientService, IAzureStorageService AAzureStorageService, 
-            ITemplateHelper ATemplateHelper, IFileUtilityService AFileUtilityService, IDateTimeService ADateTimeService)
+        public SendMessageCommandHandler(ISmtpClientService ASmtpClientService, ITemplateHelper ATemplateHelper, 
+            IFileUtilityService AFileUtilityService, IDateTimeService ADateTimeService, AzureStorageSettings AAzureStorageSettings)
         {
             FSmtpClientService = ASmtpClientService;
-            FAzureStorageService = AAzureStorageService;
             FTemplateHelper = ATemplateHelper;
             FFileUtilityService = AFileUtilityService;
             FDateTimeService = ADateTimeService;
+            FAzureStorageSettings = AAzureStorageSettings;
         }
 
         public override async Task<Unit> Handle(SendMessageCommand ARequest, CancellationToken ACancellationToken)
@@ -48,7 +48,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 new Item { Tag = "{DATE_TIME}", Value = FDateTimeService.Now.ToString(CultureInfo.InvariantCulture) }
             };
 
-            var LUrl = $"{FAzureStorageService.GetBaseUrl}{Templates.CONTACT_FORM}";
+            var LUrl = $"{FAzureStorageSettings.BaseUrl}{Templates.CONTACT_FORM}";
             var LTemplateFromUrl = await FFileUtilityService.GetFileFromUrl(LUrl, ACancellationToken);
             FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, LNewValues);
 
