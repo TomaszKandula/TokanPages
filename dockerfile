@@ -7,7 +7,7 @@ RUN yarn install
 
 COPY ./TokanPages/ClientApp/public ./public
 COPY ./TokanPages/ClientApp/src ./src
-RUN yarn app-test
+RUN yarn app-test --ci --coverage
 RUN yarn build
 
 # 2 - Build .NET Core app
