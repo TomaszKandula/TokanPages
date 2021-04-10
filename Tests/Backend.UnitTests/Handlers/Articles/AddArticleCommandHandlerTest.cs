@@ -86,7 +86,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 LDatabaseContext, 
                 LMockedDateTime.Object, 
                 FMockedAzureBlobStorageFactory.Object);
-
+            
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() 
                 => LAddArticleCommandHandler.Handle(LAddArticleCommand, CancellationToken.None));
