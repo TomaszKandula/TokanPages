@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,10 +9,9 @@ using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Storage.AzureStorage;
-using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
 using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
 using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
@@ -19,20 +19,17 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     public class UpdateArticleCommandHandler : TemplateHandler<UpdateArticleCommand, Unit>
     {
         private readonly DatabaseContext FDatabaseContext;
-        private readonly IAzureStorageService FAzureStorageService;
-        private readonly IFileUtilityService FFileUtilityService;
         private readonly IUserProvider FUserProvider;
         private readonly IDateTimeService FDateTimeService;
-
-        public UpdateArticleCommandHandler(DatabaseContext ADatabaseContext,
-            IAzureStorageService AAzureStorageService, IFileUtilityService AFileUtilityService,
-            IUserProvider AUserProvider, IDateTimeService ADateTimeService)
+        private readonly IAzureBlobStorageFactory FAzureBlobStorageFactory;
+        
+        public UpdateArticleCommandHandler(DatabaseContext ADatabaseContext, IUserProvider AUserProvider, 
+            IDateTimeService ADateTimeService, IAzureBlobStorageFactory AAzureBlobStorageFactory)
         {
             FDatabaseContext = ADatabaseContext;
-            FAzureStorageService = AAzureStorageService;
-            FFileUtilityService = AFileUtilityService;
             FUserProvider = AUserProvider;
             FDateTimeService = ADateTimeService;
+            FAzureBlobStorageFactory = AAzureBlobStorageFactory;
         }
 
         public override async Task<Unit> Handle(UpdateArticleCommand ARequest, CancellationToken ACancellationToken)
@@ -45,10 +42,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
             if (!string.IsNullOrEmpty(ARequest.TextToUpload))
-                await UploadText(ARequest, ACancellationToken);
+                await UploadText(ARequest.Id, ARequest.TextToUpload);
 
             if (!string.IsNullOrEmpty(ARequest.ImageToUpload))
-                await UploadImage(ARequest, ACancellationToken);
+                await UploadImage(ARequest.Id, ARequest.ImageToUpload);
 
             var LCurrentArticle = LArticles.First();
 
@@ -86,49 +83,44 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             return await Task.FromResult(Unit.Value);
         }
 
-        private async Task UploadImage(UpdateArticleCommand ARequest, CancellationToken ACancellationToken)
+        private async Task UploadText(Guid AId, string ATextToUpload)
         {
-            if (!ARequest.ImageToUpload.IsBase64String())
+            var LAzureBlob = FAzureBlobStorageFactory.Create();
+            var LTextToBase64 = ATextToUpload.ToBase64Encode();
+            var LBytes = Convert.FromBase64String(LTextToBase64);
+            var LContents = new MemoryStream(LBytes);
+
+            try
+            {
+                var LDestinationPath = $"content\\articles\\{AId.ToString().ToLower()}\\text.json";
+                await LAzureBlob.UploadFile(LContents, LDestinationPath);
+            }
+            catch (Exception LException)
+            {
+                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LException.Message);
+            }
+        }
+
+        private async Task UploadImage(Guid AId, string AImageToUpload)
+        {
+            if (!AImageToUpload.IsBase64String()) 
                 throw new BusinessException(nameof(ErrorCodes.INVALID_BASE64), ErrorCodes.INVALID_BASE64);
-
-            var LImageContent = await FFileUtilityService
-                .SaveToFile(
-                    "__upload", 
-                    $"{ARequest.Id}.jpg", 
-                    ARequest.ImageToUpload);
             
-            var LImageUpload = await FAzureStorageService
-                .UploadFile(
-                    $"content\\articles\\{ARequest.Id.ToString().ToLower()}", 
-                    "image.jpeg", 
-                    LImageContent, 
-                    "image/jpeg",
-                    ACancellationToken);
-
-            if (!LImageUpload.IsSucceeded)
-                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LImageUpload.ErrorDesc);
-        }
-
-        private async Task UploadText(UpdateArticleCommand ARequest, CancellationToken ACancellationToken)
-        {
-            var LTextContent = await FFileUtilityService
-                .SaveToFile(
-                    "__upload", 
-                    $"{ARequest.Id}.json", 
-                    ARequest.TextToUpload);
+            var LAzureBlob = FAzureBlobStorageFactory.Create();
+            var LBytes = Convert.FromBase64String(AImageToUpload);
+            var LContents = new MemoryStream(LBytes);
             
-            var LTextUpload = await FAzureStorageService
-                .UploadFile(
-                    $"content\\articles\\{ARequest.Id.ToString().ToLower()}", 
-                    "text.json", 
-                    LTextContent,
-                    "application/json", 
-                    ACancellationToken);
-
-            if (!LTextUpload.IsSucceeded)
-                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LTextUpload.ErrorDesc);
+            try
+            {
+                var LDestinationPath = $"content\\articles\\{AId.ToString().ToLower()}\\image.jpeg";
+                await LAzureBlob.UploadFile(LContents, LDestinationPath);
+            }
+            catch (Exception LException)
+            {
+                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LException.Message);
+            }
         }
-
+        
         private void AddNewArticleLikes(bool AIsAnonymousUser, UpdateArticleCommand ARequest)
         {
             var LLikesLimit = AIsAnonymousUser 

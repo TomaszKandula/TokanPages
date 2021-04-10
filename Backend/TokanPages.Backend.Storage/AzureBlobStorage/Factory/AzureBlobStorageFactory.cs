@@ -1,6 +1,6 @@
 namespace TokanPages.Backend.Storage.AzureBlobStorage.Factory
 {
-    public class AzureBlobStorageFactory : IAzureBlobStorageFactory
+    public class AzureBlobStorageFactory : AzureBlobStorageObject, IAzureBlobStorageFactory
     {
         private readonly string FConnectionString;
         private readonly string FContainerName;
@@ -10,11 +10,13 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage.Factory
             FConnectionString = AConnectionString;
             FContainerName = AContainerName;
         }
-        
-        public IAzureBlobStorage Create() 
+
+        public AzureBlobStorageFactory() { }
+
+        public override IAzureBlobStorage Create() 
             => new AzureBlobStorage(FConnectionString, FContainerName);
 
-        public IAzureBlobStorage Create(string AContainerName) 
+        public override IAzureBlobStorage Create(string AContainerName) 
             => new AzureBlobStorage(FConnectionString, AContainerName);
     }
 }
