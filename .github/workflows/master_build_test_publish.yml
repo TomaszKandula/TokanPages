@@ -20,10 +20,9 @@ jobs:
       with:
         files: ${{ github.workspace }}/TokanPages/appsettings.Staging.json
       env:
-        AzureStorage.AccountName: "${{ secrets.AZURESTORAGE__ACCOUNTNAME }}"
-        AzureStorage.AccountKey: "${{ secrets.AZURESTORAGE__ACCOUNTKEY }}"
-        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL }}"
+        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL_TEST }}"
         AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME_TEST }}"
+        AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING }}"
         Sentry.Dsn: "${{ secrets.SENTRY__DSN_TEST }}"
         SmtpServer.Account: "${{ secrets.SMTPSERVER__ACCOUNT }}"
         SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD }}"
@@ -39,10 +38,9 @@ jobs:
         AppUrls.UnsubscribePath: "${{ secrets.APPURLS__UNSUBSCRIBEPATH}}"
         AppUrls.DevelopmentOrigin: "${{ secrets.APPURLS__DEVELOPMENTORIGIN }}"
         AppUrls.DeploymentOrigin: "${{ secrets.APPURLS__DEPLOYMENTORIGIN }}"
-        AzureStorage.AccountName: "${{ secrets.AZURESTORAGE__ACCOUNTNAME }}"
-        AzureStorage.AccountKey: "${{ secrets.AZURESTORAGE__ACCOUNTKEY }}"
         AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL }}"
         AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME }}"
+        AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING }}"
         Sentry.Dsn: "${{ secrets.SENTRY__DSN }}"
         ConnectionStrings.DbConnect: "${{ secrets.CONNECTIONSTRING__PROD }}"
         SmtpServer.Account: "${{ secrets.SMTPSERVER__ACCOUNT }}"
@@ -53,12 +51,12 @@ jobs:
     - name: Build and push Docker image (runs frontend & backend tests)
       uses: azure/docker-login@v1
       with:
-        login-server: tokanpages.azurecr.io
-        username: tokanpages
+        login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build . -t tokanpages.azurecr.io/tokanpages:${{ github.sha }}
-        docker push tokanpages.azurecr.io/tokanpages:${{ github.sha }}
+        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
@@ -66,4 +64,4 @@ jobs:
         app-name: tokanpages
         slot-name: production
         publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-        images: tokanpages.azurecr.io/tokanpages:${{ github.sha }}
+        images: ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
