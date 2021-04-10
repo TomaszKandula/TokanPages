@@ -1,22 +1,41 @@
 ﻿using Xunit;
 using Moq;
 using FluentAssertions;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Backend.TestData;
-using TokanPages.Backend.Storage.Models;
-using TokanPages.Backend.Storage.AzureStorage;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Storage.AzureBlobStorage;
 using TokanPages.Backend.Core.Services.DateTimeService;
-using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
+using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
 
 namespace Backend.UnitTests.Handlers.Articles
 {
     public class AddArticleCommandHandlerTest : TestBase
     {
+        private readonly Mock<AzureBlobStorageFactory> FMockedAzureBlobStorageFactory;
+        
+        public AddArticleCommandHandlerTest()
+        {
+            FMockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
+            var LMockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
+
+            LMockedAzureBlobStorage
+                .Setup(AAzureBlobStorage => AAzureBlobStorage.UploadFile(
+                    It.IsAny<Stream>(),
+                    It.IsAny<string>(),
+                    It.IsAny<string>()))
+                .Returns(Task.FromResult(string.Empty));
+            
+            FMockedAzureBlobStorageFactory
+                .Setup(AAzureBlobStorageFactory => AAzureBlobStorageFactory.Create())
+                .Returns(LMockedAzureBlobStorage.Object);
+        }
+
         [Fact]
         public async Task AddArticle_WhenFieldsAreProvidedWithBase64Image_ShouldAddEntity() 
         {
@@ -30,26 +49,12 @@ namespace Backend.UnitTests.Handlers.Articles
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
-            var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedDateTime = new Mock<DateTimeService>();
-
-            LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
-                It.IsAny<string>(),
-                It.IsAny<string>(),
-                It.IsAny<string>()))
-                .Returns(Task.FromResult(string.Empty));
-
-            LMockedStorage.Setup(AMockedStorage => AMockedStorage.UploadFile(
-                It.IsAny<string>(),
-                It.IsAny<string>(),
-                It.IsAny<string>(),
-                It.IsAny<string>(),
-                It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(new StorageActionResult { IsSucceeded = true }));
             
-            var LAddArticleCommandHandler = new AddArticleCommandHandler(LDatabaseContext, 
-                LMockedStorage.Object, LMockedUtility.Object, LMockedDateTime.Object);
+            var LAddArticleCommandHandler = new AddArticleCommandHandler(
+                LDatabaseContext, 
+                LMockedDateTime.Object, 
+                FMockedAzureBlobStorageFactory.Object);
 
             // Act
             await LAddArticleCommandHandler.Handle(LAddArticleCommand, CancellationToken.None);
@@ -75,26 +80,12 @@ namespace Backend.UnitTests.Handlers.Articles
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
-            var LMockedStorage = new Mock<AzureStorageService>();
-            var LMockedUtility = new Mock<FileUtilityService>();
             var LMockedDateTime = new Mock<DateTimeService>();
 
-            LMockedUtility.Setup(AMockedUtility => AMockedUtility.SaveToFile(
-                It.IsAny<string>(),
-                It.IsAny<string>(),
-                It.IsAny<string>()))
-                .Returns(Task.FromResult(string.Empty));
-
-            LMockedStorage.Setup(AMockedStorage => AMockedStorage.UploadFile(
-                It.IsAny<string>(),
-                It.IsAny<string>(),
-                It.IsAny<string>(),
-                It.IsAny<string>(),
-                It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(new StorageActionResult { IsSucceeded = true }));
-
-            var LAddArticleCommandHandler = new AddArticleCommandHandler(LDatabaseContext, 
-                LMockedStorage.Object, LMockedUtility.Object, LMockedDateTime.Object);
+            var LAddArticleCommandHandler = new AddArticleCommandHandler(
+                LDatabaseContext, 
+                LMockedDateTime.Object, 
+                FMockedAzureBlobStorageFactory.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() 
