@@ -21,10 +21,9 @@ jobs:
         files: ${{ github.workspace }}/TokanPages/appsettings.Staging.json
       env:
         AzureStorage.AccountName: "${{ secrets.AZURESTORAGE__ACCOUNTNAME }}"
-        AzureStorage.AccountKey: "${{ secrets.AZURESTORAGE__ACCOUNTKEY }}"
-        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL }}"
         AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME_TEST }}"
         AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING }}"
+        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL_TEST }}"
         Sentry.Dsn: "${{ secrets.SENTRY__DSN_TEST }}"
         SmtpServer.Account: "${{ secrets.SMTPSERVER__ACCOUNT }}"
         SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD }}"
@@ -41,10 +40,9 @@ jobs:
         AppUrls.DevelopmentOrigin: "${{ secrets.APPURLS__DEVELOPMENTORIGIN }}"
         AppUrls.DeploymentOrigin: "${{ secrets.APPURLS__DEPLOYMENTORIGIN }}"
         AzureStorage.AccountName: "${{ secrets.AZURESTORAGE__ACCOUNTNAME }}"
-        AzureStorage.AccountKey: "${{ secrets.AZURESTORAGE__ACCOUNTKEY }}"
-        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL }}"
         AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME }}"
         AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING }}"
+        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL }}"
         Sentry.Dsn: "${{ secrets.SENTRY__DSN }}"
         ConnectionStrings.DbConnect: "${{ secrets.CONNECTIONSTRING__PROD }}"
         SmtpServer.Account: "${{ secrets.SMTPSERVER__ACCOUNT }}"
