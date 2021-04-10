@@ -29,7 +29,7 @@ namespace TokanPages.Backend.Storage.AzureStorage
                 .Replace("{AccountName}", FAzureStorageSettings.AccountName)
                 .Replace("{ContainerName}", FAzureStorageSettings.ContainerName);
 
-        public override async Task<ActionResult> UploadFile(string ADestContainerReference, string ADestFileName, string ASrcFullFilePath, string AContentType, CancellationToken ACancellationToken) 
+        public override async Task<StorageActionResult> UploadFile(string ADestContainerReference, string ADestFileName, string ASrcFullFilePath, string AContentType, CancellationToken ACancellationToken) 
         {
             try 
             {
@@ -43,11 +43,11 @@ namespace TokanPages.Backend.Storage.AzureStorage
                 LBlockBlob.Properties.ContentType = AContentType;
                 await LBlockBlob.UploadFromStreamAsync(LFileStream, null, null, null, ACancellationToken);
 
-                return new ActionResult { IsSucceeded = true };
+                return new StorageActionResult { IsSucceeded = true };
             }
             catch (Exception LException)
             {
-                return new ActionResult 
+                return new StorageActionResult 
                 { 
                     ErrorCode = LException.HResult.ToString(),
                     ErrorDesc = LException.Message
@@ -55,7 +55,7 @@ namespace TokanPages.Backend.Storage.AzureStorage
             }
         }
 
-        public override async Task<ActionResult> RemoveFromStorage(string AContainerReference, string AFileName, CancellationToken ACancellationToken) 
+        public override async Task<StorageActionResult> RemoveFromStorage(string AContainerReference, string AFileName, CancellationToken ACancellationToken) 
         {
             try
             {
@@ -67,11 +67,11 @@ namespace TokanPages.Backend.Storage.AzureStorage
 
                 await LBlockBlob.DeleteIfExistsAsync(DeleteSnapshotsOption.None, null, null, null, ACancellationToken);
 
-                return new ActionResult { IsSucceeded = true };
+                return new StorageActionResult { IsSucceeded = true };
             }
             catch (Exception LException)
             {
-                return new ActionResult
+                return new StorageActionResult
                 {
                     ErrorCode = LException.HResult.ToString(),
                     ErrorDesc = LException.Message

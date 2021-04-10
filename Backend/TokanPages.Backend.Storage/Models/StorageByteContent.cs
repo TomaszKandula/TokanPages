@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Storage
+namespace TokanPages.Backend.Storage.Models
 {
     public class StorageByteContent
     {

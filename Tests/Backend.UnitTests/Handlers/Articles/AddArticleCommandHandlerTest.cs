@@ -46,7 +46,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
+                .Returns(Task.FromResult(new StorageActionResult { IsSucceeded = true }));
             
             var LAddArticleCommandHandler = new AddArticleCommandHandler(LDatabaseContext, 
                 LMockedStorage.Object, LMockedUtility.Object, LMockedDateTime.Object);
@@ -91,7 +91,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
+                .Returns(Task.FromResult(new StorageActionResult { IsSucceeded = true }));
 
             var LAddArticleCommandHandler = new AddArticleCommandHandler(LDatabaseContext, 
                 LMockedStorage.Object, LMockedUtility.Object, LMockedDateTime.Object);

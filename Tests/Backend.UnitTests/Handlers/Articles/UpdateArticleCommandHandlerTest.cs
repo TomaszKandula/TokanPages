@@ -69,7 +69,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
+                .Returns(Task.FromResult(new StorageActionResult { IsSucceeded = true }));
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
@@ -142,7 +142,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
+                .Returns(Task.FromResult(new StorageActionResult { IsSucceeded = true }));
 
             const string IP_ADDRESS = "255.255.255.255";
             LMockedUserProvider
@@ -231,7 +231,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
+                .Returns(Task.FromResult(new StorageActionResult { IsSucceeded = true }));
 
             const string IP_ADDRESS = "255.255.255.255";
             LMockedUserProvider
@@ -337,7 +337,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
+                .Returns(Task.FromResult(new StorageActionResult { IsSucceeded = true }));
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
@@ -440,7 +440,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
+                .Returns(Task.FromResult(new StorageActionResult { IsSucceeded = true }));
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
@@ -534,7 +534,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
+                .Returns(Task.FromResult(new StorageActionResult { IsSucceeded = true }));
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
@@ -600,7 +600,7 @@ namespace Backend.UnitTests.Handlers.Articles
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<CancellationToken>()))
-                .Returns(Task.FromResult(new ActionResult { IsSucceeded = true }));
+                .Returns(Task.FromResult(new StorageActionResult { IsSucceeded = true }));
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())

@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Storage.AzureStorage
     public interface IAzureStorageService
     {
         string GetBaseUrl { get; }
-        Task<ActionResult> UploadFile(string ADestContainerReference, string ADestFileName, string ASrcFullFilePath, string AContentType, CancellationToken ACancellationToken);
-        Task<ActionResult> RemoveFromStorage(string AContainerReference, string AFileName, CancellationToken ACancellationToken);
+        Task<StorageActionResult> UploadFile(string ADestContainerReference, string ADestFileName, string ASrcFullFilePath, string AContentType, CancellationToken ACancellationToken);
+        Task<StorageActionResult> RemoveFromStorage(string AContainerReference, string AFileName, CancellationToken ACancellationToken);
     }
 }

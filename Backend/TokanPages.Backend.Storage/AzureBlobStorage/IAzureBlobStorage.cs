@@ -1,6 +1,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using TokanPages.Backend.Shared;
+using TokanPages.Backend.Storage.Models;
 
 namespace TokanPages.Backend.Storage.AzureBlobStorage
 {
