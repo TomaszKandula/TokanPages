@@ -15,6 +15,6 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage.Factory
             => new AzureBlobStorage(FConnectionString, FContainerName);
 
         public IAzureBlobStorage Create(string AContainerName) 
-            => new AzureBlobStorage(FConnectionString, FContainerName);
+            => new AzureBlobStorage(FConnectionString, AContainerName);
     }
 }
