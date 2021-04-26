@@ -50,7 +50,7 @@ Backend holds various services used by TokanPages where main application resides
 
 ## Setting-up the database
 
-For testing, local SQL server/database is used, connection string have to be setup by replacing __set_env__ with proper value:
+Copy below code from appsettings.Development.json to your **user secrets**:
 
 ```
 {
@@ -60,6 +60,12 @@ For testing, local SQL server/database is used, connection string have to be set
   }
 }
 ```
+
+### Development environment:
+
+if `set_env` will remain unchanged, application will use SQL database in-memory and perform data seeding. However, if one willing to use local/remote SQL database, simply repace `set_env` with valid connection string (note: application always uses in-memory database when conncetion string is invalid). Application seed test data only when the existing tables are not populated; and migration is performed only on local/remote SQL database.
+
+### Manual migration
 
 Go to Package Manager Console (PMC) to execute following command:
 
