@@ -63,7 +63,7 @@ Copy below code from appsettings.Development.json to your **user secrets**:
 
 ### Development environment:
 
-if `set_env` will remain unchanged, application will use SQL database in-memory and perform data seeding. However, if one willing to use local/remote SQL database, simply repace `set_env` with valid connection string (note: application always uses in-memory database when conncetion string is invalid). Application seed test data only when the existing tables are not populated; and migration is performed only on local/remote SQL database.
+if `set_env` remains unchanged, application will use SQL database in-memory and perform data seeding. However, if one willing to use local/remote SQL database, simply repace `set_env` with valid connection string (note: application always uses in-memory database when conncetion string is invalid). Application seed test data only when the existing tables are not populated; and migration is performed only on local/remote SQL database.
 
 ### Manual migration
 
