@@ -52,7 +52,7 @@ namespace TokanPages
             // Local development
             if (FEnvironment.IsDevelopment())
             {
-                Dependencies.RegisterForTests(AServices, FConfiguration);
+                Dependencies.RegisterForDevelopment(AServices, FConfiguration);
 
                 AServices.AddSwaggerGen(AOption =>
                     AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "TokanPagesApi", Version = "v1" }));
@@ -89,7 +89,10 @@ namespace TokanPages
             var LDatabaseInitializer = LScope.ServiceProvider.GetService<IDbInitializer>();
 
             if (FEnvironment.IsDevelopment() || EnvironmentVariables.IsStaging())
+            {
+                LDatabaseInitializer.StartMigration();
                 LDatabaseInitializer.SeedData();
+            }
 
             AApplication.UseForwardedHeaders();
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);
