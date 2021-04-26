@@ -63,7 +63,7 @@ Copy below code from appsettings.Development.json to your **user secrets**:
 
 ### Development environment:
 
-if `set_env` remains unchanged, application will use SQL database in-memory and perform data seeding. However, if one willing to use local/remote SQL database, simply repace `set_env` with valid connection string (note: application always uses in-memory database when conncetion string is invalid). Application seed test data only when the existing tables are not populated; and migration is performed only on local/remote SQL database.
+If `set_env` remains unchanged, the application will use SQL database in-memory. However, suppose one is willing to use a local/remote SQL database. In that case, they should replace `set_env` with a valid connection string (note: application always uses in-memory database when the connection string is invalid). Application seeds test when the existing tables are not populated, and migration is performed only on the local/remote SQL database.
 
 ### Manual migration
 
@@ -71,7 +71,7 @@ Go to Package Manager Console (PMC) to execute following command:
 
 `Update-Database -StartupProject TokanPages -Project TokanPages.Backend.Database -Context DatabaseContext`
 
-EF Core will create all the necessary tables and will seed test data. More on migrations here: [TokanPages.Backend.Database](https://github.com/TomaszKandula/TokanPages/tree/dev/Backend/TokanPages.Backend.Database).
+EF Core will create all the necessary tables. More on migrations here: [TokanPages.Backend.Database](https://github.com/TomaszKandula/TokanPages/tree/dev/Backend/TokanPages.Backend.Database).
 
 ## Integration Tests
 
