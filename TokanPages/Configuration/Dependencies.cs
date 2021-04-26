@@ -8,6 +8,7 @@ using TokanPages.Backend.Database;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Core.Behaviours;
 using TokanPages.Backend.Shared.Settings;
+using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Storage.Settings;
 using TokanPages.Backend.SmtpClient.Settings;
 using TokanPages.Backend.Database.Initialize;
@@ -36,6 +37,24 @@ namespace TokanPages.Configuration
             SetupDatabaseForTest(AServices);
         }
 
+        public static void RegisterForDevelopment(IServiceCollection AServices, IConfiguration AConfiguration)
+        {
+            var LIsValidConnection = AConfiguration
+                .GetConnectionString("DbConnect")
+                .IsValidConnectionString();
+
+            if (!LIsValidConnection)
+            {
+                SetupDatabaseForTest(AServices);
+            }
+            else
+            {
+                SetupDatabase(AServices, AConfiguration);
+            }
+
+            CommonServices(AServices, AConfiguration);
+        }
+        
         private static void CommonServices(IServiceCollection AServices, IConfiguration AConfiguration)
         {
             SetupAppSettings(AServices, AConfiguration);

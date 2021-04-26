@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TokanPages.Backend.Database.Seeders;
 
@@ -9,9 +10,7 @@ namespace TokanPages.Backend.Database.Initialize
         private readonly IServiceScopeFactory FScopeFactory;
 
         public DbInitializer(IServiceScopeFactory AScopeFactory)
-        {
-            FScopeFactory = AScopeFactory;
-        }
+            => FScopeFactory = AScopeFactory;
 
         public void StartMigration()
         {
@@ -19,15 +18,13 @@ namespace TokanPages.Backend.Database.Initialize
             using var LDatabaseContext = LServiceScope.ServiceProvider.GetService<DatabaseContext>();
 
             if (LDatabaseContext.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory") 
-            {
                 LDatabaseContext.Database.Migrate();
-            }
         }
 
-        public void SeedData()
+        public async Task SeedData()
         {
             using var LServiceScope = FScopeFactory.CreateScope();
-            using var LDatabaseContext = LServiceScope.ServiceProvider.GetService<DatabaseContext>();
+            await using var LDatabaseContext = LServiceScope.ServiceProvider.GetService<DatabaseContext>();
 
             if (!LDatabaseContext.Users.AnyAsync().GetAwaiter().GetResult())
                 LDatabaseContext.Users.AddRange(UsersSeeder.SeedUsers());
@@ -44,7 +41,7 @@ namespace TokanPages.Backend.Database.Initialize
             if (!LDatabaseContext.PhotoCategories.AnyAsync().GetAwaiter().GetResult())
                 LDatabaseContext.PhotoCategories.AddRange(PhotoCategoriesSeeder.SeedPhotoCategories());
 
-            LDatabaseContext.SaveChanges();
+            await LDatabaseContext.SaveChangesAsync();
         }
     }
 }
