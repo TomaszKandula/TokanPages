@@ -15,6 +15,10 @@ namespace TokanPages
                 .UseSerilog((AContext, AConfig) => 
                 {
                     AConfig.ReadFrom.Configuration(AContext.Configuration);
+                    AConfig.WriteTo.Console();
+                    AConfig.MinimumLevel.Information();
+                    AConfig.MinimumLevel.Override("Microsoft", LogEventLevel.Warning);
+                    AConfig.Enrich.FromLogContext();
                     AConfig.WriteTo.Sentry(ASentry => 
                     {
                         ASentry.SendDefaultPii = true;

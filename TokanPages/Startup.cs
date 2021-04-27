@@ -16,6 +16,7 @@ using TokanPages.CustomHandlers;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Shared.Environment;
 using TokanPages.Backend.Database.Initialize;
+using Serilog;
 
 namespace TokanPages
 {
@@ -94,6 +95,9 @@ namespace TokanPages
                 LDatabaseInitializer.SeedData();
             }
 
+            if (!EnvironmentVariables.IsStaging())
+                AApplication.UseSerilogRequestLogging();
+            
             AApplication.UseForwardedHeaders();
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);
             AApplication.UseMiddleware<GarbageCollector>();
