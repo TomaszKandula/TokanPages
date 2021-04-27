@@ -15,7 +15,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
         public override async Task<VerifyEmailAddressCommandResult> Handle(VerifyEmailAddressCommand ARequest, CancellationToken ACancellationToken)
         {
             var LIsAddressCorrect = FSmtpClientService.IsAddressCorrect(new List<string> { ARequest.Email });
-            var LIsDomainCorrect = await FSmtpClientService.IsDomainCorrect(ARequest.Email);
+            var LIsDomainCorrect = false;
+            
+            if (LIsAddressCorrect[0].IsValid)
+                LIsDomainCorrect = await FSmtpClientService.IsDomainCorrect(ARequest.Email);
 
             return new VerifyEmailAddressCommandResult
             {
