@@ -19,6 +19,11 @@ export const footerContentDefault: IFooterContentDto =
             {
                 name: "",
                 link: ""
+            },
+            thirdIcon:
+            {
+                name: "",
+                link: ""
             }
         }
     }    

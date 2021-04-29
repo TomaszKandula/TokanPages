@@ -8,6 +8,7 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import { CustomColours } from "../../Theme/customColours";
 import { IFooterContentDto } from "../../Api/Models";
+import { MediumIcon } from "../../Theme/Icons/medium";
 import useStyles from "./Hooks/styleFooter";
 
 export default function Footer(props: { footer: IFooterContentDto, isLoading: boolean, backgroundColor?: string | undefined }) 
@@ -57,6 +58,13 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
                                 href={props.footer.content.icons.secondIcon.link} 
                                 target="_blank">
                                 <LinkedInIcon />
+                            </IconButton>
+                            <IconButton 
+                                color="default" 
+                                aria-label={props.footer.content.icons.thirdIcon.name} 
+                                href={props.footer.content.icons.thirdIcon.link} 
+                                target="_blank">
+                                <MediumIcon />
                             </IconButton>
                         </Box>
                     </Box>
