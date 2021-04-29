@@ -32,6 +32,7 @@ Tests are provided, but there is no full coverage yet.
 1. DnsClient.
 1. FluentValidation.
 1. Sentry.
+1. SeriLog.
 1. Swagger-UI.
 
 Unit Tests and Integration Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAssertions](https://github.com/fluentassertions/fluentassertions).
