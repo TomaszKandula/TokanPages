@@ -16,7 +16,7 @@ export function RenderGist(props: ITextItem)
     const updateContent = React.useCallback(async () => 
     {
         if (!mountedRef.current) return;
-        setGistContent(await getDataFromUrl(gistUrl));
+        setGistContent(await getDataFromUrl(gistUrl));// TODO: replace with action/dispatch
     }, [ gistUrl ]);
 
     React.useEffect(() => 
