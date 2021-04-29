@@ -71,6 +71,11 @@ export const TESTIMONIALS_PATH = `${APP_STORAGE}/images/section_testimonials/`;
 export const ICONS_PATH = `${APP_STORAGE}/icons/`;
 export const AVATARS_PATH = `${APP_STORAGE}/content/avatars/`;
 
+/* SVG ICONS */
+
+export const MAIN_ICON = `${ICONS_PATH}main_logo.svg`;
+export const MEDIUM_ICON = `${ICONS_PATH}medium_icon.svg`;
+
 /* MESSAGES AND TEMPLATES */
 
 export const MESSAGE_OUT_SUCCESS = `<p>Congratulations!</p><p>The message has been sent successfully, we will try to respond as soon as possible.</p>`;
