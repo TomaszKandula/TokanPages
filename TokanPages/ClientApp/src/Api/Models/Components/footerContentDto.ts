@@ -17,7 +17,12 @@ export interface IFooterContentDto
             {
                 name: string,
                 link: string
-            }
+            },
+            thirdIcon:
+            {
+                name: string,
+                link: string
+            },
         }
     };
 }
