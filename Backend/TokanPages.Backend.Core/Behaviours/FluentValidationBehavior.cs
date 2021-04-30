@@ -11,9 +11,7 @@ namespace TokanPages.Backend.Core.Behaviours
         private readonly IValidator<TRequest> FValidator;
 
         public FluentValidationBehavior(IValidator<TRequest> AValidator = null) 
-        {
-            FValidator = AValidator;
-        }
+            => FValidator = AValidator;
 
         public Task<TResponse> Handle(TRequest ARequest, CancellationToken ACancellationToken, RequestHandlerDelegate<TResponse> ANext)
         {

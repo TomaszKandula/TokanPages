@@ -9,9 +9,7 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
         private readonly IHttpContextAccessor FHttpContextAccessor;
 
         public UserProvider(IHttpContextAccessor AHttpContextAccessor) 
-        {
-            FHttpContextAccessor = AHttpContextAccessor;
-        }
+            => FHttpContextAccessor = AHttpContextAccessor;
 
         public UserProvider() { }
 

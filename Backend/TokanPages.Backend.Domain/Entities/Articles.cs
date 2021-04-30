@@ -7,10 +7,7 @@ namespace TokanPages.Backend.Domain.Entities
 {
     public partial class Articles : Entity<Guid>
     {
-        public Articles() 
-        {
-            ArticleLikes = new HashSet<ArticleLikes>();
-        }
+        public Articles() => ArticleLikes = new HashSet<ArticleLikes>();
 
         [Required]
         [MaxLength(255)]

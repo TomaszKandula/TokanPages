@@ -7,10 +7,7 @@ namespace TokanPages.Backend.Domain.Entities
 {
     public class Photos : Entity<Guid>
     {
-        public Photos()
-        {
-            Albums = new HashSet<Albums>();
-        }
+        public Photos() => Albums = new HashSet<Albums>();
 
         public Guid UserId { get; set; }
 
