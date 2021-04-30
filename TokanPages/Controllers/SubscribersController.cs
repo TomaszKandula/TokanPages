@@ -15,37 +15,22 @@ namespace TokanPages.Controllers
 
         [HttpGet]
         public async Task<IEnumerable<GetAllSubscribersQueryResult>> GetAllSubscribers()
-        {
-            var LQuery = new GetAllSubscribersQuery();
-            return await FMediator.Send(LQuery);
-        }
+            => await FMediator.Send(new GetAllSubscribersQuery());
 
         [HttpGet("{AId}")]
         public async Task<GetSubscriberQueryResult> GetSubscriber([FromRoute] Guid AId)
-        {
-            var LQuery = new GetSubscriberQuery { Id = AId };
-            return await FMediator.Send(LQuery);
-        }
+            => await FMediator.Send(new GetSubscriberQuery { Id = AId });
 
         [HttpPost]
         public async Task<Guid> AddSubscriber([FromBody] AddSubscriberDto APayLoad) 
-        {
-            var LCommand = SubscribersMapper.MapToAddSubscriberCommand(APayLoad);
-            return await FMediator.Send(LCommand);
-        }
+            => await FMediator.Send(SubscribersMapper.MapToAddSubscriberCommand(APayLoad));
 
         [HttpPost]
         public async Task<Unit> UpdateSubscriber([FromBody] UpdateSubscriberDto APayLoad)
-        {
-            var LCommand = SubscribersMapper.MapToUpdateSubscriberCommand(APayLoad);
-            return await FMediator.Send(LCommand);
-        }
+            => await FMediator.Send(SubscribersMapper.MapToUpdateSubscriberCommand(APayLoad));
 
         [HttpPost]
         public async Task<Unit> RemoveSubscriber([FromBody] RemoveSubscriberDto APayLoad)
-        {
-            var LCommand = SubscribersMapper.MapToRemoveSubscriberCommand(APayLoad);
-            return await FMediator.Send(LCommand);
-        }
+         => await FMediator.Send(SubscribersMapper.MapToRemoveSubscriberCommand(APayLoad));
     }
 }

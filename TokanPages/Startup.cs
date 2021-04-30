@@ -33,15 +33,15 @@ namespace TokanPages
 
         public void ConfigureServices(IServiceCollection AServices)
         {
-            AServices.AddMvc(AOption => AOption.CacheProfiles
-                .Add("Standard", new CacheProfile() 
+            AServices
+                .AddMvc(AOption => AOption.CacheProfiles
+                .Add("Standard", new CacheProfile
                 { 
                     Duration = 10, 
                     Location = ResponseCacheLocation.Any, 
                     NoStore = false 
                 }));
 
-            AServices.AddMvc();
             AServices.AddControllers();          
             AServices.AddSpaStaticFiles(AOptions => AOptions.RootPath = "ClientApp/build");
             AServices.AddResponseCompression(AOptions => AOptions.Providers.Add<GzipCompressionProvider>());

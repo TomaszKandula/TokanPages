@@ -15,37 +15,22 @@ namespace TokanPages.Controllers
 
         [HttpGet]
         public async Task<IEnumerable<GetAllUsersQueryResult>> GetAllUsers()
-        {
-            var LQuery = new GetAllUsersQuery();
-            return await FMediator.Send(LQuery);
-        }
+            => await FMediator.Send(new GetAllUsersQuery());
 
         [HttpGet("{AId}")]
         public async Task<GetUserQueryResult> GetUser([FromRoute] Guid AId)
-        {
-            var LQuery = new GetUserQuery { Id = AId };
-            return await FMediator.Send(LQuery);
-        }
+            => await FMediator.Send(new GetUserQuery { Id = AId });
 
         [HttpPost]
         public async Task<Guid> AddUser([FromBody] AddUserDto APayLoad)
-        {
-            var LCommand = UsersMapper.MapToAddUserCommand(APayLoad);
-            return await FMediator.Send(LCommand);
-        }
+            => await FMediator.Send(UsersMapper.MapToAddUserCommand(APayLoad));
 
         [HttpPost]
         public async Task<Unit> UpdateUser([FromBody] UpdateUserDto APayLoad)
-        {
-            var LCommand = UsersMapper.MapToUpdateUserCommand(APayLoad);
-            return await FMediator.Send(LCommand);
-        }
+            => await FMediator.Send(UsersMapper.MapToUpdateUserCommand(APayLoad));
 
         [HttpPost]
         public async Task<Unit> RemoveUser([FromBody] RemoveUserDto APayLoad)
-        {
-            var LCommand = UsersMapper.MapToRemoveUserCommand(APayLoad);
-            return await FMediator.Send(LCommand);
-        }
+            => await FMediator.Send(UsersMapper.MapToRemoveUserCommand(APayLoad));
     }
 }
