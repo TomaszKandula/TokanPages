@@ -14,6 +14,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
     public class GetArticleQueryHandler : TemplateHandler<GetArticleQuery, GetArticleQueryResult>
     {
         private readonly DatabaseContext FDatabaseContext;
+        
         private readonly IUserProvider FUserProvider;
 
         public GetArticleQueryHandler(DatabaseContext ADatabaseContext, IUserProvider AUserProvider)

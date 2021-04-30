@@ -13,6 +13,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     public class AddUserCommandHandler : TemplateHandler<AddUserCommand, Guid>
     {
         private readonly DatabaseContext FDatabaseContext;
+        
         private readonly IDateTimeService FDateTimeService;
 
         public AddUserCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService) 

@@ -5,9 +5,13 @@ namespace TokanPages.Backend.Shared.Cors
     public static class CorsHeaders
     {
         private const string ACCESS_CONTROL_ALLOW_ORIGIN = "Access-Control-Allow-Origin";
+
         private const string ACCESS_CONTROL_ALLOW_HEADERS = "Access-Control-Allow-Headers";
+        
         private const string ACCESS_CONTROL_ALLOW_METHODS = "Access-Control-Allow-Methods";
+        
         private const string ACCESS_CONTROL_ALLOW_CREDENTIALS = "Access-Control-Allow-Credentials";
+        
         private const string ACCESS_CONTROL_MAX_AGE = "Access-Control-Max-Age";
 
         public static void Ensure(HttpContext AHttpContext)
