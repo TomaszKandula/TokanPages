@@ -23,31 +23,29 @@ namespace TokanPages.CustomHandlers
                 string LResult;
                 switch (LErrorException)
                 {
-
                     case ValidationException LException:
-                        {
-                            var LAppError = new ApplicationError(LException.ErrorCode, LException.Message, LException.ValidationResult);
-                            LResult = JsonConvert.SerializeObject(LAppError);
-                            AHttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                            break;
-                        }
+                    {
+                        var LAppError = new ApplicationError(LException.ErrorCode, LException.Message, LException.ValidationResult);
+                        LResult = JsonConvert.SerializeObject(LAppError);
+                        AHttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        break;
+                    }
 
                     case BusinessException LException:
-                        {
-                            var LAppError = new ApplicationError(LException.ErrorCode, LException.Message);
-                            LResult = JsonConvert.SerializeObject(LAppError);
-                            AHttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                            break;
-                        }
+                    {
+                        var LAppError = new ApplicationError(LException.ErrorCode, LException.Message);
+                        LResult = JsonConvert.SerializeObject(LAppError);
+                        AHttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        break;
+                    }
 
                     default:
-                        {
-                            var LAppError = new ApplicationError(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
-                            LResult = JsonConvert.SerializeObject(LAppError);
-                            AHttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                            break;
-                        }
-
+                    {
+                        var LAppError = new ApplicationError(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+                        LResult = JsonConvert.SerializeObject(LAppError);
+                        AHttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        break;
+                    }
                 }
 
                 CorsHeaders.Ensure(AHttpContext);

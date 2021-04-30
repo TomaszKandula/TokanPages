@@ -7,8 +7,6 @@ namespace TokanPages.Backend.Core.Exceptions
         public string ErrorCode { get; }
 
         public BusinessException(string AErrorCode, string AErrorMessage = "") : base(AErrorMessage)
-        {
-            ErrorCode = AErrorCode;
-        }
+            => ErrorCode = AErrorCode;
     }
 }
