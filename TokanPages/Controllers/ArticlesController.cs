@@ -15,37 +15,22 @@ namespace TokanPages.Controllers
 
         [HttpGet]
         public async Task<IEnumerable<GetAllArticlesQueryResult>> GetAllArticles([FromQuery] bool AIsPublished = true) 
-        {
-            var LQuery = new GetAllArticlesQuery { IsPublished = AIsPublished };
-            return await FMediator.Send(LQuery);
-        }
+            => await FMediator.Send(new GetAllArticlesQuery { IsPublished = AIsPublished });
 
         [HttpGet("{AId}")]
         public async Task<GetArticleQueryResult> GetArticle([FromRoute] Guid AId)
-        {
-            var LQuery = new GetArticleQuery { Id = AId};
-            return await FMediator.Send(LQuery);
-        }
+            => await FMediator.Send(new GetArticleQuery { Id = AId});
 
         [HttpPost]
         public async Task<Guid> AddArticle([FromBody] AddArticleDto APayLoad) 
-        {
-            var LCommand = ArticlesMapper.MapToAddArticleCommand(APayLoad);
-            return await FMediator.Send(LCommand);
-        }
+            => await FMediator.Send(ArticlesMapper.MapToAddArticleCommand(APayLoad));
 
         [HttpPost]
         public async Task<Unit> UpdateArticle([FromBody] UpdateArticleDto APayLoad)
-        {
-            var LCommand = ArticlesMapper.MapToUpateArticleCommand(APayLoad);
-            return await FMediator.Send(LCommand);
-        }
+            => await FMediator.Send(ArticlesMapper.MapToUpateArticleCommand(APayLoad));
 
         [HttpPost]
         public async Task<Unit> RemoveArticle([FromBody] RemoveArticleDto APayLoad)
-        {
-            var LCommand = ArticlesMapper.MapToRemoveArticleCommand(APayLoad);
-            return await FMediator.Send(LCommand);
-        }
+            => await FMediator.Send(ArticlesMapper.MapToRemoveArticleCommand(APayLoad));
     }
 }

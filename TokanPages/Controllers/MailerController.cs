@@ -13,23 +13,14 @@ namespace TokanPages.Controllers
 
         [HttpPost]
         public async Task<VerifyEmailAddressCommandResult> VerifyEmailAddress([FromBody] VerifyEmailAddressDto APayLoad) 
-        {
-            var LCommand = MailerMapper.MapToVerifyEmailAddressCommand(APayLoad);
-            return await FMediator.Send(LCommand);        
-        }
+            => await FMediator.Send(MailerMapper.MapToVerifyEmailAddressCommand(APayLoad));
 
         [HttpPost]
         public async Task<Unit> SendMessage([FromBody] SendMessageDto APayLoad)
-        {
-            var LCommand = MailerMapper.MapToSendMessageCommand(APayLoad);
-            return await FMediator.Send(LCommand);
-        }
+            => await FMediator.Send(MailerMapper.MapToSendMessageCommand(APayLoad));
 
         [HttpPost]
         public async Task<Unit> SendNewsletter([FromBody] SendNewsletterDto APayLoad)
-        {
-            var LCommand = MailerMapper.MapToSendNewsletterCommand(APayLoad);
-            return await FMediator.Send(LCommand);
-        }
+            => await FMediator.Send(MailerMapper.MapToSendNewsletterCommand(APayLoad));
     }
 }
