@@ -53,7 +53,9 @@ namespace Backend.UnitTests.Handlers.Articles
             await LDatabaseContext.SaveChangesAsync();
 
             // Act
-            var LResults = (await LGetAllArticlesQueryHandler.Handle(LGetAllArticlesQuery, CancellationToken.None)).ToList();
+            var LResults = (await LGetAllArticlesQueryHandler
+                .Handle(LGetAllArticlesQuery, CancellationToken.None))
+                .ToList();
 
             // Assert
             LResults.Should().NotBeNull();
