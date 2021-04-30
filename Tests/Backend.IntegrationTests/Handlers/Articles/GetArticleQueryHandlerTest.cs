@@ -15,9 +15,7 @@ namespace Backend.IntegrationTests.Handlers.Articles
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public GetArticleQueryHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-        }
+            => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task GetArticle_WhenIdIsCorrect_ShouldReturnEntityAsJsonObject()

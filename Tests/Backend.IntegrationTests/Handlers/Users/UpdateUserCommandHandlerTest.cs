@@ -17,9 +17,7 @@ namespace Backend.IntegrationTests.Handlers.Users
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public UpdateUserCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-        }
+            => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task UpdateUser_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError() 

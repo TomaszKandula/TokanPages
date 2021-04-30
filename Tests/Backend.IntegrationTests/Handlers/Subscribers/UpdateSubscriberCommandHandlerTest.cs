@@ -17,16 +17,14 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public UpdateSubscriberCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-        }
+            => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task UpdateSubscriber_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError()
         {
             // Arrange
-            var LRequest = "/api/v1/subscribers/updatesubscriber/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            const string REQUEST = "/api/v1/subscribers/updatesubscriber/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
 
             var LPayLoad = new UpdateSubscriberDto
             {

@@ -14,9 +14,7 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public AddSubscriberCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-        }
+            => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task AddSubscriber_WhenAllFieldsAreCorrect_ShouldReturnNewGuid() 

@@ -16,16 +16,14 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public RemoveSubscriberCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-        }
+            => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task RemoveSubscriber_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError()
         {
             // Arrange
-            var LRequest = "/api/v1/subscribers/removesubscriber/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            const string REQUEST = "/api/v1/subscribers/removesubscriber/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
 
             var LPayLoad = new RemoveSubscriberDto
             {

@@ -18,16 +18,14 @@ namespace Backend.IntegrationTests.Handlers.Articles
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public UpdateArticleCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-        }
+            => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task UpdateArticle_WhenIdIsIncorrect_ShouldReturnJsonObjectWithError()
         {
             // Arrange
-            var LRequest = "/api/v1/articles/updatearticle/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            const string REQUEST = "/api/v1/articles/updatearticle/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
 
             var LPayLoad = new UpdateArticleDto
             {

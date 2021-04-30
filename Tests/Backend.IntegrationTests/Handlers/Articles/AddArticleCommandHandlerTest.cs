@@ -15,9 +15,7 @@ namespace Backend.IntegrationTests.Handlers.Articles
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public AddArticleCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-        }
+            => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task AddArticle_WhenAllFieldsAreCorrect_ShouldReturnNewGuid()

@@ -3,6 +3,7 @@ using FluentAssertions;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
 using TokanPages;
 
@@ -14,9 +15,7 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public GetAllSubscribersQueryHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-        }
+            => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task GetAllUsers_ShouldReturnCollection()
@@ -34,7 +33,10 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
 
-            var LDeserialized = JsonConvert.DeserializeObject<IEnumerable<GetAllSubscribersQueryResult>>(LContent);
+            var LDeserialized = JsonConvert
+                .DeserializeObject<IEnumerable<GetAllSubscribersQueryResult>>(LContent)
+                .ToList();
+            
             LDeserialized.Should().NotBeNullOrEmpty();
             LDeserialized.Should().HaveCountGreaterThan(0);
         }

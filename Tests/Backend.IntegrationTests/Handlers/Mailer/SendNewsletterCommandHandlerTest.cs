@@ -17,16 +17,14 @@ namespace Backend.IntegrationTests.Handlers.Mailer
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public SendNewsletterCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-        }
+            => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task SendNewsletter_WhenEmailsAreProvided_ShouldReturnEmptyJsonObject()
         {
             // Arrange
-            var LRequest = "/api/v1/mailer/sendnewsletter/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            const string REQUEST = "/api/v1/mailer/sendnewsletter/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
 
             var LPayLoad = new SendNewsletterDto
             {

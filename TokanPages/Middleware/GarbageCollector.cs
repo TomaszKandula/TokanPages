@@ -16,9 +16,7 @@ namespace TokanPages.Middleware
         private readonly RequestDelegate FRequestDelegate;
 
         public GarbageCollector(RequestDelegate ARequestDelegate)
-        {
-            FRequestDelegate = ARequestDelegate;
-        }
+            => FRequestDelegate = ARequestDelegate;
 
         public async Task Invoke(HttpContext AHttpContext)
         {
