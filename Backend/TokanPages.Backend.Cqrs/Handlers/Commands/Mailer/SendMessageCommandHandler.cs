@@ -19,10 +19,15 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
     public class SendMessageCommandHandler : TemplateHandler<SendMessageCommand, Unit>
     {
         private readonly ILogger FLogger;
+
         private readonly ISmtpClientService FSmtpClientService;
+        
         private readonly ITemplateHelper FTemplateHelper;
+        
         private readonly IFileUtilityService FFileUtilityService;
+        
         private readonly IDateTimeService FDateTimeService;
+        
         private readonly AzureStorageSettings FAzureStorageSettings;
         
         public SendMessageCommandHandler(ISmtpClientService ASmtpClientService, ITemplateHelper ATemplateHelper, 

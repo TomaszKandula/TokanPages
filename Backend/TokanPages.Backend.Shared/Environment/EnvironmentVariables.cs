@@ -8,6 +8,7 @@
     public static class EnvironmentVariables
     {
         private const string STAGING_VALUE = "Staging";
+
         private const string STAGING_KEY = "ASPNETCORE_STAGING";
 
         /// <summary>

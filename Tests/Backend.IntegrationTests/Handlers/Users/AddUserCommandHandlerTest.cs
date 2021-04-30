@@ -14,9 +14,7 @@ namespace Backend.IntegrationTests.Handlers.Users
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public AddUserCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-        }
+            => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task AddUser_WhenAllFieldsAreProvided_ShouldReturnNewGuid() 

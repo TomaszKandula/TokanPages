@@ -17,16 +17,20 @@ namespace TokanPages.Backend.SmtpClient
         private readonly SmtpServerSettings FSmtpServerSettings;
 
         public SmtpClientService(SmtpServerSettings ASmtpServerSettings)
-        {
-            FSmtpServerSettings = ASmtpServerSettings;
-        }
+            => FSmtpServerSettings = ASmtpServerSettings;
 
         public override string From { get; set; }
+        
         public override List<string> Tos { get; set; }
+        
         public override List<string> Ccs { get; set; }
+        
         public override List<string> Bccs { get; set; }
+        
         public override string Subject { get; set; }
+        
         public override string PlainText { get; set; }
+        
         public override string HtmlBody { get; set; }
 
         public override async Task<SendActionResult> Send()
@@ -72,21 +76,23 @@ namespace TokanPages.Backend.SmtpClient
             }
         }
 
-        public override List<CheckActionResult> IsAddressCorrect(List<string> AEmailAddress)
+        public override List<CheckActionResult> IsAddressCorrect(IEnumerable<string> AEmailAddress)
         {
             var LResults = new List<CheckActionResult>();
+
             foreach (var LItem in AEmailAddress)
             {
                 try
                 {
                     var LEmailAddress = new MailAddress(LItem);
-                    LResults.Add(new CheckActionResult { EmailAddress = LItem, IsValid = true });
+                    LResults.Add(new CheckActionResult { EmailAddress = LEmailAddress.Address, IsValid = true });
                 }
                 catch (FormatException)
                 {
                     LResults.Add(new CheckActionResult { EmailAddress = LItem, IsValid = false });
                 }
             }
+            
             return LResults;
         }
 

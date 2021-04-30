@@ -14,7 +14,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     public class AddArticleCommandHandler : TemplateHandler<AddArticleCommand, Guid>
     {
         private readonly DatabaseContext FDatabaseContext;
+        
         private readonly IDateTimeService FDateTimeService;
+        
         private readonly IAzureBlobStorageFactory FAzureBlobStorageFactory;
         
         public AddArticleCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService, 

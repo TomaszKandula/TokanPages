@@ -13,6 +13,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
     public class AddSubscriberCommandHandler : TemplateHandler<AddSubscriberCommand, Guid>
     {
         private readonly DatabaseContext FDatabaseContext;
+        
         private readonly IDateTimeService FDateTimeService;
         
         public AddSubscriberCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService) 

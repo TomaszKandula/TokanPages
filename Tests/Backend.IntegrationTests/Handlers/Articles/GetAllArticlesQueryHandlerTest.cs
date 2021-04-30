@@ -1,10 +1,11 @@
 ﻿using Xunit;
 using FluentAssertions;
-using System.Threading.Tasks;
-using TokanPages;
 using Newtonsoft.Json;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
+using TokanPages;
 
 namespace Backend.IntegrationTests.Handlers.Articles
 {   
@@ -13,9 +14,7 @@ namespace Backend.IntegrationTests.Handlers.Articles
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public GetAllArticlesQueryHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-        }
+            => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task GetAllArticles_ShouldReturnCollection()
@@ -33,7 +32,10 @@ namespace Backend.IntegrationTests.Handlers.Articles
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
 
-            var LDeserialized = JsonConvert.DeserializeObject<IEnumerable<GetAllArticlesQueryResult>>(LContent);
+            var LDeserialized = JsonConvert
+                .DeserializeObject<IEnumerable<GetAllArticlesQueryResult>>(LContent)
+                .ToList();
+            
             LDeserialized.Should().NotBeNullOrEmpty();
             LDeserialized.Should().HaveCountGreaterThan(0);
         }

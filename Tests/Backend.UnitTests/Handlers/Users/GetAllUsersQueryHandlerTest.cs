@@ -4,6 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 using Backend.TestData;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 
@@ -48,7 +49,9 @@ namespace Backend.UnitTests.Handlers.Users
             await LDatabaseContext.SaveChangesAsync();
 
             // Act
-            var LResults = await LGetAllUsersQueryHandler.Handle(LGetAllUsersQuery, CancellationToken.None);
+            var LResults = (await LGetAllUsersQueryHandler
+                .Handle(LGetAllUsersQuery, CancellationToken.None))
+                .ToList();
 
             // Assert
             LResults.Should().NotBeNull();

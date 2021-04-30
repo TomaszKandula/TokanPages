@@ -9,6 +9,7 @@ namespace TokanPages.Backend.Database.Mappings
         public void Configure(EntityTypeBuilder<Albums> AModelBuilder)
         {
             AModelBuilder.Property(AAlbums => AAlbums.Id).ValueGeneratedOnAdd();
+            
             AModelBuilder
                 .HasOne(AAlbums => AAlbums.User)
                 .WithMany(AUsers => AUsers.Albums)

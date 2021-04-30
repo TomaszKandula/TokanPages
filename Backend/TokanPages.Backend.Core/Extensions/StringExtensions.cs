@@ -23,6 +23,7 @@ namespace TokanPages.Backend.Core.Extensions
         {
             try
             {
+                // ReSharper disable once UnusedVariable
                 var LConnectionString = new SqlConnectionStringBuilder(AConnectionString);
             }
             catch

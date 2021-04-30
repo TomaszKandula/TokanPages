@@ -19,8 +19,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     public class UpdateArticleCommandHandler : TemplateHandler<UpdateArticleCommand, Unit>
     {
         private readonly DatabaseContext FDatabaseContext;
+
         private readonly IUserProvider FUserProvider;
+        
         private readonly IDateTimeService FDateTimeService;
+        
         private readonly IAzureBlobStorageFactory FAzureBlobStorageFactory;
         
         public UpdateArticleCommandHandler(DatabaseContext ADatabaseContext, IUserProvider AUserProvider, 

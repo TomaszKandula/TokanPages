@@ -13,6 +13,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     public class UpdateUserCommandHandler : TemplateHandler<UpdateUserCommand, Unit>
     {
         private readonly DatabaseContext FDatabaseContext;
+        
         private readonly IDateTimeService FDateTimeService;
         
         public UpdateUserCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService) 

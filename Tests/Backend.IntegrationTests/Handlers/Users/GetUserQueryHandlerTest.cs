@@ -15,9 +15,7 @@ namespace Backend.IntegrationTests.Handlers.Users
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public GetUserQueryHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory) 
-        {
-            FWebAppFactory = AWebAppFactory;
-        }
+            => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task GetUser_WhenIdIsCorrect_ShouldReturnEntityAsJsonObject() 

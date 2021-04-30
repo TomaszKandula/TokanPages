@@ -3,6 +3,7 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage.Factory
     public class AzureBlobStorageFactory : AzureBlobStorageObject, IAzureBlobStorageFactory
     {
         private readonly string FConnectionString;
+
         private readonly string FContainerName;
 
         public AzureBlobStorageFactory(string AConnectionString, string AContainerName = null)

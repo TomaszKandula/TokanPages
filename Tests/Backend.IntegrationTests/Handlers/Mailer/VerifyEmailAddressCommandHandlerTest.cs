@@ -14,17 +14,15 @@ namespace Backend.IntegrationTests.Handlers.Mailer
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public VerifyEmailAddressCommandHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-        }
+            => FWebAppFactory = AWebAppFactory;
 
         [Theory]
         [InlineData("john@gmail.com")]
         public async Task VerifyEmailAddress_WhenEmailIsCorrect_ShouldReturnResultsAsJsonObject(string AEmail)
         {
             // Arrange
-            var LRequest = "/api/v1/mailer/verifyemailaddress/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            const string REQUEST = "/api/v1/mailer/verifyemailaddress/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
             var LPayLoad = new VerifyEmailAddressDto { Email = AEmail };
             var LHttpClient = FWebAppFactory.CreateClient();
 

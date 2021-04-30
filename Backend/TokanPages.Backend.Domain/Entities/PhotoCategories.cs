@@ -7,10 +7,7 @@ namespace TokanPages.Backend.Domain.Entities
 {
     public class PhotoCategories : Entity<Guid>
     {
-        public PhotoCategories()
-        {
-            Photos = new HashSet<Photos>();
-        }
+        public PhotoCategories() => Photos = new HashSet<Photos>();
 
         [Required]
         [MaxLength(60)]

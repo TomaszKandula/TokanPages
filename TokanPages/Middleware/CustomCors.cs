@@ -13,9 +13,7 @@ namespace TokanPages.Middleware
         private readonly RequestDelegate FRequestDelegate;
 
         public CustomCors(RequestDelegate ARequestDelegate) 
-        {
-            FRequestDelegate = ARequestDelegate;
-        }
+            => FRequestDelegate = ARequestDelegate;
 
         public Task Invoke(HttpContext AHttpContext, AppUrls AAppUrls)
         {

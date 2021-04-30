@@ -4,6 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
 using Backend.TestData;
 
@@ -43,7 +44,9 @@ namespace Backend.UnitTests.Handlers.Subscribers
             await LDatabaseContext.SaveChangesAsync();
 
             // Act
-            var LResults = await LGetAllSubscribersQueryHandler.Handle(LGetAllSubscribersQuery, CancellationToken.None);
+            var LResults = (await LGetAllSubscribersQueryHandler
+                .Handle(LGetAllSubscribersQuery, CancellationToken.None))
+                .ToList();
 
             // Assert
             LResults.Should().NotBeNull();

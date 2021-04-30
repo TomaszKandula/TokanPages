@@ -3,6 +3,7 @@
     public class CheckActionResult
     {
         public string EmailAddress { get; set; }
+
         public bool IsValid { get; set; }
     }
 }

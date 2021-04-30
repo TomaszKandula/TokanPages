@@ -15,9 +15,7 @@ namespace Backend.IntegrationTests.Handlers.Subscribers
         private readonly CustomWebApplicationFactory<Startup> FWebAppFactory;
 
         public GetSubscriberQueryHandlerTest(CustomWebApplicationFactory<Startup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-        }
+            => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task GetSubscriber_WhenIdIsCorrect_ShouldReturnEntityAsJsonObject() 
