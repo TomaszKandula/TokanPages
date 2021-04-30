@@ -10,11 +10,11 @@ export type TErrorActions = IClearError | IRaiseError;
 
 export const ActionCreators = 
 {
-    clearError: ():  AppThunkAction<TErrorActions> => async (dispatch) => 
+    clearError: (): AppThunkAction<TErrorActions> => (dispatch) => 
     {
         dispatch({ type: CLEAR_ERROR });
     },
-    raiseError: (error: any):  AppThunkAction<TErrorActions> => async (dispatch) => 
+    raiseError: (error: any): AppThunkAction<TErrorActions> => (dispatch) => 
     {
         dispatch({ type: RAISE_ERROR, errorObject: error });
     }

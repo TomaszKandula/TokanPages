@@ -21,11 +21,11 @@ export type TKnownActions =
 
 export const ActionCreators = 
 {
-    updateSubscriber: (payload: IUpdateSubscriberDto):  AppThunkAction<TKnownActions> => async (dispatch) => 
+    updateSubscriber: (payload: IUpdateSubscriberDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: UPDATE_SUBSCRIBER });
 
-        await axios(
+        axios(
         { 
             method: "POST", 
             url: API_COMMAND_UPDATE_SUBSCRIBER, 

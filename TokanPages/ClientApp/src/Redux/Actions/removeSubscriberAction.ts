@@ -21,11 +21,11 @@ export type TKnownActions =
 
 export const ActionCreators = 
 {
-    removeSubscriber: (payload: IRemoveSubscriberDto):  AppThunkAction<TKnownActions> => async (dispatch) => 
+    removeSubscriber: (payload: IRemoveSubscriberDto):  AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: REMOVE_SUBSCRIBER });
 
-        await axios(
+        axios(
         { 
             method: "POST", 
             url: API_COMMAND_REMOVE_SUBSCRIBER, 
