@@ -8,15 +8,11 @@ namespace TokanPages.Backend.Core.Extensions
     {
         public static IQueryable<T> WhereIf<T>(this IQueryable<T> ASet, bool ACondition, 
             Expression<Func<T, bool>> AFunc)
-        {
-            return ACondition ? ASet.Where(AFunc) : ASet;
-        }
+            => ACondition ? ASet.Where(AFunc) : ASet;
 
         public static IQueryable<T> WhereIfElse<T>(this IQueryable<T> ASet, bool ACondition, 
             Expression<Func<T, bool>> AIfFunc, Expression<Func<T, bool>> AElseFunc)
-        {
-            return ASet.Where(ACondition ? AIfFunc : AElseFunc);
-        }
+            => ASet.Where(ACondition ? AIfFunc : AElseFunc);
 
         public static Expression<Func<T, bool>> Not<T>(this Expression<Func<T, bool>> AExpression)
         {
