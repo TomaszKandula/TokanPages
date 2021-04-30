@@ -24,15 +24,15 @@ export type TKnownActions =
 
 export const ActionCreators = 
 {
-    addSubscriberClear: ():  AppThunkAction<TKnownActions> => async (dispatch) => 
+    addSubscriberClear: (): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: ADD_SUBSCRIBER_CLEAR });
     },    
-    addSubscriber: (payload: IAddSubscriberDto):  AppThunkAction<TKnownActions> => async (dispatch) => 
+    addSubscriber: (payload: IAddSubscriberDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: ADD_SUBSCRIBER });
 
-        await axios(
+        axios(
         { 
             method: "POST", 
             url: API_COMMAND_ADD_SUBSCRIBER, 

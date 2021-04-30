@@ -24,15 +24,15 @@ export type TKnownActions =
 
 export const ActionCreators = 
 {
-    sendMessageClear: ():  AppThunkAction<TKnownActions> => async (dispatch) => 
+    sendMessageClear: (): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: API_SEND_MESSAGE_CLEAR });
     },
-    sendMessage: (payload: ISendMessageDto):  AppThunkAction<TKnownActions> => async (dispatch) => 
+    sendMessage: (payload: ISendMessageDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: API_SEND_MESSAGE });
 
-        await axios(
+        axios(
         { 
             method: "POST", 
             url: API_COMMAND_SEND_MESSAGE, 
