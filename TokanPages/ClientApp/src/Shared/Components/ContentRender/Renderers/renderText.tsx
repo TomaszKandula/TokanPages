@@ -3,6 +3,7 @@ import { Box, Typography } from "@material-ui/core";
 import ReactHtmlParser from "react-html-parser";
 import { ITextItem } from "../Models/textModel";
 import useStyles from "../Hooks/styleRenderText";
+import "../../../../Theme/CustomCss/customDropCap.css";
 
 export function RenderText(props: ITextItem)
 {
@@ -51,12 +52,22 @@ export function RenderText(props: ITextItem)
         );
     };
 
+    const renderParagraphWithDropCap = (): JSX.Element => 
+    {
+        return (
+            <Typography variant="body1" component="span" className={`${classes.common} ${classes.paragraph}`}>
+                {ReactHtmlParser(data.replace("<p>", "<p class='custom-drop-cap'>"))}
+            </Typography>
+        );
+    };
+
     let textItem: JSX.Element = <></>;
     switch(props.prop)
     {
         case "title": textItem = renderTitle(); break;
         case "subtitle": textItem = renderSubtitle(); break;
         case "header": textItem = renderHeader(); break;
+        case "dropcap": textItem = renderParagraphWithDropCap(); break;
         default: textItem = renderParagraph();
     };
 
