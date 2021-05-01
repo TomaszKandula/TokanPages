@@ -143,7 +143,7 @@ public async Task<IEnumerable<GetAllArticlesQueryResult>> GetAllArticles([FromQu
     => await FMediator.Send(new GetAllArticlesQuery { IsPublished = AIsPublished });
 ```
 
-When we call `GetAllArticles` endpoint, it sends command `GetAllArticlesQuery` with given parameters. The appropiate handler is `GetAllArticlesQueryHandler`:
+When we call `GetAllArticles` endpoint, it sends `GetAllArticlesQuery` request with given parameters. The appropiate handler is `GetAllArticlesQueryHandler`:
 
 ```csharp
 public class GetAllArticlesQueryHandler : TemplateHandler<GetAllArticlesQuery, IEnumerable<GetAllArticlesQueryResult>>
