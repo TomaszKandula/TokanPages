@@ -133,7 +133,7 @@ public Task<TResponse> Handle(TRequest ARequest, CancellationToken ACancellation
 }
 ```
 
-Validator is registered within the middleware pipeline, and if it exists (not null), then we execute it and raise an exception if invalid, otherwise we proceed. Note: `ValidationException.cs` inherits from `BusinessException.cs` which inherits form System.Exception.
+Validator is registered within the middleware pipeline, and if it exists (not null), then we execute it and raise an exception if invalid, otherwise we proceed. Note: `ValidationException.cs` inherits from `BusinessException.cs` which inherits form `System.Exception`.
 
 Such setup allow to have very thin controllers, example endpoint:
 
@@ -143,7 +143,7 @@ public async Task<IEnumerable<GetAllArticlesQueryResult>> GetAllArticles([FromQu
     => await FMediator.Send(new GetAllArticlesQuery { IsPublished = AIsPublished });
 ```
 
-When we call `GetAllArticles` endpoint, it sends `GetAllArticlesQuery` request with given parameters. The appropiate handler is `GetAllArticlesQueryHandler`:
+When we call `GetAllArticles` endpoint, it sends `GetAllArticlesQuery` request with given parameters. The appropriate handler is `GetAllArticlesQueryHandler`:
 
 ```csharp
 public class GetAllArticlesQueryHandler : TemplateHandler<GetAllArticlesQuery, IEnumerable<GetAllArticlesQueryResult>>
