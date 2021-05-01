@@ -41,17 +41,14 @@ Project is dockerized and deployed via GitHub Actions to Azure App Service that 
 
 ## Project structure
 
-_Tests_
+_TokanPages_
 
 | Folder | Description |
 |--------|-------------|
-| Backend.TestData | Test helpers |
-| Backend.UnitTests | Handlers and validators tests |
-| Backend.IntegrationTests | Http client tests |
-
-Integration tests focuses on testing HTTP responses, dependencies and theirs configuration. Unit tests covers all the logic used in the controllers. 
-
-All dependencies are mocked/faked. For mocking [Moq](https://github.com/moq/moq4) and [MockQueryable.Moq](https://github.com/romantitov/MockQueryable) have been used.
+| ClientApp | Frontend in React |
+| Configuration | Application dependencies |
+| Controllers | WebAPI |
+| Middleware | Custom middleware |
 
 _Backend_
 
@@ -65,18 +62,119 @@ _Backend_
 | TokanPages.Backend.SmtpClient | SmtpClient service |
 | TokanPages.Backend.Storage | Azure Storage service |
 
-_TokanPages_
+_Tests_
 
 | Folder | Description |
 |--------|-------------|
-| ClientApp | Frontend in React |
-| Configuration | Application dependencies |
-| Controllers | WebAPI |
-| Middleware | Custom middleware |
+| Backend.TestData | Test helpers |
+| Backend.UnitTests | Handlers and validators tests |
+| Backend.IntegrationTests | Http client tests |
+
+Integration tests focuses on testing HTTP responses, dependencies and theirs configuration. Unit tests covers all the logic used in the controllers. All dependencies are mocked/faked. For mocking [Moq](https://github.com/moq/moq4) and [MockQueryable.Moq](https://github.com/romantitov/MockQueryable) have been used.
 
 ## CQRS
 
-Project uses CQRS architecture pattern with no event sourcing (changes to application state are **not** stored as a sequence of events). I used MediatR library (mediator pattern) with handler template. 
+The project uses a CQRS architectural pattern with no event sourcing (changes to the application state are **not** stored as a sequence of events). I used the MediatR library (mediator pattern) with the handler template.
+
+The file `TemplateHandler.cs` presented below allow easy registration (mapping the handlers).
+
+```csharp
+public abstract class TemplateHandler<TRequest, TResult> : IRequestHandler<TRequest, TResult> where TRequest : IRequest<TResult>
+{
+    protected TemplateHandler() { }
+
+    public abstract Task<TResult> Handle(TRequest ARequest, CancellationToken ACancellationToken);
+}
+```
+
+To configure it, in `Dependencies.cs` (registered at startup), we invoke:
+
+```csharp
+private static void SetupMediatR(IServiceCollection AServices) 
+{
+    AServices.AddMediatR(AOption => AOption.AsScoped(), 
+        typeof(TemplateHandler<IRequest, Unit>).GetTypeInfo().Assembly);
+
+    AServices.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
+    AServices.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
+}
+```
+
+The two additional lines register both `LoggingBehaviour` and `FluentValidationBehavior` as scoped services. Thus we not only log event before and after handler execution, but also we perform validation of payload before executing the handler.
+
+`LoggingBehaviour.cs`:
+
+```csharp
+public async Task<TResponse> Handle(TRequest ARequest, CancellationToken ACancellationToken, RequestHandlerDelegate<TResponse> ANext)
+{
+    FLogger.LogInfo($"Begin: Handle {typeof(TRequest).Name}");
+    var LResponse = await ANext();
+    FLogger.LogInfo($"Finish: Handle {typeof(TResponse).Name}");
+    return LResponse;
+}
+```
+
+Logging is part of the middleware pipeline, and as said, we log info before and after handler execution.
+
+`FluentValidationBehavior.cs`:
+
+```csharp
+public Task<TResponse> Handle(TRequest ARequest, CancellationToken ACancellationToken, RequestHandlerDelegate<TResponse> ANext)
+{
+    if (FValidator == null) return ANext();
+
+    var LValidationContext = new ValidationContext<TRequest>(ARequest);
+    var LValidationResults = FValidator.Validate(LValidationContext);
+
+    if (!LValidationResults.IsValid)
+        throw new ValidationException(LValidationResults);
+
+    return ANext();
+}
+```
+
+Validator is registered within the middleware pipeline, and if it exists (not null), then we execute it and raise an exception if invalid, otherwise we proceed. Note: `ValidationException.cs` inherits from `BusinessException.cs` which inherits form System.Exception.
+
+Such setup allow to have very thin controllers, example endpoint:
+
+```csharp
+[HttpGet]
+public async Task<IEnumerable<GetAllArticlesQueryResult>> GetAllArticles([FromQuery] bool AIsPublished = true) 
+    => await FMediator.Send(new GetAllArticlesQuery { IsPublished = AIsPublished });
+```
+
+When we call `GetAllArticles` endpoint, it sends command `GetAllArticlesQuery` with given parameters. The appropiate handler is `GetAllArticlesQueryHandler`:
+
+```csharp
+public class GetAllArticlesQueryHandler : TemplateHandler<GetAllArticlesQuery, IEnumerable<GetAllArticlesQueryResult>>
+{
+    private readonly DatabaseContext FDatabaseContext;
+
+    public GetAllArticlesQueryHandler(DatabaseContext ADatabaseContext) 
+        => FDatabaseContext = ADatabaseContext;
+
+    public override async Task<IEnumerable<GetAllArticlesQueryResult>> Handle(GetAllArticlesQuery ARequest, CancellationToken ACancellationToken) 
+    {
+        var LArticles = await FDatabaseContext.Articles
+            .AsNoTracking()
+            .Where(AArticles => AArticles.IsPublished == ARequest.IsPublished)
+            .Select(AFields => new GetAllArticlesQueryResult 
+            { 
+                Id = AFields.Id,
+                Title = AFields.Title,
+                Description = AFields.Description,
+                IsPublished = AFields.IsPublished,
+                ReadCount = AFields.ReadCount,
+                CreatedAt = AFields.CreatedAt,
+                UpdatedAt = AFields.UpdatedAt
+            })
+            .OrderByDescending(AArticles => AArticles.CreatedAt)
+            .ToListAsync(ACancellationToken);
+
+        return LArticles; 
+    }
+}
+```
 
 ## Setting-up the database
 
