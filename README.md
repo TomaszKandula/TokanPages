@@ -1,4 +1,4 @@
-# My web page
+# TokanPages
 
 TokanPages is the repository that holds my web page to share my programming interests (among others), primarily Microsoft technologies. I also plan album functionality and commenting under articles among article editor and user account capabilities.
 
