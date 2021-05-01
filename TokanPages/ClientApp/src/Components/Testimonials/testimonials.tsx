@@ -9,7 +9,7 @@ import { renderImage } from "../../Shared/Components/CustomImage/customImage";
 import { TESTIMONIALS_PATH } from "../../Shared/constants";
 import useStyles from "./styledTestimonials";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import "./overrideCarousel.css";
+import "../../Theme/CustomCss/overrideCarousel.css";
 
 export default function Testimonials(props: { testimonials: ITestimonialsContentDto, isLoading: boolean })
 {
