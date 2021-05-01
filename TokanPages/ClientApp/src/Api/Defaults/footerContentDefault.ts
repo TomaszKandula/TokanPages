@@ -8,23 +8,6 @@ export const footerContentDefault: IFooterContentDto =
         policy: "",
         copyright: "",
         reserved: "",
-        icons:
-        {
-            firstIcon:
-            {
-                name: "",
-                link: ""
-            },
-            secondIcon:
-            {
-                name: "",
-                link: ""
-            },
-            thirdIcon:
-            {
-                name: "",
-                link: ""
-            }
-        }
+        icons: []
     }    
 }
