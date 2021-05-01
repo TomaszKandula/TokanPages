@@ -176,6 +176,90 @@ public class GetAllArticlesQueryHandler : TemplateHandler<GetAllArticlesQuery, I
 }
 ```
 
+## Exception Handler
+
+After adding custom exception handler to the middleware pipeline:
+
+```csharp
+AApplication.UseExceptionHandler(ExceptionHandler.Handle);
+```
+
+It will catch exceptions and sets HTTP status: bad request (400) or internal server error (500). Thus, if we throw an error (business or validation) manually in the handler, the response is appropriately set up.
+
+```csharp
+public static class ExceptionHandler
+{
+    public static void Handle(IApplicationBuilder AApplication)
+    {
+        AApplication.Run(async AHttpContext => 
+        {
+            var LExceptionHandlerPathFeature = AHttpContext.Features.Get<IExceptionHandlerPathFeature>();
+            var LErrorException = LExceptionHandlerPathFeature.Error;
+            AHttpContext.Response.ContentType = "application/json";
+
+            string LResult;
+            switch (LErrorException)
+            {
+                case ValidationException LException:
+                {
+                    var LAppError = new ApplicationError(LException.ErrorCode, LException.Message, LException.ValidationResult);
+                    LResult = JsonConvert.SerializeObject(LAppError);
+                    AHttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    break;
+                }
+
+                case BusinessException LException:
+                {
+                    var LAppError = new ApplicationError(LException.ErrorCode, LException.Message);
+                    LResult = JsonConvert.SerializeObject(LAppError);
+                    AHttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    break;
+                }
+
+                default:
+                {
+                    var LAppError = new ApplicationError(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+                    LResult = JsonConvert.SerializeObject(LAppError);
+                    AHttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    break;
+                }
+            }
+
+            CorsHeaders.Ensure(AHttpContext);
+            await AHttpContext.Response.WriteAsync(LResult);
+        });
+    }
+}
+```
+
+Please note that handlers usually contains manual business exceptions while having validation exceptions very rarely as they are typically raised by the `FluentValidation` before handler is invoked, an example being:
+
+```csharp
+public class RemoveArticleCommandHandler : TemplateHandler<RemoveArticleCommand, Unit>
+{
+    private readonly DatabaseContext FDatabaseContext;
+
+    public RemoveArticleCommandHandler(DatabaseContext ADatabaseContext) 
+        => FDatabaseContext = ADatabaseContext;
+
+    public override async Task<Unit> Handle(RemoveArticleCommand ARequest, CancellationToken ACancellationToken) 
+    {
+        var LCurrentArticle = await FDatabaseContext.Articles
+            .Where(AArticles => AArticles.Id == ARequest.Id)
+            .ToListAsync(ACancellationToken);
+
+        if (!LCurrentArticle.Any())
+            throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+
+        FDatabaseContext.Articles.Remove(LCurrentArticle.Single());
+        await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+        return await Task.FromResult(Unit.Value);
+    }
+}
+```
+
+These business exceptions (`ARTICLE_DOES_NOT_EXISTS`) shall never be an validation error (invoked by `FluentValidation`). Furthermore, it is unlikely that we would want to perform database requests during validation. The validator is responsible for ensuring that input data is valid (not for checking available articles etc.).
+
 ## Setting-up the database
 
 Copy below code from appsettings.Development.json to your **user secrets**:
