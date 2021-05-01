@@ -8,7 +8,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using Newtonsoft.Json;
 
-namespace TokanPages.CustomHandlers
+namespace TokanPages.Middleware
 {
     public static class ExceptionHandler
     {

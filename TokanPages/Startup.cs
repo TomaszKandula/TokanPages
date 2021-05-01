@@ -12,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
 using TokanPages.Middleware;
 using TokanPages.Configuration;
-using TokanPages.CustomHandlers;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Shared.Environment;
 using TokanPages.Backend.Database.Initialize;
