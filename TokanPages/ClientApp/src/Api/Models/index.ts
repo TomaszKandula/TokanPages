@@ -21,6 +21,7 @@ export type { IValidationErrorsDto } from "./Error/validationErrorsDto";
 export type { INavigationContentDto} from "./Components/navigationContentDto";
 export type { IHeaderContentDto } from "./Components/headerContentDto";
 export type { IFooterContentDto } from "./Components/footerContentDto";
+export type { IFooterContentIconDto } from "./Components/footerContentIconDto";
 export type { IArticleFeatContentDto } from "./Components/articleFeatContentDto";
 export type { IContactFormContentDto } from "./Components/contactFormContentDto";
 export type { ICookiesPromptContentDto } from "./Components/cookiesPromptContentDto";
