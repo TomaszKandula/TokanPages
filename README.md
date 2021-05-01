@@ -1,6 +1,6 @@
-# Personal Website
+# My web page
 
-Website exposing my programming interests (mostly Microsoft technologies) mainly through various articles that can be published - currently, only by admin - but once text editor is added along with user account capabilities, others will be able to entertain write-ups too. Commenting and voting capabilities are also planned.
+TokanPages is the repository that holds my web page to share my programming interests (among others), primarily Microsoft technologies. I also plan album functionality and commenting under articles among article editor and user account capabilities.
 
 ## Tech-Stack
 
@@ -41,13 +41,42 @@ Project is dockerized and deployed via GitHub Actions to Azure App Service that 
 
 ## Project structure
 
-Application is split into:
+_Tests_
 
-1. Backend.
-1. TokanPages.
-1. Tests.
+| Folder | Description |
+|--------|-------------|
+| Backend.TestData | Test helpers |
+| Backend.UnitTests | Handlers and validators tests |
+| Backend.IntegrationTests | Http client tests |
 
-Backend holds various services used by TokanPages where main application resides with its ClientApp part (compiled separately). Tests holds tests helpers and projects for Integration Tests (focus to examine http client) and Unit Tests (focus to examine validators and handlers).
+Integration tests focuses on testing HTTP responses, dependencies and theirs configuration. Unit tests covers all the logic used in the controllers. 
+
+All dependencies are mocked/faked. For mocking [Moq](https://github.com/moq/moq4) and [MockQueryable.Moq](https://github.com/romantitov/MockQueryable) have been used.
+
+_Backend_
+
+| Folder | Description |
+|--------|-------------|
+| TokanPages.Backend.Core | Reusable core elements |
+| TokanPages.Backend.Cqrs | Handlers, mappers and related services |
+| TokanPages.Backend.Database | Database context |
+| TokanPages.Backend.Domain | Domain entities |
+| TokanPages.Backend.Shared | Shared models and resources |
+| TokanPages.Backend.SmtpClient | SmtpClient service |
+| TokanPages.Backend.Storage | Azure Storage service |
+
+_TokanPages_
+
+| Folder | Description |
+|--------|-------------|
+| ClientApp | Frontend in React |
+| Configuration | Application dependencies |
+| Controllers | WebAPI |
+| Middleware | Custom middleware |
+
+## CQRS
+
+Project uses CQRS architecture pattern with no event sourcing (changes to application state are **not** stored as a sequence of events). I used MediatR library (mediator pattern) with handler template. 
 
 ## Setting-up the database
 
@@ -73,14 +102,6 @@ Go to Package Manager Console (PMC) to execute following command:
 `Update-Database -StartupProject TokanPages -Project TokanPages.Backend.Database -Context DatabaseContext`
 
 EF Core will create all the necessary tables. More on migrations here: [TokanPages.Backend.Database](https://github.com/TomaszKandula/TokanPages/tree/dev/Backend/TokanPages.Backend.Database).
-
-## Integration Tests
-
-Focuses on testing HTTP responses, dependencies and theirs configuration.
-
-## Unit Tests
-
-Covers all the logic used in the controllers (please note that the endpoints does not provide any business logic, they are only responsible for handling requests etc.). All dependencies are mocked/faked. For mocking [Moq](https://github.com/moq/moq4) and [MockQueryable.Moq](https://github.com/romantitov/MockQueryable) have been used.
 
 ## CI/CD
 
