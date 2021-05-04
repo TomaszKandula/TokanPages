@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\Tomek\.nuget\packages\microsoft.azure.cosmos\3.15.0\contentFiles\any\netstandard2.0\ThirdPartyNotice.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\TokanPages\appsettings.json" Link="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\TokanPages\appsettings.Development.json" Link="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\TokanPages\appsettings.Production.json" Link="appsettings.Production.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\TokanPages\appsettings.Staging.json" Link="appsettings.Staging.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TokanPages.Backend.Domain\TokanPages.Backend.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
