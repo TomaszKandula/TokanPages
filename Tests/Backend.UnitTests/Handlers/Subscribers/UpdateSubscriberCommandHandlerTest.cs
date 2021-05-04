@@ -14,7 +14,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
     public class UpdateSubscriberCommandHandlerTest : TestBase
     {
         [Fact]
-        public async Task UpdateSubscriber_WhenIdIsCorrect_ShouldUpdateEntity()
+        public async Task GivenCorrectId_WhenUpdateSubscriber_ShouldUpdateEntity()
         {
             // Arrange
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
@@ -55,7 +55,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
         }
 
         [Fact]
-        public async Task UpdateSubscriber_WhenIdIsCorrectAndCountIsNullAndIsActivatedIsNull_ShouldUpdateEntity()
+        public async Task GivenCorrectIdAndCountIsNullAndIsActivatedIsNull_WhenUpdateSubscriber_ShouldUpdateEntity()
         {
             // Arrange
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
@@ -96,7 +96,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
         }
 
         [Fact]
-        public async Task UpdateSubscriber_WhenIdIsIncorrect_ShouldThrowError()
+        public async Task GivenIncorrectId_WhenUpdateSubscriber_ShouldThrowError()
         {
             // Arrange
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
@@ -129,7 +129,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
         }
 
         [Fact]
-        public async Task UpdateSubscriber_WhenEmailExists_ShouldThrowError()
+        public async Task GivenExistingEmail_WhenUpdateSubscriber_ShouldThrowError()
         {
             // Arrange
             var LTestEmail = DataProvider.GetRandomEmail();

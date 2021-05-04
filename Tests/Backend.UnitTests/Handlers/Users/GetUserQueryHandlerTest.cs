@@ -12,7 +12,7 @@ namespace Backend.UnitTests.Handlers.Users
     public class GetUserQueryHandlerTest : TestBase
     {
         [Fact]
-        public async Task GetUser_WhenIdIsCorrect_ShouldReturnEntity() 
+        public async Task GivenCorrectId_WhenGetUser_ShouldReturnEntity() 
         {
             // Arrange
             var LGetUserQuery = new GetUserQuery
@@ -56,7 +56,7 @@ namespace Backend.UnitTests.Handlers.Users
         }
 
         [Fact]
-        public async Task GetUser_WhenIdIsIncorrect_ShouldThrowError()
+        public async Task GivenIncorrectId_WhenGetUser_ShouldThrowError()
         {
             // Arrange
             var LGetUserQuery = new GetUserQuery

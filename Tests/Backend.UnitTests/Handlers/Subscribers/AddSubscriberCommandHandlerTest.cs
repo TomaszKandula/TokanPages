@@ -15,7 +15,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
     public class AddSubscriberCommandHandlerTest : TestBase
     {
         [Fact]
-        public async Task AddSubscriber_WhenEmailIsProvided_ShouldAddEntity() 
+        public async Task GivenProvidedEmail_WhenAddSubscriber_ShouldAddEntity() 
         {
             // Arrange
             var LAddSubscriberCommand = new AddSubscriberCommand 
@@ -51,7 +51,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
         }
 
         [Fact]
-        public async Task AddSubscriber_WhenEmailExists_ShouldThrowError()
+        public async Task GivenExistingEmail_WhenAddSubscriber_ShouldThrowError()
         {
             // Arrange
             var LTestEmail = DataProvider.GetRandomEmail();

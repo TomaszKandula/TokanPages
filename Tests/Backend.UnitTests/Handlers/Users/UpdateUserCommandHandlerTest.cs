@@ -14,7 +14,7 @@ namespace Backend.UnitTests.Handlers.Users
     public class UpdateUserCommandHandlerTest : TestBase
     {
         [Fact]
-        public async Task UpdateUser_WhenIdIsCorrect_ShouldUpdateEntity()
+        public async Task GivenCorrectId_WhenUpdateUser_ShouldUpdateEntity()
         {
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
@@ -63,7 +63,7 @@ namespace Backend.UnitTests.Handlers.Users
         }
 
         [Fact]
-        public async Task UpdateUser_WhenIdIsIncorrect_ShouldThrowError()
+        public async Task GivenIncorrectId_WhenUpdateUser_ShouldThrowError()
         {
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
@@ -101,7 +101,7 @@ namespace Backend.UnitTests.Handlers.Users
         }
 
         [Fact]
-        public async Task UpdateUser_WhenEmailExists_ShouldThrowError()
+        public async Task GivenExistingEmail_WhenUpdateUser_ShouldThrowError()
         {
             // Arrange
             var LTestEmail = DataProvider.GetRandomEmail();

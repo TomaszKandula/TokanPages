@@ -12,7 +12,7 @@ namespace Backend.UnitTests.Handlers.Users
     public class RemoveUserCommandHandlerTest : TestBase
     {
         [Fact]
-        public async Task RemoveUser_WhenIdIsCorrect_ShouldRemoveEntity() 
+        public async Task GivenCorrectId_WhenRemoveUser_ShouldRemoveEntity() 
         {
             // Arrange
             var LRemoveUserCommand = new RemoveUserCommand 
@@ -48,7 +48,7 @@ namespace Backend.UnitTests.Handlers.Users
         }
 
         [Fact]
-        public async Task RemoveUser_WhenIdIsIncorrect_ShouldThrowError()
+        public async Task GivenIncorrectId_WhenRemoveUser_ShouldThrowError()
         {
             // Arrange
             var LRemoveUserCommand = new RemoveUserCommand

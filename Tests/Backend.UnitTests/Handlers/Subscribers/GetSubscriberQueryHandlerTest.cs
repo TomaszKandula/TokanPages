@@ -12,7 +12,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
     public class GetSubscriberQueryHandlerTest : TestBase
     {
         [Fact]
-        public async Task GetSubscriber_WhenIdIsCorrect_ShouldReturnEntity() 
+        public async Task GivenCorrectId_WhenGetSubscriber_ShouldReturnEntity() 
         {
             // Arrange
             var LGetSubscriberQuery = new GetSubscriberQuery
@@ -48,7 +48,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
         }
 
         [Fact]
-        public async Task GetSubscriber_WhenIdIsIncorrect_ShouldThrowError()
+        public async Task GivenIncorrectId_WhenGetSubscriber_ShouldThrowError()
         {
             // Arrange
             var LGetSubscriberQuery = new GetSubscriberQuery

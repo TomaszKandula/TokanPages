@@ -13,7 +13,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
     public class GetAllSubscribersQueryHandlerTest : TestBase
     {
         [Fact]
-        public async Task GetAllSubscribers_ShouldReturnCollection()
+        public async Task WhenGetAllSubscribers_ShouldReturnCollection()
         {
             // Arrange
             var LDatabaseContext = GetTestDatabaseContext();
