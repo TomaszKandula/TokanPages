@@ -54,23 +54,23 @@ _Backend_
 
 | Folder | Description |
 |--------|-------------|
-| TokanPages.Backend.Core | Reusable core elements |
-| TokanPages.Backend.Cqrs | Handlers, mappers and related services |
-| TokanPages.Backend.Database | Database context |
-| TokanPages.Backend.Domain | Domain entities |
-| TokanPages.Backend.Shared | Shared models and resources |
-| TokanPages.Backend.SmtpClient | SmtpClient service |
-| TokanPages.Backend.Storage | Azure Storage service |
+| Core | Reusable core elements |
+| Cqrs | Handlers, mappers and related services |
+| Database | Database context |
+| Domain | Domain entities |
+| Shared | Shared models and resources |
+| SmtpClient | SmtpClient service |
+| Storage | Azure Storage service |
 
 _Tests_
 
 | Folder | Description |
 |--------|-------------|
-| Backend.TestData | Test helpers |
-| Backend.UnitTests | Handlers and validators tests |
-| Backend.IntegrationTests | Http client tests |
+| DataProviders | Test helpers |
+| UnitTests | Handlers and validators tests |
+| IntegrationTests | Http client tests |
 
-Integration tests focuses on testing HTTP responses, dependencies and theirs configuration. Unit tests covers all the logic used in the controllers. All dependencies are mocked/faked. For mocking [Moq](https://github.com/moq/moq4) and [MockQueryable.Moq](https://github.com/romantitov/MockQueryable) have been used.
+Integration tests focuses on testing HTTP responses, dependencies and theirs configuration. Unit tests covers handlers and validators. All dependencies are mocked/faked. For mocking [Moq](https://github.com/moq/moq4) and [MockQueryable.Moq](https://github.com/romantitov/MockQueryable) have been used.
 
 ## CQRS
 

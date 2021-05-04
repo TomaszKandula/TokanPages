@@ -26,12 +26,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
-    <ProjectReference Include="..\Backend\TokanPages.Backend.Cqrs\TokanPages.Backend.Cqrs.csproj" />
-    <ProjectReference Include="..\Backend\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
-    <ProjectReference Include="..\Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
-    <ProjectReference Include="..\Backend\TokanPages.Backend.SmtpClient\TokanPages.Backend.SmtpClient.csproj" />
-    <ProjectReference Include="..\Backend\TokanPages.Backend.Storage\TokanPages.Backend.Storage.csproj" />
+    <ProjectReference Include="..\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
+    <ProjectReference Include="..\TokanPages.Backend.Cqrs\TokanPages.Backend.Cqrs.csproj" />
+    <ProjectReference Include="..\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
+    <ProjectReference Include="..\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
+    <ProjectReference Include="..\TokanPages.Backend.SmtpClient\TokanPages.Backend.SmtpClient.csproj" />
+    <ProjectReference Include="..\TokanPages.Backend.Storage\TokanPages.Backend.Storage.csproj" />
   </ItemGroup>
 
 </Project>

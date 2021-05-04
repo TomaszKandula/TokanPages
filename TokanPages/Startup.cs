@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.ResponseCompression;
 using TokanPages.Middleware;
 using TokanPages.Configuration;
 using TokanPages.Backend.Shared.Settings;
-using TokanPages.Backend.Shared.Environment;
 using TokanPages.Backend.Database.Initialize;
 using Serilog;
 
@@ -21,7 +20,8 @@ namespace TokanPages
 {
     public class Startup
     {
-        private readonly IConfiguration FConfiguration;
+        protected readonly IConfiguration FConfiguration;
+
         private readonly IWebHostEnvironment FEnvironment;
 
         public Startup(IConfiguration AConfiguration, IWebHostEnvironment AEnvironment)
@@ -30,7 +30,7 @@ namespace TokanPages
             FEnvironment = AEnvironment;
         }
 
-        public void ConfigureServices(IServiceCollection AServices)
+        public virtual void ConfigureServices(IServiceCollection AServices)
         {
             AServices
                 .AddMvc(AOption => AOption.CacheProfiles
@@ -41,15 +41,10 @@ namespace TokanPages
                     NoStore = false 
                 }));
 
-            AServices.AddControllers();          
+            AServices.AddControllers();        
             AServices.AddSpaStaticFiles(AOptions => AOptions.RootPath = "ClientApp/build");
             AServices.AddResponseCompression(AOptions => AOptions.Providers.Add<GzipCompressionProvider>());
-
-            // For E2E testing only when application is bootstrapped in memory
-            if (EnvironmentVariables.IsStaging())
-                Dependencies.RegisterForTests(AServices, FConfiguration);
             
-            // Local development
             if (FEnvironment.IsDevelopment())
             {
                 Dependencies.RegisterForDevelopment(AServices, FConfiguration);
@@ -58,7 +53,6 @@ namespace TokanPages
                     AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "TokanPagesApi", Version = "v1" }));
             }
 
-            // Production and Staging (deployment slots only)
             if (!FEnvironment.IsProduction() && !FEnvironment.IsStaging()) 
                 return;
             
@@ -82,21 +76,19 @@ namespace TokanPages
             });
         }
 
-        public void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
+        public virtual void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
         {
             var LScopeFactory = AApplication.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
             using var LScope = LScopeFactory.CreateScope();
             var LDatabaseInitializer = LScope.ServiceProvider.GetService<IDbInitializer>();
 
-            if (FEnvironment.IsDevelopment() || EnvironmentVariables.IsStaging())
+            if (FEnvironment.IsDevelopment())
             {
                 LDatabaseInitializer.StartMigration();
                 LDatabaseInitializer.SeedData();
             }
 
-            if (!EnvironmentVariables.IsStaging())
-                AApplication.UseSerilogRequestLogging();
-            
+            AApplication.UseSerilogRequestLogging();
             AApplication.UseForwardedHeaders();
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);
             AApplication.UseMiddleware<GarbageCollector>();
