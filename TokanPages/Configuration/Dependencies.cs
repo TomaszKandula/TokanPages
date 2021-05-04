@@ -31,10 +31,10 @@ namespace TokanPages.Configuration
             SetupDatabase(AServices, AConfiguration);
         }
 
-        public static void RegisterForTests(IServiceCollection AServices, IConfiguration AConfiguration) 
+        public static void RegisterForTests(IServiceCollection AServices, IConfiguration AConfiguration)
         {
             CommonServices(AServices, AConfiguration);
-            SetupDatabaseForTest(AServices);
+            SetupDatabaseForTests(AServices, AConfiguration);
         }
 
         public static void RegisterForDevelopment(IServiceCollection AServices, IConfiguration AConfiguration)
@@ -43,13 +43,15 @@ namespace TokanPages.Configuration
                 .GetConnectionString("DbConnect")
                 .IsValidConnectionString();
 
+            CommonServices(AServices, AConfiguration);
+            
             if (!LIsValidConnection)
             {
-                RegisterForTests(AServices, AConfiguration);
+                SetupDatabaseInMemory(AServices);
                 return;
             }
 
-            Register(AServices, AConfiguration);
+            SetupDatabase(AServices, AConfiguration);
         }
         
         private static void CommonServices(IServiceCollection AServices, IConfiguration AConfiguration)
@@ -80,7 +82,21 @@ namespace TokanPages.Configuration
             });
         }
 
-        private static void SetupDatabaseForTest(IServiceCollection AServices)
+        private static void SetupDatabaseForTests(IServiceCollection AServices, IConfiguration AConfiguration)
+        {
+            var LConnection = AConfiguration
+                .GetConnectionString("DbConnectTest")
+                .Replace("{GUID}",Guid.NewGuid().ToString());
+            
+            AServices.AddDbContext<DatabaseContext>(AOptions =>
+            {
+                AOptions.UseSqlServer(LConnection);
+                AOptions.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
+                AOptions.EnableSensitiveDataLogging();
+            });
+        }
+
+        private static void SetupDatabaseInMemory(IServiceCollection AServices)
         {
             var LDatabaseName = Guid.NewGuid().ToString();
             AServices.AddDbContext<DatabaseContext>(AOptions =>
