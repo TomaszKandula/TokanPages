@@ -2,7 +2,7 @@ using System.IO;
 
 namespace Backend.DataProviders
 {
-    public class StreamProvider : BaseClass
+    public abstract class StreamProvider : BaseClass
     {
         public static MemoryStream GetRandom(int ASizeInKb = 12)
             => new MemoryStream(GetRandomByteArray(ASizeInKb));

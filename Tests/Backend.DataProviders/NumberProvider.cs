@@ -1,6 +1,6 @@
 namespace Backend.DataProviders
 {
-    public class NumberProvider : BaseClass
+    public abstract class NumberProvider : BaseClass
     {
         public static int GetRandomInteger(int AMin = 0, int AMax = 12) 
             => FRandom.Next(AMin, AMax + 1);

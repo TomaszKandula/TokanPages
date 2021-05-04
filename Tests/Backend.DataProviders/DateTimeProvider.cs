@@ -2,7 +2,7 @@ using System;
 
 namespace Backend.DataProviders
 {
-    public class DateTimeProvider : BaseClass
+    public abstract class DateTimeProvider : BaseClass
     {
         public static DateTime GetRandom(DateTime? AMin = null, DateTime? AMax = null, int ADefaultYear = 2020)
         {

@@ -2,7 +2,7 @@ using System;
 
 namespace Backend.DataProviders
 {
-    public class EnumProvider : BaseClass
+    public abstract class EnumProvider : BaseClass
     {
         public static T GetRandom<T>()
         {

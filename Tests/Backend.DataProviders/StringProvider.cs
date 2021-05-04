@@ -2,7 +2,7 @@ using System.Linq;
 
 namespace Backend.DataProviders
 {
-    public class StringProvider : BaseClass
+    public abstract class StringProvider : BaseClass
     {
         public static string GetRandomEmail(int ALength = 12, string ADomain = "gmail.com") 
             => $"{GetRandomString(ALength)}@{ADomain}";
