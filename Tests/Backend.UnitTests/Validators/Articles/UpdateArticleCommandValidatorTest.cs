@@ -10,7 +10,7 @@ namespace Backend.UnitTests.Validators.Articles
     public class UpdateArticleCommandValidatorTest
     {
         [Fact]
-        public void UpdateArticle_WhenAllFieldsAreCorrect_ShouldFinishSuccessful() 
+        public void GivenAllFieldsAreCorrect_WhenUpdateArticle_ShouldFinishSuccessful() 
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
@@ -34,7 +34,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void UpdateArticle_WhenIdIsEmpty_ShouldThrowError()
+        public void GivenEmptyId_WhenUpdateArticle_ShouldThrowError()
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
@@ -59,7 +59,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void UpdateArticle_WhenTitleIsEmpty_ShouldThrowError()
+        public void GivenEmptyTitle_WhenUpdateArticle_ShouldThrowError()
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
@@ -84,7 +84,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void UpdateArticle_WhenTitleIsTooLong_ShouldThrowError()
+        public void GivenTitleIsTooLong_WhenUpdateArticle_ShouldThrowError()
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
@@ -109,7 +109,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void UpdateArticle_WhenDescriptionIsEmpty_ShouldThrowError()
+        public void GivenEmptyDescription_WhenUpdateArticle_ShouldThrowError()
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
@@ -134,7 +134,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void UpdateArticle_WhenDescriptionIsTooLong_ShouldThrowError()
+        public void GivenTooLongDescription_WhenUpdateArticle_ShouldThrowError()
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
@@ -159,7 +159,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void UpdateArticle_WhenTextToUploadIsEmpty_ShouldFinishSuccessful()
+        public void GivenEmptyTextToUpload_WhenUpdateArticle_ShouldFinishSuccessful()
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
@@ -183,7 +183,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void UpdateArticle_WhenImageToUploadIsEmpty_ShouldFinishSuccessful()
+        public void GivenEmptyImageToUpload_WhenUpdateArticle_ShouldFinishSuccessful()
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
@@ -207,7 +207,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void UpdateArticle_WhenLikesIsLessThanZero_ShouldThrowError()
+        public void GivenLikesIsLessThanZero_WhenUpdateArticle_ShouldThrowError()
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand

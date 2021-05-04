@@ -13,7 +13,7 @@ namespace Backend.UnitTests.Handlers.Articles
     public class GetAllArticlesQueryHandlerTest : TestBase
     {
         [Fact]
-        public async Task GetAllArticles_ShouldReturnCollection() 
+        public async Task WhenGetAllArticles_ShouldReturnCollection() 
         {
             // Arrange
             var LDatabaseContext = GetTestDatabaseContext();

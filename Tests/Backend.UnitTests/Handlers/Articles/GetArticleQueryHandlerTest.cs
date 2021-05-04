@@ -15,7 +15,7 @@ namespace Backend.UnitTests.Handlers.Articles
     public class GetArticleQueryHandlerTest : TestBase
     {
         [Fact]
-        public async Task GetArticle_WhenIdIsCorrect_ShouldReturnEntity() 
+        public async Task GivenCorrectId_WhenGetArticle_ShouldReturnEntity() 
         {
             // Arrange
             var LArticleId = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841");
@@ -104,7 +104,7 @@ namespace Backend.UnitTests.Handlers.Articles
         }
 
         [Fact]
-        public async Task GetArticle_WhenIdIsIncorrect_ShouldThrowError()
+        public async Task GivenIncorrectId_WhenGetArticle_ShouldThrowError()
         {
             // Arrange
             var LGetArticleQuery = new GetArticleQuery

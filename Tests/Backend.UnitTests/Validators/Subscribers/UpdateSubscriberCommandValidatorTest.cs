@@ -10,7 +10,7 @@ namespace Backend.UnitTests.Validators.Subscribers
     public class UpdateSubscriberCommandValidatorTest
     {
         [Fact]
-        public void UpdateSubscriber_WhenAllFieldsAreCorrect_ShouldFinishSuccessful() 
+        public void GivenAllFieldsAreCorrect_WhenUpdateSubscriber_ShouldFinishSuccessful() 
         {
             // Arrange
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand 
@@ -30,7 +30,7 @@ namespace Backend.UnitTests.Validators.Subscribers
         }
 
         [Fact]
-        public void UpdateSubscriber_WhenAllFieldsAreCorrectAndCountIsNull_ShouldFinishSuccessful()
+        public void GivenAllFieldsAreCorrectAndCountIsNull_WhenUpdateSubscriber_ShouldFinishSuccessful()
         {
             // Arrange
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
@@ -50,7 +50,7 @@ namespace Backend.UnitTests.Validators.Subscribers
         }
 
         [Fact]
-        public void UpdateSubscriber_WhenIdIsEmpty_ShouldThrowError()
+        public void GivenEmptyId_WhenUpdateSubscriber_ShouldThrowError()
         {
             // Arrange
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
@@ -71,7 +71,7 @@ namespace Backend.UnitTests.Validators.Subscribers
         }
 
         [Fact]
-        public void UpdateSubscriber_WhenEmailIsEmpty_ShouldThrowError()
+        public void GivenEmptyEmail_WhenUpdateSubscriber_ShouldThrowError()
         {
             // Arrange
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
@@ -92,7 +92,7 @@ namespace Backend.UnitTests.Validators.Subscribers
         }
 
         [Fact]
-        public void UpdateSubscriber_WhenEmailTooLong_ShouldThrowError()
+        public void GivenEmailTooLong_WhenUpdateSubscriber_ShouldThrowError()
         {
             // Arrange
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
@@ -113,7 +113,7 @@ namespace Backend.UnitTests.Validators.Subscribers
         }
 
         [Fact]
-        public void UpdateSubscriber_WhenCountIsLessThanZero_ShouldThrowError()
+        public void GivenCountIsLessThanZero_WhenUpdateSubscriber_ShouldThrowError()
         {
             // Arrange
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand

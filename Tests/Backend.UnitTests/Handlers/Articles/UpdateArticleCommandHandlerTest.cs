@@ -40,7 +40,7 @@ namespace Backend.UnitTests.Handlers.Articles
         }
 
         [Fact]
-        public async Task UpdateArticle_WhenArticleExists_ShouldUpdateEntity() 
+        public async Task GivenExistingArticle_WhenUpdateArticle_ShouldUpdateEntity() 
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand 
@@ -102,7 +102,7 @@ namespace Backend.UnitTests.Handlers.Articles
         [Theory]
         [InlineData(10)]
         [InlineData(50)]
-        public async Task UpdateArticle_WhenNewLikesAddedAsAnonymous_ShouldAddLikes(int ALikes)
+        public async Task GivenNewLikesAddedAsAnonymous_WhenUpdateArticle_ShouldAddLikes(int ALikes)
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
@@ -159,6 +159,7 @@ namespace Backend.UnitTests.Handlers.Articles
             LLikesEntity[0].IpAddress.Should().Be(IP_ADDRESS);
             LLikesEntity[0].UserId.Should().BeNull();
 
+            // TODO: refactor to remove switch
             switch (ALikes)
             {
                 case 10:
@@ -173,7 +174,7 @@ namespace Backend.UnitTests.Handlers.Articles
         [Theory]
         [InlineData(10)]
         [InlineData(70)]
-        public async Task UpdateArticle_WhenNewLikesAddedAsUser_ShouldAddLikes(int ALikes)
+        public async Task GivenNewLikesAddedAsUser_WhenUpdateArticle_ShouldAddLikes(int ALikes)
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
@@ -235,6 +236,7 @@ namespace Backend.UnitTests.Handlers.Articles
             LLikesEntity[0].IpAddress.Should().Be(IP_ADDRESS);
             LLikesEntity[0].UserId.Should().Be(LUserId);
             
+            // TODO: refactor to remove switch
             switch (ALikes)
             {
                 case 10:
@@ -249,7 +251,7 @@ namespace Backend.UnitTests.Handlers.Articles
         [Theory]
         [InlineData(10)]
         [InlineData(50)]
-        public async Task UpdateArticle_WhenExistingLikesUpdatedAsAnonymous_ShouldModifyLikes(int ALikes)
+        public async Task GivenExistingLikesUpdatedAsAnonymous_WhenUpdateArticle_ShouldModifyLikes(int ALikes)
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
@@ -319,6 +321,7 @@ namespace Backend.UnitTests.Handlers.Articles
             LLikesEntity[0].IpAddress.Should().Be(IP_ADDRESS);
             LLikesEntity[0].UserId.Should().BeNull();
             
+            // TODO: refactor to remove switch
             switch (ALikes)
             {
                 case 10:
@@ -333,7 +336,7 @@ namespace Backend.UnitTests.Handlers.Articles
         [Theory]
         [InlineData(10)]
         [InlineData(50)]
-        public async Task UpdateArticle_WhenExistingLikesUpdatedAsUser_ShouldModifyLikes(int ALikes)
+        public async Task GivenExistingLikesUpdatedAsUser_WhenUpdateArticle_ShouldModifyLikes(int ALikes)
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
@@ -409,6 +412,7 @@ namespace Backend.UnitTests.Handlers.Articles
             LLikesEntity[0].IpAddress.Should().Be(IP_ADDRESS);
             LLikesEntity[0].UserId.Should().Be(LUserId);
             
+            // TODO: refactor to remove switch
             switch (ALikes)
             {
                 case 10:
@@ -421,7 +425,7 @@ namespace Backend.UnitTests.Handlers.Articles
         }
 
         [Fact]
-        public async Task UpdateArticle_WhenArticleNotExists_ShouldThrowError()
+        public async Task GivenNotExistingArticle_WhenUpdateArticle_ShouldThrowError()
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand
@@ -470,7 +474,7 @@ namespace Backend.UnitTests.Handlers.Articles
         }
 
         [Fact]
-        public async Task UpdateArticle_WhenImageBase64IsInvalid_ShouldThrowError()
+        public async Task GivenInvalidImageBase64_WhenUpdateArticle_ShouldThrowError()
         {
             // Arrange
             var LUpdateArticleCommand = new UpdateArticleCommand

@@ -9,7 +9,7 @@ namespace Backend.UnitTests.Validators.Users
     public class RemoveUserCommandValidatorTest
     {
         [Fact]
-        public void RemoveUser_WhenIdIsCorrect_ShouldFinishSuccessful()
+        public void GivenCorrectId_WhenRemoveUser_ShouldFinishSuccessful()
         {
             // Arrange
             var LRemoveUserCommand = new RemoveUserCommand
@@ -26,7 +26,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void RemoveUser_WhenIdIsEmpty_ShouldThrowError()
+        public void GivenEmptyId_WhenRemoveUser_ShouldThrowError()
         {
             // Arrange
             var LRemoveUserCommand = new RemoveUserCommand

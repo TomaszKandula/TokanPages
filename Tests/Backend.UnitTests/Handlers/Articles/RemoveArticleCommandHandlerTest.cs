@@ -12,7 +12,7 @@ namespace Backend.UnitTests.Handlers.Articles
     public class RemoveArticleCommandHandlerTest : TestBase
     {
         [Fact]
-        public async Task RemoveArticle_WhenIdIsCorrect_ShouldRemoveEntity() 
+        public async Task GivenCorrectId_WhenRemoveArticle_ShouldRemoveEntity() 
         {
             // Arrange
             var LRemoveArticleCommand = new RemoveArticleCommand
@@ -45,7 +45,7 @@ namespace Backend.UnitTests.Handlers.Articles
         }
 
         [Fact]
-        public async Task RemoveArticle_WhenIdIsIncorrect_ShouldThrowError()
+        public async Task GivenIncorrectId_WhenRemoveArticle_ShouldThrowError()
         {
             // Arrange
             var LRemoveArticleCommand = new RemoveArticleCommand

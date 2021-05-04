@@ -6,6 +6,9 @@ namespace TokanPages.Backend.Core.Extensions
 {
     public static class StringExtensions
     {
+        public static bool IsGuid(this string AValue) 
+            => Guid.TryParse(AValue.Replace("\"", ""), out var _);
+
         public static string ToBase64Encode(this string APlainText)
             => Convert.ToBase64String(Encoding.UTF8.GetBytes(APlainText));
 

@@ -15,7 +15,7 @@ namespace Backend.UnitTests.Handlers.Users
     public class AddUserCommandHandlerTest : TestBase
     {
         [Fact]
-        public async Task AddUser_WhenFieldsAreProvided_ShouldAddEntity() 
+        public async Task GivenFieldsAreProvided_WhenAddUser_ShouldAddEntity() 
         {
             // Arrange
             var LAddUserCommand = new AddUserCommand 
@@ -49,7 +49,7 @@ namespace Backend.UnitTests.Handlers.Users
         }
 
         [Fact]
-        public async Task AddUser_WhenEmailExists_ShouldThrowError()
+        public async Task GivenExistingEmail_WhenAddUser_ShouldThrowError()
         {
             // Arrange
             var LTestEmail = DataProvider.GetRandomEmail();

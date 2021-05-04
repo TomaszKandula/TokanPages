@@ -12,7 +12,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
     public class RemoveSubscriberCommandHandlerTest : TestBase
     {
         [Fact]
-        public async Task RemoveSubscriber_WhenIdIsCorrect_ShouldRemoveEntity() 
+        public async Task GivenCorrectId_WhenRemoveSubscriber_ShouldRemoveEntity() 
         {
             // Arrange
             var LRemoveSubscriberCommand = new RemoveSubscriberCommand 
@@ -44,7 +44,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
         }
 
         [Fact]
-        public async Task RemoveSubscriber_WhenIdIsIncorrect_ShouldThrowError()
+        public async Task GivenIncorrectId_WhenRemoveSubscriber_ShouldThrowError()
         {
             // Arrange
             var LRemoveSubscriberCommand = new RemoveSubscriberCommand

@@ -11,7 +11,7 @@ namespace Backend.UnitTests.Validators.Mailer
     public class SendNewsletterCommandValidatorTest
     {
         [Fact]
-        public void SendNewsletter_WhenAllFieldsAreCorrect_ShouldFinishSuccessful() 
+        public void GivenAllFieldsAreCorrect_WhenSendNewsletter_ShouldFinishSuccessful() 
         {
             // Arrange
             var LSendNewsletterCommand = new SendNewsletterCommand
@@ -26,7 +26,6 @@ namespace Backend.UnitTests.Validators.Mailer
                         Email = "tokan@dfds.com"
                     }
                 }
-
             };
 
             // Act
@@ -38,7 +37,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendNewsletter_WhenSubscriberInfoIsEmpty_ShouldThrowError()
+        public void GivenSubscriberInfoIsEmpty_WhenSendNewsletter_ShouldThrowError()
         {
             // Arrange
             var LSendNewsletterCommand = new SendNewsletterCommand
@@ -58,7 +57,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenSubjectEmpty_ShouldThrowError()
+        public void GivenEmptySubject_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendNewsletterCommand = new SendNewsletterCommand
@@ -73,7 +72,6 @@ namespace Backend.UnitTests.Validators.Mailer
                         Email = "tokan@dfds.com"
                     }
                 }
-
             };
 
             // Act
@@ -86,7 +84,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenSubjectTooLong_ShouldThrowError()
+        public void GivenTooLongSubject_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendNewsletterCommand = new SendNewsletterCommand
@@ -101,7 +99,6 @@ namespace Backend.UnitTests.Validators.Mailer
                         Email = "tokan@dfds.com"
                     }
                 }
-
             };
 
             // Act
@@ -114,7 +111,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenMessageEmpty_ShouldThrowError()
+        public void GivenEmptyMessage_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendNewsletterCommand = new SendNewsletterCommand
@@ -129,7 +126,6 @@ namespace Backend.UnitTests.Validators.Mailer
                         Email = "tokan@dfds.com"
                     }
                 }
-
             };
 
             // Act
@@ -142,7 +138,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenMessageTooLong_ShouldThrowError()
+        public void GivenTooLongMessage_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendNewsletterCommand = new SendNewsletterCommand
@@ -157,7 +153,6 @@ namespace Backend.UnitTests.Validators.Mailer
                         Email = "tokan@dfds.com"
                     }
                 }
-
             };
 
             // Act

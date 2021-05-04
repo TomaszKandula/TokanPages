@@ -9,7 +9,7 @@ namespace Backend.UnitTests.Validators.Subscribers
     public class GetSubscriberQueryValidatorTest
     {
         [Fact]
-        public void GetSubscriber_WhenIdIsCorrect_ShouldFinishSuccessful() 
+        public void GivenCorrectId_WhenGetSubscriber_ShouldFinishSuccessful() 
         {
             // Arrange
             var LGetSubscriberQuery = new GetSubscriberQuery 
@@ -26,7 +26,7 @@ namespace Backend.UnitTests.Validators.Subscribers
         }
 
         [Fact]
-        public void GetSubscriber_WhenIdIsEmpty_ShouldThrowError()
+        public void GivenEmptyId_WhenGetSubscriber_ShouldThrowError()
         {
             // Arrange
             var LGetSubscriberQuery = new GetSubscriberQuery

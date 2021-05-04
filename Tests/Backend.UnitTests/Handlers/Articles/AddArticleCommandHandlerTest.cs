@@ -37,7 +37,7 @@ namespace Backend.UnitTests.Handlers.Articles
         }
 
         [Fact]
-        public async Task AddArticle_WhenFieldsAreProvidedWithBase64Image_ShouldAddEntity() 
+        public async Task GivenFieldsWithBase64Image_WhenAddArticle_ShouldAddEntity() 
         {
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
@@ -68,7 +68,7 @@ namespace Backend.UnitTests.Handlers.Articles
         }
 
         [Fact]
-        public async Task AddArticle_WhenFieldsAreProvidedWithNoBase64Image_ShouldThrowError()
+        public async Task GivenFieldsWithNoBase64Image_WhenAddArticle_ShouldThrowError()
         {
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
