@@ -10,7 +10,7 @@ namespace Backend.UnitTests.Validators.Users
     public class UpdateUserCommandValidatorTest
     {
         [Fact]
-        public void UpdateUser_WhenAllFieldsAreCorrect_ShouldFinishSuccessful()
+        public void GivenAllFieldsAreCorrect_WhenUpdateUser_ShouldFinishSuccessful()
         {
 
             // Arrange
@@ -32,7 +32,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void UpdateUser_WhenEmailAddressIsEmpty_ShouldThrowError()
+        public void GivenEmptyEmailAddress_WhenUpdateUser_ShouldThrowError()
         {
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
@@ -54,7 +54,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void UpdateUser_WhenEmailAddressIsTooLong_ShouldThrowError()
+        public void GivenTooLongEmailAddress_WhenUpdateUser_ShouldThrowError()
         {
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
@@ -76,7 +76,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void UpdateUser_WhenUserAliasIsEmpty_ShouldThrowError()
+        public void GivenEmptyUserAlias_WhenUpdateUser_ShouldThrowError()
         {
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
@@ -98,7 +98,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void UpdateUser_WhenUserAliasIsTooLong_ShouldThrowError()
+        public void GivenTooLongUserAlias_WhenUpdateUser_ShouldThrowError()
         {
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
@@ -120,7 +120,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void UpdateUser_WhenFirstNameIsEmpty_ShouldThrowError()
+        public void GivenEmptyFirstName_WhenUpdateUser_ShouldThrowError()
         {
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
@@ -142,7 +142,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void UpdateUser_WhenFirstNameIsTooLong_ShouldThrowError()
+        public void GivenTooLongFirstName_WhenUpdateUser_ShouldThrowError()
         {
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
@@ -164,7 +164,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void UpdateUser_WhenLastNameIsEmpty_ShouldThrowError()
+        public void GivenEmptyLastName_WhenUpdateUser_ShouldThrowError()
         {
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand
@@ -186,7 +186,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void UpdateUser_WhenLastNameIsTooLong_ShouldThrowError()
+        public void GivenTooLongLastName_WhenUpdateUser_ShouldThrowError()
         {
             // Arrange
             var LUpdateUserCommand = new UpdateUserCommand

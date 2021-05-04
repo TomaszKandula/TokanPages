@@ -9,7 +9,7 @@ namespace Backend.UnitTests.Validators.Users
     public class GetUserQueryValidatorTest
     {
         [Fact]
-        public void GetUser_WhenIdIsCorrect_ShouldFinishSuccessful()
+        public void GivenCorrectId_WhenGetUser_ShouldFinishSuccessful()
         {
             // Arrange
             var LGetUserQuery = new GetUserQuery
@@ -26,7 +26,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void GetUser_WhenIdIsEmpty_ShouldThrowError()
+        public void GivenEmptyId_WhenGetUser_ShouldThrowError()
         {
             // Arrange
             var LGetUserQuery = new GetUserQuery

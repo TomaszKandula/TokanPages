@@ -9,7 +9,7 @@ namespace Backend.UnitTests.Validators.Subscribers
     public class AddSubscriberCommandValidatorTest
     {
         [Fact]
-        public void AddSubscriber_WhenEmailIsGiven_ShouldFinishSuccessful() 
+        public void GivenEmail_WhenAddSubscriber_ShouldFinishSuccessful() 
         {
             // Arrange
             var LAddSubscriberCommand = new AddSubscriberCommand 
@@ -26,7 +26,7 @@ namespace Backend.UnitTests.Validators.Subscribers
         }
 
         [Fact]
-        public void AddSubscriber_WhenEmailIsEmpty_ShouldFinishSuccessful()
+        public void GivenEmptyEmail_WhenAddSubscriber_ShouldFinishSuccessful()
         {
             // Arrange
             var LAddSubscriberCommand = new AddSubscriberCommand

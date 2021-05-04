@@ -9,7 +9,7 @@ namespace Backend.UnitTests.Validators.Articles
     public class GetArticleQueryValidatorTest
     {
         [Fact]
-        public void GetArticle_WhenIdIsCorrect_ShouldFinishSuccessful() 
+        public void GivenCorrectId_WhenGetArticle_ShouldFinishSuccessful() 
         {
             // Arrange
             var LGetArticleQuery = new GetArticleQuery 
@@ -26,7 +26,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void GetArticle_WhenIdIsIncorrect_ShouldThrowError()
+        public void GivenIncorrectId_WhenGetArticle_ShouldThrowError()
         {
             // Arrange
             var LGetArticleQuery = new GetArticleQuery

@@ -10,7 +10,7 @@ namespace Backend.UnitTests.Validators.Mailer
     public class SendMessageCommandValidatorTest
     {
         [Fact]
-        public void SendMessage_WhenAllFieldsAreCorrect_ShouldFinishSuccessful() 
+        public void GivenAllFieldsAreCorrect_WhenSendMessage_ShouldFinishSuccessful() 
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
@@ -33,7 +33,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenFirstNameEmpty_ShouldThrowError()
+        public void GivenFirstNameEmpty_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
@@ -57,7 +57,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenFirstNameTooLong_ShouldThrowError()
+        public void GivenFirstNameTooLong_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
@@ -81,7 +81,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenLastNameEmpty_ShouldThrowError()
+        public void GivenLastNameEmpty_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
@@ -105,7 +105,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenLastNameTooLong_ShouldThrowError()
+        public void GivenLastNameTooLong_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
@@ -129,7 +129,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenUserEmailEmpty_ShouldThrowError()
+        public void GivenEmptyUserEmail_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
@@ -153,7 +153,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenUserEmailTooLong_ShouldThrowError()
+        public void GivenUserEmailTooLong_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
@@ -177,7 +177,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenEmailFromEmpty_ShouldThrowError()
+        public void GivenEmptyEmailFrom_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
@@ -201,7 +201,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenEmailFromTooLong_ShouldThrowError()
+        public void GivenTooLongEmailFrom_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
@@ -225,7 +225,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenSubjectEmpty_ShouldThrowError()
+        public void GivenEmptySubject_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
@@ -249,7 +249,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenSubjectTooLong_ShouldThrowError()
+        public void GivenTooLongSubject_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
@@ -273,7 +273,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenMessageEmpty_ShouldThrowError()
+        public void GivenEmptyMessage_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
@@ -297,7 +297,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenMessageTooLong_ShouldThrowError()
+        public void GivenTooLongMessage_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
@@ -321,7 +321,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void SendMessage_WhenEmailTosEmpty_ShouldThrowError()
+        public void GivenEmptyEmailTos_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand

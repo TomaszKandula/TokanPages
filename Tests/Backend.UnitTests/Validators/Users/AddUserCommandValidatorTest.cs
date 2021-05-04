@@ -9,7 +9,7 @@ namespace Backend.UnitTests.Validators.Users
     public class AddUserCommandValidatorTest
     {
         [Fact]
-        public void AddUser_WhenAllFieldsAreCorrect_ShouldFinishSuccessful() 
+        public void GivenAllFieldsAreCorrect_WhenAddUser_ShouldFinishSuccessful() 
         {
             // Arrange
             var LAddUserCommand = new AddUserCommand 
@@ -29,7 +29,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void AddUser_WhenEmailAddressIsEmpty_ShouldThrowError()
+        public void GivenEmptyEmailAddress_WhenAddUser_ShouldThrowError()
         {
             // Arrange
             var LAddUserCommand = new AddUserCommand
@@ -50,7 +50,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void AddUser_WhenEmailAddressIsTooLong_ShouldThrowError()
+        public void GivenTooLongEmailAddress_WhenAddUser_ShouldThrowError()
         {
             // Arrange
             var LAddUserCommand = new AddUserCommand
@@ -71,7 +71,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void AddUser_WhenUserAliasIsEmpty_ShouldThrowError()
+        public void GivenEmptyUserAlias_WhenAddUser_ShouldThrowError()
         {
             // Arrange
             var LAddUserCommand = new AddUserCommand
@@ -92,7 +92,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void AddUser_WhenUserAliasIsTooLong_ShouldThrowError()
+        public void GivenTooLongUserAlias_WhenAddUser_ShouldThrowError()
         {
             // Arrange
             var LAddUserCommand = new AddUserCommand
@@ -113,7 +113,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void AddUser_WhenFirstNameIsEmpty_ShouldThrowError()
+        public void GivenEmptyFirstName_WhenAddUser_ShouldThrowError()
         {
             // Arrange
             var LAddUserCommand = new AddUserCommand
@@ -134,7 +134,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void AddUser_WhenFirstNameIsTooLong_ShouldThrowError()
+        public void GivenTooLongFirstName_WhenAddUser_ShouldThrowError()
         {
             // Arrange
             var LAddUserCommand = new AddUserCommand
@@ -155,7 +155,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void AddUser_WhenLastNameIsEmpty_ShouldThrowError()
+        public void GivenEmptyLastName_WhenAddUser_ShouldThrowError()
         {
             // Arrange
             var LAddUserCommand = new AddUserCommand
@@ -176,7 +176,7 @@ namespace Backend.UnitTests.Validators.Users
         }
 
         [Fact]
-        public void AddUser_WhenLastNameIsTooLong_ShouldThrowError()
+        public void GivenTooLongLastName_WhenAddUser_ShouldThrowError()
         {
             // Arrange
             var LAddUserCommand = new AddUserCommand

@@ -9,7 +9,7 @@ namespace Backend.UnitTests.Validators.Articles
     public class RemoveArticleCommandValidatorTest
     {
         [Fact]
-        public void RemoveArticle_WhenIdIsCorrect_ShouldFinishSuccessfully() 
+        public void GivenCorrectId_WhenRemoveArticle_ShouldFinishSuccessfully() 
         {
             // Arrange
             var LRemoveArticleCommand = new RemoveArticleCommand
@@ -26,7 +26,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void RemoveArticle_WhenIdIsIncorrect_ShouldThrowError()
+        public void GivenIncorrectId_WhenRemoveArticle_ShouldThrowError()
         {
             // Arrange
             var LRemoveArticleCommand = new RemoveArticleCommand

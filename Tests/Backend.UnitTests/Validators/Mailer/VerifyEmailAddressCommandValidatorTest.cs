@@ -8,7 +8,7 @@ namespace Backend.UnitTests.Validators.Mailer
     public class VerifyEmailAddressCommandValidatorTest
     {
         [Fact]
-        public void VerifyEmailAddress_WhenEmailIsGiven_ShouldFinishSuccessful() 
+        public void GivenEmail_WhenVerifyEmailAddress_ShouldFinishSuccessful() 
         {
             // Arrange
             var LVerifyEmailAddressCommand = new VerifyEmailAddressCommand 
@@ -25,7 +25,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void VerifyEmailAddress_WhenEmailIsEmpty_ShouldThrowError()
+        public void GivenEmptyEmail_WhenVerifyEmailAddress_ShouldThrowError()
         {
             // Arrange
             var LVerifyEmailAddressCommand = new VerifyEmailAddressCommand
@@ -43,7 +43,7 @@ namespace Backend.UnitTests.Validators.Mailer
         }
 
         [Fact]
-        public void VerifyEmailAddress_WhenEmailTooLong_ShouldThrowError()
+        public void GivenTooLongEmail_WhenVerifyEmailAddress_ShouldThrowError()
         {
             // Arrange
             var LVerifyEmailAddressCommand = new VerifyEmailAddressCommand

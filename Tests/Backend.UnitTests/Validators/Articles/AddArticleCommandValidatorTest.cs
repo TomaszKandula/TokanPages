@@ -9,7 +9,7 @@ namespace Backend.UnitTests.Validators.Articles
     public class AddArticleCommandValidatorTest
     {
         [Fact]
-        public void ValidateAddArticle_WhenAllFieldsAreCorrect_ShouldFinishSuccessfully() 
+        public void GivenAllFieldsAreCorrect_WhenValidateAddArticle_ShouldFinishSuccessfully() 
         {
             // Arrange
             var LAddArticleCommand = new AddArticleCommand 
@@ -29,7 +29,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void ValidateAddArticle_WhenDescriptionTooLong_ShouldThrowError() 
+        public void GivenDescriptionTooLong_WhenValidateAddArticle_ShouldThrowError() 
         {
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
@@ -50,7 +50,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void ValidateAddArticle_WhenTitleTooLong_ShouldThrowError()
+        public void GivenTitleTooLong_WhenValidateAddArticle_ShouldThrowError()
         {
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
@@ -71,7 +71,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void ValidateAddArticle_WhenDescriptionEmpty_ShouldThrowError()
+        public void GivenDescriptionEmpty_WhenValidateAddArticle_ShouldThrowError()
         {
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
@@ -92,7 +92,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void ValidateAddArticle_WhenTitleEmpty_ShouldThrowError()
+        public void GivenTitleEmpty_WhenValidateAddArticle_ShouldThrowError()
         {
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
@@ -113,7 +113,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void ValidateAddArticle_WhenTextToUploadEmpty_ShouldThrowError()
+        public void GivenTextToUploadEmpty_WhenValidateAddArticle_ShouldThrowError()
         {
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
@@ -134,7 +134,7 @@ namespace Backend.UnitTests.Validators.Articles
         }
 
         [Fact]
-        public void ValidateAddArticle_WhenImageToUploadEmpty_ShouldThrowError()
+        public void GivenImageToUploadEmpty_WhenValidateAddArticle_ShouldThrowError()
         {
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
