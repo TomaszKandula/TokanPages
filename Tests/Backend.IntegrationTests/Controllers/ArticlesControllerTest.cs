@@ -12,7 +12,7 @@ using TokanPages.Backend.Database.Dummies;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.Dto.Articles;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
-using Backend.TestData;
+using Backend.DataProviders;
 using TokanPages;
 
 namespace Backend.IntegrationTests.Controllers
@@ -33,10 +33,10 @@ namespace Backend.IntegrationTests.Controllers
 
             var LPayLoad = new AddArticleDto
             {
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
-                TextToUpload = DataProvider.GetRandomString(150),
-                ImageToUpload = DataProvider.GetRandomString(255).ToBase64Encode()
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
+                TextToUpload = StringProvider.GetRandomString(150),
+                ImageToUpload = StringProvider.GetRandomString(255).ToBase64Encode()
             };
 
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -152,10 +152,10 @@ namespace Backend.IntegrationTests.Controllers
             var LPayLoad = new UpdateArticleDto
             {
                 Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
-                TextToUpload = DataProvider.GetRandomString(150),
-                ImageToUpload = DataProvider.GetRandomString(255).ToBase64Encode(),
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
+                TextToUpload = StringProvider.GetRandomString(150),
+                ImageToUpload = StringProvider.GetRandomString(255).ToBase64Encode(),
                 IsPublished = false,
                 AddToLikes = 0,
                 UpReadCount = false

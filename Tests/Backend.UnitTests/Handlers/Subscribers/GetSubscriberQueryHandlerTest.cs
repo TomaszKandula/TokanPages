@@ -3,7 +3,7 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.TestData;
+using Backend.DataProviders;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
 
@@ -25,7 +25,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
                 Id = Guid.Parse("2992bc4c-d7a6-43c4-b3e8-f5f632eb229d"),
-                Email = DataProvider.GetRandomEmail(),
+                Email = StringProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10,
                 Registered = LTestDate,
@@ -60,7 +60,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
                 Id = Guid.Parse("2992bc4c-d7a6-43c4-b3e8-f5f632eb229d"),
-                Email = DataProvider.GetRandomEmail(),
+                Email = StringProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10,
                 Registered = DateTime.Now,

@@ -1,7 +1,7 @@
 ﻿using Xunit;
 using FluentAssertions;
 using System.Collections.Generic;
-using Backend.TestData;
+using Backend.DataProviders;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
 
@@ -15,13 +15,13 @@ namespace Backend.UnitTests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
-                UserEmail = DataProvider.GetRandomEmail(),
-                EmailFrom = DataProvider.GetRandomEmail(),
-                EmailTos = new List<string> { DataProvider.GetRandomEmail(), DataProvider.GetRandomEmail() },
-                Subject = DataProvider.GetRandomString(),
-                Message = DataProvider.GetRandomString()
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                UserEmail = StringProvider.GetRandomEmail(),
+                EmailFrom = StringProvider.GetRandomEmail(),
+                EmailTos = new List<string> { StringProvider.GetRandomEmail(), StringProvider.GetRandomEmail() },
+                Subject = StringProvider.GetRandomString(),
+                Message = StringProvider.GetRandomString()
             };
 
             // Act
@@ -39,12 +39,12 @@ namespace Backend.UnitTests.Validators.Mailer
             var LSendMessageCommand = new SendMessageCommand
             {
                 FirstName = string.Empty,
-                LastName = DataProvider.GetRandomString(),
-                UserEmail = DataProvider.GetRandomEmail(),
-                EmailFrom = DataProvider.GetRandomEmail(),
-                EmailTos = new List<string> { DataProvider.GetRandomEmail(), DataProvider.GetRandomEmail() },
-                Subject = DataProvider.GetRandomString(),
-                Message = DataProvider.GetRandomString()
+                LastName = StringProvider.GetRandomString(),
+                UserEmail = StringProvider.GetRandomEmail(),
+                EmailFrom = StringProvider.GetRandomEmail(),
+                EmailTos = new List<string> { StringProvider.GetRandomEmail(), StringProvider.GetRandomEmail() },
+                Subject = StringProvider.GetRandomString(),
+                Message = StringProvider.GetRandomString()
             };
 
             // Act
@@ -62,13 +62,13 @@ namespace Backend.UnitTests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = DataProvider.GetRandomString(256),
-                LastName = DataProvider.GetRandomString(),
-                UserEmail = DataProvider.GetRandomEmail(),
-                EmailFrom = DataProvider.GetRandomEmail(),
-                EmailTos = new List<string> { DataProvider.GetRandomEmail(), DataProvider.GetRandomEmail() },
-                Subject = DataProvider.GetRandomString(),
-                Message = DataProvider.GetRandomString()
+                FirstName = StringProvider.GetRandomString(256),
+                LastName = StringProvider.GetRandomString(),
+                UserEmail = StringProvider.GetRandomEmail(),
+                EmailFrom = StringProvider.GetRandomEmail(),
+                EmailTos = new List<string> { StringProvider.GetRandomEmail(), StringProvider.GetRandomEmail() },
+                Subject = StringProvider.GetRandomString(),
+                Message = StringProvider.GetRandomString()
             };
 
             // Act
@@ -86,13 +86,13 @@ namespace Backend.UnitTests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = DataProvider.GetRandomString(),
+                FirstName = StringProvider.GetRandomString(),
                 LastName = string.Empty,
-                UserEmail = DataProvider.GetRandomEmail(),
-                EmailFrom = DataProvider.GetRandomEmail(),
-                EmailTos = new List<string> { DataProvider.GetRandomEmail(), DataProvider.GetRandomEmail() },
-                Subject = DataProvider.GetRandomString(),
-                Message = DataProvider.GetRandomString()
+                UserEmail = StringProvider.GetRandomEmail(),
+                EmailFrom = StringProvider.GetRandomEmail(),
+                EmailTos = new List<string> { StringProvider.GetRandomEmail(), StringProvider.GetRandomEmail() },
+                Subject = StringProvider.GetRandomString(),
+                Message = StringProvider.GetRandomString()
             };
 
             // Act
@@ -110,13 +110,13 @@ namespace Backend.UnitTests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(256),
-                UserEmail = DataProvider.GetRandomEmail(),
-                EmailFrom = DataProvider.GetRandomEmail(),
-                EmailTos = new List<string> { DataProvider.GetRandomEmail(), DataProvider.GetRandomEmail() },
-                Subject = DataProvider.GetRandomString(),
-                Message = DataProvider.GetRandomString()
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(256),
+                UserEmail = StringProvider.GetRandomEmail(),
+                EmailFrom = StringProvider.GetRandomEmail(),
+                EmailTos = new List<string> { StringProvider.GetRandomEmail(), StringProvider.GetRandomEmail() },
+                Subject = StringProvider.GetRandomString(),
+                Message = StringProvider.GetRandomString()
             };
 
             // Act
@@ -134,13 +134,13 @@ namespace Backend.UnitTests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
                 UserEmail = string.Empty,
-                EmailFrom = DataProvider.GetRandomEmail(),
-                EmailTos = new List<string> { DataProvider.GetRandomEmail(), DataProvider.GetRandomEmail() },
-                Subject = DataProvider.GetRandomString(),
-                Message = DataProvider.GetRandomString()
+                EmailFrom = StringProvider.GetRandomEmail(),
+                EmailTos = new List<string> { StringProvider.GetRandomEmail(), StringProvider.GetRandomEmail() },
+                Subject = StringProvider.GetRandomString(),
+                Message = StringProvider.GetRandomString()
             };
 
             // Act
@@ -158,13 +158,13 @@ namespace Backend.UnitTests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
                 UserEmail = new string('T', 256),
-                EmailFrom = DataProvider.GetRandomEmail(),
-                EmailTos = new List<string> { DataProvider.GetRandomEmail(), DataProvider.GetRandomEmail() },
-                Subject = DataProvider.GetRandomString(),
-                Message = DataProvider.GetRandomString()
+                EmailFrom = StringProvider.GetRandomEmail(),
+                EmailTos = new List<string> { StringProvider.GetRandomEmail(), StringProvider.GetRandomEmail() },
+                Subject = StringProvider.GetRandomString(),
+                Message = StringProvider.GetRandomString()
             };
 
             // Act
@@ -182,13 +182,13 @@ namespace Backend.UnitTests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
-                UserEmail = DataProvider.GetRandomEmail(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                UserEmail = StringProvider.GetRandomEmail(),
                 EmailFrom = string.Empty,
-                EmailTos = new List<string> { DataProvider.GetRandomEmail(), DataProvider.GetRandomEmail() },
-                Subject = DataProvider.GetRandomString(),
-                Message = DataProvider.GetRandomString()
+                EmailTos = new List<string> { StringProvider.GetRandomEmail(), StringProvider.GetRandomEmail() },
+                Subject = StringProvider.GetRandomString(),
+                Message = StringProvider.GetRandomString()
             };
 
             // Act
@@ -206,13 +206,13 @@ namespace Backend.UnitTests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
-                UserEmail = DataProvider.GetRandomEmail(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                UserEmail = StringProvider.GetRandomEmail(),
                 EmailFrom = new string('T', 256),
-                EmailTos = new List<string> { DataProvider.GetRandomEmail(), DataProvider.GetRandomEmail() },
-                Subject = DataProvider.GetRandomString(),
-                Message = DataProvider.GetRandomString()
+                EmailTos = new List<string> { StringProvider.GetRandomEmail(), StringProvider.GetRandomEmail() },
+                Subject = StringProvider.GetRandomString(),
+                Message = StringProvider.GetRandomString()
             };
 
             // Act
@@ -230,13 +230,13 @@ namespace Backend.UnitTests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
-                UserEmail = DataProvider.GetRandomEmail(),
-                EmailFrom = DataProvider.GetRandomEmail(),
-                EmailTos = new List<string> { DataProvider.GetRandomEmail(), DataProvider.GetRandomEmail() },
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                UserEmail = StringProvider.GetRandomEmail(),
+                EmailFrom = StringProvider.GetRandomEmail(),
+                EmailTos = new List<string> { StringProvider.GetRandomEmail(), StringProvider.GetRandomEmail() },
                 Subject = string.Empty,
-                Message = DataProvider.GetRandomString()
+                Message = StringProvider.GetRandomString()
             };
 
             // Act
@@ -254,13 +254,13 @@ namespace Backend.UnitTests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
-                UserEmail = DataProvider.GetRandomEmail(),
-                EmailFrom = DataProvider.GetRandomEmail(),
-                EmailTos = new List<string> { DataProvider.GetRandomEmail(), DataProvider.GetRandomEmail() },
-                Subject = DataProvider.GetRandomString(256),
-                Message = DataProvider.GetRandomString()
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                UserEmail = StringProvider.GetRandomEmail(),
+                EmailFrom = StringProvider.GetRandomEmail(),
+                EmailTos = new List<string> { StringProvider.GetRandomEmail(), StringProvider.GetRandomEmail() },
+                Subject = StringProvider.GetRandomString(256),
+                Message = StringProvider.GetRandomString()
             };
 
             // Act
@@ -278,12 +278,12 @@ namespace Backend.UnitTests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
-                UserEmail = DataProvider.GetRandomEmail(),
-                EmailFrom = DataProvider.GetRandomEmail(),
-                EmailTos = new List<string> { DataProvider.GetRandomEmail(), DataProvider.GetRandomEmail() },
-                Subject = DataProvider.GetRandomString(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                UserEmail = StringProvider.GetRandomEmail(),
+                EmailFrom = StringProvider.GetRandomEmail(),
+                EmailTos = new List<string> { StringProvider.GetRandomEmail(), StringProvider.GetRandomEmail() },
+                Subject = StringProvider.GetRandomString(),
                 Message = string.Empty,
             };
 
@@ -302,13 +302,13 @@ namespace Backend.UnitTests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
-                UserEmail = DataProvider.GetRandomEmail(),
-                EmailFrom = DataProvider.GetRandomEmail(),
-                EmailTos = new List<string> { DataProvider.GetRandomEmail(), DataProvider.GetRandomEmail() },
-                Subject = DataProvider.GetRandomString(),
-                Message = DataProvider.GetRandomString(256)
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                UserEmail = StringProvider.GetRandomEmail(),
+                EmailFrom = StringProvider.GetRandomEmail(),
+                EmailTos = new List<string> { StringProvider.GetRandomEmail(), StringProvider.GetRandomEmail() },
+                Subject = StringProvider.GetRandomString(),
+                Message = StringProvider.GetRandomString(256)
             };
 
             // Act
@@ -326,13 +326,13 @@ namespace Backend.UnitTests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
-                UserEmail = DataProvider.GetRandomEmail(),
-                EmailFrom = DataProvider.GetRandomEmail(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                UserEmail = StringProvider.GetRandomEmail(),
+                EmailFrom = StringProvider.GetRandomEmail(),
                 EmailTos = new List<string>(),
-                Subject = DataProvider.GetRandomString(),
-                Message = DataProvider.GetRandomString()
+                Subject = StringProvider.GetRandomString(),
+                Message = StringProvider.GetRandomString()
             };
 
             // Act

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Shared.Dto.Mailer;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
-using Backend.TestData;
+using Backend.DataProviders;
 using TokanPages;
 
 namespace Backend.IntegrationTests.Controllers
@@ -29,10 +29,10 @@ namespace Backend.IntegrationTests.Controllers
 
             var LPayLoad = new SendMessageDto
             {
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
-                UserEmail = DataProvider.GetRandomEmail(),
-                EmailFrom = DataProvider.GetRandomEmail(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                UserEmail = StringProvider.GetRandomEmail(),
+                EmailFrom = StringProvider.GetRandomEmail(),
                 EmailTos = new List<string> { string.Empty },
                 Subject = "Integration Test / HttpClient / Endpoint",
                 Message = $"Test run Id: {Guid.NewGuid()}.",

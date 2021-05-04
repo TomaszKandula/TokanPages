@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
-using Backend.TestData;
+using Backend.DataProviders;
 
 namespace Backend.UnitTests.Handlers.Articles
 {
@@ -28,8 +28,8 @@ namespace Backend.UnitTests.Handlers.Articles
                 new TokanPages.Backend.Domain.Entities.Articles
                 {
                     Id = LFirstArticleId,
-                    Title = DataProvider.GetRandomString(),
-                    Description = DataProvider.GetRandomString(),
+                    Title = StringProvider.GetRandomString(),
+                    Description = StringProvider.GetRandomString(),
                     IsPublished = false,
                     ReadCount = 0,
                     CreatedAt = DateTime.Now.AddDays(-10),
@@ -39,8 +39,8 @@ namespace Backend.UnitTests.Handlers.Articles
                 new TokanPages.Backend.Domain.Entities.Articles
                 {
                     Id = LSecondArticleId,
-                    Title = DataProvider.GetRandomString(),
-                    Description = DataProvider.GetRandomString(),
+                    Title = StringProvider.GetRandomString(),
+                    Description = StringProvider.GetRandomString(),
                     IsPublished = false,
                     ReadCount = 0,
                     CreatedAt = DateTime.Now.AddDays(-15),

@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.TestData;
+using Backend.DataProviders;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Services.DateTimeService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
@@ -20,7 +20,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             // Arrange
             var LAddSubscriberCommand = new AddSubscriberCommand 
             { 
-                Email = DataProvider.GetRandomEmail()
+                Email = StringProvider.GetRandomEmail()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -54,7 +54,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
         public async Task GivenExistingEmail_WhenAddSubscriber_ShouldThrowError()
         {
             // Arrange
-            var LTestEmail = DataProvider.GetRandomEmail();
+            var LTestEmail = StringProvider.GetRandomEmail();
             var LAddSubscriberCommand = new AddSubscriberCommand
             {
                 Email = LTestEmail

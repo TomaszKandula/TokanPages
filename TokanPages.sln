@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokanPages.Backend.Cqrs", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokanPages.Backend.Core", "Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj", "{4332380B-219A-4ABF-BD6C-BD9F56AA7E83}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.TestData", "Tests\Backend.TestData\Backend.TestData.csproj", "{E30AF0E3-5C7C-4260-89C6-B8B8E7A7EA96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend.DataProviders", "Tests\Backend.DataProviders\Backend.DataProviders.csproj", "{E30AF0E3-5C7C-4260-89C6-B8B8E7A7EA96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

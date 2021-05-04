@@ -5,7 +5,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Backend.TestData;
+using Backend.DataProviders;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
@@ -32,8 +32,8 @@ namespace Backend.UnitTests.Handlers.Articles
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = LArticleId,
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = LTestDate,
@@ -44,12 +44,12 @@ namespace Backend.UnitTests.Handlers.Articles
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
                 Id = LUserId,
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = DataProvider.GetRandomEmail(),
+                EmailAddress = StringProvider.GetRandomEmail(),
                 UserAlias = USER_ALIAS,
-                Registered = DataProvider.GetRandomDate(),
+                Registered = DateTimeProvider.GetRandom(),
                 LastLogged = null,
                 LastUpdated = null
             };
@@ -116,8 +116,8 @@ namespace Backend.UnitTests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,

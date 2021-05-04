@@ -14,7 +14,7 @@ using TokanPages.Backend.Cqrs.Services.UserProvider;
 using TokanPages.Backend.Core.Services.DateTimeService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
-using Backend.TestData;
+using Backend.DataProviders;
 
 namespace Backend.UnitTests.Handlers.Articles
 {
@@ -46,10 +46,10 @@ namespace Backend.UnitTests.Handlers.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand 
             { 
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
-                TextToUpload = DataProvider.GetRandomString(150),
-                ImageToUpload = DataProvider.GetRandomString(255).ToBase64Encode(),
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
+                TextToUpload = StringProvider.GetRandomString(150),
+                ImageToUpload = StringProvider.GetRandomString(255).ToBase64Encode(),
                 IsPublished = false,
                 AddToLikes = 0,
                 UpReadCount = true
@@ -59,8 +59,8 @@ namespace Backend.UnitTests.Handlers.Articles
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -115,8 +115,8 @@ namespace Backend.UnitTests.Handlers.Articles
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
                 IsPublished = true,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -188,8 +188,8 @@ namespace Backend.UnitTests.Handlers.Articles
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
                 IsPublished = true,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -265,8 +265,8 @@ namespace Backend.UnitTests.Handlers.Articles
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = LArticleId,
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
                 IsPublished = true,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -350,8 +350,8 @@ namespace Backend.UnitTests.Handlers.Articles
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = LArticleId,
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
                 IsPublished = true,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -431,10 +431,10 @@ namespace Backend.UnitTests.Handlers.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.Parse("a54aa009-2894-407f-90ad-5f07a3145203"),
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
-                TextToUpload = DataProvider.GetRandomString(150),
-                ImageToUpload = DataProvider.GetRandomString(255).ToBase64Encode(),
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
+                TextToUpload = StringProvider.GetRandomString(150),
+                ImageToUpload = StringProvider.GetRandomString(255).ToBase64Encode(),
                 IsPublished = false,
                 AddToLikes = 0,
                 UpReadCount = false
@@ -444,8 +444,8 @@ namespace Backend.UnitTests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -480,9 +480,9 @@ namespace Backend.UnitTests.Handlers.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.Parse("a54aa009-2894-407f-90ad-5f07a3145203"),
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
-                TextToUpload = DataProvider.GetRandomString(150),
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
+                TextToUpload = StringProvider.GetRandomString(150),
                 ImageToUpload = "úK¼Æ½t$bþÍs*L2ÕÊª",
                 IsPublished = false,
                 AddToLikes = 0,
@@ -493,8 +493,8 @@ namespace Backend.UnitTests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,

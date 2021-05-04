@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.TestData;
+using Backend.DataProviders;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 using TokanPages.Backend.Core.Services.DateTimeService;
@@ -20,10 +20,10 @@ namespace Backend.UnitTests.Handlers.Users
             // Arrange
             var LAddUserCommand = new AddUserCommand 
             {
-                EmailAddress = DataProvider.GetRandomEmail(),
-                UserAlias = DataProvider.GetRandomString(),
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
+                EmailAddress = StringProvider.GetRandomEmail(),
+                UserAlias = StringProvider.GetRandomString(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -52,13 +52,13 @@ namespace Backend.UnitTests.Handlers.Users
         public async Task GivenExistingEmail_WhenAddUser_ShouldThrowError()
         {
             // Arrange
-            var LTestEmail = DataProvider.GetRandomEmail();
+            var LTestEmail = StringProvider.GetRandomEmail();
             var LAddUserCommand = new AddUserCommand
             {
                 EmailAddress = LTestEmail,
-                UserAlias = DataProvider.GetRandomString(),
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
+                UserAlias = StringProvider.GetRandomString(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -67,9 +67,9 @@ namespace Backend.UnitTests.Handlers.Users
                 Id = Guid.Parse("c11c0bf3-e585-4f1d-8b1a-ff6049fd667c"),
                 EmailAddress = LTestEmail,
                 IsActivated = false,
-                UserAlias = DataProvider.GetRandomString(),
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
+                UserAlias = StringProvider.GetRandomString(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
                 Registered = DateTime.Now,
                 LastUpdated = null,
                 LastLogged = null

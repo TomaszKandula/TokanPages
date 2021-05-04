@@ -4,7 +4,7 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.TestData;
+using Backend.DataProviders;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Services.DateTimeService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
@@ -20,7 +20,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Email = DataProvider.GetRandomEmail(),
+                Email = StringProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10
             };
@@ -29,7 +29,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Email = DataProvider.GetRandomEmail(),
+                Email = StringProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,
@@ -61,7 +61,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Email = DataProvider.GetRandomEmail(),
+                Email = StringProvider.GetRandomEmail(),
                 IsActivated = null,
                 Count = null
             };
@@ -70,7 +70,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Email = DataProvider.GetRandomEmail(),
+                Email = StringProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,
@@ -102,7 +102,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.Parse("32fcefec-4c26-48bb-8717-31447cfda471"),
-                Email = DataProvider.GetRandomEmail(),
+                Email = StringProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10
             };
@@ -111,7 +111,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Email = DataProvider.GetRandomEmail(),
+                Email = StringProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,
@@ -132,7 +132,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
         public async Task GivenExistingEmail_WhenUpdateSubscriber_ShouldThrowError()
         {
             // Arrange
-            var LTestEmail = DataProvider.GetRandomEmail();
+            var LTestEmail = StringProvider.GetRandomEmail();
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
