@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\TokanPages\TokanPages.csproj" />
-    <ProjectReference Include="..\Backend.TestData\Backend.TestData.csproj" />
+    <ProjectReference Include="..\Backend.DataProviders\Backend.DataProviders.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,7 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.TestData;
+using Backend.DataProviders;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 using TokanPages.Backend.Core.Exceptions;
 
@@ -24,7 +24,7 @@ namespace Backend.UnitTests.Handlers.Subscribers
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Email = DataProvider.GetRandomEmail(),
+                Email = StringProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,

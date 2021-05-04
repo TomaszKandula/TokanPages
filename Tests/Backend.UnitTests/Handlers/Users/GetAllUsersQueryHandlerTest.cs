@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
-using Backend.TestData;
+using Backend.DataProviders;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 
 namespace Backend.UnitTests.Handlers.Users
@@ -24,10 +24,10 @@ namespace Backend.UnitTests.Handlers.Users
                 new TokanPages.Backend.Domain.Entities.Users
                 {
                     Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                    EmailAddress = DataProvider.GetRandomEmail(),
-                    UserAlias = DataProvider.GetRandomString(),
-                    FirstName = DataProvider.GetRandomString(),
-                    LastName = DataProvider.GetRandomString(),
+                    EmailAddress = StringProvider.GetRandomEmail(),
+                    UserAlias = StringProvider.GetRandomString(),
+                    FirstName = StringProvider.GetRandomString(),
+                    LastName = StringProvider.GetRandomString(),
                     IsActivated = true,
                     Registered = DateTime.Now,
                     LastUpdated = null,
@@ -36,10 +36,10 @@ namespace Backend.UnitTests.Handlers.Users
                 new TokanPages.Backend.Domain.Entities.Users
                 {
                     Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
-                    EmailAddress = DataProvider.GetRandomEmail(),
-                    UserAlias = DataProvider.GetRandomString(),
-                    FirstName = DataProvider.GetRandomString(),
-                    LastName = DataProvider.GetRandomString(),
+                    EmailAddress = StringProvider.GetRandomEmail(),
+                    UserAlias = StringProvider.GetRandomString(),
+                    FirstName = StringProvider.GetRandomString(),
+                    LastName = StringProvider.GetRandomString(),
                     IsActivated = true,
                     Registered = DateTime.Now,
                     LastUpdated = null,

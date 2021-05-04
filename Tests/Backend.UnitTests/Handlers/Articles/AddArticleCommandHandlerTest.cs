@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.TestData;
+using Backend.DataProviders;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Storage.AzureBlobStorage;
@@ -42,10 +42,10 @@ namespace Backend.UnitTests.Handlers.Articles
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
-                TextToUpload = DataProvider.GetRandomString(),
-                ImageToUpload = DataProvider.GetRandomString().ToBase64Encode()
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
+                TextToUpload = StringProvider.GetRandomString(),
+                ImageToUpload = StringProvider.GetRandomString().ToBase64Encode()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -73,9 +73,9 @@ namespace Backend.UnitTests.Handlers.Articles
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
-                TextToUpload = DataProvider.GetRandomString(),
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
+                TextToUpload = StringProvider.GetRandomString(),
                 ImageToUpload = "úK¼Æ½t$bþÍs*L2ÕÊª"
             };
 

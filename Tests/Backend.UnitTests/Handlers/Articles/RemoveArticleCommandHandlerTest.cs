@@ -3,7 +3,7 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.TestData;
+using Backend.DataProviders;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
@@ -24,8 +24,8 @@ namespace Backend.UnitTests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -57,8 +57,8 @@ namespace Backend.UnitTests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
-                Title = DataProvider.GetRandomString(),
-                Description = DataProvider.GetRandomString(),
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,

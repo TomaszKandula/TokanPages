@@ -12,7 +12,7 @@ using TokanPages.Backend.Database.Dummies;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.Dto.Subscribers;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
-using Backend.TestData;
+using Backend.DataProviders;
 using TokanPages;
 
 namespace Backend.IntegrationTests.Controllers
@@ -30,7 +30,7 @@ namespace Backend.IntegrationTests.Controllers
             // Arrange
             const string REQUEST = "/api/v1/subscribers/addsubscriber/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
-            var LPayLoad = new AddSubscriberDto { Email = DataProvider.GetRandomEmail() };
+            var LPayLoad = new AddSubscriberDto { Email = StringProvider.GetRandomEmail() };
 
             var LHttpClient = FWebAppFactory.CreateClient();
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
@@ -145,7 +145,7 @@ namespace Backend.IntegrationTests.Controllers
             var LPayLoad = new UpdateSubscriberDto
             {
                 Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
-                Email = DataProvider.GetRandomEmail(),
+                Email = StringProvider.GetRandomEmail(),
                 Count = null,
                 IsActivated = null
             };

@@ -4,7 +4,7 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.TestData;
+using Backend.DataProviders;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 using TokanPages.Backend.Core.Services.DateTimeService;
@@ -20,10 +20,10 @@ namespace Backend.UnitTests.Handlers.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
-                EmailAddress = DataProvider.GetRandomEmail(),
-                UserAlias = DataProvider.GetRandomString(),
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
+                EmailAddress = StringProvider.GetRandomEmail(),
+                UserAlias = StringProvider.GetRandomString(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
                 IsActivated = true,
             };
 
@@ -31,10 +31,10 @@ namespace Backend.UnitTests.Handlers.Users
             var LUser = new TokanPages.Backend.Domain.Entities.Users
             {
                 Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
-                EmailAddress = DataProvider.GetRandomEmail(),
-                UserAlias = DataProvider.GetRandomString(),
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
+                EmailAddress = StringProvider.GetRandomEmail(),
+                UserAlias = StringProvider.GetRandomString(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
                 IsActivated = true,
                 Registered = DateTime.Now,
                 LastUpdated = null,
@@ -69,10 +69,10 @@ namespace Backend.UnitTests.Handlers.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.Parse("1edb4c7d-8cf0-4811-b721-af5caf74d7a8"),
-                EmailAddress = DataProvider.GetRandomEmail(),
-                UserAlias = DataProvider.GetRandomString(),
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
+                EmailAddress = StringProvider.GetRandomEmail(),
+                UserAlias = StringProvider.GetRandomString(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
                 IsActivated = true,
             };
 
@@ -80,10 +80,10 @@ namespace Backend.UnitTests.Handlers.Users
             var LUser = new TokanPages.Backend.Domain.Entities.Users
             {
                 Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
-                EmailAddress = DataProvider.GetRandomEmail(),
-                UserAlias = DataProvider.GetRandomString(),
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
+                EmailAddress = StringProvider.GetRandomEmail(),
+                UserAlias = StringProvider.GetRandomString(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
                 IsActivated = true,
                 Registered = DateTime.Now,
                 LastUpdated = null,
@@ -104,14 +104,14 @@ namespace Backend.UnitTests.Handlers.Users
         public async Task GivenExistingEmail_WhenUpdateUser_ShouldThrowError()
         {
             // Arrange
-            var LTestEmail = DataProvider.GetRandomEmail();
+            var LTestEmail = StringProvider.GetRandomEmail();
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
                 EmailAddress = LTestEmail,
-                UserAlias = DataProvider.GetRandomString(),
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
+                UserAlias = StringProvider.GetRandomString(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
                 IsActivated = true,
             };
 
@@ -120,9 +120,9 @@ namespace Backend.UnitTests.Handlers.Users
             {
                 Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
                 EmailAddress = LTestEmail,
-                UserAlias = DataProvider.GetRandomString(),
-                FirstName = DataProvider.GetRandomString(),
-                LastName = DataProvider.GetRandomString(),
+                UserAlias = StringProvider.GetRandomString(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
                 IsActivated = true,
                 Registered = DateTime.Now,
                 LastUpdated = null,
