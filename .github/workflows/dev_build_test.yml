@@ -24,6 +24,7 @@ jobs:
         AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME_TEST }}"
         AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING }}"
         Sentry.Dsn: "${{ secrets.SENTRY__DSN_TEST }}"
+        ConnectionStrings.DbConnectTest: "${{ secrets.CONNECTIONSTRING__TEST }}"
         SmtpServer.Account: "${{ secrets.SMTPSERVER__ACCOUNT }}"
         SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD }}"
         SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT }}"
