@@ -102,7 +102,7 @@ namespace TokanPages.Tests.IntegrationTests.Controllers
         {
             // Arrange
             var LHttpClient = FWebAppFactory.CreateClient();
-            var LRequest = $"/api/v1/articles/getarticle/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
+            var LRequest = $"/api/v1/articles/getarticle/{Guid.NewGuid()}/";
 
             // Act
             var LResponse = await LHttpClient.GetAsync(LRequest);
