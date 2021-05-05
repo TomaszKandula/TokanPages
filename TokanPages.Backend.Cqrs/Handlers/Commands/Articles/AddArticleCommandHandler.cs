@@ -6,6 +6,7 @@ using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Cqrs.Services.UserProvider;
 using TokanPages.Backend.Core.Services.DateTimeService;
 using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
 
@@ -15,20 +16,26 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     {
         private readonly DatabaseContext FDatabaseContext;
         
+        private readonly IUserProvider FUserProvider;
+        
         private readonly IDateTimeService FDateTimeService;
         
         private readonly IAzureBlobStorageFactory FAzureBlobStorageFactory;
         
-        public AddArticleCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService, 
-            IAzureBlobStorageFactory AAzureBlobStorageFactory) 
+        public AddArticleCommandHandler(DatabaseContext ADatabaseContext, IUserProvider AUserProvider, 
+            IDateTimeService ADateTimeService, IAzureBlobStorageFactory AAzureBlobStorageFactory) 
         {
             FDatabaseContext = ADatabaseContext;
+            FUserProvider = AUserProvider;
             FDateTimeService = ADateTimeService;
             FAzureBlobStorageFactory = AAzureBlobStorageFactory;
         }
 
         public override async Task<Guid> Handle(AddArticleCommand ARequest, CancellationToken ACancellationToken)
         {
+            if (FUserProvider.GetUserId() == null)
+                throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
+            
             var LNewId = Guid.NewGuid();
 
             await UploadText(LNewId, ARequest.TextToUpload);
@@ -49,7 +56,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             return await Task.FromResult(LNewId);
         }
 
-        private async Task UploadText(Guid AId, string ATextToUpload)
+        private async Task UploadText(Guid AId, string ATextToUpload) // TODO: refactor to shared
         {
             var LAzureBlob = FAzureBlobStorageFactory.Create();
             var LTextToBase64 = ATextToUpload.ToBase64Encode();
@@ -67,7 +74,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             }
         }
 
-        private async Task UploadImage(Guid AId, string AImageToUpload)
+        private async Task UploadImage(Guid AId, string AImageToUpload) // TODO: refactor to shared
         {
             if (!AImageToUpload.IsBase64String()) 
                 throw new BusinessException(nameof(ErrorCodes.INVALID_BASE64), ErrorCodes.INVALID_BASE64);
