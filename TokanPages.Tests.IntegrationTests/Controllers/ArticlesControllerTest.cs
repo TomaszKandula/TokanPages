@@ -24,7 +24,7 @@ namespace TokanPages.Tests.IntegrationTests.Controllers
             => FWebAppFactory = AWebAppFactory;
 
         [Fact]
-        public async Task GivenAllFieldsAreCorrect_WhenAddArticle_ShouldReturnNewGuid()
+        public async Task GivenAllFieldsAreCorrectAsAnonymousUser_WhenAddArticle_ShouldThrowError()
         {
             // Arrange
             const string REQUEST = "/api/v1/articles/addarticle/";
@@ -45,11 +45,11 @@ namespace TokanPages.Tests.IntegrationTests.Controllers
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.EnsureSuccessStatusCode();
+            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
-            LContent.IsGuid().Should().BeTrue();
+            LContent.Should().Contain(ErrorCodes.ACCESS_DENIED);
         }
         
         [Fact]
