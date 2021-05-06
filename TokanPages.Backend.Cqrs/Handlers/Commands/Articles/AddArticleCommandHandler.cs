@@ -35,25 +35,24 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         {
             if (FUserProvider.GetUserId() == null)
                 throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
-            
-            var LNewId = Guid.NewGuid();
 
-            await UploadText(LNewId, ARequest.TextToUpload);
-            await UploadImage(LNewId, ARequest.ImageToUpload);
-
-            FDatabaseContext.Articles.Add(new Domain.Entities.Articles
+            var LNewArticle = new Domain.Entities.Articles
             {
-                Id = LNewId,
                 Title = ARequest.Title,
                 Description = ARequest.Description,
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = FDateTimeService.Now,
                 UpdatedAt = null
-            });
-
+            };
+            
+            await FDatabaseContext.Articles.AddAsync(LNewArticle, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-            return await Task.FromResult(LNewId);
+            
+            await UploadText(LNewArticle.Id, ARequest.TextToUpload);
+            await UploadImage(LNewArticle.Id, ARequest.ImageToUpload);
+            
+            return await Task.FromResult(LNewArticle.Id);
         }
 
         private async Task UploadText(Guid AId, string ATextToUpload) // TODO: refactor to shared

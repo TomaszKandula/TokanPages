@@ -77,7 +77,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
             if (!LArticleLikes.Any())
             {
-                AddNewArticleLikes(LIsAnonymousUser, ARequest);
+                await AddNewArticleLikes(LIsAnonymousUser, ARequest, ACancellationToken);
             }
             else
             {
@@ -126,22 +126,21 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             }
         }
         
-        private void AddNewArticleLikes(bool AIsAnonymousUser, UpdateArticleCommand ARequest)
+        private async Task AddNewArticleLikes(bool AIsAnonymousUser, UpdateArticleCommand ARequest, CancellationToken ACancellationToken)
         {
             var LLikesLimit = AIsAnonymousUser 
                 ? Constants.Likes.LIKES_LIMIT_FOR_ANONYMOUS 
                 : Constants.Likes.LIKES_LIMIT_FOR_USER;
-            
+
             var LEntity = new Domain.Entities.ArticleLikes
             {
-                Id = Guid.NewGuid(),
                 ArticleId = ARequest.Id,
                 UserId = FUserProvider.GetUserId(),
                 IpAddress = FUserProvider.GetRequestIpAddress(),
                 LikeCount = ARequest.AddToLikes > LLikesLimit ? LLikesLimit : ARequest.AddToLikes
             };
             
-            FDatabaseContext.ArticleLikes.Add(LEntity);
+            await FDatabaseContext.ArticleLikes.AddAsync(LEntity, ACancellationToken);
         }
 
         private static void UpdateCurrentArticleLikes(bool AIsAnonymousUser, Domain.Entities.ArticleLikes AEntity, int ALikesToBeAdded)

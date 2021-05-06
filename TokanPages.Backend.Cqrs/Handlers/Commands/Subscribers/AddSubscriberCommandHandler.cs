@@ -32,11 +32,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
             if (LEmailCollection.Count == 1)
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-            var LNewId = Guid.NewGuid();
             var LNewSubscriber = new Domain.Entities.Subscribers
             {
                 Email = ARequest.Email,
-                Id = LNewId,
                 Count = 0,
                 IsActivated = true,
                 LastUpdated = null,
@@ -45,7 +43,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 
             await FDatabaseContext.Subscribers.AddAsync(LNewSubscriber, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-            return await Task.FromResult(LNewId);        
+            return await Task.FromResult(LNewSubscriber.Id);
         }
     }
 }
