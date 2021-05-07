@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using TokanPages.Middleware;
 using TokanPages.Configuration;
+using TokanPages.Backend.Database;
 using TokanPages.Backend.Shared.Settings;
-using TokanPages.Backend.Database.Initialize;
 
 namespace TokanPages.Tests.IntegrationTests
 {
@@ -36,12 +36,9 @@ namespace TokanPages.Tests.IntegrationTests
 
         public override void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
         {
-            var LScopeFactory = AApplication.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
-            using var LScope = LScopeFactory.CreateScope();
-            var LDatabaseInitializer = LScope.ServiceProvider.GetService<IDbInitializer>();
-
-            LDatabaseInitializer.StartMigration();
-            LDatabaseInitializer.SeedData();
+            var LDatabaseContext = AApplication.ApplicationServices.GetRequiredService<DatabaseContext>();
+            LDatabaseContext?.StartMigration();
+            LDatabaseContext?.SeedData();
 
             AApplication.UseForwardedHeaders();
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);
