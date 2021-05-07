@@ -43,9 +43,12 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = FDateTimeService.Now,
-                UpdatedAt = null
+                UpdatedAt = null,
+                // ReSharper disable once PossibleInvalidOperationException
+                // GetUserId is already check for null value
+                UserId = (Guid) FUserProvider.GetUserId()
             };
-            
+
             await FDatabaseContext.Articles.AddAsync(LNewArticle, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             
