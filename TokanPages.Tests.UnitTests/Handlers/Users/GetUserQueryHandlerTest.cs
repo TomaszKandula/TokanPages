@@ -15,16 +15,9 @@ namespace TokanPages.Tests.UnitTests.Handlers.Users
         public async Task GivenCorrectId_WhenGetUser_ShouldReturnEntity() 
         {
             // Arrange
-            var LGetUserQuery = new GetUserQuery
-            {
-                Id = Guid.Parse("f985772e-4207-41f6-a5f3-d2c2b52d4033")
-            };
-
-            var LDatabaseContext = GetTestDatabaseContext();
             var LTestDate = DateTime.Now;
             var LUsers = new TokanPages.Backend.Domain.Entities.Users 
             { 
-                Id = Guid.Parse("f985772e-4207-41f6-a5f3-d2c2b52d4033"),
                 EmailAddress = StringProvider.GetRandomEmail(),
                 UserAlias = StringProvider.GetRandomString(),
                 FirstName = StringProvider.GetRandomString(),
@@ -35,9 +28,11 @@ namespace TokanPages.Tests.UnitTests.Handlers.Users
                 LastLogged = null
             };
 
+            var LDatabaseContext = GetTestDatabaseContext();
             await LDatabaseContext.Users.AddAsync(LUsers);
             await LDatabaseContext.SaveChangesAsync();
 
+            var LGetUserQuery = new GetUserQuery { Id = LUsers.Id };
             var LGetUserQueryHandler = new GetUserQueryHandler(LDatabaseContext);
 
             // Act
@@ -59,28 +54,8 @@ namespace TokanPages.Tests.UnitTests.Handlers.Users
         public async Task GivenIncorrectId_WhenGetUser_ShouldThrowError()
         {
             // Arrange
-            var LGetUserQuery = new GetUserQuery
-            {
-                Id = Guid.Parse("8f4cef66-6f37-49bb-bbe7-db6c54336d76")
-            };
-
             var LDatabaseContext = GetTestDatabaseContext();
-            var LUsers = new TokanPages.Backend.Domain.Entities.Users
-            {
-                Id = Guid.Parse("f985772e-4207-41f6-a5f3-d2c2b52d4033"),
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString(),
-                IsActivated = true,
-                Registered = DateTime.Now,
-                LastUpdated = null,
-                LastLogged = null
-            };
-
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
-
+            var LGetUserQuery = new GetUserQuery { Id = Guid.Parse("8f4cef66-6f37-49bb-bbe7-db6c54336d76") };
             var LGetUserQueryHandler = new GetUserQueryHandler(LDatabaseContext);
 
             // Act & Assert
