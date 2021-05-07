@@ -9,7 +9,7 @@ namespace TokanPages.Tests.UnitTests
             new DbContextOptionsBuilder<DatabaseContext>()
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
                 .EnableSensitiveDataLogging()
-                .UseSqlite("Data Source=InMemoryDatabase;Mode=Memory;Cache=Shared");
+                .UseSqlite("Data Source=InMemoryDatabase;Mode=Memory");
 
         public DatabaseContext CreateDatabaseContext()
         {
