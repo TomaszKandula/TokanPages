@@ -14,36 +14,21 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
 {
     public class GetArticleQueryHandlerTest : TestBase
     {
+        private const string USER_ALIAS = "Ester";
+
+        private const string IP_ADDRESS_FIRST = "255.255.255.255";
+        
+        private const string IP_ADDRESS_SECOND = "1.1.1.1";
+        
         [Fact]
         public async Task GivenCorrectId_WhenGetArticle_ShouldReturnEntity() 
         {
             // Arrange
-            var LArticleId = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841");
-            var LGetArticleQuery = new GetArticleQuery 
-            { 
-                Id = LArticleId
-            };
-
             var LDatabaseContext = GetTestDatabaseContext();
             var LTestDate = DateTime.Now;
-            var LUserId = Guid.Parse("d3e2543c-d454-40b6-b8c9-eb1a8845cc62");
-            const string USER_ALIAS = "Ester";
             
-            var LArticles = new TokanPages.Backend.Domain.Entities.Articles
-            {
-                Id = LArticleId,
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
-                IsPublished = false,
-                ReadCount = 0,
-                CreatedAt = LTestDate,
-                UpdatedAt = null,
-                UserId = LUserId
-            };
-
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                Id = LUserId,
                 FirstName = StringProvider.GetRandomString(),
                 LastName = StringProvider.GetRandomString(),
                 IsActivated = true,
@@ -54,36 +39,50 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
                 LastUpdated = null
             };
 
-            var LLikes = new List<TokanPages.Backend.Domain.Entities.ArticleLikes> 
+            await LDatabaseContext.Users.AddAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
+
+            var LArticles = new TokanPages.Backend.Domain.Entities.Articles
+            {
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
+                IsPublished = false,
+                ReadCount = 0,
+                CreatedAt = LTestDate,
+                UpdatedAt = null,
+                UserId = LUsers.Id
+            };
+
+            await LDatabaseContext.Articles.AddAsync(LArticles);
+            await LDatabaseContext.SaveChangesAsync();
+
+            var LLikes = new List<Backend.Domain.Entities.ArticleLikes> 
             { 
-                new TokanPages.Backend.Domain.Entities.ArticleLikes
+                new Backend.Domain.Entities.ArticleLikes
                 {
-                    Id = Guid.NewGuid(),
-                    ArticleId = LArticleId,
+                    ArticleId = LArticles.Id,
                     UserId = null,
                     LikeCount = 10,
-                    IpAddress = "255.255.255.255"
+                    IpAddress = IP_ADDRESS_FIRST
                 },
-                new TokanPages.Backend.Domain.Entities.ArticleLikes
+                new Backend.Domain.Entities.ArticleLikes
                 {
-                    Id = Guid.NewGuid(),
-                    ArticleId = LArticleId,
+                    ArticleId = LArticles.Id,
                     UserId = null,
                     LikeCount = 15,
-                    IpAddress = "1.1.1.1"
+                    IpAddress = IP_ADDRESS_SECOND
                 }
             };
             
-            await LDatabaseContext.Articles.AddAsync(LArticles);
-            await LDatabaseContext.Users.AddAsync(LUsers);
             await LDatabaseContext.ArticleLikes.AddRangeAsync(LLikes);
             await LDatabaseContext.SaveChangesAsync();
-
+            
             var LMockedUserProvider = new Mock<UserProvider>();
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
-                .Returns("255.255.255.255");
+                .Returns(IP_ADDRESS_FIRST);
 
+            var LGetArticleQuery = new GetArticleQuery { Id = LArticles.Id };
             var LGetArticleQueryHandler = new GetArticleQueryHandler(LDatabaseContext, LMockedUserProvider.Object);
 
             // Act
@@ -112,24 +111,40 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
                 Id = Guid.Parse("9bc64ac6-cb57-448e-81b7-32f9a8f2f27c")
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Articles.AddAsync(new TokanPages.Backend.Domain.Entities.Articles
+            var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                IsActivated = true,
+                EmailAddress = StringProvider.GetRandomEmail(),
+                UserAlias = StringProvider.GetRandomString(),
+                Registered = DateTimeProvider.GetRandom(),
+                LastLogged = null,
+                LastUpdated = null
+            };
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
+
+            var LArticles = new TokanPages.Backend.Domain.Entities.Articles
+            {
                 Title = StringProvider.GetRandomString(),
                 Description = StringProvider.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null,
-                UserId = Guid.NewGuid()
-            });
+                UserId = LUsers.Id
+            };
+            
+            await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
             var LMockedUserProvider = new Mock<UserProvider>();
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
-                .Returns("255.255.255.255");
+                .Returns(IP_ADDRESS_FIRST);
 
             var LGetArticleQueryHandler = new GetArticleQueryHandler(LDatabaseContext, LMockedUserProvider.Object);
 

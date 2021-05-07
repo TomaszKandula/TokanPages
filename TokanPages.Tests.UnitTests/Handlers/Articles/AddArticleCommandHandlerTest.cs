@@ -1,7 +1,6 @@
 ﻿using Xunit;
 using Moq;
 using FluentAssertions;
-using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -50,13 +49,30 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
                 ImageToUpload = StringProvider.GetRandomString().ToBase64Encode()
             };
 
+            var LUser = new Backend.Domain.Entities.Users
+            {
+                UserAlias  = StringProvider.GetRandomString(),
+                IsActivated = true,
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                EmailAddress = StringProvider.GetRandomEmail(),
+                Registered = DateTimeProvider.GetRandom(),
+                LastLogged = DateTimeProvider.GetRandom(),
+                LastUpdated = DateTimeProvider.GetRandom(),
+                AvatarName = StringProvider.GetRandomString(),
+                ShortBio = StringProvider.GetRandomString()
+            };
+
             var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddAsync(LUser);
+            await LDatabaseContext.SaveChangesAsync();
+            
             var LMockedDateTime = new Mock<DateTimeService>();
             var LMockedUserProvider = new Mock<IUserProvider>();
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
-                .Returns(Guid.NewGuid());
+                .Returns(LUser.Id);
             
             var LAddArticleCommandHandler = new AddArticleCommandHandler(
                 LDatabaseContext, 

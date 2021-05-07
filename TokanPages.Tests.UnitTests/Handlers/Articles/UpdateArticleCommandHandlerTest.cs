@@ -21,8 +21,6 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
     {
         private const string IP_ADDRESS = "255.255.255.255";
 
-        private const string USER_ID = "b08da6c7-37a6-4a94-9467-c8cd3c55f628";
-
         private readonly Mock<AzureBlobStorageFactory> FMockedAzureBlobStorageFactory;
 
         public UpdateArticleCommandHandlerTest()
@@ -46,29 +44,31 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
         public async Task GivenExistingArticleAsLoggedUser_WhenUpdateArticle_ShouldUpdateEntity() 
         {
             // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand 
-            { 
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
-                TextToUpload = StringProvider.GetRandomString(150),
-                ImageToUpload = StringProvider.GetRandomString(255).ToBase64Encode(),
-                IsPublished = false,
-                AddToLikes = 0,
-                UpReadCount = true
+            var LUsers = new TokanPages.Backend.Domain.Entities.Users
+            {
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                IsActivated = true,
+                EmailAddress = StringProvider.GetRandomEmail(),
+                UserAlias = StringProvider.GetRandomString(),
+                Registered = DateTimeProvider.GetRandom(),
+                LastLogged = null,
+                LastUpdated = null
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
+            
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
                 Title = StringProvider.GetRandomString(),
                 Description = StringProvider.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null,
-                UserId = Guid.NewGuid()
+                UserId = LUsers.Id
             };
 
             await LDatabaseContext.Articles.AddAsync(LArticles);
@@ -79,13 +79,29 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
-                .Returns(Guid.NewGuid());
-            
+                .Returns(LUsers.Id);
+
+            LMockedUserProvider
+                .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
+                .Returns(IP_ADDRESS);
+
             var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
                 LDatabaseContext, 
                 LMockedUserProvider.Object, 
                 LMockedDateTime.Object, 
                 FMockedAzureBlobStorageFactory.Object);
+
+            var LUpdateArticleCommand = new UpdateArticleCommand 
+            { 
+                Id = LArticles.Id,
+                Title = StringProvider.GetRandomString(),
+                Description = StringProvider.GetRandomString(),
+                TextToUpload = StringProvider.GetRandomString(150),
+                ImageToUpload = StringProvider.GetRandomString(255).ToBase64Encode(),
+                IsPublished = false,
+                AddToLikes = 0,
+                UpReadCount = true
+            };
 
             // Act
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
@@ -109,23 +125,31 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
         public async Task GivenNewLikesAddedAsAnonymousUser_WhenUpdateArticle_ShouldAddLikes(int ALikes, int AExpectedLikes)
         {
             // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                AddToLikes = ALikes,
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                IsActivated = true,
+                EmailAddress = StringProvider.GetRandomEmail(),
+                UserAlias = StringProvider.GetRandomString(),
+                Registered = DateTimeProvider.GetRandom(),
+                LastLogged = null,
+                LastUpdated = null
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
+
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
                 Title = StringProvider.GetRandomString(),
                 Description = StringProvider.GetRandomString(),
                 IsPublished = true,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null,
-                UserId = Guid.NewGuid()
+                UserId = LUsers.Id
             };
 
             await LDatabaseContext.Articles.AddAsync(LArticles);
@@ -143,6 +167,12 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
                 LMockedUserProvider.Object, 
                 LMockedDateTime.Object, 
                 FMockedAzureBlobStorageFactory.Object);
+
+            var LUpdateArticleCommand = new UpdateArticleCommand
+            {
+                Id = LArticles.Id,
+                AddToLikes = ALikes,
+            };
 
             // Act
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
@@ -171,36 +201,44 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
         public async Task GivenExistingLikesUpdatedAsAnonymousUser_WhenUpdateArticle_ShouldModifyLikes(int AExistingLikes, int ANewLikes, int AExpectedLikes)
         {
             // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                AddToLikes = ANewLikes,
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                IsActivated = true,
+                EmailAddress = StringProvider.GetRandomEmail(),
+                UserAlias = StringProvider.GetRandomString(),
+                Registered = DateTimeProvider.GetRandom(),
+                LastLogged = null,
+                LastUpdated = null
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
-            var LArticleId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
+            await LDatabaseContext.Users.AddAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
+
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
-                Id = LArticleId,
                 Title = StringProvider.GetRandomString(),
                 Description = StringProvider.GetRandomString(),
                 IsPublished = true,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null,
-                UserId = Guid.NewGuid()
+                UserId = LUsers.Id
             };
             
+            await LDatabaseContext.Articles.AddAsync(LArticles);
+            await LDatabaseContext.SaveChangesAsync();
+
             var LLikes = new Backend.Domain.Entities.ArticleLikes 
             { 
-                Id = Guid.NewGuid(),
-                ArticleId = LArticleId,
+                ArticleId = LArticles.Id,
                 UserId = null,
                 IpAddress = IP_ADDRESS,
                 LikeCount = AExistingLikes
             };
 
-            await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.ArticleLikes.AddAsync(LLikes);
             await LDatabaseContext.SaveChangesAsync();
 
@@ -217,6 +255,12 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
                 LMockedDateTime.Object, 
                 FMockedAzureBlobStorageFactory.Object);
 
+            var LUpdateArticleCommand = new UpdateArticleCommand
+            {
+                Id = LArticles.Id,
+                AddToLikes = ANewLikes,
+            };
+
             // Act
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
 
@@ -230,7 +274,6 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
                 .FindAsync(LUpdateArticleCommand.Id);
 
             LArticlesEntity.Should().NotBeNull();
-
             LLikesEntity.Should().HaveCount(1);
             LLikesEntity[0].IpAddress.Should().Be(IP_ADDRESS);
             LLikesEntity[0].UserId.Should().BeNull();
@@ -244,23 +287,31 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
         public async Task GivenNewLikesAddedAsLoggedUser_WhenUpdateArticle_ShouldAddLikes(int ALikes, int AExpectedLikes)
         {
             // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                AddToLikes = ALikes,
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                IsActivated = true,
+                EmailAddress = StringProvider.GetRandomEmail(),
+                UserAlias = StringProvider.GetRandomString(),
+                Registered = DateTimeProvider.GetRandom(),
+                LastLogged = null,
+                LastUpdated = null
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
+
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
                 Title = StringProvider.GetRandomString(),
                 Description = StringProvider.GetRandomString(),
                 IsPublished = true,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null,
-                UserId = Guid.NewGuid()
+                UserId = LUsers.Id
             };
 
             await LDatabaseContext.Articles.AddAsync(LArticles);
@@ -271,13 +322,23 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
             
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
-                .Returns(Guid.NewGuid());
+                .Returns(LUsers.Id);
+
+            LMockedUserProvider
+                .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
+                .Returns(IP_ADDRESS);
 
             var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
                 LDatabaseContext, 
                 LMockedUserProvider.Object, 
                 LMockedDateTime.Object, 
                 FMockedAzureBlobStorageFactory.Object);
+
+            var LUpdateArticleCommand = new UpdateArticleCommand
+            {
+                Id = LArticles.Id,
+                AddToLikes = ALikes,
+            };
 
             // Act
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
@@ -304,36 +365,44 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
         public async Task GivenExistingLikesUpdatedAsLoggedUser_WhenUpdateArticle_ShouldModifyLikes(int AExistingLikes, int ANewLikes, int AExpectedLikes)
         {
             // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                AddToLikes = ANewLikes,
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                IsActivated = true,
+                EmailAddress = StringProvider.GetRandomEmail(),
+                UserAlias = StringProvider.GetRandomString(),
+                Registered = DateTimeProvider.GetRandom(),
+                LastLogged = null,
+                LastUpdated = null
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
-            var LArticleId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
+            await LDatabaseContext.Users.AddAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
+
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
-                Id = LArticleId,
                 Title = StringProvider.GetRandomString(),
                 Description = StringProvider.GetRandomString(),
                 IsPublished = true,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null,
-                UserId = Guid.Parse(USER_ID)
+                UserId = LUsers.Id
             };
             
+            await LDatabaseContext.Articles.AddAsync(LArticles);
+            await LDatabaseContext.SaveChangesAsync();
+
             var LLikes = new Backend.Domain.Entities.ArticleLikes 
             { 
-                Id = Guid.NewGuid(),
-                ArticleId = LArticleId,
-                UserId = Guid.Parse(USER_ID),
+                ArticleId = LArticles.Id,
+                UserId = LUsers.Id,
                 IpAddress = IP_ADDRESS,
                 LikeCount = AExistingLikes
             };
 
-            await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.ArticleLikes.AddAsync(LLikes);
             await LDatabaseContext.SaveChangesAsync();
 
@@ -342,13 +411,23 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
             
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
-                .Returns(Guid.Parse(USER_ID));
+                .Returns(LUsers.Id);
+
+            LMockedUserProvider
+                .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
+                .Returns(IP_ADDRESS);
 
             var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
                 LDatabaseContext, 
                 LMockedUserProvider.Object, 
                 LMockedDateTime.Object, 
                 FMockedAzureBlobStorageFactory.Object);
+
+            var LUpdateArticleCommand = new UpdateArticleCommand
+            {
+                Id = LArticles.Id,
+                AddToLikes = ANewLikes,
+            };
 
             // Act
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
@@ -384,8 +463,23 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
                 UpReadCount = false
             };
 
+            var LUsers = new TokanPages.Backend.Domain.Entities.Users
+            {
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                IsActivated = true,
+                EmailAddress = StringProvider.GetRandomEmail(),
+                UserAlias = StringProvider.GetRandomString(),
+                Registered = DateTimeProvider.GetRandom(),
+                LastLogged = null,
+                LastUpdated = null
+            };
+
             var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Articles.AddAsync(new TokanPages.Backend.Domain.Entities.Articles
+            await LDatabaseContext.Users.AddAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
+
+            var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
                 Title = StringProvider.GetRandomString(),
@@ -394,17 +488,22 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null,
-                UserId = Guid.NewGuid()
-            });
+                UserId = LUsers.Id
+            };
             
+            await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
             var LMockedUserProvider = new Mock<UserProvider>();
             var LMockedDateTime = new Mock<DateTimeService>();
             
             LMockedUserProvider
+                .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
+                .Returns(LUsers.Id);
+
+            LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
-                .Returns("255.255.255.255");
+                .Returns(IP_ADDRESS);
 
             var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
                 LDatabaseContext, 
@@ -433,8 +532,23 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
                 UpReadCount = false
             };
 
+            var LUsers = new TokanPages.Backend.Domain.Entities.Users
+            {
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                IsActivated = true,
+                EmailAddress = StringProvider.GetRandomEmail(),
+                UserAlias = StringProvider.GetRandomString(),
+                Registered = DateTimeProvider.GetRandom(),
+                LastLogged = null,
+                LastUpdated = null
+            };
+
             var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Articles.AddAsync(new TokanPages.Backend.Domain.Entities.Articles
+            await LDatabaseContext.Users.AddAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
+
+            var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
                 Title = StringProvider.GetRandomString(),
@@ -443,17 +557,22 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null,
-                UserId = Guid.NewGuid()
-            });
+                UserId = LUsers.Id
+            };
             
+            await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
             var LMockedUserProvider = new Mock<UserProvider>();
             var LMockedDateTime = new Mock<DateTimeService>();
             
             LMockedUserProvider
+                .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
+                .Returns(LUsers.Id);
+
+            LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
-                .Returns("255.255.255.255");
+                .Returns(IP_ADDRESS);
 
             var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
                 LDatabaseContext, 
