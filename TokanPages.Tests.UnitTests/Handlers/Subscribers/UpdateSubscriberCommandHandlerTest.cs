@@ -17,26 +17,26 @@ namespace TokanPages.Tests.UnitTests.Handlers.Subscribers
         public async Task GivenCorrectId_WhenUpdateSubscriber_ShouldUpdateEntity()
         {
             // Arrange
-            var LUpdateSubscriberCommand = new UpdateSubscriberCommand
-            {
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Email = StringProvider.GetRandomEmail(),
-                IsActivated = true,
-                Count = 10
-            };
-
-            var LDatabaseContext = GetTestDatabaseContext();
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
             {
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
                 Email = StringProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,
                 LastUpdated = null
             };
+
+            var LDatabaseContext = GetTestDatabaseContext();
             await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
             await LDatabaseContext.SaveChangesAsync();
+
+            var LUpdateSubscriberCommand = new UpdateSubscriberCommand
+            {
+                Id = LSubscribers.Id,
+                Email = StringProvider.GetRandomEmail(),
+                IsActivated = true,
+                Count = 10
+            };
 
             // Act
             var LMockedDateTime = new Mock<DateTimeService>();
@@ -44,8 +44,7 @@ namespace TokanPages.Tests.UnitTests.Handlers.Subscribers
             await LUpdateSubscriberCommandHandler.Handle(LUpdateSubscriberCommand, CancellationToken.None);
 
             // Assert
-            var LAssertDbContext = GetTestDatabaseContext();
-            var LSubscribersEntity = await LAssertDbContext.Subscribers.FindAsync(LUpdateSubscriberCommand.Id);
+            var LSubscribersEntity = await LDatabaseContext.Subscribers.FindAsync(LUpdateSubscriberCommand.Id);
 
             LSubscribersEntity.Should().NotBeNull();
             LSubscribersEntity.IsActivated.Should().BeTrue();
@@ -58,26 +57,26 @@ namespace TokanPages.Tests.UnitTests.Handlers.Subscribers
         public async Task GivenCorrectIdAndCountIsNullAndIsActivatedIsNull_WhenUpdateSubscriber_ShouldUpdateEntity()
         {
             // Arrange
-            var LUpdateSubscriberCommand = new UpdateSubscriberCommand
-            {
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Email = StringProvider.GetRandomEmail(),
-                IsActivated = null,
-                Count = null
-            };
-
-            var LDatabaseContext = GetTestDatabaseContext();
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
                 Email = StringProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,
                 LastUpdated = null
             };
+
+            var LDatabaseContext = GetTestDatabaseContext();
             await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
             await LDatabaseContext.SaveChangesAsync();
+
+            var LUpdateSubscriberCommand = new UpdateSubscriberCommand
+            {
+                Id = LSubscribers.Id,
+                Email = StringProvider.GetRandomEmail(),
+                IsActivated = null,
+                Count = null
+            };
 
             // Act
             var LMockedDateTime = new Mock<DateTimeService>();
@@ -85,8 +84,7 @@ namespace TokanPages.Tests.UnitTests.Handlers.Subscribers
             await LUpdateSubscriberCommandHandler.Handle(LUpdateSubscriberCommand, CancellationToken.None);
 
             // Assert
-            var LAssertDbContext = GetTestDatabaseContext();
-            var LSubscribersEntity = await LAssertDbContext.Subscribers.FindAsync(LUpdateSubscriberCommand.Id);
+            var LSubscribersEntity = await LDatabaseContext.Subscribers.FindAsync(LUpdateSubscriberCommand.Id);
 
             LSubscribersEntity.Should().NotBeNull();
             LSubscribersEntity.IsActivated.Should().BeTrue();
@@ -133,26 +131,26 @@ namespace TokanPages.Tests.UnitTests.Handlers.Subscribers
         {
             // Arrange
             var LTestEmail = StringProvider.GetRandomEmail();
-            var LUpdateSubscriberCommand = new UpdateSubscriberCommand
-            {
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Email = LTestEmail,
-                IsActivated = true,
-                Count = 10
-            };
-
-            var LDatabaseContext = GetTestDatabaseContext();
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
                 Email = LTestEmail,
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,
                 LastUpdated = null
             };
+
+            var LDatabaseContext = GetTestDatabaseContext();
             await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
             await LDatabaseContext.SaveChangesAsync();
+
+            var LUpdateSubscriberCommand = new UpdateSubscriberCommand
+            {
+                Id = LSubscribers.Id,
+                Email = LTestEmail,
+                IsActivated = true,
+                Count = 10
+            };
 
             var LMockedDateTime = new Mock<DateTimeService>();
             var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext, LMockedDateTime.Object);

@@ -15,26 +15,23 @@ namespace TokanPages.Tests.UnitTests.Handlers.Subscribers
         public async Task GivenCorrectId_WhenRemoveSubscriber_ShouldRemoveEntity() 
         {
             // Arrange
-            var LRemoveSubscriberCommand = new RemoveSubscriberCommand 
-            { 
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")
-            };
-
-            var LDatabaseContext = GetTestDatabaseContext();
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
             {
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
                 Email = StringProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,
                 LastUpdated = null
             };
+
+            var LDatabaseContext = GetTestDatabaseContext();
             await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
             await LDatabaseContext.SaveChangesAsync();
 
-            // Act
+            var LRemoveSubscriberCommand = new RemoveSubscriberCommand { Id = LSubscribers.Id };
             var LRemoveSubscriberCommandHandler = new RemoveSubscriberCommandHandler(LDatabaseContext);
+
+            // Act
             await LRemoveSubscriberCommandHandler.Handle(LRemoveSubscriberCommand, CancellationToken.None);
 
             // Assert
