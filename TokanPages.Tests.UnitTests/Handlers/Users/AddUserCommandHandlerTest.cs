@@ -34,8 +34,7 @@ namespace TokanPages.Tests.UnitTests.Handlers.Users
             await LAddUserCommandHandler.Handle(LAddUserCommand, CancellationToken.None);
 
             // Assert
-            var LAssertDbContext = GetTestDatabaseContext();
-            var LResult = LAssertDbContext.Users.ToList();
+            var LResult = LDatabaseContext.Users.ToList();
 
             LResult.Should().NotBeNull();
             LResult.Should().HaveCount(1);
@@ -61,10 +60,8 @@ namespace TokanPages.Tests.UnitTests.Handlers.Users
                 LastName = StringProvider.GetRandomString(),
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             { 
-                Id = Guid.Parse("c11c0bf3-e585-4f1d-8b1a-ff6049fd667c"),
                 EmailAddress = LTestEmail,
                 IsActivated = false,
                 UserAlias = StringProvider.GetRandomString(),
@@ -74,6 +71,8 @@ namespace TokanPages.Tests.UnitTests.Handlers.Users
                 LastUpdated = null,
                 LastLogged = null
             };
+
+            var LDatabaseContext = GetTestDatabaseContext();
             await LDatabaseContext.Users.AddAsync(LUsers);
             await LDatabaseContext.SaveChangesAsync();
 
