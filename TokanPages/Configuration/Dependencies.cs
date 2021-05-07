@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +10,6 @@ using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Storage.Settings;
 using TokanPages.Backend.SmtpClient.Settings;
-using TokanPages.Backend.Database.Initialize;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
@@ -34,7 +32,7 @@ namespace TokanPages.Configuration
         public static void RegisterForTests(IServiceCollection AServices, IConfiguration AConfiguration)
         {
             CommonServices(AServices, AConfiguration);
-            SetupDatabaseForTests(AServices, AConfiguration);
+            SetupDatabaseSqLiteInMemory(AServices);
         }
 
         public static void RegisterForDevelopment(IServiceCollection AServices, IConfiguration AConfiguration)
@@ -47,7 +45,7 @@ namespace TokanPages.Configuration
             
             if (!LIsValidConnection)
             {
-                SetupDatabaseInMemory(AServices);
+                SetupDatabaseSqLiteInMemory(AServices);
                 return;
             }
 
@@ -82,28 +80,13 @@ namespace TokanPages.Configuration
             });
         }
 
-        private static void SetupDatabaseForTests(IServiceCollection AServices, IConfiguration AConfiguration)
+        private static void SetupDatabaseSqLiteInMemory(IServiceCollection AServices)
         {
-            var LConnection = AConfiguration
-                .GetConnectionString("DbConnectTest")
-                .Replace("{GUID}",Guid.NewGuid().ToString());
-            
-            AServices.AddDbContext<DatabaseContext>(AOptions =>
-            {
-                AOptions.UseSqlServer(LConnection);
-                AOptions.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
-                AOptions.EnableSensitiveDataLogging();
-            });
-        }
-
-        private static void SetupDatabaseInMemory(IServiceCollection AServices)
-        {
-            var LDatabaseName = Guid.NewGuid().ToString();
             AServices.AddDbContext<DatabaseContext>(AOptions =>
             {
                 AOptions.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
                 AOptions.EnableSensitiveDataLogging();
-                AOptions.UseInMemoryDatabase(LDatabaseName);
+                AOptions.UseSqlite("Data Source=InMemoryDatabase;Mode=Memory;Cache=Shared");
             });
         }
 
@@ -115,7 +98,6 @@ namespace TokanPages.Configuration
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
             AServices.AddScoped<IFileUtilityService, FileUtilityService>();
             AServices.AddScoped<IDateTimeService, DateTimeService>();
-            AServices.AddScoped<IDbInitializer, DbInitializer>();
             AServices.AddScoped<IUserProvider, UserProvider>();
            
             AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
