@@ -107,8 +107,7 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
 
             // Assert
-            var LAssertDbContext = GetTestDatabaseContext();
-            var LArticlesEntity = await LAssertDbContext.Articles
+            var LArticlesEntity = await LDatabaseContext.Articles
                 .FindAsync(LUpdateArticleCommand.Id);
 
             LArticlesEntity.Should().NotBeNull();
@@ -178,12 +177,11 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
 
             // Assert
-            var LAssertDbContext = GetTestDatabaseContext();
-            var LLikesEntity = LAssertDbContext.ArticleLikes
+            var LLikesEntity = LDatabaseContext.ArticleLikes
                 .Where(AArticleLikes => AArticleLikes.ArticleId == LArticles.Id)
                 .ToList();
 
-            var LArticlesEntity = await LAssertDbContext.Articles
+            var LArticlesEntity = await LDatabaseContext.Articles
                 .FindAsync(LUpdateArticleCommand.Id);
 
             LArticlesEntity.Should().NotBeNull();
@@ -265,12 +263,11 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
 
             // Assert
-            var LAssertDbContext = GetTestDatabaseContext();
-            var LLikesEntity = LAssertDbContext.ArticleLikes
+            var LLikesEntity = LDatabaseContext.ArticleLikes
                 .Where(AArticleLikes => AArticleLikes.ArticleId == LArticles.Id)
                 .ToList();
             
-            var LArticlesEntity = await LAssertDbContext.Articles
+            var LArticlesEntity = await LDatabaseContext.Articles
                 .FindAsync(LUpdateArticleCommand.Id);
 
             LArticlesEntity.Should().NotBeNull();
@@ -344,12 +341,11 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
 
             // Assert
-            var LAssertDbContext = GetTestDatabaseContext();
-            var LLikesEntity = LAssertDbContext.ArticleLikes
+            var LLikesEntity = LDatabaseContext.ArticleLikes
                 .Where(AArticleLikes => AArticleLikes.ArticleId == LArticles.Id)
                 .ToList();
 
-            var LArticlesEntity = await LAssertDbContext.Articles
+            var LArticlesEntity = await LDatabaseContext.Articles
                 .FindAsync(LUpdateArticleCommand.Id);
 
             LArticlesEntity.Should().NotBeNull();
@@ -433,12 +429,11 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
             await LUpdateArticleCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
 
             // Assert
-            var LAssertDbContext = GetTestDatabaseContext();
-            var LLikesEntity = LAssertDbContext.ArticleLikes
+            var LLikesEntity = LDatabaseContext.ArticleLikes
                 .Where(AArticleLikes => AArticleLikes.ArticleId == LArticles.Id)
                 .ToList();
             
-            var LArticlesEntity = await LAssertDbContext.Articles
+            var LArticlesEntity = await LDatabaseContext.Articles
                 .FindAsync(LUpdateArticleCommand.Id);
 
             LArticlesEntity.Should().NotBeNull();
