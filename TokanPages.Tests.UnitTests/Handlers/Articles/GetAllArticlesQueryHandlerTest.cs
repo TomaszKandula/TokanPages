@@ -19,33 +19,45 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
             var LDatabaseContext = GetTestDatabaseContext();
             var LGetAllArticlesQuery = new GetAllArticlesQuery { IsPublished = false };
             var LGetAllArticlesQueryHandler = new GetAllArticlesQueryHandler(LDatabaseContext);
+            
+            var LUser = new Backend.Domain.Entities.Users
+            {
+                UserAlias  = StringProvider.GetRandomString(),
+                IsActivated = true,
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                EmailAddress = StringProvider.GetRandomEmail(),
+                Registered = DateTimeProvider.GetRandom(),
+                LastLogged = DateTimeProvider.GetRandom(),
+                LastUpdated = DateTimeProvider.GetRandom(),
+                AvatarName = StringProvider.GetRandomString(),
+                ShortBio = StringProvider.GetRandomString()
+            };
 
-            var LFirstArticleId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
-            var LSecondArticleId = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841");
-
+            await LDatabaseContext.Users.AddAsync(LUser);
+            await LDatabaseContext.SaveChangesAsync();
+            
             var LArticles = new List<TokanPages.Backend.Domain.Entities.Articles>
             {
                 new TokanPages.Backend.Domain.Entities.Articles
                 {
-                    Id = LFirstArticleId,
                     Title = StringProvider.GetRandomString(),
                     Description = StringProvider.GetRandomString(),
                     IsPublished = false,
                     ReadCount = 0,
                     CreatedAt = DateTime.Now.AddDays(-10),
                     UpdatedAt = null,
-                    UserId = Guid.NewGuid()
+                    UserId = LUser.Id
                 },
                 new TokanPages.Backend.Domain.Entities.Articles
                 {
-                    Id = LSecondArticleId,
                     Title = StringProvider.GetRandomString(),
                     Description = StringProvider.GetRandomString(),
                     IsPublished = false,
                     ReadCount = 0,
                     CreatedAt = DateTime.Now.AddDays(-15),
                     UpdatedAt = null,
-                    UserId = Guid.NewGuid()
+                    UserId = LUser.Id
                 }
             };
 
@@ -60,8 +72,8 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles
             // Assert
             LResults.Should().NotBeNull();
             LResults.Should().HaveCount(2);
-            LResults[0].Id.Should().Be(LFirstArticleId);
-            LResults[1].Id.Should().Be(LSecondArticleId);
+            LResults[0].Id.Should().Be(LArticles[0].Id);
+            LResults[1].Id.Should().Be(LArticles[1].Id);
         }
     }
 }

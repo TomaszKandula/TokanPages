@@ -15,24 +15,21 @@ namespace TokanPages.Tests.UnitTests.Handlers.Subscribers
         public async Task GivenCorrectId_WhenGetSubscriber_ShouldReturnEntity() 
         {
             // Arrange
-            var LGetSubscriberQuery = new GetSubscriberQuery
-            {
-                Id = Guid.Parse("2992bc4c-d7a6-43c4-b3e8-f5f632eb229d")
-            };
-
-            var LDatabaseContext = GetTestDatabaseContext();
             var LTestDate = DateTime.Now;
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
-                Id = Guid.Parse("2992bc4c-d7a6-43c4-b3e8-f5f632eb229d"),
                 Email = StringProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10,
                 Registered = LTestDate,
                 LastUpdated = null
             };
+
+            var LDatabaseContext = GetTestDatabaseContext();
             await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
             await LDatabaseContext.SaveChangesAsync();
+
+            var LGetSubscriberQuery = new GetSubscriberQuery { Id = LSubscribers.Id };
 
             // Act
             var LGetSubscriberQueryHandler = new GetSubscriberQueryHandler(LDatabaseContext);
@@ -51,27 +48,27 @@ namespace TokanPages.Tests.UnitTests.Handlers.Subscribers
         public async Task GivenIncorrectId_WhenGetSubscriber_ShouldThrowError()
         {
             // Arrange
-            var LGetSubscriberQuery = new GetSubscriberQuery
-            {
-                Id = Guid.Parse("b6bb37e0-bad3-419c-b61f-45318cb7b68c")
-            };
-
-            var LDatabaseContext = GetTestDatabaseContext();
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
-                Id = Guid.Parse("2992bc4c-d7a6-43c4-b3e8-f5f632eb229d"),
                 Email = StringProvider.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10,
                 Registered = DateTime.Now,
                 LastUpdated = null
             };
+
+            var LDatabaseContext = GetTestDatabaseContext();
             await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
             await LDatabaseContext.SaveChangesAsync();
 
             var LGetSubscriberQueryHandler = new GetSubscriberQueryHandler(LDatabaseContext);
+            var LGetSubscriberQuery = new GetSubscriberQuery
+            {
+                Id = Guid.Parse("b6bb37e0-bad3-419c-b61f-45318cb7b68c")
+            };
 
-            // Act & Assert
+            // Act
+            // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
                 => LGetSubscriberQueryHandler.Handle(LGetSubscriberQuery, CancellationToken.None));
         }

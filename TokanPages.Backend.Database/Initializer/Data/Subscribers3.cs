@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TokanPages.Backend.Database.Dummies
+namespace TokanPages.Backend.Database.Initializer.Data
 {
     public static class Subscribers3
     {

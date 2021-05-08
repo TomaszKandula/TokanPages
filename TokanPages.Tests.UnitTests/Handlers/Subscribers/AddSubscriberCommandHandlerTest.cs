@@ -37,8 +37,7 @@ namespace TokanPages.Tests.UnitTests.Handlers.Subscribers
             await LAddSubscriberCommandHandler.Handle(LAddSubscriberCommand, CancellationToken.None);
 
             // Assert
-            var LAssertDbContext = GetTestDatabaseContext();
-            var LSubscribersEntity = LAssertDbContext.Subscribers.ToList();
+            var LSubscribersEntity = LDatabaseContext.Subscribers.ToList();
 
             LSubscribersEntity.Should().HaveCount(1);
             LSubscribersEntity[0].Email.Should().Be(LAddSubscriberCommand.Email);
@@ -55,25 +54,22 @@ namespace TokanPages.Tests.UnitTests.Handlers.Subscribers
         {
             // Arrange
             var LTestEmail = StringProvider.GetRandomEmail();
-            var LAddSubscriberCommand = new AddSubscriberCommand
-            {
-                Email = LTestEmail
-            };
-
-            var LDatabaseContext = GetTestDatabaseContext();
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
             { 
-                Id = Guid.Parse("ec2ebd48-3bf4-45a9-9030-f8ad52c5a8f8"),
                 Email = LTestEmail,
                 IsActivated = true,
                 Count = 0,
                 Registered = DateTime.Now,
                 LastUpdated = null
             };
+
+            var LDatabaseContext = GetTestDatabaseContext();
             await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
             await LDatabaseContext.SaveChangesAsync();
 
             var LMockedDateTime = new Mock<DateTimeService>();
+
+            var LAddSubscriberCommand = new AddSubscriberCommand { Email = LTestEmail };
             var LAddSubscriberCommandHandler = new AddSubscriberCommandHandler(LDatabaseContext, LMockedDateTime.Object);
 
             // Act & Assert

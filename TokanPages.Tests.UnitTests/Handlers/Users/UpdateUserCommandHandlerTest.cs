@@ -17,20 +17,9 @@ namespace TokanPages.Tests.UnitTests.Handlers.Users
         public async Task GivenCorrectId_WhenUpdateUser_ShouldUpdateEntity()
         {
             // Arrange
-            var LUpdateUserCommand = new UpdateUserCommand
-            {
-                Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString(),
-                IsActivated = true,
-            };
 
-            var LDatabaseContext = GetTestDatabaseContext();
             var LUser = new TokanPages.Backend.Domain.Entities.Users
             {
-                Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
                 EmailAddress = StringProvider.GetRandomEmail(),
                 UserAlias = StringProvider.GetRandomString(),
                 FirstName = StringProvider.GetRandomString(),
@@ -41,8 +30,19 @@ namespace TokanPages.Tests.UnitTests.Handlers.Users
                 LastLogged = null
             };
 
+            var LDatabaseContext = GetTestDatabaseContext();
             await LDatabaseContext.Users.AddAsync(LUser);
             await LDatabaseContext.SaveChangesAsync();
+
+            var LUpdateUserCommand = new UpdateUserCommand
+            {
+                Id = LUser.Id,
+                EmailAddress = StringProvider.GetRandomEmail(),
+                UserAlias = StringProvider.GetRandomString(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                IsActivated = true,
+            };
 
             // Act
             var LMockedDateTime = new Mock<DateTimeService>();
@@ -50,8 +50,7 @@ namespace TokanPages.Tests.UnitTests.Handlers.Users
             await LUpdateUserCommandHandler.Handle(LUpdateUserCommand, CancellationToken.None);
 
             // Assert
-            var LAssertDbContext = GetTestDatabaseContext();
-            var LUserEntity = await LAssertDbContext.Users.FindAsync(LUpdateUserCommand.Id);
+            var LUserEntity = await LDatabaseContext.Users.FindAsync(LUpdateUserCommand.Id);
 
             LUserEntity.Should().NotBeNull();
             LUserEntity.EmailAddress.Should().Be(LUpdateUserCommand.EmailAddress);
@@ -66,6 +65,10 @@ namespace TokanPages.Tests.UnitTests.Handlers.Users
         public async Task GivenIncorrectId_WhenUpdateUser_ShouldThrowError()
         {
             // Arrange
+            var LDatabaseContext = GetTestDatabaseContext();
+            var LMockedDateTime = new Mock<DateTimeService>();
+            var LUpdateUserCommandHandler = new UpdateUserCommandHandler(LDatabaseContext, LMockedDateTime.Object);
+
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.Parse("1edb4c7d-8cf0-4811-b721-af5caf74d7a8"),
@@ -76,26 +79,8 @@ namespace TokanPages.Tests.UnitTests.Handlers.Users
                 IsActivated = true,
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            var LUser = new TokanPages.Backend.Domain.Entities.Users
-            {
-                Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString(),
-                IsActivated = true,
-                Registered = DateTime.Now,
-                LastUpdated = null,
-                LastLogged = null
-            };
-            await LDatabaseContext.Users.AddAsync(LUser);
-            await LDatabaseContext.SaveChangesAsync();
-
-            var LMockedDateTime = new Mock<DateTimeService>();
-            var LUpdateUserCommandHandler = new UpdateUserCommandHandler(LDatabaseContext, LMockedDateTime.Object);
-
-            // Act & Assert
+            // Act
+            // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
                 => LUpdateUserCommandHandler.Handle(LUpdateUserCommand, CancellationToken.None));
         }
@@ -105,20 +90,8 @@ namespace TokanPages.Tests.UnitTests.Handlers.Users
         {
             // Arrange
             var LTestEmail = StringProvider.GetRandomEmail();
-            var LUpdateUserCommand = new UpdateUserCommand
-            {
-                Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
-                EmailAddress = LTestEmail,
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString(),
-                IsActivated = true,
-            };
-
-            var LDatabaseContext = GetTestDatabaseContext();
             var LUser = new TokanPages.Backend.Domain.Entities.Users
             {
-                Id = Guid.Parse("abf7c26c-e05d-4b6b-8f1c-0e2551026cf4"),
                 EmailAddress = LTestEmail,
                 UserAlias = StringProvider.GetRandomString(),
                 FirstName = StringProvider.GetRandomString(),
@@ -129,13 +102,25 @@ namespace TokanPages.Tests.UnitTests.Handlers.Users
                 LastLogged = null
             };
             
+            var LDatabaseContext = GetTestDatabaseContext();
             await LDatabaseContext.Users.AddAsync(LUser);
             await LDatabaseContext.SaveChangesAsync();
+
+            var LUpdateUserCommand = new UpdateUserCommand
+            {
+                Id = LUser.Id,
+                EmailAddress = LTestEmail,
+                UserAlias = StringProvider.GetRandomString(),
+                FirstName = StringProvider.GetRandomString(),
+                LastName = StringProvider.GetRandomString(),
+                IsActivated = true,
+            };
 
             var LMockedDateTime = new Mock<DateTimeService>();
             var LUpdateUserCommandHandler = new UpdateUserCommandHandler(LDatabaseContext, LMockedDateTime.Object);
 
-            // Act & Assert
+            // Act
+            // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
                 => LUpdateUserCommandHandler.Handle(LUpdateUserCommand, CancellationToken.None));
         }

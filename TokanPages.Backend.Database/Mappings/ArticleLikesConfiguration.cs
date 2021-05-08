@@ -8,7 +8,7 @@ namespace TokanPages.Backend.Database.Mappings
     {
         public void Configure(EntityTypeBuilder<ArticleLikes> AModelBuilder)
         {
-            AModelBuilder.Property(AArticleLikes => AArticleLikes.Id).ValueGeneratedNever();
+            AModelBuilder.Property(AArticleLikes => AArticleLikes.Id).ValueGeneratedOnAdd();
             
             AModelBuilder
                 .HasOne(AArticleLikes => AArticleLikes.Article)

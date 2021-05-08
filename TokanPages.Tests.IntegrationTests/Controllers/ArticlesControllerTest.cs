@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Tests.DataProviders;
 using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Database.Dummies;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.Dto.Articles;
+using TokanPages.Backend.Database.Initializer.Data;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 
 namespace TokanPages.Tests.IntegrationTests.Controllers
@@ -24,7 +24,7 @@ namespace TokanPages.Tests.IntegrationTests.Controllers
             => FWebAppFactory = AWebAppFactory;
 
         [Fact]
-        public async Task GivenAllFieldsAreCorrect_WhenAddArticle_ShouldReturnNewGuid()
+        public async Task GivenAllFieldsAreCorrectAsAnonymousUser_WhenAddArticle_ShouldThrowError()
         {
             // Arrange
             const string REQUEST = "/api/v1/articles/addarticle/";
@@ -45,11 +45,11 @@ namespace TokanPages.Tests.IntegrationTests.Controllers
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.EnsureSuccessStatusCode();
+            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
-            LContent.IsGuid().Should().BeTrue();
+            LContent.Should().Contain(ErrorCodes.ACCESS_DENIED);
         }
         
         [Fact]
@@ -102,7 +102,7 @@ namespace TokanPages.Tests.IntegrationTests.Controllers
         {
             // Arrange
             var LHttpClient = FWebAppFactory.CreateClient();
-            var LRequest = $"/api/v1/articles/getarticle/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
+            var LRequest = $"/api/v1/articles/getarticle/{Guid.NewGuid()}/";
 
             // Act
             var LResponse = await LHttpClient.GetAsync(LRequest);

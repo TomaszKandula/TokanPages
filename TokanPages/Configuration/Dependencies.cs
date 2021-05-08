@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,10 +7,9 @@ using TokanPages.Backend.Database;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Core.Behaviours;
 using TokanPages.Backend.Shared.Settings;
-using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Storage.Settings;
+using TokanPages.Backend.Database.Initializer;
 using TokanPages.Backend.SmtpClient.Settings;
-using TokanPages.Backend.Database.Initialize;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
@@ -31,28 +29,7 @@ namespace TokanPages.Configuration
             SetupDatabase(AServices, AConfiguration);
         }
 
-        public static void RegisterForTests(IServiceCollection AServices, IConfiguration AConfiguration) 
-        {
-            CommonServices(AServices, AConfiguration);
-            SetupDatabaseForTest(AServices);
-        }
-
-        public static void RegisterForDevelopment(IServiceCollection AServices, IConfiguration AConfiguration)
-        {
-            var LIsValidConnection = AConfiguration
-                .GetConnectionString("DbConnect")
-                .IsValidConnectionString();
-
-            if (!LIsValidConnection)
-            {
-                RegisterForTests(AServices, AConfiguration);
-                return;
-            }
-
-            Register(AServices, AConfiguration);
-        }
-        
-        private static void CommonServices(IServiceCollection AServices, IConfiguration AConfiguration)
+        public static void CommonServices(IServiceCollection AServices, IConfiguration AConfiguration)
         {
             SetupAppSettings(AServices, AConfiguration);
             SetupLogger(AServices);
@@ -80,17 +57,6 @@ namespace TokanPages.Configuration
             });
         }
 
-        private static void SetupDatabaseForTest(IServiceCollection AServices)
-        {
-            var LDatabaseName = Guid.NewGuid().ToString();
-            AServices.AddDbContext<DatabaseContext>(AOptions =>
-            {
-                AOptions.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
-                AOptions.EnableSensitiveDataLogging();
-                AOptions.UseInMemoryDatabase(LDatabaseName);
-            });
-        }
-
         private static void SetupServices(IServiceCollection AServices) 
         {
             AServices.AddHttpContextAccessor();
@@ -99,9 +65,9 @@ namespace TokanPages.Configuration
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
             AServices.AddScoped<IFileUtilityService, FileUtilityService>();
             AServices.AddScoped<IDateTimeService, DateTimeService>();
-            AServices.AddScoped<IDbInitializer, DbInitializer>();
             AServices.AddScoped<IUserProvider, UserProvider>();
-           
+            AServices.AddScoped<IDbInitializer, DbInitializer>();
+
             AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
             {
                 var LAzureStorageSettings = AProvider.GetRequiredService<AzureStorageSettings>();

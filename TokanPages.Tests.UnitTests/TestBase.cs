@@ -15,7 +15,7 @@ namespace TokanPages.Tests.UnitTests
             LServices.AddScoped(AContext =>
             {
                 var LFactory = AContext.GetService<DatabaseContextFactory>();
-                return LFactory.CreateDatabaseContext();
+                return LFactory?.CreateDatabaseContext();
             });
 
             var LServiceScope = LServices.BuildServiceProvider(true).CreateScope();

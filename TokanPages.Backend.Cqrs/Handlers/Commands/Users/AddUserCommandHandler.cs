@@ -32,10 +32,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             if (LEmailCollection.Count == 1) 
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-            var LNewId = Guid.NewGuid();
             var LNewUser = new Domain.Entities.Users
             { 
-                Id = LNewId,
                 EmailAddress = ARequest.EmailAddress,
                 IsActivated = true,
                 UserAlias = ARequest.UserAlias,
@@ -46,9 +44,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 LastLogged = null
             };
 
-            FDatabaseContext.Users.Add(LNewUser);
+            await FDatabaseContext.Users.AddAsync(LNewUser, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-            return await Task.FromResult(LNewId);
+            return await Task.FromResult(LNewUser.Id);
         }
     }
 }

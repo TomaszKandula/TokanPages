@@ -6,6 +6,7 @@ using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Cqrs.Services.UserProvider;
 using TokanPages.Backend.Core.Services.DateTimeService;
 using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
 
@@ -15,41 +16,49 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     {
         private readonly DatabaseContext FDatabaseContext;
         
+        private readonly IUserProvider FUserProvider;
+        
         private readonly IDateTimeService FDateTimeService;
         
         private readonly IAzureBlobStorageFactory FAzureBlobStorageFactory;
         
-        public AddArticleCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService, 
-            IAzureBlobStorageFactory AAzureBlobStorageFactory) 
+        public AddArticleCommandHandler(DatabaseContext ADatabaseContext, IUserProvider AUserProvider, 
+            IDateTimeService ADateTimeService, IAzureBlobStorageFactory AAzureBlobStorageFactory) 
         {
             FDatabaseContext = ADatabaseContext;
+            FUserProvider = AUserProvider;
             FDateTimeService = ADateTimeService;
             FAzureBlobStorageFactory = AAzureBlobStorageFactory;
         }
 
         public override async Task<Guid> Handle(AddArticleCommand ARequest, CancellationToken ACancellationToken)
         {
-            var LNewId = Guid.NewGuid();
+            if (FUserProvider.GetUserId() == null)
+                throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
-            await UploadText(LNewId, ARequest.TextToUpload);
-            await UploadImage(LNewId, ARequest.ImageToUpload);
-
-            FDatabaseContext.Articles.Add(new Domain.Entities.Articles
+            var LNewArticle = new Domain.Entities.Articles
             {
-                Id = LNewId,
                 Title = ARequest.Title,
                 Description = ARequest.Description,
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = FDateTimeService.Now,
-                UpdatedAt = null
-            });
+                UpdatedAt = null,
+                // ReSharper disable once PossibleInvalidOperationException
+                // GetUserId is already check for null value
+                UserId = (Guid) FUserProvider.GetUserId()
+            };
 
+            await FDatabaseContext.Articles.AddAsync(LNewArticle, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-            return await Task.FromResult(LNewId);
+            
+            await UploadText(LNewArticle.Id, ARequest.TextToUpload);
+            await UploadImage(LNewArticle.Id, ARequest.ImageToUpload);
+            
+            return await Task.FromResult(LNewArticle.Id);
         }
 
-        private async Task UploadText(Guid AId, string ATextToUpload)
+        private async Task UploadText(Guid AId, string ATextToUpload) // TODO: refactor to shared
         {
             var LAzureBlob = FAzureBlobStorageFactory.Create();
             var LTextToBase64 = ATextToUpload.ToBase64Encode();
@@ -67,7 +76,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             }
         }
 
-        private async Task UploadImage(Guid AId, string AImageToUpload)
+        private async Task UploadImage(Guid AId, string AImageToUpload) // TODO: refactor to shared
         {
             if (!AImageToUpload.IsBase64String()) 
                 throw new BusinessException(nameof(ErrorCodes.INVALID_BASE64), ErrorCodes.INVALID_BASE64);

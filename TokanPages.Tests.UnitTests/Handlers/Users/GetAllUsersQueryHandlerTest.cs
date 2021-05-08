@@ -1,10 +1,10 @@
 ﻿using Xunit;
 using FluentAssertions;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Linq;
 using TokanPages.Tests.DataProviders;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 
@@ -16,10 +16,7 @@ namespace TokanPages.Tests.UnitTests.Handlers.Users
         public async Task WhenGetAllArticles_ShouldReturnCollection()
         {
             // Arrange
-            var LDatabaseContext = GetTestDatabaseContext();
-            var LGetAllUsersQuery = new GetAllUsersQuery();
-            var LGetAllUsersQueryHandler = new GetAllUsersQueryHandler(LDatabaseContext);
-            await LDatabaseContext.Users.AddRangeAsync(new List<TokanPages.Backend.Domain.Entities.Users>
+            var LUsers = new List<TokanPages.Backend.Domain.Entities.Users>
             {
                 new TokanPages.Backend.Domain.Entities.Users
                 {
@@ -45,7 +42,13 @@ namespace TokanPages.Tests.UnitTests.Handlers.Users
                     LastUpdated = null,
                     LastLogged = null
                 }
-            });
+            };
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            var LGetAllUsersQuery = new GetAllUsersQuery();
+            var LGetAllUsersQueryHandler = new GetAllUsersQueryHandler(LDatabaseContext);
+
+            await LDatabaseContext.Users.AddRangeAsync(LUsers);
             await LDatabaseContext.SaveChangesAsync();
 
             // Act

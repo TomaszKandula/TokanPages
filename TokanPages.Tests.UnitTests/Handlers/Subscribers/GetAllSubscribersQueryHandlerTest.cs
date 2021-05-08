@@ -23,7 +23,6 @@ namespace TokanPages.Tests.UnitTests.Handlers.Subscribers
             {
                 new TokanPages.Backend.Domain.Entities.Subscribers
                 {
-                    Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
                     Email = StringProvider.GetRandomEmail(),
                     IsActivated = true,
                     Count = 10,
@@ -32,7 +31,6 @@ namespace TokanPages.Tests.UnitTests.Handlers.Subscribers
                 },
                 new TokanPages.Backend.Domain.Entities.Subscribers
                 {
-                    Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
                     Email = StringProvider.GetRandomEmail(),
                     IsActivated = true,
                     Count = 100,
@@ -40,6 +38,7 @@ namespace TokanPages.Tests.UnitTests.Handlers.Subscribers
                     LastUpdated = null
                 }
             };
+            
             await LDatabaseContext.Subscribers.AddRangeAsync(LSubscribers);
             await LDatabaseContext.SaveChangesAsync();
 

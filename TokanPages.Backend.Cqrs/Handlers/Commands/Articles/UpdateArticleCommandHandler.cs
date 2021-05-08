@@ -44,28 +44,30 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             if (!LArticles.Any())
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-            if (!string.IsNullOrEmpty(ARequest.TextToUpload))
+            var LIsAnonymousUser = FUserProvider.GetUserId() == null;
+            
+            if (!string.IsNullOrEmpty(ARequest.TextToUpload) && !LIsAnonymousUser)
                 await UploadText(ARequest.Id, ARequest.TextToUpload);
 
-            if (!string.IsNullOrEmpty(ARequest.ImageToUpload))
+            if (!string.IsNullOrEmpty(ARequest.ImageToUpload) && !LIsAnonymousUser)
                 await UploadImage(ARequest.Id, ARequest.ImageToUpload);
 
             var LCurrentArticle = LArticles.First();
 
-            LCurrentArticle.Title = ARequest.Title ?? LCurrentArticle.Title;
-            LCurrentArticle.Description = ARequest.Description ?? LCurrentArticle.Description;
-            LCurrentArticle.IsPublished = ARequest.IsPublished ?? LCurrentArticle.IsPublished;
+            if (!LIsAnonymousUser)
+            {
+                LCurrentArticle.Title = ARequest.Title ?? LCurrentArticle.Title;
+                LCurrentArticle.Description = ARequest.Description ?? LCurrentArticle.Description;
+                LCurrentArticle.IsPublished = ARequest.IsPublished ?? LCurrentArticle.IsPublished;
+                LCurrentArticle.UpdatedAt = ARequest.Title != null && ARequest.Description != null
+                    ? FDateTimeService.Now
+                    : LCurrentArticle.UpdatedAt;
+            }
 
             LCurrentArticle.ReadCount = ARequest.UpReadCount is true
                 ? LCurrentArticle.ReadCount + 1 
                 : LCurrentArticle.ReadCount;
 
-            LCurrentArticle.UpdatedAt = ARequest.Title != null && ARequest.Description != null
-                ? FDateTimeService.Now
-                : LCurrentArticle.UpdatedAt;
-
-            var LIsAnonymousUser = FUserProvider.GetUserId() == null;
-            
             var LArticleLikes = await FDatabaseContext.ArticleLikes
                 .Where(ALikes => ALikes.ArticleId == ARequest.Id)
                 .WhereIfElse(LIsAnonymousUser,
@@ -75,7 +77,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
             if (!LArticleLikes.Any())
             {
-                AddNewArticleLikes(LIsAnonymousUser, ARequest);
+                await AddNewArticleLikes(LIsAnonymousUser, ARequest, ACancellationToken);
             }
             else
             {
@@ -86,7 +88,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             return await Task.FromResult(Unit.Value);
         }
 
-        private async Task UploadText(Guid AId, string ATextToUpload)
+        private async Task UploadText(Guid AId, string ATextToUpload) // TODO: refactor to shared
         {
             var LAzureBlob = FAzureBlobStorageFactory.Create();
             var LTextToBase64 = ATextToUpload.ToBase64Encode();
@@ -104,7 +106,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             }
         }
 
-        private async Task UploadImage(Guid AId, string AImageToUpload)
+        private async Task UploadImage(Guid AId, string AImageToUpload) // TODO: refactor to shared
         {
             if (!AImageToUpload.IsBase64String()) 
                 throw new BusinessException(nameof(ErrorCodes.INVALID_BASE64), ErrorCodes.INVALID_BASE64);
@@ -124,25 +126,24 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             }
         }
         
-        private void AddNewArticleLikes(bool AIsAnonymousUser, UpdateArticleCommand ARequest)
+        private async Task AddNewArticleLikes(bool AIsAnonymousUser, UpdateArticleCommand ARequest, CancellationToken ACancellationToken)
         {
             var LLikesLimit = AIsAnonymousUser 
                 ? Constants.Likes.LIKES_LIMIT_FOR_ANONYMOUS 
                 : Constants.Likes.LIKES_LIMIT_FOR_USER;
-            
+
             var LEntity = new Domain.Entities.ArticleLikes
             {
-                Id = Guid.NewGuid(),
                 ArticleId = ARequest.Id,
                 UserId = FUserProvider.GetUserId(),
                 IpAddress = FUserProvider.GetRequestIpAddress(),
                 LikeCount = ARequest.AddToLikes > LLikesLimit ? LLikesLimit : ARequest.AddToLikes
             };
             
-            FDatabaseContext.ArticleLikes.Add(LEntity);
+            await FDatabaseContext.ArticleLikes.AddAsync(LEntity, ACancellationToken);
         }
 
-        private void UpdateCurrentArticleLikes(bool AIsAnonymousUser, Domain.Entities.ArticleLikes AEntity, int ALikesToBeAdded)
+        private static void UpdateCurrentArticleLikes(bool AIsAnonymousUser, Domain.Entities.ArticleLikes AEntity, int ALikesToBeAdded)
         {
             var LLikesLimit = AIsAnonymousUser 
                 ? Constants.Likes.LIKES_LIMIT_FOR_ANONYMOUS 

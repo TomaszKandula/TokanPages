@@ -8,9 +8,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Tests.DataProviders;
-using TokanPages.Backend.Database.Dummies;
 using TokanPages.Backend.Shared.Dto.Users;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Database.Initializer.Data;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 
 namespace TokanPages.Tests.IntegrationTests.Controllers

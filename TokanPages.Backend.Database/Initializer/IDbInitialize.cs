@@ -1,7 +1,5 @@
-﻿using System.Threading.Tasks;
-
-namespace TokanPages.Backend.Database.Initialize
-{   
+namespace TokanPages.Backend.Database.Initializer
+{
     public interface IDbInitializer
     {
         /// <summary>
@@ -14,6 +12,6 @@ namespace TokanPages.Backend.Database.Initialize
         /// <summary>
         /// Adds default values to the database if tables are empty (newly created).
         /// </summary>
-        Task SeedData();
+        void SeedData();
     }
 }

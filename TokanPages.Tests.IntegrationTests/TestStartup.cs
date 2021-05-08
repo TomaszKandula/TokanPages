@@ -1,13 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using TokanPages.Middleware;
 using TokanPages.Configuration;
+using TokanPages.Backend.Database;
 using TokanPages.Backend.Shared.Settings;
-using TokanPages.Backend.Database.Initialize;
+using TokanPages.Backend.Database.Initializer;
 
 namespace TokanPages.Tests.IntegrationTests
 {
@@ -26,23 +28,21 @@ namespace TokanPages.Tests.IntegrationTests
                         Location = ResponseCacheLocation.Any, 
                         NoStore = false 
                     }));
-
             AServices.AddMvc().AddApplicationPart(typeof(Startup).Assembly);
             AServices.AddControllers();
             AServices.AddResponseCompression(AOptions => AOptions.Providers.Add<GzipCompressionProvider>());
 
-            Dependencies.RegisterForTests(AServices, FConfiguration);
+            SetupTestDatabase(AServices);
+            Dependencies.CommonServices(AServices, FConfiguration);
         }
 
         public override void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
         {
-            var LScopeFactory = AApplication.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
-            using var LScope = LScopeFactory.CreateScope();
-            var LDatabaseInitializer = LScope.ServiceProvider.GetService<IDbInitializer>();
-
-            LDatabaseInitializer.StartMigration();
-            LDatabaseInitializer.SeedData();
-
+            using var LServiceScope = AApplication.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+            var LDbInitializer = LServiceScope.ServiceProvider.GetService<IDbInitializer>();
+            LDbInitializer.StartMigration();
+            LDbInitializer.SeedData();
+            
             AApplication.UseForwardedHeaders();
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);
             AApplication.UseMiddleware<GarbageCollector>();
@@ -55,6 +55,16 @@ namespace TokanPages.Tests.IntegrationTests
 
             AApplication.UseEndpoints(AEndpoints 
                 => AEndpoints.MapControllers());
+        }
+
+        private void SetupTestDatabase(IServiceCollection AServices)
+        {
+            AServices.AddDbContext<DatabaseContext>(AOptions =>
+            {
+                AOptions.UseSqlServer(FConfiguration.GetConnectionString("DbConnectTest"));
+                AOptions.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
+                AOptions.EnableSensitiveDataLogging();
+            });
         }
     }
 }
