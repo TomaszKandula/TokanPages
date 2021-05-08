@@ -10,16 +10,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\TokanPages\appsettings.json" Link="appsettings.json">
+    <None Include="..\..\TokanPages\appsettings.json" Link="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\TokanPages\appsettings.Development.json" Link="appsettings.Development.json">
+    <None Include="..\..\TokanPages\appsettings.Development.json" Link="appsettings.Development.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\TokanPages\appsettings.Production.json" Link="appsettings.Production.json">
+    <None Include="..\..\TokanPages\appsettings.Production.json" Link="appsettings.Production.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\TokanPages\appsettings.Staging.json" Link="appsettings.Staging.json">
+    <None Include="..\..\TokanPages\appsettings.Staging.json" Link="appsettings.Staging.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
