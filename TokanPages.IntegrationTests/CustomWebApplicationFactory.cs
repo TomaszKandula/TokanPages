@@ -15,8 +15,6 @@ namespace TokanPages.IntegrationTests
         protected override IWebHostBuilder CreateWebHostBuilder()
         {
             var LBuilder = WebHost.CreateDefaultBuilder()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseSolutionRelativeContentRoot(Directory.GetCurrentDirectory())
                 .ConfigureAppConfiguration(AConfig =>
                 {
                     var LStartupAssembly = typeof(TTestStartup).GetTypeInfo().Assembly;
