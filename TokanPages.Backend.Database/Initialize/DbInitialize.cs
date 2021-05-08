@@ -8,20 +8,9 @@ namespace TokanPages.Backend.Database.Initialize
     {
         private readonly DatabaseContext FDatabaseContext;
 
-        public DbInitialize(DatabaseContext ADatabaseContext)
-            => FDatabaseContext = ADatabaseContext;
+        public DbInitialize(DatabaseContext ADatabaseContext) => FDatabaseContext = ADatabaseContext;
 
-        public void StartMigration()
-        {
-            if (FDatabaseContext.Database.ProviderName == "Microsoft.EntityFrameworkCore.Sqlite")
-            {
-                FDatabaseContext.Database.OpenConnection();
-                FDatabaseContext.Database.EnsureCreated();
-                return;
-            }
-        
-            FDatabaseContext.Database.Migrate();
-        }
+        public void StartMigration() => FDatabaseContext.Database.Migrate();
 
         public void SeedData()
         {

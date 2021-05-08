@@ -29,13 +29,7 @@ namespace TokanPages.Configuration
             SetupDatabase(AServices, AConfiguration);
         }
 
-        public static void RegisterForTests(IServiceCollection AServices, IConfiguration AConfiguration)
-        {
-            CommonServices(AServices, AConfiguration);
-            SetupDatabaseSqLiteInMemory(AServices);
-        }
-        
-        private static void CommonServices(IServiceCollection AServices, IConfiguration AConfiguration)
+        public static void CommonServices(IServiceCollection AServices, IConfiguration AConfiguration)
         {
             SetupAppSettings(AServices, AConfiguration);
             SetupLogger(AServices);
@@ -63,16 +57,6 @@ namespace TokanPages.Configuration
             });
         }
 
-        private static void SetupDatabaseSqLiteInMemory(IServiceCollection AServices)
-        {
-            AServices.AddDbContext<DatabaseContext>(AOptions =>
-            {
-                AOptions.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
-                AOptions.EnableSensitiveDataLogging();
-                AOptions.UseSqlite("Data Source=InMemoryDatabase;Mode=Memory;Cache=Shared");
-            });
-        }
-
         private static void SetupServices(IServiceCollection AServices) 
         {
             AServices.AddHttpContextAccessor();
@@ -81,8 +65,8 @@ namespace TokanPages.Configuration
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
             AServices.AddScoped<IFileUtilityService, FileUtilityService>();
             AServices.AddScoped<IDateTimeService, DateTimeService>();
-            AServices.AddScoped<IDbInitialize, DbInitialize>();
             AServices.AddScoped<IUserProvider, UserProvider>();
+            AServices.AddScoped<IDbInitialize, DbInitialize>();
 
             AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
             {
