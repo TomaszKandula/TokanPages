@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\TokanPages\appsettings.Staging.json" Link="appsettings.Staging.json">
+    <None Include="..\..\TokanPages\appsettings.Staging.json" Link="appsettings.Staging.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -23,10 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
-    <ProjectReference Include="..\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
-    <ProjectReference Include="..\TokanPages.Tests.DataProviders\TokanPages.Tests.DataProviders.csproj" />
-    <ProjectReference Include="..\TokanPages\TokanPages.csproj" />
+    <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
+    <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
+    <ProjectReference Include="..\..\TokanPages.Tests\TokanPages.Tests.DataProviders\TokanPages.Tests.DataProviders.csproj" />
+    <ProjectReference Include="..\..\TokanPages\TokanPages.csproj" />
   </ItemGroup>
 
 </Project>
