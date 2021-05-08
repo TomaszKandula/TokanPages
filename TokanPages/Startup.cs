@@ -12,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
 using TokanPages.Middleware;
 using TokanPages.Configuration;
-using TokanPages.Backend.Database;
 using TokanPages.Backend.Shared.Settings;
 using Serilog;
 
@@ -44,19 +43,16 @@ namespace TokanPages
             AServices.AddControllers();        
             AServices.AddSpaStaticFiles(AOptions => AOptions.RootPath = "ClientApp/build");
             AServices.AddResponseCompression(AOptions => AOptions.Providers.Add<GzipCompressionProvider>());
+            Dependencies.Register(AServices, FConfiguration);
             
             if (FEnvironment.IsDevelopment())
             {
-                Dependencies.RegisterForDevelopment(AServices, FConfiguration);
-
                 AServices.AddSwaggerGen(AOption =>
                     AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "TokanPagesApi", Version = "v1" }));
             }
 
             if (!FEnvironment.IsProduction() && !FEnvironment.IsStaging()) 
                 return;
-            
-            Dependencies.Register(AServices, FConfiguration);
                 
             // Since this app is meant to run in Docker only
             // We get the Docker's internal network IP(s)
@@ -78,13 +74,6 @@ namespace TokanPages
 
         public virtual void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
         {
-            var LDatabaseContext = AApplication.ApplicationServices.GetRequiredService<DatabaseContext>();
-            if (FEnvironment.IsDevelopment())
-            {
-                LDatabaseContext?.StartMigration();
-                LDatabaseContext?.SeedData();
-            }
-
             AApplication.UseSerilogRequestLogging();
             AApplication.UseForwardedHeaders();
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);

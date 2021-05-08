@@ -7,8 +7,8 @@ using TokanPages.Backend.Database;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Core.Behaviours;
 using TokanPages.Backend.Shared.Settings;
-using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Storage.Settings;
+using TokanPages.Backend.Database.Initialize;
 using TokanPages.Backend.SmtpClient.Settings;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
@@ -33,23 +33,6 @@ namespace TokanPages.Configuration
         {
             CommonServices(AServices, AConfiguration);
             SetupDatabaseSqLiteInMemory(AServices);
-        }
-
-        public static void RegisterForDevelopment(IServiceCollection AServices, IConfiguration AConfiguration)
-        {
-            var LIsValidConnection = AConfiguration
-                .GetConnectionString("DbConnect")
-                .IsValidConnectionString();
-
-            CommonServices(AServices, AConfiguration);
-            
-            if (!LIsValidConnection)
-            {
-                SetupDatabaseSqLiteInMemory(AServices);
-                return;
-            }
-
-            SetupDatabase(AServices, AConfiguration);
         }
         
         private static void CommonServices(IServiceCollection AServices, IConfiguration AConfiguration)
@@ -98,8 +81,9 @@ namespace TokanPages.Configuration
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
             AServices.AddScoped<IFileUtilityService, FileUtilityService>();
             AServices.AddScoped<IDateTimeService, DateTimeService>();
+            AServices.AddScoped<IDbInitialize, DbInitialize>();
             AServices.AddScoped<IUserProvider, UserProvider>();
-           
+
             AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
             {
                 var LAzureStorageSettings = AProvider.GetRequiredService<AzureStorageSettings>();
