@@ -1,6 +1,6 @@
 # TokanPages
 
-TokanPages is the repository that holds my web page to share my programming interests (among others), primarily Microsoft technologies. I also plan album functionality and commenting under articles among article editor and user account capabilities.
+TokanPages is the repository that holds my web page to share my programming interests (among others), primarily Microsoft technologies. I also plan album functionality and comment section under articles among article editor and user account capabilities.
 
 ## Tech-Stack
 
@@ -54,23 +54,109 @@ _Backend_
 
 | Folder | Description |
 |--------|-------------|
-| Core | Reusable core elements |
-| Cqrs | Handlers, mappers and related services |
-| Database | Database context |
-| Domain | Domain entities |
-| Shared | Shared models and resources |
-| SmtpClient | SmtpClient service |
-| Storage | Azure Storage service |
+| Backend.Core | Reusable core elements |
+| Backend.Cqrs | Handlers, mappers and related services |
+| Backend.Database | Database context |
+| Backend.Domain | Domain entities |
+| Backend.Shared | Shared models and resources |
+| Backend.SmtpClient | SmtpClient service |
+| Backend.Storage | Azure Storage service |
 
 _Tests_
 
 | Folder | Description |
 |--------|-------------|
-| DataProviders | Test helpers |
-| UnitTests | Handlers and validators tests |
-| IntegrationTests | Http client tests |
+| Tests.DataProviders | Test helpers |
+| Tests.UnitTests | Handlers and validators tests |
+| Tests.IntegrationTests | Http client tests |
 
-Integration tests focuses on testing HTTP responses, dependencies and theirs configuration. Unit tests covers handlers and validators. All dependencies are mocked/faked. For mocking [Moq](https://github.com/moq/moq4) and [MockQueryable.Moq](https://github.com/romantitov/MockQueryable) have been used.
+Integration tests focuses on testing HTTP client responses, dependencies and theirs configuration. Unit tests covers handlers and validators. All dependencies are mocked. For mocking [Moq](https://github.com/moq/moq4).
+
+## Testing
+
+### Unit Tests setup
+
+Unit tests use SQLite in-memory database (a lightweight database that supports RDBMS). Each test uses a separate database instance, and therefore tables must be populated before a test can be run. Database instances are provided via the factory:
+
+```csharp
+internal class DatabaseContextFactory
+{
+    private readonly DbContextOptionsBuilder<DatabaseContext> FDatabaseOptions =
+        new DbContextOptionsBuilder<DatabaseContext>()
+            .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
+            .EnableSensitiveDataLogging()
+            .UseSqlite("Data Source=InMemoryDatabase;Mode=Memory");
+
+    public DatabaseContext CreateDatabaseContext()
+    {
+        var LDatabaseContext = new DatabaseContext(FDatabaseOptions.Options);
+        LDatabaseContext.Database.OpenConnection();
+        LDatabaseContext.Database.EnsureCreated();
+        return LDatabaseContext;
+    }
+}
+```
+
+Each test can easily access `CreateDatabaseContext()` method via `GetTestDatabaseContext()` as long as test class inherits from `TestBase` class:
+
+```csharp
+public class TestBase
+{
+    private readonly DatabaseContextFactory FDatabaseContextFactory;
+
+    protected TestBase() 
+    {
+        var LServices = new ServiceCollection();
+
+        LServices.AddSingleton<DatabaseContextFactory>();
+        LServices.AddScoped(AContext =>
+        {
+            var LFactory = AContext.GetService<DatabaseContextFactory>();
+            return LFactory?.CreateDatabaseContext();
+        });
+
+        var LServiceScope = LServices.BuildServiceProvider(true).CreateScope();
+        var LServiceProvider = LServiceScope.ServiceProvider;
+        FDatabaseContextFactory = LServiceProvider.GetService<DatabaseContextFactory>();
+    }
+
+    protected DatabaseContext GetTestDatabaseContext()
+        =>  FDatabaseContextFactory.CreateDatabaseContext();
+}
+```
+
+### Integration Tests setup
+
+Integration test uses SQL Server database either local or remote, accordingly to a given connection string. Each test class uses `WebApplicationFactory`:
+
+```csharp
+public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<TTestStartup> where TTestStartup : class
+{
+    protected override IWebHostBuilder CreateWebHostBuilder()
+    {
+        var LBuilder = WebHost.CreateDefaultBuilder()
+            .ConfigureAppConfiguration(AConfig =>
+            {
+                var LStartupAssembly = typeof(TTestStartup).GetTypeInfo().Assembly;
+                var LTestConfig = new ConfigurationBuilder()
+                    .AddJsonFile("appsettings.Staging.json", optional: true, reloadOnChange: true)
+                    .AddUserSecrets(LStartupAssembly)
+                    .AddEnvironmentVariables()
+                    .Build();
+              
+                AConfig.AddConfiguration(LTestConfig);
+            })
+            .UseStartup<TTestStartup>()
+            .UseTestServer();
+            
+        return LBuilder;
+    }
+}
+```
+
+I use `user secrets` with a connection string for local development, pointing to an instance of SQL Express that runs in Docker. However, when the test project runs in CI/CD pipeline, it uses a connection string defined in `appsettings.Staging.json` and connects with a remote test database.
+
+Class `CustomWebApplicationFactory` requires the `Startup` class to configure necessary services. Thus test project has its own `TestStartup.cs` that inherits from the main project `Startup.cs`.
 
 ## CQRS
 
@@ -268,22 +354,23 @@ Copy below code from appsettings.Development.json to your **user secrets**:
 {
   "ConnectionStrings": 
   {
-    "DbConnect": "set_env"
+    "DbConnect": "set_env",
+    "DbConnectTest": "set_env"
   }
 }
 ```
 
 ### Development environment:
 
-If `set_env` remains unchanged, the application will use SQL database in-memory. However, suppose one is willing to use a local/remote SQL database. In that case, they should replace `set_env` with a valid connection string (note: application always uses in-memory database when the connection string is invalid). Application seeds test when the existing tables are not populated, and migration is performed only on the local/remote SQL database.
+Replace `set_env` with connection strings of choice. Please note that `DbConnect` points to a main database (local development / production), and `DbConnectTest` points to a test database for integration tests only.
 
-### Manual migration
+### Database migration
 
 Go to Package Manager Console (PMC) to execute following command:
 
 `Update-Database -StartupProject TokanPages -Project TokanPages.Backend.Database -Context DatabaseContext`
 
-EF Core will create all the necessary tables. More on migrations here: [TokanPages.Backend.Database](https://github.com/TomaszKandula/TokanPages/tree/dev/Backend/TokanPages.Backend.Database).
+EF Core will create all the necessary tables and seed demo data. More on migrations here: [TokanPages.Backend.Database](https://github.com/TomaszKandula/TokanPages/tree/dev/Backend/TokanPages.Backend.Database).
 
 ## CI/CD
 
