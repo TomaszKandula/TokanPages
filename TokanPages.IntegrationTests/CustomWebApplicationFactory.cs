@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -15,9 +14,6 @@ namespace TokanPages.IntegrationTests
     {
         protected override IWebHostBuilder CreateWebHostBuilder()
         {
-            // var test = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            // var x = (typeof(TTestStartup).GetTypeInfo().Assembly).CodeBase;
-            //var test = Environment.CurrentDirectory;
             var LBuilder = WebHost.CreateDefaultBuilder()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseSolutionRelativeContentRoot(Directory.GetCurrentDirectory())
