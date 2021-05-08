@@ -1,14 +1,14 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Database.Seeders;
+using TokanPages.Backend.Database.Initializer.Seeders;
 
-namespace TokanPages.Backend.Database.Initialize
+namespace TokanPages.Backend.Database.Initializer
 {
-    public class DbInitialize : IDbInitialize
+    public class DbInitializer : IDbInitializer
     {
         private readonly DatabaseContext FDatabaseContext;
 
-        public DbInitialize(DatabaseContext ADatabaseContext) => FDatabaseContext = ADatabaseContext;
+        public DbInitializer(DatabaseContext ADatabaseContext) => FDatabaseContext = ADatabaseContext;
 
         public void StartMigration() => FDatabaseContext.Database.Migrate();
 

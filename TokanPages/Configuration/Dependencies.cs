@@ -8,7 +8,7 @@ using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Core.Behaviours;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Storage.Settings;
-using TokanPages.Backend.Database.Initialize;
+using TokanPages.Backend.Database.Initializer;
 using TokanPages.Backend.SmtpClient.Settings;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
@@ -66,7 +66,7 @@ namespace TokanPages.Configuration
             AServices.AddScoped<IFileUtilityService, FileUtilityService>();
             AServices.AddScoped<IDateTimeService, DateTimeService>();
             AServices.AddScoped<IUserProvider, UserProvider>();
-            AServices.AddScoped<IDbInitialize, DbInitialize>();
+            AServices.AddScoped<IDbInitializer, DbInitializer>();
 
             AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
             {

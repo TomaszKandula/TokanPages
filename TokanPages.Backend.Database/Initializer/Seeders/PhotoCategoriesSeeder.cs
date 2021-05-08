@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using TokanPages.Backend.Domain.Entities;
 
-namespace TokanPages.Backend.Database.Seeders
+namespace TokanPages.Backend.Database.Initializer.Seeders
 {
     public static class PhotoCategoriesSeeder
     {

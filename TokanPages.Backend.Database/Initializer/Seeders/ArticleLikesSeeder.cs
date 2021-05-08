@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using TokanPages.Backend.Domain.Entities;
-using TokanPages.Backend.Database.Dummies;
+using TokanPages.Backend.Database.Initializer.Data;
 
-namespace TokanPages.Backend.Database.Seeders
+namespace TokanPages.Backend.Database.Initializer.Seeders
 {
     public static class ArticleLikesSeeder
     {

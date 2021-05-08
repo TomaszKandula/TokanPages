@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Tests.DataProviders;
 using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Database.Dummies;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.Dto.Articles;
+using TokanPages.Backend.Database.Initializer.Data;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 
 namespace TokanPages.Tests.IntegrationTests.Controllers

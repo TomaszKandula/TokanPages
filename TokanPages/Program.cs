@@ -3,7 +3,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using TokanPages.Backend.Database.Initialize;
+using TokanPages.Backend.Database.Initializer;
 using Sentry.Protocol;
 using Serilog.Events;
 using Serilog;
@@ -66,13 +66,13 @@ namespace TokanPages
             var LServiceScopeFactory = (IServiceScopeFactory) AWebHost.Services.GetService(typeof(IServiceScopeFactory));
             using var LScope = LServiceScopeFactory.CreateScope();
             var LServices = LScope.ServiceProvider;
-            var LDbInitialize = LServices.GetRequiredService<IDbInitialize>();
+            var LDbInitializer = LServices.GetRequiredService<IDbInitializer>();
 
             if (!FIsDevelopment) 
                 return AWebHost;
 
-            LDbInitialize.StartMigration();
-            LDbInitialize.SeedData();
+            LDbInitializer.StartMigration();
+            LDbInitializer.SeedData();
 
             return AWebHost;
         }

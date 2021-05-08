@@ -1,6 +1,6 @@
-namespace TokanPages.Backend.Database.Initialize
+namespace TokanPages.Backend.Database.Initializer
 {
-    public interface IDbInitialize
+    public interface IDbInitializer
     {
         /// <summary>
         /// Applies any pending migrations for the context to the database.

@@ -9,7 +9,7 @@ using TokanPages.Middleware;
 using TokanPages.Configuration;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Shared.Settings;
-using TokanPages.Backend.Database.Initialize;
+using TokanPages.Backend.Database.Initializer;
 
 namespace TokanPages.Tests.IntegrationTests
 {
@@ -39,9 +39,9 @@ namespace TokanPages.Tests.IntegrationTests
         public override void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
         {
             using var LServiceScope = AApplication.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
-            var LTestDataSeeder = LServiceScope.ServiceProvider.GetService<IDbInitialize>();
-            LTestDataSeeder.StartMigration();
-            LTestDataSeeder.SeedData();
+            var LDbInitializer = LServiceScope.ServiceProvider.GetService<IDbInitializer>();
+            LDbInitializer.StartMigration();
+            LDbInitializer.SeedData();
             
             AApplication.UseForwardedHeaders();
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);
