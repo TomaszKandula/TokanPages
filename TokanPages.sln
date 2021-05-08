@@ -5,12 +5,6 @@ VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokanPages", "TokanPages\TokanPages.csproj", "{2C048600-41A0-40FC-B19C-80FF36236EA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Tests.DataProviders", "TokanPages.Tests.DataProviders\TokanPages.Tests.DataProviders.csproj", "{0A3D6642-356E-449F-A2B2-0481CBD50358}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Tests.IntegrationTests", "TokanPages.Tests.IntegrationTests\TokanPages.Tests.IntegrationTests.csproj", "{6C8C9DBE-0559-4192-8F65-C2C7D827CF0D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Tests.UnitTests", "TokanPages.Tests.UnitTests\TokanPages.Tests.UnitTests.csproj", "{33905B97-4E70-473E-8F81-C1EDF9E5C4D3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Core", "TokanPages.Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj", "{D966F02F-CDCB-4D3E-A2DC-98097D5AEAB3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Cqrs", "TokanPages.Backend\TokanPages.Backend.Cqrs\TokanPages.Backend.Cqrs.csproj", "{6D45524F-F1FA-4A6C-B935-DA94F3B4776A}"
@@ -27,6 +21,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Storage"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TokanPages.Backend", "TokanPages.Backend", "{57A31AAC-92AC-4327-B557-ACB57EFE21FC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TokanPages.Tests", "TokanPages.Tests", "{6F2E1F36-A508-4147-86FE-4EA4FDC85D39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Tests.DataProviders", "TokanPages.Tests\TokanPages.Tests.DataProviders\TokanPages.Tests.DataProviders.csproj", "{8BED77D3-0416-4D29-9A6B-002310C95B7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Tests.IntegrationTests", "TokanPages.Tests\TokanPages.Tests.IntegrationTests\TokanPages.Tests.IntegrationTests.csproj", "{77B193BF-BC91-47DF-A61A-26361078730D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Tests.UnitTests", "TokanPages.Tests\TokanPages.Tests.UnitTests\TokanPages.Tests.UnitTests.csproj", "{0AC1E5D7-6F80-46F9-8211-E13F6F664FCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,18 +39,6 @@ Global
 		{2C048600-41A0-40FC-B19C-80FF36236EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C048600-41A0-40FC-B19C-80FF36236EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C048600-41A0-40FC-B19C-80FF36236EA3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A3D6642-356E-449F-A2B2-0481CBD50358}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A3D6642-356E-449F-A2B2-0481CBD50358}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A3D6642-356E-449F-A2B2-0481CBD50358}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A3D6642-356E-449F-A2B2-0481CBD50358}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6C8C9DBE-0559-4192-8F65-C2C7D827CF0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C8C9DBE-0559-4192-8F65-C2C7D827CF0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C8C9DBE-0559-4192-8F65-C2C7D827CF0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C8C9DBE-0559-4192-8F65-C2C7D827CF0D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{33905B97-4E70-473E-8F81-C1EDF9E5C4D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33905B97-4E70-473E-8F81-C1EDF9E5C4D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33905B97-4E70-473E-8F81-C1EDF9E5C4D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33905B97-4E70-473E-8F81-C1EDF9E5C4D3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D966F02F-CDCB-4D3E-A2DC-98097D5AEAB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D966F02F-CDCB-4D3E-A2DC-98097D5AEAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D966F02F-CDCB-4D3E-A2DC-98097D5AEAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -77,6 +67,18 @@ Global
 		{EC20EE58-ED90-419E-84E7-8D298B59CE79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC20EE58-ED90-419E-84E7-8D298B59CE79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC20EE58-ED90-419E-84E7-8D298B59CE79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BED77D3-0416-4D29-9A6B-002310C95B7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BED77D3-0416-4D29-9A6B-002310C95B7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BED77D3-0416-4D29-9A6B-002310C95B7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BED77D3-0416-4D29-9A6B-002310C95B7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77B193BF-BC91-47DF-A61A-26361078730D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77B193BF-BC91-47DF-A61A-26361078730D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77B193BF-BC91-47DF-A61A-26361078730D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77B193BF-BC91-47DF-A61A-26361078730D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AC1E5D7-6F80-46F9-8211-E13F6F664FCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AC1E5D7-6F80-46F9-8211-E13F6F664FCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AC1E5D7-6F80-46F9-8211-E13F6F664FCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AC1E5D7-6F80-46F9-8211-E13F6F664FCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +91,9 @@ Global
 		{1D530EBA-8AFD-4DC3-A4E2-D2D5A1C98F2E} = {57A31AAC-92AC-4327-B557-ACB57EFE21FC}
 		{18A17E8F-24FD-448C-B54E-94E88C0BAF4C} = {57A31AAC-92AC-4327-B557-ACB57EFE21FC}
 		{EC20EE58-ED90-419E-84E7-8D298B59CE79} = {57A31AAC-92AC-4327-B557-ACB57EFE21FC}
+		{8BED77D3-0416-4D29-9A6B-002310C95B7B} = {6F2E1F36-A508-4147-86FE-4EA4FDC85D39}
+		{77B193BF-BC91-47DF-A61A-26361078730D} = {6F2E1F36-A508-4147-86FE-4EA4FDC85D39}
+		{0AC1E5D7-6F80-46F9-8211-E13F6F664FCC} = {6F2E1F36-A508-4147-86FE-4EA4FDC85D39}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4A63A58-F64E-4EB2-92DD-70486490D8CE}
