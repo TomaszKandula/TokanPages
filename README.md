@@ -66,11 +66,11 @@ _Tests_
 
 | Folder | Description |
 |--------|-------------|
-| Tests.DataProviders | Test helpers |
-| Tests.UnitTests | Handlers and validators tests |
-| Tests.IntegrationTests | Http client tests |
+| DataProviders | Test helpers |
+| UnitTests | Handlers and validators tests |
+| IntegrationTests | Http client tests |
 
-Integration tests focuses on testing HTTP client responses, dependencies and theirs configuration. Unit tests covers handlers and validators. All dependencies are mocked. For mocking [Moq](https://github.com/moq/moq4).
+Integration tests focuses on testing HTTP client responses, dependencies and theirs configuration. Unit tests covers handlers and validators. All dependencies are mocked. For mocking [Moq](https://github.com/moq/moq4) has been used.
 
 ## Testing
 
