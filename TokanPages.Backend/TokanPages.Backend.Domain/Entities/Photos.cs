@@ -7,8 +7,6 @@ namespace TokanPages.Backend.Domain.Entities
 {
     public class Photos : Entity<Guid>
     {
-        public Photos() => Albums = new HashSet<Albums>();
-
         public Guid UserId { get; set; }
 
         public Users User { get; set; }
@@ -37,6 +35,6 @@ namespace TokanPages.Backend.Domain.Entities
         [Required]
         public string Description { get; set; }
         
-        public ICollection<Albums> Albums { get; set; }
+        public ICollection<Albums> Albums { get; set; } = new HashSet<Albums>();
     }
 }

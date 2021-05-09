@@ -5,10 +5,8 @@ using TokanPages.Backend.Core.Entities;
 
 namespace TokanPages.Backend.Domain.Entities
 {
-    public partial class Articles : Entity<Guid>
+    public class Articles : Entity<Guid>
     {
-        public Articles() => ArticleLikes = new HashSet<ArticleLikes>();
-
         [Required]
         [MaxLength(255)]
         public string Title { get; set; }
@@ -29,6 +27,6 @@ namespace TokanPages.Backend.Domain.Entities
 
         public Users User { get; set; }
 
-        public ICollection<ArticleLikes> ArticleLikes { get; set; }
+        public ICollection<ArticleLikes> ArticleLikes { get; set; } = new HashSet<ArticleLikes>();
     }
 }
