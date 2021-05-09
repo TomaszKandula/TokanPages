@@ -2,7 +2,6 @@ using System.Net;
 using System.Linq;
 using System.Net.Sockets;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,15 +32,6 @@ namespace TokanPages
 
         public virtual void ConfigureServices(IServiceCollection AServices)
         {
-            AServices
-                .AddMvc(AOption => AOption.CacheProfiles
-                .Add("Standard", new CacheProfile
-                { 
-                    Duration = 10, 
-                    Location = ResponseCacheLocation.Any, 
-                    NoStore = false 
-                }));
-
             AServices.AddControllers();        
             AServices.AddSpaStaticFiles(AOptions => AOptions.RootPath = "ClientApp/build");
             AServices.AddResponseCompression(AOptions => AOptions.Providers.Add<GzipCompressionProvider>());
@@ -76,17 +66,16 @@ namespace TokanPages
 
         public virtual void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
         {
+            AApplication.UseExceptionHandler(ExceptionHandler.Handle);
+            AApplication.UseMiddleware<CustomCors>();
             AApplication.UseSerilogRequestLogging();
             AApplication.UseForwardedHeaders();
-            AApplication.UseExceptionHandler(ExceptionHandler.Handle);
-            AApplication.UseMiddleware<GarbageCollector>();
-            AApplication.UseMiddleware<CustomCors>();
-
             AApplication.UseResponseCompression();
             AApplication.UseHttpsRedirection();
             AApplication.UseStaticFiles();
             AApplication.UseSpaStaticFiles();
             AApplication.UseRouting();
+            AApplication.UseEndpoints(AEndpoints => AEndpoints.MapControllers());
 
             if (FEnvironment.IsDevelopment())
             {
@@ -94,9 +83,6 @@ namespace TokanPages
                 AApplication.UseSwaggerUI(AOption =>
                     AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "TokanPagesApi version 1"));
             }
-
-            AApplication.UseEndpoints(AEndpoints => 
-                AEndpoints.MapControllers());
 
             AApplication.UseSpa(ASpa =>
             {
