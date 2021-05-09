@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.SmtpClient;
-using TokanPages.DataProviders;
+using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Storage.Settings;
 using TokanPages.Backend.SmtpClient.Models;
 using TokanPages.Backend.Core.Services.AppLogger;

@@ -1,6 +1,6 @@
 using System;
 
-namespace TokanPages.DataProviders
+namespace TokanPages.Backend.Core.Generators
 {
     public abstract class DateTimeProvider : BaseClass
     {
@@ -11,7 +11,7 @@ namespace TokanPages.DataProviders
 
             var LDayRange = (AMax - AMin).Value.Days; 
 
-            return AMin.Value.AddDays(FRandom.Next(0, LDayRange));
+            return AMin.Value.AddDays(Random.Next(0, LDayRange));
         }
     }
 }

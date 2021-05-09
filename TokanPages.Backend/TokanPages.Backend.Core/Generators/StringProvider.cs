@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace TokanPages.DataProviders
+namespace TokanPages.Backend.Core.Generators
 {
     public abstract class StringProvider : BaseClass
     {
@@ -15,7 +15,7 @@ namespace TokanPages.DataProviders
             const string CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; 
 
             var LString = new string(Enumerable.Repeat(CHARS, ALength)
-                .Select(AString => AString[FRandom.Next(AString.Length)])
+                .Select(AString => AString[Random.Next(AString.Length)])
                 .ToArray()); 
 
             if (!string.IsNullOrEmpty(APrefix) || !string.IsNullOrWhiteSpace(APrefix)) 
