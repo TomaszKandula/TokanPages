@@ -5,8 +5,8 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.DataProviders;
 using TokanPages.Backend.Shared.Models;
+using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Shared.Dto.Mailer;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
 

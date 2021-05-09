@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.DataProviders;
+using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 
 namespace TokanPages.UnitTests.Handlers.Articles

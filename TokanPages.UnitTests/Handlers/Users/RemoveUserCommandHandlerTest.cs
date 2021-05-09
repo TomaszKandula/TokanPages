@@ -3,7 +3,7 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using TokanPages.DataProviders;
+using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 

@@ -1,6 +1,6 @@
 ﻿using Xunit;
 using FluentAssertions;
-using TokanPages.DataProviders;
+using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 

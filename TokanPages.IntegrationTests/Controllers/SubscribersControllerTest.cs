@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.DataProviders;
+using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.Dto.Subscribers;
