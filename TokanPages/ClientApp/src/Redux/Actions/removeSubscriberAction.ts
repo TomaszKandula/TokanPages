@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/react";
 import axios from "axios";
 import { AppThunkAction } from "../applicationState";
 import { IRemoveSubscriberDto } from "../../Api/Models";
@@ -33,14 +34,20 @@ export const ActionCreators =
         })
         .then(response =>
         {
-            return response.status === 200
-                ? dispatch({ type: REMOVE_SUBSCRIBER_RESPONSE, hasRemovedSubscriber: true })
-                : dispatch({ type: REMOVE_SUBSCRIBER_ERROR, errorObject: UnexpectedStatusCode(response.status) });
-
+            if (response.status === 200)
+            {
+                dispatch({ type: REMOVE_SUBSCRIBER_RESPONSE, hasRemovedSubscriber: true });
+                return;
+            }
+            
+            const error = UnexpectedStatusCode(response.status);
+            dispatch({ type: REMOVE_SUBSCRIBER_ERROR, errorObject: error });
+            Sentry.captureException(error);
         })
         .catch(error =>
         {
             dispatch({ type: REMOVE_SUBSCRIBER_ERROR, errorObject: GetErrorMessage(error) });
+            Sentry.captureException(error);
         });     
     }
 }

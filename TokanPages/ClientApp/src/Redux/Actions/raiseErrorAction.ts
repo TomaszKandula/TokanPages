@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/react";
 import { AppThunkAction } from "../applicationState";
 
 export const CLEAR_ERROR = "CLEAR_ERROR";
@@ -17,5 +18,6 @@ export const ActionCreators =
     raiseError: (error: any): AppThunkAction<TErrorActions> => (dispatch) => 
     {
         dispatch({ type: RAISE_ERROR, errorObject: error });
+        Sentry.captureException(error);
     }
 }
