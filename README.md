@@ -161,7 +161,7 @@ public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<T
 
 I use `user secrets` with a connection string for local development, pointing to an instance of SQL Express that runs in Docker. However, when the test project runs in CI/CD pipeline, it uses a connection string defined in `appsettings.Staging.json` and connects with a remote test database.
 
-Class `CustomWebApplicationFactory` requires the `Startup` class to configure necessary services. Thus test project has its own `TestStartup.cs` that inherits from the main project `Startup.cs`. We register only necessary services.
+Class `CustomWebApplicationFactory` requires the `Startup` class to configure necessary services. Thus test project has its own `TestStartup.cs`. We register only necessary services.
 
 Note: before integration tests can run, test database must be up.
 

@@ -20,7 +20,7 @@ namespace TokanPages
     [ExcludeFromCodeCoverage]
     public class Startup
     {
-        protected readonly IConfiguration FConfiguration;
+        private readonly IConfiguration FConfiguration;
 
         private readonly IWebHostEnvironment FEnvironment;
 
@@ -30,7 +30,7 @@ namespace TokanPages
             FEnvironment = AEnvironment;
         }
 
-        public virtual void ConfigureServices(IServiceCollection AServices)
+        public void ConfigureServices(IServiceCollection AServices)
         {
             AServices.AddControllers();        
             AServices.AddSpaStaticFiles(AOptions => AOptions.RootPath = "ClientApp/build");
@@ -64,7 +64,7 @@ namespace TokanPages
             });
         }
 
-        public virtual void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
+        public void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
         {
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);
             AApplication.UseMiddleware<CustomCors>();
