@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Core.Exceptions
     {
         public ValidationResult ValidationResult { get; }
 
-        public ValidationException(ValidationResult AValidationResult) : base(CommonErrorCodes.VALIDATION_ERROR)
+        public ValidationException(ValidationResult AValidationResult, string AErrorMessage = "") : base(AErrorMessage)
             => ValidationResult = AValidationResult;
     }
 }
