@@ -1,15 +1,12 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using TokanPages.Middleware;
 using TokanPages.Configuration;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Shared.Settings;
-using TokanPages.Backend.Database.Initializer;
 
 namespace TokanPages.IntegrationTests
 {
@@ -20,17 +17,8 @@ namespace TokanPages.IntegrationTests
 
         public override void ConfigureServices(IServiceCollection AServices)
         {
-            AServices
-                .AddMvc(AOption => AOption.CacheProfiles
-                    .Add("Standard", new CacheProfile
-                    { 
-                        Duration = 10, 
-                        Location = ResponseCacheLocation.Any, 
-                        NoStore = false 
-                    }));
             AServices.AddMvc().AddApplicationPart(typeof(Startup).Assembly);
             AServices.AddControllers();
-            AServices.AddResponseCompression(AOptions => AOptions.Providers.Add<GzipCompressionProvider>());
 
             SetupTestDatabase(AServices);
             Dependencies.CommonServices(AServices, FConfiguration);
@@ -38,23 +26,12 @@ namespace TokanPages.IntegrationTests
 
         public override void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
         {
-            using var LServiceScope = AApplication.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
-            var LDbInitializer = LServiceScope.ServiceProvider.GetService<IDbInitializer>();
-            LDbInitializer.StartMigration();
-            LDbInitializer.SeedData();
-            
-            AApplication.UseForwardedHeaders();
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);
-            AApplication.UseMiddleware<GarbageCollector>();
             AApplication.UseMiddleware<CustomCors>();
-
-            AApplication.UseResponseCompression();
+            AApplication.UseForwardedHeaders();
             AApplication.UseHttpsRedirection();
-            AApplication.UseStaticFiles();
             AApplication.UseRouting();
-
-            AApplication.UseEndpoints(AEndpoints 
-                => AEndpoints.MapControllers());
+            AApplication.UseEndpoints(AEndpoints => AEndpoints.MapControllers());
         }
 
         private void SetupTestDatabase(IServiceCollection AServices)
