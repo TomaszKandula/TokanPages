@@ -22,7 +22,6 @@
   <ItemGroup>
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Cqrs\TokanPages.Backend.Cqrs.csproj" />
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
-    <ProjectReference Include="..\TokanPages.DataProviders\TokanPages.DataProviders.csproj" />
   </ItemGroup>
 
 </Project>

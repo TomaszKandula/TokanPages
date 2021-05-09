@@ -26,7 +26,6 @@
     <ProjectReference Include="..\TokanPages\TokanPages.csproj" />
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
-    <ProjectReference Include="..\TokanPages.DataProviders\TokanPages.DataProviders.csproj" />
   </ItemGroup>
 
 </Project>
