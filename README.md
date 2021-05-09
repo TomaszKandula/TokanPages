@@ -45,10 +45,12 @@ _TokanPages_
 
 | Folder | Description |
 |--------|-------------|
-| ClientApp | Frontend in React |
+| ClientApp^ | Frontend in React |
 | Configuration | Application dependencies |
 | Controllers | WebAPI |
 | Middleware | Custom middleware |
+
+In the current project version, the static bundles is hosted alongside the ASP.NET Core server-side application. This is the most straightforward approach, which works well in many situations. During the build process, the bundles are generated and copied to a preconfigured folder inside the ASP.NET Core application. An alternative approach with NGINX and Reverse Proxy is going to be introduced soon.
 
 _Backend_
 
