@@ -6,6 +6,8 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
 {
     public class UserProvider : IUserProvider
     {
+        private const string LOCALHOST = "127.0.0.1";
+        
         private readonly IHttpContextAccessor FHttpContextAccessor;
 
         public UserProvider(IHttpContextAccessor AHttpContextAccessor) 
@@ -17,7 +19,7 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
         {
             var LRemoteIpAddress = FHttpContextAccessor.HttpContext.Request.Headers["X-Forwarded-For"].ToString();
             return string.IsNullOrEmpty(LRemoteIpAddress) 
-                ? "127.0.0.1" 
+                ? LOCALHOST 
                 : LRemoteIpAddress.Split(':')[0];
         }
 
@@ -30,7 +32,7 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
         public virtual Users GetUserData() 
         {
             // TODO: return basic data
-            return new Users();
+            return new ();
         }
     }
 }
