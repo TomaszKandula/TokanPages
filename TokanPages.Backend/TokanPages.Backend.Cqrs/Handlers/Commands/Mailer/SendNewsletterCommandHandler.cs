@@ -6,6 +6,7 @@ using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Storage.Settings;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Core.Services.TemplateHelper;
@@ -60,9 +61,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 var LUnsubscribeLink = LUnsubscribeBaseLink + LSubscriber.Id;
                 var LNewValues = new List<Item>
                 {
-                    new Item { Tag = "{CONTENT}", Value = ARequest.Message },
-                    new Item { Tag = "{UPDATE_EMAIL_LINK}", Value = LUpdateSubscriberLink },
-                    new Item { Tag = "{UNSUBSCRIBE_LINK}", Value = LUnsubscribeLink }
+                    new () { Tag = "{CONTENT}", Value = ARequest.Message },
+                    new () { Tag = "{UPDATE_EMAIL_LINK}", Value = LUpdateSubscriberLink },
+                    new () { Tag = "{UNSUBSCRIBE_LINK}", Value = LUnsubscribeLink }
                 };
 
                 var LUrl = $"{FAzureStorageSettings.BaseUrl}{Templates.NEWSLETTER}";
@@ -73,7 +74,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 
                 var LResult = await FSmtpClientService.Send();
                 if (!LResult.IsSucceeded) 
-                    throw new BusinessException(nameof(CommonErrorCodes.MAILER_ERROR), LResult.ErrorDesc);
+                    throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}. {LResult.ErrorDesc}");
             }
 
             return await Task.FromResult(Unit.Value);
