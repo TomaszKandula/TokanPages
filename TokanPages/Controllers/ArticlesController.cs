@@ -27,7 +27,7 @@ namespace TokanPages.Controllers
 
         [HttpPost]
         public async Task<Unit> UpdateArticle([FromBody] UpdateArticleDto APayLoad)
-            => await FMediator.Send(ArticlesMapper.MapToUpateArticleCommand(APayLoad));
+            => await FMediator.Send(ArticlesMapper.MapToUpdateArticleCommand(APayLoad));
 
         [HttpPost]
         public async Task<Unit> RemoveArticle([FromBody] RemoveArticleDto APayLoad)
