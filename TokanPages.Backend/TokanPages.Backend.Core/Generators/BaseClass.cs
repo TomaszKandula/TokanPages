@@ -1,6 +1,6 @@
 using System;
 
-namespace TokanPages.DataProviders
+namespace TokanPages.Backend.Core.Generators
 {
     public class BaseClass
     {

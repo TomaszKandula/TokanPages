@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace TokanPages.DataProviders
+namespace TokanPages.Backend.Core.Generators
 {
     public abstract class StringProvider : BaseClass
     {

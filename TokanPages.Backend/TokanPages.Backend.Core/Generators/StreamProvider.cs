@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace TokanPages.DataProviders
+namespace TokanPages.Backend.Core.Generators
 {
     public abstract class StreamProvider : BaseClass
     {

@@ -1,4 +1,4 @@
-namespace TokanPages.DataProviders
+namespace TokanPages.Backend.Core.Generators
 {
     public abstract class NumberProvider : BaseClass
     {
