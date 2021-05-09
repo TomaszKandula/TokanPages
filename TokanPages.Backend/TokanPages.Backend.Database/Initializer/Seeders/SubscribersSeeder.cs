@@ -9,7 +9,7 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
         {
             return new List<Subscribers>
             {
-                new Subscribers
+                new ()
                 {
                     Id = Data.Subscribers1.FId,
                     Email = Data.Subscribers1.EMAIL,
@@ -18,7 +18,7 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
                     Registered = Data.Subscribers1.FRegistered,
                     LastUpdated = Data.Subscribers1.FLastUpdated
                 },
-                new Subscribers
+                new ()
                 {
                     Id = Data.Subscribers2.FId,
                     Email = Data.Subscribers2.EMAIL,
@@ -27,7 +27,7 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
                     Registered = Data.Subscribers2.FRegistered,
                     LastUpdated = Data.Subscribers2.FLastUpdated
                 },
-                new Subscribers
+                new ()
                 {
                     Id = Data.Subscribers3.FId,
                     Email = Data.Subscribers3.EMAIL,

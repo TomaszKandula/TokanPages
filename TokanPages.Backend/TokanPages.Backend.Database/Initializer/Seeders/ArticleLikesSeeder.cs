@@ -10,7 +10,7 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
         {
             return new List<ArticleLikes>
             {
-                new ArticleLikes
+                new ()
                 {
                     Id = ArticleLikes1.FId,
                     ArticleId = ArticleLikes1.FArticleId,
@@ -18,7 +18,7 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
                     IpAddress = ArticleLikes1.IP_ADDRESS,
                     LikeCount = ArticleLikes1.LIKE_COUNT
                 },
-                new ArticleLikes
+                new ()
                 {
                     Id = ArticleLikes2.FId,
                     ArticleId = ArticleLikes2.FArticleId,
@@ -26,7 +26,7 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
                     IpAddress = ArticleLikes2.IP_ADDRESS,
                     LikeCount = ArticleLikes2.LIKE_COUNT
                 },
-                new ArticleLikes
+                new ()
                 {
                     Id = ArticleLikes3.FId,
                     ArticleId = ArticleLikes3.FArticleId,
@@ -34,7 +34,7 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
                     IpAddress = ArticleLikes3.IP_ADDRESS,
                     LikeCount = ArticleLikes3.LIKE_COUNT
                 },
-                new ArticleLikes
+                new ()
                 {
                     Id = ArticleLikes4.FId,
                     ArticleId = ArticleLikes4.FArticleId,

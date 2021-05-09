@@ -58,14 +58,14 @@ namespace TokanPages.UnitTests.Handlers.Articles
 
             var LLikes = new List<Backend.Domain.Entities.ArticleLikes> 
             { 
-                new Backend.Domain.Entities.ArticleLikes
+                new ()
                 {
                     ArticleId = LArticles.Id,
                     UserId = null,
                     LikeCount = 10,
                     IpAddress = IP_ADDRESS_FIRST
                 },
-                new Backend.Domain.Entities.ArticleLikes
+                new ()
                 {
                     ArticleId = LArticles.Id,
                     UserId = null,

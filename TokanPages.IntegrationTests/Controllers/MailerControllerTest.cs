@@ -62,7 +62,7 @@ namespace TokanPages.IntegrationTests.Controllers
             {
                 SubscriberInfo = new List<SubscriberInfo>
                 {
-                    new SubscriberInfo
+                    new ()
                     {
                         Id    = Guid.NewGuid().ToString(),
                         Email = "tomasz.kandula@gmail.com"

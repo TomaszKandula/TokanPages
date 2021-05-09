@@ -9,127 +9,127 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
         {
             return new List<PhotoCategories>
             {
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Uncategorised"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Abstract"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Aerial"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Animals"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Black and White"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Boudoir"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Celebrities"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "City & Architecture"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Commercial"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Concert"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Family"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Fashion"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Film"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Fine Art"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Food"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Journalism"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Landscapes"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Macro"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Nature"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Night"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Nude"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "People"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Performing Arts"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Sport"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Still Life"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Street"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Transportation"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Travel"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Underwater"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Urban Exploration"
                 },
-                new PhotoCategories
+                new ()
                 {
                     CategoryName = "Wedding"
                 }

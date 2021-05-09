@@ -20,7 +20,7 @@ namespace TokanPages.UnitTests.Validators.Mailer
                 Subject = "Subject",
                 SubscriberInfo = new List<SubscriberInfo> 
                 { 
-                    new SubscriberInfo 
+                    new () 
                     { 
                         Id = Guid.NewGuid().ToString(),
                         Email = "tokan@dfds.com"
@@ -66,7 +66,7 @@ namespace TokanPages.UnitTests.Validators.Mailer
                 Subject = string.Empty,
                 SubscriberInfo = new List<SubscriberInfo>
                 {
-                    new SubscriberInfo
+                    new ()
                     {
                         Id = Guid.NewGuid().ToString(),
                         Email = "tokan@dfds.com"
@@ -93,7 +93,7 @@ namespace TokanPages.UnitTests.Validators.Mailer
                 Subject = new string('T', 256),
                 SubscriberInfo = new List<SubscriberInfo>
                 {
-                    new SubscriberInfo
+                    new ()
                     {
                         Id = Guid.NewGuid().ToString(),
                         Email = "tokan@dfds.com"
@@ -120,7 +120,7 @@ namespace TokanPages.UnitTests.Validators.Mailer
                 Subject = "Subject",
                 SubscriberInfo = new List<SubscriberInfo>
                 {
-                    new SubscriberInfo
+                    new ()
                     {
                         Id = Guid.NewGuid().ToString(),
                         Email = "tokan@dfds.com"
@@ -147,7 +147,7 @@ namespace TokanPages.UnitTests.Validators.Mailer
                 Subject = "Subject",
                 SubscriberInfo = new List<SubscriberInfo>
                 {
-                    new SubscriberInfo
+                    new ()
                     {
                         Id = Guid.NewGuid().ToString(),
                         Email = "tokan@dfds.com"

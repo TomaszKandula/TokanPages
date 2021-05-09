@@ -18,7 +18,7 @@ namespace TokanPages.UnitTests.Handlers.Users
             // Arrange
             var LUsers = new List<TokanPages.Backend.Domain.Entities.Users>
             {
-                new TokanPages.Backend.Domain.Entities.Users
+                new ()
                 {
                     Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
                     EmailAddress = StringProvider.GetRandomEmail(),
@@ -30,7 +30,7 @@ namespace TokanPages.UnitTests.Handlers.Users
                     LastUpdated = null,
                     LastLogged = null
                 },
-                new TokanPages.Backend.Domain.Entities.Users
+                new ()
                 {
                     Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
                     EmailAddress = StringProvider.GetRandomEmail(),

@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
     {
         public static AddArticleCommand MapToAddArticleCommand(AddArticleDto AModel)
         {
-            return new AddArticleCommand
+            return new ()
             {
                 Title = AModel.Title,
                 Description = AModel.Description,
@@ -16,9 +16,9 @@ namespace TokanPages.Backend.Cqrs.Mappers
             };
         }
 
-        public static UpdateArticleCommand MapToUpateArticleCommand(UpdateArticleDto AModel)
+        public static UpdateArticleCommand MapToUpdateArticleCommand(UpdateArticleDto AModel)
         {
-            return new UpdateArticleCommand
+            return new ()
             {
                 Id = AModel.Id,
                 Title = AModel.Title,
@@ -33,7 +33,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
 
         public static RemoveArticleCommand MapToRemoveArticleCommand(RemoveArticleDto AModel) 
         {
-            return new RemoveArticleCommand 
+            return new () 
             { 
                 Id = AModel.Id
             };
