@@ -66,7 +66,6 @@ _Tests_
 
 | Folder | Description |
 |--------|-------------|
-| DataProviders | Test helpers |
 | UnitTests | Handlers and validators tests |
 | IntegrationTests | Http client tests |
 
