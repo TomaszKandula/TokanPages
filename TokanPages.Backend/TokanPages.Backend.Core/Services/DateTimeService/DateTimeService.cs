@@ -14,6 +14,6 @@ namespace TokanPages.Backend.Core.Services.DateTimeService
         
         public override DateTime GetEndOfDay(DateTime AValue) => AValue.Date.AddDays(1).AddTicks(-1);
         
-        public override DateTime GetFirstDayOfMonth(DateTime AValue) => new DateTime(AValue.Year, AValue.Month, 1);
+        public override DateTime GetFirstDayOfMonth(DateTime AValue) => new (AValue.Year, AValue.Month, 1);
     }
 }

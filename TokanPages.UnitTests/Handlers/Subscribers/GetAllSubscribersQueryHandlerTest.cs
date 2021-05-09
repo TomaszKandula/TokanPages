@@ -21,7 +21,7 @@ namespace TokanPages.UnitTests.Handlers.Subscribers
             var LGetAllSubscribersQueryHandler = new GetAllSubscribersQueryHandler(LDatabaseContext);
             var LSubscribers = new List<TokanPages.Backend.Domain.Entities.Subscribers>
             {
-                new TokanPages.Backend.Domain.Entities.Subscribers
+                new ()
                 {
                     Email = StringProvider.GetRandomEmail(),
                     IsActivated = true,
@@ -29,7 +29,7 @@ namespace TokanPages.UnitTests.Handlers.Subscribers
                     Registered = DateTime.Now,
                     LastUpdated = null
                 },
-                new TokanPages.Backend.Domain.Entities.Subscribers
+                new ()
                 {
                     Email = StringProvider.GetRandomEmail(),
                     IsActivated = true,

@@ -9,7 +9,7 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
         {
             return new List<Articles>
             {
-                new Articles
+                new ()
                 {
                     Id = Data.Article1.FId,
                     Title = Data.Article1.TITLE,
@@ -20,7 +20,7 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
                     UpdatedAt = Data.Article1.FLastUpdated,
                     UserId = Data.Article1.FUserId
                 },
-                new Articles
+                new ()
                 {
                     Id = Data.Article2.FId,
                     Title = Data.Article2.TITLE,
@@ -31,7 +31,7 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
                     UpdatedAt = Data.Article2.FLastUpdated,
                     UserId = Data.Article2.FUserId
                 },
-                new Articles
+                new ()
                 {
                     Id = Data.Article3.FId,
                     Title = Data.Article3.TITLE,
@@ -42,7 +42,7 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
                     UpdatedAt = Data.Article3.FLastUpdated,
                     UserId = Data.Article3.FUserId
                 },
-                new Articles
+                new ()
                 {
                     Id = Data.Article4.FId,
                     Title = Data.Article4.TITLE,

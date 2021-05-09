@@ -30,7 +30,7 @@ namespace TokanPages.UnitTests.Handlers.Mailer
                 Subject = StringProvider.GetRandomString(),
                 SubscriberInfo = new List<SubscriberInfo>
                 {
-                    new SubscriberInfo
+                    new ()
                     {
                         Email = StringProvider.GetRandomEmail()
                     }

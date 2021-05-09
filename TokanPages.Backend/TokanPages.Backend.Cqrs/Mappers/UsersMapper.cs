@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
     {
         public static AddUserCommand MapToAddUserCommand(AddUserDto AModel) 
         {
-            return new AddUserCommand 
+            return new () 
             { 
                 EmailAddress = AModel.EmailAddress,
                 UserAlias = AModel.UserAlias,
@@ -18,7 +18,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
 
         public static UpdateUserCommand MapToUpdateUserCommand(UpdateUserDto AModel)
         {
-            return new UpdateUserCommand
+            return new ()
             {
                 Id = AModel.Id,
                 UserAlias = AModel.UserAlias,
@@ -31,7 +31,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
 
         public static RemoveUserCommand MapToRemoveUserCommand(RemoveUserDto AModel)
         {
-            return new RemoveUserCommand
+            return new ()
             {
                 Id = AModel.Id
             };

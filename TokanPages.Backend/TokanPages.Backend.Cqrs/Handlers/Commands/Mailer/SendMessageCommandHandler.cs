@@ -6,6 +6,7 @@ using TokanPages.Backend.Shared;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Storage.Settings;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Core.Services.TemplateHelper;
@@ -50,11 +51,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 
             var LNewValues = new List<Item>
             {
-                new Item { Tag = "{FIRST_NAME}", Value = ARequest.FirstName },
-                new Item { Tag = "{LAST_NAME}", Value = ARequest.LastName },
-                new Item { Tag = "{EMAIL_ADDRESS}", Value = ARequest.UserEmail },
-                new Item { Tag = "{USER_MSG}", Value = ARequest.Message },
-                new Item { Tag = "{DATE_TIME}", Value = FDateTimeService.Now.ToString(CultureInfo.InvariantCulture) }
+                new () { Tag = "{FIRST_NAME}", Value = ARequest.FirstName },
+                new () { Tag = "{LAST_NAME}", Value = ARequest.LastName },
+                new () { Tag = "{EMAIL_ADDRESS}", Value = ARequest.UserEmail },
+                new () { Tag = "{USER_MSG}", Value = ARequest.Message },
+                new () { Tag = "{DATE_TIME}", Value = FDateTimeService.Now.ToString(CultureInfo.InvariantCulture) }
             };
 
             var LUrl = $"{FAzureStorageSettings.BaseUrl}{Templates.CONTACT_FORM}";
@@ -65,7 +66,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 
             var LResult = await FSmtpClientService.Send();
             if (!LResult.IsSucceeded)
-                throw new BusinessException(nameof(CommonErrorCodes.MAILER_ERROR), LResult.ErrorDesc);
+                throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}. {LResult.ErrorDesc}");
 
             return await Task.FromResult(Unit.Value);
         }

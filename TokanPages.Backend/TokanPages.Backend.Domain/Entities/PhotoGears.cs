@@ -7,8 +7,6 @@ namespace TokanPages.Backend.Domain.Entities
 {
     public class PhotoGears : Entity<Guid>
     {
-        public PhotoGears() => Photos = new HashSet<Photos>();
-
         [MaxLength(100)]
         public string BodyVendor { get; set; }
 
@@ -30,6 +28,6 @@ namespace TokanPages.Backend.Domain.Entities
         
         public int FilmIso { get; set; }
         
-        public ICollection<Photos> Photos { get; set; }
+        public ICollection<Photos> Photos { get; set; } = new HashSet<Photos>();
     }
 }
