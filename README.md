@@ -52,6 +52,8 @@ _TokanPages_
 
 In the current project version, the static bundles is hosted alongside the ASP.NET Core server-side application. This is the most straightforward approach, which works well in many situations. During the build process, the bundles are generated and copied to a preconfigured folder inside the ASP.NET Core application. An alternative approach with NGINX and Reverse Proxy is going to be introduced soon.
 
+Unit tests for the frontend are provided; use command `yarn test` to run all tests.
+
 _Backend_
 
 | Folder | Description |
@@ -72,6 +74,8 @@ _Tests_
 | IntegrationTests | Http client tests |
 
 Integration tests focuses on testing HTTP client responses, dependencies and theirs configuration. Unit tests covers handlers and validators. All dependencies are mocked. For mocking [Moq](https://github.com/moq/moq4) has been used.
+
+To run backend tests, use command `dotnet test`.
 
 ## Testing
 
@@ -157,7 +161,9 @@ public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<T
 
 I use `user secrets` with a connection string for local development, pointing to an instance of SQL Express that runs in Docker. However, when the test project runs in CI/CD pipeline, it uses a connection string defined in `appsettings.Staging.json` and connects with a remote test database.
 
-Class `CustomWebApplicationFactory` requires the `Startup` class to configure necessary services. Thus test project has its own `TestStartup.cs` that inherits from the main project `Startup.cs`.
+Class `CustomWebApplicationFactory` requires the `Startup` class to configure necessary services. Thus test project has its own `TestStartup.cs` that inherits from the main project `Startup.cs`. We register only necessary services.
+
+Note: before integration tests can run, test database must be up.
 
 ## CQRS
 
@@ -363,7 +369,7 @@ Copy below code from appsettings.Development.json to your **user secrets**:
 
 ### Development environment:
 
-Replace `set_env` with connection strings of choice. Please note that `DbConnect` points to a main database (local development / production), and `DbConnectTest` points to a test database for integration tests only.
+Replace `set_env` with connection strings of choice. Please note that `DbConnect` points to a main database (local development / production), and `DbConnectTest` points to a test database for integration tests only. Application migarte and seed tests data when run in development mode, however, for integration tests, test database must be already up.
 
 ### Database migration
 
