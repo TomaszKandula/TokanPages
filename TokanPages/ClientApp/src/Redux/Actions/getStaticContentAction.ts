@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/react";
 import { AppThunkAction } from "../applicationState";
 import { ITextObject } from "../../Shared/Components/ContentRender/Models/textModel";
 import { GetErrorMessage } from "../../Shared/helpers";
@@ -53,26 +54,33 @@ const DispatchCall = async (dispatch: any, url: string, request: TRequestContent
     if (result.error !== null)
     {
         dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(result.error) });
+        Sentry.captureException(result.error);
         return;
     }
 
-    return result.status === 200
-        ? dispatch({ type: receive, payload: result.data })
-        : dispatch({ type: RAISE_ERROR, errorObject: UnexpectedStatusCode(result.status as number) });   
+    if (result.status === 200)
+    {
+        dispatch({ type: receive, payload: result.data });
+        return;
+    }
+
+    const error = UnexpectedStatusCode(result.status as number);
+    dispatch({ type: RAISE_ERROR, errorObject: error });
+    Sentry.captureException(error);
 }
 
 export const ActionCreators = 
 {
     getStoryContent: ():  AppThunkAction<TKnownActions> => async (dispatch) => 
     {
-        DispatchCall(dispatch, STORY_URL, REQUEST_STORY, RECEIVE_STORY);
+        await DispatchCall(dispatch, STORY_URL, REQUEST_STORY, RECEIVE_STORY);
     },
     getTermsContent: ():  AppThunkAction<TKnownActions> => async (dispatch) => 
     {
-        DispatchCall(dispatch, TERMS_URL, REQUEST_TERMS, RECEIVE_TERMS);
+        await DispatchCall(dispatch, TERMS_URL, REQUEST_TERMS, RECEIVE_TERMS);
     },
     getPolicyContent: ():  AppThunkAction<TKnownActions> => async (dispatch) => 
     {
-        DispatchCall(dispatch, POLICY_URL, REQUEST_POLICY, RECEIVE_POLICY);
+        await DispatchCall(dispatch, POLICY_URL, REQUEST_POLICY, RECEIVE_POLICY);
     }
 }

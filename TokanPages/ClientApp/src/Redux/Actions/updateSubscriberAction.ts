@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/react";
 import axios from "axios";
 import { AppThunkAction } from "../applicationState";
 import { IUpdateSubscriberDto } from "../../Api/Models";
@@ -33,13 +34,20 @@ export const ActionCreators =
         })
         .then(response => 
         {
-            return response.status === 200
-                ? dispatch({ type: UPDATE_SUBSCRIBER_RESPONSE, hasUpdatedSubscriber: true })
-                : dispatch({ type: UPDATE_SUBSCRIBER_ERROR, errorObject: UnexpectedStatusCode(response.status) });
+            if (response.status === 200)
+            {
+                dispatch({ type: UPDATE_SUBSCRIBER_RESPONSE, hasUpdatedSubscriber: true });
+                return;
+            }
+            
+            const error = UnexpectedStatusCode(response.status);
+            dispatch({ type: UPDATE_SUBSCRIBER_ERROR, errorObject: error });
+            Sentry.captureException(error);
         })
         .catch(error => 
         {
             dispatch({ type: UPDATE_SUBSCRIBER_ERROR, errorObject: GetErrorMessage(error) });
+            Sentry.captureException(error);
         });     
     }
 }

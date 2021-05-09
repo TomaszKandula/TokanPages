@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/react";
 import axios from "axios";
 import { AppThunkAction } from "../applicationState";
 import { IUpdateArticleDto } from "../../Api/Models";
@@ -42,13 +43,20 @@ export const ActionCreators =
         })
         .then(response => 
         {
-            return response.status === 200
-                ? dispatch({ type: UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: true })
-                : dispatch({ type: RAISE_ERROR, errorObject: UnexpectedStatusCode(response.status) });
+            if (response.status === 200)
+            {
+                dispatch({ type: UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: true });
+                return;
+            }
+            
+            const error = UnexpectedStatusCode(response.status);
+            dispatch({ type: RAISE_ERROR, errorObject: error });
+            Sentry.captureException(error);
         })
         .catch(error =>
         {
             dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(error) });
-        });     
+            Sentry.captureException(error);
+        });
     }
 }

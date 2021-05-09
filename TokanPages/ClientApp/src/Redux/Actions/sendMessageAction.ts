@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/react";
 import axios from "axios";
 import { AppThunkAction } from "../../Redux/applicationState";
 import { ISendMessageDto } from "../../Api/Models";
@@ -49,14 +50,20 @@ export const ActionCreators =
         })
         .then(response => 
         {
-            return response.status === 200
-                ? dispatch({ type: API_SEND_MESSAGE_RESPONSE, hasSentMessage: true })
-                : dispatch({ type: SEND_MESSAGE_ERROR, errorObject: UnexpectedStatusCode(response.status) });
- 
+            if (response.status === 200)
+            {
+                dispatch({ type: API_SEND_MESSAGE_RESPONSE, hasSentMessage: true })
+                return;
+            }
+            
+            const error = UnexpectedStatusCode(response.status);
+            dispatch({ type: SEND_MESSAGE_ERROR, errorObject: error });
+            Sentry.captureException(error);
         })
         .catch(error => 
         {
             dispatch({ type: SEND_MESSAGE_ERROR, errorObject: GetErrorMessage(error) });
+            Sentry.captureException(error);
         });     
     }
 }

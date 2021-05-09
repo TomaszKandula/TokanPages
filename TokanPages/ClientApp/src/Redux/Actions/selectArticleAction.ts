@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/react";
 import axios from "axios";
 import { AppThunkAction } from "../applicationState";
 import { IArticleItem } from "../../Shared/Components/ContentRender/Models/articleItemModel";
@@ -61,20 +62,25 @@ export const ActionCreators =
             }
             else
             {
-                if (detailsResponse.status !== 200) dispatch(
-                { 
-                    type: RAISE_ERROR, errorObject: UnexpectedStatusCode(detailsResponse.status) 
-                });
+                if (detailsResponse.status !== 200) 
+                {
+                    const error = UnexpectedStatusCode(detailsResponse.status);
+                    dispatch({ type: RAISE_ERROR, errorObject: error });
+                    Sentry.captureException(error);
+                }
 
-                if (textResponse.status !== 200) dispatch(
-                { 
-                    type: RAISE_ERROR, errorObject: UnexpectedStatusCode(textResponse.status) 
-                });
+                if (textResponse.status !== 200) 
+                {
+                    const error = UnexpectedStatusCode(detailsResponse.status);
+                    dispatch( { type: RAISE_ERROR, errorObject: error });
+                    Sentry.captureException(error);
+                }
             }
         }))
         .catch(error => 
         {
             dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(error) });
+            Sentry.captureException(error);
         });
     }
 };
