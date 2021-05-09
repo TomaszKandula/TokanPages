@@ -4,6 +4,6 @@ namespace TokanPages.DataProviders
 {
     public class BaseClass
     {
-        protected static readonly Random FRandom = new Random();
+        protected static Random Random { get; } = new Random();
     }
 }

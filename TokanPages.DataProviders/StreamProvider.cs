@@ -10,7 +10,7 @@ namespace TokanPages.DataProviders
         private static byte[] GetRandomByteArray(int ASizeInKb = 12)
         {
             var LByteBuffer = new byte[ASizeInKb * 1024]; 
-            FRandom.NextBytes(LByteBuffer); 
+            Random.NextBytes(LByteBuffer); 
             return LByteBuffer;
         }
     }
