@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using TokanPages.Backend.Database.Initializer;
-using Sentry.Protocol;
 using Serilog.Events;
 using Serilog;
+using Sentry;
 
 namespace TokanPages
 {
@@ -57,7 +57,7 @@ namespace TokanPages
                         ASentry.MinimumEventLevel = LogEventLevel.Information;
                         ASentry.AttachStacktrace = true;
                         ASentry.Debug = true;
-                        ASentry.DiagnosticsLevel = SentryLevel.Error;
+                        ASentry.DiagnosticLevel = SentryLevel.Error;
                     });
                 })
                 .UseSentry();
