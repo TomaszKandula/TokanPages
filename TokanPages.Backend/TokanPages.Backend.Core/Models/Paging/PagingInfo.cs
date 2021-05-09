@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Core.Paging
+namespace TokanPages.Backend.Core.Models.Paging
 {
     public class PagingInfo
     {
