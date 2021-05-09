@@ -45,7 +45,7 @@ _TokanPages_
 
 | Folder | Description |
 |--------|-------------|
-| ClientApp^ | Frontend in React |
+| ClientApp | Frontend in React |
 | Configuration | Application dependencies |
 | Controllers | WebAPI |
 | Middleware | Custom middleware |
