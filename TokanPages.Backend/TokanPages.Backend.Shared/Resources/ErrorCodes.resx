@@ -141,4 +141,7 @@
   <data name="USER_DOES_NOT_EXISTS" xml:space="preserve">
     <value>Requested user does not exists</value>
   </data>
+  <data name="CANNOT_SEND_EMAIL" xml:space="preserve">
+    <value>Cannot send email</value>
+  </data>
 </root>
