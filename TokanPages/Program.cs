@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -10,6 +11,7 @@ using Serilog;
 
 namespace TokanPages
 {
+    [ExcludeFromCodeCoverage]
     public static class Program
     {
         private static readonly bool FIsDevelopment 

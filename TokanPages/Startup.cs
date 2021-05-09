@@ -1,6 +1,7 @@
 using System.Net;
 using System.Linq;
 using System.Net.Sockets;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
@@ -17,6 +18,7 @@ using Serilog;
 
 namespace TokanPages
 {
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         protected readonly IConfiguration FConfiguration;
