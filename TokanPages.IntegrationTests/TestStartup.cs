@@ -1,21 +1,20 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TokanPages.Middleware;
 using TokanPages.Configuration;
 using TokanPages.Backend.Database;
-using TokanPages.Backend.Shared.Settings;
 
 namespace TokanPages.IntegrationTests
 {
-    public class TestStartup : Startup
+    public class TestStartup
     {
-        public TestStartup(IConfiguration AConfiguration, IWebHostEnvironment AEnvironment) 
-            : base(AConfiguration, AEnvironment) { }
+        private readonly IConfiguration FConfiguration;
 
-        public override void ConfigureServices(IServiceCollection AServices)
+        public TestStartup(IConfiguration AConfiguration) => FConfiguration = AConfiguration;
+
+        public void ConfigureServices(IServiceCollection AServices)
         {
             AServices.AddMvc().AddApplicationPart(typeof(Startup).Assembly);
             AServices.AddControllers();
@@ -24,7 +23,7 @@ namespace TokanPages.IntegrationTests
             Dependencies.CommonServices(AServices, FConfiguration);
         }
 
-        public override void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
+        public void Configure(IApplicationBuilder AApplication)
         {
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);
             AApplication.UseMiddleware<CustomCors>();
