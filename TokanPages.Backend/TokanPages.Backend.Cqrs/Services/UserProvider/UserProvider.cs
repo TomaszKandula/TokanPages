@@ -17,7 +17,7 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
 
         public virtual string GetRequestIpAddress() 
         {
-            var LRemoteIpAddress = FHttpContextAccessor.HttpContext.Request.Headers["X-Forwarded-For"].ToString();
+            var LRemoteIpAddress = FHttpContextAccessor.HttpContext?.Request.Headers["X-Forwarded-For"].ToString();
             return string.IsNullOrEmpty(LRemoteIpAddress) 
                 ? LOCALHOST 
                 : LRemoteIpAddress.Split(':')[0];
