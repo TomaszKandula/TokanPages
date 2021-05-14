@@ -28,8 +28,8 @@ import {
     AVATARS_PATH, 
     LIKES_LIMIT_FOR_ANONYM, 
     LIKES_LIMIT_FOR_USER,
-    LIKES_TIP_FOR_ANONYM,
-    LIKES_TIP_FOR_USER,
+    LIKES_HINT_FOR_ANONYM,
+    LIKES_HINT_FOR_USER,
     MAX_LIKES_REACHED,
     WORDS_PER_MINUTE
 } from "../../Shared/constants";
@@ -188,8 +188,8 @@ export default function ArticleDetail(props: IArticleDetail)
     const renderLikesLeft = () =>
     {
         const textLikesLeft = isAnonymous 
-            ? LIKES_TIP_FOR_ANONYM.replace("{LEFT_LIKES}", likesLeft.toString()) 
-            : LIKES_TIP_FOR_USER.replace("{LEFT_LIKES}", likesLeft.toString());
+            ? LIKES_HINT_FOR_ANONYM.replace("{LEFT_LIKES}", likesLeft.toString()) 
+            : LIKES_HINT_FOR_USER.replace("{LEFT_LIKES}", likesLeft.toString());
 
         const textOut = likesLeft === 0 
             ? MAX_LIKES_REACHED 
