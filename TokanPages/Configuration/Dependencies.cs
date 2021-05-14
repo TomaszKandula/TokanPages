@@ -76,7 +76,7 @@ namespace TokanPages.Configuration
         }
 
         private static void SetupValidators(IServiceCollection AServices)
-            => AServices.AddValidatorsFromAssemblyContaining<TemplateHandler<IRequest, Unit>>(ServiceLifetime.Scoped);
+            => AServices.AddValidatorsFromAssemblyContaining<TemplateHandler<IRequest, Unit>>();
 
         private static void SetupMediatR(IServiceCollection AServices) 
         {

@@ -11,7 +11,7 @@ import {
     UPDATE_ARTICLE_ERROR,
     UPDATE_ARTICLE_SUCCESS,
     UPDATE_ARTICLE_WARNING
-} from "Shared/constants";
+} from "../Shared/constants";
 
 // EMAIL MESSAGES
 

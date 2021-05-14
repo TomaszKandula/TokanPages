@@ -31,6 +31,10 @@ const useStyles = makeStyles((theme) => (
     {
         color: CustomColours.typography.gray2,
         textDecoration: "none"
+    },
+    version:
+    {
+        color: CustomColours.typography.gray1,
     }
 }));
 

@@ -10,6 +10,7 @@ import WarningIcon from '@material-ui/icons/Warning';
 import { CustomColours } from "../../Theme/customColours";
 import { IFooterContentDto, IFooterContentIconDto } from "../../Api/Models";
 import { MediumIcon } from "../../Theme/Icons/medium";
+import { APP_VER } from "../../Shared/constants";
 import useStyles from "./Hooks/styleFooter";
 
 export default function Footer(props: { footer: IFooterContentDto, isLoading: boolean, backgroundColor?: string | undefined }) 
@@ -51,11 +52,25 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
         return icon;
     };
 
+    const RenderVersion = (): JSX.Element =>
+    {
+        const applicationVersion = 
+            <Box pt={1} pb={6} display="flex"  justifyContent="center" alignItems="center">
+                <Typography component="p" className={classes.version}>
+                    {APP_VER}
+                </Typography>
+            </Box>;
+        
+        return APP_VER === "" 
+            ? <div></div> 
+            : applicationVersion
+    };
+
     return (
         <footer className={classes.root} style={{ backgroundColor: backgroundColor }} >
             <Container maxWidth="lg">
                 <div data-aos="zoom-in">
-                    <Box py={6} display="flex" flexWrap="wrap" alignItems="center">
+                    <Box pt={6} pb={1} display="flex" flexWrap="wrap" alignItems="center">
                         <Typography component="p" gutterBottom={false} className={classes.copy}>
                             {props?.footer.content.copyright} | {props?.footer.content.reserved} | <SetTermsLink /> | <SetPolicyLink />
                         </Typography>
@@ -72,6 +87,7 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
                             ))}
                         </Box>
                     </Box>
+                    <RenderVersion />
                 </div>
             </Container>
         </footer>

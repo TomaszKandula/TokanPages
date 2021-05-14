@@ -23,8 +23,8 @@ Tests are provided, but there is no full coverage yet.
 
 ### Back-end
 
-1. WebAPI (NET Core 3.1 / C#).
-1. Azure SQL Database (ORM in use: EF Core).
+1. WebAPI (NET 5, C#).
+1. Azure SQL Database (with EF Core).
 1. Azure Blob Storage.
 1. MediatR library.
 1. CQRS pattern with no event sourcing.
@@ -161,9 +161,9 @@ public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<T
 
 I use `user secrets` with a connection string for local development, pointing to an instance of SQL Express that runs in Docker. However, when the test project runs in CI/CD pipeline, it uses a connection string defined in `appsettings.Staging.json` and connects with a remote test database.
 
-Class `CustomWebApplicationFactory` requires the `Startup` class to configure necessary services. Thus test project has its own `TestStartup.cs`. We register only necessary services.
+Class `CustomWebApplicationFactory` requires the `Startup` class to configure necessary services. Thus test project has its own `TestStartup.cs`. We register only essential services.
 
-Note: before integration tests can run, test database must be up.
+Note: before integration tests can run, the test database must be already up.
 
 ## CQRS
 
@@ -377,15 +377,15 @@ Go to Package Manager Console (PMC) to execute following command:
 
 `Update-Database -StartupProject TokanPages -Project TokanPages.Backend.Database -Context DatabaseContext`
 
-EF Core will create all the necessary tables and seed demo data. More on migrations here: [TokanPages.Backend.Database](https://github.com/TomaszKandula/TokanPages/tree/dev/Backend/TokanPages.Backend.Database).
+EF Core will create all the necessary tables and seed test data. More on migrations here: [TokanPages.Backend.Database](https://github.com/TomaszKandula/TokanPages/tree/dev/Backend/TokanPages.Backend.Database).
 
 ## CI/CD
 
 CI/CD is done via GitHub actions. There are three scripts:
 
 1. [dev_build_test.yml](https://github.com/TomaszKandula/TokanPages/blob/dev/.github/workflows/dev_build_test.yml) - it builds .NET Core application and React application in Docker, then runs all the available tests (Frontend and Backend). Each PR will invoke this action.
-1. [dev_build_test_push.yml](https://github.com/TomaszKandula/TokanPages/blob/dev/.github/workflows/dev_build_test_push.yml) - it builds and tests both backend and frontend along with an Docker image so it can be later manually uploaded. 
-1. [master_build_test_publish.yml](https://github.com/TomaszKandula/TokanPages/blob/dev/.github/workflows/master_build_test_publish.yml) - it builds, tests and publish Docker image to the Azure WebApp.
+1. [dev_build_test_push.yml](https://github.com/TomaszKandula/TokanPages/blob/dev/.github/workflows/dev_build_test_push.yml) - it builds and tests both backend and frontend along with a Docker image so it can be later manually uploaded. 
+1. [master_build_test_publish.yml](https://github.com/TomaszKandula/TokanPages/blob/dev/.github/workflows/master_build_test_publish.yml) - it builds, tests and publishes Docker image to the Azure WebApp.
 
 ## End Note
 
