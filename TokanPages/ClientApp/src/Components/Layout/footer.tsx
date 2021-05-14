@@ -52,6 +52,20 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
         return icon;
     };
 
+    const RenderVersion = (): JSX.Element =>
+    {
+        const applicationVersion = 
+            <Box pt={1} pb={6} display="flex"  justifyContent="center" alignItems="center">
+                <Typography component="p" className={classes.version}>
+                    {APP_VER}
+                </Typography>
+            </Box>;
+        
+        return APP_VER === "" 
+            ? <div></div> 
+            : applicationVersion
+    };
+
     return (
         <footer className={classes.root} style={{ backgroundColor: backgroundColor }} >
             <Container maxWidth="lg">
@@ -73,11 +87,7 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
                             ))}
                         </Box>
                     </Box>
-                    <Box pt={1} pb={6} display="flex"  justifyContent="center" alignItems="center">
-                        <Typography component="p" className={classes.version}>
-                            {APP_VER}
-                        </Typography>
-                    </Box>
+                    <RenderVersion />
                 </div>
             </Container>
         </footer>
