@@ -1,0 +1,45 @@
+{
+  "name": "tomkandula",
+  "version": "1.0.0",
+  "private": true,
+  "description": "This project handles project releases",
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "husky": "^4.3.0",
+    "semantic-release": "^17.0.2"
+  },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/github",
+    "@semantic-release/git"
+  ],
+  "release": {
+    "prepare": [
+      "@semantic-release/changelog",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "package-lock.json",
+          "CHANGELOG.md"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "post-commit": "git update-index -g"
+    }
+  },
+  "workspaces": [
+    "tokanpages/clientapp"
+  ],
+  "license": "MIT"
+}
