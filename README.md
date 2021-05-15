@@ -16,6 +16,7 @@ TokanPages is the repository that holds my web page to share my programming inte
 1. Emoji Render.
 1. HTML Parser.
 1. Husky.
+1. Semantic-Release.
 
 The client app uses functional approach and React Hooks.
 
