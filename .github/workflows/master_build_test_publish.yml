@@ -29,8 +29,7 @@ jobs:
       uses: cycjimmy/semantic-release-action@v2
       id: semantic
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-    - run: yarn semantic-release
+        GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
 
     - name: Display new release version number
       if: steps.semantic.outputs.new_release_published == 'true'
