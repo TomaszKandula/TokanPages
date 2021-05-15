@@ -11,9 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
+
     - name: Checkout repository
       uses: actions/checkout@v2
+
+    - name: Semantic Release
+      uses: cycjimmy/semantic-release-action@v2
+      id: semantic
+      env:
+        GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+    - run: npx semantic-release
+
+    - name: Display new release version number
+      if: steps.semantic.outputs.new_release_published == 'true'
+      run: |
+        echo ${{ steps.semantic.outputs.new_release_version }}
+        echo ${{ steps.semantic.outputs.new_release_major_version }}
+        echo ${{ steps.semantic.outputs.new_release_minor_version }}
+        echo ${{ steps.semantic.outputs.new_release_patch_version }}
     
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: microsoft/variable-substitution@v1
