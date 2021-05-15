@@ -14,6 +14,8 @@ jobs:
 
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
     - name: Setup Node.js
       uses: actions/setup-node@v1
@@ -28,8 +30,6 @@ jobs:
     - name: Semantic Release
       uses: cycjimmy/semantic-release-action@v2
       id: semantic
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
     - run: npx semantic-release
 
     - name: Display new release version number
