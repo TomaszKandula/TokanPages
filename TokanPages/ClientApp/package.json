@@ -37,6 +37,8 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
     "@testing-library/jest-dom": "^5.11.5",
     "@types/aos": "^3.0.3",
     "@types/domhandler": "^2.4.1",
@@ -80,6 +82,27 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "lint": "eslint ./src/**/*.ts ./src/**/*.tsx"
+  },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/github",
+    "@semantic-release/git"
+  ],
+  "release": {
+    "prepare": [
+      "@semantic-release/changelog",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "package-lock.json",
+          "CHANGELOG.md"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ]
   },
   "jest": {
     "transform": {
