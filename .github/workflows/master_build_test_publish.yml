@@ -15,29 +15,27 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Setup Node.js
+    - name: Semantic Release (install node.js)
       uses: actions/setup-node@v1
       with:
         node-version: 14
     
-    - name: Install dependencies
+    - name: Semantic Release (install dependencies)
       run: | 
         npm install --global yarn
         yarn install
 
-    - name: Semantic Release
+    - name: Semantic Release (process changes)
       uses: cycjimmy/semantic-release-action@v2
       id: semantic
       env:
         GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
 
-    - name: Display new release version number
+    - name: Semantic Release (update version number)
       if: steps.semantic.outputs.new_release_published == 'true'
       run: |
-        echo ${{ steps.semantic.outputs.new_release_version }}
-        echo ${{ steps.semantic.outputs.new_release_major_version }}
-        echo ${{ steps.semantic.outputs.new_release_minor_version }}
-        echo ${{ steps.semantic.outputs.new_release_patch_version }}
+        sed -i "s/{VERSION}/${{ steps.semantic.outputs.new_release_version }} (date +'%D %T')/" ./TokanPages/ClientApp/.env
+        echo New release version number: ${{ steps.semantic.outputs.new_release_version }}
     
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: microsoft/variable-substitution@v1
@@ -73,18 +71,26 @@ jobs:
         SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT }}"
         SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER }}"
 
-    - name: Build and push Docker image (runs frontend & backend tests)
+    - name: Build and run tests (frontend & backend)
       uses: azure/docker-login@v1
       with:
         login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
-    - run: |
-        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
-        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
+      run: docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
 
-    - name: Deploy to Azure Web App
+    - name: Push Docker image (only for new release)
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+      if: steps.semantic.outputs.new_release_published == 'true'
+      run: docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
+
+    - name: Deploy to Azure Web App (only for new release)
       uses: azure/webapps-deploy@v2
+      if: steps.semantic.outputs.new_release_published == 'true'
       with:
         app-name: tokanpages
         slot-name: production
