@@ -15,12 +15,19 @@ import useStyles from "./Hooks/styleFooter";
 
 export default function Footer(props: { footer: IFooterContentDto, isLoading: boolean, backgroundColor?: string | undefined }) 
 {
+    const padingBottomLarge: number = 6;
+    const paddingBottomSmall: number = 1;
+
     const classes = useStyles();
     const backgroundColor: string = !props.backgroundColor 
         ? CustomColours.background.lightGray1 
         : props.backgroundColor as string;
 
-    const SetTermsLink = () => 
+    const boxPaddingBottom: number = APP_VER === "" 
+        ? padingBottomLarge 
+        : paddingBottomSmall;
+
+    const SetTermsLink = (): JSX.Element => 
     { 
         return (
             <Link to="/terms" className={classes.links}>
@@ -29,7 +36,7 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
         ); 
     };
 
-    const SetPolicyLink = () => 
+    const SetPolicyLink = (): JSX.Element => 
     { 
         return (
             <Link to="/policy" className={classes.links}>
@@ -70,7 +77,7 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
         <footer className={classes.root} style={{ backgroundColor: backgroundColor }} >
             <Container maxWidth="lg">
                 <div data-aos="zoom-in">
-                    <Box pt={6} pb={1} display="flex" flexWrap="wrap" alignItems="center">
+                    <Box pt={6} pb={boxPaddingBottom} display="flex" flexWrap="wrap" alignItems="center">
                         <Typography component="p" gutterBottom={false} className={classes.copy}>
                             {props?.footer.content.copyright} | {props?.footer.content.reserved} | <SetTermsLink /> | <SetPolicyLink />
                         </Typography>

@@ -35,7 +35,7 @@ namespace TokanPages
             AServices.AddControllers();        
             AServices.AddSpaStaticFiles(AOptions => AOptions.RootPath = "ClientApp/build");
             AServices.AddResponseCompression(AOptions => AOptions.Providers.Add<GzipCompressionProvider>());
-            Dependencies.Register(AServices, FConfiguration);
+            Dependencies.Register(AServices, FConfiguration, FEnvironment);
             
             if (FEnvironment.IsDevelopment())
             {

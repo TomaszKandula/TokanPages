@@ -66,6 +66,9 @@ namespace TokanPages
         private static IWebHost MigrateDatabase(this IWebHost AWebHost)
         {
             var LServiceScopeFactory = (IServiceScopeFactory) AWebHost.Services.GetService(typeof(IServiceScopeFactory));
+            if (LServiceScopeFactory == null) 
+                return AWebHost;
+            
             using var LScope = LServiceScopeFactory.CreateScope();
             var LServices = LScope.ServiceProvider;
             var LDbInitializer = LServices.GetRequiredService<IDbInitializer>();
