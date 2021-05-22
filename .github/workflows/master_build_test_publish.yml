@@ -34,7 +34,10 @@ jobs:
     - name: Semantic Release (update version number)
       if: steps.semantic.outputs.new_release_published == 'true'
       run: |
-        sed -i "s/{VERSION}/${{ steps.semantic.outputs.new_release_version }} (date +'%D %T')/" ./TokanPages/ClientApp/.env
+        date +"(%Y-%d-%m at %T)" > CURRENT_DATE_TIME 
+        echo "${{ steps.semantic.outputs.new_release_version }}" > SEMANTIC_RELEASE
+        echo "$(cat SEMANTIC_RELEASE) $(cat CURRENT_DATE_TIME)" > VERSION_STRING
+        sed "s/{VERSION}/$(cat VERSION_STRING)/" $PWD/TokanPages/ClientApp/.env
         echo New release version number: ${{ steps.semantic.outputs.new_release_version }}
     
     - name: Variable substitution appsettings file for Staging (NET Core)
@@ -77,16 +80,15 @@ jobs:
         login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
-      run: docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
+    - run: docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
 
-    - name: Push Docker image (only for new release)
+    - name: Push Docker image
       uses: azure/docker-login@v1
       with:
         login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
-      if: steps.semantic.outputs.new_release_published == 'true'
-      run: docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
+    - run: docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
 
     - name: Deploy to Azure Web App (only for new release)
       uses: azure/webapps-deploy@v2
