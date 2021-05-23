@@ -74,10 +74,11 @@ jobs:
 
     - name: Build Docker (execute with tests)
       run: | 
-        date +"%Y-%m-%d at %T" > CURRENT_DATE_TIME
+        BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
+        echo Timestamp: $BUILD_TIMESTAMP
         docker build . \
         --build-arg "APP_VERSION=${{ steps.semantic.outputs.new_release_version }}" \
-        --build-arg "APP_DATE_TIME=$(cat CURRENT_DATE_TIME)" \
+        --build-arg "APP_DATE_TIME=$BUILD_TIMESTAMP" \
         -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
 
     - name: Push Docker image (prepare)
