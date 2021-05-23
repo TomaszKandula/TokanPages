@@ -10,20 +10,20 @@ import WarningIcon from '@material-ui/icons/Warning';
 import { CustomColours } from "../../Theme/customColours";
 import { IFooterContentDto, IFooterContentIconDto } from "../../Api/Models";
 import { MediumIcon } from "../../Theme/Icons/medium";
-import { APP_VER } from "../../Shared/constants";
 import useStyles from "./Hooks/styleFooter";
 
 export default function Footer(props: { footer: IFooterContentDto, isLoading: boolean, backgroundColor?: string | undefined }) 
 {
     const padingBottomLarge: number = 6;
     const paddingBottomSmall: number = 1;
+    const versionInfo: string | undefined = process.env.REACT_APP_VER_INFO ?? "";
 
     const classes = useStyles();
     const backgroundColor: string = !props.backgroundColor 
         ? CustomColours.background.lightGray1 
         : props.backgroundColor as string;
 
-    const boxPaddingBottom: number = APP_VER === "" 
+    const boxPaddingBottom: number = versionInfo === "" 
         ? padingBottomLarge 
         : paddingBottomSmall;
 
@@ -64,11 +64,11 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
         const applicationVersion = 
             <Box pt={1} pb={6} display="flex"  justifyContent="center" alignItems="center">
                 <Typography component="p" className={classes.version}>
-                    {APP_VER}
+                    {versionInfo}
                 </Typography>
             </Box>;
         
-        return APP_VER === "" 
+        return versionInfo === "" 
             ? <div></div> 
             : applicationVersion
     };

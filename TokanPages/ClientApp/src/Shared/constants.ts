@@ -1,5 +1,4 @@
 const API_VER = process.env.REACT_APP_API_VER;
-export const APP_VER = process.env.REACT_APP_APP_VER;
 
 /* BASE URL */
 
