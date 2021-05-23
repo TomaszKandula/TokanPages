@@ -1,3 +1,10 @@
+## [0.7.1](https://github.com/TomaszKandula/TokanPages/compare/v0.7.0...v0.7.1) (2021-05-23)
+
+
+### Bug Fixes
+
+* correct release date time ([9027123](https://github.com/TomaszKandula/TokanPages/commit/90271237671f6e7fffc9f4fae719febc3c915641))
+
 # [0.7.0](https://github.com/TomaszKandula/TokanPages/compare/v0.6.0...v0.7.0) (2021-05-23)
 
 
