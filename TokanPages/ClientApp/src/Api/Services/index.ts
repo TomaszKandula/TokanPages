@@ -13,4 +13,4 @@ export { getSignupFormContent } from "./getSignupFormContent";
 export { getTestimonialsContent } from "./getTestimonialsContent";
 export { getUnsubscribeContent } from "./getUnsubscribeContent";
 export { getUpdateSubscriberContent } from "./getUpdateSubscriberContent";
-export { getNotFoundContent } from "./getNotFoundContent";
+export { getWrongPagePromptContent } from "./getWrongPagePromptContent";

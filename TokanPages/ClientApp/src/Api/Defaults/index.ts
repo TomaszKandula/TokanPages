@@ -13,4 +13,4 @@ export { signupFormContentDefault } from "./signupFormContentDefault";
 export { testimonialsContentDefault } from "./testimonialsContentDefault";
 export { unsubscribeContentDefault } from "./unsubscribeContentDefault";
 export { updateSubscriberContentDefault } from "./updateSubscriberContentDefault";
-export { notFoundContentDefault } from "./notFoundContentDefault";
+export { wrongPagePromptContentDefault } from "./wrongPagePromptContentDefault";

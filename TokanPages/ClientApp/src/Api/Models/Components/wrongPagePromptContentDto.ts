@@ -1,4 +1,4 @@
-export interface INotFoundContentDto
+export interface IWrongPagePromptContentDto
 {
     content: 
     {
