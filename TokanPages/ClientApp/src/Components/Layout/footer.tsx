@@ -16,7 +16,10 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
 {
     const padingBottomLarge: number = 6;
     const paddingBottomSmall: number = 1;
-    const versionInfo: string | undefined = process.env.REACT_APP_VER_INFO ?? "";
+    
+    const versionDateTime: string | undefined = process.env.REACT_APP_VERSION_DATE_TIME ?? "";
+    const versionNumber: string | undefined = process.env.REACT_APP_VERSION_NUMBER ?? "";
+    const versionInfo: string = `Version ${versionNumber} (${versionDateTime})`;
 
     const classes = useStyles();
     const backgroundColor: string = !props.backgroundColor 
@@ -68,7 +71,7 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
                 </Typography>
             </Box>;
         
-        return versionInfo === "" 
+        return versionNumber || versionDateTime === "" 
             ? <div></div> 
             : applicationVersion
     };

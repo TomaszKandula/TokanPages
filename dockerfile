@@ -7,8 +7,8 @@ COPY ./TokanPages/ClientApp/public ./public
 COPY ./TokanPages/ClientApp/src ./src
 
 ARG APP_VER
-RUN date +"(%Y-%m-%d at %T)" > CURRENT_DATE_TIME
-ENV REACT_APP_VER_INFO="Version $APP_VER $(cat CURRENT_DATE_TIME)"
+ENV REACT_APP_VERSION_DATE_TIME=date +"%Y-%m-%d at %T"
+ENV REACT_APP_VERSION_NUMBER=${APP_VER}
 RUN yarn install && yarn app-test --ci --coverage && yarn build
 
 # 2 - Build .NET Core app
