@@ -1,3 +1,16 @@
+# [0.7.0](https://github.com/TomaszKandula/TokanPages/compare/v0.6.0...v0.7.0) (2021-05-23)
+
+
+### Bug Fixes
+
+* correct page footer display ([52eac1d](https://github.com/TomaszKandula/TokanPages/commit/52eac1d51a3dcfd964472dad946cb24229dcc6b9))
+
+
+### Features
+
+* add http client retry policy with Polly ([a032a83](https://github.com/TomaszKandula/TokanPages/commit/a032a83b76642c2ed97586f27392c9d5645df620))
+* add Polly to the main project ([c0b1f1d](https://github.com/TomaszKandula/TokanPages/commit/c0b1f1d1a5e539eb8931bc4b250e6b97f58264d6))
+
 # [0.6.0](https://github.com/TomaszKandula/TokanPages/compare/v0.5.9...v0.6.0) (2021-05-15)
 
 
