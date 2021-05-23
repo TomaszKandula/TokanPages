@@ -1,3 +1,10 @@
+# [0.8.0](https://github.com/TomaszKandula/TokanPages/compare/v0.7.3...v0.8.0) (2021-05-23)
+
+
+### Features
+
+* split version number, and date/time ([bf1b2bf](https://github.com/TomaszKandula/TokanPages/commit/bf1b2bf731c31db65998f45d8e059e2c27577df1))
+
 ## [0.7.3](https://github.com/TomaszKandula/TokanPages/compare/v0.7.2...v0.7.3) (2021-05-23)
 
 
