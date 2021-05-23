@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Net;
-using System.Net.Http;
 using System.Reflection;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -25,8 +22,6 @@ using TokanPages.Backend.Core.Services.DateTimeService;
 using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
 using FluentValidation;
 using MediatR;
-using Polly.Extensions.Http;
-using Polly;
 
 namespace TokanPages.Configuration
 {
@@ -34,19 +29,19 @@ namespace TokanPages.Configuration
     {
         public static void Register(IServiceCollection AServices, IConfiguration AConfiguration, IWebHostEnvironment AEnvironment = default)
         {
-            CommonServices(AServices, AConfiguration, AEnvironment);
+            CommonServices(AServices, AConfiguration);
             SetupDatabase(AServices, AConfiguration);
+            if (AEnvironment != null)
+                SetupRetryPolicyWithPolly(AServices, AConfiguration, AEnvironment);
         }
 
-        public static void CommonServices(IServiceCollection AServices, IConfiguration AConfiguration, IWebHostEnvironment AEnvironment = default)
+        public static void CommonServices(IServiceCollection AServices, IConfiguration AConfiguration)
         {
             SetupAppSettings(AServices, AConfiguration);
             SetupLogger(AServices);
             SetupServices(AServices);
             SetupValidators(AServices);
             SetupMediatR(AServices);
-            if (AEnvironment != null)
-                SetupRetryPolicyWithPolly(AServices, AConfiguration, AEnvironment);
         }
 
         private static void SetupAppSettings(IServiceCollection AServices, IConfiguration AConfiguration) 
@@ -112,23 +107,7 @@ namespace TokanPages.Configuration
                 AOptions.DefaultRequestHeaders.Add("Accept", Constants.ContentTypes.JSON);
                 AOptions.Timeout = TimeSpan.FromMinutes(5);
                 AOptions.DefaultRequestHeaders.ConnectionClose = true;
-            }).AddPolicyHandler(RetryPolicyHandler());
-        }
-
-        private static IAsyncPolicy<HttpResponseMessage> RetryPolicyHandler()
-        {
-            const int RETRY_COUNT = 3;
-            const double DURATION_BETWEEN_RETRIES = 150;
-            return HttpPolicyExtensions
-                .HandleTransientHttpError()
-                .Or<TaskCanceledException>()
-                .OrResult(AResponse => AResponse.StatusCode 
-                    is HttpStatusCode.RequestTimeout 
-                    or HttpStatusCode.BadGateway 
-                    or HttpStatusCode.GatewayTimeout 
-                    or HttpStatusCode.ServiceUnavailable
-                ).WaitAndRetryAsync(RETRY_COUNT, ARetryCount 
-                    => TimeSpan.FromMilliseconds(DURATION_BETWEEN_RETRIES * Math.Pow(2, ARetryCount - 1)));
+            }).AddPolicyHandler(Handlers.RetryPolicyHandler());
         }
     }
 }
