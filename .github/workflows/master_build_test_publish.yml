@@ -76,7 +76,8 @@ jobs:
       run: | 
         date +"%Y-%m-%d at %T" > CURRENT_DATE_TIME
         docker build \
-          --build-arg APP_VERSION=${{ steps.semantic.outputs.new_release_version }} APP_DATE_TIME="$(cat CURRENT_DATE_TIME)" \
+          --build-arg APP_VERSION=${{ steps.semantic.outputs.new_release_version }} \ 
+          --build-arg APP_DATE_TIME="$(cat CURRENT_DATE_TIME)" \
           -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }} .
 
     - name: Push Docker image (prepare)
