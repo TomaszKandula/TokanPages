@@ -7,7 +7,7 @@ COPY ./TokanPages/ClientApp/public ./public
 COPY ./TokanPages/ClientApp/src ./src
 
 ARG APP_VER
-RUN date +"(%Y-%d-%m at %T)" > CURRENT_DATE_TIME 
+RUN date +"(%Y-%m-%d at %T)" > CURRENT_DATE_TIME 
 RUN echo "Version $APP_VER $(cat CURRENT_DATE_TIME)" > VERSION_STRING
 RUN sed "s/{VERSION}/$(cat VERSION_STRING)/" $PWD/.env
 
