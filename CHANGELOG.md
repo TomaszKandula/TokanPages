@@ -1,3 +1,10 @@
+## [0.9.1](https://github.com/TomaszKandula/TokanPages/compare/v0.9.0...v0.9.1) (2021-05-23)
+
+
+### Bug Fixes
+
+* add missing 'build-arg' ([0cd597f](https://github.com/TomaszKandula/TokanPages/commit/0cd597ff02aeadbe376418d25ec581208341adbd))
+
 # [0.9.0](https://github.com/TomaszKandula/TokanPages/compare/v0.8.0...v0.9.0) (2021-05-23)
 
 
