@@ -7,13 +7,12 @@ COPY ./TokanPages/ClientApp/public ./public
 COPY ./TokanPages/ClientApp/src ./src
 
 ARG APP_VER
-RUN date +"(%Y-%m-%d at %T)" > CURRENT_DATE_TIME 
-RUN echo "Version $APP_VER $(cat CURRENT_DATE_TIME)" > VERSION_STRING
-RUN sed "s/{VERSION}/$(cat VERSION_STRING)/" $PWD/.env
-
-RUN yarn install
-RUN yarn app-test --ci --coverage
-RUN yarn build
+RUN date +"(%Y-%m-%d at %T)" > CURRENT_DATE_TIME \ 
+  && echo "Version $APP_VER $(cat CURRENT_DATE_TIME)" > VERSION_STRING \
+  && sed "s/{VERSION}/$(cat VERSION_STRING)/" $PWD/.env \
+  && yarn install \
+  && yarn app-test --ci --coverage \
+  && yarn build
 
 # 2 - Build .NET Core app
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
