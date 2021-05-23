@@ -1,3 +1,10 @@
+## [0.7.3](https://github.com/TomaszKandula/TokanPages/compare/v0.7.2...v0.7.3) (2021-05-23)
+
+
+### Bug Fixes
+
+* remove {VERSION} issue from the page footer ([1856bbd](https://github.com/TomaszKandula/TokanPages/commit/1856bbd7d23488563e36bba279be401fac16e5cc))
+
 ## [0.7.2](https://github.com/TomaszKandula/TokanPages/compare/v0.7.1...v0.7.2) (2021-05-23)
 
 
