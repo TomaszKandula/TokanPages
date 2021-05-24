@@ -16,7 +16,7 @@ import GetFooterContentReducer from "./Reducers/getFooterContentReducer";
 import GetHeaderContentReducer from "./Reducers/getHeaderContentReducer";
 import GetNavigationContentReducer from "./Reducers/getNavigationContentReducer";
 import GetNewsletterContentReducer from "./Reducers/getNewsletterContentReducer";
-import GetNotFoundContentReducer from "./Reducers/getNotFoundContentReducer";
+import GetWrongPagePromptContentReducer from "./Reducers/getWrongPagePromptContentReducer";
 import GetResetFormContentReducer from "./Reducers/getResetFormContentReducer";
 import GetSigninFormContentReducer from "./Reducers/getSigninFormContentReducer";
 import GetSignupFormContentReducer from "./Reducers/getSignupFormContentReducer";
@@ -44,7 +44,7 @@ export const combinedReducers =
     getHeaderContent: GetHeaderContentReducer,
     getNavigationContent: GetNavigationContentReducer,
     getNewsletterContent: GetNewsletterContentReducer,
-    getNotFoundContent: GetNotFoundContentReducer,
+    getWrongPagePromptContent: GetWrongPagePromptContentReducer,
     getResetFormContent: GetResetFormContentReducer,
     getSigninFormContent: GetSigninFormContentReducer,
     getSignupFormContent: GetSignupFormContentReducer,

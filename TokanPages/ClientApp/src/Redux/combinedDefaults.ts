@@ -16,7 +16,7 @@ import { GetFooterContentDefault } from "./Defaults/getFooterContentDefault";
 import { GetHeaderContentDefault } from "./Defaults/getHeaderContentDefault";
 import { GetNavigationContentDefault } from "./Defaults/getNavigationContentDefault";
 import { GetNewsletterContentDefault } from "./Defaults/getNewsletterContentDefault";
-import { GetNotFoundContentDefault } from "./Defaults/getNotFoundContentDefault";
+import { GetWrongPagePromptContentDefault } from "./Defaults/getWrongPagePromptContentDefault";
 import { GetResetFormContentDefault } from "./Defaults/getResetFormContentDefault";
 import { GetSigninFormContentDefault } from "./Defaults/getSigninFormContentDefault";
 import { GetSignupFormContentDefault } from "./Defaults/getSignupFormContentDefault";
@@ -44,7 +44,7 @@ export const combinedDefaults =
     getHeaderContent: GetHeaderContentDefault,
     getNavigationContent: GetNavigationContentDefault,
     getNewsletterContent: GetNewsletterContentDefault,
-    getNotFoundContent: GetNotFoundContentDefault,
+    getWrongPagePromptContent: GetWrongPagePromptContentDefault,
     getResetFormContent: GetResetFormContentDefault,
     getSigninFormContent: GetSigninFormContentDefault,
     getSignupFormContent: GetSignupFormContentDefault,

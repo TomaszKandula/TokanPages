@@ -16,7 +16,7 @@ import { IGetFooterContent } from "./States/getFooterContentState";
 import { IGetHeaderContent } from "./States/getHeaderContentState";
 import { IGetNavigationContent } from "./States/getNavigationContentState";
 import { IGetNewsletterContent } from "./States/getNewsletterContentState";
-import { IGetNotFoundContent } from "./States/getNotFoundContentState";
+import { IGetWrongPagePromptContent } from "./States/getWrongPagePromptContentState";
 import { IGetResetFormContent } from "./States/getResetFormContentState";
 import { IGetSigninFormContent } from "./States/getSigninFormContentState";
 import { IGetSignupFormContent } from "./States/getSignupFormContentState";
@@ -44,7 +44,7 @@ export interface IApplicationState
     getHeaderContent: IGetHeaderContent,
     getNavigationContent: IGetNavigationContent,
     getNewsletterContent: IGetNewsletterContent,
-    getNotFoundContent: IGetNotFoundContent,
+    getWrongPagePromptContent: IGetWrongPagePromptContent,
     getResetFormContent: IGetResetFormContent,
     getSigninFormContent: IGetSigninFormContent,
     getSignupFormContent: IGetSignupFormContent,
