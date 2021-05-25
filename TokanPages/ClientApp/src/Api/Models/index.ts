@@ -34,4 +34,4 @@ export type { ISignupFormContentDto } from "./Components/signupFormContentDto";
 export type { ITestimonialsContentDto } from "./Components/testimonialsContentDto";
 export type { IUnsubscribeContentDto } from "./Components/unsubscribeContentDto";
 export type { IUpdateSubscriberContentDto } from "./Components/updateSubscriberContentDto";
-export type { INotFoundContentDto } from "./Components/notFoundContentDto";
+export type { IWrongPagePromptContentDto } from "./Components/wrongPagePromptContentDto";

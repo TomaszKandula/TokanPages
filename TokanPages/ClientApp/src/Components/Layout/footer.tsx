@@ -10,6 +10,7 @@ import WarningIcon from '@material-ui/icons/Warning';
 import { CustomColours } from "../../Theme/customColours";
 import { IFooterContentDto, IFooterContentIconDto } from "../../Api/Models";
 import { MediumIcon } from "../../Theme/Icons/medium";
+import validate from "validate.js";
 import useStyles from "./Hooks/styleFooter";
 
 export default function Footer(props: { footer: IFooterContentDto, isLoading: boolean, backgroundColor?: string | undefined }) 
@@ -17,16 +18,18 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
     const padingBottomLarge: number = 6;
     const paddingBottomSmall: number = 1;
     
-    const versionDateTime: string | undefined = process.env.REACT_APP_VERSION_DATE_TIME ?? "";
-    const versionNumber: string | undefined = process.env.REACT_APP_VERSION_NUMBER ?? "";
+    const versionDateTime: string = process.env.REACT_APP_VERSION_DATE_TIME ?? "";
+    const versionNumber: string = process.env.REACT_APP_VERSION_NUMBER ?? "";
     const versionInfo: string = `Version ${versionNumber} (${versionDateTime})`;
+
+    const hasVersionInfo = validate.isEmpty(versionNumber) && validate.isEmpty(versionDateTime);
 
     const classes = useStyles();
     const backgroundColor: string = !props.backgroundColor 
         ? CustomColours.background.lightGray1 
         : props.backgroundColor as string;
 
-    const boxPaddingBottom: number = versionInfo === "" 
+    const boxPaddingBottom: number = hasVersionInfo 
         ? padingBottomLarge 
         : paddingBottomSmall;
 
@@ -62,18 +65,18 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
         return icon;
     };
 
-    const RenderVersion = (): JSX.Element =>
+    const RenderVersionInfo = (): JSX.Element =>
     {
-        const applicationVersion = 
+        const applicationVersionInfo = 
             <Box pt={1} pb={6} display="flex"  justifyContent="center" alignItems="center">
                 <Typography component="p" className={classes.version}>
                     {versionInfo}
                 </Typography>
             </Box>;
         
-        return versionNumber || versionDateTime === "" 
+        return hasVersionInfo 
             ? <div></div> 
-            : applicationVersion
+            : applicationVersionInfo
     };
 
     return (
@@ -97,7 +100,7 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
                             ))}
                         </Box>
                     </Box>
-                    <RenderVersion />
+                    <RenderVersionInfo />
                 </div>
             </Container>
         </footer>

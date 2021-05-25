@@ -12,7 +12,7 @@ import SignupPage from "./Pages/signupPage";
 import ResetPage from "./Pages/resetPage";
 import UnsubscribePage from "./Pages/unsubscribePage";
 import UpdateSubscriberPage from "./Pages/updateSubscriberPage";
-import NotFoundPage from "./Pages/notFoundPage";
+import WrongPage from "./Pages/wrongPage";
 import ScrollTop from "./Shared/Components/Scroll/scrollTop";
 import ApplicationErrorToast from "./Shared/Components/Toasts/applicationErrorToast";
 import AOS from "aos";
@@ -42,7 +42,7 @@ export default function App()
                   <Route exact path="/updatesubscriber"><UpdateSubscriberPage /></Route>
                   <Route exact path="/albums" component={() => //TODO: remove when Gallery subpage is created
                     { window.location.href = "https://500px.com/p/tomaszkandula?view=galleries"; return null; }} />
-                  <Route component={NotFoundPage} />
+                  <Route component={WrongPage} />
                 </Switch>
             </Router>
             <ApplicationErrorToast />

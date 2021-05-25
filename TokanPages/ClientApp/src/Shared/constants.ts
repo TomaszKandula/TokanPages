@@ -53,7 +53,7 @@ export const GET_SIGNUP_FORM_CONTENT = `${APP_STORAGE}/content/components/signup
 export const GET_TESTIMONIALS_CONTENT = `${APP_STORAGE}/content/components/testimonials.json`;
 export const GET_UNSUBSCRIBE_CONTENT = `${APP_STORAGE}/content/components/unsubscribe.json`;
 export const GET_UPDATE_SUBSCRIBER_CONTENT = `${APP_STORAGE}/content/components/updateSubscriber.json`;
-export const GET_NOTFOUND_CONTENT = `${APP_STORAGE}/content/components/notFound.json`;
+export const GET_WRONG_PAGE_PROMPT_CONTENT = `${APP_STORAGE}/content/components/wrongPagePrompt.json`;
 
 /* URLS */
 
