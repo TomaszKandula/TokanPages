@@ -1,11 +1,15 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
 import Unsubscribe from "../Components/Unsubscribe/unsubscribe";
-import { footerContentDefault, navigationContentDefault, unsubscribeContentDefault } from "../Api/Defaults";
-import { getFooterContent, getNavigationContent, getUnsubscribeContent } from "../Api/Services";
+import { IApplicationState } from "../Redux/applicationState";
+import { combinedDefaults } from "../Redux/combinedDefaults";
+import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
+import { ActionCreators as UnsubscribeContent } from "../Redux/Actions/getUnsubscribeContentAction";
 
 const useQuery = () => 
 {
@@ -15,34 +19,28 @@ const useQuery = () =>
 export default function UnsubscribePage()
 {
     const queryParam = useQuery();
+    const dispatch = useDispatch();
     const id = queryParam.get("id") as string;
+    
+    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
+    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
+    const unsubscribe = useSelector((state: IApplicationState) => state.getUnsubscribeContent);
 
-    const mountedRef = React.useRef(true);
-    const [unsubscribe, SetUnsubscribePageContent] = React.useState({ data: unsubscribeContentDefault, isLoading: true });
-    const [navigation, setNavigationContent] = React.useState({ data: navigationContentDefault, isLoading: true });
-    const [footer, setFooterContent] = React.useState({ data: footerContentDefault, isLoading: true });
+    const fetchNavigationContent = React.useCallback(() => { dispatch(NavigationContent.getNavigationContent()); }, [ dispatch ]);
+    const fetchFooterContent = React.useCallback(() => { dispatch(FooterContent.getFooterContent()); }, [ dispatch ]);
+    const fetchUnsubscribeFormContent = React.useCallback(() => { dispatch(UnsubscribeContent.getUnsubscribeContent()); }, [ dispatch ]);
 
-    const updateContent = React.useCallback(async () => 
-    {
-        if (!mountedRef.current) return;
-        SetUnsubscribePageContent({ data: await getUnsubscribeContent(), isLoading: false });
-        setNavigationContent({ data: await getNavigationContent(), isLoading: false });
-        setFooterContent({ data: await getFooterContent(), isLoading: false });
-    }, [ ]);
-
-    React.useEffect(() => 
-    {
-        updateContent();
-        return () => { mountedRef.current = false; };
-    }, [ updateContent ]);
-
+    React.useEffect(() => { if (navigation.content === combinedDefaults.getNavigationContent.content) fetchNavigationContent(); }, [ fetchNavigationContent, navigation.content ]);
+    React.useEffect(() => { if (footer.content === combinedDefaults.getFooterContent.content) fetchFooterContent(); }, [ fetchFooterContent, footer.content ]);
+    React.useEffect(() => { if (unsubscribe.content === combinedDefaults.getUnsubscribeContent.content) fetchUnsubscribeFormContent(); }, [ fetchUnsubscribeFormContent, unsubscribe.content ]);
+    
     return(
         <>
-            <Navigation navigation={navigation.data} isLoading={navigation.isLoading} />
+            <Navigation navigation={navigation} isLoading={navigation.isLoading} />
             <Container>
-                <Unsubscribe id={id} unsubscribe={unsubscribe.data} isLoading={unsubscribe.isLoading} />
+                <Unsubscribe id={id} unsubscribe={unsubscribe} isLoading={unsubscribe.isLoading} />
             </Container>
-            <Footer footer={footer.data} isLoading={footer.isLoading} />
+            <Footer footer={footer} isLoading={footer.isLoading} />
         </>
     );
 }

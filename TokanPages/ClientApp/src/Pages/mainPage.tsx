@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Navigation from "../Components/Layout/navigation";
 import Header from "../Components/Layout/header";
 import Footer from "../Components/Layout/footer";
@@ -9,87 +10,71 @@ import Newsletter from "../Components/Newsletter/newsletter";
 import ContactForm from "../Components/Contact/contactForm";
 import Cookies from "../Components/Cookies/cookies";
 import ArticleFeat from "../Components/Articles/articleFeat";
-import { 
-    getNavigationContent,
-    getHeaderContent,
-    getFooterContent,
-    getArticleFeatContent,
-    getFeaturesContent,
-    getFeaturedContent,
-    getTestimonialsContent,
-    getNewsletterContent,
-    getContactFormContent,
-    getCookiesPromptContent
-} from "../Api/Services/";
-import { 
-    navigationContentDefault,
-    headerContentDefault,
-    footerContentDefault,
-    articleFeatContentDefault,
-    featuresContentDefault, 
-    featuredContentDefault,
-    testimonialsContentDefault,
-    newsletterContentDefault,
-    contactFormContentDefault,
-    cookiesPromptContentDefault
-} from "../Api/Defaults";
-
+import { IApplicationState } from "../Redux/applicationState";
+import { combinedDefaults } from "../Redux/combinedDefaults";
+import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
+import { ActionCreators as HeaderContent } from "../Redux/Actions/getHeaderContentAction";
+import { ActionCreators as FeaturesContent } from "../Redux/Actions/getFeaturesContentAction";
+import { ActionCreators as ArticlesContent } from "../Redux/Actions/getArticleFeatContentAction";
+import { ActionCreators as FeaturedContent } from "../Redux/Actions/getFeaturedContentAction";
+import { ActionCreators as TestimonialsContent } from "../Redux/Actions/getTestimonialsContentAction";
+import { ActionCreators as NewsletterContent } from "../Redux/Actions/getNewsletterContentAction";
+import { ActionCreators as ContactFormContent } from "../Redux/Actions/getContactFormContentAction";
+import { ActionCreators as CookiesContent } from "../Redux/Actions/getCookiesPromptContentAction";
 import AOS from "aos";
 
 export default function Index() 
 {
-    const mountedRef = React.useRef(true);
+    const dispatch = useDispatch();
 
-    const [navigation, setNavigationContent] = React.useState({ data: navigationContentDefault, isLoading: true });
-    const [header, setHeaderContent] = React.useState({ data: headerContentDefault, isLoading: true });
-    const [footer, setFooterContent] = React.useState({ data: footerContentDefault, isLoading: true });
-    const [articles, setArticlesContent] = React.useState({ data: articleFeatContentDefault, isLoading: true });
-    const [features, setFeaturesContent] = React.useState({ data: featuresContentDefault, isLoading: true });
-    const [featured, setFeaturedContent] = React.useState({ data: featuredContentDefault, isLoading: true });
-    const [testimonials, setTestimonialsContent] = React.useState({ data: testimonialsContentDefault, isLoading: true });
-    const [newsletter, setNewsletterContent] = React.useState({ data: newsletterContentDefault, isLoading: true });
-    const [contactForm, setContactFormContent] = React.useState({ data: contactFormContentDefault, isLoading: true });
-    const [cookiesPrompt, setCookiesPromptContent] = React.useState({ data: cookiesPromptContentDefault, isLoading: true });
- 
-    const updateContent = React.useCallback(async () => 
-    {
-        if (!mountedRef.current) return;
-        setNavigationContent({ data: await getNavigationContent(), isLoading: false });
-        setHeaderContent({ data: await getHeaderContent(), isLoading: false });
-        setFooterContent({ data: await getFooterContent(), isLoading: false });
-        setArticlesContent({ data: await getArticleFeatContent(), isLoading: false });
-        setFeaturesContent({ data: await getFeaturesContent(), isLoading: false });
-        setFeaturedContent({ data: await getFeaturedContent(), isLoading: false });
-        setTestimonialsContent({ data: await getTestimonialsContent(), isLoading: false });
-        setNewsletterContent({ data: await getNewsletterContent(), isLoading: false });
-        setContactFormContent({ data: await getContactFormContent(), isLoading: false });
-        setCookiesPromptContent({ data: await getCookiesPromptContent(), isLoading: false });
-    }, [ ]);
+    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
+    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
+    const header = useSelector((state: IApplicationState) => state.getHeaderContent);
+    const features = useSelector((state: IApplicationState) => state.getFeaturesContent);
+    const articles = useSelector((state: IApplicationState) => state.getArticleFeatContent);
+    const featured = useSelector((state: IApplicationState) => state.getFeaturedContent);
+    const testimonials = useSelector((state: IApplicationState) => state.getTestimonialsContent);
+    const newsletter = useSelector((state: IApplicationState) => state.getNewsletterContent);
+    const contactForm = useSelector((state: IApplicationState) => state.getContactFormContent);
+    const cookiesPrompt = useSelector((state: IApplicationState) => state.getCookiesPromptContent);
 
-    React.useEffect(() => 
-    {
-        updateContent();
-        return () => { mountedRef.current = false; };
-    }, 
-    [ updateContent ]);
-
-    React.useEffect(() => 
-    {
-        AOS.refresh();
-    });
+    const fetchNavigationContent = React.useCallback(() => { dispatch(NavigationContent.getNavigationContent()); }, [ dispatch ]);
+    const fetchFooterContent = React.useCallback(() => { dispatch(FooterContent.getFooterContent()); }, [ dispatch ]);
+    const fetchHeaderContent = React.useCallback(() => { dispatch(HeaderContent.getHeaderContent()); }, [ dispatch ]);
+    const fetchFeaturesContent = React.useCallback(() => { dispatch(FeaturesContent.getFeaturesContent()); }, [ dispatch ]);
+    const fetchArticlesContent = React.useCallback(() => { dispatch(ArticlesContent.getArticleFeaturesContent()); }, [ dispatch ]);
+    const fetchFeaturedContent = React.useCallback(() => { dispatch(FeaturedContent.getFeaturedContent()); }, [ dispatch ]);
+    const fetchTestimonialsContent = React.useCallback(() => { dispatch(TestimonialsContent.getTestimonialsContent()); }, [ dispatch ]);
+    const fetchNewsletterContent = React.useCallback(() => { dispatch(NewsletterContent.getNewsletterContent()); }, [ dispatch ]);
+    const fetchContactFormContent = React.useCallback(() => { dispatch(ContactFormContent.getContactFormContent()); }, [ dispatch ]);
+    const fetchCookiesContent = React.useCallback(() => { dispatch(CookiesContent.getCookiesPromptContent()); }, [ dispatch ]);
+    
+    React.useEffect(() => { if (navigation.content === combinedDefaults.getNavigationContent.content) fetchNavigationContent(); }, [ fetchNavigationContent, navigation.content ]);
+    React.useEffect(() => { if (footer.content === combinedDefaults.getFooterContent.content) fetchFooterContent(); }, [ fetchFooterContent, footer.content ]);
+    React.useEffect(() => { if (header.content === combinedDefaults.getHeaderContent.content) fetchHeaderContent(); }, [ fetchHeaderContent, header.content ]);
+    React.useEffect(() => { if (features.content === combinedDefaults.getFeaturesContent.content) fetchFeaturesContent(); }, [ fetchFeaturesContent, features.content ]);
+    React.useEffect(() => { if (articles.content === combinedDefaults.getArticleFeatContent.content) fetchArticlesContent(); }, [ fetchArticlesContent, articles.content ]);
+    React.useEffect(() => { if (featured.content === combinedDefaults.getFeaturedContent.content) fetchFeaturedContent(); }, [ fetchFeaturedContent, featured.content ]);
+    React.useEffect(() => { if (testimonials.content === combinedDefaults.getTestimonialsContent.content) fetchTestimonialsContent(); }, [ fetchTestimonialsContent, testimonials.content ]);
+    React.useEffect(() => { if (newsletter.content === combinedDefaults.getNewsletterContent.content) fetchNewsletterContent(); }, [ fetchNewsletterContent, newsletter.content ]);
+    React.useEffect(() => { if (contactForm.content === combinedDefaults.getContactFormContent.content) fetchContactFormContent(); }, [ fetchContactFormContent, contactForm.content ]);
+    React.useEffect(() => { if (cookiesPrompt.content === combinedDefaults.getCookiesPromptContent.content) fetchCookiesContent(); }, [ fetchCookiesContent, cookiesPrompt.content ]);
+    
+    React.useEffect(() => { AOS.refresh(); });
 
     return (
         <>
-            <Navigation navigation={navigation.data} isLoading={navigation.isLoading} />
-            <Header header={header.data} isLoading={header.isLoading} />
-            <Features features={features.data} isLoading={features.isLoading} />
-            <ArticleFeat articles={articles.data} isLoading={articles.isLoading} />
-            <Featured featured={featured.data} isLoading={featured.isLoading} />
-            <Testimonials testimonials={testimonials.data} isLoading={testimonials.isLoading} />
-            <Newsletter newsletter={newsletter.data} isLoading={newsletter.isLoading} />
-            <ContactForm contactForm={contactForm.data} isLoading={contactForm.isLoading} />
-            <Cookies cookiesPrompt={cookiesPrompt.data} isLoading={cookiesPrompt.isLoading} />
-            <Footer footer={footer.data} isLoading={footer.isLoading} />
+            <Navigation navigation={navigation} isLoading={navigation.isLoading} />
+            <Header header={header} isLoading={header.isLoading} />
+            <Features features={features} isLoading={features.isLoading} />
+            <ArticleFeat articles={articles} isLoading={articles.isLoading} />
+            <Featured featured={featured} isLoading={featured.isLoading} />
+            <Testimonials testimonials={testimonials} isLoading={testimonials.isLoading} />
+            <Newsletter newsletter={newsletter} isLoading={newsletter.isLoading} />
+            <ContactForm contactForm={contactForm} isLoading={contactForm.isLoading} />
+            <Cookies cookiesPrompt={cookiesPrompt} isLoading={cookiesPrompt.isLoading} />
+            <Footer footer={footer} isLoading={footer.isLoading} />
         </>
     );
 }

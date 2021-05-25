@@ -1,9 +1,11 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Box, Button, Container, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { wrongPagePromptContentDefault } from "../Api/Defaults";
-import { getWrongPagePromptContent } from "../Api/Services";
+import { IApplicationState } from "../Redux/applicationState";
+import { combinedDefaults } from "../Redux/combinedDefaults";
+import { ActionCreators as WrongPagePromptContent } from "../Redux/Actions/getWrongPagePromptContentAction";
 
 const useStyles = makeStyles(() => (
 {
@@ -16,21 +18,11 @@ const useStyles = makeStyles(() => (
 export default function WrongPage()
 {
     const classes = useStyles();   
-    const mountedRef = React.useRef(true);
-    const [wrongPagePrompt, setWrongPagePromptContent] = React.useState(wrongPagePromptContentDefault);
+    const dispatch = useDispatch();
 
-    const updateContent = React.useCallback(async () => 
-    {
-        if (!mountedRef.current) return;
-        setWrongPagePromptContent(await getWrongPagePromptContent());
-    }, [ ]);
-
-    React.useEffect(() => 
-    {
-        updateContent();
-        return () => { mountedRef.current = false; };
-    }, 
-    [ updateContent ]);
+    const wrongPagePrompt = useSelector((state: IApplicationState) => state.getWrongPagePromptContent);
+    const fetchWrongPagePromptContent = React.useCallback(() => { dispatch(WrongPagePromptContent.getWrongPagePromptContent()); }, [ dispatch ]);
+    React.useEffect(() => { if (wrongPagePrompt.content === combinedDefaults.getWrongPagePromptContent.content) fetchWrongPagePromptContent(); }, [ fetchWrongPagePromptContent, wrongPagePrompt.content ]);
 
     return (
         <section>

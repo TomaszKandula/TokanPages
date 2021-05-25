@@ -1,11 +1,15 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
 import UpdateSubscriber from "../Components/UpdateSubscription/updateSubscriber";
-import { footerContentDefault, navigationContentDefault, updateSubscriberContentDefault } from "../Api/Defaults";
-import { getFooterContent, getNavigationContent, getUpdateSubscriberContent } from "../Api/Services";
+import { IApplicationState } from "../Redux/applicationState";
+import { combinedDefaults } from "../Redux/combinedDefaults";
+import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
+import { ActionCreators as UpdateSubscriberContent } from "../Redux/Actions/getUpdateSubscriberContentAction";
 
 const useQuery = () => 
 {
@@ -15,34 +19,28 @@ const useQuery = () =>
 export default function UpdateSubscriberPage()
 {
     const queryParam = useQuery();
+    const dispatch = useDispatch();
     const id = queryParam.get("id") as string; 
 
-    const mountedRef = React.useRef(true);
-    const [updateSubscriber, setUpdateSubscriberContent] = React.useState({ data: updateSubscriberContentDefault, isLoading: true });
-    const [navigation, setNavigationContent] = React.useState({ data: navigationContentDefault, isLoading: true });
-    const [footer, setFooterContent] = React.useState({ data: footerContentDefault, isLoading: true });
+    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
+    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
+    const updateSubscriber = useSelector((state: IApplicationState) => state.getUpdateSubscriberContent);
 
-    const updateContent = React.useCallback(async () => 
-    {
-        if (!mountedRef.current) return;
-        setUpdateSubscriberContent({ data: await getUpdateSubscriberContent(), isLoading: false });
-        setNavigationContent({ data: await getNavigationContent(), isLoading: false });
-        setFooterContent({ data: await getFooterContent(), isLoading: false });
-    }, [ ]);
+    const fetchNavigationContent = React.useCallback(() => { dispatch(NavigationContent.getNavigationContent()); }, [ dispatch ]);
+    const fetchFooterContent = React.useCallback(() => { dispatch(FooterContent.getFooterContent()); }, [ dispatch ]);
+    const fetchUpdateSubscriberContent = React.useCallback(() => { dispatch(UpdateSubscriberContent.getUpdateSubscriberContent()); }, [ dispatch ]);
 
-    React.useEffect(() => 
-    {
-        updateContent();
-        return () => { mountedRef.current = false; };
-    }, [ updateContent ]);
-
+    React.useEffect(() => { if (navigation.content === combinedDefaults.getNavigationContent.content) fetchNavigationContent(); }, [ fetchNavigationContent, navigation.content ]);
+    React.useEffect(() => { if (footer.content === combinedDefaults.getFooterContent.content) fetchFooterContent(); }, [ fetchFooterContent, footer.content ]);
+    React.useEffect(() => { if (updateSubscriber.content === combinedDefaults.getUpdateSubscriberContent.content) fetchUpdateSubscriberContent(); }, [ fetchUpdateSubscriberContent, updateSubscriber.content ]);
+    
     return(
         <>
-            <Navigation navigation={navigation.data} isLoading={navigation.isLoading} />
+            <Navigation navigation={navigation} isLoading={navigation.isLoading} />
             <Container>
-                <UpdateSubscriber id={id} updateSubscriber={updateSubscriber.data} isLoading={updateSubscriber.isLoading} />
+                <UpdateSubscriber id={id} updateSubscriber={updateSubscriber} isLoading={updateSubscriber.isLoading} />
             </Container>
-            <Footer footer={footer.data} isLoading={footer.isLoading} />
+            <Footer footer={footer} isLoading={footer.isLoading} />
         </>
     );
 }
