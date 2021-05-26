@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as Sentry from "@sentry/react";
 import { AppThunkAction } from "../applicationState";
+import { combinedDefaults } from "../../Redux/combinedDefaults";
 import { GetErrorMessage } from "../../Shared/helpers";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 import { GET_NEWSLETTER_CONTENT } from "../../Shared/constants";
@@ -17,8 +18,11 @@ export type TKnownActions = IRequestNewsletterContent | IReceiveNewsletterConten
 
 export const ActionCreators = 
 {
-    getNewsletterContent: (): AppThunkAction<TKnownActions> => (dispatch) =>
+    getNewsletterContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
+        if (getState().getNewsletterContent.content !== combinedDefaults.getNewsletterContent.content) 
+            return;
+
         dispatch({ type: REQUEST_NEWSLETTER_CONTENT });
 
         axios.get(GET_NEWSLETTER_CONTENT, 

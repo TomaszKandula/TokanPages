@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as Sentry from "@sentry/react";
 import { AppThunkAction } from "../applicationState";
+import { combinedDefaults } from "../../Redux/combinedDefaults";
 import { GetErrorMessage } from "../../Shared/helpers";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 import { GET_CONTACT_FORM_CONTENT } from "../../Shared/constants";
@@ -17,8 +18,11 @@ export type TKnownActions = IRequestContactFormContent | IReceiveContactFormCont
 
 export const ActionCreators = 
 {
-    getContactFormContent: (): AppThunkAction<TKnownActions> => (dispatch) =>
+    getContactFormContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
+        if (getState().getContactFormContent.content !== combinedDefaults.getContactFormContent.content) 
+            return;
+
         dispatch({ type: REQUEST_CONTACT_FORM_CONTENT });
 
         axios.get(GET_CONTACT_FORM_CONTENT, 

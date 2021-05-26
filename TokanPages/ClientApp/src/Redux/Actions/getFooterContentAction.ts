@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as Sentry from "@sentry/react";
 import { AppThunkAction } from "../applicationState";
+import { combinedDefaults } from "../../Redux/combinedDefaults";
 import { GetErrorMessage } from "../../Shared/helpers";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 import { GET_FOOTER_CONTENT } from "../../Shared/constants";
@@ -17,8 +18,11 @@ export type TKnownActions = IRequestFooterContent | IReceiveFooterContent | TErr
 
 export const ActionCreators = 
 {
-    getFooterContent: (): AppThunkAction<TKnownActions> => (dispatch) =>
+    getFooterContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
+        if (getState().getFooterContent.content !== combinedDefaults.getFooterContent.content) 
+            return;
+
         dispatch({ type: REQUEST_FOOTER_CONTENT });
 
         axios.get(GET_FOOTER_CONTENT, 

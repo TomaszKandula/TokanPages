@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as Sentry from "@sentry/react";
 import { AppThunkAction } from "../applicationState";
+import { combinedDefaults } from "../../Redux/combinedDefaults";
 import { GetErrorMessage } from "../../Shared/helpers";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 import { GET_NAVIGATION_CONTENT } from "../../Shared/constants";
@@ -17,8 +18,11 @@ export type TKnownActions = IRequestNavigationContent | IReceiveNavigationConten
 
 export const ActionCreators = 
 {
-    getNavigationContent: (): AppThunkAction<TKnownActions> => (dispatch) =>
+    getNavigationContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
+        if (getState().getNavigationContent.content !== combinedDefaults.getNavigationContent.content) 
+            return;
+
         dispatch({ type: REQUEST_NAVIGATION_CONTENT });
 
         axios.get(GET_NAVIGATION_CONTENT, 

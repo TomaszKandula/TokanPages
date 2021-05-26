@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { Box, Button, Container, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { IApplicationState } from "../Redux/applicationState";
-import { combinedDefaults } from "../Redux/combinedDefaults";
 import { ActionCreators as WrongPagePromptContent } from "../Redux/Actions/getWrongPagePromptContentAction";
 
 const useStyles = makeStyles(() => (
@@ -21,13 +20,12 @@ export default function WrongPage()
     const dispatch = useDispatch();
 
     const wrongPagePrompt = useSelector((state: IApplicationState) => state.getWrongPagePromptContent);
-    const fetchWrongPagePromptContent = React.useCallback(() => dispatch(WrongPagePromptContent.getWrongPagePromptContent()), [ dispatch ]);
-    
-    React.useEffect(() => 
-    { 
-        if (wrongPagePrompt?.content === combinedDefaults.getWrongPagePromptContent.content) 
-            fetchWrongPagePromptContent(); 
-    }, [ fetchWrongPagePromptContent, wrongPagePrompt ]);
+    const getContent = React.useCallback(() =>
+    {
+        dispatch(WrongPagePromptContent.getWrongPagePromptContent());
+    }, [ dispatch ]);
+
+    React.useEffect(() => getContent(), [ getContent ]);
 
     return (
         <section>

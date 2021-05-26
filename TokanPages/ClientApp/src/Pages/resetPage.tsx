@@ -5,7 +5,6 @@ import Navigation from "../Components/Layout/navigation";
 import ResetForm from "../Components/Account/resetForm";
 import Footer from "../Components/Layout/footer";
 import { IApplicationState } from "../Redux/applicationState";
-import { combinedDefaults } from "../Redux/combinedDefaults";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
 import { ActionCreators as ResetFormContent } from "../Redux/Actions/getResetFormContentAction";
@@ -18,27 +17,14 @@ export default function ResetPage()
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const resetForm = useSelector((state: IApplicationState) => state.getResetFormContent);
 
-    const fetchNavigationContent = React.useCallback(() => dispatch(NavigationContent.getNavigationContent()), [ dispatch ]);
-    const fetchFooterContent = React.useCallback(() => dispatch(FooterContent.getFooterContent()), [ dispatch ]);
-    const fetchResetFormContent = React.useCallback(() => dispatch(ResetFormContent.getResetFormContent()), [ dispatch ]);
+    const getContent = React.useCallback(() =>
+    {
+        dispatch(NavigationContent.getNavigationContent());
+        dispatch(FooterContent.getFooterContent());
+        dispatch(ResetFormContent.getResetFormContent());
+    }, [ dispatch ]);
 
-    React.useEffect(() => 
-    { 
-        if (navigation?.content === combinedDefaults.getNavigationContent.content) 
-            fetchNavigationContent(); 
-    }, [ fetchNavigationContent, navigation ]);
-    
-    React.useEffect(() => 
-    { 
-        if (footer?.content === combinedDefaults.getFooterContent.content) 
-            fetchFooterContent(); 
-    }, [ fetchFooterContent, footer ]);
-    
-    React.useEffect(() => 
-    { 
-        if (resetForm?.content === combinedDefaults.getResetFormContent.content) 
-            fetchResetFormContent(); 
-    }, [ fetchResetFormContent, resetForm ]);
+    React.useEffect(() => getContent(), [ getContent ]);
     
     return (
         <>     

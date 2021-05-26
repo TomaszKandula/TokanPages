@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as Sentry from "@sentry/react";
 import { AppThunkAction } from "../applicationState";
+import { combinedDefaults } from "../../Redux/combinedDefaults";
 import { GetErrorMessage } from "../../Shared/helpers";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 import { GET_FEATURED_CONTENT } from "../../Shared/constants";
@@ -17,8 +18,11 @@ export type TKnownActions = IRequestFeaturedContent | IReceiveFeaturedContent | 
 
 export const ActionCreators = 
 {
-    getFeaturedContent: (): AppThunkAction<TKnownActions> => (dispatch) =>
+    getFeaturedContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
+        if (getState().getFeaturedContent.content !== combinedDefaults.getFeaturedContent.content) 
+            return;
+
         dispatch({ type: REQUEST_FEATURED_CONTENT });
 
         axios.get(GET_FEATURED_CONTENT, 

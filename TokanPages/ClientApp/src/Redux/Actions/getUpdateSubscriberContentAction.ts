@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as Sentry from "@sentry/react";
 import { AppThunkAction } from "../applicationState";
+import { combinedDefaults } from "../../Redux/combinedDefaults";
 import { GetErrorMessage } from "../../Shared/helpers";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 import { GET_UPDATE_SUBSCRIBER_CONTENT } from "../../Shared/constants";
@@ -17,8 +18,11 @@ export type TKnownActions = IRequestUpdateSubscriberContent | IReceiveUpdateSubs
 
 export const ActionCreators = 
 {
-    getUpdateSubscriberContent: (): AppThunkAction<TKnownActions> => (dispatch) =>
+    getUpdateSubscriberContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
+        if (getState().getUpdateSubscriberContent.content !== combinedDefaults.getUpdateSubscriberContent.content) 
+            return;
+        
         dispatch({ type: REQUEST_UPDATE_SUBSCRIBER_CONTENT });
 
         axios.get(GET_UPDATE_SUBSCRIBER_CONTENT, 
