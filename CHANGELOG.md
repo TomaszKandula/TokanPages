@@ -1,3 +1,11 @@
+## [0.10.1](https://github.com/TomaszKandula/TokanPages/compare/v0.10.0...v0.10.1) (2021-05-26)
+
+
+### Bug Fixes
+
+* add missing error dispatch for GetData method ([781518b](https://github.com/TomaszKandula/TokanPages/commit/781518b47364607295aa548d2e6efee20b586c9a))
+* resolve performance issues with actions ([eeae8bc](https://github.com/TomaszKandula/TokanPages/commit/eeae8bc8817df7d76c239f572463e777545f2807))
+
 # [0.10.0](https://github.com/TomaszKandula/TokanPages/compare/v0.9.1...v0.10.0) (2021-05-26)
 
 
