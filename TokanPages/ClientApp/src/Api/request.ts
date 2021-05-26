@@ -1,8 +1,4 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import * as Sentry from "@sentry/react";
-import { RAISE_ERROR } from "../Redux/Actions/raiseErrorAction";
-import { GetErrorMessage } from "../Shared/helpers";
 
 interface IPromiseResult 
 {
@@ -40,10 +36,6 @@ export const GetData = async (url: string): Promise<IPromiseResult> =>
             content: null,
             error: error 
         };
-        
-        const dispatch = useDispatch();
-        dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(error) });
-        Sentry.captureException(error);
     });
 
     return result;
