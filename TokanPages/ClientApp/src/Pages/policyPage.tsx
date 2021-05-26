@@ -24,13 +24,13 @@ export default function PolicyPage()
     { 
         if (navigation?.content === combinedDefaults.getNavigationContent.content) 
             fetchNavigationContent(); 
-    }, [ fetchNavigationContent, navigation?.content ]);
+    }, [ fetchNavigationContent, navigation ]);
     
     React.useEffect(() => 
     { 
         if (footer?.content === combinedDefaults.getFooterContent.content) 
             fetchFooterContent(); 
-    }, [ fetchFooterContent, footer?.content ]);
+    }, [ fetchFooterContent, footer ]);
 
     return (
         <>     

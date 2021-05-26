@@ -34,19 +34,19 @@ export default function UpdateSubscriberPage()
     { 
         if (navigation?.content === combinedDefaults.getNavigationContent.content) 
             fetchNavigationContent(); 
-    }, [ fetchNavigationContent, navigation?.content ]);
+    }, [ fetchNavigationContent, navigation ]);
     
     React.useEffect(() => 
     { 
         if (footer?.content === combinedDefaults.getFooterContent.content) 
             fetchFooterContent(); 
-    }, [ fetchFooterContent, footer?.content ]);
+    }, [ fetchFooterContent, footer ]);
     
     React.useEffect(() => 
     { 
         if (updateSubscriber?.content === combinedDefaults.getUpdateSubscriberContent.content) 
             fetchUpdateSubscriberContent(); 
-    }, [ fetchUpdateSubscriberContent, updateSubscriber?.content ]);
+    }, [ fetchUpdateSubscriberContent, updateSubscriber ]);
     
     return(
         <>

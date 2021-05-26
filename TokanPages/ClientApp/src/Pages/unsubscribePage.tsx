@@ -34,19 +34,19 @@ export default function UnsubscribePage()
     { 
         if (navigation?.content === combinedDefaults.getNavigationContent.content) 
             fetchNavigationContent(); 
-    }, [ fetchNavigationContent, navigation?.content ]);
+    }, [ fetchNavigationContent, navigation ]);
     
     React.useEffect(() => 
     { 
         if (footer?.content === combinedDefaults.getFooterContent.content) 
             fetchFooterContent(); 
-    }, [ fetchFooterContent, footer?.content ]);
+    }, [ fetchFooterContent, footer ]);
     
     React.useEffect(() => 
     { 
         if (unsubscribe?.content === combinedDefaults.getUnsubscribeContent.content) 
             fetchUnsubscribeFormContent(); 
-    }, [ fetchUnsubscribeFormContent, unsubscribe?.content ]);
+    }, [ fetchUnsubscribeFormContent, unsubscribe ]);
     
     return(
         <>

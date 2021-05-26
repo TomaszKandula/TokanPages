@@ -26,19 +26,19 @@ export default function SignupPage()
     { 
         if (navigation?.content === combinedDefaults.getNavigationContent.content) 
             fetchNavigationContent(); 
-    }, [ fetchNavigationContent, navigation?.content ]);
+    }, [ fetchNavigationContent, navigation ]);
 
     React.useEffect(() => 
     { 
         if (footer.content === combinedDefaults.getFooterContent.content) 
             fetchFooterContent(); 
-    }, [ fetchFooterContent, footer?.content ]);
+    }, [ fetchFooterContent, footer ]);
 
     React.useEffect(() => 
     { 
         if (signupForm?.content === combinedDefaults.getSignupFormContent.content) 
             fetchSignupFormContent(); 
-    }, [ fetchSignupFormContent, signupForm?.content ]);
+    }, [ fetchSignupFormContent, signupForm ]);
 
     return (
         <>

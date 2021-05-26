@@ -54,61 +54,61 @@ export default function Index()
     { 
         if (navigation?.content === combinedDefaults.getNavigationContent.content) 
             fetchNavigationContent(); 
-    }, [ fetchNavigationContent, navigation?.content ]);
+    }, [ fetchNavigationContent, navigation ]);
     
     React.useEffect(() => 
     { 
         if (footer?.content === combinedDefaults.getFooterContent.content) 
             fetchFooterContent(); 
-    }, [ fetchFooterContent, footer?.content ]);
+    }, [ fetchFooterContent, footer ]);
     
     React.useEffect(() => 
     { 
         if (header?.content === combinedDefaults.getHeaderContent.content) 
             fetchHeaderContent(); 
-    }, [ fetchHeaderContent, header?.content ]);
+    }, [ fetchHeaderContent, header ]);
     
     React.useEffect(() => 
     { 
         if (features?.content === combinedDefaults.getFeaturesContent.content) 
             fetchFeaturesContent(); 
-    }, [ fetchFeaturesContent, features?.content ]);
+    }, [ fetchFeaturesContent, features ]);
     
     React.useEffect(() => 
     { 
         if (articles?.content === combinedDefaults.getArticleFeatContent.content) 
             fetchArticlesContent(); 
-    }, [ fetchArticlesContent, articles?.content ]);
+    }, [ fetchArticlesContent, articles ]);
     
     React.useEffect(() => 
     { 
         if (featured?.content === combinedDefaults.getFeaturedContent.content) 
             fetchFeaturedContent(); 
-    }, [ fetchFeaturedContent, featured?.content ]);
+    }, [ fetchFeaturedContent, featured ]);
     
     React.useEffect(() => 
     { 
         if (testimonials?.content === combinedDefaults.getTestimonialsContent.content) 
             fetchTestimonialsContent(); 
-    }, [ fetchTestimonialsContent, testimonials?.content ]);
+    }, [ fetchTestimonialsContent, testimonials ]);
     
     React.useEffect(() => 
     { 
         if (newsletter?.content === combinedDefaults.getNewsletterContent.content) 
             fetchNewsletterContent(); 
-    }, [ fetchNewsletterContent, newsletter?.content ]);
+    }, [ fetchNewsletterContent, newsletter ]);
     
     React.useEffect(() => 
     { 
         if (contactForm?.content === combinedDefaults.getContactFormContent.content) 
             fetchContactFormContent(); 
-    }, [ fetchContactFormContent, contactForm?.content ]);
+    }, [ fetchContactFormContent, contactForm ]);
     
     React.useEffect(() => 
     { 
         if (cookiesPrompt?.content === combinedDefaults.getCookiesPromptContent.content) 
             fetchCookiesContent(); 
-    }, [ fetchCookiesContent, cookiesPrompt?.content ]);
+    }, [ fetchCookiesContent, cookiesPrompt ]);
     
     React.useEffect(() => AOS.refresh());
 
