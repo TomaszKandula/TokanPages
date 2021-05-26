@@ -18,21 +18,35 @@ export default function SigninPage()
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const signinForm = useSelector((state: IApplicationState) => state.getSigninFormContent);
 
-    const fetchNavigationContent = React.useCallback(() => { dispatch(NavigationContent.getNavigationContent()); }, [ dispatch ]);
-    const fetchFooterContent = React.useCallback(() => { dispatch(FooterContent.getFooterContent()); }, [ dispatch ]);
-    const fetchSigninFormContent = React.useCallback(() => { dispatch(SigninFormContent.getSigninFormContent()); }, [ dispatch ]);
+    const fetchNavigationContent = React.useCallback(() => dispatch(NavigationContent.getNavigationContent()), [ dispatch ]);
+    const fetchFooterContent = React.useCallback(() => dispatch(FooterContent.getFooterContent()), [ dispatch ]);
+    const fetchSigninFormContent = React.useCallback(() => dispatch(SigninFormContent.getSigninFormContent()), [ dispatch ]);
 
-    React.useEffect(() => { if (navigation.content === combinedDefaults.getNavigationContent.content) fetchNavigationContent(); }, [ fetchNavigationContent, navigation.content ]);
-    React.useEffect(() => { if (footer.content === combinedDefaults.getFooterContent.content) fetchFooterContent(); }, [ fetchFooterContent, footer.content ]);
-    React.useEffect(() => { if (signinForm.content === combinedDefaults.getSigninFormContent.content) fetchSigninFormContent(); }, [ fetchSigninFormContent, signinForm.content ]);
+    React.useEffect(() => 
+    { 
+        if (navigation?.content === combinedDefaults.getNavigationContent.content) 
+            fetchNavigationContent(); 
+    }, [ fetchNavigationContent, navigation?.content ]);
+    
+    React.useEffect(() => 
+    { 
+        if (footer?.content === combinedDefaults.getFooterContent.content) 
+            fetchFooterContent(); 
+    }, [ fetchFooterContent, footer?.content ]);
+    
+    React.useEffect(() => 
+    { 
+        if (signinForm?.content === combinedDefaults.getSigninFormContent.content) 
+            fetchSigninFormContent(); 
+    }, [ fetchSigninFormContent, signinForm?.content ]);
     
     return (
         <>
-            <Navigation navigation={navigation} isLoading={navigation.isLoading} />
+            <Navigation navigation={navigation} isLoading={navigation?.isLoading} />
             <Container>
-                <SigninForm signinForm={signinForm} isLoading={signinForm.isLoading} />
+                <SigninForm signinForm={signinForm} isLoading={signinForm?.isLoading} />
             </Container>
-            <Footer footer={footer} isLoading={footer.isLoading} />
+            <Footer footer={footer} isLoading={footer?.isLoading} />
         </>
     );
 }

@@ -22,7 +22,7 @@ export default function Cookies(props: { cookiesPrompt: ICookiesPromptContentDto
         {
             cookieName: "cookieConsent", 
             value: "granted", 
-            days: props.cookiesPrompt.content.days,
+            days: props.cookiesPrompt?.content.days,
             sameSite: "Strict",
             secure: ""
         });
@@ -36,15 +36,15 @@ export default function Cookies(props: { cookiesPrompt: ICookiesPromptContentDto
                     <Card>
                         <CardContent>
                             <Typography variant="h5" component="h2" gutterBottom={true}>
-                                {props.cookiesPrompt.content.caption}
+                                {props.cookiesPrompt?.content.caption}
                             </Typography>
                             <Typography variant="subtitle1" component="p" color="textSecondary">
-                                {props.cookiesPrompt.content.text}
+                                {props.cookiesPrompt?.content.text}
                             </Typography>            
                         </CardContent>
                         <CardActions>
                             <Button onClick={onClickEvent} color="primary">
-                                {props.cookiesPrompt.content.button}
+                                {props.cookiesPrompt?.content.button}
                             </Button>
                         </CardActions>
                     </Card>

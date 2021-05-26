@@ -22,10 +22,10 @@ export default function Testimonials(props: { testimonials: ITestimonialsContent
                         <Container maxWidth="sm">
                             <Box textAlign="center" mb={5}>
                                 <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials.content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials?.content.caption}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials.content.subtitle}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials?.content.subtitle}
                                 </Typography>
                             </Box>
                         </Container>
@@ -33,43 +33,43 @@ export default function Testimonials(props: { testimonials: ITestimonialsContent
                             <Box className={classes.boxPadding}>
                                 {props.isLoading 
                                     ? <Skeleton variant="rect" height="120px" width="120px" /> 
-                                    : renderImage(TESTIMONIALS_PATH, props.testimonials.content.photo1, classes.img)}
+                                    : renderImage(TESTIMONIALS_PATH, props.testimonials?.content.photo1, classes.img)}
                                 <Typography variant="h4" component="h3" align="center" className={classes.title}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials.content.name1}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials?.content.name1}
                                 </Typography>
                                 <Typography variant="subtitle1" component="h4" align="center" className={classes.subtitle}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials.content.occupation1}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials?.content.occupation1}
                                 </Typography>
                                 <Typography variant="body1" component="p" align="center" color="textSecondary" className={classes.commendation}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials.content.text1}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials?.content.text1}
                                 </Typography>
                             </Box>
                             <Box className={classes.boxPadding}>
                                 {props.isLoading 
                                     ? <Skeleton variant="rect" height="120px" width="120px" /> 
-                                    : renderImage(TESTIMONIALS_PATH, props.testimonials.content.photo2, classes.img)}
+                                    : renderImage(TESTIMONIALS_PATH, props.testimonials?.content.photo2, classes.img)}
                                 <Typography variant="h4" component="h3" align="center" className={classes.title}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials.content.name2}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials?.content.name2}
                                 </Typography>
                                 <Typography variant="subtitle1" component="h4" align="center" className={classes.subtitle}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials.content.occupation2}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials?.content.occupation2}
                                 </Typography>
                                 <Typography variant="body1" component="p" align="center" color="textSecondary" className={classes.commendation}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials.content.text2}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials?.content.text2}
                                 </Typography>
                             </Box>
                             <Box className={classes.boxPadding}>
                                 {props.isLoading 
                                     ? <Skeleton variant="rect" height="120px" width="120px" /> 
-                                    : renderImage(TESTIMONIALS_PATH, props.testimonials.content.photo3, classes.img)}
+                                    : renderImage(TESTIMONIALS_PATH, props.testimonials?.content.photo3, classes.img)}
                                 <Typography variant="h4" component="h3" align="center" className={classes.title}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials.content.name3}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials?.content.name3}
                                 </Typography>
                                 <Typography variant="subtitle1" component="h4" align="center" className={classes.subtitle}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials.content.occupation3}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials?.content.occupation3}
                                 </Typography>
                                 <Typography variant="body1" component="p" align="center" color="textSecondary" className={classes.commendation}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials.content.text3}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.testimonials?.content.text3}
                                 </Typography>
                             </Box>
                         </Carousel>

@@ -108,10 +108,10 @@ export default function Newsletter(props: { newsletter: INewsletterContentDto, i
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={5}>
                                 <Typography variant="h4" component="h2">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.newsletter.content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.newsletter?.content.caption}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.newsletter.content.text}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.newsletter?.content.text}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={7}>
@@ -128,7 +128,7 @@ export default function Newsletter(props: { newsletter: INewsletterContentDto, i
                                             <Grid item xs={12} sm={5}>
                                                 <Button onClick={buttonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={progress}>
                                                     {progress &&  <CircularProgress size={20} />}
-                                                    {!progress && props.newsletter.content.button}
+                                                    {!progress && props.newsletter?.content.button}
                                                 </Button>
                                             </Grid>
                                         </Grid>

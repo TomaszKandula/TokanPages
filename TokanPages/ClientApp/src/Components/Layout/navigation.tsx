@@ -17,7 +17,7 @@ export default function Navigation(props: { navigation: INavigationContentDto, i
                 <Toolbar className={classes.toolBar}>
                     <Link to="/" className={classes.mainLink}>
                         <div data-aos="fade-down">
-                            {renderImage(ICONS_PATH, props.navigation.content.logo, classes.mainLogo)}
+                            {renderImage(ICONS_PATH, props.navigation?.content.logo, classes.mainLogo)}
                         </div>
                     </Link>
                 </Toolbar>

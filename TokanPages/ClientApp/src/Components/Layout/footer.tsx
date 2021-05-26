@@ -37,7 +37,7 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
     { 
         return (
             <Link to="/terms" className={classes.links}>
-                {props.footer.content.terms}
+                {props.footer?.content.terms}
             </Link>
         ); 
     };
@@ -46,7 +46,7 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
     { 
         return (
             <Link to="/policy" className={classes.links}>
-                {props.footer.content.policy}
+                {props.footer?.content.policy}
             </Link>
         );
     };
@@ -85,10 +85,10 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
                 <div data-aos="zoom-in">
                     <Box pt={6} pb={boxPaddingBottom} display="flex" flexWrap="wrap" alignItems="center">
                         <Typography component="p" gutterBottom={false} className={classes.copy}>
-                            {props?.footer.content.copyright} | {props?.footer.content.reserved} | <SetTermsLink /> | <SetPolicyLink />
+                            {props.footer?.content.copyright} | {props.footer?.content.reserved} | <SetTermsLink /> | <SetPolicyLink />
                         </Typography>
                         <Box ml="auto" className={classes.iconsBoxRoot}>
-                            {props?.footer.content.icons.map((item: IFooterContentIconDto, index: number) => (
+                            {props.footer?.content.icons.map((item: IFooterContentIconDto, index: number) => (
                                 <IconButton 
                                     key={index}
                                     color="default" 

@@ -26,21 +26,35 @@ export default function UnsubscribePage()
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const unsubscribe = useSelector((state: IApplicationState) => state.getUnsubscribeContent);
 
-    const fetchNavigationContent = React.useCallback(() => { dispatch(NavigationContent.getNavigationContent()); }, [ dispatch ]);
-    const fetchFooterContent = React.useCallback(() => { dispatch(FooterContent.getFooterContent()); }, [ dispatch ]);
-    const fetchUnsubscribeFormContent = React.useCallback(() => { dispatch(UnsubscribeContent.getUnsubscribeContent()); }, [ dispatch ]);
+    const fetchNavigationContent = React.useCallback(() => dispatch(NavigationContent.getNavigationContent()), [ dispatch ]);
+    const fetchFooterContent = React.useCallback(() => dispatch(FooterContent.getFooterContent()), [ dispatch ]);
+    const fetchUnsubscribeFormContent = React.useCallback(() => dispatch(UnsubscribeContent.getUnsubscribeContent()), [ dispatch ]);
 
-    React.useEffect(() => { if (navigation.content === combinedDefaults.getNavigationContent.content) fetchNavigationContent(); }, [ fetchNavigationContent, navigation.content ]);
-    React.useEffect(() => { if (footer.content === combinedDefaults.getFooterContent.content) fetchFooterContent(); }, [ fetchFooterContent, footer.content ]);
-    React.useEffect(() => { if (unsubscribe.content === combinedDefaults.getUnsubscribeContent.content) fetchUnsubscribeFormContent(); }, [ fetchUnsubscribeFormContent, unsubscribe.content ]);
+    React.useEffect(() => 
+    { 
+        if (navigation?.content === combinedDefaults.getNavigationContent.content) 
+            fetchNavigationContent(); 
+    }, [ fetchNavigationContent, navigation?.content ]);
+    
+    React.useEffect(() => 
+    { 
+        if (footer?.content === combinedDefaults.getFooterContent.content) 
+            fetchFooterContent(); 
+    }, [ fetchFooterContent, footer?.content ]);
+    
+    React.useEffect(() => 
+    { 
+        if (unsubscribe?.content === combinedDefaults.getUnsubscribeContent.content) 
+            fetchUnsubscribeFormContent(); 
+    }, [ fetchUnsubscribeFormContent, unsubscribe?.content ]);
     
     return(
         <>
-            <Navigation navigation={navigation} isLoading={navigation.isLoading} />
+            <Navigation navigation={navigation} isLoading={navigation?.isLoading} />
             <Container>
-                <Unsubscribe id={id} unsubscribe={unsubscribe} isLoading={unsubscribe.isLoading} />
+                <Unsubscribe id={id} unsubscribe={unsubscribe} isLoading={unsubscribe?.isLoading} />
             </Container>
-            <Footer footer={footer} isLoading={footer.isLoading} />
+            <Footer footer={footer} isLoading={footer?.isLoading} />
         </>
     );
 }

@@ -39,42 +39,91 @@ export default function Index()
     const contactForm = useSelector((state: IApplicationState) => state.getContactFormContent);
     const cookiesPrompt = useSelector((state: IApplicationState) => state.getCookiesPromptContent);
 
-    const fetchNavigationContent = React.useCallback(() => { dispatch(NavigationContent.getNavigationContent()); }, [ dispatch ]);
-    const fetchFooterContent = React.useCallback(() => { dispatch(FooterContent.getFooterContent()); }, [ dispatch ]);
-    const fetchHeaderContent = React.useCallback(() => { dispatch(HeaderContent.getHeaderContent()); }, [ dispatch ]);
-    const fetchFeaturesContent = React.useCallback(() => { dispatch(FeaturesContent.getFeaturesContent()); }, [ dispatch ]);
-    const fetchArticlesContent = React.useCallback(() => { dispatch(ArticlesContent.getArticleFeaturesContent()); }, [ dispatch ]);
-    const fetchFeaturedContent = React.useCallback(() => { dispatch(FeaturedContent.getFeaturedContent()); }, [ dispatch ]);
-    const fetchTestimonialsContent = React.useCallback(() => { dispatch(TestimonialsContent.getTestimonialsContent()); }, [ dispatch ]);
-    const fetchNewsletterContent = React.useCallback(() => { dispatch(NewsletterContent.getNewsletterContent()); }, [ dispatch ]);
-    const fetchContactFormContent = React.useCallback(() => { dispatch(ContactFormContent.getContactFormContent()); }, [ dispatch ]);
-    const fetchCookiesContent = React.useCallback(() => { dispatch(CookiesContent.getCookiesPromptContent()); }, [ dispatch ]);
+    const fetchNavigationContent = React.useCallback(() => dispatch(NavigationContent.getNavigationContent()), [ dispatch ]);
+    const fetchFooterContent = React.useCallback(() => dispatch(FooterContent.getFooterContent()), [ dispatch ]);
+    const fetchHeaderContent = React.useCallback(() => dispatch(HeaderContent.getHeaderContent()), [ dispatch ]);
+    const fetchFeaturesContent = React.useCallback(() => dispatch(FeaturesContent.getFeaturesContent()), [ dispatch ]);
+    const fetchArticlesContent = React.useCallback(() => dispatch(ArticlesContent.getArticleFeaturesContent()), [ dispatch ]);
+    const fetchFeaturedContent = React.useCallback(() => dispatch(FeaturedContent.getFeaturedContent()), [ dispatch ]);
+    const fetchTestimonialsContent = React.useCallback(() => dispatch(TestimonialsContent.getTestimonialsContent()), [ dispatch ]);
+    const fetchNewsletterContent = React.useCallback(() => dispatch(NewsletterContent.getNewsletterContent()), [ dispatch ]);
+    const fetchContactFormContent = React.useCallback(() => dispatch(ContactFormContent.getContactFormContent()), [ dispatch ]);
+    const fetchCookiesContent = React.useCallback(() => dispatch(CookiesContent.getCookiesPromptContent()), [ dispatch ]);
     
-    React.useEffect(() => { if (navigation.content === combinedDefaults.getNavigationContent.content) fetchNavigationContent(); }, [ fetchNavigationContent, navigation.content ]);
-    React.useEffect(() => { if (footer.content === combinedDefaults.getFooterContent.content) fetchFooterContent(); }, [ fetchFooterContent, footer.content ]);
-    React.useEffect(() => { if (header.content === combinedDefaults.getHeaderContent.content) fetchHeaderContent(); }, [ fetchHeaderContent, header.content ]);
-    React.useEffect(() => { if (features.content === combinedDefaults.getFeaturesContent.content) fetchFeaturesContent(); }, [ fetchFeaturesContent, features.content ]);
-    React.useEffect(() => { if (articles.content === combinedDefaults.getArticleFeatContent.content) fetchArticlesContent(); }, [ fetchArticlesContent, articles.content ]);
-    React.useEffect(() => { if (featured.content === combinedDefaults.getFeaturedContent.content) fetchFeaturedContent(); }, [ fetchFeaturedContent, featured.content ]);
-    React.useEffect(() => { if (testimonials.content === combinedDefaults.getTestimonialsContent.content) fetchTestimonialsContent(); }, [ fetchTestimonialsContent, testimonials.content ]);
-    React.useEffect(() => { if (newsletter.content === combinedDefaults.getNewsletterContent.content) fetchNewsletterContent(); }, [ fetchNewsletterContent, newsletter.content ]);
-    React.useEffect(() => { if (contactForm.content === combinedDefaults.getContactFormContent.content) fetchContactFormContent(); }, [ fetchContactFormContent, contactForm.content ]);
-    React.useEffect(() => { if (cookiesPrompt.content === combinedDefaults.getCookiesPromptContent.content) fetchCookiesContent(); }, [ fetchCookiesContent, cookiesPrompt.content ]);
+    React.useEffect(() => 
+    { 
+        if (navigation?.content === combinedDefaults.getNavigationContent.content) 
+            fetchNavigationContent(); 
+    }, [ fetchNavigationContent, navigation?.content ]);
     
-    React.useEffect(() => { AOS.refresh(); });
+    React.useEffect(() => 
+    { 
+        if (footer?.content === combinedDefaults.getFooterContent.content) 
+            fetchFooterContent(); 
+    }, [ fetchFooterContent, footer?.content ]);
+    
+    React.useEffect(() => 
+    { 
+        if (header?.content === combinedDefaults.getHeaderContent.content) 
+            fetchHeaderContent(); 
+    }, [ fetchHeaderContent, header?.content ]);
+    
+    React.useEffect(() => 
+    { 
+        if (features?.content === combinedDefaults.getFeaturesContent.content) 
+            fetchFeaturesContent(); 
+    }, [ fetchFeaturesContent, features?.content ]);
+    
+    React.useEffect(() => 
+    { 
+        if (articles?.content === combinedDefaults.getArticleFeatContent.content) 
+            fetchArticlesContent(); 
+    }, [ fetchArticlesContent, articles?.content ]);
+    
+    React.useEffect(() => 
+    { 
+        if (featured?.content === combinedDefaults.getFeaturedContent.content) 
+            fetchFeaturedContent(); 
+    }, [ fetchFeaturedContent, featured?.content ]);
+    
+    React.useEffect(() => 
+    { 
+        if (testimonials?.content === combinedDefaults.getTestimonialsContent.content) 
+            fetchTestimonialsContent(); 
+    }, [ fetchTestimonialsContent, testimonials?.content ]);
+    
+    React.useEffect(() => 
+    { 
+        if (newsletter?.content === combinedDefaults.getNewsletterContent.content) 
+            fetchNewsletterContent(); 
+    }, [ fetchNewsletterContent, newsletter?.content ]);
+    
+    React.useEffect(() => 
+    { 
+        if (contactForm?.content === combinedDefaults.getContactFormContent.content) 
+            fetchContactFormContent(); 
+    }, [ fetchContactFormContent, contactForm?.content ]);
+    
+    React.useEffect(() => 
+    { 
+        if (cookiesPrompt?.content === combinedDefaults.getCookiesPromptContent.content) 
+            fetchCookiesContent(); 
+    }, [ fetchCookiesContent, cookiesPrompt?.content ]);
+    
+    React.useEffect(() => AOS.refresh());
 
     return (
         <>
-            <Navigation navigation={navigation} isLoading={navigation.isLoading} />
-            <Header header={header} isLoading={header.isLoading} />
-            <Features features={features} isLoading={features.isLoading} />
-            <ArticleFeat articles={articles} isLoading={articles.isLoading} />
-            <Featured featured={featured} isLoading={featured.isLoading} />
-            <Testimonials testimonials={testimonials} isLoading={testimonials.isLoading} />
-            <Newsletter newsletter={newsletter} isLoading={newsletter.isLoading} />
-            <ContactForm contactForm={contactForm} isLoading={contactForm.isLoading} />
-            <Cookies cookiesPrompt={cookiesPrompt} isLoading={cookiesPrompt.isLoading} />
-            <Footer footer={footer} isLoading={footer.isLoading} />
+            <Navigation navigation={navigation} isLoading={navigation?.isLoading} />
+            <Header header={header} isLoading={header?.isLoading} />
+            <Features features={features} isLoading={features?.isLoading} />
+            <ArticleFeat articles={articles} isLoading={articles?.isLoading} />
+            <Featured featured={featured} isLoading={featured?.isLoading} />
+            <Testimonials testimonials={testimonials} isLoading={testimonials?.isLoading} />
+            <Newsletter newsletter={newsletter} isLoading={newsletter?.isLoading} />
+            <ContactForm contactForm={contactForm} isLoading={contactForm?.isLoading} />
+            <Cookies cookiesPrompt={cookiesPrompt} isLoading={cookiesPrompt?.isLoading} />
+            <Footer footer={footer} isLoading={footer?.isLoading} />
         </>
     );
 }
