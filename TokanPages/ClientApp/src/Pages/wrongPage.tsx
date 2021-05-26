@@ -27,7 +27,7 @@ export default function WrongPage()
     { 
         if (wrongPagePrompt?.content === combinedDefaults.getWrongPagePromptContent.content) 
             fetchWrongPagePromptContent(); 
-    }, [ fetchWrongPagePromptContent, wrongPagePrompt?.content ]);
+    }, [ fetchWrongPagePromptContent, wrongPagePrompt ]);
 
     return (
         <section>

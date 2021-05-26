@@ -26,19 +26,19 @@ export default function SigninPage()
     { 
         if (navigation?.content === combinedDefaults.getNavigationContent.content) 
             fetchNavigationContent(); 
-    }, [ fetchNavigationContent, navigation?.content ]);
+    }, [ fetchNavigationContent, navigation ]);
     
     React.useEffect(() => 
     { 
         if (footer?.content === combinedDefaults.getFooterContent.content) 
             fetchFooterContent(); 
-    }, [ fetchFooterContent, footer?.content ]);
+    }, [ fetchFooterContent, footer ]);
     
     React.useEffect(() => 
     { 
         if (signinForm?.content === combinedDefaults.getSigninFormContent.content) 
             fetchSigninFormContent(); 
-    }, [ fetchSigninFormContent, signinForm?.content ]);
+    }, [ fetchSigninFormContent, signinForm ]);
     
     return (
         <>

@@ -26,19 +26,19 @@ export default function ResetPage()
     { 
         if (navigation?.content === combinedDefaults.getNavigationContent.content) 
             fetchNavigationContent(); 
-    }, [ fetchNavigationContent, navigation?.content ]);
+    }, [ fetchNavigationContent, navigation ]);
     
     React.useEffect(() => 
     { 
         if (footer?.content === combinedDefaults.getFooterContent.content) 
             fetchFooterContent(); 
-    }, [ fetchFooterContent, footer?.content ]);
+    }, [ fetchFooterContent, footer ]);
     
     React.useEffect(() => 
     { 
         if (resetForm?.content === combinedDefaults.getResetFormContent.content) 
             fetchResetFormContent(); 
-    }, [ fetchResetFormContent, resetForm?.content ]);
+    }, [ fetchResetFormContent, resetForm ]);
     
     return (
         <>     
