@@ -60,7 +60,7 @@ const DispatchCall = async (dispatch: any, url: string, request: TRequestContent
 
     if (result.status === 200)
     {
-        dispatch({ type: receive, payload: result.data });
+        dispatch({ type: receive, payload: result.content });
         return;
     }
 

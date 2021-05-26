@@ -1,54 +1,30 @@
 import axios from "axios";
 
-//TODO: remove 'getDataFromUrl' method
-const getDataFromUrl = async (url: string): Promise<any> =>
-{
-    let result: string = "";
-
-    await axios({ method: "GET", url: url })
-    .then((response) => 
-    {
-        result = response.status === 200 
-            ? response.data 
-            : console.warn(response.status);
-    })
-    .catch((error) => 
-    {
-        console.error(error);
-    });
-
-    return result;
-}
-
-export { getDataFromUrl }
-
 interface IPromiseResult 
 {
     status: number | null;
-    data: any | null;
+    content: any | null;
     error: any | null;
+}
+
+export const GetDataDefault: IPromiseResult = 
+{
+    status: null,
+    content: null,
+    error: null
 }
 
 export const GetData = async (url: string): Promise<IPromiseResult> =>
 {
-    let result: IPromiseResult = 
-    { 
-        status: null,
-        data: null,
-        error: null
-    };
+    let result: IPromiseResult = GetDataDefault;
 
-    await axios.get(url, 
-    {
-        method: "GET", 
-        responseType: "json"
-    })
+    await axios.get(url, { method: "GET" })
     .then(response =>
     {
         result = 
         {
             status: response.status,
-            data: response.data,
+            content: response.data,
             error: null
         }
     })
@@ -57,7 +33,7 @@ export const GetData = async (url: string): Promise<IPromiseResult> =>
         result = 
         { 
             status: null,
-            data: null,
+            content: null,
             error: error 
         };
     });
