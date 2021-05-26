@@ -21,19 +21,24 @@ export default function WrongPage()
     const dispatch = useDispatch();
 
     const wrongPagePrompt = useSelector((state: IApplicationState) => state.getWrongPagePromptContent);
-    const fetchWrongPagePromptContent = React.useCallback(() => { dispatch(WrongPagePromptContent.getWrongPagePromptContent()); }, [ dispatch ]);
-    React.useEffect(() => { if (wrongPagePrompt.content === combinedDefaults.getWrongPagePromptContent.content) fetchWrongPagePromptContent(); }, [ fetchWrongPagePromptContent, wrongPagePrompt.content ]);
+    const fetchWrongPagePromptContent = React.useCallback(() => dispatch(WrongPagePromptContent.getWrongPagePromptContent()), [ dispatch ]);
+    
+    React.useEffect(() => 
+    { 
+        if (wrongPagePrompt?.content === combinedDefaults.getWrongPagePromptContent.content) 
+            fetchWrongPagePromptContent(); 
+    }, [ fetchWrongPagePromptContent, wrongPagePrompt?.content ]);
 
     return (
         <section>
             <Container maxWidth="md">
                 <Box pt={8} pb={10} textAlign="center">
-                    <Typography variant="h1">{wrongPagePrompt.content.code}</Typography>
-                    <Typography variant="h4" component="h2" gutterBottom={true}>{wrongPagePrompt.content.header}</Typography>
-                    <Typography variant="subtitle1" color="textSecondary">{wrongPagePrompt.content.description}</Typography>
+                    <Typography variant="h1">{wrongPagePrompt?.content.code}</Typography>
+                    <Typography variant="h4" component="h2" gutterBottom={true}>{wrongPagePrompt?.content.header}</Typography>
+                    <Typography variant="subtitle1" color="textSecondary">{wrongPagePrompt?.content.description}</Typography>
                     <Box mt={4}>
                         <Link to="/" className={classes.mainLink}>
-                            <Button variant="contained" color="primary">{wrongPagePrompt.content.button}</Button>
+                            <Button variant="contained" color="primary">{wrongPagePrompt?.content.button}</Button>
                         </Link>
                     </Box>
                 </Box>

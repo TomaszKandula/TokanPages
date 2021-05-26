@@ -20,7 +20,7 @@ export default function Header(props: { header: IHeaderContentDto, isLoading: bo
                     <Grid item xs={12} sm={6}>
                         <Box className={classes.imageBox}>
                             <div data-aos="fade-right">
-                                {renderImage(IMAGES_PATH, props.header.content.photo, classes.img)}
+                                {renderImage(IMAGES_PATH, props.header?.content.photo, classes.img)}
                             </div>
                         </Box>
                     </Grid>
@@ -28,14 +28,14 @@ export default function Header(props: { header: IHeaderContentDto, isLoading: bo
                         <Box className={classes.contentBox}>
                             <div data-aos="fade-left">
                                 <Typography variant="overline" component="span" gutterBottom={true}>
-                                    {props.header.content.caption}
+                                    {props.header?.content.caption}
                                 </Typography>
                                 <Typography variant="h5" color="textSecondary" paragraph={true}>
-                                    {props.header.content.description}
+                                    {props.header?.content.description}
                                 </Typography>
                                 <Box mt={4}>
                                     <Link to="/mystory" className={classes.mainLink}>
-                                        <Button variant="contained" className={classes.mainAction}>{props.header.content.action}</Button>
+                                        <Button variant="contained" className={classes.mainAction}>{props.header?.content.action}</Button>
                                     </Link>
                                 </Box>
                             </div>

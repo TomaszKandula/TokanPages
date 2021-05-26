@@ -19,35 +19,34 @@ const useQuery = () =>
 export default function ArticlesPage() 
 {
     const queryParam = useQuery();
+    const dispatch = useDispatch();
     const id = queryParam.get("id");
-    const content = id ? <ArticleDetail id={id} /> : <ArticleList />;
 
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
 
-    const dispatch = useDispatch();
-    const fetchNavigationContent = React.useCallback(() => { dispatch(NavigationContent.getNavigationContent()); }, [ dispatch ]);
-    const fetchFooterContent = React.useCallback(() => { dispatch(FooterContent.getFooterContent()); }, [ dispatch ]);
+    const fetchNavigationContent = React.useCallback(() => dispatch(NavigationContent.getNavigationContent()), [ dispatch ]);
+    const fetchFooterContent = React.useCallback(() => dispatch(FooterContent.getFooterContent()), [ dispatch ]);
 
     React.useEffect(() => 
     {
-        if (navigation.content === combinedDefaults.getNavigationContent.content) fetchNavigationContent();
-    }, 
-    [ fetchNavigationContent, navigation.content ]);
+        if (navigation?.content === combinedDefaults.getNavigationContent.content) 
+            fetchNavigationContent();
+    }, [ fetchNavigationContent, navigation?.content ]);
 
     React.useEffect(() => 
     {
-        if (footer.content === combinedDefaults.getFooterContent.content) fetchFooterContent();
-    }, 
-    [ fetchFooterContent, footer.content ]);
+        if (footer.content === combinedDefaults.getFooterContent.content) 
+            fetchFooterContent();
+    }, [ fetchFooterContent, footer?.content ]);
 
     return (
         <>
-            <Navigation navigation={navigation} isLoading={navigation.isLoading} />
+            <Navigation navigation={navigation} isLoading={navigation?.isLoading} />
             <Container>
-                {content}
+                {id ? <ArticleDetail id={id} /> : <ArticleList />}
             </Container>
-            <Footer footer={footer} isLoading={footer.isLoading} />
+            <Footer footer={footer} isLoading={footer?.isLoading} />
         </>
     );
 }

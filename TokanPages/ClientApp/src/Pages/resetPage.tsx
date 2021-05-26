@@ -18,21 +18,35 @@ export default function ResetPage()
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const resetForm = useSelector((state: IApplicationState) => state.getResetFormContent);
 
-    const fetchNavigationContent = React.useCallback(() => { dispatch(NavigationContent.getNavigationContent()); }, [ dispatch ]);
-    const fetchFooterContent = React.useCallback(() => { dispatch(FooterContent.getFooterContent()); }, [ dispatch ]);
-    const fetchResetFormContent = React.useCallback(() => { dispatch(ResetFormContent.getResetFormContent()); }, [ dispatch ]);
+    const fetchNavigationContent = React.useCallback(() => dispatch(NavigationContent.getNavigationContent()), [ dispatch ]);
+    const fetchFooterContent = React.useCallback(() => dispatch(FooterContent.getFooterContent()), [ dispatch ]);
+    const fetchResetFormContent = React.useCallback(() => dispatch(ResetFormContent.getResetFormContent()), [ dispatch ]);
 
-    React.useEffect(() => { if (navigation.content === combinedDefaults.getNavigationContent.content) fetchNavigationContent(); }, [ fetchNavigationContent, navigation.content ]);
-    React.useEffect(() => { if (footer.content === combinedDefaults.getFooterContent.content) fetchFooterContent(); }, [ fetchFooterContent, footer.content ]);
-    React.useEffect(() => { if (resetForm.content === combinedDefaults.getResetFormContent.content) fetchResetFormContent(); }, [ fetchResetFormContent, resetForm.content ]);
+    React.useEffect(() => 
+    { 
+        if (navigation?.content === combinedDefaults.getNavigationContent.content) 
+            fetchNavigationContent(); 
+    }, [ fetchNavigationContent, navigation?.content ]);
+    
+    React.useEffect(() => 
+    { 
+        if (footer?.content === combinedDefaults.getFooterContent.content) 
+            fetchFooterContent(); 
+    }, [ fetchFooterContent, footer?.content ]);
+    
+    React.useEffect(() => 
+    { 
+        if (resetForm?.content === combinedDefaults.getResetFormContent.content) 
+            fetchResetFormContent(); 
+    }, [ fetchResetFormContent, resetForm?.content ]);
     
     return (
         <>     
-            <Navigation navigation={navigation} isLoading={navigation.isLoading} />
+            <Navigation navigation={navigation} isLoading={navigation?.isLoading} />
             <Container>
-                <ResetForm resetForm={resetForm} isLoading={resetForm.isLoading} />
+                <ResetForm resetForm={resetForm} isLoading={resetForm?.isLoading} />
             </Container>
-            <Footer footer={footer} isLoading={footer.isLoading} />
+            <Footer footer={footer} isLoading={footer?.isLoading} />
         </>
     );
 }

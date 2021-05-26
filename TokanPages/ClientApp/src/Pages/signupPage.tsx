@@ -18,21 +18,35 @@ export default function SignupPage()
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const signupForm = useSelector((state: IApplicationState) => state.getSignupFormContent);
 
-    const fetchNavigationContent = React.useCallback(() => { dispatch(NavigationContent.getNavigationContent()); }, [ dispatch ]);
-    const fetchFooterContent = React.useCallback(() => { dispatch(FooterContent.getFooterContent()); }, [ dispatch ]);
-    const fetchSignupFormContent = React.useCallback(() => { dispatch(SignupFormContent.getSignupFormContent()); }, [ dispatch ]);
+    const fetchNavigationContent = React.useCallback(() => dispatch(NavigationContent.getNavigationContent()), [ dispatch ]);
+    const fetchFooterContent = React.useCallback(() => dispatch(FooterContent.getFooterContent()), [ dispatch ]);
+    const fetchSignupFormContent = React.useCallback(() => dispatch(SignupFormContent.getSignupFormContent()), [ dispatch ]);
 
-    React.useEffect(() => { if (navigation.content === combinedDefaults.getNavigationContent.content) fetchNavigationContent(); }, [ fetchNavigationContent, navigation.content ]);
-    React.useEffect(() => { if (footer.content === combinedDefaults.getFooterContent.content) fetchFooterContent(); }, [ fetchFooterContent, footer.content ]);
-    React.useEffect(() => { if (signupForm.content === combinedDefaults.getSignupFormContent.content) fetchSignupFormContent(); }, [ fetchSignupFormContent, signupForm.content ]);
+    React.useEffect(() => 
+    { 
+        if (navigation?.content === combinedDefaults.getNavigationContent.content) 
+            fetchNavigationContent(); 
+    }, [ fetchNavigationContent, navigation?.content ]);
+
+    React.useEffect(() => 
+    { 
+        if (footer.content === combinedDefaults.getFooterContent.content) 
+            fetchFooterContent(); 
+    }, [ fetchFooterContent, footer?.content ]);
+
+    React.useEffect(() => 
+    { 
+        if (signupForm?.content === combinedDefaults.getSignupFormContent.content) 
+            fetchSignupFormContent(); 
+    }, [ fetchSignupFormContent, signupForm?.content ]);
 
     return (
         <>
-            <Navigation navigation={navigation} isLoading={navigation.isLoading} />
+            <Navigation navigation={navigation} isLoading={navigation?.isLoading} />
             <Container>
-                <SignupForm signupForm={signupForm} isLoading={signupForm.isLoading} />
+                <SignupForm signupForm={signupForm} isLoading={signupForm?.isLoading} />
             </Container>
-            <Footer footer={footer} isLoading={footer.isLoading} />
+            <Footer footer={footer} isLoading={footer?.isLoading} />
         </>
     );
 }

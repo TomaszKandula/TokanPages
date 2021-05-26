@@ -19,20 +19,20 @@ export default function Unsubscribe(props: { id: string, unsubscribe: IUnsubscri
 {
     const contentPre = 
     { 
-        caption: props.unsubscribe.content.contentPre.caption,
-        text1:   props.unsubscribe.content.contentPre.text1, 
-        text2:   props.unsubscribe.content.contentPre.text2, 
-        text3:   props.unsubscribe.content.contentPre.text3, 
-        button:  props.unsubscribe.content.contentPre.button
+        caption: props.unsubscribe?.content.contentPre.caption,
+        text1:   props.unsubscribe?.content.contentPre.text1, 
+        text2:   props.unsubscribe?.content.contentPre.text2, 
+        text3:   props.unsubscribe?.content.contentPre.text3, 
+        button:  props.unsubscribe?.content.contentPre.button
     };
 
     const contentPost = 
     {
-        caption: props.unsubscribe.content.contentPost.caption,
-        text1:   props.unsubscribe.content.contentPost.text1, 
-        text2:   props.unsubscribe.content.contentPost.text2, 
-        text3:   props.unsubscribe.content.contentPost.text3, 
-        button:  props.unsubscribe.content.contentPost.button
+        caption: props.unsubscribe?.content.contentPost.caption,
+        text1:   props.unsubscribe?.content.contentPost.text1, 
+        text2:   props.unsubscribe?.content.contentPost.text2, 
+        text3:   props.unsubscribe?.content.contentPost.text3, 
+        button:  props.unsubscribe?.content.contentPost.button
     };
 
     const classes = useStyles();

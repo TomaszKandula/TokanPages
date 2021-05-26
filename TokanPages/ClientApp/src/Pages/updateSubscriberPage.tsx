@@ -26,21 +26,35 @@ export default function UpdateSubscriberPage()
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const updateSubscriber = useSelector((state: IApplicationState) => state.getUpdateSubscriberContent);
 
-    const fetchNavigationContent = React.useCallback(() => { dispatch(NavigationContent.getNavigationContent()); }, [ dispatch ]);
-    const fetchFooterContent = React.useCallback(() => { dispatch(FooterContent.getFooterContent()); }, [ dispatch ]);
-    const fetchUpdateSubscriberContent = React.useCallback(() => { dispatch(UpdateSubscriberContent.getUpdateSubscriberContent()); }, [ dispatch ]);
+    const fetchNavigationContent = React.useCallback(() => dispatch(NavigationContent.getNavigationContent()), [ dispatch ]);
+    const fetchFooterContent = React.useCallback(() => dispatch(FooterContent.getFooterContent()), [ dispatch ]);
+    const fetchUpdateSubscriberContent = React.useCallback(() => dispatch(UpdateSubscriberContent.getUpdateSubscriberContent()), [ dispatch ]);
 
-    React.useEffect(() => { if (navigation.content === combinedDefaults.getNavigationContent.content) fetchNavigationContent(); }, [ fetchNavigationContent, navigation.content ]);
-    React.useEffect(() => { if (footer.content === combinedDefaults.getFooterContent.content) fetchFooterContent(); }, [ fetchFooterContent, footer.content ]);
-    React.useEffect(() => { if (updateSubscriber.content === combinedDefaults.getUpdateSubscriberContent.content) fetchUpdateSubscriberContent(); }, [ fetchUpdateSubscriberContent, updateSubscriber.content ]);
+    React.useEffect(() => 
+    { 
+        if (navigation?.content === combinedDefaults.getNavigationContent.content) 
+            fetchNavigationContent(); 
+    }, [ fetchNavigationContent, navigation?.content ]);
+    
+    React.useEffect(() => 
+    { 
+        if (footer?.content === combinedDefaults.getFooterContent.content) 
+            fetchFooterContent(); 
+    }, [ fetchFooterContent, footer?.content ]);
+    
+    React.useEffect(() => 
+    { 
+        if (updateSubscriber?.content === combinedDefaults.getUpdateSubscriberContent.content) 
+            fetchUpdateSubscriberContent(); 
+    }, [ fetchUpdateSubscriberContent, updateSubscriber?.content ]);
     
     return(
         <>
-            <Navigation navigation={navigation} isLoading={navigation.isLoading} />
+            <Navigation navigation={navigation} isLoading={navigation?.isLoading} />
             <Container>
-                <UpdateSubscriber id={id} updateSubscriber={updateSubscriber} isLoading={updateSubscriber.isLoading} />
+                <UpdateSubscriber id={id} updateSubscriber={updateSubscriber} isLoading={updateSubscriber?.isLoading} />
             </Container>
-            <Footer footer={footer} isLoading={footer.isLoading} />
+            <Footer footer={footer} isLoading={footer?.isLoading} />
         </>
     );
 }

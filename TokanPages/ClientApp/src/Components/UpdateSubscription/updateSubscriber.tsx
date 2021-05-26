@@ -110,7 +110,7 @@ export default function UpdateSubscriber(props: { id: string, updateSubscriber: 
                             <Box mb={3} textAlign="center">
                                 <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.updateSubscriber.content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.updateSubscriber?.content.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -125,7 +125,7 @@ export default function UpdateSubscriber(props: { id: string, updateSubscriber: 
                                 <Box my={2}>
                                     <Button onClick={buttonHandler} fullWidth variant="contained" color="primary" disabled={!buttonState}>
                                         {progress &&  <CircularProgress size={20} />}
-                                        {!progress && props.updateSubscriber.content.button}
+                                        {!progress && props.updateSubscriber?.content.button}
                                     </Button>
                                 </Box>
                             </Box>
