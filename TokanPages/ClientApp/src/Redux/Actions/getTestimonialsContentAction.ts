@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as Sentry from "@sentry/react";
 import { AppThunkAction } from "../applicationState";
+import { combinedDefaults } from "../../Redux/combinedDefaults";
 import { GetErrorMessage } from "../../Shared/helpers";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 import { GET_TESTIMONIALS_CONTENT } from "../../Shared/constants";
@@ -17,8 +18,11 @@ export type TKnownActions = IRequestTestimonialsContent | IReceiveTestimonialsCo
 
 export const ActionCreators = 
 {
-    getTestimonialsContent: (): AppThunkAction<TKnownActions> => (dispatch) =>
+    getTestimonialsContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
+        if (getState().getTestimonialsContent.content !== combinedDefaults.getTestimonialsContent.content) 
+            return;
+
         dispatch({ type: REQUEST_TESTIMONIALS_CONTENT });
 
         axios.get(GET_TESTIMONIALS_CONTENT, 

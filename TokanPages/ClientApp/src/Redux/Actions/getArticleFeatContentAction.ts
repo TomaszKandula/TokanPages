@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as Sentry from "@sentry/react";
 import { AppThunkAction } from "../applicationState";
+import { combinedDefaults } from "../../Redux/combinedDefaults";
 import { GetErrorMessage } from "../../Shared/helpers";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 import { GET_ARTICLE_FEAT_CONTENT } from "../../Shared/constants";
@@ -17,8 +18,11 @@ export type TKnownActions = IRequestArticleFeatures | IReceiveArticleFeatures | 
 
 export const ActionCreators = 
 {
-    getArticleFeaturesContent: (): AppThunkAction<TKnownActions> => (dispatch) =>
+    getArticleFeaturesContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
+        if (getState().getArticleFeatContent.content !== combinedDefaults.getArticleFeatContent.content) 
+            return;
+
         dispatch({ type: REQUEST_ARTICE_FEATURES });
 
         axios.get(GET_ARTICLE_FEAT_CONTENT, 

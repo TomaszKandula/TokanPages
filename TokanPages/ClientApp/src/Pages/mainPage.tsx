@@ -11,7 +11,6 @@ import ContactForm from "../Components/Contact/contactForm";
 import Cookies from "../Components/Cookies/cookies";
 import ArticleFeat from "../Components/Articles/articleFeat";
 import { IApplicationState } from "../Redux/applicationState";
-import { combinedDefaults } from "../Redux/combinedDefaults";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
 import { ActionCreators as HeaderContent } from "../Redux/Actions/getHeaderContentAction";
@@ -38,78 +37,22 @@ export default function Index()
     const newsletter = useSelector((state: IApplicationState) => state.getNewsletterContent);
     const contactForm = useSelector((state: IApplicationState) => state.getContactFormContent);
     const cookiesPrompt = useSelector((state: IApplicationState) => state.getCookiesPromptContent);
+    
+    const getContent = React.useCallback(() =>
+    {
+        dispatch(NavigationContent.getNavigationContent());
+        dispatch(FooterContent.getFooterContent());
+        dispatch(HeaderContent.getHeaderContent());
+        dispatch(FeaturesContent.getFeaturesContent());
+        dispatch(ArticlesContent.getArticleFeaturesContent());
+        dispatch(FeaturedContent.getFeaturedContent());
+        dispatch(TestimonialsContent.getTestimonialsContent());
+        dispatch(NewsletterContent.getNewsletterContent());
+        dispatch(ContactFormContent.getContactFormContent());
+        dispatch(CookiesContent.getCookiesPromptContent());
+    }, [ dispatch ]);
 
-    const fetchNavigationContent = React.useCallback(() => dispatch(NavigationContent.getNavigationContent()), [ dispatch ]);
-    const fetchFooterContent = React.useCallback(() => dispatch(FooterContent.getFooterContent()), [ dispatch ]);
-    const fetchHeaderContent = React.useCallback(() => dispatch(HeaderContent.getHeaderContent()), [ dispatch ]);
-    const fetchFeaturesContent = React.useCallback(() => dispatch(FeaturesContent.getFeaturesContent()), [ dispatch ]);
-    const fetchArticlesContent = React.useCallback(() => dispatch(ArticlesContent.getArticleFeaturesContent()), [ dispatch ]);
-    const fetchFeaturedContent = React.useCallback(() => dispatch(FeaturedContent.getFeaturedContent()), [ dispatch ]);
-    const fetchTestimonialsContent = React.useCallback(() => dispatch(TestimonialsContent.getTestimonialsContent()), [ dispatch ]);
-    const fetchNewsletterContent = React.useCallback(() => dispatch(NewsletterContent.getNewsletterContent()), [ dispatch ]);
-    const fetchContactFormContent = React.useCallback(() => dispatch(ContactFormContent.getContactFormContent()), [ dispatch ]);
-    const fetchCookiesContent = React.useCallback(() => dispatch(CookiesContent.getCookiesPromptContent()), [ dispatch ]);
-    
-    React.useEffect(() => 
-    { 
-        if (navigation?.content === combinedDefaults.getNavigationContent.content) 
-            fetchNavigationContent(); 
-    }, [ fetchNavigationContent, navigation ]);
-    
-    React.useEffect(() => 
-    { 
-        if (footer?.content === combinedDefaults.getFooterContent.content) 
-            fetchFooterContent(); 
-    }, [ fetchFooterContent, footer ]);
-    
-    React.useEffect(() => 
-    { 
-        if (header?.content === combinedDefaults.getHeaderContent.content) 
-            fetchHeaderContent(); 
-    }, [ fetchHeaderContent, header ]);
-    
-    React.useEffect(() => 
-    { 
-        if (features?.content === combinedDefaults.getFeaturesContent.content) 
-            fetchFeaturesContent(); 
-    }, [ fetchFeaturesContent, features ]);
-    
-    React.useEffect(() => 
-    { 
-        if (articles?.content === combinedDefaults.getArticleFeatContent.content) 
-            fetchArticlesContent(); 
-    }, [ fetchArticlesContent, articles ]);
-    
-    React.useEffect(() => 
-    { 
-        if (featured?.content === combinedDefaults.getFeaturedContent.content) 
-            fetchFeaturedContent(); 
-    }, [ fetchFeaturedContent, featured ]);
-    
-    React.useEffect(() => 
-    { 
-        if (testimonials?.content === combinedDefaults.getTestimonialsContent.content) 
-            fetchTestimonialsContent(); 
-    }, [ fetchTestimonialsContent, testimonials ]);
-    
-    React.useEffect(() => 
-    { 
-        if (newsletter?.content === combinedDefaults.getNewsletterContent.content) 
-            fetchNewsletterContent(); 
-    }, [ fetchNewsletterContent, newsletter ]);
-    
-    React.useEffect(() => 
-    { 
-        if (contactForm?.content === combinedDefaults.getContactFormContent.content) 
-            fetchContactFormContent(); 
-    }, [ fetchContactFormContent, contactForm ]);
-    
-    React.useEffect(() => 
-    { 
-        if (cookiesPrompt?.content === combinedDefaults.getCookiesPromptContent.content) 
-            fetchCookiesContent(); 
-    }, [ fetchCookiesContent, cookiesPrompt ]);
-    
+    React.useEffect(() => getContent(), [ getContent ]);
     React.useEffect(() => AOS.refresh());
 
     return (

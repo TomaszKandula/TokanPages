@@ -6,7 +6,6 @@ import StaticContent from "../Components/Content/staticContent";
 import Footer from "../Components/Layout/footer";
 import { REQUEST_STORY } from "../Redux/Actions/getStaticContentAction";
 import { IApplicationState } from "../Redux/applicationState";
-import { combinedDefaults } from "../Redux/combinedDefaults";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
 
@@ -17,20 +16,13 @@ export default function StoryPage()
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
 
-    const fetchNavigationContent = React.useCallback(() => dispatch(NavigationContent.getNavigationContent()), [ dispatch ]);
-    const fetchFooterContent = React.useCallback(() => dispatch(FooterContent.getFooterContent()), [ dispatch ]);
+    const getContent = React.useCallback(() =>
+    {
+        dispatch(NavigationContent.getNavigationContent());
+        dispatch(FooterContent.getFooterContent());
+    }, [ dispatch ]);
 
-    React.useEffect(() => 
-    { 
-        if (navigation?.content === combinedDefaults.getNavigationContent.content) 
-            fetchNavigationContent(); 
-    }, [ fetchNavigationContent, navigation ]);
-
-    React.useEffect(() => 
-    { 
-        if (footer?.content === combinedDefaults.getFooterContent.content) 
-            fetchFooterContent(); 
-    }, [ fetchFooterContent, footer ]);
+    React.useEffect(() => getContent(), [ getContent ]);
     
     return (
         <>

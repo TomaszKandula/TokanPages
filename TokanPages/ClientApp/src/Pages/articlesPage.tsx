@@ -9,7 +9,6 @@ import ArticleDetail from "../Components/Articles/articleDetail";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
-import { combinedDefaults } from "../Redux/combinedDefaults";
 
 const useQuery = () => 
 {
@@ -25,20 +24,13 @@ export default function ArticlesPage()
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
 
-    const fetchNavigationContent = React.useCallback(() => dispatch(NavigationContent.getNavigationContent()), [ dispatch ]);
-    const fetchFooterContent = React.useCallback(() => dispatch(FooterContent.getFooterContent()), [ dispatch ]);
-
-    React.useEffect(() => 
+    const getContent = React.useCallback(() =>
     {
-        if (navigation?.content === combinedDefaults.getNavigationContent.content) 
-            fetchNavigationContent();
-    }, [ fetchNavigationContent, navigation ]);
+        dispatch(NavigationContent.getNavigationContent());
+        dispatch(FooterContent.getFooterContent());
+    }, [ dispatch ]);
 
-    React.useEffect(() => 
-    {
-        if (footer.content === combinedDefaults.getFooterContent.content) 
-            fetchFooterContent();
-    }, [ fetchFooterContent, footer ]);
+    React.useEffect(() => getContent(), [ getContent ]);
 
     return (
         <>
