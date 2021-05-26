@@ -1,3 +1,16 @@
+# [0.10.0](https://github.com/TomaszKandula/TokanPages/compare/v0.9.1...v0.10.0) (2021-05-26)
+
+
+### Bug Fixes
+
+* correct dependencies ([8d92d25](https://github.com/TomaszKandula/TokanPages/commit/8d92d2577e0a0545fe0cbdebbab2f7308fcf9c47))
+* resolve 'undefined' issues ([a4aeb57](https://github.com/TomaszKandula/TokanPages/commit/a4aeb57574c687040bdd1cf593a7889a980336f5))
+
+
+### Features
+
+* expand Redux, add actions/reducers/states/defaults ([e85b7e3](https://github.com/TomaszKandula/TokanPages/commit/e85b7e37a66da71ccade313760489d704177bb23))
+
 ## [0.9.1](https://github.com/TomaszKandula/TokanPages/compare/v0.9.0...v0.9.1) (2021-05-23)
 
 
