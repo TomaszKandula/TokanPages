@@ -6,6 +6,21 @@ on:
     
 jobs:
 
+  quality-check:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
+
   build:
 
     runs-on: ubuntu-latest
@@ -55,7 +70,7 @@ jobs:
         SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT }}"
         SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER }}"
 
-    - name: Build and push Docker image (runs frontend & backend tests)
+    - name: Build Docker image (it runs frontend & backend tests)
       uses: azure/docker-login@v1
       with:
         login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
