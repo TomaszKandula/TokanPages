@@ -6,35 +6,46 @@ on:
     
 jobs:
 
-  quality-check:
+  frontend-check:
 
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2.2.0
+      with:
+        fetch-depth: 0
 
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
+    - name: Install node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
 
-  build:
+    - name: Install dependencies
+      run: |
+        npm install --global yarn
+        yarn install
+
+    - name: Test client application
+      run: yarn app-test --ci --coverage
+
+    - name: Scan client application
+      uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
+
+  backend-check:
 
     runs-on: ubuntu-latest
 
     steps:
     
     - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: SonarQube Scan
-      uses: sonarsource/sonarqube-scan-action@master
-      env:
-        SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
+      uses: actions/checkout@v2.2.0
+      with:
+        fetch-depth: 0
         
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: microsoft/variable-substitution@v1
@@ -51,29 +62,30 @@ jobs:
         SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT }}"
         SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER }}"
 
-    - name: Variable substitution appsettings file for Production (NET Core)
-      uses: microsoft/variable-substitution@v1
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v1
       with:
-        files: ${{ github.workspace }}/TokanPages/appsettings.Production.json
-      env:
-        AppUrls.UpdateSubscriberPath: "${{ secrets.APPURLS__UPDATESUBSCRIBERPATH}}"
-        AppUrls.UnsubscribePath: "${{ secrets.APPURLS__UNSUBSCRIBEPATH}}"
-        AppUrls.DevelopmentOrigin: "${{ secrets.APPURLS__DEVELOPMENTORIGIN }}"
-        AppUrls.DeploymentOrigin: "${{ secrets.APPURLS__DEPLOYMENTORIGIN }}"
-        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL }}"
-        AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME }}"
-        AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING }}"
-        Sentry.Dsn: "${{ secrets.SENTRY__DSN }}"
-        ConnectionStrings.DbConnect: "${{ secrets.CONNECTIONSTRING__PROD }}"
-        SmtpServer.Account: "${{ secrets.SMTPSERVER__ACCOUNT }}"
-        SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD }}"
-        SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT }}"
-        SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER }}"
+        dotnet-version: '5.0.x'
 
-    - name: Build Docker image (it runs frontend & backend tests)
-      uses: azure/docker-login@v1
-      with:
-        login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
-    - run: docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: SonarQube Begin
+        run: |
+          dotnet tool install --global dotnet-sonarscanner
+          dotnet sonarscanner begin \
+          /d:sonar.host.url=${{ secrets.SONARQUBE_HOST }} \
+          /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }}
+
+      - name: Build .NET
+        run: dotnet build
+
+      - name: Test with the dotnet CLI
+        run: dotnet test
+        env:
+          ASPNETCORE_ENVIRONMENT: Development
+
+      - name: SonarQube End
+        run: dotnet sonarscanner end /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
