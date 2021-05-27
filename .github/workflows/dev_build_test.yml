@@ -30,7 +30,9 @@ jobs:
         yarn add react-scripts
 
     - name: Test client application
-      run: yarn app-test --ci --coverage
+      run: |
+        cd $PWD/TokanPages/ClientApp
+        yarn app-test --ci --coverage
 
     - name: Scan client application
       uses: sonarsource/sonarqube-scan-action@master
