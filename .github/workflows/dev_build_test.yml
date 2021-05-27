@@ -67,25 +67,25 @@ jobs:
       with:
         dotnet-version: '5.0.x'
 
-      - name: Install dependencies
-        run: dotnet restore
+    - name: Install dependencies
+      run: dotnet restore
 
-      - name: SonarQube Begin
-        run: |
-          dotnet tool install --global dotnet-sonarscanner
-          dotnet sonarscanner begin \
-          /d:sonar.host.url=${{ secrets.SONARQUBE_HOST }} \
-          /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }}
+    - name: SonarQube Begin
+      run: |
+        dotnet tool install --global dotnet-sonarscanner
+        dotnet sonarscanner begin \
+        /d:sonar.host.url=${{ secrets.SONARQUBE_HOST }} \
+        /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }}
 
-      - name: Build .NET
-        run: dotnet build
+    - name: Build .NET
+      run: dotnet build
 
-      - name: Test with the dotnet CLI
-        run: dotnet test
-        env:
-          ASPNETCORE_ENVIRONMENT: Development
+    - name: Test with the dotnet CLI
+      run: dotnet test
+      env:
+        ASPNETCORE_ENVIRONMENT: Development
 
-      - name: SonarQube End
-        run: dotnet sonarscanner end /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: SonarQube End
+      run: dotnet sonarscanner end /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
