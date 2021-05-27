@@ -70,7 +70,7 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
 
-    - name: SonarQube Begin
+    - name: SonarQube begin scan
       run: |
         dotnet tool install --global dotnet-sonarscanner
         dotnet sonarscanner begin \
@@ -85,7 +85,7 @@ jobs:
       env:
         ASPNETCORE_ENVIRONMENT: Development
 
-    - name: SonarQube End
+    - name: SonarQube end scan
       run: dotnet sonarscanner end /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
