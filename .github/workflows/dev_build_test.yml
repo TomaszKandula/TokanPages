@@ -29,13 +29,17 @@ jobs:
         yarn install
 
     - name: Test client application
-      run: yarn cross-env CI=true react-scripts test --env=jsdom --verbose --ci --coverage
+      run: yarn test
 
     - name: Scan client application
       uses: sonarsource/sonarqube-scan-action@master
       env:
         SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
+      with:
+        args: >
+          -Dsonar.projectKey=${{ secrets.SONARQUBE_PROJECT_KEY }}
+          -Dsonar.sources=.
 
   backend-check:
 
