@@ -9,7 +9,7 @@ import CardActions from "@material-ui/core/CardActions";
 import { SetCookie, GetCookie } from "../../Shared/cookies";
 import Validate from "validate.js";
 import { ICookiesPromptContentDto } from "../../Api/Models";
-import useStyles from "./styleCookies";
+import useStyles from "./cookiesStyle";
 
 export default function Cookies(props: { cookiesPrompt: ICookiesPromptContentDto, isLoading: boolean }) 
 {

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Card, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { ITextItem } from "../Models/textModel";
-import useStyles from "../Hooks/styleRenderVideo";
+import useStyles from "../Styles/renderVideoStyle";
 import Validate from "validate.js";
 
 export function RenderVideo(props: ITextItem)

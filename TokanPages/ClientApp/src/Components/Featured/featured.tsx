@@ -9,7 +9,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
 import { IFeaturedContentDto } from "../../Api/Models";
-import useStyles from "./styleFeatured";
+import useStyles from "./featuredStyle";
 
 export default function Featured(props: { featured: IFeaturedContentDto, isLoading: boolean }) 
 {

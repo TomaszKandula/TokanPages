@@ -7,7 +7,7 @@ import { Carousel } from "react-responsive-carousel";
 import { ITestimonialsContentDto } from "../../Api/Models";
 import { renderImage } from "../../Shared/Components/CustomImage/customImage";
 import { TESTIMONIALS_PATH } from "../../Shared/constants";
-import useStyles from "./styledTestimonials";
+import useStyles from "./testimonialsStyle";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../../Theme/CustomCss/overrideCarousel.css";
 

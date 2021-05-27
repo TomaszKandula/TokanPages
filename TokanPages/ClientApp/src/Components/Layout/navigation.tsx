@@ -6,7 +6,7 @@ import HideOnScroll from "../../Shared/Components/Scroll/hideOnScroll";
 import { ICONS_PATH } from "../../Shared/constants";
 import { renderImage } from "../../Shared/Components/CustomImage/customImage";
 import { INavigationContentDto } from "../../Api/Models/";
-import useStyles from "./Hooks/styleNavigation";
+import useStyles from "./Styles/navigationStyle";
 
 export default function Navigation(props: { navigation: INavigationContentDto, isLoading: boolean }) 
 {

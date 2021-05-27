@@ -10,7 +10,7 @@ import { Card, CardContent } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ISigninFormContentDto } from "../../Api/Models";
-import useStyles from "./Hooks/styleSigninForm";
+import useStyles from "./Styles/signinFormStyle";
 
 export default function SigninForm(props: { signinForm: ISigninFormContentDto, isLoading: boolean }) 
 {

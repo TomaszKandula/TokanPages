@@ -16,7 +16,7 @@ import { OperationStatus, IconType } from "../../Shared/enums";
 import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
 import { NewsletterSuccess, NewsletterWarning, NewsletterError } from "../../Shared/textWrappers";
 import { IAddSubscriberDto, INewsletterContentDto } from "../../Api/Models";
-import useStyles from "./styledNewsletter";
+import useStyles from "./newsletterStyle";
 
 const formDefaultValues = 
 {

@@ -8,7 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import InfoIcon from '@material-ui/icons/Info';
 import WarningIcon from '@material-ui/icons/Warning';
 import ErrorIcon from '@material-ui/icons/Error';
-import useStyles from "./styleAlertDialog";
+import useStyles from "./alertDialogStyle";
 import { Divider, Typography } from "@material-ui/core";
 import { IconType } from "../../enums";
 

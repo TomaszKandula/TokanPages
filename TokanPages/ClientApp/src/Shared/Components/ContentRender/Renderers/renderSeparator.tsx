@@ -1,5 +1,5 @@
 import * as React from "react";
-import useStyles from "../Hooks/styleRenderSeparator";
+import useStyles from "../Styles/renderSeparatorStyle";
 
 export function RenderSeparator()
 {

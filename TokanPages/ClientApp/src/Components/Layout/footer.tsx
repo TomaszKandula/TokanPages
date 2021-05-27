@@ -11,7 +11,7 @@ import { CustomColours } from "../../Theme/customColours";
 import { IFooterContentDto, IFooterContentIconDto } from "../../Api/Models";
 import { MediumIcon } from "../../Theme/Icons/medium";
 import validate from "validate.js";
-import useStyles from "./Hooks/styleFooter";
+import useStyles from "./Styles/footerStyle";
 
 export default function Footer(props: { footer: IFooterContentDto, isLoading: boolean, backgroundColor?: string | undefined }) 
 {

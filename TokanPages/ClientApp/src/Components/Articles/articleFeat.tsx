@@ -11,7 +11,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IArticleFeatContentDto } from "../../Api/Models";
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
-import useStyles from "./Hooks/styleArticleFeat";
+import useStyles from "./Styles/articleFeatStyle";
 
 export default function ArticleFeat(props: { articles: IArticleFeatContentDto, isLoading: boolean }) 
 {
