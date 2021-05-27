@@ -20,21 +20,28 @@ jobs:
     - name: Install node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 14
+        node-version: 15
 
     - name: Install dependencies
       run: |
+        cd $PWD/TokanPages/ClientApp
         npm install --global yarn
         yarn install
 
     - name: Test client application
-      run: yarn app-test --ci --coverage
+      run: |
+        cd $PWD/TokanPages/ClientApp
+        yarn app-test --ci --coverage
 
     - name: Scan client application
       uses: sonarsource/sonarqube-scan-action@master
       env:
         SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
+      with:
+        args: >
+          -Dsonar.projectKey=${{ secrets.SONARQUBE_PROJECT_KEY }}
+          -Dsonar.sources=.
 
   backend-check:
 
@@ -74,6 +81,7 @@ jobs:
       run: |
         dotnet tool install --global dotnet-sonarscanner
         dotnet sonarscanner begin \
+        /k:${{ secrets.SONARQUBE_PROJECT_KEY }} \
         /d:sonar.host.url=${{ secrets.SONARQUBE_HOST }} \
         /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }}
 
