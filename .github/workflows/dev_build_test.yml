@@ -75,6 +75,7 @@ jobs:
       run: |
         dotnet tool install --global dotnet-sonarscanner
         dotnet sonarscanner begin \
+        /d:sonar.projectKey=${{ secrets.SONARQUBE_PROJECT_KEY }}
         /d:sonar.host.url=${{ secrets.SONARQUBE_HOST }} \
         /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }}
 
