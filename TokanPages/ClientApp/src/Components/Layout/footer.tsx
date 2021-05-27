@@ -7,13 +7,19 @@ import IconButton from "@material-ui/core/IconButton";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import WarningIcon from '@material-ui/icons/Warning';
+import { IGetFooterContent } from "../../Redux/States/getFooterContentState";
+import { IFooterContentIconDto } from "../../Api/Models";
 import { CustomColours } from "../../Theme/customColours";
-import { IFooterContentDto, IFooterContentIconDto } from "../../Api/Models";
 import { MediumIcon } from "../../Theme/Icons/medium";
 import validate from "validate.js";
 import useStyles from "./Styles/footerStyle";
 
-export default function Footer(props: { footer: IFooterContentDto, isLoading: boolean, backgroundColor?: string | undefined }) 
+interface IGetFooterContentExtended extends IGetFooterContent
+{
+    backgroundColor?: string | undefined;
+}
+
+export default function Footer(props: IGetFooterContentExtended) 
 {
     const padingBottomLarge: number = 6;
     const paddingBottomSmall: number = 1;
@@ -37,7 +43,7 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
     { 
         return (
             <Link to="/terms" className={classes.links}>
-                {props.footer?.content.terms}
+                {props.content?.terms}
             </Link>
         ); 
     };
@@ -46,7 +52,7 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
     { 
         return (
             <Link to="/policy" className={classes.links}>
-                {props.footer?.content.policy}
+                {props.content?.policy}
             </Link>
         );
     };
@@ -85,10 +91,10 @@ export default function Footer(props: { footer: IFooterContentDto, isLoading: bo
                 <div data-aos="zoom-in">
                     <Box pt={6} pb={boxPaddingBottom} display="flex" flexWrap="wrap" alignItems="center">
                         <Typography component="p" gutterBottom={false} className={classes.copy}>
-                            {props.footer?.content.copyright} | {props.footer?.content.reserved} | <SetTermsLink /> | <SetPolicyLink />
+                            {props.content?.copyright} | {props.content?.reserved} | <SetTermsLink /> | <SetPolicyLink />
                         </Typography>
                         <Box ml="auto" className={classes.iconsBoxRoot}>
-                            {props.footer?.content.icons.map((item: IFooterContentIconDto, index: number) => (
+                            {props.content?.icons.map((item: IFooterContentIconDto, index: number) => (
                                 <IconButton 
                                     key={index}
                                     color="default" 

@@ -7,11 +7,11 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardHeader from "@material-ui/core/CardHeader";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { IGetFeaturedContent } from "../../Redux/States/getFeaturedContentState";
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
-import { IFeaturedContentDto } from "../../Api/Models";
 import useStyles from "./featuredStyle";
 
-export default function Featured(props: { featured: IFeaturedContentDto, isLoading: boolean }) 
+export default function Featured(props: IGetFeaturedContent) 
 {
     const classes = useStyles();
     return (
@@ -22,10 +22,10 @@ export default function Featured(props: { featured: IFeaturedContentDto, isLoadi
                         <Container maxWidth="sm">
                             <Box textAlign="center" mb={5}>
                                 <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.featured?.content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.featured?.content.text}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.text}
                                 </Typography>
                             </Box>
                         </Container>
@@ -34,13 +34,13 @@ export default function Featured(props: { featured: IFeaturedContentDto, isLoadi
                                 <Grid container spacing={4}>
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={3}>
-                                            <CardActionArea href={props.featured?.content.link1} target="_blank">
+                                            <CardActionArea href={props.content?.link1} target="_blank">
                                                 {props.isLoading 
                                                     ? <Skeleton variant="rect" height="256px" /> 
-                                                    : renderCardMedia(props.featured?.content.image1, classes.media)}
+                                                    : renderCardMedia(props.content?.image1, classes.media)}
                                                 <CardHeader 
-                                                    title={props.featured?.content.title1} 
-                                                    subheader={props.featured?.content.subtitle1} 
+                                                    title={props.content?.title1} 
+                                                    subheader={props.content?.subtitle1} 
                                                     titleTypographyProps={{gutterBottom: true}} 
                                                 />
                                             </CardActionArea>
@@ -48,13 +48,13 @@ export default function Featured(props: { featured: IFeaturedContentDto, isLoadi
                                     </Grid>
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={3}>
-                                            <CardActionArea href={props.featured?.content.link2} target="_blank">
+                                            <CardActionArea href={props.content?.link2} target="_blank">
                                                 {props.isLoading 
                                                     ? <Skeleton variant="rect" height="256px" /> 
-                                                    : renderCardMedia(props.featured?.content.image2, classes.media)}
+                                                    : renderCardMedia(props.content?.image2, classes.media)}
                                                 <CardHeader 
-                                                    title={props.featured?.content.title2} 
-                                                    subheader={props.featured?.content.subtitle2} 
+                                                    title={props.content?.title2} 
+                                                    subheader={props.content?.subtitle2} 
                                                     titleTypographyProps={{gutterBottom: true}} 
                                                 />
                                             </CardActionArea>
@@ -62,13 +62,13 @@ export default function Featured(props: { featured: IFeaturedContentDto, isLoadi
                                     </Grid>
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={3}>
-                                            <CardActionArea href={props.featured?.content.link3} target="_blank">
+                                            <CardActionArea href={props.content?.link3} target="_blank">
                                                 {props.isLoading 
                                                     ? <Skeleton variant="rect" height="256px" /> 
-                                                    : renderCardMedia(props.featured?.content.image3, classes.media)}
+                                                    : renderCardMedia(props.content?.image3, classes.media)}
                                                 <CardHeader 
-                                                    title={props.featured?.content.title3} 
-                                                    subheader={props.featured?.content.subtitle3} 
+                                                    title={props.content?.title3} 
+                                                    subheader={props.content?.subtitle3} 
                                                     titleTypographyProps={{gutterBottom: true}}
                                                 />
                                             </CardActionArea>

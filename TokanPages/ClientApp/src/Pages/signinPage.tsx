@@ -28,11 +28,11 @@ export default function SigninPage()
     
     return (
         <>
-            <Navigation navigation={navigation} isLoading={navigation?.isLoading} />
+            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
                 <SigninForm signinForm={signinForm} isLoading={signinForm?.isLoading} />
             </Container>
-            <Footer footer={footer} isLoading={footer?.isLoading} />
+            <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>
     );
 }
