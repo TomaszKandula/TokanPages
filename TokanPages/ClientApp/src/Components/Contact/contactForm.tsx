@@ -13,14 +13,25 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
 import { ActionCreators } from "../../Redux/Actions/sendMessageAction";
 import { IApplicationState } from "../../Redux/applicationState";
+import { IGetContactFormContent } from "../../Redux/States/getContactFormContentState";
 import { OperationStatus, IconType } from "../../Shared/enums";
 import { ValidateContactForm } from "../../Shared/validate";
 import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
 import { MessageOutSuccess, MessageOutWarning, MessageOutError } from "../../Shared/textWrappers";
-import { IContactFormContentDto, ISendMessageDto } from "../../Api/Models";
+import { ISendMessageDto } from "../../Api/Models";
 import useStyles from "./contactFormStyle";
 
-const formDefaultValues =
+interface IFormDefaultValues 
+{
+    firstName: string;
+    lastName: string;
+    email: string;
+    subject: string;
+    message: string; 
+    terms: boolean;
+}
+
+const formDefaultValues: IFormDefaultValues =
 {
     firstName: "", 
     lastName: "", 
@@ -30,7 +41,7 @@ const formDefaultValues =
     terms: false
 };
 
-export default function ContactForm(props: { contactForm: IContactFormContentDto, isLoading: boolean })
+export default function ContactForm(props: IGetContactFormContent)
 {
     const classes = useStyles();
 
@@ -130,10 +141,10 @@ export default function ContactForm(props: { contactForm: IContactFormContentDto
                         <Box pt={8} pb={10}>
                             <Box mb={6} textAlign="center">
                                 <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.contactForm?.content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary" paragraph={true}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.contactForm?.content.text}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.text}
                                 </Typography>
                             </Box>
                             <Box>
@@ -178,7 +189,7 @@ export default function ContactForm(props: { contactForm: IContactFormContentDto
                                 <Box my={2}>
                                     <Button onClick={buttonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={progress}>
                                         {progress &&  <CircularProgress size={20} />}
-                                        {!progress && props.contactForm?.content.button}
+                                        {!progress && props.content?.button}
                                     </Button>
                                 </Box>
                             </Box>

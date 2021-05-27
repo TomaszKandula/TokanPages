@@ -9,21 +9,20 @@ import TextField from "@material-ui/core/TextField";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
+import { IGetNewsletterContent } from "../../Redux/States/getNewsletterContentState";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/addSubscriberAction";
 import { ValidateEmail } from "../../Shared/validate";
 import { OperationStatus, IconType } from "../../Shared/enums";
 import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
 import { NewsletterSuccess, NewsletterWarning, NewsletterError } from "../../Shared/textWrappers";
-import { IAddSubscriberDto, INewsletterContentDto } from "../../Api/Models";
+import { IAddSubscriberDto } from "../../Api/Models";
 import useStyles from "./newsletterStyle";
 
-const formDefaultValues = 
-{
-    email: ""
-};
+interface IFormDefaultValues { email: string; }
+const formDefaultValues: IFormDefaultValues = { email: "" };
 
-export default function Newsletter(props: { newsletter: INewsletterContentDto, isLoading: boolean })
+export default function Newsletter(props: IGetNewsletterContent)
 {
     const classes = useStyles();
     
@@ -108,10 +107,10 @@ export default function Newsletter(props: { newsletter: INewsletterContentDto, i
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={5}>
                                 <Typography variant="h4" component="h2">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.newsletter?.content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.newsletter?.content.text}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.text}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={7}>
@@ -128,7 +127,7 @@ export default function Newsletter(props: { newsletter: INewsletterContentDto, i
                                             <Grid item xs={12} sm={5}>
                                                 <Button onClick={buttonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={progress}>
                                                     {progress &&  <CircularProgress size={20} />}
-                                                    {!progress && props.newsletter?.content.button}
+                                                    {!progress && props.content?.button}
                                                 </Button>
                                             </Grid>
                                         </Grid>

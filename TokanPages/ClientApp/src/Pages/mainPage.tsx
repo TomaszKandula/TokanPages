@@ -57,16 +57,16 @@ export default function Index()
 
     return (
         <>
-            <Navigation navigation={navigation} isLoading={navigation?.isLoading} />
-            <Header header={header} isLoading={header?.isLoading} />
-            <Features features={features} isLoading={features?.isLoading} />
-            <ArticleFeat articles={articles} isLoading={articles?.isLoading} />
-            <Featured featured={featured} isLoading={featured?.isLoading} />
-            <Testimonials testimonials={testimonials} isLoading={testimonials?.isLoading} />
-            <Newsletter newsletter={newsletter} isLoading={newsletter?.isLoading} />
-            <ContactForm contactForm={contactForm} isLoading={contactForm?.isLoading} />
-            <Cookies cookiesPrompt={cookiesPrompt} isLoading={cookiesPrompt?.isLoading} />
-            <Footer footer={footer} isLoading={footer?.isLoading} />
+            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
+            <Header content={header?.content} isLoading={header?.isLoading} />
+            <Features content={features?.content} isLoading={features?.isLoading} />
+            <ArticleFeat content={articles?.content} isLoading={articles?.isLoading} />
+            <Featured content={featured?.content} isLoading={featured?.isLoading} />
+            <Testimonials content={testimonials?.content} isLoading={testimonials?.isLoading} />
+            <Newsletter content={newsletter?.content} isLoading={newsletter?.isLoading} />
+            <ContactForm content={contactForm?.content} isLoading={contactForm?.isLoading} />
+            <Cookies content={cookiesPrompt?.content} isLoading={cookiesPrompt?.isLoading} />
+            <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>
     );
 }

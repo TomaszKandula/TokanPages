@@ -6,12 +6,12 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
+import { IGetCookiesPromptContent } from "../../Redux/States/getCookiesPromptContentState";
 import { SetCookie, GetCookie } from "../../Shared/cookies";
 import Validate from "validate.js";
-import { ICookiesPromptContentDto } from "../../Api/Models";
 import useStyles from "./cookiesStyle";
 
-export default function Cookies(props: { cookiesPrompt: ICookiesPromptContentDto, isLoading: boolean }) 
+export default function Cookies(props: IGetCookiesPromptContent) 
 {
     const classes = useStyles();
     const [close, setClose] = React.useState(false);
@@ -22,7 +22,7 @@ export default function Cookies(props: { cookiesPrompt: ICookiesPromptContentDto
         {
             cookieName: "cookieConsent", 
             value: "granted", 
-            days: props.cookiesPrompt?.content.days,
+            days: props.content?.days,
             sameSite: "Strict",
             secure: ""
         });
@@ -36,15 +36,15 @@ export default function Cookies(props: { cookiesPrompt: ICookiesPromptContentDto
                     <Card>
                         <CardContent>
                             <Typography variant="h5" component="h2" gutterBottom={true}>
-                                {props.cookiesPrompt?.content.caption}
+                                {props.content?.caption}
                             </Typography>
                             <Typography variant="subtitle1" component="p" color="textSecondary">
-                                {props.cookiesPrompt?.content.text}
+                                {props.content?.text}
                             </Typography>            
                         </CardContent>
                         <CardActions>
                             <Button onClick={onClickEvent} color="primary">
-                                {props.cookiesPrompt?.content.button}
+                                {props.content?.button}
                             </Button>
                         </CardActions>
                     </Card>
