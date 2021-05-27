@@ -9,7 +9,7 @@ import Validate from "validate.js";
 import CenteredCircularLoader from "../../Shared/Components/ProgressBar/centeredCircularLoader";
 import { RenderContent } from "../../Shared/Components/ContentRender/renderContent";
 import { ITextObject } from "../../Shared/Components/ContentRender/Models/textModel";
-import useStyles from "./styleStaticContent";
+import useStyles from "./staticContentStyle";
 import { IApplicationState } from "../../Redux/applicationState";
 import { 
     ActionCreators,

@@ -16,7 +16,7 @@ import { ArrowBack } from "@material-ui/icons";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Emoji from "react-emoji-render";
 import Validate from "validate.js";
-import useStyles from "./Hooks/styleArticleDetail";
+import useStyles from "./Styles/articleDetailStyle";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as SelectArticleActions } from "../../Redux/Actions/selectArticleAction";
 import { ActionCreators as UpdateArticleAction } from "../../Redux/Actions/updateArticleAction";

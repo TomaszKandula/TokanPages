@@ -12,7 +12,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ISignupFormContentDto } from "../../Api/Models";
-import useStyles from "./Hooks/styleSignupForm";
+import useStyles from "./Styles/signupFormStyle";
 
 export default function SignupForm(props: { signupForm: ISignupFormContentDto, isLoading: boolean }) 
 {

@@ -19,7 +19,7 @@ import { IconType } from "../../Shared/enums";
 import { ValidateEmail } from "../../Shared/validate";
 import { NewsletterSuccess, NewsletterWarning } from "../../Shared/textWrappers";
 import { IUpdateSubscriberContentDto, IUpdateSubscriberDto } from "../../Api/Models";
-import useStyles from "./styleUpdateSubscription";
+import useStyles from "./updateSubscriptionStyle";
 
 const formDefaultValues =
 {

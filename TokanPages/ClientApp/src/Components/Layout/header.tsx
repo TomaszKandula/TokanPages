@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
 import { IMAGES_PATH } from "../../Shared/constants";
 import { IHeaderContentDto } from "../../Api/Models";
-import useStyles from "./Hooks/styleHeader";
+import useStyles from "./Styles/headerStyle";
 import { renderImage } from "../../Shared/Components/CustomImage/customImage";
 
 export default function Header(props: { header: IHeaderContentDto, isLoading: boolean }) 

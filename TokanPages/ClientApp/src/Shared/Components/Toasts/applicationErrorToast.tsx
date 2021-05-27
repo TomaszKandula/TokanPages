@@ -6,7 +6,7 @@ import { Alert } from "@material-ui/lab";
 import { IApplicationState } from "../../../Redux/applicationState";
 import { ActionCreators } from "../../../Redux/Actions/raiseErrorAction";
 import { RECEIVED_ERROR_MESSAGE } from "../../constants";
-import useStyles from "./Hooks/styleApplicationErrorToast";
+import useStyles from "./Styles/applicationErrorToastStyle";
 
 const TransitionLeft = (props: Omit<SlideProps, "direction">) =>
 {

@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 import { Box, Divider, Grid, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
-import useStyles from "./Hooks/styleArticleList";
+import useStyles from "./Styles/articleListStyle";
 import { ActionCreators } from "../../Redux/Actions/listArticlesAction";
 import { IArticles } from "../../Redux/States/listArticlesState";
 import { IArticleItem } from "../../Shared/Components/ContentRender/Models/articleItemModel";

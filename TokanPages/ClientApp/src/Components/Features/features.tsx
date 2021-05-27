@@ -10,7 +10,7 @@ import CloudIcon from "@material-ui/icons/Cloud";
 import Skeleton from "@material-ui/lab/Skeleton";
 import ReactHtmlParser from "react-html-parser";
 import { IFeaturesContentDto } from "../../Api/Models";
-import useStyles from "./styleFeatures";
+import useStyles from "./featuresStyle";
 
 export default function Features(props: { features: IFeaturesContentDto, isLoading: boolean })
 {

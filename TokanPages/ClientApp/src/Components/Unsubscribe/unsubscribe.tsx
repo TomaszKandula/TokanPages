@@ -13,7 +13,7 @@ import { IconType } from "../../Shared/enums";
 import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
 import { NewsletterSuccess } from "../../Shared/textWrappers";
 import { IRemoveSubscriberDto, IUnsubscribeContentDto } from "../../Api/Models";
-import useStyles from "./styledUnsubscribe";
+import useStyles from "./unsubscribeStyle";
 
 export default function Unsubscribe(props: { id: string, unsubscribe: IUnsubscribeContentDto, isLoading: boolean })
 {

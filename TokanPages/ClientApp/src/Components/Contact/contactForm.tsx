@@ -18,7 +18,7 @@ import { ValidateContactForm } from "../../Shared/validate";
 import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
 import { MessageOutSuccess, MessageOutWarning, MessageOutError } from "../../Shared/textWrappers";
 import { IContactFormContentDto, ISendMessageDto } from "../../Api/Models";
-import useStyles from "./styleContactForm";
+import useStyles from "./contactFormStyle";
 
 const formDefaultValues =
 {

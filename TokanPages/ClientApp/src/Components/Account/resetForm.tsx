@@ -9,7 +9,7 @@ import { Card, CardContent } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IResetFormContentDto } from "../../Api/Models";
-import useStyles from "./Hooks/styleResetForm";
+import useStyles from "./Styles/resetFormStyle";
 
 export default function ResetForm(props: { resetForm: IResetFormContentDto, isLoading: boolean }) 
 {
