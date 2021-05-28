@@ -61,15 +61,12 @@ export function RenderText(props: ITextItem)
         );
     };
 
-    let textItem: JSX.Element = <></>;
     switch(props.prop)
     {
-        case "title": textItem = renderTitle(); break;
-        case "subtitle": textItem = renderSubtitle(); break;
-        case "header": textItem = renderHeader(); break;
-        case "dropcap": textItem = renderParagraphWithDropCap(); break;
-        default: textItem = renderParagraph();
+        case "title": return renderTitle();
+        case "subtitle": return renderSubtitle();
+        case "header": return renderHeader();
+        case "dropcap": return renderParagraphWithDropCap();
+        default: return renderParagraph();
     }
-
-    return(<>{textItem}</>);
 }
