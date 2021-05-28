@@ -6,11 +6,11 @@ namespace TokanPages.Backend.Database.Mappings
 {
     public class ArticlesConfiguration : IEntityTypeConfiguration<Articles>
     {
-        public void Configure(EntityTypeBuilder<Articles> AModelBuilder)
+        public void Configure(EntityTypeBuilder<Articles> ABuilder)
         {
-            AModelBuilder.Property(AArticles => AArticles.Id).ValueGeneratedOnAdd();
+            ABuilder.Property(AArticles => AArticles.Id).ValueGeneratedOnAdd();
             
-            AModelBuilder
+            ABuilder
                 .HasOne(AArticles => AArticles.User)
                 .WithMany(AUsers => AUsers.Articles)
                 .HasForeignKey(AArticles => AArticles.UserId)
