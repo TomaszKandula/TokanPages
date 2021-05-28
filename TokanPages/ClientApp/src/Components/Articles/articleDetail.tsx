@@ -191,11 +191,9 @@ export default function ArticleDetail(props: IArticleDetail)
             ? LIKES_HINT_FOR_ANONYM.replace("{LEFT_LIKES}", likesLeft.toString()) 
             : LIKES_HINT_FOR_USER.replace("{LEFT_LIKES}", likesLeft.toString());
 
-        const textOut = likesLeft === 0 
+        return likesLeft === 0 
             ? MAX_LIKES_REACHED 
             : textLikesLeft;
-
-        return(textOut);
     };
 
     const returnReadTime = (): string =>
