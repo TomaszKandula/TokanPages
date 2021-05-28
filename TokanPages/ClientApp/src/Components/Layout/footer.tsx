@@ -33,7 +33,7 @@ export default function Footer(props: IGetFooterContentExtended)
     const classes = footerStyle();
     const backgroundColor: string = !props.backgroundColor 
         ? CustomColours.background.lightGray1 
-        : props.backgroundColor as string;
+        : props.backgroundColor;
 
     const boxPaddingBottom: number = hasVersionInfo 
         ? padingBottomLarge 
