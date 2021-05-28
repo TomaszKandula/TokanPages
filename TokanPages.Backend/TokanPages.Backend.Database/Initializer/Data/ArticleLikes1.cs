@@ -4,7 +4,7 @@ namespace TokanPages.Backend.Database.Initializer.Data
 {
     public static class ArticleLikes1
     {
-        public const string IP_ADDRESS = "1.1.1.1";
+        public const string IP_ADDRESS = "127.0.0.1";
 
         public const int LIKE_COUNT = 20;
 
