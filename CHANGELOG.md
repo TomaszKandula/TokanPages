@@ -1,3 +1,10 @@
+## [0.10.2](https://github.com/TomaszKandula/TokanPages/compare/v0.10.1...v0.10.2) (2021-05-28)
+
+
+### Bug Fixes
+
+* add missing cancellation token ([0bd6ed0](https://github.com/TomaszKandula/TokanPages/commit/0bd6ed02803fb8aef442fc2db3c8b0f86b150d7a))
+
 ## [0.10.1](https://github.com/TomaszKandula/TokanPages/compare/v0.10.0...v0.10.1) (2021-05-26)
 
 
