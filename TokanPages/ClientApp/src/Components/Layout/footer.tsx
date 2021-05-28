@@ -57,18 +57,15 @@ export default function Footer(props: IGetFooterContentExtended)
         );
     };
 
-    const RenderIcon = (props: { iconName: string }): JSX.Element => 
+    const RenderIcon = (iconName: string): JSX.Element => 
     {
-        let icon: JSX.Element = <></>;
-        switch(props.iconName)
+        switch(iconName)
         {
-            case "GitHubIcon": icon = <GitHubIcon />; break;
-            case "LinkedInIcon": icon = <LinkedInIcon />; break;
-            case "MediumIcon": icon = <MediumIcon />; break;
-            default: icon = <WarningIcon />;
+            case "GitHubIcon": return <GitHubIcon />;
+            case "LinkedInIcon": return <LinkedInIcon />;
+            case "MediumIcon": return <MediumIcon />;
+            default: return <WarningIcon />;
         }
-
-        return icon;
     };
 
     const RenderVersionInfo = (): JSX.Element =>
@@ -101,7 +98,7 @@ export default function Footer(props: IGetFooterContentExtended)
                                     aria-label={item.name} 
                                     href={item.link} 
                                     target="_blank">
-                                    <RenderIcon iconName={item.name} />
+                                    {RenderIcon(item.name)}
                                 </IconButton>
                             ))}
                         </Box>
