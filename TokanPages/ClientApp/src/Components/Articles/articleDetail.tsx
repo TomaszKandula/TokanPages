@@ -69,11 +69,9 @@ export default function ArticleDetail(props: IArticleDetail)
 
     React.useEffect(() => 
     { 
-        let likesLeft = isAnonymous 
+        setLikesLeft(isAnonymous 
             ? LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs
-            : LIKES_LIMIT_FOR_USER - selection.article.userLikes - totalThumbs;
-
-        setLikesLeft(likesLeft);
+            : LIKES_LIMIT_FOR_USER - selection.article.userLikes - totalThumbs);
     }, 
     [ selection.article.userLikes, isAnonymous, totalThumbs ]);
 
