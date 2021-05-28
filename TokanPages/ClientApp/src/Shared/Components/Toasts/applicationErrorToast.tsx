@@ -18,37 +18,40 @@ export default function ApplicationErrorToast()
     const vertical = "top";
     const horizontal = "right";
     const classes = applicationErrorToastStyle();
-    const [state, setState] = React.useState({ isOpen: false, errorMessage: "" });   
+    
+    const [toastState, setToastState] = React.useState({ isOpen: false, errorMessage: "" });   
     const dispatch = useDispatch();
+    
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
     const clearError = React.useCallback(() => dispatch(ActionCreators.clearError()), [ dispatch ]);
     
     React.useEffect(() => 
     { 
-        if (raiseErrorState === undefined) return; 
+        if (raiseErrorState === undefined) 
+            return; 
         
         if (raiseErrorState.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
-            setState({ isOpen: true, errorMessage: raiseErrorState.attachedErrorObject });
+            setToastState({ isOpen: true, errorMessage: raiseErrorState.attachedErrorObject });
 
-        if (raiseErrorState.defaultErrorMessage === RECEIVED_ERROR_MESSAGE && !state.isOpen)
+        if (raiseErrorState.defaultErrorMessage === RECEIVED_ERROR_MESSAGE && !toastState.isOpen)
             clearError();
     }, 
-    [ clearError, raiseErrorState, state.isOpen ]);
+    [ clearError, raiseErrorState, toastState.isOpen ]);
 
     const handleClose = (event?: React.SyntheticEvent, reason?: string) => 
     {
         if (event === undefined) return; 
         if (reason === "clickaway") return;
-        setState({ isOpen: false, errorMessage: "" });
+        setToastState({ isOpen: false, errorMessage: "" });
     }
 
     return (
         <div className={classes.root}>
-            <Snackbar anchorOrigin={{ vertical, horizontal }} open={state.isOpen} autoHideDuration={15000}
+            <Snackbar anchorOrigin={{ vertical, horizontal }} open={toastState.isOpen} autoHideDuration={15000}
                 onClose={handleClose} TransitionComponent={TransitionLeft} key={vertical + horizontal}
             >
                 <Alert onClose={handleClose} severity="error" elevation={6} variant="filled">
-                    {state.errorMessage}
+                    {toastState.errorMessage}
                 </Alert>
             </Snackbar>
         </div>
