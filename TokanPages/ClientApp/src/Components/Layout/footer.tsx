@@ -16,7 +16,7 @@ import footerStyle from "./Styles/footerStyle";
 
 interface IGetFooterContentExtended extends IGetFooterContent
 {
-    backgroundColor?: string | undefined;
+    backgroundColor?: string;
 }
 
 export default function Footer(props: IGetFooterContentExtended) 
