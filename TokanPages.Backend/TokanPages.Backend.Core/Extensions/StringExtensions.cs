@@ -1,6 +1,5 @@
 using System;
 using System.Text;
-using Microsoft.Data.SqlClient;
 
 namespace TokanPages.Backend.Core.Extensions
 {
@@ -20,21 +19,6 @@ namespace TokanPages.Backend.Core.Extensions
             var LBuffer = new Span<byte>(new byte[ABase64.Length]);
             var LWidth = ABase64.Length / 4 * 4 + (ABase64.Length % 4 == 0 ? 0 : 4);
             return Convert.TryFromBase64String(ABase64.PadRight(LWidth, '='), LBuffer, out _);
-        }
-
-        public static bool IsValidConnectionString(this string AConnectionString)
-        {
-            try
-            {
-                // ReSharper disable once UnusedVariable
-                var LConnectionString = new SqlConnectionStringBuilder(AConnectionString);
-            }
-            catch
-            {
-                return false;
-            }
-
-            return true;
         }
     }
 }
