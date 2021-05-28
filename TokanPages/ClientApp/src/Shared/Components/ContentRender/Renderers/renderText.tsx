@@ -69,7 +69,7 @@ export function RenderText(props: ITextItem)
         case "header": textItem = renderHeader(); break;
         case "dropcap": textItem = renderParagraphWithDropCap(); break;
         default: textItem = renderParagraph();
-    };
+    }
 
     return(<>{textItem}</>);
 }
