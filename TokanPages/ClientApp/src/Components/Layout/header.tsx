@@ -7,12 +7,12 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
 import { IGetHeaderContent } from "../../Redux/States/getHeaderContentState";
 import { IMAGES_PATH } from "../../Shared/constants";
-import useStyles from "./Styles/headerStyle";
+import headerStyle from "./Styles/headerStyle";
 import { renderImage } from "../../Shared/Components/CustomImage/customImage";
 
 export default function Header(props: IGetHeaderContent) 
 {
-    const classes = useStyles();
+    const classes = headerStyle();
     return (
         <section>
             <Container maxWidth="lg">

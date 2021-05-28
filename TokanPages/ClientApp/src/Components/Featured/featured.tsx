@@ -9,11 +9,11 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetFeaturedContent } from "../../Redux/States/getFeaturedContentState";
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
-import useStyles from "./featuredStyle";
+import featuredStyle from "./featuredStyle";
 
 export default function Featured(props: IGetFeaturedContent) 
 {
-    const classes = useStyles();
+    const classes = featuredStyle();
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">

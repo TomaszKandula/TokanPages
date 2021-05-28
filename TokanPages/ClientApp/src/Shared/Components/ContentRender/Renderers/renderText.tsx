@@ -2,12 +2,12 @@ import * as React from "react";
 import { Box, Typography } from "@material-ui/core";
 import ReactHtmlParser from "react-html-parser";
 import { ITextItem } from "../Models/textModel";
-import useStyles from "../Styles/renderTextStyle";
+import renderTextStyle from "../Styles/renderTextStyle";
 import "../../../../Theme/CustomCss/customDropCap.css";
 
 export function RenderText(props: ITextItem)
 {
-    const classes = useStyles();
+    const classes = renderTextStyle();
     const data: string = props.value as string; 
 
     const renderTitle = (): JSX.Element => 

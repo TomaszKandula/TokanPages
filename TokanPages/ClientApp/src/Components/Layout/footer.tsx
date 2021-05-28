@@ -12,7 +12,7 @@ import { IFooterContentIconDto } from "../../Api/Models";
 import { CustomColours } from "../../Theme/customColours";
 import { MediumIcon } from "../../Theme/Icons/medium";
 import validate from "validate.js";
-import useStyles from "./Styles/footerStyle";
+import footerStyle from "./Styles/footerStyle";
 
 interface IGetFooterContentExtended extends IGetFooterContent
 {
@@ -30,7 +30,7 @@ export default function Footer(props: IGetFooterContentExtended)
 
     const hasVersionInfo = validate.isEmpty(versionNumber) && validate.isEmpty(versionDateTime);
 
-    const classes = useStyles();
+    const classes = footerStyle();
     const backgroundColor: string = !props.backgroundColor 
         ? CustomColours.background.lightGray1 
         : props.backgroundColor as string;

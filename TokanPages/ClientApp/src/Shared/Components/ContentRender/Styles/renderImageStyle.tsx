@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import { CustomColours } from "Theme/customColours";
 
-const useStyles = makeStyles(() => (
+const renderImageStyle = makeStyles(() => (
 {
     card:
     {
@@ -24,4 +24,4 @@ const useStyles = makeStyles(() => (
     }
 }));
 
-export default useStyles;
+export default renderImageStyle;

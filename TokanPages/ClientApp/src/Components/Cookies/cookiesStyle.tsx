@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles(() => (
+const cookiesStyle = makeStyles(() => (
 {
     open:
     {
@@ -15,4 +15,4 @@ const useStyles = makeStyles(() => (
     }
 }));
 
-export default useStyles;
+export default cookiesStyle;

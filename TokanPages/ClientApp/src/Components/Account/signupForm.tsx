@@ -12,11 +12,11 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetSignupFormContent } from "../../Redux/States/getSignupFormContentState";
-import useStyles from "./Styles/signupFormStyle";
+import signupFormStyle from "./Styles/signupFormStyle";
 
 export default function SignupForm(props: IGetSignupFormContent) 
 {
-    const classes = useStyles();
+    const classes = signupFormStyle();
     return (
         <section>
             <Container maxWidth="sm">

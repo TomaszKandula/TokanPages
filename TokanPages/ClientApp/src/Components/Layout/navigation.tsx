@@ -6,11 +6,11 @@ import { IGetNavigationContent } from "../../Redux/States/getNavigationContentSt
 import HideOnScroll from "../../Shared/Components/Scroll/hideOnScroll";
 import { ICONS_PATH } from "../../Shared/constants";
 import { renderImage } from "../../Shared/Components/CustomImage/customImage";
-import useStyles from "./Styles/navigationStyle";
+import navigationStyle from "./Styles/navigationStyle";
 
 export default function Navigation(props: IGetNavigationContent) 
 {
-    const classes = useStyles();
+    const classes = navigationStyle();
     return (
         <HideOnScroll {...props}>
             <AppBar className={classes.appBar}>

@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import { CustomColours } from "../../../Theme/customColours";
 
-const useStyles = makeStyles(() => (
+const articleDetailStyle = makeStyles(() => (
 {
     container:
     {
@@ -54,4 +54,4 @@ const useStyles = makeStyles(() => (
     }
 }));
 
-export default useStyles;
+export default articleDetailStyle;

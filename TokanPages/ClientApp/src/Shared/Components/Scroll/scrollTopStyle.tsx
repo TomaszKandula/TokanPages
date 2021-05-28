@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => (
+const scrollTopStyle = makeStyles((theme) => (
 {
     scrollToTop: 
     {
@@ -10,4 +10,4 @@ const useStyles = makeStyles((theme) => (
     }
 }));
 
-export default useStyles;
+export default scrollTopStyle;

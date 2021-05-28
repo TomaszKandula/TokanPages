@@ -13,7 +13,7 @@ import { IconType } from "../../Shared/enums";
 import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
 import { NewsletterSuccess } from "../../Shared/textWrappers";
 import { IRemoveSubscriberDto } from "../../Api/Models";
-import useStyles from "./unsubscribeStyle";
+import unsubscribeStyle from "./unsubscribeStyle";
 import { IGetUnsubscribeContent } from "../../Redux/States/getUnsubscribeContentState";
 
 interface IGetUnsubscribeContentExtended extends IGetUnsubscribeContent
@@ -41,7 +41,7 @@ export default function Unsubscribe(props: IGetUnsubscribeContentExtended)
         button:  props.content?.contentPost.button
     };
 
-    const classes = useStyles();
+    const classes = unsubscribeStyle();
 
     const [content, setContent] = React.useState(contentPre);
     const [buttonState, setButtonState] = React.useState(true);

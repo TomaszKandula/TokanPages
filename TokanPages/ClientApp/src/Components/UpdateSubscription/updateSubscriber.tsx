@@ -20,7 +20,7 @@ import { IconType } from "../../Shared/enums";
 import { ValidateEmail } from "../../Shared/validate";
 import { NewsletterSuccess, NewsletterWarning } from "../../Shared/textWrappers";
 import { IUpdateSubscriberDto } from "../../Api/Models";
-import useStyles from "./updateSubscriptionStyle";
+import updateSubscriptionStyle from "./updateSubscriptionStyle";
 
 interface IGetUpdateSubscriberContentExtended extends IGetUpdateSubscriberContent
 {
@@ -29,7 +29,7 @@ interface IGetUpdateSubscriberContentExtended extends IGetUpdateSubscriberConten
 
 export default function UpdateSubscriber(props: IGetUpdateSubscriberContentExtended)
 {
-    const classes = useStyles();
+    const classes = updateSubscriptionStyle();
 
     const [form, setForm] = React.useState({email: ""});
     const [buttonState, setButtonState] = React.useState(true);

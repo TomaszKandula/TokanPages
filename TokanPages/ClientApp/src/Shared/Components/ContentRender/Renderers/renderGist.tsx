@@ -8,12 +8,12 @@ import { github } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { RAISE_ERROR } from "../../../../Redux/Actions/raiseErrorAction";
 import { GetErrorMessage } from "../../../../Shared/helpers";
 import { GetData } from "../../../../Api/request";
-import useStyles from "../Styles/renderGistStyle";
+import renderGistStyle from "../Styles/renderGistStyle";
 import validate from "validate.js";
 
 export function RenderGist(props: ITextItem)
 {
-    const classes = useStyles();
+    const classes = renderGistStyle();
     const dispatch = useDispatch();
     
     const gistUrl: string = props.value as string; 

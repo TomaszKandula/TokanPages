@@ -9,7 +9,7 @@ import Validate from "validate.js";
 import CenteredCircularLoader from "../../Shared/Components/ProgressBar/centeredCircularLoader";
 import { RenderContent } from "../../Shared/Components/ContentRender/renderContent";
 import { ITextObject } from "../../Shared/Components/ContentRender/Models/textModel";
-import useStyles from "./staticContentStyle";
+import staticContentStyle from "./staticContentStyle";
 import { IApplicationState } from "../../Redux/applicationState";
 import { 
     ActionCreators,
@@ -21,7 +21,7 @@ import {
 
 export default function StaticContent(props: { content: TRequestContent }) 
 {
-    const classes = useStyles();
+    const classes = staticContentStyle();
     const [ data, setData ] = React.useState<ITextObject>({ items: [] });
 
     const dispatch = useDispatch();

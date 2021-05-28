@@ -19,7 +19,7 @@ import { ValidateContactForm } from "../../Shared/validate";
 import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
 import { MessageOutSuccess, MessageOutWarning, MessageOutError } from "../../Shared/textWrappers";
 import { ISendMessageDto } from "../../Api/Models";
-import useStyles from "./contactFormStyle";
+import contactFormStyle from "./contactFormStyle";
 
 interface IFormDefaultValues 
 {
@@ -43,7 +43,7 @@ const formDefaultValues: IFormDefaultValues =
 
 export default function ContactForm(props: IGetContactFormContent)
 {
-    const classes = useStyles();
+    const classes = contactFormStyle();
 
     const [form, setForm] = React.useState(formDefaultValues);   
     const [modal, setModal] = React.useState(alertModalDefault);

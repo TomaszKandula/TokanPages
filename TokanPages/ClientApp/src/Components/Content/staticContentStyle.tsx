@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles(() => (
+const staticContentStyle = makeStyles(() => (
 {
     container:
     {
@@ -13,4 +13,4 @@ const useStyles = makeStyles(() => (
     }
 }));
 
-export default useStyles;
+export default staticContentStyle;

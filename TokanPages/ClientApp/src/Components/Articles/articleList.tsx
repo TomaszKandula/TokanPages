@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 import { Box, Divider, Grid, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
-import useStyles from "./Styles/articleListStyle";
+import articleListStyle from "./Styles/articleListStyle";
 import { ActionCreators } from "../../Redux/Actions/listArticlesAction";
 import { IArticles } from "../../Redux/States/listArticlesState";
 import { IArticleItem } from "../../Shared/Components/ContentRender/Models/articleItemModel";
@@ -14,7 +14,7 @@ import CenteredCircularLoader from "../../Shared/Components/ProgressBar/centered
 
 export default function ArticleList() 
 {
-    const classes = useStyles();
+    const classes = articleListStyle();
     const data = useSelector((state: IApplicationState) => state.listArticles);
 
     const dispatch = useDispatch();

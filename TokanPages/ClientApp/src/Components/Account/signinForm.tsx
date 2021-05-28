@@ -10,11 +10,11 @@ import { Card, CardContent } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetSigninFormContent } from "../../Redux/States/getSigninFormContentState";
-import useStyles from "./Styles/signinFormStyle";
+import signinFormStyle from "./Styles/signinFormStyle";
 
 export default function SigninForm(props: IGetSigninFormContent) 
 {
-    const classes = useStyles();
+    const classes = signinFormStyle();
     return (
         <section>
             <Container maxWidth="sm">

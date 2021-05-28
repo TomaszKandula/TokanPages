@@ -1,7 +1,7 @@
 import * as React from "react";
 import Zoom from "@material-ui/core/Zoom";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import useStyles from "./scrollTopStyle";
+import scrollTopStyle from "./scrollTopStyle";
 
 export interface IScrollTop 
 {
@@ -11,7 +11,7 @@ export interface IScrollTop
 export default function ScrollTop(props: IScrollTop) 
 {
     const { children } = props;
-    const classes = useStyles();
+    const classes = scrollTopStyle();
 
     const trigger = useScrollTrigger(
     {

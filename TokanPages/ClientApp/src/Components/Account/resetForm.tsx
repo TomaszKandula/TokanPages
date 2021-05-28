@@ -9,11 +9,11 @@ import { Card, CardContent } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetResetFormContent } from "../../Redux/States/getResetFormContentState";
-import useStyles from "./Styles/resetFormStyle";
+import resetFormStyle from "./Styles/resetFormStyle";
 
 export default function ResetForm(props: IGetResetFormContent) 
 {
-    const classes = useStyles();
+    const classes = resetFormStyle();
     return (
         <section>
             <Container maxWidth="sm">

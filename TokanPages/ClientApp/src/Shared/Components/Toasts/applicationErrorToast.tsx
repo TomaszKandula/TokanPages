@@ -6,7 +6,7 @@ import { Alert } from "@material-ui/lab";
 import { IApplicationState } from "../../../Redux/applicationState";
 import { ActionCreators } from "../../../Redux/Actions/raiseErrorAction";
 import { RECEIVED_ERROR_MESSAGE } from "../../constants";
-import useStyles from "./Styles/applicationErrorToastStyle";
+import applicationErrorToastStyle from "./Styles/applicationErrorToastStyle";
 
 const TransitionLeft = (props: Omit<SlideProps, "direction">) =>
 {
@@ -17,7 +17,7 @@ export default function ApplicationErrorToast()
 {
     const vertical = "top";
     const horizontal = "right";
-    const classes = useStyles();
+    const classes = applicationErrorToastStyle();
     const [state, setState] = React.useState({ isOpen: false, errorMessage: "" });   
     const dispatch = useDispatch();
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);

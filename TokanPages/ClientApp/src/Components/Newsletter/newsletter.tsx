@@ -17,11 +17,11 @@ import { OperationStatus, IconType } from "../../Shared/enums";
 import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
 import { NewsletterSuccess, NewsletterWarning, NewsletterError } from "../../Shared/textWrappers";
 import { IAddSubscriberDto } from "../../Api/Models";
-import useStyles from "./newsletterStyle";
+import newsletterStyle from "./newsletterStyle";
 
 export default function Newsletter(props: IGetNewsletterContent)
 {
-    const classes = useStyles();
+    const classes = newsletterStyle();
     
     const [form, setForm] = React.useState({email: ""});
     const [modal, setModal] = React.useState(alertModalDefault);

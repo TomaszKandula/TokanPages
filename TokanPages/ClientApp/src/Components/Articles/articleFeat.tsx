@@ -11,11 +11,11 @@ import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetArticleFeatContent } from "../../Redux/States/getArticleFeatContentState";
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
-import useStyles from "./Styles/articleFeatStyle";
+import articleFeatStyle from "./Styles/articleFeatStyle";
 
 export default function ArticleFeat(props: IGetArticleFeatContent) 
 {
-    const classes = useStyles();
+    const classes = articleFeatStyle();
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
