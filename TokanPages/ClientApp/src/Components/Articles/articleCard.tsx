@@ -7,7 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
-import useStyles from "./Styles/articleCardStyle";
+import articleCardStyle from "./Styles/articleCardStyle";
 import { ActionCreators } from "../../Redux/Actions/selectArticleAction";
 import { ARTICLE_PATH, IMAGE_URL } from "../../Shared/constants";
 
@@ -20,7 +20,7 @@ export interface IArticleCard
 
 export default function ArticleCard(props: IArticleCard)
 {
-    const classes = useStyles();
+    const classes = articleCardStyle();
     const content = 
     {
         button: "Read"

@@ -10,11 +10,11 @@ import CloudIcon from "@material-ui/icons/Cloud";
 import Skeleton from "@material-ui/lab/Skeleton";
 import ReactHtmlParser from "react-html-parser";
 import { IGetFeaturesContent } from "../../Redux/States/getFeaturesContentState";
-import useStyles from "./featuresStyle";
+import featuresStyle from "./featuresStyle";
 
 export default function Features(props: IGetFeaturesContent)
 {
-    const classes = useStyles();
+    const classes = featuresStyle();
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">

@@ -16,7 +16,7 @@ import { ArrowBack } from "@material-ui/icons";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Emoji from "react-emoji-render";
 import Validate from "validate.js";
-import useStyles from "./Styles/articleDetailStyle";
+import articleDetailStyle from "./Styles/articleDetailStyle";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as SelectArticleActions } from "../../Redux/Actions/selectArticleAction";
 import { ActionCreators as UpdateArticleAction } from "../../Redux/Actions/updateArticleAction";
@@ -55,7 +55,7 @@ export default function ArticleDetail(props: IArticleDetail)
     const [thumbClicked, setThumbsClicked] = React.useState(false);
     const [likesLeft, setLikesLeft] = React.useState(0);
 
-    const classes = useStyles();
+    const classes = articleDetailStyle();
     const history = useHistory();
     const open = Boolean(popover);
     const userLetter = selection.article.author.aliasName.charAt(0).toUpperCase();
@@ -69,11 +69,9 @@ export default function ArticleDetail(props: IArticleDetail)
 
     React.useEffect(() => 
     { 
-        let likesLeft = isAnonymous 
+        setLikesLeft(isAnonymous 
             ? LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs
-            : LIKES_LIMIT_FOR_USER - selection.article.userLikes - totalThumbs;
-
-        setLikesLeft(likesLeft);
+            : LIKES_LIMIT_FOR_USER - selection.article.userLikes - totalThumbs);
     }, 
     [ selection.article.userLikes, isAnonymous, totalThumbs ]);
 
@@ -191,11 +189,9 @@ export default function ArticleDetail(props: IArticleDetail)
             ? LIKES_HINT_FOR_ANONYM.replace("{LEFT_LIKES}", likesLeft.toString()) 
             : LIKES_HINT_FOR_USER.replace("{LEFT_LIKES}", likesLeft.toString());
 
-        const textOut = likesLeft === 0 
+        return likesLeft === 0 
             ? MAX_LIKES_REACHED 
             : textLikesLeft;
-
-        return(textOut);
     };
 
     const returnReadTime = (): string =>

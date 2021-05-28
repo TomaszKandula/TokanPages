@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../Theme/customColours";
 
-const useStyles = makeStyles((theme) => (
+const testimonialsStyle = makeStyles((theme) => (
 {
     section:
     {
@@ -53,4 +53,4 @@ const useStyles = makeStyles((theme) => (
     }
 }));
 
-export default useStyles;
+export default testimonialsStyle;

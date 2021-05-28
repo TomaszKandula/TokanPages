@@ -12,11 +12,11 @@ import { IFooterContentIconDto } from "../../Api/Models";
 import { CustomColours } from "../../Theme/customColours";
 import { MediumIcon } from "../../Theme/Icons/medium";
 import validate from "validate.js";
-import useStyles from "./Styles/footerStyle";
+import footerStyle from "./Styles/footerStyle";
 
 interface IGetFooterContentExtended extends IGetFooterContent
 {
-    backgroundColor?: string | undefined;
+    backgroundColor?: string;
 }
 
 export default function Footer(props: IGetFooterContentExtended) 
@@ -30,10 +30,10 @@ export default function Footer(props: IGetFooterContentExtended)
 
     const hasVersionInfo = validate.isEmpty(versionNumber) && validate.isEmpty(versionDateTime);
 
-    const classes = useStyles();
+    const classes = footerStyle();
     const backgroundColor: string = !props.backgroundColor 
         ? CustomColours.background.lightGray1 
-        : props.backgroundColor as string;
+        : props.backgroundColor;
 
     const boxPaddingBottom: number = hasVersionInfo 
         ? padingBottomLarge 
@@ -57,18 +57,15 @@ export default function Footer(props: IGetFooterContentExtended)
         );
     };
 
-    const RenderIcon = (props: { iconName: string }): JSX.Element => 
+    const RenderIcon = (iconName: string): JSX.Element => 
     {
-        let icon: JSX.Element = <></>;
-        switch(props.iconName)
+        switch(iconName)
         {
-            case "GitHubIcon": icon = <GitHubIcon />; break;
-            case "LinkedInIcon": icon = <LinkedInIcon />; break;
-            case "MediumIcon": icon = <MediumIcon />; break;
-            default: icon = <WarningIcon />;
+            case "GitHubIcon": return <GitHubIcon />;
+            case "LinkedInIcon": return <LinkedInIcon />;
+            case "MediumIcon": return <MediumIcon />;
+            default: return <WarningIcon />;
         }
-
-        return icon;
     };
 
     const RenderVersionInfo = (): JSX.Element =>
@@ -101,7 +98,7 @@ export default function Footer(props: IGetFooterContentExtended)
                                     aria-label={item.name} 
                                     href={item.link} 
                                     target="_blank">
-                                    <RenderIcon iconName={item.name} />
+                                    {RenderIcon(item.name)}
                                 </IconButton>
                             ))}
                         </Box>

@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import { CustomColours } from "Theme/customColours";
 
-const useStyles = makeStyles(() => (
+const renderSeparatorStyle = makeStyles(() => (
 {
     separator:
     {
@@ -20,4 +20,4 @@ const useStyles = makeStyles(() => (
     }
 }));    
 
-export default useStyles;
+export default renderSeparatorStyle;

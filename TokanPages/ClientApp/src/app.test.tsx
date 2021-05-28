@@ -6,16 +6,24 @@ import App from "./app";
 
 it("renders without crashing", () => 
 {
-
     const storeFake = (state: any) => (
     {
-        default: () => {},
-        subscribe: () => {},
-        dispatch: () => {},
+        default: () => 
+        {  
+            // Leave blank for tests
+        },
+        subscribe: () => 
+        {
+            // Leave blank for tests
+        },
+        dispatch: () => 
+        {
+            // Leave blank for tests
+        },
         getState: () => ({ ...state })
     });
     
-    const store = storeFake({}) as any;
+    const store = storeFake({ }) as any;
 
     ReactDOM.render(
         <Provider store={store}>
@@ -24,5 +32,4 @@ it("renders without crashing", () =>
             </MemoryRouter>
         </Provider>, document.createElement("div")
     );
-
 });

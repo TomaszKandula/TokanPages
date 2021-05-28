@@ -2,12 +2,12 @@ import * as React from "react";
 import { Box, Typography } from "@material-ui/core";
 import ReactHtmlParser from "react-html-parser";
 import { ITextItem } from "../Models/textModel";
-import useStyles from "../Styles/renderTextStyle";
+import renderTextStyle from "../Styles/renderTextStyle";
 import "../../../../Theme/CustomCss/customDropCap.css";
 
 export function RenderText(props: ITextItem)
 {
-    const classes = useStyles();
+    const classes = renderTextStyle();
     const data: string = props.value as string; 
 
     const renderTitle = (): JSX.Element => 
@@ -61,15 +61,12 @@ export function RenderText(props: ITextItem)
         );
     };
 
-    let textItem: JSX.Element = <></>;
     switch(props.prop)
     {
-        case "title": textItem = renderTitle(); break;
-        case "subtitle": textItem = renderSubtitle(); break;
-        case "header": textItem = renderHeader(); break;
-        case "dropcap": textItem = renderParagraphWithDropCap(); break;
-        default: textItem = renderParagraph();
-    };
-
-    return(<>{textItem}</>);
+        case "title": return renderTitle();
+        case "subtitle": return renderSubtitle();
+        case "header": return renderHeader();
+        case "dropcap": return renderParagraphWithDropCap();
+        default: return renderParagraph();
+    }
 }

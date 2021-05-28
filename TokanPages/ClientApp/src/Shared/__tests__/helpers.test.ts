@@ -18,8 +18,8 @@ describe("Verify helper methods.", () =>
         expect(
             helpers.ConvertPropsToFields(testObject).sort()
         ).toEqual(
-            expectation.sort()
-        );   
+            expectation
+        );
     });
 
     test("Should render HTML line with given HTML tag or return whitespace for undefined input.", () => 

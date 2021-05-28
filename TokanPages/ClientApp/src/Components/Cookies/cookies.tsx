@@ -9,11 +9,11 @@ import CardActions from "@material-ui/core/CardActions";
 import { IGetCookiesPromptContent } from "../../Redux/States/getCookiesPromptContentState";
 import { SetCookie, GetCookie } from "../../Shared/cookies";
 import Validate from "validate.js";
-import useStyles from "./cookiesStyle";
+import cookiesStyle from "./cookiesStyle";
 
 export default function Cookies(props: IGetCookiesPromptContent) 
 {
-    const classes = useStyles();
+    const classes = cookiesStyle();
     const [close, setClose] = React.useState(false);
     const onClickEvent = () => 
     { 

@@ -38,7 +38,7 @@ export default function UnsubscribePage()
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <Unsubscribe id={id} unsubscribe={unsubscribe} isLoading={unsubscribe?.isLoading} />
+                <Unsubscribe id={id} content={unsubscribe?.content} isLoading={unsubscribe?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>

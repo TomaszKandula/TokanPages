@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Card, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { ITextItem } from "../Models/textModel";
-import useStyles from "../Styles/renderVideoStyle";
+import renderVideoStyle from "../Styles/renderVideoStyle";
 import Validate from "validate.js";
 
 export function RenderVideo(props: ITextItem)
 {
-    const classes = useStyles();
+    const classes = renderVideoStyle();
     const data: string = props.value as string; 
     const [ImageState, setImageState] = React.useState(true);
     const imageClick = () => 

@@ -30,7 +30,7 @@ export default function ResetPage()
         <>     
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <ResetForm resetForm={resetForm} isLoading={resetForm?.isLoading} />
+                <ResetForm content={resetForm?.content} isLoading={resetForm?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>

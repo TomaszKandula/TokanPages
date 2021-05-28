@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Card, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { ITextItem } from "../Models/textModel";
-import useStyles from "../Styles/renderImageStyle";
+import renderImageStyle from "../Styles/renderImageStyle";
 import Validate from "validate.js";
 
 export function RenderImage(props: ITextItem)
 {
-    const classes = useStyles();
+    const classes = renderImageStyle();
     const data: string = props.value as string; 
     const renderDescription = () => 
     {

@@ -7,13 +7,13 @@ import { Carousel } from "react-responsive-carousel";
 import { IGetTestimonialsContent } from "../../Redux/States/getTestimonialsContentState";
 import { renderImage } from "../../Shared/Components/CustomImage/customImage";
 import { TESTIMONIALS_PATH } from "../../Shared/constants";
-import useStyles from "./testimonialsStyle";
+import testimonialsStyle from "./testimonialsStyle";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../../Theme/CustomCss/overrideCarousel.css";
 
 export default function Testimonials(props: IGetTestimonialsContent)
 {
-    const classes = useStyles();
+    const classes = testimonialsStyle();
     return(
         <section className={classes.section}>
             <Container maxWidth="lg"> 

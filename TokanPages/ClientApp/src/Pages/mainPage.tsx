@@ -23,7 +23,7 @@ import { ActionCreators as ContactFormContent } from "../Redux/Actions/getContac
 import { ActionCreators as CookiesContent } from "../Redux/Actions/getCookiesPromptContentAction";
 import AOS from "aos";
 
-export default function Index() 
+export default function MainPage() 
 {
     const dispatch = useDispatch();
 

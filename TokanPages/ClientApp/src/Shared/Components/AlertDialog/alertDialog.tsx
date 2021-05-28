@@ -8,7 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import InfoIcon from '@material-ui/icons/Info';
 import WarningIcon from '@material-ui/icons/Warning';
 import ErrorIcon from '@material-ui/icons/Error';
-import useStyles from "./alertDialogStyle";
+import alertDialogStyle from "./alertDialogStyle";
 import { Divider, Typography } from "@material-ui/core";
 import { IconType } from "../../enums";
 
@@ -39,7 +39,7 @@ export const alertModalDefault: IAlertModal =
 
 export default function AlertDialog(props: IAlertDialog) 
 {
-    const classes = useStyles();
+    const classes = alertDialogStyle();
     const RenderIcon = () => 
     {
         switch (props.Icon)

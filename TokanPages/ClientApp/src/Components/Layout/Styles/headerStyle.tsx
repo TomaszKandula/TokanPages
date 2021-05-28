@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => (
+const headerStyle = makeStyles((theme) => (
 {
     gridMargin:
     {
@@ -61,4 +61,4 @@ const useStyles = makeStyles((theme) => (
     }
 }));
 
-export default useStyles;
+export default headerStyle;

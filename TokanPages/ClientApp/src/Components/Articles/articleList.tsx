@@ -4,9 +4,8 @@ import Container from "@material-ui/core/Container";
 import { Box, Divider, Grid, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
-import useStyles from "./Styles/articleListStyle";
+import articleListStyle from "./Styles/articleListStyle";
 import { ActionCreators } from "../../Redux/Actions/listArticlesAction";
-import { IArticles } from "../../Redux/States/listArticlesState";
 import { IArticleItem } from "../../Shared/Components/ContentRender/Models/articleItemModel";
 import { IApplicationState } from "../../Redux/applicationState";
 import ArticleCard from "./articleCard";
@@ -14,8 +13,8 @@ import CenteredCircularLoader from "../../Shared/Components/ProgressBar/centered
 
 export default function ArticleList() 
 {
-    const classes = useStyles();
-    const data = useSelector((state: IApplicationState) => state.listArticles);
+    const classes = articleListStyle();
+    const listArticles = useSelector((state: IApplicationState) => state.listArticles);
 
     const dispatch = useDispatch();
     const fetchData = React.useCallback(() => 
@@ -30,11 +29,11 @@ export default function ArticleList()
     }, 
     [ fetchData ]);
 
-    const renderContent = (data: IArticles) =>
+    const renderContent = (articles: IArticleItem[]) =>
     {
         return(
             <>
-                {data.articles.map((item: IArticleItem) => ( 
+                {articles.map((item: IArticleItem) => ( 
                     <ArticleCard 
                         title={item.title}
                         description={item.description}
@@ -60,9 +59,9 @@ export default function ArticleList()
                     </div>
                     <Grid container justify="center">
                         <Grid item xs={12} sm={12}>
-                            {data.isLoading 
+                            {listArticles.isLoading 
                                 ? <CenteredCircularLoader /> 
-                                : renderContent(data)}
+                                : renderContent(listArticles.articles)}
                         </Grid>
                     </Grid>
                 </Box>

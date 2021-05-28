@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from "@material-ui/core";
 
-const useStyles = makeStyles((theme: Theme) => (
+const applicationErrorToastStyle = makeStyles((theme: Theme) => (
 {
     root: 
     {
@@ -12,4 +12,4 @@ const useStyles = makeStyles((theme: Theme) => (
     }
 }));
 
-export default useStyles;
+export default applicationErrorToastStyle;

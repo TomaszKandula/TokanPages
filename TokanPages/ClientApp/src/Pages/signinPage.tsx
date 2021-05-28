@@ -30,7 +30,7 @@ export default function SigninPage()
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <SigninForm signinForm={signinForm} isLoading={signinForm?.isLoading} />
+                <SigninForm content={signinForm?.content} isLoading={signinForm?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>

@@ -14,23 +14,24 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/updateSubscriberAction";
+import { IGetUpdateSubscriberContent } from "../../Redux/States/getUpdateSubscriberContentState";
 import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
 import { IconType } from "../../Shared/enums";
 import { ValidateEmail } from "../../Shared/validate";
 import { NewsletterSuccess, NewsletterWarning } from "../../Shared/textWrappers";
-import { IUpdateSubscriberContentDto, IUpdateSubscriberDto } from "../../Api/Models";
-import useStyles from "./updateSubscriptionStyle";
+import { IUpdateSubscriberDto } from "../../Api/Models";
+import updateSubscriptionStyle from "./updateSubscriptionStyle";
 
-const formDefaultValues =
+interface IGetUpdateSubscriberContentExtended extends IGetUpdateSubscriberContent
 {
-    email: ""
-};
+    id: string;
+}
 
-export default function UpdateSubscriber(props: { id: string, updateSubscriber: IUpdateSubscriberContentDto, isLoading: boolean })
+export default function UpdateSubscriber(props: IGetUpdateSubscriberContentExtended)
 {
-    const classes = useStyles();
+    const classes = updateSubscriptionStyle();
 
-    const [form, setForm] = React.useState(formDefaultValues);
+    const [form, setForm] = React.useState({email: ""});
     const [buttonState, setButtonState] = React.useState(true);
     const [progress, setProgress] = React.useState(false);
     const [modal, setModal] = React.useState(alertModalDefault);
@@ -51,7 +52,7 @@ export default function UpdateSubscriber(props: { id: string, updateSubscriber: 
         {
             setProgress(false);
             setButtonState(true);
-            setForm(formDefaultValues);
+            setForm({email: ""});
             setModal(
             { 
                 State: true, 
@@ -110,7 +111,7 @@ export default function UpdateSubscriber(props: { id: string, updateSubscriber: 
                             <Box mb={3} textAlign="center">
                                 <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.updateSubscriber?.content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -125,7 +126,7 @@ export default function UpdateSubscriber(props: { id: string, updateSubscriber: 
                                 <Box my={2}>
                                     <Button onClick={buttonHandler} fullWidth variant="contained" color="primary" disabled={!buttonState}>
                                         {progress &&  <CircularProgress size={20} />}
-                                        {!progress && props.updateSubscriber?.content.button}
+                                        {!progress && props.content?.button}
                                     </Button>
                                 </Box>
                             </Box>

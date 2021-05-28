@@ -1,9 +1,9 @@
 import * as React from "react";
-import useStyles from "../Styles/renderSeparatorStyle";
+import renderSeparatorStyle from "../Styles/renderSeparatorStyle";
 
 export function RenderSeparator()
 {
-    const classes = useStyles();
+    const classes = renderSeparatorStyle();
     return(
         <div className={classes.separator}>
             <span className={classes.span}></span>
