@@ -8,7 +8,7 @@ describe("Test account component: SigninForm.", () =>
 {
     it("Renders correctly '<SigninForm />' when content is loaded.", () => 
     {
-        const tree = shallow(<SigninForm signinForm={combinedDefaults.getSigninFormContent} isLoading={false} />);
+        const tree = shallow(<SigninForm content={combinedDefaults.getSigninFormContent.content} isLoading={false} />);
         expect(tree).toMatchSnapshot();
     });
 });

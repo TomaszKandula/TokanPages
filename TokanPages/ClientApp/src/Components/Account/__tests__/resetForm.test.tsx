@@ -8,7 +8,7 @@ describe("Test account component: ResetForm.", () =>
 {
     it("Renders correctly '<ResetForm />' when content is loaded.", () => 
     {
-        const tree = shallow(<ResetForm resetForm={combinedDefaults.getResetFormContent} isLoading={false} />);
+        const tree = shallow(<ResetForm content={combinedDefaults.getResetFormContent.content} isLoading={false} />);
         expect(tree).toMatchSnapshot();
     });
 });
