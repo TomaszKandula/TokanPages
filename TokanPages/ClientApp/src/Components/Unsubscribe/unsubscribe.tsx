@@ -12,27 +12,33 @@ import { ActionCreators } from "../../Redux/Actions/removeSubscriberAction";
 import { IconType } from "../../Shared/enums";
 import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
 import { NewsletterSuccess } from "../../Shared/textWrappers";
-import { IRemoveSubscriberDto, IUnsubscribeContentDto } from "../../Api/Models";
+import { IRemoveSubscriberDto } from "../../Api/Models";
 import useStyles from "./unsubscribeStyle";
+import { IGetUnsubscribeContent } from "../../Redux/States/getUnsubscribeContentState";
 
-export default function Unsubscribe(props: { id: string, unsubscribe: IUnsubscribeContentDto, isLoading: boolean })
+interface IGetUnsubscribeContentExtended extends IGetUnsubscribeContent
+{
+    id: string;
+}
+
+export default function Unsubscribe(props: IGetUnsubscribeContentExtended)
 {
     const contentPre = 
     { 
-        caption: props.unsubscribe?.content.contentPre.caption,
-        text1:   props.unsubscribe?.content.contentPre.text1, 
-        text2:   props.unsubscribe?.content.contentPre.text2, 
-        text3:   props.unsubscribe?.content.contentPre.text3, 
-        button:  props.unsubscribe?.content.contentPre.button
+        caption: props.content?.contentPre.caption,
+        text1:   props.content?.contentPre.text1, 
+        text2:   props.content?.contentPre.text2, 
+        text3:   props.content?.contentPre.text3, 
+        button:  props.content?.contentPre.button
     };
 
     const contentPost = 
     {
-        caption: props.unsubscribe?.content.contentPost.caption,
-        text1:   props.unsubscribe?.content.contentPost.text1, 
-        text2:   props.unsubscribe?.content.contentPost.text2, 
-        text3:   props.unsubscribe?.content.contentPost.text3, 
-        button:  props.unsubscribe?.content.contentPost.button
+        caption: props.content?.contentPost.caption,
+        text1:   props.content?.contentPost.text1, 
+        text2:   props.content?.contentPost.text2, 
+        text3:   props.content?.contentPost.text3, 
+        button:  props.content?.contentPost.button
     };
 
     const classes = useStyles();

@@ -30,7 +30,7 @@ export default function SignupPage()
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <SignupForm signupForm={signupForm} isLoading={signupForm?.isLoading} />
+                <SignupForm content={signupForm?.content} isLoading={signupForm?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>

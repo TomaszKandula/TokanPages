@@ -8,10 +8,10 @@ import TextField from "@material-ui/core/TextField";
 import { Card, CardContent } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IResetFormContentDto } from "../../Api/Models";
+import { IGetResetFormContent } from "../../Redux/States/getResetFormContentState";
 import useStyles from "./Styles/resetFormStyle";
 
-export default function ResetForm(props: { resetForm: IResetFormContentDto, isLoading: boolean }) 
+export default function ResetForm(props: IGetResetFormContent) 
 {
     const classes = useStyles();
     return (
@@ -23,7 +23,7 @@ export default function ResetForm(props: { resetForm: IResetFormContentDto, isLo
                             <Box mb={3} textAlign="center">
                                 <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.resetForm?.content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -37,7 +37,7 @@ export default function ResetForm(props: { resetForm: IResetFormContentDto, isLo
                                 </Grid>
                                 <Box my={2}>
                                     <Button fullWidth variant="contained" color="primary">
-                                        {props.isLoading ? <Skeleton variant="text" /> : props.resetForm?.content.button}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.content?.button}
                                     </Button>
                                 </Box>
                             </Box>

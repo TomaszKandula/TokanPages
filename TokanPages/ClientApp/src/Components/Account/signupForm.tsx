@@ -11,10 +11,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { ISignupFormContentDto } from "../../Api/Models";
+import { IGetSignupFormContent } from "../../Redux/States/getSignupFormContentState";
 import useStyles from "./Styles/signupFormStyle";
 
-export default function SignupForm(props: { signupForm: ISignupFormContentDto, isLoading: boolean }) 
+export default function SignupForm(props: IGetSignupFormContent) 
 {
     const classes = useStyles();
     return (
@@ -26,7 +26,7 @@ export default function SignupForm(props: { signupForm: ISignupFormContentDto, i
                             <Box mb={3} textAlign="center">
                             <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.signupForm?.content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -58,18 +58,18 @@ export default function SignupForm(props: { signupForm: ISignupFormContentDto, i
                                     <Grid item xs={12}>
                                         <FormControlLabel 
                                             control={<Checkbox name="terms" value="1" color="primary" />} 
-                                            label={props.signupForm?.content.label} 
+                                            label={props.content?.label} 
                                         />
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
                                     <Button fullWidth variant="contained" color="primary">
-                                        {props.isLoading ? <Skeleton variant="text" /> : props.signupForm?.content.button}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.content?.button}
                                     </Button>
                                 </Box>
                                 <Box textAlign="right">
                                     <Link to="/signin">
-                                        {props.isLoading ? <Skeleton variant="text" /> : props.signupForm?.content.link}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.content?.link}
                                     </Link>
                                 </Box>
                             </Box>

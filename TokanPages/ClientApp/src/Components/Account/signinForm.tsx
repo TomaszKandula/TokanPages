@@ -9,10 +9,10 @@ import TextField from "@material-ui/core/TextField";
 import { Card, CardContent } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { ISigninFormContentDto } from "../../Api/Models";
+import { IGetSigninFormContent } from "../../Redux/States/getSigninFormContentState";
 import useStyles from "./Styles/signinFormStyle";
 
-export default function SigninForm(props: { signinForm: ISigninFormContentDto, isLoading: boolean }) 
+export default function SigninForm(props: IGetSigninFormContent) 
 {
     const classes = useStyles();
     return (
@@ -24,7 +24,7 @@ export default function SigninForm(props: { signinForm: ISigninFormContentDto, i
                             <Box mb={3} textAlign="center">
                                 <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.signinForm?.content.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -44,18 +44,18 @@ export default function SigninForm(props: { signinForm: ISigninFormContentDto, i
                                 </Grid>
                                 <Box my={2}>
                                     <Button fullWidth variant="contained" color="primary">
-                                        {props.isLoading ? <Skeleton variant="text" /> : props.signinForm?.content.button}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.content?.button}
                                     </Button>
                                 </Box>
                                 <Grid container spacing={2} className={classes.actions}>
                                     <Grid item xs={12} sm={6}>
                                         <Link to="/signup">
-                                            {props.isLoading ? <Skeleton variant="text" /> : props.signinForm?.content.link1}
+                                            {props.isLoading ? <Skeleton variant="text" /> : props.content?.link1}
                                         </Link>
                                     </Grid>
                                     <Grid item xs={12} sm={6} className={classes.tertiaryAction}>
                                         <Link to="/reset">
-                                            {props.isLoading ? <Skeleton variant="text" /> : props.signinForm?.content.link2}
+                                            {props.isLoading ? <Skeleton variant="text" /> : props.content?.link2}
                                         </Link>
                                     </Grid>
                                 </Grid>

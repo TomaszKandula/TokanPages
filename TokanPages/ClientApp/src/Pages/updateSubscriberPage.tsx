@@ -38,7 +38,7 @@ export default function UpdateSubscriberPage()
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <UpdateSubscriber id={id} updateSubscriber={updateSubscriber} isLoading={updateSubscriber?.isLoading} />
+                <UpdateSubscriber id={id} content={updateSubscriber?.content} isLoading={updateSubscriber?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>
