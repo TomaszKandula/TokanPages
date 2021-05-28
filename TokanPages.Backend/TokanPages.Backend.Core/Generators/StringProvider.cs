@@ -18,8 +18,8 @@ namespace TokanPages.Backend.Core.Generators
                 .Select(AString => AString[Random.Next(AString.Length)])
                 .ToArray()); 
 
-            if (!string.IsNullOrEmpty(APrefix) || !string.IsNullOrWhiteSpace(APrefix)) 
-                return APrefix + LString; 
+            if (!string.IsNullOrEmpty(APrefix)) 
+                return APrefix.Trim() + LString; 
 
             return LString;
         }
