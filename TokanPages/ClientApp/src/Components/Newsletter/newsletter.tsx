@@ -19,14 +19,11 @@ import { NewsletterSuccess, NewsletterWarning, NewsletterError } from "../../Sha
 import { IAddSubscriberDto } from "../../Api/Models";
 import useStyles from "./newsletterStyle";
 
-interface IFormDefaultValues { email: string; }
-const formDefaultValues: IFormDefaultValues = { email: "" };
-
 export default function Newsletter(props: IGetNewsletterContent)
 {
     const classes = useStyles();
     
-    const [form, setForm] = React.useState(formDefaultValues);   
+    const [form, setForm] = React.useState({email: ""});
     const [modal, setModal] = React.useState(alertModalDefault);
     const [progress, setProgress] = React.useState(false);
 
@@ -57,7 +54,7 @@ export default function Newsletter(props: IGetNewsletterContent)
             || addSubscriberState.isAddingSubscriber === OperationStatus.hasFailed)
         {
             setProgress(false);
-            setForm(formDefaultValues);
+            setForm({email: ""});
 
             if (addSubscriberState.hasAddedSubscriber 
                 && addSubscriberState.isAddingSubscriber === OperationStatus.hasFinished)
