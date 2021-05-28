@@ -30,7 +30,7 @@ export default function configureStore(history: History, initialState?: IApplica
     if (windowIfDefined && windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__) 
     {
         enhancers.push(windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__());
-    };
+    }
 
     return createStore(
         rootReducer,
