@@ -12,8 +12,8 @@ interface ISetCookie
 
 function SetCookie(props: ISetCookie): string
 {
-    let LNewCookie = "";
-    let LDate = new Date();
+    let newCookie = "";
+    let date = new Date();
 
     if (props.days)
     {
@@ -22,18 +22,18 @@ function SetCookie(props: ISetCookie): string
 
         if (Validate.isEmpty(props.exact))
         {
-            LDate.setTime(LDate.getTime() + (props.days * 24 * 60 * 60 * 1000));
-            dateString = LDate.toUTCString();
+            date.setTime(date.getTime() + (props.days * 24 * 60 * 60 * 1000));
+            dateString = date.toUTCString();
         }
 
         let LSecure = !Validate.isEmpty(props.secure) ? `; ${props.secure}` : "";
-        LNewCookie = `${props.cookieName}=${props.value}; expires=${dateString}; path=/; SameSite=${props.sameSite} ${LSecure}`;
+        newCookie = `${props.cookieName}=${props.value}; expires=${dateString}; path=/; SameSite=${props.sameSite} ${LSecure}`;
 
-        document.cookie = LNewCookie;
+        document.cookie = newCookie;
 
     }
 
-    return LNewCookie;
+    return newCookie;
 }
 
 interface IGetCookie
@@ -43,24 +43,21 @@ interface IGetCookie
 
 function GetCookie(props: IGetCookie): string
 {
-    let LCookieName = `${props.cookieName}=`;
-    let LCookieArray = document.cookie.split(";");
+    let cookieName = `${props.cookieName}=`;
+    let cookieArray = document.cookie.split(";");
 
-    for (let Index = 0; Index < LCookieArray.length; Index++)
+    for (let item of cookieArray)
     {
-
-        let LCookie = LCookieArray[Index];
-
-        while (LCookie.charAt(0) === " ")
+        let cookie = item;
+        while (cookie.charAt(0) === " ")
         {
-            LCookie = LCookie.substring(1, LCookie.length);
+            cookie = cookie.substring(1, cookie.length);
         }
 
-        if (LCookie.indexOf(LCookieName) === 0)
+        if (cookie.indexOf(cookieName) === 0)
         {
-            return LCookie.substring(LCookieName.length, LCookie.length);
+            return cookie.substring(cookieName.length, cookie.length);
         }
-
     }
 
     return "";
