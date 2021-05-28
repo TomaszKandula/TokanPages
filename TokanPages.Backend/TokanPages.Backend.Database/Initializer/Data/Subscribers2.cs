@@ -10,10 +10,10 @@ namespace TokanPages.Backend.Database.Initializer.Data
         
         public const int COUNT = 0;
 
-        public static Guid FId = Guid.Parse("ec8dd29c-464c-4e7a-897c-ce0ace2619ec");
+        public static readonly Guid FId = Guid.Parse("ec8dd29c-464c-4e7a-897c-ce0ace2619ec");
         
-        public static DateTime FRegistered = DateTime.Parse("2020-01-25 05:09:19");
+        public static readonly DateTime FRegistered = DateTime.Parse("2020-01-25 05:09:19");
         
-        public static DateTime? FLastUpdated = null;
+        public static readonly DateTime? FLastUpdated = null;
     }
 }

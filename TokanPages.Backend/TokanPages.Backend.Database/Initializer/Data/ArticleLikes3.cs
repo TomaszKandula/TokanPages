@@ -8,10 +8,10 @@ namespace TokanPages.Backend.Database.Initializer.Data
 
         public const int LIKE_COUNT = 10;
         
-        public static Guid FId = Guid.Parse("f786f9b8-f391-43e5-af1a-f2d5004006b5");
+        public static readonly Guid FId = Guid.Parse("f786f9b8-f391-43e5-af1a-f2d5004006b5");
         
-        public static Guid FArticleId = Article3.FId;
+        public static readonly Guid FArticleId = Article3.FId;
         
-        public static Guid? FUserId = null;
+        public static readonly Guid? FUserId = null;
     }
 }

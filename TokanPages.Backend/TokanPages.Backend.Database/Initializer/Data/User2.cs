@@ -18,12 +18,12 @@ namespace TokanPages.Backend.Database.Initializer.Data
         
         public const string SHORT_BIO = "Software Developer";
 
-        public static Guid FId = Guid.Parse("d6365db3-d464-4146-857b-d8476f46553c");
+        public static readonly Guid FId = Guid.Parse("d6365db3-d464-4146-857b-d8476f46553c");
         
-        public static DateTime FRegistered = DateTime.Parse("2020-01-25 05:09:19");
+        public static readonly DateTime FRegistered = DateTime.Parse("2020-01-25 05:09:19");
         
-        public static DateTime? FLastLogged = DateTime.Parse("2020-03-22 12:00:15");
+        public static readonly DateTime? FLastLogged = DateTime.Parse("2020-03-22 12:00:15");
         
-        public static DateTime? FLastUpdated = DateTime.Parse("2020-05-21 05:09:11");
+        public static readonly DateTime? FLastUpdated = DateTime.Parse("2020-05-21 05:09:11");
     }
 }
