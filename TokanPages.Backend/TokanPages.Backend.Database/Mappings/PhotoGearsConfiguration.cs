@@ -6,10 +6,10 @@ namespace TokanPages.Backend.Database.Mappings
 {
     public class PhotoGearsConfiguration : IEntityTypeConfiguration<PhotoGears>
     {
-        public void Configure(EntityTypeBuilder<PhotoGears> AModelBuilder)
+        public void Configure(EntityTypeBuilder<PhotoGears> ABuilder)
         {
-            AModelBuilder.Property(APhotoGears => APhotoGears.Id).ValueGeneratedOnAdd();
-            AModelBuilder.Property(APhotoGears => APhotoGears.Aperture).HasColumnType("decimal(18,2)");
+            ABuilder.Property(APhotoGears => APhotoGears.Id).ValueGeneratedOnAdd();
+            ABuilder.Property(APhotoGears => APhotoGears.Aperture).HasColumnType("decimal(18,2)");
         }
     }
 }

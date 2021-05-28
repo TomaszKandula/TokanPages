@@ -29,7 +29,7 @@ namespace TokanPages.Backend.Core.Services.FileUtility
         {
             using var LHttpClient = new HttpClient();
             var LResponse = await LHttpClient.GetAsync(AUrl, ACancellationToken);
-            return await LResponse.Content.ReadAsStringAsync();
+            return await LResponse.Content.ReadAsStringAsync(ACancellationToken);
         }
     }
 }

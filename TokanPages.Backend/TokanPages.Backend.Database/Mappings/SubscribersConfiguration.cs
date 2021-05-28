@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Database.Mappings
 {
     public class SubscribersConfiguration : IEntityTypeConfiguration<Subscribers>
     {
-        public void Configure(EntityTypeBuilder<Subscribers> AModelBuilder)
-            => AModelBuilder.Property(ASubscribers => ASubscribers.Id).ValueGeneratedOnAdd();
+        public void Configure(EntityTypeBuilder<Subscribers> ABuilder)
+            => ABuilder.Property(ASubscribers => ASubscribers.Id).ValueGeneratedOnAdd();
     }
 }
