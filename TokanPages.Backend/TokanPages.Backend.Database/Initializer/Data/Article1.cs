@@ -12,12 +12,12 @@ namespace TokanPages.Backend.Database.Initializer.Data
         
         public const int READ_COUNT = 0;
 
-        public static Guid FId = Guid.Parse("731a6665-1c80-44e5-af6e-4d8331efe028");
+        public static readonly Guid FId = Guid.Parse("731a6665-1c80-44e5-af6e-4d8331efe028");
         
-        public static DateTime FCreated = DateTime.Parse("2020-01-10 12:15:15");
+        public static readonly DateTime FCreated = DateTime.Parse("2020-01-10 12:15:15");
         
-        public static DateTime? FLastUpdated = null;
+        public static readonly DateTime? FLastUpdated = null;
         
-        public static Guid FUserId = User1.FId;
+        public static readonly Guid FUserId = User1.FId;
     }
 }
