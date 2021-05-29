@@ -17,6 +17,7 @@
             public const string ZIP = "application/zip";
             public const string JSON = "application/json";
             public const string PDF = "application/pdf";
+            public const string TEXT_PLAIN = "text/plain";
             public const string TEXT_CSV = "text/csv";
             public const string TEXT_HTML = "text/html";
             public const string IMAGE_JPEG = "image/jpeg";
