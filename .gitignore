@@ -16,6 +16,9 @@
 # Mono auto generated files
 mono_crash.*
 
+#SonarQube
+.sonarqube/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
