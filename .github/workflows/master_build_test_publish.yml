@@ -64,6 +64,8 @@ jobs:
         SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD }}"
         SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT }}"
         SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER }}"
+        SonarQube.Server: "${{ secrets.SONARQUBE_HOST }}"
+        SonarQube.Token: "${{ secrets.SONARQUBE_TOKEN }}"
 
     - name: Build Docker (prepare)
       uses: azure/docker-login@v1
