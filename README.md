@@ -31,8 +31,6 @@
   </a>
 </p>
 
----
-
 TokanPages is the repository that holds my web page to share my programming interests (among others), primarily Microsoft technologies. I also plan album functionality and comment section under articles among article editor and user account capabilities.
 
 ## Tech-Stack
