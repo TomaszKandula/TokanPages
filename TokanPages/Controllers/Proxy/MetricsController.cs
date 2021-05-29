@@ -33,13 +33,11 @@ namespace TokanPages.Controllers.Proxy
                 if (string.IsNullOrEmpty(AProject) && string.IsNullOrEmpty(AMetric))
                     return GetContentResult(400, $"Parameters '{nameof(AProject)}' and '{nameof(AMetric)}' are missing");
 
-                if (string.IsNullOrEmpty(AProject) || string.IsNullOrEmpty(AMetric))
-                {
-                    var LMissingParameter = string.IsNullOrEmpty(AProject) ? nameof(AProject) 
-                        : string.IsNullOrEmpty(AMetric) ? nameof(AMetric) : string.Empty;
-                    
-                    return GetContentResult(400, $"Parameter '{LMissingParameter}' is missing");
-                }
+                var LMissingParameterName = GetEmptyParameterName(AProject, nameof(AProject),
+                    AMetric, nameof(AMetric));
+                
+                if (!string.IsNullOrEmpty(LMissingParameterName))
+                    return GetContentResult(400, $"Parameter '{LMissingParameterName}' is missing");
 
                 var LRequestUrl = $"{FSonarQube.Server}/api/project_badges/measure?project={AProject}&metric={AMetric}";
                 var LContent = await GetContent(LRequestUrl);
@@ -73,7 +71,17 @@ namespace TokanPages.Controllers.Proxy
                 return GetContentResult(500, LException.Message);
             }
         }
-        
+
+        private static string GetEmptyParameterName(string AFirstValue, string AFirstValueName, string ASecondValue, string ASecondValueName)
+        {
+            if (string.IsNullOrEmpty(AFirstValue))
+                return AFirstValueName;
+
+            return string.IsNullOrEmpty(ASecondValue) 
+                ? ASecondValueName 
+                : string.Empty;
+        }
+
         private async Task<string> GetContent(string ARequestUrl)
         {
             using var LHttpClient = new HttpClient();
