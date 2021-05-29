@@ -23,7 +23,7 @@ namespace TokanPages.IntegrationTests
             Dependencies.CommonServices(AServices, FConfiguration);
         }
 
-        public void Configure(IApplicationBuilder AApplication)
+        public static void Configure(IApplicationBuilder AApplication)
         {
             AApplication.UseExceptionHandler(ExceptionHandler.Handle);
             AApplication.UseMiddleware<CustomCors>();
