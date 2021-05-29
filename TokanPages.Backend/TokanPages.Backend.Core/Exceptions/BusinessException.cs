@@ -8,7 +8,8 @@ namespace TokanPages.Backend.Core.Exceptions
     {
         public string ErrorCode { get; }
 
-        protected BusinessException(SerializationInfo ASerializationInfo, StreamingContext AStreamingContext) { }
+        protected BusinessException(SerializationInfo ASerializationInfo, 
+            StreamingContext AStreamingContext) : base(ASerializationInfo, AStreamingContext) { }
 
         public BusinessException(string AErrorCode, string AErrorMessage = "") : base(AErrorMessage)
             => ErrorCode = AErrorCode;
