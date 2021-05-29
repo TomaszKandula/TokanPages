@@ -17,6 +17,7 @@
             public const string ZIP = "application/zip";
             public const string JSON = "application/json";
             public const string PDF = "application/pdf";
+            public const string TEXT_PLAIN = "text/plain";
             public const string TEXT_CSV = "text/csv";
             public const string TEXT_HTML = "text/html";
             public const string IMAGE_JPEG = "image/jpeg";
@@ -24,6 +25,21 @@
             public const string IMAGE_SVG = "image/svg+xml";
             public const string AUDIO_MPEG = "audio/mpeg";
             public const string VIDEO_MPEG = "video/mpeg";
+        }
+
+        public static class MetricNames
+        {
+            public const string BUGS = "bugs";
+            public const string CODE_SMELLS = "code_smells";
+            public const string COVERAGE = "coverage";
+            public const string DUPLICATED_LINES_DENSITY = "duplicated_lines_density";
+            public const string NCLOC = "ncloc";
+            public const string SQALE_RATING = "sqale_rating";
+            public const string ALERT_STATUS = "alert_status";
+            public const string RELIABILITY_RATING = "reliability_rating";
+            public const string SECURITY_RATING = "security_rating";
+            public const string SQALE_INDEX = "sqale_index";
+            public const string VULNERABILITIES = "vulnerabilities";
         }
 
         /// <summary>

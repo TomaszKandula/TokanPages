@@ -49,6 +49,7 @@ namespace TokanPages.Configuration
             AServices.AddSingleton(AConfiguration.GetSection("AzureStorage").Get<AzureStorageSettings>());
             AServices.AddSingleton(AConfiguration.GetSection("SmtpServer").Get<SmtpServerSettings>());
             AServices.AddSingleton(AConfiguration.GetSection("AppUrls").Get<AppUrls>());
+            AServices.AddSingleton(AConfiguration.GetSection("SonarQube").Get<SonarQube>());
         }
 
         private static void SetupLogger(IServiceCollection AServices) 

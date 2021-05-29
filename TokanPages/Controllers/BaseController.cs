@@ -5,10 +5,10 @@ namespace TokanPages.Controllers
 {
     [Route("api/v1/[controller]/[action]")]
     [ApiController]
-    public class __BaseController : ControllerBase
+    public class BaseController : ControllerBase
     {
         protected readonly IMediator FMediator;
 
-        public __BaseController(IMediator AMediator) => FMediator = AMediator;
+        public BaseController(IMediator AMediator) => FMediator = AMediator;
     }
 }
