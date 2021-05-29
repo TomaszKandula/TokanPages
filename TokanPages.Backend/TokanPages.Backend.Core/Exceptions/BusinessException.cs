@@ -2,6 +2,7 @@
 
 namespace TokanPages.Backend.Core.Exceptions
 {
+    [Serializable]
     public class BusinessException : Exception
     {
         public string ErrorCode { get; }

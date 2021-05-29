@@ -1,7 +1,9 @@
-﻿using FluentValidation.Results;
+﻿using System;
+using FluentValidation.Results;
 
 namespace TokanPages.Backend.Core.Exceptions
 {
+    [Serializable]
     public class ValidationException : BusinessException
     {
         public ValidationResult ValidationResult { get; }
