@@ -6,12 +6,12 @@ on:
     
 jobs:
 
-  frontend-check:
+  dev-branch-check:
 
     runs-on: ubuntu-latest
 
     steps:
-
+    
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
       with:
@@ -32,27 +32,6 @@ jobs:
       run: |
         cd $PWD/TokanPages/ClientApp
         yarn app-test --ci --coverage
-
-    - name: Scan client application
-      uses: sonarsource/sonarqube-scan-action@master
-      env:
-        SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
-      with:
-        args: >
-          -Dsonar.projectKey=${{ secrets.SONARQUBE_PROJECT_KEY }}
-          -Dsonar.sources=.
-
-  backend-check:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    
-    - name: Checkout repository
-      uses: actions/checkout@v2.2.0
-      with:
-        fetch-depth: 0
         
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: microsoft/variable-substitution@v1
