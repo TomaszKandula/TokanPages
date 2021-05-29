@@ -72,16 +72,6 @@ namespace TokanPages.Controllers.Proxy
             }
         }
 
-        private static string GetEmptyParameterName(string AFirstValue, string AFirstValueName, string ASecondValue, string ASecondValueName)
-        {
-            if (string.IsNullOrEmpty(AFirstValue))
-                return AFirstValueName;
-
-            return string.IsNullOrEmpty(ASecondValue) 
-                ? ASecondValueName 
-                : string.Empty;
-        }
-
         private async Task<string> GetContent(string ARequestUrl)
         {
             using var LHttpClient = new HttpClient();
@@ -102,6 +92,16 @@ namespace TokanPages.Controllers.Proxy
                 ContentType = AContentType,
                 Content = AContent
             };
+        }
+
+        private static string GetEmptyParameterName(string AFirstValue, string AFirstValueName, string ASecondValue, string ASecondValueName)
+        {
+            if (string.IsNullOrEmpty(AFirstValue))
+                return AFirstValueName;
+
+            return string.IsNullOrEmpty(ASecondValue) 
+                ? ASecondValueName 
+                : string.Empty;
         }
     }
 }
