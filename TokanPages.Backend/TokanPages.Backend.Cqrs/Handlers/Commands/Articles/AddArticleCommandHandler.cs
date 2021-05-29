@@ -1,10 +1,8 @@
 ﻿using System;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
 using TokanPages.Backend.Core.Services.DateTimeService;
@@ -52,48 +50,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             await FDatabaseContext.Articles.AddAsync(LNewArticle, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             
-            await UploadText(LNewArticle.Id, ARequest.TextToUpload);
-            await UploadImage(LNewArticle.Id, ARequest.ImageToUpload);
+            var LAzureBlob = FAzureBlobStorageFactory.Create();
+            await LAzureBlob.UploadText(LNewArticle.Id, ARequest.TextToUpload);
+            await LAzureBlob.UploadImage(LNewArticle.Id, ARequest.ImageToUpload);
             
             return await Task.FromResult(LNewArticle.Id);
-        }
-
-        private async Task UploadText(Guid AId, string ATextToUpload) // TODO: refactor to shared
-        {
-            var LAzureBlob = FAzureBlobStorageFactory.Create();
-            var LTextToBase64 = ATextToUpload.ToBase64Encode();
-            var LBytes = Convert.FromBase64String(LTextToBase64);
-            var LContents = new MemoryStream(LBytes);
-
-            try
-            {
-                var LDestinationPath = $"content\\articles\\{AId.ToString().ToLower()}\\text.json";
-                await LAzureBlob.UploadFile(LContents, LDestinationPath);
-            }
-            catch (Exception LException)
-            {
-                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LException.Message);
-            }
-        }
-
-        private async Task UploadImage(Guid AId, string AImageToUpload) // TODO: refactor to shared
-        {
-            if (!AImageToUpload.IsBase64String()) 
-                throw new BusinessException(nameof(ErrorCodes.INVALID_BASE64), ErrorCodes.INVALID_BASE64);
-            
-            var LAzureBlob = FAzureBlobStorageFactory.Create();
-            var LBytes = Convert.FromBase64String(AImageToUpload);
-            var LContents = new MemoryStream(LBytes);
-            
-            try
-            {
-                var LDestinationPath = $"content\\articles\\{AId.ToString().ToLower()}\\image.jpeg";
-                await LAzureBlob.UploadFile(LContents, LDestinationPath);
-            }
-            catch (Exception LException)
-            {
-                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LException.Message);
-            }
         }
     }
 }

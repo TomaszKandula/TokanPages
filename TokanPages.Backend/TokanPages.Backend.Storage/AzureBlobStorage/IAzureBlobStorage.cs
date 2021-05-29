@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using TokanPages.Backend.Shared;
@@ -17,6 +18,10 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
         
         Task<string> GetFileContentType(string ASourceFilePath);
         
-        Task<bool> DeleteFile(string ASourceFilePath);    
+        Task<bool> DeleteFile(string ASourceFilePath);
+
+        Task UploadText(Guid AId, string ATextToUpload);
+
+        Task UploadImage(Guid AId, string AImageToUpload);
     }
 }
