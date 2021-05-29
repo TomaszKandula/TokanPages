@@ -1,3 +1,12 @@
+# [0.11.0](https://github.com/TomaszKandula/TokanPages/compare/v0.10.2...v0.11.0) (2021-05-29)
+
+
+### Features
+
+* add MIME type ([4bd80dc](https://github.com/TomaszKandula/TokanPages/commit/4bd80dc06b1fa331d6f2aa2ac30f2cc1dd97ba22))
+* add new controller for metrics from SonarQube project ([fda2283](https://github.com/TomaszKandula/TokanPages/commit/fda2283c1e8a2d8f38ff3fc1d57de438fd0a42b3))
+* add SonarQube metrics ([62279c6](https://github.com/TomaszKandula/TokanPages/commit/62279c69494c2a12d289009e834f0b6ec0ac69fe))
+
 ## [0.10.2](https://github.com/TomaszKandula/TokanPages/compare/v0.10.1...v0.10.2) (2021-05-28)
 
 
