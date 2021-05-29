@@ -26,6 +26,21 @@
             public const string VIDEO_MPEG = "video/mpeg";
         }
 
+        public static class MetricNames
+        {
+            public const string BUGS = "bugs";
+            public const string CODE_SMELLS = "code_smells";
+            public const string COVERAGE = "coverage";
+            public const string DUPLICATED_LINES_DENSITY = "duplicated_lines_density";
+            public const string NCLOC = "ncloc";
+            public const string SQALE_RATING = "sqale_rating";
+            public const string ALERT_STATUS = "alert_status";
+            public const string RELIABILITY_RATING = "reliability_rating";
+            public const string SECURITY_RATING = "security_rating";
+            public const string SQALE_INDEX = "sqale_index";
+            public const string VULNERABILITIES = "vulnerabilities";
+        }
+
         /// <summary>
         /// Holds limits of likes for logged user and anonymous user.
         /// </summary>
