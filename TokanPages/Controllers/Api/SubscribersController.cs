@@ -7,9 +7,9 @@ using TokanPages.Backend.Shared.Dto.Subscribers;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
 using MediatR;
 
-namespace TokanPages.Controllers
+namespace TokanPages.Controllers.Api
 {
-    public class SubscribersController : __BaseController
+    public class SubscribersController : BaseController
     {
         public SubscribersController(IMediator AMediator) : base(AMediator) { }
 
