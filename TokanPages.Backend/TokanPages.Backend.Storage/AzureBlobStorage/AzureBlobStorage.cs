@@ -1,9 +1,13 @@
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using TokanPages.Backend.Shared;
 using TokanPages.Backend.Storage.Models;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Storage.AzureBlobStorage
 {
@@ -16,7 +20,7 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
                 .Parse(AConnectionString)
                 .CreateCloudBlobClient()
                 .GetContainerReference(AContainerName);
-
+        
         public async Task<StorageByteContent> ReadAllBytes(string ASourceFilePath)
         {
             var LBlob = FContainer.GetBlockBlobReference(ASourceFilePath);
@@ -79,5 +83,41 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
             => await FContainer
                 .GetBlockBlobReference(ASourceFilePath)
                 .DeleteIfExistsAsync();
+
+        public async Task UploadText(Guid AId, string ATextToUpload)
+        {
+            var LTextToBase64 = ATextToUpload.ToBase64Encode();
+            var LBytes = Convert.FromBase64String(LTextToBase64);
+            var LContents = new MemoryStream(LBytes);
+
+            try
+            {
+                var LDestinationPath = $"content\\articles\\{AId.ToString().ToLower()}\\text.json";
+                await UploadFile(LContents, LDestinationPath);
+            }
+            catch (Exception LException)
+            {
+                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LException.Message);
+            }
+        }
+
+        public async Task UploadImage(Guid AId, string AImageToUpload)
+        {
+            if (!AImageToUpload.IsBase64String()) 
+                throw new BusinessException(nameof(ErrorCodes.INVALID_BASE64), ErrorCodes.INVALID_BASE64);
+            
+            var LBytes = Convert.FromBase64String(AImageToUpload);
+            var LContents = new MemoryStream(LBytes);
+            
+            try
+            {
+                var LDestinationPath = $"content\\articles\\{AId.ToString().ToLower()}\\image.jpeg";
+                await UploadFile(LContents, LDestinationPath);
+            }
+            catch (Exception LException)
+            {
+                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LException.Message);
+            }
+        }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -46,11 +44,12 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
             var LIsAnonymousUser = FUserProvider.GetUserId() == null;
             
+            var LAzureBlob = FAzureBlobStorageFactory.Create();
             if (!string.IsNullOrEmpty(ARequest.TextToUpload) && !LIsAnonymousUser)
-                await UploadText(ARequest.Id, ARequest.TextToUpload);
+                await LAzureBlob.UploadText(ARequest.Id, ARequest.TextToUpload);
 
             if (!string.IsNullOrEmpty(ARequest.ImageToUpload) && !LIsAnonymousUser)
-                await UploadImage(ARequest.Id, ARequest.ImageToUpload);
+                await LAzureBlob.UploadImage(ARequest.Id, ARequest.ImageToUpload);
 
             var LCurrentArticle = LArticles.First();
 
@@ -86,44 +85,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             return await Task.FromResult(Unit.Value);
-        }
-
-        private async Task UploadText(Guid AId, string ATextToUpload) // TODO: refactor to shared
-        {
-            var LAzureBlob = FAzureBlobStorageFactory.Create();
-            var LTextToBase64 = ATextToUpload.ToBase64Encode();
-            var LBytes = Convert.FromBase64String(LTextToBase64);
-            var LContents = new MemoryStream(LBytes);
-
-            try
-            {
-                var LDestinationPath = $"content\\articles\\{AId.ToString().ToLower()}\\text.json";
-                await LAzureBlob.UploadFile(LContents, LDestinationPath);
-            }
-            catch (Exception LException)
-            {
-                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LException.Message);
-            }
-        }
-
-        private async Task UploadImage(Guid AId, string AImageToUpload) // TODO: refactor to shared
-        {
-            if (!AImageToUpload.IsBase64String()) 
-                throw new BusinessException(nameof(ErrorCodes.INVALID_BASE64), ErrorCodes.INVALID_BASE64);
-            
-            var LAzureBlob = FAzureBlobStorageFactory.Create();
-            var LBytes = Convert.FromBase64String(AImageToUpload);
-            var LContents = new MemoryStream(LBytes);
-            
-            try
-            {
-                var LDestinationPath = $"content\\articles\\{AId.ToString().ToLower()}\\image.jpeg";
-                await LAzureBlob.UploadFile(LContents, LDestinationPath);
-            }
-            catch (Exception LException)
-            {
-                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LException.Message);
-            }
         }
         
         private async Task AddNewArticleLikes(bool AIsAnonymousUser, UpdateArticleCommand ARequest, CancellationToken ACancellationToken)
