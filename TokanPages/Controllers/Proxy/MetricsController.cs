@@ -30,13 +30,24 @@ namespace TokanPages.Controllers.Proxy
         {
             try
             {
+                if (string.IsNullOrEmpty(AProject) && string.IsNullOrEmpty(AMetric))
+                    return GetContentResult(400, $"Parameters '{nameof(AProject)}' and '{nameof(AMetric)}' are missing");
+
+                if (string.IsNullOrEmpty(AProject) || string.IsNullOrEmpty(AMetric))
+                {
+                    var LMissingParameter = string.IsNullOrEmpty(AProject) ? nameof(AProject) 
+                        : string.IsNullOrEmpty(AMetric) ? nameof(AMetric) : string.Empty;
+                    
+                    return GetContentResult(400, $"Parameter '{LMissingParameter}' is missing");
+                }
+
                 var LRequestUrl = $"{FSonarQube.Server}/api/project_badges/measure?project={AProject}&metric={AMetric}";
                 var LContent = await GetContent(LRequestUrl);
-                return GetContentResult(200, Constants.ContentTypes.IMAGE_SVG, LContent);
+                return GetContentResult(200, LContent, Constants.ContentTypes.IMAGE_SVG);
             }
             catch (Exception LException)
             {
-                return GetContentResult(500, Constants.ContentTypes.TEXT_PLAIN, LException.Message);
+                return GetContentResult(500, LException.Message);
             }
         }
 
@@ -45,18 +56,21 @@ namespace TokanPages.Controllers.Proxy
         /// </summary>
         /// <param name="AProject">SonarQube analysis project name</param>
         /// <returns>SonarQube badge</returns>
-        [HttpGet]
+        [HttpGet("Quality")]
         public async Task<ContentResult> GetQualityGate([FromQuery] string AProject)
         {
             try
             {
+                if (string.IsNullOrEmpty(AProject))
+                    return GetContentResult(400, $"Parameter '{nameof(AProject)}' is missing");
+                
                 var LRequestUrl = $"{FSonarQube.Server}/api/project_badges/quality_gate?project={AProject}";
                 var LContent = await GetContent(LRequestUrl);
-                return GetContentResult(200, Constants.ContentTypes.IMAGE_SVG, LContent);
+                return GetContentResult(200, LContent, Constants.ContentTypes.IMAGE_SVG);
             }
             catch (Exception LException)
             {
-                return GetContentResult(500, Constants.ContentTypes.TEXT_PLAIN, LException.Message);
+                return GetContentResult(500, LException.Message);
             }
         }
         
@@ -72,7 +86,7 @@ namespace TokanPages.Controllers.Proxy
             return await LResponse.Content.ReadAsStringAsync();
         }
 
-        private static ContentResult GetContentResult(int? AStatusCode, string AContentType, string AContent)
+        private static ContentResult GetContentResult(int? AStatusCode, string AContent, string AContentType = Constants.ContentTypes.TEXT_PLAIN)
         {
             return new () 
             {
