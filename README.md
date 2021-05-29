@@ -1,4 +1,37 @@
-# TokanPages
+<h1 align="center" style="border-bottom: none;">TokanPages</h1>
+<h3 align="center">Microsoft technologies and more</h3>
+<p align="center">
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=ncloc">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=code_smells">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=bugs">
+  </a>
+</p>
+<p align="center">
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=sqale_rating">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=security_rating">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=reliability_rating">
+  </a>
+</p>
+<p align="center">
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=sqale_index">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=duplicated_lines_density">
+  </a>
+</p>
+
+---
 
 TokanPages is the repository that holds my web page to share my programming interests (among others), primarily Microsoft technologies. I also plan album functionality and comment section under articles among article editor and user account capabilities.
 
