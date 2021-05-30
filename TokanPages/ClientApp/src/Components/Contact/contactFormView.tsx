@@ -10,8 +10,8 @@ import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import AlertDialog from "../../Shared/Components/AlertDialog/alertDialog";
+import { IconType } from "../../Shared/enums";
 import contactFormStyle from "./contactFormStyle";
-import { IconType } from "Shared/enums";
 
 interface IBinding 
 {
