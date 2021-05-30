@@ -84,14 +84,13 @@ export default function ContactForm(props: IGetContactFormContent)
     const modalHandler = () => setModal({ ...modal, State: false});
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
-        switch(event.currentTarget.name)
+        if (event.currentTarget.name !== "terms")
         {
-            case "terms": 
-                setForm({ ...form, [event.currentTarget.name]: event.currentTarget.checked});
-            break;
-            default: 
-                setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});    
+            setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});    
+            return;
         }
+
+        setForm({ ...form, [event.currentTarget.name]: event.currentTarget.checked});
     };
 
     const buttonHandler = async () => 
