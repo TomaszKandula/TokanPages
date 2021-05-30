@@ -22,22 +22,19 @@ const AddSubscriberReducer: Reducer<IAddSubscriber> = (state: IAddSubscriber | u
 
         case ADD_SUBSCRIBER:
             return { 
-                isAddingSubscriber: OperationStatus.inProgress, 
-                hasAddedSubscriber: state.hasAddedSubscriber, 
+                operationStatus: OperationStatus.inProgress, 
                 attachedErrorObject: state.attachedErrorObject
             };
 
         case ADD_SUBSCRIBER_RESPONSE:
             return { 
-                isAddingSubscriber: OperationStatus.hasFinished, 
-                hasAddedSubscriber: action.hasAddedSubscriber, 
+                operationStatus: OperationStatus.hasFinished, 
                 attachedErrorObject: { }
             };
 
         case ADD_SUBSCRIBER_ERROR:
             return { 
-                isAddingSubscriber: OperationStatus.hasFailed, 
-                hasAddedSubscriber: false, 
+                operationStatus: OperationStatus.hasFailed, 
                 attachedErrorObject: action.errorObject 
             };
 

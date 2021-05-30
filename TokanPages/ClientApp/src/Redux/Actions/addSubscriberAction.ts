@@ -13,7 +13,7 @@ export const ADD_SUBSCRIBER_ERROR = "ADD_SUBSCRIBER_ERROR";
 
 export interface IApiAddSubscriber { type: typeof ADD_SUBSCRIBER }
 export interface IApiAddSubscriberClear { type: typeof ADD_SUBSCRIBER_CLEAR }
-export interface IApiAddSubscriberResponse { type: typeof ADD_SUBSCRIBER_RESPONSE, hasAddedSubscriber: boolean }
+export interface IApiAddSubscriberResponse { type: typeof ADD_SUBSCRIBER_RESPONSE }
 export interface IAddSubscriberError { type: typeof ADD_SUBSCRIBER_ERROR, errorObject: any }
 
 export type TKnownActions = 
@@ -43,7 +43,7 @@ export const ActionCreators =
         {
             if (response.status === 200)
             {
-                dispatch({ type: ADD_SUBSCRIBER_RESPONSE, hasAddedSubscriber: true });
+                dispatch({ type: ADD_SUBSCRIBER_RESPONSE });
                 return;
             }
             

@@ -1,25 +1,15 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Button from "@material-ui/core/Button";
-import { CircularProgress } from "@material-ui/core";
-import Skeleton from "@material-ui/lab/Skeleton";
 import Validate from "validate.js";
 import { ActionCreators } from "../../Redux/Actions/sendMessageAction";
 import { IApplicationState } from "../../Redux/applicationState";
 import { IGetContactFormContent } from "../../Redux/States/getContactFormContentState";
 import { OperationStatus, IconType } from "../../Shared/enums";
 import { ValidateContactForm } from "../../Shared/validate";
-import AlertDialog, { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
+import { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
 import { MessageOutSuccess, MessageOutWarning, MessageOutError } from "../../Shared/textWrappers";
 import { ISendMessageDto } from "../../Api/Models";
-import contactFormStyle from "./contactFormStyle";
+import ContactFormView from "./contactFormView";
 
 interface IFormDefaultValues 
 {
@@ -43,72 +33,65 @@ const formDefaultValues: IFormDefaultValues =
 
 export default function ContactForm(props: IGetContactFormContent)
 {
-    const classes = contactFormStyle();
-
     const [form, setForm] = React.useState(formDefaultValues);   
     const [modal, setModal] = React.useState(alertModalDefault);
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => { setModal({ State: true, Title: "Contact Form", Message: text, Icon: IconType.info }); };
-    const showWarning = (text: string) => { setModal({ State: true, Title: "Warning", Message: text, Icon: IconType.warning }); };
-    const showError = (text: string) => { setModal({ State: true, Title: "Error", Message: text, Icon: IconType.error }); };
+    const showSuccess = (text: string) => setModal({ State: true, Title: "Contact Form", Message: text, Icon: IconType.info });
+    const showWarning = (text: string) => setModal({ State: true, Title: "Warning", Message: text, Icon: IconType.warning });
+    const showError = (text: string) => setModal({ State: true, Title: "Error", Message: text, Icon: IconType.error });
 
-    const sendMessageState = useSelector((state: IApplicationState) => state.sendMessage);
     const dispatch = useDispatch();
+    const sendMessageState = useSelector((state: IApplicationState) => state.sendMessage);
+    const sendMessage = React.useCallback((payload: ISendMessageDto) => dispatch(ActionCreators.sendMessage(payload)), [ dispatch ]);
+    const sendMessageClear = React.useCallback(() => dispatch(ActionCreators.sendMessageClear()), [ dispatch ]);
 
-    const sendMessage = React.useCallback((payload: ISendMessageDto) => 
-        { dispatch(ActionCreators.sendMessage(payload)); }, [ dispatch ]);
+    const clearForm = React.useCallback(() => 
+    {
+        setProgress(false);
+        setForm(formDefaultValues);
+        sendMessageClear();
+    }, [ setProgress, setForm, sendMessageClear ]);
 
-    const sendMessageClear = React.useCallback(() => 
-        { dispatch(ActionCreators.sendMessageClear()); }, [ dispatch ]);
-        
     React.useEffect(() => 
     { 
-        if (sendMessageState === undefined) return;
-
-        if (sendMessageState.isSendingMessage === OperationStatus.notStarted && progress)
+        switch(sendMessageState?.operationStatus)
         {
-            sendMessage(
-            {
-                firstName: form.firstName,
-                lastName: form.lastName,
-                userEmail: form.email,
-                emailFrom: form.email,
-                emailTos: [form.email],
-                subject: form.subject,
-                message: form.message
-            });
-            return;
-        }
-
-        if (sendMessageState.isSendingMessage === OperationStatus.hasFinished 
-            || sendMessageState.isSendingMessage === OperationStatus.hasFailed)
-        {
-            setProgress(false);
-            setForm(formDefaultValues);
-
-            if (sendMessageState.hasSentMessage 
-                && sendMessageState.isSendingMessage === OperationStatus.hasFinished)
-            {
+            case OperationStatus.notStarted:
+                if (progress)
+                    sendMessage(
+                    {
+                        firstName: form.firstName,
+                        lastName: form.lastName,
+                        userEmail: form.email,
+                        emailFrom: form.email,
+                        emailTos: [form.email],
+                        subject: form.subject,
+                        message: form.message
+                    });
+            break;
+            case OperationStatus.hasFinished:
                 showSuccess(MessageOutSuccess());
-                sendMessageClear();
-                return;
-            }
-
-            showError(MessageOutError(sendMessageState.attachedErrorObject));
-            sendMessageClear();
+                clearForm();
+            break;
+            case OperationStatus.hasFailed:
+                showError(MessageOutError(sendMessageState.attachedErrorObject));
+                clearForm();
+            break;
         }
-    }, 
-    [ sendMessage, sendMessageClear, sendMessageState, progress, form ]);
+    }, [ sendMessage, sendMessageState, clearForm, progress, form ]);
 
-    const modalHandler = () => 
-        { setModal({ ...modal, State: false}); };
-
+    const modalHandler = () => setModal({ ...modal, State: false});
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
-        if (event.currentTarget.name !== "terms") 
-            { setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value}); }
-                else { setForm({ ...form, [event.currentTarget.name]: event.currentTarget.checked}); }
+        switch(event.currentTarget.name)
+        {
+            case "terms": 
+                setForm({ ...form, [event.currentTarget.name]: event.currentTarget.checked});
+            break;
+            default: 
+                setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});    
+        }
     };
 
     const buttonHandler = async () => 
@@ -132,71 +115,25 @@ export default function ContactForm(props: IGetContactFormContent)
         showWarning(MessageOutWarning(validationResult));
     };
 
-    return (
-        <section className={classes.section}>
-            <Container maxWidth="lg">
-                <AlertDialog State={modal.State} Handle={modalHandler} Title={modal.Title} Message={modal.Message} Icon={modal.Icon} />
-                <Container maxWidth="sm">
-                    <div data-aos="fade-up">
-                        <Box pt={8} pb={10}>
-                            <Box mb={6} textAlign="center">
-                                <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption}
-                                </Typography>
-                                <Typography variant="subtitle1" color="textSecondary" paragraph={true}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.text}
-                                </Typography>
-                            </Box>
-                            <Box>
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField 
-                                            onChange={formHandler} value={form.firstName} variant="outlined" 
-                                            required fullWidth name="firstName" id="firstName" label="First name" autoComplete="fname" 
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField 
-                                            onChange={formHandler} value={form.lastName} variant="outlined" 
-                                            required fullWidth name="lastName" id="lastName" label="Last name" autoComplete="lname" 
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField 
-                                            onChange={formHandler} value={form.email} variant="outlined" 
-                                            required fullWidth name="email" id="email" label="Email address" autoComplete="email" 
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField 
-                                            onChange={formHandler} value={form.subject} variant="outlined" 
-                                            required fullWidth name="subject" id="subject" label="Subject" autoComplete="subject" 
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <TextField 
-                                            onChange={formHandler} value={form.message} variant="outlined" 
-                                            required multiline rows={6} fullWidth autoComplete="message" name="message" id="message" label="Message" 
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <FormControlLabel 
-                                            control={<Checkbox onChange={formHandler} checked={form.terms} name="terms" id="terms" color="primary" />} 
-                                            label="I agree to the terms of use and privacy policy." 
-                                        />
-                                    </Grid>
-                                </Grid>
-                                <Box my={2}>
-                                    <Button onClick={buttonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={progress}>
-                                        {progress &&  <CircularProgress size={20} />}
-                                        {!progress && props.content?.button}
-                                    </Button>
-                                </Box>
-                            </Box>
-                        </Box>
-                    </div>
-                </Container>
-            </Container>
-        </section>
-    );
+    return (<ContactFormView bind={
+    {
+        modalState: modal.State,
+        modalHandler: modalHandler,
+        modalTitle: modal.Title,
+        modalMessage: modal.Message,
+        modalIcon: modal.Icon,
+        isLoading: props.isLoading,
+        caption: props.content?.caption,
+        text: props.content?.text,
+        formHandler: formHandler,
+        firstName: form.firstName,
+        lastName: form.lastName,
+        email: form.email,
+        subject: form.subject,
+        message: form.message,
+        terms: form.terms,
+        buttonHandler: buttonHandler,
+        progress: progress,
+        buttonText: props.content?.button
+    }}/>);
 }

@@ -3,7 +3,6 @@ import { OperationStatus } from "../../Shared/enums";
 
 export const AddSubscriberDefault: IAddSubscriber = 
 {
-    isAddingSubscriber: OperationStatus.notStarted,
-    hasAddedSubscriber: false,
+    operationStatus: OperationStatus.notStarted,
     attachedErrorObject: { }
 }

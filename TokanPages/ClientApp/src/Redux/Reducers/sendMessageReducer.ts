@@ -22,22 +22,19 @@ const SendMessageReducer: Reducer<ISendMessage> = (state: ISendMessage | undefin
             
         case API_SEND_MESSAGE:
             return { 
-                isSendingMessage: OperationStatus.inProgress, 
-                hasSentMessage: state.hasSentMessage,
+                operationStatus: OperationStatus.inProgress, 
                 attachedErrorObject: state.attachedErrorObject 
             };
 
         case API_SEND_MESSAGE_RESPONSE:
             return { 
-                isSendingMessage: OperationStatus.hasFinished, 
-                hasSentMessage: action.hasSentMessage, 
+                operationStatus: OperationStatus.hasFinished, 
                 attachedErrorObject: { } 
             };
 
         case SEND_MESSAGE_ERROR:
             return { 
-                isSendingMessage: OperationStatus.hasFailed, 
-                hasSentMessage: false, 
+                operationStatus: OperationStatus.hasFailed, 
                 attachedErrorObject: action.errorObject
             };
 

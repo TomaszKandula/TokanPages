@@ -13,7 +13,7 @@ export const SEND_MESSAGE_ERROR = "SEND_MESSAGE_ERROR";
 
 export interface IApiSendMessage { type: typeof API_SEND_MESSAGE }
 export interface IApiSendMessageClear { type: typeof API_SEND_MESSAGE_CLEAR }
-export interface IApiSendMessageResponse { type: typeof API_SEND_MESSAGE_RESPONSE, hasSentMessage: boolean }
+export interface IApiSendMessageResponse { type: typeof API_SEND_MESSAGE_RESPONSE }
 export interface ISendMessageError { type: typeof SEND_MESSAGE_ERROR, errorObject: any }
 
 export type TKnownActions = 
@@ -52,7 +52,7 @@ export const ActionCreators =
         {
             if (response.status === 200)
             {
-                dispatch({ type: API_SEND_MESSAGE_RESPONSE, hasSentMessage: true })
+                dispatch({ type: API_SEND_MESSAGE_RESPONSE })
                 return;
             }
             

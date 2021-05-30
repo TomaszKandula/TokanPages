@@ -10,7 +10,7 @@ import WarningIcon from '@material-ui/icons/Warning';
 import { IGetFooterContent } from "../../Redux/States/getFooterContentState";
 import { IFooterContentIconDto } from "../../Api/Models";
 import { CustomColours } from "../../Theme/customColours";
-import { MediumIcon } from "../../Theme/Icons/medium";
+import { MediumIcon } from "../../Theme/Icons/mediumIcon";
 import validate from "validate.js";
 import footerStyle from "./Styles/footerStyle";
 
