@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Shared;
 using TokanPages.Backend.Shared.Settings;
+using TokanPages.Backend.Shared.Attributes;
 
 namespace TokanPages.Controllers.Proxy
 {
@@ -26,6 +27,7 @@ namespace TokanPages.Controllers.Proxy
         /// <param name="AMetric">SonarQube metric type</param>
         /// <returns>SonarQube badge</returns>
         [HttpGet]
+        [ETagFilter(200)]
         public async Task<ContentResult> GetMetrics([FromQuery] string AProject, string AMetric)
         {
             try
@@ -55,6 +57,7 @@ namespace TokanPages.Controllers.Proxy
         /// <param name="AProject">SonarQube analysis project name</param>
         /// <returns>SonarQube badge</returns>
         [HttpGet("Quality")]
+        [ETagFilter(200)]
         public async Task<ContentResult> GetQualityGate([FromQuery] string AProject)
         {
             try
