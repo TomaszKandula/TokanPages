@@ -27,55 +27,43 @@ export default function Newsletter(props: IGetNewsletterContent)
     const [modal, setModal] = React.useState(alertModalDefault);
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => { setModal({ State: true, Title: "Newsletter", Message: text, Icon: IconType.info }); };
-    const showWarning = (text: string) => { setModal({ State: true, Title: "Warning", Message: text, Icon: IconType.warning }); };
-    const showError = (text: string) => { setModal({ State: true, Title: "Error", Message: text, Icon: IconType.error }); };
+    const showSuccess = (text: string) => setModal({ State: true, Title: "Newsletter", Message: text, Icon: IconType.info });
+    const showWarning = (text: string) => setModal({ State: true, Title: "Warning", Message: text, Icon: IconType.warning });
+    const showError = (text: string) => setModal({ State: true, Title: "Error", Message: text, Icon: IconType.error });
 
-    const addSubscriberState = useSelector((state: IApplicationState) => state.addSubscriber);
     const dispatch = useDispatch();
-
-    const addSubscriber = React.useCallback((payload: IAddSubscriberDto) => 
-        { dispatch(ActionCreators.addSubscriber(payload)); }, [ dispatch ]);
-
-    const addSubscriberClear = React.useCallback(() => 
-        { dispatch(ActionCreators.addSubscriberClear()); }, [ dispatch ]);
+    const addSubscriberState = useSelector((state: IApplicationState) => state.addSubscriber);
+    const addSubscriber = React.useCallback((payload: IAddSubscriberDto) => dispatch(ActionCreators.addSubscriber(payload)), [ dispatch ]);
+    const addSubscriberClear = React.useCallback(() => dispatch(ActionCreators.addSubscriberClear()), [ dispatch ]);
 
     React.useEffect(() => 
     { 
-        if (addSubscriberState === undefined) return;
-
-        if (addSubscriberState.isAddingSubscriber === OperationStatus.notStarted && progress)
+        switch(addSubscriberState?.operationStatus)
         {
-            addSubscriber({ email: form.email });
-            return;
-        }
-            
-        if (addSubscriberState.isAddingSubscriber === OperationStatus.hasFinished 
-            || addSubscriberState.isAddingSubscriber === OperationStatus.hasFailed)
-        {
-            setProgress(false);
-            setForm({email: ""});
-
-            if (addSubscriberState.hasAddedSubscriber 
-                && addSubscriberState.isAddingSubscriber === OperationStatus.hasFinished)
-            {
+            case OperationStatus.notStarted: 
+                if (progress) 
+                    addSubscriber({ email: form.email });
+            break;
+        
+            case OperationStatus.hasFinished: 
+                setProgress(false);
+                setForm({email: ""});
                 showSuccess(NewsletterSuccess());
                 addSubscriberClear();
-                return;
-            }
-
-            showError(NewsletterError(addSubscriberState.attachedErrorObject));
-            addSubscriberClear();
+            break;
+        
+            case OperationStatus.hasFailed: 
+                setProgress(false);
+                setForm({email: ""});
+                showError(NewsletterError(addSubscriberState?.attachedErrorObject));
+                addSubscriberClear();
+            break;
         }
     }, 
     [ addSubscriber, addSubscriberClear, addSubscriberState, progress, form ]);
 
-    const modalHandler = () => 
-        { setModal({ ...modal, State: false}); };
-
-    const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
-        { setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value }); };
-
+    const modalHandler = () => setModal({ ...modal, State: false});
+    const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
     const buttonHandler = () =>
     {
         let results = ValidateEmail(form.email);
