@@ -15,8 +15,8 @@ namespace TokanPages.Backend.Shared.Attributes
 
         private static string GenerateETag(byte[] AData)
         {
-            using var LMd5 = MD5.Create();
-            var LHash = LMd5.ComputeHash(AData);
+            using var LSha256 = SHA256.Create();
+            var LHash = LSha256.ComputeHash(AData);
             var LHex = BitConverter.ToString(LHash);
             return LHex.Replace("-", "");
         }
