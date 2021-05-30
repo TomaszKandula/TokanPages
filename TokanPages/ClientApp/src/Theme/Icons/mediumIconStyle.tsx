@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(() => (
+const mediumIconStyle = makeStyles(() => (
 {
     iconRoot:
     {
@@ -14,4 +14,4 @@ const useStyles = makeStyles(() => (
     }
 }));
 
-export default useStyles;
+export default mediumIconStyle;
