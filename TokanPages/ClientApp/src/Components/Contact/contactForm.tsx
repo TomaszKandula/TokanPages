@@ -55,7 +55,7 @@ export default function ContactForm(props: IGetContactFormContent)
 
     React.useEffect(() => 
     { 
-        switch(sendMessageState.operationStatus)
+        switch(sendMessageState?.operationStatus)
         {
             case OperationStatus.notStarted:
                 if (progress)
