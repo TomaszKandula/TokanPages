@@ -1,8 +1,8 @@
+import { OperationStatus } from "Shared/enums";
 import { IRemoveSubscriber } from "../../Redux/States/removeSubscriberState";
 
 export const RemoveSubscriberDefault: IRemoveSubscriber = 
 {
-    isRemovingSubscriber: false,
-    hasRemovedSubscriber: false,
+    operationStatus: OperationStatus.notStarted,
     attachedErrorObject: { }
 }

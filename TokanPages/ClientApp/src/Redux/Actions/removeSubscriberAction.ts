@@ -11,7 +11,7 @@ export const REMOVE_SUBSCRIBER_RESPONSE = "REMOVE_SUBSCRIBER_RESPONSE";
 export const REMOVE_SUBSCRIBER_ERROR = "REMOVE_SUBSCRIBER_ERROR";
 
 export interface IApiRemoveSubscriber { type: typeof REMOVE_SUBSCRIBER }
-export interface IApiRemoveSubscriberResponse { type: typeof REMOVE_SUBSCRIBER_RESPONSE, hasRemovedSubscriber: boolean }
+export interface IApiRemoveSubscriberResponse { type: typeof REMOVE_SUBSCRIBER_RESPONSE }
 export interface IRemoveSubscriberError { type: typeof REMOVE_SUBSCRIBER_ERROR, errorObject: any }
 
 export type TKnownActions = 
@@ -36,7 +36,7 @@ export const ActionCreators =
         {
             if (response.status === 200)
             {
-                dispatch({ type: REMOVE_SUBSCRIBER_RESPONSE, hasRemovedSubscriber: true });
+                dispatch({ type: REMOVE_SUBSCRIBER_RESPONSE });
                 return;
             }
             
