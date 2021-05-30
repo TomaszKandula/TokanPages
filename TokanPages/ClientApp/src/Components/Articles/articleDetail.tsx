@@ -1,20 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
-import { 
-    Avatar,
-    Divider, 
-    Grid, 
-    IconButton, 
-    Popover, 
-    Tooltip, 
-    Typography 
-} from "@material-ui/core";
-import { ArrowBack } from "@material-ui/icons";
-import ThumbUpIcon from "@material-ui/icons/ThumbUp";
-import Emoji from "react-emoji-render";
+import { Avatar } from "@material-ui/core";
 import Validate from "validate.js";
 import articleDetailStyle from "./Styles/articleDetailStyle";
 import { IApplicationState } from "../../Redux/applicationState";
@@ -33,6 +20,7 @@ import {
     MAX_LIKES_REACHED,
     WORDS_PER_MINUTE
 } from "../../Shared/constants";
+import ArticleDetailView from "./articleDetailView";
 
 export interface IArticleDetail
 {
@@ -48,7 +36,7 @@ export default function ArticleDetail(props: IArticleDetail)
         dispatch(SelectArticleActions.selectArticle(props.id));
     }
 
-    const [popover, setPopover] = React.useState<HTMLElement | null>(null);
+    const [popoverElement, setPopover] = React.useState<HTMLElement | null>(null);
     const [totalThumbs, setTotalThumbs] = React.useState(0);
     const [totalLikes, setTotalLikes] = React.useState(0);
     const [userLikes, setUserLikes] = React.useState(0);
@@ -57,7 +45,7 @@ export default function ArticleDetail(props: IArticleDetail)
 
     const classes = articleDetailStyle();
     const history = useHistory();
-    const open = Boolean(popover);
+    const popoverOpen = Boolean(popoverElement);
     const userLetter = selection.article.author.aliasName.charAt(0).toUpperCase();
     const isAnonymous = true; // TODO: use authorization feature
 
@@ -119,7 +107,7 @@ export default function ArticleDetail(props: IArticleDetail)
     }, 
     [ selection.isLoading, updateReadCount ]);
 
-    const thumbsUp = () =>
+    const thumbsUpHandler = () =>
     {
         let likesToAdd = isAnonymous 
             ? LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs
@@ -134,18 +122,18 @@ export default function ArticleDetail(props: IArticleDetail)
         }
     };
 
-    const backToList = () =>
+    const backButtonHandler = () =>
     {
         dispatch(SelectArticleActions.resetSelection());
         history.push("/articles");
     };
 
-    const openPopover = (event: React.MouseEvent<HTMLElement, MouseEvent>) => 
+    const openPopoverHandler = (event: React.MouseEvent<HTMLElement, MouseEvent>) => 
     {
         setPopover(event.currentTarget);
     };
 
-    const closePopover = () => 
+    const closePopoverHandler = () => 
     {
         setPopover(null);
     };
@@ -208,113 +196,28 @@ export default function ArticleDetail(props: IArticleDetail)
         return GetReadTime(words, WORDS_PER_MINUTE);
     }
 
-    return (
-        <section>
-            <Container className={classes.container}>
-                <Box py={12}>
-                    <div data-aos="fade-down">
-                        <Grid container spacing={3}>
-                            <Grid item xs={6}>
-                                <IconButton onClick={backToList}>
-                                    <ArrowBack  /> 
-                                </IconButton>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Typography className={classes.readCount} component="p" variant="subtitle1" align="right">
-                                    Read: {selection.article.readCount}
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                        <Divider className={classes.dividerTop} />
-                        <Grid container spacing={2}>
-                            <Grid item>
-                                <Box onMouseEnter={openPopover} onMouseLeave={closePopover}>
-                                    {renderAvatar(false)}
-                                </Box>
-                            </Grid>
-                            <Grid item xs zeroMinWidth>
-                                <Typography className={classes.aliasName} component="div" variant="subtitle1" align="left">
-                                    <Box fontWeight="fontWeightBold">
-                                        {selection.article.author.aliasName}
-                                    </Box>
-                                </Typography>
-                                <Popover
-                                    id="mouse-over-popover"
-                                    className={classes.popover}
-                                    open={open}
-                                    anchorEl={popover}
-                                    anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-                                    transformOrigin={{ vertical: "top", horizontal: "left" }}
-                                    onClose={closePopover}
-                                    disableRestoreFocus
-                                >
-                                    <Box mt={2} mb={2} ml={3} mr={3} >
-                                        <Typography component="p" variant="subtitle2" color="textSecondary">
-                                            First name: {selection.article.author.firstName}
-                                        </Typography>
-                                        <Typography component="p" variant="subtitle2" color="textSecondary">
-                                            Last name: {selection.article.author.lastName}
-                                        </Typography>
-                                        <Typography component="p" variant="subtitle2" color="textSecondary">
-                                            Registered at: {FormatDateTime(selection.article.author.registered, false)}
-                                        </Typography>
-                                    </Box>
-                                </Popover>
-                            </Grid>
-                        </Grid>
-                        <Box mt={1} mb={5}>
-                            <Typography component="p" variant="subtitle1">
-                                Read time: {returnReadTime()} min.
-                            </Typography>
-                            <Typography component="p" variant="subtitle1">
-                                Published at: {FormatDateTime(selection.article.createdAt, true)}
-                            </Typography>
-                            <Typography component="p" variant="subtitle2" color="textSecondary">
-                                Updated at: {FormatDateTime(selection.article.updatedAt, true)}
-                            </Typography>
-                        </Box>
-                    </div>
-                    <div data-aos="fade-up">
-                        {renderContent()}
-                    </div>
-                    <Box mt={5}>
-                        <Grid container spacing={2}>
-                            <Grid item>
-                                <Tooltip title=
-                                    {<span className={classes.likesTip}>
-                                        {<Emoji text={renderLikesLeft()}/>}
-                                    </span>} arrow>
-                                    <ThumbUpIcon className={classes.thumbsMedium} onClick={thumbsUp} />
-                                </Tooltip>
-                            </Grid>
-                            <Grid item xs zeroMinWidth>
-                                <Typography component="p" variant="subtitle1">
-                                    {totalLikes}
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </Box>
-                    <Divider className={classes.dividerBottom} />
-                    <Grid container spacing={2}>
-                        <Grid item>
-                            {renderAvatar(true)}
-                        </Grid>
-                        <Grid item xs zeroMinWidth>
-                            <Typography className={classes.aliasName} component="span" variant="h6" align="left" color="textSecondary">
-                                Written by
-                            </Typography>
-                            <Box fontWeight="fontWeightBold">
-                                <Typography className={classes.aliasName} component="span" variant="h6" align="left">
-                                    {renderAuthorName()}
-                                </Typography>
-                            </Box>
-                            <Typography className={classes.aliasName} component="span" variant="subtitle1" align="left" color="textSecondary">
-                                About the author: {selection.article.author.shortBio}
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                </Box>
-            </Container>
-        </section>
-    );
+    return (<ArticleDetailView bind={
+    {
+        backButtonHandler: backButtonHandler,
+        articleReadCount: selection.article.readCount,
+        openPopoverHandler: openPopoverHandler,
+        closePopoverHandler: closePopoverHandler,
+        renderSmallAvatar: renderAvatar(false),
+        renderLargeAvatar: renderAvatar(true),
+        authorAliasName: selection.article.author.aliasName,
+        popoverOpen: popoverOpen,
+        popoverElement: popoverElement,
+        authorFirstName: selection.article.author.firstName,
+        authorLastName: selection.article.author.lastName,
+        authorRegistered: FormatDateTime(selection.article.author.registered, false),
+        articleReadTime: returnReadTime(),
+        articleCreatedAt: FormatDateTime(selection.article.createdAt, true),
+        articleUpdatedAt: FormatDateTime(selection.article.updatedAt, true),
+        articleContent: renderContent(),
+        renderLikesLeft: renderLikesLeft(),
+        thumbsUpHandler: thumbsUpHandler,
+        totalLikes: totalLikes,
+        renderAuthorName: renderAuthorName(),
+        authorShortBio: selection.article.author.shortBio
+    }}/>);
 }
