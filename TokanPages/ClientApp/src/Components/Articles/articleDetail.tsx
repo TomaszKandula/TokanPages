@@ -1,25 +1,17 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Avatar } from "@material-ui/core";
 import Validate from "validate.js";
-import articleDetailStyle from "./Styles/articleDetailStyle";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as SelectArticleActions } from "../../Redux/Actions/selectArticleAction";
 import { ActionCreators as UpdateArticleAction } from "../../Redux/Actions/updateArticleAction";
-import CenteredCircularLoader from "../../Shared/Components/ProgressBar/centeredCircularLoader";
-import { RenderContent } from "../../Shared/Components/ContentRender/renderContent";
-import { CountWords, FormatDateTime, GetReadTime, TextObjectToRawText } from "../../Shared/helpers";
-import { ITextObject } from "../../Shared/Components/ContentRender/Models/textModel";
-import { 
-    AVATARS_PATH, 
-    LIKES_LIMIT_FOR_ANONYM, 
-    LIKES_LIMIT_FOR_USER,
-    LIKES_HINT_FOR_ANONYM,
-    LIKES_HINT_FOR_USER,
-    MAX_LIKES_REACHED,
-    WORDS_PER_MINUTE
-} from "../../Shared/constants";
+import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../Shared/constants";
+import { FormatDateTime } from "../../Shared/helpers";
+import { ArticleContent } from "./Renderers/articleContent";
+import { UserAvatar } from "./Renderers/userAvatar";
+import { AuthorName } from "./Renderers/authorName";
+import { LikesLeft } from "./Renderers/likesLeft";
+import { ReadTime } from "./Renderers/readTime";
 import ArticleDetailView from "./articleDetailView";
 
 export interface IArticleDetail
@@ -31,10 +23,9 @@ export default function ArticleDetail(props: IArticleDetail)
 {
     const dispatch = useDispatch();
     const selection = useSelector((state: IApplicationState) => state.selectArticle);
+
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
-    {
         dispatch(SelectArticleActions.selectArticle(props.id));
-    }
 
     const [popoverElement, setPopover] = React.useState<HTMLElement | null>(null);
     const [totalThumbs, setTotalThumbs] = React.useState(0);
@@ -43,39 +34,42 @@ export default function ArticleDetail(props: IArticleDetail)
     const [thumbClicked, setThumbsClicked] = React.useState(false);
     const [likesLeft, setLikesLeft] = React.useState(0);
 
-    const classes = articleDetailStyle();
     const history = useHistory();
     const popoverOpen = Boolean(popoverElement);
     const userLetter = selection.article.author.aliasName.charAt(0).toUpperCase();
     const isAnonymous = true; // TODO: use authorization feature
 
-    React.useEffect(() => 
-    { 
-        setTotalLikes(selection.article.likeCount);
-    }, 
-    [ selection.article.likeCount ]);
-
-    React.useEffect(() => 
-    { 
+    const updateLikesLeft = React.useCallback(() =>
+    {
         setLikesLeft(isAnonymous 
             ? LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs
             : LIKES_LIMIT_FOR_USER - selection.article.userLikes - totalThumbs);
-    }, 
-    [ selection.article.userLikes, isAnonymous, totalThumbs ]);
+    }, [ selection.article.userLikes, isAnonymous, totalThumbs ]);
 
-    const updateUserLikes = React.useCallback(async () => 
+    const updateUserLikes = React.useCallback(() => 
     {
+        dispatch(UpdateArticleAction.updateArticle(
+        { 
+            id: props.id, 
+            addToLikes: userLikes, 
+            upReadCount: false 
+        }))
+    }, [ dispatch, userLikes, props.id ]);
+
+    const updateReadCount = React.useCallback(() => 
+    {
+        if (selection.isLoading) return; 
         dispatch(UpdateArticleAction.updateArticle(
         {
             id: props.id,
-            addToLikes: userLikes,
-            upReadCount: false
+            addToLikes: 0,
+            upReadCount: true
         }));
     }, 
-    [ dispatch, userLikes, props.id ]);
+    [ dispatch, props.id, selection.isLoading ]);
 
-    React.useEffect(() => 
-    { 
+    const updateUserLikesWithDelay = React.useCallback(() =>
+    {
         const intervalId = setInterval(() => 
         { 
             if (userLikes === 0 || !thumbClicked) return;
@@ -86,28 +80,14 @@ export default function ArticleDetail(props: IArticleDetail)
         3000);
         
         return(() => { clearInterval(intervalId) });
-    }, 
-    [ userLikes, thumbClicked, updateUserLikes ]);
+    }, [ userLikes, thumbClicked, updateUserLikes ]);
 
-    const updateReadCount = React.useCallback(async () => 
-    {
-        dispatch(UpdateArticleAction.updateArticle(
-        {
-            id: props.id,
-            addToLikes: 0,
-            upReadCount: true
-        }));
-    }, 
-    [ dispatch, props.id ]);
+    React.useEffect(() => setTotalLikes(selection.article.likeCount), [ selection.article.likeCount ]);
+    React.useEffect(() => updateLikesLeft(), [ updateLikesLeft ]);
+    React.useEffect(() => updateReadCount(), [ updateReadCount ]);
+    React.useEffect(() => updateUserLikesWithDelay(), [ updateUserLikesWithDelay ]);
 
-    React.useEffect(() => 
-    {
-        if (selection.isLoading) return;
-        updateReadCount();
-    }, 
-    [ selection.isLoading, updateReadCount ]);
-
-    const thumbsUpHandler = () =>
+    const thumbsHandler = () =>
     {
         let likesToAdd = isAnonymous 
             ? LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs
@@ -129,72 +109,14 @@ export default function ArticleDetail(props: IArticleDetail)
     };
 
     const openPopoverHandler = (event: React.MouseEvent<HTMLElement, MouseEvent>) => 
-    {
-        setPopover(event.currentTarget);
+    { 
+        setPopover(event.currentTarget); 
     };
-
+    
     const closePopoverHandler = () => 
     {
         setPopover(null);
     };
-
-    const renderContent = () =>
-    {
-        if (Validate.isEmpty(selection.article.id) || selection.isLoading)
-        {
-            return(<CenteredCircularLoader />);
-        }
- 
-        return(<RenderContent items={selection.article.text} />);
-    };
-
-    const renderAvatar = (isLargeScale: boolean) =>
-    {
-        const className = isLargeScale ? classes.avatarLarge : classes.avatarSmall;
-
-        if (Validate.isEmpty(selection.article.author.avatarName))
-        {
-            return(<Avatar className={className}>{userLetter}</Avatar>);
-        }
-
-        const avatarUrl = AVATARS_PATH + selection.article.author.avatarName;
-        return(<><Avatar className={className} src={avatarUrl} alt="" /></>);
-    };
-
-    const renderAuthorName = () => 
-    {
-        const fullNameWithAlias = selection.article.author.firstName + " '" 
-            + selection.article.author.aliasName + "' " 
-            + selection.article.author.lastName;
-        return selection.article.author.firstName && selection.article.author.lastName 
-            ? fullNameWithAlias
-            : selection.article.author.aliasName;
-    };
-
-    const renderLikesLeft = () =>
-    {
-        const textLikesLeft = isAnonymous 
-            ? LIKES_HINT_FOR_ANONYM.replace("{LEFT_LIKES}", likesLeft.toString()) 
-            : LIKES_HINT_FOR_USER.replace("{LEFT_LIKES}", likesLeft.toString());
-
-        return likesLeft === 0 
-            ? MAX_LIKES_REACHED 
-            : textLikesLeft;
-    };
-
-    const returnReadTime = (): string =>
-    {
-        let textObject: ITextObject = 
-        { 
-            items: [{ id: "", type: "", value: "", prop: "", text: "" }]
-        };
-        
-        textObject.items = selection.article.text;
-        const rawText = TextObjectToRawText(textObject);
-        const words = CountWords(rawText);
-
-        return GetReadTime(words, WORDS_PER_MINUTE);
-    }
 
     return (<ArticleDetailView bind={
     {
@@ -202,22 +124,22 @@ export default function ArticleDetail(props: IArticleDetail)
         articleReadCount: selection.article.readCount,
         openPopoverHandler: openPopoverHandler,
         closePopoverHandler: closePopoverHandler,
-        renderSmallAvatar: renderAvatar(false),
-        renderLargeAvatar: renderAvatar(true),
+        renderSmallAvatar: UserAvatar(false, selection.article.author.avatarName, userLetter),
+        renderLargeAvatar: UserAvatar(true, selection.article.author.avatarName, userLetter),
         authorAliasName: selection.article.author.aliasName,
         popoverOpen: popoverOpen,
         popoverElement: popoverElement,
         authorFirstName: selection.article.author.firstName,
         authorLastName: selection.article.author.lastName,
         authorRegistered: FormatDateTime(selection.article.author.registered, false),
-        articleReadTime: returnReadTime(),
+        articleReadTime: ReadTime(selection.article.text),
         articleCreatedAt: FormatDateTime(selection.article.createdAt, true),
         articleUpdatedAt: FormatDateTime(selection.article.updatedAt, true),
-        articleContent: renderContent(),
-        renderLikesLeft: renderLikesLeft(),
-        thumbsUpHandler: thumbsUpHandler,
+        articleContent: ArticleContent(selection.article.id, selection.isLoading, selection.article.text),
+        renderLikesLeft: LikesLeft(isAnonymous, likesLeft),
+        thumbsHandler: thumbsHandler,
         totalLikes: totalLikes,
-        renderAuthorName: renderAuthorName(),
+        renderAuthorName: AuthorName(selection.article.author.firstName, selection.article.author.lastName, selection.article.author.aliasName),
         authorShortBio: selection.article.author.shortBio
     }}/>);
 }

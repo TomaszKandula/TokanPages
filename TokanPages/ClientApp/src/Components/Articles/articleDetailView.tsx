@@ -32,7 +32,7 @@ interface IProperties
     articleUpdatedAt: string;
     articleContent: JSX.Element;
     renderLikesLeft: string;
-    thumbsUpHandler: any;
+    thumbsHandler: any;
     totalLikes: number;
     renderAuthorName: string;
     authorShortBio: string;
@@ -117,7 +117,7 @@ export default function ArticleDetailView(props: IBinding)
                                     {<span className={classes.likesTip}>
                                         {<Emoji text={props.bind?.renderLikesLeft}/>}
                                     </span>} arrow>
-                                    <ThumbUpIcon className={classes.thumbsMedium} onClick={props.bind?.thumbsUpHandler} />
+                                    <ThumbUpIcon className={classes.thumbsMedium} onClick={props.bind?.thumbsHandler} />
                                 </Tooltip>
                             </Grid>
                             <Grid item xs zeroMinWidth>
