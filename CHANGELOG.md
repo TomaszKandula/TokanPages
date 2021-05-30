@@ -1,3 +1,22 @@
+# [0.12.0](https://github.com/TomaszKandula/TokanPages/compare/v0.11.0...v0.12.0) (2021-05-30)
+
+
+### Bug Fixes
+
+* add bad request for missing parameters ([5187f9f](https://github.com/TomaszKandula/TokanPages/commit/5187f9fd81bdbc60b72c5269b49734d3e4f5943c))
+* add missing base ([9cee86c](https://github.com/TomaszKandula/TokanPages/commit/9cee86cdc9bd288c9712f6fdea3f941f0ef67f8e))
+* add missing Serializable attribute ([fc058d6](https://github.com/TomaszKandula/TokanPages/commit/fc058d6fe6291c6b1311409322de6da6079f0950))
+* add protected constructors due to ISerializable ([82ece1e](https://github.com/TomaszKandula/TokanPages/commit/82ece1e1a82d76ab399bd5614525c8003aa69426))
+* correct file name ([5350a73](https://github.com/TomaszKandula/TokanPages/commit/5350a7373860ed419a61606bffe012d808f107b9))
+* correct folder name ([19da276](https://github.com/TomaszKandula/TokanPages/commit/19da276d0e5146fb5259d9a216051438a4a1c36d))
+* make method static ([67d3eeb](https://github.com/TomaszKandula/TokanPages/commit/67d3eeb64f825fc01d0dea604d0bb695ada5b95c))
+
+
+### Features
+
+* add endpoint for SonarQube quality gate large badge ([a1e516c](https://github.com/TomaszKandula/TokanPages/commit/a1e516c9785e41e5ff421d65859de7450307b985))
+* add ETag attribute filter ([c92dff3](https://github.com/TomaszKandula/TokanPages/commit/c92dff3090a04dff93957630d9e4407b047f9452))
+
 # [0.11.0](https://github.com/TomaszKandula/TokanPages/compare/v0.10.2...v0.11.0) (2021-05-29)
 
 
