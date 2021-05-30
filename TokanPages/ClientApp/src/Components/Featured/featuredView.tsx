@@ -11,7 +11,7 @@ import { IGetFeaturedContent } from "../../Redux/States/getFeaturedContentState"
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
 import featuredStyle from "./featuredStyle";
 
-export default function Featured(props: IGetFeaturedContent) 
+export default function FeaturedView(props: IGetFeaturedContent) 
 {
     const classes = featuredStyle();
     return (

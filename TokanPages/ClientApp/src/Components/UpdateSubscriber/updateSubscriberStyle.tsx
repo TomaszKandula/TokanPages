@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const updateSubscriptionStyle = makeStyles(() => (
+const updateSubscriberStyle = makeStyles(() => (
 {
     card:
     {
@@ -11,4 +11,4 @@ const updateSubscriptionStyle = makeStyles(() => (
     }
 }));
 
-export default updateSubscriptionStyle;
+export default updateSubscriberStyle;

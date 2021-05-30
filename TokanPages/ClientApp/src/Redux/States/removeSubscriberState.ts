@@ -1,6 +1,7 @@
+import { OperationStatus } from "Shared/enums";
+
 export interface IRemoveSubscriber
 {
-    isRemovingSubscriber: boolean;
-    hasRemovedSubscriber: boolean;
+    operationStatus: OperationStatus;
     attachedErrorObject: any;
 }

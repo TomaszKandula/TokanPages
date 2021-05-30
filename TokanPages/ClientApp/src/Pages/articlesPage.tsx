@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
-import Navigation from "../Components/Layout/navigation";
+import NavigationView from "../Components/Layout/navigationView";
 import Footer from "../Components/Layout/footer";
 import ArticleList from "../Components/Articles/articleList";
 import ArticleDetail from "../Components/Articles/articleDetail";
@@ -34,7 +34,7 @@ export default function ArticlesPage()
 
     return (
         <>
-            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
+            <NavigationView content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
                 {id ? <ArticleDetail id={id} /> : <ArticleList />}
             </Container>

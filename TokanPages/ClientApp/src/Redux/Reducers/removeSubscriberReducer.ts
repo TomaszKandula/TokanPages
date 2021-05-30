@@ -1,6 +1,7 @@
 import { Action, Reducer } from "redux";
 import { combinedDefaults } from "../combinedDefaults";
 import { IRemoveSubscriber } from "../../Redux/States/removeSubscriberState";
+import { OperationStatus } from "../../Shared/enums";
 import { 
     TKnownActions, 
     REMOVE_SUBSCRIBER, 
@@ -17,22 +18,19 @@ const RemoveSubscriberReducer: Reducer<IRemoveSubscriber> = (state: IRemoveSubsc
     {
         case REMOVE_SUBSCRIBER:
             return { 
-                isRemovingSubscriber: true, 
-                hasRemovedSubscriber: state.hasRemovedSubscriber, 
+                operationStatus: OperationStatus.inProgress, 
                 attachedErrorObject: state.attachedErrorObject 
             };
 
         case REMOVE_SUBSCRIBER_RESPONSE:
             return { 
-                isRemovingSubscriber: false, 
-                hasRemovedSubscriber: action.hasRemovedSubscriber, 
+                operationStatus: OperationStatus.hasFinished, 
                 attachedErrorObject: { } 
             };
 
         case REMOVE_SUBSCRIBER_ERROR:
             return { 
-                isRemovingSubscriber: false, 
-                hasRemovedSubscriber: false, 
+                operationStatus: OperationStatus.hasFailed, 
                 attachedErrorObject: action.errorObject 
             };
 

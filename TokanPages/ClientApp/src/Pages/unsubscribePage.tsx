@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
-import Navigation from "../Components/Layout/navigation";
+import NavigationView from "../Components/Layout/navigationView";
 import Footer from "../Components/Layout/footer";
 import Unsubscribe from "../Components/Unsubscribe/unsubscribe";
 import { IApplicationState } from "../Redux/applicationState";
@@ -36,7 +36,7 @@ export default function UnsubscribePage()
     
     return(
         <>
-            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
+            <NavigationView content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
                 <Unsubscribe id={id} content={unsubscribe?.content} isLoading={unsubscribe?.isLoading} />
             </Container>

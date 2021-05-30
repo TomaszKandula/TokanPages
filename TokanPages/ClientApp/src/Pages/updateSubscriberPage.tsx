@@ -2,9 +2,9 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
-import Navigation from "../Components/Layout/navigation";
+import NavigationView from "../Components/Layout/navigationView";
 import Footer from "../Components/Layout/footer";
-import UpdateSubscriber from "../Components/UpdateSubscription/updateSubscriber";
+import UpdateSubscriber from "../Components/UpdateSubscriber/updateSubscriber";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
@@ -36,7 +36,7 @@ export default function UpdateSubscriberPage()
     
     return(
         <>
-            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
+            <NavigationView content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
                 <UpdateSubscriber id={id} content={updateSubscriber?.content} isLoading={updateSubscriber?.isLoading} />
             </Container>

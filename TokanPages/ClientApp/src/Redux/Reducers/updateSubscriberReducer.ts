@@ -18,21 +18,18 @@ const UpdateSubscriberReducer: Reducer<IUpdateSubscriber> = (state: IUpdateSubsc
         case UPDATE_SUBSCRIBER:
             return { 
                 isUpdatingSubscriber: true, 
-                hasUpdatedSubscriber: state.hasUpdatedSubscriber, 
                 attachedErrorObject: state.attachedErrorObject 
             };
 
         case UPDATE_SUBSCRIBER_RESPONSE:
             return { 
                 isUpdatingSubscriber: false, 
-                hasUpdatedSubscriber: action.hasUpdatedSubscriber, 
                 attachedErrorObject: { } 
             };
 
         case UPDATE_SUBSCRIBER_ERROR:
             return { 
                 isUpdatingSubscriber: false, 
-                hasUpdatedSubscriber: false, 
                 attachedErrorObject: action.errorObject 
             };
 

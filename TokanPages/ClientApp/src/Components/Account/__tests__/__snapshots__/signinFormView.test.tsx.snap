@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test account component: SignupForm. Renders correctly '<SignupForm />' when content is loaded. 1`] = `
+exports[`Test account component: SigninForm. Renders correctly '<SigninFormView />' when content is loaded. 1`] = `
 <section>
   <WithStyles(ForwardRef(Container))
     maxWidth="sm"
@@ -13,7 +13,7 @@ exports[`Test account component: SignupForm. Renders correctly '<SignupForm />' 
         elevation={4}
       >
         <WithStyles(ForwardRef(CardContent))
-          className="makeStyles-card-1"
+          className="makeStyles-card-3"
         >
           <Styled(MuiBox)
             mb={3}
@@ -38,36 +38,6 @@ exports[`Test account component: SignupForm. Renders correctly '<SignupForm />' 
               container={true}
               spacing={2}
             >
-              <WithStyles(ForwardRef(Grid))
-                item={true}
-                sm={6}
-                xs={12}
-              >
-                <WithStyles(ForwardRef(TextField))
-                  autoComplete="fname"
-                  fullWidth={true}
-                  id="firstName"
-                  label="First name"
-                  name="firstName"
-                  required={true}
-                  variant="outlined"
-                />
-              </WithStyles(ForwardRef(Grid))>
-              <WithStyles(ForwardRef(Grid))
-                item={true}
-                sm={6}
-                xs={12}
-              >
-                <WithStyles(ForwardRef(TextField))
-                  autoComplete="lname"
-                  fullWidth={true}
-                  id="lastName"
-                  label="Last name"
-                  name="lastName"
-                  required={true}
-                  variant="outlined"
-                />
-              </WithStyles(ForwardRef(Grid))>
               <WithStyles(ForwardRef(Grid))
                 item={true}
                 xs={12}
@@ -97,21 +67,6 @@ exports[`Test account component: SignupForm. Renders correctly '<SignupForm />' 
                   variant="outlined"
                 />
               </WithStyles(ForwardRef(Grid))>
-              <WithStyles(ForwardRef(Grid))
-                item={true}
-                xs={12}
-              >
-                <WithStyles(ForwardRef(FormControlLabel))
-                  control={
-                    <ForwardRef(WithStyles(ForwardRef(Checkbox)))
-                      color="primary"
-                      name="terms"
-                      value="1"
-                    />
-                  }
-                  label=""
-                />
-              </WithStyles(ForwardRef(Grid))>
             </WithStyles(ForwardRef(Grid))>
             <Styled(MuiBox)
               my={2}
@@ -122,13 +77,31 @@ exports[`Test account component: SignupForm. Renders correctly '<SignupForm />' 
                 variant="contained"
               />
             </Styled(MuiBox)>
-            <Styled(MuiBox)
-              textAlign="right"
+            <WithStyles(ForwardRef(Grid))
+              className="makeStyles-actions-2"
+              container={true}
+              spacing={2}
             >
-              <Link
-                to="/signin"
-              />
-            </Styled(MuiBox)>
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                sm={6}
+                xs={12}
+              >
+                <Link
+                  to="/signup"
+                />
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                className="makeStyles-tertiaryAction-1"
+                item={true}
+                sm={6}
+                xs={12}
+              >
+                <Link
+                  to="/reset"
+                />
+              </WithStyles(ForwardRef(Grid))>
+            </WithStyles(ForwardRef(Grid))>
           </Styled(MuiBox)>
         </WithStyles(ForwardRef(CardContent))>
       </WithStyles(ForwardRef(Card))>
