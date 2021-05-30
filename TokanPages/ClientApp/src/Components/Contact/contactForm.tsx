@@ -49,66 +49,61 @@ export default function ContactForm(props: IGetContactFormContent)
     const [modal, setModal] = React.useState(alertModalDefault);
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => { setModal({ State: true, Title: "Contact Form", Message: text, Icon: IconType.info }); };
-    const showWarning = (text: string) => { setModal({ State: true, Title: "Warning", Message: text, Icon: IconType.warning }); };
-    const showError = (text: string) => { setModal({ State: true, Title: "Error", Message: text, Icon: IconType.error }); };
+    const showSuccess = (text: string) => setModal({ State: true, Title: "Contact Form", Message: text, Icon: IconType.info });
+    const showWarning = (text: string) => setModal({ State: true, Title: "Warning", Message: text, Icon: IconType.warning });
+    const showError = (text: string) => setModal({ State: true, Title: "Error", Message: text, Icon: IconType.error });
 
-    const sendMessageState = useSelector((state: IApplicationState) => state.sendMessage);
     const dispatch = useDispatch();
+    const sendMessageState = useSelector((state: IApplicationState) => state.sendMessage);
+    const sendMessage = React.useCallback((payload: ISendMessageDto) => dispatch(ActionCreators.sendMessage(payload)), [ dispatch ]);
+    const sendMessageClear = React.useCallback(() => dispatch(ActionCreators.sendMessageClear()), [ dispatch ]);
 
-    const sendMessage = React.useCallback((payload: ISendMessageDto) => 
-        { dispatch(ActionCreators.sendMessage(payload)); }, [ dispatch ]);
+    const clearForm = React.useCallback(() => 
+    {
+        setProgress(false);
+        setForm(formDefaultValues);
+        sendMessageClear();
+    }, [ setProgress, setForm, sendMessageClear ]);
 
-    const sendMessageClear = React.useCallback(() => 
-        { dispatch(ActionCreators.sendMessageClear()); }, [ dispatch ]);
-        
     React.useEffect(() => 
     { 
-        if (sendMessageState === undefined) return;
-
-        if (sendMessageState.isSendingMessage === OperationStatus.notStarted && progress)
+        switch(sendMessageState.operationStatus)
         {
-            sendMessage(
-            {
-                firstName: form.firstName,
-                lastName: form.lastName,
-                userEmail: form.email,
-                emailFrom: form.email,
-                emailTos: [form.email],
-                subject: form.subject,
-                message: form.message
-            });
-            return;
-        }
-
-        if (sendMessageState.isSendingMessage === OperationStatus.hasFinished 
-            || sendMessageState.isSendingMessage === OperationStatus.hasFailed)
-        {
-            setProgress(false);
-            setForm(formDefaultValues);
-
-            if (sendMessageState.hasSentMessage 
-                && sendMessageState.isSendingMessage === OperationStatus.hasFinished)
-            {
+            case OperationStatus.notStarted:
+                if (progress)
+                    sendMessage(
+                    {
+                        firstName: form.firstName,
+                        lastName: form.lastName,
+                        userEmail: form.email,
+                        emailFrom: form.email,
+                        emailTos: [form.email],
+                        subject: form.subject,
+                        message: form.message
+                    });
+            break;
+            case OperationStatus.hasFinished:
                 showSuccess(MessageOutSuccess());
-                sendMessageClear();
-                return;
-            }
-
-            showError(MessageOutError(sendMessageState.attachedErrorObject));
-            sendMessageClear();
+                clearForm();
+            break;
+            case OperationStatus.hasFailed:
+                showError(MessageOutError(sendMessageState.attachedErrorObject));
+                clearForm();
+            break;
         }
-    }, 
-    [ sendMessage, sendMessageClear, sendMessageState, progress, form ]);
+    }, [ sendMessage, sendMessageState, clearForm, progress, form ]);
 
-    const modalHandler = () => 
-        { setModal({ ...modal, State: false}); };
-
+    const modalHandler = () => setModal({ ...modal, State: false});
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
-        if (event.currentTarget.name !== "terms") 
-            { setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value}); }
-                else { setForm({ ...form, [event.currentTarget.name]: event.currentTarget.checked}); }
+        switch(event.currentTarget.name)
+        {
+            case "terms": 
+                setForm({ ...form, [event.currentTarget.name]: event.currentTarget.checked});
+            break;
+            default: 
+                setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});    
+        }
     };
 
     const buttonHandler = async () => 
@@ -123,7 +118,7 @@ export default function ContactForm(props: IGetContactFormContent)
             Terms: form.terms 
         });
 
-        if (!Validate.isDefined(validationResult))
+        if (Validate.isDefined(validationResult))
         {
             setProgress(true);
             return;
