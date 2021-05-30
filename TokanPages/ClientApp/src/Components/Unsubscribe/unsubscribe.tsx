@@ -7,7 +7,7 @@ import { IconType, OperationStatus } from "../../Shared/enums";
 import { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
 import { NewsletterError, NewsletterSuccess } from "../../Shared/textWrappers";
 import { IRemoveSubscriberDto } from "../../Api/Models";
-import UnsubscribeView from "./UnsubscribeView";
+import UnsubscribeView from "./unsubscribeView";
 
 interface IGetUnsubscribeContentExtended extends IGetUnsubscribeContent
 {

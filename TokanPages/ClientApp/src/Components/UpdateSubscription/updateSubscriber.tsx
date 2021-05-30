@@ -9,7 +9,7 @@ import { IconType } from "../../Shared/enums";
 import { ValidateEmail } from "../../Shared/validate";
 import { NewsletterSuccess, NewsletterWarning } from "../../Shared/textWrappers";
 import { IUpdateSubscriberDto } from "../../Api/Models";
-import UpdateSubscriberView from "./UpdateSubscriberView";
+import UpdateSubscriberView from "./updateSubscriberView";
 
 interface IGetUpdateSubscriberContentExtended extends IGetUpdateSubscriberContent
 {
