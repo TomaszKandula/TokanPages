@@ -11,7 +11,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetResetFormContent } from "../../Redux/States/getResetFormContentState";
 import resetFormStyle from "./Styles/resetFormStyle";
 
-export default function ResetForm(props: IGetResetFormContent) 
+export default function ResetFormView(props: IGetResetFormContent) 
 {
     const classes = resetFormStyle();
     return (

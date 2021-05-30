@@ -12,7 +12,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetSigninFormContent } from "../../Redux/States/getSigninFormContentState";
 import signinFormStyle from "./Styles/signinFormStyle";
 
-export default function SigninForm(props: IGetSigninFormContent) 
+export default function SigninFormView(props: IGetSigninFormContent) 
 {
     const classes = signinFormStyle();
     return (

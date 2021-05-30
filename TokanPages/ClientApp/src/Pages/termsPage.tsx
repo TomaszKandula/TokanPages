@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import Navigation from "../Components/Layout/navigation";
+import NavigationView from "../Components/Layout/navigationView";
 import StaticContent from "../Components/Content/staticContent";
 import Footer from "../Components/Layout/footer";
 import { REQUEST_TERMS } from "../Redux/Actions/getStaticContentAction";
@@ -26,7 +26,7 @@ export default function TermsPage()
 
     return (
         <>
-            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
+            <NavigationView content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
                 <StaticContent content={REQUEST_TERMS} />
             </Container>

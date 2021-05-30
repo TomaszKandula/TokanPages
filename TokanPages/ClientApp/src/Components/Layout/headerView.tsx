@@ -10,7 +10,7 @@ import { IMAGES_PATH } from "../../Shared/constants";
 import headerStyle from "./Styles/headerStyle";
 import { renderImage } from "../../Shared/Components/CustomImage/customImage";
 
-export default function Header(props: IGetHeaderContent) 
+export default function HeaderView(props: IGetHeaderContent) 
 {
     const classes = headerStyle();
     return (

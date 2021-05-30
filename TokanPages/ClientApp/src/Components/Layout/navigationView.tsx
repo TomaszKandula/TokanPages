@@ -8,7 +8,7 @@ import { ICONS_PATH } from "../../Shared/constants";
 import { renderImage } from "../../Shared/Components/CustomImage/customImage";
 import navigationStyle from "./Styles/navigationStyle";
 
-export default function Navigation(props: IGetNavigationContent) 
+export default function NavigationView(props: IGetNavigationContent) 
 {
     const classes = navigationStyle();
     return (

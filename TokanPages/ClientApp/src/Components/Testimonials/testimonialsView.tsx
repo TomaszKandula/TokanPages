@@ -11,7 +11,7 @@ import testimonialsStyle from "./testimonialsStyle";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../../Theme/CustomCss/overrideCarousel.css";
 
-export default function Testimonials(props: IGetTestimonialsContent)
+export default function TestimonialsView(props: IGetTestimonialsContent)
 {
     const classes = testimonialsStyle();
     return(

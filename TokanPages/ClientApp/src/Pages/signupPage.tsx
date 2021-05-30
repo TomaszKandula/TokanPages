@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import Navigation from "../Components/Layout/navigation";
-import SignupForm from "../Components/Account/signupForm";
+import NavigationView from "../Components/Layout/navigationView";
+import SignupFormView from "../Components/Account/signupFormView";
 import Footer from "../Components/Layout/footer";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
@@ -28,9 +28,9 @@ export default function SignupPage()
 
     return (
         <>
-            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
+            <NavigationView content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <SignupForm content={signupForm?.content} isLoading={signupForm?.isLoading} />
+                <SignupFormView content={signupForm?.content} isLoading={signupForm?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>
