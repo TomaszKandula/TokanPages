@@ -11,7 +11,7 @@ import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Skeleton from "@material-ui/lab/Skeleton";
 import AlertDialog from "../../Shared/Components/AlertDialog/alertDialog";
-import updateSubscriptionStyle from "./updateSubscriptionStyle";
+import updateSubscriberStyle from "./updateSubscriberStyle";
 import { IconType } from "../../Shared/enums";
 
 interface IBinding
@@ -38,7 +38,7 @@ interface IProperties
 
 export default function UpdateSubscriberView(props: IBinding)
 {
-    const classes = updateSubscriptionStyle();
+    const classes = updateSubscriberStyle();
     return (
         <section>
             <Container maxWidth="sm">
