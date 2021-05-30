@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 namespace TokanPages.Backend.Shared.Attributes
 {
     [AttributeUsage(AttributeTargets.Method)]
-    public class ETagFilter : Attribute, IActionFilter
+    public class ETagFilterAttribute : Attribute, IActionFilter
     {
         private const string ETAG = "ETag";
         
@@ -21,7 +21,7 @@ namespace TokanPages.Backend.Shared.Attributes
 
         private readonly int[] FStatusCodes;
 
-        public ETagFilter(params int[] AStatusCodes)
+        public ETagFilterAttribute(params int[] AStatusCodes)
         {
             FStatusCodes = AStatusCodes;
 
