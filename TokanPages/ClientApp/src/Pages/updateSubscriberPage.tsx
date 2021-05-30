@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
-import UpdateSubscriber from "../Components/UpdateSubscription/updateSubscriber";
+import UpdateSubscriber from "../Components/UpdateSubscriber/updateSubscriber";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
