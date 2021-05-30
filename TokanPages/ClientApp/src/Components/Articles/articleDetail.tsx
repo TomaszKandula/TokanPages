@@ -87,7 +87,7 @@ export default function ArticleDetail(props: IArticleDetail)
     React.useEffect(() => updateReadCount(), [ updateReadCount ]);
     React.useEffect(() => updateUserLikesWithDelay(), [ updateUserLikesWithDelay ]);
 
-    const thumbsUpHandler = () =>
+    const thumbsHandler = () =>
     {
         let likesToAdd = isAnonymous 
             ? LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs
@@ -137,7 +137,7 @@ export default function ArticleDetail(props: IArticleDetail)
         articleUpdatedAt: FormatDateTime(selection.article.updatedAt, true),
         articleContent: ArticleContent(selection.article.id, selection.isLoading, selection.article.text),
         renderLikesLeft: LikesLeft(isAnonymous, likesLeft),
-        thumbsUpHandler: thumbsUpHandler,
+        thumbsHandler: thumbsHandler,
         totalLikes: totalLikes,
         renderAuthorName: AuthorName(selection.article.author.firstName, selection.article.author.lastName, selection.article.author.aliasName),
         authorShortBio: selection.article.author.shortBio
