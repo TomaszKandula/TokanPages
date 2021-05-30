@@ -2,32 +2,32 @@
 <h3 align="center">Microsoft technologies and more</h3>
 <p align="center">
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=ncloc">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=ncloc&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=code_smells">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=code_smells&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=bugs">
-  </a>
-</p>
-<p align="center">
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=sqale_rating">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=security_rating">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=reliability_rating">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=bugs&kill_cache=1">
   </a>
 </p>
 <p align="center">
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=sqale_index">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=sqale_rating&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=duplicated_lines_density">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=security_rating&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=reliability_rating&kill_cache=1">
+  </a>
+</p>
+<p align="center">
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=sqale_index&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=duplicated_lines_density&kill_cache=1">
   </a>
 </p>
 
