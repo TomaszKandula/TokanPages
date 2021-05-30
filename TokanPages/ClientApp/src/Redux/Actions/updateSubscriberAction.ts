@@ -11,7 +11,7 @@ export const UPDATE_SUBSCRIBER_RESPONSE = "UPDATE_SUBSCRIBER_RESPONSE";
 export const UPDATE_SUBSCRIBER_ERROR = "UPDATE_SUBSCRIBER_ERROR";
 
 export interface IApiUpdateSubscriber { type: typeof UPDATE_SUBSCRIBER }
-export interface IApiUpdateSubscriberResponse { type: typeof UPDATE_SUBSCRIBER_RESPONSE, hasUpdatedSubscriber: boolean }
+export interface IApiUpdateSubscriberResponse { type: typeof UPDATE_SUBSCRIBER_RESPONSE }
 export interface IUpdateSubscriberError { type: typeof UPDATE_SUBSCRIBER_ERROR, errorObject: any }
 
 export type TKnownActions = 
@@ -36,7 +36,7 @@ export const ActionCreators =
         {
             if (response.status === 200)
             {
-                dispatch({ type: UPDATE_SUBSCRIBER_RESPONSE, hasUpdatedSubscriber: true });
+                dispatch({ type: UPDATE_SUBSCRIBER_RESPONSE });
                 return;
             }
             
