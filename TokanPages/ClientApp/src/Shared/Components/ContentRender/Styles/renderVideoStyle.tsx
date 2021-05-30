@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import { CustomColours } from "Theme/customColours";
+import { CustomColours } from "../../../../Theme/customColours";
 
 const renderVideoStyle = makeStyles(() => (
 {
