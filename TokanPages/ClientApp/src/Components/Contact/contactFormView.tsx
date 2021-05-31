@@ -9,8 +9,6 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
-import ApplicationDialogBox from "../../Shared/Components/applicationDialogBox/applicationDialogBox";
-import { IconType } from "../../Shared/enums";
 import contactFormStyle from "./contactFormStyle";
 
 interface IBinding 
@@ -20,11 +18,6 @@ interface IBinding
 
 interface IProperties
 {
-    modalState: boolean;
-    modalHandler: any;
-    modalTitle: string;
-    modalMessage: string;
-    modalIcon: IconType;
     isLoading: boolean;
     caption: string;
     text: string;
@@ -46,7 +39,6 @@ export default function ContactFormView(props: IBinding)
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
-                <ApplicationDialogBox State={props.bind?.modalState} Handle={props.bind?.modalHandler} Title={props.bind?.modalTitle} Message={props.bind?.modalMessage} Icon={props.bind?.modalIcon} />
                 <Container maxWidth="sm">
                     <div data-aos="fade-up">
                         <Box pt={8} pb={10}>

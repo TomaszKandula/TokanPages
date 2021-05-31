@@ -10,9 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Skeleton from "@material-ui/lab/Skeleton";
-import ApplicationDialogBox from "../../Shared/Components/applicationDialogBox/applicationDialogBox";
 import updateSubscriberStyle from "./updateSubscriberStyle";
-import { IconType } from "../../Shared/enums";
 
 interface IBinding
 {
@@ -21,11 +19,6 @@ interface IBinding
 
 interface IProperties
 {
-    modalState: boolean;
-    modalHandler: any;
-    modalTitle: string;
-    modalMessage: string;
-    modalIcon: IconType;
     isLoading: boolean;
     caption: string;
     formHandler: any;
@@ -42,13 +35,6 @@ export default function UpdateSubscriberView(props: IBinding)
     return (
         <section>
             <Container maxWidth="sm">
-                <ApplicationDialogBox 
-                    State={props.bind?.modalState} 
-                    Handle={props.bind?.modalHandler} 
-                    Title={props.bind?.modalTitle} 
-                    Message={props.bind?.modalMessage} 
-                    Icon={props.bind?.modalIcon} 
-                />
                 <Box pt={18} pb={10}>
                     <Card elevation={4}>
                         <CardContent className={classes.card}>
