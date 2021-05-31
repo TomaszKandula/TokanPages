@@ -6,6 +6,7 @@ import { IUpdateSubscriber } from "./States/updateSubscriberState";
 import { IRemoveSubscriber } from "./States/removeSubscriberState";
 import { IUpdateArticle } from "./States/updateArticleState";
 import { IRaiseError } from "./States/raiseErrorState";
+import { IRaiseDialog } from "./States/raiseDialogState";
 import { IGetStaticContent } from "./States/getStaticContentState";
 import { IGetArticleFeatContent } from "./States/getArticleFeatContentState";
 import { IGetContactFormContent } from "./States/getContactFormContentState";
@@ -27,6 +28,7 @@ import { IGetUpdateSubscriberContent } from "./States/getUpdateSubscriberContent
 export interface IApplicationState 
 {
     raiseError: IRaiseError;
+    raiseDialog: IRaiseDialog;
     selectArticle: IArticle;
     listArticles: IArticles;
     updateArticle: IUpdateArticle,

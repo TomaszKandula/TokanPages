@@ -1,11 +1,13 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators } from "../../Redux/Actions/removeSubscriberAction";
+import { ActionCreators as SubscriberAction } from "../../Redux/Actions/removeSubscriberAction";
+import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
 import { IGetUnsubscribeContent } from "../../Redux/States/getUnsubscribeContentState";
-import { IconType, OperationStatus } from "../../Shared/enums";
-import { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
-import { NewsletterError, NewsletterSuccess } from "../../Shared/textWrappers";
+import { OperationStatus } from "../../Shared/enums";
+import { NewsletterSuccess } from "../../Shared/textWrappers";
+import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
+import { RECEIVED_ERROR_MESSAGE, REMOVE_SUBSCRIBER } from "../../Shared/constants";
 import { IRemoveSubscriberDto } from "../../Api/Models";
 import UnsubscribeView from "./unsubscribeView";
 
@@ -34,47 +36,46 @@ export default function Unsubscribe(props: IGetUnsubscribeContentExtended)
         button:  props.content?.contentPost.button
     };
 
+    const dispatch = useDispatch();
+    const removeSubscriberState = useSelector((state: IApplicationState) => state).removeSubscriber;
+    const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
+
     const [content, setContent] = React.useState(contentPre);
     const [buttonState, setButtonState] = React.useState(true);
     const [progress, setProgress] = React.useState(false);
-    const [modal, setModal] = React.useState(alertModalDefault);
 
-    const showSuccess = (text: string) => setModal({ State: true, Title: "Remove subscriber", Message: text, Icon: IconType.info });
-    const showError = (text: string) => setModal({ State: true, Title: "Error", Message: text, Icon: IconType.error });
-    
-    const dispatch = useDispatch();
-    const removeSubscriberState = useSelector((state: IApplicationState) => state).removeSubscriber;
-    const removeSubscriber = React.useCallback((payload: IRemoveSubscriberDto) => dispatch(ActionCreators.removeSubscriber(payload)), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(REMOVE_SUBSCRIBER, text))), [ dispatch ]);
+    const removeSubscriber = React.useCallback((payload: IRemoveSubscriberDto) => dispatch(SubscriberAction.removeSubscriber(payload)), [ dispatch ]);
 
-    const executeRemoveSubscriber = React.useCallback(() => 
+    const clearForm = React.useCallback(() => 
     {
-        switch(removeSubscriberState.operationStatus)
+        setProgress(false);
+        setButtonState(true);
+        setContent(contentPost);
+    }, [ contentPost ]);
+
+    const callRemoveSubscriber = React.useCallback(() => 
+    {
+        switch(removeSubscriberState?.operationStatus)
         {
+            case OperationStatus.inProgress:
+                if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+                    clearForm();
+            break;
+            
             case OperationStatus.notStarted:
                 if (progress)
                     removeSubscriber({ id: props.id });
             break;
 
             case OperationStatus.hasFinished:
-                setProgress(false);
-                setButtonState(true);
-                setContent(contentPost);
+                clearForm();
                 showSuccess(NewsletterSuccess());
             break;
-
-            case OperationStatus.hasFailed:
-                showError(NewsletterError(removeSubscriberState.attachedErrorObject));
-            break;
         }
-    }, 
-    [ removeSubscriber, removeSubscriberState, progress, props.id, contentPost ]);
+    }, [ removeSubscriber, removeSubscriberState, progress, props.id, showSuccess, clearForm, raiseErrorState ]);
 
-    React.useEffect(() => executeRemoveSubscriber(), [ executeRemoveSubscriber ]);
-
-    const modalHandler = () => 
-    { 
-        setModal(alertModalDefault); 
-    };
+    React.useEffect(() => callRemoveSubscriber(), [ callRemoveSubscriber ]);
 
     const buttonHandler = () =>
     {
@@ -86,11 +87,6 @@ export default function Unsubscribe(props: IGetUnsubscribeContentExtended)
 
     return (<UnsubscribeView bind=
     {{
-        modalState: modal.State,
-        modalHandler: modalHandler,
-        modalTitle: modal.Title,
-        modalMessage: modal.Message,
-        modalIcon: modal.Icon,
         isLoading: props.isLoading,
         caption: content.caption,
         text1: content.text1,

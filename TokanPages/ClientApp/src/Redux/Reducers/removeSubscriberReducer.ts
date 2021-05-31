@@ -5,8 +5,7 @@ import { OperationStatus } from "../../Shared/enums";
 import { 
     TKnownActions, 
     REMOVE_SUBSCRIBER, 
-    REMOVE_SUBSCRIBER_RESPONSE, 
-    REMOVE_SUBSCRIBER_ERROR 
+    REMOVE_SUBSCRIBER_RESPONSE 
 } from "../Actions/removeSubscriberAction";
 
 const RemoveSubscriberReducer: Reducer<IRemoveSubscriber> = (state: IRemoveSubscriber | undefined, incomingAction: Action): IRemoveSubscriber => 
@@ -26,12 +25,6 @@ const RemoveSubscriberReducer: Reducer<IRemoveSubscriber> = (state: IRemoveSubsc
             return { 
                 operationStatus: OperationStatus.hasFinished, 
                 attachedErrorObject: { } 
-            };
-
-        case REMOVE_SUBSCRIBER_ERROR:
-            return { 
-                operationStatus: OperationStatus.hasFailed, 
-                attachedErrorObject: action.errorObject 
             };
 
         default: return state;

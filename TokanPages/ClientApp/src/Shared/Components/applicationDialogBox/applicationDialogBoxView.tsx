@@ -8,41 +8,31 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import InfoIcon from '@material-ui/icons/Info';
 import WarningIcon from '@material-ui/icons/Warning';
 import ErrorIcon from '@material-ui/icons/Error';
-import alertDialogStyle from "./alertDialogStyle";
 import { Divider, Typography } from "@material-ui/core";
 import { IconType } from "../../enums";
+import ApplicationDialogBoxStyle from "./applicationDialogBoxStyle";
 
-export interface IAlertDialog
+interface IBinding
 {
-    State: boolean,
-    Handle: any,
-    Title: string,
-    Message: string,
-    Icon: IconType
+    bind: IProperties;
 }
 
-export interface IAlertModal
+interface IProperties
 {
-    State: boolean;
-    Title: string; 
-    Message: string; 
-    Icon: IconType;
+    state: boolean;
+    icon: IconType;
+    title: string;
+    message: string;
+    onCloseHandler: any;
+    onButtonClickHandler: any;
 }
 
-export const alertModalDefault: IAlertModal = 
+export default function ApplicationDialogBoxView(props: IBinding) 
 {
-    State: false, 
-    Title:  "", 
-    Message: "", 
-    Icon: IconType.info
-}
-
-export default function AlertDialog(props: IAlertDialog) 
-{
-    const classes = alertDialogStyle();
-    const RenderIcon = () => 
+    const classes = ApplicationDialogBoxStyle();
+    const RenderIcon = (): JSX.Element => 
     {
-        switch (props.Icon)
+        switch (props.bind?.icon)
         {
             case IconType.info: return(<InfoIcon className={classes.InfoIcon} />);
             case IconType.warning: return(<WarningIcon className={classes.WarningIcon} />);
@@ -52,22 +42,22 @@ export default function AlertDialog(props: IAlertDialog)
     };   
 
     return (
-        <Dialog open={props.State} onClose={props.Handle} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+        <Dialog open={props.bind?.state} onClose={props.bind?.onCloseHandler} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
             <DialogTitle id="alert-dialog-title">
                 <div style={{ display: "flex", alignItems: "center" }}>
                     <RenderIcon />
-                    {ReactHtmlParser(props.Title)}
+                    {ReactHtmlParser(props.bind?.title)}
                 </div>
             </DialogTitle>
             <Divider />
             <DialogContent>
                 <Typography className={classes.Typography} component={"span"} variant={"body1"} id="alert-dialog-description">
-                    {ReactHtmlParser(props.Message)}
+                    {ReactHtmlParser(props.bind?.message)}
                 </Typography>
             </DialogContent>
             <Divider />
             <DialogActions>
-                <Button onClick={props.Handle} color="primary" autoFocus>
+                <Button onClick={props.bind?.onButtonClickHandler} color="primary" autoFocus>
                     OK
                 </Button>
             </DialogActions>

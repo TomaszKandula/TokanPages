@@ -6,6 +6,7 @@ import { AddSubscriberDefault } from "./Defaults/addSubscriberDefault";
 import { UpdateSubscriberDefault } from "./Defaults/updateSubscriberDefault";
 import { RemoveSubscriberDefault } from "./Defaults/removeSubscriberDefault";
 import { RaiseErrorDefault } from "./Defaults/raiseErrorDefault";
+import { RaiseDialogDefault } from "./Defaults/raiseDialogDefault";
 import { GetStaticContentDefault } from "./Defaults/getStaticContentDefault";
 import { GetArticleFeatContentDefault } from "./Defaults/getArticleFeatContentDefault";
 import { GetContactFormContentDefault } from "./Defaults/getContactFormContentDefault";
@@ -27,6 +28,7 @@ import { GetUpdateSubscriberContentDefault } from "./Defaults/getUpdateSubscribe
 export const combinedDefaults = 
 {
     raiseError: RaiseErrorDefault,
+    raiseDialog: RaiseDialogDefault,
     selectArticle: SelectArticleDefault,
     listArticles: ListArticlesDefault,
     updateArticle: UpdateArticleDefault,
