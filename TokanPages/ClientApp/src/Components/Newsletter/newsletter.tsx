@@ -40,7 +40,7 @@ export default function Newsletter(props: IGetNewsletterContent)
         switch(addSubscriberState?.operationStatus)
         {
             case OperationStatus.inProgress:
-                if (raiseErrorState.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+                if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
                     clearForm();
             break;
 
@@ -54,8 +54,7 @@ export default function Newsletter(props: IGetNewsletterContent)
                 showSuccess(NewsletterSuccess());
             break;
         }
-    }, [ addSubscriber, addSubscriberState, clearForm, progress, 
-    form, showSuccess, raiseErrorState.defaultErrorMessage ]);
+    }, [ addSubscriber, addSubscriberState, clearForm, progress, form, showSuccess, raiseErrorState ]);
 
     React.useEffect(() => callAddSubscriber(), [ callAddSubscriber ]);
 

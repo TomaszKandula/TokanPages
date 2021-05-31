@@ -56,10 +56,10 @@ export default function Unsubscribe(props: IGetUnsubscribeContentExtended)
 
     const callRemoveSubscriber = React.useCallback(() => 
     {
-        switch(removeSubscriberState.operationStatus)
+        switch(removeSubscriberState?.operationStatus)
         {
             case OperationStatus.inProgress:
-                if (raiseErrorState.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+                if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
                     clearForm();
             break;
             
@@ -73,8 +73,7 @@ export default function Unsubscribe(props: IGetUnsubscribeContentExtended)
                 showSuccess(NewsletterSuccess());
             break;
         }
-    }, [ removeSubscriber, removeSubscriberState, progress, props.id, 
-    showSuccess, clearForm, raiseErrorState.defaultErrorMessage ]);
+    }, [ removeSubscriber, removeSubscriberState, progress, props.id, showSuccess, clearForm, raiseErrorState ]);
 
     React.useEffect(() => callRemoveSubscriber(), [ callRemoveSubscriber ]);
 

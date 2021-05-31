@@ -60,7 +60,7 @@ export default function ContactForm(props: IGetContactFormContent)
         switch(sendMessageState?.operationStatus)
         {
             case OperationStatus.inProgress:
-                if (raiseErrorState.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+                if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
                     clearForm();
             break;
 
@@ -83,8 +83,7 @@ export default function ContactForm(props: IGetContactFormContent)
                 showSuccess(MessageOutSuccess());
             break;
         }
-    }, [ sendMessage, sendMessageState, clearForm, progress, 
-    form, showSuccess, raiseErrorState.defaultErrorMessage ]);
+    }, [ sendMessage, sendMessageState, clearForm, progress, form, showSuccess, raiseErrorState ]);
 
     React.useEffect(() => callSendMessage(), [ callSendMessage ]);
 

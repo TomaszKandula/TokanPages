@@ -42,10 +42,10 @@ export default function UpdateSubscriber(props: IGetUpdateSubscriberContentExten
 
     const callUpdateSubscriber = React.useCallback(() => 
     {
-        switch(updateSubscriberState.operationStatus)
+        switch(updateSubscriberState?.operationStatus)
         {
             case OperationStatus.inProgress:
-                if (raiseErrorState.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+                if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
                     clearForm();
             break;
 
@@ -65,8 +65,7 @@ export default function UpdateSubscriber(props: IGetUpdateSubscriberContentExten
                 showSuccess(NewsletterSuccess());
             break;
         }           
-    }, [ updateSubscriber, updateSubscriberState, progress, form, props.id, 
-    showSuccess, clearForm, raiseErrorState.defaultErrorMessage ]);
+    }, [ updateSubscriber, updateSubscriberState, progress, form, props.id, showSuccess, clearForm, raiseErrorState ]);
 
     React.useEffect(() => callUpdateSubscriber(), [ callUpdateSubscriber ]);
 
