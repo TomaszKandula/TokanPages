@@ -15,7 +15,7 @@ import UpdateSubscriberPage from "./Pages/updateSubscriberPage";
 import WrongPage from "./Pages/wrongPage";
 import ScrollTop from "./Shared/Components/Scroll/scrollTop";
 import ApplicationErrorToast from "./Shared/Components/Toasts/applicationErrorToast";
-import ApplicationDialogBox from "./Shared/Components/applicationDialogBox/applicationDialogBox";
+import ApplicationDialogBox from "./Shared/Components/ApplicationDialogBox/applicationDialogBox";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
