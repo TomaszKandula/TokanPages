@@ -12,3 +12,9 @@ export enum IconType
     warning,
     error,
 }
+
+export enum DialogType
+{
+    toast,
+    box
+}
