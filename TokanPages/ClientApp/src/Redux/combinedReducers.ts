@@ -6,6 +6,7 @@ import UpdateSubscriberReducer from "./Reducers/updateSubscriberReducer";
 import RemoveSubscriberReducer from "./Reducers/removeSubscriberReducer";
 import UpdateArticleReducer from "./Reducers/updateArticleReducer";
 import RaiseErrorReducer from "./Reducers/raiseErrorReducer";
+import RaiseDialogReducer from "./Reducers/raiseDialogReducer";
 import GetStaticContentReducer from "./Reducers/getStaticContentReducer";
 import GetArticleFeatContentReducer from "./Reducers/getArticleFeatContentReducer";
 import GetContactFormContentReducer from "./Reducers/getContactFormContentReducer";
@@ -27,6 +28,7 @@ import GetUpdateSubscriberContentReducer from "./Reducers/getUpdateSubscriberCon
 export const combinedReducers = 
 {
     raiseError: RaiseErrorReducer,
+    raiseDialog: RaiseDialogReducer,
     selectArticle: SelectArticlesReducer,
     listArticles: ListArticlesReducer,
     updateArticle: UpdateArticleReducer,
