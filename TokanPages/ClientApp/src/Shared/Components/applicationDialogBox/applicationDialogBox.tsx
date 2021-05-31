@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Redux/applicationState";
-import { ActionCreators } from "../../../Redux/Actions/raiseErrorAction";
+import { ActionCreators } from "../../../Redux/Actions/raiseDialogAction";
 import { IRaiseDialog } from "../../../Redux/States/raiseDialogState";
 import { IconType } from "../../enums";
 import ApplicationDialogBoxView from "./applicationDialogBoxView";
@@ -29,7 +29,7 @@ export default function ApplicationDialogBox()
     { 
         if (!dialogState.state && dialogState.message !== "")
         {
-            dispatch(ActionCreators.clearError());
+            dispatch(ActionCreators.clearDialog());
             setDialogState(DefaultDialogState);
         }
 
