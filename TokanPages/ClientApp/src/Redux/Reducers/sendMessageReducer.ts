@@ -6,8 +6,7 @@ import {
     TKnownActions, 
     API_SEND_MESSAGE, 
     API_SEND_MESSAGE_RESPONSE, 
-    API_SEND_MESSAGE_CLEAR, 
-    SEND_MESSAGE_ERROR 
+    API_SEND_MESSAGE_CLEAR
 } from "../../Redux/Actions/sendMessageAction";
 
 const SendMessageReducer: Reducer<ISendMessage> = (state: ISendMessage | undefined, incomingAction: Action): ISendMessage => 
@@ -30,12 +29,6 @@ const SendMessageReducer: Reducer<ISendMessage> = (state: ISendMessage | undefin
             return { 
                 operationStatus: OperationStatus.hasFinished, 
                 attachedErrorObject: { } 
-            };
-
-        case SEND_MESSAGE_ERROR:
-            return { 
-                operationStatus: OperationStatus.hasFailed, 
-                attachedErrorObject: action.errorObject
             };
 
         default: return state;

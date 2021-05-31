@@ -7,7 +7,6 @@ import {
     ADD_SUBSCRIBER, 
     ADD_SUBSCRIBER_RESPONSE, 
     ADD_SUBSCRIBER_CLEAR, 
-    ADD_SUBSCRIBER_ERROR 
 } from "../Actions/addSubscriberAction";
 
 const AddSubscriberReducer: Reducer<IAddSubscriber> = (state: IAddSubscriber | undefined, incomingAction: Action): IAddSubscriber => 
@@ -30,12 +29,6 @@ const AddSubscriberReducer: Reducer<IAddSubscriber> = (state: IAddSubscriber | u
             return { 
                 operationStatus: OperationStatus.hasFinished, 
                 attachedErrorObject: { }
-            };
-
-        case ADD_SUBSCRIBER_ERROR:
-            return { 
-                operationStatus: OperationStatus.hasFailed, 
-                attachedErrorObject: action.errorObject 
             };
 
         default: return state;

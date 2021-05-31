@@ -1,11 +1,11 @@
 import { Action, Reducer } from "redux";
 import { combinedDefaults } from "../combinedDefaults";
 import { IUpdateSubscriber } from "../../Redux/States/updateSubscriberState";
+import { OperationStatus } from "../../Shared/enums";
 import { 
     TKnownActions, 
     UPDATE_SUBSCRIBER, 
     UPDATE_SUBSCRIBER_RESPONSE, 
-    UPDATE_SUBSCRIBER_ERROR 
 } from "../Actions/updateSubscriberAction";
 
 const UpdateSubscriberReducer: Reducer<IUpdateSubscriber> = (state: IUpdateSubscriber | undefined, incomingAction: Action): IUpdateSubscriber => 
@@ -17,20 +17,14 @@ const UpdateSubscriberReducer: Reducer<IUpdateSubscriber> = (state: IUpdateSubsc
     {
         case UPDATE_SUBSCRIBER:
             return { 
-                isUpdatingSubscriber: true, 
+                operationStatus: OperationStatus.notStarted, 
                 attachedErrorObject: state.attachedErrorObject 
             };
 
         case UPDATE_SUBSCRIBER_RESPONSE:
             return { 
-                isUpdatingSubscriber: false, 
+                operationStatus: OperationStatus.hasFinished, 
                 attachedErrorObject: { } 
-            };
-
-        case UPDATE_SUBSCRIBER_ERROR:
-            return { 
-                isUpdatingSubscriber: false, 
-                attachedErrorObject: action.errorObject 
             };
 
         default: return state;

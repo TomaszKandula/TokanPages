@@ -5,19 +5,18 @@ import { IRemoveSubscriberDto } from "../../Api/Models";
 import { API_COMMAND_REMOVE_SUBSCRIBER } from "../../Shared/constants";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 import { GetErrorMessage } from "../../Shared/helpers";
+import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
 
 export const REMOVE_SUBSCRIBER = "REMOVE_SUBSCRIBER";
 export const REMOVE_SUBSCRIBER_RESPONSE = "REMOVE_SUBSCRIBER_RESPONSE";
-export const REMOVE_SUBSCRIBER_ERROR = "REMOVE_SUBSCRIBER_ERROR";
 
 export interface IApiRemoveSubscriber { type: typeof REMOVE_SUBSCRIBER }
 export interface IApiRemoveSubscriberResponse { type: typeof REMOVE_SUBSCRIBER_RESPONSE }
-export interface IRemoveSubscriberError { type: typeof REMOVE_SUBSCRIBER_ERROR, errorObject: any }
 
 export type TKnownActions = 
     IApiRemoveSubscriber | 
     IApiRemoveSubscriberResponse | 
-    IRemoveSubscriberError
+    TErrorActions
 ;
 
 export const ActionCreators = 
@@ -41,12 +40,12 @@ export const ActionCreators =
             }
             
             const error = UnexpectedStatusCode(response.status);
-            dispatch({ type: REMOVE_SUBSCRIBER_ERROR, errorObject: error });
+            dispatch({ type: RAISE_ERROR, errorObject: error });
             Sentry.captureException(error);
         })
         .catch(error =>
         {
-            dispatch({ type: REMOVE_SUBSCRIBER_ERROR, errorObject: GetErrorMessage(error) });
+            dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(error) });
             Sentry.captureException(error);
         });     
     }

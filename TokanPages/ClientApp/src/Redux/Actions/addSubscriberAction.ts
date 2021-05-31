@@ -5,22 +5,21 @@ import { IAddSubscriberDto } from "../../Api/Models";
 import { API_COMMAND_ADD_SUBSCRIBER } from "../../Shared/constants";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 import { GetErrorMessage } from "../../Shared/helpers";
+import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
 
 export const ADD_SUBSCRIBER = "ADD_SUBSCRIBER";
 export const ADD_SUBSCRIBER_CLEAR = "ADD_SUBSCRIBER_CLEAR";
 export const ADD_SUBSCRIBER_RESPONSE = "ADD_SUBSCRIBER_RESPONSE";
-export const ADD_SUBSCRIBER_ERROR = "ADD_SUBSCRIBER_ERROR";
 
 export interface IApiAddSubscriber { type: typeof ADD_SUBSCRIBER }
 export interface IApiAddSubscriberClear { type: typeof ADD_SUBSCRIBER_CLEAR }
 export interface IApiAddSubscriberResponse { type: typeof ADD_SUBSCRIBER_RESPONSE }
-export interface IAddSubscriberError { type: typeof ADD_SUBSCRIBER_ERROR, errorObject: any }
 
 export type TKnownActions = 
     IApiAddSubscriber | 
     IApiAddSubscriberClear | 
     IApiAddSubscriberResponse | 
-    IAddSubscriberError
+    TErrorActions
 ;
 
 export const ActionCreators = 
@@ -48,13 +47,13 @@ export const ActionCreators =
             }
             
             const error = UnexpectedStatusCode(response.status);
-            dispatch({ type: ADD_SUBSCRIBER_ERROR, errorObject: error });
+            dispatch({ type: RAISE_ERROR, errorObject: error });
             Sentry.captureException(error);
             
         })
         .catch(error => 
         {
-            dispatch({ type: ADD_SUBSCRIBER_ERROR, errorObject: GetErrorMessage(error) });
+            dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(error) });
             Sentry.captureException(error);
         });
     }
