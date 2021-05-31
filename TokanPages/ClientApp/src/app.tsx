@@ -41,7 +41,7 @@ export default function App()
                   <Route exact path="/reset"><ResetPage /></Route>
                   <Route exact path="/unsubscribe"><UnsubscribePage /></Route>
                   <Route exact path="/updatesubscriber"><UpdateSubscriberPage /></Route>
-                  <Route exact path="/albums" component={() => //TODO: remove when Gallery subpage is created
+                  <Route exact path="/albums" component={() => //TODO: remove when Gallery is created
                     { window.location.href = "https://500px.com/p/tomaszkandula?view=galleries"; return null; }} />
                   <Route component={WrongPage} />
                 </Switch>
