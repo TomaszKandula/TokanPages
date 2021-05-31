@@ -15,6 +15,7 @@ import UpdateSubscriberPage from "./Pages/updateSubscriberPage";
 import WrongPage from "./Pages/wrongPage";
 import ScrollTop from "./Shared/Components/Scroll/scrollTop";
 import ApplicationErrorToast from "./Shared/Components/Toasts/applicationErrorToast";
+import ApplicationDialogBox from "./Shared/Components/applicationDialogBox/applicationDialogBox";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -46,6 +47,7 @@ export default function App()
                 </Switch>
             </Router>
             <ApplicationErrorToast />
+            <ApplicationDialogBox />
             <ScrollTop>
                 <Fab color="primary" size="small" aria-label="scroll back to top">
                     <KeyboardArrowUpIcon/>
