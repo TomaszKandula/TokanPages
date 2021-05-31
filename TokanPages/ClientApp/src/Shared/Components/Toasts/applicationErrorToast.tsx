@@ -1,12 +1,23 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Snackbar from "@material-ui/core/Snackbar";
 import { Slide, SlideProps } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
 import { IApplicationState } from "../../../Redux/applicationState";
 import { ActionCreators } from "../../../Redux/Actions/raiseErrorAction";
 import { RECEIVED_ERROR_MESSAGE } from "../../constants";
-import applicationErrorToastStyle from "./Styles/applicationErrorToastStyle";
+import { DialogType } from "../../../Shared/enums";
+import ApplicationToastView from "./applicationToastView";
+
+interface IDefaultToastState 
+{
+    isOpen: boolean;
+    errorMessage: string;
+}
+
+const DefaultToastState: IDefaultToastState = 
+{
+    isOpen: false, 
+    errorMessage: ""    
+}
 
 const TransitionLeft = (props: Omit<SlideProps, "direction">) =>
 {
@@ -17,43 +28,57 @@ export default function ApplicationErrorToast()
 {
     const vertical = "top";
     const horizontal = "right";
-    const classes = applicationErrorToastStyle();
-    
-    const [toastState, setToastState] = React.useState({ isOpen: false, errorMessage: "" });   
+    const toastSeverity = "error";
+    const autoHideDuration: number = 15000;
+
     const dispatch = useDispatch();
-    
+    const [toastState, setToastState] = React.useState(DefaultToastState);   
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
-    const clearError = React.useCallback(() => dispatch(ActionCreators.clearError()), [ dispatch ]);
     
-    React.useEffect(() => 
+    const clearError = React.useCallback(() => 
     { 
-        if (raiseErrorState === undefined) 
-            return; 
+        if (!toastState.isOpen && toastState.errorMessage !== "")
+        {
+            dispatch(ActionCreators.clearError());
+            setToastState(DefaultToastState);
+        }
+
+    }, [ dispatch, toastState ]);
+    
+    const raiseError = React.useCallback(() => 
+    {
+        if (raiseErrorState?.dialogType !== DialogType.toast) return;
         
-        if (raiseErrorState.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
-            setToastState({ isOpen: true, errorMessage: raiseErrorState.attachedErrorObject });
-
-        if (raiseErrorState.defaultErrorMessage === RECEIVED_ERROR_MESSAGE && !toastState.isOpen)
-            clearError();
+        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        {
+            setToastState(
+            { 
+                isOpen: true,
+                errorMessage: raiseErrorState?.attachedErrorObject 
+            });
+        }
     }, 
-    [ clearError, raiseErrorState, toastState.isOpen ]);
+    [ raiseErrorState ]);
 
-    const handleClose = (event?: React.SyntheticEvent, reason?: string) => 
+    React.useEffect(() => raiseError(), [ raiseError ]);
+    React.useEffect(() => clearError(), [ clearError ]);
+
+    const closeEventHandler = (event?: React.SyntheticEvent, reason?: string) => 
     {
         if (event === undefined) return; 
         if (reason === "clickaway") return;
-        setToastState({ isOpen: false, errorMessage: "" });
+        setToastState({ ...toastState, isOpen: false });
     }
 
-    return (
-        <div className={classes.root}>
-            <Snackbar anchorOrigin={{ vertical, horizontal }} open={toastState.isOpen} autoHideDuration={15000}
-                onClose={handleClose} TransitionComponent={TransitionLeft} key={vertical + horizontal}
-            >
-                <Alert onClose={handleClose} severity="error" elevation={6} variant="filled">
-                    {toastState.errorMessage}
-                </Alert>
-            </Snackbar>
-        </div>
-    );
+    return (<ApplicationToastView bind=
+    {{
+        anchorOrigin: { vertical, horizontal },
+        isOpen: toastState.isOpen,
+        autoHideDuration: autoHideDuration,
+        closeEventHandler: closeEventHandler,
+        TransitionComponent: TransitionLeft,
+        key: vertical + horizontal,
+        toastSeverity: toastSeverity,
+        toastMessage: toastState.errorMessage
+    }}/>);
 }
