@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Validate from "validate.js";
 import { ITextObject } from "../../Shared/Components/ContentRender/Models/textModel";
 import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators, TRequestContent } from "../../Redux/Actions/getStaticContentAction";
-import { REQUEST_POLICY, REQUEST_STORY, REQUEST_TERMS } from "../../Redux/Actions/getStaticContentAction";
+import { ActionCreators, TRequestContent, REQUEST_POLICY, REQUEST_STORY, REQUEST_TERMS } from "../../Redux/Actions/getStaticContentAction";
 import StaticContentView from "./staticContentView";
 
 export default function StaticContent(props: { content: TRequestContent }) 
