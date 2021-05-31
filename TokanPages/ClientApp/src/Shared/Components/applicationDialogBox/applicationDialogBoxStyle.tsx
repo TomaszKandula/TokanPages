@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const alertDialogStyle = makeStyles(() => (
+const ApplicationDialogBoxStyle = makeStyles(() => (
 {
     InfoIcon:
     {
@@ -23,4 +23,4 @@ const alertDialogStyle = makeStyles(() => (
     }
 }));
 
-export default alertDialogStyle;
+export default ApplicationDialogBoxStyle;

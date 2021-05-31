@@ -10,7 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Skeleton from "@material-ui/lab/Skeleton";
-import AlertDialog from "../../Shared/Components/AlertDialog/alertDialog";
+import ApplicationDialogBox from "../../Shared/Components/applicationDialogBox/applicationDialogBox";
 import updateSubscriberStyle from "./updateSubscriberStyle";
 import { IconType } from "../../Shared/enums";
 
@@ -42,7 +42,7 @@ export default function UpdateSubscriberView(props: IBinding)
     return (
         <section>
             <Container maxWidth="sm">
-                <AlertDialog 
+                <ApplicationDialogBox 
                     State={props.bind?.modalState} 
                     Handle={props.bind?.modalHandler} 
                     Title={props.bind?.modalTitle} 

@@ -4,7 +4,7 @@ import Validate from "validate.js";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/updateSubscriberAction";
 import { IGetUpdateSubscriberContent } from "../../Redux/States/getUpdateSubscriberContentState";
-import { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
+import { alertModalDefault } from "../../Shared/Components/applicationDialogBox/applicationDialogBox";
 import { IconType } from "../../Shared/enums";
 import { ValidateEmail } from "../../Shared/validate";
 import { NewsletterSuccess, NewsletterWarning } from "../../Shared/textWrappers";
@@ -82,7 +82,7 @@ export default function UpdateSubscriber(props: IGetUpdateSubscriberContentExten
         });
     };
 
-    return (<UpdateSubscriberView bind =
+    return (<UpdateSubscriberView bind=
     {{
         modalState: modal.State,
         modalHandler: modalHandler,

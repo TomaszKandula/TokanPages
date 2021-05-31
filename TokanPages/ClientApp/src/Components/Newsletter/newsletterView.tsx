@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
-import AlertDialog from "../../Shared/Components/AlertDialog/alertDialog";
+import ApplicationDialogBox from "../../Shared/Components/applicationDialogBox/applicationDialogBox";
 import { IconType } from "../../Shared/enums";
 import newsletterStyle from "./newsletterStyle";
 
@@ -39,7 +39,7 @@ export default function NewsletterView(props: IBinding)
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
-                <AlertDialog 
+                <ApplicationDialogBox 
                     State={props.bind?.modalState} 
                     Handle={props.bind?.modalHandler} 
                     Title={props.bind?.modalTitle} 

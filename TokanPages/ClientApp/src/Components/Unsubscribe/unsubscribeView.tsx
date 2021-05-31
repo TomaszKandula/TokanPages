@@ -6,7 +6,7 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
-import AlertDialog from "../../Shared/Components/AlertDialog/alertDialog";
+import ApplicationDialogBox from "../../Shared/Components/applicationDialogBox/applicationDialogBox";
 import { IconType } from "../../Shared/enums";
 import unsubscribeStyle from "./unsubscribeStyle";
 
@@ -39,7 +39,7 @@ export default function UnsubscribeView(props: IBinding)
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">
-                <AlertDialog State={props.bind?.modalState} Handle={props.bind?.modalHandler} Title={props.bind?.modalTitle} Message={props.bind?.modalMessage} Icon={props.bind?.modalIcon} />
+                <ApplicationDialogBox State={props.bind?.modalState} Handle={props.bind?.modalHandler} Title={props.bind?.modalTitle} Message={props.bind?.modalMessage} Icon={props.bind?.modalIcon} />
                 <Box py={15}>
                     <Card elevation={4}>
                         <CardContent className={classes.card}>

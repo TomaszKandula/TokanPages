@@ -6,7 +6,7 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { IGetContactFormContent } from "../../Redux/States/getContactFormContentState";
 import { OperationStatus, IconType } from "../../Shared/enums";
 import { ValidateContactForm } from "../../Shared/validate";
-import { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
+import { alertModalDefault } from "../../Shared/Components/applicationDialogBox/applicationDialogBox";
 import { MessageOutSuccess, MessageOutWarning, MessageOutError } from "../../Shared/textWrappers";
 import { ISendMessageDto } from "../../Api/Models";
 import ContactFormView from "./contactFormView";
@@ -114,8 +114,8 @@ export default function ContactForm(props: IGetContactFormContent)
         showWarning(MessageOutWarning(validationResult));
     };
 
-    return (<ContactFormView bind={
-    {
+    return (<ContactFormView bind=
+    {{
         modalState: modal.State,
         modalHandler: modalHandler,
         modalTitle: modal.Title,

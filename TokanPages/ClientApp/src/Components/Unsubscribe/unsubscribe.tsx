@@ -4,7 +4,7 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/removeSubscriberAction";
 import { IGetUnsubscribeContent } from "../../Redux/States/getUnsubscribeContentState";
 import { IconType, OperationStatus } from "../../Shared/enums";
-import { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
+import { alertModalDefault } from "../../Shared/Components/applicationDialogBox/applicationDialogBox";
 import { NewsletterError, NewsletterSuccess } from "../../Shared/textWrappers";
 import { IRemoveSubscriberDto } from "../../Api/Models";
 import UnsubscribeView from "./unsubscribeView";

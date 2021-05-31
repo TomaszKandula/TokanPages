@@ -6,7 +6,7 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/addSubscriberAction";
 import { ValidateEmail } from "../../Shared/validate";
 import { OperationStatus, IconType } from "../../Shared/enums";
-import { alertModalDefault } from "../../Shared/Components/AlertDialog/alertDialog";
+import { alertModalDefault } from "../../Shared/Components/applicationDialogBox/applicationDialogBox";
 import { NewsletterSuccess, NewsletterWarning, NewsletterError } from "../../Shared/textWrappers";
 import { IAddSubscriberDto } from "../../Api/Models";
 import NewsletterView from "./newsletterView";
@@ -70,8 +70,8 @@ export default function Newsletter(props: IGetNewsletterContent)
         showWarning(NewsletterWarning(results));
     };
 
-    return (<NewsletterView bind={
-    {
+    return (<NewsletterView bind=
+    {{
         modalState: modal.State,
         modalHandler: modalHandler,
         modalTitle: modal.Title,
