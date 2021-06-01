@@ -1,3 +1,11 @@
+# [0.14.0](https://github.com/TomaszKandula/TokanPages/compare/v0.13.1...v0.14.0) (2021-06-01)
+
+
+### Features
+
+* extend application error by 'inner message' property ([4093307](https://github.com/TomaszKandula/TokanPages/commit/40933076bfe963e53eecb851aa0fa315bccde1cf))
+* implement improved exception handler ([88dd7d9](https://github.com/TomaszKandula/TokanPages/commit/88dd7d9aa3c303c60219e45d7ed91dea74e916a9))
+
 ## [0.13.1](https://github.com/TomaszKandula/TokanPages/compare/v0.13.0...v0.13.1) (2021-06-01)
 
 
