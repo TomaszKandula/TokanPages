@@ -69,7 +69,7 @@ namespace TokanPages
             AApplication.UseSerilogRequestLogging();
 
             AApplication.UseMiddleware<CustomCors>();
-            AApplication.UseExceptionHandler(ExceptionHandler.Handle);
+            AApplication.UseMiddleware<CustomException>();
             
             AApplication.UseHttpsRedirection();
             AApplication.UseForwardedHeaders();
