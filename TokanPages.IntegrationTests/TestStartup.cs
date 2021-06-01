@@ -25,8 +25,8 @@ namespace TokanPages.IntegrationTests
 
         public static void Configure(IApplicationBuilder AApplication)
         {
-            AApplication.UseExceptionHandler(ExceptionHandler.Handle);
             AApplication.UseMiddleware<CustomCors>();
+            AApplication.UseMiddleware<CustomException>();
             AApplication.UseForwardedHeaders();
             AApplication.UseHttpsRedirection();
             AApplication.UseRouting();
