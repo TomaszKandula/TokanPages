@@ -1,4 +1,4 @@
-name: Build, test and publish (master)
+name: Build, test and publish (stage)
 
 on:
   push:
