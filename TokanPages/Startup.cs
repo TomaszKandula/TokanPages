@@ -66,12 +66,15 @@ namespace TokanPages
 
         public void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
         {
-            AApplication.UseExceptionHandler(ExceptionHandler.Handle);
-            AApplication.UseMiddleware<CustomCors>();
             AApplication.UseSerilogRequestLogging();
+
+            AApplication.UseMiddleware<CustomCors>();
+            AApplication.UseExceptionHandler(ExceptionHandler.Handle);
+            
+            AApplication.UseHttpsRedirection();
             AApplication.UseForwardedHeaders();
             AApplication.UseResponseCompression();
-            AApplication.UseHttpsRedirection();
+
             AApplication.UseStaticFiles();
             AApplication.UseSpaStaticFiles();
             AApplication.UseRouting();
