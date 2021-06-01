@@ -2,7 +2,7 @@ name: Build, test and publish (master)
 
 on:
   push:
-    branches: [ master ]
+    branches: [ stage ]
 
 jobs:
 
@@ -98,7 +98,7 @@ jobs:
       uses: azure/webapps-deploy@v2
       if: steps.semantic.outputs.new_release_published == 'true'
       with:
-        app-name: tokanpages
+        app-name: tokanpages-stage
         slot-name: production
-        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_PROD }}
+        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_STAGE }}
         images: ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
