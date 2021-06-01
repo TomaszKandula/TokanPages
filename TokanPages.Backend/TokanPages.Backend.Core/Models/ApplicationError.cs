@@ -6,16 +6,19 @@ namespace TokanPages.Backend.Core.Models
 {
     public sealed class ApplicationError
     {
-        public string ErrorMessage { get; set; }
-
         public string ErrorCode { get; set; }
 
+        public string ErrorMessage { get; set; }
+
+        public string ErrorInnerMessage { get; set; }
+        
         public IEnumerable<ValidationError> ValidationErrors { get; set; }
 
-        public ApplicationError(string AErrorCode, string AErrorMessage)
+        public ApplicationError(string AErrorCode, string AErrorMessage, string AErrorInnerMessage = "")
         {
             ErrorCode = AErrorCode;
             ErrorMessage = AErrorMessage;
+            ErrorInnerMessage = AErrorInnerMessage;
         }
 
         public ApplicationError(string AErrorCode, string AErrorMessage, ValidationResult AValidationResult) : this(AErrorCode, AErrorMessage)
