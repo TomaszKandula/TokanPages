@@ -1,3 +1,10 @@
+## [0.14.1](https://github.com/TomaszKandula/TokanPages/compare/v0.14.0...v0.14.1) (2021-06-01)
+
+
+### Bug Fixes
+
+* remove Newtonsoft.Json from code and use System.Text.Json ([b99f359](https://github.com/TomaszKandula/TokanPages/commit/b99f35984a24bee3b29544bb31eacfdbfb456311))
+
 # [0.14.0](https://github.com/TomaszKandula/TokanPages/compare/v0.13.1...v0.14.0) (2021-06-01)
 
 
