@@ -1,3 +1,10 @@
+## [0.13.1](https://github.com/TomaszKandula/TokanPages/compare/v0.13.0...v0.13.1) (2021-06-01)
+
+
+### Bug Fixes
+
+* change configuration to avoid incorrect status code issues ([528fdf6](https://github.com/TomaszKandula/TokanPages/commit/528fdf6d8197148b0b39d3fe660221705040b37f))
+
 # [0.13.0](https://github.com/TomaszKandula/TokanPages/compare/v0.12.0...v0.13.0) (2021-05-31)
 
 
