@@ -1,12 +1,12 @@
 using System;
 using System.Net;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using TokanPages.Backend.Core.Models;
 using TokanPages.Backend.Shared.Cors;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
-using Newtonsoft.Json;
 
 namespace TokanPages.Middleware
 {
@@ -42,7 +42,7 @@ namespace TokanPages.Middleware
 
         private static Task WriteErrorResponse(HttpContext AHttpContext, ApplicationError AApplicationError, HttpStatusCode AStatusCode)
         {
-            var LResult = JsonConvert.SerializeObject(AApplicationError);
+            var LResult = JsonSerializer.Serialize(AApplicationError);
             AHttpContext.Response.ContentType = "application/json";
             AHttpContext.Response.StatusCode = (int)AStatusCode;
             CorsHeaders.Ensure(AHttpContext);
