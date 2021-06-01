@@ -1,3 +1,12 @@
+# [0.13.0](https://github.com/TomaszKandula/TokanPages/compare/v0.12.0...v0.13.0) (2021-05-31)
+
+
+### Features
+
+* add dialog box message helpers ([6fc38c8](https://github.com/TomaszKandula/TokanPages/commit/6fc38c84314f00d047c5b25d6ddcea519b02e6ed))
+* add new action for DialogBox ([42b7f24](https://github.com/TomaszKandula/TokanPages/commit/42b7f2467b85aa388548f2eee1f4e8844be9c077))
+* add new application dialog box ([c914c15](https://github.com/TomaszKandula/TokanPages/commit/c914c15c67b6d52efa032560ab6059d41ca08a09))
+
 # [0.12.0](https://github.com/TomaszKandula/TokanPages/compare/v0.11.0...v0.12.0) (2021-05-30)
 
 
