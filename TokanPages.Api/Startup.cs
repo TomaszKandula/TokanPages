@@ -33,7 +33,6 @@ namespace TokanPages.Api
         public void ConfigureServices(IServiceCollection AServices)
         {
             AServices.AddControllers();        
-            AServices.AddSpaStaticFiles(AOptions => AOptions.RootPath = "ClientApp/build");
             AServices.AddResponseCompression(AOptions => AOptions.Providers.Add<GzipCompressionProvider>());
             Dependencies.Register(AServices, FConfiguration, FEnvironment);
             
@@ -75,8 +74,6 @@ namespace TokanPages.Api
             AApplication.UseForwardedHeaders();
             AApplication.UseResponseCompression();
 
-            AApplication.UseStaticFiles();
-            AApplication.UseSpaStaticFiles();
             AApplication.UseRouting();
             AApplication.UseEndpoints(AEndpoints => AEndpoints.MapControllers());
 
@@ -86,13 +83,6 @@ namespace TokanPages.Api
                 AApplication.UseSwaggerUI(AOption =>
                     AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "TokanPagesApi version 1"));
             }
-
-            AApplication.UseSpa(ASpa =>
-            {
-                ASpa.Options.SourcePath = "ClientApp";
-                if (FEnvironment.IsDevelopment())
-                    ASpa.UseProxyToSpaDevelopmentServer(AAppUrls.DevelopmentOrigin);
-            });           
         }
     }
 }
