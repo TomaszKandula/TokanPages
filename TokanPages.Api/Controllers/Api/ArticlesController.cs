@@ -7,7 +7,7 @@ using TokanPages.Backend.Shared.Dto.Articles;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 using MediatR;
 
-namespace TokanPages.Controllers.Api
+namespace TokanPages.Api.Controllers.Api
 {
     public class ArticlesController : BaseController
     {

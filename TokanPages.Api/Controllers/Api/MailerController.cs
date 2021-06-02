@@ -5,7 +5,7 @@ using TokanPages.Backend.Shared.Dto.Mailer;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
 using MediatR;
 
-namespace TokanPages.Controllers.Api
+namespace TokanPages.Api.Controllers.Api
 {
     public class MailerController : BaseController
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MediatR;
 
-namespace TokanPages.Controllers
+namespace TokanPages.Api.Controllers
 {
     [Route("api/v1/[controller]/[action]")]
     [ApiController]

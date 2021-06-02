@@ -10,12 +10,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
-using TokanPages.Middleware;
-using TokanPages.Configuration;
+using TokanPages.Api.Middleware;
+using TokanPages.Api.Configuration;
 using TokanPages.Backend.Shared.Settings;
 using Serilog;
 
-namespace TokanPages
+namespace TokanPages.Api
 {
     [ExcludeFromCodeCoverage]
     public class Startup

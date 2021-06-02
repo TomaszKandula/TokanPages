@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TokanPages.Middleware;
-using TokanPages.Configuration;
+using TokanPages.Api.Middleware;
+using TokanPages.Api.Configuration;
 using TokanPages.Backend.Database;
 
 namespace TokanPages.Api.Tests

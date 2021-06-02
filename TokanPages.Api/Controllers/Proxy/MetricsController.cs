@@ -7,7 +7,7 @@ using TokanPages.Backend.Shared;
 using TokanPages.Backend.Shared.Settings;
 using TokanPages.Backend.Shared.Attributes;
 
-namespace TokanPages.Controllers.Proxy
+namespace TokanPages.Api.Controllers.Proxy
 {
     [Route("api/v1/SonarQube/[controller]")]
     [ApiController]

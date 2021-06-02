@@ -9,7 +9,7 @@ using Serilog.Events;
 using Serilog;
 using Sentry;
 
-namespace TokanPages
+namespace TokanPages.Api
 {
     [ExcludeFromCodeCoverage]
     public static class Program

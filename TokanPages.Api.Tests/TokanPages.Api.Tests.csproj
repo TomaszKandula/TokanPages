@@ -8,12 +8,6 @@
     <Nullable>disable</Nullable>
     <RootNamespace>TokanPages.Api.Tests</RootNamespace>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="..\TokanPages\appsettings.Staging.json" Link="appsettings.Staging.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
@@ -32,9 +26,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TokanPages\TokanPages.csproj" />
+    <ProjectReference Include="..\TokanPages.Api\TokanPages.Api.csproj" />
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\TokanPages.Api\appsettings.Staging.json">
+      <Link>appsettings.Staging.json</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

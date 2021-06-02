@@ -7,7 +7,7 @@ using TokanPages.Backend.Cqrs.Mappers;
 using TokanPages.Backend.Shared.Dto.Users;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 
-namespace TokanPages.Controllers.Api
+namespace TokanPages.Api.Controllers.Api
 {
     public class UsersController : BaseController
     {
