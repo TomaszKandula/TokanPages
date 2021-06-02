@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40</UserSecretsId>
+    <IsPackable>false</IsPackable>
+    <LangVersion>9</LangVersion>
+    <Nullable>disable</Nullable>
+    <RootNamespace>TokanPages.Api.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\TokanPages\appsettings.Staging.json" Link="appsettings.Staging.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="5.0.5" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="3.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TokanPages\TokanPages.csproj" />
+    <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
+    <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
