@@ -24,29 +24,33 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd $PWD/TokanPages/ClientApp
+        cd $PWD/TokanPages.ClientApp
         npm install --global yarn
         yarn install
 
     - name: Test client application
       run: |
-        cd $PWD/TokanPages/ClientApp
+        cd $PWD/TokanPages.ClientApp
         yarn app-test --ci --coverage
         
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: microsoft/variable-substitution@v1
       with:
-        files: ${{ github.workspace }}/TokanPages/appsettings.Staging.json
+        files: ${{ github.workspace }}/TokanPages.Api/appsettings.Staging.json
       env:
-        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL_TEST }}"
-        AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME_TEST }}"
-        AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING }}"
-        Sentry.Dsn: "${{ secrets.SENTRY__DSN_TEST }}"
-        ConnectionStrings.DbConnectTest: "${{ secrets.CONNECTIONSTRING__TEST }}"
-        SmtpServer.Account: "${{ secrets.SMTPSERVER__ACCOUNT }}"
-        SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD }}"
-        SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT }}"
-        SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER }}"
+        AppUrls.UpdateSubscriberPath: "${{ secrets.APPURLS__UPDATESUBSCRIBERPATH_STAGE }}"
+        AppUrls.UnsubscribePath: "${{ secrets.APPURLS__UNSUBSCRIBEPATH_STAGE }}"
+        AppUrls.DevelopmentOrigin: "${{ secrets.APPURLS__DEVELOPMENTORIGIN_STAGE }}"
+        AppUrls.DeploymentOrigin: "${{ secrets.APPURLS__DEPLOYMENTORIGIN_STAGE }}"
+        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL_STAGE }}"
+        AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME_STAGE }}"
+        AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING_STAGE }}"
+        Sentry.Dsn: "${{ secrets.SENTRY__DSN_STAGE }}"
+        ConnectionStrings.DbConnect: "${{ secrets.CONNECTIONSTRING__PROD_STAGE }}"
+        SmtpServer.Account: "${{ secrets.SMTPSERVER__ACCOUNT_STAGE }}"
+        SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD_STAGE }}"
+        SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT_STAGE }}"
+        SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER_STAGE }}"
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v1
