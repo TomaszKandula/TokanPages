@@ -24,6 +24,7 @@ jobs:
 
     - name: Production | Build Docker (execute with tests)
       run: |
+        cd $PWD/TokanPages.ClientApp
         APP_VERSION="0.0.1-staging"
         BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
         docker build . \
