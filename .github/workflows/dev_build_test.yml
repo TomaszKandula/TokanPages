@@ -24,19 +24,19 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd $PWD/TokanPages/ClientApp
+        cd $PWD/TokanPages.ClientApp
         npm install --global yarn
         yarn install
 
     - name: Test client application
       run: |
-        cd $PWD/TokanPages/ClientApp
+        cd $PWD/TokanPages.ClientApp
         yarn app-test --ci --coverage
         
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: microsoft/variable-substitution@v1
       with:
-        files: ${{ github.workspace }}/TokanPages/appsettings.Staging.json
+        files: ${{ github.workspace }}/TokanPages.Api/appsettings.Staging.json
       env:
         AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL_TEST }}"
         AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME_TEST }}"
