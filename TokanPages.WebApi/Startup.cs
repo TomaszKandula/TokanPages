@@ -77,12 +77,12 @@ namespace TokanPages.WebApi
             AApplication.UseRouting();
             AApplication.UseEndpoints(AEndpoints => AEndpoints.MapControllers());
 
-            if (FEnvironment.IsDevelopment())
-            {
-                AApplication.UseSwagger();
-                AApplication.UseSwaggerUI(AOption =>
-                    AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "TokanPagesApi version 1"));
-            }
+            if (!FEnvironment.IsDevelopment()) 
+                return;
+            
+            AApplication.UseSwagger();
+            AApplication.UseSwaggerUI(AOption =>
+                AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "TokanPagesApi version 1"));
         }
     }
 }
