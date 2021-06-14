@@ -31,9 +31,11 @@ jobs:
 
     - name: Semantic Release (process changes)
       uses: cycjimmy/semantic-release-action@v2
+      id: semantic
       env:
         GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
-      id: semantic
+    
+    - name: Move results to outputs
       run: |
         echo "::set-output name=version::${{ steps.semantic.outputs.new_release_version }}"
         echo "::set-output name=published::${{ steps.semantic.outputs.new_release_published }}"
