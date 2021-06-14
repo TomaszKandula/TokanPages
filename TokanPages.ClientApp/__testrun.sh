@@ -4,7 +4,7 @@ ALLOWED_ORIGINS="http://localnode:5000/;"
 APP_FRONTEND="http://localhost:3000"
 APP_BACKEND="http://localhost:5000"
 APP_STORAGE="https://maindbstorage.blob.core.windows.net/tokanpages"
-APP_SENTRY="https://f6e140265f624d8188ccb9dff4e6e995@o479380.ingest.sentry.io/5524546"
+APP_SENTRY="https://d689c23e973449e696af516279e92ffe@o479380.ingest.sentry.io/5816109"
 
 docker build . \
   --build-arg "APP_VERSION=$APP_VERSION" \
