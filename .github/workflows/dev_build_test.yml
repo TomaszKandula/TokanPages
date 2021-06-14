@@ -36,17 +36,18 @@ jobs:
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: microsoft/variable-substitution@v1
       with:
-        files: ${{ github.workspace }}/TokanPages.Api/appsettings.Staging.json
+        files: ${{ github.workspace }}/TokanPages.WebApi/appsettings.Staging.json
       env:
         AppUrls.UpdateSubscriberPath: "${{ secrets.APPURLS__UPDATESUBSCRIBERPATH_STAGE }}"
         AppUrls.UnsubscribePath: "${{ secrets.APPURLS__UNSUBSCRIBEPATH_STAGE }}"
         AppUrls.DevelopmentOrigin: "${{ secrets.APPURLS__DEVELOPMENTORIGIN_STAGE }}"
         AppUrls.DeploymentOrigin: "${{ secrets.APPURLS__DEPLOYMENTORIGIN_STAGE }}"
-        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL_STAGE }}"
-        AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME_STAGE }}"
-        AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING_STAGE }}"
+        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL_TEST }}"
+        AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME_TEST }}"
+        AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING_TEST }}"
         Sentry.Dsn: "${{ secrets.SENTRY__DSN_STAGE }}"
-        ConnectionStrings.DbConnect: "${{ secrets.CONNECTIONSTRING__PROD_STAGE }}"
+        ConnectionStrings.DbConnect: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_STAGE }}"
+        ConnectionStrings.DbConnectTest: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_TEST }}"
         SmtpServer.Account: "${{ secrets.SMTPSERVER__ACCOUNT_STAGE }}"
         SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD_STAGE }}"
         SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT_STAGE }}"
