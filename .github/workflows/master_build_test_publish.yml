@@ -67,11 +67,11 @@ jobs:
         docker build . \
         --build-arg "APP_VERSION=$APP_VERSION" \
         --build-arg "APP_DATE_TIME=$BUILD_TIMESTAMP" \
-        --build-arg "ALLOW_CORS=${{ secrets.ALLOW_CORS_PRODUCTION }}" \
         --build-arg "APP_FRONTEND=${{ secrets.APP_FRONTEND_PRODUCTION }}" \
         --build-arg "APP_BACKEND=${{ secrets.APP_BACKEND_PRODUCTION }}" \
         --build-arg "APP_STORAGE=${{ secrets.APP_STORAGE_PRODUCTION }}" \
         --build-arg "APP_SENTRY=${{ secrets.APP_SENTRY_PRODUCTION }}" \
+        --build-arg "ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS_PRODUCTION }}" \
         -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:frontend-production-${{ github.sha }}
 
     - name: Production | Push Docker image (prepare)

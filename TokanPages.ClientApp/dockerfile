@@ -26,8 +26,8 @@ RUN yarn install && yarn app-test --ci --coverage && yarn build
 FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 
-ARG ALLOW_CORS
-ENV PROXY_PASS=${ALLOW_CORS}
+ARG ALLOWED_ORIGINS
+ENV PROXY_PASS=${ALLOWED_ORIGINS}
 COPY ./nginx/nginx.template /etc/nginx/nginx.template
 
 RUN rm -rf ./* && apk update && apk add --no-cache bash && echo $PROXY_PASS

@@ -1,6 +1,6 @@
 APP_VERSION="0.0.1-local-dev"
 BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
-ALLOW_CORS="http://localnode:5000/;"
+ALLOWED_ORIGINS="http://localnode:5000/;"
 APP_FRONTEND="http://localhost:3000"
 APP_BACKEND="http://localhost:5000"
 APP_STORAGE="https://maindbstorage.blob.core.windows.net/tokanpages"
@@ -13,7 +13,7 @@ docker build . \
   --build-arg "APP_BACKEND=$APP_BACKEND" \
   --build-arg "APP_STORAGE=$APP_STORAGE" \
   --build-arg "APP_SENTRY=$APP_SENTRY" \
-  --build-arg "ALLOW_CORS=$ALLOW_CORS" \
+  --build-arg "ALLOWED_ORIGINS=$ALLOWED_ORIGINS" \
   -t nginx-clientapp
 
 MACHINE_IP=$(ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}')
