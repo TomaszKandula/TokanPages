@@ -12,19 +12,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\TokanPages.Api\appsettings.Development.json">
+    <None Include="..\..\TokanPages.WebApi\appsettings.Development.json">
       <Link>appsettings.Development.json</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\TokanPages.Api\appsettings.json">
+    <None Include="..\..\TokanPages.WebApi\appsettings.json">
       <Link>appsettings.json</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\TokanPages.Api\appsettings.Production.json">
+    <None Include="..\..\TokanPages.WebApi\appsettings.Production.json">
       <Link>appsettings.Production.json</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\TokanPages.Api\appsettings.Staging.json">
+    <None Include="..\..\TokanPages.WebApi\appsettings.Staging.json">
       <Link>appsettings.Staging.json</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

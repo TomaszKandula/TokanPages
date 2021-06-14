@@ -6,7 +6,7 @@
     <IsPackable>false</IsPackable>
     <LangVersion>9</LangVersion>
     <Nullable>disable</Nullable>
-    <RootNamespace>TokanPages.Api.Tests</RootNamespace>
+    <RootNamespace>TokanPages.WebApi.Tests</RootNamespace>
   </PropertyGroup>
   
   <ItemGroup>
@@ -26,13 +26,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TokanPages.Api\TokanPages.Api.csproj" />
+    <ProjectReference Include="..\TokanPages.WebApi\TokanPages.WebApi.csproj" />
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\TokanPages.Api\appsettings.Staging.json">
+    <None Include="..\TokanPages.WebApi\appsettings.Staging.json">
       <Link>appsettings.Staging.json</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

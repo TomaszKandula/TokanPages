@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokanPages.Api", "TokanPages.Api\TokanPages.Api.csproj", "{2C048600-41A0-40FC-B19C-80FF36236EA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokanPages.WebApi", "TokanPages.WebApi\TokanPages.WebApi.csproj", "{2C048600-41A0-40FC-B19C-80FF36236EA3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Core", "TokanPages.Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj", "{D966F02F-CDCB-4D3E-A2DC-98097D5AEAB3}"
 EndProject
@@ -19,13 +19,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.SmtpClie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Storage", "TokanPages.Backend\TokanPages.Backend.Storage\TokanPages.Backend.Storage.csproj", "{EC20EE58-ED90-419E-84E7-8D298B59CE79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Api.Tests", "TokanPages.Api.Tests\TokanPages.Api.Tests.csproj", "{A32A854C-3D91-4643-8B44-D6E4B92CCBF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.WebApi.Tests", "TokanPages.WebApi.Tests\TokanPages.WebApi.Tests.csproj", "{A32A854C-3D91-4643-8B44-D6E4B92CCBF5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Tests", "TokanPages.Backend.Tests\TokanPages.Backend.Tests.csproj", "{3A138774-9DA3-40E3-8DA3-50620F0FD310}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TokanPages.Api", "TokanPages.Api", "{32D5033E-6D95-4045-9B90-E8EE7A0644CC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{32D5033E-6D95-4045-9B90-E8EE7A0644CC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TokanPages.Backend", "TokanPages.Backend", "{B6059425-BCF6-468D-BAF2-450E3E6D6C43}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{B6059425-BCF6-468D-BAF2-450E3E6D6C43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

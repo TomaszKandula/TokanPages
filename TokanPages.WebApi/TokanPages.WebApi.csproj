@@ -6,7 +6,7 @@
     <DefaultItemExcludes>$(DefaultItemExcludes)</DefaultItemExcludes>
     <LangVersion>9</LangVersion>
     <Nullable>disable</Nullable>
-    <RootNamespace>TokanPages.Api</RootNamespace>
+    <RootNamespace>TokanPages.WebApi</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

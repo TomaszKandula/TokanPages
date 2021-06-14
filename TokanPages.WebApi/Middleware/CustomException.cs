@@ -8,7 +8,7 @@ using TokanPages.Backend.Shared.Cors;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 
-namespace TokanPages.Api.Middleware
+namespace TokanPages.WebApi.Middleware
 {
     public class CustomException
     {
