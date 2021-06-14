@@ -6,7 +6,41 @@ on:
 
 jobs:
 
+  versioning:
+
+    runs-on: ubuntu-latest
+
+    outputs:
+      version: ${{ steps.semantic.outputs.version }}
+      published: ${{ steps.semantic.outputs.published }}
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v2.2.0
+
+    - name: Semantic Release (install node.js)
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+
+    - name: Semantic Release (install dependencies)
+      run: |
+        npm install --global yarn
+        yarn install
+
+    - name: Semantic Release (process changes)
+      uses: cycjimmy/semantic-release-action@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+      id: semantic
+      run: |
+        echo "::set-output name=version::${{ steps.semantic.outputs.new_release_version }}"
+        echo "::set-output name=published::${{ steps.semantic.outputs.new_release_published }}"
+
   frontend-production:
+
+    needs: [versioning]
 
     runs-on: ubuntu-latest
 
@@ -25,7 +59,7 @@ jobs:
     - name: Production | Build Docker (execute with tests)
       run: |
         cd $PWD/TokanPages.ClientApp
-        APP_VERSION="0.0.1-staging"
+        APP_VERSION=${{ needs.versioning.outputs.version }}
         BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
         docker build . \
         --build-arg "APP_VERSION=$APP_VERSION" \
@@ -57,28 +91,14 @@ jobs:
 
   backend-production:
 
+    needs: [versioning]
+
     runs-on: ubuntu-latest
 
     steps:
 
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
-
-    - name: Semantic Release (install node.js)
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14
-    
-    - name: Semantic Release (install dependencies)
-      run: | 
-        npm install --global yarn
-        yarn install
-
-    - name: Semantic Release (process changes)
-      uses: cycjimmy/semantic-release-action@v2
-      id: semantic
-      env:
-        GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
     
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: microsoft/variable-substitution@v1
@@ -109,11 +129,7 @@ jobs:
 
     - name: Production | Build Docker (execute with tests)
       run: | 
-        BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
-        echo Timestamp: $BUILD_TIMESTAMP
         docker build . \
-        --build-arg "APP_VERSION=${{ steps.semantic.outputs.new_release_version }}" \
-        --build-arg "APP_DATE_TIME=$BUILD_TIMESTAMP" \
         -t ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-production-${{ github.sha }}
 
     - name: Production | Push Docker image (prepare)
@@ -124,12 +140,12 @@ jobs:
         password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
 
     - name: Production | Push Docker image (execute for new release only)
-      if: steps.semantic.outputs.new_release_published == 'true'
+      if: needs.versioning.outputs.published == 'true'
       run: docker push ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-production-${{ github.sha }}
 
     - name: Production | Deploy to Azure Web App (for new release only)
       uses: azure/webapps-deploy@v2
-      if: steps.semantic.outputs.new_release_published == 'true'
+      if: needs.versioning.outputs.published == 'true'
       with:
         app-name: tokanpages-backend
         slot-name: production
