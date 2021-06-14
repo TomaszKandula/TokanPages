@@ -23,7 +23,7 @@ using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
 using FluentValidation;
 using MediatR;
 
-namespace TokanPages.Api.Configuration
+namespace TokanPages.WebApi.Configuration
 {
     public static class Dependencies
     {

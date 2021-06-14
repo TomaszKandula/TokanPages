@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using TokanPages.Backend.Shared.Cors;
 using TokanPages.Backend.Shared.Settings;
 
-namespace TokanPages.Api.Middleware
+namespace TokanPages.WebApi.Middleware
 {
     public class CustomCors
     {

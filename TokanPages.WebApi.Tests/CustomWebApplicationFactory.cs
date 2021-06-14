@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
 using JetBrains.Annotations;
 
-namespace TokanPages.Api.Tests
+namespace TokanPages.WebApi.Tests
 {
     [UsedImplicitly]
     public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<TTestStartup> where TTestStartup : class

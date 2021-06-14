@@ -2,11 +2,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TokanPages.Api.Middleware;
-using TokanPages.Api.Configuration;
+using TokanPages.WebApi.Middleware;
+using TokanPages.WebApi.Configuration;
 using TokanPages.Backend.Database;
 
-namespace TokanPages.Api.Tests
+namespace TokanPages.WebApi.Tests
 {
     public class TestStartup
     {

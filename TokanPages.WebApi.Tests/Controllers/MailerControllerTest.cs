@@ -10,7 +10,7 @@ using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Shared.Dto.Mailer;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
 
-namespace TokanPages.Api.Tests.Controllers
+namespace TokanPages.WebApi.Tests.Controllers
 {
     public class MailerControllerTest : IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {

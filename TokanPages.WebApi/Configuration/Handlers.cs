@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Polly.Extensions.Http;
 using Polly;
 
-namespace TokanPages.Api.Configuration
+namespace TokanPages.WebApi.Configuration
 {
     public static class Handlers
     {

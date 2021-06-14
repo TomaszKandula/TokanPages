@@ -14,7 +14,7 @@ using TokanPages.Backend.Shared.Dto.Articles;
 using TokanPages.Backend.Database.Initializer.Data;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 
-namespace TokanPages.Api.Tests.Controllers
+namespace TokanPages.WebApi.Tests.Controllers
 {
     public class ArticlesControllerTest : IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
