@@ -67,7 +67,7 @@ jobs:
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: microsoft/variable-substitution@v1
       with:
-        files: ${{ github.workspace }}/TokanPages.Api/appsettings.Staging.json
+        files: ${{ github.workspace }}/TokanPages.WebApi/appsettings.Staging.json
       env:
         AppUrls.UpdateSubscriberPath: "${{ secrets.APPURLS__UPDATESUBSCRIBERPATH_STAGE }}"
         AppUrls.UnsubscribePath: "${{ secrets.APPURLS__UNSUBSCRIBEPATH_STAGE }}"
