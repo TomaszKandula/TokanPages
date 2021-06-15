@@ -1,3 +1,10 @@
+# [0.15.0](https://github.com/TomaszKandula/TokanPages/compare/v0.14.1...v0.15.0) (2021-06-15)
+
+
+### Features
+
+* add SonarQube to client-app ([88e69af](https://github.com/TomaszKandula/TokanPages/commit/88e69af152d611796c5bf1d41086f92348944c13))
+
 ## [0.14.1](https://github.com/TomaszKandula/TokanPages/compare/v0.14.0...v0.14.1) (2021-06-01)
 
 
