@@ -12,6 +12,9 @@ ARG APP_FRONTEND
 ARG APP_BACKEND
 ARG APP_STORAGE
 ARG APP_SENTRY
+ARG SONAR_TOKEN
+ARG SONAR_KEY
+ARG SONAR_HOST
 
 ENV REACT_APP_VERSION_NUMBER=${APP_VERSION}
 ENV REACT_APP_VERSION_DATE_TIME=${APP_DATE_TIME}
@@ -20,7 +23,11 @@ ENV REACT_APP_BACKEND=${APP_BACKEND}
 ENV REACT_APP_STORAGE=${APP_STORAGE}
 ENV REACT_APP_SENTRY=${APP_SENTRY}
 
-RUN yarn install && yarn app-test --ci --coverage && yarn build
+RUN yarn install \
+&& yarn global add sonarqube-scanner \
+&& yarn app-test --ci --coverage \
+&& yarn sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=${SONAR_KEY} -Dsonar.host.url=${SONAR_HOST} \
+&& yarn build
 
 # 2 - Build NGINX 
 FROM nginx:alpine
@@ -30,6 +37,6 @@ ARG ALLOWED_ORIGINS
 ENV PROXY_PASS=${ALLOWED_ORIGINS}
 COPY ./nginx/nginx.template /etc/nginx/nginx.template
 
-RUN rm -rf ./* && apk update && apk add --no-cache bash && echo $PROXY_PASS
+RUN rm -rf ./* && apk update && apk add --no-cache bash
 COPY --from=node /app/build .
 CMD /bin/bash -c "envsubst '\$PROXY_PASS' < /etc/nginx/nginx.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"

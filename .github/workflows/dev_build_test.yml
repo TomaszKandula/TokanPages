@@ -27,12 +27,17 @@ jobs:
         cd $PWD/TokanPages.ClientApp
         npm install --global yarn
         yarn install
+        yarn global add sonarqube-scanner
 
     - name: Test client application
       run: |
         cd $PWD/TokanPages.ClientApp
         yarn app-test --ci --coverage
-        
+        yarn sonar \
+        -Dsonar.login=${{ secrets.SONARQUBE_TOKEN_FE }} \
+        -Dsonar.projectKey=${{ secrets.SONARQUBE_PROJECT_KEY_FE }} \
+        -Dsonar.host.url=${{ secrets.SONARQUBE_HOST }}
+
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: microsoft/variable-substitution@v1
       with:
@@ -65,9 +70,9 @@ jobs:
       run: |
         dotnet tool install --global dotnet-sonarscanner
         dotnet sonarscanner begin \
-        /k:${{ secrets.SONARQUBE_PROJECT_KEY }} \
-        /d:sonar.host.url=${{ secrets.SONARQUBE_HOST }} \
-        /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }}
+        /k:${{ secrets.SONARQUBE_PROJECT_KEY_BE }} \
+        /d:sonar.login=${{ secrets.SONARQUBE_TOKEN_BE }} \
+        /d:sonar.host.url=${{ secrets.SONARQUBE_HOST }}
 
     - name: Build .NET
       run: dotnet build
@@ -78,6 +83,6 @@ jobs:
         ASPNETCORE_ENVIRONMENT: Development
 
     - name: SonarQube end scan
-      run: dotnet sonarscanner end /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }}
+      run: dotnet sonarscanner end /d:sonar.login=${{ secrets.SONARQUBE_TOKEN_BE }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
