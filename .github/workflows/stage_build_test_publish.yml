@@ -35,6 +35,9 @@ jobs:
         --build-arg "APP_STORAGE=${{ secrets.APP_STORAGE_STAGING }}" \
         --build-arg "APP_SENTRY=${{ secrets.APP_SENTRY_STAGING }}" \
         --build-arg "ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS_STAGING }}" \
+        --build-arg "SONAR_TOKEN=${{ secrets.SONARQUBE_TOKEN_FE }}" \
+        --build-arg "SONAR_KEY=${{ secrets.SONARQUBE_PROJECT_KEY_FE }}" \
+        --build-arg "SONAR_HOST=${{ secrets.SONARQUBE_HOST }}" \
         -t ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:frontend-staging-${{ github.sha }}
 
     - name: Staging | Push Docker image (prepare)
