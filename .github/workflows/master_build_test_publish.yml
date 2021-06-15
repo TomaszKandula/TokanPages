@@ -6,22 +6,26 @@ on:
 
 jobs:
 
-  build:
+  versioning:
 
     runs-on: ubuntu-latest
+
+    outputs:
+      outputs1: ${{ steps.versioning.outputs.version }}
+      outputs2: ${{ steps.versioning.outputs.published }}
 
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v2.2.0
 
     - name: Semantic Release (install node.js)
       uses: actions/setup-node@v1
       with:
         node-version: 14
-    
+
     - name: Semantic Release (install dependencies)
-      run: | 
+      run: |
         npm install --global yarn
         yarn install
 
@@ -31,74 +35,122 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
     
-    - name: Variable substitution appsettings file for Staging (NET Core)
-      uses: microsoft/variable-substitution@v1
-      with:
-        files: ${{ github.workspace }}/TokanPages/appsettings.Staging.json
-      env:
-        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL_TEST }}"
-        AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME_TEST }}"
-        AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING }}"
-        Sentry.Dsn: "${{ secrets.SENTRY__DSN_TEST }}"
-        ConnectionStrings.DbConnectTest: "${{ secrets.CONNECTIONSTRING__TEST }}"
-        SmtpServer.Account: "${{ secrets.SMTPSERVER__ACCOUNT }}"
-        SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD }}"
-        SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT }}"
-        SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER }}"
+    - name: Move results to outputs
+      id: versioning
+      run: |
+        echo "::set-output name=version::${{ steps.semantic.outputs.new_release_version }}"
+        echo "::set-output name=published::${{ steps.semantic.outputs.new_release_published }}"
 
-    - name: Variable substitution appsettings file for Production (NET Core)
-      uses: microsoft/variable-substitution@v1
-      with:
-        files: ${{ github.workspace }}/TokanPages/appsettings.Production.json
-      env:
-        AppUrls.UpdateSubscriberPath: "${{ secrets.APPURLS__UPDATESUBSCRIBERPATH}}"
-        AppUrls.UnsubscribePath: "${{ secrets.APPURLS__UNSUBSCRIBEPATH}}"
-        AppUrls.DevelopmentOrigin: "${{ secrets.APPURLS__DEVELOPMENTORIGIN }}"
-        AppUrls.DeploymentOrigin: "${{ secrets.APPURLS__DEPLOYMENTORIGIN }}"
-        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL }}"
-        AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME }}"
-        AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING }}"
-        Sentry.Dsn: "${{ secrets.SENTRY__DSN }}"
-        ConnectionStrings.DbConnect: "${{ secrets.CONNECTIONSTRING__PROD }}"
-        SmtpServer.Account: "${{ secrets.SMTPSERVER__ACCOUNT }}"
-        SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD }}"
-        SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT }}"
-        SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER }}"
-        SonarQube.Server: "${{ secrets.SONARQUBE_HOST }}"
-        SonarQube.Token: "${{ secrets.SONARQUBE_TOKEN }}"
+  frontend-production:
 
-    - name: Build Docker (prepare)
+    runs-on: ubuntu-latest
+
+    needs: versioning
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v2.2.0
+
+    - name: Production | Build Docker (prepare)
       uses: azure/docker-login@v1
       with:
-        login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
+        login-server: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
+        username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
+        password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
 
-    - name: Build Docker (execute with tests)
-      run: | 
+    - name: Production | Build Docker (execute with tests)
+      run: |
+        cd $PWD/TokanPages.ClientApp
+        APP_VERSION=${{ needs.versioning.outputs.outputs1 }}
         BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
-        echo Timestamp: $BUILD_TIMESTAMP
         docker build . \
-        --build-arg "APP_VERSION=${{ steps.semantic.outputs.new_release_version }}" \
+        --build-arg "APP_VERSION=$APP_VERSION" \
         --build-arg "APP_DATE_TIME=$BUILD_TIMESTAMP" \
-        -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
+        --build-arg "APP_FRONTEND=${{ secrets.APP_FRONTEND_PRODUCTION }}" \
+        --build-arg "APP_BACKEND=${{ secrets.APP_BACKEND_PRODUCTION }}" \
+        --build-arg "APP_STORAGE=${{ secrets.APP_STORAGE_PRODUCTION }}" \
+        --build-arg "APP_SENTRY=${{ secrets.APP_SENTRY_PRODUCTION }}" \
+        --build-arg "ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS_PRODUCTION }}" \
+        -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:frontend-production-${{ github.sha }}
 
-    - name: Push Docker image (prepare)
+    - name: Production | Push Docker image (prepare)
       uses: azure/docker-login@v1
       with:
-        login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
+        login-server: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
+        username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
+        password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
 
-    - name: Push Docker image (execute for new release only)
-      if: steps.semantic.outputs.new_release_published == 'true'
-      run: docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
+    - name: Production | Push Docker image
+      run: docker push ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:frontend-production-${{ github.sha }}
 
-    - name: Deploy to Azure Web App (for new release only)
+    - name: Production | Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
-      if: steps.semantic.outputs.new_release_published == 'true'
       with:
         app-name: tokanpages
         slot-name: production
-        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_PROD }}
-        images: ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ secrets.REGISTRY_USERNAME }}:${{ github.sha }}
+        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_FRONTEND_PROD }}
+        images: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:frontend-production-${{ github.sha }}
+
+  backend-production:
+
+    runs-on: ubuntu-latest
+    
+    needs: versioning
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v2.2.0
+    
+    - name: Variable substitution appsettings file for Staging (NET Core)
+      uses: microsoft/variable-substitution@v1
+      with:
+        files: ${{ github.workspace }}/TokanPages.WebApi/appsettings.Staging.json
+      env:
+        AppUrls.UpdateSubscriberPath: "${{ secrets.APPURLS__UPDATESUBSCRIBERPATH_STAGE }}"
+        AppUrls.UnsubscribePath: "${{ secrets.APPURLS__UNSUBSCRIBEPATH_STAGE }}"
+        AppUrls.DevelopmentOrigin: "${{ secrets.APPURLS__DEVELOPMENTORIGIN_STAGE }}"
+        AppUrls.DeploymentOrigin: "${{ secrets.APPURLS__DEPLOYMENTORIGIN_STAGE }}"
+        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL_STAGE }}"
+        AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME_STAGE }}"
+        AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING_STAGE }}"
+        Sentry.Dsn: "${{ secrets.SENTRY__DSN_STAGE }}"
+        ConnectionStrings.DbConnect: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_STAGE }}"
+        ConnectionStrings.DbConnectTest: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_TEST }}"
+        SmtpServer.Account: "${{ secrets.SMTPSERVER__ACCOUNT_STAGE }}"
+        SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD_STAGE }}"
+        SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT_STAGE }}"
+        SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER_STAGE }}"
+
+    - name: Production | Build Docker (prepare)
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
+        username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
+        password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
+
+    - name: Production | Build Docker (execute with tests)
+      run: | 
+        docker build . \
+        -t ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-production-${{ github.sha }}
+
+    - name: Production | Push Docker image (prepare)
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
+        username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
+        password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
+
+    - name: Production | Push Docker image (execute for new release only)
+      if: needs.versioning.outputs.outputs2 == 'true'
+      run: docker push ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-production-${{ github.sha }}
+
+    - name: Production | Deploy to Azure Web App (for new release only)
+      uses: azure/webapps-deploy@v2
+      if: needs.versioning.outputs.outputs2 == 'true'
+      with:
+        app-name: tokanpages-backend
+        slot-name: production
+        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_BACKEND_PROD }}
+        images: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-production-${{ github.sha }}

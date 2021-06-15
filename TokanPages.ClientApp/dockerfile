@@ -1,0 +1,42 @@
+# 1 - Build ClientApp
+FROM node:15 AS node
+WORKDIR /app
+
+COPY ./*.* ./
+COPY ./public ./public
+COPY ./src ./src
+
+ARG APP_VERSION
+ARG APP_DATE_TIME
+ARG APP_FRONTEND
+ARG APP_BACKEND
+ARG APP_STORAGE
+ARG APP_SENTRY
+ARG SONAR_TOKEN
+ARG SONAR_KEY
+ARG SONAR_HOST
+
+ENV REACT_APP_VERSION_NUMBER=${APP_VERSION}
+ENV REACT_APP_VERSION_DATE_TIME=${APP_DATE_TIME}
+ENV REACT_APP_FRONTEND=${APP_FRONTEND}
+ENV REACT_APP_BACKEND=${APP_BACKEND}
+ENV REACT_APP_STORAGE=${APP_STORAGE}
+ENV REACT_APP_SENTRY=${APP_SENTRY}
+
+RUN if [ !-z $SONAR_TOKEN ] || [ !-z $SONAR_KEY ] || [ !-z $SONAR_HOST ]; \
+then yarn install && yarn app-test --ci --coverage && yarn build; \
+else yarn install && yarn global add sonarqube-scanner && yarn app-test --ci --coverage \
+&& yarn sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=${SONAR_KEY} -Dsonar.host.url=${SONAR_HOST} \
+&& yarn build; fi
+
+# 2 - Build NGINX 
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+
+ARG ALLOWED_ORIGINS
+ENV PROXY_PASS=${ALLOWED_ORIGINS}
+COPY ./nginx/nginx.template /etc/nginx/nginx.template
+
+RUN rm -rf ./* && apk update && apk add --no-cache bash
+COPY --from=node /app/build .
+CMD /bin/bash -c "envsubst '\$PROXY_PASS' < /etc/nginx/nginx.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
