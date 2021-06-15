@@ -1,37 +1,74 @@
-<h1 align="center" style="border-bottom: none;">TokanPages</h1>
-<h3 align="center">Microsoft technologies and more</h3>
-<p align="center">
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=ncloc&kill_cache=1">
+## TokanPages
+### Microsoft technologies and more
+
+TokanPages is the repository that holds my web page to share my programming interests (among others), primarily Microsoft technologies. I also plan album functionality and comment section under articles among article editor and user account capabilities.
+
+## Project metrics
+### Client-App
+
+<p>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=ncloc&kill_cache=1">
   </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=code_smells&kill_cache=1">
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=code_smells&kill_cache=1">
   </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=bugs&kill_cache=1">
-  </a>
-</p>
-<p align="center">
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=sqale_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=security_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=reliability_rating&kill_cache=1">
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=bugs&kill_cache=1">
   </a>
 </p>
-<p align="center">
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=sqale_index&kill_cache=1">
+<p>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=sqale_rating&kill_cache=1">
   </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-dev-test">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-dev-test&ametric=duplicated_lines_density&kill_cache=1">
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=security_rating&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=reliability_rating&kill_cache=1">
+  </a>
+</p>
+<p>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=sqale_index&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=duplicated_lines_density&kill_cache=1">
   </a>
 </p>
 
-TokanPages is the repository that holds my web page to share my programming interests (among others), primarily Microsoft technologies. I also plan album functionality and comment section under articles among article editor and user account capabilities.
+### WebApi / Backend
+
+<p>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=ncloc&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=code_smells&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=bugs&kill_cache=1">
+  </a>
+</p>
+<p>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=sqale_rating&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=security_rating&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=reliability_rating&kill_cache=1">
+  </a>
+</p>
+<p>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=sqale_index&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=duplicated_lines_density&kill_cache=1">
+  </a>
+</p>
 
 ## Tech-Stack
 
@@ -68,26 +105,25 @@ Tests are provided, but there is no full coverage yet.
 1. Swagger-UI.
 1. Polly.
 
-Unit Tests and Integration Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAssertions](https://github.com/fluentassertions/fluentassertions).
+Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAssertions](https://github.com/fluentassertions/fluentassertions).
 
 Project is dockerized and deployed via GitHub Actions to Azure App Service that uses Container Registry.
 
 ## Project structure
 
-_TokanPages_
+_TokanPages.ClientApp_
 
 | Folder | Description |
 |--------|-------------|
-| ClientApp | Frontend in React |
-| Configuration | Application dependencies |
-| Controllers | WebAPI |
-| Middleware | Custom middleware |
+| nginx | WebServer configuration |
+| public | WebApp entrypoint |
+| src | Frontend in React |
 
-In the current project version, the static bundles is hosted alongside the ASP.NET Core server-side application. This is the most straightforward approach, which works well in many situations. During the build process, the bundles are generated and copied to a preconfigured folder inside the ASP.NET Core application. An alternative approach with NGINX and Reverse Proxy is going to be introduced soon.
+React application runs on NGINX in Docker. It is deployed on main domain.
 
 Unit tests for the frontend are provided; use command `yarn test` to run all tests.
 
-_Backend_
+_TokanPages.Backend_
 
 | Folder | Description |
 |--------|-------------|
@@ -99,20 +135,36 @@ _Backend_
 | Backend.SmtpClient | SmtpClient service |
 | Backend.Storage | Azure Storage service |
 
-_Tests_
+_TokanPages.Backend.Tests_
 
 | Folder | Description |
 |--------|-------------|
-| UnitTests | Handlers and validators tests |
-| IntegrationTests | Http client tests |
+| Backend.Tests | Handlers and validators tests |
 
-Integration tests focuses on testing HTTP client responses, dependencies and theirs configuration. Unit tests covers handlers and validators. All dependencies are mocked. For mocking [Moq](https://github.com/moq/moq4) has been used.
+Tests covers handlers and validators. All dependencies are mocked. For mocking [Moq](https://github.com/moq/moq4) has been used.
+
+_TokanPages.WebApi_
+
+| Folder | Description |
+|--------|-------------|
+| Configuration | Application dependencies |
+| Controllers | WebApi |
+| Middleware | Custom middleware |
+| Properties | Lunch settings |
+
+_TokanPages.WebApi.Tests_
+
+| Folder | Description |
+|--------|-------------|
+| WebApi.Tests | Http client tests |
+
+Tests focuses on testing HTTP client responses, dependencies and theirs configuration. 
 
 To run backend tests, use command `dotnet test`.
 
 ## Testing
 
-### Unit Tests setup
+### Backend tests setup (unit tests)
 
 Unit tests use SQLite in-memory database (a lightweight database that supports RDBMS). Each test uses a separate database instance, and therefore tables must be populated before a test can be run. Database instances are provided via the factory:
 
@@ -163,7 +215,7 @@ public class TestBase
 }
 ```
 
-### Integration Tests setup
+### WebApi tests setup (integration tests)
 
 Integration test uses SQL Server database either local or remote, accordingly to a given connection string. Each test class uses `WebApplicationFactory`:
 
@@ -313,47 +365,43 @@ AApplication.UseExceptionHandler(ExceptionHandler.Handle);
 It will catch exceptions and sets HTTP status: bad request (400) or internal server error (500). Thus, if we throw an error (business or validation) manually in the handler, the response is appropriately set up.
 
 ```csharp
-public static class ExceptionHandler
+public class CustomException
 {
-    public static void Handle(IApplicationBuilder AApplication)
+    private readonly RequestDelegate FRequestDelegate;
+        
+    public CustomException(RequestDelegate ARequestDelegate) 
+        => FRequestDelegate = ARequestDelegate;
+        
+    public async Task Invoke(HttpContext AHttpContext)
     {
-        AApplication.Run(async AHttpContext => 
+        try
         {
-            var LExceptionHandlerPathFeature = AHttpContext.Features.Get<IExceptionHandlerPathFeature>();
-            var LErrorException = LExceptionHandlerPathFeature.Error;
-            AHttpContext.Response.ContentType = "application/json";
+            await FRequestDelegate.Invoke(AHttpContext);
+        }
+        catch (ValidationException LValidationException)
+        {
+            var LApplicationError = new ApplicationError(LValidationException.ErrorCode, LValidationException.Message, LValidationException.ValidationResult);
+            await WriteErrorResponse(AHttpContext, LApplicationError, HttpStatusCode.BadRequest).ConfigureAwait(false);
+        }
+        catch (BusinessException LBusinessException)
+        {
+            var LApplicationError = new ApplicationError(LBusinessException.ErrorCode, LBusinessException.Message);
+            await WriteErrorResponse(AHttpContext, LApplicationError, HttpStatusCode.BadRequest).ConfigureAwait(false);
+        }
+        catch (Exception LException)
+        {
+            var LApplicationError = new ApplicationError(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED, LException.Message);
+            await WriteErrorResponse(AHttpContext, LApplicationError, HttpStatusCode.InternalServerError).ConfigureAwait(false);
+        }
+    }
 
-            string LResult;
-            switch (LErrorException)
-            {
-                case ValidationException LException:
-                {
-                    var LAppError = new ApplicationError(LException.ErrorCode, LException.Message, LException.ValidationResult);
-                    LResult = JsonConvert.SerializeObject(LAppError);
-                    AHttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    break;
-                }
-
-                case BusinessException LException:
-                {
-                    var LAppError = new ApplicationError(LException.ErrorCode, LException.Message);
-                    LResult = JsonConvert.SerializeObject(LAppError);
-                    AHttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    break;
-                }
-
-                default:
-                {
-                    var LAppError = new ApplicationError(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
-                    LResult = JsonConvert.SerializeObject(LAppError);
-                    AHttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    break;
-                }
-            }
-
-            CorsHeaders.Ensure(AHttpContext);
-            await AHttpContext.Response.WriteAsync(LResult);
-        });
+    private static Task WriteErrorResponse(HttpContext AHttpContext, ApplicationError AApplicationError, HttpStatusCode AStatusCode)
+    {
+        var LResult = JsonSerializer.Serialize(AApplicationError);
+        AHttpContext.Response.ContentType = "application/json";
+        AHttpContext.Response.StatusCode = (int)AStatusCode;
+        CorsHeaders.Ensure(AHttpContext);
+        return AHttpContext.Response.WriteAsync(LResult);
     }
 }
 ```
@@ -417,7 +465,8 @@ EF Core will create all the necessary tables and seed test data. More on migrati
 CI/CD is done via GitHub actions. There are three scripts:
 
 1. [dev_build_test.yml](https://github.com/TomaszKandula/TokanPages/blob/dev/.github/workflows/dev_build_test.yml) - it builds .NET Core application and React application, then runs all the available tests; finally, it scans the code with SonarQube.
-1. [master_build_test_publish.yml](https://github.com/TomaszKandula/TokanPages/blob/dev/.github/workflows/master_build_test_publish.yml) - it builds, tests and publishes Docker image to the Azure WebApp.
+1. [stage_build_test_publish.yml](https://github.com/TomaszKandula/TokanPages/blob/dev/.github/workflows/stage_build_test_publish.yml) - it builds, tests and publishes Docker image to the staging Azure WebApp.
+1. [master_build_test_publish.yml](https://github.com/TomaszKandula/TokanPages/blob/dev/.github/workflows/master_build_test_publish.yml) - it builds, tests and publishes Docker image to the production Azure WebApp.
 
 ## End Note
 
