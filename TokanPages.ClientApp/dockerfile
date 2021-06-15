@@ -12,6 +12,9 @@ ARG APP_FRONTEND
 ARG APP_BACKEND
 ARG APP_STORAGE
 ARG APP_SENTRY
+ARG SONAR_TOKEN
+ARG SONAR_KEY
+ARG SONAR_HOST
 
 ENV REACT_APP_VERSION_NUMBER=${APP_VERSION}
 ENV REACT_APP_VERSION_DATE_TIME=${APP_DATE_TIME}
@@ -23,7 +26,7 @@ ENV REACT_APP_SENTRY=${APP_SENTRY}
 RUN yarn install \
 && yarn global add sonarqube-scanner \
 && yarn app-test --ci --coverage \
-&& yarn sonar \
+&& yarn sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=${SONAR_KEY} -Dsonar.host.url=${SONAR_HOST} \
 && yarn build
 
 # 2 - Build NGINX 
