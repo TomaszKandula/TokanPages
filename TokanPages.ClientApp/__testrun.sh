@@ -5,6 +5,9 @@ APP_FRONTEND="http://localhost:3000"
 APP_BACKEND="http://localhost:5000"
 APP_STORAGE="https://maindbstorage.blob.core.windows.net/tokanpages"
 APP_SENTRY="https://d689c23e973449e696af516279e92ffe@o479380.ingest.sentry.io/5816109"
+SONAR_TOKEN="bcdfb185324bc59a15dfc2676a344a24dcdbbd03"
+SONAR_KEY="tokanpages-frontend"
+SONAR_HOST="https://tokansonar.azurewebsites.net"
 
 docker build . \
   --build-arg "APP_VERSION=$APP_VERSION" \
@@ -14,6 +17,9 @@ docker build . \
   --build-arg "APP_STORAGE=$APP_STORAGE" \
   --build-arg "APP_SENTRY=$APP_SENTRY" \
   --build-arg "ALLOWED_ORIGINS=$ALLOWED_ORIGINS" \
+  --build-arg "SONAR_TOKEN=$SONAR_TOKEN" \
+  --build-arg "SONAR_KEY=$SONAR_KEY" \
+  --build-arg "SONAR_HOST=$SONAR_HOST" \
   -t nginx-clientapp
 
 MACHINE_IP=$(ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}')
