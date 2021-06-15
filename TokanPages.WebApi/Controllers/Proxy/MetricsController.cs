@@ -41,6 +41,9 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 if (!string.IsNullOrEmpty(LMissingParameterName))
                     return GetContentResult(400, $"Parameter '{LMissingParameterName}' is missing");
 
+                if (!Constants.MetricNames.NameList.Contains(AMetric))
+                    return GetContentResult(400, $"Parameter '{nameof(AMetric)}' is invalid.");
+
                 var LRequestUrl = $"{FSonarQube.Server}/api/project_badges/measure?project={AProject}&metric={AMetric}";
                 var LContent = await GetContent(LRequestUrl);
                 return GetContentResult(200, LContent, Constants.ContentTypes.IMAGE_SVG);
