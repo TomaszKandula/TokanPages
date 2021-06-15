@@ -1,3 +1,11 @@
+# [0.16.0](https://github.com/TomaszKandula/TokanPages/compare/v0.15.1...v0.16.0) (2021-06-15)
+
+
+### Features
+
+* add list of metric names ([68fbc0b](https://github.com/TomaszKandula/TokanPages/commit/68fbc0bfe811a92c254baab1adc7173ec0e0a4b3))
+* add SonarQube metric name verification ([11d8c1d](https://github.com/TomaszKandula/TokanPages/commit/11d8c1da08b6c24f6e9ec3e33760eba4869f2283))
+
 ## [0.15.1](https://github.com/TomaszKandula/TokanPages/compare/v0.15.0...v0.15.1) (2021-06-15)
 
 
