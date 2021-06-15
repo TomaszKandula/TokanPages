@@ -1,3 +1,10 @@
+## [0.15.1](https://github.com/TomaszKandula/TokanPages/compare/v0.15.0...v0.15.1) (2021-06-15)
+
+
+### Bug Fixes
+
+* correct docker secrets for the frontend job ([759be1e](https://github.com/TomaszKandula/TokanPages/commit/759be1e6f13d995d5793cc368c7156252a49419e))
+
 # [0.15.0](https://github.com/TomaszKandula/TokanPages/compare/v0.14.1...v0.15.0) (2021-06-15)
 
 
