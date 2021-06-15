@@ -27,11 +27,13 @@ jobs:
         cd $PWD/TokanPages.ClientApp
         npm install --global yarn
         yarn install
+        yarn global add sonarqube-scanner
 
     - name: Test client application
       run: |
         cd $PWD/TokanPages.ClientApp
         yarn app-test --ci --coverage
+        yarn sonar
         
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: microsoft/variable-substitution@v1
