@@ -23,11 +23,11 @@ ENV REACT_APP_BACKEND=${APP_BACKEND}
 ENV REACT_APP_STORAGE=${APP_STORAGE}
 ENV REACT_APP_SENTRY=${APP_SENTRY}
 
-RUN yarn install \
-&& yarn global add sonarqube-scanner \
-&& yarn app-test --ci --coverage \
+RUN if [ !-z $SONAR_TOKEN ] || [ !-z $SONAR_KEY ] || [ !-z $SONAR_HOST ]; \
+then yarn install && yarn app-test --ci --coverage && yarn build; \
+else yarn install && yarn global add sonarqube-scanner && yarn app-test --ci --coverage \
 && yarn sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=${SONAR_KEY} -Dsonar.host.url=${SONAR_HOST} \
-&& yarn build
+&& yarn build; fi
 
 # 2 - Build NGINX 
 FROM nginx:alpine
