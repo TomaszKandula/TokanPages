@@ -8,32 +8,32 @@ TokanPages is the repository that holds my web page to share my programming inte
 
 <p>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=ncloc&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=ncloc&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=code_smells&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=code_smells&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=bugs&kill_cache=1">
-  </a>
-</p>
-<p>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=sqale_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=security_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=reliability_rating&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=bugs&kill_cache=1">
   </a>
 </p>
 <p>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=sqale_index&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=sqale_rating&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=duplicated_lines_density&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=security_rating&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=reliability_rating&kill_cache=1">
+  </a>
+</p>
+<p>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=sqale_index&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=duplicated_lines_density&kill_cache=1">
   </a>
 </p>
 
@@ -41,32 +41,32 @@ TokanPages is the repository that holds my web page to share my programming inte
 
 <p>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=ncloc&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=ncloc&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=code_smells&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=code_smells&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=bugs&kill_cache=1">
-  </a>
-</p>
-<p>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=sqale_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=security_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=reliability_rating&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=bugs&kill_cache=1">
   </a>
 </p>
 <p>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=sqale_index&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=sqale_rating&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tomkandula.com/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=duplicated_lines_density&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=security_rating&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=reliability_rating&kill_cache=1">
+  </a>
+</p>
+<p>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=sqale_index&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=duplicated_lines_density&kill_cache=1">
   </a>
 </p>
 
@@ -90,6 +90,8 @@ The client app uses functional approach and React Hooks.
 
 Tests are provided, but there is no full coverage yet.
 
+<img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/SonarQube/Metrics/Quality?AProject=tokanpages-frontend&kill_cache=1">
+
 ### Back-end
 
 1. WebAPI (NET 5, C#).
@@ -108,6 +110,8 @@ Tests are provided, but there is no full coverage yet.
 Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAssertions](https://github.com/fluentassertions/fluentassertions).
 
 Project is dockerized and deployed via GitHub Actions to Azure App Service that uses Container Registry.
+
+<img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/SonarQube/Metrics/Quality?AProject=tokanpages-backend&kill_cache=1">
 
 ## Project structure
 
