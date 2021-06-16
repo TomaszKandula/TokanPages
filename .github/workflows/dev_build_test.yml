@@ -81,7 +81,7 @@ jobs:
     - name: Test with the dotnet CLI
       run: |
         dotnet test --no-build --collect:"XPlat Code Coverage"
-        reportgenerator "-reports:coverage.cobertura.xml" "-reporttypes:SonarQube"
+        reportgenerator "-reports:*\TestResults\*\coverage.cobertura.xml" "-reporttypes:SonarQube"
       env:
         ASPNETCORE_ENVIRONMENT: Development
 
