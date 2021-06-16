@@ -35,6 +35,9 @@ TokanPages is the repository that holds my web page to share my programming inte
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
     <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=duplicated_lines_density&kill_cache=1">
   </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-frontend&ametric=coverage&kill_cache=1">
+  </a>
 </p>
 
 ### WebApi / Backend
@@ -68,6 +71,9 @@ TokanPages is the repository that holds my web page to share my programming inte
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
     <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=duplicated_lines_density&kill_cache=1">
   </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/sonarqube/metrics?aproject=tokanpages-backend&ametric=coverage&kill_cache=1">
+  </a>
 </p>
 
 ## Tech-Stack
@@ -85,16 +91,19 @@ TokanPages is the repository that holds my web page to share my programming inte
 1. HTML Parser.
 1. Husky.
 1. Semantic-Release.
+1. NGINX.
 
-The client app uses functional approach and React Hooks.
+The client app uses functional approach and React Hooks. 
 
-Tests are provided, but there is no full coverage yet.
+Tests are provided using JEST, but there is no full coverage yet.
+
+Project is dockerized and deployed via GitHub Actions to Azure App Service (main domain) that uses Container Registry. Web Server of choice is NGINX.
 
 <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/SonarQube/Metrics/Quality?AProject=tokanpages-frontend&kill_cache=1">
 
 ### Back-end
 
-1. WebAPI (NET 5, C#).
+1. WebApi (NET 5, C#).
 1. Azure SQL Database (with EF Core).
 1. Azure Blob Storage.
 1. MediatR library.
@@ -123,7 +132,7 @@ _TokanPages.ClientApp_
 | public | WebApp entrypoint |
 | src | Frontend in React |
 
-React application runs on NGINX in Docker. It is deployed on main domain.
+React application runs on NGINX in Docker. It is deployed on the main domain.
 
 Unit tests for the frontend are provided; use command `yarn test` to run all tests.
 
@@ -166,7 +175,7 @@ Tests focuses on testing HTTP client responses, dependencies and theirs configur
 
 To run backend tests, use command `dotnet test`.
 
-## Testing
+## WebApi / Backend testing
 
 ### Backend tests setup (unit tests)
 
@@ -252,9 +261,9 @@ I use `user secrets` with a connection string for local development, pointing to
 
 Class `CustomWebApplicationFactory` requires the `Startup` class to configure necessary services. Thus test project has its own `TestStartup.cs`. We register only essential services.
 
-Note: before integration tests can run, the test database must be already up.
+Note: before integration tests can run, the test database must be already up and running.
 
-## CQRS
+## CQRS pattern
 
 The project uses a CQRS architectural pattern with no event sourcing (changes to the application state are **not** stored as a sequence of events). I used the MediatR library (mediator pattern) with the handler template.
 
@@ -463,6 +472,95 @@ Go to Package Manager Console (PMC) to execute following command:
 `Update-Database -StartupProject TokanPages -Project TokanPages.Backend.Database -Context DatabaseContext`
 
 EF Core will create all the necessary tables and seed test data. More on migrations here: [TokanPages.Backend.Database](https://github.com/TomaszKandula/TokanPages/tree/dev/Backend/TokanPages.Backend.Database).
+
+## Client-App
+
+To run client application in development environment, simply execute script `__testrun.sh`. It requires to have Docker installed on local machine.
+
+```shell
+APP_VERSION="0.0.1-local-dev"
+BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
+ALLOWED_ORIGINS="http://localnode:5000/;"
+APP_FRONTEND="http://localhost:3000"
+APP_BACKEND="http://localhost:5000"
+APP_STORAGE="https://maindbstorage.blob.core.windows.net/tokanpages"
+APP_SENTRY="<dsn>"
+SONAR_TOKEN="<token>"
+SONAR_KEY="<key>"
+SONAR_HOST="<host>"
+
+docker build . \
+  --build-arg "APP_VERSION=$APP_VERSION" \
+  --build-arg "APP_DATE_TIME=$BUILD_TIMESTAMP" \
+  --build-arg "APP_FRONTEND=$APP_FRONTEND" \
+  --build-arg "APP_BACKEND=$APP_BACKEND" \
+  --build-arg "APP_STORAGE=$APP_STORAGE" \
+  --build-arg "APP_SENTRY=$APP_SENTRY" \
+  --build-arg "ALLOWED_ORIGINS=$ALLOWED_ORIGINS" \
+  --build-arg "SONAR_TOKEN=$SONAR_TOKEN" \
+  --build-arg "SONAR_KEY=$SONAR_KEY" \
+  --build-arg "SONAR_HOST=$SONAR_HOST" \
+  -t nginx-clientapp
+
+MACHINE_IP=$(ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}')
+
+docker run \
+  --add-host localnode:"$MACHINE_IP" \
+  --rm -it -p 3000:80 nginx-clientapp
+```
+
+Note: we must use machine IP address to be able to request localhost that runs backend on port 5000.
+
+We simply build and run docker image defined in the `dockerfile`:
+
+```
+# 1 - Build ClientApp
+FROM node:15 AS node
+WORKDIR /app
+
+COPY ./*.* ./
+COPY ./public ./public
+COPY ./src ./src
+
+ARG APP_VERSION
+ARG APP_DATE_TIME
+ARG APP_FRONTEND
+ARG APP_BACKEND
+ARG APP_STORAGE
+ARG APP_SENTRY
+ARG SONAR_TOKEN
+ARG SONAR_KEY
+ARG SONAR_HOST
+
+ENV REACT_APP_VERSION_NUMBER=${APP_VERSION}
+ENV REACT_APP_VERSION_DATE_TIME=${APP_DATE_TIME}
+ENV REACT_APP_FRONTEND=${APP_FRONTEND}
+ENV REACT_APP_BACKEND=${APP_BACKEND}
+ENV REACT_APP_STORAGE=${APP_STORAGE}
+ENV REACT_APP_SENTRY=${APP_SENTRY}
+
+RUN if [ !-z $SONAR_TOKEN ] || [ !-z $SONAR_KEY ] || [ !-z $SONAR_HOST ]; \
+then yarn install && yarn app-test --ci --coverage && yarn build; \
+else yarn install && yarn global add sonarqube-scanner && yarn app-test --ci --coverage \
+&& yarn sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=${SONAR_KEY} -Dsonar.host.url=${SONAR_HOST} \
+&& yarn build; fi
+
+# 2 - Build NGINX 
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+
+ARG ALLOWED_ORIGINS
+ENV PROXY_PASS=${ALLOWED_ORIGINS}
+COPY ./nginx/nginx.template /etc/nginx/nginx.template
+
+RUN rm -rf ./* && apk update && apk add --no-cache bash
+COPY --from=node /app/build .
+CMD /bin/bash -c "envsubst '\$PROXY_PASS' < /etc/nginx/nginx.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
+```
+
+We run tests and build react app with given environmental variables. Please note that we also run SonarQube scanner if variables are supplied.
+
+React application is then running on NGINX web server that uses pre-configured file that only takes proxy url. Please note that because we use Alpine Linux O/S, we separately add APK to add bash. Alpine consumes roughly 35 MB of disk space.
 
 ## CI/CD
 
