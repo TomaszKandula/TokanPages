@@ -66,9 +66,10 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
 
-    - name: SonarQube begin scan
+    - name: SonarQube begin scan dotnet
       run: |
         dotnet tool install --global dotnet-sonarscanner
+        dotnet tool update dotnet-reportgenerator-globaltool -g
         dotnet sonarscanner begin \
         /k:${{ secrets.SONARQUBE_PROJECT_KEY_BE }} \
         /d:sonar.login=${{ secrets.SONARQUBE_TOKEN_BE }} \
@@ -78,11 +79,13 @@ jobs:
       run: dotnet build
 
     - name: Test with the dotnet CLI
-      run: dotnet test
+      run: |
+        dotnet test --no-build --collect:"XPlat Code Coverage"
+        reportgenerator "-reports:coverage.cobertura.xml" "-reporttypes:SonarQube"
       env:
         ASPNETCORE_ENVIRONMENT: Development
 
-    - name: SonarQube end scan
+    - name: SonarQube end scan dotnet
       run: dotnet sonarscanner end /d:sonar.login=${{ secrets.SONARQUBE_TOKEN_BE }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
