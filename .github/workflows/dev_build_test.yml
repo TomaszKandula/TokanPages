@@ -12,6 +12,7 @@ jobs:
 
     env:
       TARGET_DIR: $PWD/sonarqubecoverage
+      SONAR_REPORT: SonarQube.xml
 
     steps:
     
@@ -77,7 +78,7 @@ jobs:
         /k:${{ secrets.SONARQUBE_PROJECT_KEY_BE }} \
         /d:sonar.login=${{ secrets.SONARQUBE_TOKEN_BE }} \
         /d:sonar.host.url=${{ secrets.SONARQUBE_HOST }} \
-        /d:sonar.coverageReportPaths="${{ env.TARGET_DIR }}"
+        /d:sonar.coverageReportPaths="${{ env.TARGET_DIR }}/${{ env.SONAR_REPORT }}"
 
     - name: Build .NET
       run: dotnet build
