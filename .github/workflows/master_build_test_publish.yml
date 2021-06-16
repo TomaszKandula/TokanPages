@@ -82,10 +82,12 @@ jobs:
         password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
 
     - name: Production | Push Docker image
+      if: needs.versioning.outputs.outputs2 == 'true'
       run: docker push ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:frontend-production-${{ github.sha }}
 
     - name: Production | Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
+      if: needs.versioning.outputs.outputs2 == 'true'
       with:
         app-name: tokanpages
         slot-name: production
