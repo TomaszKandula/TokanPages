@@ -10,6 +10,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      TARGET_DIR: $PWD/sonarqubecoverage
+      SONAR_REPORT: SonarQube.xml
+
     steps:
     
     - name: Checkout repository
@@ -73,7 +77,8 @@ jobs:
         dotnet sonarscanner begin \
         /k:${{ secrets.SONARQUBE_PROJECT_KEY_BE }} \
         /d:sonar.login=${{ secrets.SONARQUBE_TOKEN_BE }} \
-        /d:sonar.host.url=${{ secrets.SONARQUBE_HOST }}
+        /d:sonar.host.url=${{ secrets.SONARQUBE_HOST }} \
+        /d:sonar.coverageReportPaths="${{ env.TARGET_DIR }}/${{ env.SONAR_REPORT }}"
 
     - name: Build .NET
       run: dotnet build
@@ -81,9 +86,8 @@ jobs:
     - name: Test with the dotnet CLI
       run: |
         dotnet test --no-build --collect:"XPlat Code Coverage"
-        TARGET_DIR=$PWD/sonarqubecoverage
-        mkdir "$TARGET_DIR" 
-        reportgenerator "-reports:$PWD/*/TestResults/*/coverage.cobertura.xml" "-targetdir:$TARGET_DIR" "-reporttypes:SonarQube"
+        mkdir "${{ env.TARGET_DIR }}"
+        reportgenerator "-reports:$PWD/*/TestResults/*/coverage.cobertura.xml" "-targetdir:${{ env.TARGET_DIR }}" "-reporttypes:SonarQube"
       env:
         ASPNETCORE_ENVIRONMENT: Development
 
