@@ -35,7 +35,9 @@ const HtmlRenderLines = (InputArray: any[], Tag: string) =>
 
 const FormatDateTime = (value: string, hasTimeVisible: boolean): string =>
 {
-    const formatWithTime = 
+    if (value === "n/a" || value === "" || value === " ") return "n/a";
+    
+    const formatWithTime: Intl.DateTimeFormatOptions = 
     { 
         day: "2-digit", 
         month: "2-digit", 
@@ -44,7 +46,7 @@ const FormatDateTime = (value: string, hasTimeVisible: boolean): string =>
         minute: "2-digit" 
     };
 
-    const formatWithoutTime = 
+    const formatWithoutTime: Intl.DateTimeFormatOptions = 
     {
         day: "2-digit", 
         month: "2-digit", 
