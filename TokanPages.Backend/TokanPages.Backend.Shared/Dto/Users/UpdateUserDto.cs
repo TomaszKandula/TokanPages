@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TokanPages.Backend.Shared.Dto.Users
 {
+    [ExcludeFromCodeCoverage]
     public class UpdateUserDto
     {
         public Guid Id { get; set; }

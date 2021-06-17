@@ -1,5 +1,8 @@
-﻿namespace TokanPages.Backend.Storage.Settings
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Backend.Storage.Settings
 {
+    [ExcludeFromCodeCoverage]
     public class AzureStorageSettings
     {
         public string BaseUrl { get; set; }

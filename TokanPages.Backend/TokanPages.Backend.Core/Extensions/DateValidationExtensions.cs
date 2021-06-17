@@ -1,9 +1,11 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
 using TokanPages.Backend.Core.Models;
 
 namespace TokanPages.Backend.Core.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class DateValidationExtensions
     {
         public static IRuleBuilderOptions<T, DateTime> IsSameOrLaterThanDate<T>(this IRuleBuilder<T, DateTime> ARuleBuilder, DateTime ABeforeDate)

@@ -1,8 +1,10 @@
-﻿using TokanPages.Backend.Shared.Dto.Subscribers;
+﻿using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Shared.Dto.Subscribers;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
 namespace TokanPages.Backend.Cqrs.Mappers
 {
+    [ExcludeFromCodeCoverage]
     public static class SubscribersMapper
     {
         public static AddSubscriberCommand MapToAddSubscriberCommand(AddSubscriberDto AModel) 
