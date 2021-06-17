@@ -1,10 +1,12 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Core.Services.AppLogger;
 using MediatR;
 
 namespace TokanPages.Backend.Core.Behaviours
 {   
+    [ExcludeFromCodeCoverage]
     public class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
         private readonly ILogger FLogger;
