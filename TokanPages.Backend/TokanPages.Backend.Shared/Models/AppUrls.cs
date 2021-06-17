@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Backend.Shared.Settings
+namespace TokanPages.Backend.Shared.Models
 {
     [ExcludeFromCodeCoverage]
     public class AppUrls
