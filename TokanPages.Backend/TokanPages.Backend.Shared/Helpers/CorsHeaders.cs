@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
 
-namespace TokanPages.Backend.Shared.Cors
+namespace TokanPages.Backend.Shared.Helpers
 {
     [ExcludeFromCodeCoverage]
     public static class CorsHeaders

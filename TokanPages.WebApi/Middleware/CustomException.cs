@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
 using TokanPages.Backend.Core.Models;
-using TokanPages.Backend.Shared.Cors;
+using TokanPages.Backend.Shared.Helpers;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 
