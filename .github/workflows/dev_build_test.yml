@@ -80,7 +80,7 @@ jobs:
         /d:sonar.login=${{ secrets.SONARQUBE_TOKEN_BE }} \
         /d:sonar.host.url=${{ secrets.SONARQUBE_HOST }} \
         /d:sonar.coverageReportPaths="${{ env.TARGET_DIR }}/${{ env.SONAR_REPORT }}" \
-        /d:sonar.exclusions=$PWD/TokanPages.Backend/TokanPages.Backend.Database/Migrations/*.*
+        /d:sonar.coverage.exclusions="$PWD/TokanPages.Backend/TokanPages.Backend.Database/Migrations/."
 
     - name: Build .NET
       run: dotnet build
