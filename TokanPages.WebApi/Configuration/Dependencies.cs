@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,7 @@ using MediatR;
 
 namespace TokanPages.WebApi.Configuration
 {
+    [ExcludeFromCodeCoverage]
     public static class Dependencies
     {
         public static void Register(IServiceCollection AServices, IConfiguration AConfiguration, IWebHostEnvironment AEnvironment = default)
