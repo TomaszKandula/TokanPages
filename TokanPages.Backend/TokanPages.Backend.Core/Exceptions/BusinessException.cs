@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TokanPages.Backend.Core.Exceptions
 {
+    [ExcludeFromCodeCoverage]
     [Serializable]
     public class BusinessException : Exception
     {
