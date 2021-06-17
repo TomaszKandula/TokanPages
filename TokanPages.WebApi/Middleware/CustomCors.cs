@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
-using TokanPages.Backend.Shared.Cors;
-using TokanPages.Backend.Shared.Settings;
+using TokanPages.Backend.Shared.Models;
+using TokanPages.Backend.Shared.Helpers;
 
 namespace TokanPages.WebApi.Middleware
 {

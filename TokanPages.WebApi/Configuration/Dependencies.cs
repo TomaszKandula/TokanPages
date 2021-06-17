@@ -11,7 +11,7 @@ using TokanPages.Backend.Shared;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Core.Behaviours;
-using TokanPages.Backend.Shared.Settings;
+using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Storage.Settings;
 using TokanPages.Backend.Database.Initializer;
 using TokanPages.Backend.SmtpClient.Settings;
