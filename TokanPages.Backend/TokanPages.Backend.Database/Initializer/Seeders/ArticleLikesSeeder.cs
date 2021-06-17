@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Database.Initializer.Data;
 
 namespace TokanPages.Backend.Database.Initializer.Seeders
 {
+    [ExcludeFromCodeCoverage]
     public static class ArticleLikesSeeder
     {
         public static IEnumerable<ArticleLikes> SeedArticleLikes() 
