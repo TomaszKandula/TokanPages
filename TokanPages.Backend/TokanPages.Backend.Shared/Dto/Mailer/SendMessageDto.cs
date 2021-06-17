@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TokanPages.Backend.Shared.Dto.Mailer
 {
+    [ExcludeFromCodeCoverage]
     public class SendMessageDto
     {
         public string FirstName { get; set; }
