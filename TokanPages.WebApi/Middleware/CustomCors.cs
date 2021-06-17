@@ -1,11 +1,13 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
 using TokanPages.Backend.Shared.Cors;
 using TokanPages.Backend.Shared.Settings;
 
 namespace TokanPages.WebApi.Middleware
 {
+    [ExcludeFromCodeCoverage]
     public class CustomCors
     {
         private readonly RequestDelegate FRequestDelegate;

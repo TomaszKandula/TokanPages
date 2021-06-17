@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TokanPages.Backend.Database.Initializer.Data
 {   
+    [ExcludeFromCodeCoverage]
     public static class Article3
     {
         public const string TITLE = "Records in C# 9.0";

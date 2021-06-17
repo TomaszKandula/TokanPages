@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
 using TokanPages.Backend.Core.Models;
 using TokanPages.Backend.Shared.Cors;
@@ -10,6 +11,7 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.WebApi.Middleware
 {
+    [ExcludeFromCodeCoverage]
     public class CustomException
     {
         private readonly RequestDelegate FRequestDelegate;

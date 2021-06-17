@@ -2,11 +2,13 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 using Polly.Extensions.Http;
 using Polly;
 
 namespace TokanPages.WebApi.Configuration
 {
+    [ExcludeFromCodeCoverage]
     public static class Handlers
     {
         public static IAsyncPolicy<HttpResponseMessage> RetryPolicyHandler()

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TokanPages.Backend.Database.Initializer.Data
 {
+    [ExcludeFromCodeCoverage]
     public static class Article2
     {
         public const string TITLE = "Say goodbay to PHP";

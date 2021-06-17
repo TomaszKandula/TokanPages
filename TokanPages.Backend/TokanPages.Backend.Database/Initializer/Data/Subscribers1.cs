@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TokanPages.Backend.Database.Initializer.Data
 {   
+    [ExcludeFromCodeCoverage]
     public static class Subscribers1
     {
         public const string EMAIL = "ester1990@gmail.com";
