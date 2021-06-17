@@ -83,6 +83,8 @@ jobs:
         SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD_STAGE }}"
         SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT_STAGE }}"
         SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER_STAGE }}"
+        SonarQube.Server: "${{ secrets.SONARQUBE_HOST }}"
+        SonarQube.Token: "${{ secrets.SONARQUBE_TOKEN_API }}"
 
     - name: Staging | Build Docker (prepare)
       uses: azure/docker-login@v1
