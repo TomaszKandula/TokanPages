@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TokanPages.Backend.Shared
 {
@@ -7,6 +8,7 @@ namespace TokanPages.Backend.Shared
     /// It can be a partial class if necessary; and if so, then put the module in the root folder and additional 
     /// partials in other project folders.
     /// </summary>    
+    [ExcludeFromCodeCoverage]
     public static class Constants
     {
         /// <summary>
