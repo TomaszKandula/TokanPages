@@ -33,17 +33,17 @@ namespace TokanPages.Backend.Shared
 
         public static class MetricNames
         {
-            private const string BUGS = "bugs";
-            private const string CODE_SMELLS = "code_smells";
-            private const string COVERAGE = "coverage";
-            private const string DUPLICATED_LINES_DENSITY = "duplicated_lines_density";
-            private const string NCLOC = "ncloc";
-            private const string SQALE_RATING = "sqale_rating";
-            private const string ALERT_STATUS = "alert_status";
-            private const string RELIABILITY_RATING = "reliability_rating";
-            private const string SECURITY_RATING = "security_rating";
-            private const string SQALE_INDEX = "sqale_index";
-            private const string VULNERABILITIES = "vulnerabilities";
+            public const string BUGS = "bugs";
+            public const string CODE_SMELLS = "code_smells";
+            public const string COVERAGE = "coverage";
+            public const string DUPLICATED_LINES_DENSITY = "duplicated_lines_density";
+            public const string NCLOC = "ncloc";
+            public const string SQALE_RATING = "sqale_rating";
+            public const string ALERT_STATUS = "alert_status";
+            public const string RELIABILITY_RATING = "reliability_rating";
+            public const string SECURITY_RATING = "security_rating";
+            public const string SQALE_INDEX = "sqale_index";
+            public const string VULNERABILITIES = "vulnerabilities";
 
             public static List<string> NameList { get; } = new()
             {
