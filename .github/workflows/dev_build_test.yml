@@ -12,6 +12,7 @@ jobs:
 
     env:
       TARGET_DIR: $PWD/sonarqubecoverage
+      COVERAGE_REPORT: $PWD/*/TestResults/*/coverage.cobertura.xml
       SONAR_REPORT: SonarQube.xml
 
     steps:
@@ -78,7 +79,8 @@ jobs:
         /k:${{ secrets.SONARQUBE_PROJECT_KEY_BE }} \
         /d:sonar.login=${{ secrets.SONARQUBE_TOKEN_BE }} \
         /d:sonar.host.url=${{ secrets.SONARQUBE_HOST }} \
-        /d:sonar.coverageReportPaths="${{ env.TARGET_DIR }}/${{ env.SONAR_REPORT }}"
+        /d:sonar.coverageReportPaths="${{ env.TARGET_DIR }}/${{ env.SONAR_REPORT }}" \
+        /d:sonar.exclusions=$PWD/TokanPages.Backend/TokanPages.Backend.Database/Migrations/*.*
 
     - name: Build .NET
       run: dotnet build
@@ -87,7 +89,7 @@ jobs:
       run: |
         dotnet test --no-build --collect:"XPlat Code Coverage"
         mkdir "${{ env.TARGET_DIR }}"
-        reportgenerator "-reports:$PWD/*/TestResults/*/coverage.cobertura.xml" "-targetdir:${{ env.TARGET_DIR }}" "-reporttypes:SonarQube"
+        reportgenerator "-reports:${{ env.COVERAGE_REPORT }}" "-targetdir:${{ env.TARGET_DIR }}" "-reporttypes:SonarQube"
       env:
         ASPNETCORE_ENVIRONMENT: Development
 
