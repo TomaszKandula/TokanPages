@@ -45,6 +45,30 @@ describe("Verify helper methods.", () =>
         expect(helpers.HtmlRenderLines(testArray, testTag)).toBe(expectation);
     });
 
+    test("Should return 'n/a' if the same is given.", () =>
+    {
+        const sourceDateTime: string = "n/a";
+        const expectation: string = "n/a";
+
+        expect(helpers.FormatDateTime(sourceDateTime, true)).toBe(expectation);
+    });
+    
+    test("Should return 'n/a' if empty string is given.", () =>
+    {
+        const sourceDateTime: string = "";
+        const expectation: string = "n/a";
+
+        expect(helpers.FormatDateTime(sourceDateTime, true)).toBe(expectation);
+    });
+
+    test("Should return 'n/a' if whitespace is given.", () =>
+    {
+        const sourceDateTime: string = " ";
+        const expectation: string = "n/a";
+
+        expect(helpers.FormatDateTime(sourceDateTime, true)).toBe(expectation);
+    });
+
     test("Should return formatted date time: 01/10/2020, 12:15 PM", () =>
     {
         const sourceDateTime: string = "2020-01-10T12:15:15";
