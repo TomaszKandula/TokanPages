@@ -36,16 +36,16 @@ namespace TokanPages.Backend.Shared.Helpers
                 Content = AContent
             };
         }
-        
+
         public static string GetFirstEmptyParameterName(IEnumerable<ParameterModel> AParameterList)
         {
-            foreach (var LParameter in AParameterList
-                .Where(AParameter => string.IsNullOrEmpty(AParameter.Value)))
-            {
-                return LParameter.Key;
-            }
+            var LParameters = AParameterList
+                .Where(AParameter => string.IsNullOrEmpty(AParameter.Value))
+                .ToList();
 
-            return string.Empty;
+            return LParameters.Any() 
+                ? LParameters.Select(AParameterModel => AParameterModel.Key).FirstOrDefault() 
+                : string.Empty;
         }
     }
 }
