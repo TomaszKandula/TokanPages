@@ -1,8 +1,10 @@
-﻿using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
+﻿using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
 using TokanPages.Backend.Shared.Dto.Mailer;
 
 namespace TokanPages.Backend.Cqrs.Mappers
 {
+    [ExcludeFromCodeCoverage]
     public static class MailerMapper
     {
         public static VerifyEmailAddressCommand MapToVerifyEmailAddressCommand(VerifyEmailAddressDto AModel) 

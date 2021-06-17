@@ -1,5 +1,8 @@
-﻿namespace TokanPages.Backend.Shared.Settings
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Backend.Shared.Models
 {
+    [ExcludeFromCodeCoverage]
     public class AppUrls
     {
         public string UpdateSubscriberPath { get; set; }

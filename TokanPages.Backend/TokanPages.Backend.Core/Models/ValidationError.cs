@@ -1,7 +1,9 @@
-﻿using FluentValidation.Results;
+﻿using System.Diagnostics.CodeAnalysis;
+using FluentValidation.Results;
 
 namespace TokanPages.Backend.Core.Models
 {
+    [ExcludeFromCodeCoverage]
     public sealed class ValidationError
     {
         public string PropertyName { get; }

@@ -1,8 +1,10 @@
 using System;
 using System.Text;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TokanPages.Backend.Core.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class StringExtensions
     {
         public static bool IsGuid(this string AValue) 

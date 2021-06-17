@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
 using TokanPages.Backend.Core.Entities;
 
 namespace TokanPages.Backend.Domain.Entities
 {
-    public partial class Subscribers : Entity<Guid>
+    [ExcludeFromCodeCoverage]
+    public class Subscribers : Entity<Guid>
     {
         [Required]
         [MaxLength(255)]

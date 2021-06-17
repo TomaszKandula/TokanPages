@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
 using TokanPages.WebApi.Middleware;
 using TokanPages.WebApi.Configuration;
-using TokanPages.Backend.Shared.Settings;
+using TokanPages.Backend.Shared.Models;
 using Serilog;
 
 namespace TokanPages.WebApi

@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Http;
 
-namespace TokanPages.Backend.Shared.Cors
+namespace TokanPages.Backend.Shared.Helpers
 {
+    [ExcludeFromCodeCoverage]
     public static class CorsHeaders
     {
         private const string ACCESS_CONTROL_ALLOW_ORIGIN = "Access-Control-Allow-Origin";

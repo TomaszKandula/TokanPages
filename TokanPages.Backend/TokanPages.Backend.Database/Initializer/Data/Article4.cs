@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TokanPages.Backend.Database.Initializer.Data
 {   
+    [ExcludeFromCodeCoverage]
     public static class Article4
     {
         public const string TITLE = "Java sucks! So PHP...";

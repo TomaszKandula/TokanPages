@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TokanPages.Backend.Shared.Dto.Users
 {
+    [ExcludeFromCodeCoverage]
     public class GetUserDto
     {
         public string AliasName { get; set; }

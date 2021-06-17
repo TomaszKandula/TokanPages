@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore.Design;
@@ -10,6 +11,7 @@ namespace TokanPages.Backend.Database
     /// database migrations (add, update, remove) from terminal (using dotnet command).
     /// <see href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.design.idesigntimedbcontextfactory-1?view=efcore-5.0"/>
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class DatabaseContextFactory : IDesignTimeDbContextFactory<DatabaseContext>
     {
         /// <summary>

@@ -5,9 +5,9 @@ APP_FRONTEND="http://localhost:3000"
 APP_BACKEND="http://localhost:5000"
 APP_STORAGE="https://maindbstorage.blob.core.windows.net/tokanpages"
 APP_SENTRY="https://d689c23e973449e696af516279e92ffe@o479380.ingest.sentry.io/5816109"
-SONAR_TOKEN="bcdfb185324bc59a15dfc2676a344a24dcdbbd03"
-SONAR_KEY="tokanpages-frontend"
-SONAR_HOST="https://tokansonar.azurewebsites.net"
+SONAR_TOKEN=""
+SONAR_KEY=""
+SONAR_HOST=""
 
 docker build . \
   --build-arg "APP_VERSION=$APP_VERSION" \

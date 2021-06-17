@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Database.Initializer.Seeders;
 
 namespace TokanPages.Backend.Database.Initializer
 {
+    [ExcludeFromCodeCoverage]
     public class DbInitializer : IDbInitializer
     {
         private readonly DatabaseContext FDatabaseContext;

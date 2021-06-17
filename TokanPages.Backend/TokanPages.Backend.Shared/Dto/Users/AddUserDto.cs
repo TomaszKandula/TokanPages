@@ -1,5 +1,8 @@
-﻿namespace TokanPages.Backend.Shared.Dto.Users
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Backend.Shared.Dto.Users
 {  
+    [ExcludeFromCodeCoverage]
     public class AddUserDto
     {
         public string UserAlias { get; set; }
