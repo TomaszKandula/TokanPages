@@ -1,3 +1,10 @@
+## [0.16.1](https://github.com/TomaszKandula/TokanPages/compare/v0.16.0...v0.16.1) (2021-06-17)
+
+
+### Bug Fixes
+
+* check input value, and missing types ([84f14ae](https://github.com/TomaszKandula/TokanPages/commit/84f14ae0ce666b752511e20846e6ccc9cc698c03))
+
 # [0.16.0](https://github.com/TomaszKandula/TokanPages/compare/v0.15.1...v0.16.0) (2021-06-15)
 
 
