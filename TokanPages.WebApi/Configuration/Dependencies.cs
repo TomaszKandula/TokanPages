@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ using TokanPages.Backend.Shared;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Core.Behaviours;
-using TokanPages.Backend.Shared.Settings;
+using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Storage.Settings;
 using TokanPages.Backend.Database.Initializer;
 using TokanPages.Backend.SmtpClient.Settings;
@@ -25,6 +26,7 @@ using MediatR;
 
 namespace TokanPages.WebApi.Configuration
 {
+    [ExcludeFromCodeCoverage]
     public static class Dependencies
     {
         public static void Register(IServiceCollection AServices, IConfiguration AConfiguration, IWebHostEnvironment AEnvironment = default)

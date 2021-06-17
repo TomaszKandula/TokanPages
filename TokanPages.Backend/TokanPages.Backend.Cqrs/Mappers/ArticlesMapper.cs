@@ -1,8 +1,10 @@
-﻿using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
+﻿using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 using TokanPages.Backend.Shared.Dto.Articles;
 
 namespace TokanPages.Backend.Cqrs.Mappers
 {
+    [ExcludeFromCodeCoverage]
     public static class ArticlesMapper
     {
         public static AddArticleCommand MapToAddArticleCommand(AddArticleDto AModel)

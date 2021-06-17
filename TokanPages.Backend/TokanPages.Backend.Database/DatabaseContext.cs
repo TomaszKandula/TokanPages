@@ -1,9 +1,11 @@
 ﻿using System.Reflection;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Domain.Entities;
 
 namespace TokanPages.Backend.Database
 {
+    [ExcludeFromCodeCoverage]
     public class DatabaseContext : DbContext
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> AOptions) : base(AOptions) { }

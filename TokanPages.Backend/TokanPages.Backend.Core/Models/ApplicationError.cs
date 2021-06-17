@@ -1,9 +1,11 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using FluentValidation.Results;
 
 namespace TokanPages.Backend.Core.Models
 {
+    [ExcludeFromCodeCoverage]
     public sealed class ApplicationError
     {
         public string ErrorCode { get; set; }

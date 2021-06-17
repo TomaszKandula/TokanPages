@@ -1,5 +1,8 @@
-﻿namespace TokanPages.Backend.SmtpClient.Models
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Backend.SmtpClient.Models
 {
+    [ExcludeFromCodeCoverage]
     public class CheckActionResult
     {
         public string EmailAddress { get; set; }

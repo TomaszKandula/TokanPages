@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TokanPages.Backend.Database.Initializer.Data
 {
+    [ExcludeFromCodeCoverage]
     public static class ArticleLikes3
     {
         public const string IP_ADDRESS = "127.0.0.255";

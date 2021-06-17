@@ -1,8 +1,10 @@
-﻿using TokanPages.Backend.Shared.Dto.Users;
+﻿using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Shared.Dto.Users;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
 namespace TokanPages.Backend.Cqrs.Mappers
 {
+    [ExcludeFromCodeCoverage]
     public static class UsersMapper
     {
         public static AddUserCommand MapToAddUserCommand(AddUserDto AModel) 

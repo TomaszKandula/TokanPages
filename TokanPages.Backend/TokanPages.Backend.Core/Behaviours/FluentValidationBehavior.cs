@@ -1,11 +1,13 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
 using MediatR;
 using ValidationException = TokanPages.Backend.Core.Exceptions.ValidationException;
 
 namespace TokanPages.Backend.Core.Behaviours
 {
+    [ExcludeFromCodeCoverage]
     public class FluentValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
         private readonly IValidator<TRequest> FValidator;

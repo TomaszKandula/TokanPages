@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.Shared;
 using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Shared.Settings;
+using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Storage.Settings;
 using TokanPages.Backend.Shared.Resources;
