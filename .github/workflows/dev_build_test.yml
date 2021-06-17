@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      MIGRATIONS_FOLDER: $PWD/**/**/Migrations/*
+      MIGRATIONS_FOLDER: $PWD/**/**/Migrations/*.cs
       TARGET_DIRECTORY: $PWD/sonarqubecoverage
       COVERAGE_REPORT: $PWD/*/TestResults/*/coverage.cobertura.xml
       SONAR_REPORT: SonarQube.xml
@@ -80,8 +80,8 @@ jobs:
         /k:${{ secrets.SONARQUBE_PROJECT_KEY_BE }} \
         /d:sonar.login=${{ secrets.SONARQUBE_TOKEN_BE }} \
         /d:sonar.host.url=${{ secrets.SONARQUBE_HOST }} \
-        /d:sonar.coverageReportPaths="${{ env.TARGET_DIRECTORY }}/${{ env.SONAR_REPORT }}" \
-        /d:sonar.exclusions="${{ env.MIGRATIONS_FOLDER }}"
+        /d:sonar.exclusions="${{ env.MIGRATIONS_FOLDER }}" \
+        /d:sonar.coverageReportPaths="${{ env.TARGET_DIRECTORY }}/${{ env.SONAR_REPORT }}"
 
     - name: Build .NET
       run: dotnet build
