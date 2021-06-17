@@ -1,5 +1,8 @@
-﻿namespace TokanPages.Backend.SmtpClient.Settings
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Backend.SmtpClient.Settings
 {
+    [ExcludeFromCodeCoverage]
     public class SmtpServerSettings
     {
         public string Account { get; set; }
