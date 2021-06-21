@@ -45,7 +45,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
 
             var LSendActionResult = new SendActionResult { IsSucceeded = true };
             LMockedSmtpClientService
-                .Setup(ASmtpClient => ASmtpClient.Send())
+                .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
                 .Returns(Task.FromResult(LSendActionResult));
             
             var LSendNewsletterCommandHandler = new SendNewsletterCommandHandler(
