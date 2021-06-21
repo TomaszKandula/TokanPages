@@ -64,7 +64,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
             var LTemplateFromUrl = await FFileUtilityService.GetFileFromUrl(LUrl, ACancellationToken);
             FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, LNewValues);
 
-            var LResult = await FSmtpClientService.Send();
+            var LResult = await FSmtpClientService.Send(ACancellationToken);
             if (!LResult.IsSucceeded)
                 throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}. {LResult.ErrorDesc}");
 
