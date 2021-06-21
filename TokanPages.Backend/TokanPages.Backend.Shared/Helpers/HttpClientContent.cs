@@ -15,14 +15,17 @@ namespace TokanPages.Backend.Shared.Helpers
     {
         private const string AUTHORIZATION = "Authorization";
 
-        public static async Task<string> GetContent(string ARequestUrl, string AToken)
+        public static async Task<string> GetContent(string ARequestUrl, string AToken = default)
         {
             using var LHttpClient = new HttpClient();
             using var LRequest = new HttpRequestMessage(new HttpMethod("GET"), ARequestUrl);
 
-            var LBase64Authorization = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{AToken}:"));
-            LRequest.Headers.TryAddWithoutValidation(AUTHORIZATION, $"Basic {LBase64Authorization}"); 
-                
+            if (!string.IsNullOrEmpty(AToken))
+            {
+                var LBase64Authorization = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{AToken}:"));
+                LRequest.Headers.TryAddWithoutValidation(AUTHORIZATION, $"Basic {LBase64Authorization}"); 
+            }
+
             var LResponse = await LHttpClient.SendAsync(LRequest);
             return await LResponse.Content.ReadAsStringAsync();
         }
