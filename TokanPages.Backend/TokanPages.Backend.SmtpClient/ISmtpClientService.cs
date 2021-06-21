@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.SmtpClient.Models;
 
@@ -19,8 +20,10 @@ namespace TokanPages.Backend.SmtpClient
         string PlainText { get; set; }
         
         string HtmlBody { get; set; }
+
+        Task<SendActionResult> CanConnectAndAuthenticate(CancellationToken ACancellationToken = default);
         
-        Task<SendActionResult> Send();
+        Task<SendActionResult> Send(CancellationToken ACancellationToken = default);
         
         List<CheckActionResult> IsAddressCorrect(IEnumerable<string> AEmailAddress);
         

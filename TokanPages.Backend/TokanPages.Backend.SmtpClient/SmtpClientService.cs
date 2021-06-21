@@ -5,10 +5,11 @@ using MailKit.Security;
 using System;
 using System.Linq;
 using System.Net.Mail;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.Backend.SmtpClient.Settings;
 using TokanPages.Backend.SmtpClient.Models;
+using TokanPages.Backend.SmtpClient.Settings;
 
 namespace TokanPages.Backend.SmtpClient
 {
@@ -33,7 +34,26 @@ namespace TokanPages.Backend.SmtpClient
         
         public override string HtmlBody { get; set; }
 
-        public override async Task<SendActionResult> Send()
+        public override async Task<SendActionResult> CanConnectAndAuthenticate(CancellationToken ACancellationToken = default)
+        {
+            try
+            {
+                var LServer = await ConnectAndAuthenticate(ACancellationToken);
+                await LServer.DisconnectAsync(true, ACancellationToken);
+                return new SendActionResult { IsSucceeded = true };
+            }
+            catch (Exception LException)
+            {
+                return new SendActionResult
+                {
+                    IsSucceeded = false,
+                    ErrorCode = LException.HResult.ToString(),
+                    ErrorDesc = LException.Message
+                };
+            }
+        }
+
+        public override async Task<SendActionResult> Send(CancellationToken ACancellationToken = default)
         {
             try
             {
@@ -57,11 +77,9 @@ namespace TokanPages.Backend.SmtpClient
                 if (!string.IsNullOrEmpty(HtmlBody)) 
                     LNewMail.Body = new TextPart(TextFormat.Html) { Text = HtmlBody };
 
-                using var LServer = new MailKit.Net.Smtp.SmtpClient();
-                await LServer.ConnectAsync(FSmtpServerSettings.Server, FSmtpServerSettings.Port, SecureSocketOptions.SslOnConnect);
-                await LServer.AuthenticateAsync(FSmtpServerSettings.Account, FSmtpServerSettings.Password);
-                await LServer.SendAsync(LNewMail);
-                await LServer.DisconnectAsync(true);
+                var LServer = await ConnectAndAuthenticate(ACancellationToken);
+                await LServer.SendAsync(LNewMail, ACancellationToken);
+                await LServer.DisconnectAsync(true, ACancellationToken);
 
                 return new SendActionResult { IsSucceeded = true };
             } 
@@ -123,6 +141,14 @@ namespace TokanPages.Backend.SmtpClient
             {
                 return false;
             }
+        }
+
+        private async Task<MailKit.Net.Smtp.SmtpClient> ConnectAndAuthenticate(CancellationToken ACancellationToken)
+        {
+            using var LServer = new MailKit.Net.Smtp.SmtpClient();
+            await LServer.ConnectAsync(FSmtpServerSettings.Server, FSmtpServerSettings.Port, SecureSocketOptions.SslOnConnect, ACancellationToken);
+            await LServer.AuthenticateAsync(FSmtpServerSettings.Account, FSmtpServerSettings.Password, ACancellationToken);
+            return LServer;
         }
     }
 }
