@@ -15,6 +15,10 @@ namespace TokanPages.Backend.SmtpClient
 {
     public class SmtpClientService : SmtpClientObject, ISmtpClientService
     {
+        private const string NOT_CONNECTED_TO_SMTP = "Client is not connected to the SMTP server";
+
+        private const string NOT_AUTHENTICATED_WITH_SMTP = "Client is not authenticated with the SMTP server";
+        
         private readonly SmtpServerSettings FSmtpServerSettings;
 
         public SmtpClientService(SmtpServerSettings ASmtpServerSettings)
@@ -39,6 +43,27 @@ namespace TokanPages.Backend.SmtpClient
             try
             {
                 var LServer = await ConnectAndAuthenticate(ACancellationToken);
+
+                if (!LServer.IsConnected)
+                {
+                    return new SendActionResult
+                    {
+                        IsSucceeded = false,
+                        ErrorCode = nameof(NOT_CONNECTED_TO_SMTP),
+                        ErrorDesc = NOT_CONNECTED_TO_SMTP
+                    };
+                }
+
+                if (!LServer.IsAuthenticated)
+                {
+                    return new SendActionResult
+                    {
+                        IsSucceeded = false,
+                        ErrorCode = nameof(NOT_AUTHENTICATED_WITH_SMTP),
+                        ErrorDesc = NOT_AUTHENTICATED_WITH_SMTP
+                    };
+                }
+
                 await LServer.DisconnectAsync(true, ACancellationToken);
                 return new SendActionResult { IsSucceeded = true };
             }
