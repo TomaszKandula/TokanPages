@@ -37,7 +37,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             LDeserialized.Should().NotBeNull();
             LDeserialized.IsSucceeded.Should().BeTrue();
             LDeserialized.ErrorCode.Should().BeNull();
-            LDeserialized.ErrorDesc.Should().Be("n/a");
+            LDeserialized.ErrorDesc.Should().BeNull();
         }
         
         [Fact]
