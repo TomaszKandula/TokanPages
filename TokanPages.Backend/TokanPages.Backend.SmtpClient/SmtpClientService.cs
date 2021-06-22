@@ -42,7 +42,7 @@ namespace TokanPages.Backend.SmtpClient
         {
             try
             {
-                var LServer = await ConnectAndAuthenticate(ACancellationToken);
+                using var LServer = await ConnectAndAuthenticate(ACancellationToken);
 
                 if (!LServer.IsConnected)
                 {
@@ -102,7 +102,7 @@ namespace TokanPages.Backend.SmtpClient
                 if (!string.IsNullOrEmpty(HtmlBody)) 
                     LNewMail.Body = new TextPart(TextFormat.Html) { Text = HtmlBody };
 
-                var LServer = await ConnectAndAuthenticate(ACancellationToken);
+                using var LServer = await ConnectAndAuthenticate(ACancellationToken);
                 await LServer.SendAsync(LNewMail, ACancellationToken);
                 await LServer.DisconnectAsync(true, ACancellationToken);
 
@@ -170,7 +170,7 @@ namespace TokanPages.Backend.SmtpClient
 
         private async Task<MailKit.Net.Smtp.SmtpClient> ConnectAndAuthenticate(CancellationToken ACancellationToken)
         {
-            using var LServer = new MailKit.Net.Smtp.SmtpClient();
+            var LServer = new MailKit.Net.Smtp.SmtpClient();
             await LServer.ConnectAsync(FSmtpServerSettings.Server, FSmtpServerSettings.Port, SecureSocketOptions.SslOnConnect, ACancellationToken);
             await LServer.AuthenticateAsync(FSmtpServerSettings.Account, FSmtpServerSettings.Password, ACancellationToken);
             return LServer;
