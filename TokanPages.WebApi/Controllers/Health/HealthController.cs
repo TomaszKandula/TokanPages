@@ -30,8 +30,8 @@ namespace TokanPages.WebApi.Controllers.Health
         /// then the path return a HTTP error response code to indicate that the app is unhealthy.
         /// </summary>
         /// <returns>JSON model with response details</returns>
-        [HttpGet]
-        public async Task<IActionResult> CheckSmtpAndDatabase()
+        [HttpGet("status")]
+        public async Task<IActionResult> GetStatus()
         {
             try
             {
