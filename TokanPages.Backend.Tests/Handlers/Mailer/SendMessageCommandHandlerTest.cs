@@ -5,9 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.SmtpClient;
+using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Core.Generators;
-using TokanPages.Backend.Storage.Settings;
-using TokanPages.Backend.SmtpClient.Models;
+using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Core.Services.TemplateHelper;
@@ -38,10 +38,10 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();
             var LMockedTemplateHelper = new Mock<ITemplateHelper>();
             var LMockedFileUtilityService = new Mock<IFileUtilityService>();
-            var LMockedAzureStorageSettings = new Mock<AzureStorageSettings>();
+            var LMockedAzureStorageSettings = new Mock<AzureStorageSettingsModel>();
             var LDateTimeService = new Mock<IDateTimeService>();
 
-            var LSendActionResult = new SendActionResult { IsSucceeded = true };
+            var LSendActionResult = new ActionResultModel { IsSucceeded = true };
             LMockedSmtpClientService
                 .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
                 .Returns(Task.FromResult(LSendActionResult));

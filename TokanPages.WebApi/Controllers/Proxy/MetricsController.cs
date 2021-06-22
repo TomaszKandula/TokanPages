@@ -13,9 +13,9 @@ namespace TokanPages.WebApi.Controllers.Proxy
     [ApiController]
     public class Metrics : ControllerBase
     {
-        private readonly SonarQube FSonarQube;
+        private readonly SonarQubeSettingsModel FSonarQubeSettingsModel;
         
-        public Metrics(SonarQube ASonarQube) => FSonarQube = ASonarQube;
+        public Metrics(SonarQubeSettingsModel ASonarQubeSettingsModel) => FSonarQubeSettingsModel = ASonarQubeSettingsModel;
         
         /// <summary>
         /// Returns badge from SonarQube server for given project name and metric type.
@@ -47,8 +47,8 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 if (!Constants.MetricNames.NameList.Contains(AMetric))
                     return HttpClientContent.GetContentResult(400, $"Parameter '{nameof(AMetric)}' is invalid.");
 
-                var LRequestUrl = $"{FSonarQube.Server}/api/project_badges/measure?project={AProject}&metric={AMetric}";
-                var LContent = await HttpClientContent.GetContent(LRequestUrl, FSonarQube.Token);
+                var LRequestUrl = $"{FSonarQubeSettingsModel.Server}/api/project_badges/measure?project={AProject}&metric={AMetric}";
+                var LContent = await HttpClientContent.GetContent(LRequestUrl, FSonarQubeSettingsModel.Token);
                 return HttpClientContent.GetContentResult(200, LContent, Constants.ContentTypes.IMAGE_SVG);
             }
             catch (Exception LException)
@@ -71,8 +71,8 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 if (string.IsNullOrEmpty(AProject))
                     return HttpClientContent.GetContentResult(400, $"Parameter '{nameof(AProject)}' is missing");
                 
-                var LRequestUrl = $"{FSonarQube.Server}/api/project_badges/quality_gate?project={AProject}";
-                var LContent = await HttpClientContent.GetContent(LRequestUrl, FSonarQube.Token);
+                var LRequestUrl = $"{FSonarQubeSettingsModel.Server}/api/project_badges/quality_gate?project={AProject}";
+                var LContent = await HttpClientContent.GetContent(LRequestUrl, FSonarQubeSettingsModel.Token);
                 return HttpClientContent.GetContentResult(200, LContent, Constants.ContentTypes.IMAGE_SVG);
             }
             catch (Exception LException)

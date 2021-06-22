@@ -5,7 +5,7 @@ using TokanPages.Backend.Shared;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Storage.Settings;
+using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
@@ -26,26 +26,26 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
         
         private readonly IFileUtilityService FFileUtilityService;
         
-        private readonly AzureStorageSettings FAzureStorageSettings;
+        private readonly AzureStorageSettingsModel FAzureStorageSettingsModel;
         
-        private readonly AppUrls FAppUrls;
+        private readonly ApplicationPathsModel FApplicationPathsModel;
 
         public SendNewsletterCommandHandler(ILogger ALogger, ISmtpClientService ASmtpClientService, 
             ITemplateHelper ATemplateHelper, IFileUtilityService AFileUtilityService, 
-            AzureStorageSettings AAzureStorageSettings, AppUrls AAppUrls)
+            AzureStorageSettingsModel AAzureStorageSettingsModel, ApplicationPathsModel AApplicationPathsModel)
         {
             FLogger = ALogger;
             FSmtpClientService = ASmtpClientService;
             FTemplateHelper = ATemplateHelper;
             FFileUtilityService = AFileUtilityService;
-            FAzureStorageSettings = AAzureStorageSettings;
-            FAppUrls = AAppUrls;
+            FAzureStorageSettingsModel = AAzureStorageSettingsModel;
+            FApplicationPathsModel = AApplicationPathsModel;
         }
 
         public override async Task<Unit> Handle(SendNewsletterCommand ARequest, CancellationToken ACancellationToken) 
         {
-            var LUpdateSubscriberBaseLink = FAppUrls.DeploymentOrigin + FAppUrls.UpdateSubscriberPath;
-            var LUnsubscribeBaseLink = FAppUrls.DeploymentOrigin + FAppUrls.UnsubscribePath;
+            var LUpdateSubscriberBaseLink = FApplicationPathsModel.DeploymentOrigin + FApplicationPathsModel.UpdateSubscriberPath;
+            var LUnsubscribeBaseLink = FApplicationPathsModel.DeploymentOrigin + FApplicationPathsModel.UnsubscribePath;
 
             FLogger.LogInfo($"Update subscriber base URL: {LUpdateSubscriberBaseLink}.");
             FLogger.LogInfo($"Unsubscribe base URL: {LUnsubscribeBaseLink}.");
@@ -66,7 +66,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                     new () { Tag = "{UNSUBSCRIBE_LINK}", Value = LUnsubscribeLink }
                 };
 
-                var LUrl = $"{FAzureStorageSettings.BaseUrl}{Templates.NEWSLETTER}";
+                var LUrl = $"{FAzureStorageSettingsModel.BaseUrl}{Templates.NEWSLETTER}";
                 FLogger.LogInfo($"Getting newsletter template from URL: {LUrl}.");
                 
                 var LTemplateFromUrl = await FFileUtilityService.GetFileFromUrl(LUrl, ACancellationToken);

@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.SmtpClient;
+using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.SmtpClient.Models;
 
 namespace TokanPages.WebApi.Controllers.Health
 {
@@ -40,17 +40,17 @@ namespace TokanPages.WebApi.Controllers.Health
 
                 var LCanConnectToDatabase = await FDatabaseContext.Database.CanConnectAsync();
                 if (!LCanConnectToDatabase)
-                    return StatusCode(500, new SendActionResult
+                    return StatusCode(500, new ActionResultModel
                     {
                         ErrorCode = nameof(ErrorCodes.CANNOT_CONNECT_DATABASE),
                         ErrorDesc = ErrorCodes.CANNOT_CONNECT_DATABASE
                     });
 
-                return StatusCode(200, new SendActionResult { IsSucceeded = true });
+                return StatusCode(200, new ActionResultModel { IsSucceeded = true });
             }
             catch (Exception LException)
             {
-                return StatusCode(500, new SendActionResult
+                return StatusCode(500, new ActionResultModel
                 {
                     ErrorCode = LException.HResult.ToString(),
                     ErrorDesc = LException.Message

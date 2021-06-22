@@ -8,18 +8,18 @@ using System.Net.Mail;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.SmtpClient.Models;
-using TokanPages.Backend.SmtpClient.Settings;
 
 namespace TokanPages.Backend.SmtpClient
 {
     public class SmtpClientService : SmtpClientObject, ISmtpClientService
     {
-        private readonly SmtpServerSettings FSmtpServerSettings;
+        private readonly SmtpServerSettingsModel FSmtpServerSettingsModel;
 
-        public SmtpClientService(SmtpServerSettings ASmtpServerSettings)
-            => FSmtpServerSettings = ASmtpServerSettings;
+        public SmtpClientService(SmtpServerSettingsModel ASmtpServerSettingsModel)
+            => FSmtpServerSettingsModel = ASmtpServerSettingsModel;
 
         public override string From { get; set; }
         
@@ -35,7 +35,7 @@ namespace TokanPages.Backend.SmtpClient
         
         public override string HtmlBody { get; set; }
 
-        public override async Task<SendActionResult> CanConnectAndAuthenticate(CancellationToken ACancellationToken = default)
+        public override async Task<ActionResultModel> CanConnectAndAuthenticate(CancellationToken ACancellationToken = default)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace TokanPages.Backend.SmtpClient
 
                 if (!LServer.IsConnected)
                 {
-                    return new SendActionResult
+                    return new ActionResultModel
                     {
                         IsSucceeded = false,
                         ErrorCode = nameof(ErrorCodes.NOT_CONNECTED_TO_SMTP),
@@ -53,7 +53,7 @@ namespace TokanPages.Backend.SmtpClient
 
                 if (!LServer.IsAuthenticated)
                 {
-                    return new SendActionResult
+                    return new ActionResultModel
                     {
                         IsSucceeded = false,
                         ErrorCode = nameof(ErrorCodes.NOT_AUTHENTICATED_WITH_SMTP),
@@ -62,11 +62,11 @@ namespace TokanPages.Backend.SmtpClient
                 }
 
                 await LServer.DisconnectAsync(true, ACancellationToken);
-                return new SendActionResult { IsSucceeded = true };
+                return new ActionResultModel { IsSucceeded = true };
             }
             catch (Exception LException)
             {
-                return new SendActionResult
+                return new ActionResultModel
                 {
                     IsSucceeded = false,
                     ErrorCode = LException.HResult.ToString(),
@@ -75,7 +75,7 @@ namespace TokanPages.Backend.SmtpClient
             }
         }
 
-        public override async Task<SendActionResult> Send(CancellationToken ACancellationToken = default)
+        public override async Task<ActionResultModel> Send(CancellationToken ACancellationToken = default)
         {
             try
             {
@@ -103,11 +103,11 @@ namespace TokanPages.Backend.SmtpClient
                 await LServer.SendAsync(LNewMail, ACancellationToken);
                 await LServer.DisconnectAsync(true, ACancellationToken);
 
-                return new SendActionResult { IsSucceeded = true };
+                return new ActionResultModel { IsSucceeded = true };
             } 
             catch (Exception LException)
             {
-                return new SendActionResult
+                return new ActionResultModel
                 {
                     IsSucceeded = false,
                     ErrorCode = LException.HResult.ToString(),
@@ -116,20 +116,20 @@ namespace TokanPages.Backend.SmtpClient
             }
         }
 
-        public override List<CheckActionResult> IsAddressCorrect(IEnumerable<string> AEmailAddress)
+        public override List<EmailAddressModel> IsAddressCorrect(IEnumerable<string> AEmailAddress)
         {
-            var LResults = new List<CheckActionResult>();
+            var LResults = new List<EmailAddressModel>();
 
             foreach (var LItem in AEmailAddress)
             {
                 try
                 {
                     var LEmailAddress = new MailAddress(LItem);
-                    LResults.Add(new CheckActionResult { EmailAddress = LEmailAddress.Address, IsValid = true });
+                    LResults.Add(new EmailAddressModel { EmailAddress = LEmailAddress.Address, IsValid = true });
                 }
                 catch (FormatException)
                 {
-                    LResults.Add(new CheckActionResult { EmailAddress = LItem, IsValid = false });
+                    LResults.Add(new EmailAddressModel { EmailAddress = LItem, IsValid = false });
                 }
             }
             
@@ -168,8 +168,8 @@ namespace TokanPages.Backend.SmtpClient
         private async Task<MailKit.Net.Smtp.SmtpClient> ConnectAndAuthenticate(CancellationToken ACancellationToken)
         {
             var LServer = new MailKit.Net.Smtp.SmtpClient();
-            await LServer.ConnectAsync(FSmtpServerSettings.Server, FSmtpServerSettings.Port, SecureSocketOptions.SslOnConnect, ACancellationToken);
-            await LServer.AuthenticateAsync(FSmtpServerSettings.Account, FSmtpServerSettings.Password, ACancellationToken);
+            await LServer.ConnectAsync(FSmtpServerSettingsModel.Server, FSmtpServerSettingsModel.Port, SecureSocketOptions.SslOnConnect, ACancellationToken);
+            await LServer.AuthenticateAsync(FSmtpServerSettingsModel.Account, FSmtpServerSettingsModel.Password, ACancellationToken);
             return LServer;
         }
     }

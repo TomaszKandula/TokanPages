@@ -3,7 +3,7 @@
 namespace TokanPages.Backend.SmtpClient.Models
 {
     [ExcludeFromCodeCoverage]
-    public class CheckActionResult
+    public class EmailAddressModel
     {
         public string EmailAddress { get; set; }
 

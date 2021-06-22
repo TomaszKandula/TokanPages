@@ -5,8 +5,8 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
+using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Core.Generators;
-using TokanPages.Backend.SmtpClient.Models;
 
 namespace TokanPages.WebApi.Tests.Controllers
 {
@@ -33,7 +33,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             
-            var LDeserialized = JsonConvert.DeserializeObject<SendActionResult>(LContent);
+            var LDeserialized = JsonConvert.DeserializeObject<ActionResultModel>(LContent);
             LDeserialized.Should().NotBeNull();
             LDeserialized.IsSucceeded.Should().BeTrue();
             LDeserialized.ErrorCode.Should().BeNull();
@@ -64,7 +64,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             
-            var LDeserialized = JsonConvert.DeserializeObject<SendActionResult>(LContent);
+            var LDeserialized = JsonConvert.DeserializeObject<ActionResultModel>(LContent);
             LDeserialized.Should().NotBeNull();
             LDeserialized.IsSucceeded.Should().BeFalse();
             LDeserialized.ErrorCode.Should().NotBeEmpty();
@@ -95,7 +95,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             
-            var LDeserialized = JsonConvert.DeserializeObject<SendActionResult>(LContent);
+            var LDeserialized = JsonConvert.DeserializeObject<ActionResultModel>(LContent);
             LDeserialized.Should().NotBeNull();
             LDeserialized.IsSucceeded.Should().BeFalse();
             LDeserialized.ErrorCode.Should().NotBeEmpty();
