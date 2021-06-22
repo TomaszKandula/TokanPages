@@ -9,6 +9,6 @@ namespace TokanPages.Backend.SmtpClient.Models
 
         public string ErrorCode { get; set; }
         
-        public string ErrorDesc { get; set; } = "n/a";
+        public string ErrorDesc { get; set; }
     }
 }
