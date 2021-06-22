@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.Backend.Storage.Models
 {
     [ExcludeFromCodeCoverage]
-    public class StorageByteContent
+    public class StorageByteContentModel
     {
         public byte[] Content { get; set; }
 

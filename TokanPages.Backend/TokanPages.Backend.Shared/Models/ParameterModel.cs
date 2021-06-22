@@ -5,7 +5,7 @@ namespace TokanPages.Backend.Shared.Models
     [ExcludeFromCodeCoverage]
     public class ParameterModel
     {
-        public string Key { get; init; }
-        public string Value { get; init; }
+        public string Key { get; set; }
+        public string Value { get; set; }
     }
 }

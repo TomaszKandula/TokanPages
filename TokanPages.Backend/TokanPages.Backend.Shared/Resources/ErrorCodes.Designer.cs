@@ -98,5 +98,29 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("CANNOT_SEND_EMAIL", resourceCulture);
             }
         }
+        
+        public static string CANNOT_CONNECT_DATABASE {
+            get {
+                return ResourceManager.GetString("CANNOT_CONNECT_DATABASE", resourceCulture);
+            }
+        }
+        
+        public static string NOT_CONNECTED_TO_SMTP {
+            get {
+                return ResourceManager.GetString("NOT_CONNECTED_TO_SMTP", resourceCulture);
+            }
+        }
+        
+        public static string NOT_AUTHENTICATED_WITH_SMTP {
+            get {
+                return ResourceManager.GetString("NOT_AUTHENTICATED_WITH_SMTP", resourceCulture);
+            }
+        }
+        
+        public static string SMTP_CLIENT_ERROR {
+            get {
+                return ResourceManager.GetString("SMTP_CLIENT_ERROR", resourceCulture);
+            }
+        }
     }
 }

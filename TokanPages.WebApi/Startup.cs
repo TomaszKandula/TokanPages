@@ -12,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
 using TokanPages.WebApi.Middleware;
 using TokanPages.WebApi.Configuration;
-using TokanPages.Backend.Shared.Models;
 using Serilog;
 
 namespace TokanPages.WebApi
@@ -63,7 +62,7 @@ namespace TokanPages.WebApi
             });
         }
 
-        public void Configure(IApplicationBuilder AApplication, AppUrls AAppUrls)
+        public void Configure(IApplicationBuilder AApplication)
         {
             AApplication.UseSerilogRequestLogging();
 

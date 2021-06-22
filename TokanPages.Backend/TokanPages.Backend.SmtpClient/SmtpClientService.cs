@@ -1,23 +1,35 @@
 ﻿using DnsClient;
 using MimeKit;
 using MimeKit.Text;
+using MailKit.Net.Smtp;
 using MailKit.Security;
 using System;
 using System.Linq;
 using System.Net.Mail;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.Backend.SmtpClient.Settings;
+using TokanPages.Backend.Shared.Models;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.SmtpClient.Models;
 
 namespace TokanPages.Backend.SmtpClient
 {
     public class SmtpClientService : SmtpClientObject, ISmtpClientService
     {
-        private readonly SmtpServerSettings FSmtpServerSettings;
+        private readonly ISmtpClient FSmtpClient;
 
-        public SmtpClientService(SmtpServerSettings ASmtpServerSettings)
-            => FSmtpServerSettings = ASmtpServerSettings;
+        private readonly ILookupClient FLookupClient;
+        
+        private readonly SmtpServerSettingsModel FSmtpServerSettingsModel;
+
+        public SmtpClientService(ISmtpClient ASmtpClient, ILookupClient ALookupClient, 
+            SmtpServerSettingsModel ASmtpServerSettingsModel)
+        {
+            FSmtpClient = ASmtpClient;
+            FLookupClient = ALookupClient;
+            FSmtpServerSettingsModel = ASmtpServerSettingsModel;
+        }
 
         public override string From { get; set; }
         
@@ -33,7 +45,53 @@ namespace TokanPages.Backend.SmtpClient
         
         public override string HtmlBody { get; set; }
 
-        public override async Task<SendActionResult> Send()
+        public override async Task<ActionResultModel> CanConnectAndAuthenticate(CancellationToken ACancellationToken = default)
+        {
+            try
+            {
+                var LSslOnConnect = FSmtpServerSettingsModel.IsSSL
+                    ? SecureSocketOptions.SslOnConnect
+                    : SecureSocketOptions.None;
+                
+                await FSmtpClient.ConnectAsync(FSmtpServerSettingsModel.Server, 
+                    FSmtpServerSettingsModel.Port, LSslOnConnect, ACancellationToken);
+
+                if (!FSmtpClient.IsConnected)
+                {
+                    return new ActionResultModel
+                    {
+                        ErrorCode = nameof(ErrorCodes.NOT_CONNECTED_TO_SMTP),
+                        ErrorDesc = ErrorCodes.NOT_CONNECTED_TO_SMTP
+                    };
+                }
+
+                await FSmtpClient.AuthenticateAsync(FSmtpServerSettingsModel.Account, 
+                    FSmtpServerSettingsModel.Password, ACancellationToken);
+
+                if (!FSmtpClient.IsAuthenticated)
+                {
+                    return new ActionResultModel
+                    {
+                        ErrorCode = nameof(ErrorCodes.NOT_AUTHENTICATED_WITH_SMTP),
+                        ErrorDesc = ErrorCodes.NOT_AUTHENTICATED_WITH_SMTP
+                    };
+                }
+
+                await FSmtpClient.DisconnectAsync(true, ACancellationToken);
+                return new ActionResultModel { IsSucceeded = true };
+            }
+            catch (Exception LException)
+            {
+                return new ActionResultModel
+                {
+                    ErrorCode = nameof(ErrorCodes.SMTP_CLIENT_ERROR),
+                    ErrorDesc = ErrorCodes.SMTP_CLIENT_ERROR,
+                    InnerMessage = LException.Message
+                };
+            }
+        }
+
+        public override async Task<ActionResultModel> Send(CancellationToken ACancellationToken = default)
         {
             try
             {
@@ -57,39 +115,43 @@ namespace TokanPages.Backend.SmtpClient
                 if (!string.IsNullOrEmpty(HtmlBody)) 
                     LNewMail.Body = new TextPart(TextFormat.Html) { Text = HtmlBody };
 
-                using var LServer = new MailKit.Net.Smtp.SmtpClient();
-                await LServer.ConnectAsync(FSmtpServerSettings.Server, FSmtpServerSettings.Port, SecureSocketOptions.SslOnConnect);
-                await LServer.AuthenticateAsync(FSmtpServerSettings.Account, FSmtpServerSettings.Password);
-                await LServer.SendAsync(LNewMail);
-                await LServer.DisconnectAsync(true);
+                var LSslOnConnect = FSmtpServerSettingsModel.IsSSL
+                    ? SecureSocketOptions.SslOnConnect
+                    : SecureSocketOptions.None;
+                
+                await FSmtpClient.ConnectAsync(FSmtpServerSettingsModel.Server, FSmtpServerSettingsModel.Port, LSslOnConnect, ACancellationToken);
+                await FSmtpClient.AuthenticateAsync(FSmtpServerSettingsModel.Account, FSmtpServerSettingsModel.Password, ACancellationToken);
 
-                return new SendActionResult { IsSucceeded = true };
+                await FSmtpClient.SendAsync(LNewMail, ACancellationToken);
+                await FSmtpClient.DisconnectAsync(true, ACancellationToken);
+
+                return new ActionResultModel { IsSucceeded = true };
             } 
             catch (Exception LException)
             {
-                return new SendActionResult
+                return new ActionResultModel
                 {
-                    IsSucceeded = false,
-                    ErrorCode = LException.HResult.ToString(),
-                    ErrorDesc = LException.Message
+                    ErrorCode = nameof(ErrorCodes.SMTP_CLIENT_ERROR),
+                    ErrorDesc = ErrorCodes.SMTP_CLIENT_ERROR,
+                    InnerMessage = LException.Message
                 };
             }
         }
 
-        public override List<CheckActionResult> IsAddressCorrect(IEnumerable<string> AEmailAddress)
+        public override List<EmailAddressModel> IsAddressCorrect(IEnumerable<string> AEmailAddress)
         {
-            var LResults = new List<CheckActionResult>();
+            var LResults = new List<EmailAddressModel>();
 
             foreach (var LItem in AEmailAddress)
             {
                 try
                 {
                     var LEmailAddress = new MailAddress(LItem);
-                    LResults.Add(new CheckActionResult { EmailAddress = LEmailAddress.Address, IsValid = true });
+                    LResults.Add(new EmailAddressModel { EmailAddress = LEmailAddress.Address, IsValid = true });
                 }
                 catch (FormatException)
                 {
-                    LResults.Add(new CheckActionResult { EmailAddress = LItem, IsValid = false });
+                    LResults.Add(new EmailAddressModel { EmailAddress = LItem, IsValid = false });
                 }
             }
             
@@ -100,14 +162,12 @@ namespace TokanPages.Backend.SmtpClient
         {
             try
             {
-                var LLookupClient = new LookupClient();
-
                 var LGetEmailDomain = AEmailAddress.Split("@");
                 var LEmailDomain = LGetEmailDomain[1];
 
-                var LCheckRecordA = await LLookupClient.QueryAsync(LEmailDomain, QueryType.A).ConfigureAwait(false);
-                var LCheckRecordAaaa = await LLookupClient.QueryAsync(LEmailDomain, QueryType.AAAA).ConfigureAwait(false);
-                var LCheckRecordMx = await LLookupClient.QueryAsync(LEmailDomain, QueryType.MX).ConfigureAwait(false);
+                var LCheckRecordA = await FLookupClient.QueryAsync(LEmailDomain, QueryType.A).ConfigureAwait(false);
+                var LCheckRecordAaaa = await FLookupClient.QueryAsync(LEmailDomain, QueryType.AAAA).ConfigureAwait(false);
+                var LCheckRecordMx = await FLookupClient.QueryAsync(LEmailDomain, QueryType.MX).ConfigureAwait(false);
 
                 var LRecordA = LCheckRecordA.Answers.Where(ARecord => ARecord.RecordType == DnsClient.Protocol.ResourceRecordType.A);
                 var LRecordAaaa = LCheckRecordAaaa.Answers.Where(ARecord => ARecord.RecordType == DnsClient.Protocol.ResourceRecordType.AAAA);

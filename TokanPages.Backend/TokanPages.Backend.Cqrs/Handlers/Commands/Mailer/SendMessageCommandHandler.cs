@@ -5,7 +5,7 @@ using System.Globalization;
 using TokanPages.Backend.Shared;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Storage.Settings;
+using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
@@ -29,17 +29,17 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
         
         private readonly IDateTimeService FDateTimeService;
         
-        private readonly AzureStorageSettings FAzureStorageSettings;
+        private readonly AzureStorageSettingsModel FAzureStorageSettingsModel;
         
         public SendMessageCommandHandler(ISmtpClientService ASmtpClientService, ITemplateHelper ATemplateHelper, 
             IFileUtilityService AFileUtilityService, IDateTimeService ADateTimeService, 
-            AzureStorageSettings AAzureStorageSettings, ILogger ALogger)
+            AzureStorageSettingsModel AZureStorageSettingsModel, ILogger ALogger)
         {
             FSmtpClientService = ASmtpClientService;
             FTemplateHelper = ATemplateHelper;
             FFileUtilityService = AFileUtilityService;
             FDateTimeService = ADateTimeService;
-            FAzureStorageSettings = AAzureStorageSettings;
+            FAzureStorageSettingsModel = AZureStorageSettingsModel;
             FLogger = ALogger;
         }
 
@@ -58,13 +58,13 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 new () { Tag = "{DATE_TIME}", Value = FDateTimeService.Now.ToString(CultureInfo.InvariantCulture) }
             };
 
-            var LUrl = $"{FAzureStorageSettings.BaseUrl}{Templates.CONTACT_FORM}";
+            var LUrl = $"{FAzureStorageSettingsModel.BaseUrl}{Templates.CONTACT_FORM}";
             FLogger.LogInfo($"Getting email template from URL: {LUrl}.");
 
             var LTemplateFromUrl = await FFileUtilityService.GetFileFromUrl(LUrl, ACancellationToken);
             FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, LNewValues);
 
-            var LResult = await FSmtpClientService.Send();
+            var LResult = await FSmtpClientService.Send(ACancellationToken);
             if (!LResult.IsSucceeded)
                 throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}. {LResult.ErrorDesc}");
 
