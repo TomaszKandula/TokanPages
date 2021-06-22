@@ -153,4 +153,7 @@
   <data name="NOT_AUTHENTICATED_WITH_SMTP" xml:space="preserve">
     <value>Client is not authenticated with the SMTP server</value>
   </data>
+  <data name="SMTP_CLIENT_ERROR" xml:space="preserve">
+    <value>SMTP client has thrown an error</value>
+  </data>
 </root>
