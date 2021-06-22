@@ -8,6 +8,7 @@ using System.Net.Mail;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.SmtpClient.Models;
 using TokanPages.Backend.SmtpClient.Settings;
 
@@ -15,10 +16,6 @@ namespace TokanPages.Backend.SmtpClient
 {
     public class SmtpClientService : SmtpClientObject, ISmtpClientService
     {
-        private const string NOT_CONNECTED_TO_SMTP = "Client is not connected to the SMTP server";
-
-        private const string NOT_AUTHENTICATED_WITH_SMTP = "Client is not authenticated with the SMTP server";
-        
         private readonly SmtpServerSettings FSmtpServerSettings;
 
         public SmtpClientService(SmtpServerSettings ASmtpServerSettings)
@@ -49,8 +46,8 @@ namespace TokanPages.Backend.SmtpClient
                     return new SendActionResult
                     {
                         IsSucceeded = false,
-                        ErrorCode = nameof(NOT_CONNECTED_TO_SMTP),
-                        ErrorDesc = NOT_CONNECTED_TO_SMTP
+                        ErrorCode = nameof(ErrorCodes.NOT_CONNECTED_TO_SMTP),
+                        ErrorDesc = ErrorCodes.NOT_CONNECTED_TO_SMTP
                     };
                 }
 
@@ -59,8 +56,8 @@ namespace TokanPages.Backend.SmtpClient
                     return new SendActionResult
                     {
                         IsSucceeded = false,
-                        ErrorCode = nameof(NOT_AUTHENTICATED_WITH_SMTP),
-                        ErrorDesc = NOT_AUTHENTICATED_WITH_SMTP
+                        ErrorCode = nameof(ErrorCodes.NOT_AUTHENTICATED_WITH_SMTP),
+                        ErrorDesc = ErrorCodes.NOT_AUTHENTICATED_WITH_SMTP
                     };
                 }
 

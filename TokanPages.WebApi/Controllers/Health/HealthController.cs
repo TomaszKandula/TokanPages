@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.SmtpClient;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.SmtpClient.Models;
 
 namespace TokanPages.WebApi.Controllers.Health
@@ -11,8 +12,6 @@ namespace TokanPages.WebApi.Controllers.Health
     [ApiController]
     public class HealthController : ControllerBase
     {
-        private const string CANNOT_CONNECT_DATABASE = "Cannot connect to the database";
-        
         private readonly DatabaseContext FDatabaseContext;
 
         private readonly ISmtpClientService FSmtpClientService;
@@ -43,8 +42,8 @@ namespace TokanPages.WebApi.Controllers.Health
                 if (!LCanConnectToDatabase)
                     return StatusCode(500, new SendActionResult
                     {
-                        ErrorCode = nameof(CANNOT_CONNECT_DATABASE),
-                        ErrorDesc = CANNOT_CONNECT_DATABASE
+                        ErrorCode = nameof(ErrorCodes.CANNOT_CONNECT_DATABASE),
+                        ErrorDesc = ErrorCodes.CANNOT_CONNECT_DATABASE
                     });
 
                 return StatusCode(200, new SendActionResult { IsSucceeded = true });
