@@ -22,6 +22,8 @@ using TokanPages.Backend.Core.Services.TemplateHelper;
 using TokanPages.Backend.Core.Services.DateTimeService;
 using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
 using FluentValidation;
+using MailKit.Net.Smtp;
+using DnsClient;
 using MediatR;
 
 namespace TokanPages.WebApi.Configuration
@@ -72,7 +74,9 @@ namespace TokanPages.WebApi.Configuration
         private static void SetupServices(IServiceCollection AServices) 
         {
             AServices.AddHttpContextAccessor();
-            
+
+            AServices.AddScoped<ISmtpClient, SmtpClient>();
+            AServices.AddScoped<ILookupClient, LookupClient>();
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
             AServices.AddScoped<IFileUtilityService, FileUtilityService>();
