@@ -10,11 +10,11 @@ using TokanPages.Backend.Cqrs;
 using TokanPages.Backend.Shared;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Core.Behaviours;
 using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Storage.Settings;
+using TokanPages.Backend.Storage.Models;
+using TokanPages.Backend.Core.Behaviours;
+using TokanPages.Backend.SmtpClient.Models;
 using TokanPages.Backend.Database.Initializer;
-using TokanPages.Backend.SmtpClient.Settings;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
@@ -48,10 +48,10 @@ namespace TokanPages.WebApi.Configuration
 
         private static void SetupAppSettings(IServiceCollection AServices, IConfiguration AConfiguration) 
         {
-            AServices.AddSingleton(AConfiguration.GetSection("AzureStorage").Get<AzureStorageSettings>());
-            AServices.AddSingleton(AConfiguration.GetSection("SmtpServer").Get<SmtpServerSettings>());
-            AServices.AddSingleton(AConfiguration.GetSection("AppUrls").Get<AppUrls>());
-            AServices.AddSingleton(AConfiguration.GetSection("SonarQube").Get<SonarQube>());
+            AServices.AddSingleton(AConfiguration.GetSection("AzureStorage").Get<AzureStorageSettingsModel>());
+            AServices.AddSingleton(AConfiguration.GetSection("SmtpServer").Get<SmtpServerSettingsModel>());
+            AServices.AddSingleton(AConfiguration.GetSection("AppUrls").Get<ApplicationPathsModel>());
+            AServices.AddSingleton(AConfiguration.GetSection("SonarQube").Get<SonarQubeSettingsModel>());
         }
 
         private static void SetupLogger(IServiceCollection AServices) 
@@ -82,7 +82,7 @@ namespace TokanPages.WebApi.Configuration
 
             AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
             {
-                var LAzureStorageSettings = AProvider.GetRequiredService<AzureStorageSettings>();
+                var LAzureStorageSettings = AProvider.GetRequiredService<AzureStorageSettingsModel>();
                 return new AzureBlobStorageFactory(LAzureStorageSettings.ConnectionString, LAzureStorageSettings.ContainerName);
             });
         }
@@ -101,7 +101,7 @@ namespace TokanPages.WebApi.Configuration
 
         private static void SetupRetryPolicyWithPolly(IServiceCollection AServices, IConfiguration AConfiguration, IWebHostEnvironment AEnvironment)
         {
-            var LAppUrls = AConfiguration.GetSection("AppUrls").Get<AppUrls>();
+            var LAppUrls = AConfiguration.GetSection("AppUrls").Get<ApplicationPathsModel>();
             AServices.AddHttpClient("RetryHttpClient", AOptions =>
             {
                 AOptions.BaseAddress = new Uri(AEnvironment.IsDevelopment() 
