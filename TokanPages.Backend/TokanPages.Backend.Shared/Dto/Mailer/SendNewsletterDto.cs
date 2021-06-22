@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Shared.Dto.Mailer
     [ExcludeFromCodeCoverage]
     public class SendNewsletterDto
     {
-        public List<SubscriberInfo> SubscriberInfo { get; set; }
+        public List<SubscriberInfoModel> SubscriberInfo { get; set; }
 
         public string Subject { get; set; }
         

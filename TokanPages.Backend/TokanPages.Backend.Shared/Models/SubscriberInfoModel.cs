@@ -3,7 +3,7 @@
 namespace TokanPages.Backend.Shared.Models
 {
     [ExcludeFromCodeCoverage]
-    public class SubscriberInfo
+    public class SubscriberInfoModel
     {
         public string Email { get; set; }
 

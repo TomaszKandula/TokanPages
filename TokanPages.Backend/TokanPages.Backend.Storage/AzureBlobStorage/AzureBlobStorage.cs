@@ -21,7 +21,7 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
                 .CreateCloudBlobClient()
                 .GetContainerReference(AContainerName);
         
-        public async Task<StorageByteContent> ReadAllBytes(string ASourceFilePath)
+        public async Task<StorageByteContentModel> ReadAllBytes(string ASourceFilePath)
         {
             var LBlob = FContainer.GetBlockBlobReference(ASourceFilePath);
 
@@ -32,20 +32,20 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
             await LBlob.DownloadToByteArrayAsync(LResult, 0);
             var LContentType = LBlob.Properties.ContentType;
 
-            return new StorageByteContent
+            return new StorageByteContentModel
             {
                 Content = LResult,
                 ContentType = LContentType
             };
         }
 
-        public async Task<StorageStreamContent> OpenRead(string ASourceFilePath)
+        public async Task<StorageStreamContentModel> OpenRead(string ASourceFilePath)
         {
             var LBlob = FContainer.GetBlockBlobReference(ASourceFilePath);
             var LStream = await LBlob.OpenReadAsync();
             var LContentType = LBlob.Properties.ContentType;
 
-            return new StorageStreamContent
+            return new StorageStreamContentModel
             {
                 Content = LStream,
                 ContentType = LContentType

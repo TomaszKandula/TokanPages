@@ -18,7 +18,7 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             {
                 Message = "Message",
                 Subject = "Subject",
-                SubscriberInfo = new List<SubscriberInfo> 
+                SubscriberInfo = new List<SubscriberInfoModel> 
                 { 
                     new () 
                     { 
@@ -44,7 +44,7 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             {
                 Message = "Message",
                 Subject = "Subject",
-                SubscriberInfo = new List<SubscriberInfo>()
+                SubscriberInfo = new List<SubscriberInfoModel>()
             };
 
             // Act
@@ -64,7 +64,7 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             {
                 Message = "Message",
                 Subject = string.Empty,
-                SubscriberInfo = new List<SubscriberInfo>
+                SubscriberInfo = new List<SubscriberInfoModel>
                 {
                     new ()
                     {
@@ -91,7 +91,7 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             {
                 Message = "Message",
                 Subject = new string('T', 256),
-                SubscriberInfo = new List<SubscriberInfo>
+                SubscriberInfo = new List<SubscriberInfoModel>
                 {
                     new ()
                     {
@@ -118,7 +118,7 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             {
                 Message = string.Empty,
                 Subject = "Subject",
-                SubscriberInfo = new List<SubscriberInfo>
+                SubscriberInfo = new List<SubscriberInfoModel>
                 {
                     new ()
                     {
@@ -145,7 +145,7 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             {
                 Message = new string('T', 256),
                 Subject = "Subject",
-                SubscriberInfo = new List<SubscriberInfo>
+                SubscriberInfo = new List<SubscriberInfoModel>
                 {
                     new ()
                     {

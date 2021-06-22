@@ -15,10 +15,10 @@ namespace TokanPages.WebApi.Middleware
         public CustomCors(RequestDelegate ARequestDelegate) 
             => FRequestDelegate = ARequestDelegate;
 
-        public Task Invoke(HttpContext AHttpContext, AppUrls AAppUrls)
+        public Task Invoke(HttpContext AHttpContext, ApplicationPathsModel AApplicationPathsModel)
         {
-            var LDevelopmentOrigins = AAppUrls.DevelopmentOrigin.Split(';').ToList();
-            var LDeploymentOrigins = AAppUrls.DeploymentOrigin.Split(';').ToList();
+            var LDevelopmentOrigins = AApplicationPathsModel.DevelopmentOrigin.Split(';').ToList();
+            var LDeploymentOrigins = AApplicationPathsModel.DeploymentOrigin.Split(';').ToList();
             var LRequestOrigin = AHttpContext.Request.Headers["Origin"];
 
             if (!LDevelopmentOrigins.Contains(LRequestOrigin) && !LDeploymentOrigins.Contains(LRequestOrigin))

@@ -3,7 +3,7 @@
 namespace TokanPages.Backend.Shared.Models
 {
     [ExcludeFromCodeCoverage]
-    public class AppUrls
+    public class ApplicationPathsModel
     {
         public string UpdateSubscriberPath { get; set; }
 

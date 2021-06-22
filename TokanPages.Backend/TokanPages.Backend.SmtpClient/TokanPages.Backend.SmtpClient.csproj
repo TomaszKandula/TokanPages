@@ -11,4 +11,8 @@
     <PackageReference Include="MailKit" Version="2.11.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
