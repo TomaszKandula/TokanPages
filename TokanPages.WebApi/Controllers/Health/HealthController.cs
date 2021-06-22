@@ -24,9 +24,9 @@ namespace TokanPages.WebApi.Controllers.Health
 
         /// <summary>
         /// Checks the critical components of the application: SMTP server and SQL Server.
-        /// Because the application depends on a database and a e-mail system, the health check endpoint
+        /// Because the application depends on a database and an e-mail system, the health check endpoint
         /// connect to those components. If the application cannot connect to a critical component,
-        /// then the path return a HTTP error response code to indicate that the app is unhealthy.
+        /// then the path return a HTTP error response code to indicate that the application is unhealthy.
         /// </summary>
         /// <returns>JSON model with response details</returns>
         [HttpGet("status")]
