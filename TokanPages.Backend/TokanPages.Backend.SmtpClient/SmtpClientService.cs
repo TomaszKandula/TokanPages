@@ -1,6 +1,7 @@
 ﻿using DnsClient;
 using MimeKit;
 using MimeKit.Text;
+using MailKit.Net.Smtp;
 using MailKit.Security;
 using System;
 using System.Linq;
@@ -16,10 +17,19 @@ namespace TokanPages.Backend.SmtpClient
 {
     public class SmtpClientService : SmtpClientObject, ISmtpClientService
     {
+        private readonly ISmtpClient FSmtpClient;
+
+        private readonly ILookupClient FLookupClient;
+        
         private readonly SmtpServerSettingsModel FSmtpServerSettingsModel;
 
-        public SmtpClientService(SmtpServerSettingsModel ASmtpServerSettingsModel)
-            => FSmtpServerSettingsModel = ASmtpServerSettingsModel;
+        public SmtpClientService(ISmtpClient ASmtpClient, ILookupClient ALookupClient, 
+            SmtpServerSettingsModel ASmtpServerSettingsModel)
+        {
+            FSmtpClient = ASmtpClient;
+            FLookupClient = ALookupClient;
+            FSmtpServerSettingsModel = ASmtpServerSettingsModel;
+        }
 
         public override string From { get; set; }
         
@@ -39,38 +49,44 @@ namespace TokanPages.Backend.SmtpClient
         {
             try
             {
-                using var LServer = await ConnectAndAuthenticate(ACancellationToken);
+                var LSslOnConnect = FSmtpServerSettingsModel.IsSSL
+                    ? SecureSocketOptions.SslOnConnect
+                    : SecureSocketOptions.None;
+                
+                await FSmtpClient.ConnectAsync(FSmtpServerSettingsModel.Server, 
+                    FSmtpServerSettingsModel.Port, LSslOnConnect, ACancellationToken);
 
-                if (!LServer.IsConnected)
+                if (!FSmtpClient.IsConnected)
                 {
                     return new ActionResultModel
                     {
-                        IsSucceeded = false,
                         ErrorCode = nameof(ErrorCodes.NOT_CONNECTED_TO_SMTP),
                         ErrorDesc = ErrorCodes.NOT_CONNECTED_TO_SMTP
                     };
                 }
 
-                if (!LServer.IsAuthenticated)
+                await FSmtpClient.AuthenticateAsync(FSmtpServerSettingsModel.Account, 
+                    FSmtpServerSettingsModel.Password, ACancellationToken);
+
+                if (!FSmtpClient.IsAuthenticated)
                 {
                     return new ActionResultModel
                     {
-                        IsSucceeded = false,
                         ErrorCode = nameof(ErrorCodes.NOT_AUTHENTICATED_WITH_SMTP),
                         ErrorDesc = ErrorCodes.NOT_AUTHENTICATED_WITH_SMTP
                     };
                 }
 
-                await LServer.DisconnectAsync(true, ACancellationToken);
+                await FSmtpClient.DisconnectAsync(true, ACancellationToken);
                 return new ActionResultModel { IsSucceeded = true };
             }
             catch (Exception LException)
             {
                 return new ActionResultModel
                 {
-                    IsSucceeded = false,
-                    ErrorCode = LException.HResult.ToString(),
-                    ErrorDesc = LException.Message
+                    ErrorCode = nameof(ErrorCodes.SMTP_CLIENT_ERROR),
+                    ErrorDesc = ErrorCodes.SMTP_CLIENT_ERROR,
+                    InnerMessage = LException.Message
                 };
             }
         }
@@ -99,9 +115,15 @@ namespace TokanPages.Backend.SmtpClient
                 if (!string.IsNullOrEmpty(HtmlBody)) 
                     LNewMail.Body = new TextPart(TextFormat.Html) { Text = HtmlBody };
 
-                using var LServer = await ConnectAndAuthenticate(ACancellationToken);
-                await LServer.SendAsync(LNewMail, ACancellationToken);
-                await LServer.DisconnectAsync(true, ACancellationToken);
+                var LSslOnConnect = FSmtpServerSettingsModel.IsSSL
+                    ? SecureSocketOptions.SslOnConnect
+                    : SecureSocketOptions.None;
+                
+                await FSmtpClient.ConnectAsync(FSmtpServerSettingsModel.Server, FSmtpServerSettingsModel.Port, LSslOnConnect, ACancellationToken);
+                await FSmtpClient.AuthenticateAsync(FSmtpServerSettingsModel.Account, FSmtpServerSettingsModel.Password, ACancellationToken);
+
+                await FSmtpClient.SendAsync(LNewMail, ACancellationToken);
+                await FSmtpClient.DisconnectAsync(true, ACancellationToken);
 
                 return new ActionResultModel { IsSucceeded = true };
             } 
@@ -109,9 +131,9 @@ namespace TokanPages.Backend.SmtpClient
             {
                 return new ActionResultModel
                 {
-                    IsSucceeded = false,
-                    ErrorCode = LException.HResult.ToString(),
-                    ErrorDesc = LException.Message
+                    ErrorCode = nameof(ErrorCodes.SMTP_CLIENT_ERROR),
+                    ErrorDesc = ErrorCodes.SMTP_CLIENT_ERROR,
+                    InnerMessage = LException.Message
                 };
             }
         }
@@ -140,14 +162,12 @@ namespace TokanPages.Backend.SmtpClient
         {
             try
             {
-                var LLookupClient = new LookupClient();
-
                 var LGetEmailDomain = AEmailAddress.Split("@");
                 var LEmailDomain = LGetEmailDomain[1];
 
-                var LCheckRecordA = await LLookupClient.QueryAsync(LEmailDomain, QueryType.A).ConfigureAwait(false);
-                var LCheckRecordAaaa = await LLookupClient.QueryAsync(LEmailDomain, QueryType.AAAA).ConfigureAwait(false);
-                var LCheckRecordMx = await LLookupClient.QueryAsync(LEmailDomain, QueryType.MX).ConfigureAwait(false);
+                var LCheckRecordA = await FLookupClient.QueryAsync(LEmailDomain, QueryType.A).ConfigureAwait(false);
+                var LCheckRecordAaaa = await FLookupClient.QueryAsync(LEmailDomain, QueryType.AAAA).ConfigureAwait(false);
+                var LCheckRecordMx = await FLookupClient.QueryAsync(LEmailDomain, QueryType.MX).ConfigureAwait(false);
 
                 var LRecordA = LCheckRecordA.Answers.Where(ARecord => ARecord.RecordType == DnsClient.Protocol.ResourceRecordType.A);
                 var LRecordAaaa = LCheckRecordAaaa.Answers.Where(ARecord => ARecord.RecordType == DnsClient.Protocol.ResourceRecordType.AAAA);
@@ -163,14 +183,6 @@ namespace TokanPages.Backend.SmtpClient
             {
                 return false;
             }
-        }
-
-        private async Task<MailKit.Net.Smtp.SmtpClient> ConnectAndAuthenticate(CancellationToken ACancellationToken)
-        {
-            var LServer = new MailKit.Net.Smtp.SmtpClient();
-            await LServer.ConnectAsync(FSmtpServerSettingsModel.Server, FSmtpServerSettingsModel.Port, SecureSocketOptions.SslOnConnect, ACancellationToken);
-            await LServer.AuthenticateAsync(FSmtpServerSettingsModel.Account, FSmtpServerSettingsModel.Password, ACancellationToken);
-            return LServer;
         }
     }
 }
