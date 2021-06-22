@@ -10,5 +10,7 @@ namespace TokanPages.Backend.Shared.Models
         public string ErrorCode { get; set; }
         
         public string ErrorDesc { get; set; }
+        
+        public string InnerMessage { get; set; }
     }
 }
