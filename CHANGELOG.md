@@ -1,3 +1,14 @@
+# [0.17.0](https://github.com/TomaszKandula/TokanPages/compare/v0.16.1...v0.17.0) (2021-06-23)
+
+
+### Features
+
+* add health check controller ([d098f2c](https://github.com/TomaszKandula/TokanPages/commit/d098f2c80a3f101f427151e57587c9e0f81c97fd))
+* add new error code for smtp client ([3942b22](https://github.com/TomaszKandula/TokanPages/commit/3942b22d0f1879e38f0ff7a94c6f22b8bef51da9))
+* add new inner massage property ([322062a](https://github.com/TomaszKandula/TokanPages/commit/322062aecd4c961ba5928258059090e9d818dd19))
+* add new method for connection check, use cancellation token ([4fe8bb1](https://github.com/TomaszKandula/TokanPages/commit/4fe8bb191367b19e037267683e16ae5d51116e0a))
+* add new test for health check endpoint ([25c7a3d](https://github.com/TomaszKandula/TokanPages/commit/25c7a3de8bff41ad1f7c06cc9aed47bec63022e6))
+
 ## [0.16.1](https://github.com/TomaszKandula/TokanPages/compare/v0.16.0...v0.16.1) (2021-06-17)
 
 
