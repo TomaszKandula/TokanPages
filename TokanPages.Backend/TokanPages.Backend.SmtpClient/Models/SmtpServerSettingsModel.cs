@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Backend.SmtpClient.Settings
+namespace TokanPages.Backend.SmtpClient.Models
 {
     [ExcludeFromCodeCoverage]
-    public class SmtpServerSettings
+    public class SmtpServerSettingsModel
     {
         public string Account { get; set; }
         

@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using System.Collections.Generic;
+using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.SmtpClient.Models;
 
 namespace TokanPages.Backend.SmtpClient
@@ -20,9 +22,11 @@ namespace TokanPages.Backend.SmtpClient
         
         public abstract string HtmlBody { get; set; }
         
-        public abstract Task<SendActionResult> Send();
+        public abstract Task<ActionResultModel> CanConnectAndAuthenticate(CancellationToken ACancellationToken = default);
         
-        public abstract List<CheckActionResult> IsAddressCorrect(IEnumerable<string> AEmailAddress);
+        public abstract Task<ActionResultModel> Send(CancellationToken ACancellationToken = default);
+        
+        public abstract List<EmailAddressModel> IsAddressCorrect(IEnumerable<string> AEmailAddress);
         
         public abstract Task<bool> IsDomainCorrect(string AEmailAddress);
     }

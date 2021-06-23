@@ -144,4 +144,16 @@
   <data name="CANNOT_SEND_EMAIL" xml:space="preserve">
     <value>Cannot send email</value>
   </data>
+  <data name="CANNOT_CONNECT_DATABASE" xml:space="preserve">
+    <value>Cannot connect to the database</value>
+  </data>
+  <data name="NOT_CONNECTED_TO_SMTP" xml:space="preserve">
+    <value>Client is not connected to the SMTP server</value>
+  </data>
+  <data name="NOT_AUTHENTICATED_WITH_SMTP" xml:space="preserve">
+    <value>Client is not authenticated with the SMTP server</value>
+  </data>
+  <data name="SMTP_CLIENT_ERROR" xml:space="preserve">
+    <value>SMTP client has thrown an error</value>
+  </data>
 </root>

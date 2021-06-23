@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Backend.Storage.Settings
+namespace TokanPages.Backend.Storage.Models
 {
     [ExcludeFromCodeCoverage]
-    public class AzureStorageSettings
+    public class AzureStorageSettingsModel
     {
         public string BaseUrl { get; set; }
 

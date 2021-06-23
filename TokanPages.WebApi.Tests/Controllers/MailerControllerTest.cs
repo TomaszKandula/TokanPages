@@ -60,7 +60,7 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LPayLoad = new SendNewsletterDto
             {
-                SubscriberInfo = new List<SubscriberInfo>
+                SubscriberInfo = new List<SubscriberInfoModel>
                 {
                     new ()
                     {
