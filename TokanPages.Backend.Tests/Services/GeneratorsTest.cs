@@ -178,8 +178,8 @@ namespace TokanPages.Backend.Tests.Services
 
             // Assert
             LResult.Year.Should().BeInRange(2020, 2021);
-            LResult.Month.Should().BeInRange(1, 10);
-            LResult.Day.Should().BeInRange(1, 15);
+            LResult.Month.Should().BeInRange(1, 12);
+            LResult.Day.Should().BeInRange(1, 31);
         }
     }
 }
