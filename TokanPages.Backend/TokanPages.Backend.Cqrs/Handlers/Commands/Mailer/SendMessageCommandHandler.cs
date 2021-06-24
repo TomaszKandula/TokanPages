@@ -59,7 +59,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
             };
 
             var LUrl = $"{FAzureStorageSettingsModel.BaseUrl}{Templates.CONTACT_FORM}";
-            FLogger.LogInfo($"Getting email template from URL: {LUrl}.");
+            FLogger.LogInformation($"Getting email template from URL: {LUrl}.");
 
             var LTemplateFromUrl = await FFileUtilityService.GetFileFromUrl(LUrl, ACancellationToken);
             FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, LNewValues);
