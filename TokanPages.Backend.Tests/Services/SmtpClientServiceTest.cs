@@ -33,8 +33,8 @@ namespace TokanPages.Backend.Tests.Services
                     .ConnectAsync(
                         It.IsAny<string>(), 
                         It.IsAny<int>(), 
-                        SecureSocketOptions.None, 
-                        CancellationToken.None))
+                        It.IsAny<SecureSocketOptions>(), 
+                        It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             LMockedSmtpClient
@@ -42,14 +42,14 @@ namespace TokanPages.Backend.Tests.Services
                     .AuthenticateAsync(
                         It.IsAny<string>(), 
                         It.IsAny<string>(), 
-                        CancellationToken.None))
+                        It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             LMockedSmtpClient
                 .Setup(ASmtpClient => ASmtpClient
                     .DisconnectAsync(
                         true, 
-                        CancellationToken.None))
+                        It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
             
             LMockedSmtpClient.Setup(ASmtpClient => ASmtpClient.IsConnected).Returns(true);
@@ -83,8 +83,8 @@ namespace TokanPages.Backend.Tests.Services
                     .ConnectAsync(
                         It.IsAny<string>(), 
                         It.IsAny<int>(), 
-                        SecureSocketOptions.None, 
-                        CancellationToken.None))
+                        It.IsAny<SecureSocketOptions>(), 
+                        It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             LMockedSmtpClient
@@ -92,14 +92,14 @@ namespace TokanPages.Backend.Tests.Services
                     .AuthenticateAsync(
                         It.IsAny<string>(), 
                         It.IsAny<string>(), 
-                        CancellationToken.None))
+                        It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             LMockedSmtpClient
                 .Setup(ASmtpClient => ASmtpClient
                     .DisconnectAsync(
                         true, 
-                        CancellationToken.None))
+                        It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
             
             LMockedSmtpClient.Setup(ASmtpClient => ASmtpClient.IsConnected).Returns(false);
@@ -133,8 +133,8 @@ namespace TokanPages.Backend.Tests.Services
                     .ConnectAsync(
                         It.IsAny<string>(), 
                         It.IsAny<int>(), 
-                        SecureSocketOptions.None, 
-                        CancellationToken.None))
+                        It.IsAny<SecureSocketOptions>(), 
+                        It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             LMockedSmtpClient
@@ -142,14 +142,14 @@ namespace TokanPages.Backend.Tests.Services
                     .AuthenticateAsync(
                         It.IsAny<string>(), 
                         It.IsAny<string>(), 
-                        CancellationToken.None))
+                        It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             LMockedSmtpClient
                 .Setup(ASmtpClient => ASmtpClient
                     .DisconnectAsync(
                         true, 
-                        CancellationToken.None))
+                        It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
             
             LMockedSmtpClient.Setup(ASmtpClient => ASmtpClient.IsConnected).Returns(true);
@@ -184,8 +184,8 @@ namespace TokanPages.Backend.Tests.Services
                     .ConnectAsync(
                         It.IsAny<string>(),
                         It.IsAny<int>(),
-                        SecureSocketOptions.None,
-                        CancellationToken.None))
+                        It.IsAny<SecureSocketOptions>(),
+                        It.IsAny<CancellationToken>()))
                 .Throws(new ArgumentException(ERROR_MESSAGE));
 
             LMockedSmtpClient
@@ -193,14 +193,14 @@ namespace TokanPages.Backend.Tests.Services
                     .AuthenticateAsync(
                         It.IsAny<string>(), 
                         It.IsAny<string>(), 
-                        CancellationToken.None))
+                        It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             LMockedSmtpClient
                 .Setup(ASmtpClient => ASmtpClient
                     .DisconnectAsync(
                         true, 
-                        CancellationToken.None))
+                        It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
             
             LMockedSmtpClient.Setup(ASmtpClient => ASmtpClient.IsConnected).Returns(false);
@@ -234,8 +234,8 @@ namespace TokanPages.Backend.Tests.Services
                     .ConnectAsync(
                         It.IsAny<string>(), 
                         It.IsAny<int>(), 
-                        SecureSocketOptions.None, 
-                        CancellationToken.None))
+                        It.IsAny<SecureSocketOptions>(), 
+                        It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             LMockedSmtpClient
@@ -243,14 +243,14 @@ namespace TokanPages.Backend.Tests.Services
                     .AuthenticateAsync(
                         It.IsAny<string>(), 
                         It.IsAny<string>(), 
-                        CancellationToken.None))
+                        It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             LMockedSmtpClient
                 .Setup(ASmtpClient => ASmtpClient
                     .SendAsync(
-                        new MimeMessage(),
-                        CancellationToken.None, 
+                        It.IsAny<MimeMessage>(),
+                        It.IsAny<CancellationToken>(), 
                         null))
                 .Returns(Task.CompletedTask);
             
@@ -258,7 +258,7 @@ namespace TokanPages.Backend.Tests.Services
                 .Setup(ASmtpClient => ASmtpClient
                     .DisconnectAsync(
                         true, 
-                        CancellationToken.None))
+                        It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             var LSmtpClientService = new SmtpClientService(
@@ -268,9 +268,9 @@ namespace TokanPages.Backend.Tests.Services
             {
                 Subject = StringProvider.GetRandomString(),
                 From = StringProvider.GetRandomEmail(),
-                Tos = new List<string> {StringProvider.GetRandomEmail()},
-                Ccs = null,
-                Bccs = null,
+                Tos = new List<string> { StringProvider.GetRandomEmail() },
+                Ccs = new List<string> { StringProvider.GetRandomEmail() },
+                Bccs = new List<string> { StringProvider.GetRandomEmail() },
                 PlainText = StringProvider.GetRandomString()
             };
 
@@ -298,8 +298,8 @@ namespace TokanPages.Backend.Tests.Services
                     .ConnectAsync(
                         It.IsAny<string>(), 
                         It.IsAny<int>(), 
-                        SecureSocketOptions.None, 
-                        CancellationToken.None))
+                        It.IsAny<SecureSocketOptions>(), 
+                        It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             LMockedSmtpClient
@@ -307,14 +307,14 @@ namespace TokanPages.Backend.Tests.Services
                     .AuthenticateAsync(
                         It.IsAny<string>(), 
                         It.IsAny<string>(), 
-                        CancellationToken.None))
+                        It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
             LMockedSmtpClient
                 .Setup(ASmtpClient => ASmtpClient
                     .SendAsync(
                         new MimeMessage(),
-                        CancellationToken.None, 
+                        It.IsAny<CancellationToken>(), 
                         null))
                 .Returns(Task.CompletedTask);
             
@@ -322,7 +322,7 @@ namespace TokanPages.Backend.Tests.Services
                 .Setup(ASmtpClient => ASmtpClient
                     .DisconnectAsync(
                         true, 
-                        CancellationToken.None))
+                        It.IsAny<CancellationToken>()))
                 .Throws(new Exception(ERROR_MESSAGE));
             
             var LSmtpClientService = new SmtpClientService(
@@ -441,7 +441,7 @@ namespace TokanPages.Backend.Tests.Services
                         It.IsAny<string>(), 
                         It.IsAny<QueryType>(), 
                         It.IsAny<QueryClass>(), 
-                        CancellationToken.None))
+                        It.IsAny<CancellationToken>()))
                 .ReturnsAsync(LMockedDnsQueryResponse.Object);
     
             var LSmtpClientService = new SmtpClientService(
@@ -481,7 +481,7 @@ namespace TokanPages.Backend.Tests.Services
                         It.IsAny<string>(), 
                         It.IsAny<QueryType>(), 
                         It.IsAny<QueryClass>(), 
-                        CancellationToken.None))
+                        It.IsAny<CancellationToken>()))
                 .ReturnsAsync(LMockedDnsQueryResponse.Object);
     
             var LSmtpClientService = new SmtpClientService(
