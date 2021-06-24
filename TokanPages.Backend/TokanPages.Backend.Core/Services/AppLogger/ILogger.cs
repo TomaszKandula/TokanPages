@@ -21,18 +21,18 @@
         /// Information message to log storage with current datetime stamp.
         /// </summary>
         /// <param name="AMessage"></param>
-        void LogInfo(string AMessage);
+        void LogInformation(string AMessage);
 
         /// <summary>
         /// Warning message to log storage with current datetime stamp.
         /// </summary>
         /// <param name="AMessage"></param>
-        void LogWarn(string AMessage);
+        void LogWarning(string AMessage);
 
         /// <summary>
         /// Fatal error information to log storage with current datetime stamp.
         /// </summary>
         /// <param name="AMessage"></param>
-        void LogFatality(string AMessage);
+        void LogCriticalError(string AMessage);
     }
 }

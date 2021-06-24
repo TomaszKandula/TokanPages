@@ -37,7 +37,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 .Returns(LCheckActionResult);
             
             LMockedSmtpClientService
-                .Setup(ASmtpClient => ASmtpClient.IsDomainCorrect(It.IsAny<string>()))
+                .Setup(ASmtpClient => ASmtpClient.IsDomainCorrect(It.IsAny<string>(), CancellationToken.None))
                 .Returns(Task.FromResult(true));
             
             var LVerifyEmailAddressCommandHandler = new VerifyEmailAddressCommandHandler(LMockedSmtpClientService.Object);

@@ -27,9 +27,9 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 FirstName = StringProvider.GetRandomString(),
                 LastName = StringProvider.GetRandomString(),
                 EmailAddress = StringProvider.GetRandomEmail(),
-                Registered = DateTimeProvider.GetRandom(),
-                LastLogged = DateTimeProvider.GetRandom(),
-                LastUpdated = DateTimeProvider.GetRandom(),
+                Registered = DateTimeProvider.GetRandomDateTime(),
+                LastLogged = DateTimeProvider.GetRandomDateTime(),
+                LastUpdated = DateTimeProvider.GetRandomDateTime(),
                 AvatarName = StringProvider.GetRandomString(),
                 ShortBio = StringProvider.GetRandomString()
             };

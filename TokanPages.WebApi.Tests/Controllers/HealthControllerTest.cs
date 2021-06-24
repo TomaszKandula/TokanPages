@@ -45,7 +45,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         {
             // Arrange
             const string REQUEST = "/api/v1/health/status/";
-            var LWebAppFactory = new CustomWebApplicationFactory<TestStartup>().WithWebHostBuilder(ABuilder =>
+            var LWebAppFactory = FWebAppFactory.WithWebHostBuilder(ABuilder =>
             {
                 ABuilder.ConfigureAppConfiguration((AContext, AConfigBuilder) =>
                 {
@@ -76,7 +76,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         {
             // Arrange
             const string REQUEST = "/api/v1/health/status/";
-            var LWebAppFactory = new CustomWebApplicationFactory<TestStartup>().WithWebHostBuilder(ABuilder =>
+            var LWebAppFactory = FWebAppFactory.WithWebHostBuilder(ABuilder =>
             {
                 ABuilder.ConfigureAppConfiguration((AContext, AConfigBuilder) =>
                 {

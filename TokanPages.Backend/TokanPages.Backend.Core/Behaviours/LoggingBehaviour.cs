@@ -15,9 +15,9 @@ namespace TokanPages.Backend.Core.Behaviours
 
         public async Task<TResponse> Handle(TRequest ARequest, CancellationToken ACancellationToken, RequestHandlerDelegate<TResponse> ANext)
         {
-            FLogger.LogInfo($"Begin: Handle {typeof(TRequest).Name}");
+            FLogger.LogInformation($"Begin: Handle {typeof(TRequest).Name}");
             var LResponse = await ANext();
-            FLogger.LogInfo($"Finish: Handle {typeof(TResponse).Name}");
+            FLogger.LogInformation($"Finish: Handle {typeof(TResponse).Name}");
             return LResponse;
         }
     }

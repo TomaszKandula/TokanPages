@@ -158,16 +158,16 @@ namespace TokanPages.Backend.SmtpClient
             return LResults;
         }
 
-        public override async Task<bool> IsDomainCorrect(string AEmailAddress)
+        public override async Task<bool> IsDomainCorrect(string AEmailAddress, CancellationToken ACancellationToken = default)
         {
             try
             {
                 var LGetEmailDomain = AEmailAddress.Split("@");
                 var LEmailDomain = LGetEmailDomain[1];
 
-                var LCheckRecordA = await FLookupClient.QueryAsync(LEmailDomain, QueryType.A).ConfigureAwait(false);
-                var LCheckRecordAaaa = await FLookupClient.QueryAsync(LEmailDomain, QueryType.AAAA).ConfigureAwait(false);
-                var LCheckRecordMx = await FLookupClient.QueryAsync(LEmailDomain, QueryType.MX).ConfigureAwait(false);
+                var LCheckRecordA = await FLookupClient.QueryAsync(LEmailDomain, QueryType.A, QueryClass.IN, ACancellationToken);
+                var LCheckRecordAaaa = await FLookupClient.QueryAsync(LEmailDomain, QueryType.AAAA, QueryClass.IN, ACancellationToken);
+                var LCheckRecordMx = await FLookupClient.QueryAsync(LEmailDomain, QueryType.MX, QueryClass.IN, ACancellationToken);
 
                 var LRecordA = LCheckRecordA.Answers.Where(ARecord => ARecord.RecordType == DnsClient.Protocol.ResourceRecordType.A);
                 var LRecordAaaa = LCheckRecordAaaa.Answers.Where(ARecord => ARecord.RecordType == DnsClient.Protocol.ResourceRecordType.AAAA);

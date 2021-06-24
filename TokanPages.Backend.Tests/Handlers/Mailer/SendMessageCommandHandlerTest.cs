@@ -1,15 +1,18 @@
 using Xunit;
 using Moq;
+using Moq.Protected;
 using FluentAssertions;
+using System;
+using System.Net;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Storage.Models;
+using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Core.Services.AppLogger;
-using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Core.Services.TemplateHelper;
 using TokanPages.Backend.Core.Services.DateTimeService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
@@ -35,9 +38,9 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             };
 
             var LMockedLogger = new Mock<ILogger>();
+            var LMockedHttpMessageHandler = new Mock<HttpMessageHandler>();
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();
             var LMockedTemplateHelper = new Mock<ITemplateHelper>();
-            var LMockedFileUtilityService = new Mock<IFileUtilityService>();
             var LMockedAzureStorageSettings = new Mock<AzureStorageSettingsModel>();
             var LDateTimeService = new Mock<IDateTimeService>();
 
@@ -46,13 +49,29 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
                 .Returns(Task.FromResult(LSendActionResult));
 
+            LMockedHttpMessageHandler
+                .Protected()
+                .Setup<Task<HttpResponseMessage>>(
+                    "SendAsync", 
+                    ItExpr.IsAny<HttpRequestMessage>(), 
+                    ItExpr.IsAny<CancellationToken>())
+                .ReturnsAsync(new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.OK
+                });
+
+            var LHttpClient = new HttpClient(LMockedHttpMessageHandler.Object)
+            {
+                BaseAddress = new Uri("http://localhost:5000/")
+            };
+            
             var LSendMessageCommandHandler = new SendMessageCommandHandler(
+                LMockedLogger.Object,
+                LHttpClient,
                 LMockedSmtpClientService.Object, 
                 LMockedTemplateHelper.Object, 
-                LMockedFileUtilityService.Object, 
                 LDateTimeService.Object,
-                LMockedAzureStorageSettings.Object,
-                LMockedLogger.Object);
+                LMockedAzureStorageSettings.Object);
 
             // Act
             var LResult = await LSendMessageCommandHandler.Handle(LSendMessageCommand, CancellationToken.None);

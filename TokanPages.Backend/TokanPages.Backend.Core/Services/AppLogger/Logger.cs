@@ -1,37 +1,39 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using Serilog;
 
 namespace TokanPages.Backend.Core.Services.AppLogger
 {
+    [ExcludeFromCodeCoverage]
     public sealed class Logger : ILogger
     {
         public void LogDebug(string AMessage)
         {
-            Trace.WriteLine($"[Debug Trace]: {AMessage}");
+            Debug.WriteLine($"[{nameof(Logger)} output]: {AMessage}");
             Log.Debug("{AMessage}", AMessage);
         }
 
-        public void LogInfo(string AMessage)
+        public void LogInformation(string AMessage)
         {
-            Trace.WriteLine($"[Info Trace]: {AMessage}");
+            Debug.WriteLine($"[{nameof(Logger)} output]: {AMessage}");
             Log.Information("{AMessage}", AMessage);
         }
 
-        public void LogWarn(string AMessage)
+        public void LogWarning(string AMessage)
         {
-            Trace.WriteLine($"[Warning Trace]: {AMessage}");
+            Debug.WriteLine($"[{nameof(Logger)} output]: {AMessage}");
             Log.Warning("{AMessage}", AMessage);
         }
 
         public void LogError(string AMessage)
         {
-            Trace.WriteLine($"[Error Trace]: {AMessage}");
+            Debug.WriteLine($"[{nameof(Logger)} output]: {AMessage}");
             Log.Error("{AMessage}", AMessage);
         }
 
-        public void LogFatality(string AMessage)
+        public void LogCriticalError(string AMessage)
         {
-            Trace.WriteLine($"[Critical Error Trace]: {AMessage}");
+            Debug.WriteLine($"[{nameof(Logger)} output]: {AMessage}");
             Log.Fatal("{AMessage}", AMessage);
         }
     }

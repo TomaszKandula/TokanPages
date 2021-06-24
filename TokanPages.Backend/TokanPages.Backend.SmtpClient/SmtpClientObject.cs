@@ -28,6 +28,6 @@ namespace TokanPages.Backend.SmtpClient
         
         public abstract List<EmailAddressModel> IsAddressCorrect(IEnumerable<string> AEmailAddress);
         
-        public abstract Task<bool> IsDomainCorrect(string AEmailAddress);
+        public abstract Task<bool> IsDomainCorrect(string AEmailAddress, CancellationToken ACancellationToken = default);
     }
 }

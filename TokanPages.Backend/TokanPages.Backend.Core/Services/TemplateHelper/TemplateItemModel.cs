@@ -1,6 +1,6 @@
-﻿namespace TokanPages.Backend.Core.Services.TemplateHelper.Model
+﻿namespace TokanPages.Backend.Core.Services.TemplateHelper
 {
-    public class Item
+    public class TemplateItemModel
     {
         public string Tag { get; set; }
 

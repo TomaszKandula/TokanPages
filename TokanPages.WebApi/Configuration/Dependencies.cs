@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using System.Reflection;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Hosting;
@@ -16,7 +17,6 @@ using TokanPages.Backend.Core.Behaviours;
 using TokanPages.Backend.SmtpClient.Models;
 using TokanPages.Backend.Database.Initializer;
 using TokanPages.Backend.Core.Services.AppLogger;
-using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
 using TokanPages.Backend.Core.Services.TemplateHelper;
 using TokanPages.Backend.Core.Services.DateTimeService;
@@ -75,11 +75,11 @@ namespace TokanPages.WebApi.Configuration
         {
             AServices.AddHttpContextAccessor();
 
+            AServices.AddScoped<HttpClient>();
             AServices.AddScoped<ISmtpClient, SmtpClient>();
             AServices.AddScoped<ILookupClient, LookupClient>();
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
-            AServices.AddScoped<IFileUtilityService, FileUtilityService>();
             AServices.AddScoped<IDateTimeService, DateTimeService>();
             AServices.AddScoped<IUserProvider, UserProvider>();
             AServices.AddScoped<IDbInitializer, DbInitializer>();

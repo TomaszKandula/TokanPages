@@ -1,17 +1,16 @@
-﻿using System.Threading;
+﻿using System.Net.Http;
+using System.Threading;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Globalization;
 using TokanPages.Backend.Shared;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.Services.AppLogger;
-using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Core.Services.TemplateHelper;
 using TokanPages.Backend.Core.Services.DateTimeService;
-using TokanPages.Backend.Core.Services.TemplateHelper.Model;
 using Templates = TokanPages.Backend.Shared.Constants.Emails.Templates;
 using MediatR;
 
@@ -21,26 +20,25 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
     {
         private readonly ILogger FLogger;
 
+        private readonly HttpClient FHttpClient;
+
         private readonly ISmtpClientService FSmtpClientService;
         
         private readonly ITemplateHelper FTemplateHelper;
-        
-        private readonly IFileUtilityService FFileUtilityService;
         
         private readonly IDateTimeService FDateTimeService;
         
         private readonly AzureStorageSettingsModel FAzureStorageSettingsModel;
         
-        public SendMessageCommandHandler(ISmtpClientService ASmtpClientService, ITemplateHelper ATemplateHelper, 
-            IFileUtilityService AFileUtilityService, IDateTimeService ADateTimeService, 
-            AzureStorageSettingsModel AZureStorageSettingsModel, ILogger ALogger)
+        public SendMessageCommandHandler(ILogger ALogger, HttpClient AHttpClient, ISmtpClientService ASmtpClientService, 
+            ITemplateHelper ATemplateHelper, IDateTimeService ADateTimeService, AzureStorageSettingsModel AAzureStorageSettingsModel)
         {
+            FLogger = ALogger;
+            FHttpClient = AHttpClient;
             FSmtpClientService = ASmtpClientService;
             FTemplateHelper = ATemplateHelper;
-            FFileUtilityService = AFileUtilityService;
             FDateTimeService = ADateTimeService;
-            FAzureStorageSettingsModel = AZureStorageSettingsModel;
-            FLogger = ALogger;
+            FAzureStorageSettingsModel = AAzureStorageSettingsModel;
         }
 
         public override async Task<Unit> Handle(SendMessageCommand ARequest, CancellationToken ACancellationToken)
@@ -49,7 +47,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
             FSmtpClientService.Tos = new List<string> { Constants.Emails.Addresses.CONTACT };
             FSmtpClientService.Subject = $"New user message from {ARequest.FirstName}";
 
-            var LNewValues = new List<Item>
+            var LNewValues = new List<TemplateItemModel>
             {
                 new () { Tag = "{FIRST_NAME}", Value = ARequest.FirstName },
                 new () { Tag = "{LAST_NAME}", Value = ARequest.LastName },
@@ -59,10 +57,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
             };
 
             var LUrl = $"{FAzureStorageSettingsModel.BaseUrl}{Templates.CONTACT_FORM}";
-            FLogger.LogInfo($"Getting email template from URL: {LUrl}.");
+            FLogger.LogInformation($"Getting email template from URL: {LUrl}.");
 
-            var LTemplateFromUrl = await FFileUtilityService.GetFileFromUrl(LUrl, ACancellationToken);
-            FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, LNewValues);
+            var LTemplateFromUrl = await FHttpClient.GetAsync(LUrl, ACancellationToken);
+            var LTemplate = await LTemplateFromUrl.Content.ReadAsStringAsync(ACancellationToken);
+            FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplate, LNewValues);
 
             var LResult = await FSmtpClientService.Send(ACancellationToken);
             if (!LResult.IsSucceeded)
