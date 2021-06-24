@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.Shared;
@@ -8,7 +9,6 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.Services.AppLogger;
-using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Core.Services.TemplateHelper;
 using Templates = TokanPages.Backend.Shared.Constants.Emails.Templates;
 using MediatR;
@@ -19,24 +19,23 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
     {
         private readonly ILogger FLogger;
 
+        private readonly HttpClient FHttpClient;
+        
         private readonly ISmtpClientService FSmtpClientService;
         
         private readonly ITemplateHelper FTemplateHelper;
-        
-        private readonly IFileUtilityService FFileUtilityService;
         
         private readonly AzureStorageSettingsModel FAzureStorageSettingsModel;
         
         private readonly ApplicationPathsModel FApplicationPathsModel;
 
-        public SendNewsletterCommandHandler(ILogger ALogger, ISmtpClientService ASmtpClientService, 
-            ITemplateHelper ATemplateHelper, IFileUtilityService AFileUtilityService, 
-            AzureStorageSettingsModel AAzureStorageSettingsModel, ApplicationPathsModel AApplicationPathsModel)
+        public SendNewsletterCommandHandler(ILogger ALogger, HttpClient AHttpClient, ISmtpClientService ASmtpClientService, 
+            ITemplateHelper ATemplateHelper, AzureStorageSettingsModel AAzureStorageSettingsModel, ApplicationPathsModel AApplicationPathsModel)
         {
             FLogger = ALogger;
+            FHttpClient = AHttpClient;
             FSmtpClientService = ASmtpClientService;
             FTemplateHelper = ATemplateHelper;
-            FFileUtilityService = AFileUtilityService;
             FAzureStorageSettingsModel = AAzureStorageSettingsModel;
             FApplicationPathsModel = AApplicationPathsModel;
         }
@@ -68,8 +67,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 var LUrl = $"{FAzureStorageSettingsModel.BaseUrl}{Templates.NEWSLETTER}";
                 FLogger.LogInformation($"Getting newsletter template from URL: {LUrl}.");
                 
-                var LTemplateFromUrl = await FFileUtilityService.GetFileFromUrl(LUrl, ACancellationToken);
-                FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplateFromUrl, LNewValues);
+                var LTemplateFromUrl = await FHttpClient.GetAsync(LUrl, ACancellationToken);
+                var LTemplate = await LTemplateFromUrl.Content.ReadAsStringAsync(ACancellationToken);
+                FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplate, LNewValues);
 
                 var LResult = await FSmtpClientService.Send(ACancellationToken);
                 if (!LResult.IsSucceeded) 
