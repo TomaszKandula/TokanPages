@@ -18,7 +18,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
             var LIsDomainCorrect = false;
             
             if (LIsAddressCorrect[0].IsValid)
-                LIsDomainCorrect = await FSmtpClientService.IsDomainCorrect(ARequest.Email);
+                LIsDomainCorrect = await FSmtpClientService.IsDomainCorrect(ARequest.Email, ACancellationToken);
 
             return new VerifyEmailAddressCommandResult
             {
