@@ -10,7 +10,6 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Core.Services.TemplateHelper;
-using TokanPages.Backend.Core.Services.TemplateHelper.Model;
 using Templates = TokanPages.Backend.Shared.Constants.Emails.Templates;
 using MediatR;
 
@@ -59,7 +58,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 
                 var LUpdateSubscriberLink = LUpdateSubscriberBaseLink + LSubscriber.Id;
                 var LUnsubscribeLink = LUnsubscribeBaseLink + LSubscriber.Id;
-                var LNewValues = new List<Item>
+                var LNewValues = new List<TemplateItemModel>
                 {
                     new () { Tag = "{CONTENT}", Value = ARequest.Message },
                     new () { Tag = "{UPDATE_EMAIL_LINK}", Value = LUpdateSubscriberLink },

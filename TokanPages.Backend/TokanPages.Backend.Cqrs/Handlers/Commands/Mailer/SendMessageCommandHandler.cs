@@ -11,7 +11,6 @@ using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.FileUtility;
 using TokanPages.Backend.Core.Services.TemplateHelper;
 using TokanPages.Backend.Core.Services.DateTimeService;
-using TokanPages.Backend.Core.Services.TemplateHelper.Model;
 using Templates = TokanPages.Backend.Shared.Constants.Emails.Templates;
 using MediatR;
 
@@ -49,7 +48,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
             FSmtpClientService.Tos = new List<string> { Constants.Emails.Addresses.CONTACT };
             FSmtpClientService.Subject = $"New user message from {ARequest.FirstName}";
 
-            var LNewValues = new List<Item>
+            var LNewValues = new List<TemplateItemModel>
             {
                 new () { Tag = "{FIRST_NAME}", Value = ARequest.FirstName },
                 new () { Tag = "{LAST_NAME}", Value = ARequest.LastName },
