@@ -2,6 +2,7 @@ using Moq;
 using Xunit;
 using FluentAssertions;
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.SmtpClient.Models;
 using MailKit.Net.Smtp;
 using MailKit.Security;
+using DnsClient.Protocol;
 using DnsClient;
 using MimeKit;
 
@@ -410,6 +412,88 @@ namespace TokanPages.Backend.Tests.Services
 
             LResult[0].IsValid.Should().BeFalse();
             LResult[1].IsValid.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task GivenDomainWithMxAndARecords_WhenCheckDomain_ShouldReturnTrue()
+        {
+            // Arrange
+            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LMockedLookupClient = new Mock<ILookupClient>();
+            var LMockedSmtpClient = new Mock<ISmtpClient>();
+            var LMockedDnsQueryResponse = new Mock<IDnsQueryResponse>();
+
+            const string LOOKUP_DOMAIN = "hotmail.com";
+            IReadOnlyList<DnsResourceRecord> LDnsResourceRecord = new[]
+            {
+                new ARecord(new ResourceRecordInfo(LOOKUP_DOMAIN, ResourceRecordType.A, QueryClass.IN, 3600, 1024), IPAddress.None),
+                new ARecord(new ResourceRecordInfo(LOOKUP_DOMAIN, ResourceRecordType.AAAA, QueryClass.IN, 3600, 1024), IPAddress.None),
+                new ARecord(new ResourceRecordInfo(LOOKUP_DOMAIN, ResourceRecordType.MX, QueryClass.IN, 3600, 1024), IPAddress.None),
+            };
+            
+            LMockedDnsQueryResponse
+                .SetupGet(ADnsQueryResponse => ADnsQueryResponse.Answers)
+                .Returns(LDnsResourceRecord);
+    
+            LMockedLookupClient
+                .Setup(ALookupClient=> ALookupClient
+                    .QueryAsync(
+                        It.IsAny<string>(), 
+                        It.IsAny<QueryType>(), 
+                        It.IsAny<QueryClass>(), 
+                        CancellationToken.None))
+                .ReturnsAsync(LMockedDnsQueryResponse.Object);
+    
+            var LSmtpClientService = new SmtpClientService(
+                LMockedSmtpClient.Object,
+                LMockedLookupClient.Object,
+                LSmtpServerSettingsModel); 
+    
+            // Act
+            var LResult = await LSmtpClientService.IsDomainCorrect(StringProvider.GetRandomEmail(9, LOOKUP_DOMAIN));
+    
+            // Assert
+            LResult.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task GivenDomainWithOnlyCaaRecord_WhenCheckDomain_ShouldReturnFalse()
+        {
+            // Arrange
+            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LMockedLookupClient = new Mock<ILookupClient>();
+            var LMockedSmtpClient = new Mock<ISmtpClient>();
+            var LMockedDnsQueryResponse = new Mock<IDnsQueryResponse>();
+
+            const string LOOKUP_DOMAIN = "hotmail.com";
+            IReadOnlyList<DnsResourceRecord> LDnsResourceRecord = new[]
+            {
+                new ARecord(new ResourceRecordInfo(LOOKUP_DOMAIN, ResourceRecordType.CAA, QueryClass.IN, 3600, 1024), IPAddress.None),
+            };
+            
+            LMockedDnsQueryResponse
+                .SetupGet(ADnsQueryResponse => ADnsQueryResponse.Answers)
+                .Returns(LDnsResourceRecord);
+    
+            LMockedLookupClient
+                .Setup(ALookupClient=> ALookupClient
+                    .QueryAsync(
+                        It.IsAny<string>(), 
+                        It.IsAny<QueryType>(), 
+                        It.IsAny<QueryClass>(), 
+                        CancellationToken.None))
+                .ReturnsAsync(LMockedDnsQueryResponse.Object);
+    
+            var LSmtpClientService = new SmtpClientService(
+                LMockedSmtpClient.Object,
+                LMockedLookupClient.Object,
+                LSmtpServerSettingsModel); 
+    
+            // Act
+            var LResult = await LSmtpClientService.IsDomainCorrect(StringProvider.GetRandomEmail(9, LOOKUP_DOMAIN));
+    
+            // Assert
+            LResult.Should().BeFalse();
         }
     }
 }
