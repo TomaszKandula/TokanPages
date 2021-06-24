@@ -4,7 +4,7 @@ namespace TokanPages.Backend.Core.Generators
 {
     public abstract class DateTimeProvider : BaseClass
     {
-        public static DateTime GetRandom(DateTime? AMin = null, DateTime? AMax = null, int ADefaultYear = 2020)
+        public static DateTime GetRandomDateTime(DateTime? AMin = null, DateTime? AMax = null, int ADefaultYear = 2020)
         {
             AMin ??= new DateTime(ADefaultYear, 1, 1); 
             AMax ??= new DateTime(ADefaultYear, 12, 31); 

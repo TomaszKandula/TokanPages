@@ -51,7 +51,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 IsActivated = true,
                 EmailAddress = StringProvider.GetRandomEmail(),
                 UserAlias = StringProvider.GetRandomString(),
-                Registered = DateTimeProvider.GetRandom(),
+                Registered = DateTimeProvider.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null
             };
@@ -131,7 +131,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 IsActivated = true,
                 EmailAddress = StringProvider.GetRandomEmail(),
                 UserAlias = StringProvider.GetRandomString(),
-                Registered = DateTimeProvider.GetRandom(),
+                Registered = DateTimeProvider.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null
             };
@@ -206,7 +206,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 IsActivated = true,
                 EmailAddress = StringProvider.GetRandomEmail(),
                 UserAlias = StringProvider.GetRandomString(),
-                Registered = DateTimeProvider.GetRandom(),
+                Registered = DateTimeProvider.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null
             };
@@ -291,7 +291,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 IsActivated = true,
                 EmailAddress = StringProvider.GetRandomEmail(),
                 UserAlias = StringProvider.GetRandomString(),
-                Registered = DateTimeProvider.GetRandom(),
+                Registered = DateTimeProvider.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null
             };
@@ -368,7 +368,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 IsActivated = true,
                 EmailAddress = StringProvider.GetRandomEmail(),
                 UserAlias = StringProvider.GetRandomString(),
-                Registered = DateTimeProvider.GetRandom(),
+                Registered = DateTimeProvider.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null
             };
@@ -465,7 +465,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 IsActivated = true,
                 EmailAddress = StringProvider.GetRandomEmail(),
                 UserAlias = StringProvider.GetRandomString(),
-                Registered = DateTimeProvider.GetRandom(),
+                Registered = DateTimeProvider.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null
             };
@@ -534,7 +534,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 IsActivated = true,
                 EmailAddress = StringProvider.GetRandomEmail(),
                 UserAlias = StringProvider.GetRandomString(),
-                Registered = DateTimeProvider.GetRandom(),
+                Registered = DateTimeProvider.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null
             };

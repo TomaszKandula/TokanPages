@@ -4,7 +4,7 @@ namespace TokanPages.Backend.Core.Generators
 {
     public abstract class StreamProvider : BaseClass
     {
-        public static MemoryStream GetRandom(int ASizeInKb = 12)
+        public static MemoryStream GetRandomStream(int ASizeInKb = 12)
             => new MemoryStream(GetRandomByteArray(ASizeInKb));
         
         private static byte[] GetRandomByteArray(int ASizeInKb = 12)
