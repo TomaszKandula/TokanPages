@@ -53,8 +53,8 @@ namespace TokanPages.WebApi
                     AConfig.WriteTo.Sentry(ASentry =>
                     {
                         ASentry.SendDefaultPii = true;
-                        ASentry.MinimumBreadcrumbLevel = LogEventLevel.Information;
-                        ASentry.MinimumEventLevel = LogEventLevel.Information;
+                        ASentry.MinimumBreadcrumbLevel = LogEventLevel.Debug;
+                        ASentry.MinimumEventLevel = LogEventLevel.Warning;
                         ASentry.AttachStacktrace = true;
                         ASentry.Debug = true;
                         ASentry.DiagnosticLevel = SentryLevel.Error;
