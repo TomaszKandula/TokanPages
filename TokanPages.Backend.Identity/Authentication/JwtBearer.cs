@@ -3,6 +3,7 @@ using System.Text;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
@@ -12,6 +13,7 @@ using TokanPages.Backend.Identity.Authorization;
 
 namespace TokanPages.Backend.Identity.Authentication
 {
+	[ExcludeFromCodeCoverage]
 	public class JwtBearer
     { 
 	    public static void Configure(IServiceCollection AServices, IConfiguration AConfiguration)
