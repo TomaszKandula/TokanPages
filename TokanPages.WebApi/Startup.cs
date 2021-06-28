@@ -1,5 +1,8 @@
+using System;
+using System.IO;
 using System.Net;
 using System.Linq;
+using System.Reflection;
 using System.Net.Sockets;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.OpenApi.Models;
@@ -36,10 +39,7 @@ namespace TokanPages.WebApi
             Dependencies.Register(AServices, FConfiguration, FEnvironment);
             
             if (FEnvironment.IsDevelopment())
-            {
-                AServices.AddSwaggerGen(AOption =>
-                    AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "TokanPagesApi", Version = "v1" }));
-            }
+                SetupSwaggerOptions(AServices);
 
             if (!FEnvironment.IsProduction() && !FEnvironment.IsStaging()) 
                 return;
@@ -62,26 +62,80 @@ namespace TokanPages.WebApi
             });
         }
 
-        public void Configure(IApplicationBuilder AApplication)
+        public void Configure(IApplicationBuilder ABuilder)
         {
-            AApplication.UseSerilogRequestLogging();
+            ABuilder.UseSerilogRequestLogging();
 
-            AApplication.UseMiddleware<CustomCors>();
-            AApplication.UseMiddleware<CustomException>();
+            ABuilder.UseMiddleware<CustomCors>();
+            ABuilder.UseMiddleware<CustomException>();
             
-            AApplication.UseHttpsRedirection();
-            AApplication.UseForwardedHeaders();
-            AApplication.UseResponseCompression();
+            ABuilder.UseHttpsRedirection();
+            ABuilder.UseForwardedHeaders();
+            ABuilder.UseResponseCompression();
 
-            AApplication.UseRouting();
-            AApplication.UseEndpoints(AEndpoints => AEndpoints.MapControllers());
+            ABuilder.UseRouting();
+            ABuilder.UseAuthentication();
+            ABuilder.UseAuthorization();
+            ABuilder.UseEndpoints(AEndpoints => AEndpoints.MapControllers());
 
             if (!FEnvironment.IsDevelopment()) 
                 return;
             
-            AApplication.UseSwagger();
-            AApplication.UseSwaggerUI(AOption =>
-                AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "TokanPagesApi version 1"));
+            ABuilder.UseSwagger();
+            SetupSwaggerUi(ABuilder);
+        }
+
+        private static void SetupSwaggerOptions(IServiceCollection AServices)
+        {
+            AServices.AddSwaggerGen(AOption =>
+            {
+                AOption.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "TokanPages API", 
+                    Version = "v1"
+                });
+                
+                AOption.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Description = "Please provide JWT",
+                    BearerFormat = "JWT",
+                    Scheme = "bearer",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+                
+                AOption.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference 
+                            {
+                                Id = "Bearer",
+                                Type = ReferenceType.SecurityScheme
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
+                
+                // Set the comments path for the Swagger JSON and UI.
+                var LXmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var LXmlPath = Path.Combine(AppContext.BaseDirectory, LXmlFile);
+                AOption.IncludeXmlComments(LXmlPath);
+                
+            });
+        }
+
+        private void SetupSwaggerUi(IApplicationBuilder ABuilder)
+        {
+            ABuilder.UseSwaggerUI(AOption =>
+            {
+                AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "TokanPages API");
+                AOption.OAuthAppName("TokanPages");
+                AOption.OAuthClientSecret(FConfiguration.GetSection("IdentityServer")["WebSecret"]);
+            });
         }
     }
 }
