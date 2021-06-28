@@ -11,6 +11,8 @@ namespace TokanPages.WebApi.Tests
     [UsedImplicitly]
     public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<TTestStartup> where TTestStartup : class
     {
+        public string WebSecret { get; private set; }
+        
         protected override IWebHostBuilder CreateWebHostBuilder()
         {
             var LBuilder = WebHost.CreateDefaultBuilder()
@@ -24,6 +26,8 @@ namespace TokanPages.WebApi.Tests
                         .Build();
                 
                     AConfig.AddConfiguration(LTestConfig);
+                    var LConfig = AConfig.Build();
+                    WebSecret = LConfig.GetValue<string>("IdentityServer:WebSecret");
                 })
                 .UseStartup<TTestStartup>()
                 .UseTestServer();
