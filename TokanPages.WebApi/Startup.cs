@@ -119,12 +119,6 @@ namespace TokanPages.WebApi
                         Array.Empty<string>()
                     }
                 });
-                
-                // Set the comments path for the Swagger JSON and UI.
-                var LXmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var LXmlPath = Path.Combine(AppContext.BaseDirectory, LXmlFile);
-                AOption.IncludeXmlComments(LXmlPath);
-                
             });
         }
 
