@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TokanPages.Backend.Database;
 using TokanPages.WebApi.Middleware;
 using TokanPages.WebApi.Configuration;
-using TokanPages.Backend.Database;
 
 namespace TokanPages.WebApi.Tests
 {
