@@ -16,6 +16,7 @@ using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Core.Behaviours;
 using TokanPages.Backend.SmtpClient.Models;
 using TokanPages.Backend.Database.Initializer;
+using TokanPages.Backend.Identity.Authentication;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
 using TokanPages.Backend.Core.Services.TemplateHelper;
@@ -46,6 +47,7 @@ namespace TokanPages.WebApi.Configuration
             SetupServices(AServices);
             SetupValidators(AServices);
             SetupMediatR(AServices);
+            JwtBearer.Configure(AServices, AConfiguration);
         }
 
         private static void SetupAppSettings(IServiceCollection AServices, IConfiguration AConfiguration) 
