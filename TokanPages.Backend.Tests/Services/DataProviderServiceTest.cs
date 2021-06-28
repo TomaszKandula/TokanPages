@@ -1,6 +1,11 @@
-using System;
 using Xunit;
 using FluentAssertions;
+using System;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using TokanPages.Backend.Identity.Authorization;
+using TokanPages.Backend.Database.Initializer.Data;
 using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Services
@@ -184,6 +189,47 @@ namespace TokanPages.Backend.Tests.Services
             LResult.Year.Should().BeInRange(2020, 2021);
             LResult.Month.Should().BeInRange(1, 12);
             LResult.Day.Should().BeInRange(1, 31);
+        }
+
+        [Fact]
+        public void GivenClaims_WhenInvokeGenerateJwt_ShouldReturnValidJwt()
+        {
+            // Arrange
+            const string WEB_SECRET = "0e723112-72e2-43fc-a348-ddb0147554f5";
+            const string ISSUER = "www.jwt-issuer.com";
+            const string AUDIENCE = "www.some-api.com";
+
+            var LUserAlias = FDataProviderService.GetRandomString();
+            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LGetValidClaims = new ClaimsIdentity(new[]
+            {
+                new Claim(Claims.UserAlias, LUserAlias),
+                new Claim(Claims.Roles, Roles.EverydayUser),
+                new Claim(Claims.UserId, User1.FId.ToString()),
+                new Claim(Claims.FirstName, User1.FIRST_NAME),
+                new Claim(Claims.LastName, User1.LAST_NAME),
+                new Claim(Claims.EmailAddress, User1.EMAIL_ADDRESS)
+            });
+            
+            // Act
+            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, LGetValidClaims, WEB_SECRET, ISSUER, AUDIENCE);
+            
+            // Assert
+            LJwt.Should().NotBeNullOrEmpty();
+
+            var LHandler = new JwtSecurityTokenHandler();
+            var LJsonToken = LHandler.ReadToken(LJwt);
+            LJsonToken.Should().NotBeNull();
+            LJsonToken.Issuer.Should().Be(ISSUER);
+            
+            var LSecurityToken = LJsonToken as JwtSecurityToken;
+            LSecurityToken.Should().NotBeNull();
+            LSecurityToken?.Claims.First(AClaim => AClaim.Type == Claims.UserAlias).Value.Should().Be(LUserAlias);
+            LSecurityToken?.Claims.First(AClaim => AClaim.Type == Claims.Roles).Value.Should().Be(Roles.EverydayUser);
+            LSecurityToken?.Claims.First(AClaim => AClaim.Type == Claims.UserId).Value.Should().Be(User1.FId.ToString());
+            LSecurityToken?.Claims.First(AClaim => AClaim.Type == Claims.FirstName).Value.Should().Be(User1.FIRST_NAME);
+            LSecurityToken?.Claims.First(AClaim => AClaim.Type == Claims.LastName).Value.Should().Be(User1.LAST_NAME);
+            LSecurityToken?.Claims.First(AClaim => AClaim.Type == Claims.EmailAddress).Value.Should().Be(User1.EMAIL_ADDRESS);
         }
     }
 }
