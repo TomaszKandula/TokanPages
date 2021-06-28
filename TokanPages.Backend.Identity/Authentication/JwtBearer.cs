@@ -18,7 +18,7 @@ namespace TokanPages.Backend.Identity.Authentication
     { 
 	    public static void Configure(IServiceCollection AServices, IConfiguration AConfiguration)
         { 
-	        var LIdentityServerAuthority = AConfiguration.GetValue<string>("IdentityServer:Authority");
+	        //var LIdentityServerAuthority = AConfiguration.GetValue<string>("IdentityServer:Authority");
 	        var LRequireHttps = AConfiguration.GetValue<bool>("IdentityServer:RequireHttps");
 	        var LAudience = AConfiguration.GetValue<string>("IdentityServer:Audience");
 	        var LWebSecret = AConfiguration.GetValue<string>("IdentityServer:WebSecret");
@@ -29,7 +29,7 @@ namespace TokanPages.Backend.Identity.Authentication
 		        AOption.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 	        }).AddJwtBearer(AOptions =>
 	        {
-		        AOptions.Authority = LIdentityServerAuthority;
+		        //AOptions.Authority = LIdentityServerAuthority;
 		        AOptions.SaveToken = true;
 		        AOptions.RequireHttpsMetadata = LRequireHttps;
 		        AOptions.Audience = LAudience;
@@ -37,8 +37,8 @@ namespace TokanPages.Backend.Identity.Authentication
 		        {
 			        ValidateIssuerSigningKey = true,
 			        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(LWebSecret)),
-			        ValidateIssuer = true,
-			        ValidateAudience = true,
+			        ValidateIssuer = false,
+			        ValidateAudience = false,
 			        ClockSkew = TimeSpan.Zero
 		        };
 		        AOptions.Events = new JwtBearerEvents
