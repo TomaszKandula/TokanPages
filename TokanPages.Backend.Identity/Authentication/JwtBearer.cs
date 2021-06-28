@@ -29,8 +29,8 @@ namespace TokanPages.Backend.Identity.Authentication
 		        AOption.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 	        }).AddJwtBearer(AOptions =>
 	        {
-		        //AOptions.Authority = LIssuer;
 		        AOptions.Audience = LAudience;
+		        AOptions.SecurityTokenValidators.Clear();
 		        AOptions.SecurityTokenValidators.Add(new JwtSecurityHandler());
 		        AOptions.SaveToken = true;
 		        AOptions.RequireHttpsMetadata = LRequireHttps;
