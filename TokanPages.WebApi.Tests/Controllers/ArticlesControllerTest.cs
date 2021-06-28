@@ -1,15 +1,18 @@
 using Xunit;
-using Newtonsoft.Json;
 using FluentAssertions;
+using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Net.Http.Headers;
 using System.Collections.Generic;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.Dto.Articles;
+using TokanPages.Backend.Identity.Authorization;
 using TokanPages.Backend.Database.Initializer.Data;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 using TokanPages.Backend.Core.Services.DataProviderService;
@@ -29,7 +32,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         }
 
         [Fact]
-        public async Task GivenAllFieldsAreCorrectAsAnonymousUser_WhenAddArticle_ShouldThrowError()
+        public async Task GivenAllFieldsAreCorrectAsAnonymousUser_WhenAddArticle_ShouldReturnUnauthorized()
         {
             // Arrange
             const string REQUEST = "/api/v1/articles/addarticle/";
@@ -50,11 +53,47 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+        }
 
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.ACCESS_DENIED);
+        [Fact]
+        public async Task GivenAllFieldsAreCorrectAsLoggedUser_WhenAddArticle_ShouldSucceed()
+        {
+            // Arrange
+            const string REQUEST = "/api/v1/articles/addarticle/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
+
+            var LPayLoad = new AddArticleDto
+            {
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(150),
+                ImageToUpload = FDataProviderService.GetRandomString(255).ToBase64Encode()
+            };
+
+            var LGetValidClaims = new ClaimsIdentity(new[]
+            {
+                new Claim(Claims.UserAlias, FDataProviderService.GetRandomString()),
+                new Claim(Claims.Roles, Roles.EverydayUser),
+                new Claim(Claims.AuthenticationType, FDataProviderService.GetRandomString()),
+                new Claim(Claims.UserId, User1.FId.ToString()),
+                new Claim(Claims.FirstName, User1.FIRST_NAME),
+                new Claim(Claims.LastName, User1.LAST_NAME),
+                new Claim(Claims.EmailAddress, User1.EMAIL_ADDRESS)
+            });
+
+            var LHttpClient = FWebAppFactory.CreateClient();
+            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, LGetValidClaims, FWebAppFactory.WebSecret);
+            
+            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+
+            // Act
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+
+            // Assert
+            LResponse.StatusCode.Should().Be(HttpStatusCode.OK);
         }
         
         [Fact]
@@ -121,7 +160,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         }
         
         [Fact]
-        public async Task GivenIncorrectId_WhenRemoveSubscriber_ShouldReturnJsonObjectWithError()
+        public async Task GivenIncorrectIdAndNoJwt_WhenRemoveSubscriber_ShouldReturnUnauthorized()
         {
             // Arrange
             const string REQUEST = "/api/v1/articles/removearticle/";
@@ -139,15 +178,11 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+            LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         }
         
         [Fact]
-        public async Task GivenIncorrectId_WhenUpdateArticle_ShouldReturnJsonObjectWithError()
+        public async Task GivenIncorrectIdAndNoJwt_WhenUpdateArticle_ShouldReturnUnauthorized()
         {
             // Arrange
             const string REQUEST = "/api/v1/articles/updatearticle/";
@@ -172,11 +207,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+            LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         }
     }
 }

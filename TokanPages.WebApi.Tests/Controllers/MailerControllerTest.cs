@@ -3,10 +3,14 @@ using FluentAssertions;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Net.Http.Headers;
 using System.Collections.Generic;
 using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Shared.Dto.Mailer;
+using TokanPages.Backend.Identity.Authorization;
+using TokanPages.Backend.Database.Initializer.Data;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
 using TokanPages.Backend.Core.Services.DataProviderService;
 
@@ -25,7 +29,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         }
      
         [Fact]
-        public async Task GivenProvidedEmail_WhenSendUserMessage_ShouldReturnEmptyJsonObject()
+        public async Task GivenValidEmail_WhenSendUserMessage_ShouldReturnEmptyJsonObject()
         {
             // Arrange
             const string REQUEST = "/api/v1/mailer/sendmessage/";
@@ -57,7 +61,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         }
 
         [Fact]
-        public async Task GivenProvidedEmails_WhenSendNewsletter_ShouldReturnEmptyJsonObject()
+        public async Task GivenValidEmailsAndValidJwt_WhenSendNewsletter_ShouldReturnEmptyJsonObject()
         {
             // Arrange
             const string REQUEST = "/api/v1/mailer/sendnewsletter/";
@@ -76,8 +80,12 @@ namespace TokanPages.WebApi.Tests.Controllers
                 Subject = "Integration Test / HttpClient / Endpoint",
                 Message = $"<p>Test run Id: {Guid.NewGuid()}.</p><p>Put newsletter content here.</p>"
             };
-
+            
             var LHttpClient = FWebAppFactory.CreateClient();
+            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret);
+            
+            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
@@ -93,16 +101,19 @@ namespace TokanPages.WebApi.Tests.Controllers
         
         [Theory]
         [InlineData("john@gmail.com")]
-        public async Task GivenCorrectEmail_WhenVerifyEmailAddress_ShouldReturnResultsAsJsonObject(string AEmail)
+        public async Task GivenValidEmailAndValidJwt_WhenVerifyEmailAddress_ShouldReturnResultsAsJsonObject(string AEmail)
         {
             // Arrange
             const string REQUEST = "/api/v1/mailer/verifyemailaddress/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
             var LPayLoad = new VerifyEmailAddressDto { Email = AEmail };
-            var LHttpClient = FWebAppFactory.CreateClient();
 
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), 
-                System.Text.Encoding.Default, "application/json");
+            var LHttpClient = FWebAppFactory.CreateClient();
+            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret);
+            
+            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
@@ -116,6 +127,20 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LDeserialized = JsonConvert.DeserializeObject<VerifyEmailAddressCommandResult>(LContent);
             LDeserialized.IsFormatCorrect.Should().BeTrue();
             LDeserialized.IsDomainCorrect.Should().BeTrue();
+        }
+
+        private ClaimsIdentity GetValidClaims()
+        {
+            return new (new[]
+            {
+                new Claim(Claims.UserAlias, FDataProviderService.GetRandomString()),
+                new Claim(Claims.Roles, Roles.EverydayUser),
+                new Claim(Claims.AuthenticationType, FDataProviderService.GetRandomString()),
+                new Claim(Claims.UserId, User1.FId.ToString()),
+                new Claim(Claims.FirstName, User1.FIRST_NAME),
+                new Claim(Claims.LastName, User1.LAST_NAME),
+                new Claim(Claims.EmailAddress, User1.EMAIL_ADDRESS)
+            });
         }
     }
 }
