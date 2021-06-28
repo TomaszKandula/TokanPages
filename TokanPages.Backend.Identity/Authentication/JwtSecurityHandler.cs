@@ -14,15 +14,9 @@ namespace TokanPages.Backend.Identity.Authentication
 
         public int MaximumTokenSizeInBytes { get; set; } = TokenValidationParameters.DefaultMaximumTokenSizeInBytes;
 
-        public JwtSecurityHandler()
-        {
-            FTokenHandler = new JwtSecurityTokenHandler();
-        }
+        public JwtSecurityHandler() => FTokenHandler = new JwtSecurityTokenHandler();
 
-        public bool CanReadToken(string ASecurityToken)
-        {
-            return FTokenHandler.CanReadToken(ASecurityToken);
-        }
+        public bool CanReadToken(string ASecurityToken) => FTokenHandler.CanReadToken(ASecurityToken);
 
         public ClaimsPrincipal ValidateToken(string ASecurityToken, TokenValidationParameters AValidationParameters,
             out SecurityToken AValidatedToken)
