@@ -14,7 +14,7 @@ using TokanPages.Backend.Identity.Authorization;
 namespace TokanPages.Backend.Identity.Authentication
 {
 	[ExcludeFromCodeCoverage]
-	public class JwtBearer
+	public static class JwtBearer
     { 
 	    public static void Configure(IServiceCollection AServices, IConfiguration AConfiguration)
         { 
