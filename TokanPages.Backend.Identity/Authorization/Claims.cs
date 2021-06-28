@@ -6,8 +6,6 @@ namespace TokanPages.Backend.Identity.Authorization
 
         public static string Roles => "https://schemas.microsoft.com/ws/2008/06/identity/claims/role";
         
-        public static string AuthenticationType => nameof(AuthenticationType);
-        
         public static string UserId => nameof(UserId);
         
         public static string FirstName => nameof(FirstName);
