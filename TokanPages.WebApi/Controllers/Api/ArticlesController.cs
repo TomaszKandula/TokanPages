@@ -10,6 +10,7 @@ using MediatR;
 
 namespace TokanPages.WebApi.Controllers.Api
 {
+    [Authorize]
     public class ArticlesController : BaseController
     {
         public ArticlesController(IMediator AMediator) : base(AMediator) { }

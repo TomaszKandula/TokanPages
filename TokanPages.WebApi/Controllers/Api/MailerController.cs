@@ -8,6 +8,7 @@ using MediatR;
 
 namespace TokanPages.WebApi.Controllers.Api
 {
+    [Authorize]
     public class MailerController : BaseController
     {
         public MailerController(IMediator AMediator) : base(AMediator) { }

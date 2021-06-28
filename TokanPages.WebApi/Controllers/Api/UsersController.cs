@@ -10,6 +10,7 @@ using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 
 namespace TokanPages.WebApi.Controllers.Api
 {
+    [Authorize]
     public class UsersController : BaseController
     {
         public UsersController(IMediator AMediator) : base(AMediator) { }
