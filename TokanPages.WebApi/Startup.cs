@@ -1,9 +1,7 @@
-using System;
 using System.Net;
 using System.Linq;
 using System.Net.Sockets;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -37,7 +35,7 @@ namespace TokanPages.WebApi
             Dependencies.Register(AServices, FConfiguration, FEnvironment);
             
             if (FEnvironment.IsDevelopment())
-                SetupSwaggerOptions(AServices);
+                Swagger.SetupSwaggerOptions(AServices);
 
             if (!FEnvironment.IsProduction() && !FEnvironment.IsStaging()) 
                 return;
@@ -80,54 +78,7 @@ namespace TokanPages.WebApi
                 return;
             
             ABuilder.UseSwagger();
-            SetupSwaggerUi(ABuilder);
-        }
-
-        private static void SetupSwaggerOptions(IServiceCollection AServices)
-        {
-            AServices.AddSwaggerGen(AOption =>
-            {
-                AOption.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "TokanPages API", 
-                    Version = "v1"
-                });
-                
-                AOption.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Name = "Authorization",
-                    Description = "Please provide JWT",
-                    BearerFormat = "JWT",
-                    Scheme = "bearer",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey
-                });
-                
-                AOption.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference 
-                            {
-                                Id = "Bearer",
-                                Type = ReferenceType.SecurityScheme
-                            }
-                        },
-                        Array.Empty<string>()
-                    }
-                });
-            });
-        }
-
-        private void SetupSwaggerUi(IApplicationBuilder ABuilder)
-        {
-            ABuilder.UseSwaggerUI(AOption =>
-            {
-                AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "TokanPages API");
-                AOption.OAuthAppName("TokanPages");
-                AOption.OAuthClientSecret(FConfiguration.GetSection("IdentityServer")["WebSecret"]);
-            });
+            Swagger.SetupSwaggerUi(ABuilder, FConfiguration);
         }
     }
 }
