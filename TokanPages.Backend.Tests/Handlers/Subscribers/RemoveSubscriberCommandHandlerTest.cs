@@ -3,21 +3,25 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Services.DataProviderService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
 namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {
     public class RemoveSubscriberCommandHandlerTest : TestBase
     {
+        private readonly DataProviderService FDataProviderService;
+
+        public RemoveSubscriberCommandHandlerTest() => FDataProviderService = new DataProviderService();
+
         [Fact]
         public async Task GivenCorrectId_WhenRemoveSubscriber_ShouldRemoveEntity() 
         {
             // Arrange
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
             {
-                Email = StringProvider.GetRandomEmail(),
+                Email = FDataProviderService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,

@@ -11,30 +11,34 @@ using System.Collections.Generic;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Storage.Models;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.TemplateHelper;
 using TokanPages.Backend.Core.Services.DateTimeService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
+using TokanPages.Backend.Core.Services.DataProviderService;
 using MediatR;
 
 namespace TokanPages.Backend.Tests.Handlers.Mailer
 {
     public class SendMessageCommandHandlerTest : TestBase
     {
+        private readonly DataProviderService FDataProviderService;
+
+        public SendMessageCommandHandlerTest() => FDataProviderService = new DataProviderService();
+
         [Fact]
         public async Task GivenFilledUserForm_WhenSendMessage_ShouldFinishSuccessful()
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                Subject = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString(),
-                Message = StringProvider.GetRandomString(),
-                EmailFrom = StringProvider.GetRandomEmail(),
-                EmailTos = new List<string>{ StringProvider.GetRandomEmail() },
-                UserEmail = StringProvider.GetRandomEmail()
+                Subject = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString(),
+                Message = FDataProviderService.GetRandomString(),
+                EmailFrom = FDataProviderService.GetRandomEmail(),
+                EmailTos = new List<string>{ FDataProviderService.GetRandomEmail() },
+                UserEmail = FDataProviderService.GetRandomEmail()
             };
 
             var LMockedLogger = new Mock<ILogger>();

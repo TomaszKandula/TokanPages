@@ -4,22 +4,26 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Core.Services.DataProviderService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
 namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {
     public class UpdateSubscriberCommandHandlerTest : TestBase
     {
+        private readonly DataProviderService FDataProviderService;
+
+        public UpdateSubscriberCommandHandlerTest() => FDataProviderService = new DataProviderService();
+
         [Fact]
         public async Task GivenCorrectId_WhenUpdateSubscriber_ShouldUpdateEntity()
         {
             // Arrange
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
             {
-                Email = StringProvider.GetRandomEmail(),
+                Email = FDataProviderService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,
@@ -33,7 +37,7 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = LSubscribers.Id,
-                Email = StringProvider.GetRandomEmail(),
+                Email = FDataProviderService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10
             };
@@ -59,7 +63,7 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
             // Arrange
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
-                Email = StringProvider.GetRandomEmail(),
+                Email = FDataProviderService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,
@@ -73,7 +77,7 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = LSubscribers.Id,
-                Email = StringProvider.GetRandomEmail(),
+                Email = FDataProviderService.GetRandomEmail(),
                 IsActivated = null,
                 Count = null
             };
@@ -100,7 +104,7 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.Parse("32fcefec-4c26-48bb-8717-31447cfda471"),
-                Email = StringProvider.GetRandomEmail(),
+                Email = FDataProviderService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10
             };
@@ -109,7 +113,7 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Email = StringProvider.GetRandomEmail(),
+                Email = FDataProviderService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,
@@ -130,7 +134,7 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
         public async Task GivenExistingEmail_WhenUpdateSubscriber_ShouldThrowError()
         {
             // Arrange
-            var LTestEmail = StringProvider.GetRandomEmail();
+            var LTestEmail = FDataProviderService.GetRandomEmail();
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
                 Email = LTestEmail,

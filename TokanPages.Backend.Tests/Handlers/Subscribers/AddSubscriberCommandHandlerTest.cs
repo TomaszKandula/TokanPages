@@ -5,22 +5,26 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Core.Services.DataProviderService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
 namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {
     public class AddSubscriberCommandHandlerTest : TestBase
     {
+        private readonly DataProviderService FDataProviderService;
+
+        public AddSubscriberCommandHandlerTest() => FDataProviderService = new DataProviderService();
+
         [Fact]
         public async Task GivenProvidedEmail_WhenAddSubscriber_ShouldAddEntity() 
         {
             // Arrange
             var LAddSubscriberCommand = new AddSubscriberCommand 
             { 
-                Email = StringProvider.GetRandomEmail()
+                Email = FDataProviderService.GetRandomEmail()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -53,7 +57,7 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
         public async Task GivenExistingEmail_WhenAddSubscriber_ShouldThrowError()
         {
             // Arrange
-            var LTestEmail = StringProvider.GetRandomEmail();
+            var LTestEmail = FDataProviderService.GetRandomEmail();
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
             { 
                 Email = LTestEmail,

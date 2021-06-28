@@ -5,13 +5,17 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
+using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Handlers.Users
 {
     public class GetAllUsersQueryHandlerTest : TestBase
     {
+        private readonly DataProviderService FDataProviderService;
+
+        public GetAllUsersQueryHandlerTest() => FDataProviderService = new DataProviderService();
+
         [Fact]
         public async Task WhenGetAllArticles_ShouldReturnCollection()
         {
@@ -21,10 +25,10 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 new ()
                 {
                     Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                    EmailAddress = StringProvider.GetRandomEmail(),
-                    UserAlias = StringProvider.GetRandomString(),
-                    FirstName = StringProvider.GetRandomString(),
-                    LastName = StringProvider.GetRandomString(),
+                    EmailAddress = FDataProviderService.GetRandomEmail(),
+                    UserAlias = FDataProviderService.GetRandomString(),
+                    FirstName = FDataProviderService.GetRandomString(),
+                    LastName = FDataProviderService.GetRandomString(),
                     IsActivated = true,
                     Registered = DateTime.Now,
                     LastUpdated = null,
@@ -33,10 +37,10 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 new ()
                 {
                     Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
-                    EmailAddress = StringProvider.GetRandomEmail(),
-                    UserAlias = StringProvider.GetRandomString(),
-                    FirstName = StringProvider.GetRandomString(),
-                    LastName = StringProvider.GetRandomString(),
+                    EmailAddress = FDataProviderService.GetRandomEmail(),
+                    UserAlias = FDataProviderService.GetRandomString(),
+                    FirstName = FDataProviderService.GetRandomString(),
+                    LastName = FDataProviderService.GetRandomString(),
                     IsActivated = true,
                     Registered = DateTime.Now,
                     LastUpdated = null,

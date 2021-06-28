@@ -11,29 +11,33 @@ using System.Collections.Generic;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Storage.Models;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Core.Services.TemplateHelper;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
+using TokanPages.Backend.Core.Services.DataProviderService;
 using MediatR;
 
 namespace TokanPages.Backend.Tests.Handlers.Mailer
 {
     public class SendNewsletterCommandHandlerTest : TestBase
     {
+        private readonly DataProviderService FDataProviderService;
+
+        public SendNewsletterCommandHandlerTest() => FDataProviderService = new DataProviderService();
+
         [Fact]
         public async Task GivenSubscriberInfo_WhenSendNewsletter_ShouldFinishSuccessful()
         {
             // Arrange
             var LSendNewsletterCommand = new SendNewsletterCommand
             {
-                Message = StringProvider.GetRandomString(),
-                Subject = StringProvider.GetRandomString(),
+                Message = FDataProviderService.GetRandomString(),
+                Subject = FDataProviderService.GetRandomString(),
                 SubscriberInfo = new List<SubscriberInfoModel>
                 {
                     new ()
                     {
-                        Email = StringProvider.GetRandomEmail()
+                        Email = FDataProviderService.GetRandomEmail()
                     }
                 }
             };

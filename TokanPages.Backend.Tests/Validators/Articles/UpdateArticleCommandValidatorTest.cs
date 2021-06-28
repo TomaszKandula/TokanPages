@@ -1,14 +1,18 @@
 ﻿using Xunit;
 using System;
 using FluentAssertions;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Core.Services.DataProviderService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
 namespace TokanPages.Backend.Tests.Validators.Articles
 {
     public class UpdateArticleCommandValidatorTest
     {
+        private readonly DataProviderService FDataProviderService;
+
+        public UpdateArticleCommandValidatorTest() => FDataProviderService = new DataProviderService();
+        
         [Fact]
         public void GivenAllFieldsAreCorrect_WhenUpdateArticle_ShouldFinishSuccessful() 
         {
@@ -16,10 +20,10 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.NewGuid(),
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
-                TextToUpload = StringProvider.GetRandomString(),
-                ImageToUpload = StringProvider.GetRandomString(),
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(),
+                ImageToUpload = FDataProviderService.GetRandomString(),
                 IsPublished = false,
                 AddToLikes = 0,
                 UpReadCount = false
@@ -40,10 +44,10 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.Empty,
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
-                TextToUpload = StringProvider.GetRandomString(),
-                ImageToUpload = StringProvider.GetRandomString(),
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(),
+                ImageToUpload = FDataProviderService.GetRandomString(),
                 IsPublished = false,
                 AddToLikes = 0,
                 UpReadCount = false
@@ -66,9 +70,9 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             {
                 Id = Guid.NewGuid(),
                 Title = string.Empty,
-                Description = StringProvider.GetRandomString(),
-                TextToUpload = StringProvider.GetRandomString(),
-                ImageToUpload = StringProvider.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(),
+                ImageToUpload = FDataProviderService.GetRandomString(),
                 IsPublished = false,
                 AddToLikes = 0,
                 UpReadCount = false
@@ -90,10 +94,10 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.NewGuid(),
-                Title = StringProvider.GetRandomString(256),
-                Description = StringProvider.GetRandomString(),
-                TextToUpload = StringProvider.GetRandomString(),
-                ImageToUpload = StringProvider.GetRandomString(),
+                Title = FDataProviderService.GetRandomString(256),
+                Description = FDataProviderService.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(),
+                ImageToUpload = FDataProviderService.GetRandomString(),
                 IsPublished = false,
                 AddToLikes = 0,
                 UpReadCount = false
@@ -115,10 +119,10 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.NewGuid(),
-                Title = StringProvider.GetRandomString(),
+                Title = FDataProviderService.GetRandomString(),
                 Description = string.Empty,
-                TextToUpload = StringProvider.GetRandomString(),
-                ImageToUpload = StringProvider.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(),
+                ImageToUpload = FDataProviderService.GetRandomString(),
                 IsPublished = false,
                 AddToLikes = 0,
                 UpReadCount = false
@@ -140,10 +144,10 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.NewGuid(),
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(256),
-                TextToUpload = StringProvider.GetRandomString(),
-                ImageToUpload = StringProvider.GetRandomString(),
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(256),
+                TextToUpload = FDataProviderService.GetRandomString(),
+                ImageToUpload = FDataProviderService.GetRandomString(),
                 IsPublished = false,
                 AddToLikes = 0,
                 UpReadCount = false
@@ -165,10 +169,10 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.NewGuid(),
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
                 TextToUpload = string.Empty,
-                ImageToUpload = StringProvider.GetRandomString(),
+                ImageToUpload = FDataProviderService.GetRandomString(),
                 IsPublished = false,
                 AddToLikes = 0,
                 UpReadCount = false
@@ -189,9 +193,9 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.NewGuid(),
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
-                TextToUpload = StringProvider.GetRandomString(),
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(),
                 ImageToUpload = string.Empty,
                 IsPublished = false,
                 AddToLikes = 0,
@@ -213,9 +217,9 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             var LUpdateArticleCommand = new UpdateArticleCommand
             {
                 Id = Guid.NewGuid(),
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
-                TextToUpload = StringProvider.GetRandomString(),
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(),
                 ImageToUpload = string.Empty,
                 IsPublished = false,
                 AddToLikes = -1,

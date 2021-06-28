@@ -5,10 +5,10 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
+using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
+using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Handlers.Articles
 {
@@ -20,6 +20,10 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
         
         private const string IP_ADDRESS_SECOND = "1.1.1.1";
         
+        private readonly DataProviderService FDataProviderService;
+
+        public GetArticleQueryHandlerTest() => FDataProviderService = new DataProviderService();
+
         [Fact]
         public async Task GivenCorrectId_WhenGetArticle_ShouldReturnEntity() 
         {
@@ -29,12 +33,12 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = StringProvider.GetRandomEmail(),
+                EmailAddress = FDataProviderService.GetRandomEmail(),
                 UserAlias = USER_ALIAS,
-                Registered = DateTimeProvider.GetRandomDateTime(),
+                Registered = FDataProviderService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null
             };
@@ -44,8 +48,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = LTestDate,
@@ -113,12 +117,12 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
-                Registered = DateTimeProvider.GetRandomDateTime(),
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                UserAlias = FDataProviderService.GetRandomString(),
+                Registered = FDataProviderService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null
             };
@@ -129,8 +133,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,

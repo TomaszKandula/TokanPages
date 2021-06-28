@@ -7,12 +7,12 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.Dto.Articles;
 using TokanPages.Backend.Database.Initializer.Data;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
+using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.WebApi.Tests.Controllers
 {
@@ -20,8 +20,13 @@ namespace TokanPages.WebApi.Tests.Controllers
     {
         private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
 
+        private readonly DataProviderService FDataProviderService;
+
         public ArticlesControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory)
-            => FWebAppFactory = AWebAppFactory;
+        {
+            FWebAppFactory = AWebAppFactory;
+            FDataProviderService = new DataProviderService();
+        }
 
         [Fact]
         public async Task GivenAllFieldsAreCorrectAsAnonymousUser_WhenAddArticle_ShouldThrowError()
@@ -32,10 +37,10 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LPayLoad = new AddArticleDto
             {
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
-                TextToUpload = StringProvider.GetRandomString(150),
-                ImageToUpload = StringProvider.GetRandomString(255).ToBase64Encode()
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(150),
+                ImageToUpload = FDataProviderService.GetRandomString(255).ToBase64Encode()
             };
 
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -151,10 +156,10 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LPayLoad = new UpdateArticleDto
             {
                 Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
-                TextToUpload = StringProvider.GetRandomString(150),
-                ImageToUpload = StringProvider.GetRandomString(255).ToBase64Encode(),
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(150),
+                ImageToUpload = FDataProviderService.GetRandomString(255).ToBase64Encode(),
                 IsPublished = false,
                 AddToLikes = 0,
                 UpReadCount = false

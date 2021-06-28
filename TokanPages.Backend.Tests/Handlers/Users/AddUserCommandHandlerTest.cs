@@ -5,25 +5,29 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Handlers.Users
 {   
     public class AddUserCommandHandlerTest : TestBase
     {
+        private readonly DataProviderService FDataProviderService;
+
+        public AddUserCommandHandlerTest() => FDataProviderService = new DataProviderService();
+
         [Fact]
         public async Task GivenFieldsAreProvided_WhenAddUser_ShouldAddEntity() 
         {
             // Arrange
             var LAddUserCommand = new AddUserCommand 
             {
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString(),
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString(),
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -51,22 +55,22 @@ namespace TokanPages.Backend.Tests.Handlers.Users
         public async Task GivenExistingEmail_WhenAddUser_ShouldThrowError()
         {
             // Arrange
-            var LTestEmail = StringProvider.GetRandomEmail();
+            var LTestEmail = FDataProviderService.GetRandomEmail();
             var LAddUserCommand = new AddUserCommand
             {
                 EmailAddress = LTestEmail,
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString(),
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString(),
             };
 
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             { 
                 EmailAddress = LTestEmail,
                 IsActivated = false,
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString(),
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString(),
                 Registered = DateTime.Now,
                 LastUpdated = null,
                 LastLogged = null

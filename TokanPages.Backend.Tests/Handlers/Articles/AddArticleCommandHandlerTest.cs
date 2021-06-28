@@ -4,7 +4,6 @@ using FluentAssertions;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
@@ -13,6 +12,7 @@ using TokanPages.Backend.Cqrs.Services.UserProvider;
 using TokanPages.Backend.Core.Services.DateTimeService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
+using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Handlers.Articles
 {
@@ -20,8 +20,11 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
     {
         private readonly Mock<AzureBlobStorageFactory> FMockedAzureBlobStorageFactory;
         
+        private readonly DataProviderService FDataProviderService;
+
         public AddArticleCommandHandlerTest()
         {
+            FDataProviderService = new DataProviderService();
             FMockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
             var LMockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
 
@@ -43,24 +46,24 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
-                TextToUpload = StringProvider.GetRandomString(),
-                ImageToUpload = StringProvider.GetRandomString().ToBase64Encode()
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(),
+                ImageToUpload = FDataProviderService.GetRandomString().ToBase64Encode()
             };
 
             var LUser = new Backend.Domain.Entities.Users
             {
-                UserAlias  = StringProvider.GetRandomString(),
+                UserAlias  = FDataProviderService.GetRandomString(),
                 IsActivated = true,
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString(),
-                EmailAddress = StringProvider.GetRandomEmail(),
-                Registered = DateTimeProvider.GetRandomDateTime(),
-                LastLogged = DateTimeProvider.GetRandomDateTime(),
-                LastUpdated = DateTimeProvider.GetRandomDateTime(),
-                AvatarName = StringProvider.GetRandomString(),
-                ShortBio = StringProvider.GetRandomString()
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString(),
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                Registered = FDataProviderService.GetRandomDateTime(),
+                LastLogged = FDataProviderService.GetRandomDateTime(),
+                LastUpdated = FDataProviderService.GetRandomDateTime(),
+                AvatarName = FDataProviderService.GetRandomString(),
+                ShortBio = FDataProviderService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -93,10 +96,10 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
-                TextToUpload = StringProvider.GetRandomString(),
-                ImageToUpload = StringProvider.GetRandomString().ToBase64Encode()
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(),
+                ImageToUpload = FDataProviderService.GetRandomString().ToBase64Encode()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -123,9 +126,9 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
-                TextToUpload = StringProvider.GetRandomString(),
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(),
                 ImageToUpload = "úK¼Æ½t$bþÍs*L2ÕÊª"
             };
 

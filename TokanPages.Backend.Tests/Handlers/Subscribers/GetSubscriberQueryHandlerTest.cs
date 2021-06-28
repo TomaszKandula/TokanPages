@@ -3,14 +3,18 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Services.DataProviderService;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
 
 namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {
     public class GetSubscriberQueryHandlerTest : TestBase
     {
+        private readonly DataProviderService FDataProviderService;
+
+        public GetSubscriberQueryHandlerTest() => FDataProviderService = new DataProviderService();
+
         [Fact]
         public async Task GivenCorrectId_WhenGetSubscriber_ShouldReturnEntity() 
         {
@@ -18,7 +22,7 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
             var LTestDate = DateTime.Now;
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
-                Email = StringProvider.GetRandomEmail(),
+                Email = FDataProviderService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10,
                 Registered = LTestDate,
@@ -50,7 +54,7 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
             // Arrange
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
-                Email = StringProvider.GetRandomEmail(),
+                Email = FDataProviderService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10,
                 Registered = DateTime.Now,

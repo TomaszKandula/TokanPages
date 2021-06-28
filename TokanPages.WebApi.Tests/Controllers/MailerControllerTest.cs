@@ -6,9 +6,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Shared.Dto.Mailer;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
+using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.WebApi.Tests.Controllers
 {
@@ -16,8 +16,13 @@ namespace TokanPages.WebApi.Tests.Controllers
     {
         private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
         
+        private readonly DataProviderService FDataProviderService;
+        
         public MailerControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory)
-            => FWebAppFactory = AWebAppFactory;
+        {
+            FWebAppFactory = AWebAppFactory;
+            FDataProviderService = new DataProviderService();
+        }
      
         [Fact]
         public async Task GivenProvidedEmail_WhenSendUserMessage_ShouldReturnEmptyJsonObject()
@@ -28,10 +33,10 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LPayLoad = new SendMessageDto
             {
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString(),
-                UserEmail = StringProvider.GetRandomEmail(),
-                EmailFrom = StringProvider.GetRandomEmail(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString(),
+                UserEmail = FDataProviderService.GetRandomEmail(),
+                EmailFrom = FDataProviderService.GetRandomEmail(),
                 EmailTos = new List<string> { string.Empty },
                 Subject = "Integration Test / HttpClient / Endpoint",
                 Message = $"Test run Id: {Guid.NewGuid()}.",

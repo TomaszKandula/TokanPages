@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Core.Generators;
+using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.WebApi.Tests.Controllers
 {
@@ -14,8 +14,13 @@ namespace TokanPages.WebApi.Tests.Controllers
     {
         private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
         
+        private readonly DataProviderService FDataProviderService;
+
         public HealthControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory)
-            => FWebAppFactory = AWebAppFactory;
+        {
+            FWebAppFactory = AWebAppFactory;
+            FDataProviderService = new DataProviderService();
+        }
 
         [Fact]
         public async Task GivenCorrectConfiguration_WhenRequestStatusCheck_ShouldReturnSuccessful()
@@ -50,7 +55,7 @@ namespace TokanPages.WebApi.Tests.Controllers
                 ABuilder.ConfigureAppConfiguration((AContext, AConfigBuilder) =>
                 {
                     AConfigBuilder.AddInMemoryCollection(
-                        new Dictionary<string, string> { ["SmtpServer:Server"] = StringProvider.GetRandomString() });
+                        new Dictionary<string, string> { ["SmtpServer:Server"] = FDataProviderService.GetRandomString() });
                 });
             });
             
@@ -81,7 +86,7 @@ namespace TokanPages.WebApi.Tests.Controllers
                 ABuilder.ConfigureAppConfiguration((AContext, AConfigBuilder) =>
                 {
                     AConfigBuilder.AddInMemoryCollection(
-                        new Dictionary<string, string> { ["ConnectionStrings:DbConnectTest"] = StringProvider.GetRandomString() });
+                        new Dictionary<string, string> { ["ConnectionStrings:DbConnectTest"] = FDataProviderService.GetRandomString() });
                 });
             });
             

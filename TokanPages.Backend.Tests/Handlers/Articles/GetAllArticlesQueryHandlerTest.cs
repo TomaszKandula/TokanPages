@@ -5,13 +5,17 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
+using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Handlers.Articles
 {
     public class GetAllArticlesQueryHandlerTest : TestBase
     {
+        private readonly DataProviderService FDataProviderService;
+
+        public GetAllArticlesQueryHandlerTest() => FDataProviderService = new DataProviderService();
+
         [Fact]
         public async Task WhenGetAllArticles_ShouldReturnCollection() 
         {
@@ -22,16 +26,16 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             
             var LUser = new Backend.Domain.Entities.Users
             {
-                UserAlias  = StringProvider.GetRandomString(),
+                UserAlias  = FDataProviderService.GetRandomString(),
                 IsActivated = true,
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString(),
-                EmailAddress = StringProvider.GetRandomEmail(),
-                Registered = DateTimeProvider.GetRandomDateTime(),
-                LastLogged = DateTimeProvider.GetRandomDateTime(),
-                LastUpdated = DateTimeProvider.GetRandomDateTime(),
-                AvatarName = StringProvider.GetRandomString(),
-                ShortBio = StringProvider.GetRandomString()
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString(),
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                Registered = FDataProviderService.GetRandomDateTime(),
+                LastLogged = FDataProviderService.GetRandomDateTime(),
+                LastUpdated = FDataProviderService.GetRandomDateTime(),
+                AvatarName = FDataProviderService.GetRandomString(),
+                ShortBio = FDataProviderService.GetRandomString()
             };
 
             await LDatabaseContext.Users.AddAsync(LUser);
@@ -39,20 +43,20 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             
             var LArticles = new List<TokanPages.Backend.Domain.Entities.Articles>
             {
-                new TokanPages.Backend.Domain.Entities.Articles
+                new ()
                 {
-                    Title = StringProvider.GetRandomString(),
-                    Description = StringProvider.GetRandomString(),
+                    Title = FDataProviderService.GetRandomString(),
+                    Description = FDataProviderService.GetRandomString(),
                     IsPublished = false,
                     ReadCount = 0,
                     CreatedAt = DateTime.Now.AddDays(-10),
                     UpdatedAt = null,
                     UserId = LUser.Id
                 },
-                new TokanPages.Backend.Domain.Entities.Articles
+                new ()
                 {
-                    Title = StringProvider.GetRandomString(),
-                    Description = StringProvider.GetRandomString(),
+                    Title = FDataProviderService.GetRandomString(),
+                    Description = FDataProviderService.GetRandomString(),
                     IsPublished = false,
                     ReadCount = 0,
                     CreatedAt = DateTime.Now.AddDays(-15),

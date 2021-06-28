@@ -1,23 +1,27 @@
 ﻿using Xunit;
 using FluentAssertions;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
+using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Validators.Users
 {   
     public class AddUserCommandValidatorTest
     {
+        private readonly DataProviderService FDataProviderService;
+
+        public AddUserCommandValidatorTest() => FDataProviderService = new DataProviderService();
+
         [Fact]
         public void GivenAllFieldsAreCorrect_WhenAddUser_ShouldFinishSuccessful() 
         {
             // Arrange
             var LAddUserCommand = new AddUserCommand 
             { 
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString()
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -35,9 +39,9 @@ namespace TokanPages.Backend.Tests.Validators.Users
             var LAddUserCommand = new AddUserCommand
             {
                 EmailAddress = string.Empty,
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString()
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -56,9 +60,9 @@ namespace TokanPages.Backend.Tests.Validators.Users
             var LAddUserCommand = new AddUserCommand
             {
                 EmailAddress = new string('T', 256),
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString()
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -76,10 +80,10 @@ namespace TokanPages.Backend.Tests.Validators.Users
             // Arrange
             var LAddUserCommand = new AddUserCommand
             {
-                EmailAddress = StringProvider.GetRandomEmail(),
+                EmailAddress = FDataProviderService.GetRandomEmail(),
                 UserAlias = string.Empty,
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString()
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -97,10 +101,10 @@ namespace TokanPages.Backend.Tests.Validators.Users
             // Arrange
             var LAddUserCommand = new AddUserCommand
             {
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(256),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString()
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                UserAlias = FDataProviderService.GetRandomString(256),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -118,10 +122,10 @@ namespace TokanPages.Backend.Tests.Validators.Users
             // Arrange
             var LAddUserCommand = new AddUserCommand
             {
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                UserAlias = FDataProviderService.GetRandomString(),
                 FirstName = string.Empty,
-                LastName = StringProvider.GetRandomString()
+                LastName = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -139,10 +143,10 @@ namespace TokanPages.Backend.Tests.Validators.Users
             // Arrange
             var LAddUserCommand = new AddUserCommand
             {
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(256),
-                LastName = StringProvider.GetRandomString()
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(256),
+                LastName = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -160,9 +164,9 @@ namespace TokanPages.Backend.Tests.Validators.Users
             // Arrange
             var LAddUserCommand = new AddUserCommand
             {
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
                 LastName = string.Empty
             };
 
@@ -181,10 +185,10 @@ namespace TokanPages.Backend.Tests.Validators.Users
             // Arrange
             var LAddUserCommand = new AddUserCommand
             {
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString(256)
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString(256)
             };
 
             // Act

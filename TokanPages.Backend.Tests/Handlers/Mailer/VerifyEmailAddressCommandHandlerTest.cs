@@ -5,27 +5,31 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.SmtpClient.Models;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
+using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Handlers.Mailer
 {
     public class VerifyEmailAddressCommandHandlerTest : TestBase
     {
+        private readonly DataProviderService FDataProviderService;
+
+        public VerifyEmailAddressCommandHandlerTest() => FDataProviderService = new DataProviderService();
+
         [Fact]
         public async Task GivenValidEmailAddress_WhenVerifyEmailAddress_ShouldFinishSuccessful()
         {
             // Arrange
             var LVerifyEmailAddressCommand = new VerifyEmailAddressCommand
             {
-                Email = StringProvider.GetRandomEmail()
+                Email = FDataProviderService.GetRandomEmail()
             };
 
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();
             var LCheckActionResult = new List<EmailAddressModel>
             {
-                new EmailAddressModel
+                new ()
                 {
                     EmailAddress = LVerifyEmailAddressCommand.Email,
                     IsValid = true

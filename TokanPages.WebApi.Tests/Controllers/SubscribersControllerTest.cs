@@ -7,12 +7,12 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.Dto.Subscribers;
 using TokanPages.Backend.Database.Initializer.Data;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
+using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.WebApi.Tests.Controllers
 {
@@ -20,8 +20,13 @@ namespace TokanPages.WebApi.Tests.Controllers
     {
         private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
 
+        private readonly DataProviderService FDataProviderService;
+        
         public SubscribersControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory)
-            => FWebAppFactory = AWebAppFactory;
+        {
+            FWebAppFactory = AWebAppFactory;
+            FDataProviderService = new DataProviderService();
+        }
         
         [Fact]
         public async Task GivenAllFieldsAreCorrect_WhenAddSubscriber_ShouldReturnNewGuid() 
@@ -29,7 +34,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             // Arrange
             const string REQUEST = "/api/v1/subscribers/addsubscriber/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
-            var LPayLoad = new AddSubscriberDto { Email = StringProvider.GetRandomEmail() };
+            var LPayLoad = new AddSubscriberDto { Email = FDataProviderService.GetRandomEmail() };
 
             var LHttpClient = FWebAppFactory.CreateClient();
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
@@ -144,7 +149,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LPayLoad = new UpdateSubscriberDto
             {
                 Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
-                Email = StringProvider.GetRandomEmail(),
+                Email = FDataProviderService.GetRandomEmail(),
                 Count = null,
                 IsActivated = null
             };

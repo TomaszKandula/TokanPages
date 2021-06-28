@@ -1,18 +1,22 @@
 using System;
 using Xunit;
 using FluentAssertions;
-using TokanPages.Backend.Core.Generators;
+using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Services
 {
-    public class GeneratorsTest
+    public class DataProviderServiceTest
     {
+        private readonly DataProviderService FDataProviderService;
+
+        public DataProviderServiceTest() => FDataProviderService = new DataProviderService();
+
         [Fact]
         public void GivenNoParameters_WhenInvokeGetRandomString_ShouldReturnTwelveChars()
         {
             // Arrange 
             // Act
-            var LResult = StringProvider.GetRandomString();
+            var LResult = FDataProviderService.GetRandomString();
 
             // Assert
             LResult.Length.Should().Be(12);
@@ -27,7 +31,7 @@ namespace TokanPages.Backend.Tests.Services
             var LPrefixLength = PREFIX.Length;
             
             // Act
-            var LResult = StringProvider.GetRandomString(LENGTH, PREFIX);
+            var LResult = FDataProviderService.GetRandomString(LENGTH, PREFIX);
 
             // Assert
             LResult.Length.Should().Be(LENGTH + LPrefixLength);
@@ -39,7 +43,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = StringProvider.GetRandomEmail();
+            var LResult = FDataProviderService.GetRandomEmail();
 
             // Assert
             LResult.Length.Should().BeGreaterThan(12);
@@ -55,7 +59,7 @@ namespace TokanPages.Backend.Tests.Services
             var LExpectedLength = DOMAIN.Length + LENGTH + 1;
             
             // Act
-            var LResult = StringProvider.GetRandomEmail(LENGTH, DOMAIN);
+            var LResult = FDataProviderService.GetRandomEmail(LENGTH, DOMAIN);
 
             // Assert
             LResult.Length.Should().Be(LExpectedLength);
@@ -69,7 +73,7 @@ namespace TokanPages.Backend.Tests.Services
             const int EXPECTED_LENGTH = 12 * 1024;
             
             // Act
-            var LResult = StreamProvider.GetRandomStream();
+            var LResult = FDataProviderService.GetRandomStream();
 
             // Assert
             LResult.Should().NotBeNull();
@@ -84,7 +88,7 @@ namespace TokanPages.Backend.Tests.Services
             const int EXPECTED_LENGTH = SIZE_IN_KB * 1024;
             
             // Act
-            var LResult = StreamProvider.GetRandomStream(SIZE_IN_KB);
+            var LResult = FDataProviderService.GetRandomStream(SIZE_IN_KB);
 
             // Assert
             LResult.Should().NotBeNull();
@@ -96,7 +100,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = NumberProvider.GetRandomInteger();
+            var LResult = FDataProviderService.GetRandomInteger();
 
             // Assert
             LResult.Should().BeInRange(0, 12);
@@ -107,7 +111,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = NumberProvider.GetRandomDecimal();
+            var LResult = FDataProviderService.GetRandomDecimal();
 
             // Assert
             LResult.Should().BeInRange(0m, 9999m);
@@ -121,7 +125,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = NumberProvider.GetRandomInteger(AMin, AMax);
+            var LResult = FDataProviderService.GetRandomInteger(AMin, AMax);
 
             // Assert
             LResult.Should().BeInRange(AMin, AMax);
@@ -135,7 +139,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = NumberProvider.GetRandomDecimal(AMin, AMax);
+            var LResult = FDataProviderService.GetRandomDecimal(AMin, AMax);
             
             // Assert
             LResult.Should().BeInRange(AMin, AMax);
@@ -146,7 +150,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = EnumProvider.GetRandomEnum<DayOfWeek>();
+            var LResult = FDataProviderService.GetRandomEnum<DayOfWeek>();
 
             // Assert
             LResult.Should().NotBeNull();
@@ -158,7 +162,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = DateTimeProvider.GetRandomDateTime();
+            var LResult = FDataProviderService.GetRandomDateTime();
 
             // Assert
             LResult.Should().HaveYear(2020);
@@ -174,7 +178,7 @@ namespace TokanPages.Backend.Tests.Services
             var LDateTimeMax = new DateTime(2021, 10, 15);
             
             // Act
-            var LResult = DateTimeProvider.GetRandomDateTime(LDateTimeMin, LDateTimeMax);
+            var LResult = FDataProviderService.GetRandomDateTime(LDateTimeMin, LDateTimeMax);
 
             // Assert
             LResult.Year.Should().BeInRange(2020, 2021);
