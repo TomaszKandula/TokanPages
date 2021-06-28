@@ -23,14 +23,16 @@ namespace TokanPages.WebApi.Tests
             Dependencies.CommonServices(AServices, FConfiguration);
         }
 
-        public static void Configure(IApplicationBuilder AApplication)
+        public static void Configure(IApplicationBuilder ABuilder)
         {
-            AApplication.UseMiddleware<CustomCors>();
-            AApplication.UseMiddleware<CustomException>();
-            AApplication.UseForwardedHeaders();
-            AApplication.UseHttpsRedirection();
-            AApplication.UseRouting();
-            AApplication.UseEndpoints(AEndpoints => AEndpoints.MapControllers());
+            ABuilder.UseMiddleware<CustomCors>();
+            ABuilder.UseMiddleware<CustomException>();
+            ABuilder.UseForwardedHeaders();
+            ABuilder.UseHttpsRedirection();
+            ABuilder.UseRouting();
+            ABuilder.UseAuthentication();
+            ABuilder.UseAuthorization();
+            ABuilder.UseEndpoints(AEndpoints => AEndpoints.MapControllers());
         }
 
         private void SetupTestDatabase(IServiceCollection AServices)
