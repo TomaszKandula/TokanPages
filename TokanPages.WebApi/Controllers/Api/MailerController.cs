@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using TokanPages.Backend.Cqrs.Mappers;
 using TokanPages.Backend.Shared.Dto.Mailer;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
@@ -16,6 +17,7 @@ namespace TokanPages.WebApi.Controllers.Api
             => await FMediator.Send(MailerMapper.MapToVerifyEmailAddressCommand(APayLoad));
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<Unit> SendMessage([FromBody] SendMessageDto APayLoad)
             => await FMediator.Send(MailerMapper.MapToSendMessageCommand(APayLoad));
 
