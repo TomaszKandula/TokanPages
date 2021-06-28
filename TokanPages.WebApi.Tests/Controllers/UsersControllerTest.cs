@@ -67,7 +67,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret);
+            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
 
@@ -95,7 +95,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret);
+            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
             
@@ -121,7 +121,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret);
+            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
 
@@ -191,7 +191,6 @@ namespace TokanPages.WebApi.Tests.Controllers
             {
                 new Claim(Claims.UserAlias, FDataProviderService.GetRandomString()),
                 new Claim(Claims.Roles, Roles.EverydayUser),
-                new Claim(Claims.AuthenticationType, FDataProviderService.GetRandomString()),
                 new Claim(Claims.UserId, User1.FId.ToString()),
                 new Claim(Claims.FirstName, User1.FIRST_NAME),
                 new Claim(Claims.LastName, User1.LAST_NAME),

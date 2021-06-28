@@ -55,12 +55,15 @@ namespace TokanPages.Backend.Core.Services.DataProviderService
             return LString;
         }
 
-        public override string GenerateJwt(DateTime AExpires, ClaimsIdentity AClaimsIdentity, string AWebSecret)
+        public override string GenerateJwt(DateTime AExpires, ClaimsIdentity AClaimsIdentity, string AWebSecret, string AIssuer, string ATargetAudience)
         {
             var LTokenHandler = new JwtSecurityTokenHandler();
             var LKey = Encoding.ASCII.GetBytes(AWebSecret);
             var LTokenDescriptor = new SecurityTokenDescriptor
             {
+                Issuer = AIssuer,
+                IssuedAt = DateTime.UtcNow,
+                Audience = ATargetAudience,
                 Subject = AClaimsIdentity,
                 Expires = AExpires,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(LKey), SecurityAlgorithms.HmacSha256Signature)

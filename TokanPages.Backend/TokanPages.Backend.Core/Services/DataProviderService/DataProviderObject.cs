@@ -20,6 +20,6 @@ namespace TokanPages.Backend.Core.Services.DataProviderService
 
         public abstract string GetRandomString(int ALength = 12, string APrefix = "");
 
-        public abstract string GenerateJwt(DateTime AExpires, ClaimsIdentity AClaimsIdentity, string AWebSecret);
+        public abstract string GenerateJwt(DateTime AExpires, ClaimsIdentity AClaimsIdentity, string AWebSecret, string AIssuer, string ATargetAudience);
     }
 }

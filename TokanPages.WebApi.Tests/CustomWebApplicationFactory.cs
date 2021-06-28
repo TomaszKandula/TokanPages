@@ -13,6 +13,10 @@ namespace TokanPages.WebApi.Tests
     {
         public string WebSecret { get; private set; }
         
+        public string Issuer { get; private set; }
+        
+        public string Audience { get; private set; }
+        
         protected override IWebHostBuilder CreateWebHostBuilder()
         {
             var LBuilder = WebHost.CreateDefaultBuilder()
@@ -26,7 +30,10 @@ namespace TokanPages.WebApi.Tests
                         .Build();
                 
                     AConfig.AddConfiguration(LTestConfig);
+
                     var LConfig = AConfig.Build();
+                    Issuer = LConfig.GetValue<string>("IdentityServer:Issuer");
+                    Audience = LConfig.GetValue<string>("IdentityServer:Audience");
                     WebSecret = LConfig.GetValue<string>("IdentityServer:WebSecret");
                 })
                 .UseStartup<TTestStartup>()

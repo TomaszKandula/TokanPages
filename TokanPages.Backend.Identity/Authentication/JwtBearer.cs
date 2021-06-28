@@ -18,10 +18,10 @@ namespace TokanPages.Backend.Identity.Authentication
     { 
 	    public static void Configure(IServiceCollection AServices, IConfiguration AConfiguration)
         { 
-	        //var LIdentityServerAuthority = AConfiguration.GetValue<string>("IdentityServer:Authority");
-	        var LRequireHttps = AConfiguration.GetValue<bool>("IdentityServer:RequireHttps");
+	        var LIssuer = AConfiguration.GetValue<string>("IdentityServer:Issuer");
 	        var LAudience = AConfiguration.GetValue<string>("IdentityServer:Audience");
 	        var LWebSecret = AConfiguration.GetValue<string>("IdentityServer:WebSecret");
+	        var LRequireHttps = AConfiguration.GetValue<bool>("IdentityServer:RequireHttps");
 
 	        AServices.AddAuthentication(AOption =>
 	        {
@@ -29,16 +29,20 @@ namespace TokanPages.Backend.Identity.Authentication
 		        AOption.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 	        }).AddJwtBearer(AOptions =>
 	        {
-		        //AOptions.Authority = LIdentityServerAuthority;
+		        //AOptions.Authority = LIssuer;
+		        AOptions.Audience = LAudience;
+		        AOptions.SecurityTokenValidators.Add(new JwtSecurityHandler());
 		        AOptions.SaveToken = true;
 		        AOptions.RequireHttpsMetadata = LRequireHttps;
-		        AOptions.Audience = LAudience;
 		        AOptions.TokenValidationParameters = new TokenValidationParameters
 		        {
 			        ValidateIssuerSigningKey = true,
 			        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(LWebSecret)),
-			        ValidateIssuer = false,
-			        ValidateAudience = false,
+			        ValidateIssuer = true,
+			        ValidIssuer = LIssuer,
+			        ValidateAudience = true,
+			        ValidAudience = LAudience,
+			        ValidateLifetime = true,
 			        ClockSkew = TimeSpan.Zero
 		        };
 		        AOptions.Events = new JwtBearerEvents
@@ -72,9 +76,6 @@ namespace TokanPages.Backend.Identity.Authentication
 		    var LRole = ATokenValidatedContext.Principal?.Claims
 			    .Where(AClaim => AClaim.Type == Claims.Roles) ?? Array.Empty<Claim>();
 				        
-		    var LAuthenticationType = ATokenValidatedContext.Principal?.Claims
-			    .Where(AClaim => AClaim.Type == Claims.AuthenticationType) ?? Array.Empty<Claim>();
-
 		    var LUserId = ATokenValidatedContext.Principal?.Claims
 			    .Where(AClaim => AClaim.Type == Claims.UserId) ?? Array.Empty<Claim>();
 				        
@@ -87,7 +88,7 @@ namespace TokanPages.Backend.Identity.Authentication
 		    var LEmailAddress = ATokenValidatedContext.Principal?.Claims
 			    .Where(AClaim => AClaim.Type == Claims.EmailAddress) ?? Array.Empty<Claim>();
 
-		    if (!LUserAlias.Any() || !LRole.Any() || !LAuthenticationType.Any() || !LUserId.Any()
+		    if (!LUserAlias.Any() || !LRole.Any() || !LUserId.Any()
 		        || !LFirstName.Any() || !LLastName.Any() || !LEmailAddress.Any())
 		    {
 			    ATokenValidatedContext.Fail("Provided token is invalid.");
