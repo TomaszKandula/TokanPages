@@ -1,9 +1,9 @@
 using Xunit;
 using FluentAssertions;
 using System;
+using System.Linq;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using TokanPages.Backend.Identity.Authorization;
 using TokanPages.Backend.Database.Initializer.Data;
 using TokanPages.Backend.Core.Services.DataProviderService;
