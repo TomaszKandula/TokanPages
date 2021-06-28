@@ -27,6 +27,7 @@ namespace TokanPages.Backend.Identity.Authentication
         public ClaimsPrincipal ValidateToken(string ASecurityToken, TokenValidationParameters AValidationParameters,
             out SecurityToken AValidatedToken)
         {
+            //TODO: extend custom validation
             var LPrincipal = FTokenHandler.ValidateToken(ASecurityToken, AValidationParameters, out AValidatedToken);
             return LPrincipal;
         }
