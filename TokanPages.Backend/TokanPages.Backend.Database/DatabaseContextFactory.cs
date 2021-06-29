@@ -18,9 +18,9 @@ namespace TokanPages.Backend.Database
         /// This method requires connection string defined in either AppSettings.json (linked)
         /// or User Secret that is referenced in project file (user secret file can be shared between projects).
         /// </summary>
-        /// <param name="ARgs"></param>
+        /// <param name="AParams"></param>
         /// <returns></returns>
-        public DatabaseContext CreateDbContext(string[] ARgs)
+        public DatabaseContext CreateDbContext(string[] AParams)
         {
             var LEnvironment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
             var LBuilder = new ConfigurationBuilder()
