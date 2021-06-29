@@ -26,6 +26,16 @@ namespace TokanPages.Backend.Database
        
         public virtual DbSet<PhotoCategories> PhotoCategories { get; set; }
 
+        public virtual DbSet<Roles> Roles { get; set; }
+        
+        public virtual DbSet<Permissions> Permissions { get; set; }
+        
+        public virtual DbSet<DefaultPermissions> DefaultAccessRights { get; set; }
+
+        public virtual DbSet<UserPermissions> UserPermissions { get; set; }
+        
+        public virtual DbSet<UserRoles> UserRoles { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder AModelBuilder)
         {
             base.OnModelCreating(AModelBuilder);
