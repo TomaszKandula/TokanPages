@@ -50,5 +50,9 @@ namespace TokanPages.Backend.Domain.Entities
         public ICollection<Photos> Photos { get; set; } = new HashSet<Photos>();
         
         public ICollection<Albums> Albums { get; set; } = new HashSet<Albums>();
+        
+        public ICollection<UserPermissions> UserPermissions { get; set; } = new HashSet<UserPermissions>();
+
+        public ICollection<UserRoles> UserRoles { get; set; } = new HashSet<UserRoles>();
     }
 }
