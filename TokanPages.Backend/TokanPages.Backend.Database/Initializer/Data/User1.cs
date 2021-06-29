@@ -20,6 +20,8 @@ namespace TokanPages.Backend.Database.Initializer.Data
         
         public const string SHORT_BIO = "Happy developer";
 
+        public const string CRYPTED_PASSWORD = "$2y$12$iSDdJHzQT46m8svbwxvST.V7ALyxb6aoxOxmaogPMdsVALkyCKRri";
+
         public static readonly Guid FId = Guid.Parse("08be222f-dfcd-42db-8509-fd78ef09b912");
         
         public static readonly DateTime FRegistered = DateTime.Parse("2020-01-10 12:15:15");

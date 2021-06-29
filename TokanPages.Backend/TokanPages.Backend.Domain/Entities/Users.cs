@@ -39,6 +39,10 @@ namespace TokanPages.Backend.Domain.Entities
         [MaxLength(255)]
         public string ShortBio { get; set; }
 
+        [Required]
+        [MaxLength(100)]
+        public string CryptedPassword { get; set; }
+        
         public ICollection<Articles> Articles { get; set; } = new HashSet<Articles>();
 
         public ICollection<ArticleLikes> ArticleLikes { get; set; } = new HashSet<ArticleLikes>();
