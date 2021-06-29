@@ -17,4 +17,5 @@ In such case EF Core will perform downgrade database then we can perform `remove
 
 Important: do not modify manually migrations and auto-generated scripts by EF Core.
 
-Note: alternatively, you can run `dotnet ef database update` in PowerShell terminal outside of IDE.
+Note: alternatively, you can run `dotnet ef database update` in PowerShell terminal outside of IDE, another useful CLI: `dotnet ef migrations add <migration_name>` to add new migration.
+
