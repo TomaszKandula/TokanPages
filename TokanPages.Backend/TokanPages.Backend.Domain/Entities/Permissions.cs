@@ -12,7 +12,7 @@ namespace TokanPages.Backend.Domain.Entities
         [MaxLength(100)]
         public string Name { get; set; }
 
-        public ICollection<DefaultPermissions> DefaultAccessRights { get; set; } = new HashSet<DefaultPermissions>();
+        public ICollection<DefaultPermissions> DefaultPermissions { get; set; } = new HashSet<DefaultPermissions>();
         
         public ICollection<UserPermissions> UserPermissions { get; set; } = new HashSet<UserPermissions>();
     }
