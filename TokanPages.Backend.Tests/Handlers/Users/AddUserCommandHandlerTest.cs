@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Cqrs.Services.Cipher;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 using TokanPages.Backend.Core.Services.DateTimeService;
 using TokanPages.Backend.Core.Services.DataProviderService;
@@ -33,7 +34,13 @@ namespace TokanPages.Backend.Tests.Handlers.Users
 
             var LDatabaseContext = GetTestDatabaseContext();
             var LMockedDateTime = new Mock<DateTimeService>();
-            var LAddUserCommandHandler = new AddUserCommandHandler(LDatabaseContext, LMockedDateTime.Object);
+            var LMockedCipher = new Mock<ICipher>();
+
+            LMockedCipher
+                .Setup(ACipher => ACipher.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("MockedPassword");
+            
+            var LAddUserCommandHandler = new AddUserCommandHandler(LDatabaseContext, LMockedDateTime.Object, LMockedCipher.Object);
 
             // Act
             await LAddUserCommandHandler.Handle(LAddUserCommand, CancellationToken.None);
@@ -83,7 +90,13 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             await LDatabaseContext.SaveChangesAsync();
 
             var LMockedDateTime = new Mock<DateTimeService>();
-            var LAddUserCommandHandler = new AddUserCommandHandler(LDatabaseContext, LMockedDateTime.Object);
+            var LMockedCipher = new Mock<ICipher>();
+            
+            LMockedCipher
+                .Setup(ACipher => ACipher.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns("MockedPassword");
+            
+            var LAddUserCommandHandler = new AddUserCommandHandler(LDatabaseContext, LMockedDateTime.Object, LMockedCipher.Object);
 
             // Act & Assert
             await Assert.ThrowsAsync<BusinessException>(() 
