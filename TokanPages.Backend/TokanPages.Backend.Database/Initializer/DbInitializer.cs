@@ -31,6 +31,9 @@ namespace TokanPages.Backend.Database.Initializer
             if (FDatabaseContext.PhotoCategories.Any()) 
                 FDatabaseContext.PhotoCategories.AddRange(PhotoCategoriesSeeder.SeedPhotoCategories());
 
+            if (FDatabaseContext.Roles.Any()) 
+                FDatabaseContext.Roles.AddRange(RolesSeeder.SeedRoles());
+            
             FDatabaseContext.SaveChanges();
         }
     }
