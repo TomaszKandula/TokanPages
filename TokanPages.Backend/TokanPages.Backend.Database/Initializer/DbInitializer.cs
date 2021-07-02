@@ -36,6 +36,15 @@ namespace TokanPages.Backend.Database.Initializer
 
             if (FDatabaseContext.Permissions.Any()) 
                 FDatabaseContext.Permissions.AddRange(PermissionsSeeder.SeedPermissions());
+
+            if (FDatabaseContext.DefaultPermissions.Any()) 
+                FDatabaseContext.DefaultPermissions.AddRange(DefaultPermissionsSeeder.SeedDefaultPermissions());
+
+            if (FDatabaseContext.UserPermissions.Any()) 
+                FDatabaseContext.UserPermissions.AddRange(UserPermissionsSeeder.SeedUserPermissions());
+
+            if (FDatabaseContext.UserRoles.Any()) 
+                FDatabaseContext.UserRoles.AddRange(UserRolesSeeder.SeedUserRoles());
             
             FDatabaseContext.SaveChanges();
         }
