@@ -29,7 +29,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 IsActivated = true,
                 Registered = LTestDate,
                 LastUpdated = null,
-                LastLogged = null
+                LastLogged = null,
+                CryptedPassword = FDataProviderService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();

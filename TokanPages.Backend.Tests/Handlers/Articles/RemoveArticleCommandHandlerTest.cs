@@ -4,8 +4,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Services.DataProviderService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
+using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Handlers.Articles
 {
@@ -33,7 +33,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 UserAlias = FDataProviderService.GetRandomString(),
                 Registered = FDataProviderService.GetRandomDateTime(),
                 LastLogged = null,
-                LastUpdated = null
+                LastUpdated = null,
+                CryptedPassword = FDataProviderService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -84,7 +85,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 UserAlias = FDataProviderService.GetRandomString(),
                 Registered = FDataProviderService.GetRandomDateTime(),
                 LastLogged = null,
-                LastUpdated = null
+                LastUpdated = null,
+                CryptedPassword = FDataProviderService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();

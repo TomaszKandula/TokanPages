@@ -4,8 +4,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Services.DataProviderService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
+using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Handlers.Users
 {
@@ -28,7 +28,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 IsActivated = true,
                 Registered = DateTime.Now,
                 LastUpdated = null,
-                LastLogged = null
+                LastLogged = null,
+                CryptedPassword = FDataProviderService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();

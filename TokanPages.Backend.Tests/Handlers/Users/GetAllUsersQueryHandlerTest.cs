@@ -32,7 +32,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                     IsActivated = true,
                     Registered = DateTime.Now,
                     LastUpdated = null,
-                    LastLogged = null
+                    LastLogged = null,
+                    CryptedPassword = FDataProviderService.GetRandomString()
                 },
                 new ()
                 {
@@ -44,7 +45,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                     IsActivated = true,
                     Registered = DateTime.Now,
                     LastUpdated = null,
-                    LastLogged = null
+                    LastLogged = null,
+                    CryptedPassword = FDataProviderService.GetRandomString()
                 }
             };
 

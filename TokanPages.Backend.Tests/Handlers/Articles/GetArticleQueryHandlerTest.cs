@@ -40,7 +40,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 UserAlias = USER_ALIAS,
                 Registered = FDataProviderService.GetRandomDateTime(),
                 LastLogged = null,
-                LastUpdated = null
+                LastUpdated = null,
+                CryptedPassword = FDataProviderService.GetRandomString()
             };
 
             await LDatabaseContext.Users.AddAsync(LUsers);
@@ -60,7 +61,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LLikes = new List<Backend.Domain.Entities.ArticleLikes> 
+            var LLikes = new List<Domain.Entities.ArticleLikes> 
             { 
                 new ()
                 {
@@ -124,7 +125,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 UserAlias = FDataProviderService.GetRandomString(),
                 Registered = FDataProviderService.GetRandomDateTime(),
                 LastLogged = null,
-                LastUpdated = null
+                LastUpdated = null,
+                CryptedPassword = FDataProviderService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();

@@ -35,7 +35,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 LastLogged = FDataProviderService.GetRandomDateTime(),
                 LastUpdated = FDataProviderService.GetRandomDateTime(),
                 AvatarName = FDataProviderService.GetRandomString(),
-                ShortBio = FDataProviderService.GetRandomString()
+                ShortBio = FDataProviderService.GetRandomString(),
+                CryptedPassword = FDataProviderService.GetRandomString()
             };
 
             await LDatabaseContext.Users.AddAsync(LUser);

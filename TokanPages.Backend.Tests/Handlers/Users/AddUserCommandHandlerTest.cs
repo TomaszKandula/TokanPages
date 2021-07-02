@@ -28,6 +28,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 UserAlias = FDataProviderService.GetRandomString(),
                 FirstName = FDataProviderService.GetRandomString(),
                 LastName = FDataProviderService.GetRandomString(),
+                Password = FDataProviderService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -73,7 +74,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LastName = FDataProviderService.GetRandomString(),
                 Registered = DateTime.Now,
                 LastUpdated = null,
-                LastLogged = null
+                LastLogged = null,
+                CryptedPassword = FDataProviderService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();

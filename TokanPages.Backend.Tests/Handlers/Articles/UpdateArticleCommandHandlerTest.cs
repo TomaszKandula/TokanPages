@@ -56,7 +56,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 UserAlias = FDataProviderService.GetRandomString(),
                 Registered = FDataProviderService.GetRandomDateTime(),
                 LastLogged = null,
-                LastUpdated = null
+                LastUpdated = null,
+                CryptedPassword = FDataProviderService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -136,7 +137,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 UserAlias = FDataProviderService.GetRandomString(),
                 Registered = FDataProviderService.GetRandomDateTime(),
                 LastLogged = null,
-                LastUpdated = null
+                LastUpdated = null,
+                CryptedPassword = FDataProviderService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -211,7 +213,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 UserAlias = FDataProviderService.GetRandomString(),
                 Registered = FDataProviderService.GetRandomDateTime(),
                 LastLogged = null,
-                LastUpdated = null
+                LastUpdated = null,
+                CryptedPassword = FDataProviderService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -296,7 +299,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 UserAlias = FDataProviderService.GetRandomString(),
                 Registered = FDataProviderService.GetRandomDateTime(),
                 LastLogged = null,
-                LastUpdated = null
+                LastUpdated = null,
+                CryptedPassword = FDataProviderService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -373,7 +377,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 UserAlias = FDataProviderService.GetRandomString(),
                 Registered = FDataProviderService.GetRandomDateTime(),
                 LastLogged = null,
-                LastUpdated = null
+                LastUpdated = null,
+                CryptedPassword = FDataProviderService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -470,7 +475,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 UserAlias = FDataProviderService.GetRandomString(),
                 Registered = FDataProviderService.GetRandomDateTime(),
                 LastLogged = null,
-                LastUpdated = null
+                LastUpdated = null,
+                CryptedPassword = FDataProviderService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -539,7 +545,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 UserAlias = FDataProviderService.GetRandomString(),
                 Registered = FDataProviderService.GetRandomDateTime(),
                 LastLogged = null,
-                LastUpdated = null
+                LastUpdated = null,
+                CryptedPassword = FDataProviderService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
