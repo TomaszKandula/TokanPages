@@ -7,7 +7,7 @@ using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.Services.DateTimeService;
-using TokanPages.Backend.Cqrs.Services.Cipher;
+using TokanPages.Backend.Cqrs.Services.CipheringService;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 {   
@@ -19,13 +19,13 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
         
         private readonly IDateTimeService FDateTimeService;
 
-        private readonly ICipher FCipher;
+        private readonly ICipheringService FCipheringService;
 
-        public AddUserCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService, ICipher ACipher) 
+        public AddUserCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService, ICipheringService ACipheringService) 
         {
             FDatabaseContext = ADatabaseContext;
             FDateTimeService = ADateTimeService;
-            FCipher = ACipher;
+            FCipheringService = ACipheringService;
         }
 
         public override async Task<Guid> Handle(AddUserCommand ARequest, CancellationToken ACancellationToken)
@@ -48,7 +48,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 Registered = FDateTimeService.Now,
                 LastUpdated = null,
                 LastLogged = null,
-                CryptedPassword = FCipher.GetHashedPassword(ARequest.Password, FCipher.GenerateSalt(CIPHER_LOG_ROUNDS)) 
+                CryptedPassword = FCipheringService.GetHashedPassword(ARequest.Password, FCipheringService.GenerateSalt(CIPHER_LOG_ROUNDS)) 
             };
 
             await FDatabaseContext.Users.AddAsync(LNewUser, ACancellationToken);

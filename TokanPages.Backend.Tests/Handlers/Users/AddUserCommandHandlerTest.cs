@@ -6,9 +6,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Cqrs.Services.Cipher;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Cqrs.Services.CipheringService;
 using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Handlers.Users
@@ -34,7 +34,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
 
             var LDatabaseContext = GetTestDatabaseContext();
             var LMockedDateTime = new Mock<DateTimeService>();
-            var LMockedCipher = new Mock<ICipher>();
+            var LMockedCipher = new Mock<ICipheringService>();
 
             LMockedCipher
                 .Setup(ACipher => ACipher.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
@@ -90,7 +90,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             await LDatabaseContext.SaveChangesAsync();
 
             var LMockedDateTime = new Mock<DateTimeService>();
-            var LMockedCipher = new Mock<ICipher>();
+            var LMockedCipher = new Mock<ICipheringService>();
             
             LMockedCipher
                 .Setup(ACipher => ACipher.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))

@@ -2,9 +2,9 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 
-namespace TokanPages.Backend.Cqrs.Services.Cipher.Helpers
+namespace TokanPages.Backend.Cqrs.Services.CipheringService.Helpers
 {
-    public static class CipherMethods
+    public static class Methods
     {
         /// <summary>
         /// Encode a byte array using BCrypt's slightly-modified
@@ -30,30 +30,30 @@ namespace TokanPages.Backend.Cqrs.Services.Cipher.Helpers
             for (var LOffset = 0; LOffset < ALength;) 
             {
                 var LCountPrimary = AArrayToDecode[LOffset++] & 0xff;
-                LStringBuilder.Append(CipherArrays.FTableForBase64Encoding[(LCountPrimary >> 2) & 0x3f]);
+                LStringBuilder.Append(Arrays.FTableForBase64Encoding[(LCountPrimary >> 2) & 0x3f]);
                 LCountPrimary = (LCountPrimary & 0x03) << 4;
             
                 if (LOffset >= ALength) 
                 {
-                    LStringBuilder.Append(CipherArrays.FTableForBase64Encoding[LCountPrimary & 0x3f]);
+                    LStringBuilder.Append(Arrays.FTableForBase64Encoding[LCountPrimary & 0x3f]);
                     break;
                 }
             
                 var LCountSecondary = AArrayToDecode[LOffset++] & 0xff;
                 LCountPrimary |= (LCountSecondary >> 4) & 0x0f;
-                LStringBuilder.Append(CipherArrays.FTableForBase64Encoding[LCountPrimary & 0x3f]);
+                LStringBuilder.Append(Arrays.FTableForBase64Encoding[LCountPrimary & 0x3f]);
                 LCountPrimary = (LCountSecondary & 0x0f) << 2;
             
                 if (LOffset >= ALength) 
                 {
-                    LStringBuilder.Append(CipherArrays.FTableForBase64Encoding[LCountPrimary & 0x3f]);
+                    LStringBuilder.Append(Arrays.FTableForBase64Encoding[LCountPrimary & 0x3f]);
                     break;
                 }
             
                 LCountSecondary = AArrayToDecode[LOffset++] & 0xff;
                 LCountPrimary |= (LCountSecondary >> 6) & 0x03;
-                LStringBuilder.Append(CipherArrays.FTableForBase64Encoding[LCountPrimary & 0x3f]);
-                LStringBuilder.Append(CipherArrays.FTableForBase64Encoding[LCountSecondary & 0x3f]);
+                LStringBuilder.Append(Arrays.FTableForBase64Encoding[LCountPrimary & 0x3f]);
+                LStringBuilder.Append(Arrays.FTableForBase64Encoding[LCountSecondary & 0x3f]);
             }
 
             return LStringBuilder.ToString();
@@ -124,15 +124,15 @@ namespace TokanPages.Backend.Cqrs.Services.Cipher.Helpers
         /// </returns>
         public static byte[] CryptRaw(IReadOnlyList<byte> APassword, IReadOnlyList<byte> ASalt, int ALogRounds) 
         {
-            var LData = new uint[CipherArrays.FBCryptCipherText.Length];
-            CipherArrays.FBCryptCipherText.CopyTo(LData, 0);
+            var LData = new uint[Arrays.FBCryptCipherText.Length];
+            Arrays.FBCryptCipherText.CopyTo(LData, 0);
 
             var LDataLength = LData.Length;
             if (ALogRounds is < 4 or > 31) 
                 throw new ArgumentOutOfRangeException(nameof(ALogRounds), ALogRounds, null);
 
             var LRounds = 1 << ALogRounds;
-            if (ASalt.Count != CipherConstants.BCRYPT_SALT_LENGTH) 
+            if (ASalt.Count != Constants.BCRYPT_SALT_LENGTH) 
                 throw new ArgumentException(@"Invalid salt length.", nameof(ASalt));
 
             InitializeBlowfishKey();
@@ -176,9 +176,9 @@ namespace TokanPages.Backend.Cqrs.Services.Cipher.Helpers
         private static int Char64(char ABase64EncodedValue) 
         {
             int LValue = ABase64EncodedValue;
-            return LValue < 0 || LValue > CipherArrays.FTableForBase64Decoding.Length 
+            return LValue < 0 || LValue > Arrays.FTableForBase64Decoding.Length 
                 ? -1 
-                : CipherArrays.FTableForBase64Decoding[LValue];
+                : Arrays.FTableForBase64Decoding[LValue];
         }
         
         /// <summary>
@@ -197,25 +197,25 @@ namespace TokanPages.Backend.Cqrs.Services.Cipher.Helpers
             var LLength = ABlock[AOffset]; 
             var LRecord = ABlock[AOffset + 1];
 
-            LLength ^= CipherArrays.ExpandedBlowfishKeyPrimary[0];
-            for (LIndex = 0; LIndex <= CipherConstants.BLOWFISH_NUM_ROUNDS - 2;) 
+            LLength ^= Arrays.ExpandedBlowfishKeyPrimary[0];
+            for (LIndex = 0; LIndex <= Constants.BLOWFISH_NUM_ROUNDS - 2;) 
             {
                 // Feistel substitution on left word
-                var LNumber = CipherArrays.ExpandedBlowfishKeySecondary[(LLength >> 24) & 0xff];
-                LNumber += CipherArrays.ExpandedBlowfishKeySecondary[0x100 | ((LLength >> 16) & 0xff)];
-                LNumber ^= CipherArrays.ExpandedBlowfishKeySecondary[0x200 | ((LLength >> 8) & 0xff)];
-                LNumber += CipherArrays.ExpandedBlowfishKeySecondary[0x300 | (LLength & 0xff)];
-                LRecord ^= LNumber ^ CipherArrays.ExpandedBlowfishKeyPrimary[++LIndex];
+                var LNumber = Arrays.ExpandedBlowfishKeySecondary[(LLength >> 24) & 0xff];
+                LNumber += Arrays.ExpandedBlowfishKeySecondary[0x100 | ((LLength >> 16) & 0xff)];
+                LNumber ^= Arrays.ExpandedBlowfishKeySecondary[0x200 | ((LLength >> 8) & 0xff)];
+                LNumber += Arrays.ExpandedBlowfishKeySecondary[0x300 | (LLength & 0xff)];
+                LRecord ^= LNumber ^ Arrays.ExpandedBlowfishKeyPrimary[++LIndex];
 
                 // Feistel substitution on right word
-                LNumber = CipherArrays.ExpandedBlowfishKeySecondary[(LRecord >> 24) & 0xff];
-                LNumber += CipherArrays.ExpandedBlowfishKeySecondary[0x100 | ((LRecord >> 16) & 0xff)];
-                LNumber ^= CipherArrays.ExpandedBlowfishKeySecondary[0x200 | ((LRecord >> 8) & 0xff)];
-                LNumber += CipherArrays.ExpandedBlowfishKeySecondary[0x300 | (LRecord & 0xff)];
-                LLength ^= LNumber ^ CipherArrays.ExpandedBlowfishKeyPrimary[++LIndex];
+                LNumber = Arrays.ExpandedBlowfishKeySecondary[(LRecord >> 24) & 0xff];
+                LNumber += Arrays.ExpandedBlowfishKeySecondary[0x100 | ((LRecord >> 16) & 0xff)];
+                LNumber ^= Arrays.ExpandedBlowfishKeySecondary[0x200 | ((LRecord >> 8) & 0xff)];
+                LNumber += Arrays.ExpandedBlowfishKeySecondary[0x300 | (LRecord & 0xff)];
+                LLength ^= LNumber ^ Arrays.ExpandedBlowfishKeyPrimary[++LIndex];
             }
         
-            ABlock[AOffset] = LRecord ^ CipherArrays.ExpandedBlowfishKeyPrimary[CipherConstants.BLOWFISH_NUM_ROUNDS + 1];
+            ABlock[AOffset] = LRecord ^ Arrays.ExpandedBlowfishKeyPrimary[Constants.BLOWFISH_NUM_ROUNDS + 1];
             ABlock[AOffset + 1] = LLength;
         }
 
@@ -249,10 +249,10 @@ namespace TokanPages.Backend.Cqrs.Services.Cipher.Helpers
         /// </summary>
         private static void InitializeBlowfishKey() 
         {
-            CipherArrays.ExpandedBlowfishKeyPrimary = new uint[CipherArrays.FInitialKeyContentSchedule.Length];
-            CipherArrays.FInitialKeyContentSchedule.CopyTo(CipherArrays.ExpandedBlowfishKeyPrimary, 0);
-            CipherArrays.ExpandedBlowfishKeySecondary = new uint[CipherArrays.FKeys.Length];
-            CipherArrays.FKeys.CopyTo(CipherArrays.ExpandedBlowfishKeySecondary, 0);
+            Arrays.ExpandedBlowfishKeyPrimary = new uint[Arrays.FInitialKeyContentSchedule.Length];
+            Arrays.FInitialKeyContentSchedule.CopyTo(Arrays.ExpandedBlowfishKeyPrimary, 0);
+            Arrays.ExpandedBlowfishKeySecondary = new uint[Arrays.FKeys.Length];
+            Arrays.FKeys.CopyTo(Arrays.ExpandedBlowfishKeySecondary, 0);
         }
 
         /// <summary>
@@ -264,27 +264,27 @@ namespace TokanPages.Backend.Cqrs.Services.Cipher.Helpers
         private static void Key(IReadOnlyList<byte> AKey) 
         {
             uint[] LBlock = { 0, 0 };
-            var LPrimaryKeyLength = CipherArrays.ExpandedBlowfishKeyPrimary.Length; 
-            var LSecondaryKeyLength = CipherArrays.ExpandedBlowfishKeySecondary.Length;
+            var LPrimaryKeyLength = Arrays.ExpandedBlowfishKeyPrimary.Length; 
+            var LSecondaryKeyLength = Arrays.ExpandedBlowfishKeySecondary.Length;
 
             var LOffset = 0;
             for (var LIndex = 0; LIndex < LPrimaryKeyLength; LIndex++) 
             {
-                CipherArrays.ExpandedBlowfishKeyPrimary[LIndex] = CipherArrays.ExpandedBlowfishKeyPrimary[LIndex] ^ StreamToWord(AKey, ref LOffset);
+                Arrays.ExpandedBlowfishKeyPrimary[LIndex] = Arrays.ExpandedBlowfishKeyPrimary[LIndex] ^ StreamToWord(AKey, ref LOffset);
             }
 
             for (var LIndex = 0; LIndex < LPrimaryKeyLength; LIndex += 2) 
             {
                 Encipher(LBlock, 0);
-                CipherArrays.ExpandedBlowfishKeyPrimary[LIndex] = LBlock[0];
-                CipherArrays.ExpandedBlowfishKeyPrimary[LIndex + 1] = LBlock[1];
+                Arrays.ExpandedBlowfishKeyPrimary[LIndex] = LBlock[0];
+                Arrays.ExpandedBlowfishKeyPrimary[LIndex + 1] = LBlock[1];
             }
 
             for (var LIndex = 0; LIndex < LSecondaryKeyLength; LIndex += 2) 
             {
                 Encipher(LBlock, 0);
-                CipherArrays.ExpandedBlowfishKeySecondary[LIndex] = LBlock[0];
-                CipherArrays.ExpandedBlowfishKeySecondary[LIndex + 1] = LBlock[1];
+                Arrays.ExpandedBlowfishKeySecondary[LIndex] = LBlock[0];
+                Arrays.ExpandedBlowfishKeySecondary[LIndex + 1] = LBlock[1];
             }
         }
 
@@ -302,13 +302,13 @@ namespace TokanPages.Backend.Cqrs.Services.Cipher.Helpers
         private static void EnhancedKeySchedule(IReadOnlyList<byte> AData, IReadOnlyList<byte> AKey) 
         {
             uint[] LBlock = { 0, 0 };
-            var LPrimaryKeyLength = CipherArrays.ExpandedBlowfishKeyPrimary.Length;
-            var LSecondaryKeyLength = CipherArrays.ExpandedBlowfishKeySecondary.Length;
+            var LPrimaryKeyLength = Arrays.ExpandedBlowfishKeyPrimary.Length;
+            var LSecondaryKeyLength = Arrays.ExpandedBlowfishKeySecondary.Length;
 
             var LKeyOffset = 0;
             for (var LIndex = 0; LIndex < LPrimaryKeyLength; LIndex++) 
             {
-                CipherArrays.ExpandedBlowfishKeyPrimary[LIndex] = CipherArrays.ExpandedBlowfishKeyPrimary[LIndex] ^ StreamToWord(AKey, ref LKeyOffset);
+                Arrays.ExpandedBlowfishKeyPrimary[LIndex] = Arrays.ExpandedBlowfishKeyPrimary[LIndex] ^ StreamToWord(AKey, ref LKeyOffset);
             }
 
             var LDataOffset = 0;
@@ -317,8 +317,8 @@ namespace TokanPages.Backend.Cqrs.Services.Cipher.Helpers
                 LBlock[0] ^= StreamToWord(AData, ref LDataOffset);
                 LBlock[1] ^= StreamToWord(AData, ref LDataOffset);
                 Encipher(LBlock, 0);
-                CipherArrays.ExpandedBlowfishKeyPrimary[LIndex] = LBlock[0];
-                CipherArrays.ExpandedBlowfishKeyPrimary[LIndex + 1] = LBlock[1];
+                Arrays.ExpandedBlowfishKeyPrimary[LIndex] = LBlock[0];
+                Arrays.ExpandedBlowfishKeyPrimary[LIndex + 1] = LBlock[1];
             }
 
             for (var LIndex = 0; LIndex < LSecondaryKeyLength; LIndex += 2) 
@@ -326,8 +326,8 @@ namespace TokanPages.Backend.Cqrs.Services.Cipher.Helpers
                 LBlock[0] ^= StreamToWord(AData, ref LDataOffset);
                 LBlock[1] ^= StreamToWord(AData, ref LDataOffset);
                 Encipher(LBlock, 0);
-                CipherArrays.ExpandedBlowfishKeySecondary[LIndex] = LBlock[0];
-                CipherArrays.ExpandedBlowfishKeySecondary[LIndex + 1] = LBlock[1];
+                Arrays.ExpandedBlowfishKeySecondary[LIndex] = LBlock[0];
+                Arrays.ExpandedBlowfishKeySecondary[LIndex + 1] = LBlock[1];
             }
         }
     }

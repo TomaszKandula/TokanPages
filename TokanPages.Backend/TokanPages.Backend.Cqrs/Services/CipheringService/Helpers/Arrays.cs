@@ -1,6 +1,6 @@
-namespace TokanPages.Backend.Cqrs.Services.Cipher.Helpers
+namespace TokanPages.Backend.Cqrs.Services.CipheringService.Helpers
 {
-    public static class CipherArrays
+    public static class Arrays
     {
         public static uint[] ExpandedBlowfishKeyPrimary { get; set; }
 

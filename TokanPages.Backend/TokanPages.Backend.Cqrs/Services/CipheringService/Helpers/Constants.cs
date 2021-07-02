@@ -1,6 +1,6 @@
-namespace TokanPages.Backend.Cqrs.Services.Cipher.Helpers
+namespace TokanPages.Backend.Cqrs.Services.CipheringService.Helpers
 {
-    public static class CipherConstants
+    public static class Constants
     {
         public const int GENERATE_SALT_DEFAULT_LOG2_ROUNDS = 10;
     

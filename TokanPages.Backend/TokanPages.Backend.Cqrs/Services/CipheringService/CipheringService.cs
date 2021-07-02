@@ -2,11 +2,11 @@ using System;
 using System.Text;
 using System.Globalization;
 using System.Security.Cryptography;
-using TokanPages.Backend.Cqrs.Services.Cipher.Helpers;
+using TokanPages.Backend.Cqrs.Services.CipheringService.Helpers;
 
-namespace TokanPages.Backend.Cqrs.Services.Cipher
+namespace TokanPages.Backend.Cqrs.Services.CipheringService
 {
-    public class Cipher : ICipher
+    public class CipheringService : ICipheringService
     {
         /// <summary>
         /// Hash a password using the OpenBSD bcrypt scheme.
@@ -53,8 +53,8 @@ namespace TokanPages.Backend.Cqrs.Services.Cipher
             var LRounds = int.Parse(ASalt.Substring(LOffset, 2), NumberFormatInfo.InvariantInfo);
 
             var LPasswordBytes = Encoding.UTF8.GetBytes(APassword + (LMinor >= 'a' ? "\0" : string.Empty));
-            var LSaltBytes = CipherMethods.DecodeBase64(ASalt.Substring(LOffset + 3, 22), CipherConstants.BCRYPT_SALT_LENGTH);
-            var LHashed = CipherMethods.CryptRaw(LPasswordBytes, LSaltBytes, LRounds);
+            var LSaltBytes = Methods.DecodeBase64(ASalt.Substring(LOffset + 3, 22), Constants.BCRYPT_SALT_LENGTH);
+            var LHashed = Methods.CryptRaw(LPasswordBytes, LSaltBytes, LRounds);
 
             var LStringBuilder = new StringBuilder();
 
@@ -68,8 +68,8 @@ namespace TokanPages.Backend.Cqrs.Services.Cipher
         
             LStringBuilder.Append(LRounds);
             LStringBuilder.Append('$');
-            LStringBuilder.Append(CipherMethods.EncodeBase64(LSaltBytes, LSaltBytes.Length));
-            LStringBuilder.Append(CipherMethods.EncodeBase64(LHashed, CipherArrays.FBCryptCipherText.Length * 4 - 1));
+            LStringBuilder.Append(Methods.EncodeBase64(LSaltBytes, LSaltBytes.Length));
+            LStringBuilder.Append(Methods.EncodeBase64(LHashed, Arrays.FBCryptCipherText.Length * 4 - 1));
 
             return LStringBuilder.ToString();
         }
@@ -100,9 +100,9 @@ namespace TokanPages.Backend.Cqrs.Services.Cipher
         /// <returns>
         /// An encoded salt value.
         /// </returns>
-        public string GenerateSalt(int ALogRounds = CipherConstants.GENERATE_SALT_DEFAULT_LOG2_ROUNDS) 
+        public string GenerateSalt(int ALogRounds = Constants.GENERATE_SALT_DEFAULT_LOG2_ROUNDS) 
         {
-            var LRandomBytes = new byte[CipherConstants.BCRYPT_SALT_LENGTH];
+            var LRandomBytes = new byte[Constants.BCRYPT_SALT_LENGTH];
 
             RandomNumberGenerator.Create().GetBytes(LRandomBytes);
 
@@ -114,7 +114,7 @@ namespace TokanPages.Backend.Cqrs.Services.Cipher
         
             LStringBuilder.Append(ALogRounds);
             LStringBuilder.Append('$');
-            LStringBuilder.Append(CipherMethods.EncodeBase64(LRandomBytes, LRandomBytes.Length));
+            LStringBuilder.Append(Methods.EncodeBase64(LRandomBytes, LRandomBytes.Length));
 
             return LStringBuilder.ToString();
         }

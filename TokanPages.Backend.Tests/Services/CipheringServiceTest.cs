@@ -1,15 +1,15 @@
 using Xunit;
 using FluentAssertions;
-using TokanPages.Backend.Cqrs.Services.Cipher;
+using TokanPages.Backend.Cqrs.Services.CipheringService;
 using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Services
 {
-    public class CipherServiceTest
+    public class CipheringServiceTest
     {
         private readonly DataProviderService FDataProviderService;
         
-        public CipherServiceTest() => FDataProviderService = new DataProviderService();
+        public CipheringServiceTest() => FDataProviderService = new DataProviderService();
 
         [Fact]
         public void GivenPlainTextPassword_WhenInvokeGetHashedPassword_ShouldReturnHashedPassword()
@@ -17,7 +17,7 @@ namespace TokanPages.Backend.Tests.Services
             // Arrange
             const int CIPHER_LOG_ROUNDS = 12;
             var LPlainTextPassword = FDataProviderService.GetRandomString();
-            var LCipher = new Cipher();
+            var LCipher = new CipheringService();
 
             // Act
             var LSalt = LCipher.GenerateSalt(CIPHER_LOG_ROUNDS);

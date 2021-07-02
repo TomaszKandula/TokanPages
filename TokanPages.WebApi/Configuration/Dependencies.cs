@@ -15,13 +15,13 @@ using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Core.Behaviours;
 using TokanPages.Backend.SmtpClient.Models;
-using TokanPages.Backend.Cqrs.Services.Cipher;
 using TokanPages.Backend.Database.Initializer;
 using TokanPages.Backend.Identity.Authentication;
 using TokanPages.Backend.Core.Services.AppLogger;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
 using TokanPages.Backend.Core.Services.TemplateHelper;
 using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Cqrs.Services.CipheringService;
 using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
 using TokanPages.Backend.Core.Services.DataProviderService;
 using FluentValidation;
@@ -88,7 +88,7 @@ namespace TokanPages.WebApi.Configuration
             AServices.AddScoped<IUserProvider, UserProvider>();
             AServices.AddScoped<IDataProviderService, DataProviderService>();
             AServices.AddScoped<IDbInitializer, DbInitializer>();
-            AServices.AddScoped<ICipher, Cipher>();
+            AServices.AddScoped<ICipheringService, CipheringService>();
             
             AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
             {
