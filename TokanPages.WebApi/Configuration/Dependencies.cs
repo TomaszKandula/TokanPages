@@ -48,7 +48,7 @@ namespace TokanPages.WebApi.Configuration
             SetupServices(AServices);
             SetupValidators(AServices);
             SetupMediatR(AServices);
-            JwtBearer.Configure(AServices, AConfiguration);
+            WebToken.Configure(AServices, AConfiguration);
         }
 
         private static void SetupAppSettings(IServiceCollection AServices, IConfiguration AConfiguration) 

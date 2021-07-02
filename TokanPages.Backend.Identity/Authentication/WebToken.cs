@@ -14,7 +14,7 @@ using TokanPages.Backend.Identity.Authorization;
 namespace TokanPages.Backend.Identity.Authentication
 {
 	[ExcludeFromCodeCoverage]
-	public static class JwtBearer
+	public static class WebToken
     { 
 	    public static void Configure(IServiceCollection AServices, IConfiguration AConfiguration)
         { 
@@ -31,7 +31,7 @@ namespace TokanPages.Backend.Identity.Authentication
 	        {
 		        AOptions.Audience = LAudience;
 		        AOptions.SecurityTokenValidators.Clear();
-		        AOptions.SecurityTokenValidators.Add(new JwtSecurityHandler());
+		        AOptions.SecurityTokenValidators.Add(new SecurityHandler());
 		        AOptions.SaveToken = true;
 		        AOptions.RequireHttpsMetadata = LRequireHttps;
 		        AOptions.TokenValidationParameters = new TokenValidationParameters

@@ -6,7 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace TokanPages.Backend.Identity.Authentication
 {
     [ExcludeFromCodeCoverage]
-    public class JwtSecurityHandler : ISecurityTokenValidator
+    public class SecurityHandler : ISecurityTokenValidator
     {
         private readonly JwtSecurityTokenHandler FTokenHandler;
 
@@ -14,7 +14,7 @@ namespace TokanPages.Backend.Identity.Authentication
 
         public int MaximumTokenSizeInBytes { get; set; } = TokenValidationParameters.DefaultMaximumTokenSizeInBytes;
 
-        public JwtSecurityHandler() => FTokenHandler = new JwtSecurityTokenHandler();
+        public SecurityHandler() => FTokenHandler = new JwtSecurityTokenHandler();
 
         public bool CanReadToken(string ASecurityToken) => FTokenHandler.CanReadToken(ASecurityToken);
 
