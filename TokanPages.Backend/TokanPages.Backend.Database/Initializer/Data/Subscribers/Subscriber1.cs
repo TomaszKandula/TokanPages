@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Backend.Database.Initializer.Data
+namespace TokanPages.Backend.Database.Initializer.Data.Subscribers
 {   
     [ExcludeFromCodeCoverage]
-    public static class Subscribers1
+    public static class Subscriber1
     {
         public const string EMAIL = "ester1990@gmail.com";
 

@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Backend.Database.Initializer.Data
+namespace TokanPages.Backend.Database.Initializer.Data.Roles
 {
     [ExcludeFromCodeCoverage]
     public static class Role2

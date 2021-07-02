@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Backend.Database.Initializer.Data
+namespace TokanPages.Backend.Database.Initializer.Data.Users
 {
     [ExcludeFromCodeCoverage]
     public static class User2
