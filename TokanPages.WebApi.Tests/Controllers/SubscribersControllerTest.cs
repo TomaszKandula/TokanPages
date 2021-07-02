@@ -11,8 +11,9 @@ using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Identity.Authorization;
 using TokanPages.Backend.Shared.Dto.Subscribers;
-using TokanPages.Backend.Database.Initializer.Data;
+using TokanPages.Backend.Database.Initializer.Data.Users;
 using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Database.Initializer.Data.Subscribers;
 
 namespace TokanPages.WebApi.Tests.Controllers
 {
@@ -68,7 +69,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenCorrectIdAndNoJwt_WhenGetSubscriber_ShouldReturnUnauthorized() 
         {
             // Arrange
-            var LTestUserId = Subscribers1.FId;
+            var LTestUserId = Subscriber1.FId;
             var LRequest = $"/api/v1/subscribers/getsubscriber/{LTestUserId}/";
             var LHttpClient = FWebAppFactory.CreateClient();
 

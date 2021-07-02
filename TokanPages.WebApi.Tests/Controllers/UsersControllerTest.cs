@@ -12,8 +12,8 @@ using System.Collections.Generic;
 using TokanPages.Backend.Shared.Dto.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Identity.Authorization;
-using TokanPages.Backend.Database.Initializer.Data;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
+using TokanPages.Backend.Database.Initializer.Data.Users;
 using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.WebApi.Tests.Controllers

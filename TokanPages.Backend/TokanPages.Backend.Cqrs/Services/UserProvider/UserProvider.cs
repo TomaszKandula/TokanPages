@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
 using TokanPages.Backend.Domain.Entities;
-using TokanPages.Backend.Database.Initializer.Data;
+using TokanPages.Backend.Database.Initializer.Data.Users;
 
 namespace TokanPages.Backend.Cqrs.Services.UserProvider
 {
