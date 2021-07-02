@@ -3,7 +3,7 @@ using Xunit;
 using FluentAssertions;
 using System.Threading.Tasks;
 using TokanPages.Backend.Shared;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 
 namespace TokanPages.WebApi.Tests.Controllers
 {

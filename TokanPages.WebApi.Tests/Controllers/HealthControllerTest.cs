@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 
 namespace TokanPages.WebApi.Tests.Controllers
 {

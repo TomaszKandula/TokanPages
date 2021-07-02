@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
 
 namespace TokanPages.Backend.Tests.Handlers.Subscribers

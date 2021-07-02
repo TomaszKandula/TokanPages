@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Handlers.Articles
 {

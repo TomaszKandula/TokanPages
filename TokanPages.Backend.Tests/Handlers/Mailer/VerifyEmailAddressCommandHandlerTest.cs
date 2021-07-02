@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.SmtpClient.Models;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Handlers.Mailer
 {

@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Handlers.Users
 {

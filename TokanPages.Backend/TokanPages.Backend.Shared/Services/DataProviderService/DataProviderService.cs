@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 
-namespace TokanPages.Backend.Core.Services.DataProviderService
+namespace TokanPages.Backend.Shared.Services.DataProviderService
 {
     public class DataProviderService : DataProviderObject, IDataProviderService
     {

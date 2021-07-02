@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Shared.Services.DateTimeService;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 {

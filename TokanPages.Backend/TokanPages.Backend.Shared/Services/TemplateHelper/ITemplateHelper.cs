@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TokanPages.Backend.Core.Services.TemplateHelper
+namespace TokanPages.Backend.Shared.Services.TemplateHelper
 {
     public interface ITemplateHelper
     {

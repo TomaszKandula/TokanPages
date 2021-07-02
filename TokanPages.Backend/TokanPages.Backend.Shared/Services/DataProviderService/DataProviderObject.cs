@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Security.Claims;
 
-namespace TokanPages.Backend.Core.Services.DataProviderService
+namespace TokanPages.Backend.Shared.Services.DataProviderService
 {
     public abstract class DataProviderObject
     {

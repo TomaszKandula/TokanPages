@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.SmtpClient.Models;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using DnsClient.Protocol;

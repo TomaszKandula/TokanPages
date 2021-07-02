@@ -9,10 +9,10 @@ using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Storage.AzureBlobStorage;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Shared.Services.DateTimeService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Handlers.Articles
 {

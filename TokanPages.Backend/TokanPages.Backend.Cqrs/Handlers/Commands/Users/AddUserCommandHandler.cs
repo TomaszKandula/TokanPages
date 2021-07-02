@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Shared.Services.DateTimeService;
 using TokanPages.Backend.Cqrs.Services.CipheringService;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users

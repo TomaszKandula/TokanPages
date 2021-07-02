@@ -1,7 +1,7 @@
 using Xunit;
 using FluentAssertions;
 using TokanPages.Backend.Cqrs.Services.CipheringService;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Services
 {

@@ -2,7 +2,7 @@
 using System;
 using FluentAssertions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
 namespace TokanPages.Backend.Tests.Validators.Articles

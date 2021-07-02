@@ -2,7 +2,7 @@
 using FluentAssertions;
 using System.Collections.Generic;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
 
 namespace TokanPages.Backend.Tests.Validators.Mailer

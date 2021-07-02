@@ -2,7 +2,7 @@
 using Xunit;
 using FluentAssertions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
 namespace TokanPages.Backend.Tests.Validators.Subscribers

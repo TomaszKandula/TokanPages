@@ -12,9 +12,9 @@ using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Core.Logger;
 using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Storage.Models;
-using TokanPages.Backend.Core.Services.TemplateHelper;
+using TokanPages.Backend.Shared.Services.TemplateHelper;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 using MediatR;
 
 namespace TokanPages.Backend.Tests.Handlers.Mailer

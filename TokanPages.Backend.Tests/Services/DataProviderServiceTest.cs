@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using TokanPages.Backend.Identity.Authorization;
 using TokanPages.Backend.Database.Initializer.Data.Users;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Services
 {

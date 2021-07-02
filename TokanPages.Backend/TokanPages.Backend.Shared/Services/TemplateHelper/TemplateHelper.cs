@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 
-namespace TokanPages.Backend.Core.Services.TemplateHelper
+namespace TokanPages.Backend.Shared.Services.TemplateHelper
 {
     public sealed class TemplateHelper : ITemplateHelper
     {

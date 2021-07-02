@@ -1,6 +1,6 @@
 using System;
 
-namespace TokanPages.Backend.Core.Services.DateTimeService
+namespace TokanPages.Backend.Shared.Services.DateTimeService
 {
     public class DateTimeService : DateTimeObject, IDateTimeService
     {

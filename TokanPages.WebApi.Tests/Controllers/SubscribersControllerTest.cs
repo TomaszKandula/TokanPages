@@ -12,7 +12,7 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Identity.Authorization;
 using TokanPages.Backend.Shared.Dto.Subscribers;
 using TokanPages.Backend.Database.Initializer.Data.Users;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 using TokanPages.Backend.Database.Initializer.Data.Subscribers;
 
 namespace TokanPages.WebApi.Tests.Controllers

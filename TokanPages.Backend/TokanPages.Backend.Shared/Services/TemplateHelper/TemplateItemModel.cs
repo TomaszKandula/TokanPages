@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Core.Services.TemplateHelper
+﻿namespace TokanPages.Backend.Shared.Services.TemplateHelper
 {
     public class TemplateItemModel
     {

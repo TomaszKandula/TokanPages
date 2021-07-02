@@ -12,7 +12,7 @@ using TokanPages.Backend.Shared.Dto.Mailer;
 using TokanPages.Backend.Identity.Authorization;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
 using TokanPages.Backend.Database.Initializer.Data.Users;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 
 namespace TokanPages.WebApi.Tests.Controllers
 {

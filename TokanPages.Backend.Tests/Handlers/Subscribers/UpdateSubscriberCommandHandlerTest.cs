@@ -5,8 +5,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Services.DateTimeService;
-using TokanPages.Backend.Core.Services.DataProviderService;
+using TokanPages.Backend.Shared.Services.DateTimeService;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
 namespace TokanPages.Backend.Tests.Handlers.Subscribers
