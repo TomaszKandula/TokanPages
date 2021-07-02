@@ -12,5 +12,7 @@ namespace TokanPages.Backend.Shared.Dto.Users
         public string LastName { get; set; }
         
         public string EmailAddress { get; set; }
+
+        public string CryptedPassword { get; set; }
     }
 }
