@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Core.Services.AppLogger;
+using TokanPages.Backend.Core.Logger;
 using MediatR;
 
 namespace TokanPages.Backend.Core.Behaviours

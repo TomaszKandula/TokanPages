@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Serilog;
 
-namespace TokanPages.Backend.Core.Services.AppLogger
+namespace TokanPages.Backend.Core.Logger
 {
     [ExcludeFromCodeCoverage]
     public sealed class Logger : ILogger
