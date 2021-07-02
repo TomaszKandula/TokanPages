@@ -5,11 +5,11 @@ using TokanPages.Backend.Core.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Services
 {
-    public class CipherTest
+    public class CipherServiceTest
     {
         private readonly DataProviderService FDataProviderService;
         
-        public CipherTest() => FDataProviderService = new DataProviderService();
+        public CipherServiceTest() => FDataProviderService = new DataProviderService();
 
         [Fact]
         public void GivenPlainTextPassword_WhenInvokeGetHashedPassword_ShouldReturnHashedPassword()
