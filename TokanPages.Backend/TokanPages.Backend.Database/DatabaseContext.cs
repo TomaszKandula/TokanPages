@@ -30,7 +30,7 @@ namespace TokanPages.Backend.Database
         
         public virtual DbSet<Permissions> Permissions { get; set; }
         
-        public virtual DbSet<DefaultPermissions> DefaultAccessRights { get; set; }
+        public virtual DbSet<DefaultPermissions> DefaultPermissions { get; set; }
 
         public virtual DbSet<UserPermissions> UserPermissions { get; set; }
         
