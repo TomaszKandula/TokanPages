@@ -1,5 +1,5 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Database.Initializer.Seeders;
 
@@ -33,6 +33,9 @@ namespace TokanPages.Backend.Database.Initializer
 
             if (FDatabaseContext.Roles.Any()) 
                 FDatabaseContext.Roles.AddRange(RolesSeeder.SeedRoles());
+
+            if (FDatabaseContext.Permissions.Any()) 
+                FDatabaseContext.Permissions.AddRange(PermissionsSeeder.SeedPermissions());
             
             FDatabaseContext.SaveChanges();
         }
