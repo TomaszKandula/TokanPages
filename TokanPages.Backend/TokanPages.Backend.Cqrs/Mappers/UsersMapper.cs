@@ -15,7 +15,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
                 UserAlias = AModel.UserAlias,
                 FirstName = AModel.FirstName,
                 LastName = AModel.LastName,
-                CryptedPassword = AModel.CryptedPassword
+                Password = AModel.Password
             };
         }
 
