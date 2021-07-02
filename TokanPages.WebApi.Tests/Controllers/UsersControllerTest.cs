@@ -42,7 +42,8 @@ namespace TokanPages.WebApi.Tests.Controllers
                 EmailAddress = FDataProviderService.GetRandomEmail(),
                 UserAlias = FDataProviderService.GetRandomString(),
                 FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString()
+                LastName = FDataProviderService.GetRandomString(),
+                Password = FDataProviderService.GetRandomString()
             };
 
             var LHttpClient = FWebAppFactory.CreateClient();
