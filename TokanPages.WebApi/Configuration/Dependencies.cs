@@ -15,6 +15,7 @@ using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Core.Behaviours;
 using TokanPages.Backend.SmtpClient.Models;
+using TokanPages.Backend.Cqrs.Services.Cipher;
 using TokanPages.Backend.Database.Initializer;
 using TokanPages.Backend.Identity.Authentication;
 using TokanPages.Backend.Core.Services.AppLogger;
@@ -87,7 +88,8 @@ namespace TokanPages.WebApi.Configuration
             AServices.AddScoped<IUserProvider, UserProvider>();
             AServices.AddScoped<IDataProviderService, DataProviderService>();
             AServices.AddScoped<IDbInitializer, DbInitializer>();
-
+            AServices.AddScoped<ICipher, Cipher>();
+            
             AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
             {
                 var LAzureStorageSettings = AProvider.GetRequiredService<AzureStorageSettingsModel>();
