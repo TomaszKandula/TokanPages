@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace TokanPages.Backend.Identity.Authorization
 {
+    [ExcludeFromCodeCoverage]
     public static class Roles
     {
         public static string GodOfAsgard => nameof(GodOfAsgard);

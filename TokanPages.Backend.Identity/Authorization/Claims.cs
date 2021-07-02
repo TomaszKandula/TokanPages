@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace TokanPages.Backend.Identity.Authorization
 {
+    [ExcludeFromCodeCoverage]
     public static class Claims
     {
         public static string UserAlias => "https://schemas.xmlsoap.org/ws/2005/05/identity/claims/name";
