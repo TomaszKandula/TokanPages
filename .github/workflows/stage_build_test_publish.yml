@@ -83,6 +83,10 @@ jobs:
         SmtpServer.Password: "${{ secrets.SMTPSERVER__PASSWORD_STAGE }}"
         SmtpServer.Port: "${{ secrets.SMTPSERVER__PORT_STAGE }}"
         SmtpServer.Server: "${{ secrets.SMTPSERVER__SERVER_STAGE }}"
+        IdentityServer.Issuer: "${{ secrets.IDENTITYSERVER__ISSUER_STAGE }}"
+        IdentityServer.Audience: "${{ secrets.IDENTITYSERVER__AUDIENCE_STAGE }}"
+        IdentityServer.WebSecret: "${{ secrets.IDENTITYSERVER__WEBSECRET_STAGE }}"
+        IdentityServer.RequireHttps: "${{ secrets.IDENTITYSERVER__REQUIREHTTPS_STAGE }}"
         SonarQube.Server: "${{ secrets.SONARQUBE_HOST }}"
         SonarQube.Token: "${{ secrets.SONARQUBE_TOKEN_API }}"
 
