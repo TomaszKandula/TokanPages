@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
@@ -107,8 +108,17 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
         private Guid UserIdFromClaim()
         {
             var LUserClaims = FHttpContextAccessor.HttpContext?.User.Claims ?? throw AccessDeniedException;
-            var LUserId = LUserClaims.First(AClaim => AClaim.Type.Contains(Claims.UserId)).Value;
-            return Guid.Parse(LUserId);
+
+            var LClaimsArray = LUserClaims as Claim[] ?? LUserClaims.ToArray();
+            if (!LClaimsArray.Any())
+                throw AccessDeniedException;
+            
+            var LUserIds = LClaimsArray.Where(AClaim => AClaim.Type.Contains(Claims.UserId)).ToList();
+            
+            if (!LUserIds.Any())
+                throw AccessDeniedException;
+            
+            return Guid.Parse(LUserIds.First().Value);
         }
 
         private async Task EnsureUserRoles()
@@ -116,10 +126,11 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
             if (FUserRoles != null)
                 return;
             
+            var LUserId = UserIdFromClaim();
             var LUserRoles = await FDatabaseContext.UserRoles
                 .AsNoTracking()
                 .Include(AUserRoles => AUserRoles.Role)
-                .Where(AUserRoles => AUserRoles.UserId == UserIdFromClaim())
+                .Where(AUserRoles => AUserRoles.UserId == LUserId)
                 .ToListAsync();
 
             if (!LUserRoles.Any())
@@ -141,10 +152,11 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
             if (FUserPermissions != null)
                 return;
             
+            var LUserId = UserIdFromClaim();
             var LUserPermissions = await FDatabaseContext.UserPermissions
                 .AsNoTracking()
                 .Include(AUserPermissions => AUserPermissions.Permission)
-                .Where(AUserPermissions => AUserPermissions.UserId == UserIdFromClaim())
+                .Where(AUserPermissions => AUserPermissions.UserId == LUserId)
                 .ToListAsync();
 
             if (!LUserPermissions.Any())
@@ -165,9 +177,10 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
             if (FUsers != null) 
                 return;
             
+            var LUserId = UserIdFromClaim();
             var LUsers = await FDatabaseContext.Users
                 .AsNoTracking()
-                .Where(AUsers => AUsers.Id == UserIdFromClaim())
+                .Where(AUsers => AUsers.Id == LUserId)
                 .ToListAsync();
 
             if (!LUsers.Any())
