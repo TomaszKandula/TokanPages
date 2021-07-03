@@ -118,7 +118,5 @@ namespace TokanPages.Backend.Cqrs.Services.CipheringService
 
             return LStringBuilder.ToString();
         }
-        
-        
     }
 }
