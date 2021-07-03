@@ -83,8 +83,13 @@ namespace TokanPages.Backend.Shared.Services.DataProviderService
         /// </remarks>>
         /// <param name="ASizeInKb">Expected size in kBytes.</param>
         /// <returns>New randomized stream of bytes.</returns>
-        public override MemoryStream GetRandomStream(int ASizeInKb = 12) => new (GetRandomByteArray(ASizeInKb));
-
+        public override MemoryStream GetRandomStream(int ASizeInKb = 12)
+        {
+            var LByteBuffer = new byte[ASizeInKb * 1024]; 
+            FRandom.NextBytes(LByteBuffer);
+            return new MemoryStream(LByteBuffer);
+        }
+        
         /// <summary>
         /// Returns randomized e-mail address.
         /// </summary>
@@ -148,13 +153,6 @@ namespace TokanPages.Backend.Shared.Services.DataProviderService
             };
             var LToken = LTokenHandler.CreateToken(LTokenDescriptor);
             return LTokenHandler.WriteToken(LToken);
-        }
-        
-        private byte[] GetRandomByteArray(int ASizeInKb = 12)
-        {
-            var LByteBuffer = new byte[ASizeInKb * 1024]; 
-            FRandom.NextBytes(LByteBuffer); 
-            return LByteBuffer;
         }
     }
 }
