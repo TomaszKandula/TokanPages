@@ -15,8 +15,8 @@ namespace TokanPages.Backend.Database.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Albums", b =>
@@ -30,8 +30,8 @@ namespace TokanPages.Backend.Database.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -56,8 +56,8 @@ namespace TokanPages.Backend.Database.Migrations
 
                     b.Property<string>("IpAddress")
                         .IsRequired()
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int>("LikeCount")
                         .HasColumnType("int");
@@ -85,8 +85,8 @@ namespace TokanPages.Backend.Database.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<bool>("IsPublished")
                         .HasColumnType("bit");
@@ -96,8 +96,8 @@ namespace TokanPages.Backend.Database.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -112,6 +112,42 @@ namespace TokanPages.Backend.Database.Migrations
                     b.ToTable("Articles");
                 });
 
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.DefaultPermissions", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PermissionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PermissionId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("DefaultPermissions");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Permissions", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Permissions");
+                });
+
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.PhotoCategories", b =>
                 {
                     b.Property<Guid>("Id")
@@ -120,8 +156,8 @@ namespace TokanPages.Backend.Database.Migrations
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.HasKey("Id");
 
@@ -138,12 +174,12 @@ namespace TokanPages.Backend.Database.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("BodyModel")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("BodyVendor")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("FilmIso")
                         .HasColumnType("int");
@@ -152,16 +188,16 @@ namespace TokanPages.Backend.Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("LensName")
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("LensVendor")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ShutterSpeed")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.HasKey("Id");
 
@@ -182,8 +218,8 @@ namespace TokanPages.Backend.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Keywords")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<Guid>("PhotoCategoryId")
                         .HasColumnType("uniqueidentifier");
@@ -193,8 +229,8 @@ namespace TokanPages.Backend.Database.Migrations
 
                     b.Property<string>("PhotoUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -214,6 +250,25 @@ namespace TokanPages.Backend.Database.Migrations
                     b.ToTable("Photos");
                 });
 
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Roles", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+                });
+
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Subscribers", b =>
                 {
                     b.Property<Guid>("Id")
@@ -225,8 +280,8 @@ namespace TokanPages.Backend.Database.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<bool>("IsActivated")
                         .HasColumnType("bit");
@@ -242,6 +297,48 @@ namespace TokanPages.Backend.Database.Migrations
                     b.ToTable("Subscribers");
                 });
 
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.UserPermissions", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PermissionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PermissionId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserPermissions");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.UserRoles", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRoles");
+                });
+
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users", b =>
                 {
                     b.Property<Guid>("Id")
@@ -249,18 +346,23 @@ namespace TokanPages.Backend.Database.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AvatarName")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("CryptedPassword")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<bool>("IsActivated")
                         .HasColumnType("bit");
@@ -270,8 +372,8 @@ namespace TokanPages.Backend.Database.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime?>("LastUpdated")
                         .HasColumnType("datetime2");
@@ -280,13 +382,13 @@ namespace TokanPages.Backend.Database.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ShortBio")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("UserAlias")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.HasKey("Id");
 
@@ -306,6 +408,10 @@ namespace TokanPages.Backend.Database.Migrations
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK_Albums_Users")
                         .IsRequired();
+
+                    b.Navigation("Photo");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.ArticleLikes", b =>
@@ -320,6 +426,10 @@ namespace TokanPages.Backend.Database.Migrations
                         .WithMany("ArticleLikes")
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK_ArticleLikes_Users");
+
+                    b.Navigation("Article");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Articles", b =>
@@ -329,6 +439,27 @@ namespace TokanPages.Backend.Database.Migrations
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK_Articles_Users")
                         .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.DefaultPermissions", b =>
+                {
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Permissions", "Permission")
+                        .WithMany("DefaultPermissions")
+                        .HasForeignKey("PermissionId")
+                        .HasConstraintName("FK_DefaultPermissions_Permissions")
+                        .IsRequired();
+
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Roles", "Role")
+                        .WithMany("DefaultPermissions")
+                        .HasForeignKey("RoleId")
+                        .HasConstraintName("FK_DefaultPermissions_Roles")
+                        .IsRequired();
+
+                    b.Navigation("Permission");
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photos", b =>
@@ -350,6 +481,99 @@ namespace TokanPages.Backend.Database.Migrations
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK_Photos_Users")
                         .IsRequired();
+
+                    b.Navigation("PhotoCategory");
+
+                    b.Navigation("PhotoGear");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.UserPermissions", b =>
+                {
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Permissions", "Permission")
+                        .WithMany("UserPermissions")
+                        .HasForeignKey("PermissionId")
+                        .HasConstraintName("FK_UserPermissions_Permissions")
+                        .IsRequired();
+
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users", "User")
+                        .WithMany("UserPermissions")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_UserPermissions_Users")
+                        .IsRequired();
+
+                    b.Navigation("Permission");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.UserRoles", b =>
+                {
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Roles", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .HasConstraintName("FK_UserRoles_Roles")
+                        .IsRequired();
+
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_UserRoles_Users")
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Articles", b =>
+                {
+                    b.Navigation("ArticleLikes");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Permissions", b =>
+                {
+                    b.Navigation("DefaultPermissions");
+
+                    b.Navigation("UserPermissions");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.PhotoCategories", b =>
+                {
+                    b.Navigation("Photos");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.PhotoGears", b =>
+                {
+                    b.Navigation("Photos");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photos", b =>
+                {
+                    b.Navigation("Albums");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Roles", b =>
+                {
+                    b.Navigation("DefaultPermissions");
+
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users", b =>
+                {
+                    b.Navigation("Albums");
+
+                    b.Navigation("ArticleLikes");
+
+                    b.Navigation("Articles");
+
+                    b.Navigation("Photos");
+
+                    b.Navigation("UserPermissions");
+
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

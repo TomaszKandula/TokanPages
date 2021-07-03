@@ -1,14 +1,18 @@
 ﻿using System;
 using Xunit;
 using FluentAssertions;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
 namespace TokanPages.Backend.Tests.Validators.Subscribers
 {
     public class UpdateSubscriberCommandValidatorTest
     {
+        private readonly DataProviderService FDataProviderService;
+
+        public UpdateSubscriberCommandValidatorTest() => FDataProviderService = new DataProviderService();
+
         [Fact]
         public void GivenAllFieldsAreCorrect_WhenUpdateSubscriber_ShouldFinishSuccessful() 
         {
@@ -16,7 +20,7 @@ namespace TokanPages.Backend.Tests.Validators.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand 
             { 
                 Id = Guid.NewGuid(),
-                Email = StringProvider.GetRandomEmail(),
+                Email = FDataProviderService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 0
             };
@@ -36,7 +40,7 @@ namespace TokanPages.Backend.Tests.Validators.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.NewGuid(),
-                Email = StringProvider.GetRandomEmail(),
+                Email = FDataProviderService.GetRandomEmail(),
                 IsActivated = true,
                 Count = null
             };
@@ -56,7 +60,7 @@ namespace TokanPages.Backend.Tests.Validators.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.Empty,
-                Email = StringProvider.GetRandomEmail(),
+                Email = FDataProviderService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 0
             };
@@ -119,7 +123,7 @@ namespace TokanPages.Backend.Tests.Validators.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.NewGuid(),
-                Email = StringProvider.GetRandomEmail(),
+                Email = FDataProviderService.GetRandomEmail(),
                 IsActivated = true,
                 Count = -1
             };

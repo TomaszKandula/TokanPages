@@ -12,5 +12,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
         public string LastName { get; set; }
         
         public string EmailAddress { get; set; }
+        
+        public string Password { get; set; }
     }
 }

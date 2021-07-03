@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
 using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Database.Initializer.Data.Users;
 
 namespace TokanPages.Backend.Cqrs.Services.UserProvider
 {
@@ -26,7 +27,7 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
         public virtual Guid? GetUserId() 
         {
             // TODO: return logged user id
-            return null;
+            return User1.FId;
         }
 
         public virtual Users GetUserData() 

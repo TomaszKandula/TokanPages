@@ -2,7 +2,6 @@ using System.Net;
 using System.Linq;
 using System.Net.Sockets;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -36,10 +35,7 @@ namespace TokanPages.WebApi
             Dependencies.Register(AServices, FConfiguration, FEnvironment);
             
             if (FEnvironment.IsDevelopment())
-            {
-                AServices.AddSwaggerGen(AOption =>
-                    AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "TokanPagesApi", Version = "v1" }));
-            }
+                Swagger.SetupSwaggerOptions(AServices);
 
             if (!FEnvironment.IsProduction() && !FEnvironment.IsStaging()) 
                 return;
@@ -62,26 +58,27 @@ namespace TokanPages.WebApi
             });
         }
 
-        public void Configure(IApplicationBuilder AApplication)
+        public void Configure(IApplicationBuilder ABuilder)
         {
-            AApplication.UseSerilogRequestLogging();
+            ABuilder.UseSerilogRequestLogging();
 
-            AApplication.UseMiddleware<CustomCors>();
-            AApplication.UseMiddleware<CustomException>();
+            ABuilder.UseMiddleware<CustomCors>();
+            ABuilder.UseMiddleware<CustomException>();
             
-            AApplication.UseHttpsRedirection();
-            AApplication.UseForwardedHeaders();
-            AApplication.UseResponseCompression();
+            ABuilder.UseHttpsRedirection();
+            ABuilder.UseForwardedHeaders();
+            ABuilder.UseResponseCompression();
 
-            AApplication.UseRouting();
-            AApplication.UseEndpoints(AEndpoints => AEndpoints.MapControllers());
+            ABuilder.UseRouting();
+            ABuilder.UseAuthentication();
+            ABuilder.UseAuthorization();
+            ABuilder.UseEndpoints(AEndpoints => AEndpoints.MapControllers());
 
             if (!FEnvironment.IsDevelopment()) 
                 return;
             
-            AApplication.UseSwagger();
-            AApplication.UseSwaggerUI(AOption =>
-                AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "TokanPagesApi version 1"));
+            ABuilder.UseSwagger();
+            Swagger.SetupSwaggerUi(ABuilder, FConfiguration);
         }
     }
 }

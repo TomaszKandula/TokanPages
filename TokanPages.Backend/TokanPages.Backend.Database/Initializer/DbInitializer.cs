@@ -1,5 +1,5 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Database.Initializer.Seeders;
 
@@ -28,9 +28,24 @@ namespace TokanPages.Backend.Database.Initializer
             if (!FDatabaseContext.ArticleLikes.Any())
                 FDatabaseContext.ArticleLikes.AddRange(ArticleLikesSeeder.SeedArticleLikes());
 
-            if (FDatabaseContext.PhotoCategories.Any()) 
+            if (!FDatabaseContext.PhotoCategories.Any()) 
                 FDatabaseContext.PhotoCategories.AddRange(PhotoCategoriesSeeder.SeedPhotoCategories());
 
+            if (!FDatabaseContext.Roles.Any()) 
+                FDatabaseContext.Roles.AddRange(RolesSeeder.SeedRoles());
+
+            if (!FDatabaseContext.Permissions.Any()) 
+                FDatabaseContext.Permissions.AddRange(PermissionsSeeder.SeedPermissions());
+
+            if (!FDatabaseContext.DefaultPermissions.Any()) 
+                FDatabaseContext.DefaultPermissions.AddRange(DefaultPermissionsSeeder.SeedDefaultPermissions());
+
+            if (!FDatabaseContext.UserPermissions.Any()) 
+                FDatabaseContext.UserPermissions.AddRange(UserPermissionsSeeder.SeedUserPermissions());
+
+            if (!FDatabaseContext.UserRoles.Any()) 
+                FDatabaseContext.UserRoles.AddRange(UserRolesSeeder.SeedUserRoles());
+            
             FDatabaseContext.SaveChanges();
         }
     }

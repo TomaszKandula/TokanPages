@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.SmtpClient;
 using TokanPages.Backend.Shared.Models;
@@ -10,6 +11,7 @@ namespace TokanPages.WebApi.Controllers.Health
 {
     [Route("api/v1/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class HealthController : ControllerBase
     {
         private readonly DatabaseContext FDatabaseContext;

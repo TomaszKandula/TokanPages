@@ -6,21 +6,29 @@ using System.Net;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Security.Claims;
+using System.Net.Http.Headers;
 using System.Collections.Generic;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Shared.Dto.Users;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Database.Initializer.Data;
+using TokanPages.Backend.Identity.Authorization;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
+using TokanPages.Backend.Database.Initializer.Data.Users;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 
 namespace TokanPages.WebApi.Tests.Controllers
 {
     public class UsersControllerTest : IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
         private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
-        
+
+        private readonly DataProviderService FDataProviderService;
+
         public UsersControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory)
-            => FWebAppFactory = AWebAppFactory;
+        {
+            FWebAppFactory = AWebAppFactory;
+            FDataProviderService = new DataProviderService();
+        }
         
         [Fact]
         public async Task GivenAllFieldsAreProvided_WhenAddUser_ShouldReturnNewGuid() 
@@ -31,10 +39,11 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LPayLoad = new AddUserDto 
             { 
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString()
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString(),
+                Password = FDataProviderService.GetRandomString()
             };
 
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -51,14 +60,20 @@ namespace TokanPages.WebApi.Tests.Controllers
         }
         
         [Fact]
-        public async Task WhenGetAllUsers_ShouldReturnCollection() 
+        public async Task GivenValidJwt_WhenGetAllUsers_ShouldReturnCollection() 
         {
             // Arrange
-            var LRequest = "/api/v1/users/getallusers/";
+            const string REQUEST = "/api/v1/users/getallusers/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, REQUEST);
+            
             var LHttpClient = FWebAppFactory.CreateClient();
+            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            
+            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
             LResponse.EnsureSuccessStatusCode();
@@ -77,10 +92,16 @@ namespace TokanPages.WebApi.Tests.Controllers
             // Arrange
             var LTestUserId = User1.FId;
             var LRequest = $"/api/v1/users/getuser/{LTestUserId}/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, LRequest);
+            
             var LHttpClient = FWebAppFactory.CreateClient();
-
+            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            
+            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
             LResponse.EnsureSuccessStatusCode();
@@ -93,14 +114,20 @@ namespace TokanPages.WebApi.Tests.Controllers
         }
 
         [Fact]
-        public async Task GivenIncorrectId_WhenGetUser_ShouldReturnJsonObjectWithError()
+        public async Task GivenInvalidIdAndValidJwt_WhenGetUser_ShouldReturnJsonObjectWithError()
         {
             // Arrange
             const string REQUEST = "/api/v1/users/getuser/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, REQUEST);
+            
             var LHttpClient = FWebAppFactory.CreateClient();
+            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            
+            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(REQUEST);
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -111,7 +138,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         }
         
         [Fact]
-        public async Task GivenIncorrectId_WhenRemoveUser_ShouldReturnJsonObjectWithError() 
+        public async Task GivenIncorrectIdAndNoJwt_WhenRemoveUser_ShouldReturnUnauthorized() 
         {
             // Arrange
             const string REQUEST = "/api/v1/users/removeuser/";
@@ -129,15 +156,11 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.USER_DOES_NOT_EXISTS);
+            LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         }
 
         [Fact]
-        public async Task GivenIncorrectId_WhenUpdateUser_ShouldReturnJsonObjectWithError() 
+        public async Task GivenIncorrectIdNoJwt_WhenUpdateUser_ShouldReturnUnauthorized() 
         {
             // Arrange
             const string REQUEST = "/api/v1/users/updateuser/";
@@ -146,10 +169,10 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LPayLoad = new UpdateUserDto
             {
                 Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString(),
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString(),
                 IsActivated = true
             };
 
@@ -160,11 +183,20 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.USER_DOES_NOT_EXISTS);
+            LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+        }
+        
+        private ClaimsIdentity GetValidClaims()
+        {
+            return new (new[]
+            {
+                new Claim(Claims.UserAlias, FDataProviderService.GetRandomString()),
+                new Claim(Claims.Roles, Roles.EverydayUser),
+                new Claim(Claims.UserId, User1.FId.ToString()),
+                new Claim(Claims.FirstName, User1.FIRST_NAME),
+                new Claim(Claims.LastName, User1.LAST_NAME),
+                new Claim(Claims.EmailAddress, User1.EMAIL_ADDRESS)
+            });
         }
     }
 }

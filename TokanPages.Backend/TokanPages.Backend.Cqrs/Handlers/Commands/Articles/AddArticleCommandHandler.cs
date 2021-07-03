@@ -5,7 +5,7 @@ using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Shared.Services.DateTimeService;
 using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
