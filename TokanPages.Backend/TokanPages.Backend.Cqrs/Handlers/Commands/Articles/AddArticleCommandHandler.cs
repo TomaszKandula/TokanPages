@@ -31,7 +31,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
         public override async Task<Guid> Handle(AddArticleCommand ARequest, CancellationToken ACancellationToken)
         {
-            if (FUserProvider.GetUserId() == null)
+            var LUserId = await FUserProvider.GetUserId();
+            if (LUserId == null)
                 throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
             var LNewArticle = new Domain.Entities.Articles
@@ -42,9 +43,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 ReadCount = 0,
                 CreatedAt = FDateTimeService.Now,
                 UpdatedAt = null,
-                // ReSharper disable once PossibleInvalidOperationException
-                // GetUserId is already check for null value
-                UserId = (Guid) FUserProvider.GetUserId()
+                UserId = (Guid) LUserId
             };
 
             await FDatabaseContext.Articles.AddAsync(LNewArticle, ACancellationToken);
