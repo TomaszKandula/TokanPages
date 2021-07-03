@@ -13,9 +13,9 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
         
         Task<GetUserDto> GetUser();
 
-        Task<List<UserRoleDto>> GetUserRoles();
+        Task<List<GetUserRoleDto>> GetUserRoles();
 
-        Task<List<UserPermissionDto>> GetUserPermissions();
+        Task<List<GetUserPermissionDto>> GetUserPermissions();
 
         Task<bool> HasRoleAssigned(string AUserRoleName);
 

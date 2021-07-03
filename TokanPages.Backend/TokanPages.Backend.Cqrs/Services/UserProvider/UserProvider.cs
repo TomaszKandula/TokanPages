@@ -21,9 +21,9 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
 
         private readonly DatabaseContext FDatabaseContext;
 
-        private List<UserPermissionDto> FUserPermissions;
+        private List<GetUserPermissionDto> FUserPermissions;
 
-        private List<UserRoleDto> FUserRoles;
+        private List<GetUserRoleDto> FUserRoles;
         
         private GetUserDto FUsers;
         
@@ -57,13 +57,13 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
             return FUsers;
         }
 
-        public virtual async Task<List<UserRoleDto>> GetUserRoles()
+        public virtual async Task<List<GetUserRoleDto>> GetUserRoles()
         {
             await EnsureUserRoles();
             return FUserRoles;
         }
 
-        public virtual async Task<List<UserPermissionDto>> GetUserPermissions()
+        public virtual async Task<List<GetUserPermissionDto>> GetUserPermissions()
         {
             await EnsureUserPermissions();
             return FUserPermissions;
@@ -136,10 +136,10 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
             if (!LUserRoles.Any())
                 throw AccessDeniedException;
 
-            FUserRoles = new List<UserRoleDto>();
+            FUserRoles = new List<GetUserRoleDto>();
             foreach (var LItem in LUserRoles)
             {
-                FUserRoles.Add(new UserRoleDto
+                FUserRoles.Add(new GetUserRoleDto
                 {
                     Name = LItem.Role.Name,
                     Description = LItem.Role.Description
@@ -162,10 +162,10 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
             if (!LUserPermissions.Any())
                 throw AccessDeniedException;
 
-            FUserPermissions = new List<UserPermissionDto>();
+            FUserPermissions = new List<GetUserPermissionDto>();
             foreach (var LItem in LUserPermissions)
             {
-                FUserPermissions.Add(new UserPermissionDto
+                FUserPermissions.Add(new GetUserPermissionDto
                 {
                     Name = LItem.Permission.Name
                 });

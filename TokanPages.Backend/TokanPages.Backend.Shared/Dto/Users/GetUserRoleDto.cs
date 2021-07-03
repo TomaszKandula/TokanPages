@@ -1,7 +1,9 @@
 namespace TokanPages.Backend.Shared.Dto.Users
 {
-    public class UserPermissionDto
+    public class GetUserRoleDto
     {
         public string Name { get; set; }
+        
+        public string Description { get; set; }
     }
 }
