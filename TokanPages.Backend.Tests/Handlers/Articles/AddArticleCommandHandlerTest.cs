@@ -76,7 +76,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
-                .Returns(LUser.Id);
+                .ReturnsAsync(LUser.Id);
             
             var LAddArticleCommandHandler = new AddArticleCommandHandler(
                 LDatabaseContext, 
