@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace TokanPages.WebApi.Configuration
 {
+    [ExcludeFromCodeCoverage]
     public static class Swagger
     {
         public static void SetupSwaggerOptions(IServiceCollection AServices)

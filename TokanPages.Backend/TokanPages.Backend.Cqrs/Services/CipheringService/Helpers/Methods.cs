@@ -193,12 +193,12 @@ namespace TokanPages.Backend.Cqrs.Services.CipheringService.Helpers
         /// </param>
         private static void Encipher(IList<uint> ABlock, int AOffset) 
         {
-            uint LIndex;
+            uint LIndex = 0;
             var LLength = ABlock[AOffset]; 
             var LRecord = ABlock[AOffset + 1];
 
             LLength ^= Arrays.ExpandedBlowfishKeyPrimary[0];
-            for (LIndex = 0; LIndex <= Constants.BLOWFISH_NUM_ROUNDS - 2;) 
+            while (LIndex <= Constants.BLOWFISH_NUM_ROUNDS - 2) 
             {
                 // Feistel substitution on left word
                 var LNumber = Arrays.ExpandedBlowfishKeySecondary[(LLength >> 24) & 0xff];
