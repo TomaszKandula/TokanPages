@@ -46,7 +46,7 @@ namespace TokanPages.Backend.Tests.Services
         }
         
         [Fact]
-        public async Task GivenNoUserClaimsInHttpContext_WhenInvokeGetUserId_ShouldThrowError()
+        public async Task GivenNoUserClaimsInHttpContext_WhenInvokeGetUserId_ShouldReturnNull()
         {
             // Arrange
             var LLoggedUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
@@ -58,10 +58,11 @@ namespace TokanPages.Backend.Tests.Services
             await LDatabaseContext.SaveChangesAsync();
             
             // Act
-            // Assert
             var LUserProvider = new UserProvider(LHttpContext.Object, LDatabaseContext);
-            var LResult = await Assert.ThrowsAsync<BusinessException>(LUserProvider.GetUserId);
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+
+            // Assert
+            var LResult = await LUserProvider.GetUserId();
+            LResult.Should().BeNull();
         }
         
         [Fact]
@@ -127,7 +128,7 @@ namespace TokanPages.Backend.Tests.Services
         }
 
         [Fact]
-        public async Task GivenNoUserClaimsInHttpContext_WhenInvokeGetUser_ShouldThrowError()
+        public async Task GivenNoUserClaimsInHttpContext_WhenInvokeGetUser_ShouldReturnNull()
         {
             // Arrange
             var LUsers = GetOneUserInList(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
@@ -138,10 +139,11 @@ namespace TokanPages.Backend.Tests.Services
             await LDatabaseContext.SaveChangesAsync();
             
             // Act
-            // Assert
             var LUserProvider = new UserProvider(LHttpContext.Object, LDatabaseContext);
-            var LResult = await Assert.ThrowsAsync<BusinessException>(LUserProvider.GetUser);
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+            var LResult = await LUserProvider.GetUser();
+
+            // Assert
+            LResult.Should().BeNull();
         }
         
         [Fact]
@@ -396,7 +398,7 @@ namespace TokanPages.Backend.Tests.Services
         }
         
         [Fact]
-        public async Task GivenNoUserClaimsInHttpContext_WhenInvokeHasRoleAssigned_ShouldThrowError()
+        public async Task GivenNoUserClaimsInHttpContext_WhenInvokeHasRoleAssigned_ShouldReturnNull()
         {
             // Arrange
             var LUsers = GetOneUserInList(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
@@ -416,10 +418,11 @@ namespace TokanPages.Backend.Tests.Services
             var LHttpContext = GetMockedHttpContext(null);
             
             // Act
-            // Assert
             var LUserProvider = new UserProvider(LHttpContext.Object, LDatabaseContext);
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LUserProvider.HasRoleAssigned(Roles.EverydayUser));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+
+            // Assert
+            var LResult = await LUserProvider.HasRoleAssigned(Roles.EverydayUser);
+            LResult.Should().BeNull();
         }
         
         [Fact]
@@ -524,7 +527,7 @@ namespace TokanPages.Backend.Tests.Services
         }
         
         [Fact]
-        public async Task GivenNoUserClaimsInHttpContext_WhenInvokeHasPermissionAssigned_ShouldThrowError()
+        public async Task GivenNoUserClaimsInHttpContext_WhenInvokeHasPermissionAssigned_ShouldReturnNull()
         {
             // Arrange
             var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
@@ -553,10 +556,11 @@ namespace TokanPages.Backend.Tests.Services
             var LHttpContext = GetMockedHttpContext(null);
             
             // Act
-            // Assert
             var LUserProvider = new UserProvider(LHttpContext.Object, LDatabaseContext);
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LUserProvider.HasPermissionAssigned(Permissions.CanSelectArticles));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+
+            // Assert
+            var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanSelectArticles);
+            LResult.Should().BeNull();
         }
 
         [Fact]
