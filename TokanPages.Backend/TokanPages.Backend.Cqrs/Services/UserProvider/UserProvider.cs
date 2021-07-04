@@ -48,7 +48,7 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
         public virtual async Task<Guid?> GetUserId()
         {
             await EnsureUserData();
-            return FUsers.UserId;
+            return FUsers?.UserId;
         }
 
         public virtual async Task<GetUserDto> GetUser()
@@ -69,12 +69,15 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
             return FUserPermissions;
         }
 
-        public virtual async Task<bool> HasRoleAssigned(string AUserRoleName)
+        public virtual async Task<bool?> HasRoleAssigned(string AUserRoleName)
         {
             if (string.IsNullOrEmpty(AUserRoleName))
                 throw ArgumentNullException;
             
             var LUserId = UserIdFromClaim();
+            if (LUserId == null)
+                return null;
+            
             var LGivenRoles = await FDatabaseContext.UserRoles
                 .AsNoTracking()
                 .Include(AUserRoles => AUserRoles.Role)
@@ -84,12 +87,15 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
             return LGivenRoles.Any();
         }
 
-        public virtual async Task<bool> HasPermissionAssigned(string AUserPermissionName)
+        public virtual async Task<bool?> HasPermissionAssigned(string AUserPermissionName)
         {
             if (string.IsNullOrEmpty(AUserPermissionName))
                 throw ArgumentNullException;
             
             var LUserId = UserIdFromClaim();
+            if (LUserId == null)
+                return null;
+
             var LGivenPermissions = await FDatabaseContext.UserPermissions
                 .AsNoTracking()
                 .Include(AUserPermissions => AUserPermissions.Permission)
@@ -105,15 +111,17 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
         private static BusinessException ArgumentNullException
             => new (nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION), ErrorCodes.ARGUMENT_NULL_EXCEPTION);
         
-        private Guid UserIdFromClaim()
+        private Guid? UserIdFromClaim()
         {
-            var LUserClaims = FHttpContextAccessor.HttpContext?.User.Claims ?? throw AccessDeniedException;
-
+            var LUserClaims = FHttpContextAccessor.HttpContext?.User.Claims ?? Array.Empty<Claim>();
+            
             var LClaimsArray = LUserClaims as Claim[] ?? LUserClaims.ToArray();
             if (!LClaimsArray.Any())
-                throw AccessDeniedException;
+                return null;
             
-            var LUserIds = LClaimsArray.Where(AClaim => AClaim.Type.Contains(Claims.UserId)).ToList();
+            var LUserIds = LClaimsArray
+                .Where(AClaim => AClaim.Type.Contains(Claims.UserId))
+                .ToList();
             
             if (!LUserIds.Any())
                 throw AccessDeniedException;
@@ -178,6 +186,12 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
                 return;
             
             var LUserId = UserIdFromClaim();
+            if (LUserId == null)
+            {
+                FUsers = null;
+                return;
+            }
+
             var LUsers = await FDatabaseContext.Users
                 .AsNoTracking()
                 .Where(AUsers => AUsers.Id == LUserId)
