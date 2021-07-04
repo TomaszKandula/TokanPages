@@ -6,6 +6,8 @@ namespace TokanPages.Backend.Shared.Dto.Users
     [ExcludeFromCodeCoverage]
     public class GetUserDto
     {
+        public Guid UserId { get; set; }
+
         public string AliasName { get; set; }
 
         public string AvatarName { get; set; }

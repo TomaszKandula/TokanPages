@@ -122,5 +122,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("SMTP_CLIENT_ERROR", resourceCulture);
             }
         }
+        
+        public static string ARGUMENT_NULL_EXCEPTION {
+            get {
+                return ResourceManager.GetString("ARGUMENT_NULL_EXCEPTION", resourceCulture);
+            }
+        }
     }
 }

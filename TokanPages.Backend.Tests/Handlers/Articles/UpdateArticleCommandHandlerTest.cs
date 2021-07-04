@@ -83,7 +83,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
-                .Returns(LUsers.Id);
+                .ReturnsAsync(LUsers.Id);
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
@@ -326,7 +326,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
-                .Returns(LUsers.Id);
+                .ReturnsAsync(LUsers.Id);
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
@@ -415,7 +415,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
-                .Returns(LUsers.Id);
+                .ReturnsAsync(LUsers.Id);
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
@@ -503,7 +503,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
-                .Returns(LUsers.Id);
+                .ReturnsAsync(LUsers.Id);
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
@@ -573,7 +573,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
-                .Returns(LUsers.Id);
+                .ReturnsAsync(LUsers.Id);
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
