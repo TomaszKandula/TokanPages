@@ -1,3 +1,19 @@
+# [0.18.0](https://github.com/TomaszKandula/TokanPages/compare/v0.17.0...v0.18.0) (2021-07-05)
+
+
+### Bug Fixes
+
+* add missing attribute for update endpoint ([8dc38cf](https://github.com/TomaszKandula/TokanPages/commit/8dc38cf61b1041c8bf6c600a00e6a487f237b2b2))
+* add missing try_files to handle routing ([9457de2](https://github.com/TomaszKandula/TokanPages/commit/9457de233ea124de6d37d505aba0179689792c42))
+
+
+### Features
+
+* add authorization policies, claims and roles ([87fc0be](https://github.com/TomaszKandula/TokanPages/commit/87fc0be89294720615f3f2d4d50eec657302d366))
+* add Identity service ([e68230b](https://github.com/TomaszKandula/TokanPages/commit/e68230bdf9803a347f038b4ba1e63a8455f3f1a7))
+* add JWT bearer configuration ([dffb9c5](https://github.com/TomaszKandula/TokanPages/commit/dffb9c584b5f947d19970b04b92c5667b36f8e2b))
+* add new BCrypt implementation ([ab6dae9](https://github.com/TomaszKandula/TokanPages/commit/ab6dae9c7c97d9a9771cb5dbe1ef1c819546bb82))
+
 # [0.17.0](https://github.com/TomaszKandula/TokanPages/compare/v0.16.1...v0.17.0) (2021-06-23)
 
 
