@@ -30,6 +30,7 @@ namespace TokanPages.WebApi.Controllers.Api
             => await FMediator.Send(ArticlesMapper.MapToAddArticleCommand(APayLoad));
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<Unit> UpdateArticle([FromBody] UpdateArticleDto APayLoad)
             => await FMediator.Send(ArticlesMapper.MapToUpdateArticleCommand(APayLoad));
 
