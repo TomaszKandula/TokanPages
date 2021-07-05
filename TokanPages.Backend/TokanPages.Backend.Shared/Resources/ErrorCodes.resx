@@ -156,4 +156,7 @@
   <data name="SMTP_CLIENT_ERROR" xml:space="preserve">
     <value>SMTP client has thrown an error</value>
   </data>
+  <data name="ARGUMENT_NULL_EXCEPTION" xml:space="preserve">
+    <value>Argument(s) cannot be null</value>
+  </data>
 </root>

@@ -3,12 +3,14 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using TokanPages.Backend.Cqrs.Mappers;
 using TokanPages.Backend.Shared.Dto.Users;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 
 namespace TokanPages.WebApi.Controllers.Api
 {
+    [Authorize]
     public class UsersController : BaseController
     {
         public UsersController(IMediator AMediator) : base(AMediator) { }
@@ -22,6 +24,7 @@ namespace TokanPages.WebApi.Controllers.Api
             => await FMediator.Send(new GetUserQuery { Id = AId });
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<Guid> AddUser([FromBody] AddUserDto APayLoad)
             => await FMediator.Send(UsersMapper.MapToAddUserCommand(APayLoad));
 

@@ -2,17 +2,22 @@ using System.Net;
 using Xunit;
 using FluentAssertions;
 using System.Threading.Tasks;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Shared;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 
 namespace TokanPages.WebApi.Tests.Controllers
 {
     public class MetricsControllerTest : IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
         private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
+        
+        private readonly DataProviderService FDataProviderService;
 
         public MetricsControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory)
-            => FWebAppFactory = AWebAppFactory;
+        {
+            FWebAppFactory = AWebAppFactory;
+            FDataProviderService = new DataProviderService();
+        }
 
         [Theory]
         [InlineData("tokanpages-backend")]
@@ -92,7 +97,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenProjectNameWithInvalidMetricName_WhenRequestCoverage_ShouldThrowError()
         {
             // Arrange
-            var LMetricName = StringProvider.GetRandomString();
+            var LMetricName = FDataProviderService.GetRandomString();
             const string PROJECT_NAME = "tokanpages-backend";
             var LRequest = $"/api/v1/sonarqube/metrics/?AProject={PROJECT_NAME}&AMetric={LMetricName}";
 

@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 using FluentAssertions;
-using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Shared.Services.DateTimeService;
 
 namespace TokanPages.Backend.Tests.Services
 {

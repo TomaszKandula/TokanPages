@@ -11,16 +11,19 @@ using TokanPages.Backend.Cqrs;
 using TokanPages.Backend.Shared;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.SmtpClient;
+using TokanPages.Backend.Core.Logger;
 using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Core.Behaviours;
 using TokanPages.Backend.SmtpClient.Models;
 using TokanPages.Backend.Database.Initializer;
-using TokanPages.Backend.Core.Services.AppLogger;
+using TokanPages.Backend.Identity.Authentication;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Core.Services.TemplateHelper;
-using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Shared.Services.TemplateHelper;
+using TokanPages.Backend.Shared.Services.DateTimeService;
+using TokanPages.Backend.Cqrs.Services.CipheringService;
 using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 using FluentValidation;
 using MailKit.Net.Smtp;
 using DnsClient;
@@ -46,6 +49,7 @@ namespace TokanPages.WebApi.Configuration
             SetupServices(AServices);
             SetupValidators(AServices);
             SetupMediatR(AServices);
+            WebToken.Configure(AServices, AConfiguration);
         }
 
         private static void SetupAppSettings(IServiceCollection AServices, IConfiguration AConfiguration) 
@@ -82,8 +86,10 @@ namespace TokanPages.WebApi.Configuration
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
             AServices.AddScoped<IDateTimeService, DateTimeService>();
             AServices.AddScoped<IUserProvider, UserProvider>();
+            AServices.AddScoped<IDataProviderService, DataProviderService>();
             AServices.AddScoped<IDbInitializer, DbInitializer>();
-
+            AServices.AddScoped<ICipheringService, CipheringService>();
+            
             AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
             {
                 var LAzureStorageSettings = AProvider.GetRequiredService<AzureStorageSettingsModel>();

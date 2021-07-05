@@ -1,23 +1,27 @@
 ﻿using Xunit;
 using FluentAssertions;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
 namespace TokanPages.Backend.Tests.Validators.Articles
 {
     public class AddArticleCommandValidatorTest
     {
+        private readonly DataProviderService FDataProviderService;
+
+        public AddArticleCommandValidatorTest() => FDataProviderService = new DataProviderService();
+
         [Fact]
         public void GivenAllFieldsAreCorrect_WhenValidateAddArticle_ShouldFinishSuccessfully() 
         {
             // Arrange
             var LAddArticleCommand = new AddArticleCommand 
             { 
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
-                TextToUpload = StringProvider.GetRandomString(),
-                ImageToUpload = StringProvider.GetRandomString()
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(),
+                ImageToUpload = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -34,10 +38,10 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(256),
-                TextToUpload = StringProvider.GetRandomString(),
-                ImageToUpload = StringProvider.GetRandomString()
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(256),
+                TextToUpload = FDataProviderService.GetRandomString(),
+                ImageToUpload = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -55,10 +59,10 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = StringProvider.GetRandomString(256),
-                Description = StringProvider.GetRandomString(),
-                TextToUpload = StringProvider.GetRandomString(),
-                ImageToUpload = StringProvider.GetRandomString()
+                Title = FDataProviderService.GetRandomString(256),
+                Description = FDataProviderService.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(),
+                ImageToUpload = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -76,10 +80,10 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = StringProvider.GetRandomString(),
+                Title = FDataProviderService.GetRandomString(),
                 Description = string.Empty,
-                TextToUpload = StringProvider.GetRandomString(),
-                ImageToUpload = StringProvider.GetRandomString()
+                TextToUpload = FDataProviderService.GetRandomString(),
+                ImageToUpload = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -98,9 +102,9 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             var LAddArticleCommand = new AddArticleCommand
             {
                 Title = string.Empty,
-                Description = StringProvider.GetRandomString(),
-                TextToUpload = StringProvider.GetRandomString(),
-                ImageToUpload = StringProvider.GetRandomString()
+                Description = FDataProviderService.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(),
+                ImageToUpload = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -118,10 +122,10 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
                 TextToUpload = string.Empty,
-                ImageToUpload = StringProvider.GetRandomString()
+                ImageToUpload = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -139,9 +143,9 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = StringProvider.GetRandomString(),
-                Description = StringProvider.GetRandomString(),
-                TextToUpload = StringProvider.GetRandomString(),
+                Title = FDataProviderService.GetRandomString(),
+                Description = FDataProviderService.GetRandomString(),
+                TextToUpload = FDataProviderService.GetRandomString(),
                 ImageToUpload = string.Empty
             };
 

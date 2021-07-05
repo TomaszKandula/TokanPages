@@ -14,7 +14,8 @@ namespace TokanPages.Backend.Cqrs.Mappers
                 EmailAddress = AModel.EmailAddress,
                 UserAlias = AModel.UserAlias,
                 FirstName = AModel.FirstName,
-                LastName = AModel.LastName
+                LastName = AModel.LastName,
+                Password = AModel.Password
             };
         }
 

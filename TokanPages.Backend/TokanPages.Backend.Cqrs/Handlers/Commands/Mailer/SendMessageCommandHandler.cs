@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using TokanPages.Backend.Shared;
 using TokanPages.Backend.SmtpClient;
+using TokanPages.Backend.Core.Logger;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Storage.Models;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Core.Services.AppLogger;
-using TokanPages.Backend.Core.Services.TemplateHelper;
-using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Shared.Services.TemplateHelper;
+using TokanPages.Backend.Shared.Services.DateTimeService;
 using Templates = TokanPages.Backend.Shared.Constants.Emails.Templates;
 using MediatR;
 

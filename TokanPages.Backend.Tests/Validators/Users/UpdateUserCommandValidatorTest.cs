@@ -1,14 +1,18 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 using FluentAssertions;
-using System;
-using TokanPages.Backend.Core.Generators;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
+using TokanPages.Backend.Shared.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Validators.Users
 {
     public class UpdateUserCommandValidatorTest
     {
+        private readonly DataProviderService FDataProviderService;
+
+        public UpdateUserCommandValidatorTest() => FDataProviderService = new DataProviderService();
+
         [Fact]
         public void GivenAllFieldsAreCorrect_WhenUpdateUser_ShouldFinishSuccessful()
         {
@@ -17,10 +21,10 @@ namespace TokanPages.Backend.Tests.Validators.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString()
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -39,9 +43,9 @@ namespace TokanPages.Backend.Tests.Validators.Users
             {
                 Id = Guid.NewGuid(),
                 EmailAddress = string.Empty,
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString()
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -61,9 +65,9 @@ namespace TokanPages.Backend.Tests.Validators.Users
             {
                 Id = Guid.NewGuid(),
                 EmailAddress = new string('T', 256),
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString()
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -82,10 +86,10 @@ namespace TokanPages.Backend.Tests.Validators.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = StringProvider.GetRandomEmail(),
+                EmailAddress = FDataProviderService.GetRandomEmail(),
                 UserAlias = string.Empty,
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString()
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -104,10 +108,10 @@ namespace TokanPages.Backend.Tests.Validators.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(256),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString()
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                UserAlias = FDataProviderService.GetRandomString(256),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -126,10 +130,10 @@ namespace TokanPages.Backend.Tests.Validators.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                UserAlias = FDataProviderService.GetRandomString(),
                 FirstName = string.Empty,
-                LastName = StringProvider.GetRandomString()
+                LastName = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -148,10 +152,10 @@ namespace TokanPages.Backend.Tests.Validators.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(256),
-                LastName = StringProvider.GetRandomString()
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(256),
+                LastName = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -170,9 +174,9 @@ namespace TokanPages.Backend.Tests.Validators.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
                 LastName = string.Empty
             };
 
@@ -192,10 +196,10 @@ namespace TokanPages.Backend.Tests.Validators.Users
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = StringProvider.GetRandomEmail(),
-                UserAlias = StringProvider.GetRandomString(),
-                FirstName = StringProvider.GetRandomString(),
-                LastName = StringProvider.GetRandomString(256)
+                EmailAddress = FDataProviderService.GetRandomEmail(),
+                UserAlias = FDataProviderService.GetRandomString(),
+                FirstName = FDataProviderService.GetRandomString(),
+                LastName = FDataProviderService.GetRandomString(256)
             };
 
             // Act

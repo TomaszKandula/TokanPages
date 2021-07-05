@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using TokanPages.Backend.Shared;
 using TokanPages.Backend.Shared.Models;
 using TokanPages.Backend.Shared.Helpers;
@@ -11,6 +12,7 @@ namespace TokanPages.WebApi.Controllers.Proxy
 {
     [Route("api/v1/SonarQube/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class Metrics : ControllerBase
     {
         private readonly SonarQubeSettingsModel FSonarQubeSettingsModel;
