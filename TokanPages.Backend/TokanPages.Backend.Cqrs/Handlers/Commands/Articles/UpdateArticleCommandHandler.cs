@@ -8,7 +8,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Shared.Services.DateTimeService;
 using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
 using MediatR;
 
@@ -42,7 +42,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             if (!LArticles.Any())
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-            var LIsAnonymousUser = FUserProvider.GetUserId() == null;
+            var LUserId = await FUserProvider.GetUserId();
+            var LIsAnonymousUser = LUserId == null;
             
             var LAzureBlob = FAzureBlobStorageFactory.Create();
             if (!string.IsNullOrEmpty(ARequest.TextToUpload) && !LIsAnonymousUser)
@@ -71,7 +72,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 .Where(ALikes => ALikes.ArticleId == ARequest.Id)
                 .WhereIfElse(LIsAnonymousUser,
                     ALikes => ALikes.IpAddress == FUserProvider.GetRequestIpAddress(),
-                    ALikes => ALikes.UserId == FUserProvider.GetUserId())
+                    ALikes => ALikes.UserId == LUserId)
                 .ToListAsync(ACancellationToken);
 
             if (!LArticleLikes.Any())
@@ -96,7 +97,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             var LEntity = new Domain.Entities.ArticleLikes
             {
                 ArticleId = ARequest.Id,
-                UserId = FUserProvider.GetUserId(),
+                UserId = await FUserProvider.GetUserId(),
                 IpAddress = FUserProvider.GetRequestIpAddress(),
                 LikeCount = ARequest.AddToLikes > LLikesLimit ? LLikesLimit : ARequest.AddToLikes
             };

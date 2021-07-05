@@ -6,20 +6,26 @@ using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Core.Services.DateTimeService;
+using TokanPages.Backend.Shared.Services.DateTimeService;
+using TokanPages.Backend.Cqrs.Services.CipheringService;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 {   
     public class AddUserCommandHandler : TemplateHandler<AddUserCommand, Guid>
     {
+        private const int CIPHER_LOG_ROUNDS = 12;
+        
         private readonly DatabaseContext FDatabaseContext;
         
         private readonly IDateTimeService FDateTimeService;
 
-        public AddUserCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService) 
+        private readonly ICipheringService FCipheringService;
+
+        public AddUserCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService, ICipheringService ACipheringService) 
         {
             FDatabaseContext = ADatabaseContext;
             FDateTimeService = ADateTimeService;
+            FCipheringService = ACipheringService;
         }
 
         public override async Task<Guid> Handle(AddUserCommand ARequest, CancellationToken ACancellationToken)
@@ -31,7 +37,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             
             if (LEmailCollection.Count == 1) 
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
-
+            
             var LNewUser = new Domain.Entities.Users
             { 
                 EmailAddress = ARequest.EmailAddress,
@@ -41,7 +47,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 LastName = ARequest.LastName,
                 Registered = FDateTimeService.Now,
                 LastUpdated = null,
-                LastLogged = null
+                LastLogged = null,
+                CryptedPassword = FCipheringService.GetHashedPassword(ARequest.Password, FCipheringService.GenerateSalt(CIPHER_LOG_ROUNDS)) 
             };
 
             await FDatabaseContext.Users.AddAsync(LNewUser, ACancellationToken);

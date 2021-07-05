@@ -1,7 +1,7 @@
 using Xunit;
 using FluentAssertions;
 using System.Collections.Generic;
-using TokanPages.Backend.Core.Services.TemplateHelper;
+using TokanPages.Backend.Shared.Services.TemplateHelper;
 
 namespace TokanPages.Backend.Tests.Services
 {

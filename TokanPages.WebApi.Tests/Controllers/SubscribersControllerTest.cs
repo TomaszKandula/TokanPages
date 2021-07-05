@@ -3,16 +3,17 @@ using FluentAssertions;
 using Newtonsoft.Json;
 using System;
 using System.Net;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.Core.Generators;
+using System.Security.Claims;
+using System.Net.Http.Headers;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Identity.Authorization;
 using TokanPages.Backend.Shared.Dto.Subscribers;
-using TokanPages.Backend.Database.Initializer.Data;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
+using TokanPages.Backend.Database.Initializer.Data.Users;
+using TokanPages.Backend.Shared.Services.DataProviderService;
+using TokanPages.Backend.Database.Initializer.Data.Subscribers;
 
 namespace TokanPages.WebApi.Tests.Controllers
 {
@@ -20,8 +21,13 @@ namespace TokanPages.WebApi.Tests.Controllers
     {
         private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
 
+        private readonly DataProviderService FDataProviderService;
+        
         public SubscribersControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory)
-            => FWebAppFactory = AWebAppFactory;
+        {
+            FWebAppFactory = AWebAppFactory;
+            FDataProviderService = new DataProviderService();
+        }
         
         [Fact]
         public async Task GivenAllFieldsAreCorrect_WhenAddSubscriber_ShouldReturnNewGuid() 
@@ -29,7 +35,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             // Arrange
             const string REQUEST = "/api/v1/subscribers/addsubscriber/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
-            var LPayLoad = new AddSubscriberDto { Email = StringProvider.GetRandomEmail() };
+            var LPayLoad = new AddSubscriberDto { Email = FDataProviderService.GetRandomEmail() };
 
             var LHttpClient = FWebAppFactory.CreateClient();
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
@@ -46,7 +52,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         }
         
         [Fact]
-        public async Task WhenGetAllUsers_ShouldReturnCollection()
+        public async Task GivenNoJwt_WhenGetAllSubscribers_ShouldReturnUnauthorized()
         {
             // Arrange
             const string REQUEST = "/api/v1/subscribers/getallsubscribers/";
@@ -56,24 +62,14 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LResponse = await LHttpClient.GetAsync(REQUEST);
 
             // Assert
-            LResponse.EnsureSuccessStatusCode();
-
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-
-            var LDeserialized = JsonConvert
-                .DeserializeObject<IEnumerable<GetAllSubscribersQueryResult>>(LContent)
-                .ToList();
-            
-            LDeserialized.Should().NotBeNullOrEmpty();
-            LDeserialized.Should().HaveCountGreaterThan(0);
+            LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         }
         
         [Fact]
-        public async Task GivenCorrectId_WhenGetSubscriber_ShouldReturnEntityAsJsonObject() 
+        public async Task GivenCorrectIdAndNoJwt_WhenGetSubscriber_ShouldReturnUnauthorized() 
         {
             // Arrange
-            var LTestUserId = Subscribers1.FId;
+            var LTestUserId = Subscriber1.FId;
             var LRequest = $"/api/v1/subscribers/getsubscriber/{LTestUserId}/";
             var LHttpClient = FWebAppFactory.CreateClient();
 
@@ -81,13 +77,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
-            LResponse.EnsureSuccessStatusCode();
-
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-
-            var LDeserialized = JsonConvert.DeserializeObject<GetSubscriberQueryResult>(LContent);
-            LDeserialized.Should().NotBeNull();
+            LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         }
 
         [Fact]
@@ -95,10 +85,26 @@ namespace TokanPages.WebApi.Tests.Controllers
         {
             // Arrange
             const string REQUEST = "/api/v1/subscribers/getsubscriber/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, REQUEST);
+            
+            var LGetValidClaims = new ClaimsIdentity(new[]
+            {
+                new Claim(Claims.UserAlias, FDataProviderService.GetRandomString()),
+                new Claim(Claims.Roles, Roles.EverydayUser),
+                new Claim(Claims.UserId, User1.FId.ToString()),
+                new Claim(Claims.FirstName, User1.FIRST_NAME),
+                new Claim(Claims.LastName, User1.LAST_NAME),
+                new Claim(Claims.EmailAddress, User1.EMAIL_ADDRESS)
+            });
+            
             var LHttpClient = FWebAppFactory.CreateClient();
+            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, LGetValidClaims, FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            
+            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(REQUEST);
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -109,7 +115,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         }
         
         [Fact]
-        public async Task GivenIncorrectId_WhenRemoveSubscriber_ShouldReturnJsonObjectWithError()
+        public async Task GivenIncorrectIdAndNoJwt_WhenRemoveSubscriber_ShouldReturnUnauthorized()
         {
             // Arrange
             const string REQUEST = "/api/v1/subscribers/removesubscriber/";
@@ -127,15 +133,11 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
+            LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         }
 
         [Fact]
-        public async Task GivenIncorrectId_WhenUpdateSubscriber_ShouldReturnJsonObjectWithError()
+        public async Task GivenIncorrectIdAndNoJwt_WhenUpdateSubscriber_ShouldReturnUnauthorized()
         {
             // Arrange
             const string REQUEST = "/api/v1/subscribers/updatesubscriber/";
@@ -144,7 +146,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LPayLoad = new UpdateSubscriberDto
             {
                 Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
-                Email = StringProvider.GetRandomEmail(),
+                Email = FDataProviderService.GetRandomEmail(),
                 Count = null,
                 IsActivated = null
             };
@@ -156,11 +158,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
+            LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         }
     }
 }

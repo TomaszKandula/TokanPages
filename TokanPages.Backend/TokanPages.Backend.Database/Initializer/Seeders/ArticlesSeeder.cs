@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Database.Initializer.Data.Articles;
 
 namespace TokanPages.Backend.Database.Initializer.Seeders
 {
@@ -13,47 +14,47 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
             {
                 new ()
                 {
-                    Id = Data.Article1.FId,
-                    Title = Data.Article1.TITLE,
-                    Description = Data.Article1.DESCRIPTION,
-                    IsPublished = Data.Article1.IS_PUBLISHED,
-                    ReadCount = Data.Article1.READ_COUNT,
-                    CreatedAt = Data.Article1.FCreated,
-                    UpdatedAt = Data.Article1.FLastUpdated,
-                    UserId = Data.Article1.FUserId
+                    Id = Article1.FId,
+                    Title = Article1.TITLE,
+                    Description = Article1.DESCRIPTION,
+                    IsPublished = Article1.IS_PUBLISHED,
+                    ReadCount = Article1.READ_COUNT,
+                    CreatedAt = Article1.FCreated,
+                    UpdatedAt = Article1.FLastUpdated,
+                    UserId = Article1.FUserId
                 },
                 new ()
                 {
-                    Id = Data.Article2.FId,
-                    Title = Data.Article2.TITLE,
-                    Description = Data.Article2.DESCRIPTION,
-                    IsPublished = Data.Article2.IS_PUBLISHED,
-                    ReadCount = Data.Article2.READ_COUNT,
-                    CreatedAt = Data.Article2.FCreated,
-                    UpdatedAt = Data.Article2.FLastUpdated,
-                    UserId = Data.Article2.FUserId
+                    Id = Article2.FId,
+                    Title = Article2.TITLE,
+                    Description = Article2.DESCRIPTION,
+                    IsPublished = Article2.IS_PUBLISHED,
+                    ReadCount = Article2.READ_COUNT,
+                    CreatedAt = Article2.FCreated,
+                    UpdatedAt = Article2.FLastUpdated,
+                    UserId = Article2.FUserId
                 },
                 new ()
                 {
-                    Id = Data.Article3.FId,
-                    Title = Data.Article3.TITLE,
-                    Description = Data.Article3.DESCRIPTION,
-                    IsPublished = Data.Article3.IS_PUBLISHED,
-                    ReadCount = Data.Article3.READ_COUNT,
-                    CreatedAt = Data.Article3.FCreated,
-                    UpdatedAt = Data.Article3.FLastUpdated,
-                    UserId = Data.Article3.FUserId
+                    Id = Article3.FId,
+                    Title = Article3.TITLE,
+                    Description = Article3.DESCRIPTION,
+                    IsPublished = Article3.IS_PUBLISHED,
+                    ReadCount = Article3.READ_COUNT,
+                    CreatedAt = Article3.FCreated,
+                    UpdatedAt = Article3.FLastUpdated,
+                    UserId = Article3.FUserId
                 },
                 new ()
                 {
-                    Id = Data.Article4.FId,
-                    Title = Data.Article4.TITLE,
-                    Description = Data.Article4.DESCRIPTION,
-                    IsPublished = Data.Article4.IS_PUBLISHED,
-                    ReadCount = Data.Article4.READ_COUNT,
-                    CreatedAt = Data.Article4.FCreated,
-                    UpdatedAt = Data.Article4.FLastUpdated,
-                    UserId = Data.Article4.FUserId
+                    Id = Article4.FId,
+                    Title = Article4.TITLE,
+                    Description = Article4.DESCRIPTION,
+                    IsPublished = Article4.IS_PUBLISHED,
+                    ReadCount = Article4.READ_COUNT,
+                    CreatedAt = Article4.FCreated,
+                    UpdatedAt = Article4.FLastUpdated,
+                    UserId = Article4.FUserId
                 }
             };
         }

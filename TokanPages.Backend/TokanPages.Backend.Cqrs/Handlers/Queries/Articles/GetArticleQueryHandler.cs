@@ -25,13 +25,14 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 
         public override async Task<GetArticleQueryResult> Handle(GetArticleQuery ARequest, CancellationToken ACancellationToken)
         {
-            var LIsAnonymousUser = FUserProvider.GetUserId() == null;
+            var LUserId = await FUserProvider.GetUserId();
+            var LIsAnonymousUser = LUserId == null;
 
             var LGetArticleLikes = await FDatabaseContext.ArticleLikes
                 .Where(ALikes => ALikes.ArticleId == ARequest.Id)
                 .WhereIfElse(LIsAnonymousUser,
                     ALikes => ALikes.IpAddress == FUserProvider.GetRequestIpAddress(),
-                    ALikes => ALikes.UserId == FUserProvider.GetUserId())
+                    ALikes => ALikes.UserId == LUserId)
                 .Select(ALikes => ALikes.LikeCount)
                 .ToListAsync(ACancellationToken);
 

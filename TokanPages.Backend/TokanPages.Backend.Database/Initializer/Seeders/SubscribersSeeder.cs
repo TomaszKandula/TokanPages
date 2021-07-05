@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Database.Initializer.Data.Subscribers;
 
 namespace TokanPages.Backend.Database.Initializer.Seeders
 {
@@ -13,30 +14,30 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
             {
                 new ()
                 {
-                    Id = Data.Subscribers1.FId,
-                    Email = Data.Subscribers1.EMAIL,
-                    IsActivated = Data.Subscribers1.IS_ACTIVATED,
-                    Count = Data.Subscribers1.COUNT,
-                    Registered = Data.Subscribers1.FRegistered,
-                    LastUpdated = Data.Subscribers1.FLastUpdated
+                    Id = Subscriber1.FId,
+                    Email = Subscriber1.EMAIL,
+                    IsActivated = Subscriber1.IS_ACTIVATED,
+                    Count = Subscriber1.COUNT,
+                    Registered = Subscriber1.FRegistered,
+                    LastUpdated = Subscriber1.FLastUpdated
                 },
                 new ()
                 {
-                    Id = Data.Subscribers2.FId,
-                    Email = Data.Subscribers2.EMAIL,
-                    IsActivated = Data.Subscribers2.IS_ACTIVATED,
-                    Count = Data.Subscribers2.COUNT,
-                    Registered = Data.Subscribers2.FRegistered,
-                    LastUpdated = Data.Subscribers2.FLastUpdated
+                    Id = Subscriber2.FId,
+                    Email = Subscriber2.EMAIL,
+                    IsActivated = Subscriber2.IS_ACTIVATED,
+                    Count = Subscriber2.COUNT,
+                    Registered = Subscriber2.FRegistered,
+                    LastUpdated = Subscriber2.FLastUpdated
                 },
                 new ()
                 {
-                    Id = Data.Subscribers3.FId,
-                    Email = Data.Subscribers3.EMAIL,
-                    IsActivated = Data.Subscribers3.IS_ACTIVATED,
-                    Count = Data.Subscribers3.COUNT,
-                    Registered = Data.Subscribers3.FRegistered,
-                    LastUpdated = Data.Subscribers3.FLastUpdated
+                    Id = Subscriber3.FId,
+                    Email = Subscriber3.EMAIL,
+                    IsActivated = Subscriber3.IS_ACTIVATED,
+                    Count = Subscriber3.COUNT,
+                    Registered = Subscriber3.FRegistered,
+                    LastUpdated = Subscriber3.FLastUpdated
                 }
             };
         }
