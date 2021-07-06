@@ -14,6 +14,7 @@ namespace TokanPages.WebApi.Controllers.Api
         public MailerController(IMediator AMediator) : base(AMediator) { }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<VerifyEmailAddressCommandResult> VerifyEmailAddress([FromBody] VerifyEmailAddressDto APayLoad) 
             => await FMediator.Send(MailerMapper.MapToVerifyEmailAddressCommand(APayLoad));
 
