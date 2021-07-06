@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using TokanPages.Backend.Cqrs.Mappers;
 using TokanPages.Backend.Shared.Dto.Mailer;
+using TokanPages.Backend.Identity.Attributes;
+using TokanPages.Backend.Identity.Authorization;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
 using MediatR;
 
@@ -24,6 +26,7 @@ namespace TokanPages.WebApi.Controllers.Api
             => await FMediator.Send(MailerMapper.MapToSendMessageCommand(APayLoad));
 
         [HttpPost]
+        [AuthorizeRoles(Roles.GodOfAsgard)]
         public async Task<Unit> SendNewsletter([FromBody] SendNewsletterDto APayLoad)
             => await FMediator.Send(MailerMapper.MapToSendNewsletterCommand(APayLoad));
     }

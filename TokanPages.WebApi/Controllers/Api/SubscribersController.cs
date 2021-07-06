@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using TokanPages.Backend.Cqrs.Mappers;
+using TokanPages.Backend.Identity.Attributes;
+using TokanPages.Backend.Identity.Authorization;
 using TokanPages.Backend.Shared.Dto.Subscribers;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
 using MediatR;
@@ -16,6 +18,7 @@ namespace TokanPages.WebApi.Controllers.Api
         public SubscribersController(IMediator AMediator) : base(AMediator) { }
 
         [HttpGet]
+        [AuthorizeRoles(Roles.GodOfAsgard)]
         public async Task<IEnumerable<GetAllSubscribersQueryResult>> GetAllSubscribers()
             => await FMediator.Send(new GetAllSubscribersQuery());
 
