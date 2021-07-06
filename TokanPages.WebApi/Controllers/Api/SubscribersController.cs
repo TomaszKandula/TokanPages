@@ -20,6 +20,7 @@ namespace TokanPages.WebApi.Controllers.Api
             => await FMediator.Send(new GetAllSubscribersQuery());
 
         [HttpGet("{AId}")]
+        [AllowAnonymous]
         public async Task<GetSubscriberQueryResult> GetSubscriber([FromRoute] Guid AId)
             => await FMediator.Send(new GetSubscriberQuery { Id = AId });
 
@@ -29,10 +30,12 @@ namespace TokanPages.WebApi.Controllers.Api
             => await FMediator.Send(SubscribersMapper.MapToAddSubscriberCommand(APayLoad));
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<Unit> UpdateSubscriber([FromBody] UpdateSubscriberDto APayLoad)
             => await FMediator.Send(SubscribersMapper.MapToUpdateSubscriberCommand(APayLoad));
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<Unit> RemoveSubscriber([FromBody] RemoveSubscriberDto APayLoad)
          => await FMediator.Send(SubscribersMapper.MapToRemoveSubscriberCommand(APayLoad));
     }
