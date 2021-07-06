@@ -62,31 +62,31 @@ namespace TokanPages.Backend.Identity.Authentication
 				        .RequireAuthenticatedUser()
 				        .Build());
 
-		        AOptions.AddPolicy(Policies.AccessToTokanPages, APolicy => APolicy
-			        .RequireClaim(Claims.Roles, Roles.GodOfAsgard, Roles.EverydayUser, 
-				        Roles.ArticlePublisher, Roles.PhotoPublisher, Roles.CommentPublisher));
+		        AOptions.AddPolicy(nameof(Policies.AccessToTokanPages), APolicy => APolicy
+			        .RequireRole(nameof(Roles.GodOfAsgard), nameof(Roles.EverydayUser), nameof(Roles.ArticlePublisher), 
+				        nameof(Roles.PhotoPublisher), nameof(Roles.CommentPublisher)));
 	        });
         }
 
 	    private static void ValidateTokenClaims(TokenValidatedContext ATokenValidatedContext)
 	    {
 		    var LUserAlias = ATokenValidatedContext.Principal?.Claims
-			    .Where(AClaim => AClaim.Type == Claims.UserAlias) ?? Array.Empty<Claim>();
+			    .Where(AClaim => AClaim.Type == ClaimTypes.Name) ?? Array.Empty<Claim>();
 				        
 		    var LRole = ATokenValidatedContext.Principal?.Claims
-			    .Where(AClaim => AClaim.Type == Claims.Roles) ?? Array.Empty<Claim>();
+			    .Where(AClaim => AClaim.Type == ClaimTypes.Role) ?? Array.Empty<Claim>();
 				        
 		    var LUserId = ATokenValidatedContext.Principal?.Claims
-			    .Where(AClaim => AClaim.Type == Claims.UserId) ?? Array.Empty<Claim>();
+			    .Where(AClaim => AClaim.Type == ClaimTypes.NameIdentifier) ?? Array.Empty<Claim>();
 				        
 		    var LFirstName = ATokenValidatedContext.Principal?.Claims
-			    .Where(AClaim => AClaim.Type == Claims.FirstName) ?? Array.Empty<Claim>();
+			    .Where(AClaim => AClaim.Type == ClaimTypes.GivenName) ?? Array.Empty<Claim>();
 				        
 		    var LLastName = ATokenValidatedContext.Principal?.Claims
-			    .Where(AClaim => AClaim.Type == Claims.LastName) ?? Array.Empty<Claim>();
+			    .Where(AClaim => AClaim.Type == ClaimTypes.Surname) ?? Array.Empty<Claim>();
 				        
 		    var LEmailAddress = ATokenValidatedContext.Principal?.Claims
-			    .Where(AClaim => AClaim.Type == Claims.EmailAddress) ?? Array.Empty<Claim>();
+			    .Where(AClaim => AClaim.Type == ClaimTypes.Email) ?? Array.Empty<Claim>();
 
 		    if (!LUserAlias.Any() || !LRole.Any() || !LUserId.Any()
 		        || !LFirstName.Any() || !LLastName.Any() || !LEmailAddress.Any())
