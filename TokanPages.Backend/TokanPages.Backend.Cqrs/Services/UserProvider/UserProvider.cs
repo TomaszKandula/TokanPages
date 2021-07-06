@@ -9,7 +9,6 @@ using TokanPages.Backend.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.Dto.Users;
-using TokanPages.Backend.Identity.Authorization;
 
 namespace TokanPages.Backend.Cqrs.Services.UserProvider
 {
@@ -120,7 +119,7 @@ namespace TokanPages.Backend.Cqrs.Services.UserProvider
                 return null;
             
             var LUserIds = LClaimsArray
-                .Where(AClaim => AClaim.Type.Contains(Claims.UserId))
+                .Where(AClaim => AClaim.Type.Contains(ClaimTypes.NameIdentifier))
                 .ToList();
             
             if (!LUserIds.Any())
