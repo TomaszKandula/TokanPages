@@ -74,12 +74,12 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LGetValidClaims = new ClaimsIdentity(new[]
             {
-                new Claim(Claims.UserAlias, FDataProviderService.GetRandomString()),
-                new Claim(Claims.Roles, Roles.EverydayUser),
-                new Claim(Claims.UserId, User1.FId.ToString()),
-                new Claim(Claims.FirstName, User1.FIRST_NAME),
-                new Claim(Claims.LastName, User1.LAST_NAME),
-                new Claim(Claims.EmailAddress, User1.EMAIL_ADDRESS)
+                new Claim(ClaimTypes.Name, FDataProviderService.GetRandomString()),
+                new Claim(ClaimTypes.Role, nameof(Roles.EverydayUser)),
+                new Claim(ClaimTypes.NameIdentifier, User1.FId.ToString()),
+                new Claim(ClaimTypes.GivenName, User1.FIRST_NAME),
+                new Claim(ClaimTypes.Surname, User1.LAST_NAME),
+                new Claim(ClaimTypes.Email, User1.EMAIL_ADDRESS)
             });
 
             var LHttpClient = FWebAppFactory.CreateClient();
