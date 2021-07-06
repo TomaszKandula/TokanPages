@@ -363,7 +363,7 @@ namespace TokanPages.Backend.Tests.Services
             
             // Act
             var LUserProvider = new UserProvider(LHttpContext.Object, LDatabaseContext);
-            var LResult = await LUserProvider.HasRoleAssigned(Roles.EverydayUser);
+            var LResult = await LUserProvider.HasRoleAssigned(nameof(Roles.EverydayUser));
 
             // Assert
             LResult.Should().BeTrue();
@@ -391,7 +391,7 @@ namespace TokanPages.Backend.Tests.Services
             
             // Act
             var LUserProvider = new UserProvider(LHttpContext.Object, LDatabaseContext);
-            var LResult = await LUserProvider.HasRoleAssigned(Roles.PhotoPublisher);
+            var LResult = await LUserProvider.HasRoleAssigned(nameof(Roles.PhotoPublisher));
 
             // Assert
             LResult.Should().BeFalse();
@@ -421,7 +421,7 @@ namespace TokanPages.Backend.Tests.Services
             var LUserProvider = new UserProvider(LHttpContext.Object, LDatabaseContext);
 
             // Assert
-            var LResult = await LUserProvider.HasRoleAssigned(Roles.EverydayUser);
+            var LResult = await LUserProvider.HasRoleAssigned(nameof(Roles.EverydayUser));
             LResult.Should().BeNull();
         }
         
@@ -483,7 +483,7 @@ namespace TokanPages.Backend.Tests.Services
             
             // Act
             var LUserProvider = new UserProvider(LHttpContext.Object, LDatabaseContext);
-            var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanSelectArticles);
+            var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanSelectArticles.ToString());
 
             // Assert
             LResult.Should().BeTrue();
@@ -520,7 +520,7 @@ namespace TokanPages.Backend.Tests.Services
             
             // Act
             var LUserProvider = new UserProvider(LHttpContext.Object, LDatabaseContext);
-            var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanAddLikes);
+            var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanAddLikes.ToString());
 
             // Assert
             LResult.Should().BeFalse();
@@ -559,7 +559,7 @@ namespace TokanPages.Backend.Tests.Services
             var LUserProvider = new UserProvider(LHttpContext.Object, LDatabaseContext);
 
             // Assert
-            var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanSelectArticles);
+            var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanSelectArticles.ToString());
             LResult.Should().BeNull();
         }
 
@@ -626,7 +626,7 @@ namespace TokanPages.Backend.Tests.Services
                 new ()
                 {
                     Id = Guid.Parse("dbb74bc8-dd33-4c9f-9744-84ad4c37035b"),
-                    Name = Roles.EverydayUser,
+                    Name = nameof(Roles.EverydayUser),
                     Description = "User"
                 }
             };
@@ -639,12 +639,12 @@ namespace TokanPages.Backend.Tests.Services
                 new ()
                 {
                     Id = Guid.Parse("dbb74bc8-dd33-4c9f-9744-84ad4c37035b"),
-                    Name = Permissions.CanSelectArticles
+                    Name = Permissions.CanSelectArticles.ToString()
                 },
                 new ()
                 {
                     Id = Guid.Parse("76fb3d47-f10d-467e-9e68-61d8a9fc5f6d"),
-                    Name = Permissions.CanInsertArticles
+                    Name = Permissions.CanInsertArticles.ToString()
                 }
             };   
         }
@@ -655,7 +655,7 @@ namespace TokanPages.Backend.Tests.Services
             var LClaims = new List<Claim>();
             
             if (AUserId != null && AUserId != Guid.Empty)
-                LClaims.Add(new Claim(Claims.UserId, AUserId.ToString()));
+                LClaims.Add(new Claim(ClaimTypes.NameIdentifier, AUserId.ToString()));
 
             LHttpContext
                 .Setup(AHttpContext => AHttpContext.HttpContext.User.Claims)

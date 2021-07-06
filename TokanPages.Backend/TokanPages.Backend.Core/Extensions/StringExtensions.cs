@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Globalization;
 using System.Diagnostics.CodeAnalysis;
 
 namespace TokanPages.Backend.Core.Extensions
@@ -12,6 +13,9 @@ namespace TokanPages.Backend.Core.Extensions
 
         public static string ToBase64Encode(this string APlainText)
             => Convert.ToBase64String(Encoding.UTF8.GetBytes(APlainText));
+
+        public static string CapitalizeEachWord(this string AInput)
+            => CultureInfo.CurrentCulture.TextInfo.ToTitleCase(AInput.ToLower());
 
         public static string ToBase64Decode(this string ABase64EncodedData)
             => Encoding.UTF8.GetString(Convert.FromBase64String(ABase64EncodedData));
