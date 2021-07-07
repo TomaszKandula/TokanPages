@@ -14,7 +14,7 @@ using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
-    public class UpdateArticleCommandHandler : TemplateHandler<UpdateArticleCommand, Unit>
+    public class UpdateArticleContentCommandHandler : TemplateHandler<UpdateArticleContentCommand, Unit>
     {
         private readonly DatabaseContext FDatabaseContext;
 
@@ -24,7 +24,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         
         private readonly IAzureBlobStorageFactory FAzureBlobStorageFactory;
         
-        public UpdateArticleCommandHandler(DatabaseContext ADatabaseContext, IUserProvider AUserProvider, 
+        public UpdateArticleContentCommandHandler(DatabaseContext ADatabaseContext, IUserProvider AUserProvider, 
             IDateTimeService ADateTimeService, IAzureBlobStorageFactory AAzureBlobStorageFactory)
         {
             FDatabaseContext = ADatabaseContext;
@@ -33,7 +33,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             FAzureBlobStorageFactory = AAzureBlobStorageFactory;
         }
 
-        public override async Task<Unit> Handle(UpdateArticleCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(UpdateArticleContentCommand ARequest, CancellationToken ACancellationToken)
         {
             var LArticles = await FDatabaseContext.Articles
                 .Where(AArticles => AArticles.Id == ARequest.Id)
@@ -88,7 +88,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             return await Task.FromResult(Unit.Value);
         }
         
-        private async Task AddNewArticleLikes(bool AIsAnonymousUser, UpdateArticleCommand ARequest, CancellationToken ACancellationToken)
+        private async Task AddNewArticleLikes(bool AIsAnonymousUser, UpdateArticleContentCommand ARequest, CancellationToken ACancellationToken)
         {
             var LLikesLimit = AIsAnonymousUser 
                 ? Constants.Likes.LIKES_LIMIT_FOR_ANONYMOUS 

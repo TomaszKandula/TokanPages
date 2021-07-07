@@ -18,7 +18,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
             };
         }
 
-        public static UpdateArticleCommand MapToUpdateArticleCommand(UpdateArticleDto AModel)
+        public static UpdateArticleContentCommand MapToUpdateArticleCommand(UpdateArticleDto AModel)
         {
             return new ()
             {

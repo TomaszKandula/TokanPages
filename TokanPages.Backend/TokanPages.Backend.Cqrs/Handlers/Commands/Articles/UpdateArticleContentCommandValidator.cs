@@ -3,9 +3,9 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
-    public class UpdateArticleCommandValidator : AbstractValidator<UpdateArticleCommand>
+    public class UpdateArticleContentCommandValidator : AbstractValidator<UpdateArticleContentCommand>
     {
-        public UpdateArticleCommandValidator()
+        public UpdateArticleContentCommandValidator()
         {
             RuleFor(AField => AField.Id)
                 .NotEmpty()

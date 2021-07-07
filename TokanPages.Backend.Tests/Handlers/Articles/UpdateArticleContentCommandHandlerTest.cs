@@ -17,7 +17,7 @@ using TokanPages.Backend.Shared.Services.DataProviderService;
 
 namespace TokanPages.Backend.Tests.Handlers.Articles
 {
-    public class UpdateArticleCommandHandlerTest : TestBase
+    public class UpdateArticleContentCommandHandlerTest : TestBase
     {
         private const string IP_ADDRESS = "255.255.255.255";
 
@@ -25,7 +25,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
         private readonly DataProviderService FDataProviderService;
 
-        public UpdateArticleCommandHandlerTest()
+        public UpdateArticleContentCommandHandlerTest()
         {
             FDataProviderService = new DataProviderService();
             FMockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
@@ -89,13 +89,13 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS);
 
-            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
+            var LUpdateArticleCommandHandler = new UpdateArticleContentCommandHandler(
                 LDatabaseContext, 
                 LMockedUserProvider.Object, 
                 LMockedDateTime.Object, 
                 FMockedAzureBlobStorageFactory.Object);
 
-            var LUpdateArticleCommand = new UpdateArticleCommand 
+            var LUpdateArticleCommand = new UpdateArticleContentCommand 
             { 
                 Id = LArticles.Id,
                 Title = FDataProviderService.GetRandomString(),
@@ -166,13 +166,13 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS);
 
-            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
+            var LUpdateArticleCommandHandler = new UpdateArticleContentCommandHandler(
                 LDatabaseContext, 
                 LMockedUserProvider.Object, 
                 LMockedDateTime.Object, 
                 FMockedAzureBlobStorageFactory.Object);
 
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = LArticles.Id,
                 AddToLikes = ALikes,
@@ -253,13 +253,13 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS);
 
-            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
+            var LUpdateArticleCommandHandler = new UpdateArticleContentCommandHandler(
                 LDatabaseContext, 
                 LMockedUserProvider.Object, 
                 LMockedDateTime.Object, 
                 FMockedAzureBlobStorageFactory.Object);
 
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = LArticles.Id,
                 AddToLikes = ANewLikes,
@@ -332,13 +332,13 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS);
 
-            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
+            var LUpdateArticleCommandHandler = new UpdateArticleContentCommandHandler(
                 LDatabaseContext, 
                 LMockedUserProvider.Object, 
                 LMockedDateTime.Object, 
                 FMockedAzureBlobStorageFactory.Object);
 
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = LArticles.Id,
                 AddToLikes = ALikes,
@@ -421,13 +421,13 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS);
 
-            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
+            var LUpdateArticleCommandHandler = new UpdateArticleContentCommandHandler(
                 LDatabaseContext, 
                 LMockedUserProvider.Object, 
                 LMockedDateTime.Object, 
                 FMockedAzureBlobStorageFactory.Object);
 
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = LArticles.Id,
                 AddToLikes = ANewLikes,
@@ -454,7 +454,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
         public async Task GivenNotExistingArticle_WhenUpdateArticle_ShouldThrowError()
         {
             // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.Parse("a54aa009-2894-407f-90ad-5f07a3145203"),
                 Title = FDataProviderService.GetRandomString(),
@@ -509,7 +509,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS);
 
-            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
+            var LUpdateArticleCommandHandler = new UpdateArticleContentCommandHandler(
                 LDatabaseContext, 
                 LMockedUserProvider.Object, 
                 LMockedDateTime.Object, 
@@ -524,7 +524,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
         public async Task GivenInvalidImageBase64_WhenUpdateArticle_ShouldThrowError()
         {
             // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.Parse("a54aa009-2894-407f-90ad-5f07a3145203"),
                 Title = FDataProviderService.GetRandomString(),
@@ -579,7 +579,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS);
 
-            var LUpdateArticleCommandHandler = new UpdateArticleCommandHandler(
+            var LUpdateArticleCommandHandler = new UpdateArticleContentCommandHandler(
                 LDatabaseContext, 
                 LMockedUserProvider.Object, 
                 LMockedDateTime.Object, 

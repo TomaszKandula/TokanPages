@@ -7,17 +7,17 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
 namespace TokanPages.Backend.Tests.Validators.Articles
 {
-    public class UpdateArticleCommandValidatorTest
+    public class UpdateArticleContentCommandValidatorTest
     {
         private readonly DataProviderService FDataProviderService;
 
-        public UpdateArticleCommandValidatorTest() => FDataProviderService = new DataProviderService();
+        public UpdateArticleContentCommandValidatorTest() => FDataProviderService = new DataProviderService();
         
         [Fact]
         public void GivenAllFieldsAreCorrect_WhenUpdateArticle_ShouldFinishSuccessful() 
         {
             // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.NewGuid(),
                 Title = FDataProviderService.GetRandomString(),
@@ -30,7 +30,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             };
 
             // Act
-            var LValidator = new UpdateArticleCommandValidator();
+            var LValidator = new UpdateArticleContentCommandValidator();
             var LResult = LValidator.Validate(LUpdateArticleCommand);
 
             // Assert
@@ -41,7 +41,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
         public void GivenEmptyId_WhenUpdateArticle_ShouldThrowError()
         {
             // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.Empty,
                 Title = FDataProviderService.GetRandomString(),
@@ -54,7 +54,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             };
 
             // Act
-            var LValidator = new UpdateArticleCommandValidator();
+            var LValidator = new UpdateArticleContentCommandValidator();
             var LResult = LValidator.Validate(LUpdateArticleCommand);
 
             // Assert
@@ -66,7 +66,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
         public void GivenEmptyTitle_WhenUpdateArticle_ShouldThrowError()
         {
             // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.NewGuid(),
                 Title = string.Empty,
@@ -79,7 +79,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             };
 
             // Act
-            var LValidator = new UpdateArticleCommandValidator();
+            var LValidator = new UpdateArticleContentCommandValidator();
             var LResult = LValidator.Validate(LUpdateArticleCommand);
 
             // Assert
@@ -91,7 +91,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
         public void GivenTitleIsTooLong_WhenUpdateArticle_ShouldThrowError()
         {
             // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.NewGuid(),
                 Title = FDataProviderService.GetRandomString(256),
@@ -104,7 +104,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             };
 
             // Act
-            var LValidator = new UpdateArticleCommandValidator();
+            var LValidator = new UpdateArticleContentCommandValidator();
             var LResult = LValidator.Validate(LUpdateArticleCommand);
 
             // Assert
@@ -116,7 +116,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
         public void GivenEmptyDescription_WhenUpdateArticle_ShouldThrowError()
         {
             // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.NewGuid(),
                 Title = FDataProviderService.GetRandomString(),
@@ -129,7 +129,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             };
 
             // Act
-            var LValidator = new UpdateArticleCommandValidator();
+            var LValidator = new UpdateArticleContentCommandValidator();
             var LResult = LValidator.Validate(LUpdateArticleCommand);
 
             // Assert
@@ -141,7 +141,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
         public void GivenTooLongDescription_WhenUpdateArticle_ShouldThrowError()
         {
             // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.NewGuid(),
                 Title = FDataProviderService.GetRandomString(),
@@ -154,7 +154,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             };
 
             // Act
-            var LValidator = new UpdateArticleCommandValidator();
+            var LValidator = new UpdateArticleContentCommandValidator();
             var LResult = LValidator.Validate(LUpdateArticleCommand);
 
             // Assert
@@ -166,7 +166,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
         public void GivenEmptyTextToUpload_WhenUpdateArticle_ShouldFinishSuccessful()
         {
             // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.NewGuid(),
                 Title = FDataProviderService.GetRandomString(),
@@ -179,7 +179,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             };
 
             // Act
-            var LValidator = new UpdateArticleCommandValidator();
+            var LValidator = new UpdateArticleContentCommandValidator();
             var LResult = LValidator.Validate(LUpdateArticleCommand);
 
             // Assert
@@ -190,7 +190,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
         public void GivenEmptyImageToUpload_WhenUpdateArticle_ShouldFinishSuccessful()
         {
             // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.NewGuid(),
                 Title = FDataProviderService.GetRandomString(),
@@ -203,7 +203,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             };
 
             // Act
-            var LValidator = new UpdateArticleCommandValidator();
+            var LValidator = new UpdateArticleContentCommandValidator();
             var LResult = LValidator.Validate(LUpdateArticleCommand);
 
             // Assert
@@ -214,7 +214,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
         public void GivenLikesIsLessThanZero_WhenUpdateArticle_ShouldThrowError()
         {
             // Arrange
-            var LUpdateArticleCommand = new UpdateArticleCommand
+            var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.NewGuid(),
                 Title = FDataProviderService.GetRandomString(),
@@ -227,7 +227,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             };
 
             // Act
-            var LValidator = new UpdateArticleCommandValidator();
+            var LValidator = new UpdateArticleContentCommandValidator();
             var LResult = LValidator.Validate(LUpdateArticleCommand);
 
             // Assert

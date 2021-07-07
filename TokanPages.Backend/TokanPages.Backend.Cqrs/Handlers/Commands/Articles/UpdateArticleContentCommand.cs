@@ -3,7 +3,7 @@ using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
-    public class UpdateArticleCommand : IRequest<Unit>
+    public class UpdateArticleContentCommand : IRequest<Unit>
     {
         public Guid Id { get; set; }
 
