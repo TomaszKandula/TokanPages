@@ -14,9 +14,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         private readonly DatabaseContext FDatabaseContext;
 
         public UpdateArticleCountCommandHandler(DatabaseContext ADatabaseContext)
-        {
-            FDatabaseContext = ADatabaseContext;
-        }
+            => FDatabaseContext = ADatabaseContext;
 
         public override async Task<Unit> Handle(UpdateArticleCountCommand ARequest, CancellationToken ACancellationToken)
         {
