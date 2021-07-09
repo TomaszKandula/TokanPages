@@ -185,10 +185,10 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenIncorrectIdAndNoJwt_WhenUpdateArticle_ShouldReturnUnauthorized()
         {
             // Arrange
-            const string REQUEST = "/api/v1/articles/updatearticle/";
+            const string REQUEST = "/api/v1/articles/updatearticlecontent/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
 
-            var LPayLoad = new UpdateArticleDto
+            var LPayLoad = new UpdateArticleContentDto
             {
                 Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
                 Title = FDataProviderService.GetRandomString(),
@@ -207,7 +207,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         }
     }
 }
