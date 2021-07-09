@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 using TokanPages.Backend.Shared.Dto.Articles;
+using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
 namespace TokanPages.Backend.Cqrs.Mappers
 {
@@ -17,8 +17,8 @@ namespace TokanPages.Backend.Cqrs.Mappers
                 ImageToUpload = AModel.ImageToUpload
             };
         }
-
-        public static UpdateArticleContentCommand MapToUpdateArticleCommand(UpdateArticleDto AModel)
+        
+        public static UpdateArticleContentCommand MapToUpdateArticleCommand(UpdateArticleContentDto AModel)
         {
             return new ()
             {
@@ -33,6 +33,32 @@ namespace TokanPages.Backend.Cqrs.Mappers
             };
         }
 
+        public static UpdateArticleCountCommand MapToUpdateArticleCommand(UpdateArticleCountDto AModel)
+        {
+            return new ()
+            {
+                Id = AModel.Id
+            };
+        }
+        
+        public static UpdateArticleLikesCommand MapToUpdateArticleCommand(UpdateArticleLikesDto AModel)
+        {
+            return new ()
+            {
+                Id = AModel.Id,
+                AddToLikes = AModel.AddToLikes
+            };
+        }
+
+        public static UpdateArticleVisibilityCommand MapToUpdateArticleCommand(UpdateArticleVisibilityDto AModel)
+        {
+            return new ()
+            {
+                Id = AModel.Id,
+                IsPublished = AModel.IsPublished
+            };
+        }
+        
         public static RemoveArticleCommand MapToRemoveArticleCommand(RemoveArticleDto AModel) 
         {
             return new () 
