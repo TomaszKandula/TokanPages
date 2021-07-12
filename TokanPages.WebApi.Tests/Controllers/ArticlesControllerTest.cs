@@ -66,7 +66,8 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), 
+                FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
@@ -164,29 +165,127 @@ namespace TokanPages.WebApi.Tests.Controllers
         }
         
         [Fact]
-        public async Task GivenNoJwt_WhenUpdateArticle_ShouldReturnUnauthorized()
+        public async Task GivenNoJwt_WhenUpdateArticleContent_ShouldReturnUnauthorized()
         {
             // Arrange
             var LRequest = $"{API_BASE_URL}/UpdateArticleContent/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
-            var LPayLoad = new UpdateArticleContentDto
-            {
-                Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
-                Title = DataProviderService.GetRandomString(),
-                Description = DataProviderService.GetRandomString(),
-                TextToUpload = DataProviderService.GetRandomString(150),
-                ImageToUpload = DataProviderService.GetRandomString(255).ToBase64Encode()
-            };
-
             var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(GetArticleContentForUpdate(Guid.NewGuid())), 
+                System.Text.Encoding.Default, "application/json");
 
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+        }
+        
+        [Fact]
+        public async Task GivenInvalidArticleId_WhenUpdateArticleCount_ShouldReturnBadRequest()
+        {
+            // Arrange
+            var LRequest = $"{API_BASE_URL}/UpdateArticleCount/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+
+            var LHttpClient = FWebAppFactory.CreateClient();
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(GetArticleContentForUpdate(Guid.NewGuid())), 
+                System.Text.Encoding.Default, "application/json");
+
+            // Act
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+
+            // Assert
+            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+            LContent.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+        }
+        
+        [Fact]
+        public async Task GivenInvalidArticleId_WhenUpdateArticleLikes_ShouldReturnBadRequest()
+        {
+            // Arrange
+            var LRequest = $"{API_BASE_URL}/UpdateArticleLikes/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+
+            var LHttpClient = FWebAppFactory.CreateClient();
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(GetArticleContentForUpdate(Guid.NewGuid())), 
+                System.Text.Encoding.Default, "application/json");
+
+            // Act
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+
+            // Assert
+            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+            LContent.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+        }
+        
+        [Fact]
+        public async Task GivenInvalidArticleIdAndValidJwt_WhenUpdateArticleVisibility_ShouldReturnBadRequest()
+        {
+            // Arrange
+            var LRequest = $"{API_BASE_URL}/UpdateArticleVisibility/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+
+            var LHttpClient = FWebAppFactory.CreateClient();
+            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), 
+                FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            
+            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(GetArticleContentForUpdate(Guid.NewGuid())), 
+                System.Text.Encoding.Default, "application/json");
+            
+            // Act
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+
+            // Assert
+            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+            LContent.Should().Contain(ErrorCodes.ACCESS_DENIED);
+        }
+        
+        [Fact]
+        public async Task GivenInvalidArticleIdAndInvalidJwt_WhenUpdateArticleVisibility_ShouldReturnForbidden()
+        {
+            // Arrange
+            var LRequest = $"{API_BASE_URL}/UpdateArticleVisibility/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+
+            var LHttpClient = FWebAppFactory.CreateClient();
+            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetInvalidClaimsIdentity(), 
+                FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            
+            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(GetArticleContentForUpdate(Guid.NewGuid())), 
+                System.Text.Encoding.Default, "application/json");
+            
+            // Act
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+
+            // Assert
+            LResponse.StatusCode.Should().Be(HttpStatusCode.Forbidden);
+        }
+
+        private UpdateArticleContentDto GetArticleContentForUpdate(Guid AArticleId)
+        {
+            return new ()
+            {
+                Id = AArticleId,
+                Title = DataProviderService.GetRandomString(),
+                Description = DataProviderService.GetRandomString(),
+                TextToUpload = DataProviderService.GetRandomString(150),
+                ImageToUpload = DataProviderService.GetRandomString(255).ToBase64Encode()
+            };
         }
     }
 }
