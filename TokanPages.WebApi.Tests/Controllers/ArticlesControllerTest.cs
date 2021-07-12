@@ -171,8 +171,17 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LRequest = $"{API_BASE_URL}/UpdateArticleContent/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
+            var LPayLoad = new UpdateArticleContentDto
+            {
+                Id = Guid.NewGuid(),
+                Title = DataProviderService.GetRandomString(),
+                Description = DataProviderService.GetRandomString(),
+                TextToUpload = DataProviderService.GetRandomString(150),
+                ImageToUpload = DataProviderService.GetRandomString(255).ToBase64Encode()
+            };
+            
             var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(GetArticleContentForUpdate(Guid.NewGuid())), 
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), 
                 System.Text.Encoding.Default, "application/json");
 
             // Act
@@ -189,8 +198,13 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LRequest = $"{API_BASE_URL}/UpdateArticleCount/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
+            var LPayLoad = new UpdateArticleCountDto
+            {
+                Id = Guid.NewGuid()
+            };
+            
             var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(GetArticleContentForUpdate(Guid.NewGuid())), 
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), 
                 System.Text.Encoding.Default, "application/json");
 
             // Act
@@ -211,8 +225,14 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LRequest = $"{API_BASE_URL}/UpdateArticleLikes/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
+            var LPayLoad = new UpdateArticleLikesDto
+            {
+                Id = Guid.NewGuid(),
+                AddToLikes = 10
+            };
+            
             var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(GetArticleContentForUpdate(Guid.NewGuid())), 
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), 
                 System.Text.Encoding.Default, "application/json");
 
             // Act
@@ -237,9 +257,15 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LTokenExpires = DateTime.Now.AddDays(30);
             var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), 
                 FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+
+            var LPayLoad = new UpdateArticleVisibilityDto
+            {
+                Id = Guid.NewGuid(),
+                IsPublished = true
+            };
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(GetArticleContentForUpdate(Guid.NewGuid())), 
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), 
                 System.Text.Encoding.Default, "application/json");
             
             // Act
@@ -264,9 +290,15 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LTokenExpires = DateTime.Now.AddDays(30);
             var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetInvalidClaimsIdentity(), 
                 FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+
+            var LPayLoad = new UpdateArticleVisibilityDto
+            {
+                Id = Guid.NewGuid(),
+                IsPublished = true
+            };
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(GetArticleContentForUpdate(Guid.NewGuid())), 
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), 
                 System.Text.Encoding.Default, "application/json");
             
             // Act
@@ -274,18 +306,6 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.Forbidden);
-        }
-
-        private UpdateArticleContentDto GetArticleContentForUpdate(Guid AArticleId)
-        {
-            return new ()
-            {
-                Id = AArticleId,
-                Title = DataProviderService.GetRandomString(),
-                Description = DataProviderService.GetRandomString(),
-                TextToUpload = DataProviderService.GetRandomString(150),
-                ImageToUpload = DataProviderService.GetRandomString(255).ToBase64Encode()
-            };
         }
     }
 }
