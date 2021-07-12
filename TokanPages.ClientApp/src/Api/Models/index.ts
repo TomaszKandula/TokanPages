@@ -1,5 +1,8 @@
 export type { IAddArticleDto } from "./Articles/addArticleDto";
-export type { IUpdateArticleDto } from "./Articles/updateArticleDto";
+export type { IUpdateArticleContentDto } from "./Articles/updateArticleContentDto";
+export type { IUpdateArticleCountDto } from "./Articles/updateArticleCountDto";
+export type { IUpdateArticleLikesDto } from "./Articles/updateArticleLikesDto";
+export type { IUpdateArticleVisibilityDto } from "./Articles/updateArticleVisibilityDto";
 export type { IRemoveArticleDto } from "./Articles/removeArticleDto";
 
 export type { ISendMessageDto } from "./Mailer/sendMessageDto";
