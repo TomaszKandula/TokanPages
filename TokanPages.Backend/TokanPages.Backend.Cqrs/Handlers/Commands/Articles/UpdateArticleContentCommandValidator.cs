@@ -33,11 +33,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                     .WithErrorCode(nameof(ValidationCodes.DESCRIPTION_TOO_LONG))
                     .WithMessage(ValidationCodes.DESCRIPTION_TOO_LONG);
             });
-
-            RuleFor(AField => AField.AddToLikes)
-                .GreaterThan(-1)
-                .WithErrorCode(nameof(ValidationCodes.LESS_THAN_ZERO))
-                .WithMessage(ValidationCodes.LESS_THAN_ZERO);
         }
     }
 }
