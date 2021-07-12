@@ -23,10 +23,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
                 Title = FDataProviderService.GetRandomString(),
                 Description = FDataProviderService.GetRandomString(),
                 TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = FDataProviderService.GetRandomString(),
-                IsPublished = false,
-                AddToLikes = 0,
-                UpReadCount = false
+                ImageToUpload = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -47,10 +44,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
                 Title = FDataProviderService.GetRandomString(),
                 Description = FDataProviderService.GetRandomString(),
                 TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = FDataProviderService.GetRandomString(),
-                IsPublished = false,
-                AddToLikes = 0,
-                UpReadCount = false
+                ImageToUpload = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -72,10 +66,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
                 Title = string.Empty,
                 Description = FDataProviderService.GetRandomString(),
                 TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = FDataProviderService.GetRandomString(),
-                IsPublished = false,
-                AddToLikes = 0,
-                UpReadCount = false
+                ImageToUpload = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -97,10 +88,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
                 Title = FDataProviderService.GetRandomString(256),
                 Description = FDataProviderService.GetRandomString(),
                 TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = FDataProviderService.GetRandomString(),
-                IsPublished = false,
-                AddToLikes = 0,
-                UpReadCount = false
+                ImageToUpload = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -122,10 +110,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
                 Title = FDataProviderService.GetRandomString(),
                 Description = string.Empty,
                 TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = FDataProviderService.GetRandomString(),
-                IsPublished = false,
-                AddToLikes = 0,
-                UpReadCount = false
+                ImageToUpload = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -147,10 +132,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
                 Title = FDataProviderService.GetRandomString(),
                 Description = FDataProviderService.GetRandomString(256),
                 TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = FDataProviderService.GetRandomString(),
-                IsPublished = false,
-                AddToLikes = 0,
-                UpReadCount = false
+                ImageToUpload = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -172,10 +154,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
                 Title = FDataProviderService.GetRandomString(),
                 Description = FDataProviderService.GetRandomString(),
                 TextToUpload = string.Empty,
-                ImageToUpload = FDataProviderService.GetRandomString(),
-                IsPublished = false,
-                AddToLikes = 0,
-                UpReadCount = false
+                ImageToUpload = FDataProviderService.GetRandomString()
             };
 
             // Act
@@ -196,10 +175,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
                 Title = FDataProviderService.GetRandomString(),
                 Description = FDataProviderService.GetRandomString(),
                 TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = string.Empty,
-                IsPublished = false,
-                AddToLikes = 0,
-                UpReadCount = false
+                ImageToUpload = string.Empty
             };
 
             // Act
@@ -208,31 +184,6 @@ namespace TokanPages.Backend.Tests.Validators.Articles
 
             // Assert
             LResult.Errors.Should().BeEmpty();
-        }
-
-        [Fact]
-        public void GivenLikesIsLessThanZero_WhenUpdateArticle_ShouldThrowError()
-        {
-            // Arrange
-            var LUpdateArticleCommand = new UpdateArticleContentCommand
-            {
-                Id = Guid.NewGuid(),
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = string.Empty,
-                IsPublished = false,
-                AddToLikes = -1,
-                UpReadCount = false
-            };
-
-            // Act
-            var LValidator = new UpdateArticleContentCommandValidator();
-            var LResult = LValidator.Validate(LUpdateArticleCommand);
-
-            // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LESS_THAN_ZERO));
         }
     }
 }

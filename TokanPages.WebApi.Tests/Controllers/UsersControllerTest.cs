@@ -6,44 +6,37 @@ using System.Net;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Security.Claims;
 using System.Net.Http.Headers;
 using System.Collections.Generic;
 using TokanPages.Backend.Shared.Dto.Users;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Identity.Authorization;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 using TokanPages.Backend.Database.Initializer.Data.Users;
-using TokanPages.Backend.Shared.Services.DataProviderService;
 
 namespace TokanPages.WebApi.Tests.Controllers
 {
-    public class UsersControllerTest : IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
+        private const string API_BASE_URL = "/api/v1/users";
+        
         private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
 
-        private readonly DataProviderService FDataProviderService;
-
-        public UsersControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-            FDataProviderService = new DataProviderService();
-        }
+        public UsersControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
         
         [Fact]
         public async Task GivenAllFieldsAreProvided_WhenAddUser_ShouldReturnNewGuid() 
         {
             // Arrange
-            const string REQUEST = "/api/v1/users/adduser/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
+            var LRequest = $"{API_BASE_URL}/AddUser/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
             var LPayLoad = new AddUserDto 
             { 
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                Password = FDataProviderService.GetRandomString()
+                EmailAddress = DataProviderService.GetRandomEmail(),
+                UserAlias = DataProviderService.GetRandomString(),
+                FirstName = DataProviderService.GetRandomString(),
+                LastName = DataProviderService.GetRandomString(),
+                Password = DataProviderService.GetRandomString()
             };
 
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -63,12 +56,12 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenValidJwt_WhenGetAllUsers_ShouldReturnCollection() 
         {
             // Arrange
-            const string REQUEST = "/api/v1/users/getallusers/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, REQUEST);
+            var LRequest = $"{API_BASE_URL}/GetAllUsers/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, LRequest);
             
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
 
@@ -91,12 +84,12 @@ namespace TokanPages.WebApi.Tests.Controllers
         {
             // Arrange
             var LTestUserId = User1.FId;
-            var LRequest = $"/api/v1/users/getuser/{LTestUserId}/";
+            var LRequest = $"{API_BASE_URL}/GetUser/{LTestUserId}/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Get, LRequest);
             
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
             
@@ -114,15 +107,36 @@ namespace TokanPages.WebApi.Tests.Controllers
         }
 
         [Fact]
-        public async Task GivenInvalidIdAndValidJwt_WhenGetUser_ShouldReturnJsonObjectWithError()
+        public async Task GivenCorrectIdAndInvalidJwt_WhenGetUser_ShouldReturnEntityAsJsonObject() 
         {
             // Arrange
-            const string REQUEST = "/api/v1/users/getuser/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, REQUEST);
+            var LTestUserId = User1.FId;
+            var LRequest = $"{API_BASE_URL}/GetUser/{LTestUserId}/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, LRequest);
             
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetInvalidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            
+            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            
+            // Act
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+
+            // Assert
+            LResponse.StatusCode.Should().Be(HttpStatusCode.Forbidden);
+        }
+        
+        [Fact]
+        public async Task GivenInvalidIdAndValidJwt_WhenGetUser_ShouldReturnJsonObjectWithError()
+        {
+            // Arrange
+            var LRequest = $"{API_BASE_URL}/GetUser/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, LRequest);
+            
+            var LHttpClient = FWebAppFactory.CreateClient();
+            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
 
@@ -141,8 +155,8 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenIncorrectIdAndNoJwt_WhenRemoveUser_ShouldReturnUnauthorized() 
         {
             // Arrange
-            const string REQUEST = "/api/v1/users/removeuser/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
+            var LRequest = $"{API_BASE_URL}/RemoveUser/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
             var LPayLoad = new RemoveUserDto
             {
@@ -163,16 +177,16 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenIncorrectIdNoJwt_WhenUpdateUser_ShouldReturnUnauthorized() 
         {
             // Arrange
-            const string REQUEST = "/api/v1/users/updateuser/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
+            var LRequest = $"{API_BASE_URL}/UpdateUser/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
             var LPayLoad = new UpdateUserDto
             {
                 Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                EmailAddress = DataProviderService.GetRandomEmail(),
+                UserAlias = DataProviderService.GetRandomString(),
+                FirstName = DataProviderService.GetRandomString(),
+                LastName = DataProviderService.GetRandomString(),
                 IsActivated = true
             };
 
@@ -184,20 +198,6 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
-        }
-        
-        private ClaimsIdentity GetValidClaims()
-        {
-            return new (new[]
-            {
-                new Claim(ClaimTypes.Name, FDataProviderService.GetRandomString()),
-                new Claim(ClaimTypes.Role, nameof(Roles.EverydayUser)),
-                new Claim(ClaimTypes.Role, nameof(Roles.GodOfAsgard)),
-                new Claim(ClaimTypes.NameIdentifier, User1.FId.ToString()),
-                new Claim(ClaimTypes.GivenName, User1.FIRST_NAME),
-                new Claim(ClaimTypes.Surname, User1.LAST_NAME),
-                new Claim(ClaimTypes.Email, User1.EMAIL_ADDRESS)
-            });
         }
     }
 }
