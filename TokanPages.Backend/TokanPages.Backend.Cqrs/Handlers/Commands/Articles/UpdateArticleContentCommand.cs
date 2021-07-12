@@ -14,11 +14,5 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         public string TextToUpload { get; set; }
         
         public string ImageToUpload { get; set; }
-        
-        public bool? IsPublished { get; set; }
-        
-        public int AddToLikes { get; set; }
-        
-        public bool? UpReadCount { get; set; }
     }
 }
