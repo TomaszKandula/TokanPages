@@ -6,31 +6,26 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Shared.Services.DataProviderService;
 
 namespace TokanPages.WebApi.Tests.Controllers
 {
-    public class HealthControllerTest : IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    public class HealthControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
-        
-        private readonly DataProviderService FDataProviderService;
+        private const string API_BASE_URL = "/api/v1/health";
 
-        public HealthControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-            FDataProviderService = new DataProviderService();
-        }
+        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
+
+        public HealthControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task GivenCorrectConfiguration_WhenRequestStatusCheck_ShouldReturnSuccessful()
         {
             // Arrange
-            const string REQUEST = "/api/v1/health/status/";
+            var LRequest = $"{API_BASE_URL}/Status/";
         
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(REQUEST);
+            var LResponse = await LHttpClient.GetAsync(LRequest);
         
             // Assert
             LResponse.EnsureSuccessStatusCode();
@@ -49,19 +44,19 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenInvalidSmtpServer_WhenRequestStatusCheck_ShouldThrowError()
         {
             // Arrange
-            const string REQUEST = "/api/v1/health/status/";
+            var LRequest = $"{API_BASE_URL}/Status/";
             var LWebAppFactory = FWebAppFactory.WithWebHostBuilder(ABuilder =>
             {
                 ABuilder.ConfigureAppConfiguration((AContext, AConfigBuilder) =>
                 {
                     AConfigBuilder.AddInMemoryCollection(
-                        new Dictionary<string, string> { ["SmtpServer:Server"] = FDataProviderService.GetRandomString() });
+                        new Dictionary<string, string> { ["SmtpServer:Server"] = DataProviderService.GetRandomString() });
                 });
             });
             
             // Act
             var LHttpClient = LWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(REQUEST);
+            var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
@@ -80,19 +75,19 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenInvalidDatabaseServer_WhenRequestStatusCheck_ShouldThrowError()
         {
             // Arrange
-            const string REQUEST = "/api/v1/health/status/";
+            var LRequest = $"{API_BASE_URL}/Status/";
             var LWebAppFactory = FWebAppFactory.WithWebHostBuilder(ABuilder =>
             {
                 ABuilder.ConfigureAppConfiguration((AContext, AConfigBuilder) =>
                 {
                     AConfigBuilder.AddInMemoryCollection(
-                        new Dictionary<string, string> { ["ConnectionStrings:DbConnectTest"] = FDataProviderService.GetRandomString() });
+                        new Dictionary<string, string> { ["ConnectionStrings:DbConnectTest"] = DataProviderService.GetRandomString() });
                 });
             });
             
             // Act
             var LHttpClient = LWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(REQUEST);
+            var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.InternalServerError);

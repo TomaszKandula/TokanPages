@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Http;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Identity.Authorization;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
 using TokanPages.Backend.Shared.Services.DataProviderService;
 using Roles = TokanPages.Backend.Identity.Authorization.Roles;
@@ -29,7 +28,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             var LLoggedUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
-            var LUsers = GetOneUserInList(LLoggedUserId);
+            var LUsers = GetUser(LLoggedUserId);
             var LHttpContext = GetMockedHttpContext(LLoggedUserId);
             
             var LDatabaseContext = GetTestDatabaseContext();
@@ -50,7 +49,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             var LLoggedUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
-            var LUsers = GetOneUserInList(LLoggedUserId);
+            var LUsers = GetUser(LLoggedUserId);
             var LHttpContext = GetMockedHttpContext(null);
             
             var LDatabaseContext = GetTestDatabaseContext();
@@ -69,7 +68,7 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenInvalidClaimsInHttpContext_WhenInvokeGetUserId_ShouldThrowError()
         {
             // Arrange
-            var LUsers = GetOneUserInList(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
+            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
             var LHttpContext = GetMockedHttpContext(Guid.NewGuid());
             
             var LDatabaseContext = GetTestDatabaseContext();
@@ -88,7 +87,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             var LLoggedUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
-            var LUsers = GetOneUserInList(LLoggedUserId).ToList();
+            var LUsers = GetUser(LLoggedUserId).ToList();
             var LHttpContext = GetMockedHttpContext(LLoggedUserId);
             
             var LDatabaseContext = GetTestDatabaseContext();
@@ -113,7 +112,7 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenInvalidClaimsInHttpContext_WhenInvokeGetUser_ShouldThrowError()
         {
             // Arrange
-            var LUsers = GetOneUserInList(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
+            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
             var LHttpContext = GetMockedHttpContext(Guid.NewGuid());
             
             var LDatabaseContext = GetTestDatabaseContext();
@@ -131,7 +130,7 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenNoUserClaimsInHttpContext_WhenInvokeGetUser_ShouldReturnNull()
         {
             // Arrange
-            var LUsers = GetOneUserInList(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
+            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
             var LHttpContext = GetMockedHttpContext(null);
             
             var LDatabaseContext = GetTestDatabaseContext();
@@ -150,8 +149,8 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenValidClaimsInHttpContext_WhenInvokeGetUserRoles_ShouldReturnJsonObject()
         {
             // Arrange
-            var LUsers = GetOneUserInList(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
-            var LRoles = GetOneRoleInList().ToList();
+            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
+            var LRoles = GetRole().ToList();
             var LUserRoles = new UserRoles
             {
                 UserId = LUsers[0].Id,
@@ -180,8 +179,8 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenInvalidClaimsInHttpContext_WhenInvokeGetUserRoles_ShouldThrowError()
         {
             // Arrange
-            var LUsers = GetOneUserInList(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
-            var LRoles = GetOneRoleInList().ToList();
+            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
+            var LRoles = GetRole().ToList();
             var LUserRoles = new UserRoles
             {
                 UserId = LUsers[0].Id,
@@ -207,8 +206,8 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenNoUserClaimsInHttpContext_WhenInvokeGetUserRoles_ShouldThrowError()
         {
             // Arrange
-            var LUsers = GetOneUserInList(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
-            var LRoles = GetOneRoleInList().ToList();
+            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
+            var LRoles = GetRole().ToList();
             var LUserRoles = new UserRoles
             {
                 UserId = LUsers[0].Id,
@@ -235,8 +234,8 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
-            var LUsers = GetOneUserInList(LUserId);
-            var LPermissions = GetTwoPermissions().ToList();
+            var LUsers = GetUser(LUserId);
+            var LPermissions = GetPermissions().ToList();
             var LUserPermissions = new List<UserPermissions>
             {
                 new ()
@@ -274,8 +273,8 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
-            var LUsers = GetOneUserInList(LUserId);
-            var LPermissions = GetTwoPermissions().ToList();
+            var LUsers = GetUser(LUserId);
+            var LPermissions = GetPermissions().ToList();
             var LUserPermissions = new List<UserPermissions>
             {
                 new ()
@@ -310,8 +309,8 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
-            var LUsers = GetOneUserInList(LUserId);
-            var LPermissions = GetTwoPermissions().ToList();
+            var LUsers = GetUser(LUserId);
+            var LPermissions = GetPermissions().ToList();
             var LUserPermissions = new List<UserPermissions>
             {
                 new ()
@@ -345,8 +344,8 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenValidClaimsInHttpContext_WhenInvokeHasRoleAssigned_ShouldReturnTrue()
         {
             // Arrange
-            var LUsers = GetOneUserInList(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
-            var LRoles = GetOneRoleInList().ToList();
+            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
+            var LRoles = GetRole().ToList();
             var LUserRoles = new UserRoles
             {
                 UserId = LUsers[0].Id,
@@ -363,7 +362,7 @@ namespace TokanPages.Backend.Tests.Services
             
             // Act
             var LUserProvider = new UserProvider(LHttpContext.Object, LDatabaseContext);
-            var LResult = await LUserProvider.HasRoleAssigned(Roles.EverydayUser);
+            var LResult = await LUserProvider.HasRoleAssigned(nameof(Roles.EverydayUser));
 
             // Assert
             LResult.Should().BeTrue();
@@ -373,8 +372,8 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenValidClaimsInHttpContextAndInvalidRole_WhenInvokeHasRoleAssigned_ShouldReturnFalse()
         {
             // Arrange
-            var LUsers = GetOneUserInList(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
-            var LRoles = GetOneRoleInList().ToList();
+            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
+            var LRoles = GetRole().ToList();
             var LUserRoles = new UserRoles
             {
                 UserId = LUsers[0].Id,
@@ -391,7 +390,7 @@ namespace TokanPages.Backend.Tests.Services
             
             // Act
             var LUserProvider = new UserProvider(LHttpContext.Object, LDatabaseContext);
-            var LResult = await LUserProvider.HasRoleAssigned(Roles.PhotoPublisher);
+            var LResult = await LUserProvider.HasRoleAssigned(nameof(Roles.PhotoPublisher));
 
             // Assert
             LResult.Should().BeFalse();
@@ -401,8 +400,8 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenNoUserClaimsInHttpContext_WhenInvokeHasRoleAssigned_ShouldReturnNull()
         {
             // Arrange
-            var LUsers = GetOneUserInList(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
-            var LRoles = GetOneRoleInList().ToList();
+            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
+            var LRoles = GetRole().ToList();
             var LUserRoles = new UserRoles
             {
                 UserId = LUsers[0].Id,
@@ -421,7 +420,7 @@ namespace TokanPages.Backend.Tests.Services
             var LUserProvider = new UserProvider(LHttpContext.Object, LDatabaseContext);
 
             // Assert
-            var LResult = await LUserProvider.HasRoleAssigned(Roles.EverydayUser);
+            var LResult = await LUserProvider.HasRoleAssigned(nameof(Roles.EverydayUser));
             LResult.Should().BeNull();
         }
         
@@ -429,8 +428,8 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenValidClaimsInHttpContextAndNoRole_WhenInvokeHasRoleAssigned_ShouldThrowError()
         {
             // Arrange
-            var LUsers = GetOneUserInList(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
-            var LRoles = GetOneRoleInList().ToList();
+            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
+            var LRoles = GetRole().ToList();
             var LUserRoles = new UserRoles
             {
                 UserId = LUsers[0].Id,
@@ -457,8 +456,8 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
-            var LUsers = GetOneUserInList(LUserId).ToList();
-            var LPermissions = GetTwoPermissions().ToList();
+            var LUsers = GetUser(LUserId).ToList();
+            var LPermissions = GetPermissions().ToList();
             var LUserPermissions = new List<UserPermissions>
             {
                 new ()
@@ -483,7 +482,7 @@ namespace TokanPages.Backend.Tests.Services
             
             // Act
             var LUserProvider = new UserProvider(LHttpContext.Object, LDatabaseContext);
-            var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanSelectArticles);
+            var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanSelectArticles.ToString());
 
             // Assert
             LResult.Should().BeTrue();
@@ -494,8 +493,8 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
-            var LUsers = GetOneUserInList(LUserId).ToList();
-            var LPermissions = GetTwoPermissions().ToList();
+            var LUsers = GetUser(LUserId).ToList();
+            var LPermissions = GetPermissions().ToList();
             var LUserPermissions = new List<UserPermissions>
             {
                 new ()
@@ -520,7 +519,7 @@ namespace TokanPages.Backend.Tests.Services
             
             // Act
             var LUserProvider = new UserProvider(LHttpContext.Object, LDatabaseContext);
-            var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanAddLikes);
+            var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanAddLikes.ToString());
 
             // Assert
             LResult.Should().BeFalse();
@@ -531,8 +530,8 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
-            var LUsers = GetOneUserInList(LUserId).ToList();
-            var LPermissions = GetTwoPermissions().ToList();
+            var LUsers = GetUser(LUserId).ToList();
+            var LPermissions = GetPermissions().ToList();
             var LUserPermissions = new List<UserPermissions>
             {
                 new ()
@@ -559,7 +558,7 @@ namespace TokanPages.Backend.Tests.Services
             var LUserProvider = new UserProvider(LHttpContext.Object, LDatabaseContext);
 
             // Assert
-            var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanSelectArticles);
+            var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanSelectArticles.ToString());
             LResult.Should().BeNull();
         }
 
@@ -568,8 +567,8 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
-            var LUsers = GetOneUserInList(LUserId).ToList();
-            var LPermissions = GetTwoPermissions().ToList();
+            var LUsers = GetUser(LUserId).ToList();
+            var LPermissions = GetPermissions().ToList();
             var LUserPermissions = new List<UserPermissions>
             {
                 new ()
@@ -599,7 +598,7 @@ namespace TokanPages.Backend.Tests.Services
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION));
         }
         
-        private  IEnumerable<Users> GetOneUserInList(Guid AUserId)
+        private  IEnumerable<Users> GetUser(Guid AUserId)
         {
             return new List<Users>
             {
@@ -611,7 +610,7 @@ namespace TokanPages.Backend.Tests.Services
                     FirstName = FDataProviderService.GetRandomString(),
                     LastName = FDataProviderService.GetRandomString(),
                     IsActivated = true,
-                    Registered = DateTime.Now,
+                    Registered = FDataProviderService.GetRandomDateTime(),
                     LastUpdated = null,
                     LastLogged = null,
                     CryptedPassword = FDataProviderService.GetRandomString()
@@ -619,32 +618,32 @@ namespace TokanPages.Backend.Tests.Services
             };
         }
 
-        private static IEnumerable<Domain.Entities.Roles> GetOneRoleInList()
+        private static IEnumerable<Domain.Entities.Roles> GetRole()
         {
             return new List<Domain.Entities.Roles> 
             {
                 new ()
                 {
                     Id = Guid.Parse("dbb74bc8-dd33-4c9f-9744-84ad4c37035b"),
-                    Name = Roles.EverydayUser,
+                    Name = nameof(Roles.EverydayUser),
                     Description = "User"
                 }
             };
         }
 
-        private static IEnumerable<Domain.Entities.Permissions> GetTwoPermissions()
+        private static IEnumerable<Domain.Entities.Permissions> GetPermissions()
         {
             return new List<Domain.Entities.Permissions>
             {
                 new ()
                 {
                     Id = Guid.Parse("dbb74bc8-dd33-4c9f-9744-84ad4c37035b"),
-                    Name = Permissions.CanSelectArticles
+                    Name = Permissions.CanSelectArticles.ToString()
                 },
                 new ()
                 {
                     Id = Guid.Parse("76fb3d47-f10d-467e-9e68-61d8a9fc5f6d"),
-                    Name = Permissions.CanInsertArticles
+                    Name = Permissions.CanInsertArticles.ToString()
                 }
             };   
         }
@@ -655,7 +654,7 @@ namespace TokanPages.Backend.Tests.Services
             var LClaims = new List<Claim>();
             
             if (AUserId != null && AUserId != Guid.Empty)
-                LClaims.Add(new Claim(Claims.UserId, AUserId.ToString()));
+                LClaims.Add(new Claim(ClaimTypes.NameIdentifier, AUserId.ToString()));
 
             LHttpContext
                 .Setup(AHttpContext => AHttpContext.HttpContext.User.Claims)

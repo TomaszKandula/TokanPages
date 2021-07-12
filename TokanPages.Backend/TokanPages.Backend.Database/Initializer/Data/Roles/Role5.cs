@@ -8,7 +8,7 @@ namespace TokanPages.Backend.Database.Initializer.Data.Roles
     {
         public static readonly Guid FId = Guid.Parse("cd224afb-ac1f-4f5f-80f1-fdf432aaebe0");
         
-        public static readonly string FName = Identity.Authorization.Roles.CommentPublisher;
+        public static readonly string FName = nameof(Identity.Authorization.Roles.CommentPublisher);
         
         public const string DESCRIPTION = "User can add comments";
     }

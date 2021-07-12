@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.Backend.Shared.Dto.Articles
 {
     [ExcludeFromCodeCoverage]
-    public class UpdateArticleDto
+    public class UpdateArticleContentDto
     {
         public Guid Id { get; set; }
 
@@ -15,11 +15,5 @@ namespace TokanPages.Backend.Shared.Dto.Articles
         public string TextToUpload { get; set; }
         
         public string ImageToUpload { get; set; }
-        
-        public bool? IsPublished { get; set; }
-        
-        public int AddToLikes { get; set; }
-        
-        public bool? UpReadCount { get; set; }
     }
 }

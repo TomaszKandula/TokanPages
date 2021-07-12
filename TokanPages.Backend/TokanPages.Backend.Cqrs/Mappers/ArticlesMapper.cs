@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 using TokanPages.Backend.Shared.Dto.Articles;
+using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
 namespace TokanPages.Backend.Cqrs.Mappers
 {
@@ -17,8 +17,8 @@ namespace TokanPages.Backend.Cqrs.Mappers
                 ImageToUpload = AModel.ImageToUpload
             };
         }
-
-        public static UpdateArticleCommand MapToUpdateArticleCommand(UpdateArticleDto AModel)
+        
+        public static UpdateArticleContentCommand MapToUpdateArticleCommand(UpdateArticleContentDto AModel)
         {
             return new ()
             {
@@ -26,13 +26,36 @@ namespace TokanPages.Backend.Cqrs.Mappers
                 Title = AModel.Title,
                 Description = AModel.Description,
                 TextToUpload = AModel.TextToUpload,
-                ImageToUpload = AModel.ImageToUpload,
-                IsPublished = AModel.IsPublished,
-                AddToLikes = AModel.AddToLikes,
-                UpReadCount = AModel.UpReadCount
+                ImageToUpload = AModel.ImageToUpload
             };
         }
 
+        public static UpdateArticleCountCommand MapToUpdateArticleCommand(UpdateArticleCountDto AModel)
+        {
+            return new ()
+            {
+                Id = AModel.Id
+            };
+        }
+        
+        public static UpdateArticleLikesCommand MapToUpdateArticleCommand(UpdateArticleLikesDto AModel)
+        {
+            return new ()
+            {
+                Id = AModel.Id,
+                AddToLikes = AModel.AddToLikes
+            };
+        }
+
+        public static UpdateArticleVisibilityCommand MapToUpdateArticleCommand(UpdateArticleVisibilityDto AModel)
+        {
+            return new ()
+            {
+                Id = AModel.Id,
+                IsPublished = AModel.IsPublished
+            };
+        }
+        
         public static RemoveArticleCommand MapToRemoveArticleCommand(RemoveArticleDto AModel) 
         {
             return new () 
