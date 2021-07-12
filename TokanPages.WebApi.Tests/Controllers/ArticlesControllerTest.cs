@@ -5,46 +5,38 @@ using System;
 using System.Net;
 using System.Linq;
 using System.Net.Http;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Collections.Generic;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.Dto.Articles;
-using TokanPages.Backend.Identity.Authorization;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
-using TokanPages.Backend.Database.Initializer.Data.Users;
-using TokanPages.Backend.Shared.Services.DataProviderService;
 using TokanPages.Backend.Database.Initializer.Data.Articles;
 
 namespace TokanPages.WebApi.Tests.Controllers
 {
-    public class ArticlesControllerTest : IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
+        private const string API_BASE_URL = "/api/v1/articles";
+        
         private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
 
-        private readonly DataProviderService FDataProviderService;
-
-        public ArticlesControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-            FDataProviderService = new DataProviderService();
-        }
+        public ArticlesControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task GivenAllFieldsAreCorrectAsAnonymousUser_WhenAddArticle_ShouldReturnUnauthorized()
         {
             // Arrange
-            const string REQUEST = "/api/v1/articles/addarticle/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
+            var LRequest = $"{API_BASE_URL}/AddArticle/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
             var LPayLoad = new AddArticleDto
             {
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(150),
-                ImageToUpload = FDataProviderService.GetRandomString(255).ToBase64Encode()
+                Title = DataProviderService.GetRandomString(),
+                Description = DataProviderService.GetRandomString(),
+                TextToUpload = DataProviderService.GetRandomString(150),
+                ImageToUpload = DataProviderService.GetRandomString(255).ToBase64Encode()
             };
 
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -61,30 +53,21 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenAllFieldsAreCorrectAsLoggedUser_WhenAddArticle_ShouldSucceed()
         {
             // Arrange
-            const string REQUEST = "/api/v1/articles/addarticle/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
+            var LRequest = $"{API_BASE_URL}/AddArticle/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
             var LPayLoad = new AddArticleDto
             {
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(150),
-                ImageToUpload = FDataProviderService.GetRandomString(255).ToBase64Encode()
+                Title = DataProviderService.GetRandomString(),
+                Description = DataProviderService.GetRandomString(),
+                TextToUpload = DataProviderService.GetRandomString(150),
+                ImageToUpload = DataProviderService.GetRandomString(255).ToBase64Encode()
             };
-
-            var LGetValidClaims = new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.Name, FDataProviderService.GetRandomString()),
-                new Claim(ClaimTypes.Role, nameof(Roles.EverydayUser)),
-                new Claim(ClaimTypes.NameIdentifier, User1.FId.ToString()),
-                new Claim(ClaimTypes.GivenName, User1.FIRST_NAME),
-                new Claim(ClaimTypes.Surname, User1.LAST_NAME),
-                new Claim(ClaimTypes.Email, User1.EMAIL_ADDRESS)
-            });
 
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, LGetValidClaims, FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), 
+                FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
@@ -100,11 +83,11 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task WhenGetAllArticles_ShouldReturnCollection()
         {
             // Arrange
-            const string REQUEST = "/api/v1/articles/getallarticles/?AIsPublished=false";
+            var LRequest = $"{API_BASE_URL}/GetAllArticles/?AIsPublished=false";
 
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(REQUEST);
+            var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
             LResponse.EnsureSuccessStatusCode();
@@ -125,7 +108,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         {
             // Arrange
             var LTestUserId = Article1.FId;
-            var LRequest = $"/api/v1/articles/getarticle/{LTestUserId}/";
+            var LRequest = $"{API_BASE_URL}/GetArticle/{LTestUserId}/";
             var LHttpClient = FWebAppFactory.CreateClient();
 
             // Act
@@ -146,7 +129,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         {
             // Arrange
             var LHttpClient = FWebAppFactory.CreateClient();
-            var LRequest = $"/api/v1/articles/getarticle/{Guid.NewGuid()}/";
+            var LRequest = $"{API_BASE_URL}/GetArticle/{Guid.NewGuid()}/";
 
             // Act
             var LResponse = await LHttpClient.GetAsync(LRequest);
@@ -163,8 +146,8 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenIncorrectIdAndNoJwt_WhenRemoveSubscriber_ShouldReturnUnauthorized()
         {
             // Arrange
-            const string REQUEST = "/api/v1/articles/removearticle/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
+            var LRequest = $"{API_BASE_URL}/RemoveArticle/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
             var LPayLoad = new RemoveArticleDto
             {
@@ -182,32 +165,147 @@ namespace TokanPages.WebApi.Tests.Controllers
         }
         
         [Fact]
-        public async Task GivenIncorrectIdAndNoJwt_WhenUpdateArticle_ShouldReturnUnauthorized()
+        public async Task GivenNoJwt_WhenUpdateArticleContent_ShouldReturnUnauthorized()
         {
             // Arrange
-            const string REQUEST = "/api/v1/articles/updatearticle/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
+            var LRequest = $"{API_BASE_URL}/UpdateArticleContent/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
-            var LPayLoad = new UpdateArticleDto
+            var LPayLoad = new UpdateArticleContentDto
             {
-                Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(150),
-                ImageToUpload = FDataProviderService.GetRandomString(255).ToBase64Encode(),
-                IsPublished = false,
-                AddToLikes = 0,
-                UpReadCount = false
+                Id = Guid.NewGuid(),
+                Title = DataProviderService.GetRandomString(),
+                Description = DataProviderService.GetRandomString(),
+                TextToUpload = DataProviderService.GetRandomString(150),
+                ImageToUpload = DataProviderService.GetRandomString(255).ToBase64Encode()
             };
-
+            
             var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), 
+                System.Text.Encoding.Default, "application/json");
+
+            // Act
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+
+            // Assert
+            LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+        }
+        
+        [Fact]
+        public async Task GivenInvalidArticleId_WhenUpdateArticleCount_ShouldReturnBadRequest()
+        {
+            // Arrange
+            var LRequest = $"{API_BASE_URL}/UpdateArticleCount/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+
+            var LPayLoad = new UpdateArticleCountDto
+            {
+                Id = Guid.NewGuid()
+            };
+            
+            var LHttpClient = FWebAppFactory.CreateClient();
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), 
+                System.Text.Encoding.Default, "application/json");
 
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+            LContent.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+        }
+        
+        [Fact]
+        public async Task GivenInvalidArticleId_WhenUpdateArticleLikes_ShouldReturnBadRequest()
+        {
+            // Arrange
+            var LRequest = $"{API_BASE_URL}/UpdateArticleLikes/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+
+            var LPayLoad = new UpdateArticleLikesDto
+            {
+                Id = Guid.NewGuid(),
+                AddToLikes = 10
+            };
+            
+            var LHttpClient = FWebAppFactory.CreateClient();
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), 
+                System.Text.Encoding.Default, "application/json");
+
+            // Act
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+
+            // Assert
+            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+            LContent.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+        }
+        
+        [Fact]
+        public async Task GivenInvalidArticleIdAndValidJwt_WhenUpdateArticleVisibility_ShouldReturnBadRequest()
+        {
+            // Arrange
+            var LRequest = $"{API_BASE_URL}/UpdateArticleVisibility/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+
+            var LHttpClient = FWebAppFactory.CreateClient();
+            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), 
+                FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+
+            var LPayLoad = new UpdateArticleVisibilityDto
+            {
+                Id = Guid.NewGuid(),
+                IsPublished = true
+            };
+            
+            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), 
+                System.Text.Encoding.Default, "application/json");
+            
+            // Act
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+
+            // Assert
+            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+            LContent.Should().Contain(ErrorCodes.ACCESS_DENIED);
+        }
+        
+        [Fact]
+        public async Task GivenInvalidArticleIdAndInvalidJwt_WhenUpdateArticleVisibility_ShouldReturnForbidden()
+        {
+            // Arrange
+            var LRequest = $"{API_BASE_URL}/UpdateArticleVisibility/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+
+            var LHttpClient = FWebAppFactory.CreateClient();
+            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetInvalidClaimsIdentity(), 
+                FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+
+            var LPayLoad = new UpdateArticleVisibilityDto
+            {
+                Id = Guid.NewGuid(),
+                IsPublished = true
+            };
+            
+            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), 
+                System.Text.Encoding.Default, "application/json");
+            
+            // Act
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+
+            // Assert
+            LResponse.StatusCode.Should().Be(HttpStatusCode.Forbidden);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -8,32 +8,23 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
 using MediatR;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
-    public class UpdateArticleCommandHandler : TemplateHandler<UpdateArticleCommand, Unit>
+    public class UpdateArticleLikesCommandHandler : TemplateHandler<UpdateArticleLikesCommand, Unit>
     {
         private readonly DatabaseContext FDatabaseContext;
 
         private readonly IUserProvider FUserProvider;
         
-        private readonly IDateTimeService FDateTimeService;
-        
-        private readonly IAzureBlobStorageFactory FAzureBlobStorageFactory;
-        
-        public UpdateArticleCommandHandler(DatabaseContext ADatabaseContext, IUserProvider AUserProvider, 
-            IDateTimeService ADateTimeService, IAzureBlobStorageFactory AAzureBlobStorageFactory)
+        public UpdateArticleLikesCommandHandler(DatabaseContext ADatabaseContext, IUserProvider AUserProvider)
         {
             FDatabaseContext = ADatabaseContext;
             FUserProvider = AUserProvider;
-            FDateTimeService = ADateTimeService;
-            FAzureBlobStorageFactory = AAzureBlobStorageFactory;
         }
 
-        public override async Task<Unit> Handle(UpdateArticleCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(UpdateArticleLikesCommand ARequest, CancellationToken ACancellationToken)
         {
             var LArticles = await FDatabaseContext.Articles
                 .Where(AArticles => AArticles.Id == ARequest.Id)
@@ -45,29 +36,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             var LUserId = await FUserProvider.GetUserId();
             var LIsAnonymousUser = LUserId == null;
             
-            var LAzureBlob = FAzureBlobStorageFactory.Create();
-            if (!string.IsNullOrEmpty(ARequest.TextToUpload) && !LIsAnonymousUser)
-                await LAzureBlob.UploadText(ARequest.Id, ARequest.TextToUpload);
-
-            if (!string.IsNullOrEmpty(ARequest.ImageToUpload) && !LIsAnonymousUser)
-                await LAzureBlob.UploadImage(ARequest.Id, ARequest.ImageToUpload);
-
-            var LCurrentArticle = LArticles.First();
-
-            if (!LIsAnonymousUser)
-            {
-                LCurrentArticle.Title = ARequest.Title ?? LCurrentArticle.Title;
-                LCurrentArticle.Description = ARequest.Description ?? LCurrentArticle.Description;
-                LCurrentArticle.IsPublished = ARequest.IsPublished ?? LCurrentArticle.IsPublished;
-                LCurrentArticle.UpdatedAt = ARequest.Title != null && ARequest.Description != null
-                    ? FDateTimeService.Now
-                    : LCurrentArticle.UpdatedAt;
-            }
-
-            LCurrentArticle.ReadCount = ARequest.UpReadCount is true
-                ? LCurrentArticle.ReadCount + 1 
-                : LCurrentArticle.ReadCount;
-
             var LArticleLikes = await FDatabaseContext.ArticleLikes
                 .Where(ALikes => ALikes.ArticleId == ARequest.Id)
                 .WhereIfElse(LIsAnonymousUser,
@@ -88,7 +56,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             return await Task.FromResult(Unit.Value);
         }
         
-        private async Task AddNewArticleLikes(bool AIsAnonymousUser, UpdateArticleCommand ARequest, CancellationToken ACancellationToken)
+        private async Task AddNewArticleLikes(bool AIsAnonymousUser, UpdateArticleLikesCommand ARequest, CancellationToken ACancellationToken)
         {
             var LLikesLimit = AIsAnonymousUser 
                 ? Constants.Likes.LIKES_LIMIT_FOR_ANONYMOUS 

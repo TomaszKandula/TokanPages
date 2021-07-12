@@ -3,21 +3,16 @@ using Xunit;
 using FluentAssertions;
 using System.Threading.Tasks;
 using TokanPages.Backend.Shared;
-using TokanPages.Backend.Shared.Services.DataProviderService;
 
 namespace TokanPages.WebApi.Tests.Controllers
 {
-    public class MetricsControllerTest : IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    public class MetricsControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
+        private const string API_BASE_URL = "/api/v1/sonarqube/metrics";
         
-        private readonly DataProviderService FDataProviderService;
+        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
 
-        public MetricsControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-            FDataProviderService = new DataProviderService();
-        }
+        public MetricsControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
 
         [Theory]
         [InlineData("tokanpages-backend")]
@@ -25,7 +20,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenAllFieldsAreCorrect_WhenRequestCoverage_ShouldReturnSvgFile(string AProject)
         {
             // Arrange
-            var LRequest = $"/api/v1/sonarqube/metrics/?AProject={AProject}&AMetric={Constants.MetricNames.COVERAGE}";
+            var LRequest = $"{API_BASE_URL}/?AProject={AProject}&AMetric={Constants.MetricNames.COVERAGE}";
 
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -42,11 +37,11 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenNoParameters_WhenRequestCoverage_ShouldThrowError()
         {
             // Arrange
-            const string REQUEST = "/api/v1/sonarqube/metrics/?AProject=&AMetric=";
+            var LRequest = $"{API_BASE_URL}/?AProject=&AMetric=";
 
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(REQUEST);
+            var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -61,7 +56,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         {
             // Arrange
             const string PROJECT_NAME = "tokanpages-backend";
-            var LRequest = $"/api/v1/sonarqube/metrics/?AProject={PROJECT_NAME}&AMetric=";
+            var LRequest = $"{API_BASE_URL}/?AProject={PROJECT_NAME}&AMetric=";
 
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -79,7 +74,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenMissingProjectNameWithGivenMetric_WhenRequestCoverage_ShouldThrowError()
         {
             // Arrange
-            var LRequest = $"/api/v1/sonarqube/metrics/?AProject=&AMetric={Constants.MetricNames.COVERAGE}";
+            var LRequest = $"{API_BASE_URL}/?AProject=&AMetric={Constants.MetricNames.COVERAGE}";
 
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -97,9 +92,9 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenProjectNameWithInvalidMetricName_WhenRequestCoverage_ShouldThrowError()
         {
             // Arrange
-            var LMetricName = FDataProviderService.GetRandomString();
+            var LMetricName = DataProviderService.GetRandomString();
             const string PROJECT_NAME = "tokanpages-backend";
-            var LRequest = $"/api/v1/sonarqube/metrics/?AProject={PROJECT_NAME}&AMetric={LMetricName}";
+            var LRequest = $"{API_BASE_URL}/?AProject={PROJECT_NAME}&AMetric={LMetricName}";
 
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -119,7 +114,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenProjectName_WhenRequestQualityGate_ShouldReturnSvgFile(string AProject)
         {
             // Arrange
-            var LRequest = $"/api/v1/sonarqube/metrics/quality/?AProject={AProject}";
+            var LRequest = $"{API_BASE_URL}/Quality/?AProject={AProject}";
 
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -137,7 +132,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         {
             // Arrange
             const string INVALID_PROJECT_NAME = "InvalidProjectName"; 
-            var LRequest = $"/api/v1/sonarqube/metrics/quality/?AProject={INVALID_PROJECT_NAME}";
+            var LRequest = $"{API_BASE_URL}/Quality/?AProject={INVALID_PROJECT_NAME}";
 
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -154,7 +149,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenEmptyProjectName_WhenRequestQualityGate_ShouldThrowError()
         {
             // Arrange
-            var LRequest = $"/api/v1/sonarqube/metrics/quality/?AProject=";
+            var LRequest = $"{API_BASE_URL}/Quality/?AProject=";
 
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();

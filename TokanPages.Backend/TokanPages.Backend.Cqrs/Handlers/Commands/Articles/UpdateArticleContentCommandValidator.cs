@@ -3,9 +3,9 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
-    public class UpdateArticleCommandValidator : AbstractValidator<UpdateArticleCommand>
+    public class UpdateArticleContentCommandValidator : AbstractValidator<UpdateArticleContentCommand>
     {
-        public UpdateArticleCommandValidator()
+        public UpdateArticleContentCommandValidator()
         {
             RuleFor(AField => AField.Id)
                 .NotEmpty()
@@ -33,11 +33,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                     .WithErrorCode(nameof(ValidationCodes.DESCRIPTION_TOO_LONG))
                     .WithMessage(ValidationCodes.DESCRIPTION_TOO_LONG);
             });
-
-            RuleFor(AField => AField.AddToLikes)
-                .GreaterThan(-1)
-                .WithErrorCode(nameof(ValidationCodes.LESS_THAN_ZERO))
-                .WithMessage(ValidationCodes.LESS_THAN_ZERO);
         }
     }
 }
