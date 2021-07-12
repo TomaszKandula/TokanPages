@@ -26,10 +26,7 @@ namespace TokanPages.Backend.Cqrs.Mappers
                 Title = AModel.Title,
                 Description = AModel.Description,
                 TextToUpload = AModel.TextToUpload,
-                ImageToUpload = AModel.ImageToUpload,
-                IsPublished = AModel.IsPublished,
-                AddToLikes = AModel.AddToLikes,
-                UpReadCount = AModel.UpReadCount
+                ImageToUpload = AModel.ImageToUpload
             };
         }
 
