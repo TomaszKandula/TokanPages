@@ -1,11 +1,21 @@
 import * as Sentry from "@sentry/react";
-import axios from "axios";
 import { AppThunkAction } from "../applicationState";
-import { IUpdateArticleDto } from "../../Api/Models";
-import { API_COMMAND_UPDATE_ARTICLE } from "../../Shared/constants";
 import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 import { GetErrorMessage } from "../../Shared/helpers";
+import { SendData } from "Api/request";
+import { 
+    API_COMMAND_UPDATE_ARTICLE_CONTENT, 
+    API_COMMAND_UPDATE_ARTICLE_COUNT, 
+    API_COMMAND_UPDATE_ARTICLE_LIKES, 
+    API_COMMAND_UPDATE_ARTICLE_VISIBILITY 
+} from "../../Shared/constants";
+import { 
+    IUpdateArticleContentDto, 
+    IUpdateArticleCountDto, 
+    IUpdateArticleLikesDto, 
+    IUpdateArticleVisibilityDto 
+} from "../../Api/Models";
 
 export const UPDATE_ARTICLE = "UPDATE_ARTICLE";
 export const UPDATE_ARTICLE_RESPONSE = "UPDATE_ARTICLE_RESPONSE";
@@ -19,44 +29,64 @@ export type TKnownActions =
     TErrorActions
 ;
 
+const DispatchCall = async (dispatch: any, url: string, data: any) =>
+{
+    dispatch({ type: UPDATE_ARTICLE });
+
+    let result = await SendData(url, data);
+
+    if (result.error !== null)
+    {
+        dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(result.error) });
+        Sentry.captureException(result.error);
+        return;
+    }
+
+    if (result.status === 200)
+    {
+        dispatch({ type: UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: true });
+        return;
+    }
+
+    const error = UnexpectedStatusCode(result.status as number);
+    dispatch({ type: RAISE_ERROR, errorObject: error });
+    Sentry.captureException(error);
+}
+
 export const ActionCreators = 
 {
-    updateArticle: (payload: IUpdateArticleDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    updateArticleContent: (payload: IUpdateArticleContentDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
-        dispatch({ type: UPDATE_ARTICLE });
-
-        axios(
-        { 
-            method: "POST", 
-            url: API_COMMAND_UPDATE_ARTICLE, 
-            data: 
-            { 
-                id: payload.id,
-                title: payload.title,
-                description: payload.description,
-                textToUpload: payload.textToUpload,
-                imageToUpload: payload.imageToUpload,
-                isPublished: payload.isPublished,
-                addToLikes: payload.addToLikes,
-                upReadCount: payload.upReadCount
-            }
-        })
-        .then(response => 
-        {
-            if (response.status === 200)
-            {
-                dispatch({ type: UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: true });
-                return;
-            }
-            
-            const error = UnexpectedStatusCode(response.status);
-            dispatch({ type: RAISE_ERROR, errorObject: error });
-            Sentry.captureException(error);
-        })
-        .catch(error =>
-        {
-            dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(error) });
-            Sentry.captureException(error);
+        DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_CONTENT, 
+        {  
+            id: payload.id,
+            title: payload.title,
+            description: payload.description,
+            textToUpload: payload.textToUpload,
+            imageToUpload: payload.imageToUpload
+        });
+    },
+    updateArticleCount: (payload: IUpdateArticleCountDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    {
+        DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_COUNT, 
+        {  
+            id: payload.id
+        });
+        },
+    updateArticleLikes: (payload: IUpdateArticleLikesDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    {
+        DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_LIKES, 
+        {  
+            id: payload.id,
+            addToLikes: payload.addToLikes
+        });
+    },
+    updateArticleVisibility: (payload: IUpdateArticleVisibilityDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    {
+        DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_VISIBILITY, 
+        {  
+            id: payload.id,
+            isPublished: payload.IsPublished
         });
     }
 }
