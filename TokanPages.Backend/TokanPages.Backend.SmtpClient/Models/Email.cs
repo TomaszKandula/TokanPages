@@ -3,9 +3,9 @@
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class EmailAddressModel
+    public class Email
     {
-        public string EmailAddress { get; set; }
+        public string Address { get; set; }
 
         public bool IsValid { get; set; }
     }

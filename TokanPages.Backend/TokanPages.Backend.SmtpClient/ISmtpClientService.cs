@@ -26,7 +26,7 @@
         
         Task<ActionResult> Send(CancellationToken ACancellationToken = default);
         
-        List<EmailAddressModel> IsAddressCorrect(IEnumerable<string> AEmailAddress);
+        List<Email> IsAddressCorrect(IEnumerable<string> AEmailAddress);
         
         Task<bool> IsDomainCorrect(string AEmailAddress, CancellationToken ACancellationToken = default);
     }

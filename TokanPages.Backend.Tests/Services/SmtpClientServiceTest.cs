@@ -372,10 +372,10 @@ namespace TokanPages.Backend.Tests.Services
             var LResult = LSmtpClientService.IsAddressCorrect(LEmails);
 
             // Assert
-            LResult[0].EmailAddress.Should().Be(LEmails[0]);
-            LResult[1].EmailAddress.Should().Be(LEmails[1]);
-            LResult[2].EmailAddress.Should().Be(LEmails[2]);
-            LResult[3].EmailAddress.Should().Be(LEmails[3]);
+            LResult[0].Address.Should().Be(LEmails[0]);
+            LResult[1].Address.Should().Be(LEmails[1]);
+            LResult[2].Address.Should().Be(LEmails[2]);
+            LResult[3].Address.Should().Be(LEmails[3]);
 
             LResult[0].IsValid.Should().BeTrue();
             LResult[1].IsValid.Should().BeTrue();
@@ -406,8 +406,8 @@ namespace TokanPages.Backend.Tests.Services
             var LResult = LSmtpClientService.IsAddressCorrect(LEmails);
 
             // Assert
-            LResult[0].EmailAddress.Should().Be(LEmails[0]);
-            LResult[1].EmailAddress.Should().Be(LEmails[1]);
+            LResult[0].Address.Should().Be(LEmails[0]);
+            LResult[1].Address.Should().Be(LEmails[1]);
 
             LResult[0].IsValid.Should().BeFalse();
             LResult[1].IsValid.Should().BeFalse();

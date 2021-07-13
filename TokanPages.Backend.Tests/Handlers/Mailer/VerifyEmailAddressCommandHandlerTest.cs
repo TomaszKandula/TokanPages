@@ -27,11 +27,11 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             };
 
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();
-            var LCheckActionResult = new List<EmailAddressModel>
+            var LCheckActionResult = new List<Email>
             {
                 new ()
                 {
-                    EmailAddress = LVerifyEmailAddressCommand.Email,
+                    Address = LVerifyEmailAddressCommand.Email,
                     IsValid = true
                 }
             };

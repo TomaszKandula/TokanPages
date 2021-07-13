@@ -3,7 +3,7 @@ namespace TokanPages.Backend.Storage.Models
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class StorageByteContentModel
+    public class StorageByteContent
     {
         public byte[] Content { get; set; }
 

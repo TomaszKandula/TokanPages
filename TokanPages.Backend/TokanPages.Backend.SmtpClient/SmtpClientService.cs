@@ -137,20 +137,20 @@
             }
         }
 
-        public override List<EmailAddressModel> IsAddressCorrect(IEnumerable<string> AEmailAddress)
+        public override List<Email> IsAddressCorrect(IEnumerable<string> AEmailAddress)
         {
-            var LResults = new List<EmailAddressModel>();
+            var LResults = new List<Email>();
 
             foreach (var LItem in AEmailAddress)
             {
                 try
                 {
                     var LEmailAddress = new MailAddress(LItem);
-                    LResults.Add(new EmailAddressModel { EmailAddress = LEmailAddress.Address, IsValid = true });
+                    LResults.Add(new Email { Address = LEmailAddress.Address, IsValid = true });
                 }
                 catch (FormatException)
                 {
-                    LResults.Add(new EmailAddressModel { EmailAddress = LItem, IsValid = false });
+                    LResults.Add(new Email { Address = LItem, IsValid = false });
                 }
             }
             
