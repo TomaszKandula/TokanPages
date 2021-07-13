@@ -3,7 +3,7 @@
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class SmtpServerSettingsModel
+    public class SmtpServer
     {
         public string Account { get; set; }
         

@@ -22,9 +22,9 @@
         
         string HtmlBody { get; set; }
 
-        Task<ActionResultModel> CanConnectAndAuthenticate(CancellationToken ACancellationToken = default);
+        Task<ActionResult> CanConnectAndAuthenticate(CancellationToken ACancellationToken = default);
         
-        Task<ActionResultModel> Send(CancellationToken ACancellationToken = default);
+        Task<ActionResult> Send(CancellationToken ACancellationToken = default);
         
         List<EmailAddressModel> IsAddressCorrect(IEnumerable<string> AEmailAddress);
         

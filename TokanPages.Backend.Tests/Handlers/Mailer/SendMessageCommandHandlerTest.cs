@@ -45,10 +45,10 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             var LMockedHttpMessageHandler = new Mock<HttpMessageHandler>();
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();
             var LMockedTemplateHelper = new Mock<ITemplateService>();
-            var LMockedAzureStorageSettings = new Mock<AzureStorageSettingsModel>();
+            var LMockedAzureStorageSettings = new Mock<AzureStorage>();
             var LDateTimeService = new Mock<IDateTimeService>();
 
-            var LSendActionResult = new ActionResultModel { IsSucceeded = true };
+            var LSendActionResult = new ActionResult { IsSucceeded = true };
             LMockedSmtpClientService
                 .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
                 .Returns(Task.FromResult(LSendActionResult));

@@ -24,25 +24,25 @@
         
         private readonly ITemplateService FTemplateService;
         
-        private readonly AzureStorageSettingsModel FAzureStorageSettingsModel;
+        private readonly AzureStorage FAzureStorage;
         
-        private readonly ApplicationPathsModel FApplicationPathsModel;
+        private readonly ApplicationPaths FApplicationPaths;
 
         public SendNewsletterCommandHandler(ILogger ALogger, HttpClient AHttpClient, ISmtpClientService ASmtpClientService, 
-            ITemplateService ATemplateService, AzureStorageSettingsModel AAzureStorageSettingsModel, ApplicationPathsModel AApplicationPathsModel)
+            ITemplateService ATemplateService, AzureStorage AAzureStorage, ApplicationPaths AApplicationPaths)
         {
             FLogger = ALogger;
             FHttpClient = AHttpClient;
             FSmtpClientService = ASmtpClientService;
             FTemplateService = ATemplateService;
-            FAzureStorageSettingsModel = AAzureStorageSettingsModel;
-            FApplicationPathsModel = AApplicationPathsModel;
+            FAzureStorage = AAzureStorage;
+            FApplicationPaths = AApplicationPaths;
         }
 
         public override async Task<Unit> Handle(SendNewsletterCommand ARequest, CancellationToken ACancellationToken) 
         {
-            var LUpdateSubscriberBaseLink = FApplicationPathsModel.DeploymentOrigin + FApplicationPathsModel.UpdateSubscriberPath;
-            var LUnsubscribeBaseLink = FApplicationPathsModel.DeploymentOrigin + FApplicationPathsModel.UnsubscribePath;
+            var LUpdateSubscriberBaseLink = FApplicationPaths.DeploymentOrigin + FApplicationPaths.UpdateSubscriberPath;
+            var LUnsubscribeBaseLink = FApplicationPaths.DeploymentOrigin + FApplicationPaths.UnsubscribePath;
 
             FLogger.LogInformation($"Update subscriber base URL: {LUpdateSubscriberBaseLink}.");
             FLogger.LogInformation($"Unsubscribe base URL: {LUnsubscribeBaseLink}.");
@@ -63,7 +63,7 @@
                     new () { Tag = "{UNSUBSCRIBE_LINK}", Value = LUnsubscribeLink }
                 };
 
-                var LUrl = $"{FAzureStorageSettingsModel.BaseUrl}{Constants.Emails.Templates.NEWSLETTER}";
+                var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.NEWSLETTER}";
                 FLogger.LogInformation($"Getting newsletter template from URL: {LUrl}.");
                 
                 var LTemplateFromUrl = await FHttpClient.GetAsync(LUrl, ACancellationToken);

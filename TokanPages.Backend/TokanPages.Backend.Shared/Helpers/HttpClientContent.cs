@@ -40,7 +40,7 @@ namespace TokanPages.Backend.Shared.Helpers
             };
         }
 
-        public static string GetFirstEmptyParameterName(IEnumerable<ParameterModel> AParameterList)
+        public static string GetFirstEmptyParameterName(IEnumerable<Parameter> AParameterList)
         {
             var LParameters = AParameterList
                 .Where(AParameter => string.IsNullOrEmpty(AParameter.Value))

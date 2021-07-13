@@ -23,7 +23,7 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenValidSmtpSettings_WhenConnectAndAuthenticate_ShouldReturnSuccess()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
 
@@ -73,7 +73,7 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenInvalidSmtpServer_WhenConnectAndAuthenticate_ShouldThrowError()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
 
@@ -123,7 +123,7 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenInvalidSmtpCredentials_WhenConnectAndAuthenticate_ShouldThrowError()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
 
@@ -174,7 +174,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             const string ERROR_MESSAGE = "The host is null";
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
 
@@ -224,7 +224,7 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenValidSettingsAndEmails_WhenSendEmail_ShouldReturnSuccess()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
             
@@ -288,7 +288,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             const string ERROR_MESSAGE = "Cannot send the email. Server responded with error";
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
             
@@ -351,7 +351,7 @@ namespace TokanPages.Backend.Tests.Services
         public void GivenCorrectEmailAddress_WhenCheckingFormat_ShouldReturnSuccess()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
             
@@ -387,7 +387,7 @@ namespace TokanPages.Backend.Tests.Services
         public void GivenIncorrectEmailAddresses_WhenCheckingFormat_ShouldReturnInvalidEmailFlag()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
             
@@ -417,7 +417,7 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenDomainWithMxAndARecords_WhenCheckDomain_ShouldReturnTrue()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
             var LMockedDnsQueryResponse = new Mock<IDnsQueryResponse>();
@@ -459,7 +459,7 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenDomainWithOnlyCaaRecord_WhenCheckDomain_ShouldReturnFalse()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
             var LMockedDnsQueryResponse = new Mock<IDnsQueryResponse>();

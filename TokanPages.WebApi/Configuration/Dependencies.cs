@@ -55,10 +55,10 @@
 
         private static void SetupAppSettings(IServiceCollection AServices, IConfiguration AConfiguration) 
         {
-            AServices.AddSingleton(AConfiguration.GetSection("AzureStorage").Get<AzureStorageSettingsModel>());
-            AServices.AddSingleton(AConfiguration.GetSection("SmtpServer").Get<SmtpServerSettingsModel>());
-            AServices.AddSingleton(AConfiguration.GetSection("AppUrls").Get<ApplicationPathsModel>());
-            AServices.AddSingleton(AConfiguration.GetSection("SonarQube").Get<SonarQubeSettingsModel>());
+            AServices.AddSingleton(AConfiguration.GetSection("AzureStorage").Get<AzureStorage>());
+            AServices.AddSingleton(AConfiguration.GetSection("SmtpServer").Get<SmtpServer>());
+            AServices.AddSingleton(AConfiguration.GetSection("AppUrls").Get<ApplicationPaths>());
+            AServices.AddSingleton(AConfiguration.GetSection("SonarQube").Get<SonarQube>());
         }
 
         private static void SetupLogger(IServiceCollection AServices) 
@@ -94,7 +94,7 @@
             
             AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
             {
-                var LAzureStorageSettings = AProvider.GetRequiredService<AzureStorageSettingsModel>();
+                var LAzureStorageSettings = AProvider.GetRequiredService<AzureStorage>();
                 return new AzureBlobStorageFactory(LAzureStorageSettings.ConnectionString, LAzureStorageSettings.ContainerName);
             });
         }
@@ -113,7 +113,7 @@
 
         private static void SetupRetryPolicyWithPolly(IServiceCollection AServices, IConfiguration AConfiguration, IWebHostEnvironment AEnvironment)
         {
-            var LAppUrls = AConfiguration.GetSection("AppUrls").Get<ApplicationPathsModel>();
+            var LAppUrls = AConfiguration.GetSection("AppUrls").Get<ApplicationPaths>();
             AServices.AddHttpClient("RetryHttpClient", AOptions =>
             {
                 AOptions.BaseAddress = new Uri(AEnvironment.IsDevelopment() 

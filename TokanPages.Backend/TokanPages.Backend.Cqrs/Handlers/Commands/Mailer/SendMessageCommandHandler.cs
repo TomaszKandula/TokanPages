@@ -28,17 +28,17 @@
         
         private readonly IDateTimeService FDateTimeService;
         
-        private readonly AzureStorageSettingsModel FAzureStorageSettingsModel;
+        private readonly AzureStorage FAzureStorage;
         
         public SendMessageCommandHandler(ILogger ALogger, HttpClient AHttpClient, ISmtpClientService ASmtpClientService, 
-            ITemplateService ATemplateService, IDateTimeService ADateTimeService, AzureStorageSettingsModel AAzureStorageSettingsModel)
+            ITemplateService ATemplateService, IDateTimeService ADateTimeService, AzureStorage AAzureStorage)
         {
             FLogger = ALogger;
             FHttpClient = AHttpClient;
             FSmtpClientService = ASmtpClientService;
             FTemplateService = ATemplateService;
             FDateTimeService = ADateTimeService;
-            FAzureStorageSettingsModel = AAzureStorageSettingsModel;
+            FAzureStorage = AAzureStorage;
         }
 
         public override async Task<Unit> Handle(SendMessageCommand ARequest, CancellationToken ACancellationToken)
@@ -56,7 +56,7 @@
                 new () { Tag = "{DATE_TIME}", Value = FDateTimeService.Now.ToString(CultureInfo.InvariantCulture) }
             };
 
-            var LUrl = $"{FAzureStorageSettingsModel.BaseUrl}{Constants.Emails.Templates.CONTACT_FORM}";
+            var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.CONTACT_FORM}";
             FLogger.LogInformation($"Getting email template from URL: {LUrl}.");
 
             var LTemplateFromUrl = await FHttpClient.GetAsync(LUrl, ACancellationToken);

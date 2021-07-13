@@ -3,7 +3,7 @@
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class SubscriberInfoModel
+    public class SubscriberInfo
     {
         public string Email { get; set; }
 

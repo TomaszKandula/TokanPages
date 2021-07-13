@@ -62,7 +62,7 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LPayLoad = new SendNewsletterDto
             {
-                SubscriberInfo = new List<SubscriberInfoModel>
+                SubscriberInfo = new List<SubscriberInfo>
                 {
                     new ()
                     {
@@ -101,7 +101,7 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LPayLoad = new SendNewsletterDto
             {
-                SubscriberInfo = new List<SubscriberInfoModel>
+                SubscriberInfo = new List<SubscriberInfo>
                 {
                     new ()
                     {

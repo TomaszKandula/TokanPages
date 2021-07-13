@@ -7,7 +7,7 @@
     [ExcludeFromCodeCoverage]
     public class SendNewsletterDto
     {
-        public List<SubscriberInfoModel> SubscriberInfo { get; set; }
+        public List<SubscriberInfo> SubscriberInfo { get; set; }
 
         public string Subject { get; set; }
         
