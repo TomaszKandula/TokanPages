@@ -1,14 +1,14 @@
-namespace TokanPages.Backend.Shared.Services.DataProviderService
+namespace TokanPages.Backend.Shared.Services.DataUtilityService
 {
     using System;
     using System.IO;
     using System.Linq;
 
-    public class DataProviderService : DataProviderObject, IDataProviderService
+    public class DataUtilityService : DataUtilityObject, IDataUtilityService
     {
         private readonly Random FRandom;
 
-        public DataProviderService() => FRandom = new Random();
+        public DataUtilityService() => FRandom = new Random();
 
         /// <summary>
         /// Returns randomized Date within given range.

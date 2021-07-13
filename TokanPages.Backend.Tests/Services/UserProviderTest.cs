@@ -600,15 +600,15 @@ namespace TokanPages.Backend.Tests.Services
                 new ()
                 {
                     Id = AUserId,
-                    EmailAddress = DataProviderService.GetRandomEmail(),
-                    UserAlias = DataProviderService.GetRandomString(),
-                    FirstName = DataProviderService.GetRandomString(),
-                    LastName = DataProviderService.GetRandomString(),
+                    EmailAddress = DataUtilityService.GetRandomEmail(),
+                    UserAlias = DataUtilityService.GetRandomString(),
+                    FirstName = DataUtilityService.GetRandomString(),
+                    LastName = DataUtilityService.GetRandomString(),
                     IsActivated = true,
-                    Registered = DataProviderService.GetRandomDateTime(),
+                    Registered = DataUtilityService.GetRandomDateTime(),
                     LastUpdated = null,
                     LastLogged = null,
-                    CryptedPassword = DataProviderService.GetRandomString()
+                    CryptedPassword = DataUtilityService.GetRandomString()
                 }
             };
         }

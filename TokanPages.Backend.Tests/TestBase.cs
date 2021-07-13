@@ -3,11 +3,11 @@
     using Microsoft.Extensions.DependencyInjection;
     using Database;
     using Identity.Services.JwtUtilityService;
-    using Shared.Services.DataProviderService;
+    using Shared.Services.DataUtilityService;
 
     public class TestBase
     {
-        protected IDataProviderService DataProviderService { get; }
+        protected IDataUtilityService DataUtilityService { get; }
         
         protected IJwtUtilityService JwtUtilityService { get; }
 
@@ -15,7 +15,7 @@
         
         protected TestBase()
         {
-            DataProviderService = new DataProviderService();
+            DataUtilityService = new DataUtilityService();
             JwtUtilityService = new JwtUtilityService();
 
             var LServices = new ServiceCollection();

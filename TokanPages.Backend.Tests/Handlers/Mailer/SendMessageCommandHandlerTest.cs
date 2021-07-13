@@ -11,9 +11,9 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
     using Shared.Models;
     using Storage.Models;
     using Cqrs.Handlers.Commands.Mailer;
-    using Shared.Services.TemplateHelper;
+    using Shared.Services.TemplateService;
     using Shared.Services.DateTimeService;
-    using Shared.Services.DataProviderService;
+    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Moq.Protected;
     using MediatR;
@@ -22,9 +22,9 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
 
     public class SendMessageCommandHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
+        private readonly DataUtilityService FDataUtilityService;
 
-        public SendMessageCommandHandlerTest() => FDataProviderService = new DataProviderService();
+        public SendMessageCommandHandlerTest() => FDataUtilityService = new DataUtilityService();
 
         [Fact]
         public async Task GivenFilledUserForm_WhenSendMessage_ShouldFinishSuccessful()
@@ -32,19 +32,19 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                Subject = FDataProviderService.GetRandomString(),
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string>{ FDataProviderService.GetRandomEmail() },
-                UserEmail = FDataProviderService.GetRandomEmail()
+                Subject = FDataUtilityService.GetRandomString(),
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
+                Message = FDataUtilityService.GetRandomString(),
+                EmailFrom = FDataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string>{ FDataUtilityService.GetRandomEmail() },
+                UserEmail = FDataUtilityService.GetRandomEmail()
             };
 
             var LMockedLogger = new Mock<ILogger>();
             var LMockedHttpMessageHandler = new Mock<HttpMessageHandler>();
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();
-            var LMockedTemplateHelper = new Mock<ITemplateHelper>();
+            var LMockedTemplateHelper = new Mock<ITemplateService>();
             var LMockedAzureStorageSettings = new Mock<AzureStorageSettingsModel>();
             var LDateTimeService = new Mock<IDateTimeService>();
 

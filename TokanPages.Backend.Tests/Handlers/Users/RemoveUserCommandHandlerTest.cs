@@ -5,15 +5,15 @@
     using System.Threading.Tasks;
     using Core.Exceptions;
     using Cqrs.Handlers.Commands.Users;
-    using Shared.Services.DataProviderService;
+    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
 
     public class RemoveUserCommandHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
+        private readonly DataUtilityService FDataUtilityService;
 
-        public RemoveUserCommandHandlerTest() => FDataProviderService = new DataProviderService();
+        public RemoveUserCommandHandlerTest() => FDataUtilityService = new DataUtilityService();
 
         [Fact]
         public async Task GivenCorrectId_WhenRemoveUser_ShouldRemoveEntity() 
@@ -21,15 +21,15 @@
             // Arrange
             var LUsers = new TokanPages.Backend.Domain.Entities.Users 
             { 
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                EmailAddress = FDataUtilityService.GetRandomEmail(),
+                UserAlias = FDataUtilityService.GetRandomString(),
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
                 IsActivated = true,
                 Registered = DateTime.Now,
                 LastUpdated = null,
                 LastLogged = null,
-                CryptedPassword = FDataProviderService.GetRandomString()
+                CryptedPassword = FDataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();

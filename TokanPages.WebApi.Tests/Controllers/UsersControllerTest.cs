@@ -32,11 +32,11 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LPayLoad = new AddUserDto 
             { 
-                EmailAddress = DataProviderService.GetRandomEmail(),
-                UserAlias = DataProviderService.GetRandomString(),
-                FirstName = DataProviderService.GetRandomString(),
-                LastName = DataProviderService.GetRandomString(),
-                Password = DataProviderService.GetRandomString()
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                Password = DataUtilityService.GetRandomString()
             };
 
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -183,10 +183,10 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LPayLoad = new UpdateUserDto
             {
                 Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
-                EmailAddress = DataProviderService.GetRandomEmail(),
-                UserAlias = DataProviderService.GetRandomString(),
-                FirstName = DataProviderService.GetRandomString(),
-                LastName = DataProviderService.GetRandomString(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true
             };
 

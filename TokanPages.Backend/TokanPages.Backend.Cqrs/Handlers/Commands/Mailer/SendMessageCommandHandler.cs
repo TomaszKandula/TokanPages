@@ -12,7 +12,7 @@
     using Storage.Models;
     using Core.Exceptions;
     using Shared.Resources;
-    using Shared.Services.TemplateHelper;
+    using Shared.Services.TemplateService;
     using Shared.Services.DateTimeService;
     using MediatR;
 
@@ -24,19 +24,19 @@
 
         private readonly ISmtpClientService FSmtpClientService;
         
-        private readonly ITemplateHelper FTemplateHelper;
+        private readonly ITemplateService FTemplateService;
         
         private readonly IDateTimeService FDateTimeService;
         
         private readonly AzureStorageSettingsModel FAzureStorageSettingsModel;
         
         public SendMessageCommandHandler(ILogger ALogger, HttpClient AHttpClient, ISmtpClientService ASmtpClientService, 
-            ITemplateHelper ATemplateHelper, IDateTimeService ADateTimeService, AzureStorageSettingsModel AAzureStorageSettingsModel)
+            ITemplateService ATemplateService, IDateTimeService ADateTimeService, AzureStorageSettingsModel AAzureStorageSettingsModel)
         {
             FLogger = ALogger;
             FHttpClient = AHttpClient;
             FSmtpClientService = ASmtpClientService;
-            FTemplateHelper = ATemplateHelper;
+            FTemplateService = ATemplateService;
             FDateTimeService = ADateTimeService;
             FAzureStorageSettingsModel = AAzureStorageSettingsModel;
         }
@@ -61,7 +61,7 @@
 
             var LTemplateFromUrl = await FHttpClient.GetAsync(LUrl, ACancellationToken);
             var LTemplate = await LTemplateFromUrl.Content.ReadAsStringAsync(ACancellationToken);
-            FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplate, LNewValues);
+            FSmtpClientService.HtmlBody = FTemplateService.MakeBody(LTemplate, LNewValues);
 
             var LResult = await FSmtpClientService.Send(ACancellationToken);
             if (!LResult.IsSucceeded)

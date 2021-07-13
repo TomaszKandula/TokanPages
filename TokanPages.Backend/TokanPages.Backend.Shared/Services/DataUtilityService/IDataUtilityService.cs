@@ -1,9 +1,9 @@
-namespace TokanPages.Backend.Shared.Services.DataProviderService
+namespace TokanPages.Backend.Shared.Services.DataUtilityService
 {
     using System;
     using System.IO;
 
-    public interface IDataProviderService
+    public interface IDataUtilityService
     {
         DateTime GetRandomDateTime(DateTime? AMin = null, DateTime? AMax = null, int ADefaultYear = 2020);
 

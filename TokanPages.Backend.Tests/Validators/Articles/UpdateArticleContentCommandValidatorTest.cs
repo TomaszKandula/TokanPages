@@ -3,15 +3,15 @@
     using System;
     using Shared.Resources;
     using Cqrs.Handlers.Commands.Articles;
-    using Shared.Services.DataProviderService;
+    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
 
     public class UpdateArticleContentCommandValidatorTest
     {
-        private readonly DataProviderService FDataProviderService;
+        private readonly DataUtilityService FDataUtilityService;
 
-        public UpdateArticleContentCommandValidatorTest() => FDataProviderService = new DataProviderService();
+        public UpdateArticleContentCommandValidatorTest() => FDataUtilityService = new DataUtilityService();
         
         [Fact]
         public void GivenAllFieldsAreCorrect_WhenUpdateArticle_ShouldFinishSuccessful() 
@@ -20,10 +20,10 @@
             var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.NewGuid(),
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = FDataProviderService.GetRandomString()
+                Title = FDataUtilityService.GetRandomString(),
+                Description = FDataUtilityService.GetRandomString(),
+                TextToUpload = FDataUtilityService.GetRandomString(),
+                ImageToUpload = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -41,10 +41,10 @@
             var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.Empty,
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = FDataProviderService.GetRandomString()
+                Title = FDataUtilityService.GetRandomString(),
+                Description = FDataUtilityService.GetRandomString(),
+                TextToUpload = FDataUtilityService.GetRandomString(),
+                ImageToUpload = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -64,9 +64,9 @@
             {
                 Id = Guid.NewGuid(),
                 Title = string.Empty,
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = FDataProviderService.GetRandomString()
+                Description = FDataUtilityService.GetRandomString(),
+                TextToUpload = FDataUtilityService.GetRandomString(),
+                ImageToUpload = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -85,10 +85,10 @@
             var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.NewGuid(),
-                Title = FDataProviderService.GetRandomString(256),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = FDataProviderService.GetRandomString()
+                Title = FDataUtilityService.GetRandomString(256),
+                Description = FDataUtilityService.GetRandomString(),
+                TextToUpload = FDataUtilityService.GetRandomString(),
+                ImageToUpload = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -107,10 +107,10 @@
             var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.NewGuid(),
-                Title = FDataProviderService.GetRandomString(),
+                Title = FDataUtilityService.GetRandomString(),
                 Description = string.Empty,
-                TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = FDataProviderService.GetRandomString()
+                TextToUpload = FDataUtilityService.GetRandomString(),
+                ImageToUpload = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -129,10 +129,10 @@
             var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.NewGuid(),
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(256),
-                TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = FDataProviderService.GetRandomString()
+                Title = FDataUtilityService.GetRandomString(),
+                Description = FDataUtilityService.GetRandomString(256),
+                TextToUpload = FDataUtilityService.GetRandomString(),
+                ImageToUpload = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -151,10 +151,10 @@
             var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.NewGuid(),
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
+                Title = FDataUtilityService.GetRandomString(),
+                Description = FDataUtilityService.GetRandomString(),
                 TextToUpload = string.Empty,
-                ImageToUpload = FDataProviderService.GetRandomString()
+                ImageToUpload = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -172,9 +172,9 @@
             var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.NewGuid(),
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(),
+                Title = FDataUtilityService.GetRandomString(),
+                Description = FDataUtilityService.GetRandomString(),
+                TextToUpload = FDataUtilityService.GetRandomString(),
                 ImageToUpload = string.Empty
             };
 

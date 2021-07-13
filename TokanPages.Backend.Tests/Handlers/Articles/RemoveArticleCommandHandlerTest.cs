@@ -5,15 +5,15 @@
     using System.Threading.Tasks;
     using Core.Exceptions;
     using Cqrs.Handlers.Commands.Articles;
-    using Shared.Services.DataProviderService;
+    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
 
     public class RemoveArticleCommandHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
+        private readonly DataUtilityService FDataUtilityService;
 
-        public RemoveArticleCommandHandlerTest() => FDataProviderService = new DataProviderService();
+        public RemoveArticleCommandHandlerTest() => FDataUtilityService = new DataUtilityService();
 
         [Fact]
         public async Task GivenCorrectId_WhenRemoveArticle_ShouldRemoveEntity() 
@@ -26,15 +26,15 @@
 
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                Registered = FDataProviderService.GetRandomDateTime(),
+                EmailAddress = FDataUtilityService.GetRandomEmail(),
+                UserAlias = FDataUtilityService.GetRandomString(),
+                Registered = FDataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataProviderService.GetRandomString()
+                CryptedPassword = FDataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -44,8 +44,8 @@
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
+                Title = FDataUtilityService.GetRandomString(),
+                Description = FDataUtilityService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -78,15 +78,15 @@
 
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                Registered = FDataProviderService.GetRandomDateTime(),
+                EmailAddress = FDataUtilityService.GetRandomEmail(),
+                UserAlias = FDataUtilityService.GetRandomString(),
+                Registered = FDataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataProviderService.GetRandomString()
+                CryptedPassword = FDataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -96,8 +96,8 @@
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
+                Title = FDataUtilityService.GetRandomString(),
+                Description = FDataUtilityService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,

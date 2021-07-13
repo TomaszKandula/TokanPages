@@ -1,10 +1,10 @@
-﻿namespace TokanPages.Backend.Shared.Services.TemplateHelper
+﻿namespace TokanPages.Backend.Shared.Services.TemplateService
 {
     using System.Linq;
     using System.Collections.Generic;
     using Models;
 
-    public sealed class TemplateHelper : ITemplateHelper
+    public sealed class TemplateService : ITemplateService
     {
         /// <summary>
         /// Converts text with tags to text with values.

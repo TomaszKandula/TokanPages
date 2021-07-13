@@ -2,7 +2,7 @@ namespace TokanPages.Backend.Tests.Services
 {
     using System.Collections.Generic;
     using Shared.Models;
-    using Shared.Services.TemplateHelper;
+    using Shared.Services.TemplateService;
     using FluentAssertions;
     using Xunit;
 
@@ -28,7 +28,7 @@ namespace TokanPages.Backend.Tests.Services
                 }
             };
 
-            var LTemplateHelper = new TemplateHelper();
+            var LTemplateHelper = new TemplateService();
             
             // Act
             var LResult = LTemplateHelper.MakeBody(BODY_TEMPLATE, LItems);
@@ -58,7 +58,7 @@ namespace TokanPages.Backend.Tests.Services
                 }
             };
 
-            var LTemplateHelper = new TemplateHelper();
+            var LTemplateHelper = new TemplateService();
             
             // Act
             var LResult = LTemplateHelper.MakeBody(ABodyTemplate, LItems);
@@ -74,7 +74,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             const string BODY_TEMPLATE = "This is {VALUE1} test for {VALUE2}.";
-            var LTemplateHelper = new TemplateHelper();
+            var LTemplateHelper = new TemplateService();
             
             // Act
             var LResult = LTemplateHelper.MakeBody(BODY_TEMPLATE, AItems);

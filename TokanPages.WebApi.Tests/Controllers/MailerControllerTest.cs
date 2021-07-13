@@ -30,10 +30,10 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LPayLoad = new SendMessageDto
             {
-                FirstName = DataProviderService.GetRandomString(),
-                LastName = DataProviderService.GetRandomString(),
-                UserEmail = DataProviderService.GetRandomEmail(),
-                EmailFrom = DataProviderService.GetRandomEmail(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                UserEmail = DataUtilityService.GetRandomEmail(),
+                EmailFrom = DataUtilityService.GetRandomEmail(),
                 EmailTos = new List<string> { string.Empty },
                 Subject = "Integration Test / HttpClient / Endpoint",
                 Message = $"Test run Id: {Guid.NewGuid()}.",

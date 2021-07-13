@@ -1,6 +1,6 @@
 namespace TokanPages.Backend.Tests.Services
 {
-    using TokanPages.Backend.Cqrs.Services.CipheringService;
+    using Cqrs.Services.CipheringService;
     using FluentAssertions;
     using Xunit;
 
@@ -12,7 +12,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             const int CIPHER_LOG_ROUNDS = 12;
-            var LPlainTextPassword = DataProviderService.GetRandomString();
+            var LPlainTextPassword = DataUtilityService.GetRandomString();
             var LCipher = new CipheringService();
 
             // Act

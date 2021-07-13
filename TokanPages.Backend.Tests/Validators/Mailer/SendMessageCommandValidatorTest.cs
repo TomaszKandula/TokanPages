@@ -2,16 +2,16 @@
 {
     using System.Collections.Generic;
     using Shared.Resources;
-    using Shared.Services.DataProviderService;
+    using Shared.Services.DataUtilityService;
     using Cqrs.Handlers.Commands.Mailer;
     using FluentAssertions;
     using Xunit;
 
     public class SendMessageCommandValidatorTest
     {
-        private readonly DataProviderService FDataProviderService;
+        private readonly DataUtilityService FDataUtilityService;
 
-        public SendMessageCommandValidatorTest() => FDataProviderService = new DataProviderService();
+        public SendMessageCommandValidatorTest() => FDataUtilityService = new DataUtilityService();
 
         [Fact]
         public void GivenAllFieldsAreCorrect_WhenSendMessage_ShouldFinishSuccessful() 
@@ -19,13 +19,13 @@
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
+                UserEmail = FDataUtilityService.GetRandomEmail(),
+                EmailFrom = FDataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { FDataUtilityService.GetRandomEmail(), FDataUtilityService.GetRandomEmail() },
+                Subject = FDataUtilityService.GetRandomString(),
+                Message = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -43,12 +43,12 @@
             var LSendMessageCommand = new SendMessageCommand
             {
                 FirstName = string.Empty,
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                LastName = FDataUtilityService.GetRandomString(),
+                UserEmail = FDataUtilityService.GetRandomEmail(),
+                EmailFrom = FDataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { FDataUtilityService.GetRandomEmail(), FDataUtilityService.GetRandomEmail() },
+                Subject = FDataUtilityService.GetRandomString(),
+                Message = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -66,13 +66,13 @@
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(256),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                FirstName = FDataUtilityService.GetRandomString(256),
+                LastName = FDataUtilityService.GetRandomString(),
+                UserEmail = FDataUtilityService.GetRandomEmail(),
+                EmailFrom = FDataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { FDataUtilityService.GetRandomEmail(), FDataUtilityService.GetRandomEmail() },
+                Subject = FDataUtilityService.GetRandomString(),
+                Message = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -90,13 +90,13 @@
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
+                FirstName = FDataUtilityService.GetRandomString(),
                 LastName = string.Empty,
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                UserEmail = FDataUtilityService.GetRandomEmail(),
+                EmailFrom = FDataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { FDataUtilityService.GetRandomEmail(), FDataUtilityService.GetRandomEmail() },
+                Subject = FDataUtilityService.GetRandomString(),
+                Message = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -114,13 +114,13 @@
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(256),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(256),
+                UserEmail = FDataUtilityService.GetRandomEmail(),
+                EmailFrom = FDataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { FDataUtilityService.GetRandomEmail(), FDataUtilityService.GetRandomEmail() },
+                Subject = FDataUtilityService.GetRandomString(),
+                Message = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -138,13 +138,13 @@
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
                 UserEmail = string.Empty,
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                EmailFrom = FDataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { FDataUtilityService.GetRandomEmail(), FDataUtilityService.GetRandomEmail() },
+                Subject = FDataUtilityService.GetRandomString(),
+                Message = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -162,13 +162,13 @@
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
                 UserEmail = new string('T', 256),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                EmailFrom = FDataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { FDataUtilityService.GetRandomEmail(), FDataUtilityService.GetRandomEmail() },
+                Subject = FDataUtilityService.GetRandomString(),
+                Message = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -186,13 +186,13 @@
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
+                UserEmail = FDataUtilityService.GetRandomEmail(),
                 EmailFrom = string.Empty,
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                EmailTos = new List<string> { FDataUtilityService.GetRandomEmail(), FDataUtilityService.GetRandomEmail() },
+                Subject = FDataUtilityService.GetRandomString(),
+                Message = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -210,13 +210,13 @@
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
+                UserEmail = FDataUtilityService.GetRandomEmail(),
                 EmailFrom = new string('T', 256),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                EmailTos = new List<string> { FDataUtilityService.GetRandomEmail(), FDataUtilityService.GetRandomEmail() },
+                Subject = FDataUtilityService.GetRandomString(),
+                Message = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -234,13 +234,13 @@
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
+                UserEmail = FDataUtilityService.GetRandomEmail(),
+                EmailFrom = FDataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { FDataUtilityService.GetRandomEmail(), FDataUtilityService.GetRandomEmail() },
                 Subject = string.Empty,
-                Message = FDataProviderService.GetRandomString()
+                Message = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -258,13 +258,13 @@
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(256),
-                Message = FDataProviderService.GetRandomString()
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
+                UserEmail = FDataUtilityService.GetRandomEmail(),
+                EmailFrom = FDataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { FDataUtilityService.GetRandomEmail(), FDataUtilityService.GetRandomEmail() },
+                Subject = FDataUtilityService.GetRandomString(256),
+                Message = FDataUtilityService.GetRandomString()
             };
 
             // Act
@@ -282,12 +282,12 @@
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
+                UserEmail = FDataUtilityService.GetRandomEmail(),
+                EmailFrom = FDataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { FDataUtilityService.GetRandomEmail(), FDataUtilityService.GetRandomEmail() },
+                Subject = FDataUtilityService.GetRandomString(),
                 Message = string.Empty,
             };
 
@@ -306,13 +306,13 @@
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString(256)
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
+                UserEmail = FDataUtilityService.GetRandomEmail(),
+                EmailFrom = FDataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { FDataUtilityService.GetRandomEmail(), FDataUtilityService.GetRandomEmail() },
+                Subject = FDataUtilityService.GetRandomString(),
+                Message = FDataUtilityService.GetRandomString(256)
             };
 
             // Act
@@ -330,13 +330,13 @@
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
+                UserEmail = FDataUtilityService.GetRandomEmail(),
+                EmailFrom = FDataUtilityService.GetRandomEmail(),
                 EmailTos = new List<string>(),
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                Subject = FDataUtilityService.GetRandomString(),
+                Message = FDataUtilityService.GetRandomString()
             };
 
             // Act

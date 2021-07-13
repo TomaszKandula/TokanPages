@@ -8,7 +8,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
     using Shared.Resources;
     using Cqrs.Handlers.Commands.Articles;
     using Cqrs.Services.UserServiceProvider;
-    using Shared.Services.DataProviderService;
+    using Shared.Services.DataUtilityService;
     using UsersEntity = Domain.Entities.Users;
     using ArticlesEntity = Domain.Entities.Articles;
     using PermissionsEntity = Domain.Entities.Permissions;
@@ -19,9 +19,9 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
     public class UpdateArticleVisibilityCommandHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
+        private readonly DataUtilityService FDataUtilityService;
 
-        public UpdateArticleVisibilityCommandHandlerTest() => FDataProviderService = new DataProviderService();
+        public UpdateArticleVisibilityCommandHandlerTest() => FDataUtilityService = new DataUtilityService();
 
         [Theory]
         [InlineData(false, true)]
@@ -152,11 +152,11 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
         {
             return new ()
             {
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
+                Title = FDataUtilityService.GetRandomString(),
+                Description = FDataUtilityService.GetRandomString(),
                 IsPublished = AIsPublished,
                 ReadCount = 0,
-                CreatedAt = FDataProviderService.GetRandomDateTime(),
+                CreatedAt = FDataUtilityService.GetRandomDateTime(),
                 UpdatedAt = null,
                 UserId = AUserId
             };
@@ -167,15 +167,15 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             return new()
             {
                 Id = AUserId,
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                Registered = FDataProviderService.GetRandomDateTime(),
+                EmailAddress = FDataUtilityService.GetRandomEmail(),
+                UserAlias = FDataUtilityService.GetRandomString(),
+                Registered = FDataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataProviderService.GetRandomString()
+                CryptedPassword = FDataUtilityService.GetRandomString()
             };
         }
 

@@ -11,7 +11,7 @@
     using Storage.Models;
     using Core.Exceptions;
     using Shared.Resources;
-    using Shared.Services.TemplateHelper;
+    using Shared.Services.TemplateService;
     using MediatR;
 
     public class SendNewsletterCommandHandler : TemplateHandler<SendNewsletterCommand, Unit>
@@ -22,19 +22,19 @@
         
         private readonly ISmtpClientService FSmtpClientService;
         
-        private readonly ITemplateHelper FTemplateHelper;
+        private readonly ITemplateService FTemplateService;
         
         private readonly AzureStorageSettingsModel FAzureStorageSettingsModel;
         
         private readonly ApplicationPathsModel FApplicationPathsModel;
 
         public SendNewsletterCommandHandler(ILogger ALogger, HttpClient AHttpClient, ISmtpClientService ASmtpClientService, 
-            ITemplateHelper ATemplateHelper, AzureStorageSettingsModel AAzureStorageSettingsModel, ApplicationPathsModel AApplicationPathsModel)
+            ITemplateService ATemplateService, AzureStorageSettingsModel AAzureStorageSettingsModel, ApplicationPathsModel AApplicationPathsModel)
         {
             FLogger = ALogger;
             FHttpClient = AHttpClient;
             FSmtpClientService = ASmtpClientService;
-            FTemplateHelper = ATemplateHelper;
+            FTemplateService = ATemplateService;
             FAzureStorageSettingsModel = AAzureStorageSettingsModel;
             FApplicationPathsModel = AApplicationPathsModel;
         }
@@ -68,7 +68,7 @@
                 
                 var LTemplateFromUrl = await FHttpClient.GetAsync(LUrl, ACancellationToken);
                 var LTemplate = await LTemplateFromUrl.Content.ReadAsStringAsync(ACancellationToken);
-                FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplate, LNewValues);
+                FSmtpClientService.HtmlBody = FTemplateService.MakeBody(LTemplate, LNewValues);
 
                 var LResult = await FSmtpClientService.Send(ACancellationToken);
                 if (!LResult.IsSucceeded) 

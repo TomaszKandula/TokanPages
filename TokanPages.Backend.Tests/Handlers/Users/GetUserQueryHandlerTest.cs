@@ -5,15 +5,15 @@
     using System.Threading.Tasks;
     using Core.Exceptions;
     using Cqrs.Handlers.Queries.Users;
-    using Shared.Services.DataProviderService;
+    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
 
     public class GetUserQueryHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
+        private readonly DataUtilityService FDataUtilityService;
 
-        public GetUserQueryHandlerTest() => FDataProviderService = new DataProviderService();
+        public GetUserQueryHandlerTest() => FDataUtilityService = new DataUtilityService();
 
         [Fact]
         public async Task GivenCorrectId_WhenGetUser_ShouldReturnEntity() 
@@ -22,15 +22,15 @@
             var LTestDate = DateTime.Now;
             var LUsers = new TokanPages.Backend.Domain.Entities.Users 
             { 
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                EmailAddress = FDataUtilityService.GetRandomEmail(),
+                UserAlias = FDataUtilityService.GetRandomString(),
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
                 IsActivated = true,
                 Registered = LTestDate,
                 LastUpdated = null,
                 LastLogged = null,
-                CryptedPassword = FDataProviderService.GetRandomString()
+                CryptedPassword = FDataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();

@@ -11,7 +11,7 @@
     using Cqrs.Handlers.Commands.Articles;
     using Storage.AzureBlobStorage.Factory;
     using Cqrs.Services.UserServiceProvider;
-    using Shared.Services.DataProviderService;
+    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
     using Moq;
@@ -20,11 +20,11 @@
     {
         private readonly Mock<AzureBlobStorageFactory> FMockedAzureBlobStorageFactory;
         
-        private readonly DataProviderService FDataProviderService;
+        private readonly DataUtilityService FDataUtilityService;
 
         public AddArticleCommandHandlerTest()
         {
-            FDataProviderService = new DataProviderService();
+            FDataUtilityService = new DataUtilityService();
             FMockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
             var LMockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
 
@@ -46,25 +46,25 @@
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = FDataProviderService.GetRandomString().ToBase64Encode()
+                Title = FDataUtilityService.GetRandomString(),
+                Description = FDataUtilityService.GetRandomString(),
+                TextToUpload = FDataUtilityService.GetRandomString(),
+                ImageToUpload = FDataUtilityService.GetRandomString().ToBase64Encode()
             };
 
             var LUser = new Backend.Domain.Entities.Users
             {
-                UserAlias  = FDataProviderService.GetRandomString(),
+                UserAlias  = FDataUtilityService.GetRandomString(),
                 IsActivated = true,
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                Registered = FDataProviderService.GetRandomDateTime(),
-                LastLogged = FDataProviderService.GetRandomDateTime(),
-                LastUpdated = FDataProviderService.GetRandomDateTime(),
-                AvatarName = FDataProviderService.GetRandomString(),
-                ShortBio = FDataProviderService.GetRandomString(),
-                CryptedPassword = FDataProviderService.GetRandomString()
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
+                EmailAddress = FDataUtilityService.GetRandomEmail(),
+                Registered = FDataUtilityService.GetRandomDateTime(),
+                LastLogged = FDataUtilityService.GetRandomDateTime(),
+                LastUpdated = FDataUtilityService.GetRandomDateTime(),
+                AvatarName = FDataUtilityService.GetRandomString(),
+                ShortBio = FDataUtilityService.GetRandomString(),
+                CryptedPassword = FDataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -97,10 +97,10 @@
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = FDataProviderService.GetRandomString().ToBase64Encode()
+                Title = FDataUtilityService.GetRandomString(),
+                Description = FDataUtilityService.GetRandomString(),
+                TextToUpload = FDataUtilityService.GetRandomString(),
+                ImageToUpload = FDataUtilityService.GetRandomString().ToBase64Encode()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -127,9 +127,9 @@
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(),
+                Title = FDataUtilityService.GetRandomString(),
+                Description = FDataUtilityService.GetRandomString(),
+                TextToUpload = FDataUtilityService.GetRandomString(),
                 ImageToUpload = "úK¼Æ½t$bþÍs*L2ÕÊª"
             };
 

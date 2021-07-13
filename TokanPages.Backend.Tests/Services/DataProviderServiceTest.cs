@@ -16,7 +16,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange 
             // Act
-            var LResult = DataProviderService.GetRandomString();
+            var LResult = DataUtilityService.GetRandomString();
 
             // Assert
             LResult.Length.Should().Be(12);
@@ -31,7 +31,7 @@ namespace TokanPages.Backend.Tests.Services
             var LPrefixLength = PREFIX.Length;
             
             // Act
-            var LResult = DataProviderService.GetRandomString(LENGTH, PREFIX);
+            var LResult = DataUtilityService.GetRandomString(LENGTH, PREFIX);
 
             // Assert
             LResult.Length.Should().Be(LENGTH + LPrefixLength);
@@ -43,7 +43,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = DataProviderService.GetRandomEmail();
+            var LResult = DataUtilityService.GetRandomEmail();
 
             // Assert
             LResult.Length.Should().BeGreaterThan(12);
@@ -59,7 +59,7 @@ namespace TokanPages.Backend.Tests.Services
             var LExpectedLength = DOMAIN.Length + LENGTH + 1;
             
             // Act
-            var LResult = DataProviderService.GetRandomEmail(LENGTH, DOMAIN);
+            var LResult = DataUtilityService.GetRandomEmail(LENGTH, DOMAIN);
 
             // Assert
             LResult.Length.Should().Be(LExpectedLength);
@@ -73,7 +73,7 @@ namespace TokanPages.Backend.Tests.Services
             const int EXPECTED_LENGTH = 12 * 1024;
             
             // Act
-            var LResult = DataProviderService.GetRandomStream();
+            var LResult = DataUtilityService.GetRandomStream();
 
             // Assert
             LResult.Should().NotBeNull();
@@ -88,7 +88,7 @@ namespace TokanPages.Backend.Tests.Services
             const int EXPECTED_LENGTH = SIZE_IN_KB * 1024;
             
             // Act
-            var LResult = DataProviderService.GetRandomStream(SIZE_IN_KB);
+            var LResult = DataUtilityService.GetRandomStream(SIZE_IN_KB);
 
             // Assert
             LResult.Should().NotBeNull();
@@ -100,7 +100,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = DataProviderService.GetRandomInteger();
+            var LResult = DataUtilityService.GetRandomInteger();
 
             // Assert
             LResult.Should().BeInRange(0, 12);
@@ -111,7 +111,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = DataProviderService.GetRandomDecimal();
+            var LResult = DataUtilityService.GetRandomDecimal();
 
             // Assert
             LResult.Should().BeInRange(0m, 9999m);
@@ -125,7 +125,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = DataProviderService.GetRandomInteger(AMin, AMax);
+            var LResult = DataUtilityService.GetRandomInteger(AMin, AMax);
 
             // Assert
             LResult.Should().BeInRange(AMin, AMax);
@@ -139,7 +139,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = DataProviderService.GetRandomDecimal(AMin, AMax);
+            var LResult = DataUtilityService.GetRandomDecimal(AMin, AMax);
             
             // Assert
             LResult.Should().BeInRange(AMin, AMax);
@@ -150,7 +150,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = DataProviderService.GetRandomEnum<DayOfWeek>();
+            var LResult = DataUtilityService.GetRandomEnum<DayOfWeek>();
 
             // Assert
             LResult.Should().NotBeNull();
@@ -162,7 +162,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = DataProviderService.GetRandomDateTime();
+            var LResult = DataUtilityService.GetRandomDateTime();
 
             // Assert
             LResult.Should().HaveYear(2020);
@@ -178,7 +178,7 @@ namespace TokanPages.Backend.Tests.Services
             var LDateTimeMax = new DateTime(2021, 10, 15);
             
             // Act
-            var LResult = DataProviderService.GetRandomDateTime(LDateTimeMin, LDateTimeMax);
+            var LResult = DataUtilityService.GetRandomDateTime(LDateTimeMin, LDateTimeMax);
 
             // Assert
             LResult.Year.Should().BeInRange(2020, 2021);
@@ -201,7 +201,7 @@ namespace TokanPages.Backend.Tests.Services
             const string ISSUER = "www.jwt-issuer.com";
             const string AUDIENCE = "www.some-api.com";
 
-            var LUserAlias = DataProviderService.GetRandomString();
+            var LUserAlias = DataUtilityService.GetRandomString();
             var LTokenExpires = DateTime.Now.AddDays(30);
             var LGetValidClaims = new ClaimsIdentity(new[]
             {

@@ -50,7 +50,7 @@ namespace TokanPages.WebApi.Tests.Controllers
                 ABuilder.ConfigureAppConfiguration((AContext, AConfigBuilder) =>
                 {
                     AConfigBuilder.AddInMemoryCollection(
-                        new Dictionary<string, string> { ["SmtpServer:Server"] = DataProviderService.GetRandomString() });
+                        new Dictionary<string, string> { ["SmtpServer:Server"] = DataUtilityService.GetRandomString() });
                 });
             });
             
@@ -81,7 +81,7 @@ namespace TokanPages.WebApi.Tests.Controllers
                 ABuilder.ConfigureAppConfiguration((AContext, AConfigBuilder) =>
                 {
                     AConfigBuilder.AddInMemoryCollection(
-                        new Dictionary<string, string> { ["ConnectionStrings:DbConnectTest"] = DataProviderService.GetRandomString() });
+                        new Dictionary<string, string> { ["ConnectionStrings:DbConnectTest"] = DataUtilityService.GetRandomString() });
                 });
             });
             
