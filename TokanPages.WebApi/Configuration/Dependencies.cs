@@ -22,10 +22,11 @@
     using Backend.Identity.Authentication;
     using Backend.Cqrs.Services.UserProvider;
     using Backend.Shared.Services.TemplateHelper;
-    using Backend.Shared.Services.DateTimeService;
     using Backend.Cqrs.Services.CipheringService;
+    using Backend.Shared.Services.DateTimeService;
     using Backend.Storage.AzureBlobStorage.Factory;
     using Backend.Shared.Services.DataProviderService;
+    using Backend.Identity.Services.JwtUtilityService;
     using FluentValidation;
     using MailKit.Net.Smtp;
     using DnsClient;
@@ -85,6 +86,7 @@
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
             AServices.AddScoped<IDateTimeService, DateTimeService>();
+            AServices.AddScoped<IJwtUtilityService, JwtUtilityService>();
             AServices.AddScoped<IUserProvider, UserProvider>();
             AServices.AddScoped<IDataProviderService, DataProviderService>();
             AServices.AddScoped<IDbInitializer, DbInitializer>();
