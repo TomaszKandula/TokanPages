@@ -1,11 +1,11 @@
-using System;
-using System.Security.Claims;
-using TokanPages.Backend.Identity.Authorization;
-using TokanPages.Backend.Database.Initializer.Data.Users;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
 namespace TokanPages.WebApi.Tests
 {
+    using System;
+    using System.Security.Claims;
+    using Backend.Identity.Authorization;
+    using Backend.Database.Initializer.Data.Users;
+    using Backend.Shared.Services.DataProviderService;
+
     public class TestBase
     {
         protected DataProviderService DataProviderService { get; }

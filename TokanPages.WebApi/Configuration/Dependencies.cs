@@ -1,36 +1,36 @@
-﻿using System;
-using System.Net.Http;
-using System.Reflection;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using TokanPages.Backend.Cqrs;
-using TokanPages.Backend.Shared;
-using TokanPages.Backend.Database;
-using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Core.Logger;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Storage.Models;
-using TokanPages.Backend.Core.Behaviours;
-using TokanPages.Backend.SmtpClient.Models;
-using TokanPages.Backend.Database.Initializer;
-using TokanPages.Backend.Identity.Authentication;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Shared.Services.TemplateHelper;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-using TokanPages.Backend.Cqrs.Services.CipheringService;
-using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using FluentValidation;
-using MailKit.Net.Smtp;
-using DnsClient;
-using MediatR;
-
-namespace TokanPages.WebApi.Configuration
+﻿namespace TokanPages.WebApi.Configuration
 {
+    using System;
+    using System.Net.Http;
+    using System.Reflection;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Backend.Cqrs;
+    using Backend.Shared;
+    using Backend.Database;
+    using Backend.SmtpClient;
+    using Backend.Core.Logger;
+    using Backend.Shared.Models;
+    using Backend.Storage.Models;
+    using Backend.Core.Behaviours;
+    using Backend.SmtpClient.Models;
+    using Backend.Database.Initializer;
+    using Backend.Identity.Authentication;
+    using Backend.Cqrs.Services.UserProvider;
+    using Backend.Shared.Services.TemplateHelper;
+    using Backend.Shared.Services.DateTimeService;
+    using Backend.Cqrs.Services.CipheringService;
+    using Backend.Storage.AzureBlobStorage.Factory;
+    using Backend.Shared.Services.DataProviderService;
+    using FluentValidation;
+    using MailKit.Net.Smtp;
+    using DnsClient;
+    using MediatR;
+    
     [ExcludeFromCodeCoverage]
     public static class Dependencies
     {

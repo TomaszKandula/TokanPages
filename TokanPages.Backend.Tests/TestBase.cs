@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using TokanPages.Backend.Database;
-
-namespace TokanPages.Backend.Tests
+﻿namespace TokanPages.Backend.Tests
 {
+    using Microsoft.Extensions.DependencyInjection;
+    using Database;
+
     public class TestBase
     {
         private readonly DatabaseContextFactory FDatabaseContextFactory;
@@ -23,7 +23,6 @@ namespace TokanPages.Backend.Tests
             FDatabaseContextFactory = LServiceProvider.GetService<DatabaseContextFactory>();
         }
 
-        protected DatabaseContext GetTestDatabaseContext()
-            =>  FDatabaseContextFactory.CreateDatabaseContext();
+        protected DatabaseContext GetTestDatabaseContext() =>  FDatabaseContextFactory.CreateDatabaseContext();
     }
 }

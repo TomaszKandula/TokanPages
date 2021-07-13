@@ -1,15 +1,15 @@
-using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using TokanPages.Backend.Shared;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Shared.Helpers;
-using TokanPages.Backend.Shared.Attributes;
-
 namespace TokanPages.WebApi.Controllers.Proxy
 {
+    using System;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Backend.Shared;
+    using Backend.Shared.Models;
+    using Backend.Shared.Helpers;
+    using Backend.Shared.Attributes;
+    
     [Route("api/v1/SonarQube/[controller]")]
     [ApiController]
     [AllowAnonymous]
