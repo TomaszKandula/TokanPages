@@ -66,7 +66,7 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), 
+            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), 
                 FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
@@ -255,7 +255,7 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), 
+            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), 
                 FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
 
             var LPayLoad = new UpdateArticleVisibilityDto
@@ -288,7 +288,7 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetInvalidClaimsIdentity(), 
+            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetInvalidClaimsIdentity(), 
                 FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
 
             var LPayLoad = new UpdateArticleVisibilityDto
