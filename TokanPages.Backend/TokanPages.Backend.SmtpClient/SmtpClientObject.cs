@@ -1,11 +1,11 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.SmtpClient.Models;
-
-namespace TokanPages.Backend.SmtpClient
+﻿namespace TokanPages.Backend.SmtpClient
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Shared.Models;
+    using Models;
+
     public abstract class SmtpClientObject
     {
         public abstract string From { get; set; }

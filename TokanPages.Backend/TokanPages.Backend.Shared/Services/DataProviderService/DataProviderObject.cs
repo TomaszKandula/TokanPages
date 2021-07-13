@@ -1,9 +1,9 @@
-using System;
-using System.IO;
-using System.Security.Claims;
-
 namespace TokanPages.Backend.Shared.Services.DataProviderService
 {
+    using System;
+    using System.IO;
+    using System.Security.Claims;
+
     public abstract class DataProviderObject
     {
         public abstract DateTime GetRandomDateTime(DateTime? AMin = null, DateTime? AMax = null, int ADefaultYear = 2020);

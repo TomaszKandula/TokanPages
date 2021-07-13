@@ -1,7 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace TokanPages.Backend.SmtpClient.Models
+﻿namespace TokanPages.Backend.SmtpClient.Models
 {
+    using System.Diagnostics.CodeAnalysis;
+
     [ExcludeFromCodeCoverage]
     public class SmtpServerSettingsModel
     {

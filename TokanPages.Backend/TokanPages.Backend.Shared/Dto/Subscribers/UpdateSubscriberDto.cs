@@ -1,8 +1,8 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-
-namespace TokanPages.Backend.Shared.Dto.Subscribers
+﻿namespace TokanPages.Backend.Shared.Dto.Subscribers
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+
     [ExcludeFromCodeCoverage]
     public class UpdateSubscriberDto
     {

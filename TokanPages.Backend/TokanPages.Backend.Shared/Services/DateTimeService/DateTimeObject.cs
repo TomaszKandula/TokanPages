@@ -1,7 +1,7 @@
-using System;
-
 namespace TokanPages.Backend.Shared.Services.DateTimeService
 {
+    using System;
+
     public abstract class DateTimeObject
     {
         public abstract DateTime Now { get; }

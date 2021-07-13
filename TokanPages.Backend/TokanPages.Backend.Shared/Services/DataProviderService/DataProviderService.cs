@@ -1,13 +1,13 @@
-using System;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
-
 namespace TokanPages.Backend.Shared.Services.DataProviderService
 {
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Security.Claims;
+    using System.IdentityModel.Tokens.Jwt;
+    using Microsoft.IdentityModel.Tokens;
+
     public class DataProviderService : DataProviderObject, IDataProviderService
     {
         private readonly Random FRandom;

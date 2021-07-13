@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using System.Collections.Generic;
-
-namespace TokanPages.Backend.Shared.Services.TemplateHelper
+﻿namespace TokanPages.Backend.Shared.Services.TemplateHelper
 {
+    using System.Linq;
+    using System.Collections.Generic;
+
     public sealed class TemplateHelper : ITemplateHelper
     {
         /// <summary>

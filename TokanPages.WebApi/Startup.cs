@@ -1,20 +1,20 @@
-using System.Net;
-using System.Linq;
-using System.Net.Sockets;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.ResponseCompression;
-using TokanPages.WebApi.Middleware;
-using TokanPages.WebApi.Configuration;
-using Serilog;
-
 namespace TokanPages.WebApi
 {
+    using System.Net;
+    using System.Linq;
+    using System.Net.Sockets;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.AspNetCore.HttpOverrides;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.AspNetCore.ResponseCompression;
+    using Middleware;
+    using Configuration;
+    using Serilog;
+
     [ExcludeFromCodeCoverage]
     public class Startup
     {
