@@ -1,6 +1,6 @@
-﻿namespace TokanPages.Backend.Shared.Services.TemplateHelper
+﻿namespace TokanPages.Backend.Shared.Models
 {
-    public class TemplateItemModel
+    public class TemplateItem
     {
         public string Tag { get; set; }
 
