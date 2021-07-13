@@ -1,17 +1,17 @@
-﻿using System;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Database;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Dto.Users;
-
-namespace TokanPages.Backend.Cqrs.Services.UserProvider
+﻿namespace TokanPages.Backend.Cqrs.Services.UserProvider
 {
+    using System;
+    using System.Linq;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.EntityFrameworkCore;
+    using Database;
+    using Core.Exceptions;
+    using Shared.Resources;
+    using Shared.Dto.Users;
+
     public class UserProvider : IUserProvider
     {
         private const string LOCALHOST = "127.0.0.1";

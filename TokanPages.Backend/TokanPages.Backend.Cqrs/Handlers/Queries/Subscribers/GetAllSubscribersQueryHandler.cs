@@ -1,18 +1,17 @@
-﻿using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Database;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
 {
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Microsoft.EntityFrameworkCore;
+    using Database;
+
     public class GetAllSubscribersQueryHandler : TemplateHandler<GetAllSubscribersQuery, IEnumerable<GetAllSubscribersQueryResult>>
     {
         private readonly DatabaseContext FDatabaseContext;
 
-        public GetAllSubscribersQueryHandler(DatabaseContext ADatabaseContext) 
-            => FDatabaseContext = ADatabaseContext;
+        public GetAllSubscribersQueryHandler(DatabaseContext ADatabaseContext) => FDatabaseContext = ADatabaseContext;
 
         public override async Task<IEnumerable<GetAllSubscribersQueryResult>> Handle(GetAllSubscribersQuery ARequest, CancellationToken ACancellationToken) 
         {

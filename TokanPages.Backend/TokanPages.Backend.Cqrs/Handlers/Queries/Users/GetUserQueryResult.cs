@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
 {
+    using System;
+
     public class GetUserQueryResult : GetAllUsersQueryResult
     {
         public string FirstName { get; set; }

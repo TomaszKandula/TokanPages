@@ -1,14 +1,14 @@
-﻿using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Database;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Shared.Resources;
-using MediatR;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
+    using Database;
+    using Core.Exceptions;
+    using Shared.Resources;
+    using MediatR;
+
     public class RemoveArticleCommandHandler : TemplateHandler<RemoveArticleCommand, Unit>
     {
         private readonly DatabaseContext FDatabaseContext;

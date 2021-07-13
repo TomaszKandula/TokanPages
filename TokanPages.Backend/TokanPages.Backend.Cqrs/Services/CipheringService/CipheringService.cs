@@ -1,11 +1,11 @@
-using System;
-using System.Text;
-using System.Globalization;
-using System.Security.Cryptography;
-using TokanPages.Backend.Cqrs.Services.CipheringService.Helpers;
-
 namespace TokanPages.Backend.Cqrs.Services.CipheringService
 {
+    using System;
+    using System.Text;
+    using System.Globalization;
+    using System.Security.Cryptography;
+    using Helpers;
+
     public class CipheringService : ICipheringService
     {
         /// <summary>

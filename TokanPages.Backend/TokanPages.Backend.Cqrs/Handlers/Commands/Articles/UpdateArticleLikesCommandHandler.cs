@@ -1,17 +1,17 @@
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Shared;
-using TokanPages.Backend.Database;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-using MediatR;
-
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
+    using Shared;
+    using Database;
+    using Core.Exceptions;
+    using Core.Extensions;
+    using Shared.Resources;
+    using Services.UserProvider;
+    using MediatR;
+
     public class UpdateArticleLikesCommandHandler : TemplateHandler<UpdateArticleLikesCommand, Unit>
     {
         private readonly DatabaseContext FDatabaseContext;

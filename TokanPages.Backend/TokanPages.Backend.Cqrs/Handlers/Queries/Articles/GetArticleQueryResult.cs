@@ -1,7 +1,7 @@
-﻿using TokanPages.Backend.Shared.Dto.Users;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 {
+    using TokanPages.Backend.Shared.Dto.Users;
+
     public class GetArticleQueryResult : GetAllArticlesQueryResult
     {
         public int LikeCount { get; set; }

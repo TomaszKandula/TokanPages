@@ -1,8 +1,8 @@
-﻿using FluentValidation;
-using TokanPages.Backend.Shared.Resources;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 {
+    using FluentValidation;
+    using Shared.Resources;
+
     public class UpdateSubscriberCommandValidator : AbstractValidator<UpdateSubscriberCommand>
     {
         public UpdateSubscriberCommandValidator() 

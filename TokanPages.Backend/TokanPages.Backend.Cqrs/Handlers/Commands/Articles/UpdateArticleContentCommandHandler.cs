@@ -1,17 +1,17 @@
-﻿using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Database;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
-using MediatR;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
+    using Database;
+    using Core.Exceptions;
+    using Shared.Resources;
+    using Services.UserProvider;
+    using Shared.Services.DateTimeService;
+    using Storage.AzureBlobStorage.Factory;
+    using MediatR;
+
     public class UpdateArticleContentCommandHandler : TemplateHandler<UpdateArticleContentCommand, Unit>
     {
         private readonly DatabaseContext FDatabaseContext;

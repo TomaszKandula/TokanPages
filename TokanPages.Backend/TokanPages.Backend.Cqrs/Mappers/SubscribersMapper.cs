@@ -1,9 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Shared.Dto.Subscribers;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
-
-namespace TokanPages.Backend.Cqrs.Mappers
+﻿namespace TokanPages.Backend.Cqrs.Mappers
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Shared.Dto.Subscribers;
+    using Handlers.Commands.Subscribers;
+
     [ExcludeFromCodeCoverage]
     public static class SubscribersMapper
     {

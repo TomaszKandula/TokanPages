@@ -1,8 +1,8 @@
-﻿using FluentValidation;
-using TokanPages.Backend.Shared.Resources;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 {
+    using FluentValidation;
+    using Shared.Resources;
+
     public class GetArticleQueryValidator : AbstractValidator<GetArticleQuery>
     {
         public GetArticleQueryValidator() 

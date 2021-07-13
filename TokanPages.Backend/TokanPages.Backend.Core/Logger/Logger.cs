@@ -1,9 +1,9 @@
-﻿using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using Serilog;
-
-namespace TokanPages.Backend.Core.Logger
+﻿namespace TokanPages.Backend.Core.Logger
 {
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using Serilog;
+
     /// <summary>
     /// Logger service that allows to store messages from application.
     /// </summary>

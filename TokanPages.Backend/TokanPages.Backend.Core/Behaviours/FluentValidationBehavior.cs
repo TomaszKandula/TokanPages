@@ -1,12 +1,11 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using System.Diagnostics.CodeAnalysis;
-using FluentValidation;
-using MediatR;
-using ValidationException = TokanPages.Backend.Core.Exceptions.ValidationException;
-
-namespace TokanPages.Backend.Core.Behaviours
+﻿namespace TokanPages.Backend.Core.Behaviours
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Diagnostics.CodeAnalysis;
+    using FluentValidation;
+    using MediatR;
+
     [ExcludeFromCodeCoverage]
     public class FluentValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
@@ -23,7 +22,7 @@ namespace TokanPages.Backend.Core.Behaviours
             var LValidationResults = FValidator.Validate(LValidationContext);
 
             if (!LValidationResults.IsValid)
-                throw new ValidationException(LValidationResults);
+                throw new Exceptions.ValidationException(LValidationResults);
 
             return ANext();
         }

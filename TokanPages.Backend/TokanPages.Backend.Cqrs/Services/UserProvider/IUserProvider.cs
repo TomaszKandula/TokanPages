@@ -1,10 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.Shared.Dto.Users;
-
-namespace TokanPages.Backend.Cqrs.Services.UserProvider
+﻿namespace TokanPages.Backend.Cqrs.Services.UserProvider
 {
+    using System;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Shared.Dto.Users;
+
     public interface IUserProvider
     {
         string GetRequestIpAddress();

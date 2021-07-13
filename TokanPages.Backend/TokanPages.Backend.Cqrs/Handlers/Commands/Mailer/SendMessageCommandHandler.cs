@@ -1,21 +1,20 @@
-﻿using System.Net.Http;
-using System.Threading;
-using System.Globalization;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.Shared;
-using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Core.Logger;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Storage.Models;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.TemplateHelper;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-using Templates = TokanPages.Backend.Shared.Constants.Emails.Templates;
-using MediatR;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
+    using System.Net.Http;
+    using System.Threading;
+    using System.Globalization;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Shared;
+    using SmtpClient;
+    using Core.Logger;
+    using Storage.Models;
+    using Core.Exceptions;
+    using Shared.Resources;
+    using Shared.Services.TemplateHelper;
+    using Shared.Services.DateTimeService;
+    using MediatR;
+
     public class SendMessageCommandHandler : TemplateHandler<SendMessageCommand, Unit>
     {
         private readonly ILogger FLogger;
@@ -56,7 +55,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 new () { Tag = "{DATE_TIME}", Value = FDateTimeService.Now.ToString(CultureInfo.InvariantCulture) }
             };
 
-            var LUrl = $"{FAzureStorageSettingsModel.BaseUrl}{Templates.CONTACT_FORM}";
+            var LUrl = $"{FAzureStorageSettingsModel.BaseUrl}{Constants.Emails.Templates.CONTACT_FORM}";
             FLogger.LogInformation($"Getting email template from URL: {LUrl}.");
 
             var LTemplateFromUrl = await FHttpClient.GetAsync(LUrl, ACancellationToken);

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using MediatR;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
+    using System.Collections.Generic;
+    using MediatR;
+
     public class SendMessageCommand : IRequest<Unit>
     {
         public string FirstName { get; set; }

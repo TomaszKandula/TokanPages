@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
 {
+    using System;
+
     public class GetAllUsersQueryResult
     {
         public Guid Id { get; set; }
