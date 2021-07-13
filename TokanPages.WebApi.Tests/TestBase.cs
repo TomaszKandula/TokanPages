@@ -5,12 +5,19 @@ namespace TokanPages.WebApi.Tests
     using Backend.Identity.Authorization;
     using Backend.Database.Initializer.Data.Users;
     using Backend.Shared.Services.DataProviderService;
+    using Backend.Identity.Services.JwtUtilityService;
 
     public class TestBase
     {
-        protected DataProviderService DataProviderService { get; }
+        protected IDataProviderService DataProviderService { get; }
 
-        protected TestBase() => DataProviderService = new DataProviderService();
+        protected IJwtUtilityService JwtUtilityService { get; }
+
+        protected TestBase()
+        {
+            DataProviderService = new DataProviderService();
+            JwtUtilityService = new JwtUtilityService();
+        }
 
         protected ClaimsIdentity GetValidClaimsIdentity()
         {

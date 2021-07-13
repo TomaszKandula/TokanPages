@@ -2,15 +2,23 @@
 {
     using Microsoft.Extensions.DependencyInjection;
     using Database;
+    using Identity.Services.JwtUtilityService;
+    using Shared.Services.DataProviderService;
 
     public class TestBase
     {
+        protected IDataProviderService DataProviderService { get; }
+        
+        protected IJwtUtilityService JwtUtilityService { get; }
+
         private readonly DatabaseContextFactory FDatabaseContextFactory;
-
-        protected TestBase() 
+        
+        protected TestBase()
         {
-            var LServices = new ServiceCollection();
+            DataProviderService = new DataProviderService();
+            JwtUtilityService = new JwtUtilityService();
 
+            var LServices = new ServiceCollection();
             LServices.AddSingleton<DatabaseContextFactory>();
             LServices.AddScoped(AContext =>
             {
