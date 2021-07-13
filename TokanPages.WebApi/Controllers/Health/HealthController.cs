@@ -1,14 +1,14 @@
-using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using TokanPages.Backend.Database;
-using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Shared.Resources;
-
 namespace TokanPages.WebApi.Controllers.Health
 {
+    using System;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Backend.Database;
+    using Backend.SmtpClient;
+    using Backend.Shared.Models;
+    using Backend.Shared.Resources;
+    
     [Route("api/v1/[controller]")]
     [ApiController]
     [AllowAnonymous]

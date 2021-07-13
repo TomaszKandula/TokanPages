@@ -1,14 +1,14 @@
-﻿using Xunit;
-using FluentAssertions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
-namespace TokanPages.Backend.Tests.Handlers.Articles
+﻿namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Core.Exceptions;
+    using Cqrs.Handlers.Commands.Articles;
+    using Shared.Services.DataProviderService;
+    using FluentAssertions;
+    using Xunit;
+
     public class RemoveArticleCommandHandlerTest : TestBase
     {
         private readonly DataProviderService FDataProviderService;

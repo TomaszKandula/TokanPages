@@ -1,16 +1,16 @@
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Database;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Identity.Authorization;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-using MediatR;
-
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
+    using Database;
+    using Core.Exceptions;
+    using Shared.Resources;
+    using Identity.Authorization;
+    using Services.UserProvider;
+    using MediatR;
+
     public class UpdateArticleVisibilityCommandHandler : TemplateHandler<UpdateArticleVisibilityCommand, Unit>
     {
         private readonly DatabaseContext FDatabaseContext;

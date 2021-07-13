@@ -1,7 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace TokanPages.Backend.Shared.Models
+﻿namespace TokanPages.Backend.Shared.Models
 {
+    using System.Diagnostics.CodeAnalysis;
+
     [ExcludeFromCodeCoverage]
     public class ActionResultModel
     {

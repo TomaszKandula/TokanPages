@@ -1,10 +1,10 @@
-﻿using Xunit;
-using FluentAssertions;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
-using TokanPages.Backend.Shared.Resources;
-
-namespace TokanPages.Backend.Tests.Validators.Mailer
+﻿namespace TokanPages.Backend.Tests.Validators.Mailer
 {
+    using Cqrs.Handlers.Commands.Mailer;
+    using Shared.Resources;
+    using FluentAssertions;
+    using Xunit;
+
     public class VerifyEmailAddressCommandValidatorTest
     {
         [Fact]

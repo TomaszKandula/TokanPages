@@ -1,14 +1,14 @@
-using Xunit;
-using Newtonsoft.Json;
-using FluentAssertions;
-using System.Net;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
-using TokanPages.Backend.Shared.Models;
-
 namespace TokanPages.WebApi.Tests.Controllers
 {
+    using System.Net;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Microsoft.Extensions.Configuration;
+    using Backend.Shared.Models;
+    using FluentAssertions;
+    using Newtonsoft.Json;
+    using Xunit;
+
     public class HealthControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
         private const string API_BASE_URL = "/api/v1/health";

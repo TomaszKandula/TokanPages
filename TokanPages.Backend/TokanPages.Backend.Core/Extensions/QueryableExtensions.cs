@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Diagnostics.CodeAnalysis;
-
-namespace TokanPages.Backend.Core.Extensions
+﻿namespace TokanPages.Backend.Core.Extensions
 {
+    using System;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using System.Diagnostics.CodeAnalysis;
+
     [ExcludeFromCodeCoverage]
     public static class QueryableExtensions
     {

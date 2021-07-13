@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
 {
+    using System;
+
     public class GetAllSubscribersQueryResult
     {
         public Guid Id { get; set; }

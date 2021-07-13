@@ -1,9 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Shared.Dto.Users;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
-
-namespace TokanPages.Backend.Cqrs.Mappers
+﻿namespace TokanPages.Backend.Cqrs.Mappers
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Shared.Dto.Users;
+    using Handlers.Commands.Users;
+
     [ExcludeFromCodeCoverage]
     public static class UsersMapper
     {

@@ -1,11 +1,11 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using TokanPages.Backend.Shared;
-using TokanPages.Backend.Storage.Models;
-
 namespace TokanPages.Backend.Storage.AzureBlobStorage
 {
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+    using Models;
+    using Shared;
+
     public interface IAzureBlobStorage
     {
         Task<StorageByteContentModel> ReadAllBytes(string ASourceFilePath);

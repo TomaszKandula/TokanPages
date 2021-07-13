@@ -1,8 +1,8 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.ComponentModel.DataAnnotations;
-
-namespace TokanPages.Backend.Core.Entities
+﻿namespace TokanPages.Backend.Core.Entities
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.ComponentModel.DataAnnotations;
+
     [ExcludeFromCodeCoverage]
     public abstract class Entity<TKey>
     {

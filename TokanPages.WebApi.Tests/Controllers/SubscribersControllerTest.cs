@@ -1,18 +1,18 @@
-using Xunit;
-using FluentAssertions;
-using Newtonsoft.Json;
-using System;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Net.Http.Headers;
-using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Dto.Subscribers;
-using TokanPages.Backend.Database.Initializer.Data.Subscribers;
-
 namespace TokanPages.WebApi.Tests.Controllers
 {
+    using System;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using System.Net.Http.Headers;
+    using Backend.Core.Extensions;
+    using Backend.Shared.Resources;
+    using Backend.Shared.Dto.Subscribers;
+    using Backend.Database.Initializer.Data.Subscribers;
+    using FluentAssertions;
+    using Newtonsoft.Json;
+    using Xunit;
+
     public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
         private const string API_BASE_URL = "/api/v1/subscribers";

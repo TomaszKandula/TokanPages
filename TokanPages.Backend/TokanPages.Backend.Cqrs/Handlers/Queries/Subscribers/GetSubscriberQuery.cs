@@ -1,8 +1,8 @@
-﻿using System;
-using MediatR;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
 {
+    using System;
+    using MediatR;
+
     public class GetSubscriberQuery : IRequest<GetSubscriberQueryResult>
     {
         public Guid Id { get; set; }

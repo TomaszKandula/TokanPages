@@ -1,16 +1,16 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using TokanPages.Backend.Database.Initializer;
-using Serilog.Events;
-using Serilog;
-using Sentry;
-
 namespace TokanPages.WebApi
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.AspNetCore;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.DependencyInjection;
+    using Backend.Database.Initializer;
+    using Serilog.Events;
+    using Serilog;
+    using Sentry;
+
     [ExcludeFromCodeCoverage]
     public static class Program
     {

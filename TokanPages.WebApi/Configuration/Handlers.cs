@@ -1,13 +1,13 @@
-using System;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Diagnostics.CodeAnalysis;
-using Polly.Extensions.Http;
-using Polly;
-
 namespace TokanPages.WebApi.Configuration
 {
+    using System;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using System.Diagnostics.CodeAnalysis;
+    using Polly.Extensions.Http;
+    using Polly;
+
     [ExcludeFromCodeCoverage]
     public static class Handlers
     {

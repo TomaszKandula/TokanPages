@@ -1,14 +1,14 @@
-﻿using Xunit;
-using FluentAssertions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
-
-namespace TokanPages.Backend.Tests.Handlers.Subscribers
+﻿namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Core.Exceptions;
+    using Cqrs.Handlers.Commands.Subscribers;
+    using Shared.Services.DataProviderService;
+    using FluentAssertions;
+    using Xunit;
+
     public class RemoveSubscriberCommandHandlerTest : TestBase
     {
         private readonly DataProviderService FDataProviderService;
@@ -56,7 +56,8 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
             var LDatabaseContext = GetTestDatabaseContext();
             var LRemoveSubscriberCommandHandler = new RemoveSubscriberCommandHandler(LDatabaseContext);
 
-            // Act & Assert
+            // Act
+            // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
                 => LRemoveSubscriberCommandHandler.Handle(LRemoveSubscriberCommand, CancellationToken.None));
         }

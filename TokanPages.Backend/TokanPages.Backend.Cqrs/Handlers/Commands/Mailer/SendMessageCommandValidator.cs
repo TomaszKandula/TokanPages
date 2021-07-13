@@ -1,8 +1,8 @@
-﻿using FluentValidation;
-using TokanPages.Backend.Shared.Resources;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
+    using FluentValidation;
+    using Shared.Resources;
+
     public class SendMessageCommandValidator : AbstractValidator<SendMessageCommand>
     {
         public SendMessageCommandValidator() 

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-
-namespace TokanPages.Backend.Database.Initializer.Data.Users
+﻿namespace TokanPages.Backend.Database.Initializer.Data.Users
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+
     [ExcludeFromCodeCoverage]
     public static class User3
     {

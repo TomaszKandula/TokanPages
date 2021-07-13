@@ -1,9 +1,9 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Database.Initializer.Data.Articles;
-
-namespace TokanPages.Backend.Database.Initializer.Data.ArticleLikes
+﻿namespace TokanPages.Backend.Database.Initializer.Data.ArticleLikes
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Articles;
+
     [ExcludeFromCodeCoverage]
     public static class ArticleLike4
     {

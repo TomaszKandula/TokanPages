@@ -1,12 +1,12 @@
-﻿using System;
-using Xunit;
-using FluentAssertions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
-namespace TokanPages.Backend.Tests.Validators.Users
+﻿namespace TokanPages.Backend.Tests.Validators.Users
 {
+    using System;
+    using Shared.Resources;
+    using Cqrs.Handlers.Commands.Users;
+    using Shared.Services.DataProviderService;
+    using FluentAssertions;
+    using Xunit;
+
     public class UpdateUserCommandValidatorTest
     {
         private readonly DataProviderService FDataProviderService;

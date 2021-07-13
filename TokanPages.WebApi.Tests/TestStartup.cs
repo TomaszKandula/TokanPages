@@ -1,13 +1,13 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using TokanPages.Backend.Database;
-using TokanPages.WebApi.Middleware;
-using TokanPages.WebApi.Configuration;
-
 namespace TokanPages.WebApi.Tests
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Backend.Database;
+    using Middleware;
+    using Configuration;
+
     public class TestStartup
     {
         private readonly IConfiguration FConfiguration;

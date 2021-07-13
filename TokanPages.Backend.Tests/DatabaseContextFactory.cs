@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Database;
-
-namespace TokanPages.Backend.Tests
+﻿namespace TokanPages.Backend.Tests
 {
+    using Microsoft.EntityFrameworkCore;
+    using Database;
+
     internal class DatabaseContextFactory
     {
         private readonly DbContextOptionsBuilder<DatabaseContext> FDatabaseOptions =

@@ -1,13 +1,13 @@
-﻿using Xunit;
-using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
-
-namespace TokanPages.Backend.Tests.Validators.Mailer
+﻿namespace TokanPages.Backend.Tests.Validators.Mailer
 {
+    using System;
+    using System.Collections.Generic;
+    using Shared.Models;
+    using Shared.Resources;
+    using Cqrs.Handlers.Commands.Mailer;
+    using FluentAssertions;
+    using Xunit;
+
     public class SendNewsletterCommandValidatorTest
     {
         [Fact]

@@ -1,17 +1,17 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using TokanPages.Backend.Cqrs.Mappers;
-using TokanPages.Backend.Shared.Dto.Users;
-using TokanPages.Backend.Identity.Attributes;
-using TokanPages.Backend.Identity.Authorization;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
-using MediatR;
-
-namespace TokanPages.WebApi.Controllers.Api
+﻿namespace TokanPages.WebApi.Controllers.Api
 {
+    using System;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Backend.Cqrs.Mappers;
+    using Backend.Shared.Dto.Users;
+    using Backend.Identity.Attributes;
+    using Backend.Identity.Authorization;
+    using Backend.Cqrs.Handlers.Queries.Users;
+    using MediatR;
+
     [Authorize]
     public class UsersController : BaseController
     {

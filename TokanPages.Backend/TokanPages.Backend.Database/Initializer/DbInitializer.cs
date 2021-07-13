@@ -1,10 +1,10 @@
-using System.Linq;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Database.Initializer.Seeders;
-
 namespace TokanPages.Backend.Database.Initializer
 {
+    using System.Linq;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.EntityFrameworkCore;
+    using Seeders;
+
     [ExcludeFromCodeCoverage]
     public class DbInitializer : IDbInitializer
     {

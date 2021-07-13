@@ -1,16 +1,16 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Blob;
-using TokanPages.Backend.Shared;
-using TokanPages.Backend.Storage.Models;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Shared.Resources;
-
 namespace TokanPages.Backend.Storage.AzureBlobStorage
 {
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.Blob;
+    using Models;
+    using Shared;
+    using Core.Exceptions;
+    using Core.Extensions;
+    using Shared.Resources;
+
     public class AzureBlobStorage : IAzureBlobStorage
     {
         private readonly CloudBlobContainer FContainer;

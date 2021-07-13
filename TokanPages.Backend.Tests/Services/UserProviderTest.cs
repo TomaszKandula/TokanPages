@@ -1,22 +1,22 @@
-using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
-using TokanPages.Backend.Domain.Entities;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using Roles = TokanPages.Backend.Identity.Authorization.Roles;
-using Permissions = TokanPages.Backend.Identity.Authorization.Permissions;
-
 namespace TokanPages.Backend.Tests.Services
 {
+    using System;
+    using System.Linq;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Microsoft.AspNetCore.Http;
+    using Domain.Entities;
+    using Core.Exceptions;
+    using Shared.Resources;
+    using Cqrs.Services.UserProvider;
+    using Shared.Services.DataProviderService;
+    using Roles = Identity.Authorization.Roles;
+    using Permissions = Identity.Authorization.Permissions;
+    using FluentAssertions;
+    using Xunit;
+    using Moq;
+
     public class UserProviderTest : TestBase
     {
         private readonly DataProviderService FDataProviderService;

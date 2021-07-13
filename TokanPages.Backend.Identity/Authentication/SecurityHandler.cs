@@ -1,10 +1,10 @@
-using System.Security.Claims;
-using System.Diagnostics.CodeAnalysis;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
-
 namespace TokanPages.Backend.Identity.Authentication
 {
+    using System.Security.Claims;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IdentityModel.Tokens.Jwt;
+    using Microsoft.IdentityModel.Tokens;
+
     [ExcludeFromCodeCoverage]
     public class SecurityHandler : ISecurityTokenValidator
     {

@@ -1,8 +1,8 @@
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
-
 namespace TokanPages.Backend.Storage.Models
 {
+    using System.IO;
+    using System.Diagnostics.CodeAnalysis;
+
     [ExcludeFromCodeCoverage]
     public class StorageStreamContentModel
     {

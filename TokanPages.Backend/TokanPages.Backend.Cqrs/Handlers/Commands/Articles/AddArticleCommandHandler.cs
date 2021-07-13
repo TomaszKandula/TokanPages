@@ -1,15 +1,15 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Database;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Database;
+    using Core.Exceptions;
+    using Shared.Resources;
+    using Services.UserProvider;
+    using Shared.Services.DateTimeService;
+    using Storage.AzureBlobStorage.Factory;
+
     public class AddArticleCommandHandler : TemplateHandler<AddArticleCommand, Guid>
     {
         private readonly DatabaseContext FDatabaseContext;

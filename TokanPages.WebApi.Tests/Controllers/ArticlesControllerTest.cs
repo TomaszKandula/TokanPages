@@ -1,21 +1,21 @@
-using Xunit;
-using FluentAssertions;
-using Newtonsoft.Json;
-using System;
-using System.Net;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Net.Http.Headers;
-using System.Collections.Generic;
-using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Dto.Articles;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
-using TokanPages.Backend.Database.Initializer.Data.Articles;
-
 namespace TokanPages.WebApi.Tests.Controllers
 {
+    using System;
+    using System.Net;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using System.Net.Http.Headers;
+    using System.Collections.Generic;
+    using Backend.Core.Extensions;
+    using Backend.Shared.Resources;
+    using Backend.Shared.Dto.Articles;
+    using Backend.Cqrs.Handlers.Queries.Articles;
+    using Backend.Database.Initializer.Data.Articles;
+    using FluentAssertions;
+    using Newtonsoft.Json;
+    using Xunit;
+
     public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
         private const string API_BASE_URL = "/api/v1/articles";

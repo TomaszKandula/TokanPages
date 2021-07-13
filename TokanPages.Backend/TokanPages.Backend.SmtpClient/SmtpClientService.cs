@@ -1,20 +1,20 @@
-﻿using DnsClient;
-using MimeKit;
-using MimeKit.Text;
-using MailKit.Net.Smtp;
-using MailKit.Security;
-using System;
-using System.Linq;
-using System.Net.Mail;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.SmtpClient.Models;
-
-namespace TokanPages.Backend.SmtpClient
+﻿namespace TokanPages.Backend.SmtpClient
 {
+    using System;
+    using System.Linq;
+    using System.Net.Mail;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Models;
+    using Shared.Models;
+    using Shared.Resources;
+    using MailKit.Net.Smtp;
+    using MailKit.Security;
+    using MimeKit.Text;
+    using DnsClient;
+    using MimeKit;
+
     public class SmtpClientService : SmtpClientObject, ISmtpClientService
     {
         private readonly ISmtpClient FSmtpClient;

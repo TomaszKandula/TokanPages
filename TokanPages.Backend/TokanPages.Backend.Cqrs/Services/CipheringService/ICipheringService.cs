@@ -1,7 +1,7 @@
-using TokanPages.Backend.Cqrs.Services.CipheringService.Helpers;
-
 namespace TokanPages.Backend.Cqrs.Services.CipheringService
 {
+    using Helpers;
+
     public interface ICipheringService
     {
         string GetHashedPassword(string APassword, string ASalt);

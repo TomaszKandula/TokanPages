@@ -1,16 +1,16 @@
-﻿using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
-
-namespace TokanPages.Backend.Tests.Handlers.Subscribers
+﻿namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Core.Exceptions;
+    using Shared.Services.DateTimeService;
+    using Cqrs.Handlers.Commands.Subscribers;
+    using Shared.Services.DataProviderService;
+    using FluentAssertions;
+    using Xunit;
+    using Moq;
+
     public class UpdateSubscriberCommandHandlerTest : TestBase
     {
         private readonly DataProviderService FDataProviderService;
@@ -125,7 +125,8 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
             var LMockedDateTime = new Mock<DateTimeService>();
             var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext, LMockedDateTime.Object);
 
-            // Act & Assert
+            // Act
+            // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
                 => LUpdateSubscriberCommandHandler.Handle(LUpdateSubscriberCommand, CancellationToken.None));
         }
@@ -159,7 +160,8 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
             var LMockedDateTime = new Mock<DateTimeService>();
             var LUpdateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(LDatabaseContext, LMockedDateTime.Object);
 
-            // Act & Assert
+            // Act
+            // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
                 => LUpdateSubscriberCommandHandler.Handle(LUpdateSubscriberCommand, CancellationToken.None));
         }

@@ -1,10 +1,10 @@
-using Xunit;
-using FluentAssertions;
-using System.Collections.Generic;
-using TokanPages.Backend.Shared.Services.TemplateHelper;
-
 namespace TokanPages.Backend.Tests.Services
 {
+    using System.Collections.Generic;
+    using TokanPages.Backend.Shared.Services.TemplateHelper;
+    using FluentAssertions;
+    using Xunit;
+
     public class TemplateHelperTest
     {
         [Fact]

@@ -1,7 +1,7 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace TokanPages.Backend.Storage.Models
 {
+    using System.Diagnostics.CodeAnalysis;
+
     [ExcludeFromCodeCoverage]
     public class StorageByteContentModel
     {

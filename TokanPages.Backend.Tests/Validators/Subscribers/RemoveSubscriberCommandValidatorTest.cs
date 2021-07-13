@@ -1,11 +1,11 @@
-﻿using System;
-using Xunit;
-using FluentAssertions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
-
-namespace TokanPages.Backend.Tests.Validators.Subscribers
+﻿namespace TokanPages.Backend.Tests.Validators.Subscribers
 {
+    using System;
+    using Shared.Resources;
+    using Cqrs.Handlers.Commands.Subscribers;
+    using FluentAssertions;
+    using Xunit;
+
     public class RemoveSubscriberCommandValidatorTest
     {
         [Fact]

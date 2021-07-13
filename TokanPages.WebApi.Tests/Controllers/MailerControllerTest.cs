@@ -1,18 +1,18 @@
-using Xunit;
-using FluentAssertions;
-using Newtonsoft.Json;
-using System;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Net.Http.Headers;
-using System.Collections.Generic;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Shared.Dto.Mailer;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
-
 namespace TokanPages.WebApi.Tests.Controllers
 {
+    using System;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using System.Net.Http.Headers;
+    using System.Collections.Generic;
+    using Backend.Shared.Models;
+    using Backend.Shared.Dto.Mailer;
+    using Backend.Cqrs.Handlers.Commands.Mailer;
+    using FluentAssertions;
+    using Newtonsoft.Json;
+    using Xunit;
+
     public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
         private const string API_BASE_URL = "/api/v1/Mailer";

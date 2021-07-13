@@ -1,16 +1,16 @@
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Database;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Dto.Users;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 {
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
+    using Database;
+    using Core.Exceptions;
+    using Core.Extensions;
+    using Shared.Resources;
+    using Shared.Dto.Users;
+    using Services.UserProvider;
+
     public class GetArticleQueryHandler : TemplateHandler<GetArticleQuery, GetArticleQueryResult>
     {
         private readonly DatabaseContext FDatabaseContext;

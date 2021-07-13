@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Shared.Models;
-
-namespace TokanPages.Backend.Shared.Dto.Mailer
+﻿namespace TokanPages.Backend.Shared.Dto.Mailer
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using Models;
+
     [ExcludeFromCodeCoverage]
     public class SendNewsletterDto
     {

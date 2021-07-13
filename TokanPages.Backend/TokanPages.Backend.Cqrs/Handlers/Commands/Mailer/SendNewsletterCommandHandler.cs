@@ -1,20 +1,19 @@
-﻿using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.Shared;
-using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Core.Logger;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Storage.Models;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.TemplateHelper;
-using Templates = TokanPages.Backend.Shared.Constants.Emails.Templates;
-using MediatR;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Shared;
+    using SmtpClient;
+    using Core.Logger;
+    using Shared.Models;
+    using Core.Exceptions;
+    using Storage.Models;
+    using Shared.Resources;
+    using Shared.Services.TemplateHelper;
+    using MediatR;
+
     public class SendNewsletterCommandHandler : TemplateHandler<SendNewsletterCommand, Unit>
     {
         private readonly ILogger FLogger;
@@ -64,7 +63,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                     new () { Tag = "{UNSUBSCRIBE_LINK}", Value = LUnsubscribeLink }
                 };
 
-                var LUrl = $"{FAzureStorageSettingsModel.BaseUrl}{Templates.NEWSLETTER}";
+                var LUrl = $"{FAzureStorageSettingsModel.BaseUrl}{Constants.Emails.Templates.NEWSLETTER}";
                 FLogger.LogInformation($"Getting newsletter template from URL: {LUrl}.");
                 
                 var LTemplateFromUrl = await FHttpClient.GetAsync(LUrl, ACancellationToken);

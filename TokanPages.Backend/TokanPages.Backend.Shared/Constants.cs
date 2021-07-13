@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-
-namespace TokanPages.Backend.Shared
+﻿namespace TokanPages.Backend.Shared
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
     /// This class is responsible only for providing constants to all classes/methods etc. across the application.
     /// It can be a partial class if necessary; and if so, then put the module in the root folder and additional 

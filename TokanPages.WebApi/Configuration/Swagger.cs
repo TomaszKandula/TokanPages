@@ -1,12 +1,12 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace TokanPages.WebApi.Configuration
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.OpenApi.Models;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+
     [ExcludeFromCodeCoverage]
     public static class Swagger
     {

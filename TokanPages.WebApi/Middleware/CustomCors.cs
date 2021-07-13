@@ -1,12 +1,12 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Http;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Shared.Helpers;
-
-namespace TokanPages.WebApi.Middleware
+﻿namespace TokanPages.WebApi.Middleware
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.AspNetCore.Http;
+    using Backend.Shared.Models;
+    using Backend.Shared.Helpers;
+    
     [ExcludeFromCodeCoverage]
     public class CustomCors
     {
