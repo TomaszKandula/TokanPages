@@ -1,15 +1,15 @@
-﻿using Xunit;
-using FluentAssertions;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
-namespace TokanPages.Backend.Tests.Handlers.Articles
+﻿namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using System;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Cqrs.Handlers.Queries.Articles;
+    using Shared.Services.DataProviderService;
+    using FluentAssertions;
+    using Xunit;
+
     public class GetAllArticlesQueryHandlerTest : TestBase
     {
         private readonly DataProviderService FDataProviderService;

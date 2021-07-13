@@ -1,14 +1,14 @@
-﻿using Xunit;
-using FluentAssertions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
-namespace TokanPages.Backend.Tests.Handlers.Users
+﻿namespace TokanPages.Backend.Tests.Handlers.Users
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Core.Exceptions;
+    using Cqrs.Handlers.Queries.Users;
+    using Shared.Services.DataProviderService;
+    using FluentAssertions;
+    using Xunit;
+
     public class GetUserQueryHandlerTest : TestBase
     {
         private readonly DataProviderService FDataProviderService;
@@ -63,7 +63,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var LGetUserQuery = new GetUserQuery { Id = Guid.Parse("8f4cef66-6f37-49bb-bbe7-db6c54336d76") };
             var LGetUserQueryHandler = new GetUserQueryHandler(LDatabaseContext);
 
-            // Act & Assert
+            // Act
+            // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
                 => LGetUserQueryHandler.Handle(LGetUserQuery, CancellationToken.None));
         }

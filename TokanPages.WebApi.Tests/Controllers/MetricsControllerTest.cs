@@ -1,11 +1,11 @@
-using System.Net;
-using Xunit;
-using FluentAssertions;
-using System.Threading.Tasks;
-using TokanPages.Backend.Shared;
-
 namespace TokanPages.WebApi.Tests.Controllers
 {
+    using System.Net;
+    using System.Threading.Tasks;
+    using Backend.Shared;
+    using FluentAssertions;
+    using Xunit;
+
     public class MetricsControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
         private const string API_BASE_URL = "/api/v1/sonarqube/metrics";

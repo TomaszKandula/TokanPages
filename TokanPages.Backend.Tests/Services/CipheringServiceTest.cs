@@ -1,10 +1,10 @@
-using Xunit;
-using FluentAssertions;
-using TokanPages.Backend.Cqrs.Services.CipheringService;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
 namespace TokanPages.Backend.Tests.Services
 {
+    using TokanPages.Backend.Cqrs.Services.CipheringService;
+    using TokanPages.Backend.Shared.Services.DataProviderService;
+    using FluentAssertions;
+    using Xunit;
+
     public class CipheringServiceTest
     {
         private readonly DataProviderService FDataProviderService;

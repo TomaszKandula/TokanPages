@@ -1,11 +1,11 @@
-﻿using Xunit;
-using FluentAssertions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
-
-namespace TokanPages.Backend.Tests.Validators.Articles
+﻿namespace TokanPages.Backend.Tests.Validators.Articles
 {
+    using Shared.Resources;
+    using Cqrs.Handlers.Commands.Articles;
+    using Shared.Services.DataProviderService;
+    using FluentAssertions;
+    using Xunit;
+
     public class AddArticleCommandValidatorTest
     {
         private readonly DataProviderService FDataProviderService;

@@ -1,23 +1,23 @@
-using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
-using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.SmtpClient.Models;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using MailKit.Net.Smtp;
-using MailKit.Security;
-using DnsClient.Protocol;
-using DnsClient;
-using MimeKit;
-
 namespace TokanPages.Backend.Tests.Services
 {
+    using System;
+    using System.Net;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using SmtpClient;
+    using Shared.Resources;
+    using SmtpClient.Models;
+    using Shared.Services.DataProviderService;
+    using DnsClient.Protocol;
+    using MailKit.Net.Smtp;
+    using MailKit.Security;
+    using FluentAssertions;
+    using DnsClient;
+    using MimeKit;
+    using Xunit;
+    using Moq;
+
     public class SmtpClientServiceTest
     {
         private readonly DataProviderService FDataProviderService;

@@ -1,12 +1,12 @@
-﻿using Xunit;
-using FluentAssertions;
-using System.Collections.Generic;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
-
-namespace TokanPages.Backend.Tests.Validators.Mailer
+﻿namespace TokanPages.Backend.Tests.Validators.Mailer
 {
+    using System.Collections.Generic;
+    using Shared.Resources;
+    using Shared.Services.DataProviderService;
+    using Cqrs.Handlers.Commands.Mailer;
+    using FluentAssertions;
+    using Xunit;
+
     public class SendMessageCommandValidatorTest
     {
         private readonly DataProviderService FDataProviderService;

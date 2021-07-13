@@ -1,11 +1,11 @@
-﻿using Xunit;
-using FluentAssertions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
-
-namespace TokanPages.Backend.Tests.Validators.Subscribers
+﻿namespace TokanPages.Backend.Tests.Validators.Subscribers
 {
+    using Shared.Resources;
+    using Shared.Services.DataProviderService;
+    using Cqrs.Handlers.Commands.Subscribers;
+    using FluentAssertions;
+    using Xunit;
+
     public class AddSubscriberCommandValidatorTest
     {
         private readonly DataProviderService FDataProviderService;

@@ -1,16 +1,16 @@
-﻿using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
-namespace TokanPages.Backend.Tests.Handlers.Users
+﻿namespace TokanPages.Backend.Tests.Handlers.Users
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Core.Exceptions;
+    using Cqrs.Handlers.Commands.Users;
+    using Shared.Services.DateTimeService;
+    using Shared.Services.DataProviderService;
+    using FluentAssertions;
+    using Xunit;
+    using Moq;
+
     public class UpdateUserCommandHandlerTest : TestBase
     {
         private readonly DataProviderService FDataProviderService;

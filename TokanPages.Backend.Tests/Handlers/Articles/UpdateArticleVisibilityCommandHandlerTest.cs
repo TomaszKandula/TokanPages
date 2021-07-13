@@ -1,22 +1,22 @@
-using Xunit;
-using Moq;
-using FluentAssertions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Domain.Entities;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using UsersEntity = TokanPages.Backend.Domain.Entities.Users;
-using ArticlesEntity = TokanPages.Backend.Domain.Entities.Articles;
-using PermissionsEntity = TokanPages.Backend.Domain.Entities.Permissions;
-using AuthorizationPermissions = TokanPages.Backend.Identity.Authorization.Permissions;
-
 namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Core.Exceptions;
+    using Domain.Entities;
+    using Shared.Resources;
+    using Cqrs.Services.UserProvider;
+    using Cqrs.Handlers.Commands.Articles;
+    using Shared.Services.DataProviderService;
+    using UsersEntity = Domain.Entities.Users;
+    using ArticlesEntity = Domain.Entities.Articles;
+    using PermissionsEntity = Domain.Entities.Permissions;
+    using AuthorizationPermissions = Identity.Authorization.Permissions;
+    using FluentAssertions;
+    using Xunit;
+    using Moq;
+
     public class UpdateArticleVisibilityCommandHandlerTest : TestBase
     {
         private readonly DataProviderService FDataProviderService;

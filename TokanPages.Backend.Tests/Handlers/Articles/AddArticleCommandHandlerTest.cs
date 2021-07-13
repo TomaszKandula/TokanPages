@@ -1,21 +1,21 @@
-﻿using Xunit;
-using Moq;
-using FluentAssertions;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Storage.AzureBlobStorage;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
-using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
-namespace TokanPages.Backend.Tests.Handlers.Articles
+﻿namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Core.Exceptions;
+    using Core.Extensions;
+    using Shared.Resources;
+    using Storage.AzureBlobStorage;
+    using Cqrs.Services.UserProvider;
+    using Shared.Services.DateTimeService;
+    using Cqrs.Handlers.Commands.Articles;
+    using Storage.AzureBlobStorage.Factory;
+    using Shared.Services.DataProviderService;
+    using FluentAssertions;
+    using Xunit;
+    using Moq;
+
     public class AddArticleCommandHandlerTest : TestBase
     {
         private readonly Mock<AzureBlobStorageFactory> FMockedAzureBlobStorageFactory;

@@ -1,24 +1,24 @@
-using Xunit;
-using Moq;
-using Moq.Protected;
-using FluentAssertions;
-using System;
-using System.Net;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Core.Logger;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Storage.Models;
-using TokanPages.Backend.Shared.Services.TemplateHelper;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using MediatR;
-
 namespace TokanPages.Backend.Tests.Handlers.Mailer
 {
+    using System;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using SmtpClient;
+    using Core.Logger;
+    using Shared.Models;
+    using Storage.Models;
+    using Cqrs.Handlers.Commands.Mailer;
+    using Shared.Services.TemplateHelper;
+    using Shared.Services.DataProviderService;
+    using FluentAssertions;
+    using Moq.Protected;
+    using MediatR;
+    using Xunit;
+    using Moq;
+
     public class SendNewsletterCommandHandlerTest : TestBase
     {
         private readonly DataProviderService FDataProviderService;

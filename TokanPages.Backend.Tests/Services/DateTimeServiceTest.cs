@@ -1,10 +1,10 @@
-using System;
-using Xunit;
-using FluentAssertions;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-
 namespace TokanPages.Backend.Tests.Services
 {
+    using System;
+    using TokanPages.Backend.Shared.Services.DateTimeService;
+    using FluentAssertions;
+    using Xunit;
+
     public class DateTimeServiceTest
     {
         private const int YEAR = 2020;

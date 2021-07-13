@@ -1,16 +1,16 @@
-using Xunit;
-using Moq;
-using FluentAssertions;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
 namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using System;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Cqrs.Services.UserProvider;
+    using Cqrs.Handlers.Commands.Articles;
+    using Shared.Services.DataProviderService;
+    using FluentAssertions;
+    using Xunit;
+    using Moq;
+
     public class UpdateArticleLikesCommandHandlerTest : TestBase
     {
         private const string IP_ADDRESS = "255.255.255.255";

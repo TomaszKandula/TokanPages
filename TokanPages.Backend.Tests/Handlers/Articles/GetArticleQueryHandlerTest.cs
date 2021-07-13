@@ -1,17 +1,17 @@
-﻿using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
-namespace TokanPages.Backend.Tests.Handlers.Articles
+﻿namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Core.Exceptions;
+    using Cqrs.Services.UserProvider;
+    using Cqrs.Handlers.Queries.Articles;
+    using Shared.Services.DataProviderService;
+    using FluentAssertions;
+    using Xunit;
+    using Moq;
+
     public class GetArticleQueryHandlerTest : TestBase
     {
         private const string USER_ALIAS = "Ester";
@@ -154,7 +154,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             var LGetArticleQueryHandler = new GetArticleQueryHandler(LDatabaseContext, LMockedUserProvider.Object);
 
-            // Act & Assert
+            // Act
+            // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
                 => LGetArticleQueryHandler.Handle(LGetArticleQuery, CancellationToken.None));
         }
