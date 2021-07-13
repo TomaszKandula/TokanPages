@@ -10,7 +10,6 @@ namespace TokanPages.Backend.Tests.Services
     using Core.Exceptions;
     using Shared.Resources;
     using Cqrs.Services.UserProvider;
-    using Shared.Services.DataProviderService;
     using Roles = Identity.Authorization.Roles;
     using Permissions = Identity.Authorization.Permissions;
     using FluentAssertions;
@@ -19,10 +18,6 @@ namespace TokanPages.Backend.Tests.Services
 
     public class UserProviderTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public UserProviderTest() => FDataProviderService = new DataProviderService();
-
         [Fact]
         public async Task GivenValidClaimsInHttpContext_WhenInvokeGetUserId_ShouldReturnLoggedUserId()
         {
@@ -605,15 +600,15 @@ namespace TokanPages.Backend.Tests.Services
                 new ()
                 {
                     Id = AUserId,
-                    EmailAddress = FDataProviderService.GetRandomEmail(),
-                    UserAlias = FDataProviderService.GetRandomString(),
-                    FirstName = FDataProviderService.GetRandomString(),
-                    LastName = FDataProviderService.GetRandomString(),
+                    EmailAddress = DataProviderService.GetRandomEmail(),
+                    UserAlias = DataProviderService.GetRandomString(),
+                    FirstName = DataProviderService.GetRandomString(),
+                    LastName = DataProviderService.GetRandomString(),
                     IsActivated = true,
-                    Registered = FDataProviderService.GetRandomDateTime(),
+                    Registered = DataProviderService.GetRandomDateTime(),
                     LastUpdated = null,
                     LastLogged = null,
-                    CryptedPassword = FDataProviderService.GetRandomString()
+                    CryptedPassword = DataProviderService.GetRandomString()
                 }
             };
         }

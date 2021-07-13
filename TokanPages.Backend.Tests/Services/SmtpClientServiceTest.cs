@@ -8,7 +8,6 @@ namespace TokanPages.Backend.Tests.Services
     using SmtpClient;
     using Shared.Resources;
     using SmtpClient.Models;
-    using Shared.Services.DataProviderService;
     using DnsClient.Protocol;
     using MailKit.Net.Smtp;
     using MailKit.Security;
@@ -18,12 +17,8 @@ namespace TokanPages.Backend.Tests.Services
     using Xunit;
     using Moq;
 
-    public class SmtpClientServiceTest
+    public class SmtpClientServiceTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public SmtpClientServiceTest() => FDataProviderService = new DataProviderService();
-
         [Fact]
         public async Task GivenValidSmtpSettings_WhenConnectAndAuthenticate_ShouldReturnSuccess()
         {
@@ -270,12 +265,12 @@ namespace TokanPages.Backend.Tests.Services
                 LMockedLookupClient.Object,
                 LSmtpServerSettingsModel)
             {
-                Subject = FDataProviderService.GetRandomString(),
-                From = FDataProviderService.GetRandomEmail(),
-                Tos = new List<string> { FDataProviderService.GetRandomEmail() },
-                Ccs = new List<string> { FDataProviderService.GetRandomEmail() },
-                Bccs = new List<string> { FDataProviderService.GetRandomEmail() },
-                PlainText = FDataProviderService.GetRandomString()
+                Subject = DataProviderService.GetRandomString(),
+                From = DataProviderService.GetRandomEmail(),
+                Tos = new List<string> { DataProviderService.GetRandomEmail() },
+                Ccs = new List<string> { DataProviderService.GetRandomEmail() },
+                Bccs = new List<string> { DataProviderService.GetRandomEmail() },
+                PlainText = DataProviderService.GetRandomString()
             };
 
             // Act
@@ -334,12 +329,12 @@ namespace TokanPages.Backend.Tests.Services
                 LMockedLookupClient.Object,
                 LSmtpServerSettingsModel)
             {
-                Subject = FDataProviderService.GetRandomString(),
-                From = FDataProviderService.GetRandomEmail(),
-                Tos = new List<string> {FDataProviderService.GetRandomEmail()},
+                Subject = DataProviderService.GetRandomString(),
+                From = DataProviderService.GetRandomEmail(),
+                Tos = new List<string> { DataProviderService.GetRandomEmail() },
                 Ccs = null,
                 Bccs = null,
-                PlainText = FDataProviderService.GetRandomString()
+                PlainText = DataProviderService.GetRandomString()
             };
 
             // Act
@@ -362,10 +357,10 @@ namespace TokanPages.Backend.Tests.Services
             
             var LEmails = new List<string>
             {
-                FDataProviderService.GetRandomEmail(),
-                FDataProviderService.GetRandomEmail(),
-                FDataProviderService.GetRandomEmail(),
-                FDataProviderService.GetRandomEmail()
+                DataProviderService.GetRandomEmail(),
+                DataProviderService.GetRandomEmail(),
+                DataProviderService.GetRandomEmail(),
+                DataProviderService.GetRandomEmail()
             };
 
             var LSmtpClientService = new SmtpClientService(
@@ -398,8 +393,8 @@ namespace TokanPages.Backend.Tests.Services
             
             var LEmails = new List<string>
             {
-                FDataProviderService.GetRandomString(),
-                FDataProviderService.GetRandomString(),
+                DataProviderService.GetRandomString(),
+                DataProviderService.GetRandomString(),
             };
 
             var LSmtpClientService = new SmtpClientService(
@@ -454,7 +449,7 @@ namespace TokanPages.Backend.Tests.Services
                 LSmtpServerSettingsModel); 
     
             // Act
-            var LResult = await LSmtpClientService.IsDomainCorrect(FDataProviderService.GetRandomEmail(9, LOOKUP_DOMAIN));
+            var LResult = await LSmtpClientService.IsDomainCorrect(DataProviderService.GetRandomEmail(9, LOOKUP_DOMAIN));
     
             // Assert
             LResult.Should().BeTrue();
@@ -494,7 +489,7 @@ namespace TokanPages.Backend.Tests.Services
                 LSmtpServerSettingsModel); 
     
             // Act
-            var LResult = await LSmtpClientService.IsDomainCorrect(FDataProviderService.GetRandomEmail(9, LOOKUP_DOMAIN));
+            var LResult = await LSmtpClientService.IsDomainCorrect(DataProviderService.GetRandomEmail(9, LOOKUP_DOMAIN));
     
             // Assert
             LResult.Should().BeFalse();

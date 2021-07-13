@@ -2,7 +2,6 @@ namespace TokanPages.Backend.Shared.Services.DataProviderService
 {
     using System;
     using System.IO;
-    using System.Security.Claims;
 
     public abstract class DataProviderObject
     {
@@ -19,7 +18,5 @@ namespace TokanPages.Backend.Shared.Services.DataProviderService
         public abstract string GetRandomEmail(int ALength = 12, string ADomain = "gmail.com");
 
         public abstract string GetRandomString(int ALength = 12, string APrefix = "");
-
-        public abstract string GenerateJwt(DateTime AExpires, ClaimsIdentity AClaimsIdentity, string AWebSecret, string AIssuer, string ATargetAudience);
     }
 }
