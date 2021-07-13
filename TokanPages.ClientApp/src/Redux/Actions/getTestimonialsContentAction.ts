@@ -25,9 +25,10 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_TESTIMONIALS_CONTENT });
 
-        axios.get(GET_TESTIMONIALS_CONTENT, 
+        axios( 
         {
             method: "GET", 
+            url: GET_TESTIMONIALS_CONTENT,
             responseType: "json"
         })
         .then(response =>

@@ -25,9 +25,10 @@ export const ActionCreators =
         
         dispatch({ type: REQUEST_SIGNIN_FORM_CONTENT });
 
-        axios.get(GET_SIGNIN_FORM_CONTENT, 
+        axios( 
         {
             method: "GET", 
+            url: GET_SIGNIN_FORM_CONTENT,
             responseType: "json"
         })
         .then(response =>

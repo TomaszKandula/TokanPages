@@ -34,8 +34,8 @@ export const ActionCreators =
 
         const artcileDetailsUrl = API_QUERY_GET_ARTICLE.replace("{id}", id);
         const articleTextUrl = ARTICLE_URL.replace("{ID}", id);
-        const requestDetails = axios.get(artcileDetailsUrl, { method: "GET", responseType: "json" });
-        const requestText = axios.get(articleTextUrl, { method: "GET", responseType: "json" });  
+        const requestDetails = axios(artcileDetailsUrl, { method: "GET", responseType: "json" });
+        const requestText = axios(articleTextUrl, { method: "GET", responseType: "json" });  
 
         axios.all([requestDetails, requestText]).then(axios.spread((...responses) => 
         {

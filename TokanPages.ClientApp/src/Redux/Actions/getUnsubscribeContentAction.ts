@@ -25,9 +25,10 @@ export const ActionCreators =
         
         dispatch({ type: REQUEST_UNSUBSCRIBE_CONTENT });
 
-        axios.get(GET_UNSUBSCRIBE_CONTENT, 
+        axios( 
         {
             method: "GET", 
+            url: GET_UNSUBSCRIBE_CONTENT,
             responseType: "json"
         })
         .then(response =>
