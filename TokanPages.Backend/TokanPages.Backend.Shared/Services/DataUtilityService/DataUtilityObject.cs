@@ -1,10 +1,9 @@
-namespace TokanPages.Backend.Shared.Services.DataProviderService
+namespace TokanPages.Backend.Shared.Services.DataUtilityService
 {
     using System;
     using System.IO;
-    using System.Security.Claims;
 
-    public abstract class DataProviderObject
+    public abstract class DataUtilityObject
     {
         public abstract DateTime GetRandomDateTime(DateTime? AMin = null, DateTime? AMax = null, int ADefaultYear = 2020);
 
@@ -19,7 +18,5 @@ namespace TokanPages.Backend.Shared.Services.DataProviderService
         public abstract string GetRandomEmail(int ALength = 12, string ADomain = "gmail.com");
 
         public abstract string GetRandomString(int ALength = 12, string APrefix = "");
-
-        public abstract string GenerateJwt(DateTime AExpires, ClaimsIdentity AClaimsIdentity, string AWebSecret, string AIssuer, string ATargetAudience);
     }
 }

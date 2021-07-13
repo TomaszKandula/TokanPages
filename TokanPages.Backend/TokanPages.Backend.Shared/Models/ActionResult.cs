@@ -3,7 +3,7 @@
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class ActionResultModel
+    public class ActionResult
     {
         public bool IsSucceeded { get; set; }
 

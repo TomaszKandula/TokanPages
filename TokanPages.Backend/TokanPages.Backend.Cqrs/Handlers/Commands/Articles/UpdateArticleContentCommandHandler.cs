@@ -7,7 +7,7 @@
     using Database;
     using Core.Exceptions;
     using Shared.Resources;
-    using Services.UserProvider;
+    using Services.UserServiceProvider;
     using Shared.Services.DateTimeService;
     using Storage.AzureBlobStorage.Factory;
     using MediatR;
@@ -16,24 +16,24 @@
     {
         private readonly DatabaseContext FDatabaseContext;
 
-        private readonly IUserProvider FUserProvider;
+        private readonly IUserServiceProvider FUserServiceProvider;
         
         private readonly IDateTimeService FDateTimeService;
         
         private readonly IAzureBlobStorageFactory FAzureBlobStorageFactory;
         
-        public UpdateArticleContentCommandHandler(DatabaseContext ADatabaseContext, IUserProvider AUserProvider, 
+        public UpdateArticleContentCommandHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider, 
             IDateTimeService ADateTimeService, IAzureBlobStorageFactory AAzureBlobStorageFactory)
         {
             FDatabaseContext = ADatabaseContext;
-            FUserProvider = AUserProvider;
+            FUserServiceProvider = AUserServiceProvider;
             FDateTimeService = ADateTimeService;
             FAzureBlobStorageFactory = AAzureBlobStorageFactory;
         }
 
         public override async Task<Unit> Handle(UpdateArticleContentCommand ARequest, CancellationToken ACancellationToken)
         {
-            var LUserId = await FUserProvider.GetUserId();
+            var LUserId = await FUserServiceProvider.GetUserId();
             if (LUserId == null)
                 throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 

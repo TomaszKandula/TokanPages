@@ -5,15 +5,15 @@
     using System.Threading.Tasks;
     using Core.Exceptions;
     using Cqrs.Handlers.Commands.Subscribers;
-    using Shared.Services.DataProviderService;
+    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
 
     public class RemoveSubscriberCommandHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
+        private readonly DataUtilityService FDataUtilityService;
 
-        public RemoveSubscriberCommandHandlerTest() => FDataProviderService = new DataProviderService();
+        public RemoveSubscriberCommandHandlerTest() => FDataUtilityService = new DataUtilityService();
 
         [Fact]
         public async Task GivenCorrectId_WhenRemoveSubscriber_ShouldRemoveEntity() 
@@ -21,7 +21,7 @@
             // Arrange
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
             {
-                Email = FDataProviderService.GetRandomEmail(),
+                Email = FDataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,

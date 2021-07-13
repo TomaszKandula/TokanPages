@@ -7,16 +7,16 @@
     using Core.Exceptions;
     using Shared.Services.DateTimeService;
     using Cqrs.Handlers.Commands.Subscribers;
-    using Shared.Services.DataProviderService;
+    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
     using Moq;
 
     public class AddSubscriberCommandHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
+        private readonly DataUtilityService FDataUtilityService;
 
-        public AddSubscriberCommandHandlerTest() => FDataProviderService = new DataProviderService();
+        public AddSubscriberCommandHandlerTest() => FDataUtilityService = new DataUtilityService();
 
         [Fact]
         public async Task GivenProvidedEmail_WhenAddSubscriber_ShouldAddEntity() 
@@ -24,7 +24,7 @@
             // Arrange
             var LAddSubscriberCommand = new AddSubscriberCommand 
             { 
-                Email = FDataProviderService.GetRandomEmail()
+                Email = FDataUtilityService.GetRandomEmail()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -57,7 +57,7 @@
         public async Task GivenExistingEmail_WhenAddSubscriber_ShouldThrowError()
         {
             // Arrange
-            var LTestEmail = FDataProviderService.GetRandomEmail();
+            var LTestEmail = FDataUtilityService.GetRandomEmail();
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
             { 
                 Email = LTestEmail,

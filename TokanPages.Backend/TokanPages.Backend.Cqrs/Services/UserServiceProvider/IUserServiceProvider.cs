@@ -1,11 +1,11 @@
-﻿namespace TokanPages.Backend.Cqrs.Services.UserProvider
+﻿namespace TokanPages.Backend.Cqrs.Services.UserServiceProvider
 {
     using System;
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Shared.Dto.Users;
 
-    public interface IUserProvider
+    public interface IUserServiceProvider
     {
         string GetRequestIpAddress();
 

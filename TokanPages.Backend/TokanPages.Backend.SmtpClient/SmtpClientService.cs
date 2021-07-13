@@ -21,14 +21,13 @@
 
         private readonly ILookupClient FLookupClient;
         
-        private readonly SmtpServerSettingsModel FSmtpServerSettingsModel;
+        private readonly SmtpServer FSmtpServer;
 
-        public SmtpClientService(ISmtpClient ASmtpClient, ILookupClient ALookupClient, 
-            SmtpServerSettingsModel ASmtpServerSettingsModel)
+        public SmtpClientService(ISmtpClient ASmtpClient, ILookupClient ALookupClient, SmtpServer ASmtpServer)
         {
             FSmtpClient = ASmtpClient;
             FLookupClient = ALookupClient;
-            FSmtpServerSettingsModel = ASmtpServerSettingsModel;
+            FSmtpServer = ASmtpServer;
         }
 
         public override string From { get; set; }
@@ -45,32 +44,32 @@
         
         public override string HtmlBody { get; set; }
 
-        public override async Task<ActionResultModel> CanConnectAndAuthenticate(CancellationToken ACancellationToken = default)
+        public override async Task<ActionResult> CanConnectAndAuthenticate(CancellationToken ACancellationToken = default)
         {
             try
             {
-                var LSslOnConnect = FSmtpServerSettingsModel.IsSSL
+                var LSslOnConnect = FSmtpServer.IsSSL
                     ? SecureSocketOptions.SslOnConnect
                     : SecureSocketOptions.None;
                 
-                await FSmtpClient.ConnectAsync(FSmtpServerSettingsModel.Server, 
-                    FSmtpServerSettingsModel.Port, LSslOnConnect, ACancellationToken);
+                await FSmtpClient.ConnectAsync(FSmtpServer.Server, 
+                    FSmtpServer.Port, LSslOnConnect, ACancellationToken);
 
                 if (!FSmtpClient.IsConnected)
                 {
-                    return new ActionResultModel
+                    return new ActionResult
                     {
                         ErrorCode = nameof(ErrorCodes.NOT_CONNECTED_TO_SMTP),
                         ErrorDesc = ErrorCodes.NOT_CONNECTED_TO_SMTP
                     };
                 }
 
-                await FSmtpClient.AuthenticateAsync(FSmtpServerSettingsModel.Account, 
-                    FSmtpServerSettingsModel.Password, ACancellationToken);
+                await FSmtpClient.AuthenticateAsync(FSmtpServer.Account, 
+                    FSmtpServer.Password, ACancellationToken);
 
                 if (!FSmtpClient.IsAuthenticated)
                 {
-                    return new ActionResultModel
+                    return new ActionResult
                     {
                         ErrorCode = nameof(ErrorCodes.NOT_AUTHENTICATED_WITH_SMTP),
                         ErrorDesc = ErrorCodes.NOT_AUTHENTICATED_WITH_SMTP
@@ -78,11 +77,11 @@
                 }
 
                 await FSmtpClient.DisconnectAsync(true, ACancellationToken);
-                return new ActionResultModel { IsSucceeded = true };
+                return new ActionResult { IsSucceeded = true };
             }
             catch (Exception LException)
             {
-                return new ActionResultModel
+                return new ActionResult
                 {
                     ErrorCode = nameof(ErrorCodes.SMTP_CLIENT_ERROR),
                     ErrorDesc = ErrorCodes.SMTP_CLIENT_ERROR,
@@ -91,7 +90,7 @@
             }
         }
 
-        public override async Task<ActionResultModel> Send(CancellationToken ACancellationToken = default)
+        public override async Task<ActionResult> Send(CancellationToken ACancellationToken = default)
         {
             try
             {
@@ -115,21 +114,21 @@
                 if (!string.IsNullOrEmpty(HtmlBody)) 
                     LNewMail.Body = new TextPart(TextFormat.Html) { Text = HtmlBody };
 
-                var LSslOnConnect = FSmtpServerSettingsModel.IsSSL
+                var LSslOnConnect = FSmtpServer.IsSSL
                     ? SecureSocketOptions.SslOnConnect
                     : SecureSocketOptions.None;
                 
-                await FSmtpClient.ConnectAsync(FSmtpServerSettingsModel.Server, FSmtpServerSettingsModel.Port, LSslOnConnect, ACancellationToken);
-                await FSmtpClient.AuthenticateAsync(FSmtpServerSettingsModel.Account, FSmtpServerSettingsModel.Password, ACancellationToken);
+                await FSmtpClient.ConnectAsync(FSmtpServer.Server, FSmtpServer.Port, LSslOnConnect, ACancellationToken);
+                await FSmtpClient.AuthenticateAsync(FSmtpServer.Account, FSmtpServer.Password, ACancellationToken);
 
                 await FSmtpClient.SendAsync(LNewMail, ACancellationToken);
                 await FSmtpClient.DisconnectAsync(true, ACancellationToken);
 
-                return new ActionResultModel { IsSucceeded = true };
+                return new ActionResult { IsSucceeded = true };
             } 
             catch (Exception LException)
             {
-                return new ActionResultModel
+                return new ActionResult
                 {
                     ErrorCode = nameof(ErrorCodes.SMTP_CLIENT_ERROR),
                     ErrorDesc = ErrorCodes.SMTP_CLIENT_ERROR,
@@ -138,20 +137,20 @@
             }
         }
 
-        public override List<EmailAddressModel> IsAddressCorrect(IEnumerable<string> AEmailAddress)
+        public override List<Email> IsAddressCorrect(IEnumerable<string> AEmailAddress)
         {
-            var LResults = new List<EmailAddressModel>();
+            var LResults = new List<Email>();
 
             foreach (var LItem in AEmailAddress)
             {
                 try
                 {
                     var LEmailAddress = new MailAddress(LItem);
-                    LResults.Add(new EmailAddressModel { EmailAddress = LEmailAddress.Address, IsValid = true });
+                    LResults.Add(new Email { Address = LEmailAddress.Address, IsValid = true });
                 }
                 catch (FormatException)
                 {
-                    LResults.Add(new EmailAddressModel { EmailAddress = LItem, IsValid = false });
+                    LResults.Add(new Email { Address = LItem, IsValid = false });
                 }
             }
             

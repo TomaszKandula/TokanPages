@@ -3,7 +3,7 @@
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class ApplicationPathsModel
+    public class ApplicationPaths
     {
         public string UpdateSubscriberPath { get; set; }
 

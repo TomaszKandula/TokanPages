@@ -20,12 +20,13 @@
     using Backend.SmtpClient.Models;
     using Backend.Database.Initializer;
     using Backend.Identity.Authentication;
-    using Backend.Cqrs.Services.UserProvider;
-    using Backend.Shared.Services.TemplateHelper;
-    using Backend.Shared.Services.DateTimeService;
     using Backend.Cqrs.Services.CipheringService;
+    using Backend.Shared.Services.TemplateService;
+    using Backend.Shared.Services.DateTimeService;
     using Backend.Storage.AzureBlobStorage.Factory;
-    using Backend.Shared.Services.DataProviderService;
+    using Backend.Cqrs.Services.UserServiceProvider;
+    using Backend.Shared.Services.DataUtilityService;
+    using Backend.Identity.Services.JwtUtilityService;
     using FluentValidation;
     using MailKit.Net.Smtp;
     using DnsClient;
@@ -54,10 +55,10 @@
 
         private static void SetupAppSettings(IServiceCollection AServices, IConfiguration AConfiguration) 
         {
-            AServices.AddSingleton(AConfiguration.GetSection("AzureStorage").Get<AzureStorageSettingsModel>());
-            AServices.AddSingleton(AConfiguration.GetSection("SmtpServer").Get<SmtpServerSettingsModel>());
-            AServices.AddSingleton(AConfiguration.GetSection("AppUrls").Get<ApplicationPathsModel>());
-            AServices.AddSingleton(AConfiguration.GetSection("SonarQube").Get<SonarQubeSettingsModel>());
+            AServices.AddSingleton(AConfiguration.GetSection("AzureStorage").Get<AzureStorage>());
+            AServices.AddSingleton(AConfiguration.GetSection("SmtpServer").Get<SmtpServer>());
+            AServices.AddSingleton(AConfiguration.GetSection("AppUrls").Get<ApplicationPaths>());
+            AServices.AddSingleton(AConfiguration.GetSection("SonarQube").Get<SonarQube>());
         }
 
         private static void SetupLogger(IServiceCollection AServices) 
@@ -83,16 +84,17 @@
             AServices.AddScoped<ISmtpClient, SmtpClient>();
             AServices.AddScoped<ILookupClient, LookupClient>();
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();
-            AServices.AddScoped<ITemplateHelper, TemplateHelper>();
+            AServices.AddScoped<ITemplateService, TemplateService>();
             AServices.AddScoped<IDateTimeService, DateTimeService>();
-            AServices.AddScoped<IUserProvider, UserProvider>();
-            AServices.AddScoped<IDataProviderService, DataProviderService>();
+            AServices.AddScoped<IJwtUtilityService, JwtUtilityService>();
+            AServices.AddScoped<IDataUtilityService, DataUtilityService>();
+            AServices.AddScoped<IUserServiceProvider, UserServiceProvider>();
             AServices.AddScoped<IDbInitializer, DbInitializer>();
             AServices.AddScoped<ICipheringService, CipheringService>();
             
             AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
             {
-                var LAzureStorageSettings = AProvider.GetRequiredService<AzureStorageSettingsModel>();
+                var LAzureStorageSettings = AProvider.GetRequiredService<AzureStorage>();
                 return new AzureBlobStorageFactory(LAzureStorageSettings.ConnectionString, LAzureStorageSettings.ContainerName);
             });
         }
@@ -111,7 +113,7 @@
 
         private static void SetupRetryPolicyWithPolly(IServiceCollection AServices, IConfiguration AConfiguration, IWebHostEnvironment AEnvironment)
         {
-            var LAppUrls = AConfiguration.GetSection("AppUrls").Get<ApplicationPathsModel>();
+            var LAppUrls = AConfiguration.GetSection("AppUrls").Get<ApplicationPaths>();
             AServices.AddHttpClient("RetryHttpClient", AOptions =>
             {
                 AOptions.BaseAddress = new Uri(AEnvironment.IsDevelopment() 

@@ -4,7 +4,7 @@ namespace TokanPages.Backend.Storage.Models
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class StorageStreamContentModel
+    public class StorageStreamContent
     {
         public Stream Content { get; set; }
 

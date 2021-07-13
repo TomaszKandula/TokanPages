@@ -1,18 +1,14 @@
-namespace TokanPages.Backend.Shared.Services.DataProviderService
+namespace TokanPages.Backend.Shared.Services.DataUtilityService
 {
     using System;
     using System.IO;
     using System.Linq;
-    using System.Text;
-    using System.Security.Claims;
-    using System.IdentityModel.Tokens.Jwt;
-    using Microsoft.IdentityModel.Tokens;
 
-    public class DataProviderService : DataProviderObject, IDataProviderService
+    public class DataUtilityService : DataUtilityObject, IDataUtilityService
     {
         private readonly Random FRandom;
 
-        public DataProviderService() => FRandom = new Random();
+        public DataUtilityService() => FRandom = new Random();
 
         /// <summary>
         /// Returns randomized Date within given range.
@@ -127,32 +123,6 @@ namespace TokanPages.Backend.Shared.Services.DataProviderService
                 return APrefix.Trim() + LString; 
 
             return LString;
-        }
-
-        /// <summary>
-        /// Returns a new security token with given claims and expiration date and time.
-        /// </summary>
-        /// <param name="AExpires">Value of the 'expiration' claim. This value should be in UTC.</param>
-        /// <param name="AClaimsIdentity">Claims that will be used when creating a security token.</param>
-        /// <param name="AWebSecret">String used to generate token key.</param>
-        /// <param name="AIssuer">Issuer of a security token.</param>
-        /// <param name="ATargetAudience">Target audience.</param>
-        /// <returns>New JSON Web Token.</returns>
-        public override string GenerateJwt(DateTime AExpires, ClaimsIdentity AClaimsIdentity, string AWebSecret, string AIssuer, string ATargetAudience)
-        {
-            var LTokenHandler = new JwtSecurityTokenHandler();
-            var LKey = Encoding.ASCII.GetBytes(AWebSecret);
-            var LTokenDescriptor = new SecurityTokenDescriptor
-            {
-                Issuer = AIssuer,
-                IssuedAt = DateTime.UtcNow,
-                Audience = ATargetAudience,
-                Subject = AClaimsIdentity,
-                Expires = AExpires,
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(LKey), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var LToken = LTokenHandler.CreateToken(LTokenDescriptor);
-            return LTokenHandler.WriteToken(LToken);
         }
     }
 }

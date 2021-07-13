@@ -9,29 +9,29 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
     using Core.Extensions;
     using Shared.Resources;
     using Shared.Dto.Users;
-    using Services.UserProvider;
+    using Services.UserServiceProvider;
 
     public class GetArticleQueryHandler : TemplateHandler<GetArticleQuery, GetArticleQueryResult>
     {
         private readonly DatabaseContext FDatabaseContext;
         
-        private readonly IUserProvider FUserProvider;
+        private readonly IUserServiceProvider FUserServiceProvider;
 
-        public GetArticleQueryHandler(DatabaseContext ADatabaseContext, IUserProvider AUserProvider)
+        public GetArticleQueryHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider)
         {
             FDatabaseContext = ADatabaseContext;
-            FUserProvider = AUserProvider;
+            FUserServiceProvider = AUserServiceProvider;
         }
 
         public override async Task<GetArticleQueryResult> Handle(GetArticleQuery ARequest, CancellationToken ACancellationToken)
         {
-            var LUserId = await FUserProvider.GetUserId();
+            var LUserId = await FUserServiceProvider.GetUserId();
             var LIsAnonymousUser = LUserId == null;
 
             var LGetArticleLikes = await FDatabaseContext.ArticleLikes
                 .Where(ALikes => ALikes.ArticleId == ARequest.Id)
                 .WhereIfElse(LIsAnonymousUser,
-                    ALikes => ALikes.IpAddress == FUserProvider.GetRequestIpAddress(),
+                    ALikes => ALikes.IpAddress == FUserServiceProvider.GetRequestIpAddress(),
                     ALikes => ALikes.UserId == LUserId)
                 .Select(ALikes => ALikes.LikeCount)
                 .ToListAsync(ACancellationToken);

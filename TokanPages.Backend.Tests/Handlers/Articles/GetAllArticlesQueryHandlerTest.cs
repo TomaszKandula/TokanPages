@@ -6,15 +6,15 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Cqrs.Handlers.Queries.Articles;
-    using Shared.Services.DataProviderService;
+    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
 
     public class GetAllArticlesQueryHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
+        private readonly DataUtilityService FDataUtilityService;
 
-        public GetAllArticlesQueryHandlerTest() => FDataProviderService = new DataProviderService();
+        public GetAllArticlesQueryHandlerTest() => FDataUtilityService = new DataUtilityService();
 
         [Fact]
         public async Task WhenGetAllArticles_ShouldReturnCollection() 
@@ -26,17 +26,17 @@
             
             var LUser = new Backend.Domain.Entities.Users
             {
-                UserAlias  = FDataProviderService.GetRandomString(),
+                UserAlias  = FDataUtilityService.GetRandomString(),
                 IsActivated = true,
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                Registered = FDataProviderService.GetRandomDateTime(),
-                LastLogged = FDataProviderService.GetRandomDateTime(),
-                LastUpdated = FDataProviderService.GetRandomDateTime(),
-                AvatarName = FDataProviderService.GetRandomString(),
-                ShortBio = FDataProviderService.GetRandomString(),
-                CryptedPassword = FDataProviderService.GetRandomString()
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
+                EmailAddress = FDataUtilityService.GetRandomEmail(),
+                Registered = FDataUtilityService.GetRandomDateTime(),
+                LastLogged = FDataUtilityService.GetRandomDateTime(),
+                LastUpdated = FDataUtilityService.GetRandomDateTime(),
+                AvatarName = FDataUtilityService.GetRandomString(),
+                ShortBio = FDataUtilityService.GetRandomString(),
+                CryptedPassword = FDataUtilityService.GetRandomString()
             };
 
             await LDatabaseContext.Users.AddAsync(LUser);
@@ -46,8 +46,8 @@
             {
                 new ()
                 {
-                    Title = FDataProviderService.GetRandomString(),
-                    Description = FDataProviderService.GetRandomString(),
+                    Title = FDataUtilityService.GetRandomString(),
+                    Description = FDataUtilityService.GetRandomString(),
                     IsPublished = false,
                     ReadCount = 0,
                     CreatedAt = DateTime.Now.AddDays(-10),
@@ -56,8 +56,8 @@
                 },
                 new ()
                 {
-                    Title = FDataProviderService.GetRandomString(),
-                    Description = FDataProviderService.GetRandomString(),
+                    Title = FDataUtilityService.GetRandomString(),
+                    Description = FDataUtilityService.GetRandomString(),
                     IsPublished = false,
                     ReadCount = 0,
                     CreatedAt = DateTime.Now.AddDays(-15),

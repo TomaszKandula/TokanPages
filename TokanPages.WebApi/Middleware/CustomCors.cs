@@ -15,10 +15,10 @@
         public CustomCors(RequestDelegate ARequestDelegate) 
             => FRequestDelegate = ARequestDelegate;
 
-        public Task Invoke(HttpContext AHttpContext, ApplicationPathsModel AApplicationPathsModel)
+        public Task Invoke(HttpContext AHttpContext, ApplicationPaths AApplicationPaths)
         {
-            var LDevelopmentOrigins = AApplicationPathsModel.DevelopmentOrigin.Split(';').ToList();
-            var LDeploymentOrigins = AApplicationPathsModel.DeploymentOrigin.Split(';').ToList();
+            var LDevelopmentOrigins = AApplicationPaths.DevelopmentOrigin.Split(';').ToList();
+            var LDeploymentOrigins = AApplicationPaths.DeploymentOrigin.Split(';').ToList();
             var LRequestOrigin = AHttpContext.Request.Headers["Origin"];
 
             if (!LDevelopmentOrigins.Contains(LRequestOrigin) && !LDeploymentOrigins.Contains(LRequestOrigin))

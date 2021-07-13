@@ -6,16 +6,16 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
     using SmtpClient;
     using SmtpClient.Models;
     using Cqrs.Handlers.Commands.Mailer;
-    using Shared.Services.DataProviderService;
+    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
     using Moq;
 
     public class VerifyEmailAddressCommandHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
+        private readonly DataUtilityService FDataUtilityService;
 
-        public VerifyEmailAddressCommandHandlerTest() => FDataProviderService = new DataProviderService();
+        public VerifyEmailAddressCommandHandlerTest() => FDataUtilityService = new DataUtilityService();
 
         [Fact]
         public async Task GivenValidEmailAddress_WhenVerifyEmailAddress_ShouldFinishSuccessful()
@@ -23,15 +23,15 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             // Arrange
             var LVerifyEmailAddressCommand = new VerifyEmailAddressCommand
             {
-                Email = FDataProviderService.GetRandomEmail()
+                Email = FDataUtilityService.GetRandomEmail()
             };
 
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();
-            var LCheckActionResult = new List<EmailAddressModel>
+            var LCheckActionResult = new List<Email>
             {
                 new ()
                 {
-                    EmailAddress = LVerifyEmailAddressCommand.Email,
+                    Address = LVerifyEmailAddressCommand.Email,
                     IsValid = true
                 }
             };

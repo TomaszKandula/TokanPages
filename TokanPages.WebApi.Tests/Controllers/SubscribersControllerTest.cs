@@ -27,7 +27,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             // Arrange
             var LRequest = $"{API_BASE_URL}/AddSubscriber/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
-            var LPayLoad = new AddSubscriberDto { Email = DataProviderService.GetRandomEmail() };
+            var LPayLoad = new AddSubscriberDto { Email = DataUtilityService.GetRandomEmail() };
 
             var LHttpClient = FWebAppFactory.CreateClient();
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
@@ -81,7 +81,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
 
@@ -128,7 +128,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LPayLoad = new UpdateSubscriberDto
             {
                 Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
-                Email = DataProviderService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 Count = null,
                 IsActivated = null
             };

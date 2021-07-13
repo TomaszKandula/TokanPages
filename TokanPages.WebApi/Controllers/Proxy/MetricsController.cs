@@ -15,9 +15,9 @@ namespace TokanPages.WebApi.Controllers.Proxy
     [AllowAnonymous]
     public class Metrics : ControllerBase
     {
-        private readonly SonarQubeSettingsModel FSonarQubeSettingsModel;
+        private readonly SonarQube FSonarQube;
         
-        public Metrics(SonarQubeSettingsModel ASonarQubeSettingsModel) => FSonarQubeSettingsModel = ASonarQubeSettingsModel;
+        public Metrics(SonarQube ASonarQube) => FSonarQube = ASonarQube;
         
         /// <summary>
         /// Returns badge from SonarQube server for given project name and metric type.
@@ -35,7 +35,7 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 if (string.IsNullOrEmpty(AProject) && string.IsNullOrEmpty(AMetric))
                     return HttpClientContent.GetContentResult(400, $"Parameters '{nameof(AProject)}' and '{nameof(AMetric)}' are missing");
 
-                var LParameterList = new List<ParameterModel>
+                var LParameterList = new List<Parameter>
                 {
                     new () { Key = nameof(AProject), Value = AProject },
                     new () { Key = nameof(AMetric), Value = AMetric }
@@ -49,8 +49,8 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 if (!Constants.MetricNames.NameList.Contains(AMetric))
                     return HttpClientContent.GetContentResult(400, $"Parameter '{nameof(AMetric)}' is invalid.");
 
-                var LRequestUrl = $"{FSonarQubeSettingsModel.Server}/api/project_badges/measure?project={AProject}&metric={AMetric}";
-                var LContent = await HttpClientContent.GetContent(LRequestUrl, FSonarQubeSettingsModel.Token);
+                var LRequestUrl = $"{FSonarQube.Server}/api/project_badges/measure?project={AProject}&metric={AMetric}";
+                var LContent = await HttpClientContent.GetContent(LRequestUrl, FSonarQube.Token);
                 return HttpClientContent.GetContentResult(200, LContent, Constants.ContentTypes.IMAGE_SVG);
             }
             catch (Exception LException)
@@ -73,8 +73,8 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 if (string.IsNullOrEmpty(AProject))
                     return HttpClientContent.GetContentResult(400, $"Parameter '{nameof(AProject)}' is missing");
                 
-                var LRequestUrl = $"{FSonarQubeSettingsModel.Server}/api/project_badges/quality_gate?project={AProject}";
-                var LContent = await HttpClientContent.GetContent(LRequestUrl, FSonarQubeSettingsModel.Token);
+                var LRequestUrl = $"{FSonarQube.Server}/api/project_badges/quality_gate?project={AProject}";
+                var LContent = await HttpClientContent.GetContent(LRequestUrl, FSonarQube.Token);
                 return HttpClientContent.GetContentResult(200, LContent, Constants.ContentTypes.IMAGE_SVG);
             }
             catch (Exception LException)

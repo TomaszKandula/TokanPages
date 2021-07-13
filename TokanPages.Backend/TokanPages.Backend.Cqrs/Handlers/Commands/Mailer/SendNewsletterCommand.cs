@@ -6,7 +6,7 @@
 
     public class SendNewsletterCommand : IRequest<Unit>
     {
-        public List<SubscriberInfoModel> SubscriberInfo { get; set; }
+        public List<SubscriberInfo> SubscriberInfo { get; set; }
         
         public string Subject { get; set; }
         

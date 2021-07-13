@@ -18,7 +18,7 @@
             {
                 Message = "Message",
                 Subject = "Subject",
-                SubscriberInfo = new List<SubscriberInfoModel> 
+                SubscriberInfo = new List<SubscriberInfo> 
                 { 
                     new () 
                     { 
@@ -44,7 +44,7 @@
             {
                 Message = "Message",
                 Subject = "Subject",
-                SubscriberInfo = new List<SubscriberInfoModel>()
+                SubscriberInfo = new List<SubscriberInfo>()
             };
 
             // Act
@@ -64,7 +64,7 @@
             {
                 Message = "Message",
                 Subject = string.Empty,
-                SubscriberInfo = new List<SubscriberInfoModel>
+                SubscriberInfo = new List<SubscriberInfo>
                 {
                     new ()
                     {
@@ -91,7 +91,7 @@
             {
                 Message = "Message",
                 Subject = new string('T', 256),
-                SubscriberInfo = new List<SubscriberInfoModel>
+                SubscriberInfo = new List<SubscriberInfo>
                 {
                     new ()
                     {
@@ -118,7 +118,7 @@
             {
                 Message = string.Empty,
                 Subject = "Subject",
-                SubscriberInfo = new List<SubscriberInfoModel>
+                SubscriberInfo = new List<SubscriberInfo>
                 {
                     new ()
                     {
@@ -145,7 +145,7 @@
             {
                 Message = new string('T', 256),
                 Subject = "Subject",
-                SubscriberInfo = new List<SubscriberInfoModel>
+                SubscriberInfo = new List<SubscriberInfo>
                 {
                     new ()
                     {

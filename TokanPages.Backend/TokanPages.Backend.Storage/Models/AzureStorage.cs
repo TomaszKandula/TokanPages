@@ -3,7 +3,7 @@
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
-    public class AzureStorageSettingsModel
+    public class AzureStorage
     {
         public string BaseUrl { get; set; }
 

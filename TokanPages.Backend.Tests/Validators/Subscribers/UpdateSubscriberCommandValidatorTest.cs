@@ -2,16 +2,16 @@
 {
     using System;
     using Shared.Resources;
-    using Shared.Services.DataProviderService;
+    using Shared.Services.DataUtilityService;
     using Cqrs.Handlers.Commands.Subscribers;
     using FluentAssertions;
     using Xunit;
 
     public class UpdateSubscriberCommandValidatorTest
     {
-        private readonly DataProviderService FDataProviderService;
+        private readonly DataUtilityService FDataUtilityService;
 
-        public UpdateSubscriberCommandValidatorTest() => FDataProviderService = new DataProviderService();
+        public UpdateSubscriberCommandValidatorTest() => FDataUtilityService = new DataUtilityService();
 
         [Fact]
         public void GivenAllFieldsAreCorrect_WhenUpdateSubscriber_ShouldFinishSuccessful() 
@@ -20,7 +20,7 @@
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand 
             { 
                 Id = Guid.NewGuid(),
-                Email = FDataProviderService.GetRandomEmail(),
+                Email = FDataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 0
             };
@@ -40,7 +40,7 @@
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.NewGuid(),
-                Email = FDataProviderService.GetRandomEmail(),
+                Email = FDataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = null
             };
@@ -60,7 +60,7 @@
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.Empty,
-                Email = FDataProviderService.GetRandomEmail(),
+                Email = FDataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 0
             };
@@ -123,7 +123,7 @@
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.NewGuid(),
-                Email = FDataProviderService.GetRandomEmail(),
+                Email = FDataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = -1
             };

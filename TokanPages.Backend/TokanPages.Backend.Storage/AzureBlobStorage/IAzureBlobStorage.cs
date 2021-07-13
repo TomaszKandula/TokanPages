@@ -8,9 +8,9 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
 
     public interface IAzureBlobStorage
     {
-        Task<StorageByteContentModel> ReadAllBytes(string ASourceFilePath);
+        Task<StorageByteContent> ReadAllBytes(string ASourceFilePath);
 
-        Task<StorageStreamContentModel> OpenRead(string ASourceFilePath);
+        Task<StorageStreamContent> OpenRead(string ASourceFilePath);
         
         Task UploadFile(Stream ASourceStream, string ADestinationPath, string AContentType, long AMaxLength);
         

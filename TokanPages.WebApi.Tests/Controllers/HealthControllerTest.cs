@@ -33,7 +33,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             
-            var LDeserialized = JsonConvert.DeserializeObject<ActionResultModel>(LContent);
+            var LDeserialized = JsonConvert.DeserializeObject<ActionResult>(LContent);
             LDeserialized.Should().NotBeNull();
             LDeserialized.IsSucceeded.Should().BeTrue();
             LDeserialized.ErrorCode.Should().BeNull();
@@ -50,7 +50,7 @@ namespace TokanPages.WebApi.Tests.Controllers
                 ABuilder.ConfigureAppConfiguration((AContext, AConfigBuilder) =>
                 {
                     AConfigBuilder.AddInMemoryCollection(
-                        new Dictionary<string, string> { ["SmtpServer:Server"] = DataProviderService.GetRandomString() });
+                        new Dictionary<string, string> { ["SmtpServer:Server"] = DataUtilityService.GetRandomString() });
                 });
             });
             
@@ -64,7 +64,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             
-            var LDeserialized = JsonConvert.DeserializeObject<ActionResultModel>(LContent);
+            var LDeserialized = JsonConvert.DeserializeObject<ActionResult>(LContent);
             LDeserialized.Should().NotBeNull();
             LDeserialized.IsSucceeded.Should().BeFalse();
             LDeserialized.ErrorCode.Should().NotBeEmpty();
@@ -81,7 +81,7 @@ namespace TokanPages.WebApi.Tests.Controllers
                 ABuilder.ConfigureAppConfiguration((AContext, AConfigBuilder) =>
                 {
                     AConfigBuilder.AddInMemoryCollection(
-                        new Dictionary<string, string> { ["ConnectionStrings:DbConnectTest"] = DataProviderService.GetRandomString() });
+                        new Dictionary<string, string> { ["ConnectionStrings:DbConnectTest"] = DataUtilityService.GetRandomString() });
                 });
             });
             
@@ -95,7 +95,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             
-            var LDeserialized = JsonConvert.DeserializeObject<ActionResultModel>(LContent);
+            var LDeserialized = JsonConvert.DeserializeObject<ActionResult>(LContent);
             LDeserialized.Should().NotBeNull();
             LDeserialized.IsSucceeded.Should().BeFalse();
             LDeserialized.ErrorCode.Should().NotBeEmpty();

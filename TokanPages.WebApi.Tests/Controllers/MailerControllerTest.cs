@@ -30,10 +30,10 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LPayLoad = new SendMessageDto
             {
-                FirstName = DataProviderService.GetRandomString(),
-                LastName = DataProviderService.GetRandomString(),
-                UserEmail = DataProviderService.GetRandomEmail(),
-                EmailFrom = DataProviderService.GetRandomEmail(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                UserEmail = DataUtilityService.GetRandomEmail(),
+                EmailFrom = DataUtilityService.GetRandomEmail(),
                 EmailTos = new List<string> { string.Empty },
                 Subject = "Integration Test / HttpClient / Endpoint",
                 Message = $"Test run Id: {Guid.NewGuid()}.",
@@ -62,7 +62,7 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LPayLoad = new SendNewsletterDto
             {
-                SubscriberInfo = new List<SubscriberInfoModel>
+                SubscriberInfo = new List<SubscriberInfo>
                 {
                     new ()
                     {
@@ -76,7 +76,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
@@ -101,7 +101,7 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LPayLoad = new SendNewsletterDto
             {
-                SubscriberInfo = new List<SubscriberInfoModel>
+                SubscriberInfo = new List<SubscriberInfo>
                 {
                     new ()
                     {
@@ -115,7 +115,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetInvalidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetInvalidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
@@ -138,7 +138,7 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");

@@ -11,8 +11,8 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
     using Shared.Models;
     using Storage.Models;
     using Cqrs.Handlers.Commands.Mailer;
-    using Shared.Services.TemplateHelper;
-    using Shared.Services.DataProviderService;
+    using Shared.Services.TemplateService;
+    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Moq.Protected;
     using MediatR;
@@ -21,9 +21,9 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
 
     public class SendNewsletterCommandHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
+        private readonly DataUtilityService FDataUtilityService;
 
-        public SendNewsletterCommandHandlerTest() => FDataProviderService = new DataProviderService();
+        public SendNewsletterCommandHandlerTest() => FDataUtilityService = new DataUtilityService();
 
         [Fact]
         public async Task GivenSubscriberInfo_WhenSendNewsletter_ShouldFinishSuccessful()
@@ -31,13 +31,13 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             // Arrange
             var LSendNewsletterCommand = new SendNewsletterCommand
             {
-                Message = FDataProviderService.GetRandomString(),
-                Subject = FDataProviderService.GetRandomString(),
-                SubscriberInfo = new List<SubscriberInfoModel>
+                Message = FDataUtilityService.GetRandomString(),
+                Subject = FDataUtilityService.GetRandomString(),
+                SubscriberInfo = new List<SubscriberInfo>
                 {
                     new ()
                     {
-                        Email = FDataProviderService.GetRandomEmail()
+                        Email = FDataUtilityService.GetRandomEmail()
                     }
                 }
             };
@@ -45,11 +45,11 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             var LMockedLogger = new Mock<ILogger>();
             var LMockedHttpMessageHandler = new Mock<HttpMessageHandler>();
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();
-            var LMockedTemplateHelper = new Mock<ITemplateHelper>();
-            var LMockedAzureStorageSettings = new Mock<AzureStorageSettingsModel>();
-            var LMockedAppUrls = new Mock<ApplicationPathsModel>();
+            var LMockedTemplateHelper = new Mock<ITemplateService>();
+            var LMockedAzureStorageSettings = new Mock<AzureStorage>();
+            var LMockedAppUrls = new Mock<ApplicationPaths>();
 
-            var LSendActionResult = new ActionResultModel { IsSucceeded = true };
+            var LSendActionResult = new ActionResult { IsSucceeded = true };
             LMockedSmtpClientService
                 .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
                 .Returns(Task.FromResult(LSendActionResult));

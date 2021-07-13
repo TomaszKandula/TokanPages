@@ -1,22 +1,18 @@
 namespace TokanPages.Backend.Tests.Services
 {
-    using TokanPages.Backend.Cqrs.Services.CipheringService;
-    using TokanPages.Backend.Shared.Services.DataProviderService;
+    using Cqrs.Services.CipheringService;
     using FluentAssertions;
     using Xunit;
 
-    public class CipheringServiceTest
+    public class CipheringServiceTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-        
-        public CipheringServiceTest() => FDataProviderService = new DataProviderService();
 
         [Fact]
         public void GivenPlainTextPassword_WhenInvokeGetHashedPassword_ShouldReturnHashedPassword()
         {
             // Arrange
             const int CIPHER_LOG_ROUNDS = 12;
-            var LPlainTextPassword = FDataProviderService.GetRandomString();
+            var LPlainTextPassword = DataUtilityService.GetRandomString();
             var LCipher = new CipheringService();
 
             // Act
