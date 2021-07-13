@@ -8,8 +8,8 @@
     using SmtpClient;
     using Core.Logger;
     using Shared.Models;
-    using Core.Exceptions;
     using Storage.Models;
+    using Core.Exceptions;
     using Shared.Resources;
     using Shared.Services.TemplateHelper;
     using MediatR;
@@ -56,7 +56,7 @@
 
                 var LUpdateSubscriberLink = LUpdateSubscriberBaseLink + LSubscriber.Id;
                 var LUnsubscribeLink = LUnsubscribeBaseLink + LSubscriber.Id;
-                var LNewValues = new List<TemplateItemModel>
+                var LNewValues = new List<TemplateItem>
                 {
                     new () { Tag = "{CONTENT}", Value = ARequest.Message },
                     new () { Tag = "{UPDATE_EMAIL_LINK}", Value = LUpdateSubscriberLink },

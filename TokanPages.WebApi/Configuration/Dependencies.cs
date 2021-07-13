@@ -20,11 +20,11 @@
     using Backend.SmtpClient.Models;
     using Backend.Database.Initializer;
     using Backend.Identity.Authentication;
-    using Backend.Cqrs.Services.UserProvider;
     using Backend.Shared.Services.TemplateHelper;
     using Backend.Cqrs.Services.CipheringService;
     using Backend.Shared.Services.DateTimeService;
     using Backend.Storage.AzureBlobStorage.Factory;
+    using Backend.Cqrs.Services.UserServiceProvider;
     using Backend.Shared.Services.DataProviderService;
     using Backend.Identity.Services.JwtUtilityService;
     using FluentValidation;
@@ -87,7 +87,7 @@
             AServices.AddScoped<ITemplateHelper, TemplateHelper>();
             AServices.AddScoped<IDateTimeService, DateTimeService>();
             AServices.AddScoped<IJwtUtilityService, JwtUtilityService>();
-            AServices.AddScoped<IUserProvider, UserProvider>();
+            AServices.AddScoped<IUserServiceProvider, UserServiceProvider>();
             AServices.AddScoped<IDataProviderService, DataProviderService>();
             AServices.AddScoped<IDbInitializer, DbInitializer>();
             AServices.AddScoped<ICipheringService, CipheringService>();

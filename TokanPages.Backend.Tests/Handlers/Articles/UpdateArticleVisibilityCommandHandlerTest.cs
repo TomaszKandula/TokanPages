@@ -6,8 +6,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
     using Core.Exceptions;
     using Domain.Entities;
     using Shared.Resources;
-    using Cqrs.Services.UserProvider;
     using Cqrs.Handlers.Commands.Articles;
+    using Cqrs.Services.UserServiceProvider;
     using Shared.Services.DataProviderService;
     using UsersEntity = Domain.Entities.Users;
     using ArticlesEntity = Domain.Entities.Articles;
@@ -42,7 +42,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>();
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.HasPermissionAssigned(It.IsAny<string>()))
@@ -85,7 +85,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>();
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.HasPermissionAssigned(It.IsAny<string>()))
@@ -125,7 +125,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>();
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.HasPermissionAssigned(It.IsAny<string>()))

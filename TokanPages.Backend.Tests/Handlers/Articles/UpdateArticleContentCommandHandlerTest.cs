@@ -8,10 +8,10 @@
     using Core.Extensions;
     using Shared.Resources;
     using Storage.AzureBlobStorage;
-    using Cqrs.Services.UserProvider;
     using Shared.Services.DateTimeService;
     using Cqrs.Handlers.Commands.Articles;
     using Storage.AzureBlobStorage.Factory;
+    using Cqrs.Services.UserServiceProvider;
     using Shared.Services.DataProviderService;
     using FluentAssertions;
     using Xunit;
@@ -60,7 +60,7 @@
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>();
             var LMockedDateTime = new Mock<DateTimeService>();
             var LMockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
             var LMockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
@@ -145,7 +145,7 @@
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>();
             var LMockedDateTime = new Mock<DateTimeService>();
             var LMockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
             var LMockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
@@ -234,7 +234,7 @@
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>();
             var LMockedDateTime = new Mock<DateTimeService>();
             var LMockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>(); 
             var LMockedAzureBlobStorage = new Mock<IAzureBlobStorage>();

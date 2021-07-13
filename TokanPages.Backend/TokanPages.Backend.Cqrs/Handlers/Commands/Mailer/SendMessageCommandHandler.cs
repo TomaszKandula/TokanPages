@@ -8,6 +8,7 @@
     using Shared;
     using SmtpClient;
     using Core.Logger;
+    using Shared.Models;
     using Storage.Models;
     using Core.Exceptions;
     using Shared.Resources;
@@ -46,7 +47,7 @@
             FSmtpClientService.Tos = new List<string> { Constants.Emails.Addresses.CONTACT };
             FSmtpClientService.Subject = $"New user message from {ARequest.FirstName}";
 
-            var LNewValues = new List<TemplateItemModel>
+            var LNewValues = new List<TemplateItem>
             {
                 new () { Tag = "{FIRST_NAME}", Value = ARequest.FirstName },
                 new () { Tag = "{LAST_NAME}", Value = ARequest.LastName },

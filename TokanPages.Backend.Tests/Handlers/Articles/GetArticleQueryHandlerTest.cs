@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Core.Exceptions;
-    using Cqrs.Services.UserProvider;
     using Cqrs.Handlers.Queries.Articles;
+    using Cqrs.Services.UserServiceProvider;
     using Shared.Services.DataProviderService;
     using FluentAssertions;
     using Xunit;
@@ -82,7 +82,7 @@
             await LDatabaseContext.ArticleLikes.AddRangeAsync(LLikes);
             await LDatabaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>();
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS_FIRST);
@@ -147,7 +147,7 @@
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>();
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS_FIRST);

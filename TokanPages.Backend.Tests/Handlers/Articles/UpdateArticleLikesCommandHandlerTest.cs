@@ -4,8 +4,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using Cqrs.Services.UserProvider;
     using Cqrs.Handlers.Commands.Articles;
+    using Cqrs.Services.UserServiceProvider;
     using Shared.Services.DataProviderService;
     using FluentAssertions;
     using Xunit;
@@ -57,7 +57,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>();
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS);
@@ -140,7 +140,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.ArticleLikes.AddAsync(LLikes);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>();
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS);
@@ -211,7 +211,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>();
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
                 .ReturnsAsync(LUsers.Id);
@@ -296,7 +296,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.ArticleLikes.AddAsync(LLikes);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>();
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
                 .ReturnsAsync(LUsers.Id);

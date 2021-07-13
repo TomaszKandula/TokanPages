@@ -7,10 +7,10 @@
     using Core.Extensions;
     using Shared.Resources;
     using Storage.AzureBlobStorage;
-    using Cqrs.Services.UserProvider;
     using Shared.Services.DateTimeService;
     using Cqrs.Handlers.Commands.Articles;
     using Storage.AzureBlobStorage.Factory;
+    using Cqrs.Services.UserServiceProvider;
     using Shared.Services.DataProviderService;
     using FluentAssertions;
     using Xunit;
@@ -72,7 +72,7 @@
             await LDatabaseContext.SaveChangesAsync();
             
             var LMockedDateTime = new Mock<DateTimeService>();
-            var LMockedUserProvider = new Mock<IUserProvider>();
+            var LMockedUserProvider = new Mock<IUserServiceProvider>();
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
@@ -105,7 +105,7 @@
 
             var LDatabaseContext = GetTestDatabaseContext();
             var LMockedDateTime = new Mock<DateTimeService>();
-            var LMockedUserProvider = new Mock<IUserProvider>();
+            var LMockedUserProvider = new Mock<IUserServiceProvider>();
             
             var LAddArticleCommandHandler = new AddArticleCommandHandler(
                 LDatabaseContext, 
@@ -135,7 +135,7 @@
 
             var LDatabaseContext = GetTestDatabaseContext();
             var LMockedDateTime = new Mock<DateTimeService>();
-            var LMockedUserProvider = new Mock<IUserProvider>();
+            var LMockedUserProvider = new Mock<IUserServiceProvider>();
 
             var LAddArticleCommandHandler = new AddArticleCommandHandler(
                 LDatabaseContext, 

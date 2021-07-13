@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Cqrs.Services.UserProvider
+﻿namespace TokanPages.Backend.Cqrs.Services.UserServiceProvider
 {
     using System;
     using System.Linq;
@@ -12,7 +12,7 @@
     using Shared.Resources;
     using Shared.Dto.Users;
 
-    public class UserProvider : IUserProvider
+    public class UserServiceProvider : IUserServiceProvider
     {
         private const string LOCALHOST = "127.0.0.1";
         
@@ -26,13 +26,13 @@
         
         private GetUserDto FUsers;
         
-        public UserProvider(IHttpContextAccessor AHttpContextAccessor, DatabaseContext ADatabaseContext)
+        public UserServiceProvider(IHttpContextAccessor AHttpContextAccessor, DatabaseContext ADatabaseContext)
         {
             FHttpContextAccessor = AHttpContextAccessor;
             FDatabaseContext = ADatabaseContext;
         }
 
-        public UserProvider() { }
+        public UserServiceProvider() { }
 
         public virtual string GetRequestIpAddress() 
         {

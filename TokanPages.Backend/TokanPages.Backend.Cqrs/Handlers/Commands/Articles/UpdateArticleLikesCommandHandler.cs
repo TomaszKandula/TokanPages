@@ -9,19 +9,19 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     using Core.Exceptions;
     using Core.Extensions;
     using Shared.Resources;
-    using Services.UserProvider;
+    using Services.UserServiceProvider;
     using MediatR;
 
     public class UpdateArticleLikesCommandHandler : TemplateHandler<UpdateArticleLikesCommand, Unit>
     {
         private readonly DatabaseContext FDatabaseContext;
 
-        private readonly IUserProvider FUserProvider;
+        private readonly IUserServiceProvider FUserServiceProvider;
         
-        public UpdateArticleLikesCommandHandler(DatabaseContext ADatabaseContext, IUserProvider AUserProvider)
+        public UpdateArticleLikesCommandHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider)
         {
             FDatabaseContext = ADatabaseContext;
-            FUserProvider = AUserProvider;
+            FUserServiceProvider = AUserServiceProvider;
         }
 
         public override async Task<Unit> Handle(UpdateArticleLikesCommand ARequest, CancellationToken ACancellationToken)
@@ -33,13 +33,13 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             if (!LArticles.Any())
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-            var LUserId = await FUserProvider.GetUserId();
+            var LUserId = await FUserServiceProvider.GetUserId();
             var LIsAnonymousUser = LUserId == null;
             
             var LArticleLikes = await FDatabaseContext.ArticleLikes
                 .Where(ALikes => ALikes.ArticleId == ARequest.Id)
                 .WhereIfElse(LIsAnonymousUser,
-                    ALikes => ALikes.IpAddress == FUserProvider.GetRequestIpAddress(),
+                    ALikes => ALikes.IpAddress == FUserServiceProvider.GetRequestIpAddress(),
                     ALikes => ALikes.UserId == LUserId)
                 .ToListAsync(ACancellationToken);
 
@@ -65,8 +65,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             var LEntity = new Domain.Entities.ArticleLikes
             {
                 ArticleId = ARequest.Id,
-                UserId = await FUserProvider.GetUserId(),
-                IpAddress = FUserProvider.GetRequestIpAddress(),
+                UserId = await FUserServiceProvider.GetUserId(),
+                IpAddress = FUserServiceProvider.GetRequestIpAddress(),
                 LikeCount = ARequest.AddToLikes > LLikesLimit ? LLikesLimit : ARequest.AddToLikes
             };
             
