@@ -25,9 +25,10 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_CONTACT_FORM_CONTENT });
 
-        axios.get(GET_CONTACT_FORM_CONTENT, 
+        axios( 
         {
             method: "GET", 
+            url: GET_CONTACT_FORM_CONTENT,
             responseType: "json"
         })
         .then(response =>

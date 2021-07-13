@@ -25,9 +25,10 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_NAVIGATION_CONTENT });
 
-        axios.get(GET_NAVIGATION_CONTENT, 
+        axios( 
         {
             method: "GET", 
+            url: GET_NAVIGATION_CONTENT,
             responseType: "json"
         })
         .then(response =>

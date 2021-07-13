@@ -25,9 +25,10 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_FEATURED_CONTENT });
 
-        axios.get(GET_FEATURED_CONTENT, 
+        axios( 
         {
             method: "GET", 
+            url: GET_FEATURED_CONTENT,
             responseType: "json"
         })
         .then(response =>

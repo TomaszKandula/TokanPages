@@ -25,9 +25,10 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_ARTICE_FEATURES });
 
-        axios.get(GET_ARTICLE_FEAT_CONTENT, 
+        axios( 
         {
             method: "GET", 
+            url: GET_ARTICLE_FEAT_CONTENT,
             responseType: "json"
         })
         .then(response =>
