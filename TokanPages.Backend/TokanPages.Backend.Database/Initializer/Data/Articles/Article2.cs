@@ -1,9 +1,9 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Database.Initializer.Data.Users;
-
-namespace TokanPages.Backend.Database.Initializer.Data.Articles
+﻿namespace TokanPages.Backend.Database.Initializer.Data.Articles
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Users;
+
     [ExcludeFromCodeCoverage]
     public static class Article2
     {

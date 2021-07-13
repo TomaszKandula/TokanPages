@@ -1,9 +1,9 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Core.Entities;
-
 namespace TokanPages.Backend.Domain.Entities
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Core.Entities;
+
     [ExcludeFromCodeCoverage]
     public class UserRoles : Entity<Guid>
     {

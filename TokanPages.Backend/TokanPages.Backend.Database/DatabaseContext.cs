@@ -1,10 +1,10 @@
-﻿using System.Reflection;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Domain.Entities;
-
-namespace TokanPages.Backend.Database
+﻿namespace TokanPages.Backend.Database
 {
+    using System.Reflection;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.EntityFrameworkCore;
+    using Domain.Entities;
+
     [ExcludeFromCodeCoverage]
     public class DatabaseContext : DbContext
     {

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.ComponentModel.DataAnnotations;
-using TokanPages.Backend.Core.Entities;
-
-namespace TokanPages.Backend.Domain.Entities
+﻿namespace TokanPages.Backend.Domain.Entities
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.ComponentModel.DataAnnotations;
+    using Core.Entities;
+
     [ExcludeFromCodeCoverage]
     public class Subscribers : Entity<Guid>
     {
