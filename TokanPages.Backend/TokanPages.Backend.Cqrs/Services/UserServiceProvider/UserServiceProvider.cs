@@ -11,6 +11,7 @@
     using Core.Exceptions;
     using Shared.Resources;
     using Shared.Dto.Users;
+    using Shared.Services.DateTimeService;
 
     public class UserServiceProvider : IUserServiceProvider
     {
@@ -19,6 +20,8 @@
         private readonly IHttpContextAccessor FHttpContextAccessor;
 
         private readonly DatabaseContext FDatabaseContext;
+        
+        private readonly IDateTimeService FDateTimeService;
 
         private List<GetUserPermissionDto> FUserPermissions;
 
@@ -26,10 +29,12 @@
         
         private GetUserDto FUsers;
         
-        public UserServiceProvider(IHttpContextAccessor AHttpContextAccessor, DatabaseContext ADatabaseContext)
+        public UserServiceProvider(IHttpContextAccessor AHttpContextAccessor, DatabaseContext ADatabaseContext, 
+            IDateTimeService ADateTimeService)
         {
             FHttpContextAccessor = AHttpContextAccessor;
             FDatabaseContext = ADatabaseContext;
+            FDateTimeService = ADateTimeService;
         }
 
         public UserServiceProvider() { }
@@ -42,6 +47,18 @@
             return string.IsNullOrEmpty(LRemoteIpAddress) 
                 ? LOCALHOST 
                 : LRemoteIpAddress.Split(':')[0];
+        }
+
+        public virtual void SetRefreshTokenCookie(string ARefreshToken, int AExpiresIn)
+        {
+            var LCookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Expires = FDateTimeService.Now.AddMinutes(AExpiresIn)
+            };
+            
+            FHttpContextAccessor.HttpContext?.Response.Cookies
+                .Append("RefreshToken", ARefreshToken, LCookieOptions);
         }
 
         public virtual async Task<Guid?> GetUserId()

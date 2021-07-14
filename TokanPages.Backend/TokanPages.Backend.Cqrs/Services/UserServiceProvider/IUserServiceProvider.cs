@@ -9,6 +9,8 @@
     {
         string GetRequestIpAddress();
 
+        void SetRefreshTokenCookie(string ARefreshToken, int AExpiresIn);
+
         Task<Guid?> GetUserId();
         
         Task<GetUserDto> GetUser();
