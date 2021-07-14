@@ -10,6 +10,7 @@
     using Backend.Identity.Attributes;
     using Backend.Identity.Authorization;
     using Backend.Cqrs.Handlers.Queries.Users;
+    using Backend.Cqrs.Handlers.Commands.Users;
     using MediatR;
 
     [Authorize]
@@ -17,6 +18,11 @@
     {
         public UsersController(IMediator AMediator) : base(AMediator) { }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<AuthenticateUserCommandResult> AuthenticateUser([FromBody] AuthenticateUserDto APayLoad)
+            => await FMediator.Send(UsersMapper.MapToAuthenticateUserCommand(APayLoad));
+        
         [HttpGet]
         [AuthorizeRoles(Roles.GodOfAsgard)]
         public async Task<IEnumerable<GetAllUsersQueryResult>> GetAllUsers()
