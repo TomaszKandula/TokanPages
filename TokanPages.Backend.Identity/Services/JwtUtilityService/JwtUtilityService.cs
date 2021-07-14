@@ -40,18 +40,21 @@ namespace TokanPages.Backend.Identity.Services.JwtUtilityService
         /// Return new RefreshToken for re-authentication. 
         /// </summary>
         /// <param name="AIpAddress">IP address of the machine that requests new refresh token.</param>
-        /// <param name="AExpiresIn">Number of minutes to expire.</param>
+        /// <param name="AExpiresIn">Number of minutes to expire. Cannot be zero.</param>
         /// <returns>New randomized secure token.</returns>
         public RefreshToken GenerateRefreshToken(string AIpAddress, int AExpiresIn)
         {
+            if (AExpiresIn == 0)
+                throw new ArgumentException($"Argument '{nameof(AExpiresIn)}' cannot be zero.");
+
             using var LRngCryptoServiceProvider = new RNGCryptoServiceProvider();
-            var LRandomBytes = new byte[128];
+            var LRandomBytes = new byte[256];
             
             LRngCryptoServiceProvider.GetBytes(LRandomBytes);
             var LRefreshToken = new RefreshToken
             {
                 Token = Convert.ToBase64String(LRandomBytes),
-                Expires = DateTime.UtcNow.AddMinutes(AExpiresIn),
+                Expires = DateTime.UtcNow.AddMinutes(Math.Abs(AExpiresIn)),
                 Created = DateTime.UtcNow,
                 CreatedByIp = AIpAddress
             };
