@@ -36,6 +36,8 @@
         
         public virtual DbSet<UserRoles> UserRoles { get; set; }
         
+        public virtual DbSet<UserRefreshTokens> UserRefreshTokens { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder AModelBuilder)
         {
             base.OnModelCreating(AModelBuilder);
