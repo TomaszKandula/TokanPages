@@ -59,6 +59,7 @@
             AServices.AddSingleton(AConfiguration.GetSection("SmtpServer").Get<SmtpServer>());
             AServices.AddSingleton(AConfiguration.GetSection("AppUrls").Get<ApplicationPaths>());
             AServices.AddSingleton(AConfiguration.GetSection("SonarQube").Get<SonarQube>());
+            AServices.AddSingleton(AConfiguration.GetSection("IdentityServer").Get<IdentityServer>());
         }
 
         private static void SetupLogger(IServiceCollection AServices) 
