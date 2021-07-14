@@ -159,4 +159,7 @@
   <data name="ARGUMENT_NULL_EXCEPTION" xml:space="preserve">
     <value>Argument(s) cannot be null</value>
   </data>
+  <data name="INVALID_CREDENTIALS" xml:space="preserve">
+    <value>The user email and/or given password is invalid.</value>
+  </data>
 </root>
