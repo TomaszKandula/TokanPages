@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Tests.Services
     using FluentAssertions;
     using Xunit;
 
-    public class TemplateHelperTest
+    public class TemplateServiceTest
     {
         [Fact]
         public void GivenBodyTemplateAndItems_WhenInvokeMakeBody_ShouldReplaceTagsWithValues()

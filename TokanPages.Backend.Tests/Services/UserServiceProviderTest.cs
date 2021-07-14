@@ -16,7 +16,7 @@ namespace TokanPages.Backend.Tests.Services
     using Xunit;
     using Moq;
 
-    public class UserProviderTest : TestBase
+    public class UserServiceProviderTest : TestBase
     {
         [Fact]
         public async Task GivenValidClaimsInHttpContext_WhenInvokeGetUserId_ShouldReturnLoggedUserId()
