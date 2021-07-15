@@ -20,7 +20,7 @@
         
         public const string SHORT_BIO = "Software Developer";
 
-        public const string CRYPTED_PASSWORD = "$2y$12$NL6KX2/lONaHl9Trc.jLm.IU07tlMOYnXBIHdFbJNJrXANUGFT8xC";
+        public const string CRYPTED_PASSWORD = "$2a$12$Bl4ebq6Qi8F4aY5w9wzs7echVwERkAyXxmAua3yUpvUX40DtpCKsK";
 
         public static readonly Guid FId = Guid.Parse("d6365db3-d464-4146-857b-d8476f46553c");
         
