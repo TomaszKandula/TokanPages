@@ -6,7 +6,6 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
     using System.Threading.Tasks;
     using Cqrs.Handlers.Commands.Articles;
     using Cqrs.Services.UserServiceProvider;
-    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
     using Moq;
@@ -15,10 +14,6 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
     {
         private const string IP_ADDRESS = "255.255.255.255";
         
-        private readonly DataUtilityService FDataUtilityService;
-
-        public UpdateArticleLikesCommandHandlerTest() => FDataUtilityService = new DataUtilityService();
-
         [Theory]
         [InlineData(10, 10)]
         [InlineData(50, 25)]
@@ -28,15 +23,15 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             // Arrange
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                FirstName = FDataUtilityService.GetRandomString(),
-                LastName = FDataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataUtilityService.GetRandomEmail(),
-                UserAlias = FDataUtilityService.GetRandomString(),
-                Registered = FDataUtilityService.GetRandomDateTime(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                Registered = DataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataUtilityService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -45,8 +40,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
-                Title = FDataUtilityService.GetRandomString(),
-                Description = FDataUtilityService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
                 IsPublished = true,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -57,7 +52,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserServiceProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS);
@@ -100,15 +95,15 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             // Arrange
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                FirstName = FDataUtilityService.GetRandomString(),
-                LastName = FDataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataUtilityService.GetRandomEmail(),
-                UserAlias = FDataUtilityService.GetRandomString(),
-                Registered = FDataUtilityService.GetRandomDateTime(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                Registered = DataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataUtilityService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -117,8 +112,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
-                Title = FDataUtilityService.GetRandomString(),
-                Description = FDataUtilityService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
                 IsPublished = true,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -140,7 +135,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.ArticleLikes.AddAsync(LLikes);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserServiceProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS);
@@ -182,15 +177,15 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             // Arrange
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                FirstName = FDataUtilityService.GetRandomString(),
-                LastName = FDataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataUtilityService.GetRandomEmail(),
-                UserAlias = FDataUtilityService.GetRandomString(),
-                Registered = FDataUtilityService.GetRandomDateTime(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                Registered = DataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataUtilityService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -199,8 +194,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
-                Title = FDataUtilityService.GetRandomString(),
-                Description = FDataUtilityService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
                 IsPublished = true,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -211,7 +206,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserServiceProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
                 .ReturnsAsync(LUsers.Id);
@@ -256,15 +251,15 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             // Arrange
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                FirstName = FDataUtilityService.GetRandomString(),
-                LastName = FDataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataUtilityService.GetRandomEmail(),
-                UserAlias = FDataUtilityService.GetRandomString(),
-                Registered = FDataUtilityService.GetRandomDateTime(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                Registered = DataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataUtilityService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -273,8 +268,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
-                Title = FDataUtilityService.GetRandomString(),
-                Description = FDataUtilityService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
                 IsPublished = true,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -296,7 +291,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.ArticleLikes.AddAsync(LLikes);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserServiceProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
                 .ReturnsAsync(LUsers.Id);

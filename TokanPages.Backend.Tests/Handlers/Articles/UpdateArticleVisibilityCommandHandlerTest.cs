@@ -8,7 +8,6 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
     using Shared.Resources;
     using Cqrs.Handlers.Commands.Articles;
     using Cqrs.Services.UserServiceProvider;
-    using Shared.Services.DataUtilityService;
     using UsersEntity = Domain.Entities.Users;
     using ArticlesEntity = Domain.Entities.Articles;
     using PermissionsEntity = Domain.Entities.Permissions;
@@ -19,10 +18,6 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
     public class UpdateArticleVisibilityCommandHandlerTest : TestBase
     {
-        private readonly DataUtilityService FDataUtilityService;
-
-        public UpdateArticleVisibilityCommandHandlerTest() => FDataUtilityService = new DataUtilityService();
-
         [Theory]
         [InlineData(false, true)]
         [InlineData(true, false)]
@@ -42,7 +37,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<UserServiceProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.HasPermissionAssigned(It.IsAny<string>()))
@@ -85,7 +80,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<UserServiceProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.HasPermissionAssigned(It.IsAny<string>()))
@@ -125,7 +120,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<UserServiceProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.HasPermissionAssigned(It.IsAny<string>()))
@@ -152,11 +147,11 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
         {
             return new ()
             {
-                Title = FDataUtilityService.GetRandomString(),
-                Description = FDataUtilityService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
                 IsPublished = AIsPublished,
                 ReadCount = 0,
-                CreatedAt = FDataUtilityService.GetRandomDateTime(),
+                CreatedAt = DataUtilityService.GetRandomDateTime(),
                 UpdatedAt = null,
                 UserId = AUserId
             };
@@ -167,15 +162,15 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             return new()
             {
                 Id = AUserId,
-                FirstName = FDataUtilityService.GetRandomString(),
-                LastName = FDataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataUtilityService.GetRandomEmail(),
-                UserAlias = FDataUtilityService.GetRandomString(),
-                Registered = FDataUtilityService.GetRandomDateTime(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                Registered = DataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataUtilityService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
         }
 

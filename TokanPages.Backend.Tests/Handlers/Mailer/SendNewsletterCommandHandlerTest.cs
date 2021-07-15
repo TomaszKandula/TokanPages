@@ -12,7 +12,6 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
     using Storage.Models;
     using Cqrs.Handlers.Commands.Mailer;
     using Shared.Services.TemplateService;
-    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Moq.Protected;
     using MediatR;
@@ -21,23 +20,19 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
 
     public class SendNewsletterCommandHandlerTest : TestBase
     {
-        private readonly DataUtilityService FDataUtilityService;
-
-        public SendNewsletterCommandHandlerTest() => FDataUtilityService = new DataUtilityService();
-
         [Fact]
         public async Task GivenSubscriberInfo_WhenSendNewsletter_ShouldFinishSuccessful()
         {
             // Arrange
             var LSendNewsletterCommand = new SendNewsletterCommand
             {
-                Message = FDataUtilityService.GetRandomString(),
-                Subject = FDataUtilityService.GetRandomString(),
+                Message = DataUtilityService.GetRandomString(),
+                Subject = DataUtilityService.GetRandomString(),
                 SubscriberInfo = new List<SubscriberInfo>
                 {
                     new ()
                     {
-                        Email = FDataUtilityService.GetRandomEmail()
+                        Email = DataUtilityService.GetRandomEmail()
                     }
                 }
             };

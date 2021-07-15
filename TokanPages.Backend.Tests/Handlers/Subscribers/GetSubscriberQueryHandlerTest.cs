@@ -5,16 +5,11 @@
     using System.Threading.Tasks;
     using Core.Exceptions;
     using Cqrs.Handlers.Queries.Subscribers;
-    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
 
     public class GetSubscriberQueryHandlerTest : TestBase
     {
-        private readonly DataUtilityService FDataUtilityService;
-
-        public GetSubscriberQueryHandlerTest() => FDataUtilityService = new DataUtilityService();
-
         [Fact]
         public async Task GivenCorrectId_WhenGetSubscriber_ShouldReturnEntity() 
         {
@@ -22,7 +17,7 @@
             var LTestDate = DateTime.Now;
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
-                Email = FDataUtilityService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10,
                 Registered = LTestDate,
@@ -54,7 +49,7 @@
             // Arrange
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
-                Email = FDataUtilityService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10,
                 Registered = DateTime.Now,

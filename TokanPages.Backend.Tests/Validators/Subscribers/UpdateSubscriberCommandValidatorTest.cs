@@ -2,17 +2,12 @@
 {
     using System;
     using Shared.Resources;
-    using Shared.Services.DataUtilityService;
     using Cqrs.Handlers.Commands.Subscribers;
     using FluentAssertions;
     using Xunit;
 
-    public class UpdateSubscriberCommandValidatorTest
+    public class UpdateSubscriberCommandValidatorTest : TestBase
     {
-        private readonly DataUtilityService FDataUtilityService;
-
-        public UpdateSubscriberCommandValidatorTest() => FDataUtilityService = new DataUtilityService();
-
         [Fact]
         public void GivenAllFieldsAreCorrect_WhenUpdateSubscriber_ShouldFinishSuccessful() 
         {
@@ -20,7 +15,7 @@
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand 
             { 
                 Id = Guid.NewGuid(),
-                Email = FDataUtilityService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 0
             };
@@ -40,7 +35,7 @@
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.NewGuid(),
-                Email = FDataUtilityService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = null
             };
@@ -60,7 +55,7 @@
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.Empty,
-                Email = FDataUtilityService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 0
             };
@@ -123,7 +118,7 @@
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.NewGuid(),
-                Email = FDataUtilityService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = -1
             };

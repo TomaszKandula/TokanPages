@@ -1,24 +1,19 @@
 ﻿namespace TokanPages.Backend.Tests.Validators.Subscribers
 {
     using Shared.Resources;
-    using Shared.Services.DataUtilityService;
     using Cqrs.Handlers.Commands.Subscribers;
     using FluentAssertions;
     using Xunit;
 
-    public class AddSubscriberCommandValidatorTest
+    public class AddSubscriberCommandValidatorTest : TestBase
     {
-        private readonly DataUtilityService FDataUtilityService;
-
-        public AddSubscriberCommandValidatorTest() => FDataUtilityService = new DataUtilityService();
-
         [Fact]
         public void GivenEmail_WhenAddSubscriber_ShouldFinishSuccessful() 
         {
             // Arrange
             var LAddSubscriberCommand = new AddSubscriberCommand 
             { 
-                Email = FDataUtilityService.GetRandomEmail()
+                Email = DataUtilityService.GetRandomEmail()
             };
 
             // Act

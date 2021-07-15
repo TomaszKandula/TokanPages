@@ -6,16 +6,11 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Cqrs.Handlers.Queries.Subscribers;
-    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
 
     public class GetAllSubscribersQueryHandlerTest : TestBase
     {
-        private readonly DataUtilityService FDataUtilityService;
-
-        public GetAllSubscribersQueryHandlerTest() => FDataUtilityService = new DataUtilityService();
-
         [Fact]
         public async Task WhenGetAllSubscribers_ShouldReturnCollection()
         {
@@ -27,7 +22,7 @@
             {
                 new ()
                 {
-                    Email = FDataUtilityService.GetRandomEmail(),
+                    Email = DataUtilityService.GetRandomEmail(),
                     IsActivated = true,
                     Count = 10,
                     Registered = DateTime.Now,
@@ -35,7 +30,7 @@
                 },
                 new ()
                 {
-                    Email = FDataUtilityService.GetRandomEmail(),
+                    Email = DataUtilityService.GetRandomEmail(),
                     IsActivated = true,
                     Count = 100,
                     Registered = DateTime.Now,

@@ -6,16 +6,11 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Cqrs.Handlers.Queries.Users;
-    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
 
     public class GetAllUsersQueryHandlerTest : TestBase
     {
-        private readonly DataUtilityService FDataUtilityService;
-
-        public GetAllUsersQueryHandlerTest() => FDataUtilityService = new DataUtilityService();
-
         [Fact]
         public async Task WhenGetAllArticles_ShouldReturnCollection()
         {
@@ -25,28 +20,28 @@
                 new ()
                 {
                     Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                    EmailAddress = FDataUtilityService.GetRandomEmail(),
-                    UserAlias = FDataUtilityService.GetRandomString(),
-                    FirstName = FDataUtilityService.GetRandomString(),
-                    LastName = FDataUtilityService.GetRandomString(),
+                    EmailAddress = DataUtilityService.GetRandomEmail(),
+                    UserAlias = DataUtilityService.GetRandomString(),
+                    FirstName = DataUtilityService.GetRandomString(),
+                    LastName = DataUtilityService.GetRandomString(),
                     IsActivated = true,
                     Registered = DateTime.Now,
                     LastUpdated = null,
                     LastLogged = null,
-                    CryptedPassword = FDataUtilityService.GetRandomString()
+                    CryptedPassword = DataUtilityService.GetRandomString()
                 },
                 new ()
                 {
                     Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
-                    EmailAddress = FDataUtilityService.GetRandomEmail(),
-                    UserAlias = FDataUtilityService.GetRandomString(),
-                    FirstName = FDataUtilityService.GetRandomString(),
-                    LastName = FDataUtilityService.GetRandomString(),
+                    EmailAddress = DataUtilityService.GetRandomEmail(),
+                    UserAlias = DataUtilityService.GetRandomString(),
+                    FirstName = DataUtilityService.GetRandomString(),
+                    LastName = DataUtilityService.GetRandomString(),
                     IsActivated = true,
                     Registered = DateTime.Now,
                     LastUpdated = null,
                     LastLogged = null,
-                    CryptedPassword = FDataUtilityService.GetRandomString()
+                    CryptedPassword = DataUtilityService.GetRandomString()
                 }
             };
 

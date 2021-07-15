@@ -2,26 +2,21 @@
 {
     using Shared.Resources;
     using Cqrs.Handlers.Commands.Articles;
-    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
 
-    public class AddArticleCommandValidatorTest
+    public class AddArticleCommandValidatorTest : TestBase
     {
-        private readonly DataUtilityService FDataUtilityService;
-
-        public AddArticleCommandValidatorTest() => FDataUtilityService = new DataUtilityService();
-
         [Fact]
         public void GivenAllFieldsAreCorrect_WhenValidateAddArticle_ShouldFinishSuccessfully() 
         {
             // Arrange
             var LAddArticleCommand = new AddArticleCommand 
             { 
-                Title = FDataUtilityService.GetRandomString(),
-                Description = FDataUtilityService.GetRandomString(),
-                TextToUpload = FDataUtilityService.GetRandomString(),
-                ImageToUpload = FDataUtilityService.GetRandomString()
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
+                TextToUpload = DataUtilityService.GetRandomString(),
+                ImageToUpload = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -38,10 +33,10 @@
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = FDataUtilityService.GetRandomString(),
-                Description = FDataUtilityService.GetRandomString(256),
-                TextToUpload = FDataUtilityService.GetRandomString(),
-                ImageToUpload = FDataUtilityService.GetRandomString()
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(256),
+                TextToUpload = DataUtilityService.GetRandomString(),
+                ImageToUpload = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -59,10 +54,10 @@
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = FDataUtilityService.GetRandomString(256),
-                Description = FDataUtilityService.GetRandomString(),
-                TextToUpload = FDataUtilityService.GetRandomString(),
-                ImageToUpload = FDataUtilityService.GetRandomString()
+                Title = DataUtilityService.GetRandomString(256),
+                Description = DataUtilityService.GetRandomString(),
+                TextToUpload = DataUtilityService.GetRandomString(),
+                ImageToUpload = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -80,10 +75,10 @@
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = FDataUtilityService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
                 Description = string.Empty,
-                TextToUpload = FDataUtilityService.GetRandomString(),
-                ImageToUpload = FDataUtilityService.GetRandomString()
+                TextToUpload = DataUtilityService.GetRandomString(),
+                ImageToUpload = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -102,9 +97,9 @@
             var LAddArticleCommand = new AddArticleCommand
             {
                 Title = string.Empty,
-                Description = FDataUtilityService.GetRandomString(),
-                TextToUpload = FDataUtilityService.GetRandomString(),
-                ImageToUpload = FDataUtilityService.GetRandomString()
+                Description = DataUtilityService.GetRandomString(),
+                TextToUpload = DataUtilityService.GetRandomString(),
+                ImageToUpload = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -122,10 +117,10 @@
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = FDataUtilityService.GetRandomString(),
-                Description = FDataUtilityService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
                 TextToUpload = string.Empty,
-                ImageToUpload = FDataUtilityService.GetRandomString()
+                ImageToUpload = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -143,9 +138,9 @@
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = FDataUtilityService.GetRandomString(),
-                Description = FDataUtilityService.GetRandomString(),
-                TextToUpload = FDataUtilityService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
+                TextToUpload = DataUtilityService.GetRandomString(),
                 ImageToUpload = string.Empty
             };
 

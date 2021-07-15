@@ -3,16 +3,11 @@
     using System;
     using Shared.Resources;
     using Cqrs.Handlers.Commands.Users;
-    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
 
-    public class UpdateUserCommandValidatorTest
+    public class UpdateUserCommandValidatorTest : TestBase
     {
-        private readonly DataUtilityService FDataUtilityService;
-
-        public UpdateUserCommandValidatorTest() => FDataUtilityService = new DataUtilityService();
-
         [Fact]
         public void GivenAllFieldsAreCorrect_WhenUpdateUser_ShouldFinishSuccessful()
         {
@@ -21,10 +16,10 @@
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = FDataUtilityService.GetRandomEmail(),
-                UserAlias = FDataUtilityService.GetRandomString(),
-                FirstName = FDataUtilityService.GetRandomString(),
-                LastName = FDataUtilityService.GetRandomString()
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -43,9 +38,9 @@
             {
                 Id = Guid.NewGuid(),
                 EmailAddress = string.Empty,
-                UserAlias = FDataUtilityService.GetRandomString(),
-                FirstName = FDataUtilityService.GetRandomString(),
-                LastName = FDataUtilityService.GetRandomString()
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -65,9 +60,9 @@
             {
                 Id = Guid.NewGuid(),
                 EmailAddress = new string('T', 256),
-                UserAlias = FDataUtilityService.GetRandomString(),
-                FirstName = FDataUtilityService.GetRandomString(),
-                LastName = FDataUtilityService.GetRandomString()
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -86,10 +81,10 @@
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = FDataUtilityService.GetRandomEmail(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = string.Empty,
-                FirstName = FDataUtilityService.GetRandomString(),
-                LastName = FDataUtilityService.GetRandomString()
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -108,10 +103,10 @@
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = FDataUtilityService.GetRandomEmail(),
-                UserAlias = FDataUtilityService.GetRandomString(256),
-                FirstName = FDataUtilityService.GetRandomString(),
-                LastName = FDataUtilityService.GetRandomString()
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(256),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -130,10 +125,10 @@
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = FDataUtilityService.GetRandomEmail(),
-                UserAlias = FDataUtilityService.GetRandomString(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
                 FirstName = string.Empty,
-                LastName = FDataUtilityService.GetRandomString()
+                LastName = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -152,10 +147,10 @@
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = FDataUtilityService.GetRandomEmail(),
-                UserAlias = FDataUtilityService.GetRandomString(),
-                FirstName = FDataUtilityService.GetRandomString(256),
-                LastName = FDataUtilityService.GetRandomString()
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(256),
+                LastName = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -174,9 +169,9 @@
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = FDataUtilityService.GetRandomEmail(),
-                UserAlias = FDataUtilityService.GetRandomString(),
-                FirstName = FDataUtilityService.GetRandomString(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
                 LastName = string.Empty
             };
 
@@ -196,10 +191,10 @@
             var LUpdateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.NewGuid(),
-                EmailAddress = FDataUtilityService.GetRandomEmail(),
-                UserAlias = FDataUtilityService.GetRandomString(),
-                FirstName = FDataUtilityService.GetRandomString(),
-                LastName = FDataUtilityService.GetRandomString(256)
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(256)
             };
 
             // Act
