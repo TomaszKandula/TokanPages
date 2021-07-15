@@ -54,5 +54,7 @@
         public ICollection<UserPermissions> UserPermissions { get; set; } = new HashSet<UserPermissions>();
 
         public ICollection<UserRoles> UserRoles { get; set; } = new HashSet<UserRoles>();
+
+        public ICollection<UserRefreshTokens> UserRefreshTokens { get; set; } = new HashSet<UserRefreshTokens>();
     }
 }

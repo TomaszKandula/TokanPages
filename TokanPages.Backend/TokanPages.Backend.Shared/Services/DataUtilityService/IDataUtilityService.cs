@@ -2,6 +2,7 @@ namespace TokanPages.Backend.Shared.Services.DataUtilityService
 {
     using System;
     using System.IO;
+    using System.Net;
 
     public interface IDataUtilityService
     {
@@ -18,5 +19,7 @@ namespace TokanPages.Backend.Shared.Services.DataUtilityService
         string GetRandomEmail(int ALength = 12, string ADomain = "gmail.com");
 
         string GetRandomString(int ALength = 12, string APrefix = "");
+        
+        public abstract IPAddress GetRandomIpAddress(bool AShouldReturnIPv6 = false);
     }
 }

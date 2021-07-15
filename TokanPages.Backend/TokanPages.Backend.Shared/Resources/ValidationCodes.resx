@@ -147,4 +147,7 @@
   <data name="USERALIAS_TOO_LONG" xml:space="preserve">
     <value>The user alias cannot be longer than 255 characters</value>
   </data>
+  <data name="PASSWORD_TOO_LONG" xml:space="preserve">
+    <value>The user password cannot be longer than 100 characters</value>
+  </data>
 </root>

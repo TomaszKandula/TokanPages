@@ -13,7 +13,6 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
     using Cqrs.Handlers.Commands.Mailer;
     using Shared.Services.TemplateService;
     using Shared.Services.DateTimeService;
-    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Moq.Protected;
     using MediatR;
@@ -22,23 +21,19 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
 
     public class SendMessageCommandHandlerTest : TestBase
     {
-        private readonly DataUtilityService FDataUtilityService;
-
-        public SendMessageCommandHandlerTest() => FDataUtilityService = new DataUtilityService();
-
         [Fact]
         public async Task GivenFilledUserForm_WhenSendMessage_ShouldFinishSuccessful()
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                Subject = FDataUtilityService.GetRandomString(),
-                FirstName = FDataUtilityService.GetRandomString(),
-                LastName = FDataUtilityService.GetRandomString(),
-                Message = FDataUtilityService.GetRandomString(),
-                EmailFrom = FDataUtilityService.GetRandomEmail(),
-                EmailTos = new List<string>{ FDataUtilityService.GetRandomEmail() },
-                UserEmail = FDataUtilityService.GetRandomEmail()
+                Subject = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                Message = DataUtilityService.GetRandomString(),
+                EmailFrom = DataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string>{ DataUtilityService.GetRandomEmail() },
+                UserEmail = DataUtilityService.GetRandomEmail()
             };
 
             var LMockedLogger = new Mock<ILogger>();

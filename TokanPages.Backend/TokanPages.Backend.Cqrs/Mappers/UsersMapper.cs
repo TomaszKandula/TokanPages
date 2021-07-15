@@ -7,6 +7,15 @@
     [ExcludeFromCodeCoverage]
     public static class UsersMapper
     {
+        public static AuthenticateUserCommand MapToAuthenticateUserCommand(AuthenticateUserDto AModel)
+        {
+            return new()
+            {
+                EmailAddress = AModel.EmailAddress,
+                Password = AModel.Password
+            };
+        }
+
         public static AddUserCommand MapToAddUserCommand(AddUserDto AModel) 
         {
             return new () 

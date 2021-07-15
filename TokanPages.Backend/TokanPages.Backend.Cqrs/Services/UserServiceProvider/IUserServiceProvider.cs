@@ -9,6 +9,8 @@
     {
         string GetRequestIpAddress();
 
+        DateTimeOffset? SetRefreshTokenCookie(string ARefreshToken, int AExpiresIn, bool AIsHttpOnly = true);
+
         Task<Guid?> GetUserId();
         
         Task<GetUserDto> GetUser();

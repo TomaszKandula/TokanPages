@@ -5,16 +5,11 @@
     using System.Threading.Tasks;
     using Core.Exceptions;
     using Cqrs.Handlers.Commands.Articles;
-    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
 
     public class RemoveArticleCommandHandlerTest : TestBase
     {
-        private readonly DataUtilityService FDataUtilityService;
-
-        public RemoveArticleCommandHandlerTest() => FDataUtilityService = new DataUtilityService();
-
         [Fact]
         public async Task GivenCorrectId_WhenRemoveArticle_ShouldRemoveEntity() 
         {
@@ -26,15 +21,15 @@
 
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                FirstName = FDataUtilityService.GetRandomString(),
-                LastName = FDataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataUtilityService.GetRandomEmail(),
-                UserAlias = FDataUtilityService.GetRandomString(),
-                Registered = FDataUtilityService.GetRandomDateTime(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                Registered = DataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataUtilityService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -44,8 +39,8 @@
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Title = FDataUtilityService.GetRandomString(),
-                Description = FDataUtilityService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -78,15 +73,15 @@
 
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                FirstName = FDataUtilityService.GetRandomString(),
-                LastName = FDataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataUtilityService.GetRandomEmail(),
-                UserAlias = FDataUtilityService.GetRandomString(),
-                Registered = FDataUtilityService.GetRandomDateTime(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                Registered = DataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataUtilityService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -96,8 +91,8 @@
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
-                Title = FDataUtilityService.GetRandomString(),
-                Description = FDataUtilityService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,

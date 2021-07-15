@@ -2,6 +2,7 @@ namespace TokanPages.Backend.Shared.Services.DataUtilityService
 {
     using System;
     using System.IO;
+    using System.Net;
     using System.Linq;
 
     public class DataUtilityService : DataUtilityObject, IDataUtilityService
@@ -16,7 +17,7 @@ namespace TokanPages.Backend.Shared.Services.DataUtilityService
         /// <remarks>
         /// It uses System.Random function, therefore it should not be used
         /// for security-critical applications or for protecting sensitive data.
-        /// </remarks>>
+        /// </remarks>
         /// <param name="AMin">Minimum value of expected date. Value can be null (if so, default day and month is: 1 JAN).</param>
         /// <param name="AMax">Maximum value of expected date. Value can be null (if so, default day and month is: 31 DEC).</param>
         /// <param name="ADefaultYear">If not given, it uses 2020 year as default value.</param>
@@ -37,7 +38,7 @@ namespace TokanPages.Backend.Shared.Services.DataUtilityService
         /// <remarks>
         /// It uses System.Random function, therefore it should not be used
         /// for security-critical applications or for protecting sensitive data.
-        /// </remarks>>
+        /// </remarks>
         /// <typeparam name="T">Given type.</typeparam>
         /// <returns>New randomized enumeration.</returns>
         public override T GetRandomEnum<T>()
@@ -52,7 +53,7 @@ namespace TokanPages.Backend.Shared.Services.DataUtilityService
         /// <remarks>
         /// It uses System.Random function, therefore it should not be used
         /// for security-critical applications or for protecting sensitive data.
-        /// </remarks>>
+        /// </remarks>
         /// <param name="AMin">A boundary value, lowest possible.</param>
         /// <param name="AMax">A boundary value, highest possible.</param>
         /// <returns>New randomized integer number.</returns>
@@ -64,7 +65,7 @@ namespace TokanPages.Backend.Shared.Services.DataUtilityService
         /// <remarks>
         /// It uses System.Random function, therefore it should not be used
         /// for security-critical applications or for protecting sensitive data.
-        /// </remarks>>
+        /// </remarks>
         /// <param name="AMin">A boundary value, lowest possible.</param>
         /// <param name="AMax">A boundary value, highest possible.</param>
         /// <returns>New randomized decimal number.</returns>
@@ -76,7 +77,7 @@ namespace TokanPages.Backend.Shared.Services.DataUtilityService
         /// <remarks>
         /// It uses System.Random function, therefore it should not be used
         /// for security-critical applications or for protecting sensitive data.
-        /// </remarks>>
+        /// </remarks>
         /// <param name="ASizeInKb">Expected size in kBytes.</param>
         /// <returns>New randomized stream of bytes.</returns>
         public override MemoryStream GetRandomStream(int ASizeInKb = 12)
@@ -92,7 +93,7 @@ namespace TokanPages.Backend.Shared.Services.DataUtilityService
         /// <remarks>
         /// It uses System.Random function, therefore it should not be used
         /// for security-critical applications or for protecting sensitive data.
-        /// </remarks>>
+        /// </remarks>
         /// <param name="ALength">Expected length of the name, 12 characters by default.</param>
         /// <param name="ADomain">Domain, "gmail.com" by default.</param>
         /// <returns>New randomized e-mail address.</returns>
@@ -104,7 +105,7 @@ namespace TokanPages.Backend.Shared.Services.DataUtilityService
         /// <remarks>
         /// It uses System.Random function, therefore it should not be used
         /// for security-critical applications or for protecting sensitive data.
-        /// </remarks>>
+        /// </remarks>
         /// <param name="ALength">Expected length, 12 characters by default.</param>
         /// <param name="APrefix">Optional prefix.</param>
         /// <returns>New randomized string.</returns>
@@ -123,6 +124,25 @@ namespace TokanPages.Backend.Shared.Services.DataUtilityService
                 return APrefix.Trim() + LString; 
 
             return LString;
+        }
+
+        /// <summary>
+        /// Returns randomized IP address, either IPv4 or IPv6.
+        /// </summary>
+        /// <remarks>
+        /// It uses System.Random function, therefore it should not be used
+        /// for security-critical applications or for protecting sensitive data.
+        /// </remarks>
+        /// <param name="AShouldReturnIPv6">Allow to select IPv4 or IPv6.</param>
+        /// <returns>New randomized IP address.</returns>
+        public override IPAddress GetRandomIpAddress(bool AShouldReturnIPv6 = false)
+        {
+            var LBytes = AShouldReturnIPv6 
+                ? new byte[16] 
+                : new byte[4];
+            
+            FRandom.NextBytes(LBytes);
+            return new IPAddress(LBytes);
         }
     }
 }

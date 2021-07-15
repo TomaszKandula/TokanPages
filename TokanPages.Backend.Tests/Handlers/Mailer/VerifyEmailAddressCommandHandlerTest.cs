@@ -6,24 +6,19 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
     using SmtpClient;
     using SmtpClient.Models;
     using Cqrs.Handlers.Commands.Mailer;
-    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
     using Moq;
 
     public class VerifyEmailAddressCommandHandlerTest : TestBase
     {
-        private readonly DataUtilityService FDataUtilityService;
-
-        public VerifyEmailAddressCommandHandlerTest() => FDataUtilityService = new DataUtilityService();
-
         [Fact]
         public async Task GivenValidEmailAddress_WhenVerifyEmailAddress_ShouldFinishSuccessful()
         {
             // Arrange
             var LVerifyEmailAddressCommand = new VerifyEmailAddressCommand
             {
-                Email = FDataUtilityService.GetRandomEmail()
+                Email = DataUtilityService.GetRandomEmail()
             };
 
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();

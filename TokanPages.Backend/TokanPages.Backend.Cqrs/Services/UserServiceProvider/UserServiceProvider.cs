@@ -32,8 +32,6 @@
             FDatabaseContext = ADatabaseContext;
         }
 
-        public UserServiceProvider() { }
-
         public virtual string GetRequestIpAddress() 
         {
             var LRemoteIpAddress = FHttpContextAccessor.HttpContext?
@@ -42,6 +40,22 @@
             return string.IsNullOrEmpty(LRemoteIpAddress) 
                 ? LOCALHOST 
                 : LRemoteIpAddress.Split(':')[0];
+        }
+
+        public virtual DateTimeOffset? SetRefreshTokenCookie(string ARefreshToken, int AExpiresIn, bool AIsHttpOnly = true)
+        {
+            var LDateTimeOffset = new DateTimeOffset();
+            var LExpires = LDateTimeOffset.UtcDateTime.AddMinutes(AExpiresIn);
+            var LCookieOptions = new CookieOptions
+            {
+                HttpOnly = AIsHttpOnly,
+                Expires = LExpires
+            };
+            
+            FHttpContextAccessor.HttpContext?.Response.Cookies
+                .Append("RefreshToken", ARefreshToken, LCookieOptions);
+
+            return LCookieOptions.Expires;
         }
 
         public virtual async Task<Guid?> GetUserId()

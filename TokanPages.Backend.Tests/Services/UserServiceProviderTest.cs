@@ -1,11 +1,13 @@
 namespace TokanPages.Backend.Tests.Services
 {
     using System;
+    using System.Net;
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.Extensions.Primitives;
     using Domain.Entities;
     using Core.Exceptions;
     using Shared.Resources;
@@ -592,7 +594,75 @@ namespace TokanPages.Backend.Tests.Services
             var LResult = await Assert.ThrowsAsync<BusinessException>(() => LUserProvider.HasPermissionAssigned(string.Empty));
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION));
         }
-        
+
+        [Fact]
+        public async Task GivenValidClaimsInHttpContextWithNoIpAddress_WhenInvokeGetRequestIpAddress_ShouldSucceed()
+        {
+            // Arrange
+            const string LOCALHOST = "127.0.0.1";
+            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
+            var LUsers = GetUser(LUserId).ToList();
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddRangeAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
+
+            var LHttpContext = GetMockedHttpContext(LUserId);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+
+            // Act
+            var LResult = LUserProvider.GetRequestIpAddress();
+
+            // Assert
+            LResult.Should().Be(LOCALHOST);
+        }
+
+        [Fact]
+        public async Task GivenValidClaimsInHttpContextWithIpAddress_WhenInvokeGetRequestIpAddress_ShouldSucceed()
+        {
+            // Arrange
+            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
+            var LUsers = GetUser(LUserId).ToList();
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddRangeAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
+
+            var LIpAddress = DataUtilityService.GetRandomIpAddress();
+            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+
+            // Act
+            var LResult = LUserProvider.GetRequestIpAddress();
+
+            // Assert
+            LResult.Should().Be(LIpAddress.ToString());
+        }
+
+        [Fact]
+        public async Task WhenInvokeSetRefreshTokenCookie_ShouldSucceed()
+        {
+            // Arrange
+            const int EXPIRES_IN = 15;
+            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
+            var LUsers = GetUser(LUserId).ToList();
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddRangeAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
+
+            var LIpAddress = DataUtilityService.GetRandomIpAddress();
+            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+
+            // Act
+            var LResult = LUserProvider.SetRefreshTokenCookie(DataUtilityService.GetRandomString(255), EXPIRES_IN);
+
+            // Assert
+            LResult.Should().NotBeNull();
+            LResult.HasValue.Should().BeTrue();
+        }
+
         private  IEnumerable<Users> GetUser(Guid AUserId)
         {
             return new List<Users>
@@ -643,19 +713,42 @@ namespace TokanPages.Backend.Tests.Services
             };   
         }
 
-        private static Mock<IHttpContextAccessor> GetMockedHttpContext(Guid? AUserId)
+        private static Mock<IHttpContextAccessor> GetMockedHttpContext(Guid? AUserId, IPAddress ARequesterIpAddress = null)
         {
-            var LHttpContext = new Mock<IHttpContextAccessor>();
+            var LMockedHttpContext = new Mock<IHttpContextAccessor>();
             var LClaims = new List<Claim>();
             
             if (AUserId != null && AUserId != Guid.Empty)
                 LClaims.Add(new Claim(ClaimTypes.NameIdentifier, AUserId.ToString()));
 
-            LHttpContext
-                .Setup(AHttpContext => AHttpContext.HttpContext.User.Claims)
+            LMockedHttpContext
+                .SetupGet(AHttpContext => AHttpContext.HttpContext.User.Claims)
                 .Returns(LClaims);
 
-            return LHttpContext;
+            var LIpAddress = ARequesterIpAddress == null
+                ? StringValues.Empty 
+                : new StringValues(ARequesterIpAddress.ToString());
+            
+            var LHeaders = new HeaderDictionary
+            {
+                { "X-Forwarded-For", LIpAddress }
+            };
+
+            LMockedHttpContext
+                .SetupGet(AHttpContext => AHttpContext.HttpContext.Request.Headers)
+                .Returns(LHeaders);
+
+            var LResponse = new Mock<HttpResponse>();
+            var LAnyStringValues = new StringValues(It.IsAny<string>());
+            LResponse
+                .Setup(AHttpResponse => AHttpResponse.Cookies
+                .Append(It.IsAny<string>(), LAnyStringValues));
+            
+            LMockedHttpContext
+                .SetupGet(AHttpContext => AHttpContext.HttpContext.Response)
+                .Returns(LResponse.Object);
+            
+            return LMockedHttpContext;
         }
     }
 }

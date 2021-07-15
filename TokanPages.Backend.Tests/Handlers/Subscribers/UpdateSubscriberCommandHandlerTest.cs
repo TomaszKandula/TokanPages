@@ -6,24 +6,19 @@
     using Core.Exceptions;
     using Shared.Services.DateTimeService;
     using Cqrs.Handlers.Commands.Subscribers;
-    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
     using Moq;
 
     public class UpdateSubscriberCommandHandlerTest : TestBase
     {
-        private readonly DataUtilityService FDataUtilityService;
-
-        public UpdateSubscriberCommandHandlerTest() => FDataUtilityService = new DataUtilityService();
-
         [Fact]
         public async Task GivenCorrectId_WhenUpdateSubscriber_ShouldUpdateEntity()
         {
             // Arrange
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
             {
-                Email = FDataUtilityService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,
@@ -37,7 +32,7 @@
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = LSubscribers.Id,
-                Email = FDataUtilityService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10
             };
@@ -63,7 +58,7 @@
             // Arrange
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
-                Email = FDataUtilityService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,
@@ -77,7 +72,7 @@
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = LSubscribers.Id,
-                Email = FDataUtilityService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = null,
                 Count = null
             };
@@ -104,7 +99,7 @@
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.Parse("32fcefec-4c26-48bb-8717-31447cfda471"),
-                Email = FDataUtilityService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10
             };
@@ -113,7 +108,7 @@
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                Email = FDataUtilityService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,
@@ -135,7 +130,7 @@
         public async Task GivenExistingEmail_WhenUpdateSubscriber_ShouldThrowError()
         {
             // Arrange
-            var LTestEmail = FDataUtilityService.GetRandomEmail();
+            var LTestEmail = DataUtilityService.GetRandomEmail();
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
                 Email = LTestEmail,
