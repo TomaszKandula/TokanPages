@@ -34,12 +34,6 @@ namespace TokanPages.Backend.Domain.Entities
         
         [MaxLength(255)]
         public string ReasonRevoked { get; set; }
-
-        public bool IsExpired => DateTime.UtcNow >= Expires;
-        
-        public bool IsRevoked => Revoked != null;
-        
-        public bool IsActive => !IsRevoked && !IsExpired;
         
         public Users User { get; set; }
     }
