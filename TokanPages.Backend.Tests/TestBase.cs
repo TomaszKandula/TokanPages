@@ -2,8 +2,9 @@
 {
     using Microsoft.Extensions.DependencyInjection;
     using Database;
-    using Identity.Services.JwtUtilityService;
+    using Shared.Services.DateTimeService;
     using Shared.Services.DataUtilityService;
+    using Identity.Services.JwtUtilityService;
 
     public class TestBase
     {
@@ -11,12 +12,15 @@
         
         protected IJwtUtilityService JwtUtilityService { get; }
 
+        protected IDateTimeService DateTimeService { get; }
+        
         private readonly DatabaseContextFactory FDatabaseContextFactory;
         
         protected TestBase()
         {
             DataUtilityService = new DataUtilityService();
             JwtUtilityService = new JwtUtilityService();
+            DateTimeService = new DateTimeService();
 
             var LServices = new ServiceCollection();
             LServices.AddSingleton<DatabaseContextFactory>();
