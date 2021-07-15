@@ -9,7 +9,7 @@
     {
         string GetRequestIpAddress();
 
-        void SetRefreshTokenCookie(string ARefreshToken, int AExpiresIn);
+        DateTimeOffset? SetRefreshTokenCookie(string ARefreshToken, int AExpiresIn, bool AIsHttpOnly = true);
 
         Task<Guid?> GetUserId();
         

@@ -11,7 +11,6 @@
     using Core.Exceptions;
     using Shared.Resources;
     using Shared.Dto.Users;
-    using Shared.Services.DateTimeService;
 
     public class UserServiceProvider : IUserServiceProvider
     {
@@ -20,8 +19,6 @@
         private readonly IHttpContextAccessor FHttpContextAccessor;
 
         private readonly DatabaseContext FDatabaseContext;
-        
-        private readonly IDateTimeService FDateTimeService;
 
         private List<GetUserPermissionDto> FUserPermissions;
 
@@ -29,15 +26,11 @@
         
         private GetUserDto FUsers;
         
-        public UserServiceProvider(IHttpContextAccessor AHttpContextAccessor, DatabaseContext ADatabaseContext, 
-            IDateTimeService ADateTimeService)
+        public UserServiceProvider(IHttpContextAccessor AHttpContextAccessor, DatabaseContext ADatabaseContext)
         {
             FHttpContextAccessor = AHttpContextAccessor;
             FDatabaseContext = ADatabaseContext;
-            FDateTimeService = ADateTimeService;
         }
-
-        public UserServiceProvider() { }
 
         public virtual string GetRequestIpAddress() 
         {
@@ -49,16 +42,20 @@
                 : LRemoteIpAddress.Split(':')[0];
         }
 
-        public virtual void SetRefreshTokenCookie(string ARefreshToken, int AExpiresIn)
+        public virtual DateTimeOffset? SetRefreshTokenCookie(string ARefreshToken, int AExpiresIn, bool AIsHttpOnly = true)
         {
+            var LDateTimeOffset = new DateTimeOffset();
+            var LExpires = LDateTimeOffset.UtcDateTime.AddMinutes(AExpiresIn);
             var LCookieOptions = new CookieOptions
             {
-                HttpOnly = true,
-                Expires = FDateTimeService.Now.AddMinutes(AExpiresIn)
+                HttpOnly = AIsHttpOnly,
+                Expires = LExpires
             };
             
             FHttpContextAccessor.HttpContext?.Response.Cookies
                 .Append("RefreshToken", ARefreshToken, LCookieOptions);
+
+            return LCookieOptions.Expires;
         }
 
         public virtual async Task<Guid?> GetUserId()
