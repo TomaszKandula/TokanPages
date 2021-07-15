@@ -1,5 +1,6 @@
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 {
+    using System;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -105,7 +106,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 ReasonRevoked = null
             };
 
-            await DeletePreviousRefreshTokens(ACancellationToken);
+            await DeletePreviousRefreshTokens(LUserData.Id, ACancellationToken);
             await FDatabaseContext.UserRefreshTokens.AddAsync(LNewRefreshToken, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 
@@ -122,10 +123,13 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             };
         }
         
-        private async Task DeletePreviousRefreshTokens(CancellationToken ACancellationToken)
+        private async Task DeletePreviousRefreshTokens(Guid AUserId, CancellationToken ACancellationToken)
         {
             var LRefreshTokens = await FDatabaseContext.UserRefreshTokens
-                .Where(ATokens => !ATokens.IsActive && ATokens.Created.AddMinutes(REFRESH_TOKEN_EXPIRES_IN) <= FDateTimeService.Now)
+                .Where(ATokens => ATokens.UserId == AUserId 
+                    && ATokens.Expires <= FDateTimeService.Now 
+                    && ATokens.Created <= FDateTimeService.Now
+                    && ATokens.Revoked == null)
                 .ToListAsync(ACancellationToken);
 
             FDatabaseContext.UserRefreshTokens.RemoveRange(LRefreshTokens);
