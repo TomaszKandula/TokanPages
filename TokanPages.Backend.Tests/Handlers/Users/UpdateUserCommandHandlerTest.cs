@@ -16,7 +16,6 @@
         public async Task GivenCorrectId_WhenUpdateUser_ShouldUpdateEntity()
         {
             // Arrange
-
             var LUser = new TokanPages.Backend.Domain.Entities.Users
             {
                 EmailAddress = DataUtilityService.GetRandomEmail(),
