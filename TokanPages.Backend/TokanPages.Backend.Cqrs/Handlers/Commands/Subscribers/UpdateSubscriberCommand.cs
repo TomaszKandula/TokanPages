@@ -1,8 +1,8 @@
-﻿using System;
-using MediatR;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 {
+    using System;
+    using MediatR;
+
     public class UpdateSubscriberCommand : IRequest<Unit>
     {
         public Guid Id { get; set; }

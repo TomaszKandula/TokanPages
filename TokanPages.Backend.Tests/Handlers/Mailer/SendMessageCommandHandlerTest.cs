@@ -1,54 +1,49 @@
-using Xunit;
-using Moq;
-using Moq.Protected;
-using FluentAssertions;
-using System;
-using System.Net;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Core.Logger;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Storage.Models;
-using TokanPages.Backend.Shared.Services.TemplateHelper;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using MediatR;
-
 namespace TokanPages.Backend.Tests.Handlers.Mailer
 {
+    using System;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using SmtpClient;
+    using Core.Logger;
+    using Shared.Models;
+    using Storage.Models;
+    using Cqrs.Handlers.Commands.Mailer;
+    using Shared.Services.TemplateService;
+    using Shared.Services.DateTimeService;
+    using FluentAssertions;
+    using Moq.Protected;
+    using MediatR;
+    using Xunit;
+    using Moq;
+
     public class SendMessageCommandHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public SendMessageCommandHandlerTest() => FDataProviderService = new DataProviderService();
-
         [Fact]
         public async Task GivenFilledUserForm_WhenSendMessage_ShouldFinishSuccessful()
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                Subject = FDataProviderService.GetRandomString(),
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string>{ FDataProviderService.GetRandomEmail() },
-                UserEmail = FDataProviderService.GetRandomEmail()
+                Subject = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                Message = DataUtilityService.GetRandomString(),
+                EmailFrom = DataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string>{ DataUtilityService.GetRandomEmail() },
+                UserEmail = DataUtilityService.GetRandomEmail()
             };
 
             var LMockedLogger = new Mock<ILogger>();
             var LMockedHttpMessageHandler = new Mock<HttpMessageHandler>();
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();
-            var LMockedTemplateHelper = new Mock<ITemplateHelper>();
-            var LMockedAzureStorageSettings = new Mock<AzureStorageSettingsModel>();
+            var LMockedTemplateHelper = new Mock<ITemplateService>();
+            var LMockedAzureStorageSettings = new Mock<AzureStorage>();
             var LDateTimeService = new Mock<IDateTimeService>();
 
-            var LSendActionResult = new ActionResultModel { IsSucceeded = true };
+            var LSendActionResult = new ActionResult { IsSucceeded = true };
             LMockedSmtpClientService
                 .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
                 .Returns(Task.FromResult(LSendActionResult));

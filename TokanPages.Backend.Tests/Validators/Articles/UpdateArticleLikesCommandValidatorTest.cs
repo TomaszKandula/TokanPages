@@ -1,18 +1,13 @@
-using Xunit;
-using FluentAssertions;
-using System;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
 namespace TokanPages.Backend.Tests.Validators.Articles
 {
-    public class UpdateArticleLikesCommandValidatorTest
+    using System;
+    using Shared.Resources;
+    using Cqrs.Handlers.Commands.Articles;
+    using FluentAssertions;
+    using Xunit;
+
+    public class UpdateArticleLikesCommandValidatorTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public UpdateArticleLikesCommandValidatorTest() => FDataProviderService = new DataProviderService();
-
         [Fact]
         public void GivenValidGuidAndLikes_WhenUpdateArticleLikes_ShouldReturnSuccess()
         {
@@ -20,7 +15,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             var LUpdateArticleLikesCommand = new UpdateArticleLikesCommand
             {
                 Id = Guid.NewGuid(),
-                AddToLikes = FDataProviderService.GetRandomInteger(1, 25)
+                AddToLikes = DataUtilityService.GetRandomInteger(1, 25)
             };
 
             // Act
@@ -38,7 +33,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             var LUpdateArticleLikesCommand = new UpdateArticleLikesCommand
             {
                 Id = Guid.NewGuid(),
-                AddToLikes = FDataProviderService.GetRandomInteger(-25, -1)
+                AddToLikes = DataUtilityService.GetRandomInteger(-25, -1)
             };
 
             // Act
@@ -57,7 +52,7 @@ namespace TokanPages.Backend.Tests.Validators.Articles
             var LUpdateArticleLikesCommand = new UpdateArticleLikesCommand
             {
                 Id = Guid.Empty,
-                AddToLikes = FDataProviderService.GetRandomInteger(-25, -1)
+                AddToLikes = DataUtilityService.GetRandomInteger(-25, -1)
             };
 
             // Act

@@ -1,11 +1,11 @@
-using System;
-using System.Text;
-using System.Collections;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-
 namespace TokanPages.Backend.Shared.Attributes
 {
+    using System;
+    using System.Text;
+    using System.Collections;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Filters;
+
     [AttributeUsage(AttributeTargets.Method)]
     public class ETagFilterAttribute : Attribute, IActionFilter
     {

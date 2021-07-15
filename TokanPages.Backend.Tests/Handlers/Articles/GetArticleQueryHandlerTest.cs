@@ -1,17 +1,16 @@
-﻿using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
-namespace TokanPages.Backend.Tests.Handlers.Articles
+﻿namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Core.Exceptions;
+    using Cqrs.Handlers.Queries.Articles;
+    using Cqrs.Services.UserServiceProvider;
+    using FluentAssertions;
+    using Xunit;
+    using Moq;
+
     public class GetArticleQueryHandlerTest : TestBase
     {
         private const string USER_ALIAS = "Ester";
@@ -19,10 +18,6 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
         private const string IP_ADDRESS_FIRST = "255.255.255.255";
         
         private const string IP_ADDRESS_SECOND = "1.1.1.1";
-        
-        private readonly DataProviderService FDataProviderService;
-
-        public GetArticleQueryHandlerTest() => FDataProviderService = new DataProviderService();
 
         [Fact]
         public async Task GivenCorrectId_WhenGetArticle_ShouldReturnEntity() 
@@ -33,15 +28,15 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataProviderService.GetRandomEmail(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = USER_ALIAS,
-                Registered = FDataProviderService.GetRandomDateTime(),
+                Registered = DataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataProviderService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
 
             await LDatabaseContext.Users.AddAsync(LUsers);
@@ -49,8 +44,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = LTestDate,
@@ -82,7 +77,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.ArticleLikes.AddRangeAsync(LLikes);
             await LDatabaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS_FIRST);
@@ -118,15 +113,15 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                Registered = FDataProviderService.GetRandomDateTime(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                Registered = DataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataProviderService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -135,8 +130,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -147,14 +142,15 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS_FIRST);
 
             var LGetArticleQueryHandler = new GetArticleQueryHandler(LDatabaseContext, LMockedUserProvider.Object);
 
-            // Act & Assert
+            // Act
+            // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
                 => LGetArticleQueryHandler.Handle(LGetArticleQuery, CancellationToken.None));
         }

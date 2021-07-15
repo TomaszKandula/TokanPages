@@ -1,9 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Shared.Dto.Articles;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
-
-namespace TokanPages.Backend.Cqrs.Mappers
+﻿namespace TokanPages.Backend.Cqrs.Mappers
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Shared.Dto.Articles;
+    using Handlers.Commands.Articles;
+
     [ExcludeFromCodeCoverage]
     public static class ArticlesMapper
     {

@@ -1,31 +1,26 @@
-﻿using Xunit;
-using FluentAssertions;
-using System.Collections.Generic;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
-
-namespace TokanPages.Backend.Tests.Validators.Mailer
+﻿namespace TokanPages.Backend.Tests.Validators.Mailer
 {
-    public class SendMessageCommandValidatorTest
+    using System.Collections.Generic;
+    using Shared.Resources;
+    using Cqrs.Handlers.Commands.Mailer;
+    using FluentAssertions;
+    using Xunit;
+
+    public class SendMessageCommandValidatorTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public SendMessageCommandValidatorTest() => FDataProviderService = new DataProviderService();
-
         [Fact]
         public void GivenAllFieldsAreCorrect_WhenSendMessage_ShouldFinishSuccessful() 
         {
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                UserEmail = DataUtilityService.GetRandomEmail(),
+                EmailFrom = DataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { DataUtilityService.GetRandomEmail(), DataUtilityService.GetRandomEmail() },
+                Subject = DataUtilityService.GetRandomString(),
+                Message = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -43,12 +38,12 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             var LSendMessageCommand = new SendMessageCommand
             {
                 FirstName = string.Empty,
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                LastName = DataUtilityService.GetRandomString(),
+                UserEmail = DataUtilityService.GetRandomEmail(),
+                EmailFrom = DataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { DataUtilityService.GetRandomEmail(), DataUtilityService.GetRandomEmail() },
+                Subject = DataUtilityService.GetRandomString(),
+                Message = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -66,13 +61,13 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(256),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                FirstName = DataUtilityService.GetRandomString(256),
+                LastName = DataUtilityService.GetRandomString(),
+                UserEmail = DataUtilityService.GetRandomEmail(),
+                EmailFrom = DataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { DataUtilityService.GetRandomEmail(), DataUtilityService.GetRandomEmail() },
+                Subject = DataUtilityService.GetRandomString(),
+                Message = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -90,13 +85,13 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
                 LastName = string.Empty,
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                UserEmail = DataUtilityService.GetRandomEmail(),
+                EmailFrom = DataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { DataUtilityService.GetRandomEmail(), DataUtilityService.GetRandomEmail() },
+                Subject = DataUtilityService.GetRandomString(),
+                Message = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -114,13 +109,13 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(256),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(256),
+                UserEmail = DataUtilityService.GetRandomEmail(),
+                EmailFrom = DataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { DataUtilityService.GetRandomEmail(), DataUtilityService.GetRandomEmail() },
+                Subject = DataUtilityService.GetRandomString(),
+                Message = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -138,13 +133,13 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 UserEmail = string.Empty,
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                EmailFrom = DataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { DataUtilityService.GetRandomEmail(), DataUtilityService.GetRandomEmail() },
+                Subject = DataUtilityService.GetRandomString(),
+                Message = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -162,13 +157,13 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 UserEmail = new string('T', 256),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                EmailFrom = DataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { DataUtilityService.GetRandomEmail(), DataUtilityService.GetRandomEmail() },
+                Subject = DataUtilityService.GetRandomString(),
+                Message = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -186,13 +181,13 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                UserEmail = DataUtilityService.GetRandomEmail(),
                 EmailFrom = string.Empty,
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                EmailTos = new List<string> { DataUtilityService.GetRandomEmail(), DataUtilityService.GetRandomEmail() },
+                Subject = DataUtilityService.GetRandomString(),
+                Message = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -210,13 +205,13 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                UserEmail = DataUtilityService.GetRandomEmail(),
                 EmailFrom = new string('T', 256),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                EmailTos = new List<string> { DataUtilityService.GetRandomEmail(), DataUtilityService.GetRandomEmail() },
+                Subject = DataUtilityService.GetRandomString(),
+                Message = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -234,13 +229,13 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                UserEmail = DataUtilityService.GetRandomEmail(),
+                EmailFrom = DataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { DataUtilityService.GetRandomEmail(), DataUtilityService.GetRandomEmail() },
                 Subject = string.Empty,
-                Message = FDataProviderService.GetRandomString()
+                Message = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -258,13 +253,13 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(256),
-                Message = FDataProviderService.GetRandomString()
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                UserEmail = DataUtilityService.GetRandomEmail(),
+                EmailFrom = DataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { DataUtilityService.GetRandomEmail(), DataUtilityService.GetRandomEmail() },
+                Subject = DataUtilityService.GetRandomString(256),
+                Message = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -282,12 +277,12 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                UserEmail = DataUtilityService.GetRandomEmail(),
+                EmailFrom = DataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { DataUtilityService.GetRandomEmail(), DataUtilityService.GetRandomEmail() },
+                Subject = DataUtilityService.GetRandomString(),
                 Message = string.Empty,
             };
 
@@ -306,13 +301,13 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
-                EmailTos = new List<string> { FDataProviderService.GetRandomEmail(), FDataProviderService.GetRandomEmail() },
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString(256)
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                UserEmail = DataUtilityService.GetRandomEmail(),
+                EmailFrom = DataUtilityService.GetRandomEmail(),
+                EmailTos = new List<string> { DataUtilityService.GetRandomEmail(), DataUtilityService.GetRandomEmail() },
+                Subject = DataUtilityService.GetRandomString(),
+                Message = DataUtilityService.GetRandomString(256)
             };
 
             // Act
@@ -330,13 +325,13 @@ namespace TokanPages.Backend.Tests.Validators.Mailer
             // Arrange
             var LSendMessageCommand = new SendMessageCommand
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                UserEmail = FDataProviderService.GetRandomEmail(),
-                EmailFrom = FDataProviderService.GetRandomEmail(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                UserEmail = DataUtilityService.GetRandomEmail(),
+                EmailFrom = DataUtilityService.GetRandomEmail(),
                 EmailTos = new List<string>(),
-                Subject = FDataProviderService.GetRandomString(),
-                Message = FDataProviderService.GetRandomString()
+                Subject = DataUtilityService.GetRandomString(),
+                Message = DataUtilityService.GetRandomString()
             };
 
             // Act

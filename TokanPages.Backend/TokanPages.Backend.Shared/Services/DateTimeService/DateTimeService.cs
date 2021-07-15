@@ -1,7 +1,7 @@
-using System;
-
 namespace TokanPages.Backend.Shared.Services.DateTimeService
 {
+    using System;
+
     public class DateTimeService : DateTimeObject, IDateTimeService
     {
         /// <summary>

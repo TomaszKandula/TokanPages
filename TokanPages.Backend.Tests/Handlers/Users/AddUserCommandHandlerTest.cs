@@ -1,35 +1,30 @@
-﻿using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-using TokanPages.Backend.Cqrs.Services.CipheringService;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
-namespace TokanPages.Backend.Tests.Handlers.Users
+﻿namespace TokanPages.Backend.Tests.Handlers.Users
 {   
+    using System;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Core.Exceptions;
+    using Cqrs.Handlers.Commands.Users;
+    using Cqrs.Services.CipheringService;
+    using Shared.Services.DateTimeService;
+    using FluentAssertions;
+    using Xunit;
+    using Moq;
+
     public class AddUserCommandHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public AddUserCommandHandlerTest() => FDataProviderService = new DataProviderService();
-
         [Fact]
         public async Task GivenFieldsAreProvided_WhenAddUser_ShouldAddEntity() 
         {
             // Arrange
             var LAddUserCommand = new AddUserCommand 
             {
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                Password = FDataProviderService.GetRandomString()
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                Password = DataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -63,26 +58,26 @@ namespace TokanPages.Backend.Tests.Handlers.Users
         public async Task GivenExistingEmail_WhenAddUser_ShouldThrowError()
         {
             // Arrange
-            var LTestEmail = FDataProviderService.GetRandomEmail();
+            var LTestEmail = DataUtilityService.GetRandomEmail();
             var LAddUserCommand = new AddUserCommand
             {
                 EmailAddress = LTestEmail,
-                UserAlias = FDataProviderService.GetRandomString(),
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
             };
 
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             { 
                 EmailAddress = LTestEmail,
                 IsActivated = false,
-                UserAlias = FDataProviderService.GetRandomString(),
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 Registered = DateTime.Now,
                 LastUpdated = null,
                 LastLogged = null,
-                CryptedPassword = FDataProviderService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -98,7 +93,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             
             var LAddUserCommandHandler = new AddUserCommandHandler(LDatabaseContext, LMockedDateTime.Object, LMockedCipher.Object);
 
-            // Act & Assert
+            // Act
+            // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
                 => LAddUserCommandHandler.Handle(LAddUserCommand, CancellationToken.None));
         }

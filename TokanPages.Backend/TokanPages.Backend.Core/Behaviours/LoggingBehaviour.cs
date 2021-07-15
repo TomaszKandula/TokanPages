@@ -1,11 +1,11 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Core.Logger;
-using MediatR;
-
-namespace TokanPages.Backend.Core.Behaviours
+﻿namespace TokanPages.Backend.Core.Behaviours
 {   
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Diagnostics.CodeAnalysis;
+    using Logger;
+    using MediatR;
+
     [ExcludeFromCodeCoverage]
     public class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {

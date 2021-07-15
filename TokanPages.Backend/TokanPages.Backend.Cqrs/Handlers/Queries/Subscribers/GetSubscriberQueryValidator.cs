@@ -1,8 +1,8 @@
-﻿using FluentValidation;
-using TokanPages.Backend.Shared.Resources;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
 {
+    using FluentValidation;
+    using Shared.Resources;
+
     public class GetSubscriberQueryValidator : AbstractValidator<GetSubscriberQuery>
     {
         public GetSubscriberQueryValidator() 

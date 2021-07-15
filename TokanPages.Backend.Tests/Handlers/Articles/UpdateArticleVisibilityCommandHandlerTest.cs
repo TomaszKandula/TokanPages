@@ -1,28 +1,23 @@
-using Xunit;
-using Moq;
-using FluentAssertions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Domain.Entities;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using UsersEntity = TokanPages.Backend.Domain.Entities.Users;
-using ArticlesEntity = TokanPages.Backend.Domain.Entities.Articles;
-using PermissionsEntity = TokanPages.Backend.Domain.Entities.Permissions;
-using AuthorizationPermissions = TokanPages.Backend.Identity.Authorization.Permissions;
-
 namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Core.Exceptions;
+    using Domain.Entities;
+    using Shared.Resources;
+    using Cqrs.Handlers.Commands.Articles;
+    using Cqrs.Services.UserServiceProvider;
+    using UsersEntity = Domain.Entities.Users;
+    using ArticlesEntity = Domain.Entities.Articles;
+    using PermissionsEntity = Domain.Entities.Permissions;
+    using AuthorizationPermissions = Identity.Authorization.Permissions;
+    using FluentAssertions;
+    using Xunit;
+    using Moq;
+
     public class UpdateArticleVisibilityCommandHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public UpdateArticleVisibilityCommandHandlerTest() => FDataProviderService = new DataProviderService();
-
         [Theory]
         [InlineData(false, true)]
         [InlineData(true, false)]
@@ -42,7 +37,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.HasPermissionAssigned(It.IsAny<string>()))
@@ -85,7 +80,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.HasPermissionAssigned(It.IsAny<string>()))
@@ -125,7 +120,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.HasPermissionAssigned(It.IsAny<string>()))
@@ -152,11 +147,11 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
         {
             return new ()
             {
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
                 IsPublished = AIsPublished,
                 ReadCount = 0,
-                CreatedAt = FDataProviderService.GetRandomDateTime(),
+                CreatedAt = DataUtilityService.GetRandomDateTime(),
                 UpdatedAt = null,
                 UserId = AUserId
             };
@@ -167,15 +162,15 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             return new()
             {
                 Id = AUserId,
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                Registered = FDataProviderService.GetRandomDateTime(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                Registered = DataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataProviderService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
         }
 

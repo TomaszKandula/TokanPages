@@ -1,10 +1,10 @@
-using System;
-using System.Text;
-using System.Globalization;
-using System.Diagnostics.CodeAnalysis;
-
 namespace TokanPages.Backend.Core.Extensions
 {
+    using System;
+    using System.Text;
+    using System.Globalization;
+    using System.Diagnostics.CodeAnalysis;
+
     [ExcludeFromCodeCoverage]
     public static class StringExtensions
     {

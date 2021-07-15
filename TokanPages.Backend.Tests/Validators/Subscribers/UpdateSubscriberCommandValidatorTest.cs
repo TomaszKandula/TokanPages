@@ -1,18 +1,13 @@
-﻿using System;
-using Xunit;
-using FluentAssertions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
-
-namespace TokanPages.Backend.Tests.Validators.Subscribers
+﻿namespace TokanPages.Backend.Tests.Validators.Subscribers
 {
-    public class UpdateSubscriberCommandValidatorTest
+    using System;
+    using Shared.Resources;
+    using Cqrs.Handlers.Commands.Subscribers;
+    using FluentAssertions;
+    using Xunit;
+
+    public class UpdateSubscriberCommandValidatorTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public UpdateSubscriberCommandValidatorTest() => FDataProviderService = new DataProviderService();
-
         [Fact]
         public void GivenAllFieldsAreCorrect_WhenUpdateSubscriber_ShouldFinishSuccessful() 
         {
@@ -20,7 +15,7 @@ namespace TokanPages.Backend.Tests.Validators.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand 
             { 
                 Id = Guid.NewGuid(),
-                Email = FDataProviderService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 0
             };
@@ -40,7 +35,7 @@ namespace TokanPages.Backend.Tests.Validators.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.NewGuid(),
-                Email = FDataProviderService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = null
             };
@@ -60,7 +55,7 @@ namespace TokanPages.Backend.Tests.Validators.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.Empty,
-                Email = FDataProviderService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 0
             };
@@ -123,7 +118,7 @@ namespace TokanPages.Backend.Tests.Validators.Subscribers
             var LUpdateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.NewGuid(),
-                Email = FDataProviderService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = -1
             };

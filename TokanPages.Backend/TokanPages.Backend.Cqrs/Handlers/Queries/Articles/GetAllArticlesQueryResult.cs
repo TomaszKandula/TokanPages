@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 {
+    using System;
+
     public class GetAllArticlesQueryResult
     {
         public Guid Id { get; set; }

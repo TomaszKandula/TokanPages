@@ -1,9 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
-using TokanPages.Backend.Shared.Dto.Mailer;
-
-namespace TokanPages.Backend.Cqrs.Mappers
+﻿namespace TokanPages.Backend.Cqrs.Mappers
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Handlers.Commands.Mailer;
+    using Shared.Dto.Mailer;
+
     [ExcludeFromCodeCoverage]
     public static class MailerMapper
     {

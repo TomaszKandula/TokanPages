@@ -1,7 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace TokanPages.Backend.Shared.Dto.Mailer
+﻿namespace TokanPages.Backend.Shared.Dto.Mailer
 {
+    using System.Diagnostics.CodeAnalysis;
+
     [ExcludeFromCodeCoverage]
     public class VerifyEmailAddressDto
     {

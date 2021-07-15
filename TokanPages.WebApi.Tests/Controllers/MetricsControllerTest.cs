@@ -1,11 +1,11 @@
-using System.Net;
-using Xunit;
-using FluentAssertions;
-using System.Threading.Tasks;
-using TokanPages.Backend.Shared;
-
 namespace TokanPages.WebApi.Tests.Controllers
 {
+    using System.Net;
+    using System.Threading.Tasks;
+    using Backend.Shared;
+    using FluentAssertions;
+    using Xunit;
+
     public class MetricsControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
         private const string API_BASE_URL = "/api/v1/sonarqube/metrics";
@@ -92,7 +92,7 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenProjectNameWithInvalidMetricName_WhenRequestCoverage_ShouldThrowError()
         {
             // Arrange
-            var LMetricName = DataProviderService.GetRandomString();
+            var LMetricName = DataUtilityService.GetRandomString();
             const string PROJECT_NAME = "tokanpages-backend";
             var LRequest = $"{API_BASE_URL}/?AProject={PROJECT_NAME}&AMetric={LMetricName}";
 

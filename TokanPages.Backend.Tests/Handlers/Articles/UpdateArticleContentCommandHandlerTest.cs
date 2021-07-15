@@ -1,28 +1,23 @@
-﻿using Xunit;
-using FluentAssertions;
-using Moq;
-using System;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Storage.AzureBlobStorage;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
-using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
-namespace TokanPages.Backend.Tests.Handlers.Articles
+﻿namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using System;
+    using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Core.Exceptions;
+    using Core.Extensions;
+    using Shared.Resources;
+    using Storage.AzureBlobStorage;
+    using Shared.Services.DateTimeService;
+    using Cqrs.Handlers.Commands.Articles;
+    using Storage.AzureBlobStorage.Factory;
+    using Cqrs.Services.UserServiceProvider;
+    using FluentAssertions;
+    using Xunit;
+    using Moq;
+
     public class UpdateArticleContentCommandHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public UpdateArticleContentCommandHandlerTest() => FDataProviderService = new DataProviderService();
-
         [Fact]
         public async Task GivenExistingArticleAndLoggedUser_WhenUpdateArticle_ShouldUpdateEntity() 
         {
@@ -31,23 +26,23 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
                 Id = LUserId,
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                Registered = FDataProviderService.GetRandomDateTime(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                Registered = DataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataProviderService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
 
             var LArticleId = Guid.NewGuid();
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = LArticleId,
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -60,7 +55,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
             var LMockedDateTime = new Mock<DateTimeService>();
             var LMockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
             var LMockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
@@ -89,10 +84,10 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             var LUpdateArticleCommand = new UpdateArticleContentCommand 
             { 
                 Id = LArticleId,
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(150),
-                ImageToUpload = FDataProviderService.GetRandomString(255).ToBase64Encode()
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
+                TextToUpload = DataUtilityService.GetRandomString(150),
+                ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
             };
 
             // Act
@@ -116,23 +111,23 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
                 Id = LUserId,
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                Registered = FDataProviderService.GetRandomDateTime(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                Registered = DataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataProviderService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
 
             var LArticleId = Guid.NewGuid();
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = LArticleId,
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -145,7 +140,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
             var LMockedDateTime = new Mock<DateTimeService>();
             var LMockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
             var LMockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
@@ -174,10 +169,10 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             var LUpdateArticleCommand = new UpdateArticleContentCommand
             {
                 Id = Guid.NewGuid(),
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(150),
-                ImageToUpload = FDataProviderService.GetRandomString(255).ToBase64Encode()
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
+                TextToUpload = DataUtilityService.GetRandomString(150),
+                ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
             };
 
             // Act
@@ -197,31 +192,31 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             var LUpdateArticleContentCommand = new UpdateArticleContentCommand
             {
                 Id = LArticleId,
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(150),
-                ImageToUpload = FDataProviderService.GetRandomString(255).ToBase64Encode()
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
+                TextToUpload = DataUtilityService.GetRandomString(150),
+                ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
             };
 
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
                 Id = LUserId,
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                Registered = FDataProviderService.GetRandomDateTime(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                Registered = DataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataProviderService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
 
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
                 Id = LArticleId,
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -234,7 +229,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserProvider>();
+            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
             var LMockedDateTime = new Mock<DateTimeService>();
             var LMockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>(); 
             var LMockedAzureBlobStorage = new Mock<IAzureBlobStorage>();

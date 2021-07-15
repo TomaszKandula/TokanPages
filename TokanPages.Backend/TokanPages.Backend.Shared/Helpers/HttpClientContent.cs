@@ -1,15 +1,15 @@
-using System;
-using System.Linq;
-using System.Text;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Mvc;
-using TokanPages.Backend.Shared.Models;
-
 namespace TokanPages.Backend.Shared.Helpers
 {
+    using System;
+    using System.Linq;
+    using System.Text;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.AspNetCore.Mvc;
+    using Models;
+
     [ExcludeFromCodeCoverage]
     public static class HttpClientContent
     {
@@ -40,7 +40,7 @@ namespace TokanPages.Backend.Shared.Helpers
             };
         }
 
-        public static string GetFirstEmptyParameterName(IEnumerable<ParameterModel> AParameterList)
+        public static string GetFirstEmptyParameterName(IEnumerable<Parameter> AParameterList)
         {
             var LParameters = AParameterList
                 .Where(AParameter => string.IsNullOrEmpty(AParameter.Value))

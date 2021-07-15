@@ -1,36 +1,37 @@
-﻿using System;
-using System.Net.Http;
-using System.Reflection;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using TokanPages.Backend.Cqrs;
-using TokanPages.Backend.Shared;
-using TokanPages.Backend.Database;
-using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Core.Logger;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Storage.Models;
-using TokanPages.Backend.Core.Behaviours;
-using TokanPages.Backend.SmtpClient.Models;
-using TokanPages.Backend.Database.Initializer;
-using TokanPages.Backend.Identity.Authentication;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Shared.Services.TemplateHelper;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-using TokanPages.Backend.Cqrs.Services.CipheringService;
-using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using FluentValidation;
-using MailKit.Net.Smtp;
-using DnsClient;
-using MediatR;
-
-namespace TokanPages.WebApi.Configuration
+﻿namespace TokanPages.WebApi.Configuration
 {
+    using System;
+    using System.Net.Http;
+    using System.Reflection;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Backend.Cqrs;
+    using Backend.Shared;
+    using Backend.Database;
+    using Backend.SmtpClient;
+    using Backend.Core.Logger;
+    using Backend.Shared.Models;
+    using Backend.Storage.Models;
+    using Backend.Core.Behaviours;
+    using Backend.SmtpClient.Models;
+    using Backend.Database.Initializer;
+    using Backend.Identity.Authentication;
+    using Backend.Cqrs.Services.CipheringService;
+    using Backend.Shared.Services.TemplateService;
+    using Backend.Shared.Services.DateTimeService;
+    using Backend.Storage.AzureBlobStorage.Factory;
+    using Backend.Cqrs.Services.UserServiceProvider;
+    using Backend.Shared.Services.DataUtilityService;
+    using Backend.Identity.Services.JwtUtilityService;
+    using FluentValidation;
+    using MailKit.Net.Smtp;
+    using DnsClient;
+    using MediatR;
+    
     [ExcludeFromCodeCoverage]
     public static class Dependencies
     {
@@ -54,10 +55,11 @@ namespace TokanPages.WebApi.Configuration
 
         private static void SetupAppSettings(IServiceCollection AServices, IConfiguration AConfiguration) 
         {
-            AServices.AddSingleton(AConfiguration.GetSection("AzureStorage").Get<AzureStorageSettingsModel>());
-            AServices.AddSingleton(AConfiguration.GetSection("SmtpServer").Get<SmtpServerSettingsModel>());
-            AServices.AddSingleton(AConfiguration.GetSection("AppUrls").Get<ApplicationPathsModel>());
-            AServices.AddSingleton(AConfiguration.GetSection("SonarQube").Get<SonarQubeSettingsModel>());
+            AServices.AddSingleton(AConfiguration.GetSection("AzureStorage").Get<AzureStorage>());
+            AServices.AddSingleton(AConfiguration.GetSection("SmtpServer").Get<SmtpServer>());
+            AServices.AddSingleton(AConfiguration.GetSection("AppUrls").Get<ApplicationPaths>());
+            AServices.AddSingleton(AConfiguration.GetSection("SonarQube").Get<SonarQube>());
+            AServices.AddSingleton(AConfiguration.GetSection("IdentityServer").Get<IdentityServer>());
         }
 
         private static void SetupLogger(IServiceCollection AServices) 
@@ -83,16 +85,17 @@ namespace TokanPages.WebApi.Configuration
             AServices.AddScoped<ISmtpClient, SmtpClient>();
             AServices.AddScoped<ILookupClient, LookupClient>();
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();
-            AServices.AddScoped<ITemplateHelper, TemplateHelper>();
+            AServices.AddScoped<ITemplateService, TemplateService>();
             AServices.AddScoped<IDateTimeService, DateTimeService>();
-            AServices.AddScoped<IUserProvider, UserProvider>();
-            AServices.AddScoped<IDataProviderService, DataProviderService>();
+            AServices.AddScoped<IJwtUtilityService, JwtUtilityService>();
+            AServices.AddScoped<IDataUtilityService, DataUtilityService>();
+            AServices.AddScoped<IUserServiceProvider, UserServiceProvider>();
             AServices.AddScoped<IDbInitializer, DbInitializer>();
             AServices.AddScoped<ICipheringService, CipheringService>();
             
             AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
             {
-                var LAzureStorageSettings = AProvider.GetRequiredService<AzureStorageSettingsModel>();
+                var LAzureStorageSettings = AProvider.GetRequiredService<AzureStorage>();
                 return new AzureBlobStorageFactory(LAzureStorageSettings.ConnectionString, LAzureStorageSettings.ContainerName);
             });
         }
@@ -111,7 +114,7 @@ namespace TokanPages.WebApi.Configuration
 
         private static void SetupRetryPolicyWithPolly(IServiceCollection AServices, IConfiguration AConfiguration, IWebHostEnvironment AEnvironment)
         {
-            var LAppUrls = AConfiguration.GetSection("AppUrls").Get<ApplicationPathsModel>();
+            var LAppUrls = AConfiguration.GetSection("AppUrls").Get<ApplicationPaths>();
             AServices.AddHttpClient("RetryHttpClient", AOptions =>
             {
                 AOptions.BaseAddress = new Uri(AEnvironment.IsDevelopment() 

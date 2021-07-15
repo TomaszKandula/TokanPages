@@ -1,8 +1,8 @@
-﻿using FluentValidation;
-using TokanPages.Backend.Shared.Resources;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 {
+    using FluentValidation;
+    using Shared.Resources;
+
     public class AddUserCommandValidator : AbstractValidator<AddUserCommand>
     {
         public AddUserCommandValidator() 

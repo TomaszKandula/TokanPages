@@ -1,11 +1,11 @@
-using System;
-using System.Text;
-using System.Globalization;
-using System.Security.Cryptography;
-using TokanPages.Backend.Cqrs.Services.CipheringService.Helpers;
-
 namespace TokanPages.Backend.Cqrs.Services.CipheringService
 {
+    using System;
+    using System.Text;
+    using System.Globalization;
+    using System.Security.Cryptography;
+    using Helpers;
+
     public class CipheringService : ICipheringService
     {
         /// <summary>
@@ -84,11 +84,10 @@ namespace TokanPages.Backend.Cqrs.Services.CipheringService
         /// The previously hashed password.
         /// </param>
         /// <returns>
-        /// <c>true</c> if the passwords, <c>false</c>
-        /// otherwise.
+        /// <c>true</c> if the passwords, <c>false</c> otherwise.
         /// </returns>
-        public bool VerifyPassword(string APlaintext, string AHashed) 
-            => StringComparer.Ordinal.Compare(AHashed, GetHashedPassword(APlaintext, AHashed)) == 0;
+        public bool VerifyPassword(string APlaintext, string AHashed)
+            => StringComparer.Ordinal.Compare(AHashed, GetHashedPassword(APlaintext, AHashed[..29])) == 0;
         
         /// <summary>
         /// Generate a salt for use with the BCrypt.HashPassword() method.

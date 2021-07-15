@@ -1,36 +1,31 @@
-using Xunit;
-using FluentAssertions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
 namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Core.Exceptions;
+    using Shared.Resources;
+    using Cqrs.Handlers.Commands.Articles;
+    using FluentAssertions;
+    using Xunit;
+
     public class UpdateArticleCountCommandHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public UpdateArticleCountCommandHandlerTest() => FDataProviderService = new DataProviderService();
-
         [Fact]
         public async Task GivenExistingArticle_WhenUpdateArticleCount_ShouldReturnSuccessful()
         {
             // Arrange
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                Registered = FDataProviderService.GetRandomDateTime(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                Registered = DataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataProviderService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -39,8 +34,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
@@ -73,15 +68,15 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             // Arrange
             var LUsers = new TokanPages.Backend.Domain.Entities.Users
             {
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                Registered = FDataProviderService.GetRandomDateTime(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                Registered = DataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
-                CryptedPassword = FDataProviderService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -90,8 +85,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             
             var LArticles = new TokanPages.Backend.Domain.Entities.Articles
             {
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,

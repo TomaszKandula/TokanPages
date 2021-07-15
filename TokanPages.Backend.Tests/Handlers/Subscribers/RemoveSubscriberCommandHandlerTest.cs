@@ -1,27 +1,22 @@
-﻿using Xunit;
-using FluentAssertions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
-
-namespace TokanPages.Backend.Tests.Handlers.Subscribers
+﻿namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Core.Exceptions;
+    using Cqrs.Handlers.Commands.Subscribers;
+    using FluentAssertions;
+    using Xunit;
+
     public class RemoveSubscriberCommandHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public RemoveSubscriberCommandHandlerTest() => FDataProviderService = new DataProviderService();
-
         [Fact]
         public async Task GivenCorrectId_WhenRemoveSubscriber_ShouldRemoveEntity() 
         {
             // Arrange
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
             {
-                Email = FDataProviderService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 50,
                 Registered = DateTime.Now,
@@ -56,7 +51,8 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
             var LDatabaseContext = GetTestDatabaseContext();
             var LRemoveSubscriberCommandHandler = new RemoveSubscriberCommandHandler(LDatabaseContext);
 
-            // Act & Assert
+            // Act
+            // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
                 => LRemoveSubscriberCommandHandler.Handle(LRemoveSubscriberCommand, CancellationToken.None));
         }

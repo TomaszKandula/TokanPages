@@ -1,9 +1,9 @@
-﻿using System;
-using System.Runtime.Serialization;
-using System.Diagnostics.CodeAnalysis;
-
-namespace TokanPages.Backend.Core.Exceptions
+﻿namespace TokanPages.Backend.Core.Exceptions
 {
+    using System;
+    using System.Runtime.Serialization;
+    using System.Diagnostics.CodeAnalysis;
+
     [ExcludeFromCodeCoverage]
     [Serializable]
     public class BusinessException : Exception

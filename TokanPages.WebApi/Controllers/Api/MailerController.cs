@@ -1,15 +1,15 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using TokanPages.Backend.Cqrs.Mappers;
-using TokanPages.Backend.Shared.Dto.Mailer;
-using TokanPages.Backend.Identity.Attributes;
-using TokanPages.Backend.Identity.Authorization;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
-using MediatR;
-
-namespace TokanPages.WebApi.Controllers.Api
+﻿namespace TokanPages.WebApi.Controllers.Api
 {
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Backend.Cqrs.Mappers;
+    using Backend.Shared.Dto.Mailer;
+    using Backend.Identity.Attributes;
+    using Backend.Identity.Authorization;
+    using Backend.Cqrs.Handlers.Commands.Mailer;
+    using MediatR;
+
     [Authorize]
     public class MailerController : BaseController
     {

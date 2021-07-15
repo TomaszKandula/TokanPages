@@ -1,24 +1,19 @@
-﻿using Xunit;
-using FluentAssertions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
-
-namespace TokanPages.Backend.Tests.Validators.Subscribers
+﻿namespace TokanPages.Backend.Tests.Validators.Subscribers
 {
-    public class AddSubscriberCommandValidatorTest
+    using Shared.Resources;
+    using Cqrs.Handlers.Commands.Subscribers;
+    using FluentAssertions;
+    using Xunit;
+
+    public class AddSubscriberCommandValidatorTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public AddSubscriberCommandValidatorTest() => FDataProviderService = new DataProviderService();
-
         [Fact]
         public void GivenEmail_WhenAddSubscriber_ShouldFinishSuccessful() 
         {
             // Arrange
             var LAddSubscriberCommand = new AddSubscriberCommand 
             { 
-                Email = FDataProviderService.GetRandomEmail()
+                Email = DataUtilityService.GetRandomEmail()
             };
 
             // Act

@@ -318,6 +318,53 @@ namespace TokanPages.Backend.Database.Migrations
                     b.ToTable("UserPermissions");
                 });
 
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.UserRefreshTokens", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByIp")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<DateTime>("Expires")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ReasonRevoked")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("ReplacedByToken")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("Revoked")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RevokedByIp")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRefreshTokens");
+                });
+
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.UserRoles", b =>
                 {
                     b.Property<Guid>("Id")
@@ -508,6 +555,17 @@ namespace TokanPages.Backend.Database.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.UserRefreshTokens", b =>
+                {
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users", "User")
+                        .WithMany("UserRefreshTokens")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_UserRefreshTokens_Users")
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.UserRoles", b =>
                 {
                     b.HasOne("TokanPages.Backend.Domain.Entities.Roles", "Role")
@@ -572,6 +630,8 @@ namespace TokanPages.Backend.Database.Migrations
                     b.Navigation("Photos");
 
                     b.Navigation("UserPermissions");
+
+                    b.Navigation("UserRefreshTokens");
 
                     b.Navigation("UserRoles");
                 });

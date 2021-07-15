@@ -1,17 +1,17 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using TokanPages.Backend.Cqrs.Mappers;
-using TokanPages.Backend.Identity.Attributes;
-using TokanPages.Backend.Identity.Authorization;
-using TokanPages.Backend.Shared.Dto.Subscribers;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
-using MediatR;
-
-namespace TokanPages.WebApi.Controllers.Api
+﻿namespace TokanPages.WebApi.Controllers.Api
 {
+    using System;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Backend.Cqrs.Mappers;
+    using Backend.Identity.Attributes;
+    using Backend.Identity.Authorization;
+    using Backend.Shared.Dto.Subscribers;
+    using Backend.Cqrs.Handlers.Queries.Subscribers;
+    using MediatR;
+
     [Authorize]
     public class SubscribersController : BaseController
     {

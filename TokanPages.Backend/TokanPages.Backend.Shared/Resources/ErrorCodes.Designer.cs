@@ -128,5 +128,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("ARGUMENT_NULL_EXCEPTION", resourceCulture);
             }
         }
+        
+        public static string INVALID_CREDENTIALS {
+            get {
+                return ResourceManager.GetString("INVALID_CREDENTIALS", resourceCulture);
+            }
+        }
     }
 }

@@ -1,34 +1,29 @@
-using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
-using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.SmtpClient.Models;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using MailKit.Net.Smtp;
-using MailKit.Security;
-using DnsClient.Protocol;
-using DnsClient;
-using MimeKit;
-
 namespace TokanPages.Backend.Tests.Services
 {
-    public class SmtpClientServiceTest
+    using System;
+    using System.Net;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using SmtpClient;
+    using Shared.Resources;
+    using SmtpClient.Models;
+    using DnsClient.Protocol;
+    using MailKit.Net.Smtp;
+    using MailKit.Security;
+    using FluentAssertions;
+    using DnsClient;
+    using MimeKit;
+    using Xunit;
+    using Moq;
+
+    public class SmtpClientServiceTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public SmtpClientServiceTest() => FDataProviderService = new DataProviderService();
-
         [Fact]
         public async Task GivenValidSmtpSettings_WhenConnectAndAuthenticate_ShouldReturnSuccess()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
 
@@ -78,7 +73,7 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenInvalidSmtpServer_WhenConnectAndAuthenticate_ShouldThrowError()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
 
@@ -128,7 +123,7 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenInvalidSmtpCredentials_WhenConnectAndAuthenticate_ShouldThrowError()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
 
@@ -179,7 +174,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             const string ERROR_MESSAGE = "The host is null";
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
 
@@ -229,7 +224,7 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenValidSettingsAndEmails_WhenSendEmail_ShouldReturnSuccess()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
             
@@ -270,12 +265,12 @@ namespace TokanPages.Backend.Tests.Services
                 LMockedLookupClient.Object,
                 LSmtpServerSettingsModel)
             {
-                Subject = FDataProviderService.GetRandomString(),
-                From = FDataProviderService.GetRandomEmail(),
-                Tos = new List<string> { FDataProviderService.GetRandomEmail() },
-                Ccs = new List<string> { FDataProviderService.GetRandomEmail() },
-                Bccs = new List<string> { FDataProviderService.GetRandomEmail() },
-                PlainText = FDataProviderService.GetRandomString()
+                Subject = DataUtilityService.GetRandomString(),
+                From = DataUtilityService.GetRandomEmail(),
+                Tos = new List<string> { DataUtilityService.GetRandomEmail() },
+                Ccs = new List<string> { DataUtilityService.GetRandomEmail() },
+                Bccs = new List<string> { DataUtilityService.GetRandomEmail() },
+                PlainText = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -293,7 +288,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             const string ERROR_MESSAGE = "Cannot send the email. Server responded with error";
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
             
@@ -334,12 +329,12 @@ namespace TokanPages.Backend.Tests.Services
                 LMockedLookupClient.Object,
                 LSmtpServerSettingsModel)
             {
-                Subject = FDataProviderService.GetRandomString(),
-                From = FDataProviderService.GetRandomEmail(),
-                Tos = new List<string> {FDataProviderService.GetRandomEmail()},
+                Subject = DataUtilityService.GetRandomString(),
+                From = DataUtilityService.GetRandomEmail(),
+                Tos = new List<string> { DataUtilityService.GetRandomEmail() },
                 Ccs = null,
                 Bccs = null,
-                PlainText = FDataProviderService.GetRandomString()
+                PlainText = DataUtilityService.GetRandomString()
             };
 
             // Act
@@ -356,16 +351,16 @@ namespace TokanPages.Backend.Tests.Services
         public void GivenCorrectEmailAddress_WhenCheckingFormat_ShouldReturnSuccess()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
             
             var LEmails = new List<string>
             {
-                FDataProviderService.GetRandomEmail(),
-                FDataProviderService.GetRandomEmail(),
-                FDataProviderService.GetRandomEmail(),
-                FDataProviderService.GetRandomEmail()
+                DataUtilityService.GetRandomEmail(),
+                DataUtilityService.GetRandomEmail(),
+                DataUtilityService.GetRandomEmail(),
+                DataUtilityService.GetRandomEmail()
             };
 
             var LSmtpClientService = new SmtpClientService(
@@ -377,10 +372,10 @@ namespace TokanPages.Backend.Tests.Services
             var LResult = LSmtpClientService.IsAddressCorrect(LEmails);
 
             // Assert
-            LResult[0].EmailAddress.Should().Be(LEmails[0]);
-            LResult[1].EmailAddress.Should().Be(LEmails[1]);
-            LResult[2].EmailAddress.Should().Be(LEmails[2]);
-            LResult[3].EmailAddress.Should().Be(LEmails[3]);
+            LResult[0].Address.Should().Be(LEmails[0]);
+            LResult[1].Address.Should().Be(LEmails[1]);
+            LResult[2].Address.Should().Be(LEmails[2]);
+            LResult[3].Address.Should().Be(LEmails[3]);
 
             LResult[0].IsValid.Should().BeTrue();
             LResult[1].IsValid.Should().BeTrue();
@@ -392,14 +387,14 @@ namespace TokanPages.Backend.Tests.Services
         public void GivenIncorrectEmailAddresses_WhenCheckingFormat_ShouldReturnInvalidEmailFlag()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
             
             var LEmails = new List<string>
             {
-                FDataProviderService.GetRandomString(),
-                FDataProviderService.GetRandomString(),
+                DataUtilityService.GetRandomString(),
+                DataUtilityService.GetRandomString(),
             };
 
             var LSmtpClientService = new SmtpClientService(
@@ -411,8 +406,8 @@ namespace TokanPages.Backend.Tests.Services
             var LResult = LSmtpClientService.IsAddressCorrect(LEmails);
 
             // Assert
-            LResult[0].EmailAddress.Should().Be(LEmails[0]);
-            LResult[1].EmailAddress.Should().Be(LEmails[1]);
+            LResult[0].Address.Should().Be(LEmails[0]);
+            LResult[1].Address.Should().Be(LEmails[1]);
 
             LResult[0].IsValid.Should().BeFalse();
             LResult[1].IsValid.Should().BeFalse();
@@ -422,7 +417,7 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenDomainWithMxAndARecords_WhenCheckDomain_ShouldReturnTrue()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
             var LMockedDnsQueryResponse = new Mock<IDnsQueryResponse>();
@@ -454,7 +449,7 @@ namespace TokanPages.Backend.Tests.Services
                 LSmtpServerSettingsModel); 
     
             // Act
-            var LResult = await LSmtpClientService.IsDomainCorrect(FDataProviderService.GetRandomEmail(9, LOOKUP_DOMAIN));
+            var LResult = await LSmtpClientService.IsDomainCorrect(DataUtilityService.GetRandomEmail(9, LOOKUP_DOMAIN));
     
             // Assert
             LResult.Should().BeTrue();
@@ -464,7 +459,7 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenDomainWithOnlyCaaRecord_WhenCheckDomain_ShouldReturnFalse()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServerSettingsModel();
+            var LSmtpServerSettingsModel = new SmtpServer();
             var LMockedLookupClient = new Mock<ILookupClient>();
             var LMockedSmtpClient = new Mock<ISmtpClient>();
             var LMockedDnsQueryResponse = new Mock<IDnsQueryResponse>();
@@ -494,7 +489,7 @@ namespace TokanPages.Backend.Tests.Services
                 LSmtpServerSettingsModel); 
     
             // Act
-            var LResult = await LSmtpClientService.IsDomainCorrect(FDataProviderService.GetRandomEmail(9, LOOKUP_DOMAIN));
+            var LResult = await LSmtpClientService.IsDomainCorrect(DataUtilityService.GetRandomEmail(9, LOOKUP_DOMAIN));
     
             // Assert
             LResult.Should().BeFalse();

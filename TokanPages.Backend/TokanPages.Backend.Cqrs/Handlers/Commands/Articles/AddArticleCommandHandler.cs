@@ -1,37 +1,37 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Database;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Database;
+    using Core.Exceptions;
+    using Shared.Resources;
+    using Services.UserServiceProvider;
+    using Shared.Services.DateTimeService;
+    using Storage.AzureBlobStorage.Factory;
+
     public class AddArticleCommandHandler : TemplateHandler<AddArticleCommand, Guid>
     {
         private readonly DatabaseContext FDatabaseContext;
         
-        private readonly IUserProvider FUserProvider;
+        private readonly IUserServiceProvider FUserServiceProvider;
         
         private readonly IDateTimeService FDateTimeService;
         
         private readonly IAzureBlobStorageFactory FAzureBlobStorageFactory;
         
-        public AddArticleCommandHandler(DatabaseContext ADatabaseContext, IUserProvider AUserProvider, 
+        public AddArticleCommandHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider, 
             IDateTimeService ADateTimeService, IAzureBlobStorageFactory AAzureBlobStorageFactory) 
         {
             FDatabaseContext = ADatabaseContext;
-            FUserProvider = AUserProvider;
+            FUserServiceProvider = AUserServiceProvider;
             FDateTimeService = ADateTimeService;
             FAzureBlobStorageFactory = AAzureBlobStorageFactory;
         }
 
         public override async Task<Guid> Handle(AddArticleCommand ARequest, CancellationToken ACancellationToken)
         {
-            var LUserId = await FUserProvider.GetUserId();
+            var LUserId = await FUserServiceProvider.GetUserId();
             if (LUserId == null)
                 throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 

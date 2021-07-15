@@ -1,11 +1,11 @@
-﻿using Xunit;
-using FluentAssertions;
-using System;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
-
-namespace TokanPages.Backend.Tests.Validators.Users
+﻿namespace TokanPages.Backend.Tests.Validators.Users
 {
+    using System;
+    using Shared.Resources;
+    using Cqrs.Handlers.Commands.Users;
+    using FluentAssertions;
+    using Xunit;
+
     public class RemoveUserCommandValidatorTest
     {
         [Fact]

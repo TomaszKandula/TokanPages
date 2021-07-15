@@ -1,12 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities;
-using TokanPages.Backend.Database.Initializer.Data.Permissions;
-using TokanPages.Backend.Database.Initializer.Data.Users;
-
 namespace TokanPages.Backend.Database.Initializer.Seeders
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using Data.Permissions;
+    using Domain.Entities;
+    using Data.Users;
+
     [ExcludeFromCodeCoverage]
     public static class UserPermissionsSeeder
     {

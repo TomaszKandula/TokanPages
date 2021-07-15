@@ -1,8 +1,8 @@
-﻿using FluentValidation;
-using TokanPages.Backend.Shared.Resources;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
+    using FluentValidation;
+    using Shared.Resources;
+
     public class UpdateArticleContentCommandValidator : AbstractValidator<UpdateArticleContentCommand>
     {
         public UpdateArticleContentCommandValidator()

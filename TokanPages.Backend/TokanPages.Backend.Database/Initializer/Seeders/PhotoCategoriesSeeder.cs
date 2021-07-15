@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities;
-
 namespace TokanPages.Backend.Database.Initializer.Seeders
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using Domain.Entities;
+
     [ExcludeFromCodeCoverage]
     public static class PhotoCategoriesSeeder
     {

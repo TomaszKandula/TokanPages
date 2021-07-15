@@ -1,30 +1,30 @@
-﻿using Xunit;
-using Moq;
-using FluentAssertions;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Storage.AzureBlobStorage;
-using TokanPages.Backend.Cqrs.Services.UserProvider;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
-using TokanPages.Backend.Storage.AzureBlobStorage.Factory;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
-namespace TokanPages.Backend.Tests.Handlers.Articles
+﻿namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Core.Exceptions;
+    using Core.Extensions;
+    using Shared.Resources;
+    using Storage.AzureBlobStorage;
+    using Shared.Services.DateTimeService;
+    using Cqrs.Handlers.Commands.Articles;
+    using Storage.AzureBlobStorage.Factory;
+    using Cqrs.Services.UserServiceProvider;
+    using Shared.Services.DataUtilityService;
+    using FluentAssertions;
+    using Xunit;
+    using Moq;
+
     public class AddArticleCommandHandlerTest : TestBase
     {
         private readonly Mock<AzureBlobStorageFactory> FMockedAzureBlobStorageFactory;
         
-        private readonly DataProviderService FDataProviderService;
+        private readonly DataUtilityService FDataUtilityService;
 
         public AddArticleCommandHandlerTest()
         {
-            FDataProviderService = new DataProviderService();
+            FDataUtilityService = new DataUtilityService();
             FMockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
             var LMockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
 
@@ -46,25 +46,25 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = FDataProviderService.GetRandomString().ToBase64Encode()
+                Title = FDataUtilityService.GetRandomString(),
+                Description = FDataUtilityService.GetRandomString(),
+                TextToUpload = FDataUtilityService.GetRandomString(),
+                ImageToUpload = FDataUtilityService.GetRandomString().ToBase64Encode()
             };
 
             var LUser = new Backend.Domain.Entities.Users
             {
-                UserAlias  = FDataProviderService.GetRandomString(),
+                UserAlias  = FDataUtilityService.GetRandomString(),
                 IsActivated = true,
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                Registered = FDataProviderService.GetRandomDateTime(),
-                LastLogged = FDataProviderService.GetRandomDateTime(),
-                LastUpdated = FDataProviderService.GetRandomDateTime(),
-                AvatarName = FDataProviderService.GetRandomString(),
-                ShortBio = FDataProviderService.GetRandomString(),
-                CryptedPassword = FDataProviderService.GetRandomString()
+                FirstName = FDataUtilityService.GetRandomString(),
+                LastName = FDataUtilityService.GetRandomString(),
+                EmailAddress = FDataUtilityService.GetRandomEmail(),
+                Registered = FDataUtilityService.GetRandomDateTime(),
+                LastLogged = FDataUtilityService.GetRandomDateTime(),
+                LastUpdated = FDataUtilityService.GetRandomDateTime(),
+                AvatarName = FDataUtilityService.GetRandomString(),
+                ShortBio = FDataUtilityService.GetRandomString(),
+                CryptedPassword = FDataUtilityService.GetRandomString()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -72,7 +72,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.SaveChangesAsync();
             
             var LMockedDateTime = new Mock<DateTimeService>();
-            var LMockedUserProvider = new Mock<IUserProvider>();
+            var LMockedUserProvider = new Mock<IUserServiceProvider>();
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
@@ -97,15 +97,15 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(),
-                ImageToUpload = FDataProviderService.GetRandomString().ToBase64Encode()
+                Title = FDataUtilityService.GetRandomString(),
+                Description = FDataUtilityService.GetRandomString(),
+                TextToUpload = FDataUtilityService.GetRandomString(),
+                ImageToUpload = FDataUtilityService.GetRandomString().ToBase64Encode()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
             var LMockedDateTime = new Mock<DateTimeService>();
-            var LMockedUserProvider = new Mock<IUserProvider>();
+            var LMockedUserProvider = new Mock<IUserServiceProvider>();
             
             var LAddArticleCommandHandler = new AddArticleCommandHandler(
                 LDatabaseContext, 
@@ -127,15 +127,15 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             // Arrange
             var LAddArticleCommand = new AddArticleCommand
             {
-                Title = FDataProviderService.GetRandomString(),
-                Description = FDataProviderService.GetRandomString(),
-                TextToUpload = FDataProviderService.GetRandomString(),
+                Title = FDataUtilityService.GetRandomString(),
+                Description = FDataUtilityService.GetRandomString(),
+                TextToUpload = FDataUtilityService.GetRandomString(),
                 ImageToUpload = "úK¼Æ½t$bþÍs*L2ÕÊª"
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
             var LMockedDateTime = new Mock<DateTimeService>();
-            var LMockedUserProvider = new Mock<IUserProvider>();
+            var LMockedUserProvider = new Mock<IUserServiceProvider>();
 
             var LAddArticleCommandHandler = new AddArticleCommandHandler(
                 LDatabaseContext, 

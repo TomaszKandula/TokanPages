@@ -25,9 +25,10 @@ export const ActionCreators =
         
         dispatch({ type: REQUEST_UPDATE_SUBSCRIBER_CONTENT });
 
-        axios.get(GET_UPDATE_SUBSCRIBER_CONTENT, 
+        axios( 
         {
             method: "GET", 
+            url: GET_UPDATE_SUBSCRIBER_CONTENT,
             responseType: "json"
         })
         .then(response =>

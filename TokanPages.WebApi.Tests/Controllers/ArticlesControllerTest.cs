@@ -1,21 +1,21 @@
-using Xunit;
-using FluentAssertions;
-using Newtonsoft.Json;
-using System;
-using System.Net;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Net.Http.Headers;
-using System.Collections.Generic;
-using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Dto.Articles;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
-using TokanPages.Backend.Database.Initializer.Data.Articles;
-
 namespace TokanPages.WebApi.Tests.Controllers
 {
+    using System;
+    using System.Net;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using System.Net.Http.Headers;
+    using System.Collections.Generic;
+    using Backend.Core.Extensions;
+    using Backend.Shared.Resources;
+    using Backend.Shared.Dto.Articles;
+    using Backend.Cqrs.Handlers.Queries.Articles;
+    using Backend.Database.Initializer.Data.Articles;
+    using FluentAssertions;
+    using Newtonsoft.Json;
+    using Xunit;
+
     public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
         private const string API_BASE_URL = "/api/v1/articles";
@@ -33,10 +33,10 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LPayLoad = new AddArticleDto
             {
-                Title = DataProviderService.GetRandomString(),
-                Description = DataProviderService.GetRandomString(),
-                TextToUpload = DataProviderService.GetRandomString(150),
-                ImageToUpload = DataProviderService.GetRandomString(255).ToBase64Encode()
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
+                TextToUpload = DataUtilityService.GetRandomString(150),
+                ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
             };
 
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -58,15 +58,15 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LPayLoad = new AddArticleDto
             {
-                Title = DataProviderService.GetRandomString(),
-                Description = DataProviderService.GetRandomString(),
-                TextToUpload = DataProviderService.GetRandomString(150),
-                ImageToUpload = DataProviderService.GetRandomString(255).ToBase64Encode()
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
+                TextToUpload = DataUtilityService.GetRandomString(150),
+                ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
             };
 
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), 
+            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), 
                 FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
@@ -174,10 +174,10 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LPayLoad = new UpdateArticleContentDto
             {
                 Id = Guid.NewGuid(),
-                Title = DataProviderService.GetRandomString(),
-                Description = DataProviderService.GetRandomString(),
-                TextToUpload = DataProviderService.GetRandomString(150),
-                ImageToUpload = DataProviderService.GetRandomString(255).ToBase64Encode()
+                Title = DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
+                TextToUpload = DataUtilityService.GetRandomString(150),
+                ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
             };
             
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -255,7 +255,7 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), 
+            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), 
                 FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
 
             var LPayLoad = new UpdateArticleVisibilityDto
@@ -288,7 +288,7 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = DataProviderService.GenerateJwt(LTokenExpires, GetInvalidClaimsIdentity(), 
+            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetInvalidClaimsIdentity(), 
                 FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
 
             var LPayLoad = new UpdateArticleVisibilityDto

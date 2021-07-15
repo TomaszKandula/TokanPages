@@ -1,30 +1,25 @@
-﻿using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
-
-namespace TokanPages.Backend.Tests.Handlers.Subscribers
+﻿namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {
+    using System;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Core.Exceptions;
+    using Shared.Services.DateTimeService;
+    using Cqrs.Handlers.Commands.Subscribers;
+    using FluentAssertions;
+    using Xunit;
+    using Moq;
+
     public class AddSubscriberCommandHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public AddSubscriberCommandHandlerTest() => FDataProviderService = new DataProviderService();
-
         [Fact]
         public async Task GivenProvidedEmail_WhenAddSubscriber_ShouldAddEntity() 
         {
             // Arrange
             var LAddSubscriberCommand = new AddSubscriberCommand 
             { 
-                Email = FDataProviderService.GetRandomEmail()
+                Email = DataUtilityService.GetRandomEmail()
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -57,7 +52,7 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
         public async Task GivenExistingEmail_WhenAddSubscriber_ShouldThrowError()
         {
             // Arrange
-            var LTestEmail = FDataProviderService.GetRandomEmail();
+            var LTestEmail = DataUtilityService.GetRandomEmail();
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
             { 
                 Email = LTestEmail,
@@ -76,7 +71,8 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
             var LAddSubscriberCommand = new AddSubscriberCommand { Email = LTestEmail };
             var LAddSubscriberCommandHandler = new AddSubscriberCommandHandler(LDatabaseContext, LMockedDateTime.Object);
 
-            // Act & Assert
+            // Act
+            // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
                 => LAddSubscriberCommandHandler.Handle(LAddSubscriberCommand, CancellationToken.None));
         }
