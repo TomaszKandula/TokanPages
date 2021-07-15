@@ -23,7 +23,7 @@
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                Registered = DateTime.Now,
+                Registered = DateTimeService.Now,
                 LastUpdated = null,
                 LastLogged = null,
                 CryptedPassword = DataUtilityService.GetRandomString()
@@ -96,7 +96,7 @@
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                Registered = DateTime.Now,
+                Registered = DateTimeService.Now,
                 LastUpdated = null,
                 LastLogged = null,
                 CryptedPassword = DataUtilityService.GetRandomString()
