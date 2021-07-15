@@ -40,8 +40,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TokanPages.Backend.Identity\TokanPages.Backend.Identity.csproj" />
     <ProjectReference Include="..\TokanPages.Backend.Domain\TokanPages.Backend.Domain.csproj" />
+    <ProjectReference Include="..\TokanPages.Backend.Identity\TokanPages.Backend.Identity.csproj" />
   </ItemGroup>
 
 </Project>
