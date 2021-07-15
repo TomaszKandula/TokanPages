@@ -47,31 +47,40 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         public override async Task<AuthenticateUserCommandResult> Handle(AuthenticateUserCommand ARequest, CancellationToken ACancellationToken)
         {
-            var LEmailCollection = await FDatabaseContext.Users
+            var LUsersList = await FDatabaseContext.Users
                 .AsNoTracking()
                 .Where(AUsers => AUsers.EmailAddress == ARequest.EmailAddress)
                 .ToListAsync(ACancellationToken);
             
-            if (!LEmailCollection.Any()) 
+            if (!LUsersList.Any()) 
                 throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), ErrorCodes.INVALID_CREDENTIALS);
 
-            var LUserData = LEmailCollection.First();
+            var LUserData = LUsersList.First();
             var LIsPasswordValid = FCipheringService.VerifyPassword(ARequest.Password, LUserData.CryptedPassword);
 
             if (!LIsPasswordValid)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), ErrorCodes.INVALID_CREDENTIALS);
 
+            var LUserRoles = await FDatabaseContext.UserRoles
+                .AsNoTracking()
+                .Include(AUserRole => AUserRole.User)
+                .Include(AUserRole => AUserRole.Role)
+                .Where(AUserRole => AUserRole.UserId == LUserData.Id)
+                .ToListAsync(ACancellationToken);
+
             var LTokenExpires = FDateTimeService.Now.AddMinutes(TOKEN_EXPIRES_IN);
             var LGetValidClaims = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Name, LUserData.UserAlias),
-                new Claim(ClaimTypes.Role, nameof(Identity.Authorization.Roles.EverydayUser)),
                 new Claim(ClaimTypes.NameIdentifier, LUserData.Id.ToString()),
                 new Claim(ClaimTypes.GivenName, LUserData.FirstName),
                 new Claim(ClaimTypes.Surname, LUserData.LastName),
                 new Claim(ClaimTypes.Email, LUserData.EmailAddress)
             });
 
+            LGetValidClaims.AddClaims(LUserRoles
+                .Select(AUserRole => new Claim(ClaimTypes.Role, AUserRole.Role.Name)));
+            
             var LJwt = FJwtUtilityService.GenerateJwt(
                 LTokenExpires, 
                 LGetValidClaims, 
@@ -95,7 +104,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 ReplacedByToken = null,
                 ReasonRevoked = null
             };
-            
+
+            await DeletePreviousRefreshTokens(ACancellationToken);
             await FDatabaseContext.UserRefreshTokens.AddAsync(LNewRefreshToken, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 
@@ -111,5 +121,14 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 Jwt = LJwt
             };
         }
+        
+        private async Task DeletePreviousRefreshTokens(CancellationToken ACancellationToken)
+        {
+            var LRefreshTokens = await FDatabaseContext.UserRefreshTokens
+                .Where(ATokens => !ATokens.IsActive && ATokens.Created.AddMinutes(REFRESH_TOKEN_EXPIRES_IN) <= FDateTimeService.Now)
+                .ToListAsync(ACancellationToken);
+
+            FDatabaseContext.UserRefreshTokens.RemoveRange(LRefreshTokens);
+        }        
     }
 }
