@@ -66,6 +66,8 @@ jobs:
         IdentityServer.Audience: "${{ secrets.IDENTITYSERVER__AUDIENCE_STAGE }}"
         IdentityServer.WebSecret: "${{ secrets.IDENTITYSERVER__WEBSECRET_STAGE }}"
         IdentityServer.RequireHttps: "${{ secrets.IDENTITYSERVER__REQUIREHTTPS_STAGE }}"
+        IdentityServer.WebTokenExpiresIn: "${{ secrets.IDENTITYSERVER__WEBTOKENEXPIRESIN_STAGE }}"
+        IdentityServer.RefreshTokenExpiresIn: "${{ secrets.IDENTITYSERVER__REFRESHTOKENEXPIRESIN_STAGE }}"
         SonarQube.Server: "${{ secrets.SONARQUBE_HOST }}"
         SonarQube.Token: "${{ secrets.SONARQUBE_TOKEN_API }}"
 
