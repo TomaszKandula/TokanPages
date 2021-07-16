@@ -18,10 +18,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
     public class AuthenticateUserCommandHandler : TemplateHandler<AuthenticateUserCommand, AuthenticateUserCommandResult>
     {
-        private const int TOKEN_EXPIRES_IN = 60;
-        
-        private const int REFRESH_TOKEN_EXPIRES_IN = 90; 
-        
         private readonly DatabaseContext FDatabaseContext;
         
         private readonly ICipheringService FCipheringService;
@@ -69,7 +65,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 .Where(AUserRole => AUserRole.UserId == LUserData.Id)
                 .ToListAsync(ACancellationToken);
 
-            var LTokenExpires = FDateTimeService.Now.AddMinutes(TOKEN_EXPIRES_IN);
+            var LTokenExpires = FDateTimeService.Now.AddMinutes(FIdentityServer.WebTokenExpiresIn);
             var LGetValidClaims = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Name, LUserData.UserAlias),
@@ -89,9 +85,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 FIdentityServer.Issuer, 
                 FIdentityServer.Audience);
 
-            var LRefreshToken = FJwtUtilityService.GenerateRefreshToken(
-                FUserServiceProvider.GetRequestIpAddress(), REFRESH_TOKEN_EXPIRES_IN);
-            FUserServiceProvider.SetRefreshTokenCookie(LRefreshToken.Token, REFRESH_TOKEN_EXPIRES_IN);
+            var LIpAddress = FUserServiceProvider.GetRequestIpAddress();
+            var LRefreshToken = FJwtUtilityService.GenerateRefreshToken(LIpAddress, FIdentityServer.RefreshTokenExpiresIn);
+            FUserServiceProvider.SetRefreshTokenCookie(LRefreshToken.Token, FIdentityServer.RefreshTokenExpiresIn);
 
             var LNewRefreshToken = new UserRefreshTokens
             {
@@ -128,7 +124,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             var LRefreshTokens = await FDatabaseContext.UserRefreshTokens
                 .Where(ATokens => ATokens.UserId == AUserId 
                     && ATokens.Expires <= FDateTimeService.Now 
-                    && ATokens.Created <= FDateTimeService.Now
+                    && ATokens.Created.AddMinutes(FIdentityServer.RefreshTokenExpiresIn) <= FDateTimeService.Now
                     && ATokens.Revoked == null)
                 .ToListAsync(ACancellationToken);
 
