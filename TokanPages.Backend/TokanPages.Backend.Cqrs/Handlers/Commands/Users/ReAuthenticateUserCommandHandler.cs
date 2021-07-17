@@ -48,15 +48,18 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             if (FUserServiceProvider.IsRefreshTokenRevoked(LSavedRefreshToken))
             {
                 var LReason = $"Attempted reuse of revoked ancestor token: {LRefreshTokenFromRequest}";
-                FUserServiceProvider.RevokeDescendantRefreshTokens(LUserRefreshTokens, LSavedRefreshToken, LRequesterIpAddress, LReason);
-                FDatabaseContext.Update(LSavedRefreshToken);
+                await FUserServiceProvider.RevokeDescendantRefreshTokens(LUserRefreshTokens, LSavedRefreshToken, LRequesterIpAddress, 
+                    LReason, false, ACancellationToken);
+                
+                FDatabaseContext.UserRefreshTokens.Update(LSavedRefreshToken);
                 await FDatabaseContext.SaveChangesAsync(ACancellationToken);
             }
 
             if (!FUserServiceProvider.IsRefreshTokenActive(LSavedRefreshToken))
                 throw InvalidTokenException;
 
-            var LNewRefreshToken = FUserServiceProvider.ReplaceRefreshToken(ARequest.Id, LSavedRefreshToken, LRequesterIpAddress);
+            var LNewRefreshToken = await FUserServiceProvider.ReplaceRefreshToken(ARequest.Id, LSavedRefreshToken, 
+                LRequesterIpAddress, true, ACancellationToken);
 
             await FUserServiceProvider.DeleteOutdatedRefreshTokens(ARequest.Id, false, ACancellationToken);
             await FDatabaseContext.UserRefreshTokens.AddAsync(LNewRefreshToken, ACancellationToken);
