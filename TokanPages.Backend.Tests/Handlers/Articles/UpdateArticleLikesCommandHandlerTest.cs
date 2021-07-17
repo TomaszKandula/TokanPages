@@ -52,7 +52,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
+            var LMockedUserProvider = new Mock<IUserServiceProvider>();
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS);
@@ -135,7 +135,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.ArticleLikes.AddAsync(LLikes);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
+            var LMockedUserProvider = new Mock<IUserServiceProvider>();
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS);
@@ -206,7 +206,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
+            var LMockedUserProvider = new Mock<IUserServiceProvider>();
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
                 .ReturnsAsync(LUsers.Id);
@@ -291,7 +291,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.ArticleLikes.AddAsync(LLikes);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
+            var LMockedUserProvider = new Mock<IUserServiceProvider>();
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
                 .ReturnsAsync(LUsers.Id);

@@ -37,7 +37,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
+            var LMockedUserProvider = new Mock<IUserServiceProvider>();
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.HasPermissionAssigned(It.IsAny<string>()))
@@ -80,7 +80,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
+            var LMockedUserProvider = new Mock<IUserServiceProvider>();
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.HasPermissionAssigned(It.IsAny<string>()))
@@ -120,7 +120,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
+            var LMockedUserProvider = new Mock<IUserServiceProvider>();
 
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.HasPermissionAssigned(It.IsAny<string>()))

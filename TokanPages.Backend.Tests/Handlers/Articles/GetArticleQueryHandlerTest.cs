@@ -77,7 +77,7 @@
             await LDatabaseContext.ArticleLikes.AddRangeAsync(LLikes);
             await LDatabaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
+            var LMockedUserProvider = new Mock<IUserServiceProvider>();
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS_FIRST);
@@ -142,7 +142,7 @@
             await LDatabaseContext.Articles.AddAsync(LArticles);
             await LDatabaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<UserServiceProvider>(null, null);
+            var LMockedUserProvider = new Mock<IUserServiceProvider>();
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS_FIRST);
