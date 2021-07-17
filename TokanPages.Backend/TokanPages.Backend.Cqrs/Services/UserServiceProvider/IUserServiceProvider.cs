@@ -15,7 +15,8 @@
 
         string GetRefreshTokenCookie(string ACookieName);
         
-        void SetRefreshTokenCookie(string ARefreshToken, int AExpiresIn, bool AIsHttpOnly = true, string ACookieName = Constants.CookieNames.REFRESH_TOKEN);
+        void SetRefreshTokenCookie(string ARefreshToken, int AExpiresIn, bool AIsHttpOnly = true, 
+            string ACookieName = Constants.CookieNames.REFRESH_TOKEN);
 
         Task<Guid?> GetUserId();
         
@@ -35,11 +36,14 @@
 
         Task DeleteOutdatedRefreshTokens(Guid AUserId, bool ASaveImmediately = false, CancellationToken ACancellationToken = default);
 
-        UserRefreshTokens ReplaceRefreshToken(Guid AUserId, UserRefreshTokens ASavedUserRefreshTokens, string ARequesterIpAddress);
+        Task<UserRefreshTokens> ReplaceRefreshToken(Guid AUserId, UserRefreshTokens ASavedUserRefreshTokens, string ARequesterIpAddress, 
+            bool ASaveImmediately = false, CancellationToken ACancellationToken = default);
 
-        void RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> AUserRefreshTokens, UserRefreshTokens ASavedUserRefreshTokens, string ARequesterIpAddress, string AReason);
+        // Task RevokeRefreshToken(UserRefreshTokens AUserRefreshTokens, string ARequesterIpAddress, string AReason = null, string AReplacedByToken = null, 
+        //     bool ASaveImmediately = false, CancellationToken ACancellationToken = default);
 
-        void RevokeRefreshToken(UserRefreshTokens AUserRefreshTokens, string ARequesterIpAddress, string AReason = null, string AReplacedByToken = null);
+        Task RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> AUserRefreshTokens, UserRefreshTokens ASavedUserRefreshTokens, 
+            string ARequesterIpAddress, string AReason, bool ASaveImmediately = false, CancellationToken ACancellationToken = default);
 
         bool IsRefreshTokenExpired(UserRefreshTokens AUserRefreshTokens);
 

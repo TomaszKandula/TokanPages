@@ -21,6 +21,8 @@
     public class UserServiceProvider : IUserServiceProvider
     {
         private const string LOCALHOST = "127.0.0.1";
+
+        private const string NEW_REFRESH_TOKEN_TEXT = "Replaced by new token";
         
         private readonly IHttpContextAccessor FHttpContextAccessor;
 
@@ -195,15 +197,17 @@
             if (LRefreshTokens.Any())
                 FDatabaseContext.UserRefreshTokens.RemoveRange(LRefreshTokens);
             
-            if (ASaveImmediately)
+            if (ASaveImmediately && LRefreshTokens.Any())
                 await FDatabaseContext.SaveChangesAsync(ACancellationToken);
         }        
         
-        public UserRefreshTokens ReplaceRefreshToken(Guid AUserId, UserRefreshTokens ASavedUserRefreshTokens, string ARequesterIpAddress)
+        public async Task<UserRefreshTokens> ReplaceRefreshToken(Guid AUserId, UserRefreshTokens ASavedUserRefreshTokens, string ARequesterIpAddress, 
+            bool ASaveImmediately = false, CancellationToken ACancellationToken = default)
         {
             var LNewRefreshToken = FJwtUtilityService.GenerateRefreshToken(ARequesterIpAddress, FIdentityServer.RefreshTokenExpiresIn);
             
-            RevokeRefreshToken(ASavedUserRefreshTokens, ARequesterIpAddress, "Replaced by new token", LNewRefreshToken.Token);
+            await RevokeRefreshToken(ASavedUserRefreshTokens, ARequesterIpAddress, NEW_REFRESH_TOKEN_TEXT, 
+                LNewRefreshToken.Token, ASaveImmediately, ACancellationToken);
 
             return new UserRefreshTokens
             {
@@ -218,8 +222,9 @@
                 ReasonRevoked = null
             };
         }
-
-        public void RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> AUserRefreshTokens,  UserRefreshTokens ASavedUserRefreshTokens, string ARequesterIpAddress, string AReason)
+        
+        public async Task RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> AUserRefreshTokens,  UserRefreshTokens ASavedUserRefreshTokens, 
+            string ARequesterIpAddress, string AReason, bool ASaveImmediately = false, CancellationToken ACancellationToken = default)
         {
             if (string.IsNullOrEmpty(ASavedUserRefreshTokens.ReplacedByToken)) 
                 return;
@@ -228,20 +233,12 @@
             var LChildToken = LUserRefreshTokens.SingleOrDefault(ARefreshTokens => ARefreshTokens.Token == ASavedUserRefreshTokens.ReplacedByToken);
             if (IsRefreshTokenActive(LChildToken))
             {
-                RevokeRefreshToken(LChildToken, ARequesterIpAddress, AReason);
+                await RevokeRefreshToken(LChildToken, ARequesterIpAddress, AReason, null, ASaveImmediately, ACancellationToken);
             }
             else
             {
-                RevokeDescendantRefreshTokens(LUserRefreshTokens, ASavedUserRefreshTokens, ARequesterIpAddress, AReason);
+                await RevokeDescendantRefreshTokens(LUserRefreshTokens, ASavedUserRefreshTokens, ARequesterIpAddress, AReason, ASaveImmediately, ACancellationToken);
             }
-        }
-        
-        public void RevokeRefreshToken(UserRefreshTokens AUserRefreshTokens, string ARequesterIpAddress, string AReason = null, string AReplacedByToken = null)
-        {
-            AUserRefreshTokens.Revoked = FDateTimeService.Now;
-            AUserRefreshTokens.RevokedByIp = ARequesterIpAddress;
-            AUserRefreshTokens.ReasonRevoked = AReason;
-            AUserRefreshTokens.ReplacedByToken = AReplacedByToken;
         }
 
         public bool IsRefreshTokenExpired(UserRefreshTokens AUserRefreshTokens) 
@@ -261,6 +258,20 @@
         
         private static BusinessException ArgumentZeroException 
             => new (nameof(ErrorCodes.ARGUMENT_ZERO_EXCEPTION), ErrorCodes.ARGUMENT_ZERO_EXCEPTION);
+        
+        private async Task RevokeRefreshToken(UserRefreshTokens AUserRefreshTokens, string ARequesterIpAddress, string AReason = null, 
+            string AReplacedByToken = null, bool ASaveImmediately = false, CancellationToken ACancellationToken = default)
+        {
+            AUserRefreshTokens.Revoked = FDateTimeService.Now;
+            AUserRefreshTokens.RevokedByIp = ARequesterIpAddress;
+            AUserRefreshTokens.ReasonRevoked = AReason;
+            AUserRefreshTokens.ReplacedByToken = AReplacedByToken;
+
+            FDatabaseContext.UserRefreshTokens.Update(AUserRefreshTokens);
+
+            if (ASaveImmediately)
+                await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+        }
         
         private Guid? UserIdFromClaim()
         {
