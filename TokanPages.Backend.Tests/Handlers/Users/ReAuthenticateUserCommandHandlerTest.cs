@@ -103,8 +103,10 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                     .ReplaceRefreshToken(
                         It.IsAny<Guid>(), 
                         It.IsAny<UserRefreshTokens>(), 
-                        It.IsAny<string>()))
-                .Returns(LNewRefreshToken);
+                        It.IsAny<string>(), 
+                        It.IsAny<bool>(), 
+                        It.IsAny<CancellationToken>()))
+                .ReturnsAsync(LNewRefreshToken);
 
             LMockedUserServiceProvider
                 .Setup(AUserService => AUserService
