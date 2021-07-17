@@ -134,5 +134,23 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("INVALID_CREDENTIALS", resourceCulture);
             }
         }
+        
+        public static string ARGUMENT_ZERO_EXCEPTION {
+            get {
+                return ResourceManager.GetString("ARGUMENT_ZERO_EXCEPTION", resourceCulture);
+            }
+        }
+        
+        public static string MISSING_REFRESH_TOKEN {
+            get {
+                return ResourceManager.GetString("MISSING_REFRESH_TOKEN", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_REFRESH_TOKEN {
+            get {
+                return ResourceManager.GetString("INVALID_REFRESH_TOKEN", resourceCulture);
+            }
+        }
     }
 }
