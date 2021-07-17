@@ -12,5 +12,9 @@ namespace TokanPages.Backend.Shared.Models
         public string WebSecret { get; set; }
         
         public bool RequireHttps { get; set; }
+        
+        public int WebTokenExpiresIn { get; set; }
+        
+        public int RefreshTokenExpiresIn { get; set; }
     }
 }

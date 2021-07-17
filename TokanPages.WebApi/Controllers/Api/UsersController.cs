@@ -23,6 +23,11 @@
         public async Task<AuthenticateUserCommandResult> AuthenticateUser([FromBody] AuthenticateUserDto APayLoad)
             => await FMediator.Send(UsersMapper.MapToAuthenticateUserCommand(APayLoad));
         
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ReAuthenticateUserCommandResult> ReAuthenticateUser([FromBody] ReAuthenticateUserDto APayLoad)
+            => await FMediator.Send(UsersMapper.MapToReAuthenticateUserCommand(APayLoad));
+        
         [HttpGet]
         [AuthorizeRoles(Roles.GodOfAsgard)]
         public async Task<IEnumerable<GetAllUsersQueryResult>> GetAllUsers()
