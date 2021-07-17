@@ -1,3 +1,13 @@
+# [0.19.0](https://github.com/TomaszKandula/TokanPages/compare/v0.18.0...v0.19.0) (2021-07-17)
+
+
+### Features
+
+* add endpoint for re-authentication ([d337a00](https://github.com/TomaszKandula/TokanPages/commit/d337a00c294bd959d8fedbc1093fdc24f5eee2dd))
+* add new model for RefreshToken ([898bdde](https://github.com/TomaszKandula/TokanPages/commit/898bddee7666d485683b4748df4b655fea9c4940))
+* add re-authenticate command, handler and validator ([2aac651](https://github.com/TomaszKandula/TokanPages/commit/2aac6518d64d7578b1d8bd943512aec755bfe9a1))
+* add RefreshToken and JWT generator in same class ([dbe13ff](https://github.com/TomaszKandula/TokanPages/commit/dbe13ff717452ae2061c545e313a2c5c54e6b1f4))
+
 # [0.18.0](https://github.com/TomaszKandula/TokanPages/compare/v0.17.0...v0.18.0) (2021-07-05)
 
 
