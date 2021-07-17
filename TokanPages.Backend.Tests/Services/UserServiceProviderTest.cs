@@ -946,7 +946,7 @@ namespace TokanPages.Backend.Tests.Services
         }
 
         [Fact]
-        public async Task GivenRefreshTokens_WhenDeleteOutdatedRefreshTokens_ShouldSucceed()
+        public async Task GivenManyRefreshTokens_WhenDeleteOutdatedRefreshTokens_ShouldSucceed()
         {
             // Arrange
             var LUserId = Guid.NewGuid();
@@ -1024,6 +1024,196 @@ namespace TokanPages.Backend.Tests.Services
             var LUpdatedUserRefreshTokens = LDatabaseContext.UserRefreshTokens.ToList();
             LUpdatedUserRefreshTokens.Count.Should().Be(1);
             LUpdatedUserRefreshTokens[0].Token.Should().Be(LUserRefreshTokens[0].Token);
+        }
+
+        [Fact]
+        public async Task GivenNewRefreshTokens_WhenDeleteOutdatedRefreshTokens_ShouldSucceed()
+        {
+            // Arrange
+            var LUserId = Guid.NewGuid();
+            var LUsers = GetUser(LUserId).ToList();
+            var LUserRefreshTokens = new List<UserRefreshTokens>
+            {
+                new ()
+                {
+                    UserId = LUserId,
+                    Token = DataUtilityService.GetRandomString(255),
+                    Expires = DateTimeService.Now.AddMinutes(140),
+                    Created = DateTimeService.Now,
+                    CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
+                    Revoked = null,
+                    RevokedByIp = null,
+                    ReplacedByToken = null,
+                    ReasonRevoked = null
+                },
+                new ()
+                {
+                    UserId = LUserId,
+                    Token = DataUtilityService.GetRandomString(255),
+                    Expires = DateTimeService.Now.AddMinutes(110),
+                    Created = DateTimeService.Now,
+                    CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
+                    Revoked = null,
+                    RevokedByIp = null,
+                    ReplacedByToken = null,
+                    ReasonRevoked = null
+                },
+                new ()
+                {
+                    UserId = LUserId,
+                    Token = DataUtilityService.GetRandomString(255),
+                    Expires = DateTimeService.Now.AddMinutes(90),
+                    Created = DateTimeService.Now,
+                    CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
+                    Revoked = null,
+                    RevokedByIp = null,
+                    ReplacedByToken = null,
+                    ReasonRevoked = null
+                },
+            };
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddRangeAsync(LUsers);
+            await LDatabaseContext.UserRefreshTokens.AddRangeAsync(LUserRefreshTokens);
+            await LDatabaseContext.SaveChangesAsync();
+            
+            var LIpAddress = DataUtilityService.GetRandomIpAddress();
+            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
+            var LJwtUtilityService = new Mock<IJwtUtilityService>();
+            
+            var LIdentityServer = new IdentityServer
+            {
+                Issuer = DataUtilityService.GetRandomString(),
+                Audience = DataUtilityService.GetRandomString(),
+                WebSecret = DataUtilityService.GetRandomString(),
+                RequireHttps = false,
+                WebTokenExpiresIn = 90,
+                RefreshTokenExpiresIn = 120
+            };
+            
+            var LUserServiceProvider = new UserServiceProvider(
+                LHttpContext.Object, 
+                LDatabaseContext,
+                LJwtUtilityService.Object, 
+                DateTimeService, 
+                LIdentityServer);
+            
+            // Act
+            await LUserServiceProvider.DeleteOutdatedRefreshTokens(LUserId, true);
+
+            // Assert
+            var LUpdatedUserRefreshTokens = LDatabaseContext.UserRefreshTokens.ToList();
+            LUpdatedUserRefreshTokens.Count.Should().Be(3);
+        }
+
+        [Fact]
+        public async Task GivenNewRefreshTokens_WhenReplaceRefreshToken_ShouldSucceed()
+        {
+            // Arrange
+            var LUserId = Guid.NewGuid();
+            var LUsers = GetUser(LUserId).ToList();
+            var LUserRefreshTokens = new List<UserRefreshTokens>
+            {
+                new ()
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = LUserId,
+                    Token = DataUtilityService.GetRandomString(255),
+                    Expires = DateTimeService.Now.AddMinutes(140),
+                    Created = DateTimeService.Now,
+                    CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
+                    Revoked = null,
+                    RevokedByIp = null,
+                    ReplacedByToken = null,
+                    ReasonRevoked = null
+                },
+                new ()
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = LUserId,
+                    Token = DataUtilityService.GetRandomString(255),
+                    Expires = DateTimeService.Now.AddMinutes(110),
+                    Created = DateTimeService.Now,
+                    CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
+                    Revoked = null,
+                    RevokedByIp = null,
+                    ReplacedByToken = null,
+                    ReasonRevoked = null
+                },
+                new ()
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = LUserId,
+                    Token = DataUtilityService.GetRandomString(255),
+                    Expires = DateTimeService.Now.AddMinutes(90),
+                    Created = DateTimeService.Now,
+                    CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
+                    Revoked = null,
+                    RevokedByIp = null,
+                    ReplacedByToken = null,
+                    ReasonRevoked = null
+                },
+            };
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddRangeAsync(LUsers);
+            await LDatabaseContext.UserRefreshTokens.AddRangeAsync(LUserRefreshTokens);
+            await LDatabaseContext.SaveChangesAsync();
+            
+            var LIpAddress = DataUtilityService.GetRandomIpAddress();
+            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
+            var LJwtUtilityService = new Mock<IJwtUtilityService>();
+
+            var LRefreshToken = new RefreshToken
+            {
+                Token = DataUtilityService.GetRandomString(),
+                Expires = DateTimeService.Now.AddMinutes(120),
+                Created = DateTimeService.Now,
+                CreatedByIp = LIpAddress.ToString()
+            };
+            LJwtUtilityService
+                .Setup(AUtilityService => AUtilityService
+                    .GenerateRefreshToken(
+                        It.IsAny<string>(), 
+                        It.IsAny<int>()))
+                .Returns(LRefreshToken);
+            
+            var LIdentityServer = new IdentityServer
+            {
+                Issuer = DataUtilityService.GetRandomString(),
+                Audience = DataUtilityService.GetRandomString(),
+                WebSecret = DataUtilityService.GetRandomString(),
+                RequireHttps = false,
+                WebTokenExpiresIn = 90,
+                RefreshTokenExpiresIn = 120
+            };
+            
+            var LUserServiceProvider = new UserServiceProvider(
+                LHttpContext.Object, 
+                LDatabaseContext,
+                LJwtUtilityService.Object, 
+                DateTimeService, 
+                LIdentityServer);
+            
+            // Act
+            var LResult = await LUserServiceProvider.ReplaceRefreshToken(LUserId, LUserRefreshTokens[0], LIpAddress.ToString(), true);
+
+            // Assert
+            LResult.UserId.Should().Be(LUserId);
+            LResult.Token.Should().Be(LRefreshToken.Token);
+            LResult.Expires.Should().Be(LRefreshToken.Expires);
+            LResult.Created.Should().Be(LRefreshToken.Created);
+            LResult.CreatedByIp.Should().Be(LRefreshToken.CreatedByIp);
+            LResult.Revoked.Should().BeNull();
+            LResult.RevokedByIp.Should().BeNull();
+            LResult.ReplacedByToken.Should().BeNull();
+            LResult.ReasonRevoked.Should().BeNull();
+           
+            var LSavedUserRefreshToken = await LDatabaseContext.UserRefreshTokens.FindAsync(LUserRefreshTokens[0].Id);
+            LSavedUserRefreshToken.Revoked.Should().NotBeNull();
+            LSavedUserRefreshToken.RevokedByIp.Should().NotBeNull();
+            LSavedUserRefreshToken.ReplacedByToken.Should().NotBeNull();
+            LSavedUserRefreshToken.ReasonRevoked.Should().NotBeNull();
         }
 
         private  IEnumerable<Users> GetUser(Guid AUserId)
