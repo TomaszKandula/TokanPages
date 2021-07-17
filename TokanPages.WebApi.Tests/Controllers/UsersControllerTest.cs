@@ -1,49 +1,137 @@
-using Xunit;
-using FluentAssertions;
-using Newtonsoft.Json;
-using System;
-using System.Net;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Security.Claims;
-using System.Net.Http.Headers;
-using System.Collections.Generic;
-using TokanPages.Backend.Shared.Dto.Users;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Identity.Authorization;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
-using TokanPages.Backend.Database.Initializer.Data.Users;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
 namespace TokanPages.WebApi.Tests.Controllers
 {
-    public class UsersControllerTest : IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    using System;
+    using System.Net;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using System.Net.Http.Headers;
+    using System.Collections.Generic;
+    using Backend.Shared;
+    using Backend.Core.Extensions;
+    using Backend.Shared.Dto.Users;
+    using Backend.Shared.Resources;
+    using Backend.Cqrs.Handlers.Queries.Users;
+    using Backend.Cqrs.Handlers.Commands.Users;
+    using Backend.Database.Initializer.Data.Users;
+    using FluentAssertions;
+    using Newtonsoft.Json;
+    using Xunit;
+
+    public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
+        private const string API_BASE_URL = "/api/v1/users";
+        
         private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
 
-        private readonly DataProviderService FDataProviderService;
+        public UsersControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
 
-        public UsersControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory)
+        [Fact]
+        public async Task GivenValidCredentials_WhenAuthenticateUser_ShouldSucceed()
         {
-            FWebAppFactory = AWebAppFactory;
-            FDataProviderService = new DataProviderService();
+            // Arrange
+            var LRequest = $"{API_BASE_URL}/AuthenticateUser/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+
+            var LPayLoad = new AuthenticateUserDto
+            {
+                EmailAddress = User1.EMAIL_ADDRESS,
+                Password = "user1password"
+            };
+
+            // Act
+            var LHttpClient = FWebAppFactory.CreateClient();
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+
+            // Assert
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+
+            // Assert
+            LResponse.EnsureSuccessStatusCode();
+
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+            
+            var LDeserialized = JsonConvert.DeserializeObject<AuthenticateUserCommandResult>(LContent);
+            LDeserialized.UserId.ToString().IsGuid().Should().BeTrue();
+            LDeserialized.FirstName.Should().Be(User1.FIRST_NAME);
+            LDeserialized.LastName.Should().Be(User1.LAST_NAME);
+            LDeserialized.AliasName.Should().Be(User1.USER_ALIAS);
+            LDeserialized.ShortBio.Should().Be(User1.SHORT_BIO);
+            LDeserialized.AvatarName.Should().Be(User1.AVATAR_NAME);
+            LDeserialized.Registered.Should().Be(User1.FRegistered);
+            LDeserialized.UserToken.Should().NotBeEmpty();
         }
-        
+
+        [Fact]
+        public async Task GivenInvalidCredentials_WhenAuthenticateUser_ShouldThrowError()
+        {
+            // Arrange
+            var LRequest = $"{API_BASE_URL}/AuthenticateUser/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+
+            var LPayLoad = new AuthenticateUserDto
+            {
+                EmailAddress = User1.EMAIL_ADDRESS,
+                Password = DataUtilityService.GetRandomString()
+            };
+
+            // Act
+            var LHttpClient = FWebAppFactory.CreateClient();
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+
+            // Assert
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+
+            // Assert
+            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+            LContent.Should().Contain(ErrorCodes.INVALID_CREDENTIALS);
+        }
+
+        [Fact]
+        public async Task GivenNoRefreshTokensSaved_WhenReAuthenticateUser_ShouldThrowError()
+        {
+            // Arrange
+            var LCookieValue = DataUtilityService.GetRandomString();
+            var LRequest = $"{API_BASE_URL}/ReAuthenticateUser/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+
+            var LPayLoad = new ReAuthenticateUserDto
+            {
+                Id = Guid.NewGuid()
+            };
+
+            // Act
+            var LHttpClient = FWebAppFactory.CreateClient();
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            LNewRequest.Headers.Add("Cookie", $"{Constants.CookieNames.REFRESH_TOKEN}={LCookieValue};");
+            
+            // Assert
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+            LContent.Should().Contain(ErrorCodes.INVALID_REFRESH_TOKEN);            
+        }
+
         [Fact]
         public async Task GivenAllFieldsAreProvided_WhenAddUser_ShouldReturnNewGuid() 
         {
             // Arrange
-            const string REQUEST = "/api/v1/users/adduser/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
+            var LRequest = $"{API_BASE_URL}/AddUser/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
             var LPayLoad = new AddUserDto 
             { 
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
-                Password = FDataProviderService.GetRandomString()
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                Password = DataUtilityService.GetRandomString()
             };
 
             var LHttpClient = FWebAppFactory.CreateClient();
@@ -63,12 +151,12 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenValidJwt_WhenGetAllUsers_ShouldReturnCollection() 
         {
             // Arrange
-            const string REQUEST = "/api/v1/users/getallusers/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, REQUEST);
+            var LRequest = $"{API_BASE_URL}/GetAllUsers/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, LRequest);
             
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
 
@@ -91,12 +179,12 @@ namespace TokanPages.WebApi.Tests.Controllers
         {
             // Arrange
             var LTestUserId = User1.FId;
-            var LRequest = $"/api/v1/users/getuser/{LTestUserId}/";
+            var LRequest = $"{API_BASE_URL}/GetUser/{LTestUserId}/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Get, LRequest);
             
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
             
@@ -114,15 +202,36 @@ namespace TokanPages.WebApi.Tests.Controllers
         }
 
         [Fact]
-        public async Task GivenInvalidIdAndValidJwt_WhenGetUser_ShouldReturnJsonObjectWithError()
+        public async Task GivenCorrectIdAndInvalidJwt_WhenGetUser_ShouldReturnEntityAsJsonObject() 
         {
             // Arrange
-            const string REQUEST = "/api/v1/users/getuser/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, REQUEST);
+            var LTestUserId = User1.FId;
+            var LRequest = $"{API_BASE_URL}/GetUser/{LTestUserId}/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, LRequest);
             
             var LHttpClient = FWebAppFactory.CreateClient();
             var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = FDataProviderService.GenerateJwt(LTokenExpires, GetValidClaims(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetInvalidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            
+            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            
+            // Act
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+
+            // Assert
+            LResponse.StatusCode.Should().Be(HttpStatusCode.Forbidden);
+        }
+        
+        [Fact]
+        public async Task GivenInvalidIdAndValidJwt_WhenGetUser_ShouldReturnJsonObjectWithError()
+        {
+            // Arrange
+            var LRequest = $"{API_BASE_URL}/GetUser/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, LRequest);
+            
+            var LHttpClient = FWebAppFactory.CreateClient();
+            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
             LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
 
@@ -141,8 +250,8 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenIncorrectIdAndNoJwt_WhenRemoveUser_ShouldReturnUnauthorized() 
         {
             // Arrange
-            const string REQUEST = "/api/v1/users/removeuser/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
+            var LRequest = $"{API_BASE_URL}/RemoveUser/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
             var LPayLoad = new RemoveUserDto
             {
@@ -163,16 +272,16 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenIncorrectIdNoJwt_WhenUpdateUser_ShouldReturnUnauthorized() 
         {
             // Arrange
-            const string REQUEST = "/api/v1/users/updateuser/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, REQUEST);
+            var LRequest = $"{API_BASE_URL}/UpdateUser/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 
             var LPayLoad = new UpdateUserDto
             {
                 Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
-                EmailAddress = FDataProviderService.GetRandomEmail(),
-                UserAlias = FDataProviderService.GetRandomString(),
-                FirstName = FDataProviderService.GetRandomString(),
-                LastName = FDataProviderService.GetRandomString(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true
             };
 
@@ -184,19 +293,6 @@ namespace TokanPages.WebApi.Tests.Controllers
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
-        }
-        
-        private ClaimsIdentity GetValidClaims()
-        {
-            return new (new[]
-            {
-                new Claim(Claims.UserAlias, FDataProviderService.GetRandomString()),
-                new Claim(Claims.Roles, Roles.EverydayUser),
-                new Claim(Claims.UserId, User1.FId.ToString()),
-                new Claim(Claims.FirstName, User1.FIRST_NAME),
-                new Claim(Claims.LastName, User1.LAST_NAME),
-                new Claim(Claims.EmailAddress, User1.EMAIL_ADDRESS)
-            });
         }
     }
 }

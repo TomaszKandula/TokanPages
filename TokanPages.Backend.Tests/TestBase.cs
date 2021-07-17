@@ -1,16 +1,28 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using TokanPages.Backend.Database;
-
-namespace TokanPages.Backend.Tests
+﻿namespace TokanPages.Backend.Tests
 {
+    using Microsoft.Extensions.DependencyInjection;
+    using Database;
+    using Shared.Services.DateTimeService;
+    using Shared.Services.DataUtilityService;
+    using Identity.Services.JwtUtilityService;
+
     public class TestBase
     {
+        protected IDataUtilityService DataUtilityService { get; }
+        
+        protected IJwtUtilityService JwtUtilityService { get; }
+
+        protected IDateTimeService DateTimeService { get; }
+        
         private readonly DatabaseContextFactory FDatabaseContextFactory;
-
-        protected TestBase() 
+        
+        protected TestBase()
         {
-            var LServices = new ServiceCollection();
+            DataUtilityService = new DataUtilityService();
+            JwtUtilityService = new JwtUtilityService();
+            DateTimeService = new DateTimeService();
 
+            var LServices = new ServiceCollection();
             LServices.AddSingleton<DatabaseContextFactory>();
             LServices.AddScoped(AContext =>
             {
@@ -23,7 +35,6 @@ namespace TokanPages.Backend.Tests
             FDatabaseContextFactory = LServiceProvider.GetService<DatabaseContextFactory>();
         }
 
-        protected DatabaseContext GetTestDatabaseContext()
-            =>  FDatabaseContextFactory.CreateDatabaseContext();
+        protected DatabaseContext GetTestDatabaseContext() =>  FDatabaseContextFactory.CreateDatabaseContext();
     }
 }

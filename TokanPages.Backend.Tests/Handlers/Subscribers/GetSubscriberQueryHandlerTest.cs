@@ -1,20 +1,15 @@
-﻿using Xunit;
-using FluentAssertions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
-
-namespace TokanPages.Backend.Tests.Handlers.Subscribers
+﻿namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Core.Exceptions;
+    using Cqrs.Handlers.Queries.Subscribers;
+    using FluentAssertions;
+    using Xunit;
+
     public class GetSubscriberQueryHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public GetSubscriberQueryHandlerTest() => FDataProviderService = new DataProviderService();
-
         [Fact]
         public async Task GivenCorrectId_WhenGetSubscriber_ShouldReturnEntity() 
         {
@@ -22,7 +17,7 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
             var LTestDate = DateTime.Now;
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
-                Email = FDataProviderService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10,
                 Registered = LTestDate,
@@ -54,7 +49,7 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
             // Arrange
             var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
-                Email = FDataProviderService.GetRandomEmail(),
+                Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10,
                 Registered = DateTime.Now,

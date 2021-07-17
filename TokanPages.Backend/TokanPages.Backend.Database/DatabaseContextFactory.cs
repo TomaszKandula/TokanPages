@@ -1,11 +1,11 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.EntityFrameworkCore.Design;
-
-namespace TokanPages.Backend.Database
+﻿namespace TokanPages.Backend.Database
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.EntityFrameworkCore.Design;
+
     /// <summary>
     /// A factory for creating derived DbContext instances when performing
     /// database migrations (add, update, remove) from terminal (using dotnet command).

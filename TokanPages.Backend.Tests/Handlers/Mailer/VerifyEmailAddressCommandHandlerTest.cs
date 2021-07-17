@@ -1,37 +1,32 @@
-using Xunit;
-using Moq;
-using FluentAssertions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.SmtpClient.Models;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
 namespace TokanPages.Backend.Tests.Handlers.Mailer
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using SmtpClient;
+    using SmtpClient.Models;
+    using Cqrs.Handlers.Commands.Mailer;
+    using FluentAssertions;
+    using Xunit;
+    using Moq;
+
     public class VerifyEmailAddressCommandHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public VerifyEmailAddressCommandHandlerTest() => FDataProviderService = new DataProviderService();
-
         [Fact]
         public async Task GivenValidEmailAddress_WhenVerifyEmailAddress_ShouldFinishSuccessful()
         {
             // Arrange
             var LVerifyEmailAddressCommand = new VerifyEmailAddressCommand
             {
-                Email = FDataProviderService.GetRandomEmail()
+                Email = DataUtilityService.GetRandomEmail()
             };
 
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();
-            var LCheckActionResult = new List<EmailAddressModel>
+            var LCheckActionResult = new List<Email>
             {
                 new ()
                 {
-                    EmailAddress = LVerifyEmailAddressCommand.Email,
+                    Address = LVerifyEmailAddressCommand.Email,
                     IsValid = true
                 }
             };

@@ -1,10 +1,10 @@
-﻿using System.Reflection;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Domain.Entities;
-
-namespace TokanPages.Backend.Database
+﻿namespace TokanPages.Backend.Database
 {
+    using System.Reflection;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.EntityFrameworkCore;
+    using Domain.Entities;
+
     [ExcludeFromCodeCoverage]
     public class DatabaseContext : DbContext
     {
@@ -35,6 +35,8 @@ namespace TokanPages.Backend.Database
         public virtual DbSet<UserPermissions> UserPermissions { get; set; }
         
         public virtual DbSet<UserRoles> UserRoles { get; set; }
+        
+        public virtual DbSet<UserRefreshTokens> UserRefreshTokens { get; set; }
         
         protected override void OnModelCreating(ModelBuilder AModelBuilder)
         {

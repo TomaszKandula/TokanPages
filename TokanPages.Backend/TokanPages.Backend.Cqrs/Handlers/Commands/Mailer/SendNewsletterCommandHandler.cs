@@ -1,20 +1,19 @@
-﻿using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.Shared;
-using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Core.Logger;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Storage.Models;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.TemplateHelper;
-using Templates = TokanPages.Backend.Shared.Constants.Emails.Templates;
-using MediatR;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Shared;
+    using SmtpClient;
+    using Core.Logger;
+    using Shared.Models;
+    using Storage.Models;
+    using Core.Exceptions;
+    using Shared.Resources;
+    using Shared.Services.TemplateService;
+    using MediatR;
+
     public class SendNewsletterCommandHandler : TemplateHandler<SendNewsletterCommand, Unit>
     {
         private readonly ILogger FLogger;
@@ -23,27 +22,27 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
         
         private readonly ISmtpClientService FSmtpClientService;
         
-        private readonly ITemplateHelper FTemplateHelper;
+        private readonly ITemplateService FTemplateService;
         
-        private readonly AzureStorageSettingsModel FAzureStorageSettingsModel;
+        private readonly AzureStorage FAzureStorage;
         
-        private readonly ApplicationPathsModel FApplicationPathsModel;
+        private readonly ApplicationPaths FApplicationPaths;
 
         public SendNewsletterCommandHandler(ILogger ALogger, HttpClient AHttpClient, ISmtpClientService ASmtpClientService, 
-            ITemplateHelper ATemplateHelper, AzureStorageSettingsModel AAzureStorageSettingsModel, ApplicationPathsModel AApplicationPathsModel)
+            ITemplateService ATemplateService, AzureStorage AAzureStorage, ApplicationPaths AApplicationPaths)
         {
             FLogger = ALogger;
             FHttpClient = AHttpClient;
             FSmtpClientService = ASmtpClientService;
-            FTemplateHelper = ATemplateHelper;
-            FAzureStorageSettingsModel = AAzureStorageSettingsModel;
-            FApplicationPathsModel = AApplicationPathsModel;
+            FTemplateService = ATemplateService;
+            FAzureStorage = AAzureStorage;
+            FApplicationPaths = AApplicationPaths;
         }
 
         public override async Task<Unit> Handle(SendNewsletterCommand ARequest, CancellationToken ACancellationToken) 
         {
-            var LUpdateSubscriberBaseLink = FApplicationPathsModel.DeploymentOrigin + FApplicationPathsModel.UpdateSubscriberPath;
-            var LUnsubscribeBaseLink = FApplicationPathsModel.DeploymentOrigin + FApplicationPathsModel.UnsubscribePath;
+            var LUpdateSubscriberBaseLink = FApplicationPaths.DeploymentOrigin + FApplicationPaths.UpdateSubscriberPath;
+            var LUnsubscribeBaseLink = FApplicationPaths.DeploymentOrigin + FApplicationPaths.UnsubscribePath;
 
             FLogger.LogInformation($"Update subscriber base URL: {LUpdateSubscriberBaseLink}.");
             FLogger.LogInformation($"Unsubscribe base URL: {LUnsubscribeBaseLink}.");
@@ -57,19 +56,19 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 
                 var LUpdateSubscriberLink = LUpdateSubscriberBaseLink + LSubscriber.Id;
                 var LUnsubscribeLink = LUnsubscribeBaseLink + LSubscriber.Id;
-                var LNewValues = new List<TemplateItemModel>
+                var LNewValues = new List<TemplateItem>
                 {
                     new () { Tag = "{CONTENT}", Value = ARequest.Message },
                     new () { Tag = "{UPDATE_EMAIL_LINK}", Value = LUpdateSubscriberLink },
                     new () { Tag = "{UNSUBSCRIBE_LINK}", Value = LUnsubscribeLink }
                 };
 
-                var LUrl = $"{FAzureStorageSettingsModel.BaseUrl}{Templates.NEWSLETTER}";
+                var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.NEWSLETTER}";
                 FLogger.LogInformation($"Getting newsletter template from URL: {LUrl}.");
                 
                 var LTemplateFromUrl = await FHttpClient.GetAsync(LUrl, ACancellationToken);
                 var LTemplate = await LTemplateFromUrl.Content.ReadAsStringAsync(ACancellationToken);
-                FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplate, LNewValues);
+                FSmtpClientService.HtmlBody = FTemplateService.MakeBody(LTemplate, LNewValues);
 
                 var LResult = await FSmtpClientService.Send(ACancellationToken);
                 if (!LResult.IsSucceeded) 

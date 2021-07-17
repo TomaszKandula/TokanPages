@@ -1,36 +1,31 @@
-using Xunit;
-using Newtonsoft.Json;
-using FluentAssertions;
-using System.Net;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-
 namespace TokanPages.WebApi.Tests.Controllers
 {
-    public class HealthControllerTest : IClassFixture<CustomWebApplicationFactory<TestStartup>>
-    {
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
-        
-        private readonly DataProviderService FDataProviderService;
+    using System.Net;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Microsoft.Extensions.Configuration;
+    using Backend.Shared.Models;
+    using FluentAssertions;
+    using Newtonsoft.Json;
+    using Xunit;
 
-        public HealthControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory)
-        {
-            FWebAppFactory = AWebAppFactory;
-            FDataProviderService = new DataProviderService();
-        }
+    public class HealthControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    {
+        private const string API_BASE_URL = "/api/v1/health";
+
+        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
+
+        public HealthControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task GivenCorrectConfiguration_WhenRequestStatusCheck_ShouldReturnSuccessful()
         {
             // Arrange
-            const string REQUEST = "/api/v1/health/status/";
+            var LRequest = $"{API_BASE_URL}/Status/";
         
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(REQUEST);
+            var LResponse = await LHttpClient.GetAsync(LRequest);
         
             // Assert
             LResponse.EnsureSuccessStatusCode();
@@ -38,7 +33,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             
-            var LDeserialized = JsonConvert.DeserializeObject<ActionResultModel>(LContent);
+            var LDeserialized = JsonConvert.DeserializeObject<ActionResult>(LContent);
             LDeserialized.Should().NotBeNull();
             LDeserialized.IsSucceeded.Should().BeTrue();
             LDeserialized.ErrorCode.Should().BeNull();
@@ -49,19 +44,19 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenInvalidSmtpServer_WhenRequestStatusCheck_ShouldThrowError()
         {
             // Arrange
-            const string REQUEST = "/api/v1/health/status/";
+            var LRequest = $"{API_BASE_URL}/Status/";
             var LWebAppFactory = FWebAppFactory.WithWebHostBuilder(ABuilder =>
             {
                 ABuilder.ConfigureAppConfiguration((AContext, AConfigBuilder) =>
                 {
                     AConfigBuilder.AddInMemoryCollection(
-                        new Dictionary<string, string> { ["SmtpServer:Server"] = FDataProviderService.GetRandomString() });
+                        new Dictionary<string, string> { ["SmtpServer:Server"] = DataUtilityService.GetRandomString() });
                 });
             });
             
             // Act
             var LHttpClient = LWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(REQUEST);
+            var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
@@ -69,7 +64,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             
-            var LDeserialized = JsonConvert.DeserializeObject<ActionResultModel>(LContent);
+            var LDeserialized = JsonConvert.DeserializeObject<ActionResult>(LContent);
             LDeserialized.Should().NotBeNull();
             LDeserialized.IsSucceeded.Should().BeFalse();
             LDeserialized.ErrorCode.Should().NotBeEmpty();
@@ -80,19 +75,19 @@ namespace TokanPages.WebApi.Tests.Controllers
         public async Task GivenInvalidDatabaseServer_WhenRequestStatusCheck_ShouldThrowError()
         {
             // Arrange
-            const string REQUEST = "/api/v1/health/status/";
+            var LRequest = $"{API_BASE_URL}/Status/";
             var LWebAppFactory = FWebAppFactory.WithWebHostBuilder(ABuilder =>
             {
                 ABuilder.ConfigureAppConfiguration((AContext, AConfigBuilder) =>
                 {
                     AConfigBuilder.AddInMemoryCollection(
-                        new Dictionary<string, string> { ["ConnectionStrings:DbConnectTest"] = FDataProviderService.GetRandomString() });
+                        new Dictionary<string, string> { ["ConnectionStrings:DbConnectTest"] = DataUtilityService.GetRandomString() });
                 });
             });
             
             // Act
             var LHttpClient = LWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(REQUEST);
+            var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
             LResponse.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
@@ -100,7 +95,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             
-            var LDeserialized = JsonConvert.DeserializeObject<ActionResultModel>(LContent);
+            var LDeserialized = JsonConvert.DeserializeObject<ActionResult>(LContent);
             LDeserialized.Should().NotBeNull();
             LDeserialized.IsSucceeded.Should().BeFalse();
             LDeserialized.ErrorCode.Should().NotBeEmpty();

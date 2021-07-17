@@ -1,8 +1,8 @@
-﻿using System;
-using MediatR;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 {
+    using System;
+    using MediatR;
+
     public class AddArticleCommand : IRequest<Guid>
     {
         public string Title { get; set; }

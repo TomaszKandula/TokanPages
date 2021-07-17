@@ -25,9 +25,10 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_WRONG_PAGE_CONTENT });
 
-        axios.get(GET_WRONG_PAGE_PROMPT_CONTENT, 
+        axios( 
         {
             method: "GET", 
+            url: GET_WRONG_PAGE_PROMPT_CONTENT,
             responseType: "json"
         })
         .then(response =>

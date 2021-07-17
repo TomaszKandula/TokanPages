@@ -1,16 +1,16 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Blob;
-using TokanPages.Backend.Shared;
-using TokanPages.Backend.Storage.Models;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Shared.Resources;
-
 namespace TokanPages.Backend.Storage.AzureBlobStorage
 {
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.Blob;
+    using Models;
+    using Shared;
+    using Core.Exceptions;
+    using Core.Extensions;
+    using Shared.Resources;
+
     public class AzureBlobStorage : IAzureBlobStorage
     {
         private readonly CloudBlobContainer FContainer;
@@ -21,7 +21,7 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
                 .CreateCloudBlobClient()
                 .GetContainerReference(AContainerName);
         
-        public async Task<StorageByteContentModel> ReadAllBytes(string ASourceFilePath)
+        public async Task<StorageByteContent> ReadAllBytes(string ASourceFilePath)
         {
             var LBlob = FContainer.GetBlockBlobReference(ASourceFilePath);
 
@@ -32,20 +32,20 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
             await LBlob.DownloadToByteArrayAsync(LResult, 0);
             var LContentType = LBlob.Properties.ContentType;
 
-            return new StorageByteContentModel
+            return new StorageByteContent
             {
                 Content = LResult,
                 ContentType = LContentType
             };
         }
 
-        public async Task<StorageStreamContentModel> OpenRead(string ASourceFilePath)
+        public async Task<StorageStreamContent> OpenRead(string ASourceFilePath)
         {
             var LBlob = FContainer.GetBlockBlobReference(ASourceFilePath);
             var LStream = await LBlob.OpenReadAsync();
             var LContentType = LBlob.Properties.ContentType;
 
-            return new StorageStreamContentModel
+            return new StorageStreamContent
             {
                 Content = LStream,
                 ContentType = LContentType

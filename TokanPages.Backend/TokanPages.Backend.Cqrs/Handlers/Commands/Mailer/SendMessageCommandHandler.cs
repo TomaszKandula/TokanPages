@@ -1,21 +1,21 @@
-﻿using System.Net.Http;
-using System.Threading;
-using System.Globalization;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.Shared;
-using TokanPages.Backend.SmtpClient;
-using TokanPages.Backend.Core.Logger;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Storage.Models;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.TemplateHelper;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-using Templates = TokanPages.Backend.Shared.Constants.Emails.Templates;
-using MediatR;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
+    using System.Net.Http;
+    using System.Threading;
+    using System.Globalization;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Shared;
+    using SmtpClient;
+    using Core.Logger;
+    using Shared.Models;
+    using Storage.Models;
+    using Core.Exceptions;
+    using Shared.Resources;
+    using Shared.Services.TemplateService;
+    using Shared.Services.DateTimeService;
+    using MediatR;
+
     public class SendMessageCommandHandler : TemplateHandler<SendMessageCommand, Unit>
     {
         private readonly ILogger FLogger;
@@ -24,21 +24,21 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 
         private readonly ISmtpClientService FSmtpClientService;
         
-        private readonly ITemplateHelper FTemplateHelper;
+        private readonly ITemplateService FTemplateService;
         
         private readonly IDateTimeService FDateTimeService;
         
-        private readonly AzureStorageSettingsModel FAzureStorageSettingsModel;
+        private readonly AzureStorage FAzureStorage;
         
         public SendMessageCommandHandler(ILogger ALogger, HttpClient AHttpClient, ISmtpClientService ASmtpClientService, 
-            ITemplateHelper ATemplateHelper, IDateTimeService ADateTimeService, AzureStorageSettingsModel AAzureStorageSettingsModel)
+            ITemplateService ATemplateService, IDateTimeService ADateTimeService, AzureStorage AAzureStorage)
         {
             FLogger = ALogger;
             FHttpClient = AHttpClient;
             FSmtpClientService = ASmtpClientService;
-            FTemplateHelper = ATemplateHelper;
+            FTemplateService = ATemplateService;
             FDateTimeService = ADateTimeService;
-            FAzureStorageSettingsModel = AAzureStorageSettingsModel;
+            FAzureStorage = AAzureStorage;
         }
 
         public override async Task<Unit> Handle(SendMessageCommand ARequest, CancellationToken ACancellationToken)
@@ -47,7 +47,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
             FSmtpClientService.Tos = new List<string> { Constants.Emails.Addresses.CONTACT };
             FSmtpClientService.Subject = $"New user message from {ARequest.FirstName}";
 
-            var LNewValues = new List<TemplateItemModel>
+            var LNewValues = new List<TemplateItem>
             {
                 new () { Tag = "{FIRST_NAME}", Value = ARequest.FirstName },
                 new () { Tag = "{LAST_NAME}", Value = ARequest.LastName },
@@ -56,12 +56,12 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
                 new () { Tag = "{DATE_TIME}", Value = FDateTimeService.Now.ToString(CultureInfo.InvariantCulture) }
             };
 
-            var LUrl = $"{FAzureStorageSettingsModel.BaseUrl}{Templates.CONTACT_FORM}";
+            var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.CONTACT_FORM}";
             FLogger.LogInformation($"Getting email template from URL: {LUrl}.");
 
             var LTemplateFromUrl = await FHttpClient.GetAsync(LUrl, ACancellationToken);
             var LTemplate = await LTemplateFromUrl.Content.ReadAsStringAsync(ACancellationToken);
-            FSmtpClientService.HtmlBody = FTemplateHelper.MakeBody(LTemplate, LNewValues);
+            FSmtpClientService.HtmlBody = FTemplateService.MakeBody(LTemplate, LNewValues);
 
             var LResult = await FSmtpClientService.Send(ACancellationToken);
             if (!LResult.IsSucceeded)

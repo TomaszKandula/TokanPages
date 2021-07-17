@@ -1,8 +1,8 @@
-﻿using FluentValidation;
-using TokanPages.Backend.Shared.Resources;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
 {
+    using FluentValidation;
+    using Shared.Resources;
+
     public class GetUserQueryValidator : AbstractValidator<GetUserQuery>
     {
         public GetUserQueryValidator() 

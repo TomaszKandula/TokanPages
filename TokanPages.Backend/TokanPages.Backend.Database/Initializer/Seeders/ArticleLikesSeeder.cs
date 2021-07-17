@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities;
-using TokanPages.Backend.Database.Initializer.Data.ArticleLikes;
-
-namespace TokanPages.Backend.Database.Initializer.Seeders
+﻿namespace TokanPages.Backend.Database.Initializer.Seeders
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using Domain.Entities;
+    using Data.ArticleLikes;
+
     [ExcludeFromCodeCoverage]
     public static class ArticleLikesSeeder
     {

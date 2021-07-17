@@ -1,13 +1,13 @@
-﻿using System.Reflection;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.Extensions.Configuration;
-using JetBrains.Annotations;
-
-namespace TokanPages.WebApi.Tests
+﻿namespace TokanPages.WebApi.Tests
 {
+    using System.Reflection;
+    using Microsoft.AspNetCore;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.TestHost;
+    using Microsoft.AspNetCore.Mvc.Testing;
+    using Microsoft.Extensions.Configuration;
+    using JetBrains.Annotations;
+
     [UsedImplicitly]
     public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<TTestStartup> where TTestStartup : class
     {

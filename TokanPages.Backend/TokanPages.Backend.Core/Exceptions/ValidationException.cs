@@ -1,10 +1,10 @@
-﻿using System;
-using System.Runtime.Serialization;
-using System.Diagnostics.CodeAnalysis;
-using FluentValidation.Results;
-
-namespace TokanPages.Backend.Core.Exceptions
+﻿namespace TokanPages.Backend.Core.Exceptions
 {
+    using System;
+    using System.Runtime.Serialization;
+    using System.Diagnostics.CodeAnalysis;
+    using FluentValidation.Results;
+
     [ExcludeFromCodeCoverage]
     [Serializable]
     public class ValidationException : BusinessException

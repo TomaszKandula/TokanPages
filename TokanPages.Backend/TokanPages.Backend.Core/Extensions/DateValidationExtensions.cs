@@ -1,10 +1,10 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using FluentValidation;
-using TokanPages.Backend.Core.Models;
-
 namespace TokanPages.Backend.Core.Extensions
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using FluentValidation;
+    using Models;
+
     [ExcludeFromCodeCoverage]
     public static class DateValidationExtensions
     {

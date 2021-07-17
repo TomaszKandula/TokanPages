@@ -1,21 +1,16 @@
-﻿using Xunit;
-using FluentAssertions;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.Shared.Services.DataProviderService;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
-
-namespace TokanPages.Backend.Tests.Handlers.Subscribers
+﻿namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {   
+    using System;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Cqrs.Handlers.Queries.Subscribers;
+    using FluentAssertions;
+    using Xunit;
+
     public class GetAllSubscribersQueryHandlerTest : TestBase
     {
-        private readonly DataProviderService FDataProviderService;
-
-        public GetAllSubscribersQueryHandlerTest() => FDataProviderService = new DataProviderService();
-
         [Fact]
         public async Task WhenGetAllSubscribers_ShouldReturnCollection()
         {
@@ -27,7 +22,7 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
             {
                 new ()
                 {
-                    Email = FDataProviderService.GetRandomEmail(),
+                    Email = DataUtilityService.GetRandomEmail(),
                     IsActivated = true,
                     Count = 10,
                     Registered = DateTime.Now,
@@ -35,7 +30,7 @@ namespace TokanPages.Backend.Tests.Handlers.Subscribers
                 },
                 new ()
                 {
-                    Email = FDataProviderService.GetRandomEmail(),
+                    Email = DataUtilityService.GetRandomEmail(),
                     IsActivated = true,
                     Count = 100,
                     Registered = DateTime.Now,

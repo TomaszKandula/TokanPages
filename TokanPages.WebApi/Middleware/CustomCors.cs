@@ -1,12 +1,12 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Http;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Shared.Helpers;
-
-namespace TokanPages.WebApi.Middleware
+﻿namespace TokanPages.WebApi.Middleware
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.AspNetCore.Http;
+    using Backend.Shared.Models;
+    using Backend.Shared.Helpers;
+    
     [ExcludeFromCodeCoverage]
     public class CustomCors
     {
@@ -15,10 +15,10 @@ namespace TokanPages.WebApi.Middleware
         public CustomCors(RequestDelegate ARequestDelegate) 
             => FRequestDelegate = ARequestDelegate;
 
-        public Task Invoke(HttpContext AHttpContext, ApplicationPathsModel AApplicationPathsModel)
+        public Task Invoke(HttpContext AHttpContext, ApplicationPaths AApplicationPaths)
         {
-            var LDevelopmentOrigins = AApplicationPathsModel.DevelopmentOrigin.Split(';').ToList();
-            var LDeploymentOrigins = AApplicationPathsModel.DeploymentOrigin.Split(';').ToList();
+            var LDevelopmentOrigins = AApplicationPaths.DevelopmentOrigin.Split(';').ToList();
+            var LDeploymentOrigins = AApplicationPaths.DeploymentOrigin.Split(';').ToList();
             var LRequestOrigin = AHttpContext.Request.Headers["Origin"];
 
             if (!LDevelopmentOrigins.Contains(LRequestOrigin) && !LDeploymentOrigins.Contains(LRequestOrigin))

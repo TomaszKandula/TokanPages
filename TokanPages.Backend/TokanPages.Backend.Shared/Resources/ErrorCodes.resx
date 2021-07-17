@@ -157,6 +157,18 @@
     <value>SMTP client has thrown an error</value>
   </data>
   <data name="ARGUMENT_NULL_EXCEPTION" xml:space="preserve">
-    <value>Argument(s) cannot be null</value>
+    <value>Argument value cannot be null</value>
+  </data>
+  <data name="INVALID_CREDENTIALS" xml:space="preserve">
+    <value>The user email and/or given password is invalid.</value>
+  </data>
+  <data name="ARGUMENT_ZERO_EXCEPTION" xml:space="preserve">
+    <value>Argument value cannot equal zero.</value>
+  </data>
+  <data name="MISSING_REFRESH_TOKEN" xml:space="preserve">
+    <value>The refresh token is missing from the request.</value>
+  </data>
+  <data name="INVALID_REFRESH_TOKEN" xml:space="preserve">
+    <value>Provided refresh token is invalid.</value>
   </data>
 </root>

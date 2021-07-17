@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-
-namespace TokanPages.Backend.Shared
+﻿namespace TokanPages.Backend.Shared
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
     /// This class is responsible only for providing constants to all classes/methods etc. across the application.
     /// It can be a partial class if necessary; and if so, then put the module in the root folder and additional 
@@ -11,6 +11,15 @@ namespace TokanPages.Backend.Shared
     [ExcludeFromCodeCoverage]
     public static class Constants
     {
+        /// <summary>
+        /// Generic cookie names to be used for processing HTTP responses/requests. 
+        /// </summary>
+        public static class CookieNames
+        {
+            public const string WEB_TOKEN = "WebToken";
+            public const string REFRESH_TOKEN = "RefreshToken";
+        }
+        
         /// <summary>
         /// Selected list of common MIME content types.
         /// </summary>

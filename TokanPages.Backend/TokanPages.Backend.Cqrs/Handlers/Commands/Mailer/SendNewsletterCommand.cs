@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using TokanPages.Backend.Shared.Models;
-using MediatR;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
+    using System.Collections.Generic;
+    using Shared.Models;
+    using MediatR;
+
     public class SendNewsletterCommand : IRequest<Unit>
     {
-        public List<SubscriberInfoModel> SubscriberInfo { get; set; }
+        public List<SubscriberInfo> SubscriberInfo { get; set; }
         
         public string Subject { get; set; }
         

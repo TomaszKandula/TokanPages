@@ -1,15 +1,15 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Database;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
 {
+    using System;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
+    using Database;
+    using Core.Exceptions;
+    using Shared.Resources;
+    using Shared.Services.DateTimeService;
+
     public class AddSubscriberCommandHandler : TemplateHandler<AddSubscriberCommand, Guid>
     {
         private readonly DatabaseContext FDatabaseContext;

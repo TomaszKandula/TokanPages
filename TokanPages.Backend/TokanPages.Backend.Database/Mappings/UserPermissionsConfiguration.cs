@@ -1,10 +1,10 @@
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TokanPages.Backend.Domain.Entities;
-
 namespace TokanPages.Backend.Database.Mappings
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using Domain.Entities;
+
     [ExcludeFromCodeCoverage]
     public class UserPermissionsConfiguration : IEntityTypeConfiguration<UserPermissions>
     {

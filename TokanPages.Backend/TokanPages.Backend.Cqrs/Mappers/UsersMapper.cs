@@ -1,12 +1,29 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Shared.Dto.Users;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
-
-namespace TokanPages.Backend.Cqrs.Mappers
+﻿namespace TokanPages.Backend.Cqrs.Mappers
 {
+    using System.Diagnostics.CodeAnalysis;
+    using Shared.Dto.Users;
+    using Handlers.Commands.Users;
+
     [ExcludeFromCodeCoverage]
     public static class UsersMapper
     {
+        public static AuthenticateUserCommand MapToAuthenticateUserCommand(AuthenticateUserDto AModel)
+        {
+            return new()
+            {
+                EmailAddress = AModel.EmailAddress,
+                Password = AModel.Password
+            };
+        }
+
+        public static ReAuthenticateUserCommand MapToReAuthenticateUserCommand(ReAuthenticateUserDto AModel)
+        {
+            return new()
+            {
+                Id = AModel.Id
+            };
+        }
+
         public static AddUserCommand MapToAddUserCommand(AddUserDto AModel) 
         {
             return new () 

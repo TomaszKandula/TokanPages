@@ -1,12 +1,12 @@
-﻿using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.Database;
-using Microsoft.EntityFrameworkCore;
-
-namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
 {
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Microsoft.EntityFrameworkCore;
+    using Database;
+
     public class GetAllUsersQueryHandler : TemplateHandler<GetAllUsersQuery, IEnumerable<GetAllUsersQueryResult>>
     {
         private readonly DatabaseContext FDatabaseContext;

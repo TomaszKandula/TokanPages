@@ -1,8 +1,8 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-
-namespace TokanPages.Backend.Database.Initializer.Data.Subscribers
+﻿namespace TokanPages.Backend.Database.Initializer.Data.Subscribers
 {   
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+
     [ExcludeFromCodeCoverage]
     public static class Subscriber1
     {

@@ -11,7 +11,10 @@ export const APP_STORAGE = process.env.REACT_APP_STORAGE;
 export const API_QUERY_GET_ARTICLES = `${APP_BACKEND}/api/v${API_VER}/articles/GetAllArticles/`;
 export const API_QUERY_GET_ARTICLE = `${APP_BACKEND}/api/v${API_VER}/articles/GetArticle/{id}/`;
 export const API_COMMAND_ADD_ARTICLE = `${APP_BACKEND}/api/v${API_VER}/articles/AddArticle/`;
-export const API_COMMAND_UPDATE_ARTICLE = `${APP_BACKEND}/api/v${API_VER}/articles/UpdateArticle/`;
+export const API_COMMAND_UPDATE_ARTICLE_CONTENT = `${APP_BACKEND}/api/v${API_VER}/articles/UpdateArticleContent/`;
+export const API_COMMAND_UPDATE_ARTICLE_COUNT = `${APP_BACKEND}/api/v${API_VER}/articles/UpdateArticleCount/`;
+export const API_COMMAND_UPDATE_ARTICLE_LIKES = `${APP_BACKEND}/api/v${API_VER}/articles/UpdateArticleLikes/`;
+export const API_COMMAND_UPDATE_ARTICLE_VISIBILITY = `${APP_BACKEND}/api/v${API_VER}/articles/UpdateArticleVisibility/`;
 export const API_COMMAND_REMOVE_ARTICLE = `${APP_BACKEND}/api/v${API_VER}/articles/RemoveArticle/`;
 
 /* API | USERS */

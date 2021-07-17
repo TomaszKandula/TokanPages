@@ -48,22 +48,19 @@ export default function ArticleDetail(props: IArticleDetail)
 
     const updateUserLikes = React.useCallback(() => 
     {
-        dispatch(UpdateArticleAction.updateArticle(
+        dispatch(UpdateArticleAction.updateArticleLikes(
         { 
             id: props.id, 
             addToLikes: userLikes, 
-            upReadCount: false 
         }))
     }, [ dispatch, userLikes, props.id ]);
 
     const updateReadCount = React.useCallback(() => 
     {
         if (selection.isLoading) return; 
-        dispatch(UpdateArticleAction.updateArticle(
+        dispatch(UpdateArticleAction.updateArticleCount(
         {
-            id: props.id,
-            addToLikes: 0,
-            upReadCount: true
+            id: props.id
         }));
     }, 
     [ dispatch, props.id, selection.isLoading ]);

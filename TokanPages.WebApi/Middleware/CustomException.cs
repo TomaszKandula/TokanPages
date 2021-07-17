@@ -1,16 +1,16 @@
-using System;
-using System.Net;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Http;
-using TokanPages.Backend.Core.Models;
-using TokanPages.Backend.Shared.Helpers;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Shared.Resources;
-
 namespace TokanPages.WebApi.Middleware
 {
+    using System;
+    using System.Net;
+    using System.Text.Json;
+    using System.Threading.Tasks;
+    using System.Diagnostics.CodeAnalysis;
+    using Microsoft.AspNetCore.Http;
+    using Backend.Core.Models;
+    using Backend.Shared.Helpers;
+    using Backend.Core.Exceptions;
+    using Backend.Shared.Resources;
+    
     [ExcludeFromCodeCoverage]
     public class CustomException
     {

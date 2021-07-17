@@ -25,9 +25,10 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_COOKIES_PROMPT_CONTENT });
 
-        axios.get(GET_COOKIES_PROMPT_CONTENT, 
+        axios( 
         {
             method: "GET", 
+            url: GET_COOKIES_PROMPT_CONTENT,
             responseType: "json"
         })
         .then(response =>

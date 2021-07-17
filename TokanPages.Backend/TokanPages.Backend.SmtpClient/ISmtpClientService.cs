@@ -1,11 +1,11 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.SmtpClient.Models;
-
-namespace TokanPages.Backend.SmtpClient
+﻿namespace TokanPages.Backend.SmtpClient
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using Shared.Models;
+    using Models;
+
     public interface ISmtpClientService
     {
         string From { get; set; }
@@ -22,11 +22,11 @@ namespace TokanPages.Backend.SmtpClient
         
         string HtmlBody { get; set; }
 
-        Task<ActionResultModel> CanConnectAndAuthenticate(CancellationToken ACancellationToken = default);
+        Task<ActionResult> CanConnectAndAuthenticate(CancellationToken ACancellationToken = default);
         
-        Task<ActionResultModel> Send(CancellationToken ACancellationToken = default);
+        Task<ActionResult> Send(CancellationToken ACancellationToken = default);
         
-        List<EmailAddressModel> IsAddressCorrect(IEnumerable<string> AEmailAddress);
+        List<Email> IsAddressCorrect(IEnumerable<string> AEmailAddress);
         
         Task<bool> IsDomainCorrect(string AEmailAddress, CancellationToken ACancellationToken = default);
     }

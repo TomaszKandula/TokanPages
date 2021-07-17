@@ -1,9 +1,9 @@
-using System;
-using System.Text;
-using System.Collections.Generic;
-
 namespace TokanPages.Backend.Cqrs.Services.CipheringService.Helpers
 {
+    using System;
+    using System.Text;
+    using System.Collections.Generic;
+
     public static class Methods
     {
         /// <summary>
