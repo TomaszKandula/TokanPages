@@ -1,10 +1,8 @@
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 {
-    using System;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using System.Security.Claims;
     using Microsoft.EntityFrameworkCore;
     using Database;
     using Shared.Models;
@@ -44,46 +42,22 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         public override async Task<AuthenticateUserCommandResult> Handle(AuthenticateUserCommand ARequest, CancellationToken ACancellationToken)
         {
-            var LUsersList = await FDatabaseContext.Users
+            var LUsers = await FDatabaseContext.Users
                 .AsNoTracking()
                 .Where(AUsers => AUsers.EmailAddress == ARequest.EmailAddress)
                 .ToListAsync(ACancellationToken);
             
-            if (!LUsersList.Any()) 
+            if (!LUsers.Any()) 
                 throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), ErrorCodes.INVALID_CREDENTIALS);
 
-            var LUserData = LUsersList.First();
-            var LIsPasswordValid = FCipheringService.VerifyPassword(ARequest.Password, LUserData.CryptedPassword);
+            var LUser = LUsers.First();
+            var LIsPasswordValid = FCipheringService.VerifyPassword(ARequest.Password, LUser.CryptedPassword);
 
             if (!LIsPasswordValid)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), ErrorCodes.INVALID_CREDENTIALS);
 
-            var LUserRoles = await FDatabaseContext.UserRoles
-                .AsNoTracking()
-                .Include(AUserRole => AUserRole.User)
-                .Include(AUserRole => AUserRole.Role)
-                .Where(AUserRole => AUserRole.UserId == LUserData.Id)
-                .ToListAsync(ACancellationToken);
-
             var LTokenExpires = FDateTimeService.Now.AddMinutes(FIdentityServer.WebTokenExpiresIn);
-            var LGetValidClaims = new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.Name, LUserData.UserAlias),
-                new Claim(ClaimTypes.NameIdentifier, LUserData.Id.ToString()),
-                new Claim(ClaimTypes.GivenName, LUserData.FirstName),
-                new Claim(ClaimTypes.Surname, LUserData.LastName),
-                new Claim(ClaimTypes.Email, LUserData.EmailAddress)
-            });
-
-            LGetValidClaims.AddClaims(LUserRoles
-                .Select(AUserRole => new Claim(ClaimTypes.Role, AUserRole.Role.Name)));
-            
-            var LJwt = FJwtUtilityService.GenerateJwt(
-                LTokenExpires, 
-                LGetValidClaims, 
-                FIdentityServer.WebSecret, 
-                FIdentityServer.Issuer, 
-                FIdentityServer.Audience);
+            var LUserToken = await FUserServiceProvider.GenerateUserToken(LUser, LTokenExpires, ACancellationToken);
 
             var LIpAddress = FUserServiceProvider.GetRequestIpAddress();
             var LRefreshToken = FJwtUtilityService.GenerateRefreshToken(LIpAddress, FIdentityServer.RefreshTokenExpiresIn);
@@ -91,7 +65,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
             var LNewRefreshToken = new UserRefreshTokens
             {
-                UserId = LUserData.Id,
+                UserId = LUser.Id,
                 Token = LRefreshToken.Token,
                 Expires = LRefreshToken.Expires,
                 Created = LRefreshToken.Created,
@@ -102,33 +76,21 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 ReasonRevoked = null
             };
 
-            await DeletePreviousRefreshTokens(LUserData.Id, ACancellationToken);
+            await FUserServiceProvider.DeleteOutdatedRefreshTokens(LUser.Id, ACancellationToken);
             await FDatabaseContext.UserRefreshTokens.AddAsync(LNewRefreshToken, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 
             return new AuthenticateUserCommandResult
             {
-                UserId = LUserData.Id,
-                AliasName = LUserData.UserAlias,
-                AvatarName = LUserData.AvatarName,
-                FirstName = LUserData.FirstName,
-                LastName = LUserData.LastName,
-                ShortBio = LUserData.ShortBio,
-                Registered = LUserData.Registered,
-                Jwt = LJwt
+                UserId = LUser.Id,
+                AliasName = LUser.UserAlias,
+                AvatarName = LUser.AvatarName,
+                FirstName = LUser.FirstName,
+                LastName = LUser.LastName,
+                ShortBio = LUser.ShortBio,
+                Registered = LUser.Registered,
+                UserToken = LUserToken
             };
         }
-        
-        private async Task DeletePreviousRefreshTokens(Guid AUserId, CancellationToken ACancellationToken)
-        {
-            var LRefreshTokens = await FDatabaseContext.UserRefreshTokens
-                .Where(ATokens => ATokens.UserId == AUserId 
-                    && ATokens.Expires <= FDateTimeService.Now 
-                    && ATokens.Created.AddMinutes(FIdentityServer.RefreshTokenExpiresIn) <= FDateTimeService.Now
-                    && ATokens.Revoked == null)
-                .ToListAsync(ACancellationToken);
-
-            FDatabaseContext.UserRefreshTokens.RemoveRange(LRefreshTokens);
-        }        
     }
 }
