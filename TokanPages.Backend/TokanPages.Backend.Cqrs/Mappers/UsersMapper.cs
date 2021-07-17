@@ -16,6 +16,14 @@
             };
         }
 
+        public static ReAuthenticateUserCommand MapToReAuthenticateUserCommand(ReAuthenticateUserDto AModel)
+        {
+            return new()
+            {
+                Id = AModel.Id
+            };
+        }
+
         public static AddUserCommand MapToAddUserCommand(AddUserDto AModel) 
         {
             return new () 
