@@ -7,6 +7,7 @@ namespace TokanPages.WebApi.Tests.Controllers
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
     using System.Collections.Generic;
+    using Backend.Shared;
     using Backend.Core.Extensions;
     using Backend.Shared.Dto.Users;
     using Backend.Shared.Resources;
@@ -89,7 +90,34 @@ namespace TokanPages.WebApi.Tests.Controllers
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Contain(ErrorCodes.INVALID_CREDENTIALS);
         }
-        
+
+        [Fact]
+        public async Task GivenNoRefreshTokensSaved_WhenReAuthenticateUser_ShouldThrowError()
+        {
+            // Arrange
+            var LCookieValue = DataUtilityService.GetRandomString();
+            var LRequest = $"{API_BASE_URL}/ReAuthenticateUser/";
+            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+
+            var LPayLoad = new ReAuthenticateUserDto
+            {
+                Id = Guid.NewGuid()
+            };
+
+            // Act
+            var LHttpClient = FWebAppFactory.CreateClient();
+            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            LNewRequest.Headers.Add("Cookie", $"{Constants.CookieNames.REFRESH_TOKEN}={LCookieValue};");
+            
+            // Assert
+            var LResponse = await LHttpClient.SendAsync(LNewRequest);
+            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+            LContent.Should().Contain(ErrorCodes.INVALID_REFRESH_TOKEN);            
+        }
+
         [Fact]
         public async Task GivenAllFieldsAreProvided_WhenAddUser_ShouldReturnNewGuid() 
         {
