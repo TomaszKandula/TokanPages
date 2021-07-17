@@ -1,3 +1,7 @@
+using TokanPages.Backend.Identity.Services.JwtUtilityService;
+using TokanPages.Backend.Shared.Models;
+using TokanPages.Backend.Shared.Services.DateTimeService;
+
 namespace TokanPages.Backend.Tests.Services
 {
     using System;
@@ -31,9 +35,14 @@ namespace TokanPages.Backend.Tests.Services
             var LDatabaseContext = GetTestDatabaseContext();
             await LDatabaseContext.Users.AddRangeAsync(LUsers);
             await LDatabaseContext.SaveChangesAsync();
+
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await LUserProvider.GetUserId();
 
             // Assert
@@ -53,8 +62,13 @@ namespace TokanPages.Backend.Tests.Services
             await LDatabaseContext.Users.AddRangeAsync(LUsers);
             await LDatabaseContext.SaveChangesAsync();
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
 
             // Assert
             var LResult = await LUserProvider.GetUserId();
@@ -72,9 +86,14 @@ namespace TokanPages.Backend.Tests.Services
             await LDatabaseContext.Users.AddRangeAsync(LUsers);
             await LDatabaseContext.SaveChangesAsync();
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await Assert.ThrowsAsync<BusinessException>(LUserProvider.GetUserId);
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
@@ -91,8 +110,13 @@ namespace TokanPages.Backend.Tests.Services
             await LDatabaseContext.Users.AddRangeAsync(LUsers);
             await LDatabaseContext.SaveChangesAsync();
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await LUserProvider.GetUser();
             
             // Assert
@@ -116,9 +140,14 @@ namespace TokanPages.Backend.Tests.Services
             await LDatabaseContext.Users.AddRangeAsync(LUsers);
             await LDatabaseContext.SaveChangesAsync();
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await Assert.ThrowsAsync<BusinessException>(LUserProvider.GetUser);
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
@@ -134,8 +163,13 @@ namespace TokanPages.Backend.Tests.Services
             await LDatabaseContext.Users.AddRangeAsync(LUsers);
             await LDatabaseContext.SaveChangesAsync();
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await LUserProvider.GetUser();
 
             // Assert
@@ -162,8 +196,13 @@ namespace TokanPages.Backend.Tests.Services
 
             var LHttpContext = GetMockedHttpContext(LUsers[0].Id);
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await LUserProvider.GetUserRoles();
 
             // Assert
@@ -192,9 +231,14 @@ namespace TokanPages.Backend.Tests.Services
 
             var LHttpContext = GetMockedHttpContext(Guid.NewGuid());
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await Assert.ThrowsAsync<BusinessException>(LUserProvider.GetUserRoles);
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
@@ -219,9 +263,14 @@ namespace TokanPages.Backend.Tests.Services
 
             var LHttpContext = GetMockedHttpContext(null);
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await Assert.ThrowsAsync<BusinessException>(LUserProvider.GetUserRoles);
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
@@ -255,8 +304,14 @@ namespace TokanPages.Backend.Tests.Services
 
             var LHttpContext = GetMockedHttpContext(LUserId);
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            // Assert
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await LUserProvider.GetUserPermissions();
 
             // Assert
@@ -294,9 +349,14 @@ namespace TokanPages.Backend.Tests.Services
 
             var LHttpContext = GetMockedHttpContext(Guid.NewGuid());
 
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await Assert.ThrowsAsync<BusinessException>(LUserProvider.GetUserPermissions);
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
@@ -330,9 +390,14 @@ namespace TokanPages.Backend.Tests.Services
 
             var LHttpContext = GetMockedHttpContext(null);
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await Assert.ThrowsAsync<BusinessException>(LUserProvider.GetUserPermissions);
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
@@ -357,8 +422,13 @@ namespace TokanPages.Backend.Tests.Services
 
             var LHttpContext = GetMockedHttpContext(LUsers[0].Id);
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await LUserProvider.HasRoleAssigned(nameof(Roles.EverydayUser));
 
             // Assert
@@ -385,8 +455,13 @@ namespace TokanPages.Backend.Tests.Services
 
             var LHttpContext = GetMockedHttpContext(LUsers[0].Id);
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await LUserProvider.HasRoleAssigned(nameof(Roles.PhotoPublisher));
 
             // Assert
@@ -413,8 +488,13 @@ namespace TokanPages.Backend.Tests.Services
 
             var LHttpContext = GetMockedHttpContext(null);
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
 
             // Assert
             var LResult = await LUserProvider.HasRoleAssigned(nameof(Roles.EverydayUser));
@@ -441,9 +521,14 @@ namespace TokanPages.Backend.Tests.Services
 
             var LHttpContext = GetMockedHttpContext(LUsers[0].Id);
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await Assert.ThrowsAsync<BusinessException>(() => LUserProvider.HasRoleAssigned(string.Empty));
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION));
         }
@@ -477,8 +562,14 @@ namespace TokanPages.Backend.Tests.Services
 
             var LHttpContext = GetMockedHttpContext(LUserId);
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            // Assert
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanSelectArticles.ToString());
 
             // Assert
@@ -514,8 +605,13 @@ namespace TokanPages.Backend.Tests.Services
 
             var LHttpContext = GetMockedHttpContext(LUserId);
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanAddLikes.ToString());
 
             // Assert
@@ -551,8 +647,13 @@ namespace TokanPages.Backend.Tests.Services
 
             var LHttpContext = GetMockedHttpContext(null);
             
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
 
             // Assert
             var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanSelectArticles.ToString());
@@ -588,9 +689,14 @@ namespace TokanPages.Backend.Tests.Services
 
             var LHttpContext = GetMockedHttpContext(LUserId);
 
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
             var LResult = await Assert.ThrowsAsync<BusinessException>(() => LUserProvider.HasPermissionAssigned(string.Empty));
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION));
         }
@@ -608,7 +714,13 @@ namespace TokanPages.Backend.Tests.Services
             await LDatabaseContext.SaveChangesAsync();
 
             var LHttpContext = GetMockedHttpContext(LUserId);
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
 
             // Act
             var LResult = LUserProvider.GetRequestIpAddress();
@@ -630,7 +742,13 @@ namespace TokanPages.Backend.Tests.Services
 
             var LIpAddress = DataUtilityService.GetRandomIpAddress();
             var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
 
             // Act
             var LResult = LUserProvider.GetRequestIpAddress();
@@ -653,16 +771,83 @@ namespace TokanPages.Backend.Tests.Services
 
             var LIpAddress = DataUtilityService.GetRandomIpAddress();
             var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext);
+
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
 
             // Act
-            var LResult = LUserProvider.SetRefreshTokenCookie(DataUtilityService.GetRandomString(255), EXPIRES_IN);
+            LUserProvider.SetRefreshTokenCookie(DataUtilityService.GetRandomString(255), EXPIRES_IN);
 
             // Assert
-            LResult.Should().NotBeNull();
-            LResult.HasValue.Should().BeTrue();
+            LHttpContext
+                .Verify(AHttpContext => AHttpContext.HttpContext.Response.Cookies
+                    .Append(
+                        It.IsAny<string>(), 
+                        It.IsAny<string>(), 
+                        It.IsAny<CookieOptions>()), 
+                    Times.Once);
         }
 
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public async Task GivenNoRefreshToken_WhenInvokeSetRefreshTokenCookie_ShouldThrowError(string ARefreshToken)
+        {
+            // Arrange
+            const int EXPIRES_IN = 15;
+            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
+            var LUsers = GetUser(LUserId).ToList();
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddRangeAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
+
+            var LIpAddress = DataUtilityService.GetRandomIpAddress();
+            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
+
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
+
+            // Act
+            // Assert
+            Assert.Throws<BusinessException>(() => LUserProvider.SetRefreshTokenCookie(ARefreshToken, EXPIRES_IN));
+        }
+
+        [Fact]
+        public async Task GivenExpirationInZeroMinutes_WhenInvokeSetRefreshTokenCookie_ShouldThrowError()
+        {
+            // Arrange
+            const int EXPIRES_IN = 0;
+            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
+            var LUsers = GetUser(LUserId).ToList();
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddRangeAsync(LUsers);
+            await LDatabaseContext.SaveChangesAsync();
+
+            var LIpAddress = DataUtilityService.GetRandomIpAddress();
+            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
+
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedIdentityServer = new Mock<IdentityServer>();
+            
+            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
+                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
+
+            // Act
+            // Assert
+            Assert.Throws<BusinessException>(() => LUserProvider.SetRefreshTokenCookie(DataUtilityService.GetRandomString(), EXPIRES_IN));
+        }
+        
         private  IEnumerable<Users> GetUser(Guid AUserId)
         {
             return new List<Users>
