@@ -1,3 +1,10 @@
+## [0.19.1](https://github.com/TomaszKandula/TokanPages/compare/v0.19.0...v0.19.1) (2021-07-17)
+
+
+### Bug Fixes
+
+* add missing Secure property for CookieOptions ([baadf2b](https://github.com/TomaszKandula/TokanPages/commit/baadf2b10ac61f88a9ca5c22d86328a4b046ff11))
+
 # [0.19.0](https://github.com/TomaszKandula/TokanPages/compare/v0.18.0...v0.19.0) (2021-07-17)
 
 
