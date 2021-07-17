@@ -4,6 +4,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
     public class AuthenticateUserCommandResult : GetUserDto
     {
-        public string Jwt { get; set; }
+        public string UserToken { get; set; }
     }
 }

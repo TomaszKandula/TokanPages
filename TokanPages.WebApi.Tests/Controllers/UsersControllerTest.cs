@@ -59,7 +59,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             LDeserialized.ShortBio.Should().Be(User1.SHORT_BIO);
             LDeserialized.AvatarName.Should().Be(User1.AVATAR_NAME);
             LDeserialized.Registered.Should().Be(User1.FRegistered);
-            LDeserialized.Jwt.Should().NotBeEmpty();
+            LDeserialized.UserToken.Should().NotBeEmpty();
         }
 
         [Fact]
