@@ -110,6 +110,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 .Setup(AUserService => AUserService
                     .DeleteOutdatedRefreshTokens(
                         It.IsAny<Guid>(), 
+                        It.IsAny<bool>(),
                         It.IsAny<CancellationToken>()));
 
             var LNewUserToken = DataUtilityService.GetRandomString();
