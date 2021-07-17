@@ -69,7 +69,7 @@
         }
 
         public virtual void SetRefreshTokenCookie(string ARefreshToken, int AExpiresIn, bool AIsHttpOnly = true, 
-            string ACookieName = Constants.CookieNames.REFRESH_TOKEN)
+            bool ASecure = true, string ACookieName = Constants.CookieNames.REFRESH_TOKEN)
         {
             if (string.IsNullOrEmpty(ARefreshToken))
                 throw ArgumentNullException;
@@ -82,7 +82,8 @@
             var LCookieOptions = new CookieOptions
             {
                 HttpOnly = AIsHttpOnly,
-                Expires = LExpires
+                Expires = LExpires,
+                Secure = ASecure
             };
             
             FHttpContextAccessor.HttpContext?.Response.Cookies
