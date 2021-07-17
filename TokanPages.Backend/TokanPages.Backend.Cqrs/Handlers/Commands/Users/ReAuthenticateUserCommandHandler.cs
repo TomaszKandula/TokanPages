@@ -42,7 +42,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 .Where(ARefreshTokens => ARefreshTokens.UserId == ARequest.Id)
                 .ToListAsync(ACancellationToken);
 
-            var LSavedRefreshToken = LUserRefreshTokens.Single(ARefreshTokens => ARefreshTokens.Token == LRefreshTokenFromRequest);
+            var LSavedRefreshToken = LUserRefreshTokens.SingleOrDefault(ARefreshTokens => ARefreshTokens.Token == LRefreshTokenFromRequest);
+            if (LSavedRefreshToken == null)
+                throw InvalidTokenException;
+            
             var LRequesterIpAddress = FUserServiceProvider.GetRequestIpAddress();
 
             if (FUserServiceProvider.IsRefreshTokenRevoked(LSavedRefreshToken))
