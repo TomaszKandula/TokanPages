@@ -129,6 +129,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                         It.IsAny<string>(), 
                         It.IsAny<int>(), 
                         It.IsAny<bool>(), 
+                        It.IsAny<bool>(), 
                         It.IsAny<string>()));
             
             var LIdentityServer = new IdentityServer
