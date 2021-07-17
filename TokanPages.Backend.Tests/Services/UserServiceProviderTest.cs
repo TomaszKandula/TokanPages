@@ -1,21 +1,21 @@
-using TokanPages.Backend.Identity.Services.JwtUtilityService;
-using TokanPages.Backend.Shared.Models;
-using TokanPages.Backend.Shared.Services.DateTimeService;
-
 namespace TokanPages.Backend.Tests.Services
 {
     using System;
     using System.Net;
     using System.Linq;
+    using System.Threading;
     using System.Security.Claims;
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Primitives;
+    using Shared.Models;
     using Domain.Entities;
     using Core.Exceptions;
     using Shared.Resources;
+    using Shared.Services.DateTimeService;
     using Cqrs.Services.UserServiceProvider;
+    using Identity.Services.JwtUtilityService;
     using Roles = Identity.Authorization.Roles;
     using Permissions = Identity.Authorization.Permissions;
     using FluentAssertions;
@@ -847,7 +847,185 @@ namespace TokanPages.Backend.Tests.Services
             // Assert
             Assert.Throws<BusinessException>(() => LUserProvider.SetRefreshTokenCookie(DataUtilityService.GetRandomString(), EXPIRES_IN));
         }
-        
+
+        [Fact]
+        public async Task GivenUser_WhenMakeClaimsIdentity_ShouldSucceed()
+        {
+            // Arrange
+            var LUserId = Guid.NewGuid();
+            var LUsers = GetUser(LUserId).ToList();
+            var LRoles = GetRole().ToList();
+            var LUserRoles = new UserRoles
+            {
+                UserId = LUsers[0].Id,
+                RoleId = LRoles[0].Id
+            };
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddRangeAsync(LUsers);
+            await LDatabaseContext.Roles.AddRangeAsync(LRoles);
+            await LDatabaseContext.UserRoles.AddRangeAsync(LUserRoles);
+            await LDatabaseContext.SaveChangesAsync();
+            
+            var LIpAddress = DataUtilityService.GetRandomIpAddress();
+            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
+
+            var LJwtUtilityService = new Mock<IJwtUtilityService>();
+            var LDateTimeService = new Mock<IDateTimeService>();
+            var LIdentityServer = new IdentityServer();
+            
+            var LUserServiceProvider = new UserServiceProvider(
+                LHttpContext.Object, 
+                LDatabaseContext,
+                LJwtUtilityService.Object, 
+                LDateTimeService.Object, 
+                LIdentityServer);
+
+            // Act
+            var LResult = await LUserServiceProvider.MakeClaimsIdentity(LUsers[0], CancellationToken.None);
+            
+            // Assert
+            LResult.Claims.First(AClaim => AClaim.Type == ClaimTypes.Name).Value.Should().Be(LUsers[0].UserAlias);
+            LResult.Claims.First(AClaim => AClaim.Type == ClaimTypes.Role).Value.Should().Be(LRoles[0].Name);
+            LResult.Claims.First(AClaim => AClaim.Type == ClaimTypes.NameIdentifier).Value.Should().Be(LUsers[0].Id.ToString());
+            LResult.Claims.First(AClaim => AClaim.Type == ClaimTypes.GivenName).Value.Should().Be(LUsers[0].FirstName);
+            LResult.Claims.First(AClaim => AClaim.Type == ClaimTypes.Surname).Value.Should().Be(LUsers[0].LastName);
+            LResult.Claims.First(AClaim => AClaim.Type == ClaimTypes.Email).Value.Should().Be(LUsers[0].EmailAddress);
+        }
+
+        [Fact]
+        public async Task WhenGenerateUserToken_ShouldSucceed()
+        {
+            // Arrange
+            var LTokenExpires = DataUtilityService.GetRandomDateTime();
+            var LUserToken = DataUtilityService.GetRandomString();
+            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
+            var LUsers = GetUser(LUserId).ToList();
+            var LRoles = GetRole().ToList();
+            var LUserRoles = new UserRoles
+            {
+                UserId = LUsers[0].Id,
+                RoleId = LRoles[0].Id
+            };
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddRangeAsync(LUsers);
+            await LDatabaseContext.Roles.AddRangeAsync(LRoles);
+            await LDatabaseContext.UserRoles.AddRangeAsync(LUserRoles);
+            await LDatabaseContext.SaveChangesAsync();
+            
+            var LIpAddress = DataUtilityService.GetRandomIpAddress();
+            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
+
+            var LJwtUtilityService = new Mock<IJwtUtilityService>();
+            LJwtUtilityService
+                .Setup(AUtilityService => AUtilityService
+                    .GenerateJwt(
+                        It.IsAny<DateTime>(), 
+                        It.IsAny<ClaimsIdentity>(), 
+                        It.IsAny<string>(), 
+                        It.IsAny<string>(), 
+                        It.IsAny<string>()))
+                .Returns(LUserToken);
+            
+            var LDateTimeService = new Mock<IDateTimeService>();
+            var LIdentityServer = new IdentityServer();
+            
+            var LUserServiceProvider = new UserServiceProvider(
+                LHttpContext.Object, 
+                LDatabaseContext,
+                LJwtUtilityService.Object, 
+                LDateTimeService.Object, 
+                LIdentityServer);
+
+            // Act
+            var LResult = await LUserServiceProvider.GenerateUserToken(LUsers[0], LTokenExpires, CancellationToken.None);
+            
+            // Assert
+            LResult.Should().NotBeNullOrEmpty();
+        }
+
+        [Fact]
+        public async Task GivenRefreshTokens_WhenDeleteOutdatedRefreshTokens_ShouldSucceed()
+        {
+            // Arrange
+            var LUserId = Guid.NewGuid();
+            var LUsers = GetUser(LUserId).ToList();
+            var LUserRefreshTokens = new List<UserRefreshTokens>
+            {
+                new () // New token
+                {
+                    UserId = LUserId,
+                    Token = DataUtilityService.GetRandomString(255),
+                    Expires = DateTimeService.Now.AddMinutes(120),
+                    Created = DateTimeService.Now,
+                    CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
+                    Revoked = null,
+                    RevokedByIp = null,
+                    ReplacedByToken = null,
+                    ReasonRevoked = null
+                },
+                new () // Old token
+                {
+                    UserId = LUserId,
+                    Token = DataUtilityService.GetRandomString(255),
+                    Expires = DateTimeService.Now.AddDays(-6),
+                    Created = DateTimeService.Now.AddDays(-5),
+                    CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
+                    Revoked = null,
+                    RevokedByIp = null,
+                    ReplacedByToken = null,
+                    ReasonRevoked = null
+                },
+                new () // Old token
+                {
+                    UserId = LUserId,
+                    Token = DataUtilityService.GetRandomString(255),
+                    Expires = DateTimeService.Now.AddMinutes(-360),
+                    Created = DateTimeService.Now.AddMinutes(-220),
+                    CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
+                    Revoked = null,
+                    RevokedByIp = null,
+                    ReplacedByToken = null,
+                    ReasonRevoked = null
+                },
+            };
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddRangeAsync(LUsers);
+            await LDatabaseContext.UserRefreshTokens.AddRangeAsync(LUserRefreshTokens);
+            await LDatabaseContext.SaveChangesAsync();
+            
+            var LIpAddress = DataUtilityService.GetRandomIpAddress();
+            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
+            var LJwtUtilityService = new Mock<IJwtUtilityService>();
+            
+            var LIdentityServer = new IdentityServer
+            {
+                Issuer = DataUtilityService.GetRandomString(),
+                Audience = DataUtilityService.GetRandomString(),
+                WebSecret = DataUtilityService.GetRandomString(),
+                RequireHttps = false,
+                WebTokenExpiresIn = 90,
+                RefreshTokenExpiresIn = 120
+            };
+            
+            var LUserServiceProvider = new UserServiceProvider(
+                LHttpContext.Object, 
+                LDatabaseContext,
+                LJwtUtilityService.Object, 
+                DateTimeService, 
+                LIdentityServer);
+            
+            // Act
+            await LUserServiceProvider.DeleteOutdatedRefreshTokens(LUserId, true);
+
+            // Assert
+            var LUpdatedUserRefreshTokens = LDatabaseContext.UserRefreshTokens.ToList();
+            LUpdatedUserRefreshTokens.Count.Should().Be(1);
+            LUpdatedUserRefreshTokens[0].Token.Should().Be(LUserRefreshTokens[0].Token);
+        }
+
         private  IEnumerable<Users> GetUser(Guid AUserId)
         {
             return new List<Users>

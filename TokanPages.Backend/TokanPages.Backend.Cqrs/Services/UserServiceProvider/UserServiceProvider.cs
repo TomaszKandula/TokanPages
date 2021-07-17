@@ -146,8 +146,8 @@
 
             return LGivenPermissions.Any();
         }
-        
-        public async Task<string> GenerateUserToken(Users AUsers, DateTime ATokenExpires, CancellationToken ACancellationToken)
+
+        public async Task<ClaimsIdentity> MakeClaimsIdentity(Users AUsers, CancellationToken ACancellationToken = default)
         {
             var LUserRoles = await FDatabaseContext.UserRoles
                 .AsNoTracking()
@@ -167,6 +167,13 @@
 
             LClaimsIdentity.AddClaims(LUserRoles
                 .Select(AUserRole => new Claim(ClaimTypes.Role, AUserRole.Role.Name)));
+
+            return LClaimsIdentity;
+        }
+
+        public async Task<string> GenerateUserToken(Users AUsers, DateTime ATokenExpires, CancellationToken ACancellationToken = default)
+        {
+            var LClaimsIdentity = await MakeClaimsIdentity(AUsers, ACancellationToken);
             
             return FJwtUtilityService.GenerateJwt(
                 ATokenExpires, 
@@ -176,7 +183,7 @@
                 FIdentityServer.Audience);
         }
 
-        public async Task DeleteOutdatedRefreshTokens(Guid AUserId, CancellationToken ACancellationToken)
+        public async Task DeleteOutdatedRefreshTokens(Guid AUserId, bool ASaveImmediately = false, CancellationToken ACancellationToken = default)
         {
             var LRefreshTokens = await FDatabaseContext.UserRefreshTokens
                 .Where(ATokens => ATokens.UserId == AUserId 
@@ -185,7 +192,11 @@
                     && ATokens.Revoked == null)
                 .ToListAsync(ACancellationToken);
 
-            FDatabaseContext.UserRefreshTokens.RemoveRange(LRefreshTokens);
+            if (LRefreshTokens.Any())
+                FDatabaseContext.UserRefreshTokens.RemoveRange(LRefreshTokens);
+            
+            if (ASaveImmediately)
+                await FDatabaseContext.SaveChangesAsync(ACancellationToken);
         }        
         
         public UserRefreshTokens ReplaceRefreshToken(Guid AUserId, UserRefreshTokens ASavedUserRefreshTokens, string ARequesterIpAddress)

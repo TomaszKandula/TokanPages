@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading;
+    using System.Security.Claims;
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Shared;
@@ -28,9 +29,11 @@
 
         Task<bool?> HasPermissionAssigned(string AUserPermissionName);
 
-        Task<string> GenerateUserToken(Users AUsers, DateTime ATokenExpires, CancellationToken ACancellationToken);
+        Task<ClaimsIdentity> MakeClaimsIdentity(Users AUsers, CancellationToken ACancellationToken = default);
+        
+        Task<string> GenerateUserToken(Users AUsers, DateTime ATokenExpires, CancellationToken ACancellationToken = default);
 
-        Task DeleteOutdatedRefreshTokens(Guid AUserId, CancellationToken ACancellationToken);
+        Task DeleteOutdatedRefreshTokens(Guid AUserId, bool ASaveImmediately = false, CancellationToken ACancellationToken = default);
 
         UserRefreshTokens ReplaceRefreshToken(Guid AUserId, UserRefreshTokens ASavedUserRefreshTokens, string ARequesterIpAddress);
 
