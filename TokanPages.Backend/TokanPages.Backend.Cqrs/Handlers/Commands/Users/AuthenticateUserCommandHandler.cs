@@ -76,7 +76,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 ReasonRevoked = null
             };
 
-            await FUserServiceProvider.DeleteOutdatedRefreshTokens(LUser.Id, ACancellationToken);
+            await FUserServiceProvider.DeleteOutdatedRefreshTokens(LUser.Id, false, ACancellationToken);
             await FDatabaseContext.UserRefreshTokens.AddAsync(LNewRefreshToken, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 

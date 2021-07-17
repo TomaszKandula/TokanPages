@@ -58,7 +58,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
             var LNewRefreshToken = FUserServiceProvider.ReplaceRefreshToken(ARequest.Id, LSavedRefreshToken, LRequesterIpAddress);
 
-            await FUserServiceProvider.DeleteOutdatedRefreshTokens(ARequest.Id, ACancellationToken);
+            await FUserServiceProvider.DeleteOutdatedRefreshTokens(ARequest.Id, false, ACancellationToken);
             await FDatabaseContext.UserRefreshTokens.AddAsync(LNewRefreshToken, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 
