@@ -4,7 +4,7 @@ import { AppThunkAction } from "../applicationState";
 import { combinedDefaults } from "../../Redux/combinedDefaults";
 import { GetErrorMessage } from "../../Shared/helpers";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
-import { GET_NAVIGATION_CONTENT } from "../../Shared/constants";
+import { GET_NAVIGATION_CONTENT, NULL_RESPONSE_ERROR } from "../../Shared/constants";
 import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
 import { INavigationContentDto } from "../../Api/Models";
 
@@ -16,18 +16,18 @@ export interface IReceiveNavigationContent { type: typeof RECEIVE_NAVIGATION_CON
 
 export type TKnownActions = IRequestNavigationContent | IReceiveNavigationContent | TErrorActions;
 
-export const ActionCreators = 
+export const ActionCreators =
 {
     getNavigationContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        if (getState().getNavigationContent.content !== combinedDefaults.getNavigationContent.content) 
+        if (getState().getNavigationContent.content !== combinedDefaults.getNavigationContent.content)
             return;
 
         dispatch({ type: REQUEST_NAVIGATION_CONTENT });
 
-        axios( 
+        axios(
         {
-            method: "GET", 
+            method: "GET",
             url: GET_NAVIGATION_CONTENT,
             responseType: "json"
         })
@@ -35,10 +35,17 @@ export const ActionCreators =
         {
             if (response.status === 200)
             {
+                if (response.data === null)
+                {
+                    dispatch({ type: RAISE_ERROR, errorObject: NULL_RESPONSE_ERROR });
+                    Sentry.captureException(NULL_RESPONSE_ERROR);
+                    return;
+                }
+
                 dispatch({ type: RECEIVE_NAVIGATION_CONTENT, payload: response.data });
                 return;
             }
-            
+
             const error = UnexpectedStatusCode(response.status);
             dispatch({ type: RAISE_ERROR, errorObject: error });
             Sentry.captureException(error);
