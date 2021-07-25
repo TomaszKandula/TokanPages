@@ -20,10 +20,6 @@ const navigationStyle = makeStyles((theme) => (
         display: "flex",
         justifyContent: "flex-start"
     },
-    menuBackground:
-    {
-        width: 300
-    },
     link:
     {
         [theme.breakpoints.down("xs")]:
@@ -58,14 +54,6 @@ const navigationStyle = makeStyles((theme) => (
         },
         color: CustomColours.typography.white,
         alignSelf: "center"
-    },
-    drawerContainer: 
-    {
-        width: 300
-    },
-    nested:
-    {
-        paddingLeft: theme.spacing(4)
     }
 }));
 
