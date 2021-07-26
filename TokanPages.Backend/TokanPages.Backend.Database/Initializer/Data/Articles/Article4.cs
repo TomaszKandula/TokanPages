@@ -7,9 +7,9 @@
     [ExcludeFromCodeCoverage]
     public static class Article4
     {
-        public const string TITLE = "Java sucks! So PHP...";
+        public const string TITLE = ".NET Memory Management";
 
-        public const string DESCRIPTION = "Stay away from it...";
+        public const string DESCRIPTION = "The basics you should know";
         
         public const bool IS_PUBLISHED = true;
         
