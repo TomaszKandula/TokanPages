@@ -1,23 +1,16 @@
-import * as Sentry from "@sentry/react";
 import axios from "axios";
 import { AppThunkAction } from "../applicationState";
 import { IRemoveSubscriberDto } from "../../Api/Models";
-import { API_COMMAND_REMOVE_SUBSCRIBER } from "../../Shared/constants";
+import { API_COMMAND_REMOVE_SUBSCRIBER, NULL_RESPONSE_ERROR } from "../../Shared/constants";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
-import { GetErrorMessage } from "../../Shared/helpers";
-import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
+import { RaiseError } from "../../Shared/helpers";
+import { TErrorActions } from "./raiseErrorAction";
 
 export const REMOVE_SUBSCRIBER = "REMOVE_SUBSCRIBER";
 export const REMOVE_SUBSCRIBER_RESPONSE = "REMOVE_SUBSCRIBER_RESPONSE";
-
 export interface IApiRemoveSubscriber { type: typeof REMOVE_SUBSCRIBER }
 export interface IApiRemoveSubscriberResponse { type: typeof REMOVE_SUBSCRIBER_RESPONSE }
-
-export type TKnownActions = 
-    IApiRemoveSubscriber | 
-    IApiRemoveSubscriberResponse | 
-    TErrorActions
-;
+export type TKnownActions = IApiRemoveSubscriber | IApiRemoveSubscriberResponse | TErrorActions;
 
 export const ActionCreators = 
 {
@@ -35,18 +28,16 @@ export const ActionCreators =
         {
             if (response.status === 200)
             {
-                dispatch({ type: REMOVE_SUBSCRIBER_RESPONSE });
-                return;
+                return response.data === null 
+                    ? RaiseError(dispatch, NULL_RESPONSE_ERROR) 
+                    : dispatch({ type: REMOVE_SUBSCRIBER_RESPONSE });
             }
             
-            const error = UnexpectedStatusCode(response.status);
-            dispatch({ type: RAISE_ERROR, errorObject: error });
-            Sentry.captureException(error);
+            RaiseError(dispatch, UnexpectedStatusCode(response.status));
         })
         .catch(error =>
         {
-            dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(error) });
-            Sentry.captureException(error);
-        });     
+            RaiseError(dispatch, error);
+        });
     }
 }

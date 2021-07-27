@@ -23,32 +23,13 @@ export interface IReceiveStory { type: typeof RECEIVE_STORY, payload: ITextObjec
 export interface IReceiveTerms { type: typeof RECEIVE_TERMS, payload: ITextObject }
 export interface IReceivePolicy { type: typeof RECEIVE_POLICY, payload: ITextObject }
 
-export type TKnownActions = 
-    IRequestStory | 
-    IRequestTerms | 
-    IRequestPolicy |
-    IReceiveStory | 
-    IReceiveTerms | 
-    IReceivePolicy | 
-    TErrorActions
-;
+export type TKnownActions = IRequestStory | IRequestTerms | IRequestPolicy | IReceiveStory | IReceiveTerms | IReceivePolicy | TErrorActions;
+export type TReceiveContent = typeof RECEIVE_STORY | typeof RECEIVE_TERMS | typeof RECEIVE_POLICY;
+export type TRequestContent = typeof REQUEST_STORY | typeof REQUEST_TERMS | typeof REQUEST_POLICY;
 
-export type TReceiveContent = 
-    typeof RECEIVE_STORY | 
-    typeof RECEIVE_TERMS | 
-    typeof RECEIVE_POLICY
-;
-
-export type TRequestContent = 
-    typeof REQUEST_STORY | 
-    typeof REQUEST_TERMS | 
-    typeof REQUEST_POLICY
-;
-
-const DispatchCall = async (dispatch: any, url: string, request: TRequestContent, receive: TReceiveContent) =>
+const DispatchCall = async (dispatch: (action: TKnownActions) => void, url: string, request: TRequestContent, receive: TReceiveContent) =>
 {
     dispatch({ type: request });
-
     let result = await GetData(url);
 
     if (result.error !== null)

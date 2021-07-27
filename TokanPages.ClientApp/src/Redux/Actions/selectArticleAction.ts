@@ -1,26 +1,18 @@
-import * as Sentry from "@sentry/react";
 import axios from "axios";
 import { AppThunkAction } from "../applicationState";
 import { IArticleItem } from "../../Shared/Components/ContentRender/Models/articleItemModel";
-import { API_QUERY_GET_ARTICLE, ARTICLE_URL } from "../../Shared/constants";
-import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
+import { API_QUERY_GET_ARTICLE, ARTICLE_URL, NULL_RESPONSE_ERROR } from "../../Shared/constants";
+import { TErrorActions } from "./raiseErrorAction";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
-import { GetErrorMessage } from "../../Shared/helpers";
+import { RaiseError } from "../../Shared/helpers";
 
 export const RESET_SELECTION = "RESET_SELECTION";
 export const REQUEST_ARTICLE = "REQUEST_ARTICLE";
 export const RECEIVE_ARTICLE = "RECEIVE_ARTICLE";
-
 export interface IResetSelection { type: typeof RESET_SELECTION; }
 export interface IRequestArticleAction { type: typeof REQUEST_ARTICLE; }
 export interface IReceiveArticleAction { type: typeof RECEIVE_ARTICLE; payload: IArticleItem; }
-
-export type TKnownActions = 
-    IResetSelection | 
-    IRequestArticleAction | 
-    IReceiveArticleAction | 
-    TErrorActions
-;
+export type TKnownActions = IResetSelection | IRequestArticleAction | IReceiveArticleAction | TErrorActions;
 
 export const ActionCreators = 
 {
@@ -44,6 +36,12 @@ export const ActionCreators =
 
             if (detailsResponse.status === 200 && textResponse.status === 200)
             {
+                if (detailsResponse.data === null)
+                    return RaiseError(dispatch, NULL_RESPONSE_ERROR);
+
+                if (textResponse.data === null)
+                    return RaiseError(dispatch, NULL_RESPONSE_ERROR);
+                
                 const combineData: IArticleItem = 
                 {
                     id: detailsResponse.data.id,
@@ -58,29 +56,21 @@ export const ActionCreators =
                     author: detailsResponse.data.author,
                     text: textResponse.data.items
                 };
-                dispatch({ type: RECEIVE_ARTICLE, payload: combineData });
+
+                return dispatch({ type: RECEIVE_ARTICLE, payload: combineData });
             }
             else
             {
                 if (detailsResponse.status !== 200) 
-                {
-                    const error = UnexpectedStatusCode(detailsResponse.status);
-                    dispatch({ type: RAISE_ERROR, errorObject: error });
-                    Sentry.captureException(error);
-                }
+                    return RaiseError(dispatch, UnexpectedStatusCode(detailsResponse.status));
 
                 if (textResponse.status !== 200) 
-                {
-                    const error = UnexpectedStatusCode(detailsResponse.status);
-                    dispatch( { type: RAISE_ERROR, errorObject: error });
-                    Sentry.captureException(error);
-                }
+                    return RaiseError(dispatch, UnexpectedStatusCode(textResponse.status));
             }
         }))
         .catch(error => 
         {
-            dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(error) });
-            Sentry.captureException(error);
+            RaiseError(dispatch, error);
         });
     }
 };
