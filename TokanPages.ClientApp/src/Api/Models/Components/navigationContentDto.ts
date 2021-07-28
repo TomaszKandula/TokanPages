@@ -1,3 +1,5 @@
+import { IItem } from "../../../Shared/Components/ListRender/Models/item";
+
 export interface INavigationContentDto
 {
     content: 
@@ -10,19 +12,3 @@ export interface INavigationContentDto
         }
     };
 }
-
-interface IFields
-{
-    id: string;
-    name: string,
-    link: string,
-    icon: string,
-    enabled: boolean
-}
-
-interface IItem extends IFields
-{
-    subitems: ISubitem[]
-}
-
-interface ISubitem extends IFields { }
