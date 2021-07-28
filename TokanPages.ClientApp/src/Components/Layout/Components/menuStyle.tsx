@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const menuStyle = makeStyles((theme) => (
+const menuStyle = makeStyles(() => (
 {
     menuBackground:
     {
@@ -9,10 +9,6 @@ const menuStyle = makeStyles((theme) => (
     drawerContainer: 
     {
         width: 300
-    },
-    nested:
-    {
-        paddingLeft: theme.spacing(4)
     }
 }));
 
