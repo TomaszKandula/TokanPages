@@ -2,15 +2,16 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import HideOnScroll from "../../Shared/Components/Scroll/hideOnScroll";
-import { ICONS_PATH } from "../../Shared/constants";
-import { renderImage } from "../../Shared/Components/CustomImage/customImage";
-import navigationStyle from "./Styles/navigationStyle";
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Grid, Typography } from "@material-ui/core";
+import HideOnScroll from "../../Shared/Components/Scroll/hideOnScroll";
+import { ICONS_PATH } from "../../Shared/constants";
+import { renderImage } from "../../Shared/Components/CustomImage/customImage";
+import { IItem } from "../../Shared/Components/ListRender/Models/item";
 import MenuView from "./Components/menuView";
+import navigationStyle from "./Styles/navigationStyle";
 
 interface IBinding
 {
@@ -22,14 +23,12 @@ interface IProperties
     drawerState: { open: boolean };
     openHandler: any;
     closeHandler: any;
-    projectsHandler: any;
-    projectsState: boolean;
-    interestsHandler: any;
-    interestState: boolean;
     isAnonymous: boolean;
-    anonymous: string;
-    userAlias: string;
-    content: any;//add model
+    logo: string;
+    avatar: string;
+    anonymousText: string;
+    userAliasText: string;
+    menu: { image: string, items: IItem[] };
 }
 
 export default function NavigationView(props: IBinding) 
@@ -49,16 +48,16 @@ export default function NavigationView(props: IBinding)
                         <Grid item xs className={classes.link}>
                             <Link to="/">
                                 <div data-aos="fade-down" className={classes.image} >
-                                    {renderImage(ICONS_PATH, props.bind.content?.logo, classes.logo)}
+                                    {renderImage(ICONS_PATH, props.bind.logo, classes.logo)}
                                 </div>
                             </Link>
                         </Grid>
                         <Grid item xs className={classes.avatar}>
                             <Typography className={classes.userAlias} component={"span"} variant={"body1"} >
-                                {props.bind.isAnonymous ? props.bind.anonymous : props.bind.userAlias}
+                                {props.bind.isAnonymous ? props.bind.anonymousText : props.bind.userAliasText}
                             </Typography>
                             <IconButton color="inherit">
-                                <Avatar alt="Avatar" src={props.bind.content.avatar} /> 
+                                <Avatar alt="Avatar" src={props.bind.avatar} /> 
                             </IconButton>
                         </Grid>
                     </Grid>
@@ -69,11 +68,8 @@ export default function NavigationView(props: IBinding)
                 {{
                     drawerState: props.bind.drawerState,
                     closeHandler: props.bind.closeHandler,
-                    projectsHandler: props.bind.projectsHandler,
-                    projectsState: props.bind.projectsState,
-                    interestsHandler: props.bind.interestsHandler,
-                    interestState: props.bind.interestState,
-                    content: props.bind.content
+                    isAnonymous: props.bind.isAnonymous,
+                    menu: props.bind.menu
                 }}/>
 
             </AppBar>
