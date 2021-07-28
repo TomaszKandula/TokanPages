@@ -1,32 +1,63 @@
 import * as React from "react";
+import List from "@material-ui/core/List";
 import { IItem } from "./Models/item";
 import { RenderSingleItem } from "./Renderers/renderSingleItem";
 import { RenderItemWithSubitems } from "./Renderers/renderItemWithSubitems";
 
-export function RenderList(items: IItem[])
+interface IBinding
 {
-    if (items === undefined)
+    bind: IProperties;
+}
+
+interface IProperties
+{
+    isAnonymous: boolean;
+    items: IItem[];
+}
+
+export function RenderList(props: IBinding)
+{
+    if (props.bind.items === undefined)
     {
         return(<div>Cannot render content.</div>);
     }
 
-    if (items.length === 0)
+    if (props.bind.items.length === 0)
     {
         return(<></>);
     }
 
     let renderBuffer: JSX.Element[] = [];
-    items.forEach(item => 
+    props.bind.items.forEach(item => 
     {
         if (item.subitems.length === 0)
         {
-            renderBuffer.push(<RenderSingleItem key={item.id} />);
+            if (props.bind.isAnonymous && item.name === "Account") return;
+            if (!props.bind.isAnonymous && (item.name === "Login" || item.name === "Register")) return;
+            
+            renderBuffer.push(<RenderSingleItem 
+                key={item.id}
+                id={item.id} 
+                name={item.name}
+                link={item.link}
+                icon={item.icon}
+                enabled={item.enabled}
+                subitems={item.subitems}
+            />);
         }
         else
         {
-            renderBuffer.push(<RenderItemWithSubitems key={item.id} />);
+            renderBuffer.push(<RenderItemWithSubitems 
+                key={item.id}
+                id={item.id} 
+                name={item.name}
+                link={item.link}
+                icon={item.icon}
+                enabled={item.enabled}
+                subitems={item.subitems}
+            />);
         }
     });
 
-    return(<>{renderBuffer}</>);
+    return(<List>{renderBuffer}</List>);
 }
