@@ -7,9 +7,9 @@
     [ExcludeFromCodeCoverage]
     public static class Article3
     {
-        public const string TITLE = "Records in C# 9.0";
+        public const string TITLE = "SQL Injection";
 
-        public const string DESCRIPTION = "Deep dive...";
+        public const string DESCRIPTION = "This article will explore the issue in greater detail";
         
         public const bool IS_PUBLISHED = true;
         

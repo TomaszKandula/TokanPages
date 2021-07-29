@@ -99,6 +99,8 @@ export const UNEXPECTED_STATUS: string = "Received unexpected status code: {STAT
 export const UNEXPECTED_ERROR: string = "Unexpected error occured";
 export const VALIDATION_ERRORS: string = "Validation errors have been found";
 
+export const NULL_RESPONSE_ERROR: string = "The response data has returned null. Possible parsing issue due to invalid JSON/XML format";
+
 /* OTHER */
 
 export const LIKES_LIMIT_FOR_ANONYM: number = 25;
