@@ -19,15 +19,9 @@ import {
 
 export const UPDATE_ARTICLE = "UPDATE_ARTICLE";
 export const UPDATE_ARTICLE_RESPONSE = "UPDATE_ARTICLE_RESPONSE";
-
 export interface IApiUpdateArticle { type: typeof UPDATE_ARTICLE }
 export interface IApiUpdateArticleResponse { type: typeof UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: boolean }
-
-export type TKnownActions = 
-    IApiUpdateArticle | 
-    IApiUpdateArticleResponse | 
-    TErrorActions
-;
+export type TKnownActions = IApiUpdateArticle | IApiUpdateArticleResponse | TErrorActions;
 
 const DispatchCall = async (dispatch: any, url: string, data: any) =>
 {

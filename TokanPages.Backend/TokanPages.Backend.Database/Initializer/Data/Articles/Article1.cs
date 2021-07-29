@@ -7,9 +7,9 @@
     [ExcludeFromCodeCoverage]
     public static class Article1
     {
-        public const string TITLE = "Why C# is great?";
+        public const string TITLE = "I said goodbye to Stored Procedures";
 
-        public const string DESCRIPTION = "No JAVA needed anymore...";
+        public const string DESCRIPTION = "In this article, I will explain why I do not need them that much";
         
         public const bool IS_PUBLISHED = true;
         

@@ -1,23 +1,16 @@
-import * as Sentry from "@sentry/react";
 import axios from "axios";
 import { AppThunkAction } from "../applicationState";
 import { IUpdateSubscriberDto } from "../../Api/Models";
-import { API_COMMAND_UPDATE_SUBSCRIBER } from "../../Shared/constants";
+import { API_COMMAND_UPDATE_SUBSCRIBER, NULL_RESPONSE_ERROR } from "../../Shared/constants";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
-import { GetErrorMessage } from "../../Shared/helpers";
-import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
+import { RaiseError } from "../../Shared/helpers";
+import { TErrorActions } from "./raiseErrorAction";
 
 export const UPDATE_SUBSCRIBER = "UPDATE_SUBSCRIBER";
 export const UPDATE_SUBSCRIBER_RESPONSE = "UPDATE_SUBSCRIBER_RESPONSE";
-
 export interface IApiUpdateSubscriber { type: typeof UPDATE_SUBSCRIBER }
 export interface IApiUpdateSubscriberResponse { type: typeof UPDATE_SUBSCRIBER_RESPONSE }
-
-export type TKnownActions = 
-    IApiUpdateSubscriber | 
-    IApiUpdateSubscriberResponse | 
-    TErrorActions
-;
+export type TKnownActions = IApiUpdateSubscriber | IApiUpdateSubscriberResponse | TErrorActions;
 
 export const ActionCreators = 
 {
@@ -35,18 +28,16 @@ export const ActionCreators =
         {
             if (response.status === 200)
             {
-                dispatch({ type: UPDATE_SUBSCRIBER_RESPONSE });
-                return;
+                return response.data === null 
+                    ? RaiseError(dispatch, NULL_RESPONSE_ERROR) 
+                    : dispatch({ type: UPDATE_SUBSCRIBER_RESPONSE });
             }
-            
-            const error = UnexpectedStatusCode(response.status);
-            dispatch({ type: RAISE_ERROR, errorObject: error });
-            Sentry.captureException(error);
+
+            RaiseError(dispatch, UnexpectedStatusCode(response.status));
         })
         .catch(error => 
         {
-            dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(error) });
-            Sentry.captureException(error);
+            RaiseError(dispatch, error);
         });     
     }
 }

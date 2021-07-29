@@ -1,26 +1,18 @@
-import * as Sentry from "@sentry/react";
 import axios from "axios";
 import { AppThunkAction } from "../../Redux/applicationState";
 import { ISendMessageDto } from "../../Api/Models";
-import { API_COMMAND_SEND_MESSAGE } from "../../Shared/constants";
+import { API_COMMAND_SEND_MESSAGE, NULL_RESPONSE_ERROR } from "../../Shared/constants";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
-import { GetErrorMessage } from "../../Shared/helpers";
-import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
+import { RaiseError } from "../../Shared/helpers";
+import { TErrorActions } from "./raiseErrorAction";
 
 export const API_SEND_MESSAGE = "API_SEND_MESSAGE";
 export const API_SEND_MESSAGE_CLEAR = "API_SEND_MESSAGE_CLEAR";
 export const API_SEND_MESSAGE_RESPONSE = "API_SEND_MESSAGE_RESPONSE";
-
 export interface IApiSendMessage { type: typeof API_SEND_MESSAGE }
 export interface IApiSendMessageClear { type: typeof API_SEND_MESSAGE_CLEAR }
 export interface IApiSendMessageResponse { type: typeof API_SEND_MESSAGE_RESPONSE }
-
-export type TKnownActions = 
-    IApiSendMessage | 
-    IApiSendMessageClear | 
-    IApiSendMessageResponse |
-    TErrorActions
-;
+export type TKnownActions = IApiSendMessage | IApiSendMessageClear | IApiSendMessageResponse |TErrorActions;
 
 export const ActionCreators = 
 {
@@ -39,30 +31,28 @@ export const ActionCreators =
             data: 
             { 
                 firstName: payload.firstName,
-                lastName:  payload.lastName,
+                lastName: payload.lastName,
                 userEmail: payload.userEmail,
                 emailFrom: payload.emailFrom,
-                emailTos:  payload.emailTos,
-                subject:   payload.subject,
-                message:   payload.message
+                emailTos: payload.emailTos,
+                subject: payload.subject,
+                message: payload.message
             }
         })
         .then(response => 
         {
             if (response.status === 200)
             {
-                dispatch({ type: API_SEND_MESSAGE_RESPONSE })
-                return;
+                return response.data === null 
+                    ? RaiseError(dispatch, NULL_RESPONSE_ERROR) 
+                    : dispatch({ type: API_SEND_MESSAGE_RESPONSE })
             }
             
-            const error = UnexpectedStatusCode(response.status);
-            dispatch({ type: RAISE_ERROR, errorObject: error });
-            Sentry.captureException(error);
+            RaiseError(dispatch, UnexpectedStatusCode(response.status));
         })
         .catch(error => 
         {
-            dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(error) });
-            Sentry.captureException(error);
+            RaiseError(dispatch, error);
         });     
     }
 }

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import NavigationView from "../Components/Layout/navigationView";
+import Navigation from "../Components/Layout/navigation";
 import ResetFormView from "../Components/Account/resetFormView";
 import Footer from "../Components/Layout/footer";
 import { IApplicationState } from "../Redux/applicationState";
@@ -28,7 +28,7 @@ export default function ResetPage()
     
     return (
         <>     
-            <NavigationView content={navigation?.content} isLoading={navigation?.isLoading} />
+            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
                 <ResetFormView content={resetForm?.content} isLoading={resetForm?.isLoading} />
             </Container>

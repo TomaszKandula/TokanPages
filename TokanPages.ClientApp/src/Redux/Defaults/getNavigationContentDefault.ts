@@ -5,6 +5,11 @@ export const GetNavigationContentDefault: IGetNavigationContent =
     isLoading: false,
     content: 
     {
-        logo: ""
+        logo: "",
+        menu: 
+        {
+            image: "",
+            items: []
+        }
     }    
 }

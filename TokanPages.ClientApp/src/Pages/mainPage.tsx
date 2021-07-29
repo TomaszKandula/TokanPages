@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import NavigationView from "../Components/Layout/navigationView";
+import Navigation from "../Components/Layout/navigation";
 import HeaderView from "../Components/Layout/headerView";
 import Footer from "../Components/Layout/footer";
 import FeaturesView from "../Components/Features/featuresView";
@@ -57,7 +57,7 @@ export default function MainPage()
 
     return (
         <>
-            <NavigationView content={navigation?.content} isLoading={navigation?.isLoading} />
+            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <HeaderView content={header?.content} isLoading={header?.isLoading} />
             <FeaturesView content={features?.content} isLoading={features?.isLoading} />
             <ArticleFeatView content={articles?.content} isLoading={articles?.isLoading} />
