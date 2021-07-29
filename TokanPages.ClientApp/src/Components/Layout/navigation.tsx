@@ -26,8 +26,8 @@ export default function Navigation(props: IGetNavigationContent)
         isAnonymous: isAnonymous,
         anonymousText: anonymousName,
         userAliasText: userName,
-        logo: props.content.logo,
+        logo: props.content?.logo,
         avatar: avatar,
-        menu: props.content.menu
+        menu: props.content?.menu
     }}/>);
 }

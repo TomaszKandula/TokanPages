@@ -21,7 +21,7 @@ interface IProperties
 export default function MenuView(props: IBinding)
 {
     const classes = menuStyle();
-    const image = `${IMAGES_PATH}${props.bind.menu.image}`;
+    const image = `${IMAGES_PATH}${props.bind.menu?.image}`;
     return (
         <Drawer anchor="left" open={props.bind.drawerState.open} onClose={props.bind.closeHandler}>
             <div className={classes.drawerContainer}>
@@ -29,7 +29,7 @@ export default function MenuView(props: IBinding)
                 <RenderList bind=
                 {{ 
                     isAnonymous: props.bind.isAnonymous, 
-                    items: props.bind.menu.items 
+                    items: props.bind.menu?.items 
                 }}/>
             </div>
         </Drawer>
