@@ -3,5 +3,5 @@ import { ISubitem } from "./subitem";
 
 export interface IItem extends IFields
 {
-    subitems: ISubitem[]
+    subitems?: ISubitem[];
 }

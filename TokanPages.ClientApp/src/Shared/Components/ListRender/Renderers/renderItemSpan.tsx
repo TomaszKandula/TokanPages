@@ -7,31 +7,46 @@ import { Collapse } from "@material-ui/core";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
 import { GetIcon } from "../../GetIcon/getIcon";
 import { IItem } from "../Models/item";
-import { RenderSingleSubitem } from "./renderSingleSubitem";
+import { RenderSubitem } from "./renderSubitem";
 
-export function RenderItemWithSubitems(props: IItem): JSX.Element
+export function RenderItemSpan(props: IItem): JSX.Element
 {
     const [state, setState] = React.useState(false);
     const onClickEvent = () => setState(!state);
 
-    let renderBuffer: JSX.Element[] = [];
-    props.subitems.forEach((item) => 
+    if (props.subitems === undefined) 
     {
-        renderBuffer.push(<RenderSingleSubitem 
+        return(<div>Cannot render item.</div>);
+    }
+
+    let renderBuffer: JSX.Element[] = [];
+    props.subitems.forEach(item => 
+    {
+        renderBuffer.push(<RenderSubitem 
             key={item.id}
             id={item.id} 
-            name={item.name}
+            type={item.type}
+            value={item.value}
             link={item.link}
             icon={item.icon}
             enabled={item.enabled}
         />);
     });
 
+    if (props.link === undefined) 
+        return(<div>Cannot render. Missing 'link' property.</div>);
+
+    if (props.icon === undefined) 
+        return(<div>Cannot render. Missing 'icon' property.</div>);
+
+    if (props.enabled === undefined) 
+        return(<div>Cannot render. Missing 'enabled' property.</div>);
+
     return(
         <>
             <ListItem button key={props.id} onClick={onClickEvent} disabled={!props.enabled} >
                 <ListItemIcon>{GetIcon({ iconName: props.icon })}</ListItemIcon>
-                <ListItemText primary={props.name} />
+                <ListItemText primary={props.value} />
                 {state ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={state} timeout="auto" unmountOnExit>

@@ -1,8 +1,9 @@
 import * as React from "react";
 import List from "@material-ui/core/List";
 import { IItem } from "./Models/item";
-import { RenderSingleItem } from "./Renderers/renderSingleItem";
-import { RenderItemWithSubitems } from "./Renderers/renderItemWithSubitems";
+import { RenderItem } from "./Renderers/renderItem";
+import { RenderItemSpan } from "./Renderers/renderItemSpan";
+import { Divider } from "@material-ui/core";
 
 interface IBinding
 {
@@ -30,33 +31,40 @@ export function RenderList(props: IBinding)
     let renderBuffer: JSX.Element[] = [];
     props.bind.items.forEach(item => 
     {
-        if (item.subitems.length === 0)
+        if (item.type === "item")
         {
-            if (props.bind.isAnonymous && item.name === "Account") return;
-            if (!props.bind.isAnonymous && (item.name === "Login" || item.name === "Register")) return;
+            if (props.bind.isAnonymous && item.value === "Account") return;
+            if (!props.bind.isAnonymous && (item.value === "Login" || item.value === "Register")) return;
             
-            renderBuffer.push(<RenderSingleItem 
+            renderBuffer.push(<RenderItem 
                 key={item.id}
                 id={item.id} 
-                name={item.name}
+                type={item.type}
+                value={item.value}
+                link={item.link}
+                icon={item.icon}
+                enabled={item.enabled}
+            />);
+        }
+
+        if (item.type === "itemspan") renderBuffer.push(
+            <RenderItemSpan 
+                key={item.id}
+                id={item.id} 
+                type={item.type}
+                value={item.value}
                 link={item.link}
                 icon={item.icon}
                 enabled={item.enabled}
                 subitems={item.subitems}
             />);
-        }
-        else
-        {
-            renderBuffer.push(<RenderItemWithSubitems 
-                key={item.id}
-                id={item.id} 
-                name={item.name}
-                link={item.link}
-                icon={item.icon}
-                enabled={item.enabled}
-                subitems={item.subitems}
-            />);
-        }
+
+        if (item.type === "divider" 
+            && (item.value === "middle" 
+            || item.value === "inset" 
+            || item.value === "fullWidth")) renderBuffer.push(
+            <Divider key={item.id} variant={item.value} />
+        );
     });
 
     return(<List>{renderBuffer}</List>);
