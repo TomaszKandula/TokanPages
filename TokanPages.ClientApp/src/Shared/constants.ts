@@ -114,6 +114,9 @@ export const NO_ERRORS: string = "NO_ERRORS";
 
 /* FORMS */
 
+export const SIGNIN_FORM: string = "Signin Form";
+export const SIGNUP_FORM: string = "Signup Form";
+export const RESET_FORM: string = "Password Reset";
 export const CONTACT_FORM: string = "Contact Form";
 export const NEWSLETTER: string = "Newsletter";
 export const UPDATE_SUBSCRIBER: string = "Update Subscriber";
