@@ -18,24 +18,13 @@ const SiginUserReducer: Reducer<ISigninUser> = (state: ISigninUser | undefined, 
         case SIGNIN_USER:
             return { 
                 operationStatus: OperationStatus.inProgress, 
-                attachedErrorObject: state.attachedErrorObject,
-                userData: state.userData
+                attachedErrorObject: state.attachedErrorObject
             };
 
         case SIGNIN_USER_RESPONSE:
-            localStorage.setItem("userToken", action.payload.userToken);
             return { 
                 operationStatus: OperationStatus.hasFinished, 
-                attachedErrorObject: { },
-                userData: {
-                    userId: action.payload.userId,
-                    aliasName: action.payload.aliasName,
-                    avatarName: action.payload.avatarName,
-                    firstName: action.payload.firstName,
-                    lastName: action.payload.lastName,
-                    shortBio: action.payload.shortBio,
-                    registered: action.payload.registered
-                }
+                attachedErrorObject: { }
             };
 
         default: return state;
