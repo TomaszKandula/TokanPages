@@ -24,6 +24,8 @@ export const API_QUERY_GET_USER = `${APP_BACKEND}/api/v${API_VER}/users/GetUser/
 export const API_COMMAND_ADD_USER = `${APP_BACKEND}/api/v${API_VER}/users/AddUser/`;
 export const API_COMMAND_UPDATE_USER = `${APP_BACKEND}/api/v${API_VER}/users/UpdateUser/`;
 export const API_COMMAND_REMOVE_USER = `${APP_BACKEND}/api/v${API_VER}/users/RemoveUser/`;
+export const API_COMMAND_AUTHENTICATE = `${APP_BACKEND}/api/v${API_VER}/users/AuthenticateUser/`;
+export const API_COMMAND_REAUTHENTICATE = `${APP_BACKEND}/api/v${API_VER}/users/ReAuthenticateUser`;
 
 /* API | SUBSCRIBERS */
 
