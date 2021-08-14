@@ -18,7 +18,9 @@ export type { IAddUserDto } from "./Users/addUserDto";
 export type { IUpdateUserDto } from "./Users/updateUserDto";
 export type { IRemoveUserDto } from "./Users/removeUserDto";
 export type { IAuthenticateUserDto } from "./Users/authenticateUserDto";
+export type { IAuthenticateUserResultDto } from "./Users/authenticateUserResultDto";
 export type { IReAuthenticateUserDto } from "./Users/reAuthenticateUserDto";
+export type { IReAuthenticateUserResultDto } from "./Users/reAuthenticateUserResultDto";
 
 export type { IErrorDto } from "./Error/errorDto";
 export type { IValidationErrorsDto } from "./Error/validationErrorsDto";
