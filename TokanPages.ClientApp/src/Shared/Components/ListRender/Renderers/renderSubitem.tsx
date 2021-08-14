@@ -1,7 +1,8 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
+import { ListItem } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import CustomListItem from "../CustomListItem/customListItem";
 import { ISubitem } from "../Models/subitem";
 import { GetIcon } from "../../GetIcon/getIcon";
 import subitemsStyle from "../Styles/subitemsStyle";
@@ -17,12 +18,12 @@ export function RenderSubitem(props: ISubitem): JSX.Element
     if (props.enabled === undefined) 
         return(<div>Cannot render. Missing 'enabled' property.</div>);
 
-    const classes = subitemsStyle();
     const icon = GetIcon({ iconName: props.icon });
+    const classes = subitemsStyle();
     return(
-        <CustomListItem button key={props.id} href={props.link} className={classes.nested} disabled={!props.enabled} >
+        <ListItem button key={props.id} className={classes.nested} disabled={!props.enabled} component={Link} to={props.link}>
             <ListItemIcon>{icon}</ListItemIcon>
             <ListItemText primary={props.value} />
-        </CustomListItem>
+        </ListItem>
     );
 }

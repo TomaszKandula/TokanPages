@@ -1,7 +1,10 @@
 export interface IAddUserDto
 {
-    userAlias: string
+    userId: string;
+    aliasName: string
+    avatarName: string;
     firstName: string;
-    lastName: string;
-    emailAddress: string; 
+    lastName: string; 
+    shortBio: string;
+    registered: string;
 }

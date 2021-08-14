@@ -24,6 +24,8 @@ export const API_QUERY_GET_USER = `${APP_BACKEND}/api/v${API_VER}/users/GetUser/
 export const API_COMMAND_ADD_USER = `${APP_BACKEND}/api/v${API_VER}/users/AddUser/`;
 export const API_COMMAND_UPDATE_USER = `${APP_BACKEND}/api/v${API_VER}/users/UpdateUser/`;
 export const API_COMMAND_REMOVE_USER = `${APP_BACKEND}/api/v${API_VER}/users/RemoveUser/`;
+export const API_COMMAND_AUTHENTICATE = `${APP_BACKEND}/api/v${API_VER}/users/AuthenticateUser/`;
+export const API_COMMAND_REAUTHENTICATE = `${APP_BACKEND}/api/v${API_VER}/users/ReAuthenticateUser`;
 
 /* API | SUBSCRIBERS */
 
@@ -112,8 +114,15 @@ export const WORDS_PER_MINUTE: number = 265;
 export const RECEIVED_ERROR_MESSAGE: string = "RECEIVED_ERROR_MESSAGE";
 export const NO_ERRORS: string = "NO_ERRORS";
 
+export const ANONYMOUS_NAME: string = "Anonymous";
+export const DEFAULT_NAME: string = "Unknown";
+export const DEFAULT_AVATAR: string = "avatar-default-288.jpeg";
+
 /* FORMS */
 
+export const SIGNIN_FORM: string = "Signin Form";
+export const SIGNUP_FORM: string = "Signup Form";
+export const RESET_FORM: string = "Password Reset";
 export const CONTACT_FORM: string = "Contact Form";
 export const NEWSLETTER: string = "Newsletter";
 export const UPDATE_SUBSCRIBER: string = "Update Subscriber";

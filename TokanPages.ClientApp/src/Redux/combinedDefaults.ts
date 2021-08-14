@@ -1,3 +1,4 @@
+import { IApplicationState } from "./applicationState";
 import { SelectArticleDefault } from "./Defaults/selectArticleDefault";
 import { ListArticlesDefault } from "./Defaults/listArticlesDefault";
 import { UpdateArticleDefault } from "./Defaults/updateArticleDefault";
@@ -7,6 +8,8 @@ import { UpdateSubscriberDefault } from "./Defaults/updateSubscriberDefault";
 import { RemoveSubscriberDefault } from "./Defaults/removeSubscriberDefault";
 import { RaiseErrorDefault } from "./Defaults/raiseErrorDefault";
 import { RaiseDialogDefault } from "./Defaults/raiseDialogDefault";
+import { UpdateUserDataDefault } from "./Defaults/updateUserDataDefault";
+import { SigninUserDefault } from "./Defaults/signinUserDefault";
 import { GetStaticContentDefault } from "./Defaults/getStaticContentDefault";
 import { GetArticleFeatContentDefault } from "./Defaults/getArticleFeatContentDefault";
 import { GetContactFormContentDefault } from "./Defaults/getContactFormContentDefault";
@@ -25,7 +28,7 @@ import { GetTestimonialsContentDefault } from "./Defaults/getTestimonialsContent
 import { GetUnsubscribeContentDefault } from "./Defaults/getUnsubscribeContentDefault";
 import { GetUpdateSubscriberContentDefault } from "./Defaults/getUpdateSubscriberContentDefault";
 
-export const combinedDefaults = 
+export const combinedDefaults: IApplicationState = 
 {
     raiseError: RaiseErrorDefault,
     raiseDialog: RaiseDialogDefault,
@@ -36,6 +39,8 @@ export const combinedDefaults =
     addSubscriber: AddSubscriberDefault,
     updateSubscriber: UpdateSubscriberDefault,
     removeSubscriber: RemoveSubscriberDefault,
+    updateUserData: UpdateUserDataDefault,
+    signinUser: SigninUserDefault,
     getStaticContent: GetStaticContentDefault,
     getArticleFeatContent: GetArticleFeatContentDefault,
     getContactFormContent: GetContactFormContentDefault,
