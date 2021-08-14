@@ -7,6 +7,7 @@ import { IRemoveSubscriber } from "./States/removeSubscriberState";
 import { IUpdateArticle } from "./States/updateArticleState";
 import { IRaiseError } from "./States/raiseErrorState";
 import { IRaiseDialog } from "./States/raiseDialogState";
+import { ISigninUser } from "./States/signinUserState";
 import { IGetStaticContent } from "./States/getStaticContentState";
 import { IGetArticleFeatContent } from "./States/getArticleFeatContentState";
 import { IGetContactFormContent } from "./States/getContactFormContentState";
@@ -36,6 +37,7 @@ export interface IApplicationState
     addSubscriber: IAddSubscriber,
     updateSubscriber: IUpdateSubscriber,
     removeSubscriber: IRemoveSubscriber,
+    signinUser: ISigninUser,
     getStaticContent: IGetStaticContent,
     getArticleFeatContent: IGetArticleFeatContent,
     getContactFormContent: IGetContactFormContent,

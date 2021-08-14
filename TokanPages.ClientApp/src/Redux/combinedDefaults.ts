@@ -7,6 +7,7 @@ import { UpdateSubscriberDefault } from "./Defaults/updateSubscriberDefault";
 import { RemoveSubscriberDefault } from "./Defaults/removeSubscriberDefault";
 import { RaiseErrorDefault } from "./Defaults/raiseErrorDefault";
 import { RaiseDialogDefault } from "./Defaults/raiseDialogDefault";
+import { SigninUserDefault } from "./Defaults/signinUserDefault";
 import { GetStaticContentDefault } from "./Defaults/getStaticContentDefault";
 import { GetArticleFeatContentDefault } from "./Defaults/getArticleFeatContentDefault";
 import { GetContactFormContentDefault } from "./Defaults/getContactFormContentDefault";
@@ -36,6 +37,7 @@ export const combinedDefaults =
     addSubscriber: AddSubscriberDefault,
     updateSubscriber: UpdateSubscriberDefault,
     removeSubscriber: RemoveSubscriberDefault,
+    signinUser: SigninUserDefault,
     getStaticContent: GetStaticContentDefault,
     getArticleFeatContent: GetArticleFeatContentDefault,
     getContactFormContent: GetContactFormContentDefault,
