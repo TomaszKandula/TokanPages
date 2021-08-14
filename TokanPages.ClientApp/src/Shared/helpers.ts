@@ -135,10 +135,10 @@ const GetErrorMessage = (errorObject: any): string =>
 
 const RaiseError = (dispatch: any, errorObject: any): string =>
 {
-    let error = typeof(errorObject) === "string" 
+    let error = typeof(errorObject) !== "string" 
         ? GetErrorMessage(errorObject) 
         : errorObject;
-    
+
     dispatch({ type: RAISE_ERROR, errorObject: error });
     return Sentry.captureException(errorObject);
 }
