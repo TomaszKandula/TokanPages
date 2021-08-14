@@ -5,10 +5,10 @@ exports[`Test account component: SigninForm. Renders correctly '<SigninForm />' 
   <SigninForm
     content={
       Object {
-        "button": "",
-        "caption": "",
-        "link1": "",
-        "link2": "",
+        "button": "Sign in",
+        "caption": "Sign in",
+        "link1": "Don't have an account?",
+        "link2": "Forgot password?",
       }
     }
     isLoading={false}
