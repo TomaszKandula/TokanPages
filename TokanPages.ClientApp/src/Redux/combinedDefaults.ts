@@ -1,3 +1,4 @@
+import { IApplicationState } from "./applicationState";
 import { SelectArticleDefault } from "./Defaults/selectArticleDefault";
 import { ListArticlesDefault } from "./Defaults/listArticlesDefault";
 import { UpdateArticleDefault } from "./Defaults/updateArticleDefault";
@@ -27,7 +28,7 @@ import { GetTestimonialsContentDefault } from "./Defaults/getTestimonialsContent
 import { GetUnsubscribeContentDefault } from "./Defaults/getUnsubscribeContentDefault";
 import { GetUpdateSubscriberContentDefault } from "./Defaults/getUpdateSubscriberContentDefault";
 
-export const combinedDefaults = 
+export const combinedDefaults: IApplicationState = 
 {
     raiseError: RaiseErrorDefault,
     raiseDialog: RaiseDialogDefault,

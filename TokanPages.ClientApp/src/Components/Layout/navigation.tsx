@@ -13,7 +13,7 @@ import {
 
 export default function Navigation(props: IGetNavigationContent) 
 {
-    const userData = useSelector((state: IApplicationState) => state.updateUserData.userData);
+    const user = useSelector((state: IApplicationState) => state.updateUserData);
 
     const [drawer, setDrawer] = React.useState({ open: false});
     const toggleDrawer = (open: boolean) => (event: any) => 
@@ -26,10 +26,10 @@ export default function Navigation(props: IGetNavigationContent)
     let avatar = `${AVATARS_PATH}${DEFAULT_AVATAR}`;
     let isAnonymous = true;
 
-    if (!Validate.isEmpty(userData.userId))
+    if (!Validate.isEmpty(user?.userData?.userId))
     {
-        userName = userData.aliasName;
-        avatar = `${AVATARS_PATH}${userData.avatarName}`;
+        userName = user?.userData?.aliasName;
+        avatar = `${AVATARS_PATH}${user?.userData?.avatarName}`;
         isAnonymous = false;
     }
 
