@@ -3,7 +3,7 @@ import { AppThunkAction } from "../applicationState";
 import { RAISE_ERROR, TErrorActions } from "./raiseErrorAction";
 import { UnexpectedStatusCode } from "../../Shared/textWrappers";
 import { GetErrorMessage } from "../../Shared/helpers";
-import { SendData } from "Api/request";
+import { SendData } from "../../Api/request";
 import { 
     API_COMMAND_UPDATE_ARTICLE_CONTENT, 
     API_COMMAND_UPDATE_ARTICLE_COUNT, 

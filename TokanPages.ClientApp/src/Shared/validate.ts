@@ -28,7 +28,6 @@ interface IValidateContactForm
 
 function ValidateContactForm(props: IValidateContactForm): any
 {
-
     let constraints = 
     {
         FirstName:
@@ -97,8 +96,45 @@ function ValidateContactForm(props: IValidateContactForm): any
     constraints);
 }
 
+interface IValidateSigninForm
+{
+    email: string;
+    password: string;
+}
+
+function ValidateSigninForm(props: IValidateSigninForm): any
+{
+    let constraints =  
+    {
+        email: 
+        {
+            email: 
+            {
+                message: "does not look like a valid email"
+            }
+        },
+        password:
+        {
+            presence: true,
+            length: 
+            {
+                minimum: 8,
+                message: "must be at least 8 characters"
+            }
+        },
+    }
+
+    return Validate(
+    {
+        email: props.email,
+        password: props.password
+    }, 
+    constraints);
+}
+
 export 
 {
     ValidateEmail, 
-    ValidateContactForm
+    ValidateContactForm,
+    ValidateSigninForm
 }
