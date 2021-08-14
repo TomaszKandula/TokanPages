@@ -114,6 +114,10 @@ export const WORDS_PER_MINUTE: number = 265;
 export const RECEIVED_ERROR_MESSAGE: string = "RECEIVED_ERROR_MESSAGE";
 export const NO_ERRORS: string = "NO_ERRORS";
 
+export const ANONYMOUS_NAME: string = "Anonymous";
+export const DEFAULT_NAME: string = "Unknown";
+export const DEFAULT_AVATAR: string = "avatar-default-288.jpeg";
+
 /* FORMS */
 
 export const SIGNIN_FORM: string = "Signin Form";
