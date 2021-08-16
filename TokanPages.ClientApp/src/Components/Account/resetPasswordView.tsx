@@ -9,11 +9,11 @@ import { Card, CardContent } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetResetPasswordContent } from "../../Redux/States/getResetPasswordContentState";
-import resetFormStyle from "./Styles/resetPasswordStyle";
+import resetPasswordStyle from "./Styles/resetPasswordStyle";
 
 export default function ResetPasswordView(props: IGetResetPasswordContent) 
 {
-    const classes = resetFormStyle();
+    const classes = resetPasswordStyle();
     return (
         <section>
             <Container maxWidth="sm">

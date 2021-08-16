@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import { AccountCircle } from "@material-ui/icons";
-import UserSignoutStyle from "./Styles/userSignoutStyle";
+import userSignoutStyle from "./Styles/userSignoutStyle";
 
 interface IBinding 
 {
@@ -22,7 +22,7 @@ interface IProperties
 
 const UserSignoutView = (props: IBinding) => 
 {
-    const classes = UserSignoutStyle();
+    const classes = userSignoutStyle();
     return (
         <section>
             <Container maxWidth="sm">

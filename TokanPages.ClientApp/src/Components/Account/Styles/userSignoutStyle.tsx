@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const UserSignoutStyle = makeStyles(() => (
+const userSignoutStyle = makeStyles(() => (
 {
     card:
     {
@@ -11,4 +11,4 @@ const UserSignoutStyle = makeStyles(() => (
     }
 }));
 
-export default UserSignoutStyle;
+export default userSignoutStyle;

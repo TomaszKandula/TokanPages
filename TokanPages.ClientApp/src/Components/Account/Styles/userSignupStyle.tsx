@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const signupFormStyle = makeStyles(() => (
+const userSignupStyle = makeStyles(() => (
 {
     card:
     {
@@ -11,4 +11,4 @@ const signupFormStyle = makeStyles(() => (
     }
 }));
 
-export default signupFormStyle;
+export default userSignupStyle;

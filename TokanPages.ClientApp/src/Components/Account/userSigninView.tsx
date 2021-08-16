@@ -9,7 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
-import signinFormStyle from "./Styles/userSigninStyle";
+import userSigninStyle from "./Styles/userSigninStyle";
 
 interface IBinding 
 {
@@ -32,7 +32,7 @@ interface IProperties
 
 export default function UserSigninView(props: IBinding) 
 {
-    const classes = signinFormStyle();
+    const classes = userSigninStyle();
     return (
         <section>
             <Container maxWidth="sm">

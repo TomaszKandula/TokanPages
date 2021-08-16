@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const signinFormStyle = makeStyles((theme) => (
+const userSigninStyle = makeStyles((theme) => (
 {
     tertiaryAction: 
     {
@@ -25,4 +25,4 @@ const signinFormStyle = makeStyles((theme) => (
     }
 }));
 
-export default signinFormStyle;
+export default userSigninStyle;

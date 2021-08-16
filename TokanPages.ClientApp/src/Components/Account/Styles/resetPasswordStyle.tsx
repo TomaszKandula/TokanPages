@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const resetFormStyle = makeStyles(() => (
+const resetPasswordStyle = makeStyles(() => (
 {
     card:
     {
@@ -11,4 +11,4 @@ const resetFormStyle = makeStyles(() => (
     }
 }));
 
-export default resetFormStyle;
+export default resetPasswordStyle;
