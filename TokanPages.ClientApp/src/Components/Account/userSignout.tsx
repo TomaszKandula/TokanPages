@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { combinedDefaults } from "Redux/combinedDefaults";
+import { combinedDefaults } from "../../Redux/combinedDefaults";
 import { ActionCreators } from "../../Redux/Actions/updateUserDataAction";
 import { IApplicationState } from "../../Redux/applicationState";
 import { IGetUserSignoutContent } from "../../Redux/States/getUserSignoutContentState";

@@ -14,7 +14,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetUserSignupContent } from "../../Redux/States/getUserSignupContentState";
 import userSignupStyle from "./Styles/userSignupStyle";
 
-export default function SignupFormView(props: IGetUserSignupContent) 
+export default function UserSignupView(props: IGetUserSignupContent) 
 {
     const classes = userSignupStyle();
     return (

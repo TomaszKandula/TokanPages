@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test account component: SigninForm. Renders correctly '<SigninForm />' when content is loaded. 1`] = `
+exports[`Test account component: UserSignin. Renders correctly '<UserSignin />' when content is loaded. 1`] = `
 <div>
-  <SigninForm
+  <UserSignin
     content={
       Object {
         "button": "Sign in",

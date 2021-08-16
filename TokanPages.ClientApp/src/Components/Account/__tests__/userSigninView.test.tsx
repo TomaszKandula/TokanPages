@@ -12,7 +12,7 @@ jest.mock("react-router", () =>
     useHistory: () => (jest.fn())
 }));
 
-describe("Test account component: SigninForm.", () => 
+describe("Test account component: UserSignin.", () => 
 {
     const testContent = 
     {
@@ -30,10 +30,10 @@ describe("Test account component: SigninForm.", () =>
     {
         useSelectorMock.mockClear();
         useDispatchMock.mockClear();
-        wrapper.find("SigninForm").dive();
+        wrapper.find("UserSignin").dive();
     });
     
-    it("Renders correctly '<SigninForm />' when content is loaded.", () => 
+    it("Renders correctly '<UserSignin />' when content is loaded.", () => 
     {
         useDispatchMock.mockReturnValue(jest.fn());
         useSelectorMock.mockReturnValue(combinedDefaults);
