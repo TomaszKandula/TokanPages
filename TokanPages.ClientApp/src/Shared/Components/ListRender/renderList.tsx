@@ -33,8 +33,8 @@ export function RenderList(props: IBinding)
     {
         if (item.type === "item")
         {
-            if (props.bind.isAnonymous && item.value === "Account") return;
-            if (!props.bind.isAnonymous && (item.value === "Login" || item.value === "Register")) return;
+            if (props.bind.isAnonymous && (item.link === "/account" || item.link === "/signout")) return;
+            if (!props.bind.isAnonymous && (item.link === "/signin" || item.link === "/signup")) return;
             
             renderBuffer.push(<RenderItem 
                 key={item.id}

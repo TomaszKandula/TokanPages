@@ -9,6 +9,7 @@ import TermsPage from "./Pages/termsPage";
 import PolicyPage from "./Pages/policyPage";
 import SigninPage from "./Pages/signinPage";
 import SignupPage from "./Pages/signupPage";
+import SignoutPage from "./Pages/signoutPage";
 import ResetPage from "./Pages/resetPage";
 import UnsubscribePage from "./Pages/unsubscribePage";
 import UpdateSubscriberPage from "./Pages/updateSubscriberPage";
@@ -38,6 +39,7 @@ export default function App()
                   <Route exact path="/policy"><PolicyPage /></Route>
                   <Route exact path="/signin"><SigninPage /></Route>
                   <Route exact path="/signup"><SignupPage /></Route>
+                  <Route exact path="/signout"><SignoutPage /></Route>
                   <Route exact path="/reset"><ResetPage /></Route>
                   <Route exact path="/unsubscribe"><UnsubscribePage /></Route>
                   <Route exact path="/updatesubscriber"><UpdateSubscriberPage /></Route>

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test account component: UserSignin. Renders correctly '<UserSignin />' when content is loaded. 1`] = `
+<div>
+  <UserSignin
+    content={
+      Object {
+        "button": "Sign in",
+        "caption": "Sign in",
+        "link1": "Don't have an account?",
+        "link2": "Forgot password?",
+      }
+    }
+    isLoading={false}
+  />
+</div>
+`;

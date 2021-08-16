@@ -6,6 +6,7 @@ import {
     CLEAR_USERDATA,
     UPDATE_USERDATA
 } from "../Actions/updateUserDataAction";
+import { USER_TOKEN } from "../../Shared/constants";
 
 const UpdateUserDataReducer: Reducer<IUpdateUserData> = (state: IUpdateUserData | undefined, incomingAction: Action): IUpdateUserData => 
 {
@@ -15,12 +16,13 @@ const UpdateUserDataReducer: Reducer<IUpdateUserData> = (state: IUpdateUserData 
     switch (action.type) 
     {
         case CLEAR_USERDATA:
+            localStorage.removeItem(USER_TOKEN);
             return { 
-                userData: state.userData
+                userData: combinedDefaults.updateUserData.userData
             };
 
         case UPDATE_USERDATA:
-            localStorage.setItem("userToken", action.payload.userToken);
+            localStorage.setItem(USER_TOKEN, action.payload.userToken);
             return { 
                 userData: {
                     userId: action.payload.userId,

@@ -52,9 +52,10 @@ export const GET_COOKIES_PROMPT_CONTENT = `${APP_STORAGE}/content/components/coo
 export const GET_FEATURED_CONTENT = `${APP_STORAGE}/content/components/featured.json`;
 export const GET_FEATURES_CONTENT = `${APP_STORAGE}/content/components/features.json`;
 export const GET_NEWSLETTER_CONTENT = `${APP_STORAGE}/content/components/newsletter.json`;
-export const GET_RESET_FORM_CONTENT = `${APP_STORAGE}/content/components/resetForm.json`;
-export const GET_SIGNIN_FORM_CONTENT = `${APP_STORAGE}/content/components/signinForm.json`;
-export const GET_SIGNUP_FORM_CONTENT = `${APP_STORAGE}/content/components/signupForm.json`;
+export const GET_RESET_PASSWORD_CONTENT = `${APP_STORAGE}/content/components/resetPassword.json`;
+export const GET_SIGNIN_CONTENT = `${APP_STORAGE}/content/components/userSignin.json`;
+export const GET_SIGNUP_CONTENT = `${APP_STORAGE}/content/components/userSignup.json`;
+export const GET_SIGNOUT_CONTENT = `${APP_STORAGE}/content/components/userSignout.json`;
 export const GET_TESTIMONIALS_CONTENT = `${APP_STORAGE}/content/components/testimonials.json`;
 export const GET_UNSUBSCRIBE_CONTENT = `${APP_STORAGE}/content/components/unsubscribe.json`;
 export const GET_UPDATE_SUBSCRIBER_CONTENT = `${APP_STORAGE}/content/components/updateSubscriber.json`;
@@ -113,10 +114,10 @@ export const MAX_LIKES_REACHED: string = "You've reached max thumbs up :)";
 export const WORDS_PER_MINUTE: number = 265;
 export const RECEIVED_ERROR_MESSAGE: string = "RECEIVED_ERROR_MESSAGE";
 export const NO_ERRORS: string = "NO_ERRORS";
-
 export const ANONYMOUS_NAME: string = "Anonymous";
 export const DEFAULT_NAME: string = "Unknown";
 export const DEFAULT_AVATAR: string = "avatar-default-288.jpeg";
+export const USER_TOKEN: string = "userToken";
 
 /* FORMS */
 

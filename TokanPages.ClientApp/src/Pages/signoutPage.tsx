@@ -2,26 +2,26 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
-import UserSignupView from "../Components/Account/userSignupView";
+import UserSignout from "../Components/Account/userSignout";
 import Footer from "../Components/Layout/footer";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
-import { ActionCreators as SignupFormContent } from "../Redux/Actions/getUserSignupContentAction";
+import { ActionCreators as SignoutContent } from "../Redux/Actions/getUserSignoutContentAction";
 
-export default function SignupPage() 
+export default function SignoutPage() 
 {
     const dispatch = useDispatch();
     
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const signupForm = useSelector((state: IApplicationState) => state.getUserSignupContent);
+    const signoutView = useSelector((state: IApplicationState) => state.getUserSignoutContent);
 
     const getContent = React.useCallback(() =>
     {
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
-        dispatch(SignupFormContent.getUserSignupContent());
+        dispatch(SignoutContent.getUserSignoutContent());
     }, [ dispatch ]);
 
     React.useEffect(() => getContent(), [ getContent ]);
@@ -30,7 +30,7 @@ export default function SignupPage()
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <UserSignupView content={signupForm?.content} isLoading={signupForm?.isLoading} />
+                <UserSignout content={signoutView?.content} isLoading={signoutView?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>

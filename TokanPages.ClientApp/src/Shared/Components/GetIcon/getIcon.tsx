@@ -15,7 +15,9 @@ import {
     Star, 
     Subject,
     SportsSoccer, 
-    ViewList 
+    ViewList, 
+    VpnKey,
+    Lock
 } from "@material-ui/icons";
 
 interface IProperty
@@ -72,6 +74,12 @@ export function GetIcon(props: IProperty): JSX.Element
             break;
         case "Policy":
             renderIcon = <Policy />;
+            break;
+        case "VpnKey":
+            renderIcon = <VpnKey />;
+            break;
+        case "Lock":
+            renderIcon = <Lock />;
             break;
         default: renderIcon = <Apple />;
     }

@@ -35,9 +35,10 @@ export type { ICookiesPromptContentDto } from "./Components/cookiesPromptContent
 export type { IFeaturedContentDto } from "./Components/featuredContentDto";
 export type { IFeaturesContentDto } from "./Components/featuresContentDto";
 export type { INewsletterContentDto } from "./Components/newsletterContentDto";
-export type { IResetFormContentDto } from "./Components/resetFormContentDto";
-export type { ISigninFormContentDto } from "./Components/signinFormContentDto";
-export type { ISignupFormContentDto } from "./Components/signupFormContentDto";
+export type { IResetPasswordContentDto } from "./Components/resetPasswordContentDto";
+export type { IUserSigninContentDto } from "./Components/userSigninContentDto";
+export type { IUserSignoutContentDto } from "./Components/userSignoutContentDto";
+export type { IUserSignupContentDto } from "./Components/userSignupContentDto";
 export type { ITestimonialsContentDto } from "./Components/testimonialsContentDto";
 export type { IUnsubscribeContentDto } from "./Components/unsubscribeContentDto";
 export type { IUpdateSubscriberContentDto } from "./Components/updateSubscriberContentDto";

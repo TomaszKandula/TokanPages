@@ -2,12 +2,12 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
-import ResetFormView from "../Components/Account/resetFormView";
+import ResetPasswordView from "../Components/Account/resetPasswordView";
 import Footer from "../Components/Layout/footer";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
-import { ActionCreators as ResetFormContent } from "../Redux/Actions/getResetFormContentAction";
+import { ActionCreators as ResetFormContent } from "../Redux/Actions/getResetPasswordContentAction";
 
 export default function ResetPage() 
 {
@@ -15,13 +15,13 @@ export default function ResetPage()
     
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const resetForm = useSelector((state: IApplicationState) => state.getResetFormContent);
+    const resetForm = useSelector((state: IApplicationState) => state.getResetPasswordContent);
 
     const getContent = React.useCallback(() =>
     {
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
-        dispatch(ResetFormContent.getResetFormContent());
+        dispatch(ResetFormContent.getResetPasswordContent());
     }, [ dispatch ]);
 
     React.useEffect(() => getContent(), [ getContent ]);
@@ -30,7 +30,7 @@ export default function ResetPage()
         <>     
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <ResetFormView content={resetForm?.content} isLoading={resetForm?.isLoading} />
+                <ResetPasswordView content={resetForm?.content} isLoading={resetForm?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>
