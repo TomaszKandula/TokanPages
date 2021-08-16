@@ -5,6 +5,7 @@ import { OperationStatus } from "../../Shared/enums";
 import { 
     TKnownActions,
     SIGNIN_USER,
+    SIGNIN_USER_CLEAR,
     SIGNIN_USER_RESPONSE
 } from "../Actions/signinUserAction";
 
@@ -15,15 +16,20 @@ const SiginUserReducer: Reducer<ISigninUser> = (state: ISigninUser | undefined, 
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
+        case SIGNIN_USER_CLEAR:
+            return {
+                operationStatus: OperationStatus.notStarted,
+                attachedErrorObject: { }
+            };
         case SIGNIN_USER:
             return { 
-                operationStatus: OperationStatus.inProgress, 
+                operationStatus: OperationStatus.inProgress,
                 attachedErrorObject: state.attachedErrorObject
             };
 
         case SIGNIN_USER_RESPONSE:
             return { 
-                operationStatus: OperationStatus.hasFinished, 
+                operationStatus: OperationStatus.hasFinished,
                 attachedErrorObject: { }
             };
 
