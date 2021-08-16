@@ -1,10 +1,20 @@
 import * as React from "react";
+import UserSignoutView from "./userSignoutView";
 
 const UserSignout = () => 
 {
 
 
-    return (<></>);
+
+    
+
+
+
+    return (<UserSignoutView bind=
+    {{
+        caption: "",
+        status: ""
+    }}/>);
     
 }
 
