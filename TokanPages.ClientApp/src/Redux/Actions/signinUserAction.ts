@@ -8,13 +8,19 @@ import { RaiseError } from "../../Shared/helpers";
 import { TErrorActions } from "./raiseErrorAction";
 
 export const SIGNIN_USER = "SIGNIN_USER";
+export const SIGNIN_USER_CLEAR = "SIGNIN_USER_CLEAR";
 export const SIGNIN_USER_RESPONSE = "SIGNIN_USER_RESPONSE";
 export interface IApiSigninUser { type: typeof SIGNIN_USER }
+export interface IApiSigninUserClear { type: typeof SIGNIN_USER_CLEAR }
 export interface IApiSigninUserResponse { type: typeof SIGNIN_USER_RESPONSE }
-export type TKnownActions = IApiSigninUser | IApiSigninUserResponse | TErrorActions | TUpdateActions;
+export type TKnownActions = IApiSigninUser | IApiSigninUserClear | IApiSigninUserResponse | TErrorActions | TUpdateActions;
 
 export const ActionCreators = 
 {
+    clearSignedUser: (): AppThunkAction<TKnownActions> => (dispatch) =>
+    {
+        dispatch({ type: SIGNIN_USER_CLEAR });
+    },
     signinUser: (payload: IAuthenticateUserDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: SIGNIN_USER });
