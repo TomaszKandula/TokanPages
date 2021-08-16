@@ -37,6 +37,7 @@ export type { IFeaturesContentDto } from "./Components/featuresContentDto";
 export type { INewsletterContentDto } from "./Components/newsletterContentDto";
 export type { IResetPasswordContentDto } from "./Components/resetPasswordContentDto";
 export type { IUserSigninContentDto } from "./Components/userSigninContentDto";
+export type { IUserSignoutContentDto } from "./Components/userSignoutContentDto";
 export type { IUserSignupContentDto } from "./Components/userSignupContentDto";
 export type { ITestimonialsContentDto } from "./Components/testimonialsContentDto";
 export type { IUnsubscribeContentDto } from "./Components/unsubscribeContentDto";

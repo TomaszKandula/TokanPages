@@ -4,7 +4,6 @@ export interface IUserSignoutContentDto
     {
         caption: string;
         onProcessing: string;
-        onSuccess: string;
-        onFailure: string;
+        onFinish: string;
     };
 }

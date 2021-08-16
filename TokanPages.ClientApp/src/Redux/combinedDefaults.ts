@@ -23,6 +23,7 @@ import { GetNewsletterContentDefault } from "./Defaults/getNewsletterContentDefa
 import { GetWrongPagePromptContentDefault } from "./Defaults/getWrongPagePromptContentDefault";
 import { GetResetPasswordContentDefault } from "./Defaults/getResetPasswordContentDefault";
 import { GetUserSigninContentDefault } from "./Defaults/getUserSigninContentDefault";
+import { GetUserSignoutContentDefault } from "./Defaults/getUserSignoutContentDefault";
 import { GetUserSignupContentDefault } from "./Defaults/getUserSignupContentDefault";
 import { GetTestimonialsContentDefault } from "./Defaults/getTestimonialsContentDefault";
 import { GetUnsubscribeContentDefault } from "./Defaults/getUnsubscribeContentDefault";
@@ -54,6 +55,7 @@ export const combinedDefaults: IApplicationState =
     getWrongPagePromptContent: GetWrongPagePromptContentDefault,
     getResetPasswordContent: GetResetPasswordContentDefault,
     getUserSigninContent: GetUserSigninContentDefault,
+    getUserSignoutContent: GetUserSignoutContentDefault,
     getUserSignupContent: GetUserSignupContentDefault,
     getTestimonialsContent: GetTestimonialsContentDefault,
     getUnsubscribeContent: GetUnsubscribeContentDefault,

@@ -5,7 +5,6 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
 import { AccountCircle } from "@material-ui/icons";
 import userSignoutStyle from "./Styles/userSignoutStyle";
 
@@ -38,15 +37,11 @@ const UserSignoutView = (props: IBinding) =>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        <TextField 
-                                            variant="outlined" required fullWidth 
-                                            name="email" id="email" label="Email address" autoComplete="email" 
-                                        />
+                                        <Typography variant="body1" component="p" color="textSecondary">
+                                            {props.bind.status}
+                                        </Typography>
                                     </Grid>
                                 </Grid>
-                                <Box my={2}>
-                                    {props.bind.status}
-                                </Box>
                             </Box>
                         </CardContent>   
                     </Card>                    

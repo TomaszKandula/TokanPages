@@ -22,6 +22,7 @@ import GetNewsletterContentReducer from "./Reducers/getNewsletterContentReducer"
 import GetWrongPagePromptContentReducer from "./Reducers/getWrongPagePromptContentReducer";
 import GetResetPasswordContentReducer from "./Reducers/getResetPasswordContentReducer";
 import GetUserSigninContentReducer from "./Reducers/getUserSigninContentReducer";
+import GetUserSignoutContentReducer from "./Reducers/getUserSignoutContentReducer";
 import GetUserSignupContentReducer from "./Reducers/getUserSignupContentReducer";
 import GetTestimonialsContentReducer from "./Reducers/getTestimonialsContentReducer";
 import GetUnsubscribeContentReducer from "./Reducers/getUnsubscribeContentReducer";
@@ -53,6 +54,7 @@ export const combinedReducers =
     getWrongPagePromptContent: GetWrongPagePromptContentReducer,
     getResetPasswordContent: GetResetPasswordContentReducer,
     getUserSigninContent: GetUserSigninContentReducer,
+    getUserSignoutContent: GetUserSignoutContentReducer,
     getUserSignupContent: GetUserSignupContentReducer,
     getTestimonialsContent: GetTestimonialsContentReducer,
     getUnsubscribeContent: GetUnsubscribeContentReducer,

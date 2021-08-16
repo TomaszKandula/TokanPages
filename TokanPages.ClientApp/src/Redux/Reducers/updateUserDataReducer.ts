@@ -18,7 +18,7 @@ const UpdateUserDataReducer: Reducer<IUpdateUserData> = (state: IUpdateUserData 
         case CLEAR_USERDATA:
             localStorage.removeItem(USER_TOKEN);
             return { 
-                userData: state.userData
+                userData: combinedDefaults.updateUserData.userData
             };
 
         case UPDATE_USERDATA:

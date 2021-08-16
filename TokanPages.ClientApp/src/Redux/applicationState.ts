@@ -22,6 +22,7 @@ import { IGetNewsletterContent } from "./States/getNewsletterContentState";
 import { IGetWrongPagePromptContent } from "./States/getWrongPagePromptContentState";
 import { IGetResetPasswordContent } from "./States/getResetPasswordContentState";
 import { IGetUserSigninContent } from "./States/getUserSigninContentState";
+import { IGetUserSignoutContent } from "./States/getUserSignoutContentState";
 import { IGetUserSignupContent } from "./States/getUserSignupContentState";
 import { IGetTestimonialsContent } from "./States/getTestimonialsContentState";
 import { IGetUnsubscribeContent } from "./States/getUnsubscribeContentState";
@@ -53,6 +54,7 @@ export interface IApplicationState
     getWrongPagePromptContent: IGetWrongPagePromptContent,
     getResetPasswordContent: IGetResetPasswordContent,
     getUserSigninContent: IGetUserSigninContent,
+    getUserSignoutContent: IGetUserSignoutContent,
     getUserSignupContent: IGetUserSignupContent,
     getTestimonialsContent: IGetTestimonialsContent,
     getUnsubscribeContent: IGetUnsubscribeContent,
