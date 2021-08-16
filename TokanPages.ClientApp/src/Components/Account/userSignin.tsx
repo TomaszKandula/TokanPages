@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import Validate from "validate.js";
-import { IGetSigninFormContent } from "../../Redux/States/getSigninFormContentState";
+import { IGetUserSigninContent } from "../../Redux/States/getUserSigninContentState";
 import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/signinUserAction";
@@ -12,7 +12,7 @@ import { MessageOutWarning } from "../../Shared/textWrappers";
 import { ValidateSigninForm } from "../../Shared/validate";
 import { OperationStatus } from "../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE, SIGNIN_FORM } from "../../Shared/constants";
-import SigninFormView from "./signinFormView";
+import UserSigninView from "./userSigninView";
 
 interface IFormDefaultValues 
 {
@@ -26,7 +26,7 @@ const formDefaultValues: IFormDefaultValues =
     password: ""
 };
 
-export default function SigninForm(props: IGetSigninFormContent) 
+export default function UserSignin(props: IGetUserSigninContent) 
 {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -92,7 +92,7 @@ export default function SigninForm(props: IGetSigninFormContent)
     };
 
     return(
-        <SigninFormView bind=
+        <UserSigninView bind=
         {{
             isLoading: props.isLoading, 
             caption: props.content.caption,

@@ -2,12 +2,12 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
-import SignupFormView from "../Components/Account/signupFormView";
+import UserSignupView from "../Components/Account/userSignupView";
 import Footer from "../Components/Layout/footer";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
-import { ActionCreators as SignupFormContent } from "../Redux/Actions/getSignupFormContentAction";
+import { ActionCreators as SignupFormContent } from "../Redux/Actions/getUserSignupContentAction";
 
 export default function SignupPage() 
 {
@@ -15,13 +15,13 @@ export default function SignupPage()
     
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const signupForm = useSelector((state: IApplicationState) => state.getSignupFormContent);
+    const signupForm = useSelector((state: IApplicationState) => state.getUserSignupContent);
 
     const getContent = React.useCallback(() =>
     {
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
-        dispatch(SignupFormContent.getSignupFormContent());
+        dispatch(SignupFormContent.getUserSignupContent());
     }, [ dispatch ]);
 
     React.useEffect(() => getContent(), [ getContent ]);
@@ -30,7 +30,7 @@ export default function SignupPage()
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <SignupFormView content={signupForm?.content} isLoading={signupForm?.isLoading} />
+                <UserSignupView content={signupForm?.content} isLoading={signupForm?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>

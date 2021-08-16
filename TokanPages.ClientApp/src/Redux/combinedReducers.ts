@@ -20,9 +20,9 @@ import GetHeaderContentReducer from "./Reducers/getHeaderContentReducer";
 import GetNavigationContentReducer from "./Reducers/getNavigationContentReducer";
 import GetNewsletterContentReducer from "./Reducers/getNewsletterContentReducer";
 import GetWrongPagePromptContentReducer from "./Reducers/getWrongPagePromptContentReducer";
-import GetResetFormContentReducer from "./Reducers/getResetFormContentReducer";
-import GetSigninFormContentReducer from "./Reducers/getSigninFormContentReducer";
-import GetSignupFormContentReducer from "./Reducers/getSignupFormContentReducer";
+import GetResetPasswordContentReducer from "./Reducers/getResetPasswordContentReducer";
+import GetUserSigninContentReducer from "./Reducers/getUserSigninContentReducer";
+import GetUserSignupContentReducer from "./Reducers/getUserSignupContentReducer";
 import GetTestimonialsContentReducer from "./Reducers/getTestimonialsContentReducer";
 import GetUnsubscribeContentReducer from "./Reducers/getUnsubscribeContentReducer";
 import GetUpdateSubscriberContentReducer from "./Reducers/getUpdateSubscriberContentReducer";
@@ -51,9 +51,9 @@ export const combinedReducers =
     getNavigationContent: GetNavigationContentReducer,
     getNewsletterContent: GetNewsletterContentReducer,
     getWrongPagePromptContent: GetWrongPagePromptContentReducer,
-    getResetFormContent: GetResetFormContentReducer,
-    getSigninFormContent: GetSigninFormContentReducer,
-    getSignupFormContent: GetSignupFormContentReducer,
+    getResetPasswordContent: GetResetPasswordContentReducer,
+    getUserSigninContent: GetUserSigninContentReducer,
+    getUserSignupContent: GetUserSignupContentReducer,
     getTestimonialsContent: GetTestimonialsContentReducer,
     getUnsubscribeContent: GetUnsubscribeContentReducer,
     getUpdateSubscriberContent: GetUpdateSubscriberContentReducer

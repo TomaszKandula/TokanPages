@@ -21,9 +21,9 @@ import { GetHeaderContentDefault } from "./Defaults/getHeaderContentDefault";
 import { GetNavigationContentDefault } from "./Defaults/getNavigationContentDefault";
 import { GetNewsletterContentDefault } from "./Defaults/getNewsletterContentDefault";
 import { GetWrongPagePromptContentDefault } from "./Defaults/getWrongPagePromptContentDefault";
-import { GetResetFormContentDefault } from "./Defaults/getResetFormContentDefault";
-import { GetSigninFormContentDefault } from "./Defaults/getSigninFormContentDefault";
-import { GetSignupFormContentDefault } from "./Defaults/getSignupFormContentDefault";
+import { GetResetPasswordContentDefault } from "./Defaults/getResetPasswordContentDefault";
+import { GetUserSigninContentDefault } from "./Defaults/getUserSigninContentDefault";
+import { GetUserSignupContentDefault } from "./Defaults/getUserSignupContentDefault";
 import { GetTestimonialsContentDefault } from "./Defaults/getTestimonialsContentDefault";
 import { GetUnsubscribeContentDefault } from "./Defaults/getUnsubscribeContentDefault";
 import { GetUpdateSubscriberContentDefault } from "./Defaults/getUpdateSubscriberContentDefault";
@@ -52,9 +52,9 @@ export const combinedDefaults: IApplicationState =
     getNavigationContent: GetNavigationContentDefault,
     getNewsletterContent: GetNewsletterContentDefault,
     getWrongPagePromptContent: GetWrongPagePromptContentDefault,
-    getResetFormContent: GetResetFormContentDefault,
-    getSigninFormContent: GetSigninFormContentDefault,
-    getSignupFormContent: GetSignupFormContentDefault,
+    getResetPasswordContent: GetResetPasswordContentDefault,
+    getUserSigninContent: GetUserSigninContentDefault,
+    getUserSignupContent: GetUserSignupContentDefault,
     getTestimonialsContent: GetTestimonialsContentDefault,
     getUnsubscribeContent: GetUnsubscribeContentDefault,
     getUpdateSubscriberContent: GetUpdateSubscriberContentDefault

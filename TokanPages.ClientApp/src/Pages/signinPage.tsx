@@ -2,12 +2,12 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
-import SigninForm from "../Components/Account/signinForm";
+import UserSignin from "../Components/Account/userSignin";
 import Footer from "../Components/Layout/footer";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
-import { ActionCreators as SigninFormContent } from "../Redux/Actions/getSigninFormContentAction";
+import { ActionCreators as SigninFormContent } from "../Redux/Actions/getUserSigninContentAction";
 
 export default function SigninPage() 
 {  
@@ -15,13 +15,13 @@ export default function SigninPage()
     
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const signinForm = useSelector((state: IApplicationState) => state.getSigninFormContent);
+    const signinForm = useSelector((state: IApplicationState) => state.getUserSigninContent);
 
     const getContent = React.useCallback(() =>
     {
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
-        dispatch(SigninFormContent.getSigninFormContent());
+        dispatch(SigninFormContent.getUserSigninContent());
     }, [ dispatch ]);
 
     React.useEffect(() => getContent(), [ getContent ]);
@@ -30,7 +30,7 @@ export default function SigninPage()
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <SigninForm content={signinForm?.content} isLoading={signinForm?.isLoading} />
+                <UserSignin content={signinForm?.content} isLoading={signinForm?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>

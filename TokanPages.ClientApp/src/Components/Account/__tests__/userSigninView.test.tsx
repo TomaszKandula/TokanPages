@@ -3,7 +3,7 @@ import React from "react";
 import * as Redux from "react-redux";
 import * as Router from "react-router";
 import { shallow } from "enzyme";
-import SigninForm from "../signinForm";
+import UserSignin from "../userSignin";
 import { combinedDefaults } from "../../../Redux/combinedDefaults";
 
 jest.mock("react-router", () => 
@@ -24,7 +24,7 @@ describe("Test account component: SigninForm.", () =>
 
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
     const useSelectorMock = jest.spyOn(Redux, "useSelector");
-    const wrapper = shallow(<div><SigninForm content={testContent} isLoading={false}/></div>);
+    const wrapper = shallow(<div><UserSignin content={testContent} isLoading={false}/></div>);
 
     beforeEach(() => 
     {

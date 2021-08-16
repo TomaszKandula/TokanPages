@@ -1,4 +1,4 @@
-export interface IResetFormContentDto
+export interface IResetPasswordContentDto
 {
     content: 
     {

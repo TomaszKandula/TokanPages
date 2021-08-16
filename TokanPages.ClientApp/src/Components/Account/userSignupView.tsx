@@ -11,10 +11,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IGetSignupFormContent } from "../../Redux/States/getSignupFormContentState";
-import signupFormStyle from "./Styles/signupFormStyle";
+import { IGetUserSignupContent } from "../../Redux/States/getUserSignupContentState";
+import signupFormStyle from "./Styles/userSignupStyle";
 
-export default function SignupFormView(props: IGetSignupFormContent) 
+export default function SignupFormView(props: IGetUserSignupContent) 
 {
     const classes = signupFormStyle();
     return (

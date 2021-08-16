@@ -8,10 +8,10 @@ import TextField from "@material-ui/core/TextField";
 import { Card, CardContent } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IGetResetFormContent } from "../../Redux/States/getResetFormContentState";
-import resetFormStyle from "./Styles/resetFormStyle";
+import { IGetResetPasswordContent } from "../../Redux/States/getResetPasswordContentState";
+import resetFormStyle from "./Styles/resetPasswordStyle";
 
-export default function ResetFormView(props: IGetResetFormContent) 
+export default function ResetPasswordView(props: IGetResetPasswordContent) 
 {
     const classes = resetFormStyle();
     return (

@@ -20,9 +20,9 @@ import { IGetHeaderContent } from "./States/getHeaderContentState";
 import { IGetNavigationContent } from "./States/getNavigationContentState";
 import { IGetNewsletterContent } from "./States/getNewsletterContentState";
 import { IGetWrongPagePromptContent } from "./States/getWrongPagePromptContentState";
-import { IGetResetFormContent } from "./States/getResetFormContentState";
-import { IGetSigninFormContent } from "./States/getSigninFormContentState";
-import { IGetSignupFormContent } from "./States/getSignupFormContentState";
+import { IGetResetPasswordContent } from "./States/getResetPasswordContentState";
+import { IGetUserSigninContent } from "./States/getUserSigninContentState";
+import { IGetUserSignupContent } from "./States/getUserSignupContentState";
 import { IGetTestimonialsContent } from "./States/getTestimonialsContentState";
 import { IGetUnsubscribeContent } from "./States/getUnsubscribeContentState";
 import { IGetUpdateSubscriberContent } from "./States/getUpdateSubscriberContentState";
@@ -51,9 +51,9 @@ export interface IApplicationState
     getNavigationContent: IGetNavigationContent,
     getNewsletterContent: IGetNewsletterContent,
     getWrongPagePromptContent: IGetWrongPagePromptContent,
-    getResetFormContent: IGetResetFormContent,
-    getSigninFormContent: IGetSigninFormContent,
-    getSignupFormContent: IGetSignupFormContent,
+    getResetPasswordContent: IGetResetPasswordContent,
+    getUserSigninContent: IGetUserSigninContent,
+    getUserSignupContent: IGetUserSignupContent,
     getTestimonialsContent: IGetTestimonialsContent,
     getUnsubscribeContent: IGetUnsubscribeContent,
     getUpdateSubscriberContent: IGetUpdateSubscriberContent

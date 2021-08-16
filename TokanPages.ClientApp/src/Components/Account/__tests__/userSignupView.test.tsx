@@ -1,7 +1,7 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import SignupFormView from "../signupFormView";
+import SignupFormView from "../userSignupView";
 import { combinedDefaults } from "../../../Redux/combinedDefaults";
 
 describe("Test account component: SignupForm.", () => 

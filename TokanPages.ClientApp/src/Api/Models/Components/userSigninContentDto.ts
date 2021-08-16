@@ -1,4 +1,4 @@
-export interface ISigninFormContentDto
+export interface IUserSigninContentDto
 {
     content: 
     {
