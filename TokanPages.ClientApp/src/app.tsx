@@ -7,6 +7,7 @@ import StoryPage from "./Pages/storyPage";
 import ArticlesPage from "./Pages/articlesPage";
 import TermsPage from "./Pages/termsPage";
 import PolicyPage from "./Pages/policyPage";
+import ContactPage from "./Pages/contactPage";
 import SigninPage from "./Pages/signinPage";
 import SignupPage from "./Pages/signupPage";
 import SignoutPage from "./Pages/signoutPage";
@@ -37,6 +38,7 @@ export default function App()
                   <Route exact path="/articles"><ArticlesPage /></Route>
                   <Route exact path="/terms"><TermsPage /></Route>
                   <Route exact path="/policy"><PolicyPage /></Route>
+                  <Route exact path="/contact"><ContactPage /></Route>
                   <Route exact path="/signin"><SigninPage /></Route>
                   <Route exact path="/signup"><SignupPage /></Route>
                   <Route exact path="/signout"><SignoutPage /></Route>
