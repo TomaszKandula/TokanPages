@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
-import UserSignupView from "../Components/Account/userSignupView";
+import UserSignup from "../Components/Account/userSignup";
 import Footer from "../Components/Layout/footer";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
@@ -30,7 +30,7 @@ export default function SignupPage()
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <UserSignupView content={signupForm?.content} isLoading={signupForm?.isLoading} />
+                <UserSignup content={signupForm?.content} isLoading={signupForm?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>
