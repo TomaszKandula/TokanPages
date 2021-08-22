@@ -5,9 +5,9 @@ import Navigation from "../Components/Layout/navigation";
 import UserSignin from "../Components/Account/userSignin";
 import Footer from "../Components/Layout/footer";
 import { IApplicationState } from "../Redux/applicationState";
-import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
-import { ActionCreators as SigninFormContent } from "../Redux/Actions/getUserSigninContentAction";
+import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
+import { ActionCreators as SigninFormContent } from "../Redux/Actions/Content/getUserSigninContentAction";
 
 export default function SigninPage() 
 {  

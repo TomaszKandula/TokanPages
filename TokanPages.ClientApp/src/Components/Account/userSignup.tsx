@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
-import { IGetUserSignupContent } from "../../Redux/States/getUserSignupContentState";
+import { IGetUserSignupContent } from "../../Redux/States/Content/getUserSignupContentState";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
 import UserSignupView from "./userSignupView";

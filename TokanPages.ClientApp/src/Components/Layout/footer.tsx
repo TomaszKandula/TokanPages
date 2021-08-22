@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IGetFooterContent } from "../../Redux/States/getFooterContentState";
+import { IGetFooterContent } from "../../Redux/States/Content/getFooterContentState";
 import { CustomColours } from "../../Theme/customColours";
 import validate from "validate.js";
 import FooterView from "./footerView";

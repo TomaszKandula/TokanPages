@@ -2,7 +2,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { IApplicationState } from "Redux/applicationState";
 import Validate from "validate.js";
-import { IGetNavigationContent } from "../../Redux/States/getNavigationContentState";
+import { IGetNavigationContent } from "../../Redux/States/Content/getNavigationContentState";
 import NavigationView from "./navigationView";
 import { 
     ANONYMOUS_NAME, 

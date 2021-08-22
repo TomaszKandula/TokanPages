@@ -6,9 +6,9 @@ import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
 import Unsubscribe from "../Components/Unsubscribe/unsubscribe";
 import { IApplicationState } from "../Redux/applicationState";
-import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
-import { ActionCreators as UnsubscribeContent } from "../Redux/Actions/getUnsubscribeContentAction";
+import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
+import { ActionCreators as UnsubscribeContent } from "../Redux/Actions/Content/getUnsubscribeContentAction";
 
 const useQuery = () => 
 {

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { ActionCreators } from "../../Redux/Actions/selectArticleAction";
+import { ActionCreators } from "../../Redux/Actions/Articles/selectArticleAction";
 import { ARTICLE_PATH, IMAGE_URL } from "../../Shared/constants";
 import ArticleCardView from "./articleCardView";
 

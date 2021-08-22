@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators as SubscriberAction } from "../../Redux/Actions/removeSubscriberAction";
+import { ActionCreators as SubscriberAction } from "../../Redux/Actions/Subscribers/removeSubscriberAction";
 import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
-import { IGetUnsubscribeContent } from "../../Redux/States/getUnsubscribeContentState";
+import { IGetUnsubscribeContent } from "../../Redux/States/Content/getUnsubscribeContentState";
 import { OperationStatus } from "../../Shared/enums";
 import { NewsletterSuccess } from "../../Shared/textWrappers";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";

@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Validate from "validate.js";
-import { ActionCreators as MessageAction } from "../../Redux/Actions/sendMessageAction";
+import { ActionCreators as MessageAction } from "../../Redux/Actions/Mailer/sendMessageAction";
 import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
 import { IApplicationState } from "../../Redux/applicationState";
-import { IGetContactFormContent } from "../../Redux/States/getContactFormContentState";
+import { IGetContactFormContent } from "../../Redux/States/Content/getContactFormContentState";
 import { OperationStatus } from "../../Shared/enums";
 import { IValidateContactForm, ValidateContactForm } from "../../Shared/validate";
 import { MessageOutSuccess, MessageOutWarning } from "../../Shared/textWrappers";

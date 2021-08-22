@@ -5,9 +5,9 @@ import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
 import ContactForm from "../Components/Contact/contactForm";
-import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
-import { ActionCreators as ContactFormContent } from "../Redux/Actions/getContactFormContentAction";
+import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
+import { ActionCreators as ContactFormContent } from "../Redux/Actions/Content/getContactFormContentAction";
 import { IApplicationState } from "../Redux/applicationState";
 
 const ContactPage = () => 

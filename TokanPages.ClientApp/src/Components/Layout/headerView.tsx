@@ -5,7 +5,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
-import { IGetHeaderContent } from "../../Redux/States/getHeaderContentState";
+import { IGetHeaderContent } from "../../Redux/States/Content/getHeaderContentState";
 import { IMAGES_PATH } from "../../Shared/constants";
 import headerStyle from "./Styles/headerStyle";
 import { renderImage } from "../../Shared/Components/CustomImage/customImage";

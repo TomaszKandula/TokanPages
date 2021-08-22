@@ -5,9 +5,9 @@ import Navigation from "../Components/Layout/navigation";
 import UserSignup from "../Components/Account/userSignup";
 import Footer from "../Components/Layout/footer";
 import { IApplicationState } from "../Redux/applicationState";
-import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
-import { ActionCreators as SignupFormContent } from "../Redux/Actions/getUserSignupContentAction";
+import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
+import { ActionCreators as SignupFormContent } from "../Redux/Actions/Content/getUserSignupContentAction";
 
 export default function SignupPage() 
 {
