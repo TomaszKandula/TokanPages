@@ -11,7 +11,7 @@ import {
     DEFAULT_NAME 
 } from "../../Shared/constants";
 
-export default function Navigation(props: IGetNavigationContent) 
+const Navigation = (props: IGetNavigationContent): JSX.Element => 
 {
     const user = useSelector((state: IApplicationState) => state.updateUserData);
 
@@ -46,3 +46,5 @@ export default function Navigation(props: IGetNavigationContent)
         menu: props.content?.menu
     }}/>);
 }
+
+export default Navigation;

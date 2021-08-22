@@ -34,7 +34,7 @@ interface IProperties
     password: string;
 }
 
-const UserSignupView = (props: IBinding) =>
+const UserSignupView = (props: IBinding): JSX.Element =>
 {
     const classes = userSignupStyle();
     return (

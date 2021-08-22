@@ -17,7 +17,7 @@ const formDefaultValues: IValidateSignupForm =
     password: ""
 };
 
-const UserSignup = (props: IGetUserSignupContent) => 
+const UserSignup = (props: IGetUserSignupContent): JSX.Element => 
 {
     const dispatch = useDispatch();
     const [form, setForm] = React.useState(formDefaultValues);   

@@ -6,7 +6,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { IItem } from "../Models/item";
 import { GetIcon } from "../../GetIcon/getIcon";
 
-export function RenderItem(props: IItem): JSX.Element
+export const RenderItem = (props: IItem): JSX.Element =>
 {
     if (props.link === undefined) 
         return(<div>Cannot render. Missing 'link' property.</div>);

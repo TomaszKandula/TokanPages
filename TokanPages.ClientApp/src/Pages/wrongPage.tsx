@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => (
     }
 }));
 
-export default function WrongPage()
+const WrongPage = (): JSX.Element =>
 {
     const classes = useStyles();   
     const dispatch = useDispatch();
@@ -44,3 +44,5 @@ export default function WrongPage()
       </section> 
     );
 }
+
+export default WrongPage;

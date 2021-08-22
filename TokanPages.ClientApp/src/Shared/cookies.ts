@@ -1,6 +1,6 @@
 import Validate from "validate.js";
 
-interface ISetCookie 
+export interface ISetCookie 
 {
     cookieName: string, 
     value: string, 
@@ -10,7 +10,7 @@ interface ISetCookie
     exact?: string    
 }
 
-function SetCookie(props: ISetCookie): string
+export const SetCookie = (props: ISetCookie): string =>
 {
     let newCookie = "";
     let date = new Date();
@@ -36,12 +36,12 @@ function SetCookie(props: ISetCookie): string
     return newCookie;
 }
 
-interface IGetCookie
+export interface IGetCookie
 {
     cookieName: string
 }
 
-function GetCookie(props: IGetCookie): string
+export const GetCookie = (props: IGetCookie): string =>
 {
     let cookieName = `${props.cookieName}=`;
     let cookieArray = document.cookie.split(";");
@@ -63,19 +63,12 @@ function GetCookie(props: IGetCookie): string
     return "";
 }
 
-interface IEraseCookie
+export interface IEraseCookie
 {
     cookieName: string
 }
 
-function EraseCookie(props: IEraseCookie)
+export const EraseCookie = (props: IEraseCookie) =>
 {
     document.cookie = `${props.cookieName}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
-}
-
-export 
-{
-    SetCookie,
-    GetCookie,
-    EraseCookie
 }

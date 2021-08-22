@@ -8,7 +8,7 @@ import { IGetUserSignoutContent } from "../../Redux/States/Content/getUserSignou
 import { USER_TOKEN } from "../../Shared/constants";
 import UserSignoutView from "./userSignoutView";
 
-const UserSignout = (props: IGetUserSignoutContent) => 
+const UserSignout = (props: IGetUserSignoutContent): JSX.Element => 
 {
     const dispatch = useDispatch();
     const data = useSelector((state: IApplicationState) => state.updateUserData);

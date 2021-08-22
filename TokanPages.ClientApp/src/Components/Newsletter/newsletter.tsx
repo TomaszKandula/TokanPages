@@ -14,7 +14,7 @@ import { NEWSLETTER, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { IAddSubscriberDto } from "../../Api/Models";
 import NewsletterView from "./newsletterView";
 
-export default function Newsletter(props: IGetNewsletterContent)
+const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
 {
     const dispatch = useDispatch();
     const addSubscriberState = useSelector((state: IApplicationState) => state.addSubscriber);
@@ -88,3 +88,5 @@ export default function Newsletter(props: IGetNewsletterContent)
         buttonText: props.content?.button
     }}/>);
 }
+
+export default Newsletter;

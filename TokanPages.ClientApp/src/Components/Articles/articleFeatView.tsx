@@ -13,7 +13,7 @@ import { IGetArticleFeatContent } from "../../Redux/States/Content/getArticleFea
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
 import articleFeatStyle from "./Styles/articleFeatStyle";
 
-export default function ArticleFeatView(props: IGetArticleFeatContent) 
+const ArticleFeatView = (props: IGetArticleFeatContent): JSX.Element =>
 {
     const classes = articleFeatStyle();
     return (
@@ -96,3 +96,5 @@ export default function ArticleFeatView(props: IGetArticleFeatContent)
         </section>
     );
 }
+
+export default ArticleFeatView;

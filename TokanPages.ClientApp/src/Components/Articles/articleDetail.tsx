@@ -19,7 +19,7 @@ export interface IArticleDetail
     id: string;
 }
 
-export default function ArticleDetail(props: IArticleDetail) 
+const ArticleDetail = (props: IArticleDetail): JSX.Element =>
 {
     const dispatch = useDispatch();
     const selection = useSelector((state: IApplicationState) => state.selectArticle);
@@ -140,3 +140,5 @@ export default function ArticleDetail(props: IArticleDetail)
         authorShortBio: selection.article.author.shortBio
     }}/>);
 }
+
+export default ArticleDetail;

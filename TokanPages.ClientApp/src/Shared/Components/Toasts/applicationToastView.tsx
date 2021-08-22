@@ -21,7 +21,7 @@ interface IProperties
     toastMessage: string;
 }
 
-export default function ApplicationToastView(props: IBinding) 
+const ApplicationToastView = (props: IBinding): JSX.Element => 
 {
     const classes = applicationToastViewStyle();
     return (
@@ -41,3 +41,5 @@ export default function ApplicationToastView(props: IBinding)
         </div>
     );
 }
+
+export default ApplicationToastView;

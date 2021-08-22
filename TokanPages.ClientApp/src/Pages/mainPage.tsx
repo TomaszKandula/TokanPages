@@ -23,7 +23,7 @@ import { ActionCreators as ContactFormContent } from "../Redux/Actions/Content/g
 import { ActionCreators as CookiesContent } from "../Redux/Actions/Content/getCookiesPromptContentAction";
 import AOS from "aos";
 
-export default function MainPage() 
+const MainPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
 
@@ -70,3 +70,5 @@ export default function MainPage()
         </>
     );
 }
+
+export default MainPage;

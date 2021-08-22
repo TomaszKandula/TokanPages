@@ -4,7 +4,7 @@ import { SetCookie, GetCookie } from "../../Shared/cookies";
 import Validate from "validate.js";
 import CookiesView from "./cookiesView";
 
-export default function Cookies(props: IGetCookiesPromptContent) 
+const Cookies = (props: IGetCookiesPromptContent): JSX.Element => 
 {
     const [modalClose, setModalClose] = React.useState(false);
     const currentCookie = GetCookie({cookieName: "cookieConsent"});
@@ -31,3 +31,5 @@ export default function Cookies(props: IGetCookiesPromptContent)
         buttonText: props.content?.button
     }}/>);
 }
+
+export default Cookies;

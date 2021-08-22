@@ -9,7 +9,7 @@ import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/ge
 import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
 import { ActionCreators as ResetFormContent } from "../Redux/Actions/Content/getResetPasswordContentAction";
 
-export default function ResetPage() 
+const ResetPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     
@@ -36,3 +36,5 @@ export default function ResetPage()
         </>
     );
 }
+
+export default ResetPage;

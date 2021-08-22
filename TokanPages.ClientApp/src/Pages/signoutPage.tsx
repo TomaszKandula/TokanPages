@@ -9,7 +9,7 @@ import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/ge
 import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
 import { ActionCreators as SignoutContent } from "../Redux/Actions/Content/getUserSignoutContentAction";
 
-export default function SignoutPage() 
+const SignoutPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     
@@ -36,3 +36,5 @@ export default function SignoutPage()
         </>
     );
 }
+
+export default SignoutPage;

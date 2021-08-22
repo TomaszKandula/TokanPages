@@ -21,7 +21,7 @@ import ApplicationDialogBox from "./Shared/Components/ApplicationDialogBox/appli
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-export default function App() 
+const App = (): JSX.Element => 
 {
     React.useEffect(() => 
     {
@@ -60,3 +60,5 @@ export default function App()
         </>
     );
 }
+
+export default App;

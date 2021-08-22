@@ -6,7 +6,7 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators, TRequestContent, REQUEST_POLICY, REQUEST_STORY, REQUEST_TERMS } from "../../Redux/Actions/Content/getStaticContentAction";
 import StaticContentView from "./staticContentView";
 
-export default function StaticContent(props: { content: TRequestContent }) 
+const StaticContent = (props: { content: TRequestContent }): JSX.Element => 
 {
     const dispatch = useDispatch();
     const [ data, setData ] = React.useState<ITextObject>({ items: [] });
@@ -54,3 +54,5 @@ export default function StaticContent(props: { content: TRequestContent })
         isLoading: Validate.isEmpty(data)
     }}/>);
 }
+
+export default StaticContent;

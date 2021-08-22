@@ -11,7 +11,7 @@ import { IGetFeaturedContent } from "../../Redux/States/Content/getFeaturedConte
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
 import featuredStyle from "./featuredStyle";
 
-export default function FeaturedView(props: IGetFeaturedContent) 
+const FeaturedView = (props: IGetFeaturedContent): JSX.Element => 
 {
     const classes = featuredStyle();
     return (
@@ -83,3 +83,5 @@ export default function FeaturedView(props: IGetFeaturedContent)
         </section>
     );
 }
+
+export default FeaturedView;

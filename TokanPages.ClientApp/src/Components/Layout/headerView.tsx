@@ -10,7 +10,7 @@ import { IMAGES_PATH } from "../../Shared/constants";
 import headerStyle from "./Styles/headerStyle";
 import { renderImage } from "../../Shared/Components/CustomImage/customImage";
 
-export default function HeaderView(props: IGetHeaderContent) 
+const HeaderView = (props: IGetHeaderContent): JSX.Element => 
 {
     const classes = headerStyle();
     return (
@@ -46,3 +46,5 @@ export default function HeaderView(props: IGetHeaderContent)
         </section>
 	);
 }
+
+export default HeaderView;

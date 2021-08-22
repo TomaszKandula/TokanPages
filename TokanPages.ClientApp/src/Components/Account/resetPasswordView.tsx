@@ -11,7 +11,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetResetPasswordContent } from "../../Redux/States/Content/getResetPasswordContentState";
 import resetPasswordStyle from "./Styles/resetPasswordStyle";
 
-export default function ResetPasswordView(props: IGetResetPasswordContent) 
+const ResetPasswordView = (props: IGetResetPasswordContent): JSX.Element =>
 {
     const classes = resetPasswordStyle();
     return (
@@ -48,3 +48,5 @@ export default function ResetPasswordView(props: IGetResetPasswordContent)
         </section>
     );
 }
+
+export default ResetPasswordView;

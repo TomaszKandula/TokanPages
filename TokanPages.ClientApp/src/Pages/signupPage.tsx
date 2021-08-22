@@ -9,7 +9,7 @@ import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/ge
 import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
 import { ActionCreators as SignupFormContent } from "../Redux/Actions/Content/getUserSignupContentAction";
 
-export default function SignupPage() 
+const SignupPage = (): JSX.Element =>
 {
     const dispatch = useDispatch();
     
@@ -36,3 +36,5 @@ export default function SignupPage()
         </>
     );
 }
+
+export default SignupPage;

@@ -7,7 +7,7 @@ import { ISubitem } from "../Models/subitem";
 import { GetIcon } from "../../GetIcon/getIcon";
 import subitemsStyle from "../Styles/subitemsStyle";
 
-export function RenderSubitem(props: ISubitem): JSX.Element
+export const RenderSubitem = (props: ISubitem): JSX.Element =>
 {
     if (props.link === undefined) 
         return(<div>Cannot render. Missing 'link' property.</div>);

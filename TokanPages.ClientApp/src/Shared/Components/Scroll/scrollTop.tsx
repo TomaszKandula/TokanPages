@@ -8,7 +8,7 @@ export interface IScrollTop
     children: React.ReactElement;
 }
 
-export default function ScrollTop(props: IScrollTop) 
+const ScrollTop = (props: IScrollTop): JSX.Element =>
 {
     const { children } = props;
     const classes = scrollTopStyle();
@@ -37,3 +37,5 @@ export default function ScrollTop(props: IScrollTop)
         </Zoom>
     );
 }
+
+export default ScrollTop;

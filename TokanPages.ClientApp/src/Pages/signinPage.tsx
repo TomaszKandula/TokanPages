@@ -9,7 +9,7 @@ import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/ge
 import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
 import { ActionCreators as SigninFormContent } from "../Redux/Actions/Content/getUserSigninContentAction";
 
-export default function SigninPage() 
+const SigninPage = (): JSX.Element => 
 {  
     const dispatch = useDispatch();
     
@@ -36,3 +36,5 @@ export default function SigninPage()
         </>
     );
 }
+
+export default SigninPage;

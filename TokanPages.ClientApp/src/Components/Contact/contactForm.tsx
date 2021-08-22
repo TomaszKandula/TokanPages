@@ -24,7 +24,7 @@ const formDefaultValues: IValidateContactForm =
     terms: false
 };
 
-export default function ContactForm(props: IGetContactFormContent)
+const ContactForm = (props: IGetContactFormContent): JSX.Element =>
 {
     const dispatch = useDispatch();
     const sendMessageState = useSelector((state: IApplicationState) => state.sendMessage);
@@ -126,3 +126,5 @@ export default function ContactForm(props: IGetContactFormContent)
         buttonText: props.content?.button
     }}/>);
 }
+
+export default ContactForm;

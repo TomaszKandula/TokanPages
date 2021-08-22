@@ -9,7 +9,7 @@ import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
 
-export default function TermsPage() 
+const TermsPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     
@@ -34,3 +34,5 @@ export default function TermsPage()
         </>
     );
 }
+
+export default TermsPage;

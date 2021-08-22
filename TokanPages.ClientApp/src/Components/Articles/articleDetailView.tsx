@@ -38,7 +38,7 @@ interface IProperties
     authorShortBio: string;
 }
 
-export default function ArticleDetailView(props: IBinding) 
+const ArticleDetailView = (props: IBinding): JSX.Element =>
 {
     const classes = articleDetailStyle();
     return (
@@ -151,3 +151,5 @@ export default function ArticleDetailView(props: IBinding)
         </section>
     );
 }
+
+export default ArticleDetailView;

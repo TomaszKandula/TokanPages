@@ -19,7 +19,7 @@ interface IGetUpdateSubscriberContentExtended extends IGetUpdateSubscriberConten
     id: string;
 }
 
-export default function UpdateSubscriber(props: IGetUpdateSubscriberContentExtended)
+const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Element =>
 {
     const dispatch = useDispatch();
     const updateSubscriberState = useSelector((state: IApplicationState) => state.updateSubscriber);
@@ -103,3 +103,5 @@ export default function UpdateSubscriber(props: IGetUpdateSubscriberContentExten
         buttonText: props.content?.button
     }}/>);
 }
+
+export default UpdateSubscriber;

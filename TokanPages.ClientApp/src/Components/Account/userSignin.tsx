@@ -20,7 +20,7 @@ const formDefaultValues: IValidateSigninForm =
     password: ""
 };
 
-export default function UserSignin(props: IGetUserSigninContent) 
+const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
 {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -101,3 +101,5 @@ export default function UserSignin(props: IGetUserSigninContent)
         }}/>
     );
 }
+
+export default UserSignin;

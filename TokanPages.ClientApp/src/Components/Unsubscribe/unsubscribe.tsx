@@ -16,7 +16,7 @@ interface IGetUnsubscribeContentExtended extends IGetUnsubscribeContent
     id: string;
 }
 
-export default function Unsubscribe(props: IGetUnsubscribeContentExtended)
+const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element =>
 {
     const contentPre = 
     { 
@@ -98,3 +98,5 @@ export default function Unsubscribe(props: IGetUnsubscribeContentExtended)
         buttonText: content.button
     }}/>);
 }
+
+export default Unsubscribe;

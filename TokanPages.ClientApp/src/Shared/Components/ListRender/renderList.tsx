@@ -16,7 +16,7 @@ interface IProperties
     items: IItem[];
 }
 
-export function RenderList(props: IBinding)
+export const RenderList = (props: IBinding): JSX.Element =>
 {
     if (props.bind.items === undefined)
     {

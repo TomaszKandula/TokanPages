@@ -12,7 +12,7 @@ import ReactHtmlParser from "react-html-parser";
 import { IGetFeaturesContent } from "../../Redux/States/Content/getFeaturesContentState";
 import featuresStyle from "./featuresStyle";
 
-export default function FeaturesView(props: IGetFeaturesContent)
+const FeaturesView = (props: IGetFeaturesContent): JSX.Element =>
 {
     const classes = featuresStyle();
     return (
@@ -80,3 +80,5 @@ export default function FeaturesView(props: IGetFeaturesContent)
         </section>
     );
 }
+
+export default FeaturesView;

@@ -6,7 +6,7 @@ import { combinedReducers } from "./combinedReducers";
 import { combinedDefaults } from "./combinedDefaults";
 import { IApplicationState } from "./applicationState";
 
-export default function configureStore(history: History, initialState?: IApplicationState) 
+const configureStore = (history: History, initialState?: IApplicationState): any =>
 {
     const initialAppState = initialState === undefined 
         ? combinedDefaults 
@@ -38,3 +38,5 @@ export default function configureStore(history: History, initialState?: IApplica
         compose(applyMiddleware(...middleware), ...enhancers)
     );
 }
+
+export default configureStore;

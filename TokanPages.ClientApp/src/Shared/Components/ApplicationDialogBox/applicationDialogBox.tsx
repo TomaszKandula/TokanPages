@@ -19,7 +19,7 @@ const DefaultDialogState: IDefaultDialogState =
     icon: IconType.info
 }
 
-export default function ApplicationDialogBox() 
+const ApplicationDialogBox = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     const [dialogState, setDialogState] = React.useState(DefaultDialogState);
@@ -68,3 +68,5 @@ export default function ApplicationDialogBox()
         onButtonClickHandler: onClickHandler
     }}/>);
 }
+
+export default ApplicationDialogBox;
