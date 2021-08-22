@@ -5,11 +5,11 @@ exports[`Test account component: SignupForm. Renders correctly '<UserSignup />' 
   bind={
     Object {
       "button": "",
-      "buttonHandler": null,
+      "buttonHandler": [Function],
       "caption": "",
       "email": "",
       "firstName": "",
-      "formHandler": null,
+      "formHandler": [Function],
       "isLoading": false,
       "label": "",
       "lastName": "",
