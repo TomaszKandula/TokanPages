@@ -6,7 +6,7 @@ import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogA
 import { IApplicationState } from "../../Redux/applicationState";
 import { IGetContactFormContent } from "../../Redux/States/getContactFormContentState";
 import { OperationStatus } from "../../Shared/enums";
-import { ValidateContactForm } from "../../Shared/validate";
+import { IValidateContactForm, ValidateContactForm } from "../../Shared/validate";
 import { MessageOutSuccess, MessageOutWarning } from "../../Shared/textWrappers";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
@@ -14,17 +14,7 @@ import { CONTACT_FORM, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { ISendMessageDto } from "../../Api/Models";
 import ContactFormView from "./contactFormView";
 
-interface IFormDefaultValues 
-{
-    firstName: string;
-    lastName: string;
-    email: string;
-    subject: string;
-    message: string; 
-    terms: boolean;
-}
-
-const formDefaultValues: IFormDefaultValues =
+const formDefaultValues: IValidateContactForm =
 {
     firstName: "", 
     lastName: "", 
@@ -102,12 +92,12 @@ export default function ContactForm(props: IGetContactFormContent)
     {
         let validationResult = ValidateContactForm( 
         { 
-            FirstName: form.firstName,
-            LastName: form.lastName, 
-            Email: form.email, 
-            Subject: form.subject, 
-            Message: form.message, 
-            Terms: form.terms 
+            firstName: form.firstName,
+            lastName: form.lastName, 
+            email: form.email, 
+            subject: form.subject, 
+            message: form.message, 
+            terms: form.terms 
         });
 
         if (!Validate.isDefined(validationResult))

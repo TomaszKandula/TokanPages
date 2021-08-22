@@ -9,18 +9,12 @@ import { ActionCreators } from "../../Redux/Actions/signinUserAction";
 import { IAuthenticateUserDto } from "../../Api/Models";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { MessageOutWarning } from "../../Shared/textWrappers";
-import { ValidateSigninForm } from "../../Shared/validate";
+import { IValidateSigninForm, ValidateSigninForm } from "../../Shared/validate";
 import { OperationStatus } from "../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE, SIGNIN_FORM } from "../../Shared/constants";
 import UserSigninView from "./userSigninView";
 
-interface IFormDefaultValues 
-{
-    email: string;
-    password: string;
-}
-
-const formDefaultValues: IFormDefaultValues =
+const formDefaultValues: IValidateSigninForm =
 {
     email: "",
     password: ""

@@ -7,17 +7,9 @@ import UserSignupView from "./userSignupView";
 import Validate from "validate.js";
 import { MessageOutWarning } from "../../Shared/textWrappers";
 import { SIGNUP_FORM } from "../../Shared/constants";
-import { ValidateSignupForm } from "../../Shared/validate";
+import { IValidateSignupForm, ValidateSignupForm } from "../../Shared/validate";
 
-interface IFormDefaultValues 
-{
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-}
-
-const formDefaultValues: IFormDefaultValues =
+const formDefaultValues: IValidateSignupForm =
 {
     firstName: "",
     lastName: "",

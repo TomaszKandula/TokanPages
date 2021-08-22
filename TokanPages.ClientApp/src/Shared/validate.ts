@@ -1,6 +1,6 @@
 import Validate from "validate.js";
 
-function ValidateEmail(email: string): any
+export const ValidateEmail = (email: string): any =>
 {
     let constraints = 
     {
@@ -16,17 +16,17 @@ function ValidateEmail(email: string): any
     return Validate({ Email: email }, constraints);
 }
 
-interface IValidateContactForm
+export interface IValidateContactForm
 {
-    FirstName: string;
-    LastName: string;
-    Email: string;
-    Subject: string;
-    Message: string;
-    Terms: boolean;
+    firstName: string;
+    lastName: string;
+    email: string;
+    subject: string;
+    message: string;
+    terms: boolean;
 }
 
-function ValidateContactForm(props: IValidateContactForm): any
+export const ValidateContactForm = (props: IValidateContactForm): any =>
 {
     let constraints = 
     {
@@ -86,23 +86,23 @@ function ValidateContactForm(props: IValidateContactForm): any
 
     return Validate(
     {
-        FirstName: props.FirstName,
-        LastName:  props.LastName,
-        Email:     props.Email,
-        Subject:   props.Subject,
-        Message:   props.Message,
-        Terms:     props.Terms
+        FirstName: props.firstName,
+        LastName:  props.lastName,
+        Email:     props.email,
+        Subject:   props.subject,
+        Message:   props.message,
+        Terms:     props.terms
     }, 
     constraints);
 }
 
-interface IValidateSigninForm
+export interface IValidateSigninForm
 {
     email: string;
     password: string;
 }
 
-function ValidateSigninForm(props: IValidateSigninForm): any
+export const ValidateSigninForm = (props: IValidateSigninForm): any =>
 {
     let constraints =  
     {
@@ -132,7 +132,7 @@ function ValidateSigninForm(props: IValidateSigninForm): any
     constraints);
 }
 
-interface IValidateSignupForm
+export interface IValidateSignupForm
 {
     firstName: string;
     lastName: string;
@@ -140,7 +140,7 @@ interface IValidateSignupForm
     password: string; 
 }
 
-function ValidateSignupForm(props: IValidateSignupForm): any 
+export const ValidateSignupForm = (props: IValidateSignupForm): any =>
 {
     let constraints =  
     {
@@ -188,12 +188,4 @@ function ValidateSignupForm(props: IValidateSignupForm): any
         password: props.password
     }, 
     constraints);
-}
-
-export 
-{
-    ValidateEmail, 
-    ValidateContactForm,
-    ValidateSigninForm,
-    ValidateSignupForm
 }
