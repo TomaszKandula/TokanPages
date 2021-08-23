@@ -17,8 +17,8 @@ const UserSignout = (props: IGetUserSignoutContent): JSX.Element =>
     const callSignout = React.useCallback(() => 
     {
         if (!progress) return;
-        dispatch(UserAction.clearSignedUser());
-        dispatch(DataAction.clearUserData());
+        dispatch(UserAction.clear());
+        dispatch(DataAction.clear());
     }, [ progress, dispatch ]);
 
     const dataCheckout = React.useCallback(() => 

@@ -17,11 +17,11 @@ export type TKnownActions = IApiSigninUser | IApiSigninUserClear | IApiSigninUse
 
 export const ActionCreators = 
 {
-    clearSignedUser: (): AppThunkAction<TKnownActions> => (dispatch) =>
+    clear: (): AppThunkAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: SIGNIN_USER_CLEAR });
     },
-    signinUser: (payload: IAuthenticateUserDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    signin: (payload: IAuthenticateUserDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: SIGNIN_USER });
 
