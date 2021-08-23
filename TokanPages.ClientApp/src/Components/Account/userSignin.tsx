@@ -31,7 +31,8 @@ const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
     const [progress, setProgress] = React.useState(false);
 
     const showWarning = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(WarningMessage(SIGNIN_FORM, text))), [ dispatch ]);
-    const signinUser = React.useCallback((payload: IAuthenticateUserDto) => dispatch(ActionCreators.signinUser(payload)), [ dispatch ]);
+    const signinUser = React.useCallback((payload: IAuthenticateUserDto) => dispatch(ActionCreators.signin(payload)), [ dispatch ]);
+    const clearUser = React.useCallback(() => dispatch(ActionCreators.clear()), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 
     {
@@ -45,7 +46,10 @@ const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
         {
             case OperationStatus.inProgress:
                 if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+                {
+                    clearUser();
                     clearForm();
+                }
             break;
 
             case OperationStatus.notStarted:
@@ -58,12 +62,13 @@ const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
             break;
 
             case OperationStatus.hasFinished:
+                clearUser();
                 clearForm();
                 history.push("/");
             break;
         }
 
-    }, [ progress, clearForm, form.email, form.password, history, raiseErrorState, signinUser, signinUserState ]);
+    }, [ progress, clearForm, clearUser, form, history, raiseErrorState, signinUser, signinUserState ]);
 
     React.useEffect(() => callSigninUser(), [ callSigninUser ]);
 
