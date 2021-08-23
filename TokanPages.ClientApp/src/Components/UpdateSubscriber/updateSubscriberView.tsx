@@ -29,7 +29,7 @@ interface IProperties
     buttonText: string;
 }
 
-export default function UpdateSubscriberView(props: IBinding)
+const UpdateSubscriberView = (props: IBinding): JSX.Element =>
 {
     const classes = updateSubscriberStyle();
     return (
@@ -67,3 +67,5 @@ export default function UpdateSubscriberView(props: IBinding)
         </section>
     );
 }
+
+export default UpdateSubscriberView;

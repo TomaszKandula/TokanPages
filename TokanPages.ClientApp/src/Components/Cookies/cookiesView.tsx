@@ -23,7 +23,7 @@ interface IProperties
     buttonText: string;
 }
 
-export default function CookiesView(props: IBinding) 
+const CookiesView = (props: IBinding): JSX.Element => 
 {
     const classes = cookiesStyle();
     const renderConsent = (): JSX.Element => 
@@ -53,3 +53,5 @@ export default function CookiesView(props: IBinding)
 
     return (<>{props.bind?.shouldShow ? renderConsent() : null}</>);
 }
+
+export default CookiesView;

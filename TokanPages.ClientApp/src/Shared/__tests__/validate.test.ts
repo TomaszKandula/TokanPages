@@ -16,41 +16,27 @@ describe("Verify validation methods.", () =>
 
     it("Should validate Contact Form fields.", () => 
     {
-        const FirstName: string = "Ester";
-        const LastName:  string = "Exposito";
-        const Email:     string = "ester.exposito@gmail.com";
-        const Subject:   string = "Vaccation in Spain";
-        const Message:   string = "Let's got to Barcelona...";
-        const Terms:     boolean = true;
-
         expect(ValidateContactForm( 
         { 
-            FirstName: FirstName,
-            LastName:  LastName, 
-            Email:     Email, 
-            Subject:   Subject, 
-            Message:   Message, 
-            Terms:     Terms 
+            firstName: "Ester",
+            lastName: "Exposito", 
+            email: "ester.exposito@gmail.com", 
+            subject: "Vaccation in Spain", 
+            message: "Let's got to Barcelona...", 
+            terms: true 
         })).toBeUndefined();
     });
 
     it("Should not validate Contact Form fields.", () => 
     {
-        const FirstName: string = "";
-        const LastName:  string = "Deacon";
-        const Email:     string = "john@gmail";
-        const Subject:   string = "Bass guitar lessons";
-        const Message:   string = "";
-        const Terms:     boolean = false;
-
         expect(ValidateContactForm( 
         { 
-            FirstName: FirstName,
-            LastName:  LastName, 
-            Email:     Email, 
-            Subject:   Subject, 
-            Message:   Message, 
-            Terms:     Terms 
+            firstName: "",
+            lastName: "Deacon", 
+            email: "john@gmail", 
+            subject: "Bass guitar lessons", 
+            message: "", 
+            terms: false 
         })).toBeDefined();
     });
 });

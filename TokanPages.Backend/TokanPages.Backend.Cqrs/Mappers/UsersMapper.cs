@@ -7,54 +7,39 @@
     [ExcludeFromCodeCoverage]
     public static class UsersMapper
     {
-        public static AuthenticateUserCommand MapToAuthenticateUserCommand(AuthenticateUserDto AModel)
+        public static AuthenticateUserCommand MapToAuthenticateUserCommand(AuthenticateUserDto AModel) => new ()
         {
-            return new()
-            {
-                EmailAddress = AModel.EmailAddress,
-                Password = AModel.Password
-            };
-        }
+            EmailAddress = AModel.EmailAddress,
+            Password = AModel.Password
+        };
 
-        public static ReAuthenticateUserCommand MapToReAuthenticateUserCommand(ReAuthenticateUserDto AModel)
+        public static ReAuthenticateUserCommand MapToReAuthenticateUserCommand(ReAuthenticateUserDto AModel) => new ()
         {
-            return new()
-            {
-                Id = AModel.Id
-            };
-        }
+            Id = AModel.Id
+        };
 
-        public static AddUserCommand MapToAddUserCommand(AddUserDto AModel) 
-        {
-            return new () 
-            { 
-                EmailAddress = AModel.EmailAddress,
-                UserAlias = AModel.UserAlias,
-                FirstName = AModel.FirstName,
-                LastName = AModel.LastName,
-                Password = AModel.Password
-            };
-        }
+        public static AddUserCommand MapToAddUserCommand(AddUserDto AModel) => new () 
+        { 
+            EmailAddress = AModel.EmailAddress,
+            UserAlias = AModel.UserAlias,
+            FirstName = AModel.FirstName,
+            LastName = AModel.LastName,
+            Password = AModel.Password
+        };
 
-        public static UpdateUserCommand MapToUpdateUserCommand(UpdateUserDto AModel)
+        public static UpdateUserCommand MapToUpdateUserCommand(UpdateUserDto AModel) => new ()
         {
-            return new ()
-            {
-                Id = AModel.Id,
-                UserAlias = AModel.UserAlias,
-                IsActivated = AModel.IsActivated,
-                FirstName = AModel.FirstName,
-                LastName = AModel.LastName,
-                EmailAddress = AModel.EmailAddress,
-            };
-        }
+            Id = AModel.Id,
+            UserAlias = AModel.UserAlias,
+            IsActivated = AModel.IsActivated,
+            FirstName = AModel.FirstName,
+            LastName = AModel.LastName,
+            EmailAddress = AModel.EmailAddress,
+        };
 
-        public static RemoveUserCommand MapToRemoveUserCommand(RemoveUserDto AModel)
+        public static RemoveUserCommand MapToRemoveUserCommand(RemoveUserDto AModel) => new ()
         {
-            return new ()
-            {
-                Id = AModel.Id
-            };
-        }
+            Id = AModel.Id
+        };
     }
 }

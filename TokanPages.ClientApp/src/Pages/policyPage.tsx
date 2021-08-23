@@ -4,12 +4,12 @@ import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
 import StaticContent from "../Components/Content/staticContent";
 import Footer from "../Components/Layout/footer";
-import { REQUEST_POLICY } from "../Redux/Actions/getStaticContentAction";
+import { REQUEST_POLICY } from "../Redux/Actions/Content/getStaticContentAction";
 import { IApplicationState } from "../Redux/applicationState";
-import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
+import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
 
-export default function PolicyPage() 
+const PolicyPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     
@@ -34,3 +34,5 @@ export default function PolicyPage()
         </>
     );
 }
+
+export default PolicyPage;

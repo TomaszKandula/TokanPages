@@ -27,7 +27,7 @@ interface IProperties
     onButtonClickHandler: any;
 }
 
-export default function ApplicationDialogBoxView(props: IBinding) 
+const ApplicationDialogBoxView = (props: IBinding): JSX.Element =>
 {
     const classes = ApplicationDialogBoxStyle();
     const RenderIcon = (): JSX.Element => 
@@ -64,3 +64,5 @@ export default function ApplicationDialogBoxView(props: IBinding)
         </Dialog>
     );
 }
+
+export default ApplicationDialogBoxView;

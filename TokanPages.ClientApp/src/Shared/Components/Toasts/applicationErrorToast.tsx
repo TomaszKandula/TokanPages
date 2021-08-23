@@ -24,7 +24,7 @@ const TransitionLeft = (props: Omit<SlideProps, "direction">) =>
     return <Slide {...props} direction="left" />;
 }
 
-export default function ApplicationErrorToast() 
+const ApplicationErrorToast = (): JSX.Element => 
 {
     const vertical = "top";
     const horizontal = "right";
@@ -82,3 +82,5 @@ export default function ApplicationErrorToast()
         toastMessage: toastState.errorMessage
     }}/>);
 }
+
+export default ApplicationErrorToast;

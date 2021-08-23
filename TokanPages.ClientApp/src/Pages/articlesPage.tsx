@@ -7,15 +7,15 @@ import Footer from "../Components/Layout/footer";
 import ArticleList from "../Components/Articles/articleList";
 import ArticleDetail from "../Components/Articles/articleDetail";
 import { IApplicationState } from "../Redux/applicationState";
-import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
+import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
 
 const useQuery = () => 
 {
     return new URLSearchParams(useLocation().search);
 }
 
-export default function ArticlesPage() 
+const ArticlesPage = (): JSX.Element => 
 {
     const queryParam = useQuery();
     const dispatch = useDispatch();
@@ -42,3 +42,5 @@ export default function ArticlesPage()
         </>
     );
 }
+
+export default ArticlesPage;

@@ -7,36 +7,27 @@
     [ExcludeFromCodeCoverage]
     public static class MailerMapper
     {
-        public static VerifyEmailAddressCommand MapToVerifyEmailAddressCommand(VerifyEmailAddressDto AModel) 
-        {
-            return new () 
-            { 
-                Email = AModel.Email
-            };
-        }
+        public static VerifyEmailAddressCommand MapToVerifyEmailAddressCommand(VerifyEmailAddressDto AModel) => new () 
+        { 
+            Email = AModel.Email
+        };
 
-        public static SendMessageCommand MapToSendMessageCommand(SendMessageDto AModel) 
+        public static SendMessageCommand MapToSendMessageCommand(SendMessageDto AModel) => new ()
         {
-            return new ()
-            {
-                UserEmail = AModel.UserEmail,
-                FirstName = AModel.FirstName,
-                LastName = AModel.LastName,
-                EmailFrom = AModel.EmailFrom,
-                EmailTos = AModel.EmailTos,
-                Subject = AModel.Subject,
-                Message = AModel.Message
-            };
-        }
+            UserEmail = AModel.UserEmail,
+            FirstName = AModel.FirstName,
+            LastName = AModel.LastName,
+            EmailFrom = AModel.EmailFrom,
+            EmailTos = AModel.EmailTos,
+            Subject = AModel.Subject,
+            Message = AModel.Message
+        };
 
-        public static SendNewsletterCommand MapToSendNewsletterCommand(SendNewsletterDto AModel) 
-        {
-            return new () 
-            { 
-                SubscriberInfo = AModel.SubscriberInfo,
-                Subject = AModel.Subject,
-                Message = AModel.Message
-            };
-        }
+        public static SendNewsletterCommand MapToSendNewsletterCommand(SendNewsletterDto AModel) => new () 
+        { 
+            SubscriberInfo = AModel.SubscriberInfo,
+            Subject = AModel.Subject,
+            Message = AModel.Message
+        };
     }
 }

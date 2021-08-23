@@ -31,7 +31,7 @@ interface IProperties
     menu: { image: string, items: IItem[] };
 }
 
-export default function NavigationView(props: IBinding) 
+const NavigationView = (props: IBinding): JSX.Element => 
 {
     const classes = navigationStyle();
     return (
@@ -76,3 +76,5 @@ export default function NavigationView(props: IBinding)
         </HideOnScroll>
     );
 }
+
+export default NavigationView;

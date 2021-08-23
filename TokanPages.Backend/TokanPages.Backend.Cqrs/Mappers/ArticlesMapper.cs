@@ -7,61 +7,43 @@
     [ExcludeFromCodeCoverage]
     public static class ArticlesMapper
     {
-        public static AddArticleCommand MapToAddArticleCommand(AddArticleDto AModel)
+        public static AddArticleCommand MapToAddArticleCommand(AddArticleDto AModel) => new ()
         {
-            return new ()
-            {
-                Title = AModel.Title,
-                Description = AModel.Description,
-                TextToUpload = AModel.TextToUpload,
-                ImageToUpload = AModel.ImageToUpload
-            };
-        }
+            Title = AModel.Title,
+            Description = AModel.Description,
+            TextToUpload = AModel.TextToUpload,
+            ImageToUpload = AModel.ImageToUpload
+        };
         
-        public static UpdateArticleContentCommand MapToUpdateArticleCommand(UpdateArticleContentDto AModel)
+        public static UpdateArticleContentCommand MapToUpdateArticleCommand(UpdateArticleContentDto AModel) => new ()
         {
-            return new ()
-            {
-                Id = AModel.Id,
-                Title = AModel.Title,
-                Description = AModel.Description,
-                TextToUpload = AModel.TextToUpload,
-                ImageToUpload = AModel.ImageToUpload
-            };
-        }
+            Id = AModel.Id,
+            Title = AModel.Title,
+            Description = AModel.Description,
+            TextToUpload = AModel.TextToUpload,
+            ImageToUpload = AModel.ImageToUpload
+        };
 
-        public static UpdateArticleCountCommand MapToUpdateArticleCommand(UpdateArticleCountDto AModel)
+        public static UpdateArticleCountCommand MapToUpdateArticleCommand(UpdateArticleCountDto AModel) => new ()
         {
-            return new ()
-            {
-                Id = AModel.Id
-            };
-        }
+            Id = AModel.Id
+        };
         
-        public static UpdateArticleLikesCommand MapToUpdateArticleCommand(UpdateArticleLikesDto AModel)
+        public static UpdateArticleLikesCommand MapToUpdateArticleCommand(UpdateArticleLikesDto AModel) => new () 
         {
-            return new ()
-            {
-                Id = AModel.Id,
-                AddToLikes = AModel.AddToLikes
-            };
-        }
+            Id = AModel.Id,
+            AddToLikes = AModel.AddToLikes 
+        };
 
-        public static UpdateArticleVisibilityCommand MapToUpdateArticleCommand(UpdateArticleVisibilityDto AModel)
+        public static UpdateArticleVisibilityCommand MapToUpdateArticleCommand(UpdateArticleVisibilityDto AModel) => new ()
         {
-            return new ()
-            {
-                Id = AModel.Id,
-                IsPublished = AModel.IsPublished
-            };
-        }
+            Id = AModel.Id, 
+            IsPublished = AModel.IsPublished
+        };
         
-        public static RemoveArticleCommand MapToRemoveArticleCommand(RemoveArticleDto AModel) 
-        {
-            return new () 
-            { 
-                Id = AModel.Id
-            };
-        }
+        public static RemoveArticleCommand MapToRemoveArticleCommand(RemoveArticleDto AModel) => new () 
+        { 
+            Id = AModel.Id
+        };
     }
 }

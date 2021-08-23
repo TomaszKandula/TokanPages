@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IGetFooterContent } from "../../Redux/States/getFooterContentState";
+import { IGetFooterContent } from "../../Redux/States/Content/getFooterContentState";
 import { CustomColours } from "../../Theme/customColours";
 import validate from "validate.js";
 import FooterView from "./footerView";
@@ -9,7 +9,7 @@ interface IGetFooterContentExtended extends IGetFooterContent
     backgroundColor?: string;
 }
 
-export default function Footer(props: IGetFooterContentExtended) 
+const Footer = (props: IGetFooterContentExtended): JSX.Element => 
 {
     const padingBottomLarge: number = 6;
     const paddingBottomSmall: number = 1;
@@ -41,3 +41,5 @@ export default function Footer(props: IGetFooterContentExtended)
         icons: props.content?.icons
     }}/>);
 }
+
+export default Footer;

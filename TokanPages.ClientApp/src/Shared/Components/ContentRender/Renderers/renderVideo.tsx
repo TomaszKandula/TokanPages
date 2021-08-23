@@ -4,7 +4,7 @@ import { ITextItem } from "../Models/textModel";
 import renderVideoStyle from "../Styles/renderVideoStyle";
 import Validate from "validate.js";
 
-export function RenderVideo(props: ITextItem)
+export const RenderVideo = (props: ITextItem): JSX.Element =>
 {
     const classes = renderVideoStyle();
     const data: string = props.value as string; 

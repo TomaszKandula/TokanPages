@@ -2,7 +2,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { IApplicationState } from "Redux/applicationState";
 import Validate from "validate.js";
-import { IGetNavigationContent } from "../../Redux/States/getNavigationContentState";
+import { IGetNavigationContent } from "../../Redux/States/Content/getNavigationContentState";
 import NavigationView from "./navigationView";
 import { 
     ANONYMOUS_NAME, 
@@ -11,7 +11,7 @@ import {
     DEFAULT_NAME 
 } from "../../Shared/constants";
 
-export default function Navigation(props: IGetNavigationContent) 
+const Navigation = (props: IGetNavigationContent): JSX.Element => 
 {
     const user = useSelector((state: IApplicationState) => state.updateUserData);
 
@@ -46,3 +46,5 @@ export default function Navigation(props: IGetNavigationContent)
         menu: props.content?.menu
     }}/>);
 }
+
+export default Navigation;

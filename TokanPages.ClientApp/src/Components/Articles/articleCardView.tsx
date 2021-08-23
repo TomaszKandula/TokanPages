@@ -21,7 +21,7 @@ interface IProperties
     buttonText: string;
 }
 
-export default function ArticleCardView(props: IBinding)
+const ArticleCardView = (props: IBinding): JSX.Element =>
 {
     const classes = articleCardStyle();
     return(
@@ -49,3 +49,5 @@ export default function ArticleCardView(props: IBinding)
         </div>
     );
 }
+
+export default ArticleCardView;

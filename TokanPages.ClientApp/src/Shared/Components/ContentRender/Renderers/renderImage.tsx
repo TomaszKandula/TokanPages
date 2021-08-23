@@ -4,7 +4,7 @@ import { ITextItem } from "../Models/textModel";
 import renderImageStyle from "../Styles/renderImageStyle";
 import Validate from "validate.js";
 
-export function RenderImage(props: ITextItem)
+export const RenderImage = (props: ITextItem): JSX.Element =>
 {
     const classes = renderImageStyle();
     const data: string = props.value as string; 

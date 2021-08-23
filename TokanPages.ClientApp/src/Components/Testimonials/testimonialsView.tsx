@@ -4,14 +4,14 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Carousel } from "react-responsive-carousel";
-import { IGetTestimonialsContent } from "../../Redux/States/getTestimonialsContentState";
+import { IGetTestimonialsContent } from "../../Redux/States/Content/getTestimonialsContentState";
 import { renderImage } from "../../Shared/Components/CustomImage/customImage";
 import { TESTIMONIALS_PATH } from "../../Shared/constants";
 import testimonialsStyle from "./testimonialsStyle";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../../Theme/CustomCss/overrideCarousel.css";
 
-export default function TestimonialsView(props: IGetTestimonialsContent)
+const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
 {
     const classes = testimonialsStyle();
     return(
@@ -79,3 +79,5 @@ export default function TestimonialsView(props: IGetTestimonialsContent)
         </section>
     );
 }
+
+export default TestimonialsView;

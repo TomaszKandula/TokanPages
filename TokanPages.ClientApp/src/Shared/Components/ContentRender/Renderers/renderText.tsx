@@ -5,7 +5,7 @@ import { ITextItem } from "../Models/textModel";
 import renderTextStyle from "../Styles/renderTextStyle";
 import "../../../../Theme/CustomCss/customDropCap.css";
 
-export function RenderText(props: ITextItem)
+export const RenderText = (props: ITextItem): JSX.Element =>
 {
     const classes = renderTextStyle();
     const data: string = props.value as string; 

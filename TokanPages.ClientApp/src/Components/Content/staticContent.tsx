@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Validate from "validate.js";
 import { ITextObject } from "../../Shared/Components/ContentRender/Models/textModel";
 import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators, TRequestContent, REQUEST_POLICY, REQUEST_STORY, REQUEST_TERMS } from "../../Redux/Actions/getStaticContentAction";
+import { ActionCreators, TRequestContent, REQUEST_POLICY, REQUEST_STORY, REQUEST_TERMS } from "../../Redux/Actions/Content/getStaticContentAction";
 import StaticContentView from "./staticContentView";
 
-export default function StaticContent(props: { content: TRequestContent }) 
+const StaticContent = (props: { content: TRequestContent }): JSX.Element => 
 {
     const dispatch = useDispatch();
     const [ data, setData ] = React.useState<ITextObject>({ items: [] });
@@ -54,3 +54,5 @@ export default function StaticContent(props: { content: TRequestContent })
         isLoading: Validate.isEmpty(data)
     }}/>);
 }
+
+export default StaticContent;

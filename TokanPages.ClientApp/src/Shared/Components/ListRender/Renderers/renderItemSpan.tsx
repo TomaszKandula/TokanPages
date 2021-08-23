@@ -9,7 +9,7 @@ import { GetIcon } from "../../GetIcon/getIcon";
 import { IItem } from "../Models/item";
 import { RenderSubitem } from "./renderSubitem";
 
-export function RenderItemSpan(props: IItem): JSX.Element
+export const RenderItemSpan = (props: IItem): JSX.Element =>
 {
     const [state, setState] = React.useState(false);
     const onClickEvent = () => setState(!state);
