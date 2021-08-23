@@ -5,6 +5,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
+    using Shared;
     using Database;
     using Core.Exceptions;
     using Shared.Resources;
@@ -41,13 +42,14 @@
             var LNewUser = new Domain.Entities.Users
             { 
                 EmailAddress = ARequest.EmailAddress,
-                IsActivated = true,
+                IsActivated = false,
                 UserAlias = ARequest.UserAlias,
                 FirstName = ARequest.FirstName,
                 LastName = ARequest.LastName,
                 Registered = FDateTimeService.Now,
                 LastUpdated = null,
                 LastLogged = null,
+                AvatarName = Constants.Defaults.AVATAR_NAME,
                 CryptedPassword = FCipheringService.GetHashedPassword(ARequest.Password, FCipheringService.GenerateSalt(CIPHER_LOG_ROUNDS)) 
             };
 
