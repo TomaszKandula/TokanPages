@@ -68,7 +68,7 @@ const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
             break;
         }
 
-    }, [ progress, clearForm, form.email, form.password, history, raiseErrorState, signinUser, signinUserState ]);
+    }, [ progress, clearForm, clearUser, form, history, raiseErrorState, signinUser, signinUserState ]);
 
     React.useEffect(() => callSigninUser(), [ callSigninUser ]);
 
