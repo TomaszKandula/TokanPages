@@ -12,6 +12,14 @@
     public static class Constants
     {
         /// <summary>
+        /// Shared default values.
+        /// </summary>
+        public static class Defaults
+        {
+            public const string AVATAR_NAME = "avatar-default-288.jpeg";
+        }
+
+        /// <summary>
         /// Generic cookie names to be used for processing HTTP responses/requests. 
         /// </summary>
         public static class CookieNames
