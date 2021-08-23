@@ -19,7 +19,8 @@ const formDefaultValues: IValidateSignupForm =
     firstName: "",
     lastName: "",
     email: "",
-    password: ""
+    password: "",
+    terms: false
 };
 
 const UserSignup = (props: IGetUserSignupContent): JSX.Element => 
@@ -75,7 +76,17 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
 
     React.useEffect(() => callSignupUser(), [ callSignupUser ]);
 
-    const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});
+    const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    {
+        if (event.currentTarget.name !== "terms")
+        {
+            setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});    
+            return;
+        }
+
+        setForm({ ...form, [event.currentTarget.name]: event.currentTarget.checked});
+    };
+    
     const buttonHandler = () => 
     {
         let validationResult = ValidateSignupForm( 
@@ -83,7 +94,8 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
             firstName: form.firstName,
             lastName: form.lastName,
             email: form.email, 
-            password: form.password
+            password: form.password,
+            terms: form.terms
         });
 
         if (!Validate.isDefined(validationResult))
@@ -108,7 +120,8 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
         firstName: form.firstName,
         lastName: form.lastName,
         email: form.email,
-        password: form.password
+        password: form.password,
+        terms: form.terms
     }}/>);
 }
 

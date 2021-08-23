@@ -32,6 +32,7 @@ interface IProperties
     lastName: string;
     email: string;
     password: string;
+    terms?: boolean;
 }
 
 const UserSignupView = (props: IBinding): JSX.Element =>
@@ -77,7 +78,7 @@ const UserSignupView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                     <Grid item xs={12}>
                                         <FormControlLabel 
-                                            control={<Checkbox name="terms" value="1" color="primary" />} 
+                                            control={<Checkbox onChange={props.bind?.formHandler} checked={props.bind?.terms} name="terms" id="terms" color="primary" />} 
                                             label={props.bind?.label} 
                                         />
                                     </Grid>
