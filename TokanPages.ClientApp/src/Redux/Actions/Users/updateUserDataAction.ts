@@ -9,11 +9,11 @@ export type TKnownActions = IClearUserData | IUpdateUserData;
 
 export const ActionCreators = 
 {
-    clearUserData: (): AppThunkAction<TKnownActions> => (dispatch) => 
+    clear: (): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: CLEAR_USERDATA });
     },
-    updateUserData: (userData: IAuthenticateUserResultDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    update: (userData: IAuthenticateUserResultDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: UPDATE_USERDATA, payload: userData});
     }
