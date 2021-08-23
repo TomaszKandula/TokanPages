@@ -8,7 +8,7 @@ import { RenderVideo } from "./Renderers/renderVideo";
 import { RenderSeparator } from "./Renderers/renderSeparator";
 import { Languages } from "../../languageList";
 
-export function RenderContent(textObject: ITextObject | undefined)
+export const RenderContent = (textObject: ITextObject | undefined): JSX.Element => 
 {
     if (textObject === undefined)
     {

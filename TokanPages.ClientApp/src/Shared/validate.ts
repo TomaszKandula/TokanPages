@@ -1,10 +1,10 @@
 import Validate from "validate.js";
 
-function ValidateEmail(email: string): any
+export const ValidateEmail = (email: string): any =>
 {
     let constraints = 
     {
-        Email: 
+        email: 
         {
             email: 
             {
@@ -13,24 +13,24 @@ function ValidateEmail(email: string): any
         }
     };
 
-    return Validate({ Email: email }, constraints);
+    return Validate({ email: email }, constraints);
 }
 
-interface IValidateContactForm
+export interface IValidateContactForm
 {
-    FirstName: string;
-    LastName: string;
-    Email: string;
-    Subject: string;
-    Message: string;
-    Terms: boolean;
+    firstName: string;
+    lastName: string;
+    email: string;
+    subject: string;
+    message: string;
+    terms: boolean;
 }
 
-function ValidateContactForm(props: IValidateContactForm): any
+export const ValidateContactForm = (props: IValidateContactForm): any =>
 {
     let constraints = 
     {
-        FirstName:
+        firstName:
         {
             presence: true,
             length: 
@@ -39,7 +39,7 @@ function ValidateContactForm(props: IValidateContactForm): any
                 message: "must be at least 2 characters"
             }
         },
-        LastName:
+        lastName:
         {
             presence: true,
             length: 
@@ -48,14 +48,14 @@ function ValidateContactForm(props: IValidateContactForm): any
                 message: "must be at least 2 characters"
             }
         },
-        Email: 
+        email: 
         {
             email: 
             {
                 message: "does not look like a valid email"
             }
         },
-        Subject:
+        subject:
         {
             presence: true,
             length: 
@@ -64,7 +64,7 @@ function ValidateContactForm(props: IValidateContactForm): any
                 message: "must be at least 6 characters"
             }
         },
-        Message:
+        message:
         {
             presence: true,
             length: 
@@ -73,7 +73,7 @@ function ValidateContactForm(props: IValidateContactForm): any
                 message: "must be at least 20 characters"
             }
         },
-        Terms:
+        terms:
         {
             presence: true,
             inclusion:
@@ -86,23 +86,23 @@ function ValidateContactForm(props: IValidateContactForm): any
 
     return Validate(
     {
-        FirstName: props.FirstName,
-        LastName:  props.LastName,
-        Email:     props.Email,
-        Subject:   props.Subject,
-        Message:   props.Message,
-        Terms:     props.Terms
+        firstName: props.firstName,
+        lastName:  props.lastName,
+        email:     props.email,
+        subject:   props.subject,
+        message:   props.message,
+        terms:     props.terms
     }, 
     constraints);
 }
 
-interface IValidateSigninForm
+export interface IValidateSigninForm
 {
     email: string;
     password: string;
 }
 
-function ValidateSigninForm(props: IValidateSigninForm): any
+export const ValidateSigninForm = (props: IValidateSigninForm): any =>
 {
     let constraints =  
     {
@@ -132,9 +132,71 @@ function ValidateSigninForm(props: IValidateSigninForm): any
     constraints);
 }
 
-export 
+export interface IValidateSignupForm
 {
-    ValidateEmail, 
-    ValidateContactForm,
-    ValidateSigninForm
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    terms: boolean;
+}
+
+export const ValidateSignupForm = (props: IValidateSignupForm): any =>
+{
+    let constraints =  
+    {
+        firstName:
+        {
+            presence: true,
+            length: 
+            {
+                minimum: 2,
+                message: "must be at least 2 characters"
+            }
+        },
+        lastName:
+        {
+            presence: true,
+            length: 
+            {
+                minimum: 2,
+                message: "must be at least 2 characters"
+            }
+        },
+        email: 
+        {
+            email: 
+            {
+                message: "does not look like a valid email"
+            }
+        },
+        password:
+        {
+            presence: true,
+            length: 
+            {
+                minimum: 8,
+                message: "must be at least 8 characters"
+            }
+        },
+        terms:
+        {
+            presence: true,
+            inclusion:
+            {
+                within: [true],
+                message: "^You must accept terms of use and privacy policy"
+            }
+        }
+    }
+
+    return Validate(
+    {
+        firstName: props.firstName,
+        lastName: props.lastName,
+        email: props.email,
+        password: props.password,
+        terms: props.terms
+    }, 
+    constraints);
 }

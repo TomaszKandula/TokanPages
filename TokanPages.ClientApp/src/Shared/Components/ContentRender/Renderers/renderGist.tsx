@@ -11,7 +11,7 @@ import { GetData } from "../../../../Api/request";
 import renderGistStyle from "../Styles/renderGistStyle";
 import validate from "validate.js";
 
-export function RenderGist(props: ITextItem)
+export const RenderGist = (props: ITextItem): JSX.Element =>
 {
     const classes = renderGistStyle();
     const dispatch = useDispatch();

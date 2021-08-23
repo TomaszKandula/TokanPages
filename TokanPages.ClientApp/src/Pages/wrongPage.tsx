@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Box, Button, Container, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { IApplicationState } from "../Redux/applicationState";
-import { ActionCreators as WrongPagePromptContent } from "../Redux/Actions/getWrongPagePromptContentAction";
+import { ActionCreators as WrongPagePromptContent } from "../Redux/Actions/Content/getWrongPagePromptContentAction";
 
 const useStyles = makeStyles(() => (
 {
@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => (
     }
 }));
 
-export default function WrongPage()
+const WrongPage = (): JSX.Element =>
 {
     const classes = useStyles();   
     const dispatch = useDispatch();
@@ -44,3 +44,5 @@ export default function WrongPage()
       </section> 
     );
 }
+
+export default WrongPage;

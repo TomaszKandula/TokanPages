@@ -5,11 +5,11 @@ import Navigation from "../Components/Layout/navigation";
 import UserSignout from "../Components/Account/userSignout";
 import Footer from "../Components/Layout/footer";
 import { IApplicationState } from "../Redux/applicationState";
-import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
-import { ActionCreators as SignoutContent } from "../Redux/Actions/getUserSignoutContentAction";
+import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
+import { ActionCreators as SignoutContent } from "../Redux/Actions/Content/getUserSignoutContentAction";
 
-export default function SignoutPage() 
+const SignoutPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     
@@ -36,3 +36,5 @@ export default function SignoutPage()
         </>
     );
 }
+
+export default SignoutPage;

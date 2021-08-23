@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { ActionCreators } from "../../Redux/Actions/selectArticleAction";
+import { ActionCreators } from "../../Redux/Actions/Articles/selectArticleAction";
 import { ARTICLE_PATH, IMAGE_URL } from "../../Shared/constants";
 import ArticleCardView from "./articleCardView";
 
@@ -12,7 +12,7 @@ export interface IArticleCard
     id: string;
 }
 
-export default function ArticleCard(props: IArticleCard)
+const ArticleCard = (props: IArticleCard): JSX.Element =>
 {
     const content = { button: "Read" };
     const articleUrl = ARTICLE_PATH.replace("{ID}", props.id);
@@ -36,3 +36,5 @@ export default function ArticleCard(props: IArticleCard)
         buttonText: content.button
     }}/>);
 }
+
+export default ArticleCard;

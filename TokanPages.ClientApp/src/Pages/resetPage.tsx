@@ -5,11 +5,11 @@ import Navigation from "../Components/Layout/navigation";
 import ResetPasswordView from "../Components/Account/resetPasswordView";
 import Footer from "../Components/Layout/footer";
 import { IApplicationState } from "../Redux/applicationState";
-import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
-import { ActionCreators as ResetFormContent } from "../Redux/Actions/getResetPasswordContentAction";
+import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
+import { ActionCreators as ResetFormContent } from "../Redux/Actions/Content/getResetPasswordContentAction";
 
-export default function ResetPage() 
+const ResetPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     
@@ -36,3 +36,5 @@ export default function ResetPage()
         </>
     );
 }
+
+export default ResetPage;

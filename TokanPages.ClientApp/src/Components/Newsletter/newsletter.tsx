@@ -1,20 +1,20 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Validate from "validate.js";
-import { IGetNewsletterContent } from "../../Redux/States/getNewsletterContentState";
+import { IGetNewsletterContent } from "../../Redux/States/Content/getNewsletterContentState";
 import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators as SubscriberAction } from "../../Redux/Actions/addSubscriberAction";
+import { ActionCreators as SubscriberAction } from "../../Redux/Actions/Subscribers/addSubscriberAction";
 import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
 import { ValidateEmail } from "../../Shared/validate";
 import { OperationStatus } from "../../Shared/enums";
-import { NewsletterSuccess, NewsletterWarning } from "../../Shared/textWrappers";
+import { ProduceWarningText } from "../../Shared/textWrappers";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { NEWSLETTER, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
+import { NEWSLETTER, NEWSLETTER_SUCCESS, NEWSLETTER_WARNING, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { IAddSubscriberDto } from "../../Api/Models";
 import NewsletterView from "./newsletterView";
 
-export default function Newsletter(props: IGetNewsletterContent)
+const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
 {
     const dispatch = useDispatch();
     const addSubscriberState = useSelector((state: IApplicationState) => state.addSubscriber);
@@ -51,7 +51,7 @@ export default function Newsletter(props: IGetNewsletterContent)
         
             case OperationStatus.hasFinished: 
                 clearForm();
-                showSuccess(NewsletterSuccess());
+                showSuccess(NEWSLETTER_SUCCESS);
             break;
         }
     }, [ addSubscriber, addSubscriberState, clearForm, progress, form, showSuccess, raiseErrorState ]);
@@ -73,7 +73,7 @@ export default function Newsletter(props: IGetNewsletterContent)
             return;
         }
 
-        showWarning(NewsletterWarning(results));
+        showWarning(ProduceWarningText(results, NEWSLETTER_WARNING));
     };
 
     return (<NewsletterView bind=
@@ -88,3 +88,5 @@ export default function Newsletter(props: IGetNewsletterContent)
         buttonText: props.content?.button
     }}/>);
 }
+
+export default Newsletter;

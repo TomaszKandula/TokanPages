@@ -18,7 +18,7 @@ interface IProperties
     menu: { image: string, items: IItem[] };
 }
 
-export default function MenuView(props: IBinding)
+const MenuView = (props: IBinding): JSX.Element =>
 {
     const classes = menuStyle();
     const image = `${IMAGES_PATH}${props.bind.menu?.image}`;
@@ -35,3 +35,5 @@ export default function MenuView(props: IBinding)
         </Drawer>
     );
 }
+
+export default MenuView;

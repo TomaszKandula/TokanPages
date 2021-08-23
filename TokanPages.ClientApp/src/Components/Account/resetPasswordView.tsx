@@ -8,10 +8,10 @@ import TextField from "@material-ui/core/TextField";
 import { Card, CardContent } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IGetResetPasswordContent } from "../../Redux/States/getResetPasswordContentState";
+import { IGetResetPasswordContent } from "../../Redux/States/Content/getResetPasswordContentState";
 import resetPasswordStyle from "./Styles/resetPasswordStyle";
 
-export default function ResetPasswordView(props: IGetResetPasswordContent) 
+const ResetPasswordView = (props: IGetResetPasswordContent): JSX.Element =>
 {
     const classes = resetPasswordStyle();
     return (
@@ -48,3 +48,5 @@ export default function ResetPasswordView(props: IGetResetPasswordContent)
         </section>
     );
 }
+
+export default ResetPasswordView;

@@ -30,7 +30,7 @@ interface IProperties
     password: string;
 }
 
-export default function UserSigninView(props: IBinding) 
+const UserSigninView = (props: IBinding): JSX.Element =>
 {
     const classes = userSigninStyle();
     return (
@@ -86,3 +86,5 @@ export default function UserSigninView(props: IBinding)
         </section>
     );
 }
+
+export default UserSigninView;

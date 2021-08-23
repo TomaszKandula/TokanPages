@@ -56,6 +56,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             if (!LIsPasswordValid)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), ErrorCodes.INVALID_CREDENTIALS);
 
+            if (!LUser.IsActivated)
+                throw new BusinessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
+            
             var LTokenExpires = FDateTimeService.Now.AddMinutes(FIdentityServer.WebTokenExpiresIn);
             var LUserToken = await FUserServiceProvider.GenerateUserToken(LUser, LTokenExpires, ACancellationToken);
 

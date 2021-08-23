@@ -49,7 +49,7 @@
             LResult[0].UserAlias.Should().Be(LAddUserCommand.UserAlias);
             LResult[0].FirstName.Should().Be(LAddUserCommand.FirstName);
             LResult[0].LastName.Should().Be(LAddUserCommand.LastName);
-            LResult[0].IsActivated.Should().BeTrue();
+            LResult[0].IsActivated.Should().BeFalse();
             LResult[0].LastLogged.Should().BeNull();
             LResult[0].LastUpdated.Should().BeNull();
         }

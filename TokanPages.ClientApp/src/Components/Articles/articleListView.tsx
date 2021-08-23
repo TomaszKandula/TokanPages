@@ -19,7 +19,7 @@ interface IProperties
     articles: IArticleItem[];
 }
 
-export default function ArticleListView(props: IBinding) 
+const ArticleListView = (props: IBinding): JSX.Element => 
 {
     const classes = articleListStyle();
 
@@ -63,3 +63,5 @@ export default function ArticleListView(props: IBinding)
         </section>
     );
 }
+
+export default ArticleListView;

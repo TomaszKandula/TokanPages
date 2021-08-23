@@ -25,7 +25,7 @@ interface IProperty
     iconName: string;
 }
 
-export function GetIcon(props: IProperty): JSX.Element
+export const GetIcon = (props: IProperty): JSX.Element =>
 {
     let renderIcon: JSX.Element;
     switch(props.iconName)

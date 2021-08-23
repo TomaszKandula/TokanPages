@@ -7,11 +7,11 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardHeader from "@material-ui/core/CardHeader";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IGetFeaturedContent } from "../../Redux/States/getFeaturedContentState";
+import { IGetFeaturedContent } from "../../Redux/States/Content/getFeaturedContentState";
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
 import featuredStyle from "./featuredStyle";
 
-export default function FeaturedView(props: IGetFeaturedContent) 
+const FeaturedView = (props: IGetFeaturedContent): JSX.Element => 
 {
     const classes = featuredStyle();
     return (
@@ -83,3 +83,5 @@ export default function FeaturedView(props: IGetFeaturedContent)
         </section>
     );
 }
+
+export default FeaturedView;

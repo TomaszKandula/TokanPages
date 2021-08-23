@@ -1,32 +1,26 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import Validate from "validate.js";
-import { IGetUserSigninContent } from "../../Redux/States/getUserSigninContentState";
+import { IGetUserSigninContent } from "../../Redux/States/Content/getUserSigninContentState";
 import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
 import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators } from "../../Redux/Actions/signinUserAction";
+import { ActionCreators } from "../../Redux/Actions/Users/signinUserAction";
 import { IAuthenticateUserDto } from "../../Api/Models";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { MessageOutWarning } from "../../Shared/textWrappers";
-import { ValidateSigninForm } from "../../Shared/validate";
+import { ProduceWarningText } from "../../Shared/textWrappers";
+import { IValidateSigninForm, ValidateSigninForm } from "../../Shared/validate";
 import { OperationStatus } from "../../Shared/enums";
-import { RECEIVED_ERROR_MESSAGE, SIGNIN_FORM } from "../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE, SIGNIN_FORM, SIGNIN_WARNING } from "../../Shared/constants";
 import UserSigninView from "./userSigninView";
+import Validate from "validate.js";
 
-interface IFormDefaultValues 
-{
-    email: string;
-    password: string;
-}
-
-const formDefaultValues: IFormDefaultValues =
+const formDefaultValues: IValidateSigninForm =
 {
     email: "",
     password: ""
 };
 
-export default function UserSignin(props: IGetUserSigninContent) 
+const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
 {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -88,7 +82,7 @@ export default function UserSignin(props: IGetUserSigninContent)
             return;
         }
 
-        showWarning(MessageOutWarning(validationResult));
+        showWarning(ProduceWarningText(validationResult, SIGNIN_WARNING));
     };
 
     return(
@@ -107,3 +101,5 @@ export default function UserSignin(props: IGetUserSigninContent)
         }}/>
     );
 }
+
+export default UserSignin;

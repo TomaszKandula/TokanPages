@@ -5,7 +5,7 @@ import { IRowItem, ITextItem } from "../Models/textModel";
 import { CustomTableCell, CustomTableRow } from "../CustomTable/customTable";
 import renderTableStyle from "../Styles/renderTableStyle";
 
-export function RenderTable(props: ITextItem)
+export const RenderTable = (props: ITextItem): JSX.Element =>
 {
     const tableData: IRowItem[] = props.value as IRowItem[];
     const classes = renderTableStyle();

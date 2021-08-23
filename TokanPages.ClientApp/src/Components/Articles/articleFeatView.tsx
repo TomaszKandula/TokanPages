@@ -9,11 +9,11 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IGetArticleFeatContent } from "../../Redux/States/getArticleFeatContentState";
+import { IGetArticleFeatContent } from "../../Redux/States/Content/getArticleFeatContentState";
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
 import articleFeatStyle from "./Styles/articleFeatStyle";
 
-export default function ArticleFeatView(props: IGetArticleFeatContent) 
+const ArticleFeatView = (props: IGetArticleFeatContent): JSX.Element =>
 {
     const classes = articleFeatStyle();
     return (
@@ -96,3 +96,5 @@ export default function ArticleFeatView(props: IGetArticleFeatContent)
         </section>
     );
 }
+
+export default ArticleFeatView;

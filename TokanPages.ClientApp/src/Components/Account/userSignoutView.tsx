@@ -19,7 +19,7 @@ interface IProperties
     status: string;
 }
 
-const UserSignoutView = (props: IBinding) => 
+const UserSignoutView = (props: IBinding): JSX.Element => 
 {
     const classes = userSignoutStyle();
     return (

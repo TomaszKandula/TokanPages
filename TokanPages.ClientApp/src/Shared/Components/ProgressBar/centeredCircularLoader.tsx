@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box, CircularProgress } from "@material-ui/core";
 
-export default function CenteredCircularLoader()
+const CenteredCircularLoader = (): JSX.Element =>
 {
     return (
         <Box display="flex" alignItems="center" justifyContent="center" >                   
@@ -11,3 +11,5 @@ export default function CenteredCircularLoader()
         </Box>
     );
 }
+
+export default CenteredCircularLoader;

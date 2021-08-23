@@ -26,7 +26,7 @@ interface IProperties
     buttonText: string;
 }
 
-export default function UnsubscribeView(props: IBinding)
+const UnsubscribeView = (props: IBinding): JSX.Element =>
 {
     const classes = unsubscribeStyle();
     return (
@@ -68,3 +68,5 @@ export default function UnsubscribeView(props: IBinding)
         </section>
     );
 }
+
+export default UnsubscribeView;
