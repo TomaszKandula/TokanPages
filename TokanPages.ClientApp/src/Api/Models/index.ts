@@ -14,6 +14,7 @@ export type { IAddSubscriberDto } from "./Subscribers/addSubscriberDto";
 export type { IUpdateSubscriberDto } from "./Subscribers/updateSubscriberDto";
 export type { IRemoveSubscriberDto } from "./Subscribers/removeSubscriberDto";
 
+export type { IUserDataDto } from "./Users/userDataDto";
 export type { IAddUserDto } from "./Users/addUserDto";
 export type { IUpdateUserDto } from "./Users/updateUserDto";
 export type { IRemoveUserDto } from "./Users/removeUserDto";
