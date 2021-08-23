@@ -1,6 +1,6 @@
-import { IAddUserDto } from "../../../Api/Models";
+import { IUserDataDto } from "../../../Api/Models";
 
 export interface IUpdateUserData
 {
-    userData: IAddUserDto;
+    userData: IUserDataDto;
 }
