@@ -16,6 +16,7 @@ exports[`Test account component: SignupForm. Renders correctly '<UserSignup />' 
       "link": "",
       "password": "",
       "progress": false,
+      "terms": false,
     }
   }
 />
