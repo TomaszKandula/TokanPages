@@ -6,6 +6,7 @@ import { IUpdateSubscriber } from "./States/Subscribers/updateSubscriberState";
 import { IRemoveSubscriber } from "./States/Subscribers/removeSubscriberState";
 import { IUpdateUserData } from "./States/Users/updateUserDataState";
 import { ISigninUser } from "./States/Users/signinUserState";
+import { ISignupUser } from "./States/Users/signupUserState";
 import { ISendMessage } from "./States/Mailer/sendMessageState";
 import { IRaiseError } from "./States/raiseErrorState";
 import { IRaiseDialog } from "./States/raiseDialogState";
@@ -41,6 +42,7 @@ export interface IApplicationState
     removeSubscriber: IRemoveSubscriber,
     updateUserData: IUpdateUserData,
     signinUser: ISigninUser,
+    signupUser: ISignupUser,
     getStaticContent: IGetStaticContent,
     getArticleFeatContent: IGetArticleFeatContent,
     getContactFormContent: IGetContactFormContent,

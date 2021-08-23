@@ -7,6 +7,7 @@ import { UpdateSubscriberDefault } from "./Defaults/Subscribers/updateSubscriber
 import { RemoveSubscriberDefault } from "./Defaults/Subscribers/removeSubscriberDefault";
 import { UpdateUserDataDefault } from "./Defaults/Users/updateUserDataDefault";
 import { SigninUserDefault } from "./Defaults/Users/signinUserDefault";
+import { SignupUserDefault } from "./Defaults/Users/signupUserDefault";
 import { SendMessageStateDefault } from "./Defaults/Mailer/sendMessageDefault";
 import { RaiseErrorDefault } from "./Defaults/raiseErrorDefault";
 import { RaiseDialogDefault } from "./Defaults/raiseDialogDefault";
@@ -42,6 +43,7 @@ export const combinedDefaults: IApplicationState =
     removeSubscriber: RemoveSubscriberDefault,
     updateUserData: UpdateUserDataDefault,
     signinUser: SigninUserDefault,
+    signupUser: SignupUserDefault,
     getStaticContent: GetStaticContentDefault,
     getArticleFeatContent: GetArticleFeatContentDefault,
     getContactFormContent: GetContactFormContentDefault,

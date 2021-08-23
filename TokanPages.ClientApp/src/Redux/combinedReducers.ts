@@ -6,6 +6,7 @@ import UpdateSubscriberReducer from "./Reducers/Subscribers/updateSubscriberRedu
 import RemoveSubscriberReducer from "./Reducers/Subscribers/removeSubscriberReducer";
 import UpdateUserDataReducer from "./Reducers/Users/updateUserDataReducer";
 import SigninUserReducer from "./Reducers/Users/signinUserReducer";
+import SignupUserReducer from "./Reducers/Users/signupUserReducer";
 import SendMessageReducer from "./Reducers/Mailer/sendMessageReducer";
 import RaiseErrorReducer from "./Reducers/raiseErrorReducer";
 import RaiseDialogReducer from "./Reducers/raiseDialogReducer";
@@ -41,6 +42,7 @@ export const combinedReducers =
     removeSubscriber: RemoveSubscriberReducer,
     updateUserData: UpdateUserDataReducer,
     signinUser: SigninUserReducer,
+    signupUser: SignupUserReducer,
     getStaticContent: GetStaticContentReducer,
     getArticleFeatContent: GetArticleFeatContentReducer,
     getContactFormContent: GetContactFormContentReducer,
