@@ -1,18 +1,18 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import Validate from "validate.js";
 import { IGetUserSigninContent } from "../../Redux/States/Content/getUserSigninContentState";
 import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/Users/signinUserAction";
 import { IAuthenticateUserDto } from "../../Api/Models";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { MessageOutWarning } from "../../Shared/textWrappers";
+import { ProduceWarningText } from "../../Shared/textWrappers";
 import { IValidateSigninForm, ValidateSigninForm } from "../../Shared/validate";
 import { OperationStatus } from "../../Shared/enums";
-import { RECEIVED_ERROR_MESSAGE, SIGNIN_FORM } from "../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE, SIGNIN_FORM, SIGNIN_WARNING } from "../../Shared/constants";
 import UserSigninView from "./userSigninView";
+import Validate from "validate.js";
 
 const formDefaultValues: IValidateSigninForm =
 {
@@ -82,7 +82,7 @@ const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
             return;
         }
 
-        showWarning(MessageOutWarning(validationResult));
+        showWarning(ProduceWarningText(validationResult, SIGNIN_WARNING));
     };
 
     return(

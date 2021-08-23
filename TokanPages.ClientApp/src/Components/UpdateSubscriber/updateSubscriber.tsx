@@ -7,10 +7,10 @@ import { ActionCreators as RaiseDialogAction } from "../../Redux/Actions/raiseDi
 import { IGetUpdateSubscriberContent } from "../../Redux/States/Content/getUpdateSubscriberContentState";
 import { OperationStatus } from "../../Shared/enums";
 import { ValidateEmail } from "../../Shared/validate";
-import { NewsletterSuccess, NewsletterWarning } from "../../Shared/textWrappers";
+import { ProduceWarningText } from "../../Shared/textWrappers";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { RECEIVED_ERROR_MESSAGE, UPDATE_SUBSCRIBER } from "../../Shared/constants";
+import { NEWSLETTER_SUCCESS, NEWSLETTER_WARNING, RECEIVED_ERROR_MESSAGE, UPDATE_SUBSCRIBER } from "../../Shared/constants";
 import { IUpdateSubscriberDto } from "../../Api/Models";
 import UpdateSubscriberView from "./updateSubscriberView";
 
@@ -62,7 +62,7 @@ const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Eleme
 
             case OperationStatus.hasFinished:
                 clearForm();
-                showSuccess(NewsletterSuccess());
+                showSuccess(NEWSLETTER_SUCCESS);
             break;
         }           
     }, [ updateSubscriber, updateSubscriberState, progress, form, props.id, showSuccess, clearForm, raiseErrorState ]);
@@ -88,7 +88,7 @@ const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Eleme
             return;
         }
 
-        showWarning(NewsletterWarning(validationResult));
+        showWarning(ProduceWarningText(validationResult, NEWSLETTER_WARNING));
     };
 
     return (<UpdateSubscriberView bind=

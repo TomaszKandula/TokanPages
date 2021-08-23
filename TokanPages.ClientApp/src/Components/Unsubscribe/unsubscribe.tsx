@@ -5,9 +5,8 @@ import { ActionCreators as SubscriberAction } from "../../Redux/Actions/Subscrib
 import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
 import { IGetUnsubscribeContent } from "../../Redux/States/Content/getUnsubscribeContentState";
 import { OperationStatus } from "../../Shared/enums";
-import { NewsletterSuccess } from "../../Shared/textWrappers";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
-import { RECEIVED_ERROR_MESSAGE, REMOVE_SUBSCRIBER } from "../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE, REMOVE_SUBSCRIBER, NEWSLETTER_SUCCESS } from "../../Shared/constants";
 import { IRemoveSubscriberDto } from "../../Api/Models";
 import UnsubscribeView from "./unsubscribeView";
 
@@ -70,7 +69,7 @@ const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element =>
 
             case OperationStatus.hasFinished:
                 clearForm();
-                showSuccess(NewsletterSuccess());
+                showSuccess(NEWSLETTER_SUCCESS);
             break;
         }
     }, [ removeSubscriber, removeSubscriberState, progress, props.id, showSuccess, clearForm, raiseErrorState ]);

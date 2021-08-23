@@ -7,10 +7,10 @@ import { ActionCreators as SubscriberAction } from "../../Redux/Actions/Subscrib
 import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
 import { ValidateEmail } from "../../Shared/validate";
 import { OperationStatus } from "../../Shared/enums";
-import { NewsletterSuccess, NewsletterWarning } from "../../Shared/textWrappers";
+import { ProduceWarningText } from "../../Shared/textWrappers";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { NEWSLETTER, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
+import { NEWSLETTER, NEWSLETTER_SUCCESS, NEWSLETTER_WARNING, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { IAddSubscriberDto } from "../../Api/Models";
 import NewsletterView from "./newsletterView";
 
@@ -51,7 +51,7 @@ const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
         
             case OperationStatus.hasFinished: 
                 clearForm();
-                showSuccess(NewsletterSuccess());
+                showSuccess(NEWSLETTER_SUCCESS);
             break;
         }
     }, [ addSubscriber, addSubscriberState, clearForm, progress, form, showSuccess, raiseErrorState ]);
@@ -73,7 +73,7 @@ const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
             return;
         }
 
-        showWarning(NewsletterWarning(results));
+        showWarning(ProduceWarningText(results, NEWSLETTER_WARNING));
     };
 
     return (<NewsletterView bind=

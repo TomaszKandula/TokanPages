@@ -7,10 +7,10 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { IGetContactFormContent } from "../../Redux/States/Content/getContactFormContentState";
 import { OperationStatus } from "../../Shared/enums";
 import { IValidateContactForm, ValidateContactForm } from "../../Shared/validate";
-import { MessageOutSuccess, MessageOutWarning } from "../../Shared/textWrappers";
+import { ProduceWarningText } from "../../Shared/textWrappers";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { CONTACT_FORM, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
+import { CONTACT_FORM, MESSAGE_OUT_SUCCESS, MESSAGE_OUT_WARNING, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { ISendMessageDto } from "../../Api/Models";
 import ContactFormView from "./contactFormView";
 
@@ -70,7 +70,7 @@ const ContactForm = (props: IGetContactFormContent): JSX.Element =>
 
             case OperationStatus.hasFinished:
                 clearForm();
-                showSuccess(MessageOutSuccess());
+                showSuccess(MESSAGE_OUT_SUCCESS);
             break;
         }
     }, [ sendMessage, sendMessageState, clearForm, progress, form, showSuccess, raiseErrorState ]);
@@ -106,7 +106,7 @@ const ContactForm = (props: IGetContactFormContent): JSX.Element =>
             return;
         }
 
-        showWarning(MessageOutWarning(validationResult));
+        showWarning(ProduceWarningText(validationResult, MESSAGE_OUT_WARNING));
     };
 
     return (<ContactFormView bind=
