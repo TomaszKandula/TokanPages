@@ -208,7 +208,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LMockedIdentityServer.Object);
 
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LAuthenticateUserCommandHandler.Handle(LAuthenticateUserCommand, CancellationToken.None));
+            var LResult = await Assert.ThrowsAsync<BusinessException>(() 
+                => LAuthenticateUserCommandHandler.Handle(LAuthenticateUserCommand, CancellationToken.None));
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_CREDENTIALS));
         }
         
@@ -265,8 +266,123 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LMockedIdentityServer.Object);
 
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LAuthenticateUserCommandHandler.Handle(LAuthenticateUserCommand, CancellationToken.None));
+            var LResult = await Assert.ThrowsAsync<BusinessException>(() 
+                => LAuthenticateUserCommandHandler.Handle(LAuthenticateUserCommand, CancellationToken.None));
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_CREDENTIALS));
+        }
+        
+        [Fact]
+        public async Task GivenInactiveAccount_WhenAuthenticateUser_ShouldThrowError()
+        {
+            // Arrange
+            var LEmailAddress = DataUtilityService.GetRandomEmail();
+            var LPlainTextPassword = DataUtilityService.GetRandomString(10);
+            var LCryptedPassword = DataUtilityService.GetRandomString(60);
+            var LGeneratedUserToken = DataUtilityService.GetRandomString(255);
+            var LIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
+            
+            var LUser = new Users
+            {
+                Id = Guid.NewGuid(),
+                EmailAddress = LEmailAddress,
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                IsActivated = false,
+                Registered = DateTimeService.Now,
+                LastUpdated = null,
+                LastLogged = null,
+                CryptedPassword = LCryptedPassword
+            };
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddAsync(LUser);
+            await LDatabaseContext.SaveChangesAsync();
+
+            var LAuthenticateUserCommand = new AuthenticateUserCommand
+            {
+                EmailAddress = LEmailAddress,
+                Password = LPlainTextPassword
+            };
+
+            var LMockedCipheringService = new Mock<ICipheringService>();
+            LMockedCipheringService
+                .Setup(AService => AService
+                    .VerifyPassword(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(true);
+            
+            var LRefreshTokenExpires = DateTimeService.Now.AddDays(10);
+            var LRefreshTokenCreated = DateTimeService.Now;
+            var LGeneratedRefreshToken = new RefreshToken
+            {
+                Token = DataUtilityService.GetRandomString(),
+                Expires = LRefreshTokenExpires,
+                Created = LRefreshTokenCreated,
+                CreatedByIp = LIpAddress
+            };
+
+            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            LMockedJwtUtilityService
+                .Setup(AUtilityService => AUtilityService
+                    .GenerateRefreshToken(It.IsAny<string>(), It.IsAny<int>()))
+                .Returns(LGeneratedRefreshToken);
+            
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LRandomDateTime = DataUtilityService.GetRandomDateTime();
+            LMockedDateTimeService
+                .SetupGet(ADateTimeService => ADateTimeService.Now)
+                .Returns(LRandomDateTime);
+            
+            var LMockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            LMockedUserServiceProvider
+                .Setup(AUserService => AUserService.GenerateUserToken(
+                    It.IsAny<Users>(), 
+                    It.IsAny<DateTime>(), 
+                    CancellationToken.None))
+                .ReturnsAsync(LGeneratedUserToken);
+            
+            LMockedUserServiceProvider
+                .Setup(AUserService => AUserService.GetRequestIpAddress())
+                .Returns(LIpAddress);
+
+            LMockedUserServiceProvider
+                .Setup(AUserService => AUserService
+                    .SetRefreshTokenCookie(
+                        It.IsAny<string>(), 
+                        It.IsAny<int>(), 
+                        It.IsAny<bool>(), 
+                        It.IsAny<bool>(), 
+                        It.IsAny<string>()));
+
+            LMockedUserServiceProvider
+                .Setup(AUserService => AUserService
+                    .DeleteOutdatedRefreshTokens(
+                        It.IsAny<Guid>(),
+                        It.IsAny<bool>(),
+                        It.IsAny<CancellationToken>()));
+            
+            var LIdentityServer = new IdentityServer
+            {
+                Issuer = DataUtilityService.GetRandomString(),
+                Audience = DataUtilityService.GetRandomString(),
+                WebSecret = DataUtilityService.GetRandomString(),
+                RequireHttps = false,
+                WebTokenExpiresIn = 90,
+                RefreshTokenExpiresIn = 120
+            };
+            
+            // Act
+            var LAuthenticateUserCommandHandler = new AuthenticateUserCommandHandler(
+                LDatabaseContext, 
+                LMockedCipheringService.Object, 
+                LMockedJwtUtilityService.Object, 
+                LMockedDateTimeService.Object, 
+                LMockedUserServiceProvider.Object, 
+                LIdentityServer);
+            
+            var LResult = await Assert.ThrowsAsync<BusinessException>(() 
+                => LAuthenticateUserCommandHandler.Handle(LAuthenticateUserCommand, CancellationToken.None));
+            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE));
         }
     }
 }
