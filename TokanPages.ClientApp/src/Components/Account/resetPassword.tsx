@@ -1,6 +1,5 @@
 import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../Redux/applicationState";
+import { useDispatch } from "react-redux";
 import { IGetResetPasswordContent } from "../../Redux/States/Content/getResetPasswordContentState";
 import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
@@ -13,7 +12,6 @@ import Validate from "validate.js";
 const ResetPassword = (props: IGetResetPasswordContent): JSX.Element =>
 {
     const dispatch = useDispatch();
-    const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
     
     const showWarning = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(WarningMessage(RESET_FORM, text))), [ dispatch ]);
 
