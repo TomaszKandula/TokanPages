@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when content is loaded. 1`] = `
+<section
+  className="makeStyles-section-1"
+>
+  <WithStyles(ForwardRef(Container))
+    maxWidth="lg"
+  >
+    <div
+      data-aos="fade-up"
+    >
+      <Styled(MuiBox)
+        pb={10}
+        pt={8}
+      >
+        <WithStyles(ForwardRef(Container))
+          maxWidth="sm"
+        >
+          <Styled(MuiBox)
+            mb={5}
+            textAlign="center"
+          >
+            <WithStyles(ForwardRef(Typography))
+              component="h2"
+              gutterBottom={true}
+              variant="h4"
+            >
+              Featured
+            </WithStyles(ForwardRef(Typography))>
+            <WithStyles(ForwardRef(Typography))
+              color="textSecondary"
+              variant="subtitle1"
+            >
+              I picked three articles that I wrote...
+            </WithStyles(ForwardRef(Typography))>
+          </Styled(MuiBox)>
+        </WithStyles(ForwardRef(Container))>
+        <WithStyles(ForwardRef(Container))
+          maxWidth="md"
+        >
+          <Styled(MuiBox)
+            textAlign="center"
+          >
+            <WithStyles(ForwardRef(Grid))
+              container={true}
+              spacing={4}
+            >
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                md={4}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(Card))
+                  elevation={3}
+                >
+                  <WithStyles(ForwardRef(CardActionArea))
+                    href="https://.../net-memory-management-64389b01f642"
+                    target="_blank"
+                  >
+                    <WithStyles(ForwardRef(CardMedia))
+                      className="makeStyles-media-2"
+                      image="https://.../images/section_featured/article0.jpg"
+                    />
+                    <WithStyles(ForwardRef(CardHeader))
+                      subheader="The basics you should know, when writing an application..."
+                      title="Memory Management"
+                      titleTypographyProps={
+                        Object {
+                          "gutterBottom": true,
+                        }
+                      }
+                    />
+                  </WithStyles(ForwardRef(CardActionArea))>
+                </WithStyles(ForwardRef(Card))>
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                md={4}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(Card))
+                  elevation={3}
+                >
+                  <WithStyles(ForwardRef(CardActionArea))
+                    href="https://.../i-said-goodbye-to-stored-procedures-539d56350486"
+                    target="_blank"
+                  >
+                    <WithStyles(ForwardRef(CardMedia))
+                      className="makeStyles-media-2"
+                      image="https://.../images/section_featured/article1.jpg"
+                    />
+                    <WithStyles(ForwardRef(CardHeader))
+                      subheader="I explain why I do not need them that much..."
+                      title="Stored Procedures"
+                      titleTypographyProps={
+                        Object {
+                          "gutterBottom": true,
+                        }
+                      }
+                    />
+                  </WithStyles(ForwardRef(CardActionArea))>
+                </WithStyles(ForwardRef(Card))>
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                md={4}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(Card))
+                  elevation={3}
+                >
+                  <WithStyles(ForwardRef(CardActionArea))
+                    href="https://.../sql-injection-1bde8bb76ebc"
+                    target="_blank"
+                  >
+                    <WithStyles(ForwardRef(CardMedia))
+                      className="makeStyles-media-2"
+                      image="https://.../images/section_featured/article2.jpg"
+                    />
+                    <WithStyles(ForwardRef(CardHeader))
+                      subheader="This article will explore the issue in greater detail..."
+                      title="SQL Injection"
+                      titleTypographyProps={
+                        Object {
+                          "gutterBottom": true,
+                        }
+                      }
+                    />
+                  </WithStyles(ForwardRef(CardActionArea))>
+                </WithStyles(ForwardRef(Card))>
+              </WithStyles(ForwardRef(Grid))>
+            </WithStyles(ForwardRef(Grid))>
+          </Styled(MuiBox)>
+        </WithStyles(ForwardRef(Container))>
+      </Styled(MuiBox)>
+    </div>
+  </WithStyles(ForwardRef(Container))>
+</section>
+`;

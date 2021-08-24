@@ -8,10 +8,24 @@ import TextField from "@material-ui/core/TextField";
 import { Card, CardContent } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IGetResetPasswordContent } from "../../Redux/States/Content/getResetPasswordContentState";
 import resetPasswordStyle from "./Styles/resetPasswordStyle";
 
-const ResetPasswordView = (props: IGetResetPasswordContent): JSX.Element =>
+interface IBinding 
+{
+    bind: IProperties;
+}
+
+interface IProperties
+{
+    isLoading: boolean;
+    progress: boolean;
+    caption: string;
+    button: string;
+    formHandler: any;
+    buttonHandler: any;
+}
+
+const ResetPasswordView = (props: IBinding): JSX.Element =>
 {
     const classes = resetPasswordStyle();
     return (
@@ -23,7 +37,7 @@ const ResetPasswordView = (props: IGetResetPasswordContent): JSX.Element =>
                             <Box mb={3} textAlign="center">
                                 <AccountCircle color="primary" style={{ fontSize: 72 }} />
                                 <Typography variant="h5" component="h2" color="textSecondary">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption}
+                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -37,7 +51,7 @@ const ResetPasswordView = (props: IGetResetPasswordContent): JSX.Element =>
                                 </Grid>
                                 <Box my={2}>
                                     <Button fullWidth variant="contained" color="primary">
-                                        {props.isLoading ? <Skeleton variant="text" /> : props.content?.button}
+                                        {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.button}
                                     </Button>
                                 </Box>
                             </Box>

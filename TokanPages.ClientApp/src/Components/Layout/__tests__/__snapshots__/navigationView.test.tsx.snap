@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test component: featuresView. Renders correctly '<NavigationView />' when content is loaded. 1`] = `
+<HideOnScroll
+  bind={
+    Object {
+      "anonymousText": "Anonymous",
+      "avatar": "default.jpg",
+      "closeHandler": [MockFunction],
+      "drawerState": Object {
+        "open": false,
+      },
+      "isAnonymous": false,
+      "logo": "main.jpg",
+      "menu": Object {
+        "image": "",
+        "items": Array [
+          Object {
+            "enabled": true,
+            "icon": "Home",
+            "id": "79a6c65d-08b8-479b-9507-97feb05e30c2",
+            "link": "/",
+            "type": "item",
+            "value": "Home",
+          },
+        ],
+      },
+      "openHandler": [MockFunction],
+      "userAliasText": "",
+    }
+  }
+>
+  <WithStyles(ForwardRef(AppBar))
+    className="makeStyles-appBar-1"
+  >
+    <WithStyles(ForwardRef(Toolbar))
+      className="makeStyles-toolBar-2"
+    >
+      <WithStyles(ForwardRef(Grid))
+        container={true}
+        item={true}
+        spacing={3}
+        xs={12}
+      >
+        <WithStyles(ForwardRef(Grid))
+          className="makeStyles-menu-4"
+          item={true}
+          xs={true}
+        >
+          <WithStyles(ForwardRef(IconButton))
+            aria-label="menu"
+            color="inherit"
+            onClick={[MockFunction]}
+          >
+            <MenuIcon />
+          </WithStyles(ForwardRef(IconButton))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          className="makeStyles-link-5"
+          item={true}
+          xs={true}
+        >
+          <Link
+            to="/"
+          >
+            <div
+              className="makeStyles-image-6"
+              data-aos="fade-down"
+            >
+              <img
+                alt=""
+                className="makeStyles-logo-3"
+                src="undefined/icons/main.jpg"
+              />
+            </div>
+          </Link>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          className="makeStyles-avatar-7"
+          item={true}
+          xs={true}
+        >
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-userAlias-8"
+            component="span"
+            variant="body1"
+          />
+          <WithStyles(ForwardRef(IconButton))
+            color="inherit"
+          >
+            <WithStyles(ForwardRef(Avatar))
+              alt="Avatar"
+              src="default.jpg"
+            />
+          </WithStyles(ForwardRef(IconButton))>
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Toolbar))>
+    <MenuView
+      bind={
+        Object {
+          "closeHandler": [MockFunction],
+          "drawerState": Object {
+            "open": false,
+          },
+          "isAnonymous": false,
+          "menu": Object {
+            "image": "",
+            "items": Array [
+              Object {
+                "enabled": true,
+                "icon": "Home",
+                "id": "79a6c65d-08b8-479b-9507-97feb05e30c2",
+                "link": "/",
+                "type": "item",
+                "value": "Home",
+              },
+            ],
+          },
+        }
+      }
+    />
+  </WithStyles(ForwardRef(AppBar))>
+</HideOnScroll>
+`;

@@ -1,38 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test account group component: userSignupView. Renders correctly '<UserSignupView />' when content is loaded. 1`] = `
-<section>
+exports[`Test component: contactFormView. Renders correctly '<ContactFormView />' when content is loaded. 1`] = `
+<section
+  className="makeStyles-section-1"
+>
   <WithStyles(ForwardRef(Container))
-    maxWidth="sm"
+    maxWidth="lg"
   >
-    <Styled(MuiBox)
-      pb={10}
-      pt={18}
+    <WithStyles(ForwardRef(Container))
+      maxWidth="sm"
     >
-      <WithStyles(ForwardRef(Card))
-        elevation={4}
+      <div
+        data-aos="fade-up"
       >
-        <WithStyles(ForwardRef(CardContent))
-          className="makeStyles-card-1"
+        <Styled(MuiBox)
+          pb={10}
+          pt={8}
         >
           <Styled(MuiBox)
-            mb={3}
+            mb={6}
             textAlign="center"
           >
-            <AccountCircleIcon
-              color="primary"
-              style={
-                Object {
-                  "fontSize": 72,
-                }
-              }
-            />
+            <WithStyles(ForwardRef(Typography))
+              component="h2"
+              gutterBottom={true}
+              variant="h4"
+            >
+              Contact me
+            </WithStyles(ForwardRef(Typography))>
             <WithStyles(ForwardRef(Typography))
               color="textSecondary"
-              component="h2"
-              variant="h5"
+              paragraph={true}
+              variant="subtitle1"
             >
-              Create a new account
+              If you have any questions...
             </WithStyles(ForwardRef(Typography))>
           </Styled(MuiBox)>
           <Styled(MuiBox)>
@@ -95,15 +96,32 @@ exports[`Test account group component: userSignupView. Renders correctly '<UserS
                 xs={12}
               >
                 <WithStyles(ForwardRef(TextField))
-                  autoComplete="current-password"
+                  autoComplete="subject"
                   fullWidth={true}
-                  id="password"
-                  label="Password"
-                  name="password"
+                  id="subject"
+                  label="Subject"
+                  name="subject"
                   onChange={[MockFunction]}
                   required={true}
-                  type="password"
-                  value="madrilena123"
+                  value="Test subject"
+                  variant="outlined"
+                />
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(TextField))
+                  autoComplete="message"
+                  fullWidth={true}
+                  id="message"
+                  label="Message"
+                  multiline={true}
+                  name="message"
+                  onChange={[MockFunction]}
+                  required={true}
+                  rows={6}
+                  value="Test message..."
                   variant="outlined"
                 />
               </WithStyles(ForwardRef(Grid))>
@@ -136,22 +154,13 @@ exports[`Test account group component: userSignupView. Renders correctly '<UserS
                 type="submit"
                 variant="contained"
               >
-                Sign up
+                Submit
               </WithStyles(ForwardRef(Button))>
             </Styled(MuiBox)>
-            <Styled(MuiBox)
-              textAlign="right"
-            >
-              <Link
-                to="/signin"
-              >
-                Already have an account? Sign in
-              </Link>
-            </Styled(MuiBox)>
           </Styled(MuiBox)>
-        </WithStyles(ForwardRef(CardContent))>
-      </WithStyles(ForwardRef(Card))>
-    </Styled(MuiBox)>
+        </Styled(MuiBox)>
+      </div>
+    </WithStyles(ForwardRef(Container))>
   </WithStyles(ForwardRef(Container))>
 </section>
 `;

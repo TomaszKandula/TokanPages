@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test component: newsletterView. Renders correctly '<NewsletterView />' when content is loaded. 1`] = `
+<section
+  className="makeStyles-section-1"
+>
+  <WithStyles(ForwardRef(Container))
+    maxWidth="lg"
+  >
+    <div
+      data-aos="fade-up"
+    >
+      <Styled(MuiBox)
+        py={8}
+        textAlign="center"
+      >
+        <WithStyles(ForwardRef(Grid))
+          container={true}
+          spacing={2}
+        >
+          <WithStyles(ForwardRef(Grid))
+            item={true}
+            md={5}
+            xs={12}
+          >
+            <WithStyles(ForwardRef(Typography))
+              component="h2"
+              variant="h4"
+            >
+              Join the newsletter!
+            </WithStyles(ForwardRef(Typography))>
+            <WithStyles(ForwardRef(Typography))
+              color="textSecondary"
+              variant="subtitle1"
+            >
+              We will never share your email address.
+            </WithStyles(ForwardRef(Typography))>
+          </WithStyles(ForwardRef(Grid))>
+          <WithStyles(ForwardRef(Grid))
+            item={true}
+            md={7}
+            xs={12}
+          >
+            <Styled(MuiBox)
+              display="flex"
+              height="100%"
+            >
+              <Styled(MuiBox)
+                my="auto"
+                width="100%"
+              >
+                <WithStyles(ForwardRef(Grid))
+                  container={true}
+                  spacing={2}
+                >
+                  <WithStyles(ForwardRef(Grid))
+                    item={true}
+                    sm={7}
+                    xs={12}
+                  >
+                    <WithStyles(ForwardRef(TextField))
+                      autoComplete="email"
+                      fullWidth={true}
+                      id="email_newletter"
+                      label="Email address"
+                      name="email"
+                      onChange={[MockFunction]}
+                      required={true}
+                      size="small"
+                      value="ester.exposito@gmail.com"
+                      variant="outlined"
+                    />
+                  </WithStyles(ForwardRef(Grid))>
+                  <WithStyles(ForwardRef(Grid))
+                    item={true}
+                    sm={5}
+                    xs={12}
+                  >
+                    <WithStyles(ForwardRef(Button))
+                      color="primary"
+                      disabled={false}
+                      fullWidth={true}
+                      onClick={[MockFunction]}
+                      type="submit"
+                      variant="contained"
+                    >
+                      Subscribe
+                    </WithStyles(ForwardRef(Button))>
+                  </WithStyles(ForwardRef(Grid))>
+                </WithStyles(ForwardRef(Grid))>
+              </Styled(MuiBox)>
+            </Styled(MuiBox)>
+          </WithStyles(ForwardRef(Grid))>
+        </WithStyles(ForwardRef(Grid))>
+      </Styled(MuiBox)>
+    </div>
+  </WithStyles(ForwardRef(Container))>
+</section>
+`;
