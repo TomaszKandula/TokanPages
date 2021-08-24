@@ -28,7 +28,7 @@ describe("Test component: menuView.", () =>
             isAnonymous: true,
             menu: 
             { 
-                image: "background.jpg",
+                image: "",
                 items: [item]
             }
         }}/>);
