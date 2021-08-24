@@ -146,7 +146,7 @@ exports[`Test articles group component: articleDetailView. Renders correctly '<A
             variant="subtitle1"
           >
             Published at: 
-            07/21/2020, 02:00 AM
+            01/10/2020, 12:15 PM
           </WithStyles(ForwardRef(Typography))>
           <WithStyles(ForwardRef(Typography))
             color="textSecondary"
@@ -154,7 +154,7 @@ exports[`Test articles group component: articleDetailView. Renders correctly '<A
             variant="subtitle2"
           >
             Updated at: 
-            09/12/2020, 02:00 AM
+            01/10/2020, 12:15 PM
           </WithStyles(ForwardRef(Typography))>
         </Styled(MuiBox)>
       </div>
