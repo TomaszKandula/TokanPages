@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test account group component: articleCardView. Renders correctly '<ArticleCardView />' when content is loaded. 1`] = `
+exports[`Test articles group component: articleCardView. Renders correctly '<ArticleCardView />' when content is loaded. 1`] = `
 <div
   data-aos="fade-up"
 >
