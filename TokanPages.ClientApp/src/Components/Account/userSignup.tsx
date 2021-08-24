@@ -35,6 +35,7 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
     const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(SIGNUP_FORM, text))), [ dispatch ]);
     const showWarning = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(WarningMessage(SIGNUP_FORM, text))), [ dispatch ]);
     const signupUser = React.useCallback((payload: IAddUserDto) => dispatch(ActionCreators.signup(payload)), [ dispatch ]);
+    const clearUser = React.useCallback(() => dispatch(ActionCreators.clear()), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 
     {
@@ -48,7 +49,10 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
         {
             case OperationStatus.inProgress:
                 if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+                {
+                    clearUser();
                     clearForm();
+                }
             break;
 
             case OperationStatus.notStarted:
@@ -67,12 +71,13 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
             break;
 
             case OperationStatus.hasFinished:
+                clearUser();    
                 clearForm();
                 showSuccess(SIGNUP_SUCCESS);
             break;
         }
 
-    }, [ progress, clearForm, form, raiseErrorState, signupUser, signupUserState, showSuccess ]);
+    }, [ progress, clearForm, clearUser, form, raiseErrorState, signupUser, signupUserState, showSuccess ]);
 
     React.useEffect(() => callSignupUser(), [ callSignupUser ]);
 
