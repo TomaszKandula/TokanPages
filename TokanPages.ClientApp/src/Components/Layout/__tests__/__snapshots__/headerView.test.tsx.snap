@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test component: headerView. Renders correctly '<HeaderView />' when content is loaded. 1`] = `
+<section>
+  <WithStyles(ForwardRef(Container))
+    maxWidth="lg"
+  >
+    <WithStyles(ForwardRef(Grid))
+      className="makeStyles-gridMargin-1"
+      container={true}
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        sm={6}
+        xs={12}
+      >
+        <Styled(MuiBox)
+          className="makeStyles-imageBox-5"
+        >
+          <div
+            data-aos="fade-right"
+          >
+            <img
+              alt=""
+              className="makeStyles-img-6"
+              src="undefined/images/tomek_bergen.jpg"
+            />
+          </div>
+        </Styled(MuiBox)>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        sm={6}
+        xs={12}
+      >
+        <Styled(MuiBox)
+          className="makeStyles-contentBox-4"
+        >
+          <div
+            data-aos="fade-left"
+          >
+            <WithStyles(ForwardRef(Typography))
+              component="span"
+              gutterBottom={true}
+              variant="overline"
+            >
+              Welcome to my web page
+            </WithStyles(ForwardRef(Typography))>
+            <WithStyles(ForwardRef(Typography))
+              color="textSecondary"
+              paragraph={true}
+              variant="h5"
+            >
+              I do programming for a living...
+            </WithStyles(ForwardRef(Typography))>
+            <Styled(MuiBox)
+              mt={4}
+            >
+              <Link
+                className="makeStyles-mainLink-3"
+                to="/mystory"
+              >
+                <WithStyles(ForwardRef(Button))
+                  className="makeStyles-mainAction-2"
+                  variant="contained"
+                >
+                  Read the story
+                </WithStyles(ForwardRef(Button))>
+              </Link>
+            </Styled(MuiBox)>
+          </div>
+        </Styled(MuiBox)>
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Container))>
+</section>
+`;
