@@ -6,7 +6,7 @@ import { ITextItem } from "../../../Shared/Components/ContentRender/Models/textM
 import { IArticleItem } from "../../../Shared/Components/ContentRender/Models/articleItemModel";
 import ArticleListView from "../articleListView";
 
-describe("Test account group component: articleListView.", () => 
+describe("Test articles group component: articleListView.", () => 
 {
     it("Renders correctly '<ArticleListView />' when content is loaded.", () => 
     {

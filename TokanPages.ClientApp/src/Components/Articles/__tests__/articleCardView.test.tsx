@@ -3,7 +3,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import ArticleCardView from "../articleCardView";
 
-describe("Test account group component: articleCardView.", () => 
+describe("Test articles group component: articleCardView.", () => 
 {
     it("Renders correctly '<ArticleCardView />' when content is loaded.", () => 
     {
@@ -14,7 +14,7 @@ describe("Test account group component: articleCardView.", () =>
             description: "Article short description",
             onClickEvent: jest.fn(),
             buttonText: "READ"
-        }} />);
+        }}/>);
         expect(tree).toMatchSnapshot();
     });
 });

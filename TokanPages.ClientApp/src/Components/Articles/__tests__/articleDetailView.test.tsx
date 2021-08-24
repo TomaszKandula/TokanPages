@@ -3,7 +3,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import ArticleDetailView from "../articleDetailView";
 
-describe("Test account group component: articleDetailView.", () => 
+describe("Test articles group component: articleDetailView.", () => 
 {
     it("Renders correctly '<ArticleDetailView />' when content is loaded.", () => 
     {
@@ -30,7 +30,7 @@ describe("Test account group component: articleDetailView.", () =>
             totalLikes: 50,
             renderAuthorName: "Ester Exposito",
             authorShortBio: "Happy developer",
-        }} />);
+        }}/>);
         expect(tree).toMatchSnapshot();
     });
 });

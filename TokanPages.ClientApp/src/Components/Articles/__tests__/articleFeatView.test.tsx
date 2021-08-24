@@ -3,7 +3,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import ArticleFeatView from "../articleFeatView";
 
-describe("Test account group component: articleFeatView.", () => 
+describe("Test articles group component: articleFeatView.", () => 
 {
     it("Renders correctly '<ArticleFeatView />' when content is loaded.", () => 
     {

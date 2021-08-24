@@ -3,7 +3,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import CookiesView from "../cookiesView";
 
-describe("Test account group component: cookiesView.", () => 
+describe("Test component: cookiesView.", () => 
 {
     it("Renders correctly '<CookiesView />' when content is loaded.", () => 
     {
@@ -15,7 +15,7 @@ describe("Test account group component: cookiesView.", () =>
             text: "We use cookies to personalise content...",
             onClickEvent: jest.fn(),
             buttonText: "Accept cookies"
-        }} />);
+        }}/>);
         expect(tree).toMatchSnapshot();
     });
 });
