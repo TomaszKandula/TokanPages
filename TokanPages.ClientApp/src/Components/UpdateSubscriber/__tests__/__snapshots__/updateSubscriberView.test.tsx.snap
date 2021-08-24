@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test account group component: resetPasswordView. Renders correctly '<ResetPasswordView />' when content is loaded. 1`] = `
+exports[`Test component: updateSubscriberView. Renders correctly '<UpdateSubscriberView />' when content is loaded. 1`] = `
 <section>
   <WithStyles(ForwardRef(Container))
     maxWidth="sm"
@@ -32,7 +32,7 @@ exports[`Test account group component: resetPasswordView. Renders correctly '<Re
               component="h2"
               variant="h5"
             >
-              Password Reset
+              Update subscription email
             </WithStyles(ForwardRef(Typography))>
           </Styled(MuiBox)>
           <Styled(MuiBox)>
@@ -50,7 +50,9 @@ exports[`Test account group component: resetPasswordView. Renders correctly '<Re
                   id="email"
                   label="Email address"
                   name="email"
+                  onChange={[MockFunction]}
                   required={true}
+                  value="ester.exposito@gmail.com"
                   variant="outlined"
                 />
               </WithStyles(ForwardRef(Grid))>
@@ -60,10 +62,12 @@ exports[`Test account group component: resetPasswordView. Renders correctly '<Re
             >
               <WithStyles(ForwardRef(Button))
                 color="primary"
+                disabled={true}
                 fullWidth={true}
+                onClick={[MockFunction]}
                 variant="contained"
               >
-                Reset
+                Update
               </WithStyles(ForwardRef(Button))>
             </Styled(MuiBox)>
           </Styled(MuiBox)>

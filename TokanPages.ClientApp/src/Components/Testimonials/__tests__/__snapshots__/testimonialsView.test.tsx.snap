@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView />' when content is loaded. 1`] = `
+<section
+  className="makeStyles-section-1"
+>
+  <WithStyles(ForwardRef(Container))
+    maxWidth="lg"
+  >
+    <div
+      data-aos="fade-up"
+    >
+      <Styled(MuiBox)
+        pb={10}
+        pt={8}
+      >
+        <WithStyles(ForwardRef(Container))
+          maxWidth="sm"
+        >
+          <Styled(MuiBox)
+            mb={5}
+            textAlign="center"
+          >
+            <WithStyles(ForwardRef(Typography))
+              component="h2"
+              gutterBottom={true}
+              variant="h4"
+            >
+              Testimonials
+            </WithStyles(ForwardRef(Typography))>
+            <WithStyles(ForwardRef(Typography))
+              color="textSecondary"
+              variant="subtitle1"
+            >
+              You can read few commendations...
+            </WithStyles(ForwardRef(Typography))>
+          </Styled(MuiBox)>
+        </WithStyles(ForwardRef(Container))>
+        <Carousel
+          autoPlay={true}
+          axis="horizontal"
+          centerSlidePercentage={80}
+          infiniteLoop={true}
+          interval={6100}
+          labels={
+            Object {
+              "item": "slide item",
+              "leftArrow": "previous slide / item",
+              "rightArrow": "next slide / item",
+            }
+          }
+          onChange={[Function]}
+          onClickItem={[Function]}
+          onClickThumb={[Function]}
+          onSwipeEnd={[Function]}
+          onSwipeMove={[Function]}
+          onSwipeStart={[Function]}
+          preventMovementUntilSwipeScrollTolerance={false}
+          renderArrowNext={[Function]}
+          renderArrowPrev={[Function]}
+          renderIndicator={[Function]}
+          renderItem={[Function]}
+          renderThumbs={[Function]}
+          selectedItem={0}
+          showArrows={true}
+          showIndicators={true}
+          showStatus={false}
+          showThumbs={false}
+          statusFormatter={[Function]}
+          stopOnHover={true}
+          swipeScrollTolerance={5}
+          swipeable={true}
+          transitionTime={350}
+          verticalSwipe="standard"
+          width="100%"
+        >
+          <Styled(MuiBox)
+            className="makeStyles-boxPadding-6"
+          >
+            <img
+              alt=""
+              className="makeStyles-img-2"
+              src="undefined/images/section_testimonials/joanna.jpg"
+            />
+            <WithStyles(ForwardRef(Typography))
+              align="center"
+              className="makeStyles-title-3"
+              component="h3"
+              variant="h4"
+            >
+              Joanna
+            </WithStyles(ForwardRef(Typography))>
+            <WithStyles(ForwardRef(Typography))
+              align="center"
+              className="makeStyles-subtitle-4"
+              component="h4"
+              variant="subtitle1"
+            >
+              Senior Digital Tax Specialist
+            </WithStyles(ForwardRef(Typography))>
+            <WithStyles(ForwardRef(Typography))
+              align="center"
+              className="makeStyles-commendation-5"
+              color="textSecondary"
+              component="p"
+              variant="body1"
+            >
+              Joe is very motivated...
+            </WithStyles(ForwardRef(Typography))>
+          </Styled(MuiBox)>
+          <Styled(MuiBox)
+            className="makeStyles-boxPadding-6"
+          >
+            <img
+              alt=""
+              className="makeStyles-img-2"
+              src="undefined/images/section_testimonials/adama.jpg"
+            />
+            <WithStyles(ForwardRef(Typography))
+              align="center"
+              className="makeStyles-title-3"
+              component="h3"
+              variant="h4"
+            >
+              Adama
+            </WithStyles(ForwardRef(Typography))>
+            <WithStyles(ForwardRef(Typography))
+              align="center"
+              className="makeStyles-subtitle-4"
+              component="h4"
+              variant="subtitle1"
+            >
+              Full-stack Developer chez DFDS POLSKA
+            </WithStyles(ForwardRef(Typography))>
+            <WithStyles(ForwardRef(Typography))
+              align="center"
+              className="makeStyles-commendation-5"
+              color="textSecondary"
+              component="p"
+              variant="body1"
+            >
+              Joe have done very good work...
+            </WithStyles(ForwardRef(Typography))>
+          </Styled(MuiBox)>
+          <Styled(MuiBox)
+            className="makeStyles-boxPadding-6"
+          >
+            <img
+              alt=""
+              className="makeStyles-img-2"
+              src="undefined/images/section_testimonials/scott.jpg"
+            />
+            <WithStyles(ForwardRef(Typography))
+              align="center"
+              className="makeStyles-title-3"
+              component="h3"
+              variant="h4"
+            >
+              Scott
+            </WithStyles(ForwardRef(Typography))>
+            <WithStyles(ForwardRef(Typography))
+              align="center"
+              className="makeStyles-subtitle-4"
+              component="h4"
+              variant="subtitle1"
+            >
+              BPO
+            </WithStyles(ForwardRef(Typography))>
+            <WithStyles(ForwardRef(Typography))
+              align="center"
+              className="makeStyles-commendation-5"
+              color="textSecondary"
+              component="p"
+              variant="body1"
+            >
+              Joe is one of those rare talents...
+            </WithStyles(ForwardRef(Typography))>
+          </Styled(MuiBox)>
+        </Carousel>
+      </Styled(MuiBox)>
+    </div>
+  </WithStyles(ForwardRef(Container))>
+</section>
+`;

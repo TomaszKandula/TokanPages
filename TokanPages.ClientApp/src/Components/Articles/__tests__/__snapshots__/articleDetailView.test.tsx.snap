@@ -1,0 +1,265 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test articles group component: articleDetailView. Renders correctly '<ArticleDetailView />' when content is loaded. 1`] = `
+<section>
+  <WithStyles(ForwardRef(Container))
+    className="makeStyles-container-1"
+  >
+    <Styled(MuiBox)
+      py={12}
+    >
+      <div
+        data-aos="fade-down"
+      >
+        <WithStyles(ForwardRef(Grid))
+          container={true}
+          spacing={3}
+        >
+          <WithStyles(ForwardRef(Grid))
+            item={true}
+            xs={6}
+          >
+            <WithStyles(ForwardRef(IconButton))
+              onClick={[MockFunction]}
+            >
+              <ArrowBackIcon />
+            </WithStyles(ForwardRef(IconButton))>
+          </WithStyles(ForwardRef(Grid))>
+          <WithStyles(ForwardRef(Grid))
+            item={true}
+            xs={6}
+          >
+            <WithStyles(ForwardRef(Typography))
+              align="right"
+              className="makeStyles-readCount-4"
+              component="p"
+              variant="subtitle1"
+            >
+              Read: 
+              0
+            </WithStyles(ForwardRef(Typography))>
+          </WithStyles(ForwardRef(Grid))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Divider))
+          className="makeStyles-dividerTop-2"
+        />
+        <WithStyles(ForwardRef(Grid))
+          container={true}
+          spacing={2}
+        >
+          <WithStyles(ForwardRef(Grid))
+            item={true}
+          >
+            <Styled(MuiBox)
+              onMouseEnter={[MockFunction]}
+              onMouseLeave={[MockFunction]}
+            >
+              <div>
+                renderSmallAvatar
+              </div>
+            </Styled(MuiBox)>
+          </WithStyles(ForwardRef(Grid))>
+          <WithStyles(ForwardRef(Grid))
+            item={true}
+            xs={true}
+            zeroMinWidth={true}
+          >
+            <WithStyles(ForwardRef(Typography))
+              align="left"
+              className="makeStyles-aliasName-5"
+              component="div"
+              variant="subtitle1"
+            >
+              <Styled(MuiBox)
+                fontWeight="fontWeightBold"
+              >
+                Ester
+              </Styled(MuiBox)>
+            </WithStyles(ForwardRef(Typography))>
+            <WithStyles(ForwardRef(Popover))
+              anchorEl={null}
+              anchorOrigin={
+                Object {
+                  "horizontal": "left",
+                  "vertical": "bottom",
+                }
+              }
+              className="makeStyles-popover-10"
+              disableRestoreFocus={true}
+              id="mouse-over-popover"
+              onClose={[MockFunction]}
+              open={false}
+              transformOrigin={
+                Object {
+                  "horizontal": "left",
+                  "vertical": "top",
+                }
+              }
+            >
+              <Styled(MuiBox)
+                mb={2}
+                ml={3}
+                mr={3}
+                mt={2}
+              >
+                <WithStyles(ForwardRef(Typography))
+                  color="textSecondary"
+                  component="p"
+                  variant="subtitle2"
+                >
+                  First name: 
+                  Ester
+                </WithStyles(ForwardRef(Typography))>
+                <WithStyles(ForwardRef(Typography))
+                  color="textSecondary"
+                  component="p"
+                  variant="subtitle2"
+                >
+                  Last name: 
+                  Exposito
+                </WithStyles(ForwardRef(Typography))>
+                <WithStyles(ForwardRef(Typography))
+                  color="textSecondary"
+                  component="p"
+                  variant="subtitle2"
+                >
+                  Registered at: 
+                </WithStyles(ForwardRef(Typography))>
+              </Styled(MuiBox)>
+            </WithStyles(ForwardRef(Popover))>
+          </WithStyles(ForwardRef(Grid))>
+        </WithStyles(ForwardRef(Grid))>
+        <Styled(MuiBox)
+          mb={5}
+          mt={1}
+        >
+          <WithStyles(ForwardRef(Typography))
+            component="p"
+            variant="subtitle1"
+          >
+            Read time: 
+            4 min.
+             min.
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            component="p"
+            variant="subtitle1"
+          >
+            Published at: 
+            01/10/2020, 12:15 PM
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            color="textSecondary"
+            component="p"
+            variant="subtitle2"
+          >
+            Updated at: 
+            01/10/2020, 12:15 PM
+          </WithStyles(ForwardRef(Typography))>
+        </Styled(MuiBox)>
+      </div>
+      <div
+        data-aos="fade-up"
+      >
+        <div>
+          articleContent
+        </div>
+      </div>
+      <Styled(MuiBox)
+        mt={5}
+      >
+        <WithStyles(ForwardRef(Grid))
+          container={true}
+          spacing={2}
+        >
+          <WithStyles(ForwardRef(Grid))
+            item={true}
+          >
+            <WithStyles(ForwardRef(Tooltip))
+              arrow={true}
+              title={
+                <span
+                  className="makeStyles-likesTip-9"
+                >
+                  <Emoji
+                    text="25"
+                  />
+                </span>
+              }
+            >
+              <ThumbUpIcon
+                className="makeStyles-thumbsMedium-8"
+                onClick={[MockFunction]}
+              />
+            </WithStyles(ForwardRef(Tooltip))>
+          </WithStyles(ForwardRef(Grid))>
+          <WithStyles(ForwardRef(Grid))
+            item={true}
+            xs={true}
+            zeroMinWidth={true}
+          >
+            <WithStyles(ForwardRef(Typography))
+              component="p"
+              variant="subtitle1"
+            >
+              50
+            </WithStyles(ForwardRef(Typography))>
+          </WithStyles(ForwardRef(Grid))>
+        </WithStyles(ForwardRef(Grid))>
+      </Styled(MuiBox)>
+      <WithStyles(ForwardRef(Divider))
+        className="makeStyles-dividerBottom-3"
+      />
+      <WithStyles(ForwardRef(Grid))
+        container={true}
+        spacing={2}
+      >
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+        >
+          <div>
+            renderLargeAvatar
+          </div>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          xs={true}
+          zeroMinWidth={true}
+        >
+          <WithStyles(ForwardRef(Typography))
+            align="left"
+            className="makeStyles-aliasName-5"
+            color="textSecondary"
+            component="span"
+            variant="h6"
+          >
+            Written by
+          </WithStyles(ForwardRef(Typography))>
+          <Styled(MuiBox)
+            fontWeight="fontWeightBold"
+          >
+            <WithStyles(ForwardRef(Typography))
+              align="left"
+              className="makeStyles-aliasName-5"
+              component="span"
+              variant="h6"
+            >
+              Ester Exposito
+            </WithStyles(ForwardRef(Typography))>
+          </Styled(MuiBox)>
+          <WithStyles(ForwardRef(Typography))
+            align="left"
+            className="makeStyles-aliasName-5"
+            color="textSecondary"
+            component="span"
+            variant="subtitle1"
+          >
+            About the author: 
+            Happy developer
+          </WithStyles(ForwardRef(Typography))>
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
+    </Styled(MuiBox)>
+  </WithStyles(ForwardRef(Container))>
+</section>
+`;

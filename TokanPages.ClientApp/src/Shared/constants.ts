@@ -92,6 +92,8 @@ export const SIGNIN_WARNING: string = "<span>We have received following warning(
 export const SIGNUP_SUCCESS: string = "<p>Congratulations!</p><p>The account has been setup successfully, please check your e-mail and follow given instructions to make newly created account active.</p>";
 export const SIGNUP_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To sign-up all fields must be filled along with acceptance of Terms of Use and Privacy Policy.</span>";
 
+export const RESET_PASSWORD_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To reset user password registered and verified e-mail address must be provided.</span>";
+
 export const NEWSLETTER_SUCCESS: string = "<p>Congratulations!</p><p>You have been added to the newsletter.</p>";
 export const NEWSLETTER_WARNING: string = "<span>The newsletter could not be setup, following warning(s) received:</span><ul>{LIST}</ul><span>Please make sure the email is valid and you have access to it.</span>";
 export const NEWSLETTER_ERROR: string = "<p>Ouch!</p><p>The newsletter could not be setup.</p><p>{ERROR}.</p>";

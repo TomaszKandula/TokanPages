@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
-import ResetPasswordView from "../Components/Account/resetPasswordView";
+import ResetPassword from "../Components/Account/resetPassword";
 import Footer from "../Components/Layout/footer";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
@@ -30,7 +30,7 @@ const ResetPage = (): JSX.Element =>
         <>     
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <ResetPasswordView content={resetForm?.content} isLoading={resetForm?.isLoading} />
+                <ResetPassword content={resetForm?.content} isLoading={resetForm?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>

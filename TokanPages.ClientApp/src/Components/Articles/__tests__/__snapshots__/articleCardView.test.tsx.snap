@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test articles group component: articleCardView. Renders correctly '<ArticleCardView />' when content is loaded. 1`] = `
+<div
+  data-aos="fade-up"
+>
+  <WithStyles(ForwardRef(Card))
+    className="makeStyles-root-1"
+    elevation={4}
+  >
+    <WithStyles(ForwardRef(Grid))
+      container={true}
+      spacing={2}
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={4}
+      >
+        <img
+          alt=""
+          className="makeStyles-img-4"
+          src="/images/card.jpg"
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={8}
+      >
+        <WithStyles(ForwardRef(CardContent))>
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-title-5"
+            component="h2"
+            gutterBottom={true}
+            variant="h5"
+          >
+            Article title
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-description-6"
+            color="textSecondary"
+            component="p"
+            variant="body2"
+          >
+            Article short description
+          </WithStyles(ForwardRef(Typography))>
+        </WithStyles(ForwardRef(CardContent))>
+        <WithStyles(ForwardRef(CardActions))>
+          <WithStyles(ForwardRef(Button))
+            color="primary"
+            onClick={[MockFunction]}
+            size="small"
+          >
+            READ
+          </WithStyles(ForwardRef(Button))>
+        </WithStyles(ForwardRef(CardActions))>
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Card))>
+</div>
+`;
