@@ -12,7 +12,7 @@ exports[`Test component: menuView. Renders correctly '<MenuView />' when content
     <img
       alt=""
       className="makeStyles-menuBackground-1"
-      src="undefined/images/background.jpg"
+      src=""
     />
     <Component
       bind={

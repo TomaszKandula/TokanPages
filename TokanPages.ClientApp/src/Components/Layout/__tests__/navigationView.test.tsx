@@ -3,6 +3,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import NavigationView from "../navigationView";
 import { IItem } from "../../../Shared/Components/ListRender/Models/item";
+import { ANONYMOUS_NAME } from "../../../Shared/constants";
 
 describe("Test component: featuresView.", () => 
 {
@@ -27,9 +28,9 @@ describe("Test component: featuresView.", () =>
             openHandler: jest.fn(),
             closeHandler: jest.fn(),
             isAnonymous: false,
-            logo: "main.jpg",
-            avatar: "default.jpg",
-            anonymousText: "Anonymous",
+            logo: "",
+            avatar: "",
+            anonymousText: ANONYMOUS_NAME,
             userAliasText: "",
             menu: 
             { 

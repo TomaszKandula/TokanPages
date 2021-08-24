@@ -77,11 +77,6 @@ exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView 
           <Styled(MuiBox)
             className="makeStyles-boxPadding-6"
           >
-            <img
-              alt=""
-              className="makeStyles-img-2"
-              src="undefined/images/section_testimonials/joanna.jpg"
-            />
             <WithStyles(ForwardRef(Typography))
               align="center"
               className="makeStyles-title-3"
@@ -111,11 +106,6 @@ exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView 
           <Styled(MuiBox)
             className="makeStyles-boxPadding-6"
           >
-            <img
-              alt=""
-              className="makeStyles-img-2"
-              src="undefined/images/section_testimonials/adama.jpg"
-            />
             <WithStyles(ForwardRef(Typography))
               align="center"
               className="makeStyles-title-3"
@@ -145,11 +135,6 @@ exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView 
           <Styled(MuiBox)
             className="makeStyles-boxPadding-6"
           >
-            <img
-              alt=""
-              className="makeStyles-img-2"
-              src="undefined/images/section_testimonials/scott.jpg"
-            />
             <WithStyles(ForwardRef(Typography))
               align="center"
               className="makeStyles-title-3"

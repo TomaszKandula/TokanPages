@@ -11,15 +11,15 @@ describe("Test component: testimonialsView.", () =>
         {{
             caption: "Testimonials",
             subtitle: "You can read few commendations...",
-            photo1: "joanna.jpg",
+            photo1: "",
             name1: "Joanna",
             occupation1: "Senior Digital Tax Specialist",
             text1: "Joe is very motivated...",
-            photo2: "adama.jpg",
+            photo2: "",
             name2: "Adama",
             occupation2: "Full-stack Developer chez DFDS POLSKA",
             text2: "Joe have done very good work...",
-            photo3: "scott.jpg",
+            photo3: "",
             name3: "Scott",
             occupation3: "BPO",
             text3: "Joe is one of those rare talents..."

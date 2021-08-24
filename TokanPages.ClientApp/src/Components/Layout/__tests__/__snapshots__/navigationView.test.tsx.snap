@@ -5,13 +5,13 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
   bind={
     Object {
       "anonymousText": "Anonymous",
-      "avatar": "default.jpg",
+      "avatar": "",
       "closeHandler": [MockFunction],
       "drawerState": Object {
         "open": false,
       },
       "isAnonymous": false,
-      "logo": "main.jpg",
+      "logo": "",
       "menu": Object {
         "image": "",
         "items": Array [
@@ -66,13 +66,7 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
             <div
               className="makeStyles-image-6"
               data-aos="fade-down"
-            >
-              <img
-                alt=""
-                className="makeStyles-logo-3"
-                src="undefined/icons/main.jpg"
-              />
-            </div>
+            />
           </Link>
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Grid))
@@ -90,7 +84,7 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
           >
             <WithStyles(ForwardRef(Avatar))
               alt="Avatar"
-              src="default.jpg"
+              src=""
             />
           </WithStyles(ForwardRef(IconButton))>
         </WithStyles(ForwardRef(Grid))>

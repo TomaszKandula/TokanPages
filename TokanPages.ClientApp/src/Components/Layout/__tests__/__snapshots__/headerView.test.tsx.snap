@@ -19,13 +19,7 @@ exports[`Test component: headerView. Renders correctly '<HeaderView />' when con
         >
           <div
             data-aos="fade-right"
-          >
-            <img
-              alt=""
-              className="makeStyles-img-6"
-              src="undefined/images/tomek_bergen.jpg"
-            />
-          </div>
+          />
         </Styled(MuiBox)>
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
