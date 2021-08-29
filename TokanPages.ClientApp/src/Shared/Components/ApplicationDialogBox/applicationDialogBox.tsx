@@ -4,14 +4,15 @@ import { IApplicationState } from "../../../Redux/applicationState";
 import { ActionCreators } from "../../../Redux/Actions/raiseDialogAction";
 import { IRaiseDialog } from "../../../Redux/States/raiseDialogState";
 import { IconType } from "../../enums";
+import Validate from "validate.js";
 import ApplicationDialogBoxView from "./applicationDialogBoxView";
 
-interface IDefaultDialogState extends IRaiseDialog
+interface IDialogState extends IRaiseDialog
 {
     state: boolean;
 }
 
-const DefaultDialogState: IDefaultDialogState = 
+const DialogState: IDialogState = 
 {
     state: false, 
     title:  "", 
@@ -22,22 +23,22 @@ const DefaultDialogState: IDefaultDialogState =
 const ApplicationDialogBox = (): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const [dialogState, setDialogState] = React.useState(DefaultDialogState);
+    const [dialogState, setDialogState] = React.useState(DialogState);
     const raiseDialogState = useSelector((state: IApplicationState) => state.raiseDialog);
     
     const clearDialog = React.useCallback(() => 
     { 
-        if (!dialogState.state && dialogState.message !== "")
+        if (!dialogState.state && !Validate.isEmpty(dialogState.message))
         {
             dispatch(ActionCreators.clearDialog());
-            setDialogState(DefaultDialogState);
+            setDialogState(DialogState);
         }
 
     }, [ dispatch, dialogState ]);
     
     const raiseDialog = React.useCallback(() => 
     {
-        if (raiseDialogState?.message !== "")
+        if (!Validate.isEmpty(raiseDialogState?.message))
         {
             setDialogState(
             { 

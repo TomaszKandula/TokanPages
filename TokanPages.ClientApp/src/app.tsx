@@ -16,7 +16,7 @@ import UnsubscribePage from "./Pages/unsubscribePage";
 import UpdateSubscriberPage from "./Pages/updateSubscriberPage";
 import WrongPage from "./Pages/wrongPage";
 import ScrollTop from "./Shared/Components/Scroll/scrollTop";
-import ApplicationErrorToast from "./Shared/Components/Toasts/applicationErrorToast";
+import ApplicationToast from "./Shared/Components/Toasts/applicationToast";
 import ApplicationDialogBox from "./Shared/Components/ApplicationDialogBox/applicationDialogBox";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -50,7 +50,7 @@ const App = (): JSX.Element =>
                   <Route component={WrongPage} />
                 </Switch>
             </Router>
-            <ApplicationErrorToast />
+            <ApplicationToast />
             <ApplicationDialogBox />
             <ScrollTop>
                 <Fab color="primary" size="small" aria-label="scroll back to top">

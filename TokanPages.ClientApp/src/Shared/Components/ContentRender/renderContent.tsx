@@ -10,73 +10,78 @@ import { Languages } from "../../languageList";
 
 export const RenderContent = (textObject: ITextObject | undefined): JSX.Element => 
 {
-    if (textObject === undefined)
-    {
-        return(<div>Cannot render content.</div>);
-    }
-
-    if (textObject.items.length === 0)
-    {
-        return(<></>);
-    }
+    if (textObject === undefined) return(<div>Cannot render content.</div>);
+    if (textObject.items.length === 0) return(<div>Cannot render content.</div>);
 
     let renderBuffer: JSX.Element[] = [];
     textObject.items.forEach(item => 
     {
-        if (item.type === "separator") renderBuffer.push(
-            <RenderSeparator 
-                key={item.id} 
-            />);
+        switch(item.type)
+        {
+            case "separator":
+                renderBuffer.push(<RenderSeparator 
+                    key={item.id} 
+                />);
+            break;
 
-        if (item.type === "html") renderBuffer.push(
-            <RenderText 
-                key={item.id} 
-                id={item.id} 
-                type={item.type} 
-                value={item.value} 
-                prop={item.prop} 
-                text={item.text} 
-            />);
+            case "html":
+                renderBuffer.push(<RenderText 
+                    key={item.id} 
+                    id={item.id} 
+                    type={item.type} 
+                    value={item.value} 
+                    prop={item.prop} 
+                    text={item.text} 
+                />);
+            break;
 
-        if (item.type === "image") renderBuffer.push(
-            <RenderImage 
-                key={item.id} 
-                id={item.id} 
-                type={item.type} 
-                value={item.value} 
-                prop={item.prop} 
-                text={item.text} 
-            />);
+            case "image": 
+                renderBuffer.push(<RenderImage 
+                    key={item.id} 
+                    id={item.id} 
+                    type={item.type} 
+                    value={item.value} 
+                    prop={item.prop} 
+                    text={item.text} 
+                />);
+            break;
 
-        if (item.type === "video") renderBuffer.push(
-            <RenderVideo 
-                key={item.id} 
-                id={item.id} 
-                type={item.type} 
-                value={item.value} 
-                prop={item.prop} 
-                text={item.text} 
-            />);
+            case "video":
+                renderBuffer.push(<RenderVideo 
+                    key={item.id} 
+                    id={item.id} 
+                    type={item.type} 
+                    value={item.value} 
+                    prop={item.prop} 
+                    text={item.text} 
+                />);
+            break;
 
-        if (item.type === "table") renderBuffer.push(
-            <RenderTable 
-                key={item.id} 
-                id={item.id} 
-                type={item.type} 
-                value={item.value} 
-                prop={item.prop} 
-                text={item.text} 
-            />);
+            case "table": 
+                renderBuffer.push(<RenderTable 
+                    key={item.id} 
+                    id={item.id} 
+                    type={item.type} 
+                    value={item.value} 
+                    prop={item.prop} 
+                    text={item.text} 
+                />);
+            break;
 
-        if (item.prop === "gist" && Languages.includes(item.type)) renderBuffer.push(
-            <RenderGist 
-                key={item.id} 
-                id={item.id} 
-                type={item.type} 
-                value={item.value} 
-                prop={item.prop} 
-                text={item.text} 
-            />);
+            case "gist":
+                if (Languages.includes(item.type)) renderBuffer.push(
+                    <RenderGist 
+                        key={item.id} 
+                        id={item.id} 
+                        type={item.type} 
+                        value={item.value} 
+                        prop={item.prop} 
+                        text={item.text} 
+                    />);
+            break;
+
+            default: renderBuffer.push(<div>Unknown element.</div>);
+        }
     });
 
     return(<>{renderBuffer}</>);
