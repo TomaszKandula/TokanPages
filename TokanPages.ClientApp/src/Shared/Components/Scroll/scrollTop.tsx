@@ -10,9 +10,7 @@ export interface IScrollTop
 
 const ScrollTop = (props: IScrollTop): JSX.Element =>
 {
-    const { children } = props;
     const classes = scrollTopStyle();
-
     const trigger = useScrollTrigger(
     {
         disableHysteresis: true,
@@ -21,18 +19,15 @@ const ScrollTop = (props: IScrollTop): JSX.Element =>
   
     const handleClick = (event: React.MouseEvent<HTMLDivElement>) => 
     {
-        const anchor = ((event.target as HTMLDivElement).ownerDocument || document).querySelector("#back-to-top-anchor");
-  
-        if (anchor) 
-        {
-            anchor.scrollIntoView({ behavior: "smooth"});
-        }
+        const ownerDocument = ((event.target as HTMLDivElement).ownerDocument || document);
+        const anchor = ownerDocument.querySelector("#back-to-top-anchor");
+        if (anchor) anchor.scrollIntoView({ behavior: "smooth"});
     };
   
     return (
         <Zoom in={trigger}>
             <div onClick={handleClick} role="presentation" className={classes.scrollToTop}>
-                {children}
+                {props.children}
             </div>
         </Zoom>
     );
