@@ -8,52 +8,50 @@ import { ExpandLess, ExpandMore } from "@material-ui/icons";
 import { GetIcon } from "../../GetIcon/getIcon";
 import { IItem } from "../Models/item";
 import { RenderSubitem } from "./renderSubitem";
+import { EnsureDefined } from "./ensureDefined";
 
 export const RenderItemSpan = (props: IItem): JSX.Element =>
 {
     const [state, setState] = React.useState(false);
     const onClickEvent = () => setState(!state);
 
-    if (props.subitems === undefined) 
-    {
-        return(<div>Cannot render item.</div>);
-    }
-
-    let renderBuffer: JSX.Element[] = [];
-    props.subitems.forEach(item => 
-    {
-        renderBuffer.push(<RenderSubitem 
-            key={item.id}
-            id={item.id} 
-            type={item.type}
-            value={item.value}
-            link={item.link}
-            icon={item.icon}
-            enabled={item.enabled}
-        />);
-    });
-
-    if (props.link === undefined) 
-        return(<div>Cannot render. Missing 'link' property.</div>);
-
-    if (props.icon === undefined) 
-        return(<div>Cannot render. Missing 'icon' property.</div>);
-
-    if (props.enabled === undefined) 
-        return(<div>Cannot render. Missing 'enabled' property.</div>);
-
-    return(
+    return(EnsureDefined(
+        {
+            values: 
+            [
+                props.link,
+                props.icon,
+                props.enabled,
+                props.subitems
+            ],
+            messages: 
+            [
+                "Cannot render. Missing 'link' property.",
+                "Cannot render. Missing 'icon' property.",
+                "Cannot render. Missing 'enabled' property.",
+                "Cannot render. Missing 'subitem' property."
+            ]
+        }, 
         <>
             <ListItem button key={props.id} onClick={onClickEvent} disabled={!props.enabled} >
-                <ListItemIcon>{GetIcon({ iconName: props.icon })}</ListItemIcon>
+                <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
                 <ListItemText primary={props.value} />
                 {state ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={state} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-                {renderBuffer}
+                {props.subitems?.map(item => (
+                <RenderSubitem 
+                    key={item.id}
+                    id={item.id} 
+                    type={item.type}
+                    value={item.value}
+                    link={item.link}
+                    icon={item.icon}
+                    enabled={item.enabled}
+                />))}
             </List>
             </Collapse>
-        </>
+        </>)
     );
 }

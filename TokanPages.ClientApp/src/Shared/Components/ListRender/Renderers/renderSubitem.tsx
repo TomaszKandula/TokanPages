@@ -6,24 +6,29 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { ISubitem } from "../Models/subitem";
 import { GetIcon } from "../../GetIcon/getIcon";
 import subitemsStyle from "../Styles/subitemsStyle";
+import { EnsureDefined } from "./ensureDefined";
 
 export const RenderSubitem = (props: ISubitem): JSX.Element =>
 {
-    if (props.link === undefined) 
-        return(<div>Cannot render. Missing 'link' property.</div>);
-
-    if (props.icon === undefined) 
-        return(<div>Cannot render. Missing 'icon' property.</div>);
-
-    if (props.enabled === undefined) 
-        return(<div>Cannot render. Missing 'enabled' property.</div>);
-
-    const icon = GetIcon({ iconName: props.icon });
     const classes = subitemsStyle();
-    return(
-        <ListItem button key={props.id} className={classes.nested} disabled={!props.enabled} component={Link} to={props.link}>
-            <ListItemIcon>{icon}</ListItemIcon>
+    return(EnsureDefined(
+        {
+            values: 
+            [
+                props.link,
+                props.icon,
+                props.enabled
+            ],
+            messages: 
+            [
+                "Cannot render. Missing 'link' property.",
+                "Cannot render. Missing 'icon' property.",
+                "Cannot render. Missing 'enabled' property."
+            ]
+        },         
+        <ListItem button key={props.id} className={classes.nested} disabled={!props.enabled} component={Link} to={props.link as string}>
+            <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
             <ListItemText primary={props.value} />
-        </ListItem>
+        </ListItem>)
     );
 }
