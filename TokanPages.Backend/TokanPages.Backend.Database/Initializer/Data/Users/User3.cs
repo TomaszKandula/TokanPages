@@ -16,11 +16,13 @@
         
         public const bool IS_ACTIVATED = true;
         
-        public const string AVATAR_NAME = null;
+        public const string AVATAR_NAME = "avatar-default-288.jpeg";
         
         public const string SHORT_BIO = "Dummy Developer";
         
         public const string CRYPTED_PASSWORD = "$2a$12$Bl4ebq6Qi8F4aY5w9wzs7echVwERkAyXxmAua3yUpvUX40DtpCKsK";
+        
+        public static readonly Guid? FResetId = null;
         
         public static readonly Guid FId = Guid.Parse("3d047a17-9865-47f1-acb3-53b08539e7c9");
         

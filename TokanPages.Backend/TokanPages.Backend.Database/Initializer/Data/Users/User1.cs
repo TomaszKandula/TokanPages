@@ -22,6 +22,8 @@
 
         public const string CRYPTED_PASSWORD = "$2a$12$Bl4ebq6Qi8F4aY5w9wzs7echVwERkAyXxmAua3yUpvUX40DtpCKsK";
 
+        public static readonly Guid? FResetId = null;
+
         public static readonly Guid FId = Guid.Parse("08be222f-dfcd-42db-8509-fd78ef09b912");
         
         public static readonly DateTime FRegistered = DateTime.Parse("2020-01-10 12:15:15");

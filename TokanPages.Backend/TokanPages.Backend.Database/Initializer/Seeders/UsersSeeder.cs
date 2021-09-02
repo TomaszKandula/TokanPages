@@ -25,7 +25,8 @@
                     LastUpdated = User1.FLastUpdated,
                     AvatarName = User1.AVATAR_NAME,
                     ShortBio = User1.SHORT_BIO,
-                    CryptedPassword = User1.CRYPTED_PASSWORD
+                    CryptedPassword = User1.CRYPTED_PASSWORD,
+                    ResetId = User1.FResetId
                 },
                 new ()
                 {
@@ -40,7 +41,8 @@
                     LastUpdated = User2.FLastUpdated,
                     AvatarName = User2.AVATAR_NAME,
                     ShortBio = User2.SHORT_BIO,
-                    CryptedPassword = User2.CRYPTED_PASSWORD
+                    CryptedPassword = User2.CRYPTED_PASSWORD,
+                    ResetId = User2.FResetId
                 },
                 new ()
                 {
@@ -55,7 +57,8 @@
                     LastUpdated = User3.FLastUpdated,
                     AvatarName = User3.AVATAR_NAME,
                     ShortBio = User3.SHORT_BIO,
-                    CryptedPassword = User3.CRYPTED_PASSWORD
+                    CryptedPassword = User3.CRYPTED_PASSWORD,
+                    ResetId = User3.FResetId
                 }
             };
         }
