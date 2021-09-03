@@ -14,8 +14,6 @@
 
     public class AddUserCommandHandler : TemplateHandler<AddUserCommand, Guid>
     {
-        private const int CIPHER_LOG_ROUNDS = 12;
-        
         private readonly DatabaseContext FDatabaseContext;
         
         private readonly IDateTimeService FDateTimeService;
@@ -50,7 +48,7 @@
                 LastUpdated = null,
                 LastLogged = null,
                 AvatarName = Constants.Defaults.AVATAR_NAME,
-                CryptedPassword = FCipheringService.GetHashedPassword(ARequest.Password, FCipheringService.GenerateSalt(CIPHER_LOG_ROUNDS)) 
+                CryptedPassword = FCipheringService.GetHashedPassword(ARequest.Password, FCipheringService.GenerateSalt(Constants.CIPHER_LOG_ROUNDS)) 
             };
 
             await FDatabaseContext.Users.AddAsync(LNewUser, ACancellationToken);
