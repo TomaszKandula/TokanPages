@@ -26,6 +26,7 @@
         public static UpdateUserPasswordCommand MapToUpdateUserPasswordCommand(UpdateUserPasswordDto AModel) => new()
         {
             Id = AModel.Id,
+            ResetId = AModel.ResetId,
             NewPassword = AModel.NewPassword
         };
         

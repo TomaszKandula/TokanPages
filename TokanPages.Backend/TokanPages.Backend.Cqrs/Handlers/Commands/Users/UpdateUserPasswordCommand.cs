@@ -6,6 +6,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     public class UpdateUserPasswordCommand : IRequest<Unit>
     {
         public Guid Id { get; set; }
+        
+        public Guid? ResetId { get; set; }
 
         public string NewPassword { get; set; }
     }
