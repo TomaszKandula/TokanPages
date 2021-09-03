@@ -34,7 +34,7 @@
             => await FMediator.Send(UsersMapper.MapToResetUserPasswordCommand(APayLoad));
         
         [HttpPost]
-        [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
+        [AllowAnonymous]
         public async Task<Unit> UpdateUserPassword([FromBody] UpdateUserPasswordDto APayLoad) 
             => await FMediator.Send(UsersMapper.MapToUpdateUserPasswordCommand(APayLoad));
         
