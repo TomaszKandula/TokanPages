@@ -33,6 +33,11 @@
         public async Task<Unit> ResetUserPassword([FromBody] ResetUserPasswordDto APayLoad) 
             => await FMediator.Send(UsersMapper.MapToResetUserPasswordCommand(APayLoad));
         
+        [HttpPost]
+        [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
+        public async Task<Unit> UpdateUserPassword([FromBody] UpdateUserPasswordDto APayLoad) 
+            => await FMediator.Send(UsersMapper.MapToUpdateUserPasswordCommand(APayLoad));
+        
         [HttpGet]
         [AuthorizeRoles(Roles.GodOfAsgard)]
         public async Task<IEnumerable<GetAllUsersQueryResult>> GetAllUsers()
