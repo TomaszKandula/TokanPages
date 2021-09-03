@@ -22,6 +22,12 @@
         {
             EmailAddress = AModel.EmailAddress
         };
+
+        public static UpdateUserPasswordCommand MapToUpdateUserPasswordCommand(UpdateUserPasswordDto AModel) => new()
+        {
+            Id = AModel.Id,
+            NewPassword = AModel.NewPassword
+        };
         
         public static AddUserCommand MapToAddUserCommand(AddUserDto AModel) => new () 
         { 
