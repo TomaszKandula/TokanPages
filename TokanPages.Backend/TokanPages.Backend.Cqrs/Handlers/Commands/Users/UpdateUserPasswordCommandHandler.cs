@@ -59,7 +59,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             LCurrentUser.CryptedPassword = FCipheringService.GetHashedPassword(ARequest.NewPassword, FCipheringService.GenerateSalt(Constants.CIPHER_LOG_ROUNDS));
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 
-            FLogger.LogInformation($"User password has been reset successfully (UserId: {ARequest.Id}).");
+            FLogger.LogInformation($"User password has been updated successfully (UserId: {ARequest.Id}).");
             return await Task.FromResult(Unit.Value);
         }
     }
