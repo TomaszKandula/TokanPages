@@ -57,7 +57,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 return await Task.FromResult(Unit.Value);
 
             var LCurrentUser = LUsers.First();
-            LCurrentUser.CryptedPassword = null;
+            LCurrentUser.CryptedPassword = string.Empty;
             LCurrentUser.ResetId = Guid.NewGuid();
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 
