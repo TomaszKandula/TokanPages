@@ -69,7 +69,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             await LUpdateUserCommandHandler.Handle(LUpdateUserPasswordCommand, CancellationToken.None);
 
             // Assert
-             var LUserEntity = await LDatabaseContext.Users.FindAsync(LUser.Id);
+            var LUserEntity = await LDatabaseContext.Users.FindAsync(LUser.Id);
             
             LUserEntity.Should().NotBeNull();
             LUserEntity.CryptedPassword.Should().NotBeEmpty();
