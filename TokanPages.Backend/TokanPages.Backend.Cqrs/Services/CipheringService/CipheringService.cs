@@ -20,7 +20,7 @@ namespace TokanPages.Backend.Cqrs.Services.CipheringService
         /// <returns>
         /// The hashed password.
         /// </returns>
-        public string GetHashedPassword(string APassword, string ASalt) 
+        public virtual string GetHashedPassword(string APassword, string ASalt) 
         {
             if (APassword == null) 
                 throw new ArgumentNullException(nameof(APassword));
@@ -86,7 +86,7 @@ namespace TokanPages.Backend.Cqrs.Services.CipheringService
         /// <returns>
         /// <c>true</c> if the passwords, <c>false</c> otherwise.
         /// </returns>
-        public bool VerifyPassword(string APlaintext, string AHashed)
+        public virtual bool VerifyPassword(string APlaintext, string AHashed)
             => StringComparer.Ordinal.Compare(AHashed, GetHashedPassword(APlaintext, AHashed[..29])) == 0;
         
         /// <summary>
@@ -99,7 +99,7 @@ namespace TokanPages.Backend.Cqrs.Services.CipheringService
         /// <returns>
         /// An encoded salt value.
         /// </returns>
-        public string GenerateSalt(int ALogRounds = Constants.GENERATE_SALT_DEFAULT_LOG2_ROUNDS) 
+        public virtual string GenerateSalt(int ALogRounds = Constants.GENERATE_SALT_DEFAULT_LOG2_ROUNDS) 
         {
             var LRandomBytes = new byte[Constants.BCRYPT_SALT_LENGTH];
 
