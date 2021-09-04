@@ -8,8 +8,9 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
-    using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
     using Shared.Services.TemplateService;
+    using Cqrs.Handlers.Commands.Users;
+    using Core.Exceptions;
     using Storage.Models;
     using Shared.Models;
     using Moq.Protected;
@@ -99,6 +100,78 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             LUserEntity.LastLogged.Should().BeNull();
             LUserEntity.CryptedPassword.Should().BeEmpty();
             LUserEntity.ResetId.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task GivenSmtpError_WhenResetUserPassword_ShouldThrowError()
+        {
+            // Arrange
+            var LUser = new TokanPages.Backend.Domain.Entities.Users
+            {
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                IsActivated = true,
+                Registered = DateTimeService.Now,
+                LastUpdated = null,
+                LastLogged = null,
+                CryptedPassword = DataUtilityService.GetRandomString(),
+                ResetId = null
+            };
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddAsync(LUser);
+            await LDatabaseContext.SaveChangesAsync();
+
+            var LResetUserPasswordCommand = new ResetUserPasswordCommand
+            {
+                EmailAddress = LUser.EmailAddress
+            };
+
+            var LMockedLogger = new Mock<ILogger>();
+            var LMockedSmtpClientService = new Mock<ISmtpClientService>();
+            var LMockedTemplateService = new Mock<ITemplateService>();
+            var LMockedAzureStorage = new Mock<AzureStorage>();
+            var LMockedApplicationPaths = new Mock<ApplicationPaths>();
+
+            var LMockedHttpMessageHandler = new Mock<HttpMessageHandler>();
+
+            var LSendActionResult = new ActionResult { IsSucceeded = false };
+            LMockedSmtpClientService
+                .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
+                .Returns(Task.FromResult(LSendActionResult));
+
+            LMockedHttpMessageHandler
+                .Protected()
+                .Setup<Task<HttpResponseMessage>>(
+                    "SendAsync", 
+                    ItExpr.IsAny<HttpRequestMessage>(), 
+                    ItExpr.IsAny<CancellationToken>())
+                .ReturnsAsync(new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.OK
+                });
+
+            var LHttpClient = new HttpClient(LMockedHttpMessageHandler.Object)
+            {
+                BaseAddress = new Uri("http://localhost:5000/")
+            };
+
+            var LUpdateUserCommandHandler = new ResetUserPasswordCommandHandler(
+                LDatabaseContext, 
+                LMockedLogger.Object,
+                LHttpClient,
+                LMockedSmtpClientService.Object,
+                LMockedTemplateService.Object,
+                LMockedAzureStorage.Object,
+                LMockedApplicationPaths.Object
+            );
+
+            // Act
+            // Assert
+            await Assert.ThrowsAsync<BusinessException>(() 
+                => LUpdateUserCommandHandler.Handle(LResetUserPasswordCommand, CancellationToken.None));
         }
     }
 }
