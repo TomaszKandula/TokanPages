@@ -76,7 +76,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             };
 
             // Act
-            var LUpdateUserCommandHandler = new ResetUserPasswordCommandHandler(
+            var LResetUserPasswordCommandHandler = new ResetUserPasswordCommandHandler(
                 LDatabaseContext, 
                 LMockedLogger.Object,
                 LHttpClient,
@@ -85,7 +85,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LMockedAzureStorage.Object,
                 LMockedApplicationPaths.Object
             );
-            await LUpdateUserCommandHandler.Handle(LResetUserPasswordCommand, CancellationToken.None);
+            await LResetUserPasswordCommandHandler.Handle(LResetUserPasswordCommand, CancellationToken.None);
 
             // Assert
             var LUserEntity = await LDatabaseContext.Users.FindAsync(LUser.Id);
@@ -158,7 +158,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 BaseAddress = new Uri("http://localhost:5000/")
             };
 
-            var LUpdateUserCommandHandler = new ResetUserPasswordCommandHandler(
+            var LResetUserPasswordCommandHandler = new ResetUserPasswordCommandHandler(
                 LDatabaseContext, 
                 LMockedLogger.Object,
                 LHttpClient,
@@ -171,7 +171,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             // Act
             // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
-                => LUpdateUserCommandHandler.Handle(LResetUserPasswordCommand, CancellationToken.None));
+                => LResetUserPasswordCommandHandler.Handle(LResetUserPasswordCommand, CancellationToken.None));
         }
     }
 }
