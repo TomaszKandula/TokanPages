@@ -52,7 +52,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
             var LCurrentUser = LUsers.First();
 
-            if (LCurrentUser.ResetId == ARequest.ResetId)
+            if (LCurrentUser.ResetId != ARequest.ResetId)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_RESET_ID), ErrorCodes.INVALID_RESET_ID);
 
             LCurrentUser.ResetId = null;
