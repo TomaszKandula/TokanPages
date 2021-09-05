@@ -6,7 +6,7 @@
     [ExcludeFromCodeCoverage]
     public static class User3
     {
-        public const string EMAIL_ADDRESS = "dummy@dummy.net";
+        public const string EMAIL_ADDRESS = "contact@tomkandula.com";
 
         public const string USER_ALIAS = "dummy";
         
