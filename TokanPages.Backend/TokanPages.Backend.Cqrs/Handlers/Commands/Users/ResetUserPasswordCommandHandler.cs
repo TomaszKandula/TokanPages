@@ -57,15 +57,16 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
             var LCurrentUser = LUsers.First();
+            var LResetId = Guid.NewGuid();
             LCurrentUser.CryptedPassword = string.Empty;
-            LCurrentUser.ResetId = Guid.NewGuid();
+            LCurrentUser.ResetId = LResetId;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 
             FSmtpClientService.From = Constants.Emails.Addresses.CONTACT;
             FSmtpClientService.Tos = new List<string> { ARequest.EmailAddress };
             FSmtpClientService.Subject = "Reset user password";
 
-            var LResetLink = $"{FApplicationPaths.DeploymentOrigin}{FApplicationPaths.ResetPath}";
+            var LResetLink = $"{FApplicationPaths.DeploymentOrigin}{FApplicationPaths.ResetPath}{LResetId}";
             
             var LNewValues = new List<TemplateItem>
             {
