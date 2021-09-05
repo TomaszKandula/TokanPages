@@ -1,6 +1,9 @@
 namespace TokanPages.WebApi.Tests
 {
     using System;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading.Tasks;
     using System.Security.Claims;
     using Backend.Identity.Authorization;
     using Backend.Database.Initializer.Data.Users;
@@ -17,6 +20,16 @@ namespace TokanPages.WebApi.Tests
         {
             DataUtilityService = new DataUtilityService();
             JwtUtilityService = new JwtUtilityService();
+        }
+
+        protected static async Task EnsureStatusCode(HttpResponseMessage AResponseMessage, HttpStatusCode AExpectedStatusCode)
+        {
+            if (AResponseMessage.StatusCode != AExpectedStatusCode)
+            {
+                var LContent = await AResponseMessage.Content.ReadAsStringAsync();
+                var LContentText = !string.IsNullOrEmpty(LContent) ? $"Received content: {LContent}." : string.Empty;
+                throw new Exception($"Expected status code was {AExpectedStatusCode} but received {AResponseMessage.StatusCode}. {LContentText}");
+            }
         }
 
         protected ClaimsIdentity GetValidClaimsIdentity(string ASelectedUser = nameof(User1))
