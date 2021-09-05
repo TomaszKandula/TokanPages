@@ -54,7 +54,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 .ToListAsync(ACancellationToken);
 
             if (!LUsers.Any())
-                return await Task.FromResult(Unit.Value);
+                throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
             var LCurrentUser = LUsers.First();
             LCurrentUser.CryptedPassword = string.Empty;
