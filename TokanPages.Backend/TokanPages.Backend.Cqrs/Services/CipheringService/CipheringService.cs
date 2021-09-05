@@ -80,14 +80,18 @@ namespace TokanPages.Backend.Cqrs.Services.CipheringService
         /// <param name="APlaintext">
         /// The plaintext password to verify.
         /// </param>
-        /// <param name="AHashed">
+        /// <param name="AHashedPassword">
         /// The previously hashed password.
         /// </param>
         /// <returns>
         /// <c>true</c> if the passwords, <c>false</c> otherwise.
         /// </returns>
-        public virtual bool VerifyPassword(string APlaintext, string AHashed)
-            => StringComparer.Ordinal.Compare(AHashed, GetHashedPassword(APlaintext, AHashed[..29])) == 0;
+        public virtual bool VerifyPassword(string APlaintext, string AHashedPassword)
+        {
+            var LGetSaltFromHashedPassword = AHashedPassword[..29];
+            var LGetHashedPassword = GetHashedPassword(APlaintext, LGetSaltFromHashedPassword);
+            return LGetHashedPassword == AHashedPassword;
+        }
         
         /// <summary>
         /// Generate a salt for use with the BCrypt.HashPassword() method.
