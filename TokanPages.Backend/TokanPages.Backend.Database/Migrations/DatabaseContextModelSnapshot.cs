@@ -428,6 +428,9 @@ namespace TokanPages.Backend.Database.Migrations
                     b.Property<DateTime>("Registered")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("ResetId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("ShortBio")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");

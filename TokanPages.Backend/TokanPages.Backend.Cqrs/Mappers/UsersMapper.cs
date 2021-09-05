@@ -18,6 +18,18 @@
             Id = AModel.Id
         };
 
+        public static ResetUserPasswordCommand MapToResetUserPasswordCommand(ResetUserPasswordDto AModel) => new()
+        {
+            EmailAddress = AModel.EmailAddress
+        };
+
+        public static UpdateUserPasswordCommand MapToUpdateUserPasswordCommand(UpdateUserPasswordDto AModel) => new()
+        {
+            Id = AModel.Id,
+            ResetId = AModel.ResetId,
+            NewPassword = AModel.NewPassword
+        };
+        
         public static AddUserCommand MapToAddUserCommand(AddUserDto AModel) => new () 
         { 
             EmailAddress = AModel.EmailAddress,

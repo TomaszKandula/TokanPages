@@ -14,8 +14,6 @@
 
     public class AddUserCommandHandler : TemplateHandler<AddUserCommand, Guid>
     {
-        private const int CIPHER_LOG_ROUNDS = 12;
-        
         private readonly DatabaseContext FDatabaseContext;
         
         private readonly IDateTimeService FDateTimeService;
@@ -39,6 +37,9 @@
             if (LEmailCollection.Count == 1) 
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
             
+            var LGetNewSalt = FCipheringService.GenerateSalt(Constants.CIPHER_LOG_ROUNDS);
+            var LGetHashedPassword = FCipheringService.GetHashedPassword(ARequest.Password, LGetNewSalt);
+            
             var LNewUser = new Domain.Entities.Users
             { 
                 EmailAddress = ARequest.EmailAddress,
@@ -50,7 +51,8 @@
                 LastUpdated = null,
                 LastLogged = null,
                 AvatarName = Constants.Defaults.AVATAR_NAME,
-                CryptedPassword = FCipheringService.GetHashedPassword(ARequest.Password, FCipheringService.GenerateSalt(CIPHER_LOG_ROUNDS)) 
+                CryptedPassword = LGetHashedPassword,
+                ResetId = null
             };
 
             await FDatabaseContext.Users.AddAsync(LNewUser, ACancellationToken);

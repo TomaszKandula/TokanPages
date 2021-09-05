@@ -43,6 +43,8 @@
         [MaxLength(100)]
         public string CryptedPassword { get; set; }
         
+        public Guid? ResetId { get; set; }
+
         public ICollection<Articles> Articles { get; set; } = new HashSet<Articles>();
 
         public ICollection<ArticleLikes> ArticleLikes { get; set; } = new HashSet<ArticleLikes>();

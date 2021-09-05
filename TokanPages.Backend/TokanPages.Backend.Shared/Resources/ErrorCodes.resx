@@ -174,4 +174,7 @@
   <data name="USER_ACCOUNT_INACTIVE" xml:space="preserve">
     <value>User account is inactive</value>
   </data>
+  <data name="INVALID_RESET_ID" xml:space="preserve">
+    <value>Provided reset ID is invalid</value>
+  </data>
 </root>

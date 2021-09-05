@@ -1,4 +1,4 @@
-namespace TokanPages.WebApi.Tests.Controllers
+namespace TokanPages.WebApi.Tests.Controllers.HealthController
 {
     using System.Net;
     using System.Threading.Tasks;
@@ -9,13 +9,13 @@ namespace TokanPages.WebApi.Tests.Controllers
     using Newtonsoft.Json;
     using Xunit;
 
-    public class HealthControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    public class StatusEndpointTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
         private const string API_BASE_URL = "/api/v1/health";
 
         private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
 
-        public HealthControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
+        public StatusEndpointTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
 
         [Fact]
         public async Task GivenCorrectConfiguration_WhenRequestStatusCheck_ShouldReturnSuccessful()
@@ -28,7 +28,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LResponse = await LHttpClient.GetAsync(LRequest);
         
             // Assert
-            LResponse.EnsureSuccessStatusCode();
+            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
         
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
@@ -39,7 +39,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             LDeserialized.ErrorCode.Should().BeNull();
             LDeserialized.ErrorDesc.Should().BeNull();
         }
-        
+
         [Fact]
         public async Task GivenInvalidSmtpServer_WhenRequestStatusCheck_ShouldThrowError()
         {
@@ -59,7 +59,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
+            await EnsureStatusCode(LResponse, HttpStatusCode.InternalServerError);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
@@ -70,7 +70,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             LDeserialized.ErrorCode.Should().NotBeEmpty();
             LDeserialized.ErrorDesc.Should().NotBeEmpty();
         }
-        
+
         [Fact]
         public async Task GivenInvalidDatabaseServer_WhenRequestStatusCheck_ShouldThrowError()
         {
@@ -90,7 +90,7 @@ namespace TokanPages.WebApi.Tests.Controllers
             var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
+            await EnsureStatusCode(LResponse, HttpStatusCode.InternalServerError);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();

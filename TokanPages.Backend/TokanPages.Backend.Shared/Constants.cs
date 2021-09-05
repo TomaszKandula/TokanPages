@@ -12,6 +12,12 @@
     public static class Constants
     {
         /// <summary>
+        /// A cost factor for BCrypt algorithm.
+        /// </summary>
+        /// <see href="https://auth0.com/blog/hashing-in-action-understanding-bcrypt/"/>
+        public const int CIPHER_LOG_ROUNDS = 12;
+        
+        /// <summary>
         /// Shared default values.
         /// </summary>
         public static class Defaults
@@ -48,6 +54,9 @@
             public const string VIDEO_MPEG = "video/mpeg";
         }
 
+        /// <summary>
+        /// SonarQube available metrics.
+        /// </summary>
         public static class MetricNames
         {
             public const string BUGS = "bugs";
@@ -99,6 +108,7 @@
             {
                 public const string NEWSLETTER = "/content/templates/newsletter.html";
                 public const string CONTACT_FORM = "/content/templates/contactform.html";
+                public const string RESET_PASSWORD = "/content/templates/resetpassword.html ";
             }
 
             /// <summary>
