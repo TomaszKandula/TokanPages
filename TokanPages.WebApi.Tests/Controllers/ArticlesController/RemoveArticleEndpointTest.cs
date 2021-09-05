@@ -5,7 +5,6 @@ namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
     using System.Net.Http;
     using System.Threading.Tasks;
     using Backend.Shared.Dto.Articles;
-    using FluentAssertions;
     using Newtonsoft.Json;
     using Xunit;
 
@@ -36,8 +35,7 @@ namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+            await EnsureStatusCode(LResponse, HttpStatusCode.Unauthorized);
         }
-
     }
 }

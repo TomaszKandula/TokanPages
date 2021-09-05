@@ -28,7 +28,7 @@ namespace TokanPages.WebApi.Tests.Controllers.HealthController
             var LResponse = await LHttpClient.GetAsync(LRequest);
         
             // Assert
-            LResponse.EnsureSuccessStatusCode();
+            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
         
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
@@ -59,7 +59,7 @@ namespace TokanPages.WebApi.Tests.Controllers.HealthController
             var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
+            await EnsureStatusCode(LResponse, HttpStatusCode.InternalServerError);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
@@ -90,7 +90,7 @@ namespace TokanPages.WebApi.Tests.Controllers.HealthController
             var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.InternalServerError);
+            await EnsureStatusCode(LResponse, HttpStatusCode.InternalServerError);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();

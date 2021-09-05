@@ -1,6 +1,7 @@
 namespace TokanPages.WebApi.Tests.Controllers.MailerController
 {
     using System;
+    using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
@@ -44,7 +45,7 @@ namespace TokanPages.WebApi.Tests.Controllers.MailerController
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.EnsureSuccessStatusCode();
+            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
@@ -83,7 +84,7 @@ namespace TokanPages.WebApi.Tests.Controllers.MailerController
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.EnsureSuccessStatusCode();
+            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();

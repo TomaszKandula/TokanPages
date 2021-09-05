@@ -42,7 +42,7 @@ namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+            await EnsureStatusCode(LResponse, HttpStatusCode.Unauthorized);
         }
     }
 }

@@ -5,7 +5,6 @@ namespace TokanPages.WebApi.Tests.Controllers.SubscribersController
     using System.Net.Http;
     using System.Threading.Tasks;
     using Backend.Shared.Dto.Subscribers;
-    using FluentAssertions;
     using Newtonsoft.Json;
     using Xunit;
 
@@ -36,7 +35,7 @@ namespace TokanPages.WebApi.Tests.Controllers.SubscribersController
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
         }
     }
 }

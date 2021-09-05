@@ -2,7 +2,6 @@ namespace TokanPages.WebApi.Tests.Controllers.SubscribersController
 {
     using System.Net;
     using System.Threading.Tasks;
-    using FluentAssertions;
     using Xunit;
 
     public class GetAllSubscribersEndpointTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
@@ -24,7 +23,7 @@ namespace TokanPages.WebApi.Tests.Controllers.SubscribersController
             var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+            await EnsureStatusCode(LResponse, HttpStatusCode.Unauthorized);
         }
     }
 }

@@ -1,6 +1,7 @@
 namespace TokanPages.WebApi.Tests.Controllers.UsersController
 {
     using System;
+    using System.Net;
     using System.Linq;
     using System.Net.Http;
     using System.Threading.Tasks;
@@ -36,7 +37,7 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.EnsureSuccessStatusCode();
+            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();

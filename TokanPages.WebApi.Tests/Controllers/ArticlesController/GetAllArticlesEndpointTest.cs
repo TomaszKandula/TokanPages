@@ -1,5 +1,6 @@
 namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
 {
+    using System.Net;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
             var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
-            LResponse.EnsureSuccessStatusCode();
+            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();

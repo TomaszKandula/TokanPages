@@ -1,5 +1,6 @@
 namespace TokanPages.WebApi.Tests.Controllers.SubscribersController
 {
+    using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
     using Backend.Core.Extensions;
@@ -31,7 +32,7 @@ namespace TokanPages.WebApi.Tests.Controllers.SubscribersController
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.EnsureSuccessStatusCode();
+            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();

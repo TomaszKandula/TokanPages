@@ -1,11 +1,12 @@
 namespace TokanPages.WebApi.Tests.Controllers.UsersController
 {
+    using Xunit;
+    using FluentAssertions;
+    using Newtonsoft.Json;
+    using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
     using Backend.Shared.Dto.Users;
-    using FluentAssertions;
-    using Newtonsoft.Json;
-    using Xunit;
 
     public class AddUserEndpointTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
@@ -38,7 +39,7 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.EnsureSuccessStatusCode();
+            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();

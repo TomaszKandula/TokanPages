@@ -38,7 +38,7 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.EnsureSuccessStatusCode();
+            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
             
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
@@ -65,7 +65,7 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.Forbidden);
+            await EnsureStatusCode(LResponse, HttpStatusCode.Forbidden);
         }
         
         [Fact]
@@ -85,7 +85,7 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();

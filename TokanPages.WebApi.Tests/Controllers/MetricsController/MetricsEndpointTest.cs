@@ -27,7 +27,7 @@ namespace TokanPages.WebApi.Tests.Controllers.MetricsController
             var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
-            LResponse.EnsureSuccessStatusCode();
+            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
@@ -44,7 +44,7 @@ namespace TokanPages.WebApi.Tests.Controllers.MetricsController
             var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
@@ -63,7 +63,7 @@ namespace TokanPages.WebApi.Tests.Controllers.MetricsController
             var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
@@ -81,7 +81,7 @@ namespace TokanPages.WebApi.Tests.Controllers.MetricsController
             var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
@@ -101,7 +101,7 @@ namespace TokanPages.WebApi.Tests.Controllers.MetricsController
             var LResponse = await LHttpClient.GetAsync(LRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();

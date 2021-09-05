@@ -39,7 +39,7 @@ namespace TokanPages.WebApi.Tests.Controllers.SubscribersController
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            LResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
         }
     }
 }
