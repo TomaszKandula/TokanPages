@@ -46,7 +46,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 var LHasRoleEverydayUser = await FUserServiceProvider.HasRoleAssigned(Roles.EverydayUser.ToString()) ?? false;
                 var LHasRoleGodOfAsgard = await FUserServiceProvider.HasRoleAssigned(Roles.GodOfAsgard.ToString()) ?? false;
                 
-                if (!LHasRoleEverydayUser || !LHasRoleGodOfAsgard)
+                if (!LHasRoleEverydayUser && !LHasRoleGodOfAsgard)
                     throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
             }
 
