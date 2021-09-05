@@ -55,8 +55,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             if (LCurrentUser.ResetId != ARequest.ResetId)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_RESET_ID), ErrorCodes.INVALID_RESET_ID);
 
+            var LGetNewSalt = FCipheringService.GenerateSalt(Constants.CIPHER_LOG_ROUNDS);
+            var LGetHashedPassword = FCipheringService.GetHashedPassword(ARequest.NewPassword, LGetNewSalt);
+            
             LCurrentUser.ResetId = null;
-            LCurrentUser.CryptedPassword = FCipheringService.GetHashedPassword(ARequest.NewPassword, FCipheringService.GenerateSalt(Constants.CIPHER_LOG_ROUNDS));
+            LCurrentUser.CryptedPassword = LGetHashedPassword;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 
             FLogger.LogInformation($"User password has been updated successfully (UserId: {ARequest.Id}).");
