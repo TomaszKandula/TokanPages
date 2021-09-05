@@ -66,7 +66,7 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
 
             var LPayLoad = new AuthenticateUserDto
             {
-                EmailAddress = User1.EMAIL_ADDRESS,
+                EmailAddress = User2.EMAIL_ADDRESS,
                 Password = DataUtilityService.GetRandomString()
             };
 
