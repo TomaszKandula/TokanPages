@@ -11,14 +11,8 @@ namespace TokanPages.WebApi.Tests.Controllers.MailerController
     using Newtonsoft.Json;
     using Xunit;
 
-    public class VerifyEmailAddressEndpointTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    public partial class MailerControllerTest
     {
-        private const string API_BASE_URL = "/api/v1/Mailer";
-        
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
-        
-        public VerifyEmailAddressEndpointTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;     
-        
         [Theory]
         [InlineData("john@gmail.com")]
         public async Task GivenValidEmailAndValidJwt_WhenVerifyEmailAddress_ShouldReturnResultsAsJsonObject(string AEmail)

@@ -7,18 +7,11 @@ namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
     using System.Net.Http.Headers;
     using Backend.Core.Extensions;
     using Backend.Shared.Dto.Articles;
-    using FluentAssertions;
     using Newtonsoft.Json;
     using Xunit;
 
-    public class AddArticleEndpointTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    public partial class ArticlesControllerTest
     {
-        private const string API_BASE_URL = "/api/v1/articles";
-
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
-
-        public AddArticleEndpointTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
-
         [Fact]
         public async Task GivenAllFieldsAreCorrectAsAnonymousUser_WhenAddArticle_ShouldReturnUnauthorized()
         {

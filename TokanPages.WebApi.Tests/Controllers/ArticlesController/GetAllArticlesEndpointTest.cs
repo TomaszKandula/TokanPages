@@ -9,14 +9,8 @@ namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
     using Newtonsoft.Json;
     using Xunit;
 
-    public class GetAllArticlesEndpointTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    public partial class ArticlesControllerTest
     {
-        private const string API_BASE_URL = "/api/v1/articles";
-        
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
-
-        public GetAllArticlesEndpointTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
-
         [Fact]
         public async Task WhenGetAllArticles_ShouldReturnCollection()
         {

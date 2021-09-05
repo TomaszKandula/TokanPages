@@ -10,14 +10,8 @@ namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
     using Newtonsoft.Json;
     using Xunit;
 
-    public class UpdateArticleCountEndpointTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    public partial class ArticlesControllerTest
     {
-        private const string API_BASE_URL = "/api/v1/articles";
-        
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
-
-        public UpdateArticleCountEndpointTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
-
         [Fact]
         public async Task GivenInvalidArticleId_WhenUpdateArticleCount_ShouldReturnBadRequest()
         {

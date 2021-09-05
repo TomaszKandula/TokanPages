@@ -8,14 +8,8 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
     using Newtonsoft.Json;
     using Xunit;
 
-    public class RemoveUserEndpointTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    public partial class UsersControllerTest
     {
-        private const string API_BASE_URL = "/api/v1/users";
-        
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
-
-        public RemoveUserEndpointTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
-
         [Fact]
         public async Task GivenIncorrectIdAndNoJwt_WhenRemoveUser_ShouldReturnUnauthorized() 
         {

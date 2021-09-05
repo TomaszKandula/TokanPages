@@ -5,18 +5,11 @@ namespace TokanPages.WebApi.Tests.Controllers.SubscribersController
     using System.Net.Http;
     using System.Threading.Tasks;
     using Backend.Shared.Dto.Subscribers;
-    using FluentAssertions;
     using Newtonsoft.Json;
     using Xunit;
 
-    public class UpdateSubscriberEndpointTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    public partial class SubscribersControllerTest
     {
-        private const string API_BASE_URL = "/api/v1/subscribers";
-        
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
-
-        public UpdateSubscriberEndpointTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
-        
         [Fact]
         public async Task GivenIncorrectIdAndNoJwt_WhenUpdateSubscriber_ShouldReturnUnauthorized()
         {

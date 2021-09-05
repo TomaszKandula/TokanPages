@@ -10,14 +10,8 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
     using Backend.Shared.Dto.Users;
     using Backend.Database.Initializer.Data.Users;
 
-    public class ResetUserPasswordEndpointTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    public partial class UsersControllerTest
     {
-        private const string API_BASE_URL = "/api/v1/users";
-        
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
-
-        public ResetUserPasswordEndpointTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
-        
         [Fact]
         public async Task GivenUserEmail_WhenResetUserPassword_ShouldFinishSuccessful()
         {

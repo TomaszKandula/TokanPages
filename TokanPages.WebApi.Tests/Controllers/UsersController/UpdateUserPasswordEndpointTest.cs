@@ -11,15 +11,9 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
     using Backend.Shared.Resources;
     using Backend.Shared.Dto.Users;
     using Backend.Database.Initializer.Data.Users;
-    
-    public class UpdateUserPasswordEndpointTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
-    {
-        private const string API_BASE_URL = "/api/v1/users";
-        
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
 
-        public UpdateUserPasswordEndpointTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
-        
+    public partial class UsersControllerTest
+    {
         [Fact]
         public async Task GivenNewPasswordAndValidJwt_WhenUpdateUserPassword_ShouldFinishSuccessful() 
         {

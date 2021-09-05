@@ -9,14 +9,8 @@ namespace TokanPages.WebApi.Tests.Controllers.SubscribersController
     using Newtonsoft.Json;
     using Xunit;
 
-    public class AddSubscriberEndpointTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    public partial class SubscribersControllerTest
     {
-        private const string API_BASE_URL = "/api/v1/subscribers";
-        
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
-
-        public AddSubscriberEndpointTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
-        
         [Fact]
         public async Task GivenAllFieldsAreCorrect_WhenAddSubscriber_ShouldReturnNewGuid() 
         {

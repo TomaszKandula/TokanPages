@@ -4,14 +4,8 @@ namespace TokanPages.WebApi.Tests.Controllers.SubscribersController
     using System.Threading.Tasks;
     using Xunit;
 
-    public class GetAllSubscribersEndpointTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    public partial class SubscribersControllerTest
     {
-        private const string API_BASE_URL = "/api/v1/subscribers";
-        
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
-
-        public GetAllSubscribersEndpointTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
-        
         [Fact]
         public async Task GivenNoJwt_WhenGetAllSubscribers_ShouldReturnUnauthorized()
         {

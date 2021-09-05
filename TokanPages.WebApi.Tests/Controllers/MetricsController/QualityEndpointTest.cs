@@ -5,14 +5,8 @@ namespace TokanPages.WebApi.Tests.Controllers.MetricsController
     using FluentAssertions;
     using Xunit;
 
-    public class QualityEndpointTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    public partial class MetricsControllerTest
     {
-        private const string API_BASE_URL = "/api/v1/sonarqube/metrics";
-        
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
-
-        public QualityEndpointTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
-        
         [Theory]
         [InlineData("tokanpages-backend")]
         [InlineData("tokanpages-frontend")]

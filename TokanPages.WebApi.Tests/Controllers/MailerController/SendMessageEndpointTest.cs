@@ -12,14 +12,8 @@ namespace TokanPages.WebApi.Tests.Controllers.MailerController
     using Newtonsoft.Json;
     using Xunit;
 
-    public class SendMessageEndpointTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
+    public partial class MailerControllerTest
     {
-        private const string API_BASE_URL = "/api/v1/Mailer";
-        
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
-        
-        public SendMessageEndpointTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;     
-        
         [Fact]
         public async Task GivenValidEmail_WhenSendUserMessage_ShouldReturnEmptyJsonObject()
         {
