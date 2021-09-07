@@ -22,6 +22,8 @@ export type { IAuthenticateUserDto } from "./Users/authenticateUserDto";
 export type { IAuthenticateUserResultDto } from "./Users/authenticateUserResultDto";
 export type { IReAuthenticateUserDto } from "./Users/reAuthenticateUserDto";
 export type { IReAuthenticateUserResultDto } from "./Users/reAuthenticateUserResultDto";
+export type { IResetUserPasswordDto } from "./Users/resetUserPasswordDto";
+export type { IUpdateUserPasswordDto } from "./Users/updateUserPasswordDto";
 
 export type { IErrorDto } from "./Error/errorDto";
 export type { IValidationErrorsDto } from "./Error/validationErrorsDto";
