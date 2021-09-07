@@ -27,7 +27,7 @@ const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
     const signinUserState = useSelector((state: IApplicationState) => state.signinUser);
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
 
-    const [form, setForm] = React.useState(formDefaultValues);   
+    const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
     const showWarning = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(WarningMessage(SIGNIN_FORM, text))), [ dispatch ]);
