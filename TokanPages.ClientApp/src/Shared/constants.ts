@@ -25,7 +25,9 @@ export const API_COMMAND_ADD_USER = `${APP_BACKEND}/api/v${API_VER}/users/AddUse
 export const API_COMMAND_UPDATE_USER = `${APP_BACKEND}/api/v${API_VER}/users/UpdateUser/`;
 export const API_COMMAND_REMOVE_USER = `${APP_BACKEND}/api/v${API_VER}/users/RemoveUser/`;
 export const API_COMMAND_AUTHENTICATE = `${APP_BACKEND}/api/v${API_VER}/users/AuthenticateUser/`;
-export const API_COMMAND_REAUTHENTICATE = `${APP_BACKEND}/api/v${API_VER}/users/ReAuthenticateUser`;
+export const API_COMMAND_REAUTHENTICATE = `${APP_BACKEND}/api/v${API_VER}/users/ReAuthenticateUser/`;
+export const API_COMMAND_RESET_USER_PASSWORD = `${APP_BACKEND}/api/v${API_VER}/users/ResetUserPassword/`;
+export const API_COMMAND_UPDATE_USER_PASSWORD = `${APP_BACKEND}/api/v${API_VER}/users/UpdateUserPassword/`;
 
 /* API | SUBSCRIBERS */
 
@@ -92,6 +94,7 @@ export const SIGNIN_WARNING: string = "<span>We have received following warning(
 export const SIGNUP_SUCCESS: string = "<p>Congratulations!</p><p>The account has been setup successfully, please check your e-mail and follow given instructions to make newly created account active.</p>";
 export const SIGNUP_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To sign-up all fields must be filled along with acceptance of Terms of Use and Privacy Policy.</span>";
 
+export const RESET_PASSWORD_SUCCESS: string = "<p>The password has been reset. Please check your email box and follow the instruction to setup new password.</p>";
 export const RESET_PASSWORD_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To reset user password registered and verified e-mail address must be provided.</span>";
 
 export const NEWSLETTER_SUCCESS: string = "<p>Congratulations!</p><p>You have been added to the newsletter.</p>";

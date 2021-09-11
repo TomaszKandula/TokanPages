@@ -200,3 +200,28 @@ export const ValidateSignupForm = (props: IValidateSignupForm): any =>
     }, 
     constraints);
 }
+
+export interface IValidateResetForm
+{
+    email: string;
+}
+
+export const ValidateResetForm = (props: IValidateResetForm): any =>
+{
+    let constraints =  
+    {
+        email: 
+        {
+            email: 
+            {
+                message: "does not look like a valid email"
+            }
+        },
+    }
+
+    return Validate(
+    {
+        email: props.email
+    }, 
+    constraints);
+}
