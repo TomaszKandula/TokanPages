@@ -111,7 +111,7 @@ exports[`Test account group component: userSigninView. Renders correctly '<UserS
                 xs={12}
               >
                 <Link
-                  to="/reset"
+                  to="/resetpassword"
                 >
                   Forgot password?
                 </Link>
