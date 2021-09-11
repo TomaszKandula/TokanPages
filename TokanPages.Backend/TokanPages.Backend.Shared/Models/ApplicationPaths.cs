@@ -9,7 +9,7 @@
 
         public string UnsubscribePath { get; set; }
         
-        public string ResetPath { get; set; }
+        public string UpdatePasswordPath { get; set; }
         
         public string DevelopmentOrigin { get; set; }
         
