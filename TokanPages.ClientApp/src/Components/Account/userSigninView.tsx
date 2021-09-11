@@ -73,7 +73,7 @@ const UserSigninView = (props: IBinding): JSX.Element =>
                                         </Link>
                                     </Grid>
                                     <Grid item xs={12} sm={6} className={classes.tertiaryAction}>
-                                        <Link to="/reset">
+                                        <Link to="/resetpassword">
                                             {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.link2}
                                         </Link>
                                     </Grid>
