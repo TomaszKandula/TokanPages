@@ -24,6 +24,7 @@ import { GetNavigationContentDefault } from "./Defaults/Content/getNavigationCon
 import { GetNewsletterContentDefault } from "./Defaults/Content/getNewsletterContentDefault";
 import { GetWrongPagePromptContentDefault } from "./Defaults/Content/getWrongPagePromptContentDefault";
 import { GetResetPasswordContentDefault } from "./Defaults/Content/getResetPasswordContentDefault";
+import { GetUpdatePasswordContentDefault } from "./Defaults/Content/getUpdatePasswordContentDefault";
 import { GetUserSigninContentDefault } from "./Defaults/Content/getUserSigninContentDefault";
 import { GetUserSignoutContentDefault } from "./Defaults/Content/getUserSignoutContentDefault";
 import { GetUserSignupContentDefault } from "./Defaults/Content/getUserSignupContentDefault";
@@ -46,6 +47,7 @@ export const combinedDefaults: IApplicationState =
     signinUser: SigninUserDefault,
     signupUser: SignupUserDefault,
     resetUserPassword: ResetUserPasswordDefault,
+    updateUserPassword: ResetUserPasswordDefault,
     getStaticContent: GetStaticContentDefault,
     getArticleFeatContent: GetArticleFeatContentDefault,
     getContactFormContent: GetContactFormContentDefault,
@@ -58,6 +60,7 @@ export const combinedDefaults: IApplicationState =
     getNewsletterContent: GetNewsletterContentDefault,
     getWrongPagePromptContent: GetWrongPagePromptContentDefault,
     getResetPasswordContent: GetResetPasswordContentDefault,
+    getUpdatePasswordContent: GetUpdatePasswordContentDefault,
     getUserSigninContent: GetUserSigninContentDefault,
     getUserSignoutContent: GetUserSignoutContentDefault,
     getUserSignupContent: GetUserSignupContentDefault,
