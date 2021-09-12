@@ -36,7 +36,7 @@ const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
     
     const resetId = queryParam.get("id");
-    const userId = userDataState.userData.userId;
+    const userId = userDataState?.userData.userId;
     const disableForm = Validate.isEmpty(resetId) && Validate.isEmpty(userId);
 
     const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(UPDATE_FORM, text))), [ dispatch ]);
