@@ -5,6 +5,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
+    using Shared;
     using Database;
     using Core.Exceptions;
     using Shared.Resources;
@@ -13,8 +14,6 @@
 
     public class AddUserCommandHandler : TemplateHandler<AddUserCommand, Guid>
     {
-        private const int CIPHER_LOG_ROUNDS = 12;
-        
         private readonly DatabaseContext FDatabaseContext;
         
         private readonly IDateTimeService FDateTimeService;
@@ -38,17 +37,22 @@
             if (LEmailCollection.Count == 1) 
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
             
+            var LGetNewSalt = FCipheringService.GenerateSalt(Constants.CIPHER_LOG_ROUNDS);
+            var LGetHashedPassword = FCipheringService.GetHashedPassword(ARequest.Password, LGetNewSalt);
+            
             var LNewUser = new Domain.Entities.Users
             { 
                 EmailAddress = ARequest.EmailAddress,
-                IsActivated = true,
+                IsActivated = false,
                 UserAlias = ARequest.UserAlias,
                 FirstName = ARequest.FirstName,
                 LastName = ARequest.LastName,
                 Registered = FDateTimeService.Now,
                 LastUpdated = null,
                 LastLogged = null,
-                CryptedPassword = FCipheringService.GetHashedPassword(ARequest.Password, FCipheringService.GenerateSalt(CIPHER_LOG_ROUNDS)) 
+                AvatarName = Constants.Defaults.AVATAR_NAME,
+                CryptedPassword = LGetHashedPassword,
+                ResetId = null
             };
 
             await FDatabaseContext.Users.AddAsync(LNewUser, ACancellationToken);

@@ -24,6 +24,10 @@ export const API_QUERY_GET_USER = `${APP_BACKEND}/api/v${API_VER}/users/GetUser/
 export const API_COMMAND_ADD_USER = `${APP_BACKEND}/api/v${API_VER}/users/AddUser/`;
 export const API_COMMAND_UPDATE_USER = `${APP_BACKEND}/api/v${API_VER}/users/UpdateUser/`;
 export const API_COMMAND_REMOVE_USER = `${APP_BACKEND}/api/v${API_VER}/users/RemoveUser/`;
+export const API_COMMAND_AUTHENTICATE = `${APP_BACKEND}/api/v${API_VER}/users/AuthenticateUser/`;
+export const API_COMMAND_REAUTHENTICATE = `${APP_BACKEND}/api/v${API_VER}/users/ReAuthenticateUser/`;
+export const API_COMMAND_RESET_USER_PASSWORD = `${APP_BACKEND}/api/v${API_VER}/users/ResetUserPassword/`;
+export const API_COMMAND_UPDATE_USER_PASSWORD = `${APP_BACKEND}/api/v${API_VER}/users/UpdateUserPassword/`;
 
 /* API | SUBSCRIBERS */
 
@@ -50,9 +54,11 @@ export const GET_COOKIES_PROMPT_CONTENT = `${APP_STORAGE}/content/components/coo
 export const GET_FEATURED_CONTENT = `${APP_STORAGE}/content/components/featured.json`;
 export const GET_FEATURES_CONTENT = `${APP_STORAGE}/content/components/features.json`;
 export const GET_NEWSLETTER_CONTENT = `${APP_STORAGE}/content/components/newsletter.json`;
-export const GET_RESET_FORM_CONTENT = `${APP_STORAGE}/content/components/resetForm.json`;
-export const GET_SIGNIN_FORM_CONTENT = `${APP_STORAGE}/content/components/signinForm.json`;
-export const GET_SIGNUP_FORM_CONTENT = `${APP_STORAGE}/content/components/signupForm.json`;
+export const GET_RESET_PASSWORD_CONTENT = `${APP_STORAGE}/content/components/resetPassword.json`;
+export const GET_UPDATE_PASSWORD_CONTENT = `${APP_STORAGE}/content/components/updatePassword.json`;
+export const GET_SIGNIN_CONTENT = `${APP_STORAGE}/content/components/userSignin.json`;
+export const GET_SIGNUP_CONTENT = `${APP_STORAGE}/content/components/userSignup.json`;
+export const GET_SIGNOUT_CONTENT = `${APP_STORAGE}/content/components/userSignout.json`;
 export const GET_TESTIMONIALS_CONTENT = `${APP_STORAGE}/content/components/testimonials.json`;
 export const GET_UNSUBSCRIBE_CONTENT = `${APP_STORAGE}/content/components/unsubscribe.json`;
 export const GET_UPDATE_SUBSCRIBER_CONTENT = `${APP_STORAGE}/content/components/updateSubscriber.json`;
@@ -85,6 +91,16 @@ export const MESSAGE_OUT_SUCCESS: string = "<p>Congratulations!</p><p>The messag
 export const MESSAGE_OUT_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To send an email all fields must be filled along with acceptance of Terms of Use and Privacy Policy.</span>";
 export const MESSAGE_OUT_ERROR: string = "<p>Ouch!</p><p>The message could not be sent.</p><p>{ERROR}.</p>";
 
+export const SIGNIN_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To sign-in all fields must be filled properly.</span>";
+export const SIGNUP_SUCCESS: string = "<p>Congratulations!</p><p>The account has been setup successfully, please check your e-mail and follow given instructions to make newly created account active.</p>";
+export const SIGNUP_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To sign-up all fields must be filled along with acceptance of Terms of Use and Privacy Policy.</span>";
+
+export const RESET_PASSWORD_SUCCESS: string = "<p>The password has been reset. Please check your email box and follow the instruction to setup new password.</p>";
+export const RESET_PASSWORD_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To reset user password registered and verified e-mail address must be provided.</span>";
+
+export const UPDATE_PASSWORD_SUCCESS: string = "<p>Congratulations!</p><p>Your password is now set. You may log in again.</p>";
+export const UPDATE_PASSWORD_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To update your password you must provide values that complies to the requirements.</span>";
+
 export const NEWSLETTER_SUCCESS: string = "<p>Congratulations!</p><p>You have been added to the newsletter.</p>";
 export const NEWSLETTER_WARNING: string = "<span>The newsletter could not be setup, following warning(s) received:</span><ul>{LIST}</ul><span>Please make sure the email is valid and you have access to it.</span>";
 export const NEWSLETTER_ERROR: string = "<p>Ouch!</p><p>The newsletter could not be setup.</p><p>{ERROR}.</p>";
@@ -93,11 +109,13 @@ export const UPDATE_ARTICLE_SUCCESS: string = "<p>Success!</p><p>Article has bee
 export const UPDATE_ARTICLE_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>Please check if all required fields are filled correctly.</span>";
 export const UPDATE_ARTICLE_ERROR: string = "<p>Ouch!</p><p>The article could not be updated.</p><p>{ERROR}.</p>";
 
-export const SUBSCRIBER_DEL_ERROR: string = "<p>We could not remove your email from our newsletter list.</p><p{ERROR}.</p><p>Please contact us to resolve the issue.</p>";
+export const SUBSCRIBER_REMOVAL_ERROR: string = "<p>We could not remove your email from our newsletter list.</p><p{ERROR}.</p><p>Please contact us to resolve the issue.</p>";
 
 export const UNEXPECTED_STATUS: string = "Received unexpected status code: {STATUS_CODE}. Please contact IT Support";
 export const UNEXPECTED_ERROR: string = "Unexpected error occured";
 export const VALIDATION_ERRORS: string = "Validation errors have been found";
+
+export const NULL_RESPONSE_ERROR: string = "The response data has returned null. Possible parsing issue due to invalid JSON/XML format";
 
 /* OTHER */
 
@@ -109,9 +127,17 @@ export const MAX_LIKES_REACHED: string = "You've reached max thumbs up :)";
 export const WORDS_PER_MINUTE: number = 265;
 export const RECEIVED_ERROR_MESSAGE: string = "RECEIVED_ERROR_MESSAGE";
 export const NO_ERRORS: string = "NO_ERRORS";
+export const ANONYMOUS_NAME: string = "Anonymous";
+export const DEFAULT_NAME: string = "Unknown";
+export const DEFAULT_AVATAR: string = "avatar-default-288.jpeg";
+export const USER_TOKEN: string = "userToken";
 
 /* FORMS */
 
+export const SIGNIN_FORM: string = "Signin Form";
+export const SIGNUP_FORM: string = "Signup Form";
+export const RESET_FORM: string = "Password Reset";
+export const UPDATE_FORM: string = "Update Password";
 export const CONTACT_FORM: string = "Contact Form";
 export const NEWSLETTER: string = "Newsletter";
 export const UPDATE_SUBSCRIBER: string = "Update Subscriber";

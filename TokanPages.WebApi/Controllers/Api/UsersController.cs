@@ -27,6 +27,16 @@
         [AllowAnonymous]
         public async Task<ReAuthenticateUserCommandResult> ReAuthenticateUser([FromBody] ReAuthenticateUserDto APayLoad)
             => await FMediator.Send(UsersMapper.MapToReAuthenticateUserCommand(APayLoad));
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<Unit> ResetUserPassword([FromBody] ResetUserPasswordDto APayLoad) 
+            => await FMediator.Send(UsersMapper.MapToResetUserPasswordCommand(APayLoad));
+        
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<Unit> UpdateUserPassword([FromBody] UpdateUserPasswordDto APayLoad) 
+            => await FMediator.Send(UsersMapper.MapToUpdateUserPasswordCommand(APayLoad));
         
         [HttpGet]
         [AuthorizeRoles(Roles.GodOfAsgard)]

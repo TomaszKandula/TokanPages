@@ -33,7 +33,7 @@ interface IProperties
     buttonText: string;
 }
 
-export default function ContactFormView(props: IBinding)
+const ContactFormView = (props: IBinding): JSX.Element =>
 {
     const classes = contactFormStyle();
     return (
@@ -103,3 +103,5 @@ export default function ContactFormView(props: IBinding)
         </section>
     );
 }
+
+export default ContactFormView;

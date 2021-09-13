@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Validate from "validate.js";
 import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators as SelectArticleActions } from "../../Redux/Actions/selectArticleAction";
-import { ActionCreators as UpdateArticleAction } from "../../Redux/Actions/updateArticleAction";
+import { ActionCreators as SelectArticleActions } from "../../Redux/Actions/Articles/selectArticleAction";
+import { ActionCreators as UpdateArticleAction } from "../../Redux/Actions/Articles/updateArticleAction";
 import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../Shared/constants";
 import { FormatDateTime } from "../../Shared/helpers";
 import { ArticleContent } from "./Renderers/articleContent";
@@ -19,10 +19,11 @@ export interface IArticleDetail
     id: string;
 }
 
-export default function ArticleDetail(props: IArticleDetail) 
+const ArticleDetail = (props: IArticleDetail): JSX.Element =>
 {
     const dispatch = useDispatch();
     const selection = useSelector((state: IApplicationState) => state.selectArticle);
+    const user = useSelector((state: IApplicationState) => state.updateUserData);
 
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
         dispatch(SelectArticleActions.selectArticle(props.id));
@@ -37,7 +38,7 @@ export default function ArticleDetail(props: IArticleDetail)
     const history = useHistory();
     const popoverOpen = Boolean(popoverElement);
     const userLetter = selection.article.author.aliasName.charAt(0).toUpperCase();
-    const isAnonymous = true; // TODO: use authorization feature
+    const isAnonymous = Validate.isEmpty(user.userData.userId);
 
     const updateLikesLeft = React.useCallback(() =>
     {
@@ -140,3 +141,5 @@ export default function ArticleDetail(props: IArticleDetail)
         authorShortBio: selection.article.author.shortBio
     }}/>);
 }
+
+export default ArticleDetail;

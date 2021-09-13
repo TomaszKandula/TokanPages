@@ -2,15 +2,15 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Validate from "validate.js";
 import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators as SubscriberAction } from "../../Redux/Actions/updateSubscriberAction";
+import { ActionCreators as SubscriberAction } from "../../Redux/Actions/Subscribers/updateSubscriberAction";
 import { ActionCreators as RaiseDialogAction } from "../../Redux/Actions/raiseDialogAction";
-import { IGetUpdateSubscriberContent } from "../../Redux/States/getUpdateSubscriberContentState";
+import { IGetUpdateSubscriberContent } from "../../Redux/States/Content/getUpdateSubscriberContentState";
 import { OperationStatus } from "../../Shared/enums";
 import { ValidateEmail } from "../../Shared/validate";
-import { NewsletterSuccess, NewsletterWarning } from "../../Shared/textWrappers";
+import { ProduceWarningText } from "../../Shared/textWrappers";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { RECEIVED_ERROR_MESSAGE, UPDATE_SUBSCRIBER } from "../../Shared/constants";
+import { NEWSLETTER_SUCCESS, NEWSLETTER_WARNING, RECEIVED_ERROR_MESSAGE, UPDATE_SUBSCRIBER } from "../../Shared/constants";
 import { IUpdateSubscriberDto } from "../../Api/Models";
 import UpdateSubscriberView from "./updateSubscriberView";
 
@@ -19,7 +19,7 @@ interface IGetUpdateSubscriberContentExtended extends IGetUpdateSubscriberConten
     id: string;
 }
 
-export default function UpdateSubscriber(props: IGetUpdateSubscriberContentExtended)
+const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Element =>
 {
     const dispatch = useDispatch();
     const updateSubscriberState = useSelector((state: IApplicationState) => state.updateSubscriber);
@@ -62,7 +62,7 @@ export default function UpdateSubscriber(props: IGetUpdateSubscriberContentExten
 
             case OperationStatus.hasFinished:
                 clearForm();
-                showSuccess(NewsletterSuccess());
+                showSuccess(NEWSLETTER_SUCCESS);
             break;
         }           
     }, [ updateSubscriber, updateSubscriberState, progress, form, props.id, showSuccess, clearForm, raiseErrorState ]);
@@ -88,7 +88,7 @@ export default function UpdateSubscriber(props: IGetUpdateSubscriberContentExten
             return;
         }
 
-        showWarning(NewsletterWarning(validationResult));
+        showWarning(ProduceWarningText(validationResult, NEWSLETTER_WARNING));
     };
 
     return (<UpdateSubscriberView bind=
@@ -103,3 +103,5 @@ export default function UpdateSubscriber(props: IGetUpdateSubscriberContentExten
         buttonText: props.content?.button
     }}/>);
 }
+
+export default UpdateSubscriber;

@@ -1,30 +1,20 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Validate from "validate.js";
-import { ActionCreators as MessageAction } from "../../Redux/Actions/sendMessageAction";
+import { ActionCreators as MessageAction } from "../../Redux/Actions/Mailer/sendMessageAction";
 import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
 import { IApplicationState } from "../../Redux/applicationState";
-import { IGetContactFormContent } from "../../Redux/States/getContactFormContentState";
+import { IGetContactFormContent } from "../../Redux/States/Content/getContactFormContentState";
 import { OperationStatus } from "../../Shared/enums";
-import { ValidateContactForm } from "../../Shared/validate";
-import { MessageOutSuccess, MessageOutWarning } from "../../Shared/textWrappers";
+import { IValidateContactForm, ValidateContactForm } from "../../Shared/validate";
+import { ProduceWarningText } from "../../Shared/textWrappers";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { CONTACT_FORM, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
+import { CONTACT_FORM, MESSAGE_OUT_SUCCESS, MESSAGE_OUT_WARNING, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { ISendMessageDto } from "../../Api/Models";
 import ContactFormView from "./contactFormView";
 
-interface IFormDefaultValues 
-{
-    firstName: string;
-    lastName: string;
-    email: string;
-    subject: string;
-    message: string; 
-    terms: boolean;
-}
-
-const formDefaultValues: IFormDefaultValues =
+const formDefaultValues: IValidateContactForm =
 {
     firstName: "", 
     lastName: "", 
@@ -34,7 +24,7 @@ const formDefaultValues: IFormDefaultValues =
     terms: false
 };
 
-export default function ContactForm(props: IGetContactFormContent)
+const ContactForm = (props: IGetContactFormContent): JSX.Element =>
 {
     const dispatch = useDispatch();
     const sendMessageState = useSelector((state: IApplicationState) => state.sendMessage);
@@ -80,7 +70,7 @@ export default function ContactForm(props: IGetContactFormContent)
 
             case OperationStatus.hasFinished:
                 clearForm();
-                showSuccess(MessageOutSuccess());
+                showSuccess(MESSAGE_OUT_SUCCESS);
             break;
         }
     }, [ sendMessage, sendMessageState, clearForm, progress, form, showSuccess, raiseErrorState ]);
@@ -102,12 +92,12 @@ export default function ContactForm(props: IGetContactFormContent)
     {
         let validationResult = ValidateContactForm( 
         { 
-            FirstName: form.firstName,
-            LastName: form.lastName, 
-            Email: form.email, 
-            Subject: form.subject, 
-            Message: form.message, 
-            Terms: form.terms 
+            firstName: form.firstName,
+            lastName: form.lastName, 
+            email: form.email, 
+            subject: form.subject, 
+            message: form.message, 
+            terms: form.terms 
         });
 
         if (!Validate.isDefined(validationResult))
@@ -116,7 +106,7 @@ export default function ContactForm(props: IGetContactFormContent)
             return;
         }
 
-        showWarning(MessageOutWarning(validationResult));
+        showWarning(ProduceWarningText(validationResult, MESSAGE_OUT_WARNING));
     };
 
     return (<ContactFormView bind=
@@ -136,3 +126,5 @@ export default function ContactForm(props: IGetContactFormContent)
         buttonText: props.content?.button
     }}/>);
 }
+
+export default ContactForm;

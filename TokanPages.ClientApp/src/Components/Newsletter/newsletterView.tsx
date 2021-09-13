@@ -26,7 +26,7 @@ interface IProperties
     buttonText: string;
 }
 
-export default function NewsletterView(props: IBinding)
+const NewsletterView = (props: IBinding): JSX.Element =>
 {
     const classes = newsletterStyle();
     return (
@@ -72,3 +72,5 @@ export default function NewsletterView(props: IBinding)
     );
 
 }
+
+export default NewsletterView;

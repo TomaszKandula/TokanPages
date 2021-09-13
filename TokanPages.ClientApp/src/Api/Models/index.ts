@@ -14,9 +14,16 @@ export type { IAddSubscriberDto } from "./Subscribers/addSubscriberDto";
 export type { IUpdateSubscriberDto } from "./Subscribers/updateSubscriberDto";
 export type { IRemoveSubscriberDto } from "./Subscribers/removeSubscriberDto";
 
+export type { IUserDataDto } from "./Users/userDataDto";
 export type { IAddUserDto } from "./Users/addUserDto";
 export type { IUpdateUserDto } from "./Users/updateUserDto";
 export type { IRemoveUserDto } from "./Users/removeUserDto";
+export type { IAuthenticateUserDto } from "./Users/authenticateUserDto";
+export type { IAuthenticateUserResultDto } from "./Users/authenticateUserResultDto";
+export type { IReAuthenticateUserDto } from "./Users/reAuthenticateUserDto";
+export type { IReAuthenticateUserResultDto } from "./Users/reAuthenticateUserResultDto";
+export type { IResetUserPasswordDto } from "./Users/resetUserPasswordDto";
+export type { IUpdateUserPasswordDto } from "./Users/updateUserPasswordDto";
 
 export type { IErrorDto } from "./Error/errorDto";
 export type { IValidationErrorsDto } from "./Error/validationErrorsDto";
@@ -31,9 +38,11 @@ export type { ICookiesPromptContentDto } from "./Components/cookiesPromptContent
 export type { IFeaturedContentDto } from "./Components/featuredContentDto";
 export type { IFeaturesContentDto } from "./Components/featuresContentDto";
 export type { INewsletterContentDto } from "./Components/newsletterContentDto";
-export type { IResetFormContentDto } from "./Components/resetFormContentDto";
-export type { ISigninFormContentDto } from "./Components/signinFormContentDto";
-export type { ISignupFormContentDto } from "./Components/signupFormContentDto";
+export type { IResetPasswordContentDto } from "./Components/resetPasswordContentDto";
+export type { IUpdatePasswordContentDto } from "./Components/updatePasswordContentDto";
+export type { IUserSigninContentDto } from "./Components/userSigninContentDto";
+export type { IUserSignoutContentDto } from "./Components/userSignoutContentDto";
+export type { IUserSignupContentDto } from "./Components/userSignupContentDto";
 export type { ITestimonialsContentDto } from "./Components/testimonialsContentDto";
 export type { IUnsubscribeContentDto } from "./Components/unsubscribeContentDto";
 export type { IUpdateSubscriberContentDto } from "./Components/updateSubscriberContentDto";

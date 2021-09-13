@@ -1,7 +1,7 @@
 import { IRaiseDialog } from "../../../../Redux/States/raiseDialogState";
 import { IconType } from "../../../../Shared/enums";
 
-export default function ErrorMessage(title: string, text: string): IRaiseDialog
+const ErrorMessage = (title: string, text: string): IRaiseDialog =>
 {
     return {
         title: title + " | Error",
@@ -9,3 +9,5 @@ export default function ErrorMessage(title: string, text: string): IRaiseDialog
         icon: IconType.error
     };
 }
+
+export default ErrorMessage;

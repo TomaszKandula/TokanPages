@@ -1,9 +1,11 @@
+import * as Sentry from "@sentry/react";
 import Validate from "validate.js";
 import { ITextObject } from "./Components/ContentRender/Models/textModel";
 import { IErrorDto } from "../Api/Models";
 import { UNEXPECTED_ERROR, VALIDATION_ERRORS } from "./constants";
+import { RAISE_ERROR } from "../Redux/Actions/raiseErrorAction";
 
-const ConvertPropsToFields = (InputObject: any) =>
+const ConvertPropsToFields = (InputObject: any): any[] =>
 {
     let resultArray: any[] = [];
 
@@ -13,12 +15,12 @@ const ConvertPropsToFields = (InputObject: any) =>
     return resultArray;
 }
 
-const HtmlRenderLine = (Tag: string, Text: string | undefined) => 
+const HtmlRenderLine = (Tag: string, Text: string | undefined): string => 
 {
     return Validate.isDefined(Text) ? `<${Tag}>${Text}</${Tag}>` : " ";
 }
 
-const HtmlRenderLines = (InputArray: any[], Tag: string) =>
+const HtmlRenderLines = (InputArray: any[], Tag: string): string =>
 {
     let result: string = "";
     let htmlLine: string = "";
@@ -131,6 +133,16 @@ const GetErrorMessage = (errorObject: any): string =>
     return result;
 }
 
+const RaiseError = (dispatch: any, errorObject: any): string =>
+{
+    let error = typeof(errorObject) !== "string" 
+        ? GetErrorMessage(errorObject) 
+        : errorObject;
+
+    dispatch({ type: RAISE_ERROR, errorObject: error });
+    return Sentry.captureException(errorObject);
+}
+
 export 
 {
     ConvertPropsToFields,
@@ -140,5 +152,6 @@ export
     TextObjectToRawText,
     CountWords,
     GetReadTime,
-    GetErrorMessage
+    GetErrorMessage,
+    RaiseError
 }

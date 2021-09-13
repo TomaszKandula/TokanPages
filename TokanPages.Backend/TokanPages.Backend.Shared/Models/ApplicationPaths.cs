@@ -9,6 +9,8 @@
 
         public string UnsubscribePath { get; set; }
         
+        public string UpdatePasswordPath { get; set; }
+        
         public string DevelopmentOrigin { get; set; }
         
         public string DeploymentOrigin { get; set; }

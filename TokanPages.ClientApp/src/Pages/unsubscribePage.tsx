@@ -2,20 +2,20 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
-import NavigationView from "../Components/Layout/navigationView";
+import Navigation from "../Components/Layout/navigation";
 import Footer from "../Components/Layout/footer";
 import Unsubscribe from "../Components/Unsubscribe/unsubscribe";
 import { IApplicationState } from "../Redux/applicationState";
-import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
-import { ActionCreators as UnsubscribeContent } from "../Redux/Actions/getUnsubscribeContentAction";
+import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
+import { ActionCreators as UnsubscribeContent } from "../Redux/Actions/Content/getUnsubscribeContentAction";
 
 const useQuery = () => 
 {
     return new URLSearchParams(useLocation().search);
 }
 
-export default function UnsubscribePage()
+const UnsubscribePage = (): JSX.Element =>
 {
     const queryParam = useQuery();
     const dispatch = useDispatch();
@@ -36,7 +36,7 @@ export default function UnsubscribePage()
     
     return(
         <>
-            <NavigationView content={navigation?.content} isLoading={navigation?.isLoading} />
+            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
                 <Unsubscribe id={id} content={unsubscribe?.content} isLoading={unsubscribe?.isLoading} />
             </Container>
@@ -44,3 +44,5 @@ export default function UnsubscribePage()
         </>
     );
 }
+
+export default UnsubscribePage;

@@ -7,19 +7,22 @@ import StoryPage from "./Pages/storyPage";
 import ArticlesPage from "./Pages/articlesPage";
 import TermsPage from "./Pages/termsPage";
 import PolicyPage from "./Pages/policyPage";
+import ContactPage from "./Pages/contactPage";
 import SigninPage from "./Pages/signinPage";
 import SignupPage from "./Pages/signupPage";
-import ResetPage from "./Pages/resetPage";
+import SignoutPage from "./Pages/signoutPage";
+import ResetPasswordPage from "./Pages/resetPasswordPage";
+import UpdatePasswordPage from "./Pages/updatePasswordPage";
 import UnsubscribePage from "./Pages/unsubscribePage";
 import UpdateSubscriberPage from "./Pages/updateSubscriberPage";
 import WrongPage from "./Pages/wrongPage";
 import ScrollTop from "./Shared/Components/Scroll/scrollTop";
-import ApplicationErrorToast from "./Shared/Components/Toasts/applicationErrorToast";
+import ApplicationToast from "./Shared/Components/Toasts/applicationToast";
 import ApplicationDialogBox from "./Shared/Components/ApplicationDialogBox/applicationDialogBox";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-export default function App() 
+const App = (): JSX.Element => 
 {
     React.useEffect(() => 
     {
@@ -36,9 +39,12 @@ export default function App()
                   <Route exact path="/articles"><ArticlesPage /></Route>
                   <Route exact path="/terms"><TermsPage /></Route>
                   <Route exact path="/policy"><PolicyPage /></Route>
+                  <Route exact path="/contact"><ContactPage /></Route>
                   <Route exact path="/signin"><SigninPage /></Route>
                   <Route exact path="/signup"><SignupPage /></Route>
-                  <Route exact path="/reset"><ResetPage /></Route>
+                  <Route exact path="/signout"><SignoutPage /></Route>
+                  <Route exact path="/resetpassword"><ResetPasswordPage /></Route>
+                  <Route exact path="/updatepassword"><UpdatePasswordPage /></Route>
                   <Route exact path="/unsubscribe"><UnsubscribePage /></Route>
                   <Route exact path="/updatesubscriber"><UpdateSubscriberPage /></Route>
                   <Route exact path="/albums" component={() => //TODO: remove when Gallery is created
@@ -46,7 +52,7 @@ export default function App()
                   <Route component={WrongPage} />
                 </Switch>
             </Router>
-            <ApplicationErrorToast />
+            <ApplicationToast />
             <ApplicationDialogBox />
             <ScrollTop>
                 <Fab color="primary" size="small" aria-label="scroll back to top">
@@ -56,3 +62,5 @@ export default function App()
         </>
     );
 }
+
+export default App;

@@ -48,14 +48,17 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 .ToListAsync(ACancellationToken);
             
             if (!LUsers.Any()) 
-                throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), ErrorCodes.INVALID_CREDENTIALS);
+                throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS} (1004)");
 
             var LUser = LUsers.First();
             var LIsPasswordValid = FCipheringService.VerifyPassword(ARequest.Password, LUser.CryptedPassword);
 
             if (!LIsPasswordValid)
-                throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), ErrorCodes.INVALID_CREDENTIALS);
+                throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS} (1006)");
 
+            if (!LUser.IsActivated)
+                throw new BusinessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
+            
             var LTokenExpires = FDateTimeService.Now.AddMinutes(FIdentityServer.WebTokenExpiresIn);
             var LUserToken = await FUserServiceProvider.GenerateUserToken(LUser, LTokenExpires, ACancellationToken);
 

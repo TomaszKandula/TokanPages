@@ -20,7 +20,7 @@ interface IProperties
     isLoading: boolean;
 }
 
-export default function StaticContentView(props: IBinding) 
+const StaticContentView = (props: IBinding): JSX.Element => 
 {
     const classes = staticContentStyle();
     return (
@@ -45,3 +45,5 @@ export default function StaticContentView(props: IBinding)
         </section>
     );
 }
+
+export default StaticContentView;

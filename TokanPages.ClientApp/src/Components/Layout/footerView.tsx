@@ -29,7 +29,7 @@ interface IProperties
     icons: IFooterContentIconDto[];
 }
 
-export default function FooterView(props: IBinding) 
+const FooterView = (props: IBinding): JSX.Element => 
 {
     const SetTermsLink = (): JSX.Element => 
     { 
@@ -102,3 +102,5 @@ export default function FooterView(props: IBinding)
         </footer>
     );
 }
+
+export default FooterView;

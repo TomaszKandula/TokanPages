@@ -7,14 +7,14 @@ export interface IHideOnScroll
     children: React.ReactElement;
 }
 
-export default function HideOnScroll(props: IHideOnScroll) 
+const HideOnScroll = (props: IHideOnScroll): JSX.Element =>
 {
-    const { children } = props;
     const trigger = useScrollTrigger();
- 
     return (
         <Slide appear={false} direction="down" in={!trigger}>
-            {children}
+            {props.children}
         </Slide>
     );
 }
+
+export default HideOnScroll;

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import NavigationView from "../Components/Layout/navigationView";
+import Navigation from "../Components/Layout/navigation";
 import HeaderView from "../Components/Layout/headerView";
 import Footer from "../Components/Layout/footer";
 import FeaturesView from "../Components/Features/featuresView";
@@ -11,19 +11,19 @@ import ContactForm from "../Components/Contact/contactForm";
 import Cookies from "../Components/Cookies/cookies";
 import ArticleFeatView from "../Components/Articles/articleFeatView";
 import { IApplicationState } from "../Redux/applicationState";
-import { ActionCreators as NavigationContent } from "../Redux/Actions/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../Redux/Actions/getFooterContentAction";
-import { ActionCreators as HeaderContent } from "../Redux/Actions/getHeaderContentAction";
-import { ActionCreators as FeaturesContent } from "../Redux/Actions/getFeaturesContentAction";
-import { ActionCreators as ArticlesContent } from "../Redux/Actions/getArticleFeatContentAction";
-import { ActionCreators as FeaturedContent } from "../Redux/Actions/getFeaturedContentAction";
-import { ActionCreators as TestimonialsContent } from "../Redux/Actions/getTestimonialsContentAction";
-import { ActionCreators as NewsletterContent } from "../Redux/Actions/getNewsletterContentAction";
-import { ActionCreators as ContactFormContent } from "../Redux/Actions/getContactFormContentAction";
-import { ActionCreators as CookiesContent } from "../Redux/Actions/getCookiesPromptContentAction";
+import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
+import { ActionCreators as HeaderContent } from "../Redux/Actions/Content/getHeaderContentAction";
+import { ActionCreators as FeaturesContent } from "../Redux/Actions/Content/getFeaturesContentAction";
+import { ActionCreators as ArticlesContent } from "../Redux/Actions/Content/getArticleFeatContentAction";
+import { ActionCreators as FeaturedContent } from "../Redux/Actions/Content/getFeaturedContentAction";
+import { ActionCreators as TestimonialsContent } from "../Redux/Actions/Content/getTestimonialsContentAction";
+import { ActionCreators as NewsletterContent } from "../Redux/Actions/Content/getNewsletterContentAction";
+import { ActionCreators as ContactFormContent } from "../Redux/Actions/Content/getContactFormContentAction";
+import { ActionCreators as CookiesContent } from "../Redux/Actions/Content/getCookiesPromptContentAction";
 import AOS from "aos";
 
-export default function MainPage() 
+const MainPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
 
@@ -57,7 +57,7 @@ export default function MainPage()
 
     return (
         <>
-            <NavigationView content={navigation?.content} isLoading={navigation?.isLoading} />
+            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <HeaderView content={header?.content} isLoading={header?.isLoading} />
             <FeaturesView content={features?.content} isLoading={features?.isLoading} />
             <ArticleFeatView content={articles?.content} isLoading={articles?.isLoading} />
@@ -70,3 +70,5 @@ export default function MainPage()
         </>
     );
 }
+
+export default MainPage;

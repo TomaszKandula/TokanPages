@@ -152,5 +152,17 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("INVALID_REFRESH_TOKEN", resourceCulture);
             }
         }
+        
+        public static string USER_ACCOUNT_INACTIVE {
+            get {
+                return ResourceManager.GetString("USER_ACCOUNT_INACTIVE", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_RESET_ID {
+            get {
+                return ResourceManager.GetString("INVALID_RESET_ID", resourceCulture);
+            }
+        }
     }
 }

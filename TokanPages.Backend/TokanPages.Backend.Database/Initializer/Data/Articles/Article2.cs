@@ -7,9 +7,9 @@
     [ExcludeFromCodeCoverage]
     public static class Article2
     {
-        public const string TITLE = "Say goodbay to PHP";
+        public const string TITLE = "The history of Excel";
 
-        public const string DESCRIPTION = "Use C# for everything...";
+        public const string DESCRIPTION = "The most recognizable spreadsheet application in the World";
         
         public const bool IS_PUBLISHED = false;
         

@@ -1,13 +1,12 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators as SubscriberAction } from "../../Redux/Actions/removeSubscriberAction";
+import { ActionCreators as SubscriberAction } from "../../Redux/Actions/Subscribers/removeSubscriberAction";
 import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
-import { IGetUnsubscribeContent } from "../../Redux/States/getUnsubscribeContentState";
+import { IGetUnsubscribeContent } from "../../Redux/States/Content/getUnsubscribeContentState";
 import { OperationStatus } from "../../Shared/enums";
-import { NewsletterSuccess } from "../../Shared/textWrappers";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
-import { RECEIVED_ERROR_MESSAGE, REMOVE_SUBSCRIBER } from "../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE, REMOVE_SUBSCRIBER, NEWSLETTER_SUCCESS } from "../../Shared/constants";
 import { IRemoveSubscriberDto } from "../../Api/Models";
 import UnsubscribeView from "./unsubscribeView";
 
@@ -16,7 +15,7 @@ interface IGetUnsubscribeContentExtended extends IGetUnsubscribeContent
     id: string;
 }
 
-export default function Unsubscribe(props: IGetUnsubscribeContentExtended)
+const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element =>
 {
     const contentPre = 
     { 
@@ -70,7 +69,7 @@ export default function Unsubscribe(props: IGetUnsubscribeContentExtended)
 
             case OperationStatus.hasFinished:
                 clearForm();
-                showSuccess(NewsletterSuccess());
+                showSuccess(NEWSLETTER_SUCCESS);
             break;
         }
     }, [ removeSubscriber, removeSubscriberState, progress, props.id, showSuccess, clearForm, raiseErrorState ]);
@@ -98,3 +97,5 @@ export default function Unsubscribe(props: IGetUnsubscribeContentExtended)
         buttonText: content.button
     }}/>);
 }
+
+export default Unsubscribe;

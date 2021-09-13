@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test component: contactFormView. Renders correctly '<ContactFormView />' when content is loaded. 1`] = `
+<section
+  className="makeStyles-section-1"
+>
+  <WithStyles(ForwardRef(Container))
+    maxWidth="lg"
+  >
+    <WithStyles(ForwardRef(Container))
+      maxWidth="sm"
+    >
+      <div
+        data-aos="fade-up"
+      >
+        <Styled(MuiBox)
+          pb={10}
+          pt={8}
+        >
+          <Styled(MuiBox)
+            mb={6}
+            textAlign="center"
+          >
+            <WithStyles(ForwardRef(Typography))
+              component="h2"
+              gutterBottom={true}
+              variant="h4"
+            >
+              Contact me
+            </WithStyles(ForwardRef(Typography))>
+            <WithStyles(ForwardRef(Typography))
+              color="textSecondary"
+              paragraph={true}
+              variant="subtitle1"
+            >
+              If you have any questions...
+            </WithStyles(ForwardRef(Typography))>
+          </Styled(MuiBox)>
+          <Styled(MuiBox)>
+            <WithStyles(ForwardRef(Grid))
+              container={true}
+              spacing={2}
+            >
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                sm={6}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(TextField))
+                  autoComplete="fname"
+                  fullWidth={true}
+                  id="firstName"
+                  label="First name"
+                  name="firstName"
+                  onChange={[MockFunction]}
+                  required={true}
+                  value="Ester"
+                  variant="outlined"
+                />
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                sm={6}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(TextField))
+                  autoComplete="lname"
+                  fullWidth={true}
+                  id="lastName"
+                  label="Last name"
+                  name="lastName"
+                  onChange={[MockFunction]}
+                  required={true}
+                  value="Exposito"
+                  variant="outlined"
+                />
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(TextField))
+                  autoComplete="email"
+                  fullWidth={true}
+                  id="email"
+                  label="Email address"
+                  name="email"
+                  onChange={[MockFunction]}
+                  required={true}
+                  value="ester.exposito@gmail.com"
+                  variant="outlined"
+                />
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(TextField))
+                  autoComplete="subject"
+                  fullWidth={true}
+                  id="subject"
+                  label="Subject"
+                  name="subject"
+                  onChange={[MockFunction]}
+                  required={true}
+                  value="Test subject"
+                  variant="outlined"
+                />
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(TextField))
+                  autoComplete="message"
+                  fullWidth={true}
+                  id="message"
+                  label="Message"
+                  multiline={true}
+                  name="message"
+                  onChange={[MockFunction]}
+                  required={true}
+                  rows={6}
+                  value="Test message..."
+                  variant="outlined"
+                />
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(FormControlLabel))
+                  control={
+                    <ForwardRef(WithStyles(ForwardRef(Checkbox)))
+                      checked={false}
+                      color="primary"
+                      id="terms"
+                      name="terms"
+                      onChange={[MockFunction]}
+                    />
+                  }
+                  label="I agree to the terms of use and privacy policy."
+                />
+              </WithStyles(ForwardRef(Grid))>
+            </WithStyles(ForwardRef(Grid))>
+            <Styled(MuiBox)
+              my={2}
+            >
+              <WithStyles(ForwardRef(Button))
+                color="primary"
+                disabled={false}
+                fullWidth={true}
+                onClick={[MockFunction]}
+                type="submit"
+                variant="contained"
+              >
+                Submit
+              </WithStyles(ForwardRef(Button))>
+            </Styled(MuiBox)>
+          </Styled(MuiBox)>
+        </Styled(MuiBox)>
+      </div>
+    </WithStyles(ForwardRef(Container))>
+  </WithStyles(ForwardRef(Container))>
+</section>
+`;

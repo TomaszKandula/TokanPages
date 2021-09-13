@@ -7,54 +7,51 @@
     [ExcludeFromCodeCoverage]
     public static class UsersMapper
     {
-        public static AuthenticateUserCommand MapToAuthenticateUserCommand(AuthenticateUserDto AModel)
+        public static AuthenticateUserCommand MapToAuthenticateUserCommand(AuthenticateUserDto AModel) => new ()
         {
-            return new()
-            {
-                EmailAddress = AModel.EmailAddress,
-                Password = AModel.Password
-            };
-        }
+            EmailAddress = AModel.EmailAddress,
+            Password = AModel.Password
+        };
 
-        public static ReAuthenticateUserCommand MapToReAuthenticateUserCommand(ReAuthenticateUserDto AModel)
+        public static ReAuthenticateUserCommand MapToReAuthenticateUserCommand(ReAuthenticateUserDto AModel) => new ()
         {
-            return new()
-            {
-                Id = AModel.Id
-            };
-        }
+            Id = AModel.Id
+        };
 
-        public static AddUserCommand MapToAddUserCommand(AddUserDto AModel) 
+        public static ResetUserPasswordCommand MapToResetUserPasswordCommand(ResetUserPasswordDto AModel) => new()
         {
-            return new () 
-            { 
-                EmailAddress = AModel.EmailAddress,
-                UserAlias = AModel.UserAlias,
-                FirstName = AModel.FirstName,
-                LastName = AModel.LastName,
-                Password = AModel.Password
-            };
-        }
+            EmailAddress = AModel.EmailAddress
+        };
 
-        public static UpdateUserCommand MapToUpdateUserCommand(UpdateUserDto AModel)
+        public static UpdateUserPasswordCommand MapToUpdateUserPasswordCommand(UpdateUserPasswordDto AModel) => new()
         {
-            return new ()
-            {
-                Id = AModel.Id,
-                UserAlias = AModel.UserAlias,
-                IsActivated = AModel.IsActivated,
-                FirstName = AModel.FirstName,
-                LastName = AModel.LastName,
-                EmailAddress = AModel.EmailAddress,
-            };
-        }
+            Id = AModel.Id,
+            ResetId = AModel.ResetId,
+            NewPassword = AModel.NewPassword
+        };
+        
+        public static AddUserCommand MapToAddUserCommand(AddUserDto AModel) => new () 
+        { 
+            EmailAddress = AModel.EmailAddress,
+            UserAlias = AModel.UserAlias,
+            FirstName = AModel.FirstName,
+            LastName = AModel.LastName,
+            Password = AModel.Password
+        };
 
-        public static RemoveUserCommand MapToRemoveUserCommand(RemoveUserDto AModel)
+        public static UpdateUserCommand MapToUpdateUserCommand(UpdateUserDto AModel) => new ()
         {
-            return new ()
-            {
-                Id = AModel.Id
-            };
-        }
+            Id = AModel.Id,
+            UserAlias = AModel.UserAlias,
+            IsActivated = AModel.IsActivated,
+            FirstName = AModel.FirstName,
+            LastName = AModel.LastName,
+            EmailAddress = AModel.EmailAddress,
+        };
+
+        public static RemoveUserCommand MapToRemoveUserCommand(RemoveUserDto AModel) => new ()
+        {
+            Id = AModel.Id
+        };
     }
 }
