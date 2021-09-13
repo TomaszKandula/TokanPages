@@ -1,3 +1,47 @@
+# [0.20.0](https://github.com/TomaszKandula/TokanPages/compare/v0.19.1...v0.20.0) (2021-09-13)
+
+
+### Bug Fixes
+
+* add missing action for resetting signed user status ([1f17ae1](https://github.com/TomaszKandula/TokanPages/commit/1f17ae124dfee40c63e07f697a90ab90762c8e7f))
+* add missing reset id ([ea30110](https://github.com/TomaszKandula/TokanPages/commit/ea30110ea7254edb910860e19398f818df7fe318))
+* add missing sign-up state reset ([8181cf7](https://github.com/TomaszKandula/TokanPages/commit/8181cf70758ec1a79db4cb8be564a5b231a5f9cb))
+* add missing state reset ([8d5f6ff](https://github.com/TomaszKandula/TokanPages/commit/8d5f6ffa49d35a79adfc34a7a39322c26f9279ea))
+* check prop value ([59693b7](https://github.com/TomaszKandula/TokanPages/commit/59693b7a9cba12eca396b896dbb6c2ac81536d1d))
+* correct component name ([ae89ad7](https://github.com/TomaszKandula/TokanPages/commit/ae89ad715af64912e271b1d07f450e6657c12781))
+* resolve incorrect condition issue ([0dadcc5](https://github.com/TomaszKandula/TokanPages/commit/0dadcc577b3e3ff4ce6c2b4c2aa97d887d3cb58e))
+* resolve issues with tests ([0a0c6c7](https://github.com/TomaszKandula/TokanPages/commit/0a0c6c77fdcc8cfc5c4a6e2fa6aa1e70f8acc8c7))
+* resolve required roles issue ([0f0a315](https://github.com/TomaszKandula/TokanPages/commit/0f0a3159b2a2b36b5c28f16bd696ff29b62e5875))
+* update dependencies ([9445fc0](https://github.com/TomaszKandula/TokanPages/commit/9445fc0c56eedc72997828b86d229c6652424ef5))
+
+
+### Features
+
+* add account activation check ([fcf96fa](https://github.com/TomaszKandula/TokanPages/commit/fcf96fac425ac2a39e620b317635867608006b8b))
+* add action 'API call' to execute user signin ([5e8f688](https://github.com/TomaszKandula/TokanPages/commit/5e8f6881e59e6bf69a56102f05dd82f47b0531b7))
+* add API call for user sing-up ([d8d1b7f](https://github.com/TomaszKandula/TokanPages/commit/d8d1b7fe529564f42226b3a19cc1df0f727d7782))
+* add constants for Signin, Signup and Reset forms ([81aef3d](https://github.com/TomaszKandula/TokanPages/commit/81aef3d270d9189fd3697774a8ce0998aca8bd5e))
+* add models for login functionality ([0187eec](https://github.com/TomaszKandula/TokanPages/commit/0187eecc522e771252b7741cf48b5b42929b13c3))
+* add new action for update/reset password ([783a346](https://github.com/TomaszKandula/TokanPages/commit/783a346cd7729856d46c2334c32488da44bc9277))
+* add new API urls for authentication functionality ([efdfdaf](https://github.com/TomaszKandula/TokanPages/commit/efdfdaf0ef6b0e5cf6824a2c8e7432053e21f0c1))
+* add new constants for ([6b10e9c](https://github.com/TomaszKandula/TokanPages/commit/6b10e9c3718fc0acb21ae340bcd8c2ae6c7711a7))
+* add new controller for updating user password ([5658fa4](https://github.com/TomaszKandula/TokanPages/commit/5658fa4e0a424aeb1d75e6bb780f81377a742a57))
+* add new DTOs for update/reset password actions ([55e10c1](https://github.com/TomaszKandula/TokanPages/commit/55e10c19553df243ac48e928e32ffadde237af42))
+* add new endpoints and message for update/reset password action ([b3e6c0b](https://github.com/TomaszKandula/TokanPages/commit/b3e6c0b6015ca66a83defe0566bf348376d757c6))
+* add new error code ([5f8d41e](https://github.com/TomaszKandula/TokanPages/commit/5f8d41e27ca27eccca09247818c6cc1c0b044d23))
+* add new exports for login functionality ([6359f3d](https://github.com/TomaszKandula/TokanPages/commit/6359f3dc6b4d1651a832af0d881acb9bf12b774a))
+* add new validation rule ([c9d8cf7](https://github.com/TomaszKandula/TokanPages/commit/c9d8cf772a85e6fe9aebf1bfbe2a0eae530edef5))
+* add new validation rules for Signin functionality ([724ce59](https://github.com/TomaszKandula/TokanPages/commit/724ce598abf210e778cbbbecbd22d8c9cbaa07fc))
+* add new validation rules for update password form ([e562ca9](https://github.com/TomaszKandula/TokanPages/commit/e562ca94dde6d7bf5af99759dfffa9afa8b3cd0f))
+* add redux action and reducer for login functionality (incl. state, default values) ([410de99](https://github.com/TomaszKandula/TokanPages/commit/410de99f31b103bc1755d8f14c3b10817c19fa39))
+* add reset password handler and controller ([9125041](https://github.com/TomaszKandula/TokanPages/commit/9125041d373c768d9550cbb40910a6192360a81b))
+* add reset password UI ([b2a9c59](https://github.com/TomaszKandula/TokanPages/commit/b2a9c591353b7c45fc09f0feceea827ed3a39498))
+* add separate contact page ([210daa8](https://github.com/TomaszKandula/TokanPages/commit/210daa809638245cdfdebc4630cbe902441c574e))
+* add signin basic logic and keep it in separate file (split view from logic) ([f022e86](https://github.com/TomaszKandula/TokanPages/commit/f022e8623b68e675aaeceb47af896d6c5f34ac4f))
+* add signup implementation ([4ae9e5a](https://github.com/TomaszKandula/TokanPages/commit/4ae9e5a7e018ab0c09d81b556f6fc7392f9bfeb1))
+* add update password functionality ([f83a960](https://github.com/TomaszKandula/TokanPages/commit/f83a960dca2c5c7693a70c6796a33640d8d8d764))
+* implement command, handler and validator for updating user password functionality ([0057445](https://github.com/TomaszKandula/TokanPages/commit/0057445f0ea0f69f776de1c37d035b7c1178dd58))
+
 ## [0.19.1](https://github.com/TomaszKandula/TokanPages/compare/v0.19.0...v0.19.1) (2021-07-17)
 
 
