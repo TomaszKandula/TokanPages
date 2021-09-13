@@ -7,11 +7,14 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     {
         public UpdateUserPasswordCommandValidator()
         {
-            RuleFor(AField => AField.Id)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
-
+            When(AField => AField.ResetId == null, () =>
+            {
+                RuleFor(AField => AField.Id)
+                    .NotEmpty()
+                    .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+                    .WithMessage(ValidationCodes.REQUIRED);
+            });
+            
             RuleFor(AField => AField.NewPassword)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))

@@ -9,6 +9,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Identity.Authorization;
     using Shared.Resources;
     using Core.Exceptions;
+    using Core.Extensions;
     using Core.Logger;
     using Database;
     using MediatR;
@@ -34,35 +35,37 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         public override async Task<Unit> Handle(UpdateUserPasswordCommand ARequest, CancellationToken ACancellationToken)
         {
+            var LIsResetId = ARequest.ResetId == null;
             var LUsers = await FDatabaseContext.Users
-                .Where(AUser => AUser.Id == ARequest.Id)
+                .WhereIfElse(LIsResetId, 
+                    AUser => AUser.Id == ARequest.Id, 
+                    AUser => AUser.ResetId == ARequest.ResetId) 
                 .ToListAsync(ACancellationToken);
 
-            if (!LUsers.Any())
-                throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
-
-            if (ARequest.ResetId == null)
+            if (LIsResetId)
             {
+                if (!LUsers.Any())
+                    throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
+
                 var LHasRoleEverydayUser = await FUserServiceProvider.HasRoleAssigned(Roles.EverydayUser.ToString()) ?? false;
                 var LHasRoleGodOfAsgard = await FUserServiceProvider.HasRoleAssigned(Roles.GodOfAsgard.ToString()) ?? false;
-                
+
                 if (!LHasRoleEverydayUser && !LHasRoleGodOfAsgard)
                     throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
             }
 
-            var LCurrentUser = LUsers.First();
-
-            if (LCurrentUser.ResetId != ARequest.ResetId)
+            if (!LUsers.Any())
                 throw new BusinessException(nameof(ErrorCodes.INVALID_RESET_ID), ErrorCodes.INVALID_RESET_ID);
 
             var LGetNewSalt = FCipheringService.GenerateSalt(Constants.CIPHER_LOG_ROUNDS);
             var LGetHashedPassword = FCipheringService.GetHashedPassword(ARequest.NewPassword, LGetNewSalt);
             
+            var LCurrentUser = LUsers.First();
             LCurrentUser.ResetId = null;
             LCurrentUser.CryptedPassword = LGetHashedPassword;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 
-            FLogger.LogInformation($"User password has been updated successfully (UserId: {ARequest.Id}).");
+            FLogger.LogInformation($"User password has been updated successfully (UserId: {LCurrentUser.Id}).");
             return await Task.FromResult(Unit.Value);
         }
     }

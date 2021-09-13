@@ -2,8 +2,9 @@ import "../../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
 import * as Router from "react-router";
+import * as Dom from "react-router-dom";
 import { shallow } from "enzyme";
-import ResetPassword from "../resetPassword";
+import UpdatePassword from "../updatePassword";
 import { combinedDefaults } from "../../../Redux/combinedDefaults";
 
 jest.mock("react-router", () => 
@@ -11,26 +12,35 @@ jest.mock("react-router", () =>
     ...jest.requireActual("react-router") as typeof Router,
 }));
 
-describe("Test account group component: resetPassword.", () => 
+jest.mock("react-router-dom", () => 
+({
+    ...jest.requireActual("react-router-dom") as typeof Dom,
+    useLocation: () => 
+    ({
+      search: "localhost:3000/updatepassword/?id=dba4043c-7428-4f72-ba13-fe782c7a88fa"
+    })
+}));
+
+describe("Test account group component: updatePassword.", () => 
 {
     const testContent = 
     {
-        caption: "Reset Password",
-        button: "Reset"
+        caption: "Update Password",
+        button: "Submit"
     };
 
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
     const useSelectorMock = jest.spyOn(Redux, "useSelector");
-    const wrapper = shallow(<div><ResetPassword content={testContent} isLoading={false} /></div>);
+    const wrapper = shallow(<div><UpdatePassword content={testContent} isLoading={false} /></div>);
 
     beforeEach(() => 
     {
         useSelectorMock.mockClear();
         useDispatchMock.mockClear();
-        wrapper.find("ResetPassword").dive();
+        wrapper.find("UpdatePassword").dive();
     });
 
-    it("Renders correctly '<ResetPassword />' when content is loaded.", () => 
+    it("Renders correctly '<UpdatePassword />' when content is loaded.", () => 
     {
         useDispatchMock.mockReturnValue(jest.fn());
         useSelectorMock.mockReturnValue(combinedDefaults);

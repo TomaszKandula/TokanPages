@@ -5,7 +5,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import { Card, CardContent } from "@material-ui/core";
+import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 import resetPasswordStyle from "./Styles/resetPasswordStyle";
@@ -21,6 +21,7 @@ interface IProperties
     progress: boolean;
     caption: string;
     button: string;
+    email: string;
     formHandler: any;
     buttonHandler: any;
 }
@@ -44,14 +45,15 @@ const ResetPasswordView = (props: IBinding): JSX.Element =>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
                                         <TextField 
-                                            variant="outlined" required fullWidth 
+                                            onChange={props.bind?.formHandler} value={props.bind?.email}  variant="outlined" required fullWidth 
                                             name="email" id="email" label="Email address" autoComplete="email" 
                                         />
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    <Button fullWidth variant="contained" color="primary">
-                                        {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.button}
+                                    <Button onClick={props.bind?.buttonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={props.bind?.progress}>
+                                        {props.bind?.progress &&  <CircularProgress size={20} />}
+                                        {!props.bind?.progress && props.bind?.button}
                                     </Button>
                                 </Box>
                             </Box>

@@ -16,10 +16,9 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     public class UpdateUserPasswordCommandHandlerTest : TestBase
     {
         [Fact]
-        public async Task GivenValidUserDataAndNewPassword_WhenUpdateUserPassword_ShouldFinishSuccessful()
+        public async Task GivenValidUserDataAndNewPasswordAsLoggedUser_WhenUpdateUserPassword_ShouldFinishSuccessful()
         {
             // Arrange
-            var LResetId = Guid.NewGuid();
             var LUser = new TokanPages.Backend.Domain.Entities.Users
             {
                 EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -31,7 +30,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LastUpdated = null,
                 LastLogged = null,
                 CryptedPassword = string.Empty,
-                ResetId = LResetId
+                ResetId = null
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -41,7 +40,6 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var LUpdateUserPasswordCommand = new UpdateUserPasswordCommand
             {
                 Id = LUser.Id,
-                ResetId = LResetId,
                 NewPassword = DataUtilityService.GetRandomString()
             };
 
@@ -49,6 +47,10 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var LMockedUserProvider = new Mock<IUserServiceProvider>();
             var LMockedCipheringService = new Mock<ICipheringService>();
 
+            LMockedUserProvider
+                .Setup(AService => AService.HasRoleAssigned(It.IsAny<string>()))
+                .ReturnsAsync(true);
+            
             var LMockedPassword = DataUtilityService.GetRandomString();
             LMockedCipheringService
                 .Setup(AService => AService.GetHashedPassword(
@@ -140,7 +142,6 @@ namespace TokanPages.Backend.Tests.Handlers.Users
         public async Task GivenInvalidUserId_WhenUpdateUserPassword_ShouldThrowError()
         {
             // Arrange
-            var LResetId = Guid.NewGuid();
             var LUser = new TokanPages.Backend.Domain.Entities.Users
             {
                 EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -152,7 +153,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LastUpdated = null,
                 LastLogged = null,
                 CryptedPassword = string.Empty,
-                ResetId = LResetId
+                ResetId = null
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -162,7 +163,6 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var LUpdateUserPasswordCommand = new UpdateUserPasswordCommand
             {
                 Id = Guid.NewGuid(),
-                ResetId = LResetId,
                 NewPassword = DataUtilityService.GetRandomString()
             };
 
@@ -196,7 +196,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
         }
 
         [Fact]
-        public async Task GivenNoResetIdAndNotLoggedUser_WhenUpdateUserPassword_ShouldThrowError()
+        public async Task GivenNoResetIdAsNotLoggedUser_WhenUpdateUserPassword_ShouldThrowError()
         {
             // Arrange
             var LUser = new TokanPages.Backend.Domain.Entities.Users

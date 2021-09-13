@@ -23,6 +23,7 @@ const ArticleDetail = (props: IArticleDetail): JSX.Element =>
 {
     const dispatch = useDispatch();
     const selection = useSelector((state: IApplicationState) => state.selectArticle);
+    const user = useSelector((state: IApplicationState) => state.updateUserData);
 
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
         dispatch(SelectArticleActions.selectArticle(props.id));
@@ -37,7 +38,7 @@ const ArticleDetail = (props: IArticleDetail): JSX.Element =>
     const history = useHistory();
     const popoverOpen = Boolean(popoverElement);
     const userLetter = selection.article.author.aliasName.charAt(0).toUpperCase();
-    const isAnonymous = true; // TODO: use authorization feature
+    const isAnonymous = Validate.isEmpty(user.userData.userId);
 
     const updateLikesLeft = React.useCallback(() =>
     {

@@ -7,6 +7,7 @@ import RemoveSubscriberReducer from "./Reducers/Subscribers/removeSubscriberRedu
 import UpdateUserDataReducer from "./Reducers/Users/updateUserDataReducer";
 import SigninUserReducer from "./Reducers/Users/signinUserReducer";
 import SignupUserReducer from "./Reducers/Users/signupUserReducer";
+import ResetUserPasswordReducer from "./Reducers/Users/resetUserPasswordReducer";
 import SendMessageReducer from "./Reducers/Mailer/sendMessageReducer";
 import RaiseErrorReducer from "./Reducers/raiseErrorReducer";
 import RaiseDialogReducer from "./Reducers/raiseDialogReducer";
@@ -22,6 +23,7 @@ import GetNavigationContentReducer from "./Reducers/Content/getNavigationContent
 import GetNewsletterContentReducer from "./Reducers/Content/getNewsletterContentReducer";
 import GetWrongPagePromptContentReducer from "./Reducers/Content/getWrongPagePromptContentReducer";
 import GetResetPasswordContentReducer from "./Reducers/Content/getResetPasswordContentReducer";
+import GetUpdatePasswordContentReducer from "./Reducers/Content/getUpdatePasswordContentReducer";
 import GetUserSigninContentReducer from "./Reducers/Content/getUserSigninContentReducer";
 import GetUserSignoutContentReducer from "./Reducers/Content/getUserSignoutContentReducer";
 import GetUserSignupContentReducer from "./Reducers/Content/getUserSignupContentReducer";
@@ -43,6 +45,8 @@ export const combinedReducers =
     updateUserData: UpdateUserDataReducer,
     signinUser: SigninUserReducer,
     signupUser: SignupUserReducer,
+    resetUserPassword: ResetUserPasswordReducer,
+    updateUserPassword: ResetUserPasswordReducer,
     getStaticContent: GetStaticContentReducer,
     getArticleFeatContent: GetArticleFeatContentReducer,
     getContactFormContent: GetContactFormContentReducer,
@@ -55,6 +59,7 @@ export const combinedReducers =
     getNewsletterContent: GetNewsletterContentReducer,
     getWrongPagePromptContent: GetWrongPagePromptContentReducer,
     getResetPasswordContent: GetResetPasswordContentReducer,
+    getUpdatePasswordContent: GetUpdatePasswordContentReducer,
     getUserSigninContent: GetUserSigninContentReducer,
     getUserSignoutContent: GetUserSignoutContentReducer,
     getUserSignupContent: GetUserSignupContentReducer,

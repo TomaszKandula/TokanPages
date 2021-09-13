@@ -7,6 +7,8 @@ import { IRemoveSubscriber } from "./States/Subscribers/removeSubscriberState";
 import { IUpdateUserData } from "./States/Users/updateUserDataState";
 import { ISigninUser } from "./States/Users/signinUserState";
 import { ISignupUser } from "./States/Users/signupUserState";
+import { IResetUserPassword } from "./States/Users/resetUserPasswordState";
+import { IUpdateUserPassword } from "./States/Users/updateUserPasswordState";
 import { ISendMessage } from "./States/Mailer/sendMessageState";
 import { IRaiseError } from "./States/raiseErrorState";
 import { IRaiseDialog } from "./States/raiseDialogState";
@@ -22,6 +24,7 @@ import { IGetNavigationContent } from "./States/Content/getNavigationContentStat
 import { IGetNewsletterContent } from "./States/Content/getNewsletterContentState";
 import { IGetWrongPagePromptContent } from "./States/Content/getWrongPagePromptContentState";
 import { IGetResetPasswordContent } from "./States/Content/getResetPasswordContentState";
+import { IGetUpdatePasswordContent } from "./States/Content/getUpdatePasswordContentState";
 import { IGetUserSigninContent } from "./States/Content/getUserSigninContentState";
 import { IGetUserSignoutContent } from "./States/Content/getUserSignoutContentState";
 import { IGetUserSignupContent } from "./States/Content/getUserSignupContentState";
@@ -43,6 +46,8 @@ export interface IApplicationState
     updateUserData: IUpdateUserData,
     signinUser: ISigninUser,
     signupUser: ISignupUser,
+    resetUserPassword: IResetUserPassword,
+    updateUserPassword: IUpdateUserPassword,
     getStaticContent: IGetStaticContent,
     getArticleFeatContent: IGetArticleFeatContent,
     getContactFormContent: IGetContactFormContent,
@@ -55,6 +60,7 @@ export interface IApplicationState
     getNewsletterContent: IGetNewsletterContent,
     getWrongPagePromptContent: IGetWrongPagePromptContent,
     getResetPasswordContent: IGetResetPasswordContent,
+    getUpdatePasswordContent: IGetUpdatePasswordContent,
     getUserSigninContent: IGetUserSigninContent,
     getUserSignoutContent: IGetUserSignoutContent,
     getUserSignupContent: IGetUserSignupContent,

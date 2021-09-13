@@ -22,6 +22,8 @@ export type { IAuthenticateUserDto } from "./Users/authenticateUserDto";
 export type { IAuthenticateUserResultDto } from "./Users/authenticateUserResultDto";
 export type { IReAuthenticateUserDto } from "./Users/reAuthenticateUserDto";
 export type { IReAuthenticateUserResultDto } from "./Users/reAuthenticateUserResultDto";
+export type { IResetUserPasswordDto } from "./Users/resetUserPasswordDto";
+export type { IUpdateUserPasswordDto } from "./Users/updateUserPasswordDto";
 
 export type { IErrorDto } from "./Error/errorDto";
 export type { IValidationErrorsDto } from "./Error/validationErrorsDto";
@@ -37,6 +39,7 @@ export type { IFeaturedContentDto } from "./Components/featuredContentDto";
 export type { IFeaturesContentDto } from "./Components/featuresContentDto";
 export type { INewsletterContentDto } from "./Components/newsletterContentDto";
 export type { IResetPasswordContentDto } from "./Components/resetPasswordContentDto";
+export type { IUpdatePasswordContentDto } from "./Components/updatePasswordContentDto";
 export type { IUserSigninContentDto } from "./Components/userSigninContentDto";
 export type { IUserSignoutContentDto } from "./Components/userSignoutContentDto";
 export type { IUserSignupContentDto } from "./Components/userSignupContentDto";

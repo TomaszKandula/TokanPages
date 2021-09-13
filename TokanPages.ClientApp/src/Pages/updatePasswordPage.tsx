@@ -2,26 +2,26 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import Navigation from "../Components/Layout/navigation";
-import ResetPassword from "../Components/Account/resetPassword";
+import UpdatePassword from "../Components/Account/updatePassword";
 import Footer from "../Components/Layout/footer";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
-import { ActionCreators as ResetFormContent } from "../Redux/Actions/Content/getResetPasswordContentAction";
+import { ActionCreators as UpdateFormContent } from "../Redux/Actions/Content/getUpdatePasswordContentAction";
 
-const ResetPage = (): JSX.Element => 
+const UpdatePasswordPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const resetForm = useSelector((state: IApplicationState) => state.getResetPasswordContent);
+    const updateForm = useSelector((state: IApplicationState) => state.getUpdatePasswordContent);
 
     const getContent = React.useCallback(() =>
     {
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
-        dispatch(ResetFormContent.getResetPasswordContent());
+        dispatch(UpdateFormContent.getUpdatePasswordContent());
     }, [ dispatch ]);
 
     React.useEffect(() => getContent(), [ getContent ]);
@@ -30,11 +30,11 @@ const ResetPage = (): JSX.Element =>
         <>     
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <ResetPassword content={resetForm?.content} isLoading={resetForm?.isLoading} />
+                <UpdatePassword content={updateForm?.content} isLoading={updateForm?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>
     );
 }
 
-export default ResetPage;
+export default UpdatePasswordPage;

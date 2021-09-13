@@ -66,7 +66,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             FSmtpClientService.Tos = new List<string> { ARequest.EmailAddress };
             FSmtpClientService.Subject = "Reset user password";
 
-            var LResetLink = $"{FApplicationPaths.DeploymentOrigin}{FApplicationPaths.ResetPath}{LResetId}";
+            var LResetLink = $"{FApplicationPaths.DeploymentOrigin}{FApplicationPaths.UpdatePasswordPath}{LResetId}";
             
             var LNewValues = new List<TemplateItem>
             {
