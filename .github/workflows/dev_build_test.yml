@@ -50,7 +50,7 @@ jobs:
       env:
         AppUrls.UpdateSubscriberPath: "${{ secrets.APPURLS__UPDATESUBSCRIBERPATH_STAGE }}"
         AppUrls.UnsubscribePath: "${{ secrets.APPURLS__UNSUBSCRIBEPATH_STAGE }}"
-        AppUrls.ResetPath: "${{ secrets.APPURLS__RESETID_STAGE }}"
+        AppUrls.UpdatePasswordPath: "${{ secrets.APPURLS__UPDATEPASSWORDPATH_STAGE }}"
         AppUrls.DevelopmentOrigin: "${{ secrets.APPURLS__DEVELOPMENTORIGIN_STAGE }}"
         AppUrls.DeploymentOrigin: "${{ secrets.APPURLS__DEPLOYMENTORIGIN_STAGE }}"
         AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL_TEST }}"
