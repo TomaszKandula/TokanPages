@@ -11,7 +11,8 @@ import ContactPage from "./Pages/contactPage";
 import SigninPage from "./Pages/signinPage";
 import SignupPage from "./Pages/signupPage";
 import SignoutPage from "./Pages/signoutPage";
-import ResetPage from "./Pages/resetPage";
+import ResetPasswordPage from "./Pages/resetPasswordPage";
+import UpdatePasswordPage from "./Pages/updatePasswordPage";
 import UnsubscribePage from "./Pages/unsubscribePage";
 import UpdateSubscriberPage from "./Pages/updateSubscriberPage";
 import WrongPage from "./Pages/wrongPage";
@@ -42,7 +43,8 @@ const App = (): JSX.Element =>
                   <Route exact path="/signin"><SigninPage /></Route>
                   <Route exact path="/signup"><SignupPage /></Route>
                   <Route exact path="/signout"><SignoutPage /></Route>
-                  <Route exact path="/reset"><ResetPage /></Route>
+                  <Route exact path="/resetpassword"><ResetPasswordPage /></Route>
+                  <Route exact path="/updatepassword"><UpdatePasswordPage /></Route>
                   <Route exact path="/unsubscribe"><UnsubscribePage /></Route>
                   <Route exact path="/updatesubscriber"><UpdateSubscriberPage /></Route>
                   <Route exact path="/albums" component={() => //TODO: remove when Gallery is created
