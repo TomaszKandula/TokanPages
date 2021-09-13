@@ -69,7 +69,7 @@ export const RenderContent = (textObject: ITextObject | undefined): JSX.Element 
             break;
 
             case "gist":
-                if (Languages.includes(item.type)) renderBuffer.push(
+                if (Languages.includes(item.prop)) renderBuffer.push(
                     <RenderGist 
                         key={item.id} 
                         id={item.id} 
