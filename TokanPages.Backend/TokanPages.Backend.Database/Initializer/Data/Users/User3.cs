@@ -23,6 +23,8 @@
         public const string CRYPTED_PASSWORD = "$2a$12$Bl4ebq6Qi8F4aY5w9wzs7echVwERkAyXxmAua3yUpvUX40DtpCKsK";
         
         public static readonly Guid? FResetId = null;
+
+        public static readonly Guid? FActivationId = null;
         
         public static readonly Guid FId = Guid.Parse("3d047a17-9865-47f1-acb3-53b08539e7c9");
         
@@ -31,5 +33,9 @@
         public static readonly DateTime? FLastLogged = DateTime.Parse("2020-05-12 15:05:03");
         
         public static readonly DateTime? FLastUpdated = null;
+
+        public static readonly DateTime? FResetIdEnds = null;
+
+        public static readonly DateTime? FActivationIdEnds = null;
     }
 }

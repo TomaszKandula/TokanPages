@@ -24,6 +24,8 @@
 
         public static readonly Guid? FResetId = null;
 
+        public static readonly Guid? FActivationId = null;
+
         public static readonly Guid FId = Guid.Parse("08be222f-dfcd-42db-8509-fd78ef09b912");
         
         public static readonly DateTime FRegistered = DateTime.Parse("2020-01-10 12:15:15");
@@ -31,5 +33,9 @@
         public static readonly DateTime? FLastLogged = DateTime.Parse("2020-01-10 15:00:33");
         
         public static readonly DateTime? FLastUpdated = null;
+
+        public static readonly DateTime? FResetIdEnds = null;
+
+        public static readonly DateTime? FActivationIdEnds = null;
     }
 }
