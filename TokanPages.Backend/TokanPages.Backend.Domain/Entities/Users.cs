@@ -44,7 +44,13 @@
         public string CryptedPassword { get; set; }
         
         public Guid? ResetId { get; set; }
+        
+        public DateTime? ResetIdEnds { get; set; }
 
+        public Guid? ActivationId { get; set; }
+        
+        public DateTime? ActivationIdEnds { get; set; }
+        
         public ICollection<Articles> Articles { get; set; } = new HashSet<Articles>();
 
         public ICollection<ArticleLikes> ArticleLikes { get; set; } = new HashSet<ArticleLikes>();

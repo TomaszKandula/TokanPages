@@ -8,6 +8,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using System.Collections.Generic;
     using Microsoft.EntityFrameworkCore;
     using Shared.Services.TemplateService;
+    using Shared.Services.DateTimeService;
     using Shared.Resources;
     using Core.Exceptions;
     using Storage.Models;
@@ -30,21 +31,27 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
         
         private readonly ITemplateService FTemplateService;
         
+        private readonly IDateTimeService FDateTimeService; 
+
         private readonly AzureStorage FAzureStorage;
         
         private readonly ApplicationPaths FApplicationPaths;
+
+        private readonly ExpirationSettings FExpirationSettings;
         
         public ResetUserPasswordCommandHandler(DatabaseContext ADatabaseContext, ILogger ALogger, HttpClient AHttpClient, 
-            ISmtpClientService ASmtpClientService, ITemplateService ATemplateService, AzureStorage AAzureStorage, 
-            ApplicationPaths AApplicationPaths)
+            ISmtpClientService ASmtpClientService, ITemplateService ATemplateService, IDateTimeService ADateTimeService, 
+            AzureStorage AAzureStorage, ApplicationPaths AApplicationPaths, ExpirationSettings AExpirationSettings)
         {
             FDatabaseContext = ADatabaseContext;
             FLogger = ALogger;
             FHttpClient = AHttpClient;
             FSmtpClientService = ASmtpClientService;
             FTemplateService = ATemplateService;
+            FDateTimeService = ADateTimeService;
             FAzureStorage = AAzureStorage;
             FApplicationPaths = AApplicationPaths;
+            FExpirationSettings = AExpirationSettings;
         }
 
         public override async Task<Unit> Handle(ResetUserPasswordCommand ARequest, CancellationToken ACancellationToken)
@@ -58,8 +65,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
             var LCurrentUser = LUsers.First();
             var LResetId = Guid.NewGuid();
+            var LExpirationDate = FDateTimeService.Now.AddMinutes(FExpirationSettings.ResetIdExpiresIn);
             LCurrentUser.CryptedPassword = string.Empty;
             LCurrentUser.ResetId = LResetId;
+            LCurrentUser.ResetIdEnds = LExpirationDate;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 
             FSmtpClientService.From = Constants.Emails.Addresses.CONTACT;
@@ -70,7 +79,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             
             var LNewValues = new List<TemplateItem>
             {
-                new () { Tag = "{RESET_LINK}", Value = LResetLink }
+                new () { Tag = "{RESET_LINK}", Value = LResetLink },
+                new () { Tag = "{EXPIRATION}", Value = $"{LExpirationDate}" }
             };
 
             var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.RESET_PASSWORD}";

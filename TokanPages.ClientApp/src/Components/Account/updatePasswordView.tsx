@@ -48,13 +48,13 @@ const UpdatePasswordView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12}>
                                         <TextField 
                                             onChange={props.bind?.formHandler} value={props.bind?.newPassword}  variant="outlined" required fullWidth 
-                                            name="newPassword" id="newPassword" label="New password" autoComplete="password" disabled={props.bind?.disableForm}
+                                            name="newPassword" id="newPassword" label="New password" type="password" autoComplete="password" disabled={props.bind?.disableForm}
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField 
                                             onChange={props.bind?.formHandler} value={props.bind?.verifyPassword}  variant="outlined" required fullWidth 
-                                            name="verifyPassword" id="verifyPassword" label="Verify new password" autoComplete="password" disabled={props.bind?.disableForm}
+                                            name="verifyPassword" id="verifyPassword" label="Verify new password" type="password" autoComplete="password" disabled={props.bind?.disableForm}
                                         />
                                     </Grid>
                                 </Grid>
