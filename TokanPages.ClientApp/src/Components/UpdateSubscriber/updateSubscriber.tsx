@@ -35,33 +35,34 @@ const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Eleme
     
     const clearForm = React.useCallback(() => 
     { 
+        if (!progress) return;
         setProgress(false);
         setButtonState(true);
-        setForm({email: ""});
-    }, [  ]);
+    }, [ progress ]);
 
     const callUpdateSubscriber = React.useCallback(() => 
     {
+        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        {
+            clearForm();
+            return;
+        }
+
         switch(updateSubscriberState?.operationStatus)
         {
-            case OperationStatus.inProgress:
-                if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
-                    clearForm();
-            break;
-
             case OperationStatus.notStarted:
-                if (progress)
-                    updateSubscriber(
-                    { 
-                        id: props.id, 
-                        email: form.email, 
-                        isActivated: true, 
-                        count: 0 
-                    });
+                if (progress) updateSubscriber(
+                { 
+                    id: props.id, 
+                    email: form.email, 
+                    isActivated: true, 
+                    count: 0 
+                });
             break;
 
             case OperationStatus.hasFinished:
                 clearForm();
+                setForm({email: ""});
                 showSuccess(NEWSLETTER_SUCCESS);
             break;
         }           

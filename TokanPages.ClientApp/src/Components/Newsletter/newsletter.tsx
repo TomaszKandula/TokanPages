@@ -30,27 +30,28 @@ const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
 
     const clearForm = React.useCallback(() => 
     {
+        if (!progress) return;
         setProgress(false);
-        setForm({email: ""});
         addSubscriberClear();
-    }, [ addSubscriberClear ]);
+    }, [ progress, addSubscriberClear ]);
   
     const callAddSubscriber = React.useCallback(() => 
     {
+        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        {
+            clearForm();
+            return;
+        }
+
         switch(addSubscriberState?.operationStatus)
         {
-            case OperationStatus.inProgress:
-                if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
-                    clearForm();
-            break;
-
             case OperationStatus.notStarted: 
-                if (progress) 
-                    addSubscriber({ email: form.email });
+                if (progress) addSubscriber({ email: form.email });
             break;
         
             case OperationStatus.hasFinished: 
                 clearForm();
+                setForm({email: ""});
                 showSuccess(NEWSLETTER_SUCCESS);
             break;
         }
