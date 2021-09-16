@@ -48,23 +48,24 @@ const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element =>
 
     const clearForm = React.useCallback(() => 
     {
+        if (!progress) return;
         setProgress(false);
         setButtonState(true);
         setContent(contentPost);
-    }, [ contentPost ]);
+    }, [ progress, contentPost ]);
 
     const callRemoveSubscriber = React.useCallback(() => 
     {
+        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        {
+            clearForm();
+            return;
+        }
+
         switch(removeSubscriberState?.operationStatus)
         {
-            case OperationStatus.inProgress:
-                if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
-                    clearForm();
-            break;
-            
             case OperationStatus.notStarted:
-                if (progress)
-                    removeSubscriber({ id: props.id });
+                if (progress) removeSubscriber({ id: props.id });
             break;
 
             case OperationStatus.hasFinished:
@@ -78,9 +79,7 @@ const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element =>
 
     const buttonHandler = () =>
     {
-        if (props.id == null)
-            return;
-
+        if (props.id == null) return;
         setProgress(true);
     };
 
