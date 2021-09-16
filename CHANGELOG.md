@@ -1,3 +1,18 @@
+# [0.21.0](https://github.com/TomaszKandula/TokanPages/compare/v0.20.0...v0.21.0) (2021-09-16)
+
+
+### Bug Fixes
+
+* add missing password mask ([c0c2cf8](https://github.com/TomaszKandula/TokanPages/commit/c0c2cf88859068f096a3a8baefce4eeea60776d1))
+* resolve dependencies issues within callbacks ([3678709](https://github.com/TomaszKandula/TokanPages/commit/3678709f61636edfae57c2b3bf5e775090041c77))
+* resolve inappropriate condition ([330e5aa](https://github.com/TomaszKandula/TokanPages/commit/330e5aa26dd49fa44b782e50dce4996f3ce7740a))
+
+
+### Features
+
+* add expiration date ([e39e017](https://github.com/TomaszKandula/TokanPages/commit/e39e017d73194166e26f72227922cd1b1dfad0d3))
+* add new error message ([b457674](https://github.com/TomaszKandula/TokanPages/commit/b45767432511825701f19280cc92a66849fa3659))
+
 # [0.20.0](https://github.com/TomaszKandula/TokanPages/compare/v0.19.1...v0.20.0) (2021-09-13)
 
 
