@@ -11,6 +11,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using Shared.Resources;
     using Cqrs.Handlers.Commands.Users;
     using Cqrs.Services.CipheringService;
+    using Shared.Services.DateTimeService;
     using Cqrs.Services.UserServiceProvider;
 
     public class UpdateUserPasswordCommandHandlerTest : TestBase
@@ -30,7 +31,10 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LastUpdated = null,
                 LastLogged = null,
                 CryptedPassword = string.Empty,
-                ResetId = null
+                ResetId = null,
+                ResetIdEnds = null,
+                ActivationId = null,
+                ActivationIdEnds = null
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -44,6 +48,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             };
 
             var LMockedLogger = new Mock<ILogger>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
             var LMockedUserProvider = new Mock<IUserServiceProvider>();
             var LMockedCipheringService = new Mock<ICipheringService>();
 
@@ -66,6 +71,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LDatabaseContext, 
                 LMockedUserProvider.Object,
                 LMockedCipheringService.Object,
+                LMockedDateTimeService.Object,
                 LMockedLogger.Object
             );
 
@@ -95,7 +101,10 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LastUpdated = null,
                 LastLogged = null,
                 CryptedPassword = string.Empty,
-                ResetId = Guid.NewGuid()
+                ResetId = Guid.NewGuid(),
+                ResetIdEnds = DateTime.Now.AddMinutes(30),
+                ActivationId = null,
+                ActivationIdEnds = null
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -110,6 +119,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             };
 
             var LMockedLogger = new Mock<ILogger>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
             var LMockedUserProvider = new Mock<IUserServiceProvider>();
             var LMockedCipheringService = new Mock<ICipheringService>();
 
@@ -128,6 +138,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LDatabaseContext, 
                 LMockedUserProvider.Object,
                 LMockedCipheringService.Object,
+                LMockedDateTimeService.Object,
                 LMockedLogger.Object
             );
 
@@ -153,7 +164,10 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LastUpdated = null,
                 LastLogged = null,
                 CryptedPassword = string.Empty,
-                ResetId = null
+                ResetId = null,
+                ResetIdEnds = null,
+                ActivationId = null,
+                ActivationIdEnds = null
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -167,6 +181,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             };
 
             var LMockedLogger = new Mock<ILogger>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
             var LMockedUserProvider = new Mock<IUserServiceProvider>();
             var LMockedCipheringService = new Mock<ICipheringService>();
 
@@ -185,6 +200,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LDatabaseContext, 
                 LMockedUserProvider.Object,
                 LMockedCipheringService.Object,
+                LMockedDateTimeService.Object,
                 LMockedLogger.Object
             );
 
@@ -210,7 +226,10 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LastUpdated = null,
                 LastLogged = null,
                 CryptedPassword = DataUtilityService.GetRandomString(),
-                ResetId = null
+                ResetId = null,
+                ResetIdEnds = null,
+                ActivationId = null,
+                ActivationIdEnds = null
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -225,6 +244,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             };
 
             var LMockedLogger = new Mock<ILogger>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
             var LMockedUserProvider = new Mock<IUserServiceProvider>();
             var LMockedCipheringService = new Mock<ICipheringService>();
 
@@ -247,6 +267,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LDatabaseContext, 
                 LMockedUserProvider.Object,
                 LMockedCipheringService.Object,
+                LMockedDateTimeService.Object,
                 LMockedLogger.Object
             );
 

@@ -35,12 +35,11 @@ const ApplicationToast = (): JSX.Element =>
     
     const clearError = React.useCallback(() => 
     { 
-        if (!toastState.isOpen && Validate.isEmpty(toastState.errorMessage))
+        if (!toastState.isOpen && !Validate.isEmpty(toastState.errorMessage))
         {
             dispatch(ActionCreators.clearError());
             setToastState(ToastState);
         }
-
     }, [ dispatch, toastState ]);
     
     const raiseError = React.useCallback(() => 

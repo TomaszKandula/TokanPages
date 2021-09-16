@@ -4,6 +4,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
+    using Shared.Services.DateTimeService;
     using Services.UserServiceProvider;
     using Services.CipheringService;
     using Identity.Authorization;
@@ -22,33 +23,37 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
         private readonly IUserServiceProvider FUserServiceProvider;
 
         private readonly ICipheringService FCipheringService;
+
+        private readonly IDateTimeService FDateTimeService;
         
         private readonly ILogger FLogger;
         
-        public UpdateUserPasswordCommandHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider, ICipheringService ACipheringService, ILogger ALogger)
+        public UpdateUserPasswordCommandHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider, 
+            ICipheringService ACipheringService, IDateTimeService ADateTimeService, ILogger ALogger)
         {
             FDatabaseContext = ADatabaseContext;
             FUserServiceProvider = AUserServiceProvider;
             FCipheringService = ACipheringService;
+            FDateTimeService = ADateTimeService;
             FLogger = ALogger;
         }
 
         public override async Task<Unit> Handle(UpdateUserPasswordCommand ARequest, CancellationToken ACancellationToken)
         {
-            var LIsResetId = ARequest.ResetId == null;
+            var LIsResetId = ARequest.ResetId != null;
             var LUsers = await FDatabaseContext.Users
-                .WhereIfElse(LIsResetId, 
+                .WhereIfElse(!LIsResetId, 
                     AUser => AUser.Id == ARequest.Id, 
                     AUser => AUser.ResetId == ARequest.ResetId) 
                 .ToListAsync(ACancellationToken);
 
-            if (LIsResetId)
+            if (!LIsResetId)
             {
                 if (!LUsers.Any())
                     throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-                var LHasRoleEverydayUser = await FUserServiceProvider.HasRoleAssigned(Roles.EverydayUser.ToString()) ?? false;
-                var LHasRoleGodOfAsgard = await FUserServiceProvider.HasRoleAssigned(Roles.GodOfAsgard.ToString()) ?? false;
+                var LHasRoleEverydayUser = await FUserServiceProvider.HasRoleAssigned($"{Roles.EverydayUser}") ?? false;
+                var LHasRoleGodOfAsgard = await FUserServiceProvider.HasRoleAssigned($"{Roles.GodOfAsgard}") ?? false;
 
                 if (!LHasRoleEverydayUser && !LHasRoleGodOfAsgard)
                     throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
@@ -57,11 +62,15 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             if (!LUsers.Any())
                 throw new BusinessException(nameof(ErrorCodes.INVALID_RESET_ID), ErrorCodes.INVALID_RESET_ID);
 
+            var LCurrentUser = LUsers.First();
+            if (LIsResetId && FDateTimeService.Now > LCurrentUser.ResetIdEnds)
+                throw new BusinessException(nameof(ErrorCodes.EXPIRED_RESET_ID), ErrorCodes.EXPIRED_RESET_ID);
+            
             var LGetNewSalt = FCipheringService.GenerateSalt(Constants.CIPHER_LOG_ROUNDS);
             var LGetHashedPassword = FCipheringService.GetHashedPassword(ARequest.NewPassword, LGetNewSalt);
             
-            var LCurrentUser = LUsers.First();
             LCurrentUser.ResetId = null;
+            LCurrentUser.ResetIdEnds = null;
             LCurrentUser.CryptedPassword = LGetHashedPassword;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 

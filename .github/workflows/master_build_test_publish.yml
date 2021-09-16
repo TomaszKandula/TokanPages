@@ -110,11 +110,11 @@ jobs:
       with:
         files: ${{ github.workspace }}/TokanPages.WebApi/appsettings.Staging.json
       env:
-        AppUrls.UpdateSubscriberPath: "${{ secrets.APPURLS__UPDATESUBSCRIBERPATH_STAGE }}"
-        AppUrls.UnsubscribePath: "${{ secrets.APPURLS__UNSUBSCRIBEPATH_STAGE }}"
-        AppUrls.UpdatePasswordPath: "${{ secrets.APPURLS__UPDATEPASSWORDPATH_STAGE }}"
-        AppUrls.DevelopmentOrigin: "${{ secrets.APPURLS__DEVELOPMENTORIGIN_STAGE }}"
-        AppUrls.DeploymentOrigin: "${{ secrets.APPURLS__DEPLOYMENTORIGIN_STAGE }}"
+        ApplicationPaths.UpdateSubscriberPath: "${{ secrets.APPLICATIONPATHS__UPDATESUBSCRIBERPATH_STAGE }}"
+        ApplicationPaths.UnsubscribePath: "${{ secrets.APPLICATIONPATHS__UNSUBSCRIBEPATH_STAGE }}"
+        ApplicationPaths.UpdatePasswordPath: "${{ secrets.APPLICATIONPATHS__UPDATEPASSWORDPATH_STAGE }}"
+        ApplicationPaths.DevelopmentOrigin: "${{ secrets.APPLICATIONPATHS__DEVELOPMENTORIGIN_STAGE }}"
+        ApplicationPaths.DeploymentOrigin: "${{ secrets.APPLICATIONPATHS__DEPLOYMENTORIGIN_STAGE }}"
         AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL_STAGE }}"
         AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME_STAGE }}"
         AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING_STAGE }}"
@@ -131,6 +131,8 @@ jobs:
         IdentityServer.RequireHttps: "${{ secrets.IDENTITYSERVER__REQUIREHTTPS_STAGE }}"
         IdentityServer.WebTokenExpiresIn: "${{ secrets.IDENTITYSERVER__WEBTOKENEXPIRESIN_STAGE }}"
         IdentityServer.RefreshTokenExpiresIn: "${{ secrets.IDENTITYSERVER__REFRESHTOKENEXPIRESIN_STAGE }}"
+        ExpirationSettings.ResetIdExpiresIn: "${{ secrets.EXPIRATIONSETTINGS__RESETIDEXPIRESIN_STAGE }}"
+        ExpirationSettings.ActivationIdExpiresIn: "${{ secrets.EXPIRATIONSETTINGS__ACTIVATIONIDEXPIRESIN_STAGE }}"
         SonarQube.Server: "${{ secrets.SONARQUBE_HOST }}"
         SonarQube.Token: "${{ secrets.SONARQUBE_TOKEN_API }}"
 

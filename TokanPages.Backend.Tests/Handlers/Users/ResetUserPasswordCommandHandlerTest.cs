@@ -1,3 +1,5 @@
+using TokanPages.Backend.Shared.Services.DateTimeService;
+
 namespace TokanPages.Backend.Tests.Handlers.Users
 {
     using Moq;
@@ -34,7 +36,10 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LastUpdated = null,
                 LastLogged = null,
                 CryptedPassword = DataUtilityService.GetRandomString(),
-                ResetId = null
+                ResetId = null,
+                ResetIdEnds = null,
+                ActivationId = null,
+                ActivationIdEnds = null
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -49,6 +54,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var LMockedLogger = new Mock<ILogger>();
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();
             var LMockedTemplateService = new Mock<ITemplateService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedExpirationSettings = new Mock<ExpirationSettings>();
             var LMockedAzureStorage = new Mock<AzureStorage>();
             var LMockedApplicationPaths = new Mock<ApplicationPaths>();
 
@@ -82,8 +89,10 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LHttpClient,
                 LMockedSmtpClientService.Object,
                 LMockedTemplateService.Object,
+                LMockedDateTimeService.Object,
                 LMockedAzureStorage.Object,
-                LMockedApplicationPaths.Object
+                LMockedApplicationPaths.Object,
+                LMockedExpirationSettings.Object
             );
             await LResetUserPasswordCommandHandler.Handle(LResetUserPasswordCommand, CancellationToken.None);
 
@@ -117,7 +126,10 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LastUpdated = null,
                 LastLogged = null,
                 CryptedPassword = DataUtilityService.GetRandomString(),
-                ResetId = null
+                ResetId = null,
+                ResetIdEnds = null,
+                ActivationId = null,
+                ActivationIdEnds = null
             };
 
             var LDatabaseContext = GetTestDatabaseContext();
@@ -132,6 +144,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var LMockedLogger = new Mock<ILogger>();
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();
             var LMockedTemplateService = new Mock<ITemplateService>();
+            var LMockedDateTimeService = new Mock<IDateTimeService>();
+            var LMockedExpirationSettings = new Mock<ExpirationSettings>();
             var LMockedAzureStorage = new Mock<AzureStorage>();
             var LMockedApplicationPaths = new Mock<ApplicationPaths>();
 
@@ -164,8 +178,10 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 LHttpClient,
                 LMockedSmtpClientService.Object,
                 LMockedTemplateService.Object,
+                LMockedDateTimeService.Object,
                 LMockedAzureStorage.Object,
-                LMockedApplicationPaths.Object
+                LMockedApplicationPaths.Object,
+                LMockedExpirationSettings.Object
             );
 
             // Act

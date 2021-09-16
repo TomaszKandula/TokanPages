@@ -57,9 +57,10 @@
         {
             AServices.AddSingleton(AConfiguration.GetSection("AzureStorage").Get<AzureStorage>());
             AServices.AddSingleton(AConfiguration.GetSection("SmtpServer").Get<SmtpServer>());
-            AServices.AddSingleton(AConfiguration.GetSection("AppUrls").Get<ApplicationPaths>());
+            AServices.AddSingleton(AConfiguration.GetSection("ApplicationPaths").Get<ApplicationPaths>());
             AServices.AddSingleton(AConfiguration.GetSection("SonarQube").Get<SonarQube>());
             AServices.AddSingleton(AConfiguration.GetSection("IdentityServer").Get<IdentityServer>());
+            AServices.AddSingleton(AConfiguration.GetSection("ExpirationSettings").Get<ExpirationSettings>());
         }
 
         private static void SetupLogger(IServiceCollection AServices) 

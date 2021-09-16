@@ -164,5 +164,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("INVALID_RESET_ID", resourceCulture);
             }
         }
+        
+        public static string EXPIRED_RESET_ID {
+            get {
+                return ResourceManager.GetString("EXPIRED_RESET_ID", resourceCulture);
+            }
+        }
     }
 }
