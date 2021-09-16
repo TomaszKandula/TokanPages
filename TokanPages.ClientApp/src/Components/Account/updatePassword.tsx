@@ -50,25 +50,23 @@ const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
     
     const clearForm = React.useCallback(() => 
     {
+        if (!progress) return;
         setProgress(false);
-        setForm(formDefaultValues);
-    }, [  ]);
+        clearAction();
+    }, [ progress, clearAction ]);
 
     const callUpdateUserPassword = React.useCallback(() => 
     {
+        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        {
+            clearForm();
+            return;
+        }
+        
         switch(updateUserPasswordState?.operationStatus)
         {
-            case OperationStatus.inProgress:
-                if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
-                {
-                    clearAction();
-                    clearForm();
-                }
-            break;
-
             case OperationStatus.notStarted:
-                if (progress)
-                updateAction(
+                if (progress) updateAction(
                 {
                     Id: userId,
                     ResetId: resetId as string,
@@ -77,13 +75,13 @@ const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
             break;
 
             case OperationStatus.hasFinished:
-                clearAction();
                 clearForm();
+                setForm(formDefaultValues);
                 showSuccess(UPDATE_PASSWORD_SUCCESS);
             break;
         }
 
-    }, [ progress, clearForm, clearAction, updateAction, showSuccess, form, resetId, userId, raiseErrorState, updateUserPasswordState ]);
+    }, [ progress, clearForm, updateAction, showSuccess, form, resetId, userId, raiseErrorState, updateUserPasswordState ]);
 
     React.useEffect(() => callUpdateUserPassword(), [ callUpdateUserPassword ]);
 

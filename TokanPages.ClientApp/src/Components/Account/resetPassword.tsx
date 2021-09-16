@@ -36,38 +36,36 @@ const ResetPassword = (props: IGetResetPasswordContent): JSX.Element =>
     
     const clearForm = React.useCallback(() => 
     {
+        if (!progress) return;
         setProgress(false);
-        setForm(formDefaultValues);
-    }, [  ]);
+        clearAction();
+    }, [ progress, clearAction ]);
 
     const callResetUserPassword = React.useCallback(() => 
     {
+        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        {
+            clearForm();
+            return;
+        }
+
         switch(resetUserPasswordState?.operationStatus)
         {
-            case OperationStatus.inProgress:
-                if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
-                {
-                    clearAction();
-                    clearForm();
-                }
-            break;
-
             case OperationStatus.notStarted:
-                if (progress)
-                resetAction(
-                    {
-                        emailAddress: form.email,
-                    });
+                if (progress) resetAction(
+                {
+                    emailAddress: form.email
+                });
             break;
 
             case OperationStatus.hasFinished:
-                clearAction();
                 clearForm();
+                setForm(formDefaultValues);
                 showSuccess(RESET_PASSWORD_SUCCESS);
             break;
         }
 
-    }, [ progress, clearForm, clearAction, resetAction, showSuccess, form, raiseErrorState, resetUserPasswordState ]);
+    }, [ progress, clearForm, resetAction, showSuccess, form, raiseErrorState, resetUserPasswordState ]);
 
     React.useEffect(() => callResetUserPassword(), [ callResetUserPassword ]);
 

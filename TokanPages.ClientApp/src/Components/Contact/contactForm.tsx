@@ -40,36 +40,37 @@ const ContactForm = (props: IGetContactFormContent): JSX.Element =>
 
     const clearForm = React.useCallback(() => 
     {
+        if (!progress) return;
         setProgress(false);
-        setForm(formDefaultValues);
         sendMessageClear();
-    }, [ sendMessageClear ]);
+    }, [ progress, sendMessageClear ]);
 
     const callSendMessage = React.useCallback(() => 
     {
+        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        {
+            clearForm();
+            return;
+        }
+
         switch(sendMessageState?.operationStatus)
         {
-            case OperationStatus.inProgress:
-                if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
-                    clearForm();
-            break;
-
             case OperationStatus.notStarted:
-                if (progress)
-                    sendMessage(
-                    {
-                        firstName: form.firstName,
-                        lastName: form.lastName,
-                        userEmail: form.email,
-                        emailFrom: form.email,
-                        emailTos: [form.email],
-                        subject: form.subject,
-                        message: form.message
-                    });
+                if (progress) sendMessage(
+                {
+                    firstName: form.firstName,
+                    lastName: form.lastName,
+                    userEmail: form.email,
+                    emailFrom: form.email,
+                    emailTos: [form.email],
+                    subject: form.subject,
+                    message: form.message
+                });
             break;
 
             case OperationStatus.hasFinished:
                 clearForm();
+                setForm(formDefaultValues);
                 showSuccess(MESSAGE_OUT_SUCCESS);
             break;
         }

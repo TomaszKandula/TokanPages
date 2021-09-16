@@ -36,39 +36,36 @@ const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
 
     const clearForm = React.useCallback(() => 
     {
+        if (!progress) return;
         setProgress(false);
-        setForm(formDefaultValues);
-    }, [  ]);
+        clearUser();
+    }, [ progress, clearUser ]);
     
     const callSigninUser = React.useCallback(() => 
     {
+        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        {
+            clearForm();
+            return;
+        }
+
         switch(signinUserState?.operationStatus)
         {
-            case OperationStatus.inProgress:
-                if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
-                {
-                    clearUser();
-                    clearForm();
-                }
-            break;
-
             case OperationStatus.notStarted:
-                if (progress)
-                    signinUser(
-                    {
-                        emailAddress: form.email,
-                        password: form.password
-                    });
+                if (progress) signinUser(
+                {
+                    emailAddress: form.email,
+                    password: form.password
+                });
             break;
 
             case OperationStatus.hasFinished:
-                clearUser();
                 clearForm();
                 history.push("/");
             break;
         }
 
-    }, [ progress, clearForm, clearUser, form, history, raiseErrorState, signinUser, signinUserState ]);
+    }, [ progress, clearForm, form, history, raiseErrorState, signinUser, signinUserState ]);
 
     React.useEffect(() => callSigninUser(), [ callSigninUser ]);
 

@@ -39,22 +39,21 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
 
     const clearForm = React.useCallback(() => 
     {
+        if (!progress) return;
         setProgress(false);
-        setForm(formDefaultValues);
-    }, [  ]);
+        clearUser();
+    }, [ progress, clearUser ]);
 
     const callSignupUser = React.useCallback(() => 
     {
+        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        {
+            clearForm();
+            return;
+        }
+
         switch(signupUserState?.operationStatus)
         {
-            case OperationStatus.inProgress:
-                if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
-                {
-                    clearUser();
-                    clearForm();
-                }
-            break;
-
             case OperationStatus.notStarted:
                 if (progress)
                 {
@@ -71,13 +70,13 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
             break;
 
             case OperationStatus.hasFinished:
-                clearUser();    
                 clearForm();
+                setForm(formDefaultValues);
                 showSuccess(SIGNUP_SUCCESS);
             break;
         }
 
-    }, [ progress, clearForm, clearUser, form, raiseErrorState, signupUser, signupUserState, showSuccess ]);
+    }, [ progress, clearForm, form, raiseErrorState, signupUser, signupUserState, showSuccess ]);
 
     React.useEffect(() => callSignupUser(), [ callSignupUser ]);
 
