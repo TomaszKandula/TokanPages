@@ -11,6 +11,8 @@
         
         public string UpdatePasswordPath { get; set; }
         
+        public string ActivationPath { get; set; }
+        
         public string DevelopmentOrigin { get; set; }
         
         public string DeploymentOrigin { get; set; }
