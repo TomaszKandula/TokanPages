@@ -74,9 +74,9 @@ namespace TokanPages.WebApi
             ABuilder.UseAuthorization();
             ABuilder.UseEndpoints(AEndpoints => AEndpoints.MapControllers());
 
-            if (!FEnvironment.IsDevelopment() || !FEnvironment.IsStaging()) 
+            if (!FEnvironment.IsDevelopment() && !FEnvironment.IsStaging()) 
                 return;
-            
+
             ABuilder.UseSwagger();
             Swagger.SetupSwaggerUi(ABuilder, FConfiguration);
         }
