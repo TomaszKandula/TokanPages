@@ -75,11 +75,7 @@
 
             if (LUsers != null && (LUsers.ActivationIdEnds != null || LUsers.ActivationIdEnds < FDateTimeService.Now))
             {
-                LUsers.LastUpdated = null;
-                LUsers.LastLogged = null;
                 LUsers.CryptedPassword = LGetHashedPassword;
-                LUsers.ResetId = null;
-                LUsers.ResetIdEnds = null;
                 LUsers.ActivationId = LActivationId;
                 LUsers.ActivationIdEnds = LActivationIdEnds;
 
@@ -93,17 +89,12 @@
             var LNewUser = new Domain.Entities.Users
             {
                 EmailAddress = ARequest.EmailAddress,
-                IsActivated = false,
                 UserAlias = ARequest.UserAlias.ToLower(),
                 FirstName = ARequest.FirstName,
                 LastName = ARequest.LastName,
                 Registered = FDateTimeService.Now,
-                LastUpdated = null,
-                LastLogged = null,
                 AvatarName = Constants.Defaults.AVATAR_NAME,
                 CryptedPassword = LGetHashedPassword,
-                ResetId = null,
-                ResetIdEnds = null,
                 ActivationId = LActivationId,
                 ActivationIdEnds = LActivationIdEnds
             };
