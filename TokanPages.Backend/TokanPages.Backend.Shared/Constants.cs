@@ -108,7 +108,8 @@
             {
                 public const string NEWSLETTER = "/content/templates/newsletter.html";
                 public const string CONTACT_FORM = "/content/templates/contactform.html";
-                public const string RESET_PASSWORD = "/content/templates/resetpassword.html ";
+                public const string RESET_PASSWORD = "/content/templates/resetpassword.html";
+                public const string REGISTER_FORM = "/content/templates/registrationform.html";
             }
 
             /// <summary>
