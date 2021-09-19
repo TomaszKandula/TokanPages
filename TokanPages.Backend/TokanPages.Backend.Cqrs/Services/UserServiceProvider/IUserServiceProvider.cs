@@ -42,6 +42,9 @@
         Task RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> AUserRefreshTokens, UserRefreshTokens ASavedUserRefreshTokens, 
             string ARequesterIpAddress, string AReason, bool ASaveImmediately = false, CancellationToken ACancellationToken = default);
 
+        Task RevokeRefreshToken(UserRefreshTokens AUserRefreshTokens, string ARequesterIpAddress, string AReason = null,
+            string AReplacedByToken = null, bool ASaveImmediately = false, CancellationToken ACancellationToken = default);
+        
         bool IsRefreshTokenExpired(UserRefreshTokens AUserRefreshTokens);
 
         bool IsRefreshTokenRevoked(UserRefreshTokens AUserRefreshTokens);
