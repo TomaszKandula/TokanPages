@@ -18,12 +18,17 @@
             Id = AModel.Id
         };
 
-        public static ResetUserPasswordCommand MapToResetUserPasswordCommand(ResetUserPasswordDto AModel) => new()
+        public static RevokeUserRefreshTokenCommand MapToRevokeUserRefreshTokenCommand(RevokeUserRefreshTokenDto AModel) => new ()
+        {
+            RefreshToken = AModel.RefreshToken
+        };
+        
+        public static ResetUserPasswordCommand MapToResetUserPasswordCommand(ResetUserPasswordDto AModel) => new ()
         {
             EmailAddress = AModel.EmailAddress
         };
 
-        public static UpdateUserPasswordCommand MapToUpdateUserPasswordCommand(UpdateUserPasswordDto AModel) => new()
+        public static UpdateUserPasswordCommand MapToUpdateUserPasswordCommand(UpdateUserPasswordDto AModel) => new ()
         {
             Id = AModel.Id,
             ResetId = AModel.ResetId,
