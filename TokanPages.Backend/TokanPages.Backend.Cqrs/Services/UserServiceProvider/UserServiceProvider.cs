@@ -60,7 +60,7 @@
                 : LRemoteIpAddress.Split(':')[0];
         }
 
-        public string GetRefreshTokenCookie(string ACookieName)
+        public virtual string GetRefreshTokenCookie(string ACookieName)
         {
             if (string.IsNullOrEmpty(ACookieName))
                 throw ArgumentNullException;
@@ -150,7 +150,7 @@
             return LGivenPermissions.Any();
         }
 
-        public async Task<ClaimsIdentity> MakeClaimsIdentity(Users AUsers, CancellationToken ACancellationToken = default)
+        public virtual async Task<ClaimsIdentity> MakeClaimsIdentity(Users AUsers, CancellationToken ACancellationToken = default)
         {
             var LUserRoles = await FDatabaseContext.UserRoles
                 .AsNoTracking()
@@ -174,7 +174,7 @@
             return LClaimsIdentity;
         }
 
-        public async Task<string> GenerateUserToken(Users AUsers, DateTime ATokenExpires, CancellationToken ACancellationToken = default)
+        public virtual async Task<string> GenerateUserToken(Users AUsers, DateTime ATokenExpires, CancellationToken ACancellationToken = default)
         {
             var LClaimsIdentity = await MakeClaimsIdentity(AUsers, ACancellationToken);
             
@@ -186,7 +186,7 @@
                 FIdentityServer.Audience);
         }
 
-        public async Task DeleteOutdatedRefreshTokens(Guid AUserId, bool ASaveImmediately = false, CancellationToken ACancellationToken = default)
+        public virtual async Task DeleteOutdatedRefreshTokens(Guid AUserId, bool ASaveImmediately = false, CancellationToken ACancellationToken = default)
         {
             var LRefreshTokens = await FDatabaseContext.UserRefreshTokens
                 .Where(ATokens => ATokens.UserId == AUserId 
@@ -202,7 +202,7 @@
                 await FDatabaseContext.SaveChangesAsync(ACancellationToken);
         }        
         
-        public async Task<UserRefreshTokens> ReplaceRefreshToken(Guid AUserId, UserRefreshTokens ASavedUserRefreshTokens, string ARequesterIpAddress, 
+        public virtual async Task<UserRefreshTokens> ReplaceRefreshToken(Guid AUserId, UserRefreshTokens ASavedUserRefreshTokens, string ARequesterIpAddress, 
             bool ASaveImmediately = false, CancellationToken ACancellationToken = default)
         {
             var LNewRefreshToken = FJwtUtilityService.GenerateRefreshToken(ARequesterIpAddress, FIdentityServer.RefreshTokenExpiresIn);
@@ -224,7 +224,7 @@
             };
         }
         
-        public async Task RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> AUserRefreshTokens,  UserRefreshTokens ASavedUserRefreshTokens, 
+        public virtual async Task RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> AUserRefreshTokens,  UserRefreshTokens ASavedUserRefreshTokens, 
             string ARequesterIpAddress, string AReason, bool ASaveImmediately = false, CancellationToken ACancellationToken = default)
         {
             if (string.IsNullOrEmpty(ASavedUserRefreshTokens.ReplacedByToken)) 
@@ -242,25 +242,7 @@
             }
         }
 
-        public bool IsRefreshTokenExpired(UserRefreshTokens AUserRefreshTokens) 
-            => AUserRefreshTokens.Expires <= FDateTimeService.Now;
-
-        public bool IsRefreshTokenRevoked(UserRefreshTokens AUserRefreshTokens) 
-            => AUserRefreshTokens.Revoked != null;
-
-        public bool IsRefreshTokenActive(UserRefreshTokens AUserRefreshTokens) 
-            => !IsRefreshTokenRevoked(AUserRefreshTokens) && !IsRefreshTokenExpired(AUserRefreshTokens);
-        
-        private static BusinessException AccessDeniedException 
-            => new (nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
-
-        private static BusinessException ArgumentNullException
-            => new (nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION), ErrorCodes.ARGUMENT_NULL_EXCEPTION);
-        
-        private static BusinessException ArgumentZeroException 
-            => new (nameof(ErrorCodes.ARGUMENT_ZERO_EXCEPTION), ErrorCodes.ARGUMENT_ZERO_EXCEPTION);
-        
-        private async Task RevokeRefreshToken(UserRefreshTokens AUserRefreshTokens, string ARequesterIpAddress, string AReason = null, 
+        public virtual async Task RevokeRefreshToken(UserRefreshTokens AUserRefreshTokens, string ARequesterIpAddress, string AReason = null, 
             string AReplacedByToken = null, bool ASaveImmediately = false, CancellationToken ACancellationToken = default)
         {
             AUserRefreshTokens.Revoked = FDateTimeService.Now;
@@ -273,6 +255,24 @@
             if (ASaveImmediately)
                 await FDatabaseContext.SaveChangesAsync(ACancellationToken);
         }
+
+        public virtual bool IsRefreshTokenExpired(UserRefreshTokens AUserRefreshTokens) 
+            => AUserRefreshTokens.Expires <= FDateTimeService.Now;
+
+        public virtual bool IsRefreshTokenRevoked(UserRefreshTokens AUserRefreshTokens) 
+            => AUserRefreshTokens.Revoked != null;
+
+        public virtual bool IsRefreshTokenActive(UserRefreshTokens AUserRefreshTokens) 
+            => !IsRefreshTokenRevoked(AUserRefreshTokens) && !IsRefreshTokenExpired(AUserRefreshTokens);
+        
+        private static BusinessException AccessDeniedException 
+            => new (nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
+
+        private static BusinessException ArgumentNullException
+            => new (nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION), ErrorCodes.ARGUMENT_NULL_EXCEPTION);
+        
+        private static BusinessException ArgumentZeroException 
+            => new (nameof(ErrorCodes.ARGUMENT_ZERO_EXCEPTION), ErrorCodes.ARGUMENT_ZERO_EXCEPTION);
         
         private Guid? UserIdFromClaim()
         {
