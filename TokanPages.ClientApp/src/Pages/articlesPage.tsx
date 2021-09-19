@@ -9,6 +9,8 @@ import ArticleDetail from "../Components/Articles/articleDetail";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
+import ProgressOnScroll from "../Shared/Components/Scroll/progressOnScroll";
+import { CustomColours } from "../Theme/customColours";
 
 const useQuery = () => 
 {
@@ -35,6 +37,7 @@ const ArticlesPage = (): JSX.Element =>
     return (
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
+            {id ? <ProgressOnScroll height={10} bgcolor={CustomColours.application.navigationBlue} duration={1} /> : null}
             <Container>
                 {id ? <ArticleDetail id={id} /> : <ArticleList />}
             </Container>
