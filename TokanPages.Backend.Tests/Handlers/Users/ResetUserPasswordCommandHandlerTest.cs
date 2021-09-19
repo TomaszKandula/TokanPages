@@ -1,5 +1,3 @@
-using TokanPages.Backend.Shared.Services.DateTimeService;
-
 namespace TokanPages.Backend.Tests.Handlers.Users
 {
     using Moq;
@@ -11,6 +9,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using System.Threading;
     using System.Threading.Tasks;
     using Shared.Services.TemplateService;
+    using Shared.Services.DateTimeService;
     using Cqrs.Handlers.Commands.Users;
     using Core.Exceptions;
     using Storage.Models;
