@@ -1321,6 +1321,71 @@ namespace TokanPages.Backend.Tests.Services
             LGetRefreshTokens[1].ReasonRevoked.Should().Be(REASON_REVOKED);
         }
 
+        [Fact]
+        public async Task GivenValidRefreshToken_WhenRevokeUserRefreshToken_ShouldUpdateEntity()
+        {
+            // Arrange
+            var LUserId = Guid.NewGuid();
+            var LToken = DataUtilityService.GetRandomString(100);
+            const string REASON_REVOKED = "Revoked by Admin";
+            
+            var LUser = new Users
+            {
+                Id = LUserId,
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                IsActivated = true,
+                Registered = DateTimeService.Now,
+                CryptedPassword = DataUtilityService.GetRandomString()
+            };
+
+            var LUserRefreshToken = new UserRefreshTokens
+            {
+                UserId = LUserId,
+                Token = LToken,
+                Expires = DateTimeService.Now,
+                Created = DateTimeService.Now.AddMinutes(300),
+                CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString()
+            };
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Users.AddAsync(LUser);
+            await LDatabaseContext.UserRefreshTokens.AddAsync(LUserRefreshToken);
+            await LDatabaseContext.SaveChangesAsync();
+
+            var LIpAddress = DataUtilityService.GetRandomIpAddress();
+            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
+            var LJwtUtilityService = new Mock<IJwtUtilityService>();
+
+            var LIdentityServer = new IdentityServer
+            {
+                Issuer = DataUtilityService.GetRandomString(),
+                Audience = DataUtilityService.GetRandomString(),
+                WebSecret = DataUtilityService.GetRandomString(),
+                RequireHttps = false,
+                WebTokenExpiresIn = 90,
+                RefreshTokenExpiresIn = 120
+            };
+
+            var LUserServiceProvider = new UserServiceProvider(
+                LHttpContext.Object, 
+                LDatabaseContext,
+                LJwtUtilityService.Object, 
+                DateTimeService, 
+                LIdentityServer);
+
+            // Act
+            await LUserServiceProvider.RevokeRefreshToken(LUserRefreshToken, LIpAddress.ToString(), REASON_REVOKED, null, true, CancellationToken.None);
+
+            // Assert
+            var LGetRefreshTokens = LDatabaseContext.UserRefreshTokens.ToList();
+            LGetRefreshTokens[0].RevokedByIp.Should().Be(LIpAddress.ToString());
+            LGetRefreshTokens[0].ReasonRevoked.Should().Be(REASON_REVOKED);
+            LGetRefreshTokens[0].ReplacedByToken.Should().BeNull();
+        }
+
         private  IEnumerable<Users> GetUser(Guid AUserId)
         {
             return new List<Users>
