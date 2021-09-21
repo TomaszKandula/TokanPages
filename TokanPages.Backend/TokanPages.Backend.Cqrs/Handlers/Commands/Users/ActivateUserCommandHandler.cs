@@ -14,11 +14,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     {
         private readonly DatabaseContext FDatabaseContext;
 
-        private readonly DateTimeService FDateTimeService;
+        private readonly IDateTimeService FDateTimeService;
         
         private readonly ILogger FLogger;
         
-        public ActivateUserCommandHandler(DatabaseContext ADatabaseContext, DateTimeService ADateTimeService, ILogger ALogger)
+        public ActivateUserCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService, ILogger ALogger)
         {
             FDatabaseContext = ADatabaseContext;
             FDateTimeService = ADateTimeService;
