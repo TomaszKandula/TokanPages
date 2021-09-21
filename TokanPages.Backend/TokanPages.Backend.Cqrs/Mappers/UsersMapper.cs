@@ -22,6 +22,11 @@
         {
             RefreshToken = AModel.RefreshToken
         };
+
+        public static ActivateUserCommand MapToActivateUserCommand(ActivateUserDto AModel) => new ()
+        {
+            ActivationId = AModel.ActivationId
+        };
         
         public static ResetUserPasswordCommand MapToResetUserPasswordCommand(ResetUserPasswordDto AModel) => new ()
         {

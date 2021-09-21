@@ -34,6 +34,11 @@
             => await FMediator.Send(UsersMapper.MapToRevokeUserRefreshTokenCommand(APayLoad));
         
         [HttpPost]
+        [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
+        public async Task<Unit> ActivateUser([FromBody] ActivateUserDto APayLoad)
+            => await FMediator.Send(UsersMapper.MapToActivateUserCommand(APayLoad));
+
+        [HttpPost]
         [AllowAnonymous]
         public async Task<Unit> ResetUserPassword([FromBody] ResetUserPasswordDto APayLoad) 
             => await FMediator.Send(UsersMapper.MapToResetUserPasswordCommand(APayLoad));
