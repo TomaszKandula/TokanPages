@@ -31,7 +31,7 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
             var LHttpClient = FWebAppFactory.CreateClient();
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
 
-            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LTokenExpires = DateTimeService.Now.AddDays(30);
             var LJwt = JwtUtilityService.GenerateJwt(
                 LTokenExpires, GetValidClaimsIdentity(nameof(User2)), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
@@ -64,7 +64,7 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
             var LHttpClient = FWebAppFactory.CreateClient();
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
 
-            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LTokenExpires = DateTimeService.Now.AddDays(30);
             var LJwt = JwtUtilityService.GenerateJwt(
                 LTokenExpires, GetInvalidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
@@ -98,7 +98,7 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
             var LHttpClient = FWebAppFactory.CreateClient();
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
 
-            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LTokenExpires = DateTimeService.Now.AddDays(30);
             var LJwt = JwtUtilityService.GenerateJwt(
                 LTokenExpires, GetValidClaimsIdentity(nameof(User2)), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
@@ -132,7 +132,7 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
             var LHttpClient = FWebAppFactory.CreateClient();
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
 
-            var LTokenExpires = DateTime.Now.AddDays(30);
+            var LTokenExpires = DateTimeService.Now.AddDays(30);
             var LJwt = JwtUtilityService.GenerateJwt(
                 LTokenExpires, GetValidClaimsIdentity(nameof(User2)), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
             
