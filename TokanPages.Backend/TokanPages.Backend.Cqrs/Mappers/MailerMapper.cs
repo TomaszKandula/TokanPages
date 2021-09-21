@@ -7,12 +7,12 @@
     [ExcludeFromCodeCoverage]
     public static class MailerMapper
     {
-        public static VerifyEmailAddressCommand MapToVerifyEmailAddressCommand(VerifyEmailAddressDto AModel) => new () 
+        public static VerifyEmailAddressCommand MapToVerifyEmailAddressCommand(VerifyEmailAddressDto AModel) => new() 
         { 
             Email = AModel.Email
         };
 
-        public static SendMessageCommand MapToSendMessageCommand(SendMessageDto AModel) => new ()
+        public static SendMessageCommand MapToSendMessageCommand(SendMessageDto AModel) => new()
         {
             UserEmail = AModel.UserEmail,
             FirstName = AModel.FirstName,
@@ -23,7 +23,7 @@
             Message = AModel.Message
         };
 
-        public static SendNewsletterCommand MapToSendNewsletterCommand(SendNewsletterDto AModel) => new () 
+        public static SendNewsletterCommand MapToSendNewsletterCommand(SendNewsletterDto AModel) => new() 
         { 
             SubscriberInfo = AModel.SubscriberInfo,
             Subject = AModel.Subject,
