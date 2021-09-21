@@ -7,6 +7,7 @@ namespace TokanPages.WebApi.Tests
     using System.Security.Claims;
     using Backend.Identity.Authorization;
     using Backend.Database.Initializer.Data.Users;
+    using Backend.Shared.Services.DateTimeService;
     using Backend.Shared.Services.DataUtilityService;
     using Backend.Identity.Services.JwtUtilityService;
 
@@ -14,11 +15,14 @@ namespace TokanPages.WebApi.Tests
     {
         protected IDataUtilityService DataUtilityService { get; }
 
+        protected IDateTimeService DateTimeService { get; }
+        
         protected IJwtUtilityService JwtUtilityService { get; }
 
         protected TestBase()
         {
             DataUtilityService = new DataUtilityService();
+            DateTimeService = new DateTimeService();
             JwtUtilityService = new JwtUtilityService();
         }
 
