@@ -180,4 +180,10 @@
   <data name="EXPIRED_RESET_ID" xml:space="preserve">
     <value>The link with its reset ID has expired</value>
   </data>
+  <data name="INVALID_ACTIVATION_ID" xml:space="preserve">
+    <value>Given activation ID could not be found. Account remains inactive</value>
+  </data>
+  <data name="EXPIRED_ACTIVATION_ID" xml:space="preserve">
+    <value>Activation ID has expired. Account remains inactive</value>
+  </data>
 </root>

@@ -7,7 +7,7 @@
     [ExcludeFromCodeCoverage]
     public static class ArticlesMapper
     {
-        public static AddArticleCommand MapToAddArticleCommand(AddArticleDto AModel) => new ()
+        public static AddArticleCommand MapToAddArticleCommand(AddArticleDto AModel) => new()
         {
             Title = AModel.Title,
             Description = AModel.Description,
@@ -15,7 +15,7 @@
             ImageToUpload = AModel.ImageToUpload
         };
         
-        public static UpdateArticleContentCommand MapToUpdateArticleCommand(UpdateArticleContentDto AModel) => new ()
+        public static UpdateArticleContentCommand MapToUpdateArticleCommand(UpdateArticleContentDto AModel) => new()
         {
             Id = AModel.Id,
             Title = AModel.Title,
@@ -24,24 +24,24 @@
             ImageToUpload = AModel.ImageToUpload
         };
 
-        public static UpdateArticleCountCommand MapToUpdateArticleCommand(UpdateArticleCountDto AModel) => new ()
+        public static UpdateArticleCountCommand MapToUpdateArticleCommand(UpdateArticleCountDto AModel) => new()
         {
             Id = AModel.Id
         };
         
-        public static UpdateArticleLikesCommand MapToUpdateArticleCommand(UpdateArticleLikesDto AModel) => new () 
+        public static UpdateArticleLikesCommand MapToUpdateArticleCommand(UpdateArticleLikesDto AModel) => new() 
         {
             Id = AModel.Id,
             AddToLikes = AModel.AddToLikes 
         };
 
-        public static UpdateArticleVisibilityCommand MapToUpdateArticleCommand(UpdateArticleVisibilityDto AModel) => new ()
+        public static UpdateArticleVisibilityCommand MapToUpdateArticleCommand(UpdateArticleVisibilityDto AModel) => new()
         {
             Id = AModel.Id, 
             IsPublished = AModel.IsPublished
         };
         
-        public static RemoveArticleCommand MapToRemoveArticleCommand(RemoveArticleDto AModel) => new () 
+        public static RemoveArticleCommand MapToRemoveArticleCommand(RemoveArticleDto AModel) => new() 
         { 
             Id = AModel.Id
         };
