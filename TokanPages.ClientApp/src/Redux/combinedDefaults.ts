@@ -8,6 +8,7 @@ import { RemoveSubscriberDefault } from "./Defaults/Subscribers/removeSubscriber
 import { UpdateUserDataDefault } from "./Defaults/Users/updateUserDataDefault";
 import { SigninUserDefault } from "./Defaults/Users/signinUserDefault";
 import { SignupUserDefault } from "./Defaults/Users/signupUserDefault";
+import { ActivateAccountDefault } from "./Defaults/Users/activateAccountDefault";
 import { ResetUserPasswordDefault } from "./Defaults/Users/resetUserPasswordDefault";
 import { SendMessageStateDefault } from "./Defaults/Mailer/sendMessageDefault";
 import { RaiseErrorDefault } from "./Defaults/raiseErrorDefault";
@@ -30,6 +31,7 @@ import { GetUserSignoutContentDefault } from "./Defaults/Content/getUserSignoutC
 import { GetUserSignupContentDefault } from "./Defaults/Content/getUserSignupContentDefault";
 import { GetTestimonialsContentDefault } from "./Defaults/Content/getTestimonialsContentDefault";
 import { GetUnsubscribeContentDefault } from "./Defaults/Content/getUnsubscribeContentDefault";
+import { GetActivateAccountContentDefault } from "./Defaults/Content/getActivateAccountContentDefault";
 import { GetUpdateSubscriberContentDefault } from "./Defaults/Content/getUpdateSubscriberContentDefault";
 
 export const combinedDefaults: IApplicationState = 
@@ -48,6 +50,7 @@ export const combinedDefaults: IApplicationState =
     signupUser: SignupUserDefault,
     resetUserPassword: ResetUserPasswordDefault,
     updateUserPassword: ResetUserPasswordDefault,
+    activateAccount: ActivateAccountDefault,
     getStaticContent: GetStaticContentDefault,
     getArticleFeatContent: GetArticleFeatContentDefault,
     getContactFormContent: GetContactFormContentDefault,
@@ -66,5 +69,6 @@ export const combinedDefaults: IApplicationState =
     getUserSignupContent: GetUserSignupContentDefault,
     getTestimonialsContent: GetTestimonialsContentDefault,
     getUnsubscribeContent: GetUnsubscribeContentDefault,
+    getActivateAccountContent: GetActivateAccountContentDefault,
     getUpdateSubscriberContent: GetUpdateSubscriberContentDefault
 };
