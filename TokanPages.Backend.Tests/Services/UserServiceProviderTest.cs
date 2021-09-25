@@ -203,7 +203,7 @@ namespace TokanPages.Backend.Tests.Services
             // Act
             var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
                 LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await LUserProvider.GetUserRoles();
+            var LResult = await LUserProvider.GetUserRoles(null);
 
             // Assert
             LResult.Should().HaveCount(1);
@@ -239,7 +239,7 @@ namespace TokanPages.Backend.Tests.Services
             // Assert
             var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
                 LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await Assert.ThrowsAsync<BusinessException>(LUserProvider.GetUserRoles);
+            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LUserProvider.GetUserRoles(null));
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
         
@@ -271,7 +271,7 @@ namespace TokanPages.Backend.Tests.Services
             // Assert
             var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
                 LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await Assert.ThrowsAsync<BusinessException>(LUserProvider.GetUserRoles);
+            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LUserProvider.GetUserRoles(null));
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
         
@@ -312,7 +312,7 @@ namespace TokanPages.Backend.Tests.Services
             // Assert
             var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
                 LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await LUserProvider.GetUserPermissions();
+            var LResult = await LUserProvider.GetUserPermissions(null);
 
             // Assert
             LResult.Should().HaveCount(2);
@@ -357,7 +357,7 @@ namespace TokanPages.Backend.Tests.Services
             // Assert
             var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
                 LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await Assert.ThrowsAsync<BusinessException>(LUserProvider.GetUserPermissions);
+            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LUserProvider.GetUserPermissions(null));
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
         
@@ -398,7 +398,7 @@ namespace TokanPages.Backend.Tests.Services
             // Assert
             var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
                 LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await Assert.ThrowsAsync<BusinessException>(LUserProvider.GetUserPermissions);
+            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LUserProvider.GetUserPermissions(null));
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
 
