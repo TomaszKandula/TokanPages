@@ -53,26 +53,13 @@ const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.Element
     const [content, setContent] = React.useState(onProcessing);
     const [buttonDisabled, setButtonDisabled] = React.useState(true);
     const [progress, setProgress] = React.useState(true);
-
-    const callWithDelay = React.useCallback(() =>
-    {
-        if (!progress) return;
-        
-        const delayId = setTimeout(() => 
-        {
-            activateAccount({ activationId: props.id });
-        },
-        1500);
-        
-        return(() => { clearTimeout(delayId) });
-    
-    }, [ progress, activateAccount, props.id ]);
+    const [requested, setRequested] = React.useState(false);
 
     const callActivateAccount = React.useCallback(() => 
     {
         if (!progress) return;
         
-        if (!props.isLoading && content.type === "Unset") 
+        if (content.type === "Unset") 
         {
             setContent(onProcessing);
             return;
@@ -89,9 +76,14 @@ const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.Element
         switch(activateAccountState?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (progress && buttonDisabled && content.type === "Processing") 
+                if (progress && !requested) 
                 {
-                    callWithDelay();
+                    setRequested(true);
+                    setTimeout(() => activateAccount(
+                    { 
+                        activationId: props.id 
+                    }), 
+                    1500);
                 }
             break;
 
@@ -102,9 +94,8 @@ const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.Element
             break;
         }
     }, 
-    [ props.isLoading, content.type, progress, buttonDisabled, 
-    callWithDelay, activateAccountState, raiseErrorState, 
-    onProcessing, onSuccess, onError ]);
+    [ content.type, props.id, progress, requested, activateAccount, 
+    activateAccountState, raiseErrorState, onProcessing, onSuccess, onError ]);
 
     React.useEffect(() => callActivateAccount(), [ callActivateAccount ]);
 
@@ -113,6 +104,7 @@ const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.Element
         if (content.type === "Error")
         {
             setContent(onProcessing);
+            setRequested(false);
             setProgress(true);
             setButtonDisabled(true);
             dispatch(ActionCreators.clear())
