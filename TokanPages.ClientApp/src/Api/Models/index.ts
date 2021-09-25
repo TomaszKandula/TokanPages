@@ -15,6 +15,7 @@ export type { IUpdateSubscriberDto } from "./Subscribers/updateSubscriberDto";
 export type { IRemoveSubscriberDto } from "./Subscribers/removeSubscriberDto";
 
 export type { IUserDataDto } from "./Users/userDataDto";
+export type { IActivateUserDto } from "./Users/activateUserDto";
 export type { IAddUserDto } from "./Users/addUserDto";
 export type { IUpdateUserDto } from "./Users/updateUserDto";
 export type { IRemoveUserDto } from "./Users/removeUserDto";
@@ -45,5 +46,6 @@ export type { IUserSignoutContentDto } from "./Components/userSignoutContentDto"
 export type { IUserSignupContentDto } from "./Components/userSignupContentDto";
 export type { ITestimonialsContentDto } from "./Components/testimonialsContentDto";
 export type { IUnsubscribeContentDto } from "./Components/unsubscribeContentDto";
+export type { IActivateAccountContentDto } from "./Components/activateAccountContentDto";
 export type { IUpdateSubscriberContentDto } from "./Components/updateSubscriberContentDto";
 export type { IWrongPagePromptContentDto } from "./Components/wrongPagePromptContentDto";

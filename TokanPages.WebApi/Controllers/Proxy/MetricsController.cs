@@ -35,10 +35,10 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 if (string.IsNullOrEmpty(AProject) && string.IsNullOrEmpty(AMetric))
                     return HttpClientContent.GetContentResult(400, $"Parameters '{nameof(AProject)}' and '{nameof(AMetric)}' are missing");
 
-                var LParameterList = new List<Parameter>
+                var LParameterList = new Dictionary<string, string>
                 {
-                    new () { Key = nameof(AProject), Value = AProject },
-                    new () { Key = nameof(AMetric), Value = AMetric }
+                    { nameof(AProject), AProject },
+                    { nameof(AMetric), AMetric }
                 };
                 
                 var LMissingParameterName = HttpClientContent.GetFirstEmptyParameterName(LParameterList);

@@ -7,12 +7,12 @@
     [ExcludeFromCodeCoverage]
     public static class SubscribersMapper
     {
-        public static AddSubscriberCommand MapToAddSubscriberCommand(AddSubscriberDto AModel) => new ()
+        public static AddSubscriberCommand MapToAddSubscriberCommand(AddSubscriberDto AModel) => new()
         {
             Email = AModel.Email
         };
 
-        public static UpdateSubscriberCommand MapToUpdateSubscriberCommand(UpdateSubscriberDto AModel) => new () 
+        public static UpdateSubscriberCommand MapToUpdateSubscriberCommand(UpdateSubscriberDto AModel) => new() 
         { 
             Id = AModel.Id,
             Email = AModel.Email,
@@ -20,7 +20,7 @@
             Count = AModel.Count
         };
 
-        public static RemoveSubscriberCommand MapToRemoveSubscriberCommand(RemoveSubscriberDto AModel) => new () 
+        public static RemoveSubscriberCommand MapToRemoveSubscriberCommand(RemoveSubscriberDto AModel) => new() 
         { 
             Id = AModel.Id
         };

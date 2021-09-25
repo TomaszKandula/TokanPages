@@ -15,6 +15,7 @@ import ResetPasswordPage from "./Pages/resetPasswordPage";
 import UpdatePasswordPage from "./Pages/updatePasswordPage";
 import UnsubscribePage from "./Pages/unsubscribePage";
 import UpdateSubscriberPage from "./Pages/updateSubscriberPage";
+import ActivationPage from "./Pages/activationPage";
 import WrongPage from "./Pages/wrongPage";
 import ScrollTop from "./Shared/Components/Scroll/scrollTop";
 import ApplicationToast from "./Shared/Components/Toasts/applicationToast";
@@ -47,6 +48,7 @@ const App = (): JSX.Element =>
                   <Route exact path="/updatepassword"><UpdatePasswordPage /></Route>
                   <Route exact path="/unsubscribe"><UnsubscribePage /></Route>
                   <Route exact path="/updatesubscriber"><UpdateSubscriberPage /></Route>
+                  <Route exact path="/accountactivation"><ActivationPage /></Route>
                   <Route exact path="/albums" component={() => //TODO: remove when Gallery is created
                     { window.location.href = "https://500px.com/p/tomaszkandula?view=galleries"; return null; }} />
                   <Route component={WrongPage} />

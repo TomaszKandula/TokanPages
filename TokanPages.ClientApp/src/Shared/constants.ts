@@ -22,6 +22,7 @@ export const API_COMMAND_REMOVE_ARTICLE = `${APP_BACKEND}/api/v${API_VER}/articl
 export const API_QUERY_GET_USERS = `${APP_BACKEND}/api/v${API_VER}/users/GetAllUsers/`;
 export const API_QUERY_GET_USER = `${APP_BACKEND}/api/v${API_VER}/users/GetUser/{id}/`;
 export const API_COMMAND_ADD_USER = `${APP_BACKEND}/api/v${API_VER}/users/AddUser/`;
+export const API_COMMAND_ACTIVATE_USER = `${APP_BACKEND}/api/v${API_VER}/users/ActivateUser/`;
 export const API_COMMAND_UPDATE_USER = `${APP_BACKEND}/api/v${API_VER}/users/UpdateUser/`;
 export const API_COMMAND_REMOVE_USER = `${APP_BACKEND}/api/v${API_VER}/users/RemoveUser/`;
 export const API_COMMAND_AUTHENTICATE = `${APP_BACKEND}/api/v${API_VER}/users/AuthenticateUser/`;
@@ -61,6 +62,7 @@ export const GET_SIGNUP_CONTENT = `${APP_STORAGE}/content/components/userSignup.
 export const GET_SIGNOUT_CONTENT = `${APP_STORAGE}/content/components/userSignout.json`;
 export const GET_TESTIMONIALS_CONTENT = `${APP_STORAGE}/content/components/testimonials.json`;
 export const GET_UNSUBSCRIBE_CONTENT = `${APP_STORAGE}/content/components/unsubscribe.json`;
+export const GET_ACTIVATE_ACCOUNT_CONTENT = `${APP_STORAGE}/content/components/activateAccount.json`;
 export const GET_UPDATE_SUBSCRIBER_CONTENT = `${APP_STORAGE}/content/components/updateSubscriber.json`;
 export const GET_WRONG_PAGE_PROMPT_CONTENT = `${APP_STORAGE}/content/components/wrongPagePrompt.json`;
 

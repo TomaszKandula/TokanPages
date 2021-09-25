@@ -8,7 +8,6 @@ namespace TokanPages.Backend.Shared.Helpers
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Mvc;
-    using Models;
 
     [ExcludeFromCodeCoverage]
     public static class HttpClientContent
@@ -30,17 +29,15 @@ namespace TokanPages.Backend.Shared.Helpers
             return await LResponse.Content.ReadAsStringAsync();
         }
 
-        public static ContentResult GetContentResult(int? AStatusCode, string AContent, string AContentType = Constants.ContentTypes.TEXT_PLAIN)
+        public static ContentResult GetContentResult(int? AStatusCode, string AContent, 
+            string AContentType = Constants.ContentTypes.TEXT_PLAIN) => new () 
         {
-            return new () 
-            {
-                StatusCode = AStatusCode,
-                ContentType = AContentType,
-                Content = AContent
-            };
-        }
+            StatusCode = AStatusCode,
+            ContentType = AContentType,
+            Content = AContent
+        };
 
-        public static string GetFirstEmptyParameterName(IEnumerable<Parameter> AParameterList)
+        public static string GetFirstEmptyParameterName(IDictionary<string, string> AParameterList)
         {
             var LParameters = AParameterList
                 .Where(AParameter => string.IsNullOrEmpty(AParameter.Value))
