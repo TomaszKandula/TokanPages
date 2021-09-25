@@ -1,3 +1,22 @@
+# [0.22.0](https://github.com/TomaszKandula/TokanPages/compare/v0.21.0...v0.22.0) (2021-09-25)
+
+
+### Bug Fixes
+
+* resolve logic mistake ([026f186](https://github.com/TomaszKandula/TokanPages/commit/026f186c1f5561dbd6e3a639dbb70c51ef3d9db2))
+
+
+### Features
+
+* add account activation capabilities ([b96bfcf](https://github.com/TomaszKandula/TokanPages/commit/b96bfcfbda06a1ee69c353250f8c0a448dcd5ca6))
+* add activate user capability ([5ea5eb2](https://github.com/TomaszKandula/TokanPages/commit/5ea5eb2792e42557d9c8f83f661ee24a4dfd0fda))
+* add activation feature to account registration ([7a920a7](https://github.com/TomaszKandula/TokanPages/commit/7a920a798d9b5cc7fd58b79ecffbe92331ac307c))
+* add new email template ([ffc9283](https://github.com/TomaszKandula/TokanPages/commit/ffc92839de1962bef3c271ee960d9e1acf8bb2dd))
+* add new error codes to resources ([7f25db9](https://github.com/TomaszKandula/TokanPages/commit/7f25db9fb7a4c660c87cee00d14cf105aea38ff4))
+* add new property for activation feature ([a6eb364](https://github.com/TomaszKandula/TokanPages/commit/a6eb364e5aae2bea34b11e40fbc593e1eb284a26))
+* add progress on scroll feature ([a53214a](https://github.com/TomaszKandula/TokanPages/commit/a53214aa2c076dd5a414ff5f60b39b7c73923ef7))
+* add revoke refresh token capability ([1fe9448](https://github.com/TomaszKandula/TokanPages/commit/1fe944803a2dbefb09d84f6dff5a4533af354d81))
+
 # [0.21.0](https://github.com/TomaszKandula/TokanPages/compare/v0.20.0...v0.21.0) (2021-09-16)
 
 
