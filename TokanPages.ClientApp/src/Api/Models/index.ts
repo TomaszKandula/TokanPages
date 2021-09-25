@@ -25,6 +25,8 @@ export type { IReAuthenticateUserDto } from "./Users/reAuthenticateUserDto";
 export type { IReAuthenticateUserResultDto } from "./Users/reAuthenticateUserResultDto";
 export type { IResetUserPasswordDto } from "./Users/resetUserPasswordDto";
 export type { IUpdateUserPasswordDto } from "./Users/updateUserPasswordDto";
+export type { IUserPermissionDto } from "./Users/userPermissionDto";
+export type { IUserRoleDto } from "./Users/userRoleDto";
 
 export type { IErrorDto } from "./Error/errorDto";
 export type { IValidationErrorsDto } from "./Error/validationErrorsDto";

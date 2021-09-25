@@ -22,17 +22,17 @@
         [AllowAnonymous]
         public async Task<AuthenticateUserCommandResult> AuthenticateUser([FromBody] AuthenticateUserDto APayLoad)
             => await FMediator.Send(UsersMapper.MapToAuthenticateUserCommand(APayLoad));
-        
+
         [HttpPost]
         [AllowAnonymous]
         public async Task<ReAuthenticateUserCommandResult> ReAuthenticateUser([FromBody] ReAuthenticateUserDto APayLoad)
             => await FMediator.Send(UsersMapper.MapToReAuthenticateUserCommand(APayLoad));
-        
+
         [HttpPost]
         [AuthorizeRoles(Roles.GodOfAsgard)]
         public async Task<Unit> RevokeUserRefreshToken([FromBody] RevokeUserRefreshTokenDto APayLoad)
             => await FMediator.Send(UsersMapper.MapToRevokeUserRefreshTokenCommand(APayLoad));
-        
+
         [HttpPost]
         [AllowAnonymous]
         public async Task<Unit> ActivateUser([FromBody] ActivateUserDto APayLoad)
@@ -42,12 +42,12 @@
         [AllowAnonymous]
         public async Task<Unit> ResetUserPassword([FromBody] ResetUserPasswordDto APayLoad) 
             => await FMediator.Send(UsersMapper.MapToResetUserPasswordCommand(APayLoad));
-        
+
         [HttpPost]
         [AllowAnonymous]
         public async Task<Unit> UpdateUserPassword([FromBody] UpdateUserPasswordDto APayLoad) 
             => await FMediator.Send(UsersMapper.MapToUpdateUserPasswordCommand(APayLoad));
-        
+
         [HttpGet]
         [AuthorizeRoles(Roles.GodOfAsgard)]
         public async Task<IEnumerable<GetAllUsersQueryResult>> GetAllUsers()

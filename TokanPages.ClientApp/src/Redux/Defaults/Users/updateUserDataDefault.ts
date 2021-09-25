@@ -10,6 +10,8 @@ export const UpdateUserDataDefault: IUpdateUserData =
         firstName: "",
         lastName: "",
         shortBio: "",
-        registered: ""
+        registered: "",
+        roles: [],
+        permissions: []
     }
 }
