@@ -36,7 +36,7 @@ const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element =>
     };
 
     const dispatch = useDispatch();
-    const removeSubscriberState = useSelector((state: IApplicationState) => state).removeSubscriber;
+    const removeSubscriberState = useSelector((state: IApplicationState) => state.removeSubscriber);
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
 
     const [content, setContent] = React.useState(contentPre);

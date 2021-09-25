@@ -1,5 +1,3 @@
-using TokanPages.Backend.Shared.Resources;
-
 namespace TokanPages.WebApi.Tests.Controllers.UsersController
 {
     using Xunit;
@@ -11,11 +9,12 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
     using FluentAssertions;
     using Newtonsoft.Json;
     using Backend.Shared.Dto.Users;
+    using Backend.Shared.Resources;
 
     public partial class UsersControllerTest
     {
         [Fact]
-        public async Task GivenActivationId_WhenActivateUserAsNotLogged_ShouldReturnUnauthorized()
+        public async Task GivenRandomActivationId_WhenActivateUser_ShouldReturnBadRequest()
         {
             // Arrange
             var LRequest = $"{API_BASE_URL}/ActivateUser/";
@@ -29,14 +28,15 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
 
             // Assert
-            await EnsureStatusCode(LResponse, HttpStatusCode.Unauthorized);
+            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
 
             var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().BeEmpty();
+            LContent.Should().NotBeNullOrEmpty();
+            LContent.Should().Contain(ErrorCodes.INVALID_ACTIVATION_ID);
         }
         
         [Fact]
-        public async Task GivenUnknownActivationId_WhenActivateUserAsAdmin_ShouldReturnBadRequest()
+        public async Task GivenrandomActivationId_WhenActivateUserAsLoggedUser_ShouldReturnBadRequest()
         {
             // Arrange
             var LRequest = $"{API_BASE_URL}/ActivateUser/";
