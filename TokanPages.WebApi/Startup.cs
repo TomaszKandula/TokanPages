@@ -34,7 +34,7 @@ namespace TokanPages.WebApi
             AServices.AddResponseCompression(AOptions => AOptions.Providers.Add<GzipCompressionProvider>());
             Dependencies.Register(AServices, FConfiguration, FEnvironment);
             
-            if (FEnvironment.IsDevelopment())
+            if (FEnvironment.IsDevelopment() || FEnvironment.IsStaging())
                 Swagger.SetupSwaggerOptions(AServices);
 
             if (!FEnvironment.IsProduction() && !FEnvironment.IsStaging()) 
@@ -74,9 +74,9 @@ namespace TokanPages.WebApi
             ABuilder.UseAuthorization();
             ABuilder.UseEndpoints(AEndpoints => AEndpoints.MapControllers());
 
-            if (!FEnvironment.IsDevelopment()) 
+            if (!FEnvironment.IsDevelopment() && !FEnvironment.IsStaging()) 
                 return;
-            
+
             ABuilder.UseSwagger();
             Swagger.SetupSwaggerUi(ABuilder, FConfiguration);
         }

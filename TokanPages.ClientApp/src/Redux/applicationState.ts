@@ -9,6 +9,7 @@ import { ISigninUser } from "./States/Users/signinUserState";
 import { ISignupUser } from "./States/Users/signupUserState";
 import { IResetUserPassword } from "./States/Users/resetUserPasswordState";
 import { IUpdateUserPassword } from "./States/Users/updateUserPasswordState";
+import { IActivateAccount } from "./States/Users/activateAccountState";
 import { ISendMessage } from "./States/Mailer/sendMessageState";
 import { IRaiseError } from "./States/raiseErrorState";
 import { IRaiseDialog } from "./States/raiseDialogState";
@@ -30,6 +31,7 @@ import { IGetUserSignoutContent } from "./States/Content/getUserSignoutContentSt
 import { IGetUserSignupContent } from "./States/Content/getUserSignupContentState";
 import { IGetTestimonialsContent } from "./States/Content/getTestimonialsContentState";
 import { IGetUnsubscribeContent } from "./States/Content/getUnsubscribeContentState";
+import { IGetActivateAccountContent } from "./States/Content/getActivateAccountContentState";
 import { IGetUpdateSubscriberContent } from "./States/Content/getUpdateSubscriberContentState";
 
 export interface IApplicationState 
@@ -48,6 +50,7 @@ export interface IApplicationState
     signupUser: ISignupUser,
     resetUserPassword: IResetUserPassword,
     updateUserPassword: IUpdateUserPassword,
+    activateAccount: IActivateAccount,
     getStaticContent: IGetStaticContent,
     getArticleFeatContent: IGetArticleFeatContent,
     getContactFormContent: IGetContactFormContent,
@@ -66,6 +69,7 @@ export interface IApplicationState
     getUserSignupContent: IGetUserSignupContent,
     getTestimonialsContent: IGetTestimonialsContent,
     getUnsubscribeContent: IGetUnsubscribeContent,
+    getActivateAccountContent: IGetActivateAccountContent,
     getUpdateSubscriberContent: IGetUpdateSubscriberContent
 }
 

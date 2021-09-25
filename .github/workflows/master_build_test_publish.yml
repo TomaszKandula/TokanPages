@@ -113,6 +113,7 @@ jobs:
         ApplicationPaths.UpdateSubscriberPath: "${{ secrets.APPLICATIONPATHS__UPDATESUBSCRIBERPATH_STAGE }}"
         ApplicationPaths.UnsubscribePath: "${{ secrets.APPLICATIONPATHS__UNSUBSCRIBEPATH_STAGE }}"
         ApplicationPaths.UpdatePasswordPath: "${{ secrets.APPLICATIONPATHS__UPDATEPASSWORDPATH_STAGE }}"
+        ApplicationPaths.ActivationPath: "${{ secrets.APPLICATIONPATHS__ACTIVATIONPATH_STAGE }}"
         ApplicationPaths.DevelopmentOrigin: "${{ secrets.APPLICATIONPATHS__DEVELOPMENTORIGIN_STAGE }}"
         ApplicationPaths.DeploymentOrigin: "${{ secrets.APPLICATIONPATHS__DEPLOYMENTORIGIN_STAGE }}"
         AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL_STAGE }}"

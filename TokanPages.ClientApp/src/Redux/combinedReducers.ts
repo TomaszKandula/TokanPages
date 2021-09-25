@@ -8,6 +8,7 @@ import UpdateUserDataReducer from "./Reducers/Users/updateUserDataReducer";
 import SigninUserReducer from "./Reducers/Users/signinUserReducer";
 import SignupUserReducer from "./Reducers/Users/signupUserReducer";
 import ResetUserPasswordReducer from "./Reducers/Users/resetUserPasswordReducer";
+import ActivateAccountReducer from "./Reducers/Users/activateAccountReducer";
 import SendMessageReducer from "./Reducers/Mailer/sendMessageReducer";
 import RaiseErrorReducer from "./Reducers/raiseErrorReducer";
 import RaiseDialogReducer from "./Reducers/raiseDialogReducer";
@@ -29,6 +30,7 @@ import GetUserSignoutContentReducer from "./Reducers/Content/getUserSignoutConte
 import GetUserSignupContentReducer from "./Reducers/Content/getUserSignupContentReducer";
 import GetTestimonialsContentReducer from "./Reducers/Content/getTestimonialsContentReducer";
 import GetUnsubscribeContentReducer from "./Reducers/Content/getUnsubscribeContentReducer";
+import GetActivateAccountContentReducer from "./Reducers/Content/getActivateAccountContentReducer";
 import GetUpdateSubscriberContentReducer from "./Reducers/Content/getUpdateSubscriberContentReducer";
 
 export const combinedReducers = 
@@ -47,6 +49,7 @@ export const combinedReducers =
     signupUser: SignupUserReducer,
     resetUserPassword: ResetUserPasswordReducer,
     updateUserPassword: ResetUserPasswordReducer,
+    activateAccount: ActivateAccountReducer,
     getStaticContent: GetStaticContentReducer,
     getArticleFeatContent: GetArticleFeatContentReducer,
     getContactFormContent: GetContactFormContentReducer,
@@ -65,5 +68,6 @@ export const combinedReducers =
     getUserSignupContent: GetUserSignupContentReducer,
     getTestimonialsContent: GetTestimonialsContentReducer,
     getUnsubscribeContent: GetUnsubscribeContentReducer,
+    getActivateAccountContent: GetActivateAccountContentReducer,
     getUpdateSubscriberContent: GetUpdateSubscriberContentReducer
 };
