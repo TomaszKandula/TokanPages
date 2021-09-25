@@ -31,7 +31,9 @@ const UpdateUserDataReducer: Reducer<IUpdateUserData> = (state: IUpdateUserData 
                     firstName: action.payload.firstName,
                     lastName: action.payload.lastName,
                     shortBio: action.payload.shortBio,
-                    registered: action.payload.registered
+                    registered: action.payload.registered,
+                    roles: action.payload.roles,
+                    permissions: action.payload.permissions
                 }
             };
 

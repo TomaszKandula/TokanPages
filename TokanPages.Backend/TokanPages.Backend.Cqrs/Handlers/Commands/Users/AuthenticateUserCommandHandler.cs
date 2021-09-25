@@ -58,7 +58,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
             if (!LUser.IsActivated)
                 throw new BusinessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
-            
+
             var LTokenExpires = FDateTimeService.Now.AddMinutes(FIdentityServer.WebTokenExpiresIn);
             var LUserToken = await FUserServiceProvider.GenerateUserToken(LUser, LTokenExpires, ACancellationToken);
 
@@ -83,6 +83,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             await FDatabaseContext.UserRefreshTokens.AddAsync(LNewRefreshToken, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 
+            var LRoles = await FUserServiceProvider.GetUserRoles(LUser.Id);
+            var LPermissions = await FUserServiceProvider.GetUserPermissions(LUser.Id);
+
             return new AuthenticateUserCommandResult
             {
                 UserId = LUser.Id,
@@ -92,7 +95,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 LastName = LUser.LastName,
                 ShortBio = LUser.ShortBio,
                 Registered = LUser.Registered,
-                UserToken = LUserToken
+                UserToken = LUserToken,
+                Roles = LRoles,
+                Permissions = LPermissions
             };
         }
     }
