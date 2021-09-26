@@ -27,6 +27,7 @@ describe("Test component: featuresView.", () =>
             },
             openHandler: jest.fn(),
             closeHandler: jest.fn(),
+            infoHandler: jest.fn(),
             isAnonymous: false,
             logo: "",
             avatar: "",
