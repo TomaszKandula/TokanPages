@@ -43,24 +43,25 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
         public override async Task<AuthenticateUserCommandResult> Handle(AuthenticateUserCommand ARequest, CancellationToken ACancellationToken)
         {
             var LUsers = await FDatabaseContext.Users
-                .AsNoTracking()
                 .Where(AUsers => AUsers.EmailAddress == ARequest.EmailAddress)
                 .ToListAsync(ACancellationToken);
             
             if (!LUsers.Any()) 
                 throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS} (1004)");
 
-            var LUser = LUsers.First();
-            var LIsPasswordValid = FCipheringService.VerifyPassword(ARequest.Password, LUser.CryptedPassword);
+            var LCurrentUser = LUsers.First();
+            var LIsPasswordValid = FCipheringService.VerifyPassword(ARequest.Password, LCurrentUser.CryptedPassword);
 
             if (!LIsPasswordValid)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS} (1006)");
 
-            if (!LUser.IsActivated)
+            if (!LCurrentUser.IsActivated)
                 throw new BusinessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
+
+            LCurrentUser.LastLogged = FDateTimeService.Now;
             
             var LTokenExpires = FDateTimeService.Now.AddMinutes(FIdentityServer.WebTokenExpiresIn);
-            var LUserToken = await FUserServiceProvider.GenerateUserToken(LUser, LTokenExpires, ACancellationToken);
+            var LUserToken = await FUserServiceProvider.GenerateUserToken(LCurrentUser, LTokenExpires, ACancellationToken);
 
             var LIpAddress = FUserServiceProvider.GetRequestIpAddress();
             var LRefreshToken = FJwtUtilityService.GenerateRefreshToken(LIpAddress, FIdentityServer.RefreshTokenExpiresIn);
@@ -68,7 +69,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
             var LNewRefreshToken = new UserRefreshTokens
             {
-                UserId = LUser.Id,
+                UserId = LCurrentUser.Id,
                 Token = LRefreshToken.Token,
                 Expires = LRefreshToken.Expires,
                 Created = LRefreshToken.Created,
@@ -79,20 +80,25 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 ReasonRevoked = null
             };
 
-            await FUserServiceProvider.DeleteOutdatedRefreshTokens(LUser.Id, false, ACancellationToken);
+            await FUserServiceProvider.DeleteOutdatedRefreshTokens(LCurrentUser.Id, false, ACancellationToken);
             await FDatabaseContext.UserRefreshTokens.AddAsync(LNewRefreshToken, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 
+            var LRoles = await FUserServiceProvider.GetUserRoles(LCurrentUser.Id);
+            var LPermissions = await FUserServiceProvider.GetUserPermissions(LCurrentUser.Id);
+
             return new AuthenticateUserCommandResult
             {
-                UserId = LUser.Id,
-                AliasName = LUser.UserAlias,
-                AvatarName = LUser.AvatarName,
-                FirstName = LUser.FirstName,
-                LastName = LUser.LastName,
-                ShortBio = LUser.ShortBio,
-                Registered = LUser.Registered,
-                UserToken = LUserToken
+                UserId = LCurrentUser.Id,
+                AliasName = LCurrentUser.UserAlias,
+                AvatarName = LCurrentUser.AvatarName,
+                FirstName = LCurrentUser.FirstName,
+                LastName = LCurrentUser.LastName,
+                ShortBio = LCurrentUser.ShortBio,
+                Registered = LCurrentUser.Registered,
+                UserToken = LUserToken,
+                Roles = LRoles,
+                Permissions = LPermissions
             };
         }
     }

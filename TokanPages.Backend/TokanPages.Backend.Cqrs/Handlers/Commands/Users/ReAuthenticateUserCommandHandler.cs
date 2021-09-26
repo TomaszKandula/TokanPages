@@ -66,24 +66,30 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
             await FUserServiceProvider.DeleteOutdatedRefreshTokens(ARequest.Id, false, ACancellationToken);
             await FDatabaseContext.UserRefreshTokens.AddAsync(LNewRefreshToken, ACancellationToken);
+
+            var LCurrentUser = await FDatabaseContext.Users.SingleAsync(AUsers => AUsers.Id == ARequest.Id, ACancellationToken);
+            LCurrentUser.LastLogged = FDateTimeService.Now;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-
-            var LUser = await FDatabaseContext.Users.AsNoTracking().SingleAsync(AUsers => AUsers.Id == ARequest.Id, ACancellationToken);
+            
             var LTokenExpires = FDateTimeService.Now.AddMinutes(FIdentityServer.WebTokenExpiresIn);
-            var LUserToken = await FUserServiceProvider.GenerateUserToken(LUser, LTokenExpires, ACancellationToken);
-
+            var LUserToken = await FUserServiceProvider.GenerateUserToken(LCurrentUser, LTokenExpires, ACancellationToken);
             FUserServiceProvider.SetRefreshTokenCookie(LNewRefreshToken.Token, FIdentityServer.RefreshTokenExpiresIn);
 
+            var LRoles = await FUserServiceProvider.GetUserRoles(LCurrentUser.Id);
+            var LPermissions = await FUserServiceProvider.GetUserPermissions(LCurrentUser.Id);
+            
             return new ReAuthenticateUserCommandResult
             {
-                UserId = LUser.Id,
-                AliasName = LUser.UserAlias,
-                AvatarName = LUser.AvatarName,
-                FirstName = LUser.FirstName,
-                LastName = LUser.LastName,
-                ShortBio = LUser.ShortBio,
-                Registered = LUser.Registered,
-                UserToken = LUserToken
+                UserId = LCurrentUser.Id,
+                AliasName = LCurrentUser.UserAlias,
+                AvatarName = LCurrentUser.AvatarName,
+                FirstName = LCurrentUser.FirstName,
+                LastName = LCurrentUser.LastName,
+                ShortBio = LCurrentUser.ShortBio,
+                Registered = LCurrentUser.Registered,
+                UserToken = LUserToken,
+                Roles = LRoles,
+                Permissions = LPermissions
             };
         }
 

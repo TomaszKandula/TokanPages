@@ -23,6 +23,7 @@ interface IProperties
     drawerState: { open: boolean };
     openHandler: any;
     closeHandler: any;
+    infoHandler: any;
     isAnonymous: boolean;
     logo: string;
     avatar: string;
@@ -41,23 +42,23 @@ const NavigationView = (props: IBinding): JSX.Element =>
 
                     <Grid container item xs={12} spacing={3}>
                         <Grid item xs className={classes.menu}>
-                            <IconButton color="inherit" aria-label="menu" onClick={props.bind.openHandler}>
+                            <IconButton color="inherit" aria-label="menu" onClick={props.bind?.openHandler}>
                                 <MenuIcon />
                             </IconButton>
                         </Grid>
                         <Grid item xs className={classes.link}>
                             <Link to="/">
                                 <div data-aos="fade-down" className={classes.image} >
-                                    {renderImage(ICONS_PATH, props.bind.logo, classes.logo)}
+                                    {renderImage(ICONS_PATH, props.bind?.logo, classes.logo)}
                                 </div>
                             </Link>
                         </Grid>
                         <Grid item xs className={classes.avatar}>
                             <Typography className={classes.userAlias} component={"span"} variant={"body1"} >
-                                {props.bind.isAnonymous ? props.bind.anonymousText : props.bind.userAliasText}
+                                {props.bind?.isAnonymous ? props.bind?.anonymousText : props.bind?.userAliasText}
                             </Typography>
-                            <IconButton color="inherit">
-                                <Avatar alt="Avatar" src={props.bind.avatar} /> 
+                            <IconButton color="inherit" onClick={props.bind?.infoHandler} >
+                                <Avatar alt="Avatar" src={props.bind?.avatar} /> 
                             </IconButton>
                         </Grid>
                     </Grid>

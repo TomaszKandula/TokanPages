@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"; 
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
@@ -20,6 +21,13 @@ import WrongPage from "./Pages/wrongPage";
 import ScrollTop from "./Shared/Components/Scroll/scrollTop";
 import ApplicationToast from "./Shared/Components/Toasts/applicationToast";
 import ApplicationDialogBox from "./Shared/Components/ApplicationDialogBox/applicationDialogBox";
+import ApplicationUserInfo from "./Shared/Components/ApplicationUserInfo/applicationUserInfo";
+import { USER_DATA } from "./Shared/constants";
+import { GetDataFromStorage } from "./Shared/helpers";
+import { ActionCreators } from "./Redux/Actions/Users/updateUserDataAction";
+import { IApplicationState } from "./Redux/applicationState";
+import { IAuthenticateUserResultDto } from "./Api/Models";
+import Validate from "validate.js";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -30,6 +38,15 @@ const App = (): JSX.Element =>
         AOS.init();
         AOS.refresh();
     });
+
+    const dispatch = useDispatch();
+    const selector = useSelector((state: IApplicationState) => state.updateUserData);
+    const data = GetDataFromStorage(USER_DATA) as IAuthenticateUserResultDto;
+
+    if (Object.entries(data).length !== 0 && Validate.isEmpty(selector?.userData?.userId))
+    {
+        dispatch(ActionCreators.update(data));
+    }
 
     return (
         <>
@@ -56,6 +73,7 @@ const App = (): JSX.Element =>
             </Router>
             <ApplicationToast />
             <ApplicationDialogBox />
+            <ApplicationUserInfo />
             <ScrollTop>
                 <Fab color="primary" size="small" aria-label="scroll back to top">
                     <KeyboardArrowUpIcon/>

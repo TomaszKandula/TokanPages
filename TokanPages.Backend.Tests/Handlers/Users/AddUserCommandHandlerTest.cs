@@ -10,12 +10,14 @@
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
     using Shared;
     using SmtpClient;
     using Core.Logger;
     using Shared.Models;
     using Storage.Models;
     using Core.Exceptions;
+    using Domain.Entities;
     using Shared.Resources;
     using Cqrs.Handlers.Commands.Users;
     using Cqrs.Services.CipheringService;
@@ -37,7 +39,45 @@
                 Password = DataUtilityService.GetRandomString()
             };
 
+            var LRoles = new Roles
+            {
+                Name = Identity.Authorization.Roles.EverydayUser.ToString(),
+                Description = Identity.Authorization.Roles.EverydayUser.ToString()
+            };
+
+            var LPermissions = new List<Permissions>
+            {
+                new ()
+                {
+                    Name = Identity.Authorization.Permissions.CanSelectArticles.ToString()
+                },
+                new ()
+                {
+                    Name = Identity.Authorization.Permissions.CanSelectComments.ToString()
+                }
+            };
+
+            var LDefaultPermissions = new List<DefaultPermissions>
+            {
+                new ()
+                {
+                    Id = Guid.NewGuid(),
+                    Role = LRoles,
+                    Permission = LPermissions[0]
+                },
+                new ()
+                {
+                    Id = Guid.NewGuid(),
+                    Role = LRoles,
+                    Permission = LPermissions[1]
+                }
+            };
+
             var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Roles.AddAsync(LRoles);
+            await LDatabaseContext.Permissions.AddRangeAsync(LPermissions);
+            await LDatabaseContext.DefaultPermissions.AddRangeAsync(LDefaultPermissions);
+
             var LMockedDateTime = new Mock<DateTimeService>();
             var LMockedCipher = new Mock<ICipheringService>();
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();

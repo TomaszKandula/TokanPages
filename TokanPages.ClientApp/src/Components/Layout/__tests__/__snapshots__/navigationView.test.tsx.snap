@@ -10,6 +10,7 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
       "drawerState": Object {
         "open": false,
       },
+      "infoHandler": [MockFunction],
       "isAnonymous": false,
       "logo": "",
       "menu": Object {
@@ -81,6 +82,7 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
           />
           <WithStyles(ForwardRef(IconButton))
             color="inherit"
+            onClick={[MockFunction]}
           >
             <WithStyles(ForwardRef(Avatar))
               alt="Avatar"

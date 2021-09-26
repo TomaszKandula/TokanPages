@@ -1,3 +1,5 @@
+import { IUserPermissionDto, IUserRoleDto } from "..";
+
 export interface IUserDataDto
 {
     userId: string;
@@ -7,4 +9,6 @@ export interface IUserDataDto
     lastName: string; 
     shortBio: string;
     registered: string;
+    roles: IUserRoleDto[];
+    permissions: IUserPermissionDto[];
 }

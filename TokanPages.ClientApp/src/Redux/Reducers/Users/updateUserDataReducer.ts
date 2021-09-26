@@ -3,10 +3,12 @@ import { combinedDefaults } from "../../combinedDefaults";
 import { IUpdateUserData } from "../../../Redux/States/Users/updateUserDataState";
 import { 
     TKnownActions,
+    SHOW_USERDATA,
     CLEAR_USERDATA,
     UPDATE_USERDATA
 } from "../../Actions/Users/updateUserDataAction";
-import { USER_TOKEN } from "../../../Shared/constants";
+import { USER_DATA } from "../../../Shared/constants";
+import { DelDataFromStorage, SetDataInStorage } from "../../../Shared/helpers";
 
 const UpdateUserDataReducer: Reducer<IUpdateUserData> = (state: IUpdateUserData | undefined, incomingAction: Action): IUpdateUserData => 
 {
@@ -15,15 +17,20 @@ const UpdateUserDataReducer: Reducer<IUpdateUserData> = (state: IUpdateUserData 
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
-        case CLEAR_USERDATA:
-            localStorage.removeItem(USER_TOKEN);
-            return { 
-                userData: combinedDefaults.updateUserData.userData
+        case SHOW_USERDATA:
+            return {
+                isShown: action.payload,
+                userData: state.userData
             };
 
+        case CLEAR_USERDATA:
+            DelDataFromStorage(USER_DATA);
+            return combinedDefaults.updateUserData;
+
         case UPDATE_USERDATA:
-            localStorage.setItem(USER_TOKEN, action.payload.userToken);
+            SetDataInStorage(action.payload, USER_DATA);
             return { 
+                isShown: state.isShown,
                 userData: {
                     userId: action.payload.userId,
                     aliasName: action.payload.aliasName,
@@ -31,7 +38,9 @@ const UpdateUserDataReducer: Reducer<IUpdateUserData> = (state: IUpdateUserData 
                     firstName: action.payload.firstName,
                     lastName: action.payload.lastName,
                     shortBio: action.payload.shortBio,
-                    registered: action.payload.registered
+                    registered: action.payload.registered,
+                    roles: action.payload.roles,
+                    permissions: action.payload.permissions
                 }
             };
 
