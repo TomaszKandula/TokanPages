@@ -5,7 +5,7 @@ import { ActionCreators as DataAction } from "../../Redux/Actions/Users/updateUs
 import { ActionCreators as UserAction } from "../../Redux/Actions/Users/signinUserAction";
 import { IApplicationState } from "../../Redux/applicationState";
 import { IGetUserSignoutContent } from "../../Redux/States/Content/getUserSignoutContentState";
-import { USER_TOKEN } from "../../Shared/constants";
+import { USER_DATA } from "../../Shared/constants";
 import UserSignoutView from "./userSignoutView";
 
 const UserSignout = (props: IGetUserSignoutContent): JSX.Element => 
@@ -23,7 +23,7 @@ const UserSignout = (props: IGetUserSignoutContent): JSX.Element =>
 
     const dataCheckout = React.useCallback(() => 
     {  
-        const isUserTokenRemoved = (): boolean => localStorage.getItem(USER_TOKEN) === null; 
+        const isUserTokenRemoved = (): boolean => localStorage.getItem(USER_DATA) === null; 
         const isUserDataEmpty = (): boolean => data.userData === combinedDefaults.updateUserData.userData;
 
         if (isUserTokenRemoved() && isUserDataEmpty() && progress) 

@@ -1,5 +1,5 @@
 import * as helpers from "../helpers";
-import { ITextObject } from "Shared/Components/ContentRender/Models/textModel";
+import { ITextObject } from "../../Shared/Components/ContentRender/Models/textModel";
 import { IErrorDto } from "../../Api/Models";
 import { VALIDATION_ERRORS } from "../../Shared/constants";
 
