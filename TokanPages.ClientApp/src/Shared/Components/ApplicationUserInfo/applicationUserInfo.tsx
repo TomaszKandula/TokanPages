@@ -18,13 +18,13 @@ const ApplicationUserInfo = (): JSX.Element =>
 
     const data: IUserDataDto = 
     {
-        ...user.userData,
-        avatarName: `${AVATARS_PATH}${user.userData.avatarName}`
+        ...user?.userData,
+        avatarName: `${AVATARS_PATH}${user?.userData.avatarName}`
     }
 
     return (<ApplicationUserInfoView bind=
     {{
-        state: user.isShown,
+        state: user?.isShown ?? false,
         data: data,
         closeHandler: onClickHandler
     }}/>);

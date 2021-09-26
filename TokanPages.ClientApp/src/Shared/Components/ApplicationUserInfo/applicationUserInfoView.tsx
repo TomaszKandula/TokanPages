@@ -38,7 +38,7 @@ const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
                             <UserAvatar 
                                 isLargeScale={true} 
                                 avatarName={props.bind?.data.avatarName} 
-                                userLetter={props.bind?.data.aliasName.charAt(0).toUpperCase()} 
+                                userLetter={props.bind?.data.aliasName?.charAt(0).toUpperCase()} 
                             />
                         </Box>
                     </Grid>
@@ -67,7 +67,7 @@ const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
                     </Typography>
                 </Box>
                 <List dense={true}>
-                {props.bind?.data.roles.map((item, index) => 
+                {props.bind?.data.roles?.map((item, index) => 
                 (
                     <ListItem key={index}>
                         <ListItemIcon style={{ color: green[500] }}>
@@ -83,7 +83,7 @@ const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
                     </Typography>
                 </Box>                
                 <List dense={true}>
-                {props.bind?.data.permissions.map((item, index) => 
+                {props.bind?.data.permissions?.map((item, index) => 
                 (
                     <ListItem key={index}>
                         <ListItemIcon style={{ color: green[500] }}>
