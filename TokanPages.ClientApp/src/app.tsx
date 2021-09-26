@@ -20,6 +20,7 @@ import WrongPage from "./Pages/wrongPage";
 import ScrollTop from "./Shared/Components/Scroll/scrollTop";
 import ApplicationToast from "./Shared/Components/Toasts/applicationToast";
 import ApplicationDialogBox from "./Shared/Components/ApplicationDialogBox/applicationDialogBox";
+import ApplicationUserInfo from "./Shared/Components/ApplicationUserInfo/applicationUserInfo";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -56,6 +57,7 @@ const App = (): JSX.Element =>
             </Router>
             <ApplicationToast />
             <ApplicationDialogBox />
+            <ApplicationUserInfo />
             <ScrollTop>
                 <Fab color="primary" size="small" aria-label="scroll back to top">
                     <KeyboardArrowUpIcon/>
