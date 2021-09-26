@@ -43,7 +43,7 @@ const App = (): JSX.Element =>
     const selector = useSelector((state: IApplicationState) => state.updateUserData);
     const data = GetDataFromStorage(USER_DATA) as IAuthenticateUserResultDto;
 
-    if (Object.entries(data).length !== 0 && Validate.isEmpty(selector.userData.userId))
+    if (Object.entries(data).length !== 0 && Validate.isEmpty(selector?.userData?.userId))
     {
         dispatch(ActionCreators.update(data));
     }
