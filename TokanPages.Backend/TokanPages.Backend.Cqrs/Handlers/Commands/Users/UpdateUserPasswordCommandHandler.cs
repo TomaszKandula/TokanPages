@@ -72,6 +72,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             LCurrentUser.ResetId = null;
             LCurrentUser.ResetIdEnds = null;
             LCurrentUser.CryptedPassword = LGetHashedPassword;
+            LCurrentUser.LastUpdated = FDateTimeService.Now;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 
             FLogger.LogInformation($"User password has been updated successfully (UserId: {LCurrentUser.Id}).");
