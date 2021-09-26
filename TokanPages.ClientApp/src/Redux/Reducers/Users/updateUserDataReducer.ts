@@ -3,6 +3,7 @@ import { combinedDefaults } from "../../combinedDefaults";
 import { IUpdateUserData } from "../../../Redux/States/Users/updateUserDataState";
 import { 
     TKnownActions,
+    SHOW_USERDATA,
     CLEAR_USERDATA,
     UPDATE_USERDATA
 } from "../../Actions/Users/updateUserDataAction";
@@ -15,15 +16,20 @@ const UpdateUserDataReducer: Reducer<IUpdateUserData> = (state: IUpdateUserData 
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
+        case SHOW_USERDATA:
+            return {
+                isShown: action.payload,
+                userData: state.userData
+            };
+
         case CLEAR_USERDATA:
             localStorage.removeItem(USER_TOKEN);
-            return { 
-                userData: combinedDefaults.updateUserData.userData
-            };
+            return combinedDefaults.updateUserData;
 
         case UPDATE_USERDATA:
             localStorage.setItem(USER_TOKEN, action.payload.userToken);
             return { 
+                isShown: state.isShown,
                 userData: {
                     userId: action.payload.userId,
                     aliasName: action.payload.aliasName,

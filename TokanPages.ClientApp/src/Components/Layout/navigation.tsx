@@ -1,8 +1,9 @@
 import * as React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "Redux/applicationState";
 import Validate from "validate.js";
 import { IGetNavigationContent } from "../../Redux/States/Content/getNavigationContentState";
+import { ActionCreators } from "../../Redux/Actions/Users/updateUserDataAction";
 import NavigationView from "./navigationView";
 import { 
     ANONYMOUS_NAME, 
@@ -13,6 +14,7 @@ import {
 
 const Navigation = (props: IGetNavigationContent): JSX.Element => 
 {
+    const dispatch = useDispatch();
     const user = useSelector((state: IApplicationState) => state.updateUserData);
 
     const [drawer, setDrawer] = React.useState({ open: false});
@@ -33,11 +35,18 @@ const Navigation = (props: IGetNavigationContent): JSX.Element =>
         isAnonymous = false;
     }
 
+    const onAvatarClick = () => 
+    {
+        if (isAnonymous) return;
+        dispatch(ActionCreators.show(true));
+    }
+
     return (<NavigationView bind=
     {{  
         drawerState: drawer,
         openHandler: toggleDrawer(true),
         closeHandler: toggleDrawer(false),
+        infoHandler: onAvatarClick,
         isAnonymous: isAnonymous,
         anonymousText: ANONYMOUS_NAME,
         userAliasText: userName,
