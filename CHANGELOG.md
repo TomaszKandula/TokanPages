@@ -1,3 +1,23 @@
+# [0.23.0](https://github.com/TomaszKandula/TokanPages/compare/v0.22.0...v0.23.0) (2021-09-26)
+
+
+### Bug Fixes
+
+* add missing roles, permissions and last logged ([aa9a511](https://github.com/TomaszKandula/TokanPages/commit/aa9a5110d73a8950f4eb1be0552efa0df56449c6))
+* add missing type ([c84bf21](https://github.com/TomaszKandula/TokanPages/commit/c84bf2147a550134dfe05d3bd12ff942c2ff9a8f))
+* add missing update DateTime ([7841114](https://github.com/TomaszKandula/TokanPages/commit/78411140dbec86776fb87c8efafbd6b458b508b8))
+* add missing update last logged date time ([8bef435](https://github.com/TomaszKandula/TokanPages/commit/8bef43523aabef6062bb70cb8ade5436d2571180))
+* correct import path ([b5d70f5](https://github.com/TomaszKandula/TokanPages/commit/b5d70f57ac143c7146042138584187c3d77dbc46))
+
+
+### Features
+
+* add action call to bring UserInfo window ([b8b6a01](https://github.com/TomaszKandula/TokanPages/commit/b8b6a015eaa7d769db93925dc4bf287a3bca9178))
+* add new helper methods with tests ([6b13a15](https://github.com/TomaszKandula/TokanPages/commit/6b13a15e7e4f6c606cdefb63aa0994f1fc1d71ba))
+* add user info dialog box ([4f78b7c](https://github.com/TomaszKandula/TokanPages/commit/4f78b7ca155d8f8755c894b56195a9501be0c1d6))
+* add user roles and permissions capabilities for UI ([36978ff](https://github.com/TomaszKandula/TokanPages/commit/36978ff60257d4b7e125c40c24ce6736dba5091e))
+* restore data after page refresh ([16219bd](https://github.com/TomaszKandula/TokanPages/commit/16219bd781f18f4ef5ee4792828dad76f9e22e17))
+
 # [0.22.0](https://github.com/TomaszKandula/TokanPages/compare/v0.21.0...v0.22.0) (2021-09-25)
 
 
