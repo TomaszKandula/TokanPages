@@ -150,7 +150,7 @@ const DelDataFromStorage = (key: string): boolean =>
     return true;
 }
 
-const SetDataInStorage = (selection: { } | [ ], key: string): boolean => 
+const SetDataInStorage = (selection: {} | any[], key: string): boolean => 
 {
     if (Validate.isEmpty(key)) return false;
 
@@ -159,7 +159,7 @@ const SetDataInStorage = (selection: { } | [ ], key: string): boolean =>
     return true;
 }
 
-const GetDataFromStorage = (key: string): { } | [ ] => 
+const GetDataFromStorage = (key: string): {} | any[] => 
 {
     let serialized = localStorage.getItem(key) as string;
     if (Validate.isEmpty(serialized)) return { };
