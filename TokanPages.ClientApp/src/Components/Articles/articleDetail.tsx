@@ -8,11 +8,11 @@ import { ActionCreators as UpdateArticleAction } from "../../Redux/Actions/Artic
 import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../Shared/constants";
 import { FormatDateTime } from "../../Shared/helpers";
 import { ArticleContent } from "./Renderers/articleContent";
-import { UserAvatar } from "./Renderers/userAvatar";
 import { AuthorName } from "./Renderers/authorName";
 import { LikesLeft } from "./Renderers/likesLeft";
 import { ReadTime } from "./Renderers/readTime";
 import ArticleDetailView from "./articleDetailView";
+import UserAvatar from "../../Shared/Components/UserAvatar/userAvatar";
 
 export interface IArticleDetail
 {
@@ -122,8 +122,8 @@ const ArticleDetail = (props: IArticleDetail): JSX.Element =>
         articleReadCount: selection.article.readCount,
         openPopoverHandler: openPopoverHandler,
         closePopoverHandler: closePopoverHandler,
-        renderSmallAvatar: UserAvatar(false, selection.article.author.avatarName, userLetter),
-        renderLargeAvatar: UserAvatar(true, selection.article.author.avatarName, userLetter),
+        renderSmallAvatar: <UserAvatar isLargeScale={false} avatarName={selection.article.author.avatarName} userLetter={userLetter} />,
+        renderLargeAvatar: <UserAvatar isLargeScale={true} avatarName={selection.article.author.avatarName} userLetter={userLetter} />,
         authorAliasName: selection.article.author.aliasName,
         popoverOpen: popoverOpen,
         popoverElement: popoverElement,
