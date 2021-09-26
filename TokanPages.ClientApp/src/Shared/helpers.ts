@@ -143,6 +143,35 @@ const RaiseError = (dispatch: any, errorObject: any): string =>
     return Sentry.captureException(errorObject);
 }
 
+const DelDataFromStorage = (key: string): boolean => 
+{
+    if (Validate.isEmpty(key)) return false;
+    localStorage.removeItem(key);
+    return true;
+}
+
+const SetDataInStorage = (selection: {} | any[], key: string): boolean => 
+{
+    if (Validate.isEmpty(key)) return false;
+
+    let serialized = JSON.stringify(selection);
+    localStorage.setItem(key, serialized);
+    return true;
+}
+
+const GetDataFromStorage = (key: string): {} | any[] => 
+{
+    let serialized = localStorage.getItem(key) as string;
+    if (Validate.isEmpty(serialized)) return { };
+
+    let deserialized = JSON.parse(serialized);
+    const isArray = Array.isArray(deserialized);
+    const isObject = typeof deserialized === "object";
+
+    if (!isArray && !isObject) return { };
+    return deserialized;
+}
+
 export 
 {
     ConvertPropsToFields,
@@ -153,5 +182,8 @@ export
     CountWords,
     GetReadTime,
     GetErrorMessage,
-    RaiseError
+    RaiseError,
+    DelDataFromStorage,
+    SetDataInStorage,
+    GetDataFromStorage
 }

@@ -13,6 +13,7 @@
     using Storage.Models;
     using System.Net.Http;
     using Core.Exceptions;
+    using Domain.Entities;
     using Shared.Resources;
     using Services.CipheringService;
     using System.Collections.Generic;
@@ -86,7 +87,7 @@
                 return await Task.FromResult(LUsers.Id);
             }
 
-            var LNewUser = new Domain.Entities.Users
+            var LNewUser = new Users
             {
                 EmailAddress = ARequest.EmailAddress,
                 UserAlias = ARequest.UserAlias.ToLower(),
@@ -101,10 +102,54 @@
 
             await FDatabaseContext.Users.AddAsync(LNewUser, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            await SetupDefaultPermissions(LNewUser.Id, ACancellationToken);
             await SendNotification(ARequest.EmailAddress, LActivationId, LActivationIdEnds, ACancellationToken);
 
             FLogger.LogInformation($"Registering new user account, user id: {LNewUser.Id}.");
             return await Task.FromResult(LNewUser.Id);
+        }
+
+        private async Task SetupDefaultPermissions(Guid AUserId, CancellationToken ACancellationToken)
+        {
+            var LUserRoleName = Identity.Authorization.Roles.EverydayUser.ToString();
+            var LDefaultPermissions = await FDatabaseContext.DefaultPermissions
+                .AsNoTracking()
+                .Include(ADefaultPermissions => ADefaultPermissions.Role)
+                .Include(ADefaultPermissions => ADefaultPermissions.Permission)
+                .Where(ADefaultPermissions => ADefaultPermissions.Role.Name == LUserRoleName)
+                .Select(AFields => new DefaultPermissions
+                {
+                    Id = AFields.Id,
+                    RoleId = AFields.RoleId,
+                    Role = AFields.Role,
+                    PermissionId = AFields.PermissionId,
+                    Permission = AFields.Permission
+                })
+                .ToListAsync(ACancellationToken);
+
+            var LEverydayUserRoleId = LDefaultPermissions
+                .Select(ADefaultPermissions => ADefaultPermissions.RoleId)
+                .First(); 
+            
+            var LUserPermissions = LDefaultPermissions
+                .Select(ADefaultPermissions => ADefaultPermissions.PermissionId)
+                .ToList();
+
+            var LNewRole = new UserRoles
+            {
+                UserId = AUserId,
+                RoleId = LEverydayUserRoleId
+            };
+
+            var LNewPermissions = LUserPermissions.Select(AItem => new UserPermissions
+            {
+                UserId = AUserId, 
+                PermissionId = AItem
+            }).ToList();
+
+            await FDatabaseContext.UserRoles.AddAsync(LNewRole, ACancellationToken);
+            await FDatabaseContext.UserPermissions.AddRangeAsync(LNewPermissions, ACancellationToken);
+            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
         }
 
         private async Task SendNotification(string AEmailAddress, Guid AActivationId, DateTime AActivationIdEnds, CancellationToken ACancellationToken)

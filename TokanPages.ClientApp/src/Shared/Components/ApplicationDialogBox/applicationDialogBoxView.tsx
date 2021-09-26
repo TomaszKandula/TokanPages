@@ -23,8 +23,7 @@ interface IProperties
     icon: IconType;
     title: string;
     message: string;
-    onCloseHandler: any;
-    onButtonClickHandler: any;
+    closeHandler: any;
 }
 
 const ApplicationDialogBoxView = (props: IBinding): JSX.Element =>
@@ -42,7 +41,7 @@ const ApplicationDialogBoxView = (props: IBinding): JSX.Element =>
     };   
 
     return (
-        <Dialog open={props.bind?.state} onClose={props.bind?.onCloseHandler} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+        <Dialog open={props.bind?.state} onClose={props.bind?.closeHandler} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
             <DialogTitle id="alert-dialog-title">
                 <div style={{ display: "flex", alignItems: "center" }}>
                     <RenderIcon />
@@ -57,7 +56,7 @@ const ApplicationDialogBoxView = (props: IBinding): JSX.Element =>
             </DialogContent>
             <Divider />
             <DialogActions>
-                <Button onClick={props.bind?.onButtonClickHandler} color="primary" autoFocus>
+                <Button onClick={props.bind?.closeHandler} color="primary" autoFocus>
                     OK
                 </Button>
             </DialogActions>

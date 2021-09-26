@@ -102,15 +102,15 @@
             return FUsers;
         }
 
-        public virtual async Task<List<GetUserRoleDto>> GetUserRoles()
+        public virtual async Task<List<GetUserRoleDto>> GetUserRoles(Guid? AUserId)
         {
-            await EnsureUserRoles();
+            await EnsureUserRoles(AUserId);
             return FUserRoles;
         }
 
-        public virtual async Task<List<GetUserPermissionDto>> GetUserPermissions()
+        public virtual async Task<List<GetUserPermissionDto>> GetUserPermissions(Guid? AUserId)
         {
-            await EnsureUserPermissions();
+            await EnsureUserPermissions(AUserId);
             return FUserPermissions;
         }
 
@@ -292,12 +292,12 @@
             return Guid.Parse(LUserIds.First().Value);
         }
 
-        private async Task EnsureUserRoles()
+        private async Task EnsureUserRoles(Guid? AUserId)
         {
             if (FUserRoles != null)
                 return;
             
-            var LUserId = UserIdFromClaim();
+            var LUserId = AUserId ?? UserIdFromClaim();
             var LUserRoles = await FDatabaseContext.UserRoles
                 .AsNoTracking()
                 .Include(AUserRoles => AUserRoles.Role)
@@ -318,12 +318,12 @@
             }
         }
 
-        private async Task EnsureUserPermissions()
+        private async Task EnsureUserPermissions(Guid? AUserId)
         {
             if (FUserPermissions != null)
                 return;
             
-            var LUserId = UserIdFromClaim();
+            var LUserId = AUserId ?? UserIdFromClaim();
             var LUserPermissions = await FDatabaseContext.UserPermissions
                 .AsNoTracking()
                 .Include(AUserPermissions => AUserPermissions.Permission)

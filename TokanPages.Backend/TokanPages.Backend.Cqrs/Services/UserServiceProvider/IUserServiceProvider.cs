@@ -1,4 +1,6 @@
-﻿namespace TokanPages.Backend.Cqrs.Services.UserServiceProvider
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace TokanPages.Backend.Cqrs.Services.UserServiceProvider
 {
     using System;
     using System.Threading;
@@ -22,9 +24,9 @@
         
         Task<GetUserDto> GetUser();
 
-        Task<List<GetUserRoleDto>> GetUserRoles();
+        Task<List<GetUserRoleDto>> GetUserRoles(Guid? AUserId);
 
-        Task<List<GetUserPermissionDto>> GetUserPermissions();
+        Task<List<GetUserPermissionDto>> GetUserPermissions(Guid? AUserId);
 
         Task<bool?> HasRoleAssigned(string AUserRoleName);
 

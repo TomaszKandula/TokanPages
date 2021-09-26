@@ -69,6 +69,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             LCurrentUser.CryptedPassword = string.Empty;
             LCurrentUser.ResetId = LResetId;
             LCurrentUser.ResetIdEnds = LExpirationDate;
+            LCurrentUser.LastUpdated = FDateTimeService.Now;
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 
             FSmtpClientService.From = Constants.Emails.Addresses.CONTACT;

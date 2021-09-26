@@ -2,6 +2,7 @@ import { IUpdateUserData } from "../../States/Users/updateUserDataState";
 
 export const UpdateUserDataDefault: IUpdateUserData = 
 {
+    isShown: false,
     userData: 
     {
         userId: "",
@@ -10,6 +11,8 @@ export const UpdateUserDataDefault: IUpdateUserData =
         firstName: "",
         lastName: "",
         shortBio: "",
-        registered: ""
+        registered: "",
+        roles: [],
+        permissions: []
     }
 }

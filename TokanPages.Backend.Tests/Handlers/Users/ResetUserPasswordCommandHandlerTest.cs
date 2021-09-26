@@ -104,7 +104,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             LUserEntity.FirstName.Should().Be(LUser.FirstName);
             LUserEntity.LastName.Should().Be(LUser.LastName);
             LUserEntity.IsActivated.Should().BeTrue();
-            LUserEntity.LastUpdated.Should().BeNull();
+            LUserEntity.LastUpdated.Should().NotBeNull();
             LUserEntity.LastLogged.Should().BeNull();
             LUserEntity.CryptedPassword.Should().BeEmpty();
             LUserEntity.ResetId.Should().NotBeNull();

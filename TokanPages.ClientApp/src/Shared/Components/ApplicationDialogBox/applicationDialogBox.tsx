@@ -65,8 +65,7 @@ const ApplicationDialogBox = (): JSX.Element =>
         icon: dialogState.icon,
         title: dialogState.title,
         message: dialogState.message,
-        onCloseHandler: onClickHandler,
-        onButtonClickHandler: onClickHandler
+        closeHandler: onClickHandler
     }}/>);
 }
 
