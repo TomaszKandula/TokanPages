@@ -132,7 +132,7 @@ export const NO_ERRORS: string = "NO_ERRORS";
 export const ANONYMOUS_NAME: string = "Anonymous";
 export const DEFAULT_NAME: string = "Unknown";
 export const DEFAULT_AVATAR: string = "avatar-default-288.jpeg";
-export const USER_TOKEN: string = "userToken";
+export const USER_DATA: string = "userToken";
 
 /* FORMS */
 
