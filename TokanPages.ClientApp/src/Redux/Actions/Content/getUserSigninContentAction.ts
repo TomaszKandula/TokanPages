@@ -6,6 +6,7 @@ import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { GET_SIGNIN_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { TErrorActions } from "./../raiseErrorAction";
 import { IUserSigninContentDto } from "../../../Api/Models";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const REQUEST_USER_SIGNIN_CONTENT = "REQUEST_USER_SIGNIN_CONTENT";
 export const RECEIVE_USER_SIGNIN_CONTENT = "RECEIVE_USER_SIGNIN_CONTENT";
@@ -22,12 +23,12 @@ export const ActionCreators =
         
         dispatch({ type: REQUEST_USER_SIGNIN_CONTENT });
 
-        axios( 
+        axios(EnrichConfiguration(
         {
             method: "GET", 
             url: GET_SIGNIN_CONTENT,
             responseType: "json"
-        })
+        }))
         .then(response =>
         {
             if (response.status === 200)

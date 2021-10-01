@@ -5,7 +5,7 @@ import { GetErrorMessage } from "../../../Shared/helpers";
 import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { POLICY_URL, STORY_URL, TERMS_URL } from "../../../Shared/constants";
 import { RAISE_ERROR, TErrorActions } from "./../raiseErrorAction";
-import { GetData } from "../../../Api/request";
+import { ApiCall, EnrichConfiguration } from "../../../Api/Request";
 
 export const REQUEST_STORY = "REQUEST_STORY";
 export const REQUEST_TERMS = "REQUEST_TERMS";
@@ -30,7 +30,12 @@ export type TRequestContent = typeof REQUEST_STORY | typeof REQUEST_TERMS | type
 const DispatchCall = async (dispatch: (action: TKnownActions) => void, url: string, request: TRequestContent, receive: TReceiveContent) =>
 {
     dispatch({ type: request });
-    let result = await GetData(url);
+    let result = await ApiCall(EnrichConfiguration(
+    {
+        url: url,
+        method: "GET",
+        responseType: "json"
+    }));
 
     if (result.error !== null)
     {

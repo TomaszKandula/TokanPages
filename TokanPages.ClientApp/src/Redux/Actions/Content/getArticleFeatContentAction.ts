@@ -6,6 +6,7 @@ import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { GET_ARTICLE_FEAT_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { IArticleFeatContentDto } from "../../../Api/Models";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const REQUEST_ARTICE_FEATURES = "REQUEST_ARTICE_FEATURES";
 export const RECEIVE_ARTICE_FEATURES = "RECEIVE_ARTICE_FEATURES";
@@ -22,12 +23,12 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_ARTICE_FEATURES });
 
-        axios( 
+        axios(EnrichConfiguration(
         {
             method: "GET", 
             url: GET_ARTICLE_FEAT_CONTENT,
             responseType: "json"
-        })
+        }))
         .then(response =>
         {
             if (response.status === 200)

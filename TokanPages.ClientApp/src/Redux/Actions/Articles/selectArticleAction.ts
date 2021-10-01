@@ -5,6 +5,7 @@ import { API_QUERY_GET_ARTICLE, ARTICLE_URL, NULL_RESPONSE_ERROR } from "../../.
 import { TErrorActions } from "./../raiseErrorAction";
 import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { RaiseError } from "../../../Shared/helpers";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const RESET_SELECTION = "RESET_SELECTION";
 export const REQUEST_ARTICLE = "REQUEST_ARTICLE";
@@ -26,8 +27,8 @@ export const ActionCreators =
 
         const artcileDetailsUrl = API_QUERY_GET_ARTICLE.replace("{id}", id);
         const articleTextUrl = ARTICLE_URL.replace("{ID}", id);
-        const requestDetails = axios(artcileDetailsUrl, { method: "GET", responseType: "json" });
-        const requestText = axios(articleTextUrl, { method: "GET", responseType: "json" });  
+        const requestDetails = axios(artcileDetailsUrl, EnrichConfiguration({ method: "GET", responseType: "json" }));
+        const requestText = axios(articleTextUrl, EnrichConfiguration({ method: "GET", responseType: "json" }));
 
         axios.all([requestDetails, requestText]).then(axios.spread((...responses) => 
         {
