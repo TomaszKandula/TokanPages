@@ -27,7 +27,7 @@
             var LRequestOrigin = AHttpContext.Request.Headers["Origin"];
 
             const string SET_ALLOW_HEADERS = "Origin, X-Requested-With, Content-Type, Accept, Authorization";
-            const string SET_ALLOW_METHODS = "GET, POST";
+            const string SET_ALLOW_METHODS = "GET, PUT, POST, PATCH, DELETE";
             const string SET_CREDENTIALS = "true";
             const string SET_MAX_AGE = "86400";
 
