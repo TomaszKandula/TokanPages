@@ -37,7 +37,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
                 : ARequest.Language;
 
             var LComponentRequestUrl = $"{FAzureStorage.BaseUrl}/content/{ARequest.Type}s/{ARequest.Name}.json";
-            var LComponentContent = await GetData(LComponentRequestUrl, ACancellationToken);
+            var LComponentContent = await GetJsonData(LComponentRequestUrl, ACancellationToken);
             var LJsonToken = FJsonSerializer.Parse(LComponentContent);
             var LToken = LJsonToken?.SelectToken(ARequest.Name);
 
@@ -82,7 +82,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
             };
         }
 
-        private async Task<string> GetData(string AUrl, CancellationToken ACancellationToken)
+        private async Task<string> GetJsonData(string AUrl, CancellationToken ACancellationToken)
         {
             var LResponseContent = await FHttpClient.GetAsync(AUrl, ACancellationToken);
 
