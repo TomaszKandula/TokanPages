@@ -2,7 +2,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 {
     using System.Net;
     using System.Linq;
-    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
@@ -16,27 +15,28 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
     using Shared.Dto.Content.Common;
     using Services.UserServiceProvider;
     using Core.Utilities.JsonSerializer;
+    using Core.Utilities.CustomHttpClient;
 
     public class GetArticleQueryHandler : TemplateHandler<GetArticleQuery, GetArticleQueryResult>
     {
         private readonly DatabaseContext FDatabaseContext;
-        
+
         private readonly IUserServiceProvider FUserServiceProvider;
 
-        private readonly IJsonSerializer FJsonSerializer; 
-        
+        private readonly IJsonSerializer FJsonSerializer;
+
         private readonly AzureStorage FAzureStorage;
-        
-        private readonly HttpClient FHttpClient;
+
+        private readonly ICustomHttpClient FCustomHttpClient;
         
         public GetArticleQueryHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider, 
-            IJsonSerializer AJsonSerializer, AzureStorage AAzureStorage, HttpClient AHttpClient)
+            IJsonSerializer AJsonSerializer, AzureStorage AAzureStorage, ICustomHttpClient ACustomHttpClient)
         {
             FDatabaseContext = ADatabaseContext;
             FUserServiceProvider = AUserServiceProvider;
             FJsonSerializer = AJsonSerializer;
             FAzureStorage = AAzureStorage;
-            FHttpClient = AHttpClient;
+            FCustomHttpClient = ACustomHttpClient;
         }
 
         public override async Task<GetArticleQueryResult> Handle(GetArticleQuery ARequest, CancellationToken ACancellationToken)
@@ -97,12 +97,13 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 
         private async Task<string> GetJsonData(string AUrl, CancellationToken ACancellationToken)
         {
-            var LResponseContent = await FHttpClient.GetAsync(AUrl, ACancellationToken);
+            var LConfiguration = new Configuration { Url = AUrl, Method = "GET" };
+            var (LContent, LStatusCode) = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
 
-            if (LResponseContent.StatusCode != HttpStatusCode.OK)
+            if (LStatusCode != HttpStatusCode.OK)
                 throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
-                    
-            return await LResponseContent.Content.ReadAsStringAsync(ACancellationToken);
+
+            return LContent;
         }
     }
 }
