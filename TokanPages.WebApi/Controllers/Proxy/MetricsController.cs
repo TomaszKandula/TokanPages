@@ -1,24 +1,32 @@
 namespace TokanPages.WebApi.Controllers.Proxy
 {
     using System;
+    using System.Net;
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
     using Backend.Shared;
     using Backend.Shared.Models;
-    using Backend.Shared.Helpers;
     using Backend.Shared.Attributes;
-    
+    using Backend.Core.Utilities.CustomHttpClient;
+    using Backend.Core.Utilities.CustomHttpClient.Authentication;
+
     [Route("api/v1/SonarQube/[controller]")]
     [ApiController]
     [AllowAnonymous]
     public class Metrics : ControllerBase
     {
         private readonly SonarQube FSonarQube;
-        
-        public Metrics(SonarQube ASonarQube) => FSonarQube = ASonarQube;
-        
+
+        private readonly ICustomHttpClient FCustomHttpClient;
+
+        public Metrics(SonarQube ASonarQube, ICustomHttpClient ACustomHttpClient)
+        {
+            FSonarQube = ASonarQube;
+            FCustomHttpClient = ACustomHttpClient;
+        }
+
         /// <summary>
         /// Returns badge from SonarQube server for given project name and metric type.
         /// All badges have the same style.
@@ -33,7 +41,10 @@ namespace TokanPages.WebApi.Controllers.Proxy
             try
             {
                 if (string.IsNullOrEmpty(AProject) && string.IsNullOrEmpty(AMetric))
-                    return HttpClientContent.GetContentResult(400, $"Parameters '{nameof(AProject)}' and '{nameof(AMetric)}' are missing");
+                    return FCustomHttpClient.GetContentResult(
+                        (int)HttpStatusCode.BadRequest, 
+                        $"Parameters '{nameof(AProject)}' and '{nameof(AMetric)}' are missing", 
+                        Constants.ContentTypes.TEXT_PLAIN);
 
                 var LParameterList = new Dictionary<string, string>
                 {
@@ -41,21 +52,36 @@ namespace TokanPages.WebApi.Controllers.Proxy
                     { nameof(AMetric), AMetric }
                 };
                 
-                var LMissingParameterName = HttpClientContent.GetFirstEmptyParameterName(LParameterList);
-                
+                var LMissingParameterName = FCustomHttpClient.GetFirstEmptyParameterName(LParameterList);
+
                 if (!string.IsNullOrEmpty(LMissingParameterName))
-                    return HttpClientContent.GetContentResult(400, $"Parameter '{LMissingParameterName}' is missing");
+                    return FCustomHttpClient.GetContentResult(
+                        (int)HttpStatusCode.BadRequest, 
+                        $"Parameter '{LMissingParameterName}' is missing", 
+                        Constants.ContentTypes.TEXT_PLAIN);
 
                 if (!Constants.MetricNames.NameList.Contains(AMetric))
-                    return HttpClientContent.GetContentResult(400, $"Parameter '{nameof(AMetric)}' is invalid.");
+                    return FCustomHttpClient.GetContentResult(
+                        (int)HttpStatusCode.BadRequest, 
+                        $"Parameter '{nameof(AMetric)}' is invalid.", 
+                        Constants.ContentTypes.TEXT_PLAIN);
 
                 var LRequestUrl = $"{FSonarQube.Server}/api/project_badges/measure?project={AProject}&metric={AMetric}";
-                var LContent = await HttpClientContent.GetContent(LRequestUrl, FSonarQube.Token);
-                return HttpClientContent.GetContentResult(200, LContent, Constants.ContentTypes.IMAGE_SVG);
+                var LAuthentication = new BasicAuthentication { Login = FSonarQube.Token, Password = string.Empty };
+                var LConfiguration = new Configuration { Url = LRequestUrl, Method = "GET", Authentication = LAuthentication};
+                var (LContent, LStatusCode) = await FCustomHttpClient.Execute(LConfiguration);
+
+                return FCustomHttpClient.GetContentResult(
+                    (int)LStatusCode, 
+                    LContent, 
+                    Constants.ContentTypes.IMAGE_SVG);
             }
             catch (Exception LException)
             {
-                return HttpClientContent.GetContentResult(500, LException.Message);
+                return FCustomHttpClient.GetContentResult(
+                    (int)HttpStatusCode.InternalServerError, 
+                    LException.Message, 
+                    Constants.ContentTypes.TEXT_PLAIN);
             }
         }
 
@@ -71,15 +97,27 @@ namespace TokanPages.WebApi.Controllers.Proxy
             try
             {
                 if (string.IsNullOrEmpty(AProject))
-                    return HttpClientContent.GetContentResult(400, $"Parameter '{nameof(AProject)}' is missing");
-                
+                    return FCustomHttpClient.GetContentResult(
+                        (int)HttpStatusCode.BadRequest, 
+                        $"Parameter '{nameof(AProject)}' is missing", 
+                        Constants.ContentTypes.TEXT_PLAIN);
+
                 var LRequestUrl = $"{FSonarQube.Server}/api/project_badges/quality_gate?project={AProject}";
-                var LContent = await HttpClientContent.GetContent(LRequestUrl, FSonarQube.Token);
-                return HttpClientContent.GetContentResult(200, LContent, Constants.ContentTypes.IMAGE_SVG);
+                var LAuthentication = new BasicAuthentication { Login = FSonarQube.Token, Password = string.Empty };
+                var LConfiguration = new Configuration { Url = LRequestUrl, Method = "GET", Authentication = LAuthentication};
+                var (LContent, LStatusCode) = await FCustomHttpClient.Execute(LConfiguration);
+
+                return FCustomHttpClient.GetContentResult(
+                    (int)LStatusCode, 
+                    LContent, 
+                    Constants.ContentTypes.IMAGE_SVG);
             }
             catch (Exception LException)
             {
-                return HttpClientContent.GetContentResult(500, LException.Message);
+                return FCustomHttpClient.GetContentResult(
+                    (int)HttpStatusCode.InternalServerError, 
+                    LException.Message, 
+                    Constants.ContentTypes.TEXT_PLAIN);
             }
         }
     }
