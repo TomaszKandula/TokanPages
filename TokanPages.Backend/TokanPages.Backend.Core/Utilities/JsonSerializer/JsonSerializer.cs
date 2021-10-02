@@ -1,5 +1,6 @@
 namespace TokanPages.Backend.Core.Utilities.JsonSerializer
 {
+    using System.Collections.Generic;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
@@ -13,5 +14,23 @@ namespace TokanPages.Backend.Core.Utilities.JsonSerializer
 
         public JToken Parse(string AJson)
             => string.IsNullOrEmpty(AJson) ? default : JToken.Parse(AJson);
+
+        public IEnumerable<T> MapObjects<T>(JToken AComponent) where T : new()
+        {
+            return AComponent switch
+            {
+                JArray => AComponent.ToObject<IEnumerable<T>>(),
+                _ => new List<T>()
+            };
+        }
+
+        public T MapObject<T>(JToken AComponent) where T : new()
+        {
+            return AComponent switch
+            {
+                JObject => AComponent.ToObject<T>(),
+                _ => new T()
+            };
+        }
     }
 }
