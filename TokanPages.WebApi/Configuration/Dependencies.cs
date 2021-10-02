@@ -20,6 +20,7 @@
     using Backend.SmtpClient.Models;
     using Backend.Database.Initializer;
     using Backend.Identity.Authentication;
+    using Backend.Core.Utilities.JsonSerializer;
     using Backend.Cqrs.Services.CipheringService;
     using Backend.Shared.Services.TemplateService;
     using Backend.Shared.Services.DateTimeService;
@@ -93,6 +94,7 @@
             AServices.AddScoped<IUserServiceProvider, UserServiceProvider>();
             AServices.AddScoped<IDbInitializer, DbInitializer>();
             AServices.AddScoped<ICipheringService, CipheringService>();
+            AServices.AddScoped<IJsonSerializer, JsonSerializer>();
             
             AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
             {
