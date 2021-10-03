@@ -4,7 +4,6 @@ const API_VER = process.env.REACT_APP_API_VER;
 
 export const APP_FRONTEND = process.env.REACT_APP_FRONTEND;
 export const APP_BACKEND = process.env.REACT_APP_BACKEND;
-export const APP_STORAGE = process.env.REACT_APP_STORAGE;
 
 /* API | ARTICLES */
 
@@ -46,43 +45,45 @@ export const API_COMMAND_SEND_NEWSLETTER = `${APP_BACKEND}/api/v${API_VER}/maile
 
 /* COMPONENTS CONTENT */
 
-export const GET_NAVIGATION_CONTENT = `${APP_STORAGE}/content/components/navigation.json`;
-export const GET_HEADER_CONTENT = `${APP_STORAGE}/content/components/header.json`;
-export const GET_FOOTER_CONTENT = `${APP_STORAGE}/content/components/footer.json`;
-export const GET_ARTICLE_FEAT_CONTENT = `${APP_STORAGE}/content/components/articleFeat.json`;
-export const GET_CONTACT_FORM_CONTENT = `${APP_STORAGE}/content/components/contactForm.json`;
-export const GET_COOKIES_PROMPT_CONTENT = `${APP_STORAGE}/content/components/cookiesPrompt.json`;
-export const GET_FEATURED_CONTENT = `${APP_STORAGE}/content/components/featured.json`;
-export const GET_FEATURES_CONTENT = `${APP_STORAGE}/content/components/features.json`;
-export const GET_NEWSLETTER_CONTENT = `${APP_STORAGE}/content/components/newsletter.json`;
-export const GET_RESET_PASSWORD_CONTENT = `${APP_STORAGE}/content/components/resetPassword.json`;
-export const GET_UPDATE_PASSWORD_CONTENT = `${APP_STORAGE}/content/components/updatePassword.json`;
-export const GET_SIGNIN_CONTENT = `${APP_STORAGE}/content/components/userSignin.json`;
-export const GET_SIGNUP_CONTENT = `${APP_STORAGE}/content/components/userSignup.json`;
-export const GET_SIGNOUT_CONTENT = `${APP_STORAGE}/content/components/userSignout.json`;
-export const GET_TESTIMONIALS_CONTENT = `${APP_STORAGE}/content/components/testimonials.json`;
-export const GET_UNSUBSCRIBE_CONTENT = `${APP_STORAGE}/content/components/unsubscribe.json`;
-export const GET_ACTIVATE_ACCOUNT_CONTENT = `${APP_STORAGE}/content/components/activateAccount.json`;
-export const GET_UPDATE_SUBSCRIBER_CONTENT = `${APP_STORAGE}/content/components/updateSubscriber.json`;
-export const GET_WRONG_PAGE_PROMPT_CONTENT = `${APP_STORAGE}/content/components/wrongPagePrompt.json`;
+export const GET_NAVIGATION_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=navigation&AType=component`;
+export const GET_HEADER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=header&AType=component`;
+export const GET_FOOTER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=footer&AType=component`;
+export const GET_ARTICLE_FEAT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=articleFeatures&AType=component`;
+export const GET_CONTACT_FORM_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=contactForm&AType=component`;
+export const GET_COOKIES_PROMPT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=cookiesPrompt&AType=component`;
+export const GET_FEATURED_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=featured&AType=component`;
+export const GET_FEATURES_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=features&AType=component`;
+export const GET_NEWSLETTER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=newsletter&AType=component`;
+export const GET_RESET_PASSWORD_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=resetPassword&AType=component`;
+export const GET_UPDATE_PASSWORD_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=updatePassword&AType=component`;
+export const GET_SIGNIN_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=userSignin&AType=component`;
+export const GET_SIGNUP_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=userSignup&AType=component`;
+export const GET_SIGNOUT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=userSignout&AType=component`;
+export const GET_TESTIMONIALS_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=testimonials&AType=component`;
+export const GET_UNSUBSCRIBE_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=unsubscribe&AType=component`;
+export const GET_ACTIVATE_ACCOUNT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=activateAccount&AType=component`;
+export const GET_UPDATE_SUBSCRIBER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=updateSubscriber&AType=component`;
+export const GET_WRONG_PAGE_PROMPT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=wrongPagePrompt&AType=component`;
 
-/* URLS */
+/* DOCUMENTS CONTENT */
 
-export const STORY_URL = `${APP_STORAGE}/content/mystory.json`;
-export const TERMS_URL = `${APP_STORAGE}/content/terms.json`;
-export const POLICY_URL = `${APP_STORAGE}/content/policy.json`;
-export const ARTICLE_URL = `${APP_STORAGE}/content/articles/{ID}/text.json`;
-export const IMAGE_URL = `${APP_STORAGE}/content/articles/{ID}/image.jpg`;
+export const STORY_URL = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=myStory&AType=document`;
+export const TERMS_URL = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=terms&AType=document`;
+export const POLICY_URL = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=policy&AType=document`;
+
+/* OTHER URL */
+
+export const IMAGE_URL = `${APP_BACKEND}/api/v${API_VER}/articles/images/{ID}/`;
 
 /* PATHS */
 
 export const ARTICLE_PATH = `/articles/?id={ID}`;
-export const IMAGES_PATH = `${APP_STORAGE}/images/`;
-export const TESTIMONIALS_PATH = `${APP_STORAGE}/images/section_testimonials/`;
-export const ICONS_PATH = `${APP_STORAGE}/icons/`;
-export const AVATARS_PATH = `${APP_STORAGE}/content/avatars/`;
+export const IMAGES_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?ABlobName=/images/`;
+export const TESTIMONIALS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?ABlobName=/images/sections/testimonials/`;
+export const ICONS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?ABlobName=/images/icons/`;
+export const AVATARS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?ABlobName=/images/avatars/`;
 
-/* SVG ICONS */
+/* ICONS */
 
 export const MAIN_ICON = `${ICONS_PATH}main_logo.svg`;
 export const MEDIUM_ICON = `${ICONS_PATH}medium_icon.svg`;
@@ -132,7 +133,7 @@ export const NO_ERRORS: string = "NO_ERRORS";
 export const ANONYMOUS_NAME: string = "Anonymous";
 export const DEFAULT_NAME: string = "Unknown";
 export const DEFAULT_AVATAR: string = "avatar-default-288.jpeg";
-export const USER_DATA: string = "userToken";
+export const USER_DATA: string = "userData";
 
 /* FORMS */
 
