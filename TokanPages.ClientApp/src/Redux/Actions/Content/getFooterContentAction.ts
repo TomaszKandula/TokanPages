@@ -6,6 +6,7 @@ import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { GET_FOOTER_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { TErrorActions } from "./../raiseErrorAction";
 import { IFooterContentDto } from "../../../Api/Models";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const REQUEST_FOOTER_CONTENT = "REQUEST_FOOTER_CONTENT";
 export const RECEIVE_FOOTER_CONTENT = "RECEIVE_FOOTER_CONTENT";
@@ -22,12 +23,12 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_FOOTER_CONTENT });
 
-        axios( 
+        axios(EnrichConfiguration(
         {
             method: "GET", 
             url: GET_FOOTER_CONTENT,
             responseType: "json"
-        })
+        }))
         .then(response =>
         {
             if (response.status === 200)

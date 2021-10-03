@@ -3,12 +3,12 @@ import { AppThunkAction } from "../../applicationState";
 import { RAISE_ERROR, TErrorActions } from "./../raiseErrorAction";
 import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { GetErrorMessage } from "../../../Shared/helpers";
-import { SendData } from "../../../Api/request";
+import { ApiCall, EnrichConfiguration } from "../../../Api/Request";
 import { 
     API_COMMAND_UPDATE_ARTICLE_CONTENT, 
     API_COMMAND_UPDATE_ARTICLE_COUNT, 
     API_COMMAND_UPDATE_ARTICLE_LIKES, 
-    API_COMMAND_UPDATE_ARTICLE_VISIBILITY 
+    API_COMMAND_UPDATE_ARTICLE_VISIBILITY
 } from "../../../Shared/constants";
 import { 
     IUpdateArticleContentDto, 
@@ -27,7 +27,13 @@ const DispatchCall = async (dispatch: any, url: string, data: any) =>
 {
     dispatch({ type: UPDATE_ARTICLE });
 
-    let result = await SendData(url, data);
+    let result = await ApiCall(EnrichConfiguration(
+    {
+        url: url,
+        method: "POST",
+        responseType: "json",
+        data: data
+    }));
 
     if (result.error !== null)
     {
@@ -66,7 +72,7 @@ export const ActionCreators =
         {  
             id: payload.id
         });
-        },
+    },
     updateArticleLikes: (payload: IUpdateArticleLikesDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_LIKES, 

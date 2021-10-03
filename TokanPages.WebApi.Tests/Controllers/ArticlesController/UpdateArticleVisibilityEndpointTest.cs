@@ -37,10 +37,9 @@ namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
             
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Contain(ErrorCodes.ACCESS_DENIED);
@@ -70,9 +69,11 @@ namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
             
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.Forbidden);
 
             // Assert
-            await EnsureStatusCode(LResponse, HttpStatusCode.Forbidden);
+            var LResult = await LResponse.Content.ReadAsStringAsync();
+            LResult.Should().BeEmpty();
         }
     }
 }

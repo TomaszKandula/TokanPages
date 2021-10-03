@@ -22,7 +22,7 @@ interface IProperties
 const MenuView = (props: IBinding): JSX.Element =>
 {
     const classes = menuStyle();
-    const image = Validate.isEmpty(props.bind.menu?.image) ? "" : `${IMAGES_PATH}${props.bind.menu?.image}`;
+    const image = Validate.isEmpty(props.bind.menu?.image) ? "" : `${IMAGES_PATH}background/${props.bind.menu?.image}`;
     return (
         <Drawer anchor="left" open={props.bind.drawerState.open} onClose={props.bind.closeHandler}>
             <div className={classes.drawerContainer}>

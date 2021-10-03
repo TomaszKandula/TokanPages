@@ -1,7 +1,6 @@
 ﻿namespace TokanPages.WebApi.Configuration
 {
     using System;
-    using System.Net.Http;
     using System.Reflection;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Hosting;
@@ -20,7 +19,9 @@
     using Backend.SmtpClient.Models;
     using Backend.Database.Initializer;
     using Backend.Identity.Authentication;
+    using Backend.Core.Utilities.JsonSerializer;
     using Backend.Cqrs.Services.CipheringService;
+    using Backend.Core.Utilities.CustomHttpClient;
     using Backend.Shared.Services.TemplateService;
     using Backend.Shared.Services.DateTimeService;
     using Backend.Storage.AzureBlobStorage.Factory;
@@ -82,7 +83,6 @@
         {
             AServices.AddHttpContextAccessor();
 
-            AServices.AddScoped<HttpClient>();
             AServices.AddScoped<ISmtpClient, SmtpClient>();
             AServices.AddScoped<ILookupClient, LookupClient>();
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();
@@ -93,7 +93,9 @@
             AServices.AddScoped<IUserServiceProvider, UserServiceProvider>();
             AServices.AddScoped<IDbInitializer, DbInitializer>();
             AServices.AddScoped<ICipheringService, CipheringService>();
-            
+            AServices.AddScoped<IJsonSerializer, JsonSerializer>();
+            AServices.AddScoped<ICustomHttpClient, CustomHttpClient>();
+
             AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
             {
                 var LAzureStorageSettings = AProvider.GetRequiredService<AzureStorage>();

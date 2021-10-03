@@ -8,6 +8,7 @@ namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
     using Backend.Core.Extensions;
     using Backend.Shared.Dto.Articles;
     using Newtonsoft.Json;
+    using FluentAssertions;
     using Xunit;
 
     public partial class ArticlesControllerTest
@@ -32,9 +33,11 @@ namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
 
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.Unauthorized);
 
             // Assert
-            await EnsureStatusCode(LResponse, HttpStatusCode.Unauthorized);
+            var LResult = await LResponse.Content.ReadAsStringAsync();
+            LResult.Should().BeEmpty();
         }
 
         [Fact]
@@ -62,9 +65,11 @@ namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
 
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
             // Assert
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var LResult = await LResponse.Content.ReadAsStringAsync();
+            LResult.Should().NotBeNullOrEmpty();
         }
     }
 }

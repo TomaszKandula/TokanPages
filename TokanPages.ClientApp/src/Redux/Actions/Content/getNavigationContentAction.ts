@@ -6,6 +6,7 @@ import { RaiseError } from "../../../Shared/helpers";
 import { GET_NAVIGATION_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { TErrorActions } from "./../raiseErrorAction";
 import { INavigationContentDto } from "../../../Api/Models";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const REQUEST_NAVIGATION_CONTENT = "REQUEST_NAVIGATION_CONTENT";
 export const RECEIVE_NAVIGATION_CONTENT = "RECEIVE_NAVIGATION_CONTENT";
@@ -22,12 +23,12 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_NAVIGATION_CONTENT });
 
-        axios(
+        axios(EnrichConfiguration(
         {
             method: "GET",
             url: GET_NAVIGATION_CONTENT,
             responseType: "json"
-        })
+        }))
         .then(response =>
         {
             if (response.status === 200)

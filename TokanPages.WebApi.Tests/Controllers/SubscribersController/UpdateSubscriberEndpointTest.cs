@@ -4,8 +4,10 @@ namespace TokanPages.WebApi.Tests.Controllers.SubscribersController
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
+    using Backend.Shared.Resources;
     using Backend.Shared.Dto.Subscribers;
     using Newtonsoft.Json;
+    using FluentAssertions;
     using Xunit;
 
     public partial class SubscribersControllerTest
@@ -30,9 +32,12 @@ namespace TokanPages.WebApi.Tests.Controllers.SubscribersController
 
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
 
             // Assert
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
+            LContent.Should().Contain(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
         }
     }
 }

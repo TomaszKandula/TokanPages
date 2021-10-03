@@ -6,6 +6,7 @@ import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { GET_WRONG_PAGE_PROMPT_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { TErrorActions } from "./../raiseErrorAction";
 import { IWrongPagePromptContentDto } from "../../../Api/Models";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const REQUEST_WRONG_PAGE_CONTENT = "REQUEST_WRONG_PAGE_CONTENT";
 export const RECEIVE_WRONG_PAGE_CONTENT = "RECEIVE_WRONG_PAGE_CONTENT";
@@ -22,12 +23,12 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_WRONG_PAGE_CONTENT });
 
-        axios( 
+        axios(EnrichConfiguration( 
         {
             method: "GET", 
             url: GET_WRONG_PAGE_PROMPT_CONTENT,
             responseType: "json"
-        })
+        }))
         .then(response =>
         {
             if (response.status === 200)

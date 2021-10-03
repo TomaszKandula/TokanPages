@@ -6,6 +6,7 @@ import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { GET_UPDATE_PASSWORD_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { IUpdatePasswordContentDto } from "../../../Api/Models";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const REQUEST_UPDATE_PASSWORD_CONTENT = "REQUEST_UPDATE_PASSWORD_CONTENT";
 export const RECEIVE_UPDATE_PASSWORD_CONTENT = "RECEIVE_UPDATE_PASSWORD_CONTENT";
@@ -22,12 +23,12 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_UPDATE_PASSWORD_CONTENT });
 
-        axios( 
+        axios(EnrichConfiguration(
         {
             method: "GET", 
             url: GET_UPDATE_PASSWORD_CONTENT,
             responseType: "json"
-        })
+        }))
         .then(response =>
         {
             if (response.status === 200)

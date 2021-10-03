@@ -6,6 +6,7 @@ import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { GET_CONTACT_FORM_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { TErrorActions } from "./../raiseErrorAction";
 import { IContactFormContentDto } from "../../../Api/Models";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const REQUEST_CONTACT_FORM_CONTENT = "REQUEST_CONTACT_FORM_CONTENT";
 export const RECEIVE_CONTACT_FORM_CONTENT = "RECEIVE_CONTACT_FORM_CONTENT";
@@ -22,12 +23,12 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_CONTACT_FORM_CONTENT });
 
-        axios( 
+        axios(EnrichConfiguration(
         {
             method: "GET", 
             url: GET_CONTACT_FORM_CONTENT,
             responseType: "json"
-        })
+        }))
         .then(response =>
         {
             if (response.status === 200)

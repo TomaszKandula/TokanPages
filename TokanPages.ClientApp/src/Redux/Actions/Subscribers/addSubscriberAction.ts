@@ -5,6 +5,7 @@ import { API_COMMAND_ADD_SUBSCRIBER, NULL_RESPONSE_ERROR } from "../../../Shared
 import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { RaiseError } from "../../../Shared/helpers";
 import { TErrorActions } from "./../raiseErrorAction";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const ADD_SUBSCRIBER = "ADD_SUBSCRIBER";
 export const ADD_SUBSCRIBER_CLEAR = "ADD_SUBSCRIBER_CLEAR";
@@ -24,12 +25,12 @@ export const ActionCreators =
     {
         dispatch({ type: ADD_SUBSCRIBER });
 
-        axios(
+        axios(EnrichConfiguration(
         { 
             method: "POST", 
             url: API_COMMAND_ADD_SUBSCRIBER, 
             data: { email: payload.email }
-        })
+        }))
         .then(response => 
         {
             if (response.status === 200)

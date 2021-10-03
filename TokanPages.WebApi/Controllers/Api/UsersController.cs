@@ -14,7 +14,7 @@
     using MediatR;
 
     [Authorize]
-    public class UsersController : BaseController
+    public class UsersController : ApiBaseController
     {
         public UsersController(IMediator AMediator) : base(AMediator) { }
 

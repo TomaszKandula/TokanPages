@@ -6,6 +6,7 @@ import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { GET_UPDATE_SUBSCRIBER_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { TErrorActions } from "./../raiseErrorAction";
 import { IUpdateSubscriberContentDto } from "../../../Api/Models";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const REQUEST_UPDATE_SUBSCRIBER_CONTENT = "REQUEST_UPDATE_SUBSCRIBER_CONTENT";
 export const RECEIVE_UPDATE_SUBSCRIBER_CONTENT = "RECEIVE_UPDATE_SUBSCRIBER_CONTENT";
@@ -22,12 +23,12 @@ export const ActionCreators =
         
         dispatch({ type: REQUEST_UPDATE_SUBSCRIBER_CONTENT });
 
-        axios( 
+        axios(EnrichConfiguration(
         {
             method: "GET", 
             url: GET_UPDATE_SUBSCRIBER_CONTENT,
             responseType: "json"
-        })
+        }))
         .then(response =>
         {
             if (response.status === 200)

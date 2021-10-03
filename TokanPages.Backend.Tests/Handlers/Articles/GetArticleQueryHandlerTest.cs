@@ -1,12 +1,18 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using System.Net;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Net.Http.Headers;
     using System.Collections.Generic;
+    using Storage.Models;
     using Core.Exceptions;
+    using Core.Utilities.JsonSerializer;
     using Cqrs.Handlers.Queries.Articles;
+    using Core.Utilities.CustomHttpClient;
     using Cqrs.Services.UserServiceProvider;
+    using Core.Utilities.CustomHttpClient.Models;
     using FluentAssertions;
     using Xunit;
     using Moq;
@@ -76,14 +82,35 @@
             
             await LDatabaseContext.ArticleLikes.AddRangeAsync(LLikes);
             await LDatabaseContext.SaveChangesAsync();
-            
+
             var LMockedUserProvider = new Mock<IUserServiceProvider>();
+            var LMockedJsonSerializer = new Mock<IJsonSerializer>();
+            var LMockedAzureStorage = new Mock<AzureStorage>();
+            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
+
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS_FIRST);
 
+            var LMockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
+            var LMockedResults = new Results
+            {
+                StatusCode = HttpStatusCode.OK,
+                ContentType = new MediaTypeHeaderValue("text/plain"),
+                Content = LMockedPayLoad
+            };
+
+            LMockedCustomHttpClient
+                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(LMockedResults);
+
             var LGetArticleQuery = new GetArticleQuery { Id = LArticles.Id };
-            var LGetArticleQueryHandler = new GetArticleQueryHandler(LDatabaseContext, LMockedUserProvider.Object);
+            var LGetArticleQueryHandler = new GetArticleQueryHandler(
+                LDatabaseContext, 
+                LMockedUserProvider.Object, 
+                LMockedJsonSerializer.Object, 
+                LMockedAzureStorage.Object, 
+                LMockedCustomHttpClient.Object);
 
             // Act
             var LResults = await LGetArticleQueryHandler.Handle(LGetArticleQuery, CancellationToken.None);
@@ -143,11 +170,32 @@
             await LDatabaseContext.SaveChangesAsync();
 
             var LMockedUserProvider = new Mock<IUserServiceProvider>();
+            var LMockedJsonSerializer = new Mock<IJsonSerializer>();
+            var LMockedAzureStorage = new Mock<AzureStorage>();
+            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
+
             LMockedUserProvider
                 .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
                 .Returns(IP_ADDRESS_FIRST);
 
-            var LGetArticleQueryHandler = new GetArticleQueryHandler(LDatabaseContext, LMockedUserProvider.Object);
+            var LMockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
+            var LMockedResults = new Results
+            {
+                StatusCode = HttpStatusCode.OK,
+                ContentType = new MediaTypeHeaderValue("text/plain"),
+                Content = LMockedPayLoad
+            };
+
+            LMockedCustomHttpClient
+                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(LMockedResults);
+            
+            var LGetArticleQueryHandler = new GetArticleQueryHandler(
+                LDatabaseContext, 
+                LMockedUserProvider.Object, 
+                LMockedJsonSerializer.Object, 
+                LMockedAzureStorage.Object, 
+                LMockedCustomHttpClient.Object);
 
             // Act
             // Assert

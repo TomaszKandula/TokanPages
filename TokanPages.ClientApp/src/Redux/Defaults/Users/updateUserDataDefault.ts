@@ -12,6 +12,7 @@ export const UpdateUserDataDefault: IUpdateUserData =
         lastName: "",
         shortBio: "",
         registered: "",
+        userToken: "",
         roles: [],
         permissions: []
     }

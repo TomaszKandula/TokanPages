@@ -3,7 +3,6 @@ BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
 ALLOWED_ORIGINS="http://localnode:5000/;"
 APP_FRONTEND="http://localhost:3000"
 APP_BACKEND="http://localhost:5000"
-APP_STORAGE="https://maindbstorage.blob.core.windows.net/tokanpages-test"
 APP_SENTRY="https://d689c23e973449e696af516279e92ffe@o479380.ingest.sentry.io/5816109"
 SONAR_TOKEN=""
 SONAR_KEY=""
@@ -14,7 +13,6 @@ docker build . \
   --build-arg "APP_DATE_TIME=$BUILD_TIMESTAMP" \
   --build-arg "APP_FRONTEND=$APP_FRONTEND" \
   --build-arg "APP_BACKEND=$APP_BACKEND" \
-  --build-arg "APP_STORAGE=$APP_STORAGE" \
   --build-arg "APP_SENTRY=$APP_SENTRY" \
   --build-arg "ALLOWED_ORIGINS=$ALLOWED_ORIGINS" \
   --build-arg "SONAR_TOKEN=$SONAR_TOKEN" \
