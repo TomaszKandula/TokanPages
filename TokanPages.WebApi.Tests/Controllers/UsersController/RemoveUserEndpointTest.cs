@@ -32,7 +32,7 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
 
             // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
+            LContent.Should().BeEmpty();
         }
     }
 }
