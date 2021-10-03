@@ -1,10 +1,9 @@
 namespace TokanPages.Backend.Tests.Handlers.Mailer
 {
-    using System;
     using System.Net;
-    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Net.Http.Headers;
     using System.Collections.Generic;
     using SmtpClient;
     using Core.Logger;
@@ -12,8 +11,9 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
     using Storage.Models;
     using Cqrs.Handlers.Commands.Mailer;
     using Shared.Services.TemplateService;
+    using Core.Utilities.CustomHttpClient;
+    using Core.Utilities.CustomHttpClient.Models;
     using FluentAssertions;
-    using Moq.Protected;
     using MediatR;
     using Xunit;
     using Moq;
@@ -38,7 +38,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             };
 
             var LMockedLogger = new Mock<ILogger>();
-            var LMockedHttpMessageHandler = new Mock<HttpMessageHandler>();
+            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();
             var LMockedTemplateHelper = new Mock<ITemplateService>();
             var LMockedAzureStorageSettings = new Mock<AzureStorage>();
@@ -49,25 +49,21 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
                 .Returns(Task.FromResult(LSendActionResult));
 
-            LMockedHttpMessageHandler
-                .Protected()
-                .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync", 
-                    ItExpr.IsAny<HttpRequestMessage>(), 
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.OK
-                });
-
-            var LHttpClient = new HttpClient(LMockedHttpMessageHandler.Object)
+            var LMockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
+            var LMockedResults = new Results
             {
-                BaseAddress = new Uri("http://localhost:5000/")
+                StatusCode = HttpStatusCode.OK,
+                ContentType = new MediaTypeHeaderValue("text/plain"),
+                Content = LMockedPayLoad
             };
+            
+            LMockedCustomHttpClient
+                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(LMockedResults);
 
             var LSendNewsletterCommandHandler = new SendNewsletterCommandHandler(
                 LMockedLogger.Object, 
-                LHttpClient,
+                LMockedCustomHttpClient.Object,
                 LMockedSmtpClientService.Object, 
                 LMockedTemplateHelper.Object, 
                 LMockedAzureStorageSettings.Object, 

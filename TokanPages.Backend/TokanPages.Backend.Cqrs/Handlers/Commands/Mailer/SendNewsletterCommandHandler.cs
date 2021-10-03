@@ -1,6 +1,5 @@
 ﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
-    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
@@ -12,13 +11,15 @@
     using Core.Exceptions;
     using Shared.Resources;
     using Shared.Services.TemplateService;
+    using Core.Utilities.CustomHttpClient;
+    using Core.Utilities.CustomHttpClient.Models;
     using MediatR;
 
     public class SendNewsletterCommandHandler : TemplateHandler<SendNewsletterCommand, Unit>
     {
         private readonly ILogger FLogger;
 
-        private readonly HttpClient FHttpClient;
+        private readonly ICustomHttpClient FCustomHttpClient;
         
         private readonly ISmtpClientService FSmtpClientService;
         
@@ -28,11 +29,11 @@
         
         private readonly ApplicationPaths FApplicationPaths;
 
-        public SendNewsletterCommandHandler(ILogger ALogger, HttpClient AHttpClient, ISmtpClientService ASmtpClientService, 
+        public SendNewsletterCommandHandler(ILogger ALogger, ICustomHttpClient ACustomHttpClient, ISmtpClientService ASmtpClientService, 
             ITemplateService ATemplateService, AzureStorage AAzureStorage, ApplicationPaths AApplicationPaths)
         {
             FLogger = ALogger;
-            FHttpClient = AHttpClient;
+            FCustomHttpClient = ACustomHttpClient;
             FSmtpClientService = ASmtpClientService;
             FTemplateService = ATemplateService;
             FAzureStorage = AAzureStorage;
@@ -66,8 +67,9 @@
                 var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.NEWSLETTER}";
                 FLogger.LogInformation($"Getting newsletter template from URL: {LUrl}.");
                 
-                var LTemplateFromUrl = await FHttpClient.GetAsync(LUrl, ACancellationToken);
-                var LTemplate = await LTemplateFromUrl.Content.ReadAsStringAsync(ACancellationToken);
+                var LConfiguration = new Configuration { Url = LUrl, Method = "GET" };
+                var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
+                var LTemplate = System.Text.Encoding.Default.GetString(LResults.Content);
                 FSmtpClientService.HtmlBody = FTemplateService.MakeBody(LTemplate, LNewValues);
 
                 var LResult = await FSmtpClientService.Send(ACancellationToken);

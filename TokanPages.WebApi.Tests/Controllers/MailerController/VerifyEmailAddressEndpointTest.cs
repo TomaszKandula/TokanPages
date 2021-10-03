@@ -31,16 +31,15 @@ namespace TokanPages.WebApi.Tests.Controllers.MailerController
 
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
 
             var LDeserialized = JsonConvert.DeserializeObject<VerifyEmailAddressCommandResult>(LContent);
-            LDeserialized.IsFormatCorrect.Should().BeTrue();
-            LDeserialized.IsDomainCorrect.Should().BeTrue();
+            LDeserialized?.IsFormatCorrect.Should().BeTrue();
+            LDeserialized?.IsDomainCorrect.Should().BeTrue();
         }
     }
 }

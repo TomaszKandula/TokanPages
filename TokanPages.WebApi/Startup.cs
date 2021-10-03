@@ -11,6 +11,7 @@ namespace TokanPages.WebApi
     using Microsoft.AspNetCore.HttpOverrides;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.ResponseCompression;
+    using Newtonsoft.Json.Converters;
     using Middleware;
     using Configuration;
     using Serilog;
@@ -30,16 +31,16 @@ namespace TokanPages.WebApi
 
         public void ConfigureServices(IServiceCollection AServices)
         {
-            AServices.AddControllers();        
+            AServices.AddControllers().AddNewtonsoftJson(AOptions => AOptions.SerializerSettings.Converters.Add(new StringEnumConverter()));
             AServices.AddResponseCompression(AOptions => AOptions.Providers.Add<GzipCompressionProvider>());
             Dependencies.Register(AServices, FConfiguration, FEnvironment);
-            
+
             if (FEnvironment.IsDevelopment() || FEnvironment.IsStaging())
                 Swagger.SetupSwaggerOptions(AServices);
 
             if (!FEnvironment.IsProduction() && !FEnvironment.IsStaging()) 
                 return;
-                
+
             // Since this app is meant to run in Docker only
             // We get the Docker's internal network IP(s)
             var LHostName = Dns.GetHostName();

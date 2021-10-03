@@ -1,7 +1,7 @@
-import { IUserDataDto } from "../../../Api/Models";
+import { IAuthenticateUserResultDto } from "../../../Api/Models";
 
 export interface IUpdateUserData
 {
     isShown: boolean;
-    userData: IUserDataDto;
+    userData: IAuthenticateUserResultDto;
 }

@@ -1,15 +1,14 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Users
 {   
     using Moq;
-    using Moq.Protected;
     using Xunit;
     using FluentAssertions;
     using System;
     using System.Net;
     using System.Linq;
-    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Net.Http.Headers;
     using System.Collections.Generic;
     using Shared;
     using SmtpClient;
@@ -20,9 +19,11 @@
     using Domain.Entities;
     using Shared.Resources;
     using Cqrs.Handlers.Commands.Users;
+    using Core.Utilities.CustomHttpClient;
     using Cqrs.Services.CipheringService;
     using Shared.Services.DateTimeService;
     using Shared.Services.TemplateService;
+    using Core.Utilities.CustomHttpClient.Models;
 
     public class AddUserCommandHandlerTest : TestBase
     {
@@ -83,10 +84,10 @@
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();
             var LMockedLogger = new Mock<ILogger>();
             var LMockedTemplateService = new Mock<ITemplateService>();
+            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var LMockedAzureStorage = new Mock<AzureStorage>();
             var LMockedApplicationPaths = new Mock<ApplicationPaths>();
             var LMockedExpirationSettings = new Mock<ExpirationSettings>();
-            var LMockedHttpMessageHandler = new Mock<HttpMessageHandler>();
 
             const string MOCKED_PASSWORD = "MockedPassword";
             LMockedCipher
@@ -98,22 +99,18 @@
                 .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
                 .Returns(Task.FromResult(LSendActionResult));
 
-            LMockedHttpMessageHandler
-                .Protected()
-                .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync", 
-                    ItExpr.IsAny<HttpRequestMessage>(), 
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.OK
-                });
-
-            var LHttpClient = new HttpClient(LMockedHttpMessageHandler.Object)
+            var LMockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
+            var LMockedResults = new Results
             {
-                BaseAddress = new Uri("http://localhost:5000/")
+                StatusCode = HttpStatusCode.OK,
+                ContentType = new MediaTypeHeaderValue("text/plain"),
+                Content = LMockedPayLoad
             };
-            
+
+            LMockedCustomHttpClient
+                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(LMockedResults);
+
             var LAddUserCommandHandler = new AddUserCommandHandler(
                 LDatabaseContext, 
                 LMockedDateTime.Object, 
@@ -121,7 +118,7 @@
                 LMockedSmtpClientService.Object,
                 LMockedLogger.Object,
                 LMockedTemplateService.Object,
-                LHttpClient,
+                LMockedCustomHttpClient.Object,
                 LMockedAzureStorage.Object,
                 LMockedApplicationPaths.Object,
                 LMockedExpirationSettings.Object
@@ -166,7 +163,7 @@
             };
 
             var LOldActivationIdEnds = DateTimeService.Now.AddMinutes(-30);
-            var LUsers = new TokanPages.Backend.Domain.Entities.Users
+            var LUsers = new Users
             { 
                 EmailAddress = LTestEmail,
                 UserAlias = DataUtilityService.GetRandomString().ToLower(),
@@ -188,9 +185,9 @@
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();
             var LMockedLogger = new Mock<ILogger>();
             var LMockedTemplateService = new Mock<ITemplateService>();
+            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var LMockedAzureStorage = new Mock<AzureStorage>();
             var LMockedApplicationPaths = new Mock<ApplicationPaths>();
-            var LMockedHttpMessageHandler = new Mock<HttpMessageHandler>();
 
             var LExpirationSettings = new ExpirationSettings
             {
@@ -211,21 +208,17 @@
                 .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
                 .Returns(Task.FromResult(LSendActionResult));
 
-            LMockedHttpMessageHandler
-                .Protected()
-                .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync", 
-                    ItExpr.IsAny<HttpRequestMessage>(), 
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.OK
-                });
-
-            var LHttpClient = new HttpClient(LMockedHttpMessageHandler.Object)
+            var LMockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
+            var LMockedResults = new Results
             {
-                BaseAddress = new Uri("http://localhost:5000/")
+                StatusCode = HttpStatusCode.OK,
+                ContentType = new MediaTypeHeaderValue("text/plain"),
+                Content = LMockedPayLoad
             };
+            
+            LMockedCustomHttpClient
+                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(LMockedResults);
             
             var LAddUserCommandHandler = new AddUserCommandHandler(
                 LDatabaseContext, 
@@ -234,7 +227,7 @@
                 LMockedSmtpClientService.Object,
                 LMockedLogger.Object,
                 LMockedTemplateService.Object,
-                LHttpClient,
+                LMockedCustomHttpClient.Object,
                 LMockedAzureStorage.Object,
                 LMockedApplicationPaths.Object,
                 LExpirationSettings
@@ -278,7 +271,7 @@
                 LastName = DataUtilityService.GetRandomString(),
             };
 
-            var LUsers = new TokanPages.Backend.Domain.Entities.Users
+            var LUsers = new Users
             { 
                 EmailAddress = LTestEmail,
                 UserAlias = DataUtilityService.GetRandomString(),
@@ -297,10 +290,10 @@
             var LMockedSmtpClientService = new Mock<ISmtpClientService>();
             var LMockedLogger = new Mock<ILogger>();
             var LMockedTemplateService = new Mock<ITemplateService>();
+            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var LMockedAzureStorage = new Mock<AzureStorage>();
             var LMockedApplicationPaths = new Mock<ApplicationPaths>();
             var LMockedExpirationSettings = new Mock<ExpirationSettings>();
-            var LMockedHttpMessageHandler = new Mock<HttpMessageHandler>();
             
             LMockedCipher
                 .Setup(ACipher => ACipher.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
@@ -311,21 +304,17 @@
                 .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
                 .Returns(Task.FromResult(LSendActionResult));
 
-            LMockedHttpMessageHandler
-                .Protected()
-                .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync", 
-                    ItExpr.IsAny<HttpRequestMessage>(), 
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.OK
-                });
-
-            var LHttpClient = new HttpClient(LMockedHttpMessageHandler.Object)
+            var LMockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
+            var LMockedResults = new Results
             {
-                BaseAddress = new Uri("http://localhost:5000/")
+                StatusCode = HttpStatusCode.OK,
+                ContentType = new MediaTypeHeaderValue("text/plain"),
+                Content = LMockedPayLoad
             };
+            
+            LMockedCustomHttpClient
+                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(LMockedResults);
             
             var LAddUserCommandHandler = new AddUserCommandHandler(
                 LDatabaseContext, 
@@ -334,7 +323,7 @@
                 LMockedSmtpClientService.Object,
                 LMockedLogger.Object,
                 LMockedTemplateService.Object,
-                LHttpClient,
+                LMockedCustomHttpClient.Object,
                 LMockedAzureStorage.Object,
                 LMockedApplicationPaths.Object,
                 LMockedExpirationSettings.Object

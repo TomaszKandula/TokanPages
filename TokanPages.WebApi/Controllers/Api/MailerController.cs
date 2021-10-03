@@ -11,7 +11,7 @@
     using MediatR;
 
     [Authorize]
-    public class MailerController : BaseController
+    public class MailerController : ApiBaseController
     {
         public MailerController(IMediator AMediator) : base(AMediator) { }
 

@@ -6,6 +6,7 @@ import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { UPDATE_USERDATA, TKnownActions as TUpdateActions } from "./updateUserDataAction";
 import { RaiseError } from "../../../Shared/helpers";
 import { TErrorActions } from "./../raiseErrorAction";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const SIGNIN_USER = "SIGNIN_USER";
 export const SIGNIN_USER_CLEAR = "SIGNIN_USER_CLEAR";
@@ -25,7 +26,7 @@ export const ActionCreators =
     {
         dispatch({ type: SIGNIN_USER });
 
-        axios(
+        axios(EnrichConfiguration(
         { 
             method: "POST", 
             url: API_COMMAND_AUTHENTICATE, 
@@ -34,7 +35,7 @@ export const ActionCreators =
                 emailAddress: payload.emailAddress,
                 password: payload.password
             }
-        })
+        }))
         .then(response => 
         {
             if (response.status === 200)

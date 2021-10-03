@@ -12,7 +12,7 @@ import Box from "@material-ui/core/Box";
 import { green } from '@material-ui/core/colors';
 import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { FormatDateTime } from "../../../Shared/helpers";
-import { IUserDataDto } from "../../../Api/Models";
+import { IAuthenticateUserResultDto } from "../../../Api/Models";
 import UserAvatar from "../UserAvatar/userAvatar";
 
 interface IBinding
@@ -23,7 +23,7 @@ interface IBinding
 interface IProperties
 {
     state: boolean;
-    data: IUserDataDto;
+    data: IAuthenticateUserResultDto;
     closeHandler: any;
 }
 

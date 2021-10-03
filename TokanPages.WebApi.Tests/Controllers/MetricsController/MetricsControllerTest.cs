@@ -4,7 +4,7 @@ namespace TokanPages.WebApi.Tests.Controllers.MetricsController
 
     public partial class MetricsControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
-        private const string API_BASE_URL = "/api/v1/sonarqube/metrics";
+        private const string API_BASE_URL = "/api/v1/metrics";
         
         private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
 

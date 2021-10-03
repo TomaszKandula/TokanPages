@@ -1,5 +1,6 @@
 namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
 {
+    using System;
     using System.Net;
     using System.Linq;
     using System.Threading.Tasks;
@@ -20,15 +21,14 @@ namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
             var LResponse = await LHttpClient.GetAsync(LRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
 
-            var LDeserialized = JsonConvert
-                .DeserializeObject<IEnumerable<GetAllArticlesQueryResult>>(LContent)
+            var LDeserialized = (JsonConvert
+                    .DeserializeObject<IEnumerable<GetAllArticlesQueryResult>>(LContent) ?? Array.Empty<GetAllArticlesQueryResult>())
                 .ToList();
             
             LDeserialized.Should().NotBeNullOrEmpty();

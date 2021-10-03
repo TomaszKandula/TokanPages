@@ -5,6 +5,7 @@ import { API_QUERY_GET_ARTICLES, NULL_RESPONSE_ERROR } from "../../../Shared/con
 import { TErrorActions } from "./../raiseErrorAction";
 import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { RaiseError } from "../../../Shared/helpers";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const REQUEST_ARTICLES = "REQUEST_ARTICLES";
 export const RECEIVE_ARTICLES = "RECEIVE_ARTICLES";
@@ -18,12 +19,12 @@ export const ActionCreators =
     {
         dispatch({ type: REQUEST_ARTICLES });
 
-        axios( 
+        axios(EnrichConfiguration( 
         {
             method: "GET", 
             url: API_QUERY_GET_ARTICLES,
             responseType: "json"
-        })
+        }))
         .then(response =>
         {
             if (response.status === 200)

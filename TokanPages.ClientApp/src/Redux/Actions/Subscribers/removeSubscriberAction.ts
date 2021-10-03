@@ -5,6 +5,7 @@ import { API_COMMAND_REMOVE_SUBSCRIBER, NULL_RESPONSE_ERROR } from "../../../Sha
 import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { RaiseError } from "../../../Shared/helpers";
 import { TErrorActions } from "./../raiseErrorAction";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const REMOVE_SUBSCRIBER = "REMOVE_SUBSCRIBER";
 export const REMOVE_SUBSCRIBER_RESPONSE = "REMOVE_SUBSCRIBER_RESPONSE";
@@ -18,12 +19,12 @@ export const ActionCreators =
     {
         dispatch({ type: REMOVE_SUBSCRIBER });
 
-        axios(
+        axios(EnrichConfiguration(
         { 
             method: "POST", 
             url: API_COMMAND_REMOVE_SUBSCRIBER, 
             data: { id: payload.id }
-        })
+        }))
         .then(response =>
         {
             if (response.status === 200)

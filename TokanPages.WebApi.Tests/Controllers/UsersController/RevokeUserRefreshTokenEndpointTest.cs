@@ -5,6 +5,7 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
+    using FluentAssertions;
     using Newtonsoft.Json;
     using Backend.Shared.Dto.Users;
 
@@ -27,9 +28,11 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
             
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.Unauthorized);
 
             // Assert
-            await EnsureStatusCode(LResponse, HttpStatusCode.Unauthorized);
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().BeEmpty();
         }
         
         [Fact]
@@ -55,9 +58,11 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
             
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
 
             // Assert
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
         }
     }
 }

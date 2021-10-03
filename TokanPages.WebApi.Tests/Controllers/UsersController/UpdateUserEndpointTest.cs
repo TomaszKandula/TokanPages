@@ -6,6 +6,7 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
     using System.Threading.Tasks;
     using Backend.Shared.Dto.Users;
     using Newtonsoft.Json;
+    using FluentAssertions;
     using Xunit;
 
     public partial class UsersControllerTest
@@ -32,9 +33,11 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
 
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.Unauthorized);
 
             // Assert
-            await EnsureStatusCode(LResponse, HttpStatusCode.Unauthorized);
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().BeEmpty();
         }
     }
 }

@@ -9,6 +9,7 @@ namespace TokanPages.WebApi.Tests.Controllers.MailerController
     using Backend.Shared.Models;
     using Backend.Shared.Dto.Mailer;
     using Newtonsoft.Json;
+    using FluentAssertions;
     using Xunit;
 
     public partial class MailerControllerTest
@@ -43,9 +44,11 @@ namespace TokanPages.WebApi.Tests.Controllers.MailerController
 
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.Forbidden);
 
             // Assert
-            await EnsureStatusCode(LResponse, HttpStatusCode.Forbidden);
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().BeEmpty();
         }
     }
 }
