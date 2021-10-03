@@ -46,7 +46,7 @@ const DispatchCall = async (dispatch: (action: TKnownActions) => void, url: stri
 
     if (result.status === 200)
     {
-        dispatch({ type: receive, payload: result.content });
+        dispatch({ type: receive, payload: result.content.content });
         return;
     }
 
