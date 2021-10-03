@@ -73,15 +73,15 @@ export const POLICY_URL = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AN
 
 /* OTHER URL */
 
-export const IMAGE_URL = `${APP_BACKEND}/api/v${API_VER}/articles/images/{ID}/`;
+export const IMAGE_URL = `${APP_BACKEND}/api/v${API_VER}/articles/images/?AId={ID}`;
 
 /* PATHS */
 
 export const ARTICLE_PATH = `/articles/?id={ID}`;
-export const IMAGES_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?ABlobName=/images/`;
-export const TESTIMONIALS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?ABlobName=/images/sections/testimonials/`;
-export const ICONS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?ABlobName=/images/icons/`;
-export const AVATARS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?ABlobName=/images/avatars/`;
+export const IMAGES_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?ABlobName=images/`;
+export const TESTIMONIALS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?ABlobName=images/sections/testimonials/`;
+export const ICONS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?ABlobName=images/icons/`;
+export const AVATARS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?ABlobName=images/avatars/`;
 
 /* ICONS */
 
