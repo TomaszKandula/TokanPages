@@ -1,6 +1,6 @@
 #nullable enable
 
-namespace TokanPages.Backend.Core.Utilities.CustomHttpClient
+namespace TokanPages.Backend.Core.Utilities.CustomHttpClient.Models
 {
     using Authentication;
 
