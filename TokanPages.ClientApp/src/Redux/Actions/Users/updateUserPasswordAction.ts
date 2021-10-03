@@ -6,6 +6,7 @@ import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { TKnownActions as TUpdateActions } from "./updateUserDataAction";
 import { RaiseError } from "../../../Shared/helpers";
 import { TErrorActions } from "./../raiseErrorAction";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const UPDATE_USER_PASSWORD = "UPDATE_USER_PASSWORD";
 export const UPDATE_USER_PASSWORD_CLEAR = "UPDATE_USER_PASSWORD_CLEAR";
@@ -25,7 +26,7 @@ export const ActionCreators =
     {
         dispatch({ type: UPDATE_USER_PASSWORD });
 
-        axios(
+        axios(EnrichConfiguration(
         { 
             method: "POST", 
             url: API_COMMAND_UPDATE_USER_PASSWORD, 
@@ -35,7 +36,7 @@ export const ActionCreators =
                 newPassword: payload.NewPassword,
                 resetId: payload.ResetId
             }
-        })
+        }))
         .then(response => 
         {
             if (response.status === 200)

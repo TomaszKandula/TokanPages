@@ -37,10 +37,9 @@ namespace TokanPages.WebApi.Tests.Controllers.MailerController
             // Act
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Be("{}");
@@ -76,10 +75,9 @@ namespace TokanPages.WebApi.Tests.Controllers.MailerController
 
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Be("{}");

@@ -6,6 +6,7 @@ import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { TKnownActions as TUpdateActions } from "./updateUserDataAction";
 import { RaiseError } from "../../../Shared/helpers";
 import { TErrorActions } from "./../raiseErrorAction";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const RESET_USER_PASSWORD = "RESET_USER_PASSWORD";
 export const RESET_USER_PASSWORD_CLEAR = "RESET_USER_PASSWORD_CLEAR";
@@ -25,7 +26,7 @@ export const ActionCreators =
     {
         dispatch({ type: RESET_USER_PASSWORD });
 
-        axios(
+        axios(EnrichConfiguration(
         { 
             method: "POST", 
             url: API_COMMAND_RESET_USER_PASSWORD, 
@@ -33,7 +34,7 @@ export const ActionCreators =
             {  
                 emailAddress: payload.emailAddress
             }
-        })
+        }))
         .then(response => 
         {
             if (response.status === 200)

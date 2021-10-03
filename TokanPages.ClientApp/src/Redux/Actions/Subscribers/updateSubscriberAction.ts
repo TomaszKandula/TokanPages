@@ -5,6 +5,7 @@ import { API_COMMAND_UPDATE_SUBSCRIBER, NULL_RESPONSE_ERROR } from "../../../Sha
 import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { RaiseError } from "../../../Shared/helpers";
 import { TErrorActions } from "./../raiseErrorAction";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const UPDATE_SUBSCRIBER = "UPDATE_SUBSCRIBER";
 export const UPDATE_SUBSCRIBER_RESPONSE = "UPDATE_SUBSCRIBER_RESPONSE";
@@ -18,12 +19,12 @@ export const ActionCreators =
     {
         dispatch({ type: UPDATE_SUBSCRIBER });
 
-        axios(
+        axios(EnrichConfiguration(
         { 
             method: "POST", 
             url: API_COMMAND_UPDATE_SUBSCRIBER, 
             data: { email: payload.email }
-        })
+        }))
         .then(response => 
         {
             if (response.status === 200)

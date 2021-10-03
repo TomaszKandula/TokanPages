@@ -7,7 +7,7 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { RAISE_ERROR } from "../../../../Redux/Actions/raiseErrorAction";
 import { GetErrorMessage } from "../../../../Shared/helpers";
-import { GetData } from "../../../../Api/request";
+import { ApiCall } from "../../../../Api/Request";
 import renderGistStyle from "../Styles/renderGistStyle";
 import validate from "validate.js";
 
@@ -21,7 +21,11 @@ export const RenderGist = (props: ITextItem): JSX.Element =>
 
     const updateContent = React.useCallback(async () => 
     {
-        let result = await GetData(gistUrl);
+        let result = await ApiCall(
+        {
+            url: gistUrl,
+            method: "GET"
+        });
         
         if (result.status === 200 && validate.isString(result.content)) 
         {

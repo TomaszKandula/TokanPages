@@ -22,10 +22,9 @@ namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
 
             // Act
             var LResponse = await LHttpClient.GetAsync(LRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
 
@@ -42,10 +41,9 @@ namespace TokanPages.WebApi.Tests.Controllers.ArticlesController
 
             // Act
             var LResponse = await LHttpClient.GetAsync(LRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);

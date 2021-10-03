@@ -2,6 +2,7 @@ namespace TokanPages.WebApi.Tests.Controllers.SubscribersController
 {
     using System.Net;
     using System.Threading.Tasks;
+    using FluentAssertions;
     using Xunit;
 
     public partial class SubscribersControllerTest
@@ -15,9 +16,11 @@ namespace TokanPages.WebApi.Tests.Controllers.SubscribersController
 
             // Act
             var LResponse = await LHttpClient.GetAsync(LRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.Unauthorized);
 
             // Assert
-            await EnsureStatusCode(LResponse, HttpStatusCode.Unauthorized);
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().BeEmpty();
         }
     }
 }

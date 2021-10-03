@@ -33,22 +33,21 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
 
             // Assert
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             
             var LDeserialized = JsonConvert.DeserializeObject<AuthenticateUserCommandResult>(LContent);
-            LDeserialized.UserId.ToString().IsGuid().Should().BeTrue();
-            LDeserialized.FirstName.Should().Be(User1.FIRST_NAME);
-            LDeserialized.LastName.Should().Be(User1.LAST_NAME);
-            LDeserialized.AliasName.Should().Be(User1.USER_ALIAS);
-            LDeserialized.ShortBio.Should().Be(User1.SHORT_BIO);
-            LDeserialized.AvatarName.Should().Be(User1.AVATAR_NAME);
-            LDeserialized.Registered.Should().Be(User1.FRegistered);
-            LDeserialized.UserToken.Should().NotBeEmpty();
+            LDeserialized?.UserId.ToString().IsGuid().Should().BeTrue();
+            LDeserialized?.FirstName.Should().Be(User1.FIRST_NAME);
+            LDeserialized?.LastName.Should().Be(User1.LAST_NAME);
+            LDeserialized?.AliasName.Should().Be(User1.USER_ALIAS);
+            LDeserialized?.ShortBio.Should().Be(User1.SHORT_BIO);
+            LDeserialized?.AvatarName.Should().Be(User1.AVATAR_NAME);
+            LDeserialized?.Registered.Should().Be(User1.FRegistered);
+            LDeserialized?.UserToken.Should().NotBeEmpty();
         }
 
         [Fact]
@@ -70,10 +69,9 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
 
             // Assert
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Contain(ErrorCodes.INVALID_CREDENTIALS);

@@ -18,10 +18,9 @@ namespace TokanPages.WebApi.Tests.Controllers.MetricsController
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
             var LResponse = await LHttpClient.GetAsync(LRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
         }
@@ -36,10 +35,9 @@ namespace TokanPages.WebApi.Tests.Controllers.MetricsController
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
             var LResponse = await LHttpClient.GetAsync(LRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().Contain("Project has not been found");
         }
@@ -53,10 +51,9 @@ namespace TokanPages.WebApi.Tests.Controllers.MetricsController
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
             var LResponse = await LHttpClient.GetAsync(LRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
 
             // Assert
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
-            
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Be("Parameter 'AProject' is missing");

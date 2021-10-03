@@ -24,10 +24,9 @@ namespace TokanPages.WebApi.Tests.Controllers.SubscribersController
 
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.IsGuid().Should().BeTrue();

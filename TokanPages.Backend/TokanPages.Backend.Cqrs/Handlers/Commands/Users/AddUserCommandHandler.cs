@@ -11,7 +11,6 @@
     using Core.Logger;
     using Shared.Models;
     using Storage.Models;
-    using System.Net.Http;
     using Core.Exceptions;
     using Domain.Entities;
     using Shared.Resources;
@@ -19,6 +18,8 @@
     using System.Collections.Generic;
     using Shared.Services.DateTimeService;
     using Shared.Services.TemplateService;
+    using Core.Utilities.CustomHttpClient;
+    using Core.Utilities.CustomHttpClient.Models;
 
     public class AddUserCommandHandler : TemplateHandler<AddUserCommand, Guid>
     {
@@ -34,7 +35,7 @@
 
         private readonly ITemplateService FTemplateService;
 
-        private readonly HttpClient FHttpClient;
+        private readonly ICustomHttpClient FCustomHttpClient;
 
         private readonly AzureStorage FAzureStorage;
 
@@ -44,7 +45,7 @@
 
         public AddUserCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService,
             ICipheringService ACipheringService, ISmtpClientService ASmtpClientService, ILogger ALogger,
-            ITemplateService ATemplateService, HttpClient AHttpClient, AzureStorage AAzureStorage,
+            ITemplateService ATemplateService, ICustomHttpClient ACustomHttpClient, AzureStorage AAzureStorage,
             ApplicationPaths AApplicationPaths, ExpirationSettings AExpirationSettings)
         {
             FDatabaseContext = ADatabaseContext;
@@ -53,7 +54,7 @@
             FSmtpClientService = ASmtpClientService;
             FLogger = ALogger;
             FTemplateService = ATemplateService;
-            FHttpClient = AHttpClient;
+            FCustomHttpClient = ACustomHttpClient;
             FAzureStorage = AAzureStorage;
             FApplicationPaths = AApplicationPaths;
             FExpirationSettings = AExpirationSettings;
@@ -169,8 +170,10 @@
             var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.REGISTER_FORM}";
             FLogger.LogInformation($"Getting email template from URL: {LUrl}.");
 
-            var LTemplateFromUrl = await FHttpClient.GetAsync(LUrl, ACancellationToken);
-            var LTemplate = await LTemplateFromUrl.Content.ReadAsStringAsync(ACancellationToken);
+            var LConfiguration = new Configuration { Url = LUrl, Method = "GET" };
+            var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
+            var LTemplate = System.Text.Encoding.Default.GetString(LResults.Content);
+
             FSmtpClientService.HtmlBody = FTemplateService.MakeBody(LTemplate, LNewValues);
 
             var LResult = await FSmtpClientService.Send(ACancellationToken);

@@ -6,6 +6,7 @@ import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { TKnownActions as TUpdateActions } from "./updateUserDataAction";
 import { RaiseError } from "../../../Shared/helpers";
 import { TErrorActions } from "./../raiseErrorAction";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const ACTIVATE_ACCOUNT = "ACTIVATE_ACCOUNT";
 export const ACTIVATE_ACCOUNT_CLEAR = "ACTIVATE_ACCOUNT_CLEAR";
@@ -25,7 +26,7 @@ export const ActionCreators =
     {
         dispatch({ type: ACTIVATE_ACCOUNT });
 
-        axios(
+        axios(EnrichConfiguration(
         { 
             method: "POST", 
             url: API_COMMAND_ACTIVATE_USER, 
@@ -33,7 +34,7 @@ export const ActionCreators =
             {  
                 activationId: payload.activationId
             }
-        })
+        }))
         .then(response => 
         {
             if (response.status === 200)

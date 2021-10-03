@@ -13,7 +13,7 @@
     using MediatR;
 
     [Authorize]
-    public class SubscribersController : BaseController
+    public class SubscribersController : ApiBaseController
     {
         public SubscribersController(IMediator AMediator) : base(AMediator) { }
 

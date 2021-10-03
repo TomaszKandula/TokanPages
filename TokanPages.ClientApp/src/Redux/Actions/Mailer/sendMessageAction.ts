@@ -5,6 +5,7 @@ import { API_COMMAND_SEND_MESSAGE, NULL_RESPONSE_ERROR } from "../../../Shared/c
 import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { RaiseError } from "../../../Shared/helpers";
 import { TErrorActions } from "../raiseErrorAction";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const API_SEND_MESSAGE = "API_SEND_MESSAGE";
 export const API_SEND_MESSAGE_CLEAR = "API_SEND_MESSAGE_CLEAR";
@@ -24,7 +25,7 @@ export const ActionCreators =
     {
         dispatch({ type: API_SEND_MESSAGE });
 
-        axios(
+        axios(EnrichConfiguration(
         { 
             method: "POST", 
             url: API_COMMAND_SEND_MESSAGE, 
@@ -38,7 +39,7 @@ export const ActionCreators =
                 subject: payload.subject,
                 message: payload.message
             }
-        })
+        }))
         .then(response => 
         {
             if (response.status === 200)

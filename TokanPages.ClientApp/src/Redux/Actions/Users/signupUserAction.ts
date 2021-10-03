@@ -5,6 +5,7 @@ import { API_COMMAND_ADD_USER, NULL_RESPONSE_ERROR } from "../../../Shared/const
 import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { RaiseError } from "../../../Shared/helpers";
 import { TErrorActions } from "./../raiseErrorAction";
+import { EnrichConfiguration } from "../../../Api/Request";
 
 export const SIGNUP_USER = "SIGNUP_USER";
 export const SIGNUP_USER_CLEAR = "SIGNUP_USER_CLEAR";
@@ -24,7 +25,7 @@ export const ActionCreators =
     {
         dispatch({ type: SIGNUP_USER });
 
-        axios(
+        axios(EnrichConfiguration(
         { 
             method: "POST", 
             url: API_COMMAND_ADD_USER, 
@@ -36,7 +37,7 @@ export const ActionCreators =
                 emailAddress: payload.emailAddress,
                 password: payload.password
             }
-        })
+        }))
         .then(response => 
         {
             if (response.status === 200)
