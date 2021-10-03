@@ -27,15 +27,17 @@ namespace TokanPages.WebApi.Controllers.Proxy
         /// <returns>SonarQube badge</returns>
         [HttpGet]
         [ETagFilter(200)]
-        public async Task<ContentResult> GetMetrics([FromQuery] string AProject, string AMetric)
+        public async Task<IActionResult> GetMetrics([FromQuery] string AProject, string AMetric)
         {
             try
             {
                 if (string.IsNullOrEmpty(AProject) && string.IsNullOrEmpty(AMetric))
-                    return FCustomHttpClient.GetContentResult(
-                        (int)HttpStatusCode.BadRequest, 
-                        $"Parameters '{nameof(AProject)}' and '{nameof(AMetric)}' are missing", 
-                        Constants.ContentTypes.TEXT_PLAIN);
+                    return new ContentResult 
+                    {
+                        StatusCode = (int)HttpStatusCode.BadRequest, 
+                        Content = $"Parameters '{nameof(AProject)}' and '{nameof(AMetric)}' are missing", 
+                        ContentType = Constants.ContentTypes.TEXT_PLAIN
+                    };
 
                 var LParameterList = new Dictionary<string, string>
                 {
@@ -46,33 +48,44 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 var LMissingParameterName = FCustomHttpClient.GetFirstEmptyParameterName(LParameterList);
 
                 if (!string.IsNullOrEmpty(LMissingParameterName))
-                    return FCustomHttpClient.GetContentResult(
-                        (int)HttpStatusCode.BadRequest, 
-                        $"Parameter '{LMissingParameterName}' is missing", 
-                        Constants.ContentTypes.TEXT_PLAIN);
+                    return new ContentResult 
+                    {
+                        StatusCode = (int)HttpStatusCode.BadRequest, 
+                        Content = $"Parameter '{LMissingParameterName}' is missing", 
+                        ContentType = Constants.ContentTypes.TEXT_PLAIN
+                    };
 
                 if (!Constants.MetricNames.NameList.Contains(AMetric))
-                    return FCustomHttpClient.GetContentResult(
-                        (int)HttpStatusCode.BadRequest, 
-                        $"Parameter '{nameof(AMetric)}' is invalid.", 
-                        Constants.ContentTypes.TEXT_PLAIN);
+                    return new ContentResult
+                    {
+                        StatusCode = (int)HttpStatusCode.BadRequest, 
+                        Content = $"Parameter '{nameof(AMetric)}' is invalid.", 
+                        ContentType = Constants.ContentTypes.TEXT_PLAIN
+                    };
 
                 var LRequestUrl = $"{FSonarQube.Server}/api/project_badges/measure?project={AProject}&metric={AMetric}";
                 var LAuthentication = new BasicAuthentication { Login = FSonarQube.Token, Password = string.Empty };
                 var LConfiguration = new Configuration { Url = LRequestUrl, Method = "GET", Authentication = LAuthentication};
                 var LResults = await FCustomHttpClient.Execute(LConfiguration);
 
-                return FCustomHttpClient.GetContentResult(
-                    (int)LResults.StatusCode, 
-                    LResults.Content, 
-                    Constants.ContentTypes.IMAGE_SVG);
+                if (LResults.StatusCode != HttpStatusCode.OK)
+                    return new ContentResult
+                    {
+                        StatusCode = (int)LResults.StatusCode,
+                        Content = System.Text.Encoding.Default.GetString(LResults.Content),
+                        ContentType = Constants.ContentTypes.TEXT_PLAIN
+                    };
+
+                return File(LResults.Content, LResults.ContentType?.MediaType);
             }
             catch (Exception LException)
             {
-                return FCustomHttpClient.GetContentResult(
-                    (int)HttpStatusCode.InternalServerError, 
-                    LException.Message, 
-                    Constants.ContentTypes.TEXT_PLAIN);
+                return new ContentResult
+                {
+                    StatusCode = (int)HttpStatusCode.InternalServerError,
+                    Content = LException.Message,
+                    ContentType = Constants.ContentTypes.TEXT_PLAIN
+                };
             }
         }
 
@@ -83,32 +96,41 @@ namespace TokanPages.WebApi.Controllers.Proxy
         /// <returns>SonarQube badge</returns>
         [HttpGet("Quality")]
         [ETagFilter(200)]
-        public async Task<ContentResult> GetQualityGate([FromQuery] string AProject)
+        public async Task<IActionResult> GetQualityGate([FromQuery] string AProject)
         {
             try
             {
                 if (string.IsNullOrEmpty(AProject))
-                    return FCustomHttpClient.GetContentResult(
-                        (int)HttpStatusCode.BadRequest, 
-                        $"Parameter '{nameof(AProject)}' is missing", 
-                        Constants.ContentTypes.TEXT_PLAIN);
+                    return new ContentResult
+                    {
+                        StatusCode = (int)HttpStatusCode.BadRequest, 
+                        Content = $"Parameter '{nameof(AProject)}' is missing", 
+                        ContentType = Constants.ContentTypes.TEXT_PLAIN
+                    };
 
                 var LRequestUrl = $"{FSonarQube.Server}/api/project_badges/quality_gate?project={AProject}";
                 var LAuthentication = new BasicAuthentication { Login = FSonarQube.Token, Password = string.Empty };
                 var LConfiguration = new Configuration { Url = LRequestUrl, Method = "GET", Authentication = LAuthentication};
                 var LResults = await FCustomHttpClient.Execute(LConfiguration);
 
-                return FCustomHttpClient.GetContentResult(
-                    (int)LResults.StatusCode, 
-                    LResults.Content, 
-                    Constants.ContentTypes.IMAGE_SVG);
+                if (LResults.StatusCode != HttpStatusCode.OK)
+                    return new ContentResult
+                    {
+                        StatusCode = (int)LResults.StatusCode,
+                        Content = System.Text.Encoding.Default.GetString(LResults.Content),
+                        ContentType = Constants.ContentTypes.TEXT_PLAIN
+                    };
+
+                return File(LResults.Content, LResults.ContentType?.MediaType);
             }
             catch (Exception LException)
             {
-                return FCustomHttpClient.GetContentResult(
-                    (int)HttpStatusCode.InternalServerError, 
-                    LException.Message, 
-                    Constants.ContentTypes.TEXT_PLAIN);
+                return new ContentResult
+                {
+                    StatusCode = (int)HttpStatusCode.InternalServerError,
+                    Content = LException.Message,
+                    ContentType = Constants.ContentTypes.TEXT_PLAIN
+                };
             }
         }
     }

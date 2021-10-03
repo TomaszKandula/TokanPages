@@ -18,7 +18,7 @@ namespace TokanPages.WebApi.Controllers.Proxy
 
         [HttpGet]
         [ETagFilter(200)]
-        public async Task<ContentResult> GetAsset([FromQuery] string ABlobName)
+        public async Task<IActionResult> GetAsset([FromQuery] string ABlobName)
         {
             try
             {
@@ -26,17 +26,24 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 var LConfiguration = new Configuration { Url = LRequestUrl, Method = "GET"};
                 var LResults = await FCustomHttpClient.Execute(LConfiguration);
 
-                return FCustomHttpClient.GetContentResult(
-                    (int)LResults.StatusCode, 
-                    LResults.Content, 
-                    LResults.ContentType?.MediaType);
+                if (LResults.StatusCode != HttpStatusCode.OK)
+                    return new ContentResult
+                    {
+                        StatusCode = (int)LResults.StatusCode,
+                        Content = System.Text.Encoding.Default.GetString(LResults.Content),
+                        ContentType = Constants.ContentTypes.TEXT_PLAIN
+                    };
+
+                return File(LResults.Content, LResults.ContentType?.MediaType);
             }
             catch (Exception LException)
             {
-                return FCustomHttpClient.GetContentResult(
-                    (int)HttpStatusCode.InternalServerError, 
-                    LException.Message, 
-                    Constants.ContentTypes.TEXT_PLAIN);
+                return new ContentResult
+                {
+                    StatusCode = (int)HttpStatusCode.InternalServerError,
+                    Content = LException.Message,
+                    ContentType = Constants.ContentTypes.TEXT_PLAIN
+                };
             }
         }
     }

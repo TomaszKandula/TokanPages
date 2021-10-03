@@ -18,25 +18,32 @@ namespace TokanPages.WebApi.Controllers.Proxy
 
         [HttpGet("Images")]
         [ETagFilter(200)]
-        public async Task<ContentResult> GetArticleImage([FromQuery] string AId)
+        public async Task<IActionResult> GetArticleImage([FromQuery] string AId)
         {
             try
             {
-                var LRequestUrl = $"{FAzureStorage.BaseUrl}/content/articles/{AId}/image.jpeg";
+                var LRequestUrl = $"{FAzureStorage.BaseUrl}/content/articles/{AId}/image.jpg";
                 var LConfiguration = new Configuration { Url = LRequestUrl, Method = "GET"};
                 var LResults = await FCustomHttpClient.Execute(LConfiguration);
 
-                return FCustomHttpClient.GetContentResult(
-                    (int)LResults.StatusCode, 
-                    LResults.Content, 
-                    LResults.ContentType?.MediaType);
+                if (LResults.StatusCode != HttpStatusCode.OK)
+                    return new ContentResult
+                    {
+                        StatusCode = (int)LResults.StatusCode,
+                        Content = System.Text.Encoding.Default.GetString(LResults.Content),
+                        ContentType = Constants.ContentTypes.TEXT_PLAIN
+                    };
+
+                return File(LResults.Content, LResults.ContentType?.MediaType);
             }
             catch (Exception LException)
             {
-                return FCustomHttpClient.GetContentResult(
-                    (int)HttpStatusCode.InternalServerError, 
-                    LException.Message, 
-                    Constants.ContentTypes.TEXT_PLAIN);
+                return new ContentResult
+                {
+                    StatusCode = (int)HttpStatusCode.InternalServerError,
+                    Content = LException.Message,
+                    ContentType = Constants.ContentTypes.TEXT_PLAIN
+                };
             }
         }
     }
