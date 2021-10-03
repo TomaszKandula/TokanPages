@@ -1,3 +1,17 @@
+# [0.24.0](https://github.com/TomaszKandula/TokanPages/compare/v0.23.0...v0.24.0) (2021-10-03)
+
+
+### Features
+
+* add article text to 'get article' response ([56ba933](https://github.com/TomaszKandula/TokanPages/commit/56ba933eb2038aedb2eca3f00c6ad5fa96174e0b))
+* add custom http client ([7eafdc9](https://github.com/TomaszKandula/TokanPages/commit/7eafdc9e4f650b5192abc2f311deeb6fea85eccc))
+* add GetContent functionality to retrieve data from Azure Storage (supports multi-language) ([2e6c886](https://github.com/TomaszKandula/TokanPages/commit/2e6c8862981d48a3a43945fca34398461fd59a0b))
+* add JSON serializer/deserializer/token parser based on Newtonsoft implementation ([3d37f82](https://github.com/TomaszKandula/TokanPages/commit/3d37f82d5fc42a78a2d9a1812cdc457b8fca67c2))
+* add new base controller for proxy controllers ([d1ad7d7](https://github.com/TomaszKandula/TokanPages/commit/d1ad7d77ee79f44d1374bd06b7b6bfb852227d89))
+* add new methods to map object(s) from json token ([eb5f9c6](https://github.com/TomaszKandula/TokanPages/commit/eb5f9c64c5743579c365d32c5b296abbf65508eb))
+* add new proxy controller for getting article main image ([600c4b8](https://github.com/TomaszKandula/TokanPages/commit/600c4b8c7a578249d6ccba5f51c40f0b9e586f98))
+* add new proxy endpoint for getting assets from storage ([08282ae](https://github.com/TomaszKandula/TokanPages/commit/08282ae00c52fc08a5d711d782422c349d3f3770))
+
 # [0.23.0](https://github.com/TomaszKandula/TokanPages/compare/v0.22.0...v0.23.0) (2021-09-26)
 
 
