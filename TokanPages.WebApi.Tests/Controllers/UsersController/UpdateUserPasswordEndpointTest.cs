@@ -39,10 +39,9 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
             
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
         }
@@ -72,10 +71,9 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
             
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Contain(ErrorCodes.ACCESS_DENIED); 
@@ -106,10 +104,9 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
             
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Contain(ErrorCodes.USER_DOES_NOT_EXISTS); 
@@ -140,10 +137,9 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
             
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Contain(ErrorCodes.INVALID_RESET_ID); 

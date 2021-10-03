@@ -29,9 +29,11 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
 
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
+            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
             // Assert
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var LContent = await LResponse.Content.ReadAsStringAsync();
+            LContent.Should().NotBeNullOrEmpty();
         }
 
         [Fact]
@@ -51,10 +53,9 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
 
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Contain(ErrorCodes.USER_DOES_NOT_EXISTS); 

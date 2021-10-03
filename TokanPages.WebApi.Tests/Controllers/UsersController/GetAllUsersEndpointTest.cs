@@ -29,14 +29,14 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
 
             // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.OK);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
 
-            var LDeserialized = JsonConvert.DeserializeObject<IEnumerable<GetAllUsersQueryResult>>(LContent).ToList();
+            var LDeserialized = (JsonConvert.DeserializeObject<IEnumerable<GetAllUsersQueryResult>>(LContent) ?? Array.Empty<GetAllUsersQueryResult>())
+                .ToList();
             LDeserialized.Should().NotBeNullOrEmpty();
             LDeserialized.Should().HaveCountGreaterThan(0);
         }

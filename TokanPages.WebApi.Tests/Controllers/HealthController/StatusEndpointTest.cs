@@ -26,18 +26,17 @@ namespace TokanPages.WebApi.Tests.Controllers.HealthController
             // Act
             var LHttpClient = FWebAppFactory.CreateClient();
             var LResponse = await LHttpClient.GetAsync(LRequest);
-        
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.OK);
         
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             
             var LDeserialized = JsonConvert.DeserializeObject<ActionResult>(LContent);
             LDeserialized.Should().NotBeNull();
-            LDeserialized.IsSucceeded.Should().BeTrue();
-            LDeserialized.ErrorCode.Should().BeNull();
-            LDeserialized.ErrorDesc.Should().BeNull();
+            LDeserialized?.IsSucceeded.Should().BeTrue();
+            LDeserialized?.ErrorCode.Should().BeNull();
+            LDeserialized?.ErrorDesc.Should().BeNull();
         }
 
         [Fact]
@@ -57,18 +56,17 @@ namespace TokanPages.WebApi.Tests.Controllers.HealthController
             // Act
             var LHttpClient = LWebAppFactory.CreateClient();
             var LResponse = await LHttpClient.GetAsync(LRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.InternalServerError);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             
             var LDeserialized = JsonConvert.DeserializeObject<ActionResult>(LContent);
             LDeserialized.Should().NotBeNull();
-            LDeserialized.IsSucceeded.Should().BeFalse();
-            LDeserialized.ErrorCode.Should().NotBeEmpty();
-            LDeserialized.ErrorDesc.Should().NotBeEmpty();
+            LDeserialized?.IsSucceeded.Should().BeFalse();
+            LDeserialized?.ErrorCode.Should().NotBeEmpty();
+            LDeserialized?.ErrorDesc.Should().NotBeEmpty();
         }
 
         [Fact]
@@ -88,18 +86,17 @@ namespace TokanPages.WebApi.Tests.Controllers.HealthController
             // Act
             var LHttpClient = LWebAppFactory.CreateClient();
             var LResponse = await LHttpClient.GetAsync(LRequest);
-
-            // Assert
             await EnsureStatusCode(LResponse, HttpStatusCode.InternalServerError);
 
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             
             var LDeserialized = JsonConvert.DeserializeObject<ActionResult>(LContent);
             LDeserialized.Should().NotBeNull();
-            LDeserialized.IsSucceeded.Should().BeFalse();
-            LDeserialized.ErrorCode.Should().NotBeEmpty();
-            LDeserialized.ErrorDesc.Should().NotBeEmpty();
+            LDeserialized?.IsSucceeded.Should().BeFalse();
+            LDeserialized?.ErrorCode.Should().NotBeEmpty();
+            LDeserialized?.ErrorDesc.Should().NotBeEmpty();
         }
     }
 }

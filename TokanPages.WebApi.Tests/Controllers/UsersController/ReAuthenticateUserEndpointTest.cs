@@ -26,15 +26,15 @@ namespace TokanPages.WebApi.Tests.Controllers.UsersController
                 Id = Guid.NewGuid()
             };
 
-            // Act
             var LHttpClient = FWebAppFactory.CreateClient();
             LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
             LNewRequest.Headers.Add("Cookie", $"{Constants.CookieNames.REFRESH_TOKEN}={LCookieValue};");
-            
-            // Assert
+
+            // Act
             var LResponse = await LHttpClient.SendAsync(LNewRequest);
             await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
             
+            // Assert
             var LContent = await LResponse.Content.ReadAsStringAsync();
             LContent.Should().NotBeNullOrEmpty();
             LContent.Should().Contain(ErrorCodes.INVALID_REFRESH_TOKEN);            
