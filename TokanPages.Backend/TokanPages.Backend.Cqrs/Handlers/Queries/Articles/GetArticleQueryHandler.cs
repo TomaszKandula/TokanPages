@@ -101,6 +101,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
             var LConfiguration = new Configuration { Url = AUrl, Method = "GET" };
             var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
 
+            if (LResults.StatusCode == HttpStatusCode.NotFound)
+                throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+            
             if (LResults.StatusCode != HttpStatusCode.OK)
                 throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
 
