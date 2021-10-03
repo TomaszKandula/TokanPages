@@ -5,10 +5,10 @@
     
     [Route("api/v1/[controller]/[action]")]
     [ApiController]
-    public class BaseController : ControllerBase
+    public class ApiBaseController : ControllerBase
     {
         protected readonly IMediator FMediator;
 
-        public BaseController(IMediator AMediator) => FMediator = AMediator;
+        public ApiBaseController(IMediator AMediator) => FMediator = AMediator;
     }
 }

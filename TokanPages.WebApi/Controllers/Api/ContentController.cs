@@ -6,7 +6,7 @@ namespace TokanPages.WebApi.Controllers.Api
     using Backend.Cqrs.Handlers.Queries.Content;
     using MediatR;
     
-    public class ContentController : BaseController
+    public class ContentController : ApiBaseController
     {
         public ContentController(IMediator AMediator) : base(AMediator) { }
 
