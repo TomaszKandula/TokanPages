@@ -32,7 +32,6 @@ jobs:
         --build-arg "APP_DATE_TIME=$BUILD_TIMESTAMP" \
         --build-arg "APP_FRONTEND=${{ secrets.APP_FRONTEND_STAGING }}" \
         --build-arg "APP_BACKEND=${{ secrets.APP_BACKEND_STAGING }}" \
-        --build-arg "APP_STORAGE=${{ secrets.APP_STORAGE_STAGING }}" \
         --build-arg "APP_SENTRY=${{ secrets.APP_SENTRY_STAGING }}" \
         --build-arg "ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS_STAGING }}" \
         -t ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:frontend-staging-${{ github.sha }}
