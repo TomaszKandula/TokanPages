@@ -8,9 +8,9 @@ namespace TokanPages.Backend.Shared.Dto.Content.Common
     {
         public Guid Id { get; set; }
 
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
-        public string Value { get; set; }
+        public string? Value { get; set; }
 
         public string? Link { get; set; }
 
