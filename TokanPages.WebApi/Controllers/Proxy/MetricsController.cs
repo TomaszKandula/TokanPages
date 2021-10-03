@@ -5,28 +5,18 @@ namespace TokanPages.WebApi.Controllers.Proxy
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Authorization;
     using Backend.Shared;
     using Backend.Shared.Models;
+    using Backend.Storage.Models;
     using Backend.Shared.Attributes;
     using Backend.Core.Utilities.CustomHttpClient;
     using Backend.Core.Utilities.CustomHttpClient.Models;
     using Backend.Core.Utilities.CustomHttpClient.Authentication;
 
-    [Route("api/v1/SonarQube/[controller]")]
-    [ApiController]
-    [AllowAnonymous]
-    public class Metrics : ControllerBase
+    public class Metrics : ProxyBaseController
     {
-        private readonly SonarQube FSonarQube;
-
-        private readonly ICustomHttpClient FCustomHttpClient;
-
-        public Metrics(SonarQube ASonarQube, ICustomHttpClient ACustomHttpClient)
-        {
-            FSonarQube = ASonarQube;
-            FCustomHttpClient = ACustomHttpClient;
-        }
+        public Metrics(ICustomHttpClient ACustomHttpClient, SonarQube ASonarQube, AzureStorage AAzureStorage) 
+            : base(ACustomHttpClient, ASonarQube, AAzureStorage) { }
 
         /// <summary>
         /// Returns badge from SonarQube server for given project name and metric type.

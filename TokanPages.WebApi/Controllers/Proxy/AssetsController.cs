@@ -4,27 +4,17 @@ namespace TokanPages.WebApi.Controllers.Proxy
     using System.Net;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Authorization;
     using Backend.Shared;
+    using Backend.Shared.Models;
     using Backend.Storage.Models;
     using Backend.Shared.Attributes;
     using Backend.Core.Utilities.CustomHttpClient;
     using Backend.Core.Utilities.CustomHttpClient.Models;
 
-    [Route("api/v1/[controller]")]
-    [ApiController]
-    [AllowAnonymous]
-    public class AssetsController : ControllerBase
+    public class AssetsController : ProxyBaseController
     {
-        private readonly ICustomHttpClient FCustomHttpClient;
-
-        private readonly AzureStorage FAzureStorage; 
-
-        public AssetsController(ICustomHttpClient ACustomHttpClient, AzureStorage AAzureStorage)
-        {
-            FCustomHttpClient = ACustomHttpClient;
-            FAzureStorage = AAzureStorage;
-        }
+        public AssetsController(ICustomHttpClient ACustomHttpClient, SonarQube ASonarQube, AzureStorage AAzureStorage) 
+            : base(ACustomHttpClient, ASonarQube, AAzureStorage) { }
 
         [HttpGet]
         [ETagFilter(200)]
