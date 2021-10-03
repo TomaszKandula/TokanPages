@@ -7,7 +7,6 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-    using Microsoft.AspNetCore.Mvc;
     using Authentication;
     using Models;
 
@@ -39,23 +38,13 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient
 
             var LResponse = await LHttpClient.SendAsync(LRequest, ACancellationToken);
             var LContentType = LResponse.Content.Headers.ContentType;
-            var LContent = await LResponse.Content.ReadAsStringAsync(ACancellationToken);
+            var LContent = await LResponse.Content.ReadAsByteArrayAsync(ACancellationToken);
 
             return new Results
             {
                 StatusCode = LResponse.StatusCode,
                 ContentType = LContentType,
                 Content = LContent
-            };
-        }
-
-        public ContentResult GetContentResult(int? AStatusCode, string AContent, string AContentType)
-        {
-            return new ContentResult
-            {
-                StatusCode = AStatusCode,
-                ContentType = AContentType,
-                Content = AContent
             };
         }
 

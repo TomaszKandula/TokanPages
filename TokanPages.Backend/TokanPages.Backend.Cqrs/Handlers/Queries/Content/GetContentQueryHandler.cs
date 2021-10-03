@@ -90,7 +90,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
             if (LResults.StatusCode != HttpStatusCode.OK)
                 throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
 
-            return LResults.Content;
+            return System.Text.Encoding.Default.GetString(LResults.Content);
         }
     }
 }
