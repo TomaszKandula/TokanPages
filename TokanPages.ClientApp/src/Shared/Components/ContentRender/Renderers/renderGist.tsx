@@ -24,8 +24,7 @@ export const RenderGist = (props: ITextItem): JSX.Element =>
         let result = await ApiCall(
         {
             url: gistUrl,
-            method: "GET",
-            responseType: "json"
+            method: "GET"
         });
         
         if (result.status === 200 && validate.isString(result.content)) 
