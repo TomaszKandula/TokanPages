@@ -16,6 +16,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
     using Services.UserServiceProvider;
     using Core.Utilities.JsonSerializer;
     using Core.Utilities.CustomHttpClient;
+    using Core.Utilities.CustomHttpClient.Models;
 
     public class GetArticleQueryHandler : TemplateHandler<GetArticleQuery, GetArticleQueryResult>
     {
@@ -98,12 +99,12 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
         private async Task<string> GetJsonData(string AUrl, CancellationToken ACancellationToken)
         {
             var LConfiguration = new Configuration { Url = AUrl, Method = "GET" };
-            var (LContent, LStatusCode) = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
+            var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
 
-            if (LStatusCode != HttpStatusCode.OK)
+            if (LResults.StatusCode != HttpStatusCode.OK)
                 throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
 
-            return LContent;
+            return LResults.Content;
         }
     }
 }

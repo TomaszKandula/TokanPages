@@ -1,7 +1,6 @@
 namespace TokanPages.Backend.Core.Utilities.CustomHttpClient
 {
     using System;
-    using System.Net;
     using System.Linq;
     using System.Text;
     using System.Net.Http;
@@ -10,6 +9,7 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc;
     using Authentication;
+    using Models;
 
     public class CustomHttpClient : ICustomHttpClient
     {
@@ -19,7 +19,7 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient
 
         private const string BEARER = "Bearer";
 
-        public async Task<(string, HttpStatusCode)> Execute(Configuration AConfiguration, CancellationToken ACancellationToken = default)
+        public async Task<Results> Execute(Configuration AConfiguration, CancellationToken ACancellationToken = default)
         {
             using var LHttpClient = new HttpClient();
             using var LRequest = new HttpRequestMessage(new HttpMethod(AConfiguration.Method), AConfiguration.Url);
@@ -38,9 +38,15 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient
             }
 
             var LResponse = await LHttpClient.SendAsync(LRequest, ACancellationToken);
+            var LContentType = LResponse.Content.Headers.ContentType;
             var LContent = await LResponse.Content.ReadAsStringAsync(ACancellationToken);
 
-            return (LContent, LResponse.StatusCode);
+            return new Results
+            {
+                StatusCode = LResponse.StatusCode,
+                ContentType = LContentType,
+                Content = LContent
+            };
         }
 
         public ContentResult GetContentResult(int? AStatusCode, string AContent, string AContentType)

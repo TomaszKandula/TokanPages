@@ -10,6 +10,7 @@ namespace TokanPages.WebApi.Controllers.Proxy
     using Backend.Shared.Models;
     using Backend.Shared.Attributes;
     using Backend.Core.Utilities.CustomHttpClient;
+    using Backend.Core.Utilities.CustomHttpClient.Models;
     using Backend.Core.Utilities.CustomHttpClient.Authentication;
 
     [Route("api/v1/SonarQube/[controller]")]
@@ -69,11 +70,11 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 var LRequestUrl = $"{FSonarQube.Server}/api/project_badges/measure?project={AProject}&metric={AMetric}";
                 var LAuthentication = new BasicAuthentication { Login = FSonarQube.Token, Password = string.Empty };
                 var LConfiguration = new Configuration { Url = LRequestUrl, Method = "GET", Authentication = LAuthentication};
-                var (LContent, LStatusCode) = await FCustomHttpClient.Execute(LConfiguration);
+                var LResults = await FCustomHttpClient.Execute(LConfiguration);
 
                 return FCustomHttpClient.GetContentResult(
-                    (int)LStatusCode, 
-                    LContent, 
+                    (int)LResults.StatusCode, 
+                    LResults.Content, 
                     Constants.ContentTypes.IMAGE_SVG);
             }
             catch (Exception LException)
@@ -105,11 +106,11 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 var LRequestUrl = $"{FSonarQube.Server}/api/project_badges/quality_gate?project={AProject}";
                 var LAuthentication = new BasicAuthentication { Login = FSonarQube.Token, Password = string.Empty };
                 var LConfiguration = new Configuration { Url = LRequestUrl, Method = "GET", Authentication = LAuthentication};
-                var (LContent, LStatusCode) = await FCustomHttpClient.Execute(LConfiguration);
+                var LResults = await FCustomHttpClient.Execute(LConfiguration);
 
                 return FCustomHttpClient.GetContentResult(
-                    (int)LStatusCode, 
-                    LContent, 
+                    (int)LResults.StatusCode, 
+                    LResults.Content, 
                     Constants.ContentTypes.IMAGE_SVG);
             }
             catch (Exception LException)
