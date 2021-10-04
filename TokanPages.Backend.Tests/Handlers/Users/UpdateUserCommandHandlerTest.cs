@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using Core.Exceptions;
     using Cqrs.Handlers.Commands.Users;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     using FluentAssertions;
     using Xunit;
     using Moq;

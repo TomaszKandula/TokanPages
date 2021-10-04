@@ -7,7 +7,7 @@
     using Database;
     using Core.Exceptions;
     using Shared.Resources;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     using MediatR;
 
     public class UpdateUserCommandHandler : TemplateHandler<UpdateUserCommand, Unit>

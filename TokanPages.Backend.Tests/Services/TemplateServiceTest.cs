@@ -1,7 +1,7 @@
 namespace TokanPages.Backend.Tests.Services
 {
     using System.Collections.Generic;
-    using Shared.Services.TemplateService;
+    using Core.Utilities.TemplateService;
     using FluentAssertions;
     using Xunit;
 

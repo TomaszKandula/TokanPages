@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Shared.Services.TemplateService
+﻿namespace TokanPages.Backend.Core.Utilities.TemplateService
 {
     using System.Collections.Generic;
 

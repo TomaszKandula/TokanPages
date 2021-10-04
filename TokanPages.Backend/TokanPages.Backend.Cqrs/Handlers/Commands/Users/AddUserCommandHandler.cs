@@ -16,8 +16,8 @@
     using Shared.Resources;
     using Services.CipheringService;
     using System.Collections.Generic;
-    using Shared.Services.DateTimeService;
-    using Shared.Services.TemplateService;
+    using Core.Utilities.DateTimeService;
+    using Core.Utilities.TemplateService;
     using Core.Utilities.CustomHttpClient;
     using Core.Utilities.CustomHttpClient.Models;
 

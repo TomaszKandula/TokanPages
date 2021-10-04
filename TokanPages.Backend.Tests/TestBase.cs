@@ -2,8 +2,8 @@
 {
     using Microsoft.Extensions.DependencyInjection;
     using Database;
-    using Shared.Services.DateTimeService;
-    using Shared.Services.DataUtilityService;
+    using Core.Utilities.DateTimeService;
+    using Core.Utilities.DataUtilityService;
     using Identity.Services.JwtUtilityService;
 
     public class TestBase

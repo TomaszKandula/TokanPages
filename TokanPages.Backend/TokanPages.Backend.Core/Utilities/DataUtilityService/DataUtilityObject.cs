@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Shared.Services.DataUtilityService
+namespace TokanPages.Backend.Core.Utilities.DataUtilityService
 {
     using System;
     using System.IO;

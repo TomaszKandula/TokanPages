@@ -10,8 +10,8 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
     using Shared.Models;
     using Storage.Models;
     using Cqrs.Handlers.Commands.Mailer;
-    using Shared.Services.TemplateService;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
+    using Core.Utilities.TemplateService;
     using Core.Utilities.CustomHttpClient;
     using Core.Utilities.CustomHttpClient.Models;
     using FluentAssertions;

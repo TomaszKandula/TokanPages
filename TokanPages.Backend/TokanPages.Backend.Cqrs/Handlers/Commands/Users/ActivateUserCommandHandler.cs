@@ -8,7 +8,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Core.Logger;
     using Core.Exceptions;
     using Shared.Resources;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     
     public class ActivateUserCommandHandler : TemplateHandler<ActivateUserCommand, Unit>
     {

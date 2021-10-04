@@ -6,9 +6,9 @@ namespace TokanPages.WebApi.Tests
     using System.Threading.Tasks;
     using System.Security.Claims;
     using Backend.Identity.Authorization;
+    using Backend.Core.Utilities.DateTimeService;
     using Backend.Database.Initializer.Data.Users;
-    using Backend.Shared.Services.DateTimeService;
-    using Backend.Shared.Services.DataUtilityService;
+    using Backend.Core.Utilities.DataUtilityService;
     using Backend.Identity.Services.JwtUtilityService;
 
     public class TestBase

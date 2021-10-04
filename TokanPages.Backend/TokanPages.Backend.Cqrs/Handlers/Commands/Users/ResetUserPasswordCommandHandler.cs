@@ -14,8 +14,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Storage.Models;
     using Core.Exceptions;
     using Shared.Resources;
-    using Shared.Services.TemplateService;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
+    using Core.Utilities.TemplateService;
     using Core.Utilities.CustomHttpClient;
     using Core.Utilities.CustomHttpClient.Models;
     using MediatR;

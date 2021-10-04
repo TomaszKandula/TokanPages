@@ -11,7 +11,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using Shared.Resources;
     using Cqrs.Handlers.Commands.Users;
     using Cqrs.Services.CipheringService;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     using Cqrs.Services.UserServiceProvider;
     using Identity.Services.JwtUtilityService;
     using FluentAssertions;

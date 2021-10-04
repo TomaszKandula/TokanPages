@@ -21,8 +21,8 @@
     using Cqrs.Handlers.Commands.Users;
     using Core.Utilities.CustomHttpClient;
     using Cqrs.Services.CipheringService;
-    using Shared.Services.DateTimeService;
-    using Shared.Services.TemplateService;
+    using Core.Utilities.DateTimeService;
+    using Core.Utilities.TemplateService;
     using Core.Utilities.CustomHttpClient.Models;
 
     public class AddUserCommandHandlerTest : TestBase

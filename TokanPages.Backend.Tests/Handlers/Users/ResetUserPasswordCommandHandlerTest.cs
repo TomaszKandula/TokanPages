@@ -7,14 +7,14 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using System.Threading;
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
-    using Shared.Services.TemplateService;
-    using Shared.Services.DateTimeService;
-    using Cqrs.Handlers.Commands.Users;
     using SmtpClient;
     using Core.Logger;
     using Shared.Models;
     using Storage.Models;
     using Core.Exceptions;
+    using Cqrs.Handlers.Commands.Users;
+    using Core.Utilities.DateTimeService;
+    using Core.Utilities.TemplateService;
     using Core.Utilities.CustomHttpClient;
     using Core.Utilities.CustomHttpClient.Models;
 
