@@ -93,9 +93,7 @@ TokanPages is the repository that holds my web page to share my programming inte
 1. Semantic-Release.
 1. NGINX.
 
-The client app uses functional approach and React Hooks. 
-
-Tests are provided using JEST, but there is no full coverage yet.
+The client app uses React Hooks. Tests are provided using JEST, but there is no full coverage yet.
 
 Project is dockerized and deployed via GitHub Actions to Azure App Service (main domain) that uses Container Registry. Web Server of choice is NGINX.
 
@@ -483,7 +481,6 @@ BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
 ALLOWED_ORIGINS="http://localnode:5000/;"
 APP_FRONTEND="http://localhost:3000"
 APP_BACKEND="http://localhost:5000"
-APP_STORAGE="https://maindbstorage.blob.core.windows.net/tokanpages"
 APP_SENTRY="<dsn>"
 SONAR_TOKEN="<token>"
 SONAR_KEY="<key>"
@@ -494,7 +491,6 @@ docker build . \
   --build-arg "APP_DATE_TIME=$BUILD_TIMESTAMP" \
   --build-arg "APP_FRONTEND=$APP_FRONTEND" \
   --build-arg "APP_BACKEND=$APP_BACKEND" \
-  --build-arg "APP_STORAGE=$APP_STORAGE" \
   --build-arg "APP_SENTRY=$APP_SENTRY" \
   --build-arg "ALLOWED_ORIGINS=$ALLOWED_ORIGINS" \
   --build-arg "SONAR_TOKEN=$SONAR_TOKEN" \
@@ -526,7 +522,6 @@ ARG APP_VERSION
 ARG APP_DATE_TIME
 ARG APP_FRONTEND
 ARG APP_BACKEND
-ARG APP_STORAGE
 ARG APP_SENTRY
 ARG SONAR_TOKEN
 ARG SONAR_KEY
@@ -536,7 +531,6 @@ ENV REACT_APP_VERSION_NUMBER=${APP_VERSION}
 ENV REACT_APP_VERSION_DATE_TIME=${APP_DATE_TIME}
 ENV REACT_APP_FRONTEND=${APP_FRONTEND}
 ENV REACT_APP_BACKEND=${APP_BACKEND}
-ENV REACT_APP_STORAGE=${APP_STORAGE}
 ENV REACT_APP_SENTRY=${APP_SENTRY}
 
 RUN if [ !-z $SONAR_TOKEN ] || [ !-z $SONAR_KEY ] || [ !-z $SONAR_HOST ]; \
