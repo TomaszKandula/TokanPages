@@ -161,10 +161,10 @@
 
             var LActivationLink = $"{FApplicationPaths.DeploymentOrigin}{FApplicationPaths.ActivationPath}{AActivationId}";
 
-            var LNewValues = new List<TemplateItem>
+            var LNewValues = new Dictionary<string, string>
             {
-                new() { Tag = "{ACTIVATION_LINK}", Value = LActivationLink },
-                new() { Tag = "{EXPIRATION}", Value = $"{AActivationIdEnds}" }
+                { "{ACTIVATION_LINK}", LActivationLink },
+                { "{EXPIRATION}", $"{AActivationIdEnds}" }
             };
 
             var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.REGISTER_FORM}";

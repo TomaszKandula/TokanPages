@@ -85,10 +85,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
             var LResetLink = $"{FApplicationPaths.DeploymentOrigin}{FApplicationPaths.UpdatePasswordPath}{AResetId}";
             
-            var LNewValues = new List<TemplateItem>
+            var LNewValues = new Dictionary<string, string>
             {
-                new () { Tag = "{RESET_LINK}", Value = LResetLink },
-                new () { Tag = "{EXPIRATION}", Value = $"{AExpirationDate}" }
+                { "{RESET_LINK}", LResetLink },
+                { "{EXPIRATION}", $"{AExpirationDate}" }
             };
 
             var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.RESET_PASSWORD}";

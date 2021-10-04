@@ -57,11 +57,11 @@
 
                 var LUpdateSubscriberLink = LUpdateSubscriberBaseLink + LSubscriber.Id;
                 var LUnsubscribeLink = LUnsubscribeBaseLink + LSubscriber.Id;
-                var LNewValues = new List<TemplateItem>
+                var LNewValues = new Dictionary<string, string>
                 {
-                    new () { Tag = "{CONTENT}", Value = ARequest.Message },
-                    new () { Tag = "{UPDATE_EMAIL_LINK}", Value = LUpdateSubscriberLink },
-                    new () { Tag = "{UNSUBSCRIBE_LINK}", Value = LUnsubscribeLink }
+                    { "{CONTENT}", ARequest.Message },
+                    { "{UPDATE_EMAIL_LINK}", LUpdateSubscriberLink },
+                    { "{UNSUBSCRIBE_LINK}", LUnsubscribeLink }
                 };
 
                 var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.NEWSLETTER}";
