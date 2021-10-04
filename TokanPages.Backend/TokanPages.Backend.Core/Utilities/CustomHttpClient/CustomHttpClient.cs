@@ -23,6 +23,9 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient
             using var LHttpClient = new HttpClient();
             using var LRequest = new HttpRequestMessage(new HttpMethod(AConfiguration.Method), AConfiguration.Url);
 
+            if (AConfiguration.StringContent != null)
+                LRequest.Content = AConfiguration.StringContent;
+            
             switch (AConfiguration.Authentication)
             {
                 case BasicAuthentication LBasicAuthentication:

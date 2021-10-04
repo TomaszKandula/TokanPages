@@ -2,6 +2,7 @@
 
 namespace TokanPages.Backend.Core.Utilities.CustomHttpClient.Models
 {
+    using System.Net.Http;
     using Authentication;
 
     public struct Configuration
@@ -10,6 +11,8 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient.Models
 
         public string Method { get; set; }
 
-        public IAuthentication? Authentication { get; set; }            
+        public IAuthentication? Authentication { get; set; }
+
+        public StringContent? StringContent { get; set; } 
     }
 }
