@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Shared.Helpers
+﻿namespace TokanPages.WebApi.Configuration
 {
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Http;

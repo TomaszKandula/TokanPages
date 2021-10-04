@@ -7,9 +7,9 @@ namespace TokanPages.WebApi.Middleware
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Http;
     using Backend.Core.Models;
-    using Backend.Shared.Helpers;
     using Backend.Core.Exceptions;
     using Backend.Shared.Resources;
+    using Configuration;
     
     [ExcludeFromCodeCoverage]
     public class CustomException

@@ -10,7 +10,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using Core.Exceptions;
     using Shared.Resources;
     using Cqrs.Handlers.Commands.Users;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     using Cqrs.Services.UserServiceProvider;
     using FluentAssertions;
     using Xunit;

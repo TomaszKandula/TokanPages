@@ -5,7 +5,7 @@
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Http;
     using Backend.Shared.Models;
-    using Backend.Shared.Helpers;
+    using Configuration;
     
     [ExcludeFromCodeCoverage]
     public class CustomCors

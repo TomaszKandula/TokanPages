@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Shared.Services.DateTimeService
+namespace TokanPages.Backend.Core.Utilities.DateTimeService
 {
     using System;
 

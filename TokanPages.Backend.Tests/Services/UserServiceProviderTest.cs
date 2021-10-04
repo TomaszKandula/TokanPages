@@ -13,7 +13,7 @@ namespace TokanPages.Backend.Tests.Services
     using Domain.Entities;
     using Core.Exceptions;
     using Shared.Resources;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     using Cqrs.Services.UserServiceProvider;
     using Identity.Services.JwtUtilityService;
     using Roles = Identity.Authorization.Roles;

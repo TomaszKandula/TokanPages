@@ -5,8 +5,8 @@
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    using Core.Utilities.DataUtilityService;
     using Cqrs.Handlers.Queries.Articles;
-    using Shared.Services.DataUtilityService;
     using FluentAssertions;
     using Xunit;
 

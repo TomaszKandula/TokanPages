@@ -11,7 +11,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Shared.Resources;
     using Services.CipheringService;
     using Services.UserServiceProvider;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     using Identity.Services.JwtUtilityService;
 
     public class AuthenticateUserCommandHandler : TemplateHandler<AuthenticateUserCommand, AuthenticateUserCommandResult>

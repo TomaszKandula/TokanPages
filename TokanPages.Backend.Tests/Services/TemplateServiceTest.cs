@@ -1,8 +1,7 @@
 namespace TokanPages.Backend.Tests.Services
 {
     using System.Collections.Generic;
-    using Shared.Models;
-    using Shared.Services.TemplateService;
+    using Core.Utilities.TemplateService;
     using FluentAssertions;
     using Xunit;
 
@@ -14,18 +13,10 @@ namespace TokanPages.Backend.Tests.Services
             // Arrange
             const string BODY_TEMPLATE = "This is {VALUE1} test for {VALUE2}.";
             const string EXPECTED_CONTENT = "This is unit test for MakeBody method.";
-            var LItems = new List<TemplateItem>
+            var LItems = new Dictionary<string, string>
             {
-                new ()
-                {
-                    Tag = "{VALUE1}",
-                    Value = "unit"
-                },
-                new ()
-                {
-                    Tag = "{VALUE2}",
-                    Value = "MakeBody method"
-                }
+                { "{VALUE1}", "unit" },
+                { "{VALUE2}", "MakeBody method" }
             };
 
             var LTemplateHelper = new TemplateService();
@@ -44,18 +35,10 @@ namespace TokanPages.Backend.Tests.Services
         public void GivenEmptyBodyTemplateAndItems_WhenInvokeMakeBody_ShouldReturnNull(string ABodyTemplate)
         {
             // Arrange
-            var LItems = new List<TemplateItem>
+            var LItems = new Dictionary<string, string>
             {
-                new ()
-                {
-                    Tag = "{VALUE1}",
-                    Value = "unit"
-                },
-                new ()
-                {
-                    Tag = "{VALUE2}",
-                    Value = "MakeBody method"
-                }
+                { "{VALUE1}", "unit" },
+                { "{VALUE2}", "MakeBody method" }
             };
 
             var LTemplateHelper = new TemplateService();
@@ -70,7 +53,7 @@ namespace TokanPages.Backend.Tests.Services
         [Theory]
         [InlineData(null)]
         [MemberData(nameof(InputTestObject))]
-        public void GivenBodyTemplateAndEmptyItems_WhenInvokeMakeBody_ShouldReturnNull(List<TemplateItem> AItems)
+        public void GivenBodyTemplateAndEmptyItems_WhenInvokeMakeBody_ShouldReturnNull(Dictionary<string, string> AItems)
         {
             // Arrange
             const string BODY_TEMPLATE = "This is {VALUE1} test for {VALUE2}.";
@@ -87,7 +70,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             return new List<object[]>
             {
-                new object[] { new List<TemplateItem>() }  
+                new object[] { new Dictionary<string, string>() }  
             };
         }
     }

@@ -20,13 +20,13 @@
     using Backend.Database.Initializer;
     using Backend.Identity.Authentication;
     using Backend.Core.Utilities.JsonSerializer;
+    using Backend.Core.Utilities.DateTimeService;
+    using Backend.Core.Utilities.TemplateService;
     using Backend.Cqrs.Services.CipheringService;
     using Backend.Core.Utilities.CustomHttpClient;
-    using Backend.Shared.Services.TemplateService;
-    using Backend.Shared.Services.DateTimeService;
     using Backend.Storage.AzureBlobStorage.Factory;
+    using Backend.Core.Utilities.DataUtilityService;
     using Backend.Cqrs.Services.UserServiceProvider;
-    using Backend.Shared.Services.DataUtilityService;
     using Backend.Identity.Services.JwtUtilityService;
     using FluentValidation;
     using MailKit.Net.Smtp;

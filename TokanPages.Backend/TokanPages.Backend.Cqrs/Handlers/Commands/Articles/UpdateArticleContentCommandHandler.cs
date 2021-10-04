@@ -8,7 +8,7 @@
     using Core.Exceptions;
     using Shared.Resources;
     using Services.UserServiceProvider;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     using Storage.AzureBlobStorage.Factory;
     using MediatR;
 

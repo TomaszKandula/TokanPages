@@ -10,7 +10,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Core.Exceptions;
     using Shared.Resources;
     using Services.UserServiceProvider;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
 
     public class ReAuthenticateUserCommandHandler : TemplateHandler<ReAuthenticateUserCommand, ReAuthenticateUserCommandResult>
     {

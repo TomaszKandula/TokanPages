@@ -7,11 +7,11 @@
     using Core.Extensions;
     using Shared.Resources;
     using Storage.AzureBlobStorage;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     using Cqrs.Handlers.Commands.Articles;
     using Storage.AzureBlobStorage.Factory;
     using Cqrs.Services.UserServiceProvider;
-    using Shared.Services.DataUtilityService;
+    using Core.Utilities.DataUtilityService;
     using FluentAssertions;
     using Xunit;
     using Moq;

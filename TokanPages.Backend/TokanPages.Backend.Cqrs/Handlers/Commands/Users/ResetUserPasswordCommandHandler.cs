@@ -14,8 +14,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Storage.Models;
     using Core.Exceptions;
     using Shared.Resources;
-    using Shared.Services.TemplateService;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
+    using Core.Utilities.TemplateService;
     using Core.Utilities.CustomHttpClient;
     using Core.Utilities.CustomHttpClient.Models;
     using MediatR;
@@ -85,10 +85,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
             var LResetLink = $"{FApplicationPaths.DeploymentOrigin}{FApplicationPaths.UpdatePasswordPath}{AResetId}";
             
-            var LNewValues = new List<TemplateItem>
+            var LNewValues = new Dictionary<string, string>
             {
-                new () { Tag = "{RESET_LINK}", Value = LResetLink },
-                new () { Tag = "{EXPIRATION}", Value = $"{AExpirationDate}" }
+                { "{RESET_LINK}", LResetLink },
+                { "{EXPIRATION}", $"{AExpirationDate}" }
             };
 
             var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.RESET_PASSWORD}";
