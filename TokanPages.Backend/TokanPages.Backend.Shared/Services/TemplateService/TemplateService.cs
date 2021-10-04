@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using System.Collections.Generic;
-    using Models;
 
     public sealed class TemplateService : ITemplateService
     {
@@ -12,7 +11,7 @@
         /// <param name="ATemplate">String with tags to be replaced by given values.</param>
         /// <param name="AItems">Collection of tags and values for replacement.</param>
         /// <returns>String with replaced tags by given values.</returns>
-        public string MakeBody(string ATemplate, IEnumerable<TemplateItem> AItems)
+        public string MakeBody(string ATemplate, IDictionary<string, string> AItems)
         {
             if (string.IsNullOrEmpty(ATemplate) || string.IsNullOrWhiteSpace(ATemplate))
                 return null;
@@ -25,7 +24,7 @@
                 return null;
 
             return LTemplateItemModels.Aggregate(ATemplate, (ACurrent, AItem) 
-                => ACurrent.Replace(AItem.Tag, AItem.Value));
+                => ACurrent.Replace(AItem.Key, AItem.Value));
         }
     }
 }
