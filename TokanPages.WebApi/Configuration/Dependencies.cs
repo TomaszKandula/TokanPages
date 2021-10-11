@@ -1,6 +1,7 @@
 ﻿namespace TokanPages.WebApi.Configuration
 {
     using System;
+    using System.Net.Http;
     using System.Reflection;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Hosting;
@@ -83,6 +84,7 @@
         {
             AServices.AddHttpContextAccessor();
 
+            AServices.AddScoped<HttpClient>();
             AServices.AddScoped<ISmtpClient, SmtpClient>();
             AServices.AddScoped<ILookupClient, LookupClient>();
             AServices.AddScoped<ISmtpClientService, SmtpClientService>();

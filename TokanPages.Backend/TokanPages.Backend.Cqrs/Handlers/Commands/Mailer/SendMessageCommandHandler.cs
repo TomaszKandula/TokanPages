@@ -1,5 +1,6 @@
 ﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
+    using MediatR;
     using System.Threading;
     using System.Globalization;
     using System.Threading.Tasks;
@@ -14,7 +15,6 @@
     using Core.Utilities.TemplateService;
     using Core.Utilities.CustomHttpClient;
     using Core.Utilities.CustomHttpClient.Models;
-    using MediatR;
 
     public class SendMessageCommandHandler : TemplateHandler<SendMessageCommand, Unit>
     {
@@ -61,6 +61,10 @@
 
             var LConfiguration = new Configuration { Url = LUrl, Method = "GET" };
             var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
+
+            if (LResults.Content == null)
+                throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
+
             var LTemplate = System.Text.Encoding.Default.GetString(LResults.Content);
             FSmtpClientService.HtmlBody = FTemplateService.MakeBody(LTemplate, LNewValues);
 

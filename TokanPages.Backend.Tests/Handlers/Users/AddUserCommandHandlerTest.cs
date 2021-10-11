@@ -331,9 +331,110 @@
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() 
-                => LAddUserCommandHandler.Handle(LAddUserCommand, CancellationToken.None));
+            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LAddUserCommandHandler.Handle(LAddUserCommand, CancellationToken.None));
             LResult.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS));
+        }
+
+        [Fact]
+        public async Task GivenEmptyEmailTemplate_WhenAddUser_ShouldThrowError() 
+        {
+            // Arrange
+            var LAddUserCommand = new AddUserCommand 
+            {
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                Password = DataUtilityService.GetRandomString()
+            };
+
+            var LRoles = new Roles
+            {
+                Name = Identity.Authorization.Roles.EverydayUser.ToString(),
+                Description = Identity.Authorization.Roles.EverydayUser.ToString()
+            };
+
+            var LPermissions = new List<Permissions>
+            {
+                new ()
+                {
+                    Name = Identity.Authorization.Permissions.CanSelectArticles.ToString()
+                },
+                new ()
+                {
+                    Name = Identity.Authorization.Permissions.CanSelectComments.ToString()
+                }
+            };
+
+            var LDefaultPermissions = new List<DefaultPermissions>
+            {
+                new ()
+                {
+                    Id = Guid.NewGuid(),
+                    Role = LRoles,
+                    Permission = LPermissions[0]
+                },
+                new ()
+                {
+                    Id = Guid.NewGuid(),
+                    Role = LRoles,
+                    Permission = LPermissions[1]
+                }
+            };
+
+            var LDatabaseContext = GetTestDatabaseContext();
+            await LDatabaseContext.Roles.AddAsync(LRoles);
+            await LDatabaseContext.Permissions.AddRangeAsync(LPermissions);
+            await LDatabaseContext.DefaultPermissions.AddRangeAsync(LDefaultPermissions);
+
+            var LMockedDateTime = new Mock<DateTimeService>();
+            var LMockedCipher = new Mock<ICipheringService>();
+            var LMockedSmtpClientService = new Mock<ISmtpClientService>();
+            var LMockedLogger = new Mock<ILogger>();
+            var LMockedTemplateService = new Mock<ITemplateService>();
+            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var LMockedAzureStorage = new Mock<AzureStorage>();
+            var LMockedApplicationPaths = new Mock<ApplicationPaths>();
+            var LMockedExpirationSettings = new Mock<ExpirationSettings>();
+
+            const string MOCKED_PASSWORD = "MockedPassword";
+            LMockedCipher
+                .Setup(ACipher => ACipher.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(MOCKED_PASSWORD);
+            
+            var LSendActionResult = new ActionResult { IsSucceeded = true };
+            LMockedSmtpClientService
+                .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
+                .Returns(Task.FromResult(LSendActionResult));
+
+            var LMockedResults = new Results
+            {
+                StatusCode = HttpStatusCode.OK,
+                ContentType = new MediaTypeHeaderValue("text/plain"),
+                Content = null
+            };
+
+            LMockedCustomHttpClient
+                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(LMockedResults);
+
+            var LAddUserCommandHandler = new AddUserCommandHandler(
+                LDatabaseContext, 
+                LMockedDateTime.Object, 
+                LMockedCipher.Object,
+                LMockedSmtpClientService.Object,
+                LMockedLogger.Object,
+                LMockedTemplateService.Object,
+                LMockedCustomHttpClient.Object,
+                LMockedAzureStorage.Object,
+                LMockedApplicationPaths.Object,
+                LMockedExpirationSettings.Object
+            );
+
+            // Act
+            // Assert
+            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LAddUserCommandHandler.Handle(LAddUserCommand, CancellationToken.None));
+            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY));
         }
     }
 }

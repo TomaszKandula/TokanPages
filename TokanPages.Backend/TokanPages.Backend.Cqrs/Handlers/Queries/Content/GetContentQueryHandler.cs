@@ -36,10 +36,20 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
                 ? DEFAULT_LANGUAGE
                 : ARequest.Language;
 
+            if (ARequest.Type is not ("component" or "document"))
+                throw new BusinessException(nameof(ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED), ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED);
+
             var LComponentRequestUrl = $"{FAzureStorage.BaseUrl}/content/{ARequest.Type}s/{ARequest.Name}.json";
             var LComponentContent = await GetJsonData(LComponentRequestUrl, ACancellationToken);
+
+            if (string.IsNullOrEmpty(LComponentContent))
+                throw new BusinessException(nameof(ErrorCodes.COMPONENT_CONTENT_EMPTY), ErrorCodes.COMPONENT_CONTENT_EMPTY);
+
             var LJsonToken = FJsonSerializer.Parse(LComponentContent);
             var LToken = LJsonToken?.SelectToken(ARequest.Name);
+
+            if (LToken == null)
+                throw new BusinessException(nameof(ErrorCodes.COMPONENT_CONTENT_MISSING_TOKEN), ErrorCodes.COMPONENT_CONTENT_MISSING_TOKEN);
 
             return new GetContentQueryResult
             {
@@ -78,7 +88,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
                 "terms" => FJsonSerializer.MapObjects<DocumentDto>(AToken).SingleOrDefault(AItem => AItem.Language == ASelectedLanguage),
                 "policy" => FJsonSerializer.MapObjects<DocumentDto>(AToken).SingleOrDefault(AItem => AItem.Language == ASelectedLanguage),
                 "myStory" => FJsonSerializer.MapObjects<DocumentDto>(AToken).SingleOrDefault(AItem => AItem.Language == ASelectedLanguage),
-                _ => null
+                _ => throw new BusinessException(nameof(ErrorCodes.COMPONENT_NAME_UNKNOWN), ErrorCodes.COMPONENT_NAME_UNKNOWN)
             };
         }
 
@@ -88,9 +98,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
             var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
 
             if (LResults.StatusCode != HttpStatusCode.OK)
-                throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+                throw new BusinessException(nameof(ErrorCodes.COMPONENT_NOT_FOUND), ErrorCodes.COMPONENT_NOT_FOUND);
 
-            return System.Text.Encoding.Default.GetString(LResults.Content);
+            return LResults.Content == null 
+                ? string.Empty 
+                : System.Text.Encoding.Default.GetString(LResults.Content);
         }
     }
 }
