@@ -11,6 +11,6 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient.Models
 
         public MediaTypeHeaderValue? ContentType { get; set; }
         
-        public byte[] Content { get; set; }
+        public byte[]? Content { get; set; }
     }
 }
