@@ -198,7 +198,7 @@
   <data name="COMPONENT_CONTENT_MISSING_TOKEN" xml:space="preserve">
     <value>Cannot find root component token for given component name</value>
   </data>
-  <data name="TEMPLATE_CONTENT_EMPTY" xml:space="preserve">
-    <value>Template content cannot be empty</value>
+  <data name="EMAIL_TEMPLATE_EMPTY" xml:space="preserve">
+    <value>Email template cannot be empty</value>
   </data>
 </root>

@@ -207,9 +207,9 @@ namespace TokanPages.Backend.Shared.Resources {
             }
         }
         
-        public static string TEMPLATE_CONTENT_EMPTY {
+        public static string EMAIL_TEMPLATE_EMPTY {
             get {
-                return ResourceManager.GetString("TEMPLATE_CONTENT_EMPTY", resourceCulture);
+                return ResourceManager.GetString("EMAIL_TEMPLATE_EMPTY", resourceCulture);
             }
         }
     }
