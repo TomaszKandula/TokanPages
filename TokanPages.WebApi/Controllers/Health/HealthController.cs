@@ -1,6 +1,5 @@
 namespace TokanPages.WebApi.Controllers.Health
 {
-    using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
@@ -29,34 +28,27 @@ namespace TokanPages.WebApi.Controllers.Health
         /// connect to those components. If the application cannot connect to a critical component,
         /// then the path return a HTTP error response code to indicate that the application is unhealthy.
         /// </summary>
+        /// <remarks>
+        /// Azure Health Check requires returned HTTP status code to be Internal Server Error (500) when tests fail;
+        /// and OK (200) when all tests pass.
+        /// </remarks>
         /// <returns>JSON model with response details</returns>
         [HttpGet("status")]
         public async Task<IActionResult> GetStatus()
         {
-            try
-            {
-                var LCanConnectAndAuthenticate = await FSmtpClientService.CanConnectAndAuthenticate();
-                if (!LCanConnectAndAuthenticate.IsSucceeded)
-                    return StatusCode(500, LCanConnectAndAuthenticate);
+            var LCanConnectAndAuthenticate = await FSmtpClientService.CanConnectAndAuthenticate();
+            if (!LCanConnectAndAuthenticate.IsSucceeded)
+                return StatusCode(500, LCanConnectAndAuthenticate);
 
-                var LCanConnectToDatabase = await FDatabaseContext.Database.CanConnectAsync();
-                if (!LCanConnectToDatabase)
-                    return StatusCode(500, new Backend.Shared.Models.ActionResult
-                    {
-                        ErrorCode = nameof(ErrorCodes.CANNOT_CONNECT_DATABASE),
-                        ErrorDesc = ErrorCodes.CANNOT_CONNECT_DATABASE
-                    });
-
-                return StatusCode(200, new Backend.Shared.Models.ActionResult { IsSucceeded = true });
-            }
-            catch (Exception LException)
-            {
+            var LCanConnectToDatabase = await FDatabaseContext.Database.CanConnectAsync();
+            if (!LCanConnectToDatabase)
                 return StatusCode(500, new Backend.Shared.Models.ActionResult
                 {
-                    ErrorCode = LException.HResult.ToString(),
-                    ErrorDesc = LException.Message
+                    ErrorCode = nameof(ErrorCodes.CANNOT_CONNECT_DATABASE),
+                    ErrorDesc = ErrorCodes.CANNOT_CONNECT_DATABASE
                 });
-            }
+
+            return StatusCode(200, new Backend.Shared.Models.ActionResult { IsSucceeded = true });
         }
     }
 }

@@ -1,6 +1,5 @@
 namespace TokanPages.WebApi.Controllers.Proxy
 {
-    using System;
     using System.Net;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
@@ -19,21 +18,14 @@ namespace TokanPages.WebApi.Controllers.Proxy
         [ETagFilter(200)]
         public async Task<IActionResult> GetAsset([FromQuery] string ABlobName)
         {
-            try
-            {
-                var LRequestUrl = $"{FAzureStorage.BaseUrl}/content/assets/{ABlobName}";
-                var LConfiguration = new Configuration { Url = LRequestUrl, Method = "GET"};
-                var LResults = await FCustomHttpClient.Execute(LConfiguration);
+            var LRequestUrl = $"{FAzureStorage.BaseUrl}/content/assets/{ABlobName}";
+            var LConfiguration = new Configuration { Url = LRequestUrl, Method = "GET"};
+            var LResults = await FCustomHttpClient.Execute(LConfiguration);
 
-                if (LResults.StatusCode != HttpStatusCode.OK)
-                    return GetContentResultFromResults(LResults);
+            if (LResults.StatusCode != HttpStatusCode.OK)
+                return GetContentResultFromResults(LResults);
 
-                return File(LResults.Content, LResults.ContentType?.MediaType);
-            }
-            catch (Exception LException)
-            {
-                return GetInternalServerError(LException);
-            }
+            return File(LResults.Content, LResults.ContentType?.MediaType);
         }
     }
 }
