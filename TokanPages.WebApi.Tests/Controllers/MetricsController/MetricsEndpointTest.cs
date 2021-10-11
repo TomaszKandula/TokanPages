@@ -1,10 +1,10 @@
 namespace TokanPages.WebApi.Tests.Controllers.MetricsController
 {
+    using Xunit;
+    using FluentAssertions;
     using System.Net;
     using System.Threading.Tasks;
     using Backend.Shared;
-    using FluentAssertions;
-    using Xunit;
 
     public partial class MetricsControllerTest
     {
