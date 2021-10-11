@@ -1,5 +1,6 @@
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 {
+    using MediatR;
     using System;
     using System.Linq;
     using System.Threading;
@@ -18,7 +19,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Core.Utilities.TemplateService;
     using Core.Utilities.CustomHttpClient;
     using Core.Utilities.CustomHttpClient.Models;
-    using MediatR;
 
     public class ResetUserPasswordCommandHandler : TemplateHandler<ResetUserPasswordCommand, Unit>
     {
@@ -98,7 +98,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
 
             if (LResults.Content == null)
-                throw new BusinessException(ErrorCodes.TEMPLATE_CONTENT_EMPTY, ErrorCodes.TEMPLATE_CONTENT_EMPTY);
+                throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
 
             var LTemplate = System.Text.Encoding.Default.GetString(LResults.Content);
             FSmtpClientService.HtmlBody = FTemplateService.MakeBody(LTemplate, LNewValues);

@@ -174,7 +174,7 @@
             var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
 
             if (LResults.Content == null)
-                throw new BusinessException(ErrorCodes.TEMPLATE_CONTENT_EMPTY, ErrorCodes.TEMPLATE_CONTENT_EMPTY);
+                throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
 
             var LTemplate = System.Text.Encoding.Default.GetString(LResults.Content);
             FSmtpClientService.HtmlBody = FTemplateService.MakeBody(LTemplate, LNewValues);
