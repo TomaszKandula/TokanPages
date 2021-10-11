@@ -172,15 +172,16 @@
 
             var LConfiguration = new Configuration { Url = LUrl, Method = "GET" };
             var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
-            var LTemplate = System.Text.Encoding.Default.GetString(LResults.Content);
 
+            if (LResults.Content == null)
+                throw new BusinessException(ErrorCodes.TEMPLATE_CONTENT_EMPTY, ErrorCodes.TEMPLATE_CONTENT_EMPTY);
+
+            var LTemplate = System.Text.Encoding.Default.GetString(LResults.Content);
             FSmtpClientService.HtmlBody = FTemplateService.MakeBody(LTemplate, LNewValues);
 
             var LResult = await FSmtpClientService.Send(ACancellationToken);
             if (!LResult.IsSucceeded)
-                throw new BusinessException(
-                    nameof(ErrorCodes.CANNOT_SEND_EMAIL), 
-                    $"{ErrorCodes.CANNOT_SEND_EMAIL}. {LResult.ErrorDesc}");
+                throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}. {LResult.ErrorDesc}");
         }
     }
 }
