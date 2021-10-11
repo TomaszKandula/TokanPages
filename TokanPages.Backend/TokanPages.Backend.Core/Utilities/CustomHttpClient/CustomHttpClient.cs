@@ -24,12 +24,7 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient
 
         public async Task<Results> Execute(Configuration AConfiguration, CancellationToken ACancellationToken = default)
         {
-            if (string.IsNullOrEmpty(AConfiguration.Method))
-                throw new ArgumentException($"Argument '{nameof(AConfiguration.Method)}' cannot be null or empty.");
-
-            if (string.IsNullOrEmpty(AConfiguration.Url))
-                throw new ArgumentException($"Argument '{nameof(AConfiguration.Url)}' cannot be null or empty.");
-
+            VerifyConfigurationArgument(AConfiguration);
             using var LRequest = new HttpRequestMessage(new HttpMethod(AConfiguration.Method), AConfiguration.Url);
 
             if (AConfiguration.StringContent != null)
@@ -86,6 +81,15 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient
             return LParameters.Any() 
                 ? LParameters.Select(AParameterModel => AParameterModel.Key).FirstOrDefault() 
                 : string.Empty;
+        }
+
+        private static void VerifyConfigurationArgument(Configuration AConfiguration)
+        {
+            if (string.IsNullOrEmpty(AConfiguration.Method))
+                throw new ArgumentException($"Argument '{nameof(AConfiguration.Method)}' cannot be null or empty.");
+
+            if (string.IsNullOrEmpty(AConfiguration.Url))
+                throw new ArgumentException($"Argument '{nameof(AConfiguration.Url)}' cannot be null or empty.");
         }
     }
 }

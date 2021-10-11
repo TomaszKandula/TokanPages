@@ -7,9 +7,9 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient.Models
 
     public class Configuration
     {
-        public string Url { get; set; }
+        public string Url { get; set; } = "";
 
-        public string Method { get; set; }
+        public string Method { get; set; } = "";
 
         public IAuthentication? Authentication { get; set; }
 
