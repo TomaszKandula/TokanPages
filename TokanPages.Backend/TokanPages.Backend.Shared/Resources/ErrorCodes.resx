@@ -201,4 +201,7 @@
   <data name="EMAIL_TEMPLATE_EMPTY" xml:space="preserve">
     <value>Email template cannot be empty</value>
   </data>
+  <data name="COMPONENT_NOT_FOUND" xml:space="preserve">
+    <value>Cannot find component by given name and type</value>
+  </data>
 </root>

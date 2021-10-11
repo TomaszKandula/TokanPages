@@ -212,5 +212,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("EMAIL_TEMPLATE_EMPTY", resourceCulture);
             }
         }
+        
+        public static string COMPONENT_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("COMPONENT_NOT_FOUND", resourceCulture);
+            }
+        }
     }
 }
