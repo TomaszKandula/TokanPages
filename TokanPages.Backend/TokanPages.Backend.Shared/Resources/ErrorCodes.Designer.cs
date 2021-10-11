@@ -206,5 +206,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("COMPONENT_CONTENT_MISSING_TOKEN", resourceCulture);
             }
         }
+        
+        public static string TEMPLATE_CONTENT_EMPTY {
+            get {
+                return ResourceManager.GetString("TEMPLATE_CONTENT_EMPTY", resourceCulture);
+            }
+        }
     }
 }
