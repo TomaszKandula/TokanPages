@@ -54,6 +54,18 @@ namespace TokanPages.Backend.Tests.Services
         }
 
         [Fact]
+        public void GivenNullString_WhenInvokeDeserialize_ShouldReturnNull()
+        {
+            // Arrange
+            // Act
+            var LJsonSerializer = new JsonSerializer();
+            var LResult = LJsonSerializer.Deserialize<TestClass>(null);
+
+            // Assert
+            LResult.Should().BeNull();
+        }
+
+        [Fact]
         public void GivenInvalidString_WhenInvokeDeserialize_ShouldThrowError()
         {
             // Arrange

@@ -4,7 +4,9 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient.Models
 {
     using System.Net;
     using System.Net.Http.Headers;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     public class Results
     {
         public HttpStatusCode StatusCode { get; set; }

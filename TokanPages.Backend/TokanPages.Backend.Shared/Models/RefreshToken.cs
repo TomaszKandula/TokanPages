@@ -1,7 +1,9 @@
 namespace TokanPages.Backend.Shared.Models
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     public class RefreshToken
     {
         public string Token { get; set; }

@@ -24,13 +24,36 @@ namespace TokanPages.Backend.Tests.Services
         }
 
         [Fact]
-        public async Task GivenValidConfiguration_WhenInvokeExecute_ShouldSucceed()
+        public async Task GivenValidConfigurationWithoutPayload_WhenInvokeExecute_ShouldSucceed()
         {
             // Arrange
             var LConfiguration = new Configuration
             {
                 Url = "http://localhost:5000/",
                 Method = "GET"
+            };
+
+            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
+            
+            // Act
+            var LCustomHttpClient = new CustomHttpClient(LHttpClient);
+            var LResult = await LCustomHttpClient.Execute(LConfiguration, CancellationToken.None);
+
+            // Assert
+            LResult.StatusCode.Should().Be(HttpStatusCode.OK);
+            LResult.ContentType?.MediaType.Should().Be("text/plain");
+            LResult.ContentType?.CharSet.Should().Be("utf-8");
+            LResult.Content.Should().BeEmpty();
+        }
+
+        [Fact]
+        public async Task GivenValidConfigurationWithPayload_WhenInvokeExecute_ShouldSucceed()
+        {
+            // Arrange
+            var LConfiguration = new Configuration
+            {
+                Url = "http://localhost:5000/",
+                Method = "POST"
             };
 
             var LStringContent = DataUtilityService.GetRandomString();
@@ -57,8 +80,7 @@ namespace TokanPages.Backend.Tests.Services
                 Method = "GET"
             };
 
-            var LStringContent = DataUtilityService.GetRandomString();
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(LStringContent));
+            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
             
             // Act
             var LCustomHttpClient = new CustomHttpClient(LHttpClient);
@@ -78,8 +100,7 @@ namespace TokanPages.Backend.Tests.Services
                 Method = string.Empty
             };
 
-            var LStringContent = DataUtilityService.GetRandomString();
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(LStringContent));
+            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
             
             // Act
             var LCustomHttpClient = new CustomHttpClient(LHttpClient);
@@ -93,7 +114,7 @@ namespace TokanPages.Backend.Tests.Services
         public void GivenLoginAndPassword_WhenSetAuthentication_ShouldReturnBase64String()
         {
             // Arrange
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(DataUtilityService.GetRandomString()));
+            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
             
             // Act
             var LCustomHttpClient = new CustomHttpClient(LHttpClient);
@@ -110,7 +131,7 @@ namespace TokanPages.Backend.Tests.Services
         public void GivenMissingLoginAndPresentPassword_WhenSetAuthentication_ShouldThrowError()
         {
             // Arrange
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(DataUtilityService.GetRandomString()));
+            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
             var LCustomHttpClient = new CustomHttpClient(LHttpClient);
             
             // Act
@@ -123,7 +144,7 @@ namespace TokanPages.Backend.Tests.Services
         public void GivenToken_WhenInvokeSetAuthentication_ShouldReturnPlainString()
         {
             // Arrange
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(DataUtilityService.GetRandomString()));
+            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
             var LCustomHttpClient = new CustomHttpClient(LHttpClient);
             
             // Act
@@ -139,7 +160,7 @@ namespace TokanPages.Backend.Tests.Services
         public void GivenMissingToken_WhenInvokeSetAuthentication_ShouldThrowError()
         {
             // Arrange
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(DataUtilityService.GetRandomString()));
+            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
             var LCustomHttpClient = new CustomHttpClient(LHttpClient);
             
             // Act
@@ -158,7 +179,7 @@ namespace TokanPages.Backend.Tests.Services
                 ["Key2"] = "Value2"
             };
 
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(DataUtilityService.GetRandomString()));
+            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
 
             // Act
             var LCustomHttpClient = new CustomHttpClient(LHttpClient);
@@ -173,7 +194,7 @@ namespace TokanPages.Backend.Tests.Services
         public void GivenListWithEmptyParameter_WhenGetFirstEmptyParameterName_ShouldReturnEmptyString(Dictionary<string, string> AItems, TestCasesEnums ACase)
         {
             // Arrange
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(DataUtilityService.GetRandomString()));
+            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
 
             // Act
             var LCustomHttpClient = new CustomHttpClient(LHttpClient);

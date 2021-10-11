@@ -1,7 +1,5 @@
 namespace TokanPages.WebApi.Controllers
 {
-    using System;
-    using System.Net;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
     using Backend.Shared;
@@ -28,13 +26,6 @@ namespace TokanPages.WebApi.Controllers
             Content = AResults.Content == null 
                 ? string.Empty 
                 : System.Text.Encoding.Default.GetString(AResults.Content)
-        };
-
-        protected static ContentResult GetInternalServerError(Exception AException) => new ()
-        {
-            StatusCode = (int)HttpStatusCode.InternalServerError,
-            Content = AException.Message,
-            ContentType = Constants.ContentTypes.TEXT_PLAIN
         };
 
         public ProxyBaseController(ICustomHttpClient ACustomHttpClient, SonarQube ASonarQube, AzureStorage AAzureStorage)
