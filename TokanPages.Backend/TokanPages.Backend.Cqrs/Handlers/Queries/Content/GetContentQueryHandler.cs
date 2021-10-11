@@ -49,8 +49,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
             var LToken = LJsonToken?.SelectToken(ARequest.Name);
 
             if (LToken == null)
-                throw new BusinessException(nameof(ErrorCodes.COMPONENT_CONTENT_NO_TOKEN), ErrorCodes.COMPONENT_CONTENT_NO_TOKEN);
-            
+                throw new BusinessException(nameof(ErrorCodes.COMPONENT_CONTENT_MISSING_TOKEN), ErrorCodes.COMPONENT_CONTENT_MISSING_TOKEN);
+
             return new GetContentQueryResult
             {
                 ContentType = ARequest.Type,
@@ -100,7 +100,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
             if (LResults.StatusCode != HttpStatusCode.OK)
                 throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
 
-            return System.Text.Encoding.Default.GetString(LResults.Content);
+            return LResults.Content == null 
+                ? string.Empty 
+                : System.Text.Encoding.Default.GetString(LResults.Content);
         }
     }
 }
