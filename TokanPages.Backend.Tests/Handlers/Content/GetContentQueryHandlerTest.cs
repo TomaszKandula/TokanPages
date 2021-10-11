@@ -358,7 +358,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
             // Act
             // Assert
             var LResult = await Assert.ThrowsAsync<BusinessException>(() => LGetContentQueryHandler.Handle(LGetContentQuery, CancellationToken.None));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ERROR_UNEXPECTED));
+            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.COMPONENT_NOT_FOUND));
         }
 
         private static List<ActivateAccountDto> GetActivateAccountContent() => new ()
