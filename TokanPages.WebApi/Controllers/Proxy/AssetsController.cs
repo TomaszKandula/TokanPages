@@ -4,7 +4,6 @@ namespace TokanPages.WebApi.Controllers.Proxy
     using System.Net;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
-    using Backend.Shared;
     using Backend.Shared.Models;
     using Backend.Storage.Models;
     using Backend.Shared.Attributes;
@@ -27,23 +26,13 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 var LResults = await FCustomHttpClient.Execute(LConfiguration);
 
                 if (LResults.StatusCode != HttpStatusCode.OK)
-                    return new ContentResult
-                    {
-                        StatusCode = (int)LResults.StatusCode,
-                        Content = System.Text.Encoding.Default.GetString(LResults.Content),
-                        ContentType = Constants.ContentTypes.TEXT_PLAIN
-                    };
+                    return GetContentResultFromResults(LResults);
 
                 return File(LResults.Content, LResults.ContentType?.MediaType);
             }
             catch (Exception LException)
             {
-                return new ContentResult
-                {
-                    StatusCode = (int)HttpStatusCode.InternalServerError,
-                    Content = LException.Message,
-                    ContentType = Constants.ContentTypes.TEXT_PLAIN
-                };
+                return GetInternalServerError(LException);
             }
         }
     }

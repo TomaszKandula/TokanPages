@@ -69,23 +69,13 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 var LResults = await FCustomHttpClient.Execute(LConfiguration);
 
                 if (LResults.StatusCode != HttpStatusCode.OK)
-                    return new ContentResult
-                    {
-                        StatusCode = (int)LResults.StatusCode,
-                        Content = System.Text.Encoding.Default.GetString(LResults.Content),
-                        ContentType = Constants.ContentTypes.TEXT_PLAIN
-                    };
+                    return GetContentResultFromResults(LResults);
 
                 return File(LResults.Content, LResults.ContentType?.MediaType);
             }
             catch (Exception LException)
             {
-                return new ContentResult
-                {
-                    StatusCode = (int)HttpStatusCode.InternalServerError,
-                    Content = LException.Message,
-                    ContentType = Constants.ContentTypes.TEXT_PLAIN
-                };
+                return GetInternalServerError(LException);
             }
         }
 
@@ -114,23 +104,13 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 var LResults = await FCustomHttpClient.Execute(LConfiguration);
 
                 if (LResults.StatusCode != HttpStatusCode.OK)
-                    return new ContentResult
-                    {
-                        StatusCode = (int)LResults.StatusCode,
-                        Content = System.Text.Encoding.Default.GetString(LResults.Content),
-                        ContentType = Constants.ContentTypes.TEXT_PLAIN
-                    };
+                    return GetContentResultFromResults(LResults);
 
                 return File(LResults.Content, LResults.ContentType?.MediaType);
             }
             catch (Exception LException)
             {
-                return new ContentResult
-                {
-                    StatusCode = (int)HttpStatusCode.InternalServerError,
-                    Content = LException.Message,
-                    ContentType = Constants.ContentTypes.TEXT_PLAIN
-                };
+                return GetInternalServerError(LException);
             }
         }
     }
