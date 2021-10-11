@@ -98,7 +98,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
             var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
 
             if (LResults.StatusCode != HttpStatusCode.OK)
-                throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+                throw new BusinessException(nameof(ErrorCodes.COMPONENT_NOT_FOUND), ErrorCodes.COMPONENT_NOT_FOUND);
 
             return LResults.Content == null 
                 ? string.Empty 
