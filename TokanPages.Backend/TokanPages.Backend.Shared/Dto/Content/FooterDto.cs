@@ -1,9 +1,11 @@
 namespace TokanPages.Backend.Shared.Dto.Content
 {
-    using System.Collections.Generic;
     using Base;
     using Common;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     public class FooterDto : BaseClass
     {
         public string Terms { get; set; }

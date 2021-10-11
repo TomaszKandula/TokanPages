@@ -1,7 +1,9 @@
 namespace TokanPages.Backend.Shared.Dto.Content
 {
     using Base;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     public class NotFoundDto : BaseClass
     {
         public string Code { get; set; }
