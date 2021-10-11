@@ -186,4 +186,16 @@
   <data name="EXPIRED_ACTIVATION_ID" xml:space="preserve">
     <value>Activation ID has expired. Account remains inactive</value>
   </data>
+  <data name="COMPONENT_TYPE_NOT_SUPPORTED" xml:space="preserve">
+    <value>This component type is not supported</value>
+  </data>
+  <data name="COMPONENT_NAME_UNKNOWN" xml:space="preserve">
+    <value>Unknown component name</value>
+  </data>
+  <data name="COMPONENT_CONTENT_EMPTY" xml:space="preserve">
+    <value>Component content cannot be empty</value>
+  </data>
+  <data name="COMPONENT_CONTENT_NO_TOKEN" xml:space="preserve">
+    <value>Cannot find root component token for given component name</value>
+  </data>
 </root>
