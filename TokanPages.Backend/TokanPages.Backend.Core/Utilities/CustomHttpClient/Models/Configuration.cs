@@ -5,7 +5,7 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient.Models
     using System.Net.Http;
     using Authentication;
 
-    public struct Configuration
+    public class Configuration
     {
         public string Url { get; set; }
 
