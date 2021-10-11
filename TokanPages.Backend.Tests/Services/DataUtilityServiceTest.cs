@@ -7,6 +7,17 @@ namespace TokanPages.Backend.Tests.Services
     public class DataUtilityServiceTest : TestBase
     {
         [Fact]
+        public void GivenZeroLength_WhenInvokeGetRandomString_ShouldReturnEmptyString()
+        {
+            // Arrange 
+            // Act
+            var LResult = DataUtilityService.GetRandomString(0);
+
+            // Assert
+            LResult.Should().BeEmpty();
+        }
+
+        [Fact]
         public void GivenNoParameters_WhenInvokeGetRandomString_ShouldReturnTwelveChars()
         {
             // Arrange 
@@ -179,6 +190,41 @@ namespace TokanPages.Backend.Tests.Services
             LResult.Year.Should().BeInRange(2020, 2021);
             LResult.Month.Should().BeInRange(1, 12);
             LResult.Day.Should().BeInRange(1, 31);
+        }
+
+        [Fact]
+        public void GivenOnlyDefaultYear_WhenInvokeGetRandomDateTime_ShouldReturnDateTime()
+        {
+            // Arrange
+            // Act
+            var LResult = DataUtilityService.GetRandomDateTime(null, null, 2015);
+
+            // Assert
+            LResult.Year.Should().BeInRange(2015, 2015);
+            LResult.Month.Should().BeInRange(1, 12);
+            LResult.Day.Should().BeInRange(1, 31);
+        }
+
+        [Fact]
+        public void GivenFlagFalse_WhenGetRandomIpAddress_ShouldReturnRandomIPv4()
+        {
+            // Arrange
+            // Act
+            var LResult = DataUtilityService.GetRandomIpAddress(false);
+            
+            // Assert
+            LResult.AddressFamily.Should().Be(System.Net.Sockets.AddressFamily.InterNetwork);
+        }
+
+        [Fact]
+        public void GivenFlagTrue_WhenGetRandomIpAddress_ShouldReturnRandomIPv6()
+        {
+            // Arrange
+            // Act
+            var LResult = DataUtilityService.GetRandomIpAddress(true);
+            
+            // Assert
+            LResult.AddressFamily.Should().Be(System.Net.Sockets.AddressFamily.InterNetworkV6);
         }
     }
 }
