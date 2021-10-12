@@ -54,7 +54,9 @@
         public ICollection<Articles> Articles { get; set; } = new HashSet<Articles>();
 
         public ICollection<ArticleLikes> ArticleLikes { get; set; } = new HashSet<ArticleLikes>();
-        
+
+        public ICollection<ArticleCounts> ArticleCounts { get; set; } = new HashSet<ArticleCounts>();
+
         public ICollection<Photos> Photos { get; set; } = new HashSet<Photos>();
         
         public ICollection<Albums> Albums { get; set; } = new HashSet<Albums>();
