@@ -1,5 +1,8 @@
 namespace TokanPages.Backend.Tests.Handlers.Users
 {
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Linq;
     using System.Threading;
@@ -14,9 +17,6 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using Core.Utilities.DateTimeService;
     using Cqrs.Services.UserServiceProvider;
     using Identity.Services.JwtUtilityService;
-    using FluentAssertions;
-    using Xunit;
-    using Moq;
 
     public class AuthenticateUserCommandHandlerTest : TestBase
     {
@@ -141,14 +141,27 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             LResult.Registered.Should().Be(LUser.Registered);
             LResult.UserToken.Should().NotBeNullOrEmpty();
             LResult.UserToken.Length.Should().BeGreaterThan(0);
-            
+
+            var LUserTokens = await LDatabaseContext.UserTokens
+                .Where(AUserToken => AUserToken.UserId == LUser.Id)
+                .ToListAsync();
+
+            LUserTokens.Should().NotHaveCount(0);
+            var LUserToken = LUserTokens.First();
+
+            LUserToken.UserId.Should().Be(LUser.Id);
+            LUserToken.Token.Should().NotBeEmpty();
+            LUserToken.Expires.Should().NotBeSameDateAs(DateTimeService.Now);
+            LUserToken.Created.Should().NotBeSameDateAs(DateTimeService.Now);
+            LUserToken.CreatedByIp.Should().NotBeEmpty();
+
             var LUserRefreshTokens = await LDatabaseContext.UserRefreshTokens
                 .Where(AUserRefreshToken => AUserRefreshToken.UserId == LUser.Id)
                 .ToListAsync();
 
             LUserRefreshTokens.Should().NotHaveCount(0);
-
             var LUserRefreshToken = LUserRefreshTokens.First();
+
             LUserRefreshToken.UserId.Should().Be(LUser.Id);
             LUserRefreshToken.Token.Should().NotBeEmpty();
             LUserRefreshToken.Expires.Should().Be(LRefreshTokenExpires);
