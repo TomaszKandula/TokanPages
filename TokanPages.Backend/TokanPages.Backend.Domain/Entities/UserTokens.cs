@@ -23,6 +23,10 @@ namespace TokanPages.Backend.Domain.Entities
         [MaxLength(15)]
         public string CreatedByIp { get; set; }
 
+        [Required]
+        [MaxLength(255)]
+        public string Command { get; set; }
+
         public Users User { get; set; }
     }
 }

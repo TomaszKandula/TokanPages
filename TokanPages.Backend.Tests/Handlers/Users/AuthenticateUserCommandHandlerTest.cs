@@ -154,6 +154,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             LUserToken.Expires.Should().NotBeSameDateAs(DateTimeService.Now);
             LUserToken.Created.Should().NotBeSameDateAs(DateTimeService.Now);
             LUserToken.CreatedByIp.Should().NotBeEmpty();
+            LUserToken.Command.Should().Be(nameof(AuthenticateUserCommand));
 
             var LUserRefreshTokens = await LDatabaseContext.UserRefreshTokens
                 .Where(AUserRefreshToken => AUserRefreshToken.UserId == LUser.Id)
