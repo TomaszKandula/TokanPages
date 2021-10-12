@@ -1,5 +1,8 @@
 namespace TokanPages.Backend.Tests.Handlers.Users
 {
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Linq;
     using System.Threading;
@@ -12,9 +15,6 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using Cqrs.Handlers.Commands.Users;
     using Core.Utilities.DateTimeService;
     using Cqrs.Services.UserServiceProvider;
-    using FluentAssertions;
-    using Xunit;
-    using Moq;
 
     public class ReAuthenticateUserCommandHandlerTest : TestBase
     {
@@ -30,11 +30,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var LExpires = DateTimeService.Now.AddMinutes(300);
             var LCreated = DateTimeService.Now.AddDays(-5);
             
-            var LReAuthenticateUserCommand = new ReAuthenticateUserCommand
-            {
-                Id = LUserId
-            };
-
+            var LReAuthenticateUserCommand = new ReAuthenticateUserCommand { Id = LUserId };
             var LUser = new Users
             {
                 Id = LUserId,
@@ -161,6 +157,19 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             LResult.Registered.Should().Be(LUser.Registered);
             LResult.UserToken.Should().Be(LNewUserToken);
             
+            var LUserTokens = await LDatabaseContext.UserTokens
+                .Where(AUserToken => AUserToken.UserId == LUser.Id)
+                .ToListAsync();
+
+            LUserTokens.Should().NotHaveCount(0);
+            var LUserToken = LUserTokens.First();
+
+            LUserToken.UserId.Should().Be(LUser.Id);
+            LUserToken.Token.Should().NotBeEmpty();
+            LUserToken.Expires.Should().NotBeSameDateAs(DateTimeService.Now);
+            LUserToken.Created.Should().NotBeSameDateAs(DateTimeService.Now);
+            LUserToken.CreatedByIp.Should().NotBeEmpty();
+
             var LUserRefreshTokens = await LDatabaseContext.UserRefreshTokens
                 .Where(AUserRefreshToken => AUserRefreshToken.UserId == LUser.Id)
                 .ToListAsync();
@@ -190,11 +199,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var LExpires = DateTimeService.Now.AddMinutes(300);
             var LCreated = DateTimeService.Now.AddDays(-5);
             
-            var LReAuthenticateUserCommand = new ReAuthenticateUserCommand
-            {
-                Id = LUserId
-            };
-
+            var LReAuthenticateUserCommand = new ReAuthenticateUserCommand { Id = LUserId };
             var LUser = new Users
             {
                 Id = LUserId,
@@ -274,11 +279,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
         public async Task GivenMissingRefreshToken_WhenReAuthenticateUser_ShouldThrowError()
         {
             // Arrange
-            var LReAuthenticateUserCommand = new ReAuthenticateUserCommand
-            {
-                Id = Guid.NewGuid()
-            };
-
+            var LReAuthenticateUserCommand = new ReAuthenticateUserCommand { Id = Guid.NewGuid() };
             var LDatabaseContext = GetTestDatabaseContext();
             var LMockedDateTimeService = new Mock<IDateTimeService>();
             var LMockedUserServiceProvider = new Mock<IUserServiceProvider>();
