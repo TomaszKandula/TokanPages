@@ -86,7 +86,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 Token = LUserToken,
                 Expires = LTokenExpires,
                 Created = LCurrentDateTime,
-                CreatedByIp = LIpAddress
+                CreatedByIp = LIpAddress,
+                Command = nameof(ReAuthenticateUserCommand)
             };
 
             await FDatabaseContext.UserTokens.AddAsync(LNewUserToken, ACancellationToken);
