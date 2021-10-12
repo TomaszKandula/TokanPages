@@ -17,7 +17,9 @@
         public virtual DbSet<Users> Users { get; set; }
         
         public virtual DbSet<ArticleLikes> ArticleLikes { get; set; }
-        
+
+        public virtual DbSet<ArticleCounts> ArticleCounts { get; set; }
+
         public virtual DbSet<Albums> Albums { get; set; }
         
         public virtual DbSet<Photos> Photos { get; set; }
