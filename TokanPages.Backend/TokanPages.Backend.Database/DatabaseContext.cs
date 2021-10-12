@@ -33,9 +33,11 @@
         public virtual DbSet<DefaultPermissions> DefaultPermissions { get; set; }
 
         public virtual DbSet<UserPermissions> UserPermissions { get; set; }
-        
+
         public virtual DbSet<UserRoles> UserRoles { get; set; }
-        
+
+        public virtual DbSet<UserTokens> UserTokens { get; set; }
+
         public virtual DbSet<UserRefreshTokens> UserRefreshTokens { get; set; }
         
         protected override void OnModelCreating(ModelBuilder AModelBuilder)
