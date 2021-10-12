@@ -63,6 +63,8 @@
 
         public ICollection<UserRoles> UserRoles { get; set; } = new HashSet<UserRoles>();
 
+        public ICollection<UserTokens> UserTokens { get; set; } = new HashSet<UserTokens>();
+
         public ICollection<UserRefreshTokens> UserRefreshTokens { get; set; } = new HashSet<UserRefreshTokens>();
     }
 }
