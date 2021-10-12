@@ -45,6 +45,35 @@ namespace TokanPages.Backend.Database.Migrations
                     b.ToTable("Albums");
                 });
 
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.ArticleCounts", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ArticleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("IpAddress")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<int>("ReadCount")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ArticleCounts");
+                });
+
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.ArticleLikes", b =>
                 {
                     b.Property<Guid>("Id")
@@ -386,6 +415,42 @@ namespace TokanPages.Backend.Database.Migrations
                     b.ToTable("UserRoles");
                 });
 
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.UserTokens", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Command")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByIp")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<DateTime>("Expires")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserTokens");
+                });
+
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users", b =>
                 {
                     b.Property<Guid>("Id")
@@ -469,6 +534,24 @@ namespace TokanPages.Backend.Database.Migrations
                         .IsRequired();
 
                     b.Navigation("Photo");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.ArticleCounts", b =>
+                {
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Articles", "Article")
+                        .WithMany("ArticleCounts")
+                        .HasForeignKey("ArticleId")
+                        .HasConstraintName("FK_ArticleCounts_Articles")
+                        .IsRequired();
+
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users", "User")
+                        .WithMany("ArticleCounts")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_ArticleCounts_Users");
+
+                    b.Navigation("Article");
 
                     b.Navigation("User");
                 });
@@ -597,8 +680,21 @@ namespace TokanPages.Backend.Database.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.UserTokens", b =>
+                {
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users", "User")
+                        .WithMany("UserTokens")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_UserTokens_Users")
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Articles", b =>
                 {
+                    b.Navigation("ArticleCounts");
+
                     b.Navigation("ArticleLikes");
                 });
 
@@ -635,6 +731,8 @@ namespace TokanPages.Backend.Database.Migrations
                 {
                     b.Navigation("Albums");
 
+                    b.Navigation("ArticleCounts");
+
                     b.Navigation("ArticleLikes");
 
                     b.Navigation("Articles");
@@ -646,6 +744,8 @@ namespace TokanPages.Backend.Database.Migrations
                     b.Navigation("UserRefreshTokens");
 
                     b.Navigation("UserRoles");
+
+                    b.Navigation("UserTokens");
                 });
 #pragma warning restore 612, 618
         }

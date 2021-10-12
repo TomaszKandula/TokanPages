@@ -3,7 +3,9 @@
 namespace TokanPages.Backend.Shared.Dto.Content.Common
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     public class Subitem
     {
         public Guid Id { get; set; }

@@ -1,5 +1,6 @@
 ﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
+    using MediatR;
     using System.Threading;
     using System.Globalization;
     using System.Threading.Tasks;
@@ -7,15 +8,13 @@
     using Shared;
     using SmtpClient;
     using Core.Logger;
-    using Shared.Models;
     using Storage.Models;
     using Core.Exceptions;
     using Shared.Resources;
-    using Shared.Services.TemplateService;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
+    using Core.Utilities.TemplateService;
     using Core.Utilities.CustomHttpClient;
     using Core.Utilities.CustomHttpClient.Models;
-    using MediatR;
 
     public class SendMessageCommandHandler : TemplateHandler<SendMessageCommand, Unit>
     {
@@ -48,13 +47,13 @@
             FSmtpClientService.Tos = new List<string> { Constants.Emails.Addresses.CONTACT };
             FSmtpClientService.Subject = $"New user message from {ARequest.FirstName}";
 
-            var LNewValues = new List<TemplateItem>
+            var LNewValues = new Dictionary<string, string>
             {
-                new () { Tag = "{FIRST_NAME}", Value = ARequest.FirstName },
-                new () { Tag = "{LAST_NAME}", Value = ARequest.LastName },
-                new () { Tag = "{EMAIL_ADDRESS}", Value = ARequest.UserEmail },
-                new () { Tag = "{USER_MSG}", Value = ARequest.Message },
-                new () { Tag = "{DATE_TIME}", Value = FDateTimeService.Now.ToString(CultureInfo.InvariantCulture) }
+                { "{FIRST_NAME}", ARequest.FirstName },
+                { "{LAST_NAME}", ARequest.LastName },
+                { "{EMAIL_ADDRESS}", ARequest.UserEmail },
+                { "{USER_MSG}", ARequest.Message },
+                { "{DATE_TIME}", FDateTimeService.Now.ToString(CultureInfo.InvariantCulture) }
             };
 
             var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.CONTACT_FORM}";
@@ -62,6 +61,10 @@
 
             var LConfiguration = new Configuration { Url = LUrl, Method = "GET" };
             var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
+
+            if (LResults.Content == null)
+                throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
+
             var LTemplate = System.Text.Encoding.Default.GetString(LResults.Content);
             FSmtpClientService.HtmlBody = FTemplateService.MakeBody(LTemplate, LNewValues);
 

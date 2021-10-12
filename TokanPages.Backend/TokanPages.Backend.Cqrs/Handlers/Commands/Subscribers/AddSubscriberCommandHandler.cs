@@ -8,7 +8,7 @@
     using Database;
     using Core.Exceptions;
     using Shared.Resources;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
 
     public class AddSubscriberCommandHandler : TemplateHandler<AddSubscriberCommand, Guid>
     {

@@ -17,7 +17,9 @@
         public virtual DbSet<Users> Users { get; set; }
         
         public virtual DbSet<ArticleLikes> ArticleLikes { get; set; }
-        
+
+        public virtual DbSet<ArticleCounts> ArticleCounts { get; set; }
+
         public virtual DbSet<Albums> Albums { get; set; }
         
         public virtual DbSet<Photos> Photos { get; set; }
@@ -33,9 +35,11 @@
         public virtual DbSet<DefaultPermissions> DefaultPermissions { get; set; }
 
         public virtual DbSet<UserPermissions> UserPermissions { get; set; }
-        
+
         public virtual DbSet<UserRoles> UserRoles { get; set; }
-        
+
+        public virtual DbSet<UserTokens> UserTokens { get; set; }
+
         public virtual DbSet<UserRefreshTokens> UserRefreshTokens { get; set; }
         
         protected override void OnModelCreating(ModelBuilder AModelBuilder)

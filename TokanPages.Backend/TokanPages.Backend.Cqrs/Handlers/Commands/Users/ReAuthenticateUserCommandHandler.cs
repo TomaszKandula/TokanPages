@@ -7,10 +7,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Shared;
     using Database;
     using Shared.Models;
+    using Domain.Entities;
     using Core.Exceptions;
     using Shared.Resources;
     using Services.UserServiceProvider;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
 
     public class ReAuthenticateUserCommandHandler : TemplateHandler<ReAuthenticateUserCommand, ReAuthenticateUserCommandResult>
     {
@@ -67,17 +68,31 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             await FUserServiceProvider.DeleteOutdatedRefreshTokens(ARequest.Id, false, ACancellationToken);
             await FDatabaseContext.UserRefreshTokens.AddAsync(LNewRefreshToken, ACancellationToken);
 
+            var LCurrentDateTime = FDateTimeService.Now;
             var LCurrentUser = await FDatabaseContext.Users.SingleAsync(AUsers => AUsers.Id == ARequest.Id, ACancellationToken);
-            LCurrentUser.LastLogged = FDateTimeService.Now;
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-            
+            var LIpAddress = FUserServiceProvider.GetRequestIpAddress();
             var LTokenExpires = FDateTimeService.Now.AddMinutes(FIdentityServer.WebTokenExpiresIn);
             var LUserToken = await FUserServiceProvider.GenerateUserToken(LCurrentUser, LTokenExpires, ACancellationToken);
+
             FUserServiceProvider.SetRefreshTokenCookie(LNewRefreshToken.Token, FIdentityServer.RefreshTokenExpiresIn);
+            LCurrentUser.LastLogged = LCurrentDateTime;
 
             var LRoles = await FUserServiceProvider.GetUserRoles(LCurrentUser.Id);
             var LPermissions = await FUserServiceProvider.GetUserPermissions(LCurrentUser.Id);
-            
+
+            var LNewUserToken = new UserTokens
+            {
+                UserId = LCurrentUser.Id,
+                Token = LUserToken,
+                Expires = LTokenExpires,
+                Created = LCurrentDateTime,
+                CreatedByIp = LIpAddress,
+                Command = nameof(ReAuthenticateUserCommand)
+            };
+
+            await FDatabaseContext.UserTokens.AddAsync(LNewUserToken, ACancellationToken);
+            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+
             return new ReAuthenticateUserCommandResult
             {
                 UserId = LCurrentUser.Id,

@@ -30,5 +30,7 @@
         public Users User { get; set; }
 
         public ICollection<ArticleLikes> ArticleLikes { get; set; } = new HashSet<ArticleLikes>();
+
+        public ICollection<ArticleCounts> ArticleCounts { get; set; } = new HashSet<ArticleCounts>();
     }
 }

@@ -11,7 +11,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Shared.Resources;
     using Services.CipheringService;
     using Services.UserServiceProvider;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     using Identity.Services.JwtUtilityService;
 
     public class AuthenticateUserCommandHandler : TemplateHandler<AuthenticateUserCommand, AuthenticateUserCommandResult>
@@ -58,14 +58,24 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             if (!LCurrentUser.IsActivated)
                 throw new BusinessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
-            LCurrentUser.LastLogged = FDateTimeService.Now;
-            
+            var LCurrentDateTime = FDateTimeService.Now;
+            var LIpAddress = FUserServiceProvider.GetRequestIpAddress();
             var LTokenExpires = FDateTimeService.Now.AddMinutes(FIdentityServer.WebTokenExpiresIn);
             var LUserToken = await FUserServiceProvider.GenerateUserToken(LCurrentUser, LTokenExpires, ACancellationToken);
-
-            var LIpAddress = FUserServiceProvider.GetRequestIpAddress();
             var LRefreshToken = FJwtUtilityService.GenerateRefreshToken(LIpAddress, FIdentityServer.RefreshTokenExpiresIn);
+
             FUserServiceProvider.SetRefreshTokenCookie(LRefreshToken.Token, FIdentityServer.RefreshTokenExpiresIn);
+            LCurrentUser.LastLogged = LCurrentDateTime;
+            
+            var LNewUserToken = new UserTokens
+            {
+                UserId = LCurrentUser.Id,
+                Token = LUserToken,
+                Expires = LTokenExpires,
+                Created = LCurrentDateTime,
+                CreatedByIp = LIpAddress,
+                Command = nameof(AuthenticateUserCommand)
+            };
 
             var LNewRefreshToken = new UserRefreshTokens
             {
@@ -81,6 +91,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             };
 
             await FUserServiceProvider.DeleteOutdatedRefreshTokens(LCurrentUser.Id, false, ACancellationToken);
+            await FDatabaseContext.UserTokens.AddAsync(LNewUserToken, ACancellationToken);
             await FDatabaseContext.UserRefreshTokens.AddAsync(LNewRefreshToken, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
 

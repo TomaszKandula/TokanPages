@@ -16,8 +16,8 @@
     using Shared.Resources;
     using Services.CipheringService;
     using System.Collections.Generic;
-    using Shared.Services.DateTimeService;
-    using Shared.Services.TemplateService;
+    using Core.Utilities.DateTimeService;
+    using Core.Utilities.TemplateService;
     using Core.Utilities.CustomHttpClient;
     using Core.Utilities.CustomHttpClient.Models;
 
@@ -161,10 +161,10 @@
 
             var LActivationLink = $"{FApplicationPaths.DeploymentOrigin}{FApplicationPaths.ActivationPath}{AActivationId}";
 
-            var LNewValues = new List<TemplateItem>
+            var LNewValues = new Dictionary<string, string>
             {
-                new() { Tag = "{ACTIVATION_LINK}", Value = LActivationLink },
-                new() { Tag = "{EXPIRATION}", Value = $"{AActivationIdEnds}" }
+                { "{ACTIVATION_LINK}", LActivationLink },
+                { "{EXPIRATION}", $"{AActivationIdEnds}" }
             };
 
             var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.REGISTER_FORM}";
@@ -172,15 +172,16 @@
 
             var LConfiguration = new Configuration { Url = LUrl, Method = "GET" };
             var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
-            var LTemplate = System.Text.Encoding.Default.GetString(LResults.Content);
 
+            if (LResults.Content == null)
+                throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
+
+            var LTemplate = System.Text.Encoding.Default.GetString(LResults.Content);
             FSmtpClientService.HtmlBody = FTemplateService.MakeBody(LTemplate, LNewValues);
 
             var LResult = await FSmtpClientService.Send(ACancellationToken);
             if (!LResult.IsSucceeded)
-                throw new BusinessException(
-                    nameof(ErrorCodes.CANNOT_SEND_EMAIL), 
-                    $"{ErrorCodes.CANNOT_SEND_EMAIL}. {LResult.ErrorDesc}");
+                throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}. {LResult.ErrorDesc}");
         }
     }
 }

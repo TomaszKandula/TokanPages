@@ -4,7 +4,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     using Services.UserServiceProvider;
     using Services.CipheringService;
     using Identity.Authorization;

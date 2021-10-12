@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading;
     using System.Security.Claims;
     using System.Threading.Tasks;
     using System.Collections.Generic;
@@ -14,8 +15,7 @@
     using Domain.Entities;
     using Shared.Resources;
     using Shared.Dto.Users;
-    using System.Threading;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     using Identity.Services.JwtUtilityService;
 
     public class UserServiceProvider : IUserServiceProvider

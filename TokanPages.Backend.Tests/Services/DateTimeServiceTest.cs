@@ -1,8 +1,8 @@
 namespace TokanPages.Backend.Tests.Services
 {
     using System;
-    using TokanPages.Backend.Shared.Services.DateTimeService;
     using FluentAssertions;
+    using Core.Utilities.DateTimeService;
     using Xunit;
 
     public class DateTimeServiceTest
