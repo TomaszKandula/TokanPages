@@ -16,3 +16,7 @@ jest.mock("react-redux", () => (
 }));
 
 Enzyme.configure({ adapter: new Adapter(), disableLifecycleMethods: false });
+
+// environmental variables used during all tests
+process.env.REACT_APP_API_VER="1";
+process.env.REACT_APP_BACKEND="http://localhost:5000";
