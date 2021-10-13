@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test render function 'renderContent'. Renders correctly passed json objects. 1`] = `
-<div>
+exports[`Test render function 'renderContent'. Should correctly render passed items. 1`] = `
+<Fragment>
   <Component
     id="e7f4a895-b18c-4378-98b6-e85ef7c27e42"
     key="e7f4a895-b18c-4378-98b6-e85ef7c27e42"
@@ -94,5 +94,17 @@ exports[`Test render function 'renderContent'. Renders correctly passed json obj
   >
     Unknown element.
   </div>
+</Fragment>
+`;
+
+exports[`Test render function 'renderContent'. Should return 'Cannot render content.' when called with empty array of items. 1`] = `
+<div>
+  Cannot render content.
+</div>
+`;
+
+exports[`Test render function 'renderContent'. Should return 'Cannot render content.' when called with items undefined. 1`] = `
+<div>
+  Cannot render content.
 </div>
 `;

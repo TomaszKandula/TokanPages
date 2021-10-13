@@ -6,6 +6,16 @@ import { RenderContent } from "../renderContent";
 
 describe("Test render function 'renderContent'.", () => 
 {
+    interface IProperties
+    {
+        textObject: ITextObject | undefined
+    }
+    
+    const TestComponent = (props: IProperties): JSX.Element => 
+    {
+        return RenderContent(props.textObject);
+    }
+
     const TestObject: ITextObject = 
     {
         items: 
@@ -103,10 +113,22 @@ describe("Test render function 'renderContent'.", () =>
         ]
     };
 
-    const wrapper = shallow(<div>{RenderContent(TestObject)}</div>);
+    const noItems = shallow(<TestComponent textObject={undefined}></TestComponent>);
+    const emptyItems = shallow(<TestComponent textObject={{ items: [] }}></TestComponent>);
+    const withItems = shallow(<TestComponent textObject={TestObject}></TestComponent>);
 
-    it("Renders correctly passed json objects.", () => 
+    it("Should return 'Cannot render content.' when called with items undefined.", () => 
     {
-        expect(wrapper).toMatchSnapshot();
+        expect(noItems).toMatchSnapshot();
+    });
+
+    it("Should return 'Cannot render content.' when called with empty array of items.", () => 
+    {
+        expect(emptyItems).toMatchSnapshot();
+    });
+
+    it("Should correctly render passed items.", () => 
+    {
+        expect(withItems).toMatchSnapshot();
     });
 });
