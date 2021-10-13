@@ -80,7 +80,7 @@ export const RenderContent = (textObject: ITextObject | undefined): JSX.Element 
                     />);
             break;
 
-            default: renderBuffer.push(<div>Unknown element.</div>);
+            default: renderBuffer.push(<div key={item.id}>Unknown element.</div>);
         }
     });
 
