@@ -84,38 +84,14 @@ exports[`Test view component for application user info. Renders correctly view c
     <WithStyles(ForwardRef(List))
       dense={true}
     >
-      <WithStyles(ForwardRef(ListItem))
+      <Items
+        item="EverydayUser"
         key="0"
-      >
-        <WithStyles(ForwardRef(ListItemIcon))
-          style={
-            Object {
-              "color": "#4caf50",
-            }
-          }
-        >
-          <CheckIcon />
-        </WithStyles(ForwardRef(ListItemIcon))>
-        <WithStyles(ForwardRef(ListItemText))>
-          EverydayUser
-        </WithStyles(ForwardRef(ListItemText))>
-      </WithStyles(ForwardRef(ListItem))>
-      <WithStyles(ForwardRef(ListItem))
+      />
+      <Items
+        item="Tester"
         key="1"
-      >
-        <WithStyles(ForwardRef(ListItemIcon))
-          style={
-            Object {
-              "color": "#4caf50",
-            }
-          }
-        >
-          <CheckIcon />
-        </WithStyles(ForwardRef(ListItemIcon))>
-        <WithStyles(ForwardRef(ListItemText))>
-          Tester
-        </WithStyles(ForwardRef(ListItemText))>
-      </WithStyles(ForwardRef(ListItem))>
+      />
     </WithStyles(ForwardRef(List))>
     <Styled(MuiBox)
       pt={0}
@@ -130,38 +106,14 @@ exports[`Test view component for application user info. Renders correctly view c
     <WithStyles(ForwardRef(List))
       dense={true}
     >
-      <WithStyles(ForwardRef(ListItem))
+      <Items
+        item="CanTestEverything"
         key="0"
-      >
-        <WithStyles(ForwardRef(ListItemIcon))
-          style={
-            Object {
-              "color": "#4caf50",
-            }
-          }
-        >
-          <CheckIcon />
-        </WithStyles(ForwardRef(ListItemIcon))>
-        <WithStyles(ForwardRef(ListItemText))>
-          CanTestEverything
-        </WithStyles(ForwardRef(ListItemText))>
-      </WithStyles(ForwardRef(ListItem))>
-      <WithStyles(ForwardRef(ListItem))
+      />
+      <Items
+        item="CanOrderPizza"
         key="1"
-      >
-        <WithStyles(ForwardRef(ListItemIcon))
-          style={
-            Object {
-              "color": "#4caf50",
-            }
-          }
-        >
-          <CheckIcon />
-        </WithStyles(ForwardRef(ListItemIcon))>
-        <WithStyles(ForwardRef(ListItemText))>
-          CanOrderPizza
-        </WithStyles(ForwardRef(ListItemText))>
-      </WithStyles(ForwardRef(ListItem))>
+      />
     </WithStyles(ForwardRef(List))>
   </WithStyles(ForwardRef(DialogContent))>
   <WithStyles(ForwardRef(Divider)) />
