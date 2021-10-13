@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test render function 'getIcon'. Render SVG icon based on input string. 1`] = `
+<div>
+  <Component
+    iconName="Person"
+    key="0"
+  />
+  <Component
+    iconName="PersonAdd"
+    key="1"
+  />
+  <Component
+    iconName="Home"
+    key="2"
+  />
+  <Component
+    iconName="ViewList"
+    key="3"
+  />
+  <Component
+    iconName="Subject"
+    key="4"
+  />
+  <Component
+    iconName="Build"
+    key="5"
+  />
+  <Component
+    iconName="Assignment"
+    key="6"
+  />
+  <Component
+    iconName="Star"
+    key="7"
+  />
+  <Component
+    iconName="PhotoCamera"
+    key="8"
+  />
+  <Component
+    iconName="SportsSoccer"
+    key="9"
+  />
+  <Component
+    iconName="MusicNote"
+    key="10"
+  />
+  <Component
+    iconName="DirectionsBike"
+    key="11"
+  />
+  <Component
+    iconName="ContactMail"
+    key="12"
+  />
+  <Component
+    iconName="Gavel"
+    key="13"
+  />
+  <Component
+    iconName="Policy"
+    key="14"
+  />
+  <Component
+    iconName="VpnKey"
+    key="15"
+  />
+  <Component
+    iconName="Lock"
+    key="16"
+  />
+  <Component
+    iconName="Unknown element renders apple icon"
+    key="17"
+  />
+</div>
+`;
