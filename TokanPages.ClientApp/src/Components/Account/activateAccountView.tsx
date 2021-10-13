@@ -6,7 +6,7 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
-import activateAccountStyle from "./Styles/activeAccountStyle";
+import activateAccountStyle from "./Styles/activateAccountStyle";
 
 interface IBinding 
 {
