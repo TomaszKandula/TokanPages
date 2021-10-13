@@ -74,10 +74,10 @@
     "**/react-dom": "17.0.1"
   },
   "scripts": {
-    "shared-test": "jest --verbose ./Shared",
-    "comp-test": "jest --verbose ./Components",
-    "app-test": "jest --verbose",
-    "dom-test": "cross-env CI=true react-scripts test --env=jsdom --verbose",
+    "shared-test": "jest --setupFiles dotenv/config --verbose ./Shared",
+    "comp-test": "jest --setupFiles dotenv/config --verbose ./Components",
+    "app-test": "jest --setupFiles dotenv/config --verbose",
+    "dom-test": "cross-env CI=true react-scripts test --env=jsdom --setupFiles dotenv/config --verbose",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test view component for application toast. Renders correctly view component with passed props. 1`] = `
+<div
+  className="makeStyles-root-1"
+>
+  <WithStyles(ForwardRef(Snackbar))
+    TransitionComponent={[Function]}
+    anchorOrigin={
+      Object {
+        "horizontal": "right",
+        "vertical": "top",
+      }
+    }
+    autoHideDuration={15000}
+    key="topright"
+    onClose={[MockFunction]}
+    open={false}
+  >
+    <WithStyles(ForwardRef(Alert))
+      elevation={6}
+      onClose={[MockFunction]}
+      severity="error"
+      variant="filled"
+    >
+      Test error message
+    </WithStyles(ForwardRef(Alert))>
+  </WithStyles(ForwardRef(Snackbar))>
+</div>
+`;
