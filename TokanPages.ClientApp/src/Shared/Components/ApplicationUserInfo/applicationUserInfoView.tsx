@@ -27,20 +27,20 @@ interface IProperties
     closeHandler: any;
 }
 
+const Items = (props: { item: string }): JSX.Element => 
+{
+    return (
+        <ListItem>
+            <ListItemIcon style={{ color: green[500] }}>
+                <CheckIcon />
+            </ListItemIcon>
+            <ListItemText>{props.item}</ListItemText>
+        </ListItem>
+    );
+}
+
 const ApplicationUserInfoView = (props: IBinding): JSX.Element => 
 {
-    const Items = (props: { item: string }): JSX.Element => 
-    {
-        return (
-            <ListItem>
-                <ListItemIcon style={{ color: green[500] }}>
-                    <CheckIcon />
-                </ListItemIcon>
-                <ListItemText>{props.item}</ListItemText>
-            </ListItem>
-        );
-    }
-
     return (
         <Dialog fullWidth maxWidth="xs" open={props.bind?.state} onClose={props.bind?.closeHandler} aria-labelledby="dialog-title" aria-describedby="dialog-description">
             <DialogTitle id="dialog-title">
