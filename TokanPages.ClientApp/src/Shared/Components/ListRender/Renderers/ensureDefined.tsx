@@ -14,7 +14,7 @@ export const EnsureDefined = (object: IObject, onSuccess: JSX.Element): JSX.Elem
     for(let index = 0; index < object.values.length; index++)
     {
         if (!Validate.isDefined(object.values[index])) return <div>${object.messages[index]}</div>;
-    };    
+    }
 
     return onSuccess;
 }
