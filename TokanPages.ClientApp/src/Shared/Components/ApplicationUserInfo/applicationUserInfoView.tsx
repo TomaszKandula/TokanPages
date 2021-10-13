@@ -29,6 +29,18 @@ interface IProperties
 
 const ApplicationUserInfoView = (props: IBinding): JSX.Element => 
 {
+    const Items = (props: { item: string }): JSX.Element => 
+    {
+        return (
+            <ListItem>
+                <ListItemIcon style={{ color: green[500] }}>
+                    <CheckIcon />
+                </ListItemIcon>
+                <ListItemText>{props.item}</ListItemText>
+            </ListItem>
+        );
+    }
+
     return (
         <Dialog fullWidth maxWidth="xs" open={props.bind?.state} onClose={props.bind?.closeHandler} aria-labelledby="dialog-title" aria-describedby="dialog-description">
             <DialogTitle id="dialog-title">
@@ -69,12 +81,7 @@ const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
                 <List dense={true}>
                 {props.bind?.data.roles?.map((item, index) => 
                 (
-                    <ListItem key={index}>
-                        <ListItemIcon style={{ color: green[500] }}>
-                            <CheckIcon />
-                        </ListItemIcon>
-                        <ListItemText>{item.name}</ListItemText>
-                    </ListItem>
+                    <Items item={item.name} key={index} />
                 ))}
                 </List>
                 <Box pt={0}>
@@ -85,12 +92,7 @@ const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
                 <List dense={true}>
                 {props.bind?.data.permissions?.map((item, index) => 
                 (
-                    <ListItem key={index}>
-                        <ListItemIcon style={{ color: green[500] }}>
-                            <CheckIcon />
-                        </ListItemIcon>
-                        <ListItemText>{item.name}</ListItemText>
-                    </ListItem>
+                    <Items item={item.name} key={index} />
                 ))}
                 </List>
             </DialogContent>
