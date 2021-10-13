@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test render function 'renderList'. Should return 'Cannot render content.' when called with empty array of items. 1`] = `
+<div>
+  Cannot render content.
+</div>
+`;
+
+exports[`Test render function 'renderList'. Should return 'Cannot render content.' when called with items undefined. 1`] = `
+<div>
+  Cannot render content.
+</div>
+`;
+
+exports[`Test render function 'renderList'. Should return rendered list when items are provided. 1`] = `
+<WithStyles(ForwardRef(List))>
+  <Component
+    enabled={true}
+    icon="Person"
+    id="e8284fe7-5ced-46a5-b779-2fe516fe88c2"
+    key="e8284fe7-5ced-46a5-b779-2fe516fe88c2"
+    link="/account"
+    type="item"
+    value="My account"
+  />
+  <Component
+    enabled={true}
+    icon="Lock"
+    id="d3ada751-012d-4c58-a4dd-a89c89928338"
+    key="d3ada751-012d-4c58-a4dd-a89c89928338"
+    link="/signout"
+    type="item"
+    value="Sign out"
+  />
+  <WithStyles(ForwardRef(Divider))
+    key="945b6c9c-f37f-4b03-bb6f-3256a559fafe"
+    variant="middle"
+  />
+  <Component
+    enabled={true}
+    icon="Home"
+    id="c44bb2cd-ee75-470c-942e-5560e3589102"
+    key="c44bb2cd-ee75-470c-942e-5560e3589102"
+    link="/"
+    type="item"
+    value="Home"
+  />
+  <Component
+    enabled={true}
+    icon="ViewList"
+    id="7c3f3893-2ac1-4ee8-94dc-baa44b668ec7"
+    key="7c3f3893-2ac1-4ee8-94dc-baa44b668ec7"
+    link="/articles"
+    type="item"
+    value="Articles"
+  />
+  <Component
+    enabled={true}
+    icon="Build"
+    id="d5303362-76fb-4638-a6ee-5077cac76826"
+    key="d5303362-76fb-4638-a6ee-5077cac76826"
+    link="#"
+    subitems={
+      Array [
+        Object {
+          "enabled": false,
+          "icon": "Assignment",
+          "id": "49d434fc-5ba7-4b90-8234-c3ec072d1727",
+          "link": "#",
+          "type": "subitem",
+          "value": "VAT Validation",
+        },
+      ]
+    }
+    type="itemspan"
+    value="My projects"
+  />
+  <Component
+    enabled={true}
+    icon="Star"
+    id="5e8a29af-ada6-40dc-a07d-1c16d42cef87"
+    key="5e8a29af-ada6-40dc-a07d-1c16d42cef87"
+    link="#"
+    subitems={
+      Array [
+        Object {
+          "enabled": false,
+          "icon": "PhotoCamera",
+          "id": "eb7b1155-04c3-4dfe-b648-5f3e2432e6cc",
+          "link": "/photography",
+          "type": "subitem",
+          "value": "Photography",
+        },
+        Object {
+          "enabled": false,
+          "icon": "SportsSoccer",
+          "id": "0b349f9f-2c69-446e-9861-314706a0d88f",
+          "link": "/football",
+          "type": "subitem",
+          "value": "Football",
+        },
+      ]
+    }
+    type="itemspan"
+    value="My interests"
+  />
+  <div
+    key="8495adf7-2b49-417e-83aa-6dcef4201ac4"
+  >
+    Unknown element.
+  </div>
+  <WithStyles(ForwardRef(Divider))
+    key="2455c0e2-da5e-4ba9-ac29-e87c82d998cc"
+    variant="middle"
+  />
+  <Component
+    enabled={true}
+    icon="Policy"
+    id="3b54919c-837e-4efb-afd2-abd1c1d8b53b"
+    key="3b54919c-837e-4efb-afd2-abd1c1d8b53b"
+    link="/policy"
+    type="item"
+    value="Privacy policy"
+  />
+</WithStyles(ForwardRef(List))>
+`;
