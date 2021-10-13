@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test render function 'renderContent'. Renders correctly passed json objects. 1`] = `
+<div>
+  <Component
+    id="e7f4a895-b18c-4378-98b6-e85ef7c27e42"
+    key="e7f4a895-b18c-4378-98b6-e85ef7c27e42"
+    prop="title"
+    text=""
+    type="html"
+    value="<p>Test line</p>"
+  />
+  <Component
+    id="b36cb3f6-673a-432c-8c65-b0c0a259f5ae"
+    key="b36cb3f6-673a-432c-8c65-b0c0a259f5ae"
+    prop="subtitle"
+    text=""
+    type="html"
+    value="<p>Test line</p>"
+  />
+  <Component
+    id="2a429fc0-099d-480e-bb08-5cbee9885597"
+    key="2a429fc0-099d-480e-bb08-5cbee9885597"
+    prop=""
+    text=""
+    type="image"
+    value="image.jpg"
+  />
+  <Component
+    id="cd75d329-1fce-4650-9870-455f37f5d6f4"
+    key="cd75d329-1fce-4650-9870-455f37f5d6f4"
+    prop="dropcap"
+    text=""
+    type="html"
+    value="<p>Test line</p>"
+  />
+  <Component
+    id="47156d85-ed78-49e1-ad1a-20ca72efee5d"
+    key="47156d85-ed78-49e1-ad1a-20ca72efee5d"
+    prop=""
+    text=""
+    type="html"
+    value="<p>Test line</p>"
+  />
+  <Component
+    key="4191a77f-2618-4757-9e97-fedefc40748c"
+  />
+  <Component
+    id="e40d98e8-8e66-4bc8-a170-675b7d8aaac9"
+    key="e40d98e8-8e66-4bc8-a170-675b7d8aaac9"
+    prop=""
+    text=""
+    type="table"
+    value={
+      Array [
+        Object {
+          "column0": "",
+          "column1": "Header line",
+          "column2": "Header line",
+        },
+        Object {
+          "column0": "1",
+          "column1": "value",
+          "column2": "value",
+        },
+        Object {
+          "column0": "2",
+          "column1": "value",
+          "column2": "value",
+        },
+        Object {
+          "column0": "3",
+          "column1": "value",
+          "column2": "value",
+        },
+        Object {
+          "column0": "4",
+          "column1": "value",
+          "column2": "value",
+        },
+      ]
+    }
+  />
+  <Component
+    id="7e2a6a15-2676-43ac-b2b0-f65297b90db2"
+    key="7e2a6a15-2676-43ac-b2b0-f65297b90db2"
+    prop="cheers-commercial.png"
+    text="Video"
+    type="video"
+    value="cheers-commercial.mp4"
+  />
+  <div
+    key="02bdf6d5-71c0-4a5d-ac4b-8f6700210b5e"
+  >
+    Unknown element.
+  </div>
+</div>
+`;
