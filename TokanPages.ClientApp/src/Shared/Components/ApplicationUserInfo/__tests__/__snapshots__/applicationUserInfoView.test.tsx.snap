@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test view component for application user info. Renders correctly view component with passed props. 1`] = `
+<WithStyles(ForwardRef(Dialog))
+  aria-describedby="dialog-description"
+  aria-labelledby="dialog-title"
+  fullWidth={true}
+  maxWidth="xs"
+  onClose={[MockFunction]}
+  open={true}
+>
+  <WithStyles(ForwardRef(DialogTitle))
+    id="dialog-title"
+  >
+    <WithStyles(ForwardRef(Grid))
+      alignItems="center"
+      container={true}
+      direction="column"
+      spacing={2}
+    >
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={12}
+      >
+        <Styled(MuiBox)
+          mt={1}
+        >
+          <UserAvatar
+            avatarName="tester-avatar-icon.png"
+            isLargeScale={true}
+            userLetter="T"
+          />
+        </Styled(MuiBox)>
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={12}
+      >
+        <WithStyles(ForwardRef(Typography))
+          component="p"
+          variant="h5"
+        >
+          Tester
+           
+          Testerovny
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(DialogTitle))>
+  <WithStyles(ForwardRef(Divider)) />
+  <WithStyles(ForwardRef(DialogContent))>
+    <Styled(MuiBox)
+      pt={2}
+    >
+      <WithStyles(ForwardRef(Typography))
+        component="p"
+        variant="body1"
+      >
+        User alias: 
+        tester
+      </WithStyles(ForwardRef(Typography))>
+    </Styled(MuiBox)>
+    <Styled(MuiBox)
+      pt={2}
+    >
+      <WithStyles(ForwardRef(Typography))
+        component="p"
+        variant="body1"
+      >
+        Registered: 
+        01/01/2020, 03:02 PM
+      </WithStyles(ForwardRef(Typography))>
+    </Styled(MuiBox)>
+    <Styled(MuiBox)
+      pt={2}
+    >
+      <WithStyles(ForwardRef(Typography))
+        component="p"
+        variant="body1"
+      >
+        Roles assigned:
+      </WithStyles(ForwardRef(Typography))>
+    </Styled(MuiBox)>
+    <WithStyles(ForwardRef(List))
+      dense={true}
+    >
+      <WithStyles(ForwardRef(ListItem))
+        key="0"
+      >
+        <WithStyles(ForwardRef(ListItemIcon))
+          style={
+            Object {
+              "color": "#4caf50",
+            }
+          }
+        >
+          <CheckIcon />
+        </WithStyles(ForwardRef(ListItemIcon))>
+        <WithStyles(ForwardRef(ListItemText))>
+          EverydayUser
+        </WithStyles(ForwardRef(ListItemText))>
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(ListItem))
+        key="1"
+      >
+        <WithStyles(ForwardRef(ListItemIcon))
+          style={
+            Object {
+              "color": "#4caf50",
+            }
+          }
+        >
+          <CheckIcon />
+        </WithStyles(ForwardRef(ListItemIcon))>
+        <WithStyles(ForwardRef(ListItemText))>
+          Tester
+        </WithStyles(ForwardRef(ListItemText))>
+      </WithStyles(ForwardRef(ListItem))>
+    </WithStyles(ForwardRef(List))>
+    <Styled(MuiBox)
+      pt={0}
+    >
+      <WithStyles(ForwardRef(Typography))
+        component="p"
+        variant="body1"
+      >
+        Permissions assigned:
+      </WithStyles(ForwardRef(Typography))>
+    </Styled(MuiBox)>
+    <WithStyles(ForwardRef(List))
+      dense={true}
+    >
+      <WithStyles(ForwardRef(ListItem))
+        key="0"
+      >
+        <WithStyles(ForwardRef(ListItemIcon))
+          style={
+            Object {
+              "color": "#4caf50",
+            }
+          }
+        >
+          <CheckIcon />
+        </WithStyles(ForwardRef(ListItemIcon))>
+        <WithStyles(ForwardRef(ListItemText))>
+          CanTestEverything
+        </WithStyles(ForwardRef(ListItemText))>
+      </WithStyles(ForwardRef(ListItem))>
+      <WithStyles(ForwardRef(ListItem))
+        key="1"
+      >
+        <WithStyles(ForwardRef(ListItemIcon))
+          style={
+            Object {
+              "color": "#4caf50",
+            }
+          }
+        >
+          <CheckIcon />
+        </WithStyles(ForwardRef(ListItemIcon))>
+        <WithStyles(ForwardRef(ListItemText))>
+          CanOrderPizza
+        </WithStyles(ForwardRef(ListItemText))>
+      </WithStyles(ForwardRef(ListItem))>
+    </WithStyles(ForwardRef(List))>
+  </WithStyles(ForwardRef(DialogContent))>
+  <WithStyles(ForwardRef(Divider)) />
+  <WithStyles(ForwardRef(DialogActions))>
+    <WithStyles(ForwardRef(Button))
+      autoFocus={true}
+      color="primary"
+      onClick={[MockFunction]}
+    >
+      OK
+    </WithStyles(ForwardRef(Button))>
+  </WithStyles(ForwardRef(DialogActions))>
+</WithStyles(ForwardRef(Dialog))>
+`;
