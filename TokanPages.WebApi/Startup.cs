@@ -5,7 +5,6 @@ namespace TokanPages.WebApi
     using System.Net.Sockets;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.AspNetCore.HttpOverrides;
@@ -21,9 +20,9 @@ namespace TokanPages.WebApi
     {
         private readonly IConfiguration FConfiguration;
 
-        private readonly IWebHostEnvironment FEnvironment;
+        private readonly IHostEnvironment FEnvironment;
 
-        public Startup(IConfiguration AConfiguration, IWebHostEnvironment AEnvironment)
+        public Startup(IConfiguration AConfiguration, IHostEnvironment AEnvironment)
         {
             FConfiguration = AConfiguration;
             FEnvironment = AEnvironment;
