@@ -6,8 +6,8 @@ namespace TokanPages.Backend.Identity.Services.JwtUtilityService
 
     public interface IJwtUtilityService
     {
-        string GenerateJwt(DateTime AExpires, ClaimsIdentity AClaimsIdentity, string AWebSecret, string AIssuer, string ATargetAudience);
+        string GenerateJwt(DateTime expires, ClaimsIdentity claimsIdentity, string webSecret, string issuer, string targetAudience);
 
-        RefreshToken GenerateRefreshToken(string AIpAddress, int AExpiresIn);
+        RefreshToken GenerateRefreshToken(string ipAddress, int expiresIn);
     }
 }
