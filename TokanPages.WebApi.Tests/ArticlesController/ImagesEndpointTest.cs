@@ -13,7 +13,7 @@ namespace TokanPages.WebApi.Tests.ArticlesController
         public async Task GivenCorrectId_WhenGetArticleImage_ShouldSucceed()
         {
             // Arrange
-            var LTestUserId = Article1.FId;
+            var LTestUserId = Article1.Id;
             var LRequest = $"{API_BASE_URL}/images/?AId={LTestUserId}";
             var LHttpClient = FWebAppFactory.CreateClient();
 

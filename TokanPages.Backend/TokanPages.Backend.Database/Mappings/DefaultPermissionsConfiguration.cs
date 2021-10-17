@@ -8,21 +8,21 @@ namespace TokanPages.Backend.Database.Mappings
     [ExcludeFromCodeCoverage]
     public class DefaultPermissionsConfiguration : IEntityTypeConfiguration<DefaultPermissions>
     {
-        public void Configure(EntityTypeBuilder<DefaultPermissions> ABuilder)
+        public void Configure(EntityTypeBuilder<DefaultPermissions> typeBuilder)
         {
-            ABuilder.Property(ADefaultPermissions => ADefaultPermissions.Id).ValueGeneratedOnAdd();
+            typeBuilder.Property(defaultPermissions => defaultPermissions.Id).ValueGeneratedOnAdd();
             
-            ABuilder
-                .HasOne(ADefaultPermissions => ADefaultPermissions.Permission)
-                .WithMany(APermission => APermission.DefaultPermissions)
-                .HasForeignKey(ADefaultPermissions => ADefaultPermissions.PermissionId)
+            typeBuilder
+                .HasOne(defaultPermissions => defaultPermissions.Permission)
+                .WithMany(permissions => permissions.DefaultPermissions)
+                .HasForeignKey(defaultPermissions => defaultPermissions.PermissionId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_DefaultPermissions_Permissions");
 
-            ABuilder
-                .HasOne(ADefaultPermissions => ADefaultPermissions.Role)
-                .WithMany(ARoles => ARoles.DefaultPermissions)
-                .HasForeignKey(ADefaultPermissions => ADefaultPermissions.RoleId)
+            typeBuilder
+                .HasOne(defaultPermissions => defaultPermissions.Role)
+                .WithMany(roles => roles.DefaultPermissions)
+                .HasForeignKey(defaultPermissions => defaultPermissions.RoleId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_DefaultPermissions_Roles");
         }

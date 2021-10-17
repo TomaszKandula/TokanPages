@@ -8,7 +8,7 @@ namespace TokanPages.Backend.Database.Mappings
     [ExcludeFromCodeCoverage]
     public class RolesConfiguration : IEntityTypeConfiguration<Roles>
     {
-        public void Configure(EntityTypeBuilder<Roles> ABuilder)
-            => ABuilder.Property(ARoles => ARoles.Id).ValueGeneratedOnAdd();
+        public void Configure(EntityTypeBuilder<Roles> typeBuilder)
+            => typeBuilder.Property(roles => roles.Id).ValueGeneratedOnAdd();
     }
 }

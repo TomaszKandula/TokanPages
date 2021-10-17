@@ -32,10 +32,10 @@ namespace TokanPages.Backend.Tests.Services
             {
                 new Claim(ClaimTypes.Name, LUserAlias),
                 new Claim(ClaimTypes.Role, nameof(Roles.EverydayUser)),
-                new Claim(ClaimTypes.NameIdentifier, User1.FId.ToString()),
-                new Claim(ClaimTypes.GivenName, User1.FIRST_NAME),
-                new Claim(ClaimTypes.Surname, User1.LAST_NAME),
-                new Claim(ClaimTypes.Email, User1.EMAIL_ADDRESS)
+                new Claim(ClaimTypes.NameIdentifier, User1.Id.ToString()),
+                new Claim(ClaimTypes.GivenName, User1.FirstName),
+                new Claim(ClaimTypes.Surname, User1.LastName),
+                new Claim(ClaimTypes.Email, User1.EmailAddress)
             });
             
             // Act
@@ -53,10 +53,10 @@ namespace TokanPages.Backend.Tests.Services
             LSecurityToken.Should().NotBeNull();
             LSecurityToken?.Claims.First(AClaim => AClaim.Type == CLAIM_TYPES_NAME).Value.Should().Be(LUserAlias);
             LSecurityToken?.Claims.First(AClaim => AClaim.Type == CLAIM_TYPES_ROLE).Value.Should().Be(nameof(Roles.EverydayUser));
-            LSecurityToken?.Claims.First(AClaim => AClaim.Type == CLAIM_TYPES_NAME_IDENTIFIER).Value.Should().Be(User1.FId.ToString());
-            LSecurityToken?.Claims.First(AClaim => AClaim.Type == CLAIM_TYPES_GIVEN_NAME).Value.Should().Be(User1.FIRST_NAME);
-            LSecurityToken?.Claims.First(AClaim => AClaim.Type == CLAIM_TYPES_SURNAME).Value.Should().Be(User1.LAST_NAME);
-            LSecurityToken?.Claims.First(AClaim => AClaim.Type == CLAIM_TYPES_EMAIL).Value.Should().Be(User1.EMAIL_ADDRESS);
+            LSecurityToken?.Claims.First(AClaim => AClaim.Type == CLAIM_TYPES_NAME_IDENTIFIER).Value.Should().Be(User1.Id.ToString());
+            LSecurityToken?.Claims.First(AClaim => AClaim.Type == CLAIM_TYPES_GIVEN_NAME).Value.Should().Be(User1.FirstName);
+            LSecurityToken?.Claims.First(AClaim => AClaim.Type == CLAIM_TYPES_SURNAME).Value.Should().Be(User1.LastName);
+            LSecurityToken?.Claims.First(AClaim => AClaim.Type == CLAIM_TYPES_EMAIL).Value.Should().Be(User1.EmailAddress);
         }
 
         [Theory]

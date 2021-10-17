@@ -18,24 +18,24 @@
         /// This method requires connection string defined in either AppSettings.json (linked)
         /// or User Secret that is referenced in project file (user secret file can be shared between projects).
         /// </summary>
-        /// <param name="AParams"></param>
+        /// <param name="arguments"></param>
         /// <returns></returns>
-        public DatabaseContext CreateDbContext(string[] AParams)
+        public DatabaseContext CreateDbContext(string[] arguments)
         {
-            var LEnvironment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
-            var LBuilder = new ConfigurationBuilder()
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
+            var builder = new ConfigurationBuilder()
                 .AddJsonFile($"appsettings.json", true, true)
-                .AddJsonFile($"appsettings.{LEnvironment}.json", true, true)
+                .AddJsonFile($"appsettings.{environment}.json", true, true)
                 .AddUserSecrets<DatabaseContext>()
                 .AddEnvironmentVariables()
                 .Build();
 
-            var LConnectionString = LBuilder.GetConnectionString("DbConnect");
+            var connectionString = builder.GetConnectionString("DbConnect");
 
-            var LOptionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-            LOptionsBuilder.UseSqlServer(LConnectionString);
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseSqlServer(connectionString);
             
-            return new DatabaseContext(LOptionsBuilder.Options);
+            return new DatabaseContext(optionsBuilder.Options);
         }
     }
 }

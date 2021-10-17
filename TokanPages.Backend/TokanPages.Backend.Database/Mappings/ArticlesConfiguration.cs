@@ -8,14 +8,14 @@
     [ExcludeFromCodeCoverage]
     public class ArticlesConfiguration : IEntityTypeConfiguration<Articles>
     {
-        public void Configure(EntityTypeBuilder<Articles> ABuilder)
+        public void Configure(EntityTypeBuilder<Articles> typeBuilder)
         {
-            ABuilder.Property(AArticles => AArticles.Id).ValueGeneratedOnAdd();
+            typeBuilder.Property(articles => articles.Id).ValueGeneratedOnAdd();
             
-            ABuilder
-                .HasOne(AArticles => AArticles.User)
-                .WithMany(AUsers => AUsers.Articles)
-                .HasForeignKey(AArticles => AArticles.UserId)
+            typeBuilder
+                .HasOne(articles => articles.User)
+                .WithMany(users => users.Articles)
+                .HasForeignKey(articles => articles.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Articles_Users");
         }

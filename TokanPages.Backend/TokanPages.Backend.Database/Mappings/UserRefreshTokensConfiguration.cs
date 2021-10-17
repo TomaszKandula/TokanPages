@@ -6,14 +6,14 @@ namespace TokanPages.Backend.Database.Mappings
 
     public class UserRefreshTokensConfiguration : IEntityTypeConfiguration<UserRefreshTokens>
     {
-        public void Configure(EntityTypeBuilder<UserRefreshTokens> ABuilder)
+        public void Configure(EntityTypeBuilder<UserRefreshTokens> typeBuilder)
         {
-            ABuilder.Property(AUserRefreshTokens => AUserRefreshTokens.Id).ValueGeneratedOnAdd();
+            typeBuilder.Property(userRefreshTokens => userRefreshTokens.Id).ValueGeneratedOnAdd();
             
-            ABuilder
-                .HasOne(AUserRefreshTokens => AUserRefreshTokens.User)
-                .WithMany(AUsers => AUsers.UserRefreshTokens)
-                .HasForeignKey(AUserRefreshTokens => AUserRefreshTokens.UserId)
+            typeBuilder
+                .HasOne(userRefreshTokens => userRefreshTokens.User)
+                .WithMany(users => users.UserRefreshTokens)
+                .HasForeignKey(userRefreshTokens => userRefreshTokens.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UserRefreshTokens_Users");
         }

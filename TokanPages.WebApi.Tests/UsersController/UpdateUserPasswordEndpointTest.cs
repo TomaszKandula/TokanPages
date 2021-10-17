@@ -23,7 +23,7 @@ namespace TokanPages.WebApi.Tests.UsersController
 
             var LPayLoad = new UpdateUserPasswordDto
             {
-                Id = User2.FId,
+                Id = User2.Id,
                 ResetId = null,
                 NewPassword = DataUtilityService.GetRandomString()
             };
@@ -55,7 +55,7 @@ namespace TokanPages.WebApi.Tests.UsersController
 
             var LPayLoad = new UpdateUserPasswordDto
             {
-                Id = User2.FId,
+                Id = User2.Id,
                 ResetId = null,
                 NewPassword = DataUtilityService.GetRandomString()
             };
@@ -121,7 +121,7 @@ namespace TokanPages.WebApi.Tests.UsersController
 
             var LPayLoad = new UpdateUserPasswordDto
             {
-                Id = User2.FId,
+                Id = User2.Id,
                 ResetId = Guid.NewGuid(),
                 NewPassword = DataUtilityService.GetRandomString()
             };

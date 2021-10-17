@@ -16,7 +16,7 @@ namespace TokanPages.WebApi.Tests.SubscribersController
         public async Task GivenCorrectIdAndNoJwt_WhenGetSubscriber_ShouldReturnUnauthorized() 
         {
             // Arrange
-            var LTestUserId = Subscriber1.FId;
+            var LTestUserId = Subscriber1.Id;
             var LRequest = $"{API_BASE_URL}/GetSubscriber/{LTestUserId}/";
             var LHttpClient = FWebAppFactory.CreateClient();
 

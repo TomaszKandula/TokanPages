@@ -8,21 +8,21 @@
     [ExcludeFromCodeCoverage]
     public class ArticleLikesConfiguration : IEntityTypeConfiguration<ArticleLikes>
     {
-        public void Configure(EntityTypeBuilder<ArticleLikes> ABuilder)
+        public void Configure(EntityTypeBuilder<ArticleLikes> typeBuilder)
         {
-            ABuilder.Property(AArticleLikes => AArticleLikes.Id).ValueGeneratedOnAdd();
+            typeBuilder.Property(articleLikes => articleLikes.Id).ValueGeneratedOnAdd();
             
-            ABuilder
-                .HasOne(AArticleLikes => AArticleLikes.Article)
-                .WithMany(AArticles => AArticles.ArticleLikes)
-                .HasForeignKey(AArticleLikes => AArticleLikes.ArticleId)
+            typeBuilder
+                .HasOne(articleLikes => articleLikes.Article)
+                .WithMany(articles => articles.ArticleLikes)
+                .HasForeignKey(articleLikes => articleLikes.ArticleId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ArticleLikes_Articles");
 
-            ABuilder
-                .HasOne(AArticleLikes => AArticleLikes.User)
-                .WithMany(AUsers => AUsers.ArticleLikes)
-                .HasForeignKey(AArticleLikes => AArticleLikes.UserId)
+            typeBuilder
+                .HasOne(articleLikes => articleLikes.User)
+                .WithMany(users => users.ArticleLikes)
+                .HasForeignKey(articleLikes => articleLikes.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ArticleLikes_Users");
         }

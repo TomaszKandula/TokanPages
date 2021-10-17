@@ -21,7 +21,7 @@ namespace TokanPages.WebApi.Tests.UsersController
 
             var LPayLoad = new ResetUserPasswordDto
             {
-                EmailAddress = User3.EMAIL_ADDRESS
+                EmailAddress = User3.EmailAddress
             };
 
             var LHttpClient = FWebAppFactory.CreateClient();

@@ -8,7 +8,7 @@
     [ExcludeFromCodeCoverage]
     public class SubscribersConfiguration : IEntityTypeConfiguration<Subscribers>
     {
-        public void Configure(EntityTypeBuilder<Subscribers> ABuilder)
-            => ABuilder.Property(ASubscribers => ASubscribers.Id).ValueGeneratedOnAdd();
+        public void Configure(EntityTypeBuilder<Subscribers> typeBuilder)
+            => typeBuilder.Property(subscribers => subscribers.Id).ValueGeneratedOnAdd();
     }
 }

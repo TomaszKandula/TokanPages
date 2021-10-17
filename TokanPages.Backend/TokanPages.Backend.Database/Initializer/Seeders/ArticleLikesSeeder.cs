@@ -14,35 +14,35 @@
             {
                 new ()
                 {
-                    Id = ArticleLike1.FId,
-                    ArticleId = ArticleLike1.FArticleId,
-                    UserId = ArticleLike1.FUserId,
-                    IpAddress = ArticleLike1.IP_ADDRESS,
-                    LikeCount = ArticleLike1.LIKE_COUNT
+                    Id = ArticleLike1.Id,
+                    ArticleId = ArticleLike1.ArticleId,
+                    UserId = ArticleLike1.UserId,
+                    IpAddress = ArticleLike1.IpAddress,
+                    LikeCount = ArticleLike1.LikeCount
                 },
                 new ()
                 {
-                    Id = ArticleLike2.FId,
-                    ArticleId = ArticleLike2.FArticleId,
-                    UserId = ArticleLike2.FUserId,
-                    IpAddress = ArticleLike2.IP_ADDRESS,
-                    LikeCount = ArticleLike2.LIKE_COUNT
+                    Id = ArticleLike2.Id,
+                    ArticleId = ArticleLike2.ArticleId,
+                    UserId = ArticleLike2.UserId,
+                    IpAddress = ArticleLike2.IpAddress,
+                    LikeCount = ArticleLike2.LikeCount
                 },
                 new ()
                 {
-                    Id = ArticleLike3.FId,
-                    ArticleId = ArticleLike3.FArticleId,
-                    UserId = ArticleLike3.FUserId,
-                    IpAddress = ArticleLike3.IP_ADDRESS,
-                    LikeCount = ArticleLike3.LIKE_COUNT
+                    Id = ArticleLike3.Id,
+                    ArticleId = ArticleLike3.ArticleId,
+                    UserId = ArticleLike3.UserId,
+                    IpAddress = ArticleLike3.IpAddress,
+                    LikeCount = ArticleLike3.LikeCount
                 },
                 new ()
                 {
-                    Id = ArticleLike4.FId,
-                    ArticleId = ArticleLike4.FArticleId,
-                    UserId = ArticleLike4.FUserId,
-                    IpAddress = ArticleLike4.IP_ADDRESS,
-                    LikeCount = ArticleLike4.LIKE_COUNT
+                    Id = ArticleLike4.Id,
+                    ArticleId = ArticleLike4.ArticleId,
+                    UserId = ArticleLike4.UserId,
+                    IpAddress = ArticleLike4.IpAddress,
+                    LikeCount = ArticleLike4.LikeCount
                 }
             };
         }

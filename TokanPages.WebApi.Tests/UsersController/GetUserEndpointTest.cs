@@ -18,7 +18,7 @@ namespace TokanPages.WebApi.Tests.UsersController
         public async Task GivenCorrectId_WhenGetUser_ShouldReturnEntityAsJsonObject() 
         {
             // Arrange
-            var LTestUserId = User1.FId;
+            var LTestUserId = User1.Id;
             var LRequest = $"{API_BASE_URL}/GetUser/{LTestUserId}/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Get, LRequest);
             
@@ -44,7 +44,7 @@ namespace TokanPages.WebApi.Tests.UsersController
         public async Task GivenCorrectIdAndInvalidJwt_WhenGetUser_ShouldReturnEntityAsJsonObject() 
         {
             // Arrange
-            var LTestUserId = User1.FId;
+            var LTestUserId = User1.Id;
             var LRequest = $"{API_BASE_URL}/GetUser/{LTestUserId}/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Get, LRequest);
             

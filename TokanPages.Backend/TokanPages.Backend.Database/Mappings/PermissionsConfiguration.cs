@@ -8,7 +8,7 @@ namespace TokanPages.Backend.Database.Mappings
     [ExcludeFromCodeCoverage]
     public class PermissionsConfiguration : IEntityTypeConfiguration<Permissions>
     {
-        public void Configure(EntityTypeBuilder<Permissions> ABuilder)
-            => ABuilder.Property(APermissions => APermissions.Id).ValueGeneratedOnAdd();
+        public void Configure(EntityTypeBuilder<Permissions> typeBuilder)
+            => typeBuilder.Property(permissions => permissions.Id).ValueGeneratedOnAdd();
     }
 }

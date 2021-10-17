@@ -8,7 +8,7 @@
     [ExcludeFromCodeCoverage]
     public class UsersConfiguration : IEntityTypeConfiguration<Users>
     {
-        public void Configure(EntityTypeBuilder<Users> ABuilder) 
-            => ABuilder.Property(AUsers => AUsers.Id).ValueGeneratedOnAdd();
+        public void Configure(EntityTypeBuilder<Users> typeBuilder) 
+            => typeBuilder.Property(users => users.Id).ValueGeneratedOnAdd();
     }
 }

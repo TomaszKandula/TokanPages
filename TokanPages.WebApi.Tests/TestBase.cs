@@ -46,24 +46,24 @@ namespace TokanPages.WebApi.Tests
             switch (ASelectedUser)
             {
                 case nameof(User1):
-                    LUserId = User1.FId.ToString();
-                    LUserFirstName = User1.FIRST_NAME;
-                    LUserLastName = User1.LAST_NAME;
-                    LUserEmailAddress = User1.EMAIL_ADDRESS;
+                    LUserId = User1.Id.ToString();
+                    LUserFirstName = User1.FirstName;
+                    LUserLastName = User1.LastName;
+                    LUserEmailAddress = User1.EmailAddress;
                     break;
                 
                 case nameof(User2):
-                    LUserId = User2.FId.ToString();
-                    LUserFirstName = User2.FIRST_NAME;
-                    LUserLastName = User2.LAST_NAME;
-                    LUserEmailAddress = User2.EMAIL_ADDRESS;
+                    LUserId = User2.Id.ToString();
+                    LUserFirstName = User2.FirstName;
+                    LUserLastName = User2.LastName;
+                    LUserEmailAddress = User2.EmailAddress;
                     break;
 
                 case nameof(User3):
-                    LUserId = User3.FId.ToString();
-                    LUserFirstName = User3.FIRST_NAME;
-                    LUserLastName = User3.LAST_NAME;
-                    LUserEmailAddress = User3.EMAIL_ADDRESS;
+                    LUserId = User3.Id.ToString();
+                    LUserFirstName = User3.FirstName;
+                    LUserLastName = User3.LastName;
+                    LUserEmailAddress = User3.EmailAddress;
                     break;
             }
 

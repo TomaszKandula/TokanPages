@@ -23,7 +23,7 @@ namespace TokanPages.WebApi.Tests.UsersController
 
             var LPayLoad = new AuthenticateUserDto
             {
-                EmailAddress = User1.EMAIL_ADDRESS,
+                EmailAddress = User1.EmailAddress,
                 Password = "user1password"
             };
 
@@ -41,12 +41,12 @@ namespace TokanPages.WebApi.Tests.UsersController
             
             var LDeserialized = JsonConvert.DeserializeObject<AuthenticateUserCommandResult>(LContent);
             LDeserialized?.UserId.ToString().IsGuid().Should().BeTrue();
-            LDeserialized?.FirstName.Should().Be(User1.FIRST_NAME);
-            LDeserialized?.LastName.Should().Be(User1.LAST_NAME);
-            LDeserialized?.AliasName.Should().Be(User1.USER_ALIAS);
-            LDeserialized?.ShortBio.Should().Be(User1.SHORT_BIO);
-            LDeserialized?.AvatarName.Should().Be(User1.AVATAR_NAME);
-            LDeserialized?.Registered.Should().Be(User1.FRegistered);
+            LDeserialized?.FirstName.Should().Be(User1.FirstName);
+            LDeserialized?.LastName.Should().Be(User1.LastName);
+            LDeserialized?.AliasName.Should().Be(User1.UserAlias);
+            LDeserialized?.ShortBio.Should().Be(User1.ShortBio);
+            LDeserialized?.AvatarName.Should().Be(User1.AvatarName);
+            LDeserialized?.Registered.Should().Be(User1.Registered);
             LDeserialized?.UserToken.Should().NotBeEmpty();
         }
 
@@ -59,7 +59,7 @@ namespace TokanPages.WebApi.Tests.UsersController
 
             var LPayLoad = new AuthenticateUserDto
             {
-                EmailAddress = User2.EMAIL_ADDRESS,
+                EmailAddress = User2.EmailAddress,
                 Password = DataUtilityService.GetRandomString()
             };
 

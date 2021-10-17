@@ -8,7 +8,7 @@
     [ExcludeFromCodeCoverage]
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext(DbContextOptions<DatabaseContext> AOptions) : base(AOptions) { }
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
         public virtual DbSet<Articles> Articles { get; set; }
         
@@ -42,13 +42,13 @@
 
         public virtual DbSet<UserRefreshTokens> UserRefreshTokens { get; set; }
         
-        protected override void OnModelCreating(ModelBuilder AModelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(AModelBuilder);
-            ApplyConfiguration(AModelBuilder);
+            base.OnModelCreating(modelBuilder);
+            ApplyConfiguration(modelBuilder);
         }
 
-        private static void ApplyConfiguration(ModelBuilder AModelBuilder) 
-            => AModelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        private static void ApplyConfiguration(ModelBuilder modelBuilder) 
+            => modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }
