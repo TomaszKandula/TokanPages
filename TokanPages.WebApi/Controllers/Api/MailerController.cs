@@ -13,21 +13,21 @@
     [Authorize]
     public class MailerController : ApiBaseController
     {
-        public MailerController(IMediator AMediator) : base(AMediator) { }
+        public MailerController(IMediator mediator) : base(mediator) { }
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<VerifyEmailAddressCommandResult> VerifyEmailAddress([FromBody] VerifyEmailAddressDto APayLoad) 
-            => await FMediator.Send(MailerMapper.MapToVerifyEmailAddressCommand(APayLoad));
+        public async Task<VerifyEmailAddressCommandResult> VerifyEmailAddress([FromBody] VerifyEmailAddressDto payLoad) 
+            => await Mediator.Send(MailerMapper.MapToVerifyEmailAddressCommand(payLoad));
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<Unit> SendMessage([FromBody] SendMessageDto APayLoad)
-            => await FMediator.Send(MailerMapper.MapToSendMessageCommand(APayLoad));
+        public async Task<Unit> SendMessage([FromBody] SendMessageDto payLoad)
+            => await Mediator.Send(MailerMapper.MapToSendMessageCommand(payLoad));
 
         [HttpPost]
         [AuthorizeRoles(Roles.GodOfAsgard)]
-        public async Task<Unit> SendNewsletter([FromBody] SendNewsletterDto APayLoad)
-            => await FMediator.Send(MailerMapper.MapToSendNewsletterCommand(APayLoad));
+        public async Task<Unit> SendNewsletter([FromBody] SendNewsletterDto payLoad)
+            => await Mediator.Send(MailerMapper.MapToSendNewsletterCommand(payLoad));
     }
 }

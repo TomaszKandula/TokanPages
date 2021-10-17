@@ -11,21 +11,21 @@ namespace TokanPages.WebApi.Controllers.Proxy
 
     public class AssetsController : ProxyBaseController
     {
-        public AssetsController(ICustomHttpClient ACustomHttpClient, SonarQube ASonarQube, AzureStorage AAzureStorage) 
-            : base(ACustomHttpClient, ASonarQube, AAzureStorage) { }
+        public AssetsController(ICustomHttpClient customHttpClient, SonarQube sonarQube, AzureStorage azureStorage) 
+            : base(customHttpClient, sonarQube, azureStorage) { }
 
         [HttpGet]
         [ETagFilter(200)]
-        public async Task<IActionResult> GetAsset([FromQuery] string ABlobName)
+        public async Task<IActionResult> GetAsset([FromQuery] string blobName)
         {
-            var LRequestUrl = $"{FAzureStorage.BaseUrl}/content/assets/{ABlobName}";
-            var LConfiguration = new Configuration { Url = LRequestUrl, Method = "GET"};
-            var LResults = await FCustomHttpClient.Execute(LConfiguration);
+            var requestUrl = $"{AzureStorage.BaseUrl}/content/assets/{blobName}";
+            var configuration = new Configuration { Url = requestUrl, Method = "GET"};
+            var results = await CustomHttpClient.Execute(configuration);
 
-            if (LResults.StatusCode != HttpStatusCode.OK)
-                return GetContentResultFromResults(LResults);
+            if (results.StatusCode != HttpStatusCode.OK)
+                return GetContentResultFromResults(results);
 
-            return File(LResults.Content, LResults.ContentType?.MediaType);
+            return File(results.Content, results.ContentType?.MediaType);
         }
     }
 }

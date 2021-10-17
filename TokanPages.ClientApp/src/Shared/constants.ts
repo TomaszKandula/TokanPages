@@ -45,43 +45,43 @@ export const API_COMMAND_SEND_NEWSLETTER = `${APP_BACKEND}/api/v${API_VER}/maile
 
 /* COMPONENTS CONTENT */
 
-export const GET_NAVIGATION_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=navigation&AType=component`;
-export const GET_HEADER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=header&AType=component`;
-export const GET_FOOTER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=footer&AType=component`;
-export const GET_ARTICLE_FEAT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=articleFeatures&AType=component`;
-export const GET_CONTACT_FORM_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=contactForm&AType=component`;
-export const GET_COOKIES_PROMPT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=cookiesPrompt&AType=component`;
-export const GET_FEATURED_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=featured&AType=component`;
-export const GET_FEATURES_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=features&AType=component`;
-export const GET_NEWSLETTER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=newsletter&AType=component`;
-export const GET_RESET_PASSWORD_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=resetPassword&AType=component`;
-export const GET_UPDATE_PASSWORD_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=updatePassword&AType=component`;
-export const GET_SIGNIN_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=userSignin&AType=component`;
-export const GET_SIGNUP_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=userSignup&AType=component`;
-export const GET_SIGNOUT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=userSignout&AType=component`;
-export const GET_TESTIMONIALS_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=testimonials&AType=component`;
-export const GET_UNSUBSCRIBE_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=unsubscribe&AType=component`;
-export const GET_ACTIVATE_ACCOUNT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=activateAccount&AType=component`;
-export const GET_UPDATE_SUBSCRIBER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=updateSubscriber&AType=component`;
-export const GET_WRONG_PAGE_PROMPT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=wrongPagePrompt&AType=component`;
+export const GET_NAVIGATION_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=navigation&Type=component`;
+export const GET_HEADER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=header&Type=component`;
+export const GET_FOOTER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=footer&Type=component`;
+export const GET_ARTICLE_FEAT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=articleFeatures&Type=component`;
+export const GET_CONTACT_FORM_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=contactForm&Type=component`;
+export const GET_COOKIES_PROMPT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=cookiesPrompt&Type=component`;
+export const GET_FEATURED_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=featured&Type=component`;
+export const GET_FEATURES_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=features&Type=component`;
+export const GET_NEWSLETTER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=newsletter&Type=component`;
+export const GET_RESET_PASSWORD_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=resetPassword&Type=component`;
+export const GET_UPDATE_PASSWORD_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=updatePassword&Type=component`;
+export const GET_SIGNIN_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=userSignin&Type=component`;
+export const GET_SIGNUP_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=userSignup&Type=component`;
+export const GET_SIGNOUT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=userSignout&Type=component`;
+export const GET_TESTIMONIALS_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=testimonials&Type=component`;
+export const GET_UNSUBSCRIBE_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=unsubscribe&Type=component`;
+export const GET_ACTIVATE_ACCOUNT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=activateAccount&Type=component`;
+export const GET_UPDATE_SUBSCRIBER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=updateSubscriber&Type=component`;
+export const GET_WRONG_PAGE_PROMPT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=wrongPagePrompt&Type=component`;
 
 /* DOCUMENTS CONTENT */
 
-export const STORY_URL = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=myStory&AType=document`;
-export const TERMS_URL = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=terms&AType=document`;
-export const POLICY_URL = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?AName=policy&AType=document`;
+export const STORY_URL = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=myStory&Type=document`;
+export const TERMS_URL = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=terms&Type=document`;
+export const POLICY_URL = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=policy&Type=document`;
 
 /* OTHER URL */
 
-export const IMAGE_URL = `${APP_BACKEND}/api/v${API_VER}/articles/images/?AId={ID}`;
+export const IMAGE_URL = `${APP_BACKEND}/api/v${API_VER}/articles/images/?Id={ID}`;
 
 /* PATHS */
 
 export const ARTICLE_PATH = `/articles/?id={ID}`;
-export const IMAGES_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?ABlobName=images/`;
-export const TESTIMONIALS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?ABlobName=images/sections/testimonials/`;
-export const ICONS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?ABlobName=images/icons/`;
-export const AVATARS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?ABlobName=images/avatars/`;
+export const IMAGES_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?BlobName=images/`;
+export const TESTIMONIALS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?BlobName=images/sections/testimonials/`;
+export const ICONS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?BlobName=images/icons/`;
+export const AVATARS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?BlobName=images/avatars/`;
 
 /* ICONS */
 

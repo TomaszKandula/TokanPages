@@ -13,18 +13,19 @@ namespace TokanPages.WebApi.Configuration
     {
         public static IAsyncPolicy<HttpResponseMessage> RetryPolicyHandler()
         {
-            const int RETRY_COUNT = 3;
-            const double DURATION_BETWEEN_RETRIES = 150;
+            const int retryCount = 3;
+            const double durationBetweenRetries = 150;
+
             return HttpPolicyExtensions
                 .HandleTransientHttpError()
                 .Or<TaskCanceledException>()
-                .OrResult(AResponse => AResponse.StatusCode 
+                .OrResult(response => response.StatusCode 
                     is HttpStatusCode.RequestTimeout 
                     or HttpStatusCode.BadGateway 
                     or HttpStatusCode.GatewayTimeout 
                     or HttpStatusCode.ServiceUnavailable
-                ).WaitAndRetryAsync(RETRY_COUNT, ARetryCount 
-                    => TimeSpan.FromMilliseconds(DURATION_BETWEEN_RETRIES * Math.Pow(2, ARetryCount - 1)));
+                ).WaitAndRetryAsync(retryCount, count 
+                    => TimeSpan.FromMilliseconds(durationBetweenRetries * Math.Pow(2, count - 1)));
         }
     }
 }

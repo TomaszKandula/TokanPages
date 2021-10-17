@@ -17,20 +17,20 @@ namespace TokanPages.WebApi
         private static readonly bool FIsDevelopment 
             = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Development;
         
-        public static int Main(string[] AParams)
+        public static int Main(string[] arguments)
         {
             try
             {
                 Log.Information("Starting WebHost...");
-                CreateWebHostBuilder(AParams)
+                CreateWebHostBuilder(arguments)
                     .Build()
                     .MigrateDatabase()
                     .Run();
                 return 0;
             }
-            catch (Exception LException)
+            catch (Exception exception)
             {
-                Log.Fatal(LException, "WebHost has been terminated unexpectedly");
+                Log.Fatal(exception, "WebHost has been terminated unexpectedly");
                 return 1;
             }
             finally
@@ -39,47 +39,47 @@ namespace TokanPages.WebApi
             }
         }
 
-        private static IWebHostBuilder CreateWebHostBuilder(string[] AParams)
+        private static IWebHostBuilder CreateWebHostBuilder(string[] arguments)
         {
-            return WebHost.CreateDefaultBuilder(AParams)
+            return WebHost.CreateDefaultBuilder(arguments)
                 .UseStartup<Startup>()
-                .UseSerilog((AContext, AConfig) =>
+                .UseSerilog((context, config) =>
                 {
-                    AConfig.ReadFrom.Configuration(AContext.Configuration);
-                    AConfig.WriteTo.Console();
-                    AConfig.MinimumLevel.Information();
-                    AConfig.MinimumLevel.Override("Microsoft", LogEventLevel.Warning);
-                    AConfig.Enrich.FromLogContext();
-                    AConfig.WriteTo.Sentry(ASentry =>
+                    config.ReadFrom.Configuration(context.Configuration);
+                    config.WriteTo.Console();
+                    config.MinimumLevel.Information();
+                    config.MinimumLevel.Override("Microsoft", LogEventLevel.Warning);
+                    config.Enrich.FromLogContext();
+                    config.WriteTo.Sentry(sentry =>
                     {
-                        ASentry.SendDefaultPii = true;
-                        ASentry.MinimumBreadcrumbLevel = LogEventLevel.Debug;
-                        ASentry.MinimumEventLevel = LogEventLevel.Warning;
-                        ASentry.AttachStacktrace = true;
-                        ASentry.Debug = true;
-                        ASentry.DiagnosticLevel = SentryLevel.Error;
+                        sentry.SendDefaultPii = true;
+                        sentry.MinimumBreadcrumbLevel = LogEventLevel.Debug;
+                        sentry.MinimumEventLevel = LogEventLevel.Warning;
+                        sentry.AttachStacktrace = true;
+                        sentry.Debug = true;
+                        sentry.DiagnosticLevel = SentryLevel.Error;
                     });
                 })
                 .UseSentry();
         }
 
-        private static IWebHost MigrateDatabase(this IWebHost AWebHost)
+        private static IWebHost MigrateDatabase(this IWebHost webHost)
         {
-            var LServiceScopeFactory = (IServiceScopeFactory) AWebHost.Services.GetService(typeof(IServiceScopeFactory));
-            if (LServiceScopeFactory == null) 
-                return AWebHost;
+            var serviceScopeFactory = (IServiceScopeFactory) webHost.Services.GetService(typeof(IServiceScopeFactory));
+            if (serviceScopeFactory == null) 
+                return webHost;
             
-            using var LScope = LServiceScopeFactory.CreateScope();
-            var LServices = LScope.ServiceProvider;
-            var LDbInitializer = LServices.GetRequiredService<IDbInitializer>();
+            using var scope = serviceScopeFactory.CreateScope();
+            var services = scope.ServiceProvider;
+            var dbInitializer = services.GetRequiredService<IDbInitializer>();
 
             if (!FIsDevelopment) 
-                return AWebHost;
+                return webHost;
 
-            LDbInitializer.StartMigration();
-            LDbInitializer.SeedData();
+            dbInitializer.StartMigration();
+            dbInitializer.SeedData();
 
-            return AWebHost;
+            return webHost;
         }
     }
 }

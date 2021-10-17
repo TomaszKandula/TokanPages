@@ -10,28 +10,28 @@
     [ExcludeFromCodeCoverage]
     public class CustomCors
     {
-        private readonly RequestDelegate FRequestDelegate;
+        private readonly RequestDelegate _requestDelegate;
 
-        public CustomCors(RequestDelegate ARequestDelegate) 
-            => FRequestDelegate = ARequestDelegate;
+        public CustomCors(RequestDelegate requestDelegate) 
+            => _requestDelegate = requestDelegate;
 
-        public Task Invoke(HttpContext AHttpContext, ApplicationPaths AApplicationPaths)
+        public Task Invoke(HttpContext httpContext, ApplicationPaths applicationPaths)
         {
-            var LDevelopmentOrigins = AApplicationPaths.DevelopmentOrigin.Split(';').ToList();
-            var LDeploymentOrigins = AApplicationPaths.DeploymentOrigin.Split(';').ToList();
-            var LRequestOrigin = AHttpContext.Request.Headers["Origin"];
+            var developmentOrigins = applicationPaths.DevelopmentOrigin.Split(';').ToList();
+            var deploymentOrigins = applicationPaths.DeploymentOrigin.Split(';').ToList();
+            var requestOrigin = httpContext.Request.Headers["Origin"];
 
-            if (!LDevelopmentOrigins.Contains(LRequestOrigin) && !LDeploymentOrigins.Contains(LRequestOrigin))
-                return FRequestDelegate(AHttpContext);
+            if (!developmentOrigins.Contains(requestOrigin) && !deploymentOrigins.Contains(requestOrigin))
+                return _requestDelegate(httpContext);
             
-            CorsHeaders.Ensure(AHttpContext);
+            CorsHeaders.Ensure(httpContext);
 
             // Necessary for pre-flight
-            if (AHttpContext.Request.Method != "OPTIONS") 
-                return FRequestDelegate(AHttpContext);
+            if (httpContext.Request.Method != "OPTIONS") 
+                return _requestDelegate(httpContext);
                 
-            AHttpContext.Response.StatusCode = 200;
-            return AHttpContext.Response.WriteAsync("OK");
+            httpContext.Response.StatusCode = 200;
+            return httpContext.Response.WriteAsync("OK");
         }
     }
 }

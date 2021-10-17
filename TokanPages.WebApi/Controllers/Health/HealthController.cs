@@ -12,14 +12,14 @@ namespace TokanPages.WebApi.Controllers.Health
     [AllowAnonymous]
     public class HealthController : ControllerBase
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
 
-        private readonly ISmtpClientService FSmtpClientService;
+        private readonly ISmtpClientService _smtpClientService;
 
-        public HealthController(DatabaseContext ADatabaseContext, ISmtpClientService ASmtpClientService)
+        public HealthController(DatabaseContext databaseContext, ISmtpClientService smtpClientService)
         {
-            FDatabaseContext = ADatabaseContext;
-            FSmtpClientService = ASmtpClientService;
+            _databaseContext = databaseContext;
+            _smtpClientService = smtpClientService;
         }
 
         /// <summary>
@@ -36,12 +36,12 @@ namespace TokanPages.WebApi.Controllers.Health
         [HttpGet("status")]
         public async Task<IActionResult> GetStatus()
         {
-            var LCanConnectAndAuthenticate = await FSmtpClientService.CanConnectAndAuthenticate();
-            if (!LCanConnectAndAuthenticate.IsSucceeded)
-                return StatusCode(500, LCanConnectAndAuthenticate);
+            var canConnectAndAuthenticate = await _smtpClientService.CanConnectAndAuthenticate();
+            if (!canConnectAndAuthenticate.IsSucceeded)
+                return StatusCode(500, canConnectAndAuthenticate);
 
-            var LCanConnectToDatabase = await FDatabaseContext.Database.CanConnectAsync();
-            if (!LCanConnectToDatabase)
+            var canConnectToDatabase = await _databaseContext.Database.CanConnectAsync();
+            if (!canConnectToDatabase)
                 return StatusCode(500, new Backend.Shared.Models.ActionResult
                 {
                     ErrorCode = nameof(ErrorCodes.CANNOT_CONNECT_DATABASE),
