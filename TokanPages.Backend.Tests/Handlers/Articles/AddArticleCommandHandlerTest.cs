@@ -32,6 +32,7 @@
                 .Setup(AAzureBlobStorage => AAzureBlobStorage.UploadFile(
                     It.IsAny<Stream>(),
                     It.IsAny<string>(),
+                    It.IsAny<CancellationToken>(),
                     It.IsAny<string>()))
                 .Returns(Task.FromResult(string.Empty));
             
