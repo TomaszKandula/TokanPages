@@ -97,7 +97,8 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
         /// <param name="ALength">Expected length of the name, 12 characters by default.</param>
         /// <param name="ADomain">Domain, "gmail.com" by default.</param>
         /// <returns>New randomized e-mail address.</returns>
-        public override string GetRandomEmail(int ALength = 12, string ADomain = "gmail.com") => $"{GetRandomString(ALength)}@{ADomain}";
+        public override string GetRandomEmail(int ALength = 12, string ADomain = "gmail.com") 
+            => $"{GetRandomString(ALength, "", true)}@{ADomain}";
 
         /// <summary>
         /// Returns randomized string with given length and prefix (optional).
@@ -108,15 +109,17 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
         /// </remarks>
         /// <param name="ALength">Expected length, 12 characters by default.</param>
         /// <param name="APrefix">Optional prefix.</param>
+        /// <param name="AUseAlphabetOnly">Generate string from alphabet letters only.</param>
         /// <returns>New randomized string.</returns>
-        public override string GetRandomString(int ALength = 12, string APrefix = "")
+        public override string GetRandomString(int ALength = 12, string APrefix = "", bool AUseAlphabetOnly = false)
         {
             if (ALength == 0) 
                 return string.Empty; 
 
-            const string CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; 
+            const string ALL_CHARS = "!@#$%^&*()?\\/:'<>{}[]0123456789abcdefghijklmnopqrstuvwxyz";
+            const string ALPHABET_ONLY = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
-            var LString = new string(Enumerable.Repeat(CHARS, ALength)
+            var LString = new string(Enumerable.Repeat(AUseAlphabetOnly ? ALPHABET_ONLY : ALL_CHARS, ALength)
                 .Select(AString => AString[FRandom.Next(AString.Length)])
                 .ToArray()); 
 

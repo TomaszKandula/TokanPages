@@ -43,13 +43,19 @@
 
             if (!LArticles.Any())
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
-            
+
             var LAzureBlob = FAzureBlobStorageFactory.Create();
             if (!string.IsNullOrEmpty(ARequest.TextToUpload))
-                await LAzureBlob.UploadText(ARequest.Id, ARequest.TextToUpload);
+            {
+                var LTextDestinationPath = $"content\\articles\\{ARequest.Id}\\text.json";
+                await LAzureBlob.UploadContent(ARequest.TextToUpload, LTextDestinationPath, ACancellationToken);
+            }
 
             if (!string.IsNullOrEmpty(ARequest.ImageToUpload))
-                await LAzureBlob.UploadImage(ARequest.Id, ARequest.ImageToUpload);
+            {
+                var LImageDestinationPath = $"content\\articles\\{ARequest.Id}\\image.jpg";
+                await LAzureBlob.UploadContent(ARequest.ImageToUpload, LImageDestinationPath, ACancellationToken);
+            }
 
             var LCurrentArticle = LArticles.First();
 

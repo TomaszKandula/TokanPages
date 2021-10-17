@@ -2,9 +2,10 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
 {
     using System;
     using System.IO;
+    using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.WindowsAzure.Storage;
-    using Microsoft.WindowsAzure.Storage.Blob;
+    using Azure.Storage.Blobs;
+    using Azure.Storage.Blobs.Models;
     using Models;
     using Shared;
     using Core.Exceptions;
@@ -13,106 +14,102 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
 
     public class AzureBlobStorage : IAzureBlobStorage
     {
-        private readonly CloudBlobContainer FContainer;
-       
-        public AzureBlobStorage(string AConnectionString, string AContainerName)
-            => FContainer = CloudStorageAccount
-                .Parse(AConnectionString)
-                .CreateCloudBlobClient()
-                .GetContainerReference(AContainerName);
-        
-        public async Task<StorageByteContent> ReadAllBytes(string ASourceFilePath)
-        {
-            var LBlob = FContainer.GetBlockBlobReference(ASourceFilePath);
+        private readonly BlobContainerClient FContainer;
 
-            if (!await LBlob.ExistsAsync())
+        public AzureBlobStorage(string AConnectionString, string AContainerName)
+        {
+            var LBlobServiceClient = new BlobServiceClient(AConnectionString);
+            FContainer = LBlobServiceClient.GetBlobContainerClient(AContainerName);
+        }
+
+        public async Task<StorageByteContent> ReadAllBytes(string ASourceFilePath, CancellationToken ACancellationToken)
+        {
+            if (string.IsNullOrEmpty(ASourceFilePath))
+                throw new AggregateException($"Argument '{nameof(ASourceFilePath)}' cannot be null or empty.");
+
+            var LBlobClient = FContainer.GetBlobClient(ASourceFilePath);
+
+            if (!await LBlobClient.ExistsAsync(ACancellationToken))
                 return null;
 
-            var LResult = new byte[LBlob.Properties.Length];
-            await LBlob.DownloadToByteArrayAsync(LResult, 0);
-            var LContentType = LBlob.Properties.ContentType;
+            var LProperties = await LBlobClient.GetPropertiesAsync(cancellationToken: ACancellationToken);
+            var LContentType = LProperties.Value.ContentType;
+
+            var LResponse = await LBlobClient.DownloadContentAsync(ACancellationToken);
+            var LContent = LResponse.Value.Content;
 
             return new StorageByteContent
             {
-                Content = LResult,
+                Content = LContent,
                 ContentType = LContentType
             };
         }
 
-        public async Task<StorageStreamContent> OpenRead(string ASourceFilePath)
+        public async Task<StorageStreamContent> OpenRead(string ASourceFilePath, CancellationToken ACancellationToken)
         {
-            var LBlob = FContainer.GetBlockBlobReference(ASourceFilePath);
-            var LStream = await LBlob.OpenReadAsync();
-            var LContentType = LBlob.Properties.ContentType;
+            if (string.IsNullOrEmpty(ASourceFilePath))
+                throw new AggregateException($"Argument '{nameof(ASourceFilePath)}' cannot be null or empty.");
+
+            var LBlob = FContainer.GetBlobClient(ASourceFilePath);
+            var LStream = await LBlob.OpenReadAsync(cancellationToken: ACancellationToken);
+            var LProperties = await LBlob.GetPropertiesAsync(cancellationToken: ACancellationToken);
 
             return new StorageStreamContent
             {
                 Content = LStream,
-                ContentType = LContentType
+                ContentType = LProperties.Value.ContentType
             };
         }
 
-        public async Task UploadFile(Stream ASourceStream, string ADestinationPath, string AContentType, long AMaxLength)
+        public async Task UploadFile(Stream ASourceStream, string ADestinationPath, CancellationToken ACancellationToken, string AContentType = Constants.ContentTypes.STREAM)
         {
-            var LBlob = FContainer.GetBlockBlobReference(ADestinationPath);
-            LBlob.Properties.ContentType = AContentType;
+            if (string.IsNullOrEmpty(ADestinationPath))
+                throw new AggregateException($"Argument '{nameof(ADestinationPath)}' cannot be null or empty.");
 
-            var LMaxSizeCondition = new AccessCondition { IfMaxSizeLessThanOrEqual = AMaxLength };
-            var LMaxSizeOption = new BlobRequestOptions { SingleBlobUploadThresholdInBytes = AMaxLength };
-
-            var LOperationContext = new OperationContext();
-            await LBlob.UploadFromStreamAsync(ASourceStream, LMaxSizeCondition, LMaxSizeOption, LOperationContext);
+            var LBlobClient = FContainer.GetBlobClient(ADestinationPath);
+            var LBlobHttpHeaders = new BlobHttpHeaders { ContentType = AContentType };
+            await LBlobClient.UploadAsync(ASourceStream, LBlobHttpHeaders, cancellationToken: ACancellationToken);
         }
 
-        public async Task UploadFile(Stream ASourceStream, string ADestinationPath, string AContentType = Constants.ContentTypes.STREAM)
+        public async Task<string> GetFileContentType(string ASourceFilePath, CancellationToken ACancellationToken)
         {
-            var LBlob = FContainer.GetBlockBlobReference(ADestinationPath);
-            LBlob.Properties.ContentType = AContentType;
-            await LBlob.UploadFromStreamAsync(ASourceStream);
+            if (string.IsNullOrEmpty(ASourceFilePath))
+                throw new AggregateException($"Argument '{nameof(ASourceFilePath)}' cannot be null or empty.");
+
+            var LBlobClient = FContainer.GetBlobClient(ASourceFilePath);
+            var LProperties = await LBlobClient.GetPropertiesAsync(cancellationToken: ACancellationToken);
+
+            return LProperties.Value.ContentType;
         }
 
-        public async Task<string> GetFileContentType(string ASourceFilePath)
+        public async Task<bool> DeleteFile(string ASourceFilePath, CancellationToken ACancellationToken)
         {
-            var LBlockBlobReference = FContainer.GetBlockBlobReference(ASourceFilePath);
-            await LBlockBlobReference.FetchAttributesAsync();
-
-            return LBlockBlobReference.Properties.ContentType;
+            if (string.IsNullOrEmpty(ASourceFilePath))
+                throw new AggregateException($"Argument '{nameof(ASourceFilePath)}' cannot be null or empty.");
+            
+            return await FContainer
+                .GetBlobClient(ASourceFilePath)
+                .DeleteIfExistsAsync(cancellationToken: ACancellationToken);
         }
 
-        public async Task<bool> DeleteFile(string ASourceFilePath)
-            => await FContainer
-                .GetBlockBlobReference(ASourceFilePath)
-                .DeleteIfExistsAsync();
-
-        public async Task UploadText(Guid AId, string ATextToUpload)
+        public async Task UploadContent(string AContent, string ADestinationPath, CancellationToken ACancellationToken)
         {
-            var LTextToBase64 = ATextToUpload.ToBase64Encode();
-            var LBytes = Convert.FromBase64String(LTextToBase64);
+            if (string.IsNullOrEmpty(AContent))
+                throw new ArgumentException($"Argument '{nameof(AContent)}' cannot be null or empty.");
+            
+            if (string.IsNullOrEmpty(ADestinationPath))
+                throw new ArgumentException($"Argument '{nameof(ADestinationPath)}' cannot be null or empty.");
+            
+            var LToUpload = AContent;
+            if (!AContent.IsBase64String())
+                LToUpload = AContent.ToBase64Encode();
+
+            var LBytes = Convert.FromBase64String(LToUpload);
             var LContents = new MemoryStream(LBytes);
 
             try
             {
-                var LDestinationPath = $"content\\articles\\{AId.ToString().ToLower()}\\text.json";
-                await UploadFile(LContents, LDestinationPath);
-            }
-            catch (Exception LException)
-            {
-                throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), LException.Message);
-            }
-        }
-
-        public async Task UploadImage(Guid AId, string AImageToUpload)
-        {
-            if (!AImageToUpload.IsBase64String()) 
-                throw new BusinessException(nameof(ErrorCodes.INVALID_BASE64), ErrorCodes.INVALID_BASE64);
-            
-            var LBytes = Convert.FromBase64String(AImageToUpload);
-            var LContents = new MemoryStream(LBytes);
-            
-            try
-            {
-                var LDestinationPath = $"content\\articles\\{AId.ToString().ToLower()}\\image.jpeg";
-                await UploadFile(LContents, LDestinationPath);
+                await UploadFile(LContents, ADestinationPath, ACancellationToken);
             }
             catch (Exception LException)
             {

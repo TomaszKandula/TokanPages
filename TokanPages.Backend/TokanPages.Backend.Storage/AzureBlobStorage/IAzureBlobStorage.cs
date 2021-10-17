@@ -1,27 +1,23 @@
 namespace TokanPages.Backend.Storage.AzureBlobStorage
 {
-    using System;
     using System.IO;
+    using System.Threading;
     using System.Threading.Tasks;
     using Models;
     using Shared;
 
     public interface IAzureBlobStorage
     {
-        Task<StorageByteContent> ReadAllBytes(string ASourceFilePath);
+        Task<StorageByteContent> ReadAllBytes(string ASourceFilePath ,CancellationToken ACancellationToken);
 
-        Task<StorageStreamContent> OpenRead(string ASourceFilePath);
+        Task<StorageStreamContent> OpenRead(string ASourceFilePath, CancellationToken ACancellationToken);
         
-        Task UploadFile(Stream ASourceStream, string ADestinationPath, string AContentType, long AMaxLength);
+        Task UploadFile(Stream ASourceStream, string ADestinationPath, CancellationToken ACancellationToken, string AContentType = Constants.ContentTypes.STREAM);
         
-        Task UploadFile(Stream ASourceStream, string ADestinationPath, string AContentType = Constants.ContentTypes.STREAM);
+        Task<string> GetFileContentType(string ASourceFilePath, CancellationToken ACancellationToken);
         
-        Task<string> GetFileContentType(string ASourceFilePath);
-        
-        Task<bool> DeleteFile(string ASourceFilePath);
+        Task<bool> DeleteFile(string ASourceFilePath, CancellationToken ACancellationToken);
 
-        Task UploadText(Guid AId, string ATextToUpload);
-
-        Task UploadImage(Guid AId, string AImageToUpload);
+        Task UploadContent(string AContent, string ADestinationPath, CancellationToken ACancellationToken);
     }
 }

@@ -18,8 +18,8 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
 
         string GetRandomEmail(int ALength = 12, string ADomain = "gmail.com");
 
-        string GetRandomString(int ALength = 12, string APrefix = "");
-        
-        public abstract IPAddress GetRandomIpAddress(bool AShouldReturnIPv6 = false);
+        string GetRandomString(int ALength = 12, string APrefix = "", bool AUseAlphabetOnly = false);
+
+        IPAddress GetRandomIpAddress(bool AShouldReturnIPv6 = false);
     }
 }
