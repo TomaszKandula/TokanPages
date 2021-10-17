@@ -18,7 +18,7 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
 
         public abstract string GetRandomEmail(int ALength = 12, string ADomain = "gmail.com");
 
-        public abstract string GetRandomString(int ALength = 12, string APrefix = "");
+        public abstract string GetRandomString(int ALength = 12, string APrefix = "", bool AUseAlphabetOnly = false);
 
         public abstract IPAddress GetRandomIpAddress(bool AShouldReturnIPv6 = false);
     }
