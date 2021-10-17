@@ -4,6 +4,6 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage.Factory
     {
         IAzureBlobStorage Create();
 
-        IAzureBlobStorage Create(string AContainerName);
+        IAzureBlobStorage Create(string containerName);
     }
 }

@@ -8,16 +8,16 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
 
     public interface IAzureBlobStorage
     {
-        Task<StorageByteContent> ReadAllBytes(string ASourceFilePath ,CancellationToken ACancellationToken);
+        Task<StorageByteContent> ReadAllBytes(string sourceFilePath ,CancellationToken cancellationToken);
 
-        Task<StorageStreamContent> OpenRead(string ASourceFilePath, CancellationToken ACancellationToken);
+        Task<StorageStreamContent> OpenRead(string sourceFilePath, CancellationToken cancellationToken);
         
-        Task UploadFile(Stream ASourceStream, string ADestinationPath, CancellationToken ACancellationToken, string AContentType = Constants.ContentTypes.STREAM);
+        Task UploadFile(Stream sourceStream, string destinationPath, CancellationToken cancellationToken, string contentType = Constants.ContentTypes.STREAM);
         
-        Task<string> GetFileContentType(string ASourceFilePath, CancellationToken ACancellationToken);
+        Task<string> GetFileContentType(string sourceFilePath, CancellationToken cancellationToken);
         
-        Task<bool> DeleteFile(string ASourceFilePath, CancellationToken ACancellationToken);
+        Task<bool> DeleteFile(string sourceFilePath, CancellationToken cancellationToken);
 
-        Task UploadContent(string AContent, string ADestinationPath, CancellationToken ACancellationToken);
+        Task UploadContent(string content, string destinationPath, CancellationToken cancellationToken);
     }
 }
