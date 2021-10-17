@@ -9,30 +9,30 @@
 
     public class GetAllArticlesQueryHandler : TemplateHandler<GetAllArticlesQuery, IEnumerable<GetAllArticlesQueryResult>>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
 
-        public GetAllArticlesQueryHandler(DatabaseContext ADatabaseContext) 
-            => FDatabaseContext = ADatabaseContext;
+        public GetAllArticlesQueryHandler(DatabaseContext databaseContext) 
+            => _databaseContext = databaseContext;
 
-        public override async Task<IEnumerable<GetAllArticlesQueryResult>> Handle(GetAllArticlesQuery ARequest, CancellationToken ACancellationToken) 
+        public override async Task<IEnumerable<GetAllArticlesQueryResult>> Handle(GetAllArticlesQuery request, CancellationToken cancellationToken) 
         {
-            var LArticles = await FDatabaseContext.Articles
+            var articles = await _databaseContext.Articles
                 .AsNoTracking()
-                .Where(AArticles => AArticles.IsPublished == ARequest.IsPublished)
-                .Select(AFields => new GetAllArticlesQueryResult 
+                .Where(articles => articles.IsPublished == request.IsPublished)
+                .Select(articles => new GetAllArticlesQueryResult 
                 { 
-                    Id = AFields.Id,
-                    Title = AFields.Title,
-                    Description = AFields.Description,
-                    IsPublished = AFields.IsPublished,
-                    ReadCount = AFields.ReadCount,
-                    CreatedAt = AFields.CreatedAt,
-                    UpdatedAt = AFields.UpdatedAt
+                    Id = articles.Id,
+                    Title = articles.Title,
+                    Description = articles.Description,
+                    IsPublished = articles.IsPublished,
+                    ReadCount = articles.ReadCount,
+                    CreatedAt = articles.CreatedAt,
+                    UpdatedAt = articles.UpdatedAt
                 })
-                .OrderByDescending(AArticles => AArticles.CreatedAt)
-                .ToListAsync(ACancellationToken);
+                .OrderByDescending(articles => articles.CreatedAt)
+                .ToListAsync(cancellationToken);
 
-            return LArticles; 
+            return articles; 
         }
     }
 }

@@ -11,22 +11,22 @@
 
     public class RemoveSubscriberCommandHandler : TemplateHandler<RemoveSubscriberCommand, Unit>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
 
-        public RemoveSubscriberCommandHandler(DatabaseContext ADatabaseContext) 
-            => FDatabaseContext = ADatabaseContext;
+        public RemoveSubscriberCommandHandler(DatabaseContext databaseContext) 
+            => _databaseContext = databaseContext;
 
-        public override async Task<Unit> Handle(RemoveSubscriberCommand ARequest, CancellationToken ACancellationToken) 
+        public override async Task<Unit> Handle(RemoveSubscriberCommand request, CancellationToken cancellationToken) 
         {
-            var LCurrentSubscriber = await FDatabaseContext.Subscribers
-                .Where(ASubscribers => ASubscribers.Id == ARequest.Id)
-                .ToListAsync(ACancellationToken);
+            var currentSubscriber = await _databaseContext.Subscribers
+                .Where(subscribers => subscribers.Id == request.Id)
+                .ToListAsync(cancellationToken);
             
-            if (!LCurrentSubscriber.Any())
+            if (!currentSubscriber.Any())
                 throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
 
-            FDatabaseContext.Subscribers.Remove(LCurrentSubscriber.First());
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            _databaseContext.Subscribers.Remove(currentSubscriber.First());
+            await _databaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
        
         }

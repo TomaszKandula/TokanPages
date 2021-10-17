@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
-namespace TokanPages.Backend.Cqrs.Services.UserServiceProvider
+﻿namespace TokanPages.Backend.Cqrs.Services.UserServiceProvider
 {
     using System;
     using System.Threading;
@@ -15,42 +13,42 @@ namespace TokanPages.Backend.Cqrs.Services.UserServiceProvider
     {
         string GetRequestIpAddress();
 
-        string GetRefreshTokenCookie(string ACookieName);
-        
-        void SetRefreshTokenCookie(string ARefreshToken, int AExpiresIn, bool AIsHttpOnly = true, 
-            bool ASecure = true, string ACookieName = Constants.CookieNames.REFRESH_TOKEN);
+        string GetRefreshTokenCookie(string cookieName);
+
+        void SetRefreshTokenCookie(string refreshToken, int expiresIn, bool isHttpOnly = true, 
+            bool secure = true, string cookieName = Constants.CookieNames.REFRESH_TOKEN);
 
         Task<Guid?> GetUserId();
-        
+
         Task<GetUserDto> GetUser();
 
-        Task<List<GetUserRoleDto>> GetUserRoles(Guid? AUserId);
+        Task<List<GetUserRoleDto>> GetUserRoles(Guid? userId);
 
-        Task<List<GetUserPermissionDto>> GetUserPermissions(Guid? AUserId);
+        Task<List<GetUserPermissionDto>> GetUserPermissions(Guid? userId);
 
-        Task<bool?> HasRoleAssigned(string AUserRoleName);
+        Task<bool?> HasRoleAssigned(string userRoleName);
 
-        Task<bool?> HasPermissionAssigned(string AUserPermissionName);
+        Task<bool?> HasPermissionAssigned(string userPermissionName);
 
-        Task<ClaimsIdentity> MakeClaimsIdentity(Users AUsers, CancellationToken ACancellationToken = default);
+        Task<ClaimsIdentity> MakeClaimsIdentity(Users users, CancellationToken cancellationToken = default);
         
-        Task<string> GenerateUserToken(Users AUsers, DateTime ATokenExpires, CancellationToken ACancellationToken = default);
+        Task<string> GenerateUserToken(Users users, DateTime tokenExpires, CancellationToken cancellationToken = default);
 
-        Task DeleteOutdatedRefreshTokens(Guid AUserId, bool ASaveImmediately = false, CancellationToken ACancellationToken = default);
+        Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default);
 
-        Task<UserRefreshTokens> ReplaceRefreshToken(Guid AUserId, UserRefreshTokens ASavedUserRefreshTokens, string ARequesterIpAddress, 
-            bool ASaveImmediately = false, CancellationToken ACancellationToken = default);
+        Task<UserRefreshTokens> ReplaceRefreshToken(Guid userId, UserRefreshTokens savedUserRefreshTokens, string requesterIpAddress, 
+            bool saveImmediately = false, CancellationToken cancellationToken = default);
 
-        Task RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> AUserRefreshTokens, UserRefreshTokens ASavedUserRefreshTokens, 
-            string ARequesterIpAddress, string AReason, bool ASaveImmediately = false, CancellationToken ACancellationToken = default);
+        Task RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> userRefreshTokens, UserRefreshTokens savedUserRefreshTokens, 
+            string requesterIpAddress, string reason, bool saveImmediately = false, CancellationToken cancellationToken = default);
 
-        Task RevokeRefreshToken(UserRefreshTokens AUserRefreshTokens, string ARequesterIpAddress, string AReason = null,
-            string AReplacedByToken = null, bool ASaveImmediately = false, CancellationToken ACancellationToken = default);
-        
-        bool IsRefreshTokenExpired(UserRefreshTokens AUserRefreshTokens);
+        Task RevokeRefreshToken(UserRefreshTokens userRefreshTokens, string requesterIpAddress, string reason = null,
+            string replacedByToken = null, bool saveImmediately = false, CancellationToken cancellationToken = default);
 
-        bool IsRefreshTokenRevoked(UserRefreshTokens AUserRefreshTokens);
+        bool IsRefreshTokenExpired(UserRefreshTokens userRefreshTokens);
 
-        bool IsRefreshTokenActive(UserRefreshTokens AUserRefreshTokens);
+        bool IsRefreshTokenRevoked(UserRefreshTokens userRefreshTokens);
+
+        bool IsRefreshTokenActive(UserRefreshTokens userRefreshTokens);
     }
 }

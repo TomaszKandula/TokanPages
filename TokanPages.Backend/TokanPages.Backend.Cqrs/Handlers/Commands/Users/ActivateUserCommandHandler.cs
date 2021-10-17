@@ -12,36 +12,36 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     
     public class ActivateUserCommandHandler : TemplateHandler<ActivateUserCommand, Unit>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
 
-        private readonly IDateTimeService FDateTimeService;
+        private readonly IDateTimeService _dateTimeService;
         
-        private readonly ILogger FLogger;
+        private readonly ILogger _logger;
         
-        public ActivateUserCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService, ILogger ALogger)
+        public ActivateUserCommandHandler(DatabaseContext databaseContext, IDateTimeService dateTimeService, ILogger logger)
         {
-            FDatabaseContext = ADatabaseContext;
-            FDateTimeService = ADateTimeService;
-            FLogger = ALogger;
+            _databaseContext = databaseContext;
+            _dateTimeService = dateTimeService;
+            _logger = logger;
         }
 
-        public override async Task<Unit> Handle(ActivateUserCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(ActivateUserCommand request, CancellationToken cancellationToken)
         {
-            var LUser = await FDatabaseContext.Users
-                .SingleOrDefaultAsync(AUsers => AUsers.ActivationId == ARequest.ActivationId, ACancellationToken);
+            var users = await _databaseContext.Users
+                .SingleOrDefaultAsync(users => users.ActivationId == request.ActivationId, cancellationToken);
 
-            if (LUser == null)
+            if (users == null)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_ACTIVATION_ID), ErrorCodes.INVALID_ACTIVATION_ID);
 
-            if (LUser.ActivationIdEnds < FDateTimeService.Now)
+            if (users.ActivationIdEnds < _dateTimeService.Now)
                 throw new BusinessException(nameof(ErrorCodes.EXPIRED_ACTIVATION_ID), ErrorCodes.EXPIRED_ACTIVATION_ID);
             
-            LUser.IsActivated = true;
-            LUser.ActivationId = null;
-            LUser.ActivationIdEnds = null;
+            users.IsActivated = true;
+            users.ActivationId = null;
+            users.ActivationIdEnds = null;
 
-            FLogger.LogInformation($"User account has been activated, user ID: {LUser.Id}");
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            _logger.LogInformation($"User account has been activated, user ID: {users.Id}");
+            await _databaseContext.SaveChangesAsync(cancellationToken);
 
             return await Task.FromResult(Unit.Value);
         }

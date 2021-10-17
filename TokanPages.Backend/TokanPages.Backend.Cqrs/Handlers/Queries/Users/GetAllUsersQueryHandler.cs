@@ -9,25 +9,25 @@
 
     public class GetAllUsersQueryHandler : TemplateHandler<GetAllUsersQuery, IEnumerable<GetAllUsersQueryResult>>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
 
-        public GetAllUsersQueryHandler(DatabaseContext ADatabaseContext) 
-            => FDatabaseContext = ADatabaseContext;
+        public GetAllUsersQueryHandler(DatabaseContext databaseContext) 
+            => _databaseContext = databaseContext;
 
-        public override async Task<IEnumerable<GetAllUsersQueryResult>> Handle(GetAllUsersQuery ARequest, CancellationToken ACancellationToken)
+        public override async Task<IEnumerable<GetAllUsersQueryResult>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
-            var LUsers = await FDatabaseContext.Users
+            var users = await _databaseContext.Users
                 .AsNoTracking()
-                .Select(AFields => new GetAllUsersQueryResult 
+                .Select(users => new GetAllUsersQueryResult 
                 { 
-                    Id = AFields.Id,
-                    AliasName = AFields.UserAlias,
-                    Email = AFields.EmailAddress,
-                    IsActivated = AFields.IsActivated
+                    Id = users.Id,
+                    AliasName = users.UserAlias,
+                    Email = users.EmailAddress,
+                    IsActivated = users.IsActivated
                 })
-                .ToListAsync(ACancellationToken);
+                .ToListAsync(cancellationToken);
             
-            return LUsers;
+            return users;
         }
     }
 }

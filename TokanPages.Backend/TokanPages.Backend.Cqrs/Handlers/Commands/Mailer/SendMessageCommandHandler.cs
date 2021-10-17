@@ -18,59 +18,59 @@
 
     public class SendMessageCommandHandler : TemplateHandler<SendMessageCommand, Unit>
     {
-        private readonly ILogger FLogger;
+        private readonly ILogger _logger;
 
-        private readonly ICustomHttpClient FCustomHttpClient;
+        private readonly ICustomHttpClient _customHttpClient;
 
-        private readonly ISmtpClientService FSmtpClientService;
+        private readonly ISmtpClientService _smtpClientService;
         
-        private readonly ITemplateService FTemplateService;
+        private readonly ITemplateService _templateService;
         
-        private readonly IDateTimeService FDateTimeService;
+        private readonly IDateTimeService _dateTimeService;
         
-        private readonly AzureStorage FAzureStorage;
+        private readonly AzureStorage _azureStorage;
         
-        public SendMessageCommandHandler(ILogger ALogger, ICustomHttpClient ACustomHttpClient, ISmtpClientService ASmtpClientService, 
-            ITemplateService ATemplateService, IDateTimeService ADateTimeService, AzureStorage AAzureStorage)
+        public SendMessageCommandHandler(ILogger logger, ICustomHttpClient customHttpClient, ISmtpClientService smtpClientService, 
+            ITemplateService templateService, IDateTimeService dateTimeService, AzureStorage azureStorage)
         {
-            FLogger = ALogger;
-            FCustomHttpClient = ACustomHttpClient;
-            FSmtpClientService = ASmtpClientService;
-            FTemplateService = ATemplateService;
-            FDateTimeService = ADateTimeService;
-            FAzureStorage = AAzureStorage;
+            _logger = logger;
+            _customHttpClient = customHttpClient;
+            _smtpClientService = smtpClientService;
+            _templateService = templateService;
+            _dateTimeService = dateTimeService;
+            _azureStorage = azureStorage;
         }
 
-        public override async Task<Unit> Handle(SendMessageCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(SendMessageCommand request, CancellationToken cancellationToken)
         {
-            FSmtpClientService.From = Constants.Emails.Addresses.CONTACT;
-            FSmtpClientService.Tos = new List<string> { Constants.Emails.Addresses.CONTACT };
-            FSmtpClientService.Subject = $"New user message from {ARequest.FirstName}";
+            _smtpClientService.From = Constants.Emails.Addresses.CONTACT;
+            _smtpClientService.Tos = new List<string> { Constants.Emails.Addresses.CONTACT };
+            _smtpClientService.Subject = $"New user message from {request.FirstName}";
 
-            var LNewValues = new Dictionary<string, string>
+            var newValues = new Dictionary<string, string>
             {
-                { "{FIRST_NAME}", ARequest.FirstName },
-                { "{LAST_NAME}", ARequest.LastName },
-                { "{EMAIL_ADDRESS}", ARequest.UserEmail },
-                { "{USER_MSG}", ARequest.Message },
-                { "{DATE_TIME}", FDateTimeService.Now.ToString(CultureInfo.InvariantCulture) }
+                { "{FIRST_NAME}", request.FirstName },
+                { "{LAST_NAME}", request.LastName },
+                { "{EMAIL_ADDRESS}", request.UserEmail },
+                { "{USER_MSG}", request.Message },
+                { "{DATE_TIME}", _dateTimeService.Now.ToString(CultureInfo.InvariantCulture) }
             };
 
-            var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.CONTACT_FORM}";
-            FLogger.LogInformation($"Getting email template from URL: {LUrl}.");
+            var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.CONTACT_FORM}";
+            _logger.LogInformation($"Getting email template from URL: {url}.");
 
-            var LConfiguration = new Configuration { Url = LUrl, Method = "GET" };
-            var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
+            var configuration = new Configuration { Url = url, Method = "GET" };
+            var results = await _customHttpClient.Execute(configuration, cancellationToken);
 
-            if (LResults.Content == null)
+            if (results.Content == null)
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
 
-            var LTemplate = System.Text.Encoding.Default.GetString(LResults.Content);
-            FSmtpClientService.HtmlBody = FTemplateService.MakeBody(LTemplate, LNewValues);
+            var template = System.Text.Encoding.Default.GetString(results.Content);
+            _smtpClientService.HtmlBody = _templateService.MakeBody(template, newValues);
 
-            var LResult = await FSmtpClientService.Send(ACancellationToken);
-            if (!LResult.IsSucceeded)
-                throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}. {LResult.ErrorDesc}");
+            var result = await _smtpClientService.Send(cancellationToken);
+            if (!result.IsSucceeded)
+                throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}. {result.ErrorDesc}");
 
             return await Task.FromResult(Unit.Value);
         }

@@ -10,31 +10,31 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
 
     public class GetSubscriberQueryHandler : TemplateHandler<GetSubscriberQuery, GetSubscriberQueryResult>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
 
-        public GetSubscriberQueryHandler(DatabaseContext ADatabaseContext) 
-            => FDatabaseContext = ADatabaseContext;
+        public GetSubscriberQueryHandler(DatabaseContext databaseContext) 
+            => _databaseContext = databaseContext;
 
-        public override async Task<GetSubscriberQueryResult> Handle(GetSubscriberQuery ARequest, CancellationToken ACancellationToken) 
+        public override async Task<GetSubscriberQueryResult> Handle(GetSubscriberQuery request, CancellationToken cancellationToken) 
         {
-            var LCurrentSubscriber = await FDatabaseContext.Subscribers
+            var currentSubscriber = await _databaseContext.Subscribers
                 .AsNoTracking()
-                .Where(ASubscribers => ASubscribers.Id == ARequest.Id)
-                .Select(AFields => new GetSubscriberQueryResult 
+                .Where(subscribers => subscribers.Id == request.Id)
+                .Select(subscribers => new GetSubscriberQueryResult 
                 { 
-                    Id = AFields.Id,
-                    Email = AFields.Email,
-                    IsActivated = AFields.IsActivated,
-                    NewsletterCount = AFields.Count,
-                    Registered = AFields.Registered,
-                    LastUpdated = AFields.LastUpdated
+                    Id = subscribers.Id,
+                    Email = subscribers.Email,
+                    IsActivated = subscribers.IsActivated,
+                    NewsletterCount = subscribers.Count,
+                    Registered = subscribers.Registered,
+                    LastUpdated = subscribers.LastUpdated
                 })
-                .ToListAsync(ACancellationToken);
+                .ToListAsync(cancellationToken);
 
-            if (!LCurrentSubscriber.Any()) 
+            if (!currentSubscriber.Any()) 
                 throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
 
-            return LCurrentSubscriber.First();
+            return currentSubscriber.First();
         }
     }
 }

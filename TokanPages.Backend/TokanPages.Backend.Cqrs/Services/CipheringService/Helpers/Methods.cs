@@ -11,237 +11,237 @@ namespace TokanPages.Backend.Cqrs.Services.CipheringService.Helpers
         /// Base64 encoding scheme. Note that this is _not_ compatible
         /// with the standard MIME-Base64 encoding.
         /// </summary>
-        /// <param name="AArrayToDecode">
+        /// <param name="arrayToDecode">
         /// The byte array to encode
         /// </param>
-        /// <param name="ALength">
+        /// <param name="length">
         /// The number of bytes to encode
         /// </param>
         /// <returns>
         /// A Base64-encoded string
         /// </returns>
-        public static string EncodeBase64(IReadOnlyList<byte> AArrayToDecode, int ALength) 
+        public static string EncodeBase64(IReadOnlyList<byte> arrayToDecode, int length) 
         {
-            if (ALength <= 0 || ALength > AArrayToDecode.Count) 
-                throw new ArgumentOutOfRangeException(nameof(ALength), ALength, null);
+            if (length <= 0 || length > arrayToDecode.Count) 
+                throw new ArgumentOutOfRangeException(nameof(length), length, null);
             
-            var LStringBuilder = new StringBuilder(ALength * 2);
+            var stringBuilder = new StringBuilder(length * 2);
 
-            for (var LOffset = 0; LOffset < ALength;) 
+            for (var offset = 0; offset < length;) 
             {
-                var LCountPrimary = AArrayToDecode[LOffset++] & 0xff;
-                LStringBuilder.Append(Arrays.FTableForBase64Encoding[(LCountPrimary >> 2) & 0x3f]);
-                LCountPrimary = (LCountPrimary & 0x03) << 4;
+                var countPrimary = arrayToDecode[offset++] & 0xff;
+                stringBuilder.Append(Arrays.FTableForBase64Encoding[(countPrimary >> 2) & 0x3f]);
+                countPrimary = (countPrimary & 0x03) << 4;
             
-                if (LOffset >= ALength) 
+                if (offset >= length) 
                 {
-                    LStringBuilder.Append(Arrays.FTableForBase64Encoding[LCountPrimary & 0x3f]);
+                    stringBuilder.Append(Arrays.FTableForBase64Encoding[countPrimary & 0x3f]);
                     break;
                 }
             
-                var LCountSecondary = AArrayToDecode[LOffset++] & 0xff;
-                LCountPrimary |= (LCountSecondary >> 4) & 0x0f;
-                LStringBuilder.Append(Arrays.FTableForBase64Encoding[LCountPrimary & 0x3f]);
-                LCountPrimary = (LCountSecondary & 0x0f) << 2;
+                var countSecondary = arrayToDecode[offset++] & 0xff;
+                countPrimary |= (countSecondary >> 4) & 0x0f;
+                stringBuilder.Append(Arrays.FTableForBase64Encoding[countPrimary & 0x3f]);
+                countPrimary = (countSecondary & 0x0f) << 2;
             
-                if (LOffset >= ALength) 
+                if (offset >= length) 
                 {
-                    LStringBuilder.Append(Arrays.FTableForBase64Encoding[LCountPrimary & 0x3f]);
+                    stringBuilder.Append(Arrays.FTableForBase64Encoding[countPrimary & 0x3f]);
                     break;
                 }
             
-                LCountSecondary = AArrayToDecode[LOffset++] & 0xff;
-                LCountPrimary |= (LCountSecondary >> 6) & 0x03;
-                LStringBuilder.Append(Arrays.FTableForBase64Encoding[LCountPrimary & 0x3f]);
-                LStringBuilder.Append(Arrays.FTableForBase64Encoding[LCountSecondary & 0x3f]);
+                countSecondary = arrayToDecode[offset++] & 0xff;
+                countPrimary |= (countSecondary >> 6) & 0x03;
+                stringBuilder.Append(Arrays.FTableForBase64Encoding[countPrimary & 0x3f]);
+                stringBuilder.Append(Arrays.FTableForBase64Encoding[countSecondary & 0x3f]);
             }
 
-            return LStringBuilder.ToString();
+            return stringBuilder.ToString();
         }
 
         /// <summary>Decode a string encoded using BCrypt's Base64 scheme to a
         /// byte array. Note that this is _not_ compatible with the standard
         /// MIME-Base64 encoding.
         /// </summary>
-        /// <param name="AStringToDecode">
+        /// <param name="stringToDecode">
         /// The string to decode
         /// </param>
-        /// <param name="AMaximumLength">
+        /// <param name="maximumLength">
         /// The maximum number of bytes to decode
         /// </param>
         /// <returns>
         /// An array containing the decoded bytes
         /// </returns>
-        public static byte[] DecodeBase64(string AStringToDecode, int AMaximumLength) 
+        public static byte[] DecodeBase64(string stringToDecode, int maximumLength) 
         {
-            var LBytes = new List<byte>(Math.Min(AMaximumLength, AStringToDecode.Length));
+            var bytes = new List<byte>(Math.Min(maximumLength, stringToDecode.Length));
 
-            if (AMaximumLength <= 0) 
-                throw new ArgumentOutOfRangeException(nameof(AMaximumLength), AMaximumLength, null);
+            if (maximumLength <= 0) 
+                throw new ArgumentOutOfRangeException(nameof(maximumLength), maximumLength, null);
 
-            for (int LOffset = 0, LStringLength = AStringToDecode.Length, LLength = 0; LOffset < LStringLength - 1 && LLength < AMaximumLength; ) 
+            for (int offset = 0, stringLength = stringToDecode.Length, length = 0; offset < stringLength - 1 && length < maximumLength; ) 
             {
-                var LCountPrimary = Char64(AStringToDecode[LOffset++]);
-                var LCountSecondary = Char64(AStringToDecode[LOffset++]);
-                if (LCountPrimary == -1 || LCountSecondary == -1) 
+                var countPrimary = Char64(stringToDecode[offset++]);
+                var countSecondary = Char64(stringToDecode[offset++]);
+                if (countPrimary == -1 || countSecondary == -1) 
                     break;
 
-                LBytes.Add((byte)((LCountPrimary << 2) | ((LCountSecondary & 0x30) >> 4)));
-                if (++LLength >= AMaximumLength || LOffset >= AStringToDecode.Length) 
+                bytes.Add((byte)((countPrimary << 2) | ((countSecondary & 0x30) >> 4)));
+                if (++length >= maximumLength || offset >= stringToDecode.Length) 
                     break;
 
-                var LCountTertiary = Char64(AStringToDecode[LOffset++]);
-                if (LCountTertiary == -1) 
+                var countTertiary = Char64(stringToDecode[offset++]);
+                if (countTertiary == -1) 
                     break;
 
-                LBytes.Add((byte)(((LCountSecondary & 0x0f) << 4) | ((LCountTertiary & 0x3c) >> 2)));
-                if (++LLength >= AMaximumLength || LOffset >= AStringToDecode.Length) 
+                bytes.Add((byte)(((countSecondary & 0x0f) << 4) | ((countTertiary & 0x3c) >> 2)));
+                if (++length >= maximumLength || offset >= stringToDecode.Length) 
                     break;
 
-                var LCountQuaternary = Char64(AStringToDecode[LOffset++]);
-                LBytes.Add((byte)(((LCountTertiary & 0x03) << 6) | LCountQuaternary));
+                var countQuaternary = Char64(stringToDecode[offset++]);
+                bytes.Add((byte)(((countTertiary & 0x03) << 6) | countQuaternary));
 
-                ++LLength;
+                ++length;
             }
 
-            return LBytes.ToArray();
+            return bytes.ToArray();
         }
 
         /// <summary>
         /// Perform the central password hashing step in the bcrypt scheme.
         /// </summary>
-        /// <param name="APassword">
+        /// <param name="password">
         /// The password to hash.
         /// </param>
-        /// <param name="ASalt">
+        /// <param name="salt">
         /// The binary salt to hash with the password.
         /// </param>
-        /// <param name="ALogRounds">
+        /// <param name="logRounds">
         /// The binary logarithm of the number of rounds of hashing to apply.
         /// </param>
         /// <returns>
         /// An array containing the binary hashed password.
         /// </returns>
-        public static byte[] CryptRaw(IReadOnlyList<byte> APassword, IReadOnlyList<byte> ASalt, int ALogRounds) 
+        public static byte[] CryptRaw(IReadOnlyList<byte> password, IReadOnlyList<byte> salt, int logRounds) 
         {
-            var LData = new uint[Arrays.FBCryptCipherText.Length];
-            Arrays.FBCryptCipherText.CopyTo(LData, 0);
+            var data = new uint[Arrays.CryptCipherText.Length];
+            Arrays.CryptCipherText.CopyTo(data, 0);
 
-            var LDataLength = LData.Length;
-            if (ALogRounds is < 4 or > 31) 
-                throw new ArgumentOutOfRangeException(nameof(ALogRounds), ALogRounds, null);
+            var dataLength = data.Length;
+            if (logRounds is < 4 or > 31) 
+                throw new ArgumentOutOfRangeException(nameof(logRounds), logRounds, null);
 
-            var LRounds = 1 << ALogRounds;
-            if (ASalt.Count != Constants.BCRYPT_SALT_LENGTH) 
-                throw new ArgumentException(@"Invalid salt length.", nameof(ASalt));
+            var rounds = 1 << logRounds;
+            if (salt.Count != Constants.CryptSaltLength) 
+                throw new ArgumentException(@"Invalid salt length.", nameof(salt));
 
             InitializeBlowfishKey();
-            EnhancedKeySchedule(ASalt, APassword);
+            EnhancedKeySchedule(salt, password);
 
-            for (var LIndex = 0; LIndex < LRounds; LIndex++) 
+            for (var index = 0; index < rounds; index++) 
             {
-                Key(APassword);
-                Key(ASalt);
+                Key(password);
+                Key(salt);
             }
 
-            for (var LIndex = 0; LIndex < 64; LIndex++) 
+            for (var index = 0; index < 64; index++) 
             {
-                for (var LInnerIndex = 0; LInnerIndex < LDataLength >> 1; LInnerIndex++) 
+                for (var innerIndex = 0; innerIndex < dataLength >> 1; innerIndex++) 
                 {
-                    Encipher(LData, LInnerIndex << 1);
+                    Encipher(data, innerIndex << 1);
                 }
             }
 
-            var LResult = new byte[LDataLength * 4];
-            for (int LIndex1 = 0, LIndex2 = 0; LIndex1 < LDataLength; LIndex1++) 
+            var result = new byte[dataLength * 4];
+            for (int index1 = 0, index2 = 0; index1 < dataLength; index1++) 
             {
-                LResult[LIndex2++] = (byte)((LData[LIndex1] >> 24) & 0xff);
-                LResult[LIndex2++] = (byte)((LData[LIndex1] >> 16) & 0xff);
-                LResult[LIndex2++] = (byte)((LData[LIndex1] >> 8) & 0xff);
-                LResult[LIndex2++] = (byte)(LData[LIndex1] & 0xff);
+                result[index2++] = (byte)((data[index1] >> 24) & 0xff);
+                result[index2++] = (byte)((data[index1] >> 16) & 0xff);
+                result[index2++] = (byte)((data[index1] >> 8) & 0xff);
+                result[index2++] = (byte)(data[index1] & 0xff);
             }
 
-            return LResult;
+            return result;
         }
         
         /// <summary>Look up the 3 bits base64-encoded by the specified
         /// character, range-checking against the conversion table.
         /// </summary>
-        /// <param name="ABase64EncodedValue">
+        /// <param name="base64EncodedValue">
         /// The Base64-encoded value
         /// </param>
         /// <returns>
         /// The decoded value of <c>x</c>
         /// </returns>
-        private static int Char64(char ABase64EncodedValue) 
+        private static int Char64(char base64EncodedValue) 
         {
-            int LValue = ABase64EncodedValue;
-            return LValue < 0 || LValue > Arrays.FTableForBase64Decoding.Length 
+            int value = base64EncodedValue;
+            return value < 0 || value > Arrays.FTableForBase64Decoding.Length 
                 ? -1 
-                : Arrays.FTableForBase64Decoding[LValue];
+                : Arrays.FTableForBase64Decoding[value];
         }
         
         /// <summary>
         /// Blowfish encipher a single 64-bit block encoded as two 32-bit halves.
         /// </summary>
-        /// <param name="ABlock">
+        /// <param name="block">
         /// An array containing the two 32-bit half blocks.
         /// </param>
-        /// <param name="AOffset">
+        /// <param name="offset">
         /// The position in the array of the
         /// blocks.
         /// </param>
-        private static void Encipher(IList<uint> ABlock, int AOffset) 
+        private static void Encipher(IList<uint> block, int offset) 
         {
-            uint LIndex = 0;
-            var LLength = ABlock[AOffset]; 
-            var LRecord = ABlock[AOffset + 1];
+            uint index = 0;
+            var length = block[offset]; 
+            var record = block[offset + 1];
 
-            LLength ^= Arrays.ExpandedBlowfishKeyPrimary[0];
-            while (LIndex <= Constants.BLOWFISH_NUM_ROUNDS - 2) 
+            length ^= Arrays.ExpandedBlowfishKeyPrimary[0];
+            while (index <= Constants.BlowfishNumRounds - 2) 
             {
                 // Feistel substitution on left word
-                var LNumber = Arrays.ExpandedBlowfishKeySecondary[(LLength >> 24) & 0xff];
-                LNumber += Arrays.ExpandedBlowfishKeySecondary[0x100 | ((LLength >> 16) & 0xff)];
-                LNumber ^= Arrays.ExpandedBlowfishKeySecondary[0x200 | ((LLength >> 8) & 0xff)];
-                LNumber += Arrays.ExpandedBlowfishKeySecondary[0x300 | (LLength & 0xff)];
-                LRecord ^= LNumber ^ Arrays.ExpandedBlowfishKeyPrimary[++LIndex];
+                var number = Arrays.ExpandedBlowfishKeySecondary[(length >> 24) & 0xff];
+                number += Arrays.ExpandedBlowfishKeySecondary[0x100 | ((length >> 16) & 0xff)];
+                number ^= Arrays.ExpandedBlowfishKeySecondary[0x200 | ((length >> 8) & 0xff)];
+                number += Arrays.ExpandedBlowfishKeySecondary[0x300 | (length & 0xff)];
+                record ^= number ^ Arrays.ExpandedBlowfishKeyPrimary[++index];
 
                 // Feistel substitution on right word
-                LNumber = Arrays.ExpandedBlowfishKeySecondary[(LRecord >> 24) & 0xff];
-                LNumber += Arrays.ExpandedBlowfishKeySecondary[0x100 | ((LRecord >> 16) & 0xff)];
-                LNumber ^= Arrays.ExpandedBlowfishKeySecondary[0x200 | ((LRecord >> 8) & 0xff)];
-                LNumber += Arrays.ExpandedBlowfishKeySecondary[0x300 | (LRecord & 0xff)];
-                LLength ^= LNumber ^ Arrays.ExpandedBlowfishKeyPrimary[++LIndex];
+                number = Arrays.ExpandedBlowfishKeySecondary[(record >> 24) & 0xff];
+                number += Arrays.ExpandedBlowfishKeySecondary[0x100 | ((record >> 16) & 0xff)];
+                number ^= Arrays.ExpandedBlowfishKeySecondary[0x200 | ((record >> 8) & 0xff)];
+                number += Arrays.ExpandedBlowfishKeySecondary[0x300 | (record & 0xff)];
+                length ^= number ^ Arrays.ExpandedBlowfishKeyPrimary[++index];
             }
         
-            ABlock[AOffset] = LRecord ^ Arrays.ExpandedBlowfishKeyPrimary[Constants.BLOWFISH_NUM_ROUNDS + 1];
-            ABlock[AOffset + 1] = LLength;
+            block[offset] = record ^ Arrays.ExpandedBlowfishKeyPrimary[Constants.BlowfishNumRounds + 1];
+            block[offset + 1] = length;
         }
 
         /// <summary>
         /// Cyclically extract a word of key material.
         /// </summary>
-        /// <param name="AData">
+        /// <param name="data">
         /// The string to extract the data from.
         /// </param>
-        /// <param name="AOffset">
+        /// <param name="offset">
         /// The current offset into data.
         /// </param>
         /// <returns>
         /// The next work of material from data.
         /// </returns>
-        private static uint StreamToWord(IReadOnlyList<byte> AData, ref int AOffset) 
+        private static uint StreamToWord(IReadOnlyList<byte> data, ref int offset) 
         {
-            uint LWord = 0;
+            uint word = 0;
 
-            for (var LIndex = 0; LIndex < 4; LIndex++) 
+            for (var index = 0; index < 4; index++) 
             {
-                LWord = (LWord << 8) | AData[AOffset];
-                AOffset = (AOffset + 1) % AData.Count;
+                word = (word << 8) | data[offset];
+                offset = (offset + 1) % data.Count;
             }
 
-            return LWord;
+            return word;
         }
 
         /// <summary>
@@ -258,33 +258,33 @@ namespace TokanPages.Backend.Cqrs.Services.CipheringService.Helpers
         /// <summary>
         /// Key the Blowfish cipher.
         /// </summary>
-        /// <param name="AKey">
+        /// <param name="key">
         /// An array containing the key.
         /// </param>
-        private static void Key(IReadOnlyList<byte> AKey) 
+        private static void Key(IReadOnlyList<byte> key) 
         {
-            uint[] LBlock = { 0, 0 };
-            var LPrimaryKeyLength = Arrays.ExpandedBlowfishKeyPrimary.Length; 
-            var LSecondaryKeyLength = Arrays.ExpandedBlowfishKeySecondary.Length;
+            uint[] block = { 0, 0 };
+            var primaryKeyLength = Arrays.ExpandedBlowfishKeyPrimary.Length; 
+            var secondaryKeyLength = Arrays.ExpandedBlowfishKeySecondary.Length;
 
-            var LOffset = 0;
-            for (var LIndex = 0; LIndex < LPrimaryKeyLength; LIndex++) 
+            var offset = 0;
+            for (var index = 0; index < primaryKeyLength; index++) 
             {
-                Arrays.ExpandedBlowfishKeyPrimary[LIndex] = Arrays.ExpandedBlowfishKeyPrimary[LIndex] ^ StreamToWord(AKey, ref LOffset);
+                Arrays.ExpandedBlowfishKeyPrimary[index] ^= StreamToWord(key, ref offset);
             }
 
-            for (var LIndex = 0; LIndex < LPrimaryKeyLength; LIndex += 2) 
+            for (var index = 0; index < primaryKeyLength; index += 2) 
             {
-                Encipher(LBlock, 0);
-                Arrays.ExpandedBlowfishKeyPrimary[LIndex] = LBlock[0];
-                Arrays.ExpandedBlowfishKeyPrimary[LIndex + 1] = LBlock[1];
+                Encipher(block, 0);
+                Arrays.ExpandedBlowfishKeyPrimary[index] = block[0];
+                Arrays.ExpandedBlowfishKeyPrimary[index + 1] = block[1];
             }
 
-            for (var LIndex = 0; LIndex < LSecondaryKeyLength; LIndex += 2) 
+            for (var index = 0; index < secondaryKeyLength; index += 2) 
             {
-                Encipher(LBlock, 0);
-                Arrays.ExpandedBlowfishKeySecondary[LIndex] = LBlock[0];
-                Arrays.ExpandedBlowfishKeySecondary[LIndex + 1] = LBlock[1];
+                Encipher(block, 0);
+                Arrays.ExpandedBlowfishKeySecondary[index] = block[0];
+                Arrays.ExpandedBlowfishKeySecondary[index + 1] = block[1];
             }
         }
 
@@ -293,41 +293,41 @@ namespace TokanPages.Backend.Cqrs.Services.CipheringService.Helpers
         /// and Mazieres in "A Future-Adaptable Password Scheme"
         /// (http://www.openbsd.org/papers/bcrypt-paper.ps).
         /// </summary>
-        /// <param name="AData">
+        /// <param name="data">
         /// Salt information.
         /// </param>
-        /// <param name="AKey">
+        /// <param name="key">
         /// Password information.
         /// </param>
-        private static void EnhancedKeySchedule(IReadOnlyList<byte> AData, IReadOnlyList<byte> AKey) 
+        private static void EnhancedKeySchedule(IReadOnlyList<byte> data, IReadOnlyList<byte> key) 
         {
-            uint[] LBlock = { 0, 0 };
-            var LPrimaryKeyLength = Arrays.ExpandedBlowfishKeyPrimary.Length;
-            var LSecondaryKeyLength = Arrays.ExpandedBlowfishKeySecondary.Length;
+            uint[] block = { 0, 0 };
+            var primaryKeyLength = Arrays.ExpandedBlowfishKeyPrimary.Length;
+            var secondaryKeyLength = Arrays.ExpandedBlowfishKeySecondary.Length;
 
-            var LKeyOffset = 0;
-            for (var LIndex = 0; LIndex < LPrimaryKeyLength; LIndex++) 
+            var keyOffset = 0;
+            for (var index = 0; index < primaryKeyLength; index++) 
             {
-                Arrays.ExpandedBlowfishKeyPrimary[LIndex] = Arrays.ExpandedBlowfishKeyPrimary[LIndex] ^ StreamToWord(AKey, ref LKeyOffset);
+                Arrays.ExpandedBlowfishKeyPrimary[index] ^= StreamToWord(key, ref keyOffset);
             }
 
-            var LDataOffset = 0;
-            for (var LIndex = 0; LIndex < LPrimaryKeyLength; LIndex += 2) 
+            var dataOffset = 0;
+            for (var index = 0; index < primaryKeyLength; index += 2) 
             {
-                LBlock[0] ^= StreamToWord(AData, ref LDataOffset);
-                LBlock[1] ^= StreamToWord(AData, ref LDataOffset);
-                Encipher(LBlock, 0);
-                Arrays.ExpandedBlowfishKeyPrimary[LIndex] = LBlock[0];
-                Arrays.ExpandedBlowfishKeyPrimary[LIndex + 1] = LBlock[1];
+                block[0] ^= StreamToWord(data, ref dataOffset);
+                block[1] ^= StreamToWord(data, ref dataOffset);
+                Encipher(block, 0);
+                Arrays.ExpandedBlowfishKeyPrimary[index] = block[0];
+                Arrays.ExpandedBlowfishKeyPrimary[index + 1] = block[1];
             }
 
-            for (var LIndex = 0; LIndex < LSecondaryKeyLength; LIndex += 2) 
+            for (var index = 0; index < secondaryKeyLength; index += 2) 
             {
-                LBlock[0] ^= StreamToWord(AData, ref LDataOffset);
-                LBlock[1] ^= StreamToWord(AData, ref LDataOffset);
-                Encipher(LBlock, 0);
-                Arrays.ExpandedBlowfishKeySecondary[LIndex] = LBlock[0];
-                Arrays.ExpandedBlowfishKeySecondary[LIndex + 1] = LBlock[1];
+                block[0] ^= StreamToWord(data, ref dataOffset);
+                block[1] ^= StreamToWord(data, ref dataOffset);
+                Encipher(block, 0);
+                Arrays.ExpandedBlowfishKeySecondary[index] = block[0];
+                Arrays.ExpandedBlowfishKeySecondary[index + 1] = block[1];
             }
         }
     }

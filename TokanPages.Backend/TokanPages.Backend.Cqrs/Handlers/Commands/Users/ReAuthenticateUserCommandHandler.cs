@@ -15,96 +15,96 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
     public class ReAuthenticateUserCommandHandler : TemplateHandler<ReAuthenticateUserCommand, ReAuthenticateUserCommandResult>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
         
-        private readonly IDateTimeService FDateTimeService;
+        private readonly IDateTimeService _dateTimeService;
 
-        private readonly IUserServiceProvider FUserServiceProvider;
+        private readonly IUserServiceProvider _userServiceProvider;
 
-        private readonly IdentityServer FIdentityServer;
+        private readonly IdentityServer _identityServer;
 
-        public ReAuthenticateUserCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService, 
-            IUserServiceProvider AUserServiceProvider, IdentityServer AIdentityServer)
+        public ReAuthenticateUserCommandHandler(DatabaseContext databaseContext, IDateTimeService dateTimeService, 
+            IUserServiceProvider userServiceProvider, IdentityServer identityServer)
         {
-            FDatabaseContext = ADatabaseContext;
-            FDateTimeService = ADateTimeService;
-            FUserServiceProvider = AUserServiceProvider;
-            FIdentityServer = AIdentityServer;
+            _databaseContext = databaseContext;
+            _dateTimeService = dateTimeService;
+            _userServiceProvider = userServiceProvider;
+            _identityServer = identityServer;
         }
 
-        public override async Task<ReAuthenticateUserCommandResult> Handle(ReAuthenticateUserCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<ReAuthenticateUserCommandResult> Handle(ReAuthenticateUserCommand request, CancellationToken cancellationToken)
         {
-            var LRefreshTokenFromRequest = FUserServiceProvider.GetRefreshTokenCookie(Constants.CookieNames.REFRESH_TOKEN);
-            if (string.IsNullOrEmpty(LRefreshTokenFromRequest))
+            var refreshTokenFromRequest = _userServiceProvider.GetRefreshTokenCookie(Constants.CookieNames.REFRESH_TOKEN);
+            if (string.IsNullOrEmpty(refreshTokenFromRequest))
                 throw MissingRefreshTokenException;
 
-            var LUserRefreshTokens = await FDatabaseContext.UserRefreshTokens
+            var userRefreshTokens = await _databaseContext.UserRefreshTokens
                 .AsNoTracking()
-                .Where(ARefreshTokens => ARefreshTokens.UserId == ARequest.Id)
-                .ToListAsync(ACancellationToken);
+                .Where(tokens => tokens.UserId == request.Id)
+                .ToListAsync(cancellationToken);
 
-            var LSavedRefreshToken = LUserRefreshTokens.SingleOrDefault(ARefreshTokens => ARefreshTokens.Token == LRefreshTokenFromRequest);
-            if (LSavedRefreshToken == null)
+            var savedRefreshToken = userRefreshTokens.SingleOrDefault(tokens => tokens.Token == refreshTokenFromRequest);
+            if (savedRefreshToken == null)
                 throw InvalidTokenException;
             
-            var LRequesterIpAddress = FUserServiceProvider.GetRequestIpAddress();
+            var requesterIpAddress = _userServiceProvider.GetRequestIpAddress();
 
-            if (FUserServiceProvider.IsRefreshTokenRevoked(LSavedRefreshToken))
+            if (_userServiceProvider.IsRefreshTokenRevoked(savedRefreshToken))
             {
-                var LReason = $"Attempted reuse of revoked ancestor token: {LRefreshTokenFromRequest}";
-                await FUserServiceProvider.RevokeDescendantRefreshTokens(LUserRefreshTokens, LSavedRefreshToken, LRequesterIpAddress, 
-                    LReason, false, ACancellationToken);
+                var reason = $"Attempted reuse of revoked ancestor token: {refreshTokenFromRequest}";
+                await _userServiceProvider.RevokeDescendantRefreshTokens(userRefreshTokens, savedRefreshToken, requesterIpAddress, 
+                    reason, false, cancellationToken);
                 
-                FDatabaseContext.UserRefreshTokens.Update(LSavedRefreshToken);
-                await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+                _databaseContext.UserRefreshTokens.Update(savedRefreshToken);
+                await _databaseContext.SaveChangesAsync(cancellationToken);
             }
 
-            if (!FUserServiceProvider.IsRefreshTokenActive(LSavedRefreshToken))
+            if (!_userServiceProvider.IsRefreshTokenActive(savedRefreshToken))
                 throw InvalidTokenException;
 
-            var LNewRefreshToken = await FUserServiceProvider.ReplaceRefreshToken(ARequest.Id, LSavedRefreshToken, 
-                LRequesterIpAddress, true, ACancellationToken);
+            var newRefreshToken = await _userServiceProvider.ReplaceRefreshToken(request.Id, savedRefreshToken, 
+                requesterIpAddress, true, cancellationToken);
 
-            await FUserServiceProvider.DeleteOutdatedRefreshTokens(ARequest.Id, false, ACancellationToken);
-            await FDatabaseContext.UserRefreshTokens.AddAsync(LNewRefreshToken, ACancellationToken);
+            await _userServiceProvider.DeleteOutdatedRefreshTokens(request.Id, false, cancellationToken);
+            await _databaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
 
-            var LCurrentDateTime = FDateTimeService.Now;
-            var LCurrentUser = await FDatabaseContext.Users.SingleAsync(AUsers => AUsers.Id == ARequest.Id, ACancellationToken);
-            var LIpAddress = FUserServiceProvider.GetRequestIpAddress();
-            var LTokenExpires = FDateTimeService.Now.AddMinutes(FIdentityServer.WebTokenExpiresIn);
-            var LUserToken = await FUserServiceProvider.GenerateUserToken(LCurrentUser, LTokenExpires, ACancellationToken);
+            var currentDateTime = _dateTimeService.Now;
+            var currentUser = await _databaseContext.Users.SingleAsync(users => users.Id == request.Id, cancellationToken);
+            var ipAddress = _userServiceProvider.GetRequestIpAddress();
+            var tokenExpires = _dateTimeService.Now.AddMinutes(_identityServer.WebTokenExpiresIn);
+            var userToken = await _userServiceProvider.GenerateUserToken(currentUser, tokenExpires, cancellationToken);
 
-            FUserServiceProvider.SetRefreshTokenCookie(LNewRefreshToken.Token, FIdentityServer.RefreshTokenExpiresIn);
-            LCurrentUser.LastLogged = LCurrentDateTime;
+            _userServiceProvider.SetRefreshTokenCookie(newRefreshToken.Token, _identityServer.RefreshTokenExpiresIn);
+            currentUser.LastLogged = currentDateTime;
 
-            var LRoles = await FUserServiceProvider.GetUserRoles(LCurrentUser.Id);
-            var LPermissions = await FUserServiceProvider.GetUserPermissions(LCurrentUser.Id);
+            var roles = await _userServiceProvider.GetUserRoles(currentUser.Id);
+            var permissions = await _userServiceProvider.GetUserPermissions(currentUser.Id);
 
-            var LNewUserToken = new UserTokens
+            var newUserToken = new UserTokens
             {
-                UserId = LCurrentUser.Id,
-                Token = LUserToken,
-                Expires = LTokenExpires,
-                Created = LCurrentDateTime,
-                CreatedByIp = LIpAddress,
+                UserId = currentUser.Id,
+                Token = userToken,
+                Expires = tokenExpires,
+                Created = currentDateTime,
+                CreatedByIp = ipAddress,
                 Command = nameof(ReAuthenticateUserCommand)
             };
 
-            await FDatabaseContext.UserTokens.AddAsync(LNewUserToken, ACancellationToken);
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            await _databaseContext.UserTokens.AddAsync(newUserToken, cancellationToken);
+            await _databaseContext.SaveChangesAsync(cancellationToken);
 
             return new ReAuthenticateUserCommandResult
             {
-                UserId = LCurrentUser.Id,
-                AliasName = LCurrentUser.UserAlias,
-                AvatarName = LCurrentUser.AvatarName,
-                FirstName = LCurrentUser.FirstName,
-                LastName = LCurrentUser.LastName,
-                ShortBio = LCurrentUser.ShortBio,
-                Registered = LCurrentUser.Registered,
-                UserToken = LUserToken,
-                Roles = LRoles,
-                Permissions = LPermissions
+                UserId = currentUser.Id,
+                AliasName = currentUser.UserAlias,
+                AvatarName = currentUser.AvatarName,
+                FirstName = currentUser.FirstName,
+                LastName = currentUser.LastName,
+                ShortBio = currentUser.ShortBio,
+                Registered = currentUser.Registered,
+                UserToken = userToken,
+                Roles = roles,
+                Permissions = permissions
             };
         }
 

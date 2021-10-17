@@ -13,54 +13,54 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
     public class UpdateArticleCountCommandHandler : TemplateHandler<UpdateArticleCountCommand, Unit>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
 
-        private readonly IUserServiceProvider FUserServiceProvider;
+        private readonly IUserServiceProvider _userServiceProvider;
 
-        public UpdateArticleCountCommandHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider)
+        public UpdateArticleCountCommandHandler(DatabaseContext databaseContext, IUserServiceProvider userServiceProvider)
         {
-            FDatabaseContext = ADatabaseContext;
-            FUserServiceProvider = AUserServiceProvider;
+            _databaseContext = databaseContext;
+            _userServiceProvider = userServiceProvider;
         }
 
-        public override async Task<Unit> Handle(UpdateArticleCountCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(UpdateArticleCountCommand request, CancellationToken cancellationToken)
         {
-            var LArticles = await FDatabaseContext.Articles
-                .Where(AArticles => AArticles.Id == ARequest.Id)
-                .ToListAsync(ACancellationToken);
+            var articles = await _databaseContext.Articles
+                .Where(articles => articles.Id == request.Id)
+                .ToListAsync(cancellationToken);
 
-            if (!LArticles.Any())
+            if (!articles.Any())
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-            var LCurrentArticle = LArticles.First();
-            LCurrentArticle.ReadCount += 1;
+            var currentArticle = articles.First();
+            currentArticle.ReadCount += 1;
 
-            var LUserId = await FUserServiceProvider.GetUserId();
-            if (LUserId != null)
+            var userId = await _userServiceProvider.GetUserId();
+            if (userId != null)
             {
-                var LReadCounts = await FDatabaseContext.ArticleCounts
-                    .Where(ACounts => ACounts.UserId == LUserId && ACounts.ArticleId == ARequest.Id)
-                    .SingleOrDefaultAsync(ACancellationToken);
+                var readCounts = await _databaseContext.ArticleCounts
+                    .Where(counts => counts.UserId == userId && counts.ArticleId == request.Id)
+                    .SingleOrDefaultAsync(cancellationToken);
 
-                if (LReadCounts != null)
+                if (readCounts != null)
                 {
-                    LReadCounts.ReadCount += 1;
+                    readCounts.ReadCount += 1;
                 }
                 else
                 {
-                    var LIpAddress = FUserServiceProvider.GetRequestIpAddress();
-                    var LArticleCount = new ArticleCounts
+                    var ipAddress = _userServiceProvider.GetRequestIpAddress();
+                    var articleCount = new ArticleCounts
                     {
-                        UserId = LCurrentArticle.UserId,
-                        ArticleId = LCurrentArticle.Id,
-                        IpAddress = LIpAddress,
+                        UserId = currentArticle.UserId,
+                        ArticleId = currentArticle.Id,
+                        IpAddress = ipAddress,
                         ReadCount = 1
                     };
-                    await FDatabaseContext.ArticleCounts.AddAsync(LArticleCount, ACancellationToken);
+                    await _databaseContext.ArticleCounts.AddAsync(articleCount, cancellationToken);
                 }
             }
 
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            await _databaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
         }
     }

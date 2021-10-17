@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     {
         public AuthenticateUserCommandValidator()
         {
-            RuleFor(AField => AField.EmailAddress)
+            RuleFor(command => command.EmailAddress)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -15,7 +15,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 .WithErrorCode(nameof(ValidationCodes.EMAIL_TOO_LONG))
                 .WithMessage(ValidationCodes.EMAIL_TOO_LONG);
 
-            RuleFor(AField => AField.Password)
+            RuleFor(command => command.Password)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)

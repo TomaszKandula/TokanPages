@@ -4,10 +4,10 @@ namespace TokanPages.Backend.Cqrs.Services.CipheringService
 
     public interface ICipheringService
     {
-        string GetHashedPassword(string APassword, string ASalt);
+        string GetHashedPassword(string password, string salt);
 
-        bool VerifyPassword(string APlaintext, string AHashedPassword);
+        bool VerifyPassword(string plaintext, string hashedPassword);
 
-        string GenerateSalt(int ALogRounds = Constants.GENERATE_SALT_DEFAULT_LOG2_ROUNDS);
+        string GenerateSalt(int logRounds = Constants.GenerateSaltDefaultLog2Rounds);
     }
 }

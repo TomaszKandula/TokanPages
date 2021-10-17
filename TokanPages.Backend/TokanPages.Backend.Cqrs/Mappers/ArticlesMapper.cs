@@ -7,43 +7,43 @@
     [ExcludeFromCodeCoverage]
     public static class ArticlesMapper
     {
-        public static AddArticleCommand MapToAddArticleCommand(AddArticleDto AModel) => new()
+        public static AddArticleCommand MapToAddArticleCommand(AddArticleDto model) => new()
         {
-            Title = AModel.Title,
-            Description = AModel.Description,
-            TextToUpload = AModel.TextToUpload,
-            ImageToUpload = AModel.ImageToUpload
+            Title = model.Title,
+            Description = model.Description,
+            TextToUpload = model.TextToUpload,
+            ImageToUpload = model.ImageToUpload
         };
         
-        public static UpdateArticleContentCommand MapToUpdateArticleCommand(UpdateArticleContentDto AModel) => new()
+        public static UpdateArticleContentCommand MapToUpdateArticleCommand(UpdateArticleContentDto model) => new()
         {
-            Id = AModel.Id,
-            Title = AModel.Title,
-            Description = AModel.Description,
-            TextToUpload = AModel.TextToUpload,
-            ImageToUpload = AModel.ImageToUpload
+            Id = model.Id,
+            Title = model.Title,
+            Description = model.Description,
+            TextToUpload = model.TextToUpload,
+            ImageToUpload = model.ImageToUpload
         };
 
-        public static UpdateArticleCountCommand MapToUpdateArticleCommand(UpdateArticleCountDto AModel) => new()
+        public static UpdateArticleCountCommand MapToUpdateArticleCommand(UpdateArticleCountDto model) => new()
         {
-            Id = AModel.Id
+            Id = model.Id
         };
         
-        public static UpdateArticleLikesCommand MapToUpdateArticleCommand(UpdateArticleLikesDto AModel) => new() 
+        public static UpdateArticleLikesCommand MapToUpdateArticleCommand(UpdateArticleLikesDto model) => new() 
         {
-            Id = AModel.Id,
-            AddToLikes = AModel.AddToLikes 
+            Id = model.Id,
+            AddToLikes = model.AddToLikes 
         };
 
-        public static UpdateArticleVisibilityCommand MapToUpdateArticleCommand(UpdateArticleVisibilityDto AModel) => new()
+        public static UpdateArticleVisibilityCommand MapToUpdateArticleCommand(UpdateArticleVisibilityDto model) => new()
         {
-            Id = AModel.Id, 
-            IsPublished = AModel.IsPublished
+            Id = model.Id, 
+            IsPublished = model.IsPublished
         };
         
-        public static RemoveArticleCommand MapToRemoveArticleCommand(RemoveArticleDto AModel) => new() 
+        public static RemoveArticleCommand MapToRemoveArticleCommand(RemoveArticleDto model) => new() 
         { 
-            Id = AModel.Id
+            Id = model.Id
         };
     }
 }

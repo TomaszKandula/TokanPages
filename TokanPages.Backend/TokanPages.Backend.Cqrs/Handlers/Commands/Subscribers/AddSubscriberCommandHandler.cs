@@ -12,38 +12,38 @@
 
     public class AddSubscriberCommandHandler : TemplateHandler<AddSubscriberCommand, Guid>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
         
-        private readonly IDateTimeService FDateTimeService;
+        private readonly IDateTimeService _dateTimeService;
         
-        public AddSubscriberCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService) 
+        public AddSubscriberCommandHandler(DatabaseContext databaseContext, IDateTimeService dateTimeService) 
         {
-            FDatabaseContext = ADatabaseContext;
-            FDateTimeService = ADateTimeService;
+            _databaseContext = databaseContext;
+            _dateTimeService = dateTimeService;
         }
 
-        public override async Task<Guid> Handle(AddSubscriberCommand ARequest, CancellationToken ACancellationToken) 
+        public override async Task<Guid> Handle(AddSubscriberCommand request, CancellationToken cancellationToken) 
         {
-            var LEmailCollection = await FDatabaseContext.Subscribers
+            var emailCollection = await _databaseContext.Subscribers
                 .AsNoTracking()
-                .Where(AUsers => AUsers.Email == ARequest.Email)
-                .ToListAsync(ACancellationToken);
+                .Where(subscribers => subscribers.Email == request.Email)
+                .ToListAsync(cancellationToken);
 
-            if (LEmailCollection.Count == 1)
+            if (emailCollection.Count == 1)
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-            var LNewSubscriber = new Domain.Entities.Subscribers
+            var newSubscriber = new Domain.Entities.Subscribers
             {
-                Email = ARequest.Email,
+                Email = request.Email,
                 Count = 0,
                 IsActivated = true,
                 LastUpdated = null,
-                Registered = FDateTimeService.Now
+                Registered = _dateTimeService.Now
             };
 
-            await FDatabaseContext.Subscribers.AddAsync(LNewSubscriber, ACancellationToken);
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-            return await Task.FromResult(LNewSubscriber.Id);
+            await _databaseContext.Subscribers.AddAsync(newSubscriber, cancellationToken);
+            await _databaseContext.SaveChangesAsync(cancellationToken);
+            return await Task.FromResult(newSubscriber.Id);
         }
     }
 }

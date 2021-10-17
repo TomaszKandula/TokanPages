@@ -7,12 +7,12 @@
     {
         public SendNewsletterCommandValidator() 
         {
-            RuleFor(AField => AField.SubscriberInfo)
+            RuleFor(command => command.SubscriberInfo)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(AField => AField.Subject)
+            RuleFor(command => command.Subject)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -20,7 +20,7 @@
                 .WithErrorCode(nameof(ValidationCodes.SUBJECT_TOO_LONG))
                 .WithMessage(ValidationCodes.SUBJECT_TOO_LONG);
 
-            RuleFor(AField => AField.Message)
+            RuleFor(command => command.Message)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)

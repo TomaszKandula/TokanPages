@@ -7,7 +7,7 @@
     {
         public SendMessageCommandValidator() 
         {
-            RuleFor(AField => AField.FirstName)
+            RuleFor(command => command.FirstName)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -15,7 +15,7 @@
                 .WithErrorCode(nameof(ValidationCodes.FIRST_NAME_TOO_LONG))
                 .WithMessage(ValidationCodes.FIRST_NAME_TOO_LONG);
 
-            RuleFor(AField => AField.LastName)
+            RuleFor(command => command.LastName)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -23,7 +23,7 @@
                 .WithErrorCode(nameof(ValidationCodes.LAST_NAME_TOO_LONG))
                 .WithMessage(ValidationCodes.LAST_NAME_TOO_LONG);
 
-            RuleFor(AField => AField.UserEmail)
+            RuleFor(command => command.UserEmail)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -31,7 +31,7 @@
                 .WithErrorCode(nameof(ValidationCodes.EMAIL_TOO_LONG))
                 .WithMessage(ValidationCodes.EMAIL_TOO_LONG);
 
-            RuleFor(AField => AField.EmailFrom)
+            RuleFor(command => command.EmailFrom)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -39,12 +39,12 @@
                 .WithErrorCode(nameof(ValidationCodes.EMAIL_TOO_LONG))
                 .WithMessage(ValidationCodes.EMAIL_TOO_LONG);
 
-            RuleFor(AField => AField.EmailTos)
+            RuleFor(command => command.EmailTos)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(AField => AField.Subject)
+            RuleFor(command => command.Subject)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -52,7 +52,7 @@
                 .WithErrorCode(nameof(ValidationCodes.SUBJECT_TOO_LONG))
                 .WithMessage(ValidationCodes.SUBJECT_TOO_LONG);
 
-            RuleFor(AField => AField.Message)
+            RuleFor(command => command.Message)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)

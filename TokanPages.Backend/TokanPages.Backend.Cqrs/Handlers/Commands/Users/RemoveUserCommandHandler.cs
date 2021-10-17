@@ -11,22 +11,22 @@
 
     public class RemoveUserCommandHandler : TemplateHandler<RemoveUserCommand, Unit>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
 
-        public RemoveUserCommandHandler(DatabaseContext ADatabaseContext) 
-            => FDatabaseContext = ADatabaseContext;
+        public RemoveUserCommandHandler(DatabaseContext databaseContext) 
+            => _databaseContext = databaseContext;
 
-        public override async Task<Unit> Handle(RemoveUserCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(RemoveUserCommand request, CancellationToken cancellationToken)
         {
-            var LCurrentUser = await FDatabaseContext.Users
-                .Where(ASubscribers => ASubscribers.Id == ARequest.Id)
-                .ToListAsync(ACancellationToken);
+            var currentUser = await _databaseContext.Users
+                .Where(subscribers => subscribers.Id == request.Id)
+                .ToListAsync(cancellationToken);
 
-            if (!LCurrentUser.Any())
+            if (!currentUser.Any())
                 throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-            FDatabaseContext.Users.Remove(LCurrentUser.First());
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            _databaseContext.Users.Remove(currentUser.First());
+            await _databaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
         }
     }

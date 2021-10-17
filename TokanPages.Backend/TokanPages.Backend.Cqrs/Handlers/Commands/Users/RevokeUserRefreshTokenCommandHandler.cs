@@ -12,29 +12,29 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     
     public class RevokeUserRefreshTokenCommandHandler : TemplateHandler<RevokeUserRefreshTokenCommand, Unit>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
         
-        private readonly IUserServiceProvider FUserServiceProvider;
+        private readonly IUserServiceProvider _userServiceProvider;
         
-        public RevokeUserRefreshTokenCommandHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider)
+        public RevokeUserRefreshTokenCommandHandler(DatabaseContext databaseContext, IUserServiceProvider userServiceProvider)
         {
-            FDatabaseContext = ADatabaseContext;
-            FUserServiceProvider = AUserServiceProvider;
+            _databaseContext = databaseContext;
+            _userServiceProvider = userServiceProvider;
         }
 
-        public override async Task<Unit> Handle(RevokeUserRefreshTokenCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(RevokeUserRefreshTokenCommand request, CancellationToken cancellationToken)
         {
-            var LToken = await FDatabaseContext.UserRefreshTokens
-                .Where(AUserRefreshToken => AUserRefreshToken.Token == ARequest.RefreshToken)
-                .SingleOrDefaultAsync(ACancellationToken);
+            var refreshTokens = await _databaseContext.UserRefreshTokens
+                .Where(tokens => tokens.Token == request.RefreshToken)
+                .SingleOrDefaultAsync(cancellationToken);
 
-            if (LToken == null)
+            if (refreshTokens == null)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
-            var LRequestIpAddress = FUserServiceProvider.GetRequestIpAddress();
-            const string REASON = "Revoked by Admin";
+            var requestIpAddress = _userServiceProvider.GetRequestIpAddress();
+            const string reason = "Revoked by Admin";
             
-            await FUserServiceProvider.RevokeRefreshToken(LToken, LRequestIpAddress, REASON, null, true, ACancellationToken);            
+            await _userServiceProvider.RevokeRefreshToken(refreshTokens, requestIpAddress, reason, null, true, cancellationToken);            
             return await Task.FromResult(Unit.Value);
         }
     }

@@ -17,68 +17,68 @@
 
     public class SendNewsletterCommandHandler : TemplateHandler<SendNewsletterCommand, Unit>
     {
-        private readonly ILogger FLogger;
+        private readonly ILogger _logger;
 
-        private readonly ICustomHttpClient FCustomHttpClient;
+        private readonly ICustomHttpClient _customHttpClient;
         
-        private readonly ISmtpClientService FSmtpClientService;
+        private readonly ISmtpClientService _smtpClientService;
         
-        private readonly ITemplateService FTemplateService;
+        private readonly ITemplateService _templateService;
         
-        private readonly AzureStorage FAzureStorage;
+        private readonly AzureStorage _azureStorage;
         
-        private readonly ApplicationPaths FApplicationPaths;
+        private readonly ApplicationPaths _applicationPaths;
 
-        public SendNewsletterCommandHandler(ILogger ALogger, ICustomHttpClient ACustomHttpClient, ISmtpClientService ASmtpClientService, 
-            ITemplateService ATemplateService, AzureStorage AAzureStorage, ApplicationPaths AApplicationPaths)
+        public SendNewsletterCommandHandler(ILogger logger, ICustomHttpClient customHttpClient, ISmtpClientService smtpClientService, 
+            ITemplateService templateService, AzureStorage azureStorage, ApplicationPaths applicationPaths)
         {
-            FLogger = ALogger;
-            FCustomHttpClient = ACustomHttpClient;
-            FSmtpClientService = ASmtpClientService;
-            FTemplateService = ATemplateService;
-            FAzureStorage = AAzureStorage;
-            FApplicationPaths = AApplicationPaths;
+            _logger = logger;
+            _customHttpClient = customHttpClient;
+            _smtpClientService = smtpClientService;
+            _templateService = templateService;
+            _azureStorage = azureStorage;
+            _applicationPaths = applicationPaths;
         }
 
-        public override async Task<Unit> Handle(SendNewsletterCommand ARequest, CancellationToken ACancellationToken) 
+        public override async Task<Unit> Handle(SendNewsletterCommand request, CancellationToken cancellationToken) 
         {
-            var LUpdateSubscriberBaseLink = FApplicationPaths.DeploymentOrigin + FApplicationPaths.UpdateSubscriberPath;
-            var LUnsubscribeBaseLink = FApplicationPaths.DeploymentOrigin + FApplicationPaths.UnsubscribePath;
+            var updateSubscriberBaseLink = _applicationPaths.DeploymentOrigin + _applicationPaths.UpdateSubscriberPath;
+            var unsubscribeBaseLink = _applicationPaths.DeploymentOrigin + _applicationPaths.UnsubscribePath;
 
-            FLogger.LogInformation($"Update subscriber base URL: {LUpdateSubscriberBaseLink}.");
-            FLogger.LogInformation($"Unsubscribe base URL: {LUnsubscribeBaseLink}.");
+            _logger.LogInformation($"Update subscriber base URL: {updateSubscriberBaseLink}.");
+            _logger.LogInformation($"Unsubscribe base URL: {unsubscribeBaseLink}.");
             
-            foreach (var LSubscriber in ARequest.SubscriberInfo)
+            foreach (var subscriber in request.SubscriberInfo)
             {
-                FSmtpClientService.From = Constants.Emails.Addresses.CONTACT;
-                FSmtpClientService.Tos = new List<string> { LSubscriber.Email };
-                FSmtpClientService.Bccs = null;
-                FSmtpClientService.Subject = ARequest.Subject;
+                _smtpClientService.From = Constants.Emails.Addresses.CONTACT;
+                _smtpClientService.Tos = new List<string> { subscriber.Email };
+                _smtpClientService.Bccs = null;
+                _smtpClientService.Subject = request.Subject;
 
-                var LUpdateSubscriberLink = LUpdateSubscriberBaseLink + LSubscriber.Id;
-                var LUnsubscribeLink = LUnsubscribeBaseLink + LSubscriber.Id;
-                var LNewValues = new Dictionary<string, string>
+                var updateSubscriberLink = updateSubscriberBaseLink + subscriber.Id;
+                var unsubscribeLink = unsubscribeBaseLink + subscriber.Id;
+                var newValues = new Dictionary<string, string>
                 {
-                    { "{CONTENT}", ARequest.Message },
-                    { "{UPDATE_EMAIL_LINK}", LUpdateSubscriberLink },
-                    { "{UNSUBSCRIBE_LINK}", LUnsubscribeLink }
+                    { "{CONTENT}", request.Message },
+                    { "{UPDATE_EMAIL_LINK}", updateSubscriberLink },
+                    { "{UNSUBSCRIBE_LINK}", unsubscribeLink }
                 };
 
-                var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.NEWSLETTER}";
-                FLogger.LogInformation($"Getting newsletter template from URL: {LUrl}.");
+                var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.NEWSLETTER}";
+                _logger.LogInformation($"Getting newsletter template from URL: {url}.");
                 
-                var LConfiguration = new Configuration { Url = LUrl, Method = "GET" };
-                var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
+                var configuration = new Configuration { Url = url, Method = "GET" };
+                var results = await _customHttpClient.Execute(configuration, cancellationToken);
 
-                if (LResults.Content == null)
+                if (results.Content == null)
                     throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
 
-                var LTemplate = System.Text.Encoding.Default.GetString(LResults.Content);
-                FSmtpClientService.HtmlBody = FTemplateService.MakeBody(LTemplate, LNewValues);
+                var template = System.Text.Encoding.Default.GetString(results.Content);
+                _smtpClientService.HtmlBody = _templateService.MakeBody(template, newValues);
 
-                var LResult = await FSmtpClientService.Send(ACancellationToken);
-                if (!LResult.IsSucceeded) 
-                    throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}. {LResult.ErrorDesc}");
+                var result = await _smtpClientService.Send(cancellationToken);
+                if (!result.IsSucceeded) 
+                    throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}. {result.ErrorDesc}");
             }
 
             return await Task.FromResult(Unit.Value);
