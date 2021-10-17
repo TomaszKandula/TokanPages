@@ -4,7 +4,6 @@
     using System.Net.Http;
     using System.Reflection;
     using System.Diagnostics.CodeAnalysis;
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
@@ -33,11 +32,11 @@
     using MailKit.Net.Smtp;
     using DnsClient;
     using MediatR;
-    
+
     [ExcludeFromCodeCoverage]
     public static class Dependencies
     {
-        public static void Register(IServiceCollection AServices, IConfiguration AConfiguration, IWebHostEnvironment AEnvironment = default)
+        public static void Register(IServiceCollection AServices, IConfiguration AConfiguration, IHostEnvironment AEnvironment = default)
         {
             CommonServices(AServices, AConfiguration);
             SetupDatabase(AServices, AConfiguration);
@@ -57,12 +56,12 @@
 
         private static void SetupAppSettings(IServiceCollection AServices, IConfiguration AConfiguration) 
         {
-            AServices.AddSingleton(AConfiguration.GetSection("AzureStorage").Get<AzureStorage>());
-            AServices.AddSingleton(AConfiguration.GetSection("SmtpServer").Get<SmtpServer>());
-            AServices.AddSingleton(AConfiguration.GetSection("ApplicationPaths").Get<ApplicationPaths>());
-            AServices.AddSingleton(AConfiguration.GetSection("SonarQube").Get<SonarQube>());
-            AServices.AddSingleton(AConfiguration.GetSection("IdentityServer").Get<IdentityServer>());
-            AServices.AddSingleton(AConfiguration.GetSection("ExpirationSettings").Get<ExpirationSettings>());
+            AServices.AddSingleton(AConfiguration.GetSection(nameof(AzureStorage)).Get<AzureStorage>());
+            AServices.AddSingleton(AConfiguration.GetSection(nameof(SmtpServer)).Get<SmtpServer>());
+            AServices.AddSingleton(AConfiguration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>());
+            AServices.AddSingleton(AConfiguration.GetSection(nameof(SonarQube)).Get<SonarQube>());
+            AServices.AddSingleton(AConfiguration.GetSection(nameof(IdentityServer)).Get<IdentityServer>());
+            AServices.AddSingleton(AConfiguration.GetSection(nameof(ExpirationSettings)).Get<ExpirationSettings>());
         }
 
         private static void SetupLogger(IServiceCollection AServices) 
@@ -117,14 +116,14 @@
             AServices.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
         }
 
-        private static void SetupRetryPolicyWithPolly(IServiceCollection AServices, IConfiguration AConfiguration, IWebHostEnvironment AEnvironment)
+        private static void SetupRetryPolicyWithPolly(IServiceCollection AServices, IConfiguration AConfiguration, IHostEnvironment AEnvironment)
         {
-            var LAppUrls = AConfiguration.GetSection("AppUrls").Get<ApplicationPaths>();
+            var LApplicationPaths = AConfiguration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>();
             AServices.AddHttpClient("RetryHttpClient", AOptions =>
             {
                 AOptions.BaseAddress = new Uri(AEnvironment.IsDevelopment() 
-                    ? LAppUrls.DevelopmentOrigin 
-                    : LAppUrls.DeploymentOrigin);
+                    ? LApplicationPaths.DevelopmentOrigin 
+                    : LApplicationPaths.DeploymentOrigin);
                 AOptions.DefaultRequestHeaders.Add("Accept", Constants.ContentTypes.JSON);
                 AOptions.Timeout = TimeSpan.FromMinutes(5);
                 AOptions.DefaultRequestHeaders.ConnectionClose = true;
