@@ -17,7 +17,7 @@ namespace TokanPages.WebApi.Tests.UsersController
         public async Task GivenNoRefreshTokensSaved_WhenReAuthenticateUser_ShouldThrowError()
         {
             // Arrange
-            var LCookieValue = DataUtilityService.GetRandomString();
+            var LCookieValue = DataUtilityService.GetRandomString(150, "", true);
             var LRequest = $"{API_BASE_URL}/ReAuthenticateUser/";
             var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
 

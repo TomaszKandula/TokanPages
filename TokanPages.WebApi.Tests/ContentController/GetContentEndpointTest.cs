@@ -36,7 +36,7 @@ namespace TokanPages.WebApi.Tests.ContentController
         public async Task GivenInvalidComponentNameAndValidType_WhenGetContent_ShouldReturnBadRequest()
         {
             // Arrange
-            var LComponentName = DataUtilityService.GetRandomString();
+            var LComponentName = DataUtilityService.GetRandomString(10, "", true);
             const string COMPONENT_TYPE = "component";
             
             var LRequest = $"{API_BASE_URL}/GetContent/?AName={LComponentName}&AType={COMPONENT_TYPE}";
@@ -57,7 +57,7 @@ namespace TokanPages.WebApi.Tests.ContentController
         {
             // Arrange
             const string COMPONENT_NAME = "activateAccount";
-            var LComponentType = DataUtilityService.GetRandomString();
+            var LComponentType = DataUtilityService.GetRandomString(6, "", true);
             
             var LRequest = $"{API_BASE_URL}/GetContent/?AName={COMPONENT_NAME}&AType={LComponentType}";
             var LHttpClient = FWebAppFactory.CreateClient();
