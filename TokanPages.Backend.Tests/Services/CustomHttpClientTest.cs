@@ -137,7 +137,7 @@ namespace TokanPages.Backend.Tests.Services
             // Act
             // Assert
             var result = Assert.Throws<ArgumentException>(() => customHttpClient.SetAuthentication(string.Empty, DataUtilityService.GetRandomString()));
-            result.Message.Should().Be("Argument 'ALogin' cannot be null or empty.");
+            result.Message.Should().Be("Argument 'login' cannot be null or empty.");
         }
 
         [Fact]
@@ -166,7 +166,7 @@ namespace TokanPages.Backend.Tests.Services
             // Act
             // Assert
             var result = Assert.Throws<ArgumentException>(() => customHttpClient.SetAuthentication(string.Empty));
-            result.Message.Should().Be("Argument 'AToken' cannot be null or empty.");
+            result.Message.Should().Be("Argument 'token' cannot be null or empty.");
         }
 
         [Fact]
