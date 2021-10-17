@@ -48,10 +48,13 @@
 
             await FDatabaseContext.Articles.AddAsync(LNewArticle, ACancellationToken);
             await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-            
+
             var LAzureBlob = FAzureBlobStorageFactory.Create();
-            await LAzureBlob.UploadText(LNewArticle.Id, ARequest.TextToUpload);
-            await LAzureBlob.UploadImage(LNewArticle.Id, ARequest.ImageToUpload);
+            var LTextDestinationPath = $"content\\articles\\{LNewArticle.Id}\\text.json";
+            var LImageDestinationPath = $"content\\articles\\{LNewArticle.Id}\\image.jpg";
+
+            await LAzureBlob.UploadContent(ARequest.TextToUpload, LTextDestinationPath, ACancellationToken);
+            await LAzureBlob.UploadContent(ARequest.ImageToUpload, LImageDestinationPath, ACancellationToken);
             
             return await Task.FromResult(LNewArticle.Id);
         }
