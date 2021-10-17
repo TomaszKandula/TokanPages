@@ -2,14 +2,14 @@
 {
     public interface ILogger
     {
-        void LogDebug(string AMessage);
+        void LogDebug(string message);
 
-        void LogError(string AMessage);
+        void LogError(string message);
 
-        void LogInformation(string AMessage);
+        void LogInformation(string message);
 
-        void LogWarning(string AMessage);
+        void LogWarning(string message);
 
-        void LogCriticalError(string AMessage);
+        void LogCriticalError(string message);
     }
 }

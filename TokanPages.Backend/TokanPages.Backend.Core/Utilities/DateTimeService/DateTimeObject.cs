@@ -10,10 +10,10 @@ namespace TokanPages.Backend.Core.Utilities.DateTimeService
 
         public abstract DateTime TodayEndOfDay { get; }
         
-        public abstract DateTime GetStartOfDay(DateTime AValue);
+        public abstract DateTime GetStartOfDay(DateTime value);
         
-        public abstract DateTime GetEndOfDay(DateTime AValue);
+        public abstract DateTime GetEndOfDay(DateTime value);
         
-        public abstract DateTime GetFirstDayOfMonth(DateTime AValue);
+        public abstract DateTime GetFirstDayOfMonth(DateTime value);
     }
 }

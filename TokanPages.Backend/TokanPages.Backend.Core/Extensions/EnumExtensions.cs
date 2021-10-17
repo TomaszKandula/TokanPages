@@ -8,15 +8,15 @@ namespace TokanPages.Backend.Core.Extensions
     [ExcludeFromCodeCoverage]
     public static class EnumExtensions
     {
-        public static string GetDescription(this Enum AValue)
+        public static string GetDescription(this Enum value)
         {
-            var LField = AValue.GetType().GetField(AValue.ToString());
+            var field = value.GetType().GetField(value.ToString());
 
-            if (LField?.GetCustomAttributes(typeof(DescriptionAttribute), false) 
-                is DescriptionAttribute[] LAttributes && LAttributes.Any())
-                return LAttributes.First().Description;
+            if (field?.GetCustomAttributes(typeof(DescriptionAttribute), false) 
+                is DescriptionAttribute[] attributes && attributes.Any())
+                return attributes.First().Description;
 
-            return AValue.ToString();
+            return value.ToString();
         }
     }
 }

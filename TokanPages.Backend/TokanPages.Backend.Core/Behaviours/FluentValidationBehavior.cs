@@ -9,22 +9,22 @@
     [ExcludeFromCodeCoverage]
     public class FluentValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
-        private readonly IValidator<TRequest> FValidator;
+        private readonly IValidator<TRequest> _validator;
 
-        public FluentValidationBehavior(IValidator<TRequest> AValidator = null) 
-            => FValidator = AValidator;
+        public FluentValidationBehavior(IValidator<TRequest> validator = null) 
+            => _validator = validator;
 
-        public Task<TResponse> Handle(TRequest ARequest, CancellationToken ACancellationToken, RequestHandlerDelegate<TResponse> ANext)
+        public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            if (FValidator == null) return ANext();
+            if (_validator == null) return next();
 
-            var LValidationContext = new ValidationContext<TRequest>(ARequest);
-            var LValidationResults = FValidator.Validate(LValidationContext);
+            var validationContext = new ValidationContext<TRequest>(request);
+            var validationResults = _validator.Validate(validationContext);
 
-            if (!LValidationResults.IsValid)
-                throw new Exceptions.ValidationException(LValidationResults);
+            if (!validationResults.IsValid)
+                throw new Exceptions.ValidationException(validationResults);
 
-            return ANext();
+            return next();
         }
     }
 }

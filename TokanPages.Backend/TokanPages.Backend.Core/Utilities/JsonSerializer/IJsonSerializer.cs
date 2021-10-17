@@ -6,14 +6,14 @@ namespace TokanPages.Backend.Core.Utilities.JsonSerializer
 
     public interface IJsonSerializer
     {
-        string Serialize(object AModel, JsonSerializerSettings ASerializerSettings = null);
+        string Serialize(object model, JsonSerializerSettings serializerSettings = null);
 
-        T Deserialize<T>(string AJson, JsonSerializerSettings ASerializerSettings = null);
+        T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null);
 
-        JToken Parse(string AJson);
+        JToken Parse(string json);
 
-        IEnumerable<T> MapObjects<T>(JToken AComponent) where T : new();
+        IEnumerable<T> MapObjects<T>(JToken component) where T : new();
 
-        T MapObject<T>(JToken AComponent) where T : new();
+        T MapObject<T>(JToken component) where T : new();
     }
 }

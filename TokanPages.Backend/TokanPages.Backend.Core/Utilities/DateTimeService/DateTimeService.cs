@@ -22,22 +22,22 @@ namespace TokanPages.Backend.Core.Utilities.DateTimeService
         /// <summary>
         /// Returns date component (time set to 00:00:00) from given DateTime. 
         /// </summary>
-        /// <param name="AValue">Date and Time.</param>
+        /// <param name="value">Date and Time.</param>
         /// <returns>Extracted date component from supplied value.</returns>
-        public override DateTime GetStartOfDay(DateTime AValue) => AValue.Date;
+        public override DateTime GetStartOfDay(DateTime value) => value.Date;
         
         /// <summary>
         /// Returns date component (time set to 23:59:59) from given DateTime. 
         /// </summary>
-        /// <param name="AValue">Date and Time.</param>
+        /// <param name="value">Date and Time.</param>
         /// <returns>Extracted date component from supplied value.</returns>
-        public override DateTime GetEndOfDay(DateTime AValue) => AValue.Date.AddDays(1).AddTicks(-1);
+        public override DateTime GetEndOfDay(DateTime value) => value.Date.AddDays(1).AddTicks(-1);
         
         /// <summary>
         /// Returns first day of the month from given Date and Time.
         /// </summary>
-        /// <param name="AValue">Date and Time.</param>
+        /// <param name="value">Date and Time.</param>
         /// <returns>Date and time being first day of the month.</returns>
-        public override DateTime GetFirstDayOfMonth(DateTime AValue) => new (AValue.Year, AValue.Month, 1);
+        public override DateTime GetFirstDayOfMonth(DateTime value) => new (value.Year, value.Month, 1);
     }
 }

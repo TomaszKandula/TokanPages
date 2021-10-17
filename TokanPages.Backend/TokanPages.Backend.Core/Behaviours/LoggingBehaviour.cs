@@ -9,16 +9,16 @@
     [ExcludeFromCodeCoverage]
     public class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
-        private readonly ILogger FLogger;
+        private readonly ILogger _logger;
 
-        public LoggingBehaviour(ILogger ALogger) => FLogger = ALogger;
+        public LoggingBehaviour(ILogger logger) => _logger = logger;
 
-        public async Task<TResponse> Handle(TRequest ARequest, CancellationToken ACancellationToken, RequestHandlerDelegate<TResponse> ANext)
+        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            FLogger.LogInformation($"Begin: Handle {typeof(TRequest).Name}");
-            var LResponse = await ANext();
-            FLogger.LogInformation($"Finish: Handle {typeof(TResponse).Name}");
-            return LResponse;
+            _logger.LogInformation($"Begin: Handle {typeof(TRequest).Name}");
+            var response = await next();
+            _logger.LogInformation($"Finish: Handle {typeof(TResponse).Name}");
+            return response;
         }
     }
 }
