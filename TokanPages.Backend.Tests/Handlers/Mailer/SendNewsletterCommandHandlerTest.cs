@@ -26,7 +26,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
         public async Task GivenSubscriberInfo_WhenSendNewsletter_ShouldFinishSuccessful()
         {
             // Arrange
-            var LSendNewsletterCommand = new SendNewsletterCommand
+            var sendNewsletterCommand = new SendNewsletterCommand
             {
                 Message = DataUtilityService.GetRandomString(),
                 Subject = DataUtilityService.GetRandomString(),
@@ -39,50 +39,50 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 }
             };
 
-            var LMockedLogger = new Mock<ILogger>();
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var LMockedSmtpClientService = new Mock<ISmtpClientService>();
-            var LMockedTemplateHelper = new Mock<ITemplateService>();
-            var LMockedAzureStorageSettings = new Mock<AzureStorage>();
-            var LMockedAppUrls = new Mock<ApplicationPaths>();
+            var mockedLogger = new Mock<ILogger>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedSmtpClientService = new Mock<ISmtpClientService>();
+            var mockedTemplateHelper = new Mock<ITemplateService>();
+            var mockedAzureStorageSettings = new Mock<AzureStorage>();
+            var mockedAppUrls = new Mock<ApplicationPaths>();
 
-            var LSendActionResult = new ActionResult { IsSucceeded = true };
-            LMockedSmtpClientService
-                .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
-                .Returns(Task.FromResult(LSendActionResult));
+            var sendActionResult = new ActionResult { IsSucceeded = true };
+            mockedSmtpClientService
+                .Setup(client => client.Send(CancellationToken.None))
+                .Returns(Task.FromResult(sendActionResult));
 
-            var LMockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-            var LMockedResults = new Results
+            var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
+            var mockedResults = new Results
             {
                 StatusCode = HttpStatusCode.OK,
                 ContentType = new MediaTypeHeaderValue("text/plain"),
-                Content = LMockedPayLoad
+                Content = mockedPayLoad
             };
             
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LMockedResults);
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockedResults);
 
-            var LSendNewsletterCommandHandler = new SendNewsletterCommandHandler(
-                LMockedLogger.Object, 
-                LMockedCustomHttpClient.Object,
-                LMockedSmtpClientService.Object, 
-                LMockedTemplateHelper.Object, 
-                LMockedAzureStorageSettings.Object, 
-                LMockedAppUrls.Object);
+            var sendNewsletterCommandHandler = new SendNewsletterCommandHandler(
+                mockedLogger.Object, 
+                mockedCustomHttpClient.Object,
+                mockedSmtpClientService.Object, 
+                mockedTemplateHelper.Object, 
+                mockedAzureStorageSettings.Object, 
+                mockedAppUrls.Object);
 
             // Act
-            var LResult = await LSendNewsletterCommandHandler.Handle(LSendNewsletterCommand, CancellationToken.None);
+            var result = await sendNewsletterCommandHandler.Handle(sendNewsletterCommand, CancellationToken.None);
 
             // Assert
-            LResult.Should().Be(await Task.FromResult(Unit.Value));
+            result.Should().Be(await Task.FromResult(Unit.Value));
         }
 
         [Fact]
         public async Task GivenEmptyEmailTemplate_WhenSendNewsletter_ShouldThrowError()
         {
             // Arrange
-            var LSendNewsletterCommand = new SendNewsletterCommand
+            var sendNewsletterCommand = new SendNewsletterCommand
             {
                 Message = DataUtilityService.GetRandomString(),
                 Subject = DataUtilityService.GetRandomString(),
@@ -95,48 +95,48 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 }
             };
 
-            var LMockedLogger = new Mock<ILogger>();
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var LMockedSmtpClientService = new Mock<ISmtpClientService>();
-            var LMockedTemplateHelper = new Mock<ITemplateService>();
-            var LMockedAzureStorageSettings = new Mock<AzureStorage>();
-            var LMockedAppUrls = new Mock<ApplicationPaths>();
+            var mockedLogger = new Mock<ILogger>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedSmtpClientService = new Mock<ISmtpClientService>();
+            var mockedTemplateHelper = new Mock<ITemplateService>();
+            var mockedAzureStorageSettings = new Mock<AzureStorage>();
+            var mockedApplicationPaths = new Mock<ApplicationPaths>();
 
-            var LSendActionResult = new ActionResult { IsSucceeded = true };
-            LMockedSmtpClientService
-                .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
-                .Returns(Task.FromResult(LSendActionResult));
+            var sendActionResult = new ActionResult { IsSucceeded = true };
+            mockedSmtpClientService
+                .Setup(client => client.Send(CancellationToken.None))
+                .Returns(Task.FromResult(sendActionResult));
 
-            var LMockedResults = new Results
+            var mockedResults = new Results
             {
                 StatusCode = HttpStatusCode.OK,
                 ContentType = new MediaTypeHeaderValue("text/plain"),
                 Content = null
             };
             
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LMockedResults);
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockedResults);
 
-            var LSendNewsletterCommandHandler = new SendNewsletterCommandHandler(
-                LMockedLogger.Object, 
-                LMockedCustomHttpClient.Object,
-                LMockedSmtpClientService.Object, 
-                LMockedTemplateHelper.Object, 
-                LMockedAzureStorageSettings.Object, 
-                LMockedAppUrls.Object);
+            var sendNewsletterCommandHandler = new SendNewsletterCommandHandler(
+                mockedLogger.Object, 
+                mockedCustomHttpClient.Object,
+                mockedSmtpClientService.Object, 
+                mockedTemplateHelper.Object, 
+                mockedAzureStorageSettings.Object, 
+                mockedApplicationPaths.Object);
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LSendNewsletterCommandHandler.Handle(LSendNewsletterCommand, CancellationToken.None));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY));
+            var result = await Assert.ThrowsAsync<BusinessException>(() => sendNewsletterCommandHandler.Handle(sendNewsletterCommand, CancellationToken.None));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY));
         }
 
         [Fact]
         public async Task GivenRemoteSmtpFailure_WhenSendNewsletter_ShouldThrowError()
         {
             // Arrange
-            var LSendNewsletterCommand = new SendNewsletterCommand
+            var sendNewsletterCommand = new SendNewsletterCommand
             {
                 Message = DataUtilityService.GetRandomString(),
                 Subject = DataUtilityService.GetRandomString(),
@@ -149,42 +149,42 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 }
             };
 
-            var LMockedLogger = new Mock<ILogger>();
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var LMockedSmtpClientService = new Mock<ISmtpClientService>();
-            var LMockedTemplateHelper = new Mock<ITemplateService>();
-            var LMockedAzureStorageSettings = new Mock<AzureStorage>();
-            var LMockedAppUrls = new Mock<ApplicationPaths>();
+            var mockedLogger = new Mock<ILogger>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedSmtpClientService = new Mock<ISmtpClientService>();
+            var mockedTemplateHelper = new Mock<ITemplateService>();
+            var mockedAzureStorageSettings = new Mock<AzureStorage>();
+            var mockedApplicationPaths = new Mock<ApplicationPaths>();
 
-            var LSendActionResult = new ActionResult { IsSucceeded = false };
-            LMockedSmtpClientService
-                .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
-                .Returns(Task.FromResult(LSendActionResult));
+            var sendActionResult = new ActionResult { IsSucceeded = false };
+            mockedSmtpClientService
+                .Setup(client => client.Send(CancellationToken.None))
+                .Returns(Task.FromResult(sendActionResult));
 
-            var LMockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-            var LMockedResults = new Results
+            var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
+            var mockedResults = new Results
             {
                 StatusCode = HttpStatusCode.OK,
                 ContentType = new MediaTypeHeaderValue("text/plain"),
-                Content = LMockedPayLoad
+                Content = mockedPayLoad
             };
             
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LMockedResults);
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockedResults);
 
-            var LSendNewsletterCommandHandler = new SendNewsletterCommandHandler(
-                LMockedLogger.Object, 
-                LMockedCustomHttpClient.Object,
-                LMockedSmtpClientService.Object, 
-                LMockedTemplateHelper.Object, 
-                LMockedAzureStorageSettings.Object, 
-                LMockedAppUrls.Object);
+            var sendNewsletterCommandHandler = new SendNewsletterCommandHandler(
+                mockedLogger.Object, 
+                mockedCustomHttpClient.Object,
+                mockedSmtpClientService.Object, 
+                mockedTemplateHelper.Object, 
+                mockedAzureStorageSettings.Object, 
+                mockedApplicationPaths.Object);
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LSendNewsletterCommandHandler.Handle(LSendNewsletterCommand, CancellationToken.None));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.CANNOT_SEND_EMAIL));
+            var result = await Assert.ThrowsAsync<BusinessException>(() => sendNewsletterCommandHandler.Handle(sendNewsletterCommand, CancellationToken.None));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.CANNOT_SEND_EMAIL));
         }
     }
 }

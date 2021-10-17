@@ -1,5 +1,8 @@
 namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
@@ -12,156 +15,153 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
     using ArticlesEntity = Domain.Entities.Articles;
     using PermissionsEntity = Domain.Entities.Permissions;
     using AuthorizationPermissions = Identity.Authorization.Permissions;
-    using FluentAssertions;
-    using Xunit;
-    using Moq;
 
     public class UpdateArticleVisibilityCommandHandlerTest : TestBase
     {
         [Theory]
         [InlineData(false, true)]
         [InlineData(true, false)]
-        public async Task GivenCorrectPermissionAndExistingArticle_WhenInvokeArticleVisibility_ShouldFinishSuccess(bool AIsVisible, bool AShouldBeVisible)
+        public async Task GivenCorrectPermissionAndExistingArticle_WhenInvokeArticleVisibility_ShouldFinishSuccess(bool isVisible, bool shouldBeVisible)
         {
             // Arrange
-            var LUserId = Guid.NewGuid();
-            var LUsers = GetUser(LUserId);
-            var LPermission = GetPermission();
-            var LUserPermission = GetUserPermission(LUserId, LPermission.Id);
-            var LArticles = GetUserArticle(LUserId, AIsVisible);
+            var userId = Guid.NewGuid();
+            var users = GetUser(userId);
+            var permission = GetPermission();
+            var userPermission = GetUserPermission(userId, permission.Id);
+            var articles = GetUserArticle(userId, isVisible);
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.Permissions.AddAsync(LPermission);
-            await LDatabaseContext.UserPermissions.AddAsync(LUserPermission);
-            await LDatabaseContext.Articles.AddAsync(LArticles);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.Permissions.AddAsync(permission);
+            await databaseContext.UserPermissions.AddAsync(userPermission);
+            await databaseContext.Articles.AddAsync(articles);
+            await databaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedUserProvider = new Mock<IUserServiceProvider>();
 
-            LMockedUserProvider
-                .Setup(AMockedUserProvider => AMockedUserProvider.HasPermissionAssigned(It.IsAny<string>()))
+            mockedUserProvider
+                .Setup(provider => provider.HasPermissionAssigned(It.IsAny<string>()))
                 .ReturnsAsync(true);
 
-            var LUpdateArticleVisibilityCommand = new UpdateArticleVisibilityCommand
+            var updateArticleVisibilityCommand = new UpdateArticleVisibilityCommand
             {
-                Id = LArticles.Id,
-                IsPublished = AShouldBeVisible
+                Id = articles.Id,
+                IsPublished = shouldBeVisible
             };
 
-            var LUpdateArticleVisibilityCommandHandler = new UpdateArticleVisibilityCommandHandler(
-                LDatabaseContext, LMockedUserProvider.Object);
+            var updateArticleVisibilityCommandHandler = new UpdateArticleVisibilityCommandHandler(
+                databaseContext, mockedUserProvider.Object);
             
             // Act
-            await LUpdateArticleVisibilityCommandHandler.Handle(LUpdateArticleVisibilityCommand, CancellationToken.None);
+            await updateArticleVisibilityCommandHandler.Handle(updateArticleVisibilityCommand, CancellationToken.None);
 
             // Assert
-            var LArticlesEntity = await LDatabaseContext.Articles
-                .FindAsync(LArticles.Id);
+            var articlesEntity = await databaseContext.Articles
+                .FindAsync(articles.Id);
 
-            LArticlesEntity.Should().NotBeNull();
-            LArticlesEntity.IsPublished.Should().Be(AShouldBeVisible);
+            articlesEntity.Should().NotBeNull();
+            articlesEntity.IsPublished.Should().Be(shouldBeVisible);
         }
 
         [Fact]
         public async Task GivenNoPermissionAndExistingArticle_WhenInvokeArticleVisibility_ShouldThrowError()
         {
             // Arrange
-            var LUserId = Guid.NewGuid();
-            var LUsers = GetUser(LUserId);
-            var LPermission = GetPermission();
-            var LUserPermission = GetUserPermission(LUserId, LPermission.Id);
-            var LArticles = GetUserArticle(LUserId, false);
+            var userId = Guid.NewGuid();
+            var users = GetUser(userId);
+            var permission = GetPermission();
+            var userPermission = GetUserPermission(userId, permission.Id);
+            var articles = GetUserArticle(userId, false);
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.Permissions.AddAsync(LPermission);
-            await LDatabaseContext.UserPermissions.AddAsync(LUserPermission);
-            await LDatabaseContext.Articles.AddAsync(LArticles);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.Permissions.AddAsync(permission);
+            await databaseContext.UserPermissions.AddAsync(userPermission);
+            await databaseContext.Articles.AddAsync(articles);
+            await databaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedUserProvider = new Mock<IUserServiceProvider>();
 
-            LMockedUserProvider
-                .Setup(AMockedUserProvider => AMockedUserProvider.HasPermissionAssigned(It.IsAny<string>()))
+            mockedUserProvider
+                .Setup(provider => provider.HasPermissionAssigned(It.IsAny<string>()))
                 .ReturnsAsync(false);
 
-            var LUpdateArticleVisibilityCommand = new UpdateArticleVisibilityCommand
+            var updateArticleVisibilityCommand = new UpdateArticleVisibilityCommand
             {
-                Id = LArticles.Id,
+                Id = articles.Id,
                 IsPublished = true
             };
 
-            var LUpdateArticleVisibilityCommandHandler = new UpdateArticleVisibilityCommandHandler(
-                LDatabaseContext, LMockedUserProvider.Object);
+            var updateArticleVisibilityCommandHandler = new UpdateArticleVisibilityCommandHandler(
+                databaseContext, mockedUserProvider.Object);
             
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => 
-                LUpdateArticleVisibilityCommandHandler.Handle(LUpdateArticleVisibilityCommand, CancellationToken.None));
+            var result = await Assert.ThrowsAsync<BusinessException>(() => 
+                updateArticleVisibilityCommandHandler.Handle(updateArticleVisibilityCommand, CancellationToken.None));
 
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
 
         [Fact]
         public async Task GivenCorrectPermissionAndWrongArticleId_WhenInvokeArticleVisibility_ShouldThrowError()
         {
             // Arrange
-            var LUserId = Guid.NewGuid();
-            var LUsers = GetUser(LUserId);
-            var LPermission = GetPermission();
-            var LUserPermission = GetUserPermission(LUserId, LPermission.Id);
-            var LArticles = GetUserArticle(LUserId, false);
+            var userId = Guid.NewGuid();
+            var users = GetUser(userId);
+            var permission = GetPermission();
+            var userPermission = GetUserPermission(userId, permission.Id);
+            var articles = GetUserArticle(userId, false);
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.Permissions.AddAsync(LPermission);
-            await LDatabaseContext.UserPermissions.AddAsync(LUserPermission);
-            await LDatabaseContext.Articles.AddAsync(LArticles);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.Permissions.AddAsync(permission);
+            await databaseContext.UserPermissions.AddAsync(userPermission);
+            await databaseContext.Articles.AddAsync(articles);
+            await databaseContext.SaveChangesAsync();
             
-            var LMockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedUserProvider = new Mock<IUserServiceProvider>();
 
-            LMockedUserProvider
-                .Setup(AMockedUserProvider => AMockedUserProvider.HasPermissionAssigned(It.IsAny<string>()))
+            mockedUserProvider
+                .Setup(provider => provider.HasPermissionAssigned(It.IsAny<string>()))
                 .ReturnsAsync(true);
 
-            var LUpdateArticleVisibilityCommand = new UpdateArticleVisibilityCommand
+            var updateArticleVisibilityCommand = new UpdateArticleVisibilityCommand
             {
                 Id = Guid.NewGuid(),
                 IsPublished = true
             };
 
-            var LUpdateArticleVisibilityCommandHandler = new UpdateArticleVisibilityCommandHandler(
-                LDatabaseContext, LMockedUserProvider.Object);
+            var updateArticleVisibilityCommandHandler = new UpdateArticleVisibilityCommandHandler(
+                databaseContext, mockedUserProvider.Object);
             
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => 
-                LUpdateArticleVisibilityCommandHandler.Handle(LUpdateArticleVisibilityCommand, CancellationToken.None));
+            var result = await Assert.ThrowsAsync<BusinessException>(() => 
+                updateArticleVisibilityCommandHandler.Handle(updateArticleVisibilityCommand, CancellationToken.None));
 
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS));
         }
         
-        private ArticlesEntity GetUserArticle(Guid AUserId, bool AIsPublished)
+        private ArticlesEntity GetUserArticle(Guid userId, bool isPublished)
         {
             return new ()
             {
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
-                IsPublished = AIsPublished,
+                IsPublished = isPublished,
                 ReadCount = 0,
                 CreatedAt = DataUtilityService.GetRandomDateTime(),
                 UpdatedAt = null,
-                UserId = AUserId
+                UserId = userId
             };
         }
 
-        private UsersEntity GetUser(Guid AUserId)
+        private UsersEntity GetUser(Guid userId)
         {
-            return new()
+            return new Users
             {
-                Id = AUserId,
+                Id = userId,
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
@@ -176,19 +176,19 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
         private static PermissionsEntity GetPermission()
         {
-            return new()
+            return new Permissions
             {
                 Id = Guid.NewGuid(),
                 Name = AuthorizationPermissions.CanPublishArticles.ToString()
             };
         }
 
-        private static UserPermissions GetUserPermission(Guid AUserId, Guid APermissionId)
+        private static UserPermissions GetUserPermission(Guid userId, Guid permissionId)
         {
-            return new()
+            return new UserPermissions
             {
-                UserId = AUserId,
-                PermissionId = APermissionId
+                UserId = userId,
+                PermissionId = permissionId
             };
         }
     }

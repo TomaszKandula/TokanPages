@@ -1,84 +1,80 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-    using Core.Utilities.DataUtilityService;
+    using Domain.Entities;
     using Cqrs.Handlers.Queries.Articles;
-    using FluentAssertions;
-    using Xunit;
 
     public class GetAllArticlesQueryHandlerTest : TestBase
     {
-        private readonly DataUtilityService FDataUtilityService;
-
-        public GetAllArticlesQueryHandlerTest() => FDataUtilityService = new DataUtilityService();
-
         [Fact]
         public async Task WhenGetAllArticles_ShouldReturnCollection() 
         {
             // Arrange
-            var LDatabaseContext = GetTestDatabaseContext();
-            var LGetAllArticlesQuery = new GetAllArticlesQuery { IsPublished = false };
-            var LGetAllArticlesQueryHandler = new GetAllArticlesQueryHandler(LDatabaseContext);
+            var databaseContext = GetTestDatabaseContext();
+            var getAllArticlesQuery = new GetAllArticlesQuery { IsPublished = false };
+            var getAllArticlesQueryHandler = new GetAllArticlesQueryHandler(databaseContext);
             
-            var LUser = new Backend.Domain.Entities.Users
+            var user = new Users
             {
-                UserAlias  = FDataUtilityService.GetRandomString(),
+                UserAlias  = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                FirstName = FDataUtilityService.GetRandomString(),
-                LastName = FDataUtilityService.GetRandomString(),
-                EmailAddress = FDataUtilityService.GetRandomEmail(),
-                Registered = FDataUtilityService.GetRandomDateTime(),
-                LastLogged = FDataUtilityService.GetRandomDateTime(),
-                LastUpdated = FDataUtilityService.GetRandomDateTime(),
-                AvatarName = FDataUtilityService.GetRandomString(),
-                ShortBio = FDataUtilityService.GetRandomString(),
-                CryptedPassword = FDataUtilityService.GetRandomString()
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                Registered = DataUtilityService.GetRandomDateTime(),
+                LastLogged = DataUtilityService.GetRandomDateTime(),
+                LastUpdated = DataUtilityService.GetRandomDateTime(),
+                AvatarName = DataUtilityService.GetRandomString(),
+                ShortBio = DataUtilityService.GetRandomString(),
+                CryptedPassword = DataUtilityService.GetRandomString()
             };
 
-            await LDatabaseContext.Users.AddAsync(LUser);
-            await LDatabaseContext.SaveChangesAsync();
+            await databaseContext.Users.AddAsync(user);
+            await databaseContext.SaveChangesAsync();
             
-            var LArticles = new List<TokanPages.Backend.Domain.Entities.Articles>
+            var articles = new List<Articles>
             {
                 new ()
                 {
-                    Title = FDataUtilityService.GetRandomString(),
-                    Description = FDataUtilityService.GetRandomString(),
+                    Title = DataUtilityService.GetRandomString(),
+                    Description = DataUtilityService.GetRandomString(),
                     IsPublished = false,
                     ReadCount = 0,
                     CreatedAt = DateTime.Now.AddDays(-10),
                     UpdatedAt = null,
-                    UserId = LUser.Id
+                    UserId = user.Id
                 },
                 new ()
                 {
-                    Title = FDataUtilityService.GetRandomString(),
-                    Description = FDataUtilityService.GetRandomString(),
+                    Title = DataUtilityService.GetRandomString(),
+                    Description = DataUtilityService.GetRandomString(),
                     IsPublished = false,
                     ReadCount = 0,
                     CreatedAt = DateTime.Now.AddDays(-15),
                     UpdatedAt = null,
-                    UserId = LUser.Id
+                    UserId = user.Id
                 }
             };
 
-            await LDatabaseContext.Articles.AddRangeAsync(LArticles);
-            await LDatabaseContext.SaveChangesAsync();
+            await databaseContext.Articles.AddRangeAsync(articles);
+            await databaseContext.SaveChangesAsync();
 
             // Act
-            var LResults = (await LGetAllArticlesQueryHandler
-                .Handle(LGetAllArticlesQuery, CancellationToken.None))
+            var result = (await getAllArticlesQueryHandler
+                .Handle(getAllArticlesQuery, CancellationToken.None))
                 .ToList();
 
             // Assert
-            LResults.Should().NotBeNull();
-            LResults.Should().HaveCount(2);
-            LResults[0].Id.Should().Be(LArticles[0].Id);
-            LResults[1].Id.Should().Be(LArticles[1].Id);
+            result.Should().NotBeNull();
+            result.Should().HaveCount(2);
+            result[0].Id.Should().Be(articles[0].Id);
+            result[1].Id.Should().Be(articles[1].Id);
         }
     }
 }

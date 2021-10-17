@@ -14,7 +14,7 @@
 
         protected IDateTimeService DateTimeService { get; }
         
-        private readonly DatabaseContextFactory FDatabaseContextFactory;
+        private readonly DatabaseContextFactory _databaseContextFactory;
         
         protected TestBase()
         {
@@ -22,19 +22,19 @@
             JwtUtilityService = new JwtUtilityService();
             DateTimeService = new DateTimeService();
 
-            var LServices = new ServiceCollection();
-            LServices.AddSingleton<DatabaseContextFactory>();
-            LServices.AddScoped(AContext =>
+            var services = new ServiceCollection();
+            services.AddSingleton<DatabaseContextFactory>();
+            services.AddScoped(context =>
             {
-                var LFactory = AContext.GetService<DatabaseContextFactory>();
-                return LFactory?.CreateDatabaseContext();
+                var factory = context.GetService<DatabaseContextFactory>();
+                return factory?.CreateDatabaseContext();
             });
 
-            var LServiceScope = LServices.BuildServiceProvider(true).CreateScope();
-            var LServiceProvider = LServiceScope.ServiceProvider;
-            FDatabaseContextFactory = LServiceProvider.GetService<DatabaseContextFactory>();
+            var serviceScope = services.BuildServiceProvider(true).CreateScope();
+            var serviceProvider = serviceScope.ServiceProvider;
+            _databaseContextFactory = serviceProvider.GetService<DatabaseContextFactory>();
         }
 
-        protected DatabaseContext GetTestDatabaseContext() =>  FDatabaseContextFactory.CreateDatabaseContext();
+        protected DatabaseContext GetTestDatabaseContext() =>  _databaseContextFactory.CreateDatabaseContext();
     }
 }

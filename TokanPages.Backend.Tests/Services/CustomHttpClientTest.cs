@@ -27,187 +27,187 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenValidConfigurationWithoutPayload_WhenInvokeExecute_ShouldSucceed()
         {
             // Arrange
-            var LConfiguration = new Configuration
+            var configuration = new Configuration
             {
                 Url = "http://localhost:5000/",
                 Method = "GET"
             };
 
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
+            var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
             
             // Act
-            var LCustomHttpClient = new CustomHttpClient(LHttpClient);
-            var LResult = await LCustomHttpClient.Execute(LConfiguration, CancellationToken.None);
+            var customHttpClient = new CustomHttpClient(httpClient);
+            var result = await customHttpClient.Execute(configuration, CancellationToken.None);
 
             // Assert
-            LResult.StatusCode.Should().Be(HttpStatusCode.OK);
-            LResult.ContentType?.MediaType.Should().Be("text/plain");
-            LResult.ContentType?.CharSet.Should().Be("utf-8");
-            LResult.Content.Should().BeEmpty();
+            result.StatusCode.Should().Be(HttpStatusCode.OK);
+            result.ContentType?.MediaType.Should().Be("text/plain");
+            result.ContentType?.CharSet.Should().Be("utf-8");
+            result.Content.Should().BeEmpty();
         }
 
         [Fact]
         public async Task GivenValidConfigurationWithPayload_WhenInvokeExecute_ShouldSucceed()
         {
             // Arrange
-            var LConfiguration = new Configuration
+            var configuration = new Configuration
             {
                 Url = "http://localhost:5000/",
                 Method = "POST"
             };
 
-            var LStringContent = DataUtilityService.GetRandomString();
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(LStringContent));
+            var stringContent = DataUtilityService.GetRandomString();
+            var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(stringContent));
             
             // Act
-            var LCustomHttpClient = new CustomHttpClient(LHttpClient);
-            var LResult = await LCustomHttpClient.Execute(LConfiguration, CancellationToken.None);
+            var customHttpClient = new CustomHttpClient(httpClient);
+            var result = await customHttpClient.Execute(configuration, CancellationToken.None);
 
             // Assert
-            LResult.StatusCode.Should().Be(HttpStatusCode.OK);
-            LResult.ContentType?.MediaType.Should().Be("text/plain");
-            LResult.ContentType?.CharSet.Should().Be("utf-8");
-            LResult.Content.Should().NotBeNullOrEmpty();
+            result.StatusCode.Should().Be(HttpStatusCode.OK);
+            result.ContentType?.MediaType.Should().Be("text/plain");
+            result.ContentType?.CharSet.Should().Be("utf-8");
+            result.Content.Should().NotBeNullOrEmpty();
         }
 
         [Fact]
         public async Task GivenMissingUrlInConfiguration_WhenInvokeExecute_ShouldThrowError()
         {
             // Arrange
-            var LConfiguration = new Configuration
+            var configuration = new Configuration
             {
                 Url = string.Empty,
                 Method = "GET"
             };
 
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
+            var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
             
             // Act
-            var LCustomHttpClient = new CustomHttpClient(LHttpClient);
-            var LResult = await Assert.ThrowsAsync<ArgumentException>(() => LCustomHttpClient.Execute(LConfiguration, CancellationToken.None));
+            var customHttpClient = new CustomHttpClient(httpClient);
+            var result = await Assert.ThrowsAsync<ArgumentException>(() => customHttpClient.Execute(configuration, CancellationToken.None));
 
             // Assert
-            LResult.Message.Should().Be("Argument 'Url' cannot be null or empty.");
+            result.Message.Should().Be("Argument 'Url' cannot be null or empty.");
         }
 
         [Fact]
         public async Task GivenMissingMethodInConfiguration_WhenInvokeExecute_ShouldThrowError()
         {
             // Arrange
-            var LConfiguration = new Configuration
+            var configuration = new Configuration
             {
                 Url = "http://localhost:5000/",
                 Method = string.Empty
             };
 
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
+            var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
             
             // Act
-            var LCustomHttpClient = new CustomHttpClient(LHttpClient);
-            var LResult = await Assert.ThrowsAsync<ArgumentException>(() => LCustomHttpClient.Execute(LConfiguration, CancellationToken.None));
+            var customHttpClient = new CustomHttpClient(httpClient);
+            var result = await Assert.ThrowsAsync<ArgumentException>(() => customHttpClient.Execute(configuration, CancellationToken.None));
 
             // Assert
-            LResult.Message.Should().Be("Argument 'Method' cannot be null or empty.");
+            result.Message.Should().Be("Argument 'Method' cannot be null or empty.");
         }
 
         [Fact]
         public void GivenLoginAndPassword_WhenSetAuthentication_ShouldReturnBase64String()
         {
             // Arrange
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
+            var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
             
             // Act
-            var LCustomHttpClient = new CustomHttpClient(LHttpClient);
-            var LResult = LCustomHttpClient.SetAuthentication(DataUtilityService.GetRandomString(), DataUtilityService.GetRandomString());
+            var customHttpClient = new CustomHttpClient(httpClient);
+            var result = customHttpClient.SetAuthentication(DataUtilityService.GetRandomString(), DataUtilityService.GetRandomString());
 
             // Assert
-            LResult.Should().NotBeNullOrEmpty();
-            var LStrings = LResult.Split(" ");
-            LStrings[0].Should().Be("Basic");
-            LStrings[1].IsBase64String().Should().BeTrue();
+            result.Should().NotBeNullOrEmpty();
+            var strings = result.Split(" ");
+            strings[0].Should().Be("Basic");
+            strings[1].IsBase64String().Should().BeTrue();
         }
 
         [Fact]
         public void GivenMissingLoginAndPresentPassword_WhenSetAuthentication_ShouldThrowError()
         {
             // Arrange
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-            var LCustomHttpClient = new CustomHttpClient(LHttpClient);
+            var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
+            var customHttpClient = new CustomHttpClient(httpClient);
             
             // Act
             // Assert
-            var LResult = Assert.Throws<ArgumentException>(() => LCustomHttpClient.SetAuthentication(string.Empty, DataUtilityService.GetRandomString()));
-            LResult.Message.Should().Be("Argument 'ALogin' cannot be null or empty.");
+            var result = Assert.Throws<ArgumentException>(() => customHttpClient.SetAuthentication(string.Empty, DataUtilityService.GetRandomString()));
+            result.Message.Should().Be("Argument 'ALogin' cannot be null or empty.");
         }
 
         [Fact]
         public void GivenToken_WhenInvokeSetAuthentication_ShouldReturnPlainString()
         {
             // Arrange
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-            var LCustomHttpClient = new CustomHttpClient(LHttpClient);
+            var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
+            var customHttpClient = new CustomHttpClient(httpClient);
             
             // Act
-            var LResult = LCustomHttpClient.SetAuthentication(DataUtilityService.GetRandomString());
+            var result = customHttpClient.SetAuthentication(DataUtilityService.GetRandomString());
             
             // Assert
-            var LStrings = LResult.Split(" ");
-            LStrings[0].Should().Be("Bearer");
-            LStrings[1].Should().NotBeNullOrEmpty();
+            var strings = result.Split(" ");
+            strings[0].Should().Be("Bearer");
+            strings[1].Should().NotBeNullOrEmpty();
         }
 
         [Fact]
         public void GivenMissingToken_WhenInvokeSetAuthentication_ShouldThrowError()
         {
             // Arrange
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-            var LCustomHttpClient = new CustomHttpClient(LHttpClient);
+            var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
+            var customHttpClient = new CustomHttpClient(httpClient);
             
             // Act
             // Assert
-            var LResult = Assert.Throws<ArgumentException>(() => LCustomHttpClient.SetAuthentication(string.Empty));
-            LResult.Message.Should().Be("Argument 'AToken' cannot be null or empty.");
+            var result = Assert.Throws<ArgumentException>(() => customHttpClient.SetAuthentication(string.Empty));
+            result.Message.Should().Be("Argument 'AToken' cannot be null or empty.");
         }
 
         [Fact]
         public void GivenNonEmptyParameterList_WhenGetFirstEmptyParameterName_ShouldReturnEmptyString()
         {
             // Arrange
-            var LTestList = new Dictionary<string, string>
+            var testList = new Dictionary<string, string>
             {
                 ["Key1"] = "Value1",
                 ["Key2"] = "Value2"
             };
 
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
+            var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
 
             // Act
-            var LCustomHttpClient = new CustomHttpClient(LHttpClient);
-            var LResult = LCustomHttpClient.GetFirstEmptyParameterName(LTestList);
+            var customHttpClient = new CustomHttpClient(httpClient);
+            var result = customHttpClient.GetFirstEmptyParameterName(testList);
 
             // Assert
-            LResult.Should().BeEmpty();
+            result.Should().BeEmpty();
         }
 
         [Theory]
         [ClassData(typeof(TestCases))]
-        public void GivenListWithEmptyParameter_WhenGetFirstEmptyParameterName_ShouldReturnEmptyString(Dictionary<string, string> AItems, TestCasesEnums ACase)
+        public void GivenListWithEmptyParameter_WhenGetFirstEmptyParameterName_ShouldReturnEmptyString(Dictionary<string, string> items, TestCasesEnums cases)
         {
             // Arrange
-            var LHttpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
+            var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
 
             // Act
-            var LCustomHttpClient = new CustomHttpClient(LHttpClient);
-            var LResult = LCustomHttpClient.GetFirstEmptyParameterName(AItems);
+            var customHttpClient = new CustomHttpClient(httpClient);
+            var result = customHttpClient.GetFirstEmptyParameterName(items);
 
             // Assert
-            switch (ACase)
+            switch (cases)
             {
                 case TestCasesEnums.EmptyKey1:
-                    LResult.Should().Be("Key1");
+                    result.Should().Be("Key1");
                     break;
                 case TestCasesEnums.EmptyKey2:
-                    LResult.Should().Be("Key2");
+                    result.Should().Be("Key2");
                     break;
             }
         }
@@ -223,30 +223,30 @@ namespace TokanPages.Backend.Tests.Services
             }
         }
 
-        private static Mock<HttpMessageHandler> SetMockedHttpMessageHandler(HttpResponseMessage AHttpResponseMessage)
+        private static Mock<HttpMessageHandler> SetMockedHttpMessageHandler(HttpResponseMessage httpResponseMessage)
         {
-            var LMockedHttpMessageHandler = new Mock<HttpMessageHandler>();
+            var mockedHttpMessageHandler = new Mock<HttpMessageHandler>();
             
-            LMockedHttpMessageHandler
+            mockedHttpMessageHandler
                 .Protected()
                 .Setup<Task<HttpResponseMessage>>(
                     "SendAsync", 
                     ItExpr.IsAny<HttpRequestMessage>(), 
                     ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(AHttpResponseMessage);
+                .ReturnsAsync(httpResponseMessage);
 
-            return LMockedHttpMessageHandler;
+            return mockedHttpMessageHandler;
         }
 
-        private static HttpClient SetHttpClient(HttpStatusCode AHttpStatusCode, HttpContent AHttpContent)
+        private static HttpClient SetHttpClient(HttpStatusCode httpStatusCode, HttpContent httpContent)
         {
-            var LHttpResponseMessage = new HttpResponseMessage
+            var httpResponseMessage = new HttpResponseMessage
             {
-                StatusCode = AHttpStatusCode,
-                Content = AHttpContent
+                StatusCode = httpStatusCode,
+                Content = httpContent
             };
-            var LMockedHttpMessageHandler = SetMockedHttpMessageHandler(LHttpResponseMessage);
-            return new HttpClient(LMockedHttpMessageHandler.Object);
+            var mockedHttpMessageHandler = SetMockedHttpMessageHandler(httpResponseMessage);
+            return new HttpClient(mockedHttpMessageHandler.Object);
         }
     }
 }

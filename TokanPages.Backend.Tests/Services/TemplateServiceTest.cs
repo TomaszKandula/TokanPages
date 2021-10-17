@@ -11,59 +11,59 @@ namespace TokanPages.Backend.Tests.Services
         public void GivenBodyTemplateAndItems_WhenInvokeMakeBody_ShouldReplaceTagsWithValues()
         {
             // Arrange
-            const string BODY_TEMPLATE = "This is {VALUE1} test for {VALUE2}.";
-            const string EXPECTED_CONTENT = "This is unit test for MakeBody method.";
-            var LItems = new Dictionary<string, string>
+            const string bodyTemplate = "This is {VALUE1} test for {VALUE2}.";
+            const string expectedContent = "This is unit test for MakeBody method.";
+            var items = new Dictionary<string, string>
             {
                 { "{VALUE1}", "unit" },
                 { "{VALUE2}", "MakeBody method" }
             };
 
-            var LTemplateHelper = new TemplateService();
+            var templateHelper = new TemplateService();
             
             // Act
-            var LResult = LTemplateHelper.MakeBody(BODY_TEMPLATE, LItems);
+            var result = templateHelper.MakeBody(bodyTemplate, items);
 
             // Assert
-            LResult.Should().Be(EXPECTED_CONTENT);
+            result.Should().Be(expectedContent);
         }
         
         [Theory]
         [InlineData("")]
         [InlineData(" ")]
         [InlineData(null)]
-        public void GivenEmptyBodyTemplateAndItems_WhenInvokeMakeBody_ShouldReturnNull(string ABodyTemplate)
+        public void GivenEmptyBodyTemplateAndItems_WhenInvokeMakeBody_ShouldReturnNull(string bodyTemplate)
         {
             // Arrange
-            var LItems = new Dictionary<string, string>
+            var items = new Dictionary<string, string>
             {
                 { "{VALUE1}", "unit" },
                 { "{VALUE2}", "MakeBody method" }
             };
 
-            var LTemplateHelper = new TemplateService();
+            var templateHelper = new TemplateService();
             
             // Act
-            var LResult = LTemplateHelper.MakeBody(ABodyTemplate, LItems);
+            var result = templateHelper.MakeBody(bodyTemplate, items);
 
             // Assert
-            LResult.Should().BeNull();
+            result.Should().BeNull();
         }
 
         [Theory]
         [InlineData(null)]
         [MemberData(nameof(InputTestObject))]
-        public void GivenBodyTemplateAndEmptyItems_WhenInvokeMakeBody_ShouldReturnNull(Dictionary<string, string> AItems)
+        public void GivenBodyTemplateAndEmptyItems_WhenInvokeMakeBody_ShouldReturnNull(Dictionary<string, string> items)
         {
             // Arrange
-            const string BODY_TEMPLATE = "This is {VALUE1} test for {VALUE2}.";
-            var LTemplateHelper = new TemplateService();
+            const string bodyTemplate = "This is {VALUE1} test for {VALUE2}.";
+            var templateHelper = new TemplateService();
             
             // Act
-            var LResult = LTemplateHelper.MakeBody(BODY_TEMPLATE, AItems);
+            var result = templateHelper.MakeBody(bodyTemplate, items);
 
             // Assert
-            LResult.Should().BeNull();
+            result.Should().BeNull();
         }
 
         public static IEnumerable<object[]> InputTestObject()

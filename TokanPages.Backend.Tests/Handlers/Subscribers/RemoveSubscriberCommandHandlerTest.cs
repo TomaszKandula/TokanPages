@@ -14,7 +14,7 @@
         public async Task GivenCorrectId_WhenRemoveSubscriber_ShouldRemoveEntity() 
         {
             // Arrange
-            var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
+            var subscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
             {
                 Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
@@ -23,38 +23,38 @@
                 LastUpdated = null
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Subscribers.AddAsync(subscribers);
+            await databaseContext.SaveChangesAsync();
 
-            var LRemoveSubscriberCommand = new RemoveSubscriberCommand { Id = LSubscribers.Id };
-            var LRemoveSubscriberCommandHandler = new RemoveSubscriberCommandHandler(LDatabaseContext);
+            var removeSubscriberCommand = new RemoveSubscriberCommand { Id = subscribers.Id };
+            var removeSubscriberCommandHandler = new RemoveSubscriberCommandHandler(databaseContext);
 
             // Act
-            await LRemoveSubscriberCommandHandler.Handle(LRemoveSubscriberCommand, CancellationToken.None);
+            await removeSubscriberCommandHandler.Handle(removeSubscriberCommand, CancellationToken.None);
 
             // Assert
-            var LAssertDbContext = GetTestDatabaseContext();
-            var LSubscribersEntity = await LAssertDbContext.Subscribers.FindAsync(LRemoveSubscriberCommand.Id);
-            LSubscribersEntity.Should().BeNull();
+            var assertDbContext = GetTestDatabaseContext();
+            var subscribersEntity = await assertDbContext.Subscribers.FindAsync(removeSubscriberCommand.Id);
+            subscribersEntity.Should().BeNull();
         }
 
         [Fact]
         public async Task GivenIncorrectId_WhenRemoveSubscriber_ShouldThrowError()
         {
             // Arrange
-            var LRemoveSubscriberCommand = new RemoveSubscriberCommand
+            var removeSubscriberCommand = new RemoveSubscriberCommand
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            var LRemoveSubscriberCommandHandler = new RemoveSubscriberCommandHandler(LDatabaseContext);
+            var databaseContext = GetTestDatabaseContext();
+            var removeSubscriberCommandHandler = new RemoveSubscriberCommandHandler(databaseContext);
 
             // Act
             // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
-                => LRemoveSubscriberCommandHandler.Handle(LRemoveSubscriberCommand, CancellationToken.None));
+                => removeSubscriberCommandHandler.Handle(removeSubscriberCommand, CancellationToken.None));
         }
     }
 }

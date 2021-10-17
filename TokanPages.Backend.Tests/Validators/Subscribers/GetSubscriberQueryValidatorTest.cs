@@ -12,35 +12,35 @@
         public void GivenCorrectId_WhenGetSubscriber_ShouldFinishSuccessful() 
         {
             // Arrange
-            var LGetSubscriberQuery = new GetSubscriberQuery 
+            var getSubscriberQuery = new GetSubscriberQuery 
             { 
                 Id = Guid.NewGuid()
             };
 
             // Act
-            var LValidator = new GetSubscriberQueryValidator();
-            var LResult = LValidator.Validate(LGetSubscriberQuery);
+            var validator = new GetSubscriberQueryValidator();
+            var result = validator.Validate(getSubscriberQuery);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenEmptyId_WhenGetSubscriber_ShouldThrowError()
         {
             // Arrange
-            var LGetSubscriberQuery = new GetSubscriberQuery
+            var getSubscriberQuery = new GetSubscriberQuery
             {
                 Id = Guid.Empty
             };
 
             // Act
-            var LValidator = new GetSubscriberQueryValidator();
-            var LResult = LValidator.Validate(LGetSubscriberQuery);
+            var validator = new GetSubscriberQueryValidator();
+            var result = validator.Validate(getSubscriberQuery);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
     }
 }

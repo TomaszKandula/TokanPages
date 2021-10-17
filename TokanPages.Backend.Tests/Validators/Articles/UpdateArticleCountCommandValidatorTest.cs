@@ -12,35 +12,35 @@ namespace TokanPages.Backend.Tests.Validators.Articles
         public void GivenValidGuid_WhenUpdateArticleCount_ShouldReturnSuccessful()
         {
             // Arrange
-            var LUpdateArticleCountCommand = new UpdateArticleCountCommand
+            var updateArticleCountCommand = new UpdateArticleCountCommand
             {
                 Id = Guid.NewGuid()
             };
 
             // Act
-            var LUpdateArticleCountCommandValidator = new UpdateArticleCountCommandValidator();
-            var LResult = LUpdateArticleCountCommandValidator.Validate(LUpdateArticleCountCommand);
+            var updateArticleCountCommandValidator = new UpdateArticleCountCommandValidator();
+            var result = updateArticleCountCommandValidator.Validate(updateArticleCountCommand);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenEmptyGuid_WhenUpdateArticleCount_ShouldThrowError()
         {
             // Arrange
-            var LUpdateArticleCountCommand = new UpdateArticleCountCommand
+            var updateArticleCountCommand = new UpdateArticleCountCommand
             {
                 Id = Guid.Empty
             };
 
             // Act
-            var LUpdateArticleCountCommandValidator = new UpdateArticleCountCommandValidator();
-            var LResult = LUpdateArticleCountCommandValidator.Validate(LUpdateArticleCountCommand);
+            var updateArticleCountCommandValidator = new UpdateArticleCountCommandValidator();
+            var result = updateArticleCountCommandValidator.Validate(updateArticleCountCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
         
     }

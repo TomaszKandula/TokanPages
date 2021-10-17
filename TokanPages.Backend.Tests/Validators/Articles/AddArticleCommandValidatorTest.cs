@@ -11,7 +11,7 @@
         public void GivenAllFieldsAreCorrect_WhenValidateAddArticle_ShouldFinishSuccessfully() 
         {
             // Arrange
-            var LAddArticleCommand = new AddArticleCommand 
+            var addArticleCommand = new AddArticleCommand 
             { 
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
@@ -20,18 +20,18 @@
             };
 
             // Act
-            var LValidator = new AddArticleCommandValidator();
-            var LResult = LValidator.Validate(LAddArticleCommand);
+            var validator = new AddArticleCommandValidator();
+            var result = validator.Validate(addArticleCommand);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenDescriptionTooLong_WhenValidateAddArticle_ShouldThrowError() 
         {
             // Arrange
-            var LAddArticleCommand = new AddArticleCommand
+            var addArticleCommand = new AddArticleCommand
             {
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(256),
@@ -40,19 +40,19 @@
             };
 
             // Act
-            var LValidator = new AddArticleCommandValidator();
-            var LResult = LValidator.Validate(LAddArticleCommand);
+            var validator = new AddArticleCommandValidator();
+            var result = validator.Validate(addArticleCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.DESCRIPTION_TOO_LONG));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.DESCRIPTION_TOO_LONG));
         }
 
         [Fact]
         public void GivenTitleTooLong_WhenValidateAddArticle_ShouldThrowError()
         {
             // Arrange
-            var LAddArticleCommand = new AddArticleCommand
+            var addArticleCommand = new AddArticleCommand
             {
                 Title = DataUtilityService.GetRandomString(256),
                 Description = DataUtilityService.GetRandomString(),
@@ -61,19 +61,19 @@
             };
 
             // Act
-            var LValidator = new AddArticleCommandValidator();
-            var LResult = LValidator.Validate(LAddArticleCommand);
+            var validator = new AddArticleCommandValidator();
+            var result = validator.Validate(addArticleCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.TITLE_TOO_LONG));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.TITLE_TOO_LONG));
         }
 
         [Fact]
         public void GivenDescriptionEmpty_WhenValidateAddArticle_ShouldThrowError()
         {
             // Arrange
-            var LAddArticleCommand = new AddArticleCommand
+            var addArticleCommand = new AddArticleCommand
             {
                 Title = DataUtilityService.GetRandomString(),
                 Description = string.Empty,
@@ -82,19 +82,19 @@
             };
 
             // Act
-            var LValidator = new AddArticleCommandValidator();
-            var LResult = LValidator.Validate(LAddArticleCommand);
+            var validator = new AddArticleCommandValidator();
+            var result = validator.Validate(addArticleCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
 
         [Fact]
         public void GivenTitleEmpty_WhenValidateAddArticle_ShouldThrowError()
         {
             // Arrange
-            var LAddArticleCommand = new AddArticleCommand
+            var addArticleCommand = new AddArticleCommand
             {
                 Title = string.Empty,
                 Description = DataUtilityService.GetRandomString(),
@@ -103,19 +103,19 @@
             };
 
             // Act
-            var LValidator = new AddArticleCommandValidator();
-            var LResult = LValidator.Validate(LAddArticleCommand);
+            var validator = new AddArticleCommandValidator();
+            var result = validator.Validate(addArticleCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
 
         [Fact]
         public void GivenTextToUploadEmpty_WhenValidateAddArticle_ShouldThrowError()
         {
             // Arrange
-            var LAddArticleCommand = new AddArticleCommand
+            var addArticleCommand = new AddArticleCommand
             {
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
@@ -124,19 +124,19 @@
             };
 
             // Act
-            var LValidator = new AddArticleCommandValidator();
-            var LResult = LValidator.Validate(LAddArticleCommand);
+            var validator = new AddArticleCommandValidator();
+            var result = validator.Validate(addArticleCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
 
         [Fact]
         public void GivenImageToUploadEmpty_WhenValidateAddArticle_ShouldThrowError()
         {
             // Arrange
-            var LAddArticleCommand = new AddArticleCommand
+            var addArticleCommand = new AddArticleCommand
             {
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
@@ -145,12 +145,12 @@
             };
 
             // Act
-            var LValidator = new AddArticleCommandValidator();
-            var LResult = LValidator.Validate(LAddArticleCommand);
+            var validator = new AddArticleCommandValidator();
+            var result = validator.Validate(addArticleCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
     }
 }

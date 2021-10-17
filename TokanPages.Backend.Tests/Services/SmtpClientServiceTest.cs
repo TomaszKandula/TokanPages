@@ -23,12 +23,12 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenValidSmtpSettings_WhenConnectAndAuthenticate_ShouldReturnSuccess()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServer();
-            var LMockedLookupClient = new Mock<ILookupClient>();
-            var LMockedSmtpClient = new Mock<ISmtpClient>();
+            var smtpServerSettingsModel = new SmtpServer();
+            var mockedLookupClient = new Mock<ILookupClient>();
+            var mockedSmtpClient = new Mock<ISmtpClient>();
 
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .ConnectAsync(
                         It.IsAny<string>(), 
                         It.IsAny<int>(), 
@@ -36,49 +36,49 @@ namespace TokanPages.Backend.Tests.Services
                         It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .AuthenticateAsync(
                         It.IsAny<string>(), 
                         It.IsAny<string>(), 
                         It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .DisconnectAsync(
                         true, 
                         It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
             
-            LMockedSmtpClient.Setup(ASmtpClient => ASmtpClient.IsConnected).Returns(true);
-            LMockedSmtpClient.Setup(ASmtpClient => ASmtpClient.IsAuthenticated).Returns(true);
+            mockedSmtpClient.Setup(smtpClient => smtpClient.IsConnected).Returns(true);
+            mockedSmtpClient.Setup(smtpClient => smtpClient.IsAuthenticated).Returns(true);
             
-            var LSmtpClientService = new SmtpClientService(
-                LMockedSmtpClient.Object, 
-                LMockedLookupClient.Object, 
-                LSmtpServerSettingsModel);
+            var smtpClientService = new SmtpClientService(
+                mockedSmtpClient.Object, 
+                mockedLookupClient.Object, 
+                smtpServerSettingsModel);
             
             // Act
-            var LResults = await LSmtpClientService.CanConnectAndAuthenticate(CancellationToken.None);
+            var results = await smtpClientService.CanConnectAndAuthenticate(CancellationToken.None);
 
             // Assert
-            LResults.IsSucceeded.Should().BeTrue();
-            LResults.ErrorCode.Should().BeNullOrEmpty();
-            LResults.ErrorDesc.Should().BeNullOrEmpty();
-            LResults.InnerMessage.Should().BeNullOrEmpty();
+            results.IsSucceeded.Should().BeTrue();
+            results.ErrorCode.Should().BeNullOrEmpty();
+            results.ErrorDesc.Should().BeNullOrEmpty();
+            results.InnerMessage.Should().BeNullOrEmpty();
         }
         
         [Fact]
         public async Task GivenInvalidSmtpServer_WhenConnectAndAuthenticate_ShouldThrowError()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServer();
-            var LMockedLookupClient = new Mock<ILookupClient>();
-            var LMockedSmtpClient = new Mock<ISmtpClient>();
+            var smtpServerSettingsModel = new SmtpServer();
+            var mockedLookupClient = new Mock<ILookupClient>();
+            var mockedSmtpClient = new Mock<ISmtpClient>();
 
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .ConnectAsync(
                         It.IsAny<string>(), 
                         It.IsAny<int>(), 
@@ -86,49 +86,49 @@ namespace TokanPages.Backend.Tests.Services
                         It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .AuthenticateAsync(
                         It.IsAny<string>(), 
                         It.IsAny<string>(), 
                         It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .DisconnectAsync(
                         true, 
                         It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
             
-            LMockedSmtpClient.Setup(ASmtpClient => ASmtpClient.IsConnected).Returns(false);
-            LMockedSmtpClient.Setup(ASmtpClient => ASmtpClient.IsAuthenticated).Returns(false);
+            mockedSmtpClient.Setup(smtpClient => smtpClient.IsConnected).Returns(false);
+            mockedSmtpClient.Setup(smtpClient => smtpClient.IsAuthenticated).Returns(false);
             
-            var LSmtpClientService = new SmtpClientService(
-                LMockedSmtpClient.Object, 
-                LMockedLookupClient.Object, 
-                LSmtpServerSettingsModel);
+            var smtpClientService = new SmtpClientService(
+                mockedSmtpClient.Object, 
+                mockedLookupClient.Object, 
+                smtpServerSettingsModel);
             
             // Act
-            var LResults = await LSmtpClientService.CanConnectAndAuthenticate(CancellationToken.None);
+            var results = await smtpClientService.CanConnectAndAuthenticate(CancellationToken.None);
 
             // Assert
-            LResults.IsSucceeded.Should().BeFalse();
-            LResults.ErrorCode.Should().Be(nameof(ErrorCodes.NOT_CONNECTED_TO_SMTP));
-            LResults.ErrorDesc.Should().Be(ErrorCodes.NOT_CONNECTED_TO_SMTP);
-            LResults.InnerMessage.Should().BeNullOrEmpty();
+            results.IsSucceeded.Should().BeFalse();
+            results.ErrorCode.Should().Be(nameof(ErrorCodes.NOT_CONNECTED_TO_SMTP));
+            results.ErrorDesc.Should().Be(ErrorCodes.NOT_CONNECTED_TO_SMTP);
+            results.InnerMessage.Should().BeNullOrEmpty();
         }
         
         [Fact]
         public async Task GivenInvalidSmtpCredentials_WhenConnectAndAuthenticate_ShouldThrowError()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServer();
-            var LMockedLookupClient = new Mock<ILookupClient>();
-            var LMockedSmtpClient = new Mock<ISmtpClient>();
+            var smtpServerSettingsModel = new SmtpServer();
+            var mockedLookupClient = new Mock<ILookupClient>();
+            var mockedSmtpClient = new Mock<ISmtpClient>();
 
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .ConnectAsync(
                         It.IsAny<string>(), 
                         It.IsAny<int>(), 
@@ -136,100 +136,100 @@ namespace TokanPages.Backend.Tests.Services
                         It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .AuthenticateAsync(
                         It.IsAny<string>(), 
                         It.IsAny<string>(), 
                         It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .DisconnectAsync(
                         true, 
                         It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
             
-            LMockedSmtpClient.Setup(ASmtpClient => ASmtpClient.IsConnected).Returns(true);
-            LMockedSmtpClient.Setup(ASmtpClient => ASmtpClient.IsAuthenticated).Returns(false);
+            mockedSmtpClient.Setup(smtpClient => smtpClient.IsConnected).Returns(true);
+            mockedSmtpClient.Setup(smtpClient => smtpClient.IsAuthenticated).Returns(false);
             
-            var LSmtpClientService = new SmtpClientService(
-                LMockedSmtpClient.Object, 
-                LMockedLookupClient.Object, 
-                LSmtpServerSettingsModel);
+            var smtpClientService = new SmtpClientService(
+                mockedSmtpClient.Object, 
+                mockedLookupClient.Object, 
+                smtpServerSettingsModel);
             
             // Act
-            var LResults = await LSmtpClientService.CanConnectAndAuthenticate(CancellationToken.None);
+            var results = await smtpClientService.CanConnectAndAuthenticate(CancellationToken.None);
 
             // Assert
-            LResults.IsSucceeded.Should().BeFalse();
-            LResults.ErrorCode.Should().Be(nameof(ErrorCodes.NOT_AUTHENTICATED_WITH_SMTP));
-            LResults.ErrorDesc.Should().Be(ErrorCodes.NOT_AUTHENTICATED_WITH_SMTP);
-            LResults.InnerMessage.Should().BeNullOrEmpty();
+            results.IsSucceeded.Should().BeFalse();
+            results.ErrorCode.Should().Be(nameof(ErrorCodes.NOT_AUTHENTICATED_WITH_SMTP));
+            results.ErrorDesc.Should().Be(ErrorCodes.NOT_AUTHENTICATED_WITH_SMTP);
+            results.InnerMessage.Should().BeNullOrEmpty();
         }
         
         [Fact]
         public async Task GivenInvalidSmtpHost_WhenConnectAndAuthenticate_ShouldThrowError()
         {
             // Arrange
-            const string ERROR_MESSAGE = "The host is null";
-            var LSmtpServerSettingsModel = new SmtpServer();
-            var LMockedLookupClient = new Mock<ILookupClient>();
-            var LMockedSmtpClient = new Mock<ISmtpClient>();
+            const string errorMessage = "The host is null";
+            var smtpServerSettingsModel = new SmtpServer();
+            var mockedLookupClient = new Mock<ILookupClient>();
+            var mockedSmtpClient = new Mock<ISmtpClient>();
 
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .ConnectAsync(
                         It.IsAny<string>(),
                         It.IsAny<int>(),
                         It.IsAny<SecureSocketOptions>(),
                         It.IsAny<CancellationToken>()))
-                .Throws(new ArgumentException(ERROR_MESSAGE));
+                .Throws(new ArgumentException(errorMessage));
 
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .AuthenticateAsync(
                         It.IsAny<string>(), 
                         It.IsAny<string>(), 
                         It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .DisconnectAsync(
                         true, 
                         It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
             
-            LMockedSmtpClient.Setup(ASmtpClient => ASmtpClient.IsConnected).Returns(false);
-            LMockedSmtpClient.Setup(ASmtpClient => ASmtpClient.IsAuthenticated).Returns(false);
+            mockedSmtpClient.Setup(smtpClient => smtpClient.IsConnected).Returns(false);
+            mockedSmtpClient.Setup(smtpClient => smtpClient.IsAuthenticated).Returns(false);
             
-            var LSmtpClientService = new SmtpClientService(
-                LMockedSmtpClient.Object, 
-                LMockedLookupClient.Object, 
-                LSmtpServerSettingsModel);
+            var smtpClientService = new SmtpClientService(
+                mockedSmtpClient.Object, 
+                mockedLookupClient.Object, 
+                smtpServerSettingsModel);
             
             // Act
-            var LResults = await LSmtpClientService.CanConnectAndAuthenticate(CancellationToken.None);
+            var results = await smtpClientService.CanConnectAndAuthenticate(CancellationToken.None);
 
             // Assert
-            LResults.IsSucceeded.Should().BeFalse();
-            LResults.ErrorCode.Should().Be(nameof(ErrorCodes.SMTP_CLIENT_ERROR));
-            LResults.ErrorDesc.Should().Be(ErrorCodes.SMTP_CLIENT_ERROR);
-            LResults.InnerMessage.Should().Be(ERROR_MESSAGE);
+            results.IsSucceeded.Should().BeFalse();
+            results.ErrorCode.Should().Be(nameof(ErrorCodes.SMTP_CLIENT_ERROR));
+            results.ErrorDesc.Should().Be(ErrorCodes.SMTP_CLIENT_ERROR);
+            results.InnerMessage.Should().Be(errorMessage);
         }
 
         [Fact]
         public async Task GivenValidSettingsAndEmails_WhenSendEmail_ShouldReturnSuccess()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServer();
-            var LMockedLookupClient = new Mock<ILookupClient>();
-            var LMockedSmtpClient = new Mock<ISmtpClient>();
+            var smtpServerSettingsModel = new SmtpServer();
+            var mockedLookupClient = new Mock<ILookupClient>();
+            var mockedSmtpClient = new Mock<ISmtpClient>();
             
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .ConnectAsync(
                         It.IsAny<string>(), 
                         It.IsAny<int>(), 
@@ -237,33 +237,33 @@ namespace TokanPages.Backend.Tests.Services
                         It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .AuthenticateAsync(
                         It.IsAny<string>(), 
                         It.IsAny<string>(), 
                         It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .SendAsync(
                         It.IsAny<MimeMessage>(),
                         It.IsAny<CancellationToken>(), 
                         null))
                 .Returns(Task.CompletedTask);
             
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .DisconnectAsync(
                         true, 
                         It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
-            var LSmtpClientService = new SmtpClientService(
-                LMockedSmtpClient.Object,
-                LMockedLookupClient.Object,
-                LSmtpServerSettingsModel)
+            var smtpClientService = new SmtpClientService(
+                mockedSmtpClient.Object,
+                mockedLookupClient.Object,
+                smtpServerSettingsModel)
             {
                 Subject = DataUtilityService.GetRandomString(),
                 From = DataUtilityService.GetRandomEmail(),
@@ -274,26 +274,26 @@ namespace TokanPages.Backend.Tests.Services
             };
 
             // Act
-            var LResults = await LSmtpClientService.Send(CancellationToken.None);
+            var results = await smtpClientService.Send(CancellationToken.None);
             
             // Assert
-            LResults.IsSucceeded.Should().BeTrue();
-            LResults.ErrorCode.Should().BeNullOrEmpty();
-            LResults.ErrorDesc.Should().BeNullOrEmpty();
-            LResults.InnerMessage.Should().BeNullOrEmpty();
+            results.IsSucceeded.Should().BeTrue();
+            results.ErrorCode.Should().BeNullOrEmpty();
+            results.ErrorDesc.Should().BeNullOrEmpty();
+            results.InnerMessage.Should().BeNullOrEmpty();
         }
 
         [Fact]
         public async Task GivenValidSettingsAndCorruptedSmtpServer_WhenSendEmail_ShouldThrowError()
         {
             // Arrange
-            const string ERROR_MESSAGE = "Cannot send the email. Server responded with error";
-            var LSmtpServerSettingsModel = new SmtpServer();
-            var LMockedLookupClient = new Mock<ILookupClient>();
-            var LMockedSmtpClient = new Mock<ISmtpClient>();
+            const string errorMessage = "Cannot send the email. Server responded with error";
+            var smtpServerSettingsModel = new SmtpServer();
+            var mockedLookupClient = new Mock<ILookupClient>();
+            var mockedSmtpClient = new Mock<ISmtpClient>();
             
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .ConnectAsync(
                         It.IsAny<string>(), 
                         It.IsAny<int>(), 
@@ -301,33 +301,33 @@ namespace TokanPages.Backend.Tests.Services
                         It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .AuthenticateAsync(
                         It.IsAny<string>(), 
                         It.IsAny<string>(), 
                         It.IsAny<CancellationToken>()))
                 .Returns(Task.CompletedTask);
 
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .SendAsync(
                         new MimeMessage(),
                         It.IsAny<CancellationToken>(), 
                         null))
                 .Returns(Task.CompletedTask);
             
-            LMockedSmtpClient
-                .Setup(ASmtpClient => ASmtpClient
+            mockedSmtpClient
+                .Setup(smtpClient => smtpClient
                     .DisconnectAsync(
                         true, 
                         It.IsAny<CancellationToken>()))
-                .Throws(new Exception(ERROR_MESSAGE));
+                .Throws(new Exception(errorMessage));
             
-            var LSmtpClientService = new SmtpClientService(
-                LMockedSmtpClient.Object,
-                LMockedLookupClient.Object,
-                LSmtpServerSettingsModel)
+            var smtpClientService = new SmtpClientService(
+                mockedSmtpClient.Object,
+                mockedLookupClient.Object,
+                smtpServerSettingsModel)
             {
                 Subject = DataUtilityService.GetRandomString(),
                 From = DataUtilityService.GetRandomEmail(),
@@ -338,24 +338,24 @@ namespace TokanPages.Backend.Tests.Services
             };
 
             // Act
-            var LResults = await LSmtpClientService.Send(CancellationToken.None);
+            var results = await smtpClientService.Send(CancellationToken.None);
 
             // Assert
-            LResults.IsSucceeded.Should().BeFalse();
-            LResults.ErrorCode.Should().Be(nameof(ErrorCodes.SMTP_CLIENT_ERROR));
-            LResults.ErrorDesc.Should().Be(ErrorCodes.SMTP_CLIENT_ERROR);
-            LResults.InnerMessage.Should().Be(ERROR_MESSAGE);
+            results.IsSucceeded.Should().BeFalse();
+            results.ErrorCode.Should().Be(nameof(ErrorCodes.SMTP_CLIENT_ERROR));
+            results.ErrorDesc.Should().Be(ErrorCodes.SMTP_CLIENT_ERROR);
+            results.InnerMessage.Should().Be(errorMessage);
         }
         
         [Fact]
         public void GivenCorrectEmailAddress_WhenCheckingFormat_ShouldReturnSuccess()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServer();
-            var LMockedLookupClient = new Mock<ILookupClient>();
-            var LMockedSmtpClient = new Mock<ISmtpClient>();
+            var smtpServerSettingsModel = new SmtpServer();
+            var mockedLookupClient = new Mock<ILookupClient>();
+            var mockedSmtpClient = new Mock<ISmtpClient>();
             
-            var LEmails = new List<string>
+            var emails = new List<string>
             {
                 DataUtilityService.GetRandomEmail(),
                 DataUtilityService.GetRandomEmail(),
@@ -363,136 +363,136 @@ namespace TokanPages.Backend.Tests.Services
                 DataUtilityService.GetRandomEmail()
             };
 
-            var LSmtpClientService = new SmtpClientService(
-                LMockedSmtpClient.Object,
-                LMockedLookupClient.Object,
-                LSmtpServerSettingsModel); 
+            var smtpClientService = new SmtpClientService(
+                mockedSmtpClient.Object,
+                mockedLookupClient.Object,
+                smtpServerSettingsModel); 
             
             // Act
-            var LResult = LSmtpClientService.IsAddressCorrect(LEmails);
+            var result = smtpClientService.IsAddressCorrect(emails);
 
             // Assert
-            LResult[0].Address.Should().Be(LEmails[0]);
-            LResult[1].Address.Should().Be(LEmails[1]);
-            LResult[2].Address.Should().Be(LEmails[2]);
-            LResult[3].Address.Should().Be(LEmails[3]);
+            result[0].Address.Should().Be(emails[0]);
+            result[1].Address.Should().Be(emails[1]);
+            result[2].Address.Should().Be(emails[2]);
+            result[3].Address.Should().Be(emails[3]);
 
-            LResult[0].IsValid.Should().BeTrue();
-            LResult[1].IsValid.Should().BeTrue();
-            LResult[2].IsValid.Should().BeTrue();
-            LResult[3].IsValid.Should().BeTrue();
+            result[0].IsValid.Should().BeTrue();
+            result[1].IsValid.Should().BeTrue();
+            result[2].IsValid.Should().BeTrue();
+            result[3].IsValid.Should().BeTrue();
         }
 
         [Fact]
         public void GivenIncorrectEmailAddresses_WhenCheckingFormat_ShouldReturnInvalidEmailFlag()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServer();
-            var LMockedLookupClient = new Mock<ILookupClient>();
-            var LMockedSmtpClient = new Mock<ISmtpClient>();
+            var smtpServerSettingsModel = new SmtpServer();
+            var mockedLookupClient = new Mock<ILookupClient>();
+            var mockedSmtpClient = new Mock<ISmtpClient>();
             
-            var LEmails = new List<string>
+            var emails = new List<string>
             {
                 DataUtilityService.GetRandomString(),
                 DataUtilityService.GetRandomString(),
             };
 
-            var LSmtpClientService = new SmtpClientService(
-                LMockedSmtpClient.Object,
-                LMockedLookupClient.Object,
-                LSmtpServerSettingsModel); 
+            var smtpClientService = new SmtpClientService(
+                mockedSmtpClient.Object,
+                mockedLookupClient.Object,
+                smtpServerSettingsModel); 
             
             // Act
-            var LResult = LSmtpClientService.IsAddressCorrect(LEmails);
+            var result = smtpClientService.IsAddressCorrect(emails);
 
             // Assert
-            LResult[0].Address.Should().Be(LEmails[0]);
-            LResult[1].Address.Should().Be(LEmails[1]);
+            result[0].Address.Should().Be(emails[0]);
+            result[1].Address.Should().Be(emails[1]);
 
-            LResult[0].IsValid.Should().BeFalse();
-            LResult[1].IsValid.Should().BeFalse();
+            result[0].IsValid.Should().BeFalse();
+            result[1].IsValid.Should().BeFalse();
         }
 
         [Fact]
         public async Task GivenDomainWithMxAndARecords_WhenCheckDomain_ShouldReturnTrue()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServer();
-            var LMockedLookupClient = new Mock<ILookupClient>();
-            var LMockedSmtpClient = new Mock<ISmtpClient>();
-            var LMockedDnsQueryResponse = new Mock<IDnsQueryResponse>();
+            var smtpServerSettingsModel = new SmtpServer();
+            var mockedLookupClient = new Mock<ILookupClient>();
+            var mockedSmtpClient = new Mock<ISmtpClient>();
+            var mockedDnsQueryResponse = new Mock<IDnsQueryResponse>();
 
-            const string LOOKUP_DOMAIN = "hotmail.com";
-            IReadOnlyList<DnsResourceRecord> LDnsResourceRecord = new[]
+            const string lookupDomain = "hotmail.com";
+            IReadOnlyList<DnsResourceRecord> dnsResourceRecord = new[]
             {
-                new ARecord(new ResourceRecordInfo(LOOKUP_DOMAIN, ResourceRecordType.A, QueryClass.IN, 3600, 1024), IPAddress.None),
-                new ARecord(new ResourceRecordInfo(LOOKUP_DOMAIN, ResourceRecordType.AAAA, QueryClass.IN, 3600, 1024), IPAddress.None),
-                new ARecord(new ResourceRecordInfo(LOOKUP_DOMAIN, ResourceRecordType.MX, QueryClass.IN, 3600, 1024), IPAddress.None),
+                new ARecord(new ResourceRecordInfo(lookupDomain, ResourceRecordType.A, QueryClass.IN, 3600, 1024), IPAddress.None),
+                new ARecord(new ResourceRecordInfo(lookupDomain, ResourceRecordType.AAAA, QueryClass.IN, 3600, 1024), IPAddress.None),
+                new ARecord(new ResourceRecordInfo(lookupDomain, ResourceRecordType.MX, QueryClass.IN, 3600, 1024), IPAddress.None),
             };
             
-            LMockedDnsQueryResponse
-                .SetupGet(ADnsQueryResponse => ADnsQueryResponse.Answers)
-                .Returns(LDnsResourceRecord);
+            mockedDnsQueryResponse
+                .SetupGet(dnsQueryResponse => dnsQueryResponse.Answers)
+                .Returns(dnsResourceRecord);
     
-            LMockedLookupClient
-                .Setup(ALookupClient=> ALookupClient
+            mockedLookupClient
+                .Setup(lookupClient=> lookupClient
                     .QueryAsync(
                         It.IsAny<string>(), 
                         It.IsAny<QueryType>(), 
                         It.IsAny<QueryClass>(), 
                         It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LMockedDnsQueryResponse.Object);
+                .ReturnsAsync(mockedDnsQueryResponse.Object);
     
-            var LSmtpClientService = new SmtpClientService(
-                LMockedSmtpClient.Object,
-                LMockedLookupClient.Object,
-                LSmtpServerSettingsModel); 
+            var smtpClientService = new SmtpClientService(
+                mockedSmtpClient.Object,
+                mockedLookupClient.Object,
+                smtpServerSettingsModel); 
     
             // Act
-            var LResult = await LSmtpClientService.IsDomainCorrect(DataUtilityService.GetRandomEmail(9, LOOKUP_DOMAIN));
+            var result = await smtpClientService.IsDomainCorrect(DataUtilityService.GetRandomEmail(9, lookupDomain));
     
             // Assert
-            LResult.Should().BeTrue();
+            result.Should().BeTrue();
         }
 
         [Fact]
         public async Task GivenDomainWithOnlyCaaRecord_WhenCheckDomain_ShouldReturnFalse()
         {
             // Arrange
-            var LSmtpServerSettingsModel = new SmtpServer();
-            var LMockedLookupClient = new Mock<ILookupClient>();
-            var LMockedSmtpClient = new Mock<ISmtpClient>();
-            var LMockedDnsQueryResponse = new Mock<IDnsQueryResponse>();
+            var smtpServerSettingsModel = new SmtpServer();
+            var mockedLookupClient = new Mock<ILookupClient>();
+            var mockedSmtpClient = new Mock<ISmtpClient>();
+            var mockedDnsQueryResponse = new Mock<IDnsQueryResponse>();
 
-            const string LOOKUP_DOMAIN = "hotmail.com";
-            IReadOnlyList<DnsResourceRecord> LDnsResourceRecord = new[]
+            const string lookupDomain = "hotmail.com";
+            IReadOnlyList<DnsResourceRecord> dnsResourceRecord = new[]
             {
-                new ARecord(new ResourceRecordInfo(LOOKUP_DOMAIN, ResourceRecordType.CAA, QueryClass.IN, 3600, 1024), IPAddress.None),
+                new ARecord(new ResourceRecordInfo(lookupDomain, ResourceRecordType.CAA, QueryClass.IN, 3600, 1024), IPAddress.None),
             };
             
-            LMockedDnsQueryResponse
-                .SetupGet(ADnsQueryResponse => ADnsQueryResponse.Answers)
-                .Returns(LDnsResourceRecord);
+            mockedDnsQueryResponse
+                .SetupGet(dnsQueryResponse => dnsQueryResponse.Answers)
+                .Returns(dnsResourceRecord);
     
-            LMockedLookupClient
-                .Setup(ALookupClient=> ALookupClient
+            mockedLookupClient
+                .Setup(lookupClient=> lookupClient
                     .QueryAsync(
                         It.IsAny<string>(), 
                         It.IsAny<QueryType>(), 
                         It.IsAny<QueryClass>(), 
                         It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LMockedDnsQueryResponse.Object);
+                .ReturnsAsync(mockedDnsQueryResponse.Object);
     
-            var LSmtpClientService = new SmtpClientService(
-                LMockedSmtpClient.Object,
-                LMockedLookupClient.Object,
-                LSmtpServerSettingsModel); 
+            var smtpClientService = new SmtpClientService(
+                mockedSmtpClient.Object,
+                mockedLookupClient.Object,
+                smtpServerSettingsModel); 
     
             // Act
-            var LResult = await LSmtpClientService.IsDomainCorrect(DataUtilityService.GetRandomEmail(9, LOOKUP_DOMAIN));
+            var result = await smtpClientService.IsDomainCorrect(DataUtilityService.GetRandomEmail(9, lookupDomain));
     
             // Assert
-            LResult.Should().BeFalse();
+            result.Should().BeFalse();
         }
     }
 }

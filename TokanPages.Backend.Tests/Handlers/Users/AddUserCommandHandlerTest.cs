@@ -31,7 +31,7 @@
         public async Task GivenFieldsAreProvided_WhenAddUser_ShouldAddEntity() 
         {
             // Arrange
-            var LAddUserCommand = new AddUserCommand 
+            var addUserCommand = new AddUserCommand 
             {
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
@@ -40,13 +40,13 @@
                 Password = DataUtilityService.GetRandomString()
             };
 
-            var LRoles = new Roles
+            var roles = new Roles
             {
                 Name = Identity.Authorization.Roles.EverydayUser.ToString(),
                 Description = Identity.Authorization.Roles.EverydayUser.ToString()
             };
 
-            var LPermissions = new List<Permissions>
+            var permissions = new List<Permissions>
             {
                 new ()
                 {
@@ -58,114 +58,114 @@
                 }
             };
 
-            var LDefaultPermissions = new List<DefaultPermissions>
+            var defaultPermissions = new List<DefaultPermissions>
             {
                 new ()
                 {
                     Id = Guid.NewGuid(),
-                    Role = LRoles,
-                    Permission = LPermissions[0]
+                    Role = roles,
+                    Permission = permissions[0]
                 },
                 new ()
                 {
                     Id = Guid.NewGuid(),
-                    Role = LRoles,
-                    Permission = LPermissions[1]
+                    Role = roles,
+                    Permission = permissions[1]
                 }
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Roles.AddAsync(LRoles);
-            await LDatabaseContext.Permissions.AddRangeAsync(LPermissions);
-            await LDatabaseContext.DefaultPermissions.AddRangeAsync(LDefaultPermissions);
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Roles.AddAsync(roles);
+            await databaseContext.Permissions.AddRangeAsync(permissions);
+            await databaseContext.DefaultPermissions.AddRangeAsync(defaultPermissions);
 
-            var LMockedDateTime = new Mock<DateTimeService>();
-            var LMockedCipher = new Mock<ICipheringService>();
-            var LMockedSmtpClientService = new Mock<ISmtpClientService>();
-            var LMockedLogger = new Mock<ILogger>();
-            var LMockedTemplateService = new Mock<ITemplateService>();
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var LMockedAzureStorage = new Mock<AzureStorage>();
-            var LMockedApplicationPaths = new Mock<ApplicationPaths>();
-            var LMockedExpirationSettings = new Mock<ExpirationSettings>();
+            var mockedDateTime = new Mock<DateTimeService>();
+            var mockedCipher = new Mock<ICipheringService>();
+            var mockedSmtpClientService = new Mock<ISmtpClientService>();
+            var mockedLogger = new Mock<ILogger>();
+            var mockedTemplateService = new Mock<ITemplateService>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedAzureStorage = new Mock<AzureStorage>();
+            var mockedApplicationPaths = new Mock<ApplicationPaths>();
+            var mockedExpirationSettings = new Mock<ExpirationSettings>();
 
-            const string MOCKED_PASSWORD = "MockedPassword";
-            LMockedCipher
-                .Setup(ACipher => ACipher.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(MOCKED_PASSWORD);
+            const string mockedPassword = "MockedPassword";
+            mockedCipher
+                .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(mockedPassword);
             
-            var LSendActionResult = new ActionResult { IsSucceeded = true };
-            LMockedSmtpClientService
-                .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
-                .Returns(Task.FromResult(LSendActionResult));
+            var sendActionResult = new ActionResult { IsSucceeded = true };
+            mockedSmtpClientService
+                .Setup(client => client.Send(CancellationToken.None))
+                .Returns(Task.FromResult(sendActionResult));
 
-            var LMockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-            var LMockedResults = new Results
+            var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
+            var mockedResults = new Results
             {
                 StatusCode = HttpStatusCode.OK,
                 ContentType = new MediaTypeHeaderValue("text/plain"),
-                Content = LMockedPayLoad
+                Content = mockedPayLoad
             };
 
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LMockedResults);
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockedResults);
 
-            var LAddUserCommandHandler = new AddUserCommandHandler(
-                LDatabaseContext, 
-                LMockedDateTime.Object, 
-                LMockedCipher.Object,
-                LMockedSmtpClientService.Object,
-                LMockedLogger.Object,
-                LMockedTemplateService.Object,
-                LMockedCustomHttpClient.Object,
-                LMockedAzureStorage.Object,
-                LMockedApplicationPaths.Object,
-                LMockedExpirationSettings.Object
+            var addUserCommandHandler = new AddUserCommandHandler(
+                databaseContext, 
+                mockedDateTime.Object, 
+                mockedCipher.Object,
+                mockedSmtpClientService.Object,
+                mockedLogger.Object,
+                mockedTemplateService.Object,
+                mockedCustomHttpClient.Object,
+                mockedAzureStorage.Object,
+                mockedApplicationPaths.Object,
+                mockedExpirationSettings.Object
             );
 
             // Act
-            await LAddUserCommandHandler.Handle(LAddUserCommand, CancellationToken.None);
+            await addUserCommandHandler.Handle(addUserCommand, CancellationToken.None);
 
             // Assert
-            var LResult = LDatabaseContext.Users.ToList();
+            var result = databaseContext.Users.ToList();
 
-            LResult.Should().NotBeNull();
-            LResult.Should().HaveCount(1);
-            LResult[0].EmailAddress.Should().Be(LAddUserCommand.EmailAddress);
-            LResult[0].UserAlias.Should().Be(LAddUserCommand.UserAlias.ToLower());
-            LResult[0].FirstName.Should().Be(LAddUserCommand.FirstName);
-            LResult[0].LastName.Should().Be(LAddUserCommand.LastName);
-            LResult[0].IsActivated.Should().BeFalse();
-            LResult[0].LastLogged.Should().BeNull();
-            LResult[0].LastUpdated.Should().BeNull();
-            LResult[0].AvatarName.Should().Be(Constants.Defaults.AVATAR_NAME);
-            LResult[0].ShortBio.Should().BeNull();
-            LResult[0].CryptedPassword.Should().HaveLength(MOCKED_PASSWORD.Length);
-            LResult[0].ResetId.Should().BeNull();
-            LResult[0].ResetIdEnds.Should().BeNull();
-            LResult[0].ActivationId.Should().NotBeNull();
-            LResult[0].ActivationIdEnds.Should().NotBeNull();
+            result.Should().NotBeNull();
+            result.Should().HaveCount(1);
+            result[0].EmailAddress.Should().Be(addUserCommand.EmailAddress);
+            result[0].UserAlias.Should().Be(addUserCommand.UserAlias.ToLower());
+            result[0].FirstName.Should().Be(addUserCommand.FirstName);
+            result[0].LastName.Should().Be(addUserCommand.LastName);
+            result[0].IsActivated.Should().BeFalse();
+            result[0].LastLogged.Should().BeNull();
+            result[0].LastUpdated.Should().BeNull();
+            result[0].AvatarName.Should().Be(Constants.Defaults.AVATAR_NAME);
+            result[0].ShortBio.Should().BeNull();
+            result[0].CryptedPassword.Should().HaveLength(mockedPassword.Length);
+            result[0].ResetId.Should().BeNull();
+            result[0].ResetIdEnds.Should().BeNull();
+            result[0].ActivationId.Should().NotBeNull();
+            result[0].ActivationIdEnds.Should().NotBeNull();
         }
 
         [Fact]
         public async Task GivenNotActivatedUserWithExpiredActivation_WhenAddUser_ShouldAddEntity() 
         {
             // Arrange
-            var LTestEmail = DataUtilityService.GetRandomEmail();
-            var LAddUserCommand = new AddUserCommand 
+            var testEmail = DataUtilityService.GetRandomEmail();
+            var addUserCommand = new AddUserCommand 
             {
-                EmailAddress = LTestEmail,
+                EmailAddress = testEmail,
                 UserAlias = DataUtilityService.GetRandomString(),
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 Password = DataUtilityService.GetRandomString()
             };
 
-            var LOldActivationIdEnds = DateTimeService.Now.AddMinutes(-30);
-            var LUsers = new Users
+            var oldActivationIdEnds = DateTimeService.Now.AddMinutes(-30);
+            var users = new Users
             { 
-                EmailAddress = LTestEmail,
+                EmailAddress = testEmail,
                 UserAlias = DataUtilityService.GetRandomString().ToLower(),
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -173,107 +173,107 @@
                 AvatarName = Constants.Defaults.AVATAR_NAME,
                 CryptedPassword = DataUtilityService.GetRandomString(),
                 ActivationId = Guid.NewGuid(),
-                ActivationIdEnds = LOldActivationIdEnds
+                ActivationIdEnds = oldActivationIdEnds
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
             
-            var LMockedDateTime = new Mock<DateTimeService>();
-            var LMockedCipher = new Mock<ICipheringService>();
-            var LMockedSmtpClientService = new Mock<ISmtpClientService>();
-            var LMockedLogger = new Mock<ILogger>();
-            var LMockedTemplateService = new Mock<ITemplateService>();
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var LMockedAzureStorage = new Mock<AzureStorage>();
-            var LMockedApplicationPaths = new Mock<ApplicationPaths>();
+            var mockedDateTime = new Mock<DateTimeService>();
+            var mockedCipher = new Mock<ICipheringService>();
+            var mockedSmtpClientService = new Mock<ISmtpClientService>();
+            var mockedLogger = new Mock<ILogger>();
+            var mockedTemplateService = new Mock<ITemplateService>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedAzureStorage = new Mock<AzureStorage>();
+            var mockedApplicationPaths = new Mock<ApplicationPaths>();
 
-            var LExpirationSettings = new ExpirationSettings
+            var expirationSettings = new ExpirationSettings
             {
                 ActivationIdExpiresIn = 30
             };
 
-            const string MOCKED_PASSWORD = "MockedPassword";
-            LMockedCipher
-                .Setup(ACipher => ACipher.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(MOCKED_PASSWORD);
+            const string mockedPassword = "MockedPassword";
+            mockedCipher
+                .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(mockedPassword);
 
-            LMockedDateTime
-                .Setup(ADateTime => ADateTime.Now)
+            mockedDateTime
+                .Setup(dateTime => dateTime.Now)
                 .Returns(DateTimeService.Now);
             
-            var LSendActionResult = new ActionResult { IsSucceeded = true };
-            LMockedSmtpClientService
-                .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
-                .Returns(Task.FromResult(LSendActionResult));
+            var sendActionResult = new ActionResult { IsSucceeded = true };
+            mockedSmtpClientService
+                .Setup(client => client.Send(CancellationToken.None))
+                .Returns(Task.FromResult(sendActionResult));
 
-            var LMockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-            var LMockedResults = new Results
+            var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
+            var mockedResults = new Results
             {
                 StatusCode = HttpStatusCode.OK,
                 ContentType = new MediaTypeHeaderValue("text/plain"),
-                Content = LMockedPayLoad
+                Content = mockedPayLoad
             };
             
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LMockedResults);
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockedResults);
             
-            var LAddUserCommandHandler = new AddUserCommandHandler(
-                LDatabaseContext, 
-                LMockedDateTime.Object, 
-                LMockedCipher.Object,
-                LMockedSmtpClientService.Object,
-                LMockedLogger.Object,
-                LMockedTemplateService.Object,
-                LMockedCustomHttpClient.Object,
-                LMockedAzureStorage.Object,
-                LMockedApplicationPaths.Object,
-                LExpirationSettings
+            var addUserCommandHandler = new AddUserCommandHandler(
+                databaseContext, 
+                mockedDateTime.Object, 
+                mockedCipher.Object,
+                mockedSmtpClientService.Object,
+                mockedLogger.Object,
+                mockedTemplateService.Object,
+                mockedCustomHttpClient.Object,
+                mockedAzureStorage.Object,
+                mockedApplicationPaths.Object,
+                expirationSettings
             );
 
             // Act
-            await LAddUserCommandHandler.Handle(LAddUserCommand, CancellationToken.None);
+            await addUserCommandHandler.Handle(addUserCommand, CancellationToken.None);
 
             // Assert
-            var LResult = LDatabaseContext.Users.ToList();
+            var result = databaseContext.Users.ToList();
 
-            LResult.Should().NotBeNull();
-            LResult.Should().HaveCount(1);
-            LResult[0].EmailAddress.Should().Be(LTestEmail);
-            LResult[0].UserAlias.Should().Be(LUsers.UserAlias);
-            LResult[0].FirstName.Should().Be(LUsers.FirstName);
-            LResult[0].LastName.Should().Be(LUsers.LastName);
-            LResult[0].IsActivated.Should().BeFalse();
-            LResult[0].LastLogged.Should().BeNull();
-            LResult[0].LastUpdated.Should().BeNull();
-            LResult[0].AvatarName.Should().Be(LUsers.AvatarName);
-            LResult[0].ShortBio.Should().BeNull();
-            LResult[0].CryptedPassword.Should().HaveLength(MOCKED_PASSWORD.Length);
-            LResult[0].ResetId.Should().BeNull();
-            LResult[0].ResetIdEnds.Should().BeNull();
-            LResult[0].ActivationId.Should().NotBeNull();
-            LResult[0].ActivationIdEnds.Should().NotBeNull();
-            LResult[0].ActivationIdEnds.Should().NotBe(LOldActivationIdEnds);
+            result.Should().NotBeNull();
+            result.Should().HaveCount(1);
+            result[0].EmailAddress.Should().Be(testEmail);
+            result[0].UserAlias.Should().Be(users.UserAlias);
+            result[0].FirstName.Should().Be(users.FirstName);
+            result[0].LastName.Should().Be(users.LastName);
+            result[0].IsActivated.Should().BeFalse();
+            result[0].LastLogged.Should().BeNull();
+            result[0].LastUpdated.Should().BeNull();
+            result[0].AvatarName.Should().Be(users.AvatarName);
+            result[0].ShortBio.Should().BeNull();
+            result[0].CryptedPassword.Should().HaveLength(mockedPassword.Length);
+            result[0].ResetId.Should().BeNull();
+            result[0].ResetIdEnds.Should().BeNull();
+            result[0].ActivationId.Should().NotBeNull();
+            result[0].ActivationIdEnds.Should().NotBeNull();
+            result[0].ActivationIdEnds.Should().NotBe(oldActivationIdEnds);
         }
 
         [Fact]
         public async Task GivenExistingEmail_WhenAddUser_ShouldThrowError()
         {
             // Arrange
-            var LTestEmail = DataUtilityService.GetRandomEmail();
-            var LAddUserCommand = new AddUserCommand
+            var testEmail = DataUtilityService.GetRandomEmail();
+            var addUserCommand = new AddUserCommand
             {
-                EmailAddress = LTestEmail,
+                EmailAddress = testEmail,
                 UserAlias = DataUtilityService.GetRandomString(),
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
             };
 
-            var LUsers = new Users
+            var users = new Users
             { 
-                EmailAddress = LTestEmail,
+                EmailAddress = testEmail,
                 UserAlias = DataUtilityService.GetRandomString(),
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -281,65 +281,65 @@
                 CryptedPassword = DataUtilityService.GetRandomString()
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LMockedDateTime = new Mock<DateTimeService>();
-            var LMockedCipher = new Mock<ICipheringService>();
-            var LMockedSmtpClientService = new Mock<ISmtpClientService>();
-            var LMockedLogger = new Mock<ILogger>();
-            var LMockedTemplateService = new Mock<ITemplateService>();
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var LMockedAzureStorage = new Mock<AzureStorage>();
-            var LMockedApplicationPaths = new Mock<ApplicationPaths>();
-            var LMockedExpirationSettings = new Mock<ExpirationSettings>();
+            var mockedDateTime = new Mock<DateTimeService>();
+            var mockedCipher = new Mock<ICipheringService>();
+            var mockedSmtpClientService = new Mock<ISmtpClientService>();
+            var mockedLogger = new Mock<ILogger>();
+            var mockedTemplateService = new Mock<ITemplateService>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedAzureStorage = new Mock<AzureStorage>();
+            var mockedApplicationPaths = new Mock<ApplicationPaths>();
+            var mockedExpirationSettings = new Mock<ExpirationSettings>();
             
-            LMockedCipher
-                .Setup(ACipher => ACipher.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
+            mockedCipher
+                .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns("MockedPassword");
             
-            var LSendActionResult = new ActionResult { IsSucceeded = true };
-            LMockedSmtpClientService
-                .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
-                .Returns(Task.FromResult(LSendActionResult));
+            var sendActionResult = new ActionResult { IsSucceeded = true };
+            mockedSmtpClientService
+                .Setup(client => client.Send(CancellationToken.None))
+                .Returns(Task.FromResult(sendActionResult));
 
-            var LMockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-            var LMockedResults = new Results
+            var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
+            var mockedResults = new Results
             {
                 StatusCode = HttpStatusCode.OK,
                 ContentType = new MediaTypeHeaderValue("text/plain"),
-                Content = LMockedPayLoad
+                Content = mockedPayLoad
             };
             
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LMockedResults);
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockedResults);
             
-            var LAddUserCommandHandler = new AddUserCommandHandler(
-                LDatabaseContext, 
-                LMockedDateTime.Object, 
-                LMockedCipher.Object,
-                LMockedSmtpClientService.Object,
-                LMockedLogger.Object,
-                LMockedTemplateService.Object,
-                LMockedCustomHttpClient.Object,
-                LMockedAzureStorage.Object,
-                LMockedApplicationPaths.Object,
-                LMockedExpirationSettings.Object
+            var addUserCommandHandler = new AddUserCommandHandler(
+                databaseContext, 
+                mockedDateTime.Object, 
+                mockedCipher.Object,
+                mockedSmtpClientService.Object,
+                mockedLogger.Object,
+                mockedTemplateService.Object,
+                mockedCustomHttpClient.Object,
+                mockedAzureStorage.Object,
+                mockedApplicationPaths.Object,
+                mockedExpirationSettings.Object
             );
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LAddUserCommandHandler.Handle(LAddUserCommand, CancellationToken.None));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS));
+            var result = await Assert.ThrowsAsync<BusinessException>(() => addUserCommandHandler.Handle(addUserCommand, CancellationToken.None));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS));
         }
 
         [Fact]
         public async Task GivenEmptyEmailTemplate_WhenAddUser_ShouldThrowError() 
         {
             // Arrange
-            var LAddUserCommand = new AddUserCommand 
+            var addUserCommand = new AddUserCommand 
             {
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
@@ -348,13 +348,13 @@
                 Password = DataUtilityService.GetRandomString()
             };
 
-            var LRoles = new Roles
+            var roles = new Roles
             {
                 Name = Identity.Authorization.Roles.EverydayUser.ToString(),
                 Description = Identity.Authorization.Roles.EverydayUser.ToString()
             };
 
-            var LPermissions = new List<Permissions>
+            var permissions = new List<Permissions>
             {
                 new ()
                 {
@@ -366,75 +366,75 @@
                 }
             };
 
-            var LDefaultPermissions = new List<DefaultPermissions>
+            var defaultPermissions = new List<DefaultPermissions>
             {
                 new ()
                 {
                     Id = Guid.NewGuid(),
-                    Role = LRoles,
-                    Permission = LPermissions[0]
+                    Role = roles,
+                    Permission = permissions[0]
                 },
                 new ()
                 {
                     Id = Guid.NewGuid(),
-                    Role = LRoles,
-                    Permission = LPermissions[1]
+                    Role = roles,
+                    Permission = permissions[1]
                 }
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Roles.AddAsync(LRoles);
-            await LDatabaseContext.Permissions.AddRangeAsync(LPermissions);
-            await LDatabaseContext.DefaultPermissions.AddRangeAsync(LDefaultPermissions);
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Roles.AddAsync(roles);
+            await databaseContext.Permissions.AddRangeAsync(permissions);
+            await databaseContext.DefaultPermissions.AddRangeAsync(defaultPermissions);
 
-            var LMockedDateTime = new Mock<DateTimeService>();
-            var LMockedCipher = new Mock<ICipheringService>();
-            var LMockedSmtpClientService = new Mock<ISmtpClientService>();
-            var LMockedLogger = new Mock<ILogger>();
-            var LMockedTemplateService = new Mock<ITemplateService>();
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var LMockedAzureStorage = new Mock<AzureStorage>();
-            var LMockedApplicationPaths = new Mock<ApplicationPaths>();
-            var LMockedExpirationSettings = new Mock<ExpirationSettings>();
+            var mockedDateTime = new Mock<DateTimeService>();
+            var mockedCipher = new Mock<ICipheringService>();
+            var mockedSmtpClientService = new Mock<ISmtpClientService>();
+            var mockedLogger = new Mock<ILogger>();
+            var mockedTemplateService = new Mock<ITemplateService>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedAzureStorage = new Mock<AzureStorage>();
+            var mockedApplicationPaths = new Mock<ApplicationPaths>();
+            var mockedExpirationSettings = new Mock<ExpirationSettings>();
 
-            const string MOCKED_PASSWORD = "MockedPassword";
-            LMockedCipher
-                .Setup(ACipher => ACipher.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(MOCKED_PASSWORD);
+            const string mockedPassword = "MockedPassword";
+            mockedCipher
+                .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(mockedPassword);
             
-            var LSendActionResult = new ActionResult { IsSucceeded = true };
-            LMockedSmtpClientService
-                .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
-                .Returns(Task.FromResult(LSendActionResult));
+            var sendActionResult = new ActionResult { IsSucceeded = true };
+            mockedSmtpClientService
+                .Setup(client => client.Send(CancellationToken.None))
+                .Returns(Task.FromResult(sendActionResult));
 
-            var LMockedResults = new Results
+            var mockedResults = new Results
             {
                 StatusCode = HttpStatusCode.OK,
                 ContentType = new MediaTypeHeaderValue("text/plain"),
                 Content = null
             };
 
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LMockedResults);
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockedResults);
 
-            var LAddUserCommandHandler = new AddUserCommandHandler(
-                LDatabaseContext, 
-                LMockedDateTime.Object, 
-                LMockedCipher.Object,
-                LMockedSmtpClientService.Object,
-                LMockedLogger.Object,
-                LMockedTemplateService.Object,
-                LMockedCustomHttpClient.Object,
-                LMockedAzureStorage.Object,
-                LMockedApplicationPaths.Object,
-                LMockedExpirationSettings.Object
+            var addUserCommandHandler = new AddUserCommandHandler(
+                databaseContext, 
+                mockedDateTime.Object, 
+                mockedCipher.Object,
+                mockedSmtpClientService.Object,
+                mockedLogger.Object,
+                mockedTemplateService.Object,
+                mockedCustomHttpClient.Object,
+                mockedAzureStorage.Object,
+                mockedApplicationPaths.Object,
+                mockedExpirationSettings.Object
             );
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LAddUserCommandHandler.Handle(LAddUserCommand, CancellationToken.None));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY));
+            var result = await Assert.ThrowsAsync<BusinessException>(() => addUserCommandHandler.Handle(addUserCommand, CancellationToken.None));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY));
         }
     }
 }

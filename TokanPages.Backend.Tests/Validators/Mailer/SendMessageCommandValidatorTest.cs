@@ -12,7 +12,7 @@
         public void GivenAllFieldsAreCorrect_WhenSendMessage_ShouldFinishSuccessful() 
         {
             // Arrange
-            var LSendMessageCommand = new SendMessageCommand
+            var sendMessageCommand = new SendMessageCommand
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -24,18 +24,18 @@
             };
 
             // Act
-            var LValidator = new SendMessageCommandValidator();
-            var LResult = LValidator.Validate(LSendMessageCommand);
+            var validator = new SendMessageCommandValidator();
+            var result = validator.Validate(sendMessageCommand);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenFirstNameEmpty_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendMessageCommand = new SendMessageCommand
+            var sendMessageCommand = new SendMessageCommand
             {
                 FirstName = string.Empty,
                 LastName = DataUtilityService.GetRandomString(),
@@ -47,19 +47,19 @@
             };
 
             // Act
-            var LValidator = new SendMessageCommandValidator();
-            var LResult = LValidator.Validate(LSendMessageCommand);
+            var validator = new SendMessageCommandValidator();
+            var result = validator.Validate(sendMessageCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
 
         [Fact]
         public void GivenFirstNameTooLong_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendMessageCommand = new SendMessageCommand
+            var sendMessageCommand = new SendMessageCommand
             {
                 FirstName = DataUtilityService.GetRandomString(256),
                 LastName = DataUtilityService.GetRandomString(),
@@ -71,19 +71,19 @@
             };
 
             // Act
-            var LValidator = new SendMessageCommandValidator();
-            var LResult = LValidator.Validate(LSendMessageCommand);
+            var validator = new SendMessageCommandValidator();
+            var result = validator.Validate(sendMessageCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.FIRST_NAME_TOO_LONG));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.FIRST_NAME_TOO_LONG));
         }
 
         [Fact]
         public void GivenLastNameEmpty_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendMessageCommand = new SendMessageCommand
+            var sendMessageCommand = new SendMessageCommand
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = string.Empty,
@@ -95,19 +95,19 @@
             };
 
             // Act
-            var LValidator = new SendMessageCommandValidator();
-            var LResult = LValidator.Validate(LSendMessageCommand);
+            var validator = new SendMessageCommandValidator();
+            var result = validator.Validate(sendMessageCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
 
         [Fact]
         public void GivenLastNameTooLong_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendMessageCommand = new SendMessageCommand
+            var sendMessageCommand = new SendMessageCommand
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(256),
@@ -119,19 +119,19 @@
             };
 
             // Act
-            var LValidator = new SendMessageCommandValidator();
-            var LResult = LValidator.Validate(LSendMessageCommand);
+            var validator = new SendMessageCommandValidator();
+            var result = validator.Validate(sendMessageCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LAST_NAME_TOO_LONG));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LAST_NAME_TOO_LONG));
         }
 
         [Fact]
         public void GivenEmptyUserEmail_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendMessageCommand = new SendMessageCommand
+            var sendMessageCommand = new SendMessageCommand
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -143,19 +143,19 @@
             };
 
             // Act
-            var LValidator = new SendMessageCommandValidator();
-            var LResult = LValidator.Validate(LSendMessageCommand);
+            var validator = new SendMessageCommandValidator();
+            var result = validator.Validate(sendMessageCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
 
         [Fact]
         public void GivenUserEmailTooLong_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendMessageCommand = new SendMessageCommand
+            var sendMessageCommand = new SendMessageCommand
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -167,19 +167,19 @@
             };
 
             // Act
-            var LValidator = new SendMessageCommandValidator();
-            var LResult = LValidator.Validate(LSendMessageCommand);
+            var validator = new SendMessageCommandValidator();
+            var result = validator.Validate(sendMessageCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
         }
 
         [Fact]
         public void GivenEmptyEmailFrom_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendMessageCommand = new SendMessageCommand
+            var sendMessageCommand = new SendMessageCommand
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -191,19 +191,19 @@
             };
 
             // Act
-            var LValidator = new SendMessageCommandValidator();
-            var LResult = LValidator.Validate(LSendMessageCommand);
+            var validator = new SendMessageCommandValidator();
+            var result = validator.Validate(sendMessageCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
 
         [Fact]
         public void GivenTooLongEmailFrom_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendMessageCommand = new SendMessageCommand
+            var sendMessageCommand = new SendMessageCommand
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -215,19 +215,19 @@
             };
 
             // Act
-            var LValidator = new SendMessageCommandValidator();
-            var LResult = LValidator.Validate(LSendMessageCommand);
+            var validator = new SendMessageCommandValidator();
+            var result = validator.Validate(sendMessageCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
         }
 
         [Fact]
         public void GivenEmptySubject_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendMessageCommand = new SendMessageCommand
+            var sendMessageCommand = new SendMessageCommand
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -239,19 +239,19 @@
             };
 
             // Act
-            var LValidator = new SendMessageCommandValidator();
-            var LResult = LValidator.Validate(LSendMessageCommand);
+            var validator = new SendMessageCommandValidator();
+            var result = validator.Validate(sendMessageCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
 
         [Fact]
         public void GivenTooLongSubject_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendMessageCommand = new SendMessageCommand
+            var sendMessageCommand = new SendMessageCommand
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -263,19 +263,19 @@
             };
 
             // Act
-            var LValidator = new SendMessageCommandValidator();
-            var LResult = LValidator.Validate(LSendMessageCommand);
+            var validator = new SendMessageCommandValidator();
+            var result = validator.Validate(sendMessageCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.SUBJECT_TOO_LONG));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.SUBJECT_TOO_LONG));
         }
 
         [Fact]
         public void GivenEmptyMessage_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendMessageCommand = new SendMessageCommand
+            var sendMessageCommand = new SendMessageCommand
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -287,19 +287,19 @@
             };
 
             // Act
-            var LValidator = new SendMessageCommandValidator();
-            var LResult = LValidator.Validate(LSendMessageCommand);
+            var validator = new SendMessageCommandValidator();
+            var validate = validator.Validate(sendMessageCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            validate.Errors.Count.Should().Be(1);
+            validate.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
 
         [Fact]
         public void GivenTooLongMessage_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendMessageCommand = new SendMessageCommand
+            var sendMessageCommand = new SendMessageCommand
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -311,19 +311,19 @@
             };
 
             // Act
-            var LValidator = new SendMessageCommandValidator();
-            var LResult = LValidator.Validate(LSendMessageCommand);
+            var validator = new SendMessageCommandValidator();
+            var result = validator.Validate(sendMessageCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.MESSAGE_TOO_LONG));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.MESSAGE_TOO_LONG));
         }
 
         [Fact]
         public void GivenEmptyEmailTos_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendMessageCommand = new SendMessageCommand
+            var sendMessageCommand = new SendMessageCommand
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -335,12 +335,12 @@
             };
 
             // Act
-            var LValidator = new SendMessageCommandValidator();
-            var LResult = LValidator.Validate(LSendMessageCommand);
+            var validator = new SendMessageCommandValidator();
+            var result = validator.Validate(sendMessageCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
     }
 }

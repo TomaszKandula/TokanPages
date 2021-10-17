@@ -25,18 +25,18 @@ namespace TokanPages.Backend.Tests.Services
         public void GivenValidObject_WhenInvokeSerialize_ShouldSucceed()
         {
             // Arrange
-            var LTestObject = new TestClass
+            var testObject = new TestClass
             {
                 Key1 = "Value1",
                 Key2 = "Value2"
             };
             
             // Act
-            var LJsonSerializer = new JsonSerializer();
-            var LResult = LJsonSerializer.Serialize(LTestObject);
+            var jsonSerializer = new JsonSerializer();
+            var result = jsonSerializer.Serialize(testObject);
 
             // Assert
-            LResult.Should().Be(ValidJsonString);
+            result.Should().Be(ValidJsonString);
         }
 
         [Fact]
@@ -44,13 +44,13 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LJsonSerializer = new JsonSerializer();
-            var LResult = LJsonSerializer.Deserialize<TestClass>(ValidJsonString);
+            var jsonSerializer = new JsonSerializer();
+            var result = jsonSerializer.Deserialize<TestClass>(ValidJsonString);
 
             // Assert
-            LResult.Should().BeOfType<TestClass>();
-            LResult.Key1.Should().Be("Value1");
-            LResult.Key2.Should().Be("Value2");
+            result.Should().BeOfType<TestClass>();
+            result.Key1.Should().Be("Value1");
+            result.Key2.Should().Be("Value2");
         }
 
         [Fact]
@@ -58,11 +58,11 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LJsonSerializer = new JsonSerializer();
-            var LResult = LJsonSerializer.Deserialize<TestClass>(null);
+            var jsonSerializer = new JsonSerializer();
+            var result = jsonSerializer.Deserialize<TestClass>(null);
 
             // Assert
-            LResult.Should().BeNull();
+            result.Should().BeNull();
         }
 
         [Fact]
@@ -71,8 +71,8 @@ namespace TokanPages.Backend.Tests.Services
             // Arrange
             // Act
             // Assert
-            var LJsonSerializer = new JsonSerializer();
-            Assert.Throws<Newtonsoft.Json.JsonReaderException>(() => LJsonSerializer.Deserialize<TestClass>(InvalidJsonString));
+            var jsonSerializer = new JsonSerializer();
+            Assert.Throws<Newtonsoft.Json.JsonReaderException>(() => jsonSerializer.Deserialize<TestClass>(InvalidJsonString));
         }
 
         [Fact]
@@ -80,11 +80,11 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LJsonSerializer = new JsonSerializer();
-            var LParsed = LJsonSerializer.Parse(ValidJsonString);
+            var jsonSerializer = new JsonSerializer();
+            var parsed = jsonSerializer.Parse(ValidJsonString);
 
             // Assert
-            LParsed.Should().BeOfType<JObject>();
+            parsed.Should().BeOfType<JObject>();
         }
 
         [Fact]
@@ -93,8 +93,8 @@ namespace TokanPages.Backend.Tests.Services
             // Arrange
             // Act
             // Assert
-            var LJsonSerializer = new JsonSerializer();
-            Assert.Throws<Newtonsoft.Json.JsonReaderException>(() => LJsonSerializer.Parse(InvalidJsonString));
+            var jsonSerializer = new JsonSerializer();
+            Assert.Throws<Newtonsoft.Json.JsonReaderException>(() => jsonSerializer.Parse(InvalidJsonString));
         }
 
         [Fact]
@@ -102,71 +102,71 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LJsonSerializer = new JsonSerializer();
-            var LParsed = LJsonSerializer.Parse(string.Empty);
+            var jsonSerializer = new JsonSerializer();
+            var parsed = jsonSerializer.Parse(string.Empty);
 
             // Assert
-            LParsed.Should().BeNull();
+            parsed.Should().BeNull();
         }
 
         [Fact]
         public void GivenParsedJsonList_WhenInvokeMapObjects_ShouldReturnListOfObjects()
         {
             // Arrange
-            var LJsonSerializer = new JsonSerializer();
-            var LParsed = LJsonSerializer.Parse(ValidJsonList);
+            var jsonSerializer = new JsonSerializer();
+            var parsed = jsonSerializer.Parse(ValidJsonList);
 
             // Act
-            var LResult = LJsonSerializer.MapObjects<TestClass>(LParsed);
+            var result = jsonSerializer.MapObjects<TestClass>(parsed);
 
             // Assert
-            var LTestClasses = LResult.ToList();
-            LTestClasses.Should().HaveCount(2);
+            var testClasses = result.ToList();
+            testClasses.Should().HaveCount(2);
         }
 
         [Fact]
         public void GivenParsedJsonObject_WhenInvokeMapObjects_ShouldReturnEmptyList()
         {
             // Arrange
-            var LJsonSerializer = new JsonSerializer();
-            var LParsed = LJsonSerializer.Parse(ValidJsonString);
+            var jsonSerializer = new JsonSerializer();
+            var parsed = jsonSerializer.Parse(ValidJsonString);
 
             // Act
-            var LResult = LJsonSerializer.MapObjects<TestClass>(LParsed);
+            var result = jsonSerializer.MapObjects<TestClass>(parsed);
 
             // Assert
-            var LTestClasses = LResult.ToList();
-            LTestClasses.Should().HaveCount(0);
+            var testClasses = result.ToList();
+            testClasses.Should().HaveCount(0);
         }
 
         [Fact]
         public void GivenParsedJsonObject_WhenInvokeMapObject_ShouldSucceed()
         {
             // Arrange
-            var LJsonSerializer = new JsonSerializer();
-            var LParsed = LJsonSerializer.Parse(ValidJsonString);
+            var jsonSerializer = new JsonSerializer();
+            var parsed = jsonSerializer.Parse(ValidJsonString);
 
             // Act
-            var LResult = LJsonSerializer.MapObject<TestClass>(LParsed);
+            var result = jsonSerializer.MapObject<TestClass>(parsed);
 
             // Assert
-            LResult.Key1.Should().Be("Value1");
-            LResult.Key2.Should().Be("Value2");
+            result.Key1.Should().Be("Value1");
+            result.Key2.Should().Be("Value2");
         }
 
         [Fact]
         public void GivenParsedJsonList_WhenInvokeMapObject_ShouldReturnEmptyObject()
         {
             // Arrange
-            var LJsonSerializer = new JsonSerializer();
-            var LParsed = LJsonSerializer.Parse(ValidJsonList);
+            var jsonSerializer = new JsonSerializer();
+            var parsed = jsonSerializer.Parse(ValidJsonList);
 
             // Act
-            var LResult = LJsonSerializer.MapObject<TestClass>(LParsed);
+            var result = jsonSerializer.MapObject<TestClass>(parsed);
 
             // Assert
-            LResult.Key1.Should().BeNull();
-            LResult.Key2.Should().BeNull();
+            result.Key1.Should().BeNull();
+            result.Key2.Should().BeNull();
         }
     }
 }

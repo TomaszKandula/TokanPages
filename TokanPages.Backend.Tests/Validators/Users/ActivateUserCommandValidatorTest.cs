@@ -12,35 +12,35 @@ namespace TokanPages.Backend.Tests.Validators.Users
         public void GivenActivationId_WhenActivateUser_ShouldFinishSuccessful() 
         {
             // Arrange
-            var LActivateUserCommand = new ActivateUserCommand 
+            var activateUserCommand = new ActivateUserCommand 
             { 
                 ActivationId = Guid.NewGuid()
             };
 
             // Act
-            var LActivateUserCommandValidator = new ActivateUserCommandValidator();
-            var LResults = LActivateUserCommandValidator.Validate(LActivateUserCommand);
+            var activateUserCommandValidator = new ActivateUserCommandValidator();
+            var result = activateUserCommandValidator.Validate(activateUserCommand);
 
             // Assert
-            LResults.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenEmptyActivationId_WhenActivateUser_ShouldThrowError() 
         {
             // Arrange
-            var LActivateUserCommand = new ActivateUserCommand 
+            var activateUserCommand = new ActivateUserCommand 
             { 
                 ActivationId = Guid.Empty
             };
 
             // Act
-            var LActivateUserCommandValidator = new ActivateUserCommandValidator();
-            var LResults = LActivateUserCommandValidator.Validate(LActivateUserCommand);
+            var activateUserCommandValidator = new ActivateUserCommandValidator();
+            var result = activateUserCommandValidator.Validate(activateUserCommand);
 
             // Assert
-            LResults.Errors.Count.Should().Be(1);
-            LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
     }
 }

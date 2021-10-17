@@ -1,12 +1,13 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Users
 {
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Domain.Entities;
     using Core.Exceptions;
     using Cqrs.Handlers.Commands.Users;
-    using FluentAssertions;
-    using Xunit;
 
     public class RemoveUserCommandHandlerTest : TestBase
     {
@@ -14,7 +15,7 @@
         public async Task GivenCorrectId_WhenRemoveUser_ShouldRemoveEntity() 
         {
             // Arrange
-            var LUsers = new TokanPages.Backend.Domain.Entities.Users 
+            var users = new Users 
             { 
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
@@ -27,34 +28,34 @@
                 CryptedPassword = DataUtilityService.GetRandomString()
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LRemoveUserCommand = new RemoveUserCommand { Id = LUsers.Id };
-            var LRemoveUserCommandHandler = new RemoveUserCommandHandler(LDatabaseContext);
+            var removeUserCommand = new RemoveUserCommand { Id = users.Id };
+            var removeUserCommandHandler = new RemoveUserCommandHandler(databaseContext);
 
             // Act
-            await LRemoveUserCommandHandler.Handle(LRemoveUserCommand, CancellationToken.None);
+            await removeUserCommandHandler.Handle(removeUserCommand, CancellationToken.None);
 
             // Assert
-            var LAssertDbContext = GetTestDatabaseContext();
-            var LResults = await LAssertDbContext.Users.FindAsync(LRemoveUserCommand.Id);
-            LResults.Should().BeNull();
+            var assertDbContext = GetTestDatabaseContext();
+            var result = await assertDbContext.Users.FindAsync(removeUserCommand.Id);
+            result.Should().BeNull();
         }
 
         [Fact]
         public async Task GivenIncorrectId_WhenRemoveUser_ShouldThrowError()
         {
             // Arrange
-            var LDatabaseContext = GetTestDatabaseContext();
-            var LRemoveUserCommand = new RemoveUserCommand { Id = Guid.Parse("275c1659-ebe2-44ca-b912-b93b1861a9fb") };
-            var LRemoveUserCommandHandler = new RemoveUserCommandHandler(LDatabaseContext);
+            var databaseContext = GetTestDatabaseContext();
+            var removeUserCommand = new RemoveUserCommand { Id = Guid.Parse("275c1659-ebe2-44ca-b912-b93b1861a9fb") };
+            var removeUserCommandHandler = new RemoveUserCommandHandler(databaseContext);
 
             // Act
             // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
-                => LRemoveUserCommandHandler.Handle(LRemoveUserCommand, CancellationToken.None));
+                => removeUserCommandHandler.Handle(removeUserCommand, CancellationToken.None));
         }
     }
 }
