@@ -94,11 +94,7 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
 
         public async Task UploadContent(string content, string destinationPath, CancellationToken cancellationToken)
         {
-            if (string.IsNullOrEmpty(content))
-                throw new ArgumentException($"Argument '{nameof(content)}' cannot be null or empty.");
-            
-            if (string.IsNullOrEmpty(destinationPath))
-                throw new ArgumentException($"Argument '{nameof(destinationPath)}' cannot be null or empty.");
+            VerifyUploadContentArguments(content, destinationPath);
             
             var toUpload = content;
             if (!content.IsBase64String())
@@ -115,6 +111,15 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
             {
                 throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), exception.Message);
             }
+        }
+
+        private static void VerifyUploadContentArguments(string content, string destinationPath)
+        {
+            if (string.IsNullOrEmpty(content))
+                throw new ArgumentException($"Argument '{nameof(content)}' cannot be null or empty.");
+            
+            if (string.IsNullOrEmpty(destinationPath))
+                throw new ArgumentException($"Argument '{nameof(destinationPath)}' cannot be null or empty.");
         }
     }
 }
