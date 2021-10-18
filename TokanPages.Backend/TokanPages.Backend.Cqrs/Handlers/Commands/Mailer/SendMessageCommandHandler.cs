@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Shared;
+    using Database;
     using SmtpClient;
     using Core.Logger;
     using Storage.Models;
@@ -18,8 +19,6 @@
 
     public class SendMessageCommandHandler : TemplateHandler<SendMessageCommand, Unit>
     {
-        private readonly ILogger _logger;
-
         private readonly ICustomHttpClient _customHttpClient;
 
         private readonly ISmtpClientService _smtpClientService;
@@ -30,10 +29,10 @@
         
         private readonly AzureStorage _azureStorage;
         
-        public SendMessageCommandHandler(ILogger logger, ICustomHttpClient customHttpClient, ISmtpClientService smtpClientService, 
-            ITemplateService templateService, IDateTimeService dateTimeService, AzureStorage azureStorage)
+        public SendMessageCommandHandler(DatabaseContext databaseContext, ILogger logger, 
+            ICustomHttpClient customHttpClient, ISmtpClientService smtpClientService, ITemplateService templateService, 
+            IDateTimeService dateTimeService, AzureStorage azureStorage) : base(databaseContext, logger)
         {
-            _logger = logger;
             _customHttpClient = customHttpClient;
             _smtpClientService = smtpClientService;
             _templateService = templateService;
@@ -57,7 +56,7 @@
             };
 
             var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.ContactForm}";
-            _logger.LogInformation($"Getting email template from URL: {url}.");
+            Logger.LogInformation($"Getting email template from URL: {url}.");
 
             var configuration = new Configuration { Url = url, Method = "GET" };
             var results = await _customHttpClient.Execute(configuration, cancellationToken);

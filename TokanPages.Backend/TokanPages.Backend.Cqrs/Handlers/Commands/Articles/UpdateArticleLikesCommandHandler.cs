@@ -6,6 +6,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     using Microsoft.EntityFrameworkCore;
     using Shared;
     using Database;
+    using Core.Logger;
     using Core.Exceptions;
     using Core.Extensions;
     using Shared.Resources;
@@ -14,19 +15,17 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
     public class UpdateArticleLikesCommandHandler : TemplateHandler<UpdateArticleLikesCommand, Unit>
     {
-        private readonly DatabaseContext _databaseContext;
-
         private readonly IUserServiceProvider _userServiceProvider;
         
-        public UpdateArticleLikesCommandHandler(DatabaseContext databaseContext, IUserServiceProvider userServiceProvider)
+        public UpdateArticleLikesCommandHandler(DatabaseContext databaseContext, ILogger logger, 
+            IUserServiceProvider userServiceProvider) : base(databaseContext, logger)
         {
-            _databaseContext = databaseContext;
             _userServiceProvider = userServiceProvider;
         }
 
         public override async Task<Unit> Handle(UpdateArticleLikesCommand request, CancellationToken cancellationToken)
         {
-            var articles = await _databaseContext.Articles
+            var articles = await DatabaseContext.Articles
                 .Where(articles => articles.Id == request.Id)
                 .ToListAsync(cancellationToken);
 
@@ -36,7 +35,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             var userId = await _userServiceProvider.GetUserId();
             var isAnonymousUser = userId == null;
             
-            var articleLikes = await _databaseContext.ArticleLikes
+            var articleLikes = await DatabaseContext.ArticleLikes
                 .Where(likes => likes.ArticleId == request.Id)
                 .WhereIfElse(isAnonymousUser,
                     likes => likes.IpAddress == _userServiceProvider.GetRequestIpAddress(),
@@ -52,7 +51,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 UpdateCurrentArticleLikes(isAnonymousUser, articleLikes.First(), request.AddToLikes);
             }
 
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
         }
         
@@ -70,7 +69,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                 LikeCount = request.AddToLikes > likesLimit ? likesLimit : request.AddToLikes
             };
             
-            await _databaseContext.ArticleLikes.AddAsync(entity, cancellationToken);
+            await DatabaseContext.ArticleLikes.AddAsync(entity, cancellationToken);
         }
 
         private static void UpdateCurrentArticleLikes(bool isAnonymousUser, Domain.Entities.ArticleLikes entity, int likesToBeAdded)

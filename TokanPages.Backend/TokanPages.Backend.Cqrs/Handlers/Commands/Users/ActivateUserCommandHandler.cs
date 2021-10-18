@@ -12,22 +12,17 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     
     public class ActivateUserCommandHandler : TemplateHandler<ActivateUserCommand, Unit>
     {
-        private readonly DatabaseContext _databaseContext;
-
         private readonly IDateTimeService _dateTimeService;
-        
-        private readonly ILogger _logger;
-        
-        public ActivateUserCommandHandler(DatabaseContext databaseContext, IDateTimeService dateTimeService, ILogger logger)
+       
+        public ActivateUserCommandHandler(DatabaseContext databaseContext, ILogger logger, 
+            IDateTimeService dateTimeService) : base(databaseContext, logger)
         {
-            _databaseContext = databaseContext;
             _dateTimeService = dateTimeService;
-            _logger = logger;
         }
 
         public override async Task<Unit> Handle(ActivateUserCommand request, CancellationToken cancellationToken)
         {
-            var users = await _databaseContext.Users
+            var users = await DatabaseContext.Users
                 .SingleOrDefaultAsync(users => users.ActivationId == request.ActivationId, cancellationToken);
 
             if (users == null)
@@ -40,8 +35,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             users.ActivationId = null;
             users.ActivationIdEnds = null;
 
-            _logger.LogInformation($"User account has been activated, user ID: {users.Id}");
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            Logger.LogInformation($"User account has been activated, user ID: {users.Id}");
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
 
             return await Task.FromResult(Unit.Value);
         }

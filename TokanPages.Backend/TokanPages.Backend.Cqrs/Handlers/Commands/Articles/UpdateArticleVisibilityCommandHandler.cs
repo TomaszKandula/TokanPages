@@ -5,6 +5,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Logger;
     using Core.Exceptions;
     using Shared.Resources;
     using Identity.Authorization;
@@ -13,13 +14,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
     public class UpdateArticleVisibilityCommandHandler : TemplateHandler<UpdateArticleVisibilityCommand, Unit>
     {
-        private readonly DatabaseContext _databaseContext;
-
         private readonly IUserServiceProvider _userServiceProvider;
         
-        public UpdateArticleVisibilityCommandHandler(DatabaseContext databaseContext, IUserServiceProvider userServiceProvider)
+        public UpdateArticleVisibilityCommandHandler(DatabaseContext databaseContext, ILogger logger, 
+            IUserServiceProvider userServiceProvider) : base(databaseContext, logger)
         {
-            _databaseContext = databaseContext;
             _userServiceProvider = userServiceProvider;
         }
         
@@ -31,7 +30,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             if (!canPublishArticles)
                 throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
-            var articles = await _databaseContext.Articles
+            var articles = await DatabaseContext.Articles
                 .Where(articles => articles.Id == request.Id)
                 .ToListAsync(cancellationToken);
 
@@ -41,7 +40,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             var currentArticle = articles.First();
             currentArticle.IsPublished = request.IsPublished;
 
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
         }
     }

@@ -5,18 +5,17 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Logger;
     using Core.Exceptions;
     using Shared.Resources;
 
     public class GetUserQueryHandler : TemplateHandler<GetUserQuery, GetUserQueryResult>
     {
-        private readonly DatabaseContext _databaseContext;
-
-        public GetUserQueryHandler(DatabaseContext databaseContext) => _databaseContext = databaseContext;
+        public GetUserQueryHandler(DatabaseContext databaseContext, ILogger logger) : base(databaseContext, logger) { }
 
         public override async Task<GetUserQueryResult> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
-            var currentUser = await _databaseContext.Users
+            var currentUser = await DatabaseContext.Users
                 .AsNoTracking()
                 .Where(users => users.Id == request.Id)
                 .Select(users => new GetUserQueryResult

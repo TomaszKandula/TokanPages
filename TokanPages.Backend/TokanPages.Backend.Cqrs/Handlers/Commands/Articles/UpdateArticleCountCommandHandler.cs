@@ -6,6 +6,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Logger;
     using Domain.Entities;
     using Core.Exceptions;
     using Shared.Resources;
@@ -13,19 +14,16 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
     public class UpdateArticleCountCommandHandler : TemplateHandler<UpdateArticleCountCommand, Unit>
     {
-        private readonly DatabaseContext _databaseContext;
-
         private readonly IUserServiceProvider _userServiceProvider;
 
-        public UpdateArticleCountCommandHandler(DatabaseContext databaseContext, IUserServiceProvider userServiceProvider)
+        public UpdateArticleCountCommandHandler(DatabaseContext databaseContext, ILogger logger, IUserServiceProvider userServiceProvider) : base(databaseContext, logger)
         {
-            _databaseContext = databaseContext;
             _userServiceProvider = userServiceProvider;
         }
 
         public override async Task<Unit> Handle(UpdateArticleCountCommand request, CancellationToken cancellationToken)
         {
-            var articles = await _databaseContext.Articles
+            var articles = await DatabaseContext.Articles
                 .Where(articles => articles.Id == request.Id)
                 .ToListAsync(cancellationToken);
 
@@ -38,7 +36,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             var userId = await _userServiceProvider.GetUserId();
             if (userId != null)
             {
-                var readCounts = await _databaseContext.ArticleCounts
+                var readCounts = await DatabaseContext.ArticleCounts
                     .Where(counts => counts.UserId == userId && counts.ArticleId == request.Id)
                     .SingleOrDefaultAsync(cancellationToken);
 
@@ -56,11 +54,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
                         IpAddress = ipAddress,
                         ReadCount = 1
                     };
-                    await _databaseContext.ArticleCounts.AddAsync(articleCount, cancellationToken);
+                    await DatabaseContext.ArticleCounts.AddAsync(articleCount, cancellationToken);
                 }
             }
 
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
         }
     }

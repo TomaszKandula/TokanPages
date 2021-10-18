@@ -5,19 +5,17 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Logger;
     using Core.Exceptions;
     using Shared.Resources;
 
     public class GetSubscriberQueryHandler : TemplateHandler<GetSubscriberQuery, GetSubscriberQueryResult>
     {
-        private readonly DatabaseContext _databaseContext;
-
-        public GetSubscriberQueryHandler(DatabaseContext databaseContext) 
-            => _databaseContext = databaseContext;
+        public GetSubscriberQueryHandler(DatabaseContext databaseContext, ILogger logger) : base(databaseContext, logger) { }
 
         public override async Task<GetSubscriberQueryResult> Handle(GetSubscriberQuery request, CancellationToken cancellationToken) 
         {
-            var currentSubscriber = await _databaseContext.Subscribers
+            var currentSubscriber = await DatabaseContext.Subscribers
                 .AsNoTracking()
                 .Where(subscribers => subscribers.Id == request.Id)
                 .Select(subscribers => new GetSubscriberQueryResult 

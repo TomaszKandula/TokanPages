@@ -6,16 +6,15 @@
     using System.Collections.Generic;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Logger;
 
     public class GetAllSubscribersQueryHandler : TemplateHandler<GetAllSubscribersQuery, IEnumerable<GetAllSubscribersQueryResult>>
     {
-        private readonly DatabaseContext _databaseContext;
-
-        public GetAllSubscribersQueryHandler(DatabaseContext databaseContext) => _databaseContext = databaseContext;
+        public GetAllSubscribersQueryHandler(DatabaseContext databaseContext, ILogger logger) : base(databaseContext, logger) { }
 
         public override async Task<IEnumerable<GetAllSubscribersQueryResult>> Handle(GetAllSubscribersQuery request, CancellationToken cancellationToken) 
         {
-            var subscribers = await _databaseContext.Subscribers
+            var subscribers = await DatabaseContext.Subscribers
                 .AsNoTracking()
                 .Select(subscribers => new GetAllSubscribersQueryResult 
                 { 

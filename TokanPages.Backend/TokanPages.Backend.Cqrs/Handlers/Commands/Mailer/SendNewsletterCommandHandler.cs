@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Shared;
+    using Database;
     using SmtpClient;
     using Core.Logger;
     using Shared.Models;
@@ -17,8 +18,6 @@
 
     public class SendNewsletterCommandHandler : TemplateHandler<SendNewsletterCommand, Unit>
     {
-        private readonly ILogger _logger;
-
         private readonly ICustomHttpClient _customHttpClient;
         
         private readonly ISmtpClientService _smtpClientService;
@@ -29,10 +28,10 @@
         
         private readonly ApplicationPaths _applicationPaths;
 
-        public SendNewsletterCommandHandler(ILogger logger, ICustomHttpClient customHttpClient, ISmtpClientService smtpClientService, 
-            ITemplateService templateService, AzureStorage azureStorage, ApplicationPaths applicationPaths)
+        public SendNewsletterCommandHandler(DatabaseContext databaseContext, ILogger logger, 
+            ICustomHttpClient customHttpClient, ISmtpClientService smtpClientService, ITemplateService templateService, 
+            AzureStorage azureStorage, ApplicationPaths applicationPaths) : base(databaseContext, logger)
         {
-            _logger = logger;
             _customHttpClient = customHttpClient;
             _smtpClientService = smtpClientService;
             _templateService = templateService;
@@ -45,8 +44,8 @@
             var updateSubscriberBaseLink = _applicationPaths.DeploymentOrigin + _applicationPaths.UpdateSubscriberPath;
             var unsubscribeBaseLink = _applicationPaths.DeploymentOrigin + _applicationPaths.UnsubscribePath;
 
-            _logger.LogInformation($"Update subscriber base URL: {updateSubscriberBaseLink}.");
-            _logger.LogInformation($"Unsubscribe base URL: {unsubscribeBaseLink}.");
+            Logger.LogInformation($"Get update subscriber base URL: {updateSubscriberBaseLink}.");
+            Logger.LogInformation($"Get unsubscribe base URL: {unsubscribeBaseLink}.");
             
             foreach (var subscriber in request.SubscriberInfo)
             {
@@ -65,7 +64,7 @@
                 };
 
                 var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.Newsletter}";
-                _logger.LogInformation($"Getting newsletter template from URL: {url}.");
+                Logger.LogInformation($"Getting newsletter template from URL: {url}.");
                 
                 var configuration = new Configuration { Url = url, Method = "GET" };
                 var results = await _customHttpClient.Execute(configuration, cancellationToken);

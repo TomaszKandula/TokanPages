@@ -6,25 +6,24 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Logger;
     using Core.Exceptions;
     using Shared.Resources;
     using Core.Utilities.DateTimeService;
 
     public class AddSubscriberCommandHandler : TemplateHandler<AddSubscriberCommand, Guid>
     {
-        private readonly DatabaseContext _databaseContext;
-        
         private readonly IDateTimeService _dateTimeService;
         
-        public AddSubscriberCommandHandler(DatabaseContext databaseContext, IDateTimeService dateTimeService) 
+        public AddSubscriberCommandHandler(DatabaseContext databaseContext, ILogger logger, 
+            IDateTimeService dateTimeService) : base(databaseContext, logger)
         {
-            _databaseContext = databaseContext;
             _dateTimeService = dateTimeService;
         }
 
         public override async Task<Guid> Handle(AddSubscriberCommand request, CancellationToken cancellationToken) 
         {
-            var emailCollection = await _databaseContext.Subscribers
+            var emailCollection = await DatabaseContext.Subscribers
                 .AsNoTracking()
                 .Where(subscribers => subscribers.Email == request.Email)
                 .ToListAsync(cancellationToken);
@@ -41,8 +40,8 @@
                 Registered = _dateTimeService.Now
             };
 
-            await _databaseContext.Subscribers.AddAsync(newSubscriber, cancellationToken);
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await DatabaseContext.Subscribers.AddAsync(newSubscriber, cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(newSubscriber.Id);
         }
     }

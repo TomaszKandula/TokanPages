@@ -6,6 +6,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Microsoft.EntityFrameworkCore;
     using Shared;
     using Database;
+    using Core.Logger;
     using Shared.Models;
     using Domain.Entities;
     using Core.Exceptions;
@@ -15,18 +16,15 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
     public class ReAuthenticateUserCommandHandler : TemplateHandler<ReAuthenticateUserCommand, ReAuthenticateUserCommandResult>
     {
-        private readonly DatabaseContext _databaseContext;
-        
         private readonly IDateTimeService _dateTimeService;
 
         private readonly IUserServiceProvider _userServiceProvider;
 
         private readonly IdentityServer _identityServer;
 
-        public ReAuthenticateUserCommandHandler(DatabaseContext databaseContext, IDateTimeService dateTimeService, 
-            IUserServiceProvider userServiceProvider, IdentityServer identityServer)
+        public ReAuthenticateUserCommandHandler(DatabaseContext databaseContext, ILogger logger, IDateTimeService dateTimeService, 
+            IUserServiceProvider userServiceProvider, IdentityServer identityServer) : base(databaseContext, logger)
         {
-            _databaseContext = databaseContext;
             _dateTimeService = dateTimeService;
             _userServiceProvider = userServiceProvider;
             _identityServer = identityServer;
@@ -38,7 +36,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             if (string.IsNullOrEmpty(refreshTokenFromRequest))
                 throw MissingRefreshTokenException;
 
-            var userRefreshTokens = await _databaseContext.UserRefreshTokens
+            var userRefreshTokens = await DatabaseContext.UserRefreshTokens
                 .AsNoTracking()
                 .Where(tokens => tokens.UserId == request.Id)
                 .ToListAsync(cancellationToken);
@@ -55,8 +53,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 await _userServiceProvider.RevokeDescendantRefreshTokens(userRefreshTokens, savedRefreshToken, requesterIpAddress, 
                     reason, false, cancellationToken);
                 
-                _databaseContext.UserRefreshTokens.Update(savedRefreshToken);
-                await _databaseContext.SaveChangesAsync(cancellationToken);
+                DatabaseContext.UserRefreshTokens.Update(savedRefreshToken);
+                await DatabaseContext.SaveChangesAsync(cancellationToken);
             }
 
             if (!_userServiceProvider.IsRefreshTokenActive(savedRefreshToken))
@@ -66,10 +64,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 requesterIpAddress, true, cancellationToken);
 
             await _userServiceProvider.DeleteOutdatedRefreshTokens(request.Id, false, cancellationToken);
-            await _databaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
+            await DatabaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
 
             var currentDateTime = _dateTimeService.Now;
-            var currentUser = await _databaseContext.Users.SingleAsync(users => users.Id == request.Id, cancellationToken);
+            var currentUser = await DatabaseContext.Users.SingleAsync(users => users.Id == request.Id, cancellationToken);
             var ipAddress = _userServiceProvider.GetRequestIpAddress();
             var tokenExpires = _dateTimeService.Now.AddMinutes(_identityServer.WebTokenExpiresIn);
             var userToken = await _userServiceProvider.GenerateUserToken(currentUser, tokenExpires, cancellationToken);
@@ -90,8 +88,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 Command = nameof(ReAuthenticateUserCommand)
             };
 
-            await _databaseContext.UserTokens.AddAsync(newUserToken, cancellationToken);
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await DatabaseContext.UserTokens.AddAsync(newUserToken, cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
 
             return new ReAuthenticateUserCommandResult
             {

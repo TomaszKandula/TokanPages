@@ -4,6 +4,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Database;
+    using Core.Logger;
     using Core.Exceptions;
     using Shared.Resources;
     using Services.UserServiceProvider;
@@ -12,18 +13,15 @@
 
     public class AddArticleCommandHandler : TemplateHandler<AddArticleCommand, Guid>
     {
-        private readonly DatabaseContext _databaseContext;
-        
         private readonly IUserServiceProvider _userServiceProvider;
         
         private readonly IDateTimeService _dateTimeService;
         
         private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
         
-        public AddArticleCommandHandler(DatabaseContext databaseContext, IUserServiceProvider userServiceProvider, 
-            IDateTimeService dateTimeService, IAzureBlobStorageFactory azureBlobStorageFactory) 
+        public AddArticleCommandHandler(DatabaseContext databaseContext, ILogger logger, IUserServiceProvider userServiceProvider, 
+            IDateTimeService dateTimeService, IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, logger)
         {
-            _databaseContext = databaseContext;
             _userServiceProvider = userServiceProvider;
             _dateTimeService = dateTimeService;
             _azureBlobStorageFactory = azureBlobStorageFactory;
@@ -46,8 +44,8 @@
                 UserId = (Guid) userId
             };
 
-            await _databaseContext.Articles.AddAsync(newArticle, cancellationToken);
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await DatabaseContext.Articles.AddAsync(newArticle, cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
 
             var azureBlob = _azureBlobStorageFactory.Create();
             var textDestinationPath = $"content\\articles\\{newArticle.Id}\\text.json";
