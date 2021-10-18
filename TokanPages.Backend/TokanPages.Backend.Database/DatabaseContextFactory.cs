@@ -18,9 +18,9 @@
         /// This method requires connection string defined in either AppSettings.json (linked)
         /// or User Secret that is referenced in project file (user secret file can be shared between projects).
         /// </summary>
-        /// <param name="arguments"></param>
+        /// <param name="args"></param>
         /// <returns></returns>
-        public DatabaseContext CreateDbContext(string[] arguments)
+        public DatabaseContext CreateDbContext(string[] args)
         {
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
             var builder = new ConfigurationBuilder()

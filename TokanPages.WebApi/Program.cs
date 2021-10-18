@@ -17,12 +17,12 @@ namespace TokanPages.WebApi
         private static readonly bool FIsDevelopment 
             = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Development;
         
-        public static int Main(string[] arguments)
+        public static int Main(string[] args)
         {
             try
             {
                 Log.Information("Starting WebHost...");
-                CreateWebHostBuilder(arguments)
+                CreateWebHostBuilder(args)
                     .Build()
                     .MigrateDatabase()
                     .Run();
@@ -39,9 +39,9 @@ namespace TokanPages.WebApi
             }
         }
 
-        private static IWebHostBuilder CreateWebHostBuilder(string[] arguments)
+        private static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
-            return WebHost.CreateDefaultBuilder(arguments)
+            return WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .UseSerilog((context, config) =>
                 {
