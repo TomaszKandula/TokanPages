@@ -15,14 +15,8 @@ describe("Verify helper methods.", () =>
     {  
         console.debug(`Called 'localStorage.setItem' with 'key' = ${key} and 'value' = ${value}.`);
     });
-    
-    Storage.prototype.getItem = jest.fn((key: string) => 
-    { 
-        console.debug(`Called 'localStorage.getItem' with 'key' argument: ${key}.`);
-        return "{ \"result\": 0 }";
-    });
-    
-    test("Should convert object props to an array of fields values.", () => 
+        
+    it("Given object with properties. When ConvertPropsToFields. Should return an array of fields values.", () => 
     {
         // Arrange
         const testObject = 
@@ -42,23 +36,32 @@ describe("Verify helper methods.", () =>
         );
     });
 
-    test("Should render HTML line with given HTML tag or return whitespace for undefined input.", () => 
+    it("Given HTML tag. When HtmlRenderLine. Should render HTML line.", () => 
     {
         // Arrange
         const testTag: string = "li";
         const testItem1: string = "This is test item";
-        const testItem2 = undefined;
     
         const expectation1: string = "<li>This is test item</li>";
-        const expectation2 = " ";
     
         // Act
         // Assert
         expect(helpers.HtmlRenderLine(testTag, testItem1)).toBe(expectation1);
-        expect(helpers.HtmlRenderLine(testTag, testItem2)).toBe(expectation2);    
     });
 
-    test("Should render multiple lines of HTML code with given tag.", () => 
+    it("Given HTML tag and undefined text. When HtmlRenderLine. Should return whitespace.", () => 
+    {
+        // Arrange
+        const testTag: string = "li";
+        const testItem2 = undefined;
+        const expectation2 = " ";
+    
+        // Act
+        // Assert
+        expect(helpers.HtmlRenderLine(testTag, testItem2)).toBe(expectation2);
+    });
+
+    it("Given HTML tag and array of strings. When HtmlRenderLines. Should return multiple lines of HTML code.", () => 
     {    
         // Arrange
         const testArray: string[] = ["ValueA", "ValueB"];    
@@ -71,7 +74,7 @@ describe("Verify helper methods.", () =>
         expect(helpers.HtmlRenderLines(testArray, testTag)).toBe(expectation);
     });
 
-    test("Should return 'n/a' if the same is given.", () =>
+    it("Given 'n/a' value. When FormatDateTime. Should return 'n/a'.", () =>
     {
         // Arrange
         const sourceDateTime: string = "n/a";
@@ -82,7 +85,7 @@ describe("Verify helper methods.", () =>
         expect(helpers.FormatDateTime(sourceDateTime, true)).toBe(expectation);
     });
     
-    test("Should return 'n/a' if empty string is given.", () =>
+    it("Given empty string. When FormatDateTime. Should return 'n/a'.", () =>
     {
         // Arrange
         const sourceDateTime: string = "";
@@ -93,7 +96,7 @@ describe("Verify helper methods.", () =>
         expect(helpers.FormatDateTime(sourceDateTime, true)).toBe(expectation);
     });
 
-    test("Should return 'n/a' if whitespace is given.", () =>
+    it("Given whitespace. When FormatDateTime. Should return 'n/a'.", () =>
     {
         // Arrange
         const sourceDateTime: string = " ";
@@ -104,7 +107,7 @@ describe("Verify helper methods.", () =>
         expect(helpers.FormatDateTime(sourceDateTime, true)).toBe(expectation);
     });
 
-    test("Should return formatted date time: 01/10/2020, 12:15 PM", () =>
+    it("Given unformatted date and time. When FormatDateTime. Should return formatted date time.", () =>
     {
         // Arrange
         const sourceDateTime: string = "2020-01-10T12:15:15";
@@ -115,7 +118,7 @@ describe("Verify helper methods.", () =>
         expect(helpers.FormatDateTime(sourceDateTime, true)).toBe(expectation);
     });
 
-    test("Should return formatted date time: 01/10/2020", () =>
+    it("Given unformatted date and time. When FormatDateTime wihtout time. Should return formatted date only.", () =>
     {
         // Arrange
         const sourceDateTime: string = "2020-01-10T12:15:15";
@@ -126,7 +129,7 @@ describe("Verify helper methods.", () =>
         expect(helpers.FormatDateTime(sourceDateTime, false)).toBe(expectation);
     });
 
-    test("Should convert TextObject to raw Text.", () => 
+    it("Given valid JSON object with HTML type. When TextObjectToRawText. Should return string.", () => 
     {
         // Arrange
         const jsonObject: string = `
@@ -151,7 +154,54 @@ describe("Verify helper methods.", () =>
         expect(helpers.TextObjectToRawText(textObject)).toBe(expectation);
     });
 
-    test("Should return proper number of words in text.", () => 
+    it("Given valid JSON object without HTML type. When TextObjectToRawText. Should return empty string.", () => 
+    {
+        // Arrange
+        const jsonObject: string = `
+        {
+            "items": 
+            [
+                { 
+                    "id": "2d844a70-36d1-4cac-a5a2-89fb01b1c52c",
+                    "type": "image",
+                    "value": "<img src='http://localhost:5000/wallpaper.jpg' alt='' />",
+                    "prop": "",
+                    "text": "" 
+                }
+            ]
+        }`
+
+        const textObject: ITextObject = JSON.parse(jsonObject) as ITextObject;
+
+        // Act
+        // Assert
+        expect(helpers.TextObjectToRawText(textObject)).toBe("");
+    });
+
+    it("Given undefined input. When TextObjectToRawText. Should return undefined.", () => 
+    {
+        // Arrange
+        // Act
+        // Assert
+        expect(helpers.TextObjectToRawText(undefined)).toBe(undefined);
+    });
+
+    it("Given empty JSON object. When TextObjectToRawText. Should return undefined.", () => 
+    {
+        // Arrange
+        const jsonObject: string = `
+        {
+            "items": [ ]
+        }`
+
+        const textObject: ITextObject = JSON.parse(jsonObject) as ITextObject;
+
+        // Act
+        // Assert
+        expect(helpers.TextObjectToRawText(textObject)).toBe(undefined);
+    });
+
+    it("Given text. When CountWords. Should return proper number of words in text.", () => 
     {
         // Arrange
         const rawText: string = "This is test object  We will use it for testing.";
@@ -162,7 +212,7 @@ describe("Verify helper methods.", () =>
         expect(helpers.CountWords(rawText)).toBe(expectation);        
     });
 
-    test("Should return read time for given number of words", () => 
+    it("Given number of words and words per minute. When GetReadTime. Should return read time.", () => 
     {
         // Arrange
         const wordsNumber = 700;
@@ -174,7 +224,7 @@ describe("Verify helper methods.", () =>
         expect(helpers.GetReadTime(wordsNumber, wordsPerMinute)).toBe(expectation);
     });
 
-    test("Should return translated error message", () => 
+    it("Given valid JSON object. When GetErrorMessage. Should return translated error message.", () => 
     {
         // Arrange
         const jsonObject: string = `
@@ -198,7 +248,7 @@ describe("Verify helper methods.", () =>
         expect(helpers.GetErrorMessage(textObject)).toBe(expectation);
     });
 
-    test("Should return translated error message with validation errors", () => 
+    it("Given valid JSON object with validation errors. When GetErrorMessage. Should return translated error message.", () => 
     {
         // Arrange
         const jsonObject: string = `
@@ -234,15 +284,21 @@ describe("Verify helper methods.", () =>
         expect(helpers.GetErrorMessage(textObject)).toBe(expectation);
     });
 
-    test("Should delete data from local storage if key is given.", () => 
+    it("Given key. When DelDataFromStorage. Should return true.", () => 
     {  
         // Act
         // Assert
-        expect(helpers.DelDataFromStorage("TestKey1")).toBe(true);
+        expect(helpers.DelDataFromStorage("SomeKey")).toBe(true);
+    });
+
+    it("Given no key. When DelDataFromStorage. Should return false.", () => 
+    {  
+        // Act
+        // Assert
         expect(helpers.DelDataFromStorage("")).toBe(false);
     });
 
-    test("Should write data to local storage for given key and object or array", () => 
+    it("Given input Object. When SetDataInStorage. Should return true.", () => 
     {  
         // Arrange
         const testObject = 
@@ -251,6 +307,32 @@ describe("Verify helper methods.", () =>
             text: "test message"
         };
 
+        const saveObject = helpers.SetDataInStorage(testObject, "SomeKey");
+
+        // Act
+        // Assert
+        expect(saveObject).toBe(true);
+    });
+
+    it("Given input Object and empty Key. When SetDataInStorage. Should return false.", () => 
+    {  
+        // Arrange
+        const testObject = 
+        {  
+            result: 0,
+            text: "test message"
+        };
+
+        const saveObject = helpers.SetDataInStorage(testObject, "");
+
+        // Act
+        // Assert
+        expect(saveObject).toBe(false);
+    });
+
+    it("Given input Array. When SetDataInStorage. Should return true.", () => 
+    {  
+        // Arrange
         const testArray = 
         [
             {
@@ -265,25 +347,61 @@ describe("Verify helper methods.", () =>
             }
         ];
 
-        const saveObject = helpers.SetDataInStorage(testObject, "TestKey1");
-        const saveArray = helpers.SetDataInStorage(testArray, "TestKey2");
+        const saveArray = helpers.SetDataInStorage(testArray, "SomeKey");
 
         // Act
         // Assert
-        expect(saveObject).toBe(true);
         expect(saveArray).toBe(true);
     });
 
-    test("Should read data from local storage for given key", () => 
+    it("Given item under known key. When GetDataFromStorage. Should read data from local storage.", () => 
     {
         // Arrange
-        const expectedObject = 
-        {
-            result: 0
-        }
+        Storage.prototype.getItem = jest.fn((key: string) => 
+        { 
+            console.debug(`Called 'localStorage.getItem' with 'key' argument: ${key}.`);
+            if (key !== "SomeKey") return "";
+            return "{ \"result\": 0 }";
+        });
+
+        const expectedObject = { result: 0 }
 
         // Act
         // Assert
-        expect(helpers.GetDataFromStorage("TestKey3")).toStrictEqual(expectedObject);
+        expect(helpers.GetDataFromStorage("SomeKey")).toStrictEqual(expectedObject);
+    });
+
+    it("Given item under unknown key. When GetDataFromStorage. Should return empty object.", () => 
+    {
+        // Arrange
+        Storage.prototype.getItem = jest.fn((key: string) => 
+        { 
+            console.debug(`Called 'localStorage.getItem' with 'key' argument: ${key}.`);
+            if (key !== "SomeKey") return "";
+            return "{ \"result\": 100 }";
+        });
+
+        const expectedObject = { }
+
+        // Act
+        // Assert
+        expect(helpers.GetDataFromStorage("AnotherKey")).toStrictEqual(expectedObject);
+    });
+
+    it("Given invalid item under known key. When GetDataFromStorage. Should return empty object.", () => 
+    {
+        // Arrange
+        Storage.prototype.getItem = jest.fn((key: string) => 
+        { 
+            console.debug(`Called 'localStorage.getItem' with 'key' argument: ${key}.`);
+            if (key !== "SomeKey") return "";
+            return "{ result: 'should fail' }";
+        });
+
+        const expectedObject = { }
+
+        // Act
+        // Assert
+        expect(helpers.GetDataFromStorage("SomeKey")).toStrictEqual(expectedObject);
     });
 });
