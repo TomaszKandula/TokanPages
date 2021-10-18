@@ -17,7 +17,7 @@ const Cookies = (props: IGetCookiesPromptContent): JSX.Element =>
             value: "granted", 
             days: props.content?.days,
             sameSite: "Strict",
-            secure: ""
+            secure: false
         });
     };
 
