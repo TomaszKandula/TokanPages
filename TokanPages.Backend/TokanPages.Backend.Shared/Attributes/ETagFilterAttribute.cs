@@ -29,7 +29,10 @@ namespace TokanPages.Backend.Shared.Attributes
                 _statusCodes = new[] { 200 };
         }
 
-        public void OnActionExecuting(ActionExecutingContext context) { }
+        public void OnActionExecuting(ActionExecutingContext context)
+        {
+            // Leave it empty, do not process during execution
+        }
 
         public void OnActionExecuted(ActionExecutedContext context)
         {
