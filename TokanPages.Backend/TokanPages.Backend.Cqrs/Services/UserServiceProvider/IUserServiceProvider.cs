@@ -16,7 +16,7 @@
         string GetRefreshTokenCookie(string cookieName);
 
         void SetRefreshTokenCookie(string refreshToken, int expiresIn, bool isHttpOnly = true, 
-            bool secure = true, string cookieName = Constants.CookieNames.REFRESH_TOKEN);
+            bool secure = true, string cookieName = Constants.CookieNames.RefreshToken);
 
         Task<Guid?> GetUserId();
 

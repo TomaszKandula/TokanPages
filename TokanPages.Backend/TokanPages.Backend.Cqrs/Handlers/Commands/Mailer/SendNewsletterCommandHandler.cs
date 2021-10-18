@@ -50,7 +50,7 @@
             
             foreach (var subscriber in request.SubscriberInfo)
             {
-                _smtpClientService.From = Constants.Emails.Addresses.CONTACT;
+                _smtpClientService.From = Constants.Emails.Addresses.Contact;
                 _smtpClientService.Tos = new List<string> { subscriber.Email };
                 _smtpClientService.Bccs = null;
                 _smtpClientService.Subject = request.Subject;
@@ -64,7 +64,7 @@
                     { "{UNSUBSCRIBE_LINK}", unsubscribeLink }
                 };
 
-                var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.NEWSLETTER}";
+                var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.Newsletter}";
                 _logger.LogInformation($"Getting newsletter template from URL: {url}.");
                 
                 var configuration = new Configuration { Url = url, Method = "GET" };

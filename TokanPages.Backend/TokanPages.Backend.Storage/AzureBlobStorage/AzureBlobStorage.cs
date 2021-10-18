@@ -61,7 +61,7 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
             };
         }
 
-        public async Task UploadFile(Stream sourceStream, string destinationPath, CancellationToken cancellationToken, string contentType = Constants.ContentTypes.STREAM)
+        public async Task UploadFile(Stream sourceStream, string destinationPath, CancellationToken cancellationToken, string contentType = Constants.ContentTypes.Stream)
         {
             if (string.IsNullOrEmpty(destinationPath))
                 throw new AggregateException($"Argument '{nameof(destinationPath)}' cannot be null or empty.");

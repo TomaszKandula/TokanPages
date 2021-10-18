@@ -34,7 +34,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         public override async Task<ReAuthenticateUserCommandResult> Handle(ReAuthenticateUserCommand request, CancellationToken cancellationToken)
         {
-            var refreshTokenFromRequest = _userServiceProvider.GetRefreshTokenCookie(Constants.CookieNames.REFRESH_TOKEN);
+            var refreshTokenFromRequest = _userServiceProvider.GetRefreshTokenCookie(Constants.CookieNames.RefreshToken);
             if (string.IsNullOrEmpty(refreshTokenFromRequest))
                 throw MissingRefreshTokenException;
 

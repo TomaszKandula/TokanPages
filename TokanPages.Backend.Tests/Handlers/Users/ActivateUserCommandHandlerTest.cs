@@ -28,7 +28,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 Registered = DateTimeService.Now,
-                AvatarName = Constants.Defaults.AVATAR_NAME,
+                AvatarName = Constants.Defaults.AvatarName,
                 CryptedPassword = DataUtilityService.GetRandomString(),
                 ActivationId = activationId,
                 ActivationIdEnds = DateTimeService.Now.AddMinutes(30)
@@ -69,7 +69,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 Registered = DateTimeService.Now,
-                AvatarName = Constants.Defaults.AVATAR_NAME,
+                AvatarName = Constants.Defaults.AvatarName,
                 CryptedPassword = DataUtilityService.GetRandomString(),
                 ActivationId = Guid.NewGuid(),
                 ActivationIdEnds = DateTimeService.Now.AddMinutes(30)
@@ -111,7 +111,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 Registered = DateTimeService.Now,
-                AvatarName = Constants.Defaults.AVATAR_NAME,
+                AvatarName = Constants.Defaults.AvatarName,
                 CryptedPassword = DataUtilityService.GetRandomString(),
                 ActivationId = activationId,
                 ActivationIdEnds = DateTimeService.Now.AddMinutes(-100)

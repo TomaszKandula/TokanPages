@@ -79,7 +79,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         private async Task SendNotification(string emailAddress, Guid resetId, DateTime expirationDate, CancellationToken cancellationToken)
         {
-            _smtpClientService.From = Constants.Emails.Addresses.CONTACT;
+            _smtpClientService.From = Constants.Emails.Addresses.Contact;
             _smtpClientService.Tos = new List<string> { emailAddress };
             _smtpClientService.Subject = "Reset user password";
 
@@ -91,7 +91,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 { "{EXPIRATION}", $"{expirationDate}" }
             };
 
-            var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.RESET_PASSWORD}";
+            var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.ResetPassword}";
             _logger.LogInformation($"Getting email template from URL: {url}.");
 
             var configuration = new Configuration { Url = url, Method = "GET" };

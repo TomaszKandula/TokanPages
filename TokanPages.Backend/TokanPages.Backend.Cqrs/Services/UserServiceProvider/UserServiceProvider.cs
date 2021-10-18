@@ -69,7 +69,7 @@
         }
 
         public virtual void SetRefreshTokenCookie(string refreshToken, int expiresIn, bool isHttpOnly = true, 
-            bool secure = true, string cookieName = Constants.CookieNames.REFRESH_TOKEN)
+            bool secure = true, string cookieName = Constants.CookieNames.RefreshToken)
         {
             if (string.IsNullOrEmpty(refreshToken))
                 throw ArgumentNullException;

@@ -14,7 +14,7 @@ namespace TokanPages.WebApi.Tests.MetricsController
         public async Task GivenAllFieldsAreCorrect_WhenRequestCoverage_ShouldReturnSvgFile(string project)
         {
             // Arrange
-            var request = $"{ApiBaseUrl}/?Project={project}&Metric={Constants.MetricNames.COVERAGE}";
+            var request = $"{ApiBaseUrl}/?Project={project}&Metric={Constants.MetricNames.Coverage}";
 
             // Act
             var httpClient = _webApplicationFactory.CreateClient();
@@ -65,7 +65,7 @@ namespace TokanPages.WebApi.Tests.MetricsController
         public async Task GivenMissingProjectNameWithGivenMetric_WhenRequestCoverage_ShouldThrowError()
         {
             // Arrange
-            var request = $"{ApiBaseUrl}/?Project=&Metric={Constants.MetricNames.COVERAGE}";
+            var request = $"{ApiBaseUrl}/?Project=&Metric={Constants.MetricNames.Coverage}";
 
             // Act
             var httpClient = _webApplicationFactory.CreateClient();

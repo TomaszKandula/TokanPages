@@ -22,7 +22,7 @@ namespace TokanPages.WebApi.Controllers
         protected static ContentResult GetContentResultFromResults(Results results) => new ()
         {
             StatusCode = (int)results.StatusCode,
-            ContentType = Constants.ContentTypes.TEXT_PLAIN,
+            ContentType = Constants.ContentTypes.TextPlain,
             Content = results.Content == null 
                 ? string.Empty 
                 : System.Text.Encoding.Default.GetString(results.Content)

@@ -59,8 +59,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         private async Task AddNewArticleLikes(bool isAnonymousUser, UpdateArticleLikesCommand request, CancellationToken cancellationToken)
         {
             var likesLimit = isAnonymousUser 
-                ? Constants.Likes.LIKES_LIMIT_FOR_ANONYMOUS 
-                : Constants.Likes.LIKES_LIMIT_FOR_USER;
+                ? Constants.Likes.LikesLimitForAnonymous 
+                : Constants.Likes.LikesLimitForUser;
 
             var entity = new Domain.Entities.ArticleLikes
             {
@@ -76,8 +76,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         private static void UpdateCurrentArticleLikes(bool isAnonymousUser, Domain.Entities.ArticleLikes entity, int likesToBeAdded)
         {
             var likesLimit = isAnonymousUser 
-                ? Constants.Likes.LIKES_LIMIT_FOR_ANONYMOUS 
-                : Constants.Likes.LIKES_LIMIT_FOR_USER;
+                ? Constants.Likes.LikesLimitForAnonymous 
+                : Constants.Likes.LikesLimitForUser;
             
             var sum = entity.LikeCount + likesToBeAdded;
             entity.LikeCount = sum > likesLimit ? likesLimit : sum;

@@ -43,8 +43,8 @@
 
         public override async Task<Unit> Handle(SendMessageCommand request, CancellationToken cancellationToken)
         {
-            _smtpClientService.From = Constants.Emails.Addresses.CONTACT;
-            _smtpClientService.Tos = new List<string> { Constants.Emails.Addresses.CONTACT };
+            _smtpClientService.From = Constants.Emails.Addresses.Contact;
+            _smtpClientService.Tos = new List<string> { Constants.Emails.Addresses.Contact };
             _smtpClientService.Subject = $"New user message from {request.FirstName}";
 
             var newValues = new Dictionary<string, string>
@@ -56,7 +56,7 @@
                 { "{DATE_TIME}", _dateTimeService.Now.ToString(CultureInfo.InvariantCulture) }
             };
 
-            var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.CONTACT_FORM}";
+            var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.ContactForm}";
             _logger.LogInformation($"Getting email template from URL: {url}.");
 
             var configuration = new Configuration { Url = url, Method = "GET" };

@@ -69,7 +69,7 @@
             if (users != null && (users.ActivationIdEnds == null || users.ActivationIdEnds > _dateTimeService.Now))
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-            var getNewSalt = _cipheringService.GenerateSalt(Constants.CIPHER_LOG_ROUNDS);
+            var getNewSalt = _cipheringService.GenerateSalt(Constants.CipherLogRounds);
             var getHashedPassword = _cipheringService.GetHashedPassword(request.Password, getNewSalt);
 
             var activationId = Guid.NewGuid();
@@ -95,7 +95,7 @@
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Registered = _dateTimeService.Now,
-                AvatarName = Constants.Defaults.AVATAR_NAME,
+                AvatarName = Constants.Defaults.AvatarName,
                 CryptedPassword = getHashedPassword,
                 ActivationId = activationId,
                 ActivationIdEnds = activationIdEnds
@@ -155,7 +155,7 @@
 
         private async Task SendNotification(string emailAddress, Guid activationId, DateTime activationIdEnds, CancellationToken cancellationToken)
         {
-            _smtpClientService.From = Constants.Emails.Addresses.CONTACT;
+            _smtpClientService.From = Constants.Emails.Addresses.Contact;
             _smtpClientService.Tos = new List<string> { emailAddress };
             _smtpClientService.Subject = "New account registration";
 
@@ -167,7 +167,7 @@
                 { "{EXPIRATION}", $"{activationIdEnds}" }
             };
 
-            var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.REGISTER_FORM}";
+            var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.RegisterForm}";
             _logger.LogInformation($"Getting email template from URL: {url}.");
 
             var configuration = new Configuration { Url = url, Method = "GET" };

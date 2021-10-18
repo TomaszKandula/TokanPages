@@ -28,7 +28,7 @@ namespace TokanPages.WebApi.Tests.UsersController
 
             var httpClient = _webApplicationFactory.CreateClient();
             newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
-            newRequest.Headers.Add("Cookie", $"{Constants.CookieNames.REFRESH_TOKEN}={cookieValue};");
+            newRequest.Headers.Add("Cookie", $"{Constants.CookieNames.RefreshToken}={cookieValue};");
 
             // Act
             var response = await httpClient.SendAsync(newRequest);

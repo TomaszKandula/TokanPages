@@ -33,7 +33,7 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 {
                     StatusCode = (int)HttpStatusCode.BadRequest, 
                     Content = $"Parameters '{nameof(project)}' and '{nameof(metric)}' are missing", 
-                    ContentType = Constants.ContentTypes.TEXT_PLAIN
+                    ContentType = Constants.ContentTypes.TextPlain
                 };
 
             var parameterList = new Dictionary<string, string>
@@ -49,7 +49,7 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 {
                     StatusCode = (int)HttpStatusCode.BadRequest, 
                     Content = $"Parameter '{missingParameterName}' is missing", 
-                    ContentType = Constants.ContentTypes.TEXT_PLAIN
+                    ContentType = Constants.ContentTypes.TextPlain
                 };
 
             if (!Constants.MetricNames.NameList.Contains(metric))
@@ -57,7 +57,7 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 {
                     StatusCode = (int)HttpStatusCode.BadRequest, 
                     Content = $"Parameter '{nameof(metric)}' is invalid.", 
-                    ContentType = Constants.ContentTypes.TEXT_PLAIN
+                    ContentType = Constants.ContentTypes.TextPlain
                 };
 
             var requestUrl = $"{SonarQube.Server}/api/project_badges/measure?project={project}&metric={metric}";
@@ -85,7 +85,7 @@ namespace TokanPages.WebApi.Controllers.Proxy
                 {
                     StatusCode = (int)HttpStatusCode.BadRequest, 
                     Content = $"Parameter '{nameof(project)}' is missing", 
-                    ContentType = Constants.ContentTypes.TEXT_PLAIN
+                    ContentType = Constants.ContentTypes.TextPlain
                 };
 
             var requestUrl = $"{SonarQube.Server}/api/project_badges/quality_gate?project={project}";

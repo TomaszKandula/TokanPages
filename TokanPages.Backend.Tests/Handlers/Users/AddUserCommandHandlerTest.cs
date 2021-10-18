@@ -139,7 +139,7 @@
             result[0].IsActivated.Should().BeFalse();
             result[0].LastLogged.Should().BeNull();
             result[0].LastUpdated.Should().BeNull();
-            result[0].AvatarName.Should().Be(Constants.Defaults.AVATAR_NAME);
+            result[0].AvatarName.Should().Be(Constants.Defaults.AvatarName);
             result[0].ShortBio.Should().BeNull();
             result[0].CryptedPassword.Should().HaveLength(mockedPassword.Length);
             result[0].ResetId.Should().BeNull();
@@ -170,7 +170,7 @@
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 Registered = DateTime.Now,
-                AvatarName = Constants.Defaults.AVATAR_NAME,
+                AvatarName = Constants.Defaults.AvatarName,
                 CryptedPassword = DataUtilityService.GetRandomString(),
                 ActivationId = Guid.NewGuid(),
                 ActivationIdEnds = oldActivationIdEnds

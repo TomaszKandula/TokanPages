@@ -12,7 +12,7 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
 
         Task<StorageStreamContent> OpenRead(string sourceFilePath, CancellationToken cancellationToken);
         
-        Task UploadFile(Stream sourceStream, string destinationPath, CancellationToken cancellationToken, string contentType = Constants.ContentTypes.STREAM);
+        Task UploadFile(Stream sourceStream, string destinationPath, CancellationToken cancellationToken, string contentType = Constants.ContentTypes.Stream);
         
         Task<string> GetFileContentType(string sourceFilePath, CancellationToken cancellationToken);
         

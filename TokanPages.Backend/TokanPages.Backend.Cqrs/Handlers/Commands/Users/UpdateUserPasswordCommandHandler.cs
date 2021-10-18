@@ -66,7 +66,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             if (resetId && _dateTimeService.Now > currentUser.ResetIdEnds)
                 throw new BusinessException(nameof(ErrorCodes.EXPIRED_RESET_ID), ErrorCodes.EXPIRED_RESET_ID);
             
-            var getNewSalt = _cipheringService.GenerateSalt(Constants.CIPHER_LOG_ROUNDS);
+            var getNewSalt = _cipheringService.GenerateSalt(Constants.CipherLogRounds);
             var getHashedPassword = _cipheringService.GetHashedPassword(request.NewPassword, getNewSalt);
             
             currentUser.ResetId = null;

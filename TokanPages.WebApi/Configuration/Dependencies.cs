@@ -124,7 +124,7 @@
                 options.BaseAddress = new Uri(environment.IsDevelopment() 
                     ? applicationPaths.DevelopmentOrigin 
                     : applicationPaths.DeploymentOrigin);
-                options.DefaultRequestHeaders.Add("Accept", Constants.ContentTypes.JSON);
+                options.DefaultRequestHeaders.Add("Accept", Constants.ContentTypes.Json);
                 options.Timeout = TimeSpan.FromMinutes(5);
                 options.DefaultRequestHeaders.ConnectionClose = true;
             }).AddPolicyHandler(Handlers.RetryPolicyHandler());
