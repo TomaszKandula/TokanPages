@@ -10,53 +10,53 @@ namespace TokanPages.WebApi.Tests.MetricsController
         [Theory]
         [InlineData("tokanpages-backend")]
         [InlineData("tokanpages-frontend")]
-        public async Task GivenProjectName_WhenRequestQualityGate_ShouldReturnSvgFile(string AProject)
+        public async Task GivenProjectName_WhenRequestQualityGate_ShouldReturnSvgFile(string project)
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/Quality/?AProject={AProject}";
+            var request = $"{ApiBaseUrl}/Quality/?Project={project}";
 
             // Act
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
         }
         
         [Fact]
         public async Task GivenInvalidProjectName_WhenRequestQualityGate_ShouldReturnSvgWithError()
         {
             // Arrange
-            const string INVALID_PROJECT_NAME = "InvalidProjectName"; 
-            var LRequest = $"{API_BASE_URL}/Quality/?AProject={INVALID_PROJECT_NAME}";
+            const string invalidProjectName = "InvalidProjectName"; 
+            var request = $"{ApiBaseUrl}/Quality/?Project={invalidProjectName}";
 
             // Act
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().Contain("Project has not been found");
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().Contain("Project has not been found");
         }
 
         [Fact]
         public async Task GivenEmptyProjectName_WhenRequestQualityGate_ShouldThrowError()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/Quality/?AProject=";
+            var request = $"{ApiBaseUrl}/Quality/?Project=";
 
             // Act
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Be("Parameter 'AProject' is missing");
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Be("Parameter 'Project' is missing");
         }
     }
 }

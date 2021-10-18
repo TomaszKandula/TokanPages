@@ -1,14 +1,14 @@
 namespace TokanPages.WebApi.Tests.ArticlesController
 {
+    using Xunit;
+    using Newtonsoft.Json;
+    using FluentAssertions;
     using System;
     using System.Net;
     using System.Threading.Tasks;
     using Backend.Shared.Resources;
     using Backend.Cqrs.Handlers.Queries.Articles;
     using Backend.Database.Initializer.Data.Articles;
-    using FluentAssertions;
-    using Newtonsoft.Json;
-    using Xunit;
 
     public partial class ArticlesControllerTest
     {
@@ -16,37 +16,37 @@ namespace TokanPages.WebApi.Tests.ArticlesController
         public async Task GivenCorrectId_WhenGetArticle_ShouldReturnEntityAsJsonObject()
         {
             // Arrange
-            var LTestUserId = Article1.Id;
-            var LRequest = $"{API_BASE_URL}/GetArticle/{LTestUserId}/";
-            var LHttpClient = FWebAppFactory.CreateClient();
+            var testUserId = Article1.Id;
+            var request = $"{ApiBaseUrl}/GetArticle/{testUserId}/";
+            var httpClient = _webApplicationFactory.CreateClient();
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
 
-            var LDeserialized = JsonConvert.DeserializeObject<GetAllArticlesQueryResult>(LContent);
-            LDeserialized.Should().NotBeNull();
+            var deserialized = JsonConvert.DeserializeObject<GetAllArticlesQueryResult>(content);
+            deserialized.Should().NotBeNull();
         }
 
         [Fact]
         public async Task GivenIncorrectId_WhenGetArticle_ShouldReturnJsonObjectWithError()
         {
             // Arrange
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LRequest = $"{API_BASE_URL}/GetArticle/{Guid.NewGuid()}/";
+            var httpClient = _webApplicationFactory.CreateClient();
+            var request = $"{ApiBaseUrl}/GetArticle/{Guid.NewGuid()}/";
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
         }
     }
 }

@@ -1,8 +1,8 @@
 namespace TokanPages.WebApi.Tests.UsersController
 {
     using Xunit;
-    using FluentAssertions;
     using Newtonsoft.Json;
+    using FluentAssertions;
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
@@ -16,49 +16,49 @@ namespace TokanPages.WebApi.Tests.UsersController
         public async Task GivenUserEmail_WhenResetUserPassword_ShouldFinishSuccessful()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/ResetUserPassword/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            var request = $"{ApiBaseUrl}/ResetUserPassword/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
-            var LPayLoad = new ResetUserPasswordDto
+            var payLoad = new ResetUserPasswordDto
             {
                 EmailAddress = User3.EmailAddress
             };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            var httpClient = _webApplicationFactory.CreateClient();
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
         }
 
         [Fact]
         public async Task GivenInvalidUserEmail_WhenResetUserPassword_ShouldThrowError()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/ResetUserPassword/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            var request = $"{ApiBaseUrl}/ResetUserPassword/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
-            var LPayLoad = new ResetUserPasswordDto
+            var payLoad = new ResetUserPasswordDto
             {
                 EmailAddress = DataUtilityService.GetRandomEmail()
             };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            var httpClient = _webApplicationFactory.CreateClient();
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.USER_DOES_NOT_EXISTS); 
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Contain(ErrorCodes.USER_DOES_NOT_EXISTS); 
         }
     }
 }

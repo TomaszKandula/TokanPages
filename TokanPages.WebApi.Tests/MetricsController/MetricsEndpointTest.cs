@@ -11,90 +11,90 @@ namespace TokanPages.WebApi.Tests.MetricsController
         [Theory]
         [InlineData("tokanpages-backend")]
         [InlineData("tokanpages-frontend")]
-        public async Task GivenAllFieldsAreCorrect_WhenRequestCoverage_ShouldReturnSvgFile(string AProject)
+        public async Task GivenAllFieldsAreCorrect_WhenRequestCoverage_ShouldReturnSvgFile(string project)
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/?AProject={AProject}&AMetric={Constants.MetricNames.COVERAGE}";
+            var request = $"{ApiBaseUrl}/?Project={project}&Metric={Constants.MetricNames.COVERAGE}";
 
             // Act
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
         }
         
         [Fact]
         public async Task GivenNoParameters_WhenRequestCoverage_ShouldThrowError()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/?AProject=&AMetric=";
+            var request = $"{ApiBaseUrl}/?Project=&Metric=";
 
             // Act
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Be("Parameters 'AProject' and 'AMetric' are missing");
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Be("Parameters 'Project' and 'Metric' are missing");
         }
 
         [Fact]
         public async Task GivenMissingMetricWithGivenProjectName_WhenRequestCoverage_ShouldThrowError()
         {
             // Arrange
-            const string PROJECT_NAME = "tokanpages-backend";
-            var LRequest = $"{API_BASE_URL}/?AProject={PROJECT_NAME}&AMetric=";
+            const string projectName = "tokanpages-backend";
+            var request = $"{ApiBaseUrl}/?Project={projectName}&Metric=";
 
             // Act
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Be("Parameter 'AMetric' is missing");
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Be("Parameter 'Metric' is missing");
         }
 
         [Fact]
         public async Task GivenMissingProjectNameWithGivenMetric_WhenRequestCoverage_ShouldThrowError()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/?AProject=&AMetric={Constants.MetricNames.COVERAGE}";
+            var request = $"{ApiBaseUrl}/?Project=&Metric={Constants.MetricNames.COVERAGE}";
 
             // Act
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Be("Parameter 'AProject' is missing");
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Be("Parameter 'Project' is missing");
         }
 
         [Fact]
         public async Task GivenProjectNameWithInvalidMetricName_WhenRequestCoverage_ShouldThrowError()
         {
             // Arrange
-            var LMetricName = DataUtilityService.GetRandomString();
-            const string PROJECT_NAME = "tokanpages-backend";
-            var LRequest = $"{API_BASE_URL}/?AProject={PROJECT_NAME}&AMetric={LMetricName}";
+            var metricName = DataUtilityService.GetRandomString();
+            const string projectName = "tokanpages-backend";
+            var request = $"{ApiBaseUrl}/?Project={projectName}&Metric={metricName}";
 
             // Act
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Be("Parameter 'AMetric' is invalid.");
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Be("Parameter 'Metric' is invalid.");
         }
     }
 }

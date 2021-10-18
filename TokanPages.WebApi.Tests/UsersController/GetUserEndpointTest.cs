@@ -1,5 +1,8 @@
 namespace TokanPages.WebApi.Tests.UsersController
 {
+    using Xunit;
+    using Newtonsoft.Json;
+    using FluentAssertions;
     using System;
     using System.Net;
     using System.Net.Http;
@@ -8,9 +11,6 @@ namespace TokanPages.WebApi.Tests.UsersController
     using Backend.Shared.Resources;
     using Backend.Cqrs.Handlers.Queries.Users;
     using Backend.Database.Initializer.Data.Users;
-    using FluentAssertions;
-    using Newtonsoft.Json;
-    using Xunit;
 
     public partial class UsersControllerTest
     {
@@ -18,72 +18,72 @@ namespace TokanPages.WebApi.Tests.UsersController
         public async Task GivenCorrectId_WhenGetUser_ShouldReturnEntityAsJsonObject() 
         {
             // Arrange
-            var LTestUserId = User1.Id;
-            var LRequest = $"{API_BASE_URL}/GetUser/{LTestUserId}/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, LRequest);
+            var testUserId = User1.Id;
+            var request = $"{ApiBaseUrl}/GetUser/{testUserId}/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Get, request);
             
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var tokenExpires = DateTime.Now.AddDays(30);
+            var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
-            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
             
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
             
-            var LDeserialized = JsonConvert.DeserializeObject<GetUserQueryResult>(LContent);
-            LDeserialized.Should().NotBeNull();
+            var deserialized = JsonConvert.DeserializeObject<GetUserQueryResult>(content);
+            deserialized.Should().NotBeNull();
         }
 
         [Fact]
         public async Task GivenCorrectIdAndInvalidJwt_WhenGetUser_ShouldReturnEntityAsJsonObject() 
         {
             // Arrange
-            var LTestUserId = User1.Id;
-            var LRequest = $"{API_BASE_URL}/GetUser/{LTestUserId}/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, LRequest);
+            var testUserId = User1.Id;
+            var request = $"{ApiBaseUrl}/GetUser/{testUserId}/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Get, request);
             
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetInvalidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var tokenExpires = DateTime.Now.AddDays(30);
+            var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
-            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
             
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.Forbidden);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.Forbidden);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().BeEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().BeEmpty();
         }
-        
+
         [Fact]
         public async Task GivenInvalidIdAndValidJwt_WhenGetUser_ShouldReturnJsonObjectWithError()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/GetUser/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, LRequest);
+            var request = $"{ApiBaseUrl}/GetUser/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Get, request);
             
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var tokenExpires = DateTime.Now.AddDays(30);
+            var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
-            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.USER_DOES_NOT_EXISTS);
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Contain(ErrorCodes.USER_DOES_NOT_EXISTS);
         }
     }
 }

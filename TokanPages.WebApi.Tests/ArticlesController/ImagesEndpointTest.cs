@@ -13,34 +13,34 @@ namespace TokanPages.WebApi.Tests.ArticlesController
         public async Task GivenCorrectId_WhenGetArticleImage_ShouldSucceed()
         {
             // Arrange
-            var LTestUserId = Article1.Id;
-            var LRequest = $"{API_BASE_URL}/images/?AId={LTestUserId}";
-            var LHttpClient = FWebAppFactory.CreateClient();
+            var testUserId = Article1.Id;
+            var request = $"{ApiBaseUrl}/images/?Id={testUserId}";
+            var httpClient = _webApplicationFactory.CreateClient();
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
         }
 
         [Fact]
         public async Task GivenIncorrectId_WhenGetArticleImage_ShouldReturnNotFound()
         {
             // Arrange
-            var LTestUserId = Guid.NewGuid();
-            var LRequest = $"{API_BASE_URL}/images/?AId={LTestUserId}";
-            var LHttpClient = FWebAppFactory.CreateClient();
+            var testUserId = Guid.NewGuid();
+            var request = $"{ApiBaseUrl}/images/?Id={testUserId}";
+            var httpClient = _webApplicationFactory.CreateClient();
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.NotFound);
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.NotFound);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
         }
     }
 }

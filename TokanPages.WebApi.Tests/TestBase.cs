@@ -26,59 +26,59 @@ namespace TokanPages.WebApi.Tests
             JwtUtilityService = new JwtUtilityService();
         }
 
-        protected static async Task EnsureStatusCode(HttpResponseMessage AResponseMessage, HttpStatusCode AExpectedStatusCode)
+        protected static async Task EnsureStatusCode(HttpResponseMessage responseMessage, HttpStatusCode expectedStatusCode)
         {
-            if (AResponseMessage.StatusCode != AExpectedStatusCode)
+            if (responseMessage.StatusCode != expectedStatusCode)
             {
-                var LContent = await AResponseMessage.Content.ReadAsStringAsync();
-                var LContentText = !string.IsNullOrEmpty(LContent) ? $"Received content: {LContent}." : string.Empty;
-                throw new Exception($"Expected status code was {AExpectedStatusCode} but received {AResponseMessage.StatusCode}. {LContentText}");
+                var content = await responseMessage.Content.ReadAsStringAsync();
+                var contentText = !string.IsNullOrEmpty(content) ? $"Received content: {content}." : string.Empty;
+                throw new Exception($"Expected status code was {expectedStatusCode} but received {responseMessage.StatusCode}. {contentText}");
             }
         }
 
-        protected ClaimsIdentity GetValidClaimsIdentity(string ASelectedUser = nameof(User1))
+        protected ClaimsIdentity GetValidClaimsIdentity(string selectedUser = nameof(User1))
         {
-            var LUserId = string.Empty;
-            var LUserFirstName = string.Empty;
-            var LUserLastName = string.Empty;
-            var LUserEmailAddress = string.Empty;
+            var userId = string.Empty;
+            var userFirstName = string.Empty;
+            var userLastName = string.Empty;
+            var userEmailAddress = string.Empty;
 
-            switch (ASelectedUser)
+            switch (selectedUser)
             {
                 case nameof(User1):
-                    LUserId = User1.Id.ToString();
-                    LUserFirstName = User1.FirstName;
-                    LUserLastName = User1.LastName;
-                    LUserEmailAddress = User1.EmailAddress;
+                    userId = User1.Id.ToString();
+                    userFirstName = User1.FirstName;
+                    userLastName = User1.LastName;
+                    userEmailAddress = User1.EmailAddress;
                     break;
                 
                 case nameof(User2):
-                    LUserId = User2.Id.ToString();
-                    LUserFirstName = User2.FirstName;
-                    LUserLastName = User2.LastName;
-                    LUserEmailAddress = User2.EmailAddress;
+                    userId = User2.Id.ToString();
+                    userFirstName = User2.FirstName;
+                    userLastName = User2.LastName;
+                    userEmailAddress = User2.EmailAddress;
                     break;
 
                 case nameof(User3):
-                    LUserId = User3.Id.ToString();
-                    LUserFirstName = User3.FirstName;
-                    LUserLastName = User3.LastName;
-                    LUserEmailAddress = User3.EmailAddress;
+                    userId = User3.Id.ToString();
+                    userFirstName = User3.FirstName;
+                    userLastName = User3.LastName;
+                    userEmailAddress = User3.EmailAddress;
                     break;
             }
 
-            var LNewClaim = new ClaimsIdentity(new []
+            var newClaim = new ClaimsIdentity(new []
             {
                 new Claim(ClaimTypes.Name, DataUtilityService.GetRandomString()),
                 new Claim(ClaimTypes.Role, nameof(Roles.EverydayUser)),
                 new Claim(ClaimTypes.Role, nameof(Roles.GodOfAsgard)),
-                new Claim(ClaimTypes.NameIdentifier, LUserId),
-                new Claim(ClaimTypes.GivenName, LUserFirstName),
-                new Claim(ClaimTypes.Surname, LUserLastName),
-                new Claim(ClaimTypes.Email, LUserEmailAddress)
+                new Claim(ClaimTypes.NameIdentifier, userId),
+                new Claim(ClaimTypes.GivenName, userFirstName),
+                new Claim(ClaimTypes.Surname, userLastName),
+                new Claim(ClaimTypes.Email, userEmailAddress)
             });
 
-            return LNewClaim;
+            return newClaim;
         }
 
         protected ClaimsIdentity GetInvalidClaimsIdentity() => new (new[]
