@@ -7,7 +7,7 @@ namespace TokanPages.WebApi.Controllers.Proxy
     using Backend.Shared;
     using Backend.Shared.Models;
     using Backend.Storage.Models;
-    using Backend.Shared.Attributes;
+    using Backend.Core.Attributes;
     using Backend.Core.Utilities.CustomHttpClient;
     using Backend.Core.Utilities.CustomHttpClient.Models;
     using Backend.Core.Utilities.CustomHttpClient.Authentication;

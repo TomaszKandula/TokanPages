@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Shared.Attributes
+namespace TokanPages.Backend.Core.Attributes
 {
     using System;
     using System.Text;
