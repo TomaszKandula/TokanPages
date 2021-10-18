@@ -6,7 +6,6 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-    using Database;
     using SmtpClient;
     using Core.Logger;
     using SmtpClient.Models;
@@ -23,7 +22,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 Email = DataUtilityService.GetRandomEmail()
             };
 
-            var mockedDatabase = new Mock<DatabaseContext>();
+            var databaseContext = GetTestDatabaseContext();
             var mockedLogger = new Mock<ILogger>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
 
@@ -45,7 +44,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 .Returns(Task.FromResult(true));
             
             var verifyEmailAddressCommandHandler = new VerifyEmailAddressCommandHandler(
-                mockedDatabase.Object,
+                databaseContext,
                 mockedLogger.Object,
                 mockedSmtpClientService.Object);
 

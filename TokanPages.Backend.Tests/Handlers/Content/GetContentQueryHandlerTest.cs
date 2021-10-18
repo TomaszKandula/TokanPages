@@ -11,7 +11,6 @@ namespace TokanPages.Backend.Tests.Handlers.Content
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
     using System.Collections.Generic;
-    using Database;
     using Core.Logger;
     using Storage.Models;
     using Core.Exceptions;
@@ -35,7 +34,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
                 Type = "component"
             };
 
-            var mockedDatabase = new Mock<DatabaseContext>();
+            var databaseContext = GetTestDatabaseContext();
             var mockedLogger = new Mock<ILogger>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
@@ -69,7 +68,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
                 .Returns(testObject);
 
             var getContentQueryHandler = new GetContentQueryHandler(
-                mockedDatabase.Object,
+                databaseContext,
                 mockedLogger.Object,
                 mockedCustomHttpClient.Object,
                 mockedJsonSerializer.Object,
@@ -115,7 +114,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
                 Language = "pl" 
             };
 
-            var mockedDatabase = new Mock<DatabaseContext>();
+            var databaseContext = GetTestDatabaseContext();
             var mockedLogger = new Mock<ILogger>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
@@ -149,7 +148,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
                 .Returns(testObject);
 
             var getContentQueryHandler = new GetContentQueryHandler(
-                mockedDatabase.Object,
+                databaseContext,
                 mockedLogger.Object,
                 mockedCustomHttpClient.Object,
                 mockedJsonSerializer.Object,
@@ -176,7 +175,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
                 Type = DataUtilityService.GetRandomString()
             };
 
-            var mockedDatabase = new Mock<DatabaseContext>();
+            var databaseContext = GetTestDatabaseContext();
             var mockedLogger = new Mock<ILogger>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
@@ -210,7 +209,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
                 .Returns(testObject);
 
             var getContentQueryHandler = new GetContentQueryHandler(
-                mockedDatabase.Object,
+                databaseContext,
                 mockedLogger.Object,
                 mockedCustomHttpClient.Object,
                 mockedJsonSerializer.Object,
@@ -232,7 +231,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
                 Type = "component"
             };
 
-            var mockedDatabase = new Mock<DatabaseContext>();
+            var databaseContext = GetTestDatabaseContext();
             var mockedLogger = new Mock<ILogger>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
@@ -265,7 +264,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
                 .Returns(testObject);
 
             var getContentQueryHandler = new GetContentQueryHandler(
-                mockedDatabase.Object,
+                databaseContext,
                 mockedLogger.Object,
                 mockedCustomHttpClient.Object,
                 mockedJsonSerializer.Object,
@@ -287,7 +286,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
                 Type = "component"
             };
 
-            var mockedDatabase = new Mock<DatabaseContext>();
+            var databaseContext = GetTestDatabaseContext();
             var mockedLogger = new Mock<ILogger>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
@@ -321,7 +320,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
                 .Returns(testObject);
 
             var getContentQueryHandler = new GetContentQueryHandler(
-                mockedDatabase.Object,
+                databaseContext,
                 mockedLogger.Object,
                 mockedCustomHttpClient.Object,
                 mockedJsonSerializer.Object,
@@ -343,7 +342,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
                 Type = "component"
             };
 
-            var mockedDatabase = new Mock<DatabaseContext>();
+            var databaseContext = GetTestDatabaseContext();
             var mockedLogger = new Mock<ILogger>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
@@ -375,7 +374,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
                 .Returns(testObject);
 
             var getContentQueryHandler = new GetContentQueryHandler(
-                mockedDatabase.Object,
+                databaseContext,
                 mockedLogger.Object,
                 mockedCustomHttpClient.Object,
                 mockedJsonSerializer.Object,
