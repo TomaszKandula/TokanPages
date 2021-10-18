@@ -3,7 +3,9 @@ namespace TokanPages.Backend.Shared.Attributes
     using System;
     using System.Text;
     using System.Security.Cryptography;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     public static class ETagGenerator
     {
         public static string GetETag(string key, byte[] contentBytes)

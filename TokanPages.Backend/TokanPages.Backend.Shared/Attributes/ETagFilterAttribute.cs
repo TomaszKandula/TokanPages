@@ -3,9 +3,11 @@ namespace TokanPages.Backend.Shared.Attributes
     using System;
     using System.Text;
     using System.Collections;
+    using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Filters;
 
+    [ExcludeFromCodeCoverage]
     [AttributeUsage(AttributeTargets.Method)]
     public class ETagFilterAttribute : Attribute, IActionFilter
     {
