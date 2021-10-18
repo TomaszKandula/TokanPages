@@ -1,14 +1,14 @@
 namespace TokanPages.WebApi.Tests.ArticlesController
 {
+    using Xunit;
+    using Newtonsoft.Json;
+    using FluentAssertions;
     using System;
     using System.Net;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Backend.Cqrs.Handlers.Queries.Articles;
-    using FluentAssertions;
-    using Newtonsoft.Json;
-    using Xunit;
 
     public partial class ArticlesControllerTest
     {
@@ -16,23 +16,23 @@ namespace TokanPages.WebApi.Tests.ArticlesController
         public async Task WhenGetAllArticles_ShouldReturnCollection()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/GetAllArticles/?AIsPublished=false";
+            var request = $"{ApiBaseUrl}/GetAllArticles/?IsPublished=false";
 
             // Act
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
 
-            var LDeserialized = (JsonConvert
-                    .DeserializeObject<IEnumerable<GetAllArticlesQueryResult>>(LContent) ?? Array.Empty<GetAllArticlesQueryResult>())
+            var deserialized = (JsonConvert
+                    .DeserializeObject<IEnumerable<GetAllArticlesQueryResult>>(content) ?? Array.Empty<GetAllArticlesQueryResult>())
                 .ToList();
             
-            LDeserialized.Should().NotBeNullOrEmpty();
-            LDeserialized.Should().HaveCountGreaterThan(0);
+            deserialized.Should().NotBeNullOrEmpty();
+            deserialized.Should().HaveCountGreaterThan(0);
         }
     }
 }

@@ -1,13 +1,13 @@
 namespace TokanPages.WebApi.Tests.UsersController
 {
     using Xunit;
+    using Newtonsoft.Json;
+    using FluentAssertions;
     using System;
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
-    using FluentAssertions;
-    using Newtonsoft.Json;
     using Backend.Shared.Dto.Users;
     using Backend.Shared.Resources;
 
@@ -17,48 +17,48 @@ namespace TokanPages.WebApi.Tests.UsersController
         public async Task GivenRandomActivationId_WhenActivateUser_ShouldReturnBadRequest()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/ActivateUser/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
-            var LPayLoad = new ActivateUserDto { ActivationId = Guid.NewGuid() };
+            var request = $"{ApiBaseUrl}/ActivateUser/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
+            var payLoad = new ActivateUserDto { ActivationId = Guid.NewGuid() };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            var httpClient = _webApplicationFactory.CreateClient();
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.INVALID_ACTIVATION_ID);
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Contain(ErrorCodes.INVALID_ACTIVATION_ID);
         }
         
         [Fact]
         public async Task GivenrandomActivationId_WhenActivateUserAsLoggedUser_ShouldReturnBadRequest()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/ActivateUser/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
-            var LPayLoad = new ActivateUserDto { ActivationId = Guid.NewGuid() };
+            var request = $"{ApiBaseUrl}/ActivateUser/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
+            var payLoad = new ActivateUserDto { ActivationId = Guid.NewGuid() };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            var httpClient = _webApplicationFactory.CreateClient();
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
-            var LTokenExpires = DateTimeService.Now.AddDays(30);
-            var LJwt = JwtUtilityService.GenerateJwt(
-                LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var tokenExpires = DateTimeService.Now.AddDays(30);
+            var jwt = JwtUtilityService.GenerateJwt(
+                tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
-            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
             
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.INVALID_ACTIVATION_ID);
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Contain(ErrorCodes.INVALID_ACTIVATION_ID);
         }
     }
 }

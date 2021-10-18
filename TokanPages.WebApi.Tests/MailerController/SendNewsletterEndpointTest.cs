@@ -1,5 +1,8 @@
 namespace TokanPages.WebApi.Tests.MailerController
 {
+    using Xunit;
+    using Newtonsoft.Json;
+    using FluentAssertions;
     using System;
     using System.Net;
     using System.Net.Http;
@@ -8,9 +11,6 @@ namespace TokanPages.WebApi.Tests.MailerController
     using System.Collections.Generic;
     using Backend.Shared.Models;
     using Backend.Shared.Dto.Mailer;
-    using Newtonsoft.Json;
-    using FluentAssertions;
-    using Xunit;
 
     public partial class MailerControllerTest
     {
@@ -18,10 +18,10 @@ namespace TokanPages.WebApi.Tests.MailerController
         public async Task GivenValidEmailsAndInvalidJwt_WhenSendNewsletter_ShouldReturnThrownError()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/SendNewsletter/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            var request = $"{ApiBaseUrl}/SendNewsletter/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
-            var LPayLoad = new SendNewsletterDto
+            var payLoad = new SendNewsletterDto
             {
                 SubscriberInfo = new List<SubscriberInfo>
                 {
@@ -35,20 +35,20 @@ namespace TokanPages.WebApi.Tests.MailerController
                 Message = $"<p>Test run Id: {Guid.NewGuid()}.</p><p>Put newsletter content here.</p>"
             };
             
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetInvalidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var tokenExpires = DateTime.Now.AddDays(30);
+            var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
-            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.Forbidden);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.Forbidden);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().BeEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().BeEmpty();
         }
     }
 }

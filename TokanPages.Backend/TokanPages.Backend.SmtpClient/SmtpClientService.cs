@@ -17,17 +17,17 @@
 
     public class SmtpClientService : SmtpClientObject, ISmtpClientService
     {
-        private readonly ISmtpClient FSmtpClient;
+        private readonly ISmtpClient _smtpClient;
 
-        private readonly ILookupClient FLookupClient;
+        private readonly ILookupClient _lookupClient;
         
-        private readonly SmtpServer FSmtpServer;
+        private readonly SmtpServer _smtpServer;
 
-        public SmtpClientService(ISmtpClient ASmtpClient, ILookupClient ALookupClient, SmtpServer ASmtpServer)
+        public SmtpClientService(ISmtpClient smtpClient, ILookupClient lookupClient, SmtpServer smtpServer)
         {
-            FSmtpClient = ASmtpClient;
-            FLookupClient = ALookupClient;
-            FSmtpServer = ASmtpServer;
+            _smtpClient = smtpClient;
+            _lookupClient = lookupClient;
+            _smtpServer = smtpServer;
         }
 
         public override string From { get; set; }
@@ -44,18 +44,18 @@
         
         public override string HtmlBody { get; set; }
 
-        public override async Task<ActionResult> CanConnectAndAuthenticate(CancellationToken ACancellationToken = default)
+        public override async Task<ActionResult> CanConnectAndAuthenticate(CancellationToken cancellationToken = default)
         {
             try
             {
-                var LSslOnConnect = FSmtpServer.IsSSL
+                var sslOnConnect = _smtpServer.IsSSL
                     ? SecureSocketOptions.SslOnConnect
                     : SecureSocketOptions.None;
                 
-                await FSmtpClient.ConnectAsync(FSmtpServer.Server, 
-                    FSmtpServer.Port, LSslOnConnect, ACancellationToken);
+                await _smtpClient.ConnectAsync(_smtpServer.Server, 
+                    _smtpServer.Port, sslOnConnect, cancellationToken);
 
-                if (!FSmtpClient.IsConnected)
+                if (!_smtpClient.IsConnected)
                 {
                     return new ActionResult
                     {
@@ -64,10 +64,10 @@
                     };
                 }
 
-                await FSmtpClient.AuthenticateAsync(FSmtpServer.Account, 
-                    FSmtpServer.Password, ACancellationToken);
+                await _smtpClient.AuthenticateAsync(_smtpServer.Account, 
+                    _smtpServer.Password, cancellationToken);
 
-                if (!FSmtpClient.IsAuthenticated)
+                if (!_smtpClient.IsAuthenticated)
                 {
                     return new ActionResult
                     {
@@ -76,107 +76,107 @@
                     };
                 }
 
-                await FSmtpClient.DisconnectAsync(true, ACancellationToken);
+                await _smtpClient.DisconnectAsync(true, cancellationToken);
                 return new ActionResult { IsSucceeded = true };
             }
-            catch (Exception LException)
+            catch (Exception exception)
             {
                 return new ActionResult
                 {
                     ErrorCode = nameof(ErrorCodes.SMTP_CLIENT_ERROR),
                     ErrorDesc = ErrorCodes.SMTP_CLIENT_ERROR,
-                    InnerMessage = LException.Message
+                    InnerMessage = exception.Message
                 };
             }
         }
 
-        public override async Task<ActionResult> Send(CancellationToken ACancellationToken = default)
+        public override async Task<ActionResult> Send(CancellationToken cancellationToken = default)
         {
             try
             {
-                var LNewMail = new MimeMessage();
+                var newMail = new MimeMessage();
 
-                LNewMail.From.Add(MailboxAddress.Parse(From));
-                LNewMail.Subject = Subject;
+                newMail.From.Add(MailboxAddress.Parse(From));
+                newMail.Subject = Subject;
 
-                foreach (var LItem in Tos) 
-                    LNewMail.To.Add(MailboxAddress.Parse(LItem));
+                foreach (var item in Tos) 
+                    newMail.To.Add(MailboxAddress.Parse(item));
                 
                 if (Ccs != null && !Ccs.Any())
-                    foreach (var LItem in Ccs) LNewMail.Cc.Add(MailboxAddress.Parse(LItem));
+                    foreach (var item in Ccs) newMail.Cc.Add(MailboxAddress.Parse(item));
 
                 if (Bccs != null && !Bccs.Any())
-                    foreach (var LItem in Bccs) LNewMail.Bcc.Add(MailboxAddress.Parse(LItem));
+                    foreach (var item in Bccs) newMail.Bcc.Add(MailboxAddress.Parse(item));
 
                 if (!string.IsNullOrEmpty(PlainText)) 
-                    LNewMail.Body = new TextPart(TextFormat.Plain) { Text = PlainText };
+                    newMail.Body = new TextPart(TextFormat.Plain) { Text = PlainText };
 
                 if (!string.IsNullOrEmpty(HtmlBody)) 
-                    LNewMail.Body = new TextPart(TextFormat.Html) { Text = HtmlBody };
+                    newMail.Body = new TextPart(TextFormat.Html) { Text = HtmlBody };
 
-                var LSslOnConnect = FSmtpServer.IsSSL
+                var sslOnConnect = _smtpServer.IsSSL
                     ? SecureSocketOptions.SslOnConnect
                     : SecureSocketOptions.None;
                 
-                await FSmtpClient.ConnectAsync(FSmtpServer.Server, FSmtpServer.Port, LSslOnConnect, ACancellationToken);
-                await FSmtpClient.AuthenticateAsync(FSmtpServer.Account, FSmtpServer.Password, ACancellationToken);
+                await _smtpClient.ConnectAsync(_smtpServer.Server, _smtpServer.Port, sslOnConnect, cancellationToken);
+                await _smtpClient.AuthenticateAsync(_smtpServer.Account, _smtpServer.Password, cancellationToken);
 
-                await FSmtpClient.SendAsync(LNewMail, ACancellationToken);
-                await FSmtpClient.DisconnectAsync(true, ACancellationToken);
+                await _smtpClient.SendAsync(newMail, cancellationToken);
+                await _smtpClient.DisconnectAsync(true, cancellationToken);
 
                 return new ActionResult { IsSucceeded = true };
             } 
-            catch (Exception LException)
+            catch (Exception exception)
             {
                 return new ActionResult
                 {
                     ErrorCode = nameof(ErrorCodes.SMTP_CLIENT_ERROR),
                     ErrorDesc = ErrorCodes.SMTP_CLIENT_ERROR,
-                    InnerMessage = LException.Message
+                    InnerMessage = exception.Message
                 };
             }
         }
 
-        public override List<Email> IsAddressCorrect(IEnumerable<string> AEmailAddress)
+        public override List<Email> IsAddressCorrect(IEnumerable<string> emailAddress)
         {
-            var LResults = new List<Email>();
+            var results = new List<Email>();
 
-            foreach (var LItem in AEmailAddress)
+            foreach (var item in emailAddress)
             {
                 try
                 {
-                    var LEmailAddress = new MailAddress(LItem);
-                    LResults.Add(new Email { Address = LEmailAddress.Address, IsValid = true });
+                    var mailAddress = new MailAddress(item);
+                    results.Add(new Email { Address = mailAddress.Address, IsValid = true });
                 }
                 catch (FormatException)
                 {
-                    LResults.Add(new Email { Address = LItem, IsValid = false });
+                    results.Add(new Email { Address = item, IsValid = false });
                 }
             }
             
-            return LResults;
+            return results;
         }
 
-        public override async Task<bool> IsDomainCorrect(string AEmailAddress, CancellationToken ACancellationToken = default)
+        public override async Task<bool> IsDomainCorrect(string emailAddress, CancellationToken cancellationToken = default)
         {
             try
             {
-                var LGetEmailDomain = AEmailAddress.Split("@");
-                var LEmailDomain = LGetEmailDomain[1];
+                var getEmailDomain = emailAddress.Split("@");
+                var emailDomain = getEmailDomain[1];
 
-                var LCheckRecordA = await FLookupClient.QueryAsync(LEmailDomain, QueryType.A, QueryClass.IN, ACancellationToken);
-                var LCheckRecordAaaa = await FLookupClient.QueryAsync(LEmailDomain, QueryType.AAAA, QueryClass.IN, ACancellationToken);
-                var LCheckRecordMx = await FLookupClient.QueryAsync(LEmailDomain, QueryType.MX, QueryClass.IN, ACancellationToken);
+                var checkRecordA = await _lookupClient.QueryAsync(emailDomain, QueryType.A, QueryClass.IN, cancellationToken);
+                var checkRecordAaaa = await _lookupClient.QueryAsync(emailDomain, QueryType.AAAA, QueryClass.IN, cancellationToken);
+                var checkRecordMx = await _lookupClient.QueryAsync(emailDomain, QueryType.MX, QueryClass.IN, cancellationToken);
 
-                var LRecordA = LCheckRecordA.Answers.Where(ARecord => ARecord.RecordType == DnsClient.Protocol.ResourceRecordType.A);
-                var LRecordAaaa = LCheckRecordAaaa.Answers.Where(ARecord => ARecord.RecordType == DnsClient.Protocol.ResourceRecordType.AAAA);
-                var LRecordMx = LCheckRecordMx.Answers.Where(ARecord => ARecord.RecordType == DnsClient.Protocol.ResourceRecordType.MX);
+                var recordA = checkRecordA.Answers.Where(record => @record.RecordType == DnsClient.Protocol.ResourceRecordType.A);
+                var recordAaaa = checkRecordAaaa.Answers.Where(record => record.RecordType == DnsClient.Protocol.ResourceRecordType.AAAA);
+                var recordMx = checkRecordMx.Answers.Where(record => record.RecordType == DnsClient.Protocol.ResourceRecordType.MX);
 
-                var LIsRecordA = LRecordA.Any();
-                var LIsRecordAaaa = LRecordAaaa.Any();
-                var LIsRecordMx = LRecordMx.Any();
+                var isRecordA = recordA.Any();
+                var isRecordAaaa = recordAaaa.Any();
+                var isRecordMx = recordMx.Any();
 
-                return LIsRecordA || LIsRecordAaaa || LIsRecordMx;
+                return isRecordA || isRecordAaaa || isRecordMx;
             }
             catch (DnsResponseException)
             {

@@ -19,11 +19,11 @@ namespace TokanPages.Backend.Tests.Handlers.Users
         public async Task GivenValidRefreshToken_WhenRevokeUserRefreshToken_ShouldSucceed()
         {
             // Arrange
-            var LUserId = Guid.NewGuid();
-            var LToken = DataUtilityService.GetRandomString(100);
-            var LUser = new Users
+            var userId = Guid.NewGuid();
+            var token = DataUtilityService.GetRandomString(100);
+            var user = new Users
             {
-                Id = LUserId,
+                Id = userId,
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
                 FirstName = DataUtilityService.GetRandomString(),
@@ -33,29 +33,29 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 CryptedPassword = DataUtilityService.GetRandomString()
             };
 
-            var LUserRefreshToken = new UserRefreshTokens
+            var userRefreshToken = new UserRefreshTokens
             {
-                UserId = LUserId,
-                Token = LToken,
+                UserId = userId,
+                Token = token,
                 Expires = DateTimeService.Now,
                 Created = DateTimeService.Now.AddMinutes(300),
                 CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString()
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUser);
-            await LDatabaseContext.UserRefreshTokens.AddAsync(LUserRefreshToken);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(user);
+            await databaseContext.UserRefreshTokens.AddAsync(userRefreshToken);
+            await databaseContext.SaveChangesAsync();
 
-            var LMockedIUserServiceProvider = new Mock<IUserServiceProvider>();
+            var mockedIUserServiceProvider = new Mock<IUserServiceProvider>();
 
-            var LRandomIpAddress = DataUtilityService.GetRandomIpAddress().ToString(); 
-            LMockedIUserServiceProvider
-                .Setup(AUserServiceProvider => AUserServiceProvider.GetRequestIpAddress())
-                .Returns(LRandomIpAddress);
+            var randomIpAddress = DataUtilityService.GetRandomIpAddress().ToString(); 
+            mockedIUserServiceProvider
+                .Setup(provider => provider.GetRequestIpAddress())
+                .Returns(randomIpAddress);
 
-            LMockedIUserServiceProvider
-                .Setup(AUserServiceProvider => AUserServiceProvider
+            mockedIUserServiceProvider
+                .Setup(provider => provider
                     .RevokeRefreshToken(
                         It.IsAny<UserRefreshTokens>(),
                         It.IsAny<string>(),
@@ -64,28 +64,28 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                         It.IsAny<bool>(),
                         It.IsAny<CancellationToken>()));
             
-            var LRevokeUserRefreshTokenCommand = new RevokeUserRefreshTokenCommand { RefreshToken = LToken };
-            var LRevokeUserRefreshTokenCommandHandler = new RevokeUserRefreshTokenCommandHandler(
-                LDatabaseContext,
-                LMockedIUserServiceProvider.Object
+            var revokeUserRefreshTokenCommand = new RevokeUserRefreshTokenCommand { RefreshToken = token };
+            var revokeUserRefreshTokenCommandHandler = new RevokeUserRefreshTokenCommandHandler(
+                databaseContext,
+                mockedIUserServiceProvider.Object
             );
 
             // Act
-            var LResult = await LRevokeUserRefreshTokenCommandHandler.Handle(LRevokeUserRefreshTokenCommand, CancellationToken.None);
+            var result = await revokeUserRefreshTokenCommandHandler.Handle(revokeUserRefreshTokenCommand, CancellationToken.None);
 
             // Assert
-            LResult.Should().Be(Unit.Value);
+            result.Should().Be(Unit.Value);
         }
 
         [Fact]
         public async Task GivenInvalidRefreshToken_WhenRevokeUserRefreshToken_ShouldThrowError()
         {
             // Arrange
-            var LUserId = Guid.NewGuid();
-            var LToken = DataUtilityService.GetRandomString(100);
-            var LUser = new Users
+            var userId = Guid.NewGuid();
+            var token = DataUtilityService.GetRandomString(100);
+            var user = new Users
             {
-                Id = LUserId,
+                Id = userId,
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
                 FirstName = DataUtilityService.GetRandomString(),
@@ -95,19 +95,19 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 CryptedPassword = DataUtilityService.GetRandomString()
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUser);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(user);
+            await databaseContext.SaveChangesAsync();
 
-            var LMockedIUserServiceProvider = new Mock<IUserServiceProvider>();
+            var mockedIUserServiceProvider = new Mock<IUserServiceProvider>();
 
-            var LRandomIpAddress = DataUtilityService.GetRandomIpAddress().ToString(); 
-            LMockedIUserServiceProvider
-                .Setup(AUserServiceProvider => AUserServiceProvider.GetRequestIpAddress())
-                .Returns(LRandomIpAddress);
+            var randomIpAddress = DataUtilityService.GetRandomIpAddress().ToString(); 
+            mockedIUserServiceProvider
+                .Setup(provider => provider.GetRequestIpAddress())
+                .Returns(randomIpAddress);
 
-            LMockedIUserServiceProvider
-                .Setup(AUserServiceProvider => AUserServiceProvider
+            mockedIUserServiceProvider
+                .Setup(provider => provider
                     .RevokeRefreshToken(
                         It.IsAny<UserRefreshTokens>(),
                         It.IsAny<string>(),
@@ -116,18 +116,18 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                         It.IsAny<bool>(),
                         It.IsAny<CancellationToken>()));
             
-            var LRevokeUserRefreshTokenCommand = new RevokeUserRefreshTokenCommand { RefreshToken = LToken };
-            var LRevokeUserRefreshTokenCommandHandler = new RevokeUserRefreshTokenCommandHandler(
-                LDatabaseContext,
-                LMockedIUserServiceProvider.Object
+            var revokeUserRefreshTokenCommand = new RevokeUserRefreshTokenCommand { RefreshToken = token };
+            var revokeUserRefreshTokenCommandHandler = new RevokeUserRefreshTokenCommandHandler(
+                databaseContext,
+                mockedIUserServiceProvider.Object
             );
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() 
-                => LRevokeUserRefreshTokenCommandHandler.Handle(LRevokeUserRefreshTokenCommand, CancellationToken.None));
+            var result = await Assert.ThrowsAsync<BusinessException>(() 
+                => revokeUserRefreshTokenCommandHandler.Handle(revokeUserRefreshTokenCommand, CancellationToken.None));
 
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_REFRESH_TOKEN));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_REFRESH_TOKEN));
         }
     }
 }

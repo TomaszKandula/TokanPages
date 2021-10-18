@@ -12,35 +12,35 @@
         public void GivenCorrectId_WhenRemoveArticle_ShouldFinishSuccessfully() 
         {
             // Arrange
-            var LRemoveArticleCommand = new RemoveArticleCommand
+            var removeArticleCommand = new RemoveArticleCommand
             {
                 Id = Guid.NewGuid()
             };
 
             // Act
-            var LValidator = new RemoveArticleCommandValidator();
-            var LResult = LValidator.Validate(LRemoveArticleCommand);
+            var validator = new RemoveArticleCommandValidator();
+            var result = validator.Validate(removeArticleCommand);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenIncorrectId_WhenRemoveArticle_ShouldThrowError()
         {
             // Arrange
-            var LRemoveArticleCommand = new RemoveArticleCommand
+            var removeArticleCommand = new RemoveArticleCommand
             {
                 Id = Guid.Empty
             };
 
             // Act
-            var LValidator = new RemoveArticleCommandValidator();
-            var LResult = LValidator.Validate(LRemoveArticleCommand);
+            var validator = new RemoveArticleCommandValidator();
+            var result = validator.Validate(removeArticleCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
     }
 }

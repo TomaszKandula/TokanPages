@@ -8,14 +8,14 @@ namespace TokanPages.Backend.Database.Mappings
     [ExcludeFromCodeCoverage]
     public class UserTokensConfiguration : IEntityTypeConfiguration<UserTokens>
     {
-        public void Configure(EntityTypeBuilder<UserTokens> ABuilder)
+        public void Configure(EntityTypeBuilder<UserTokens> builder)
         {
-            ABuilder.Property(AUserTokens => AUserTokens.Id).ValueGeneratedOnAdd();
+            builder.Property(userTokens => userTokens.Id).ValueGeneratedOnAdd();
             
-            ABuilder
-                .HasOne(AUserTokens => AUserTokens.User)
-                .WithMany(AUsers => AUsers.UserTokens)
-                .HasForeignKey(AUserTokens => AUserTokens.UserId)
+            builder
+                .HasOne(userTokens => userTokens.User)
+                .WithMany(users => users.UserTokens)
+                .HasForeignKey(userTokens => userTokens.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UserTokens_Users");
         }

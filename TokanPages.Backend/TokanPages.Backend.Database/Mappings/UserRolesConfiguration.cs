@@ -8,21 +8,21 @@ namespace TokanPages.Backend.Database.Mappings
     [ExcludeFromCodeCoverage]
     public class UserRolesConfiguration : IEntityTypeConfiguration<UserRoles>
     {
-        public void Configure(EntityTypeBuilder<UserRoles> ABuilder)
+        public void Configure(EntityTypeBuilder<UserRoles> builder)
         {
-            ABuilder.Property(AUserRoles => AUserRoles.Id).ValueGeneratedOnAdd();
+            builder.Property(userRoles => userRoles.Id).ValueGeneratedOnAdd();
             
-            ABuilder
-                .HasOne(AUserRoles => AUserRoles.User)
-                .WithMany(AUsers => AUsers.UserRoles)
-                .HasForeignKey(AUserRoles => AUserRoles.UserId)
+            builder
+                .HasOne(userRoles => userRoles.User)
+                .WithMany(users => users.UserRoles)
+                .HasForeignKey(userRoles => userRoles.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UserRoles_Users");
 
-            ABuilder
-                .HasOne(AUserRoles => AUserRoles.Role)
-                .WithMany(ARoles => ARoles.UserRoles)
-                .HasForeignKey(AUserRoles => AUserRoles.RoleId)
+            builder
+                .HasOne(userRoles => userRoles.Role)
+                .WithMany(roles => roles.UserRoles)
+                .HasForeignKey(userRoles => userRoles.RoleId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UserRoles_Roles");
         }

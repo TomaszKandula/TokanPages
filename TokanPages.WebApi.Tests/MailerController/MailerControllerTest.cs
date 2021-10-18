@@ -4,10 +4,10 @@ namespace TokanPages.WebApi.Tests.MailerController
 
     public partial class MailerControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
-        private const string API_BASE_URL = "/api/v1/Mailer";
+        private const string ApiBaseUrl = "/api/v1/Mailer";
         
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
+        private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
         
-        public MailerControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
+        public MailerControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
     }
 }

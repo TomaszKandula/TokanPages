@@ -1,8 +1,8 @@
 namespace TokanPages.WebApi.Tests.UsersController
 {
     using Xunit;
-    using FluentAssertions;
     using Newtonsoft.Json;
+    using FluentAssertions;
     using System;
     using System.Net;
     using System.Net.Http;
@@ -18,131 +18,131 @@ namespace TokanPages.WebApi.Tests.UsersController
         public async Task GivenNewPasswordAndValidJwt_WhenUpdateUserPassword_ShouldFinishSuccessful() 
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/UpdateUserPassword/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            var request = $"{ApiBaseUrl}/UpdateUserPassword/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
-            var LPayLoad = new UpdateUserPasswordDto
+            var payLoad = new UpdateUserPasswordDto
             {
-                Id = User2.FId,
+                Id = User2.Id,
                 ResetId = null,
                 NewPassword = DataUtilityService.GetRandomString()
             };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            var httpClient = _webApplicationFactory.CreateClient();
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
-            var LTokenExpires = DateTimeService.Now.AddDays(30);
-            var LJwt = JwtUtilityService.GenerateJwt(
-                LTokenExpires, GetValidClaimsIdentity(nameof(User2)), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var tokenExpires = DateTimeService.Now.AddDays(30);
+            var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), 
+                _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
-            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
             
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
         }
 
         [Fact]
         public async Task GivenNewPasswordAndInvalidJwt_WhenUpdateUserPassword_ShouldThrowError() 
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/UpdateUserPassword/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            var request = $"{ApiBaseUrl}/UpdateUserPassword/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
-            var LPayLoad = new UpdateUserPasswordDto
+            var payLoad = new UpdateUserPasswordDto
             {
-                Id = User2.FId,
+                Id = User2.Id,
                 ResetId = null,
                 NewPassword = DataUtilityService.GetRandomString()
             };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            var httpClient = _webApplicationFactory.CreateClient();
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
-            var LTokenExpires = DateTimeService.Now.AddDays(30);
-            var LJwt = JwtUtilityService.GenerateJwt(
-                LTokenExpires, GetInvalidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var tokenExpires = DateTimeService.Now.AddDays(30);
+            var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
+                _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
-            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
             
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.ACCESS_DENIED); 
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Contain(ErrorCodes.ACCESS_DENIED); 
         }
 
         [Fact]
         public async Task GivenNewPasswordAndInvalidUser_WhenUpdateUserPassword_ShouldThrowError() 
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/UpdateUserPassword/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            var request = $"{ApiBaseUrl}/UpdateUserPassword/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
-            var LPayLoad = new UpdateUserPasswordDto
+            var payLoad = new UpdateUserPasswordDto
             {
                 Id = Guid.NewGuid(),
                 ResetId = null,
                 NewPassword = DataUtilityService.GetRandomString()
             };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            var httpClient = _webApplicationFactory.CreateClient();
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
-            var LTokenExpires = DateTimeService.Now.AddDays(30);
-            var LJwt = JwtUtilityService.GenerateJwt(
-                LTokenExpires, GetValidClaimsIdentity(nameof(User2)), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var tokenExpires = DateTimeService.Now.AddDays(30);
+            var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), 
+                _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
-            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
             
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.USER_DOES_NOT_EXISTS); 
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Contain(ErrorCodes.USER_DOES_NOT_EXISTS); 
         }
         
         [Fact]
         public async Task GivenNewPasswordAndInvalidResetId_WhenUpdateUserPassword_ShouldThrowError() 
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/UpdateUserPassword/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            var request = $"{ApiBaseUrl}/UpdateUserPassword/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
-            var LPayLoad = new UpdateUserPasswordDto
+            var payLoad = new UpdateUserPasswordDto
             {
-                Id = User2.FId,
+                Id = User2.Id,
                 ResetId = Guid.NewGuid(),
                 NewPassword = DataUtilityService.GetRandomString()
             };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            var httpClient = _webApplicationFactory.CreateClient();
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
-            var LTokenExpires = DateTimeService.Now.AddDays(30);
-            var LJwt = JwtUtilityService.GenerateJwt(
-                LTokenExpires, GetValidClaimsIdentity(nameof(User2)), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var tokenExpires = DateTimeService.Now.AddDays(30);
+            var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), 
+                _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
-            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
             
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.INVALID_RESET_ID); 
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Contain(ErrorCodes.INVALID_RESET_ID); 
         }
     }
 }

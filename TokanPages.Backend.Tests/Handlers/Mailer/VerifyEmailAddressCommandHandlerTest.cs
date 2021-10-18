@@ -16,37 +16,37 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
         public async Task GivenValidEmailAddress_WhenVerifyEmailAddress_ShouldFinishSuccessful()
         {
             // Arrange
-            var LVerifyEmailAddressCommand = new VerifyEmailAddressCommand
+            var verifyEmailAddressCommand = new VerifyEmailAddressCommand
             {
                 Email = DataUtilityService.GetRandomEmail()
             };
 
-            var LMockedSmtpClientService = new Mock<ISmtpClientService>();
-            var LCheckActionResult = new List<Email>
+            var mockedSmtpClientService = new Mock<ISmtpClientService>();
+            var checkActionResult = new List<Email>
             {
                 new ()
                 {
-                    Address = LVerifyEmailAddressCommand.Email,
+                    Address = verifyEmailAddressCommand.Email,
                     IsValid = true
                 }
             };
             
-            LMockedSmtpClientService
-                .Setup(ASmtpClient => ASmtpClient.IsAddressCorrect(It.IsAny<IEnumerable<string>>()))
-                .Returns(LCheckActionResult);
+            mockedSmtpClientService
+                .Setup(client => client.IsAddressCorrect(It.IsAny<IEnumerable<string>>()))
+                .Returns(checkActionResult);
             
-            LMockedSmtpClientService
-                .Setup(ASmtpClient => ASmtpClient.IsDomainCorrect(It.IsAny<string>(), CancellationToken.None))
+            mockedSmtpClientService
+                .Setup(client => client.IsDomainCorrect(It.IsAny<string>(), CancellationToken.None))
                 .Returns(Task.FromResult(true));
             
-            var LVerifyEmailAddressCommandHandler = new VerifyEmailAddressCommandHandler(LMockedSmtpClientService.Object);
+            var verifyEmailAddressCommandHandler = new VerifyEmailAddressCommandHandler(mockedSmtpClientService.Object);
 
             // Act
-            var LResult = await LVerifyEmailAddressCommandHandler.Handle(LVerifyEmailAddressCommand, CancellationToken.None);
+            var result = await verifyEmailAddressCommandHandler.Handle(verifyEmailAddressCommand, CancellationToken.None);
 
             // Assert
-            LResult.IsDomainCorrect.Should().Be(true);
-            LResult.IsFormatCorrect.Should().Be(true);
+            result.IsDomainCorrect.Should().Be(true);
+            result.IsFormatCorrect.Should().Be(true);
         }
     }
 }

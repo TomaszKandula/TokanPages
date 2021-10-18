@@ -1,5 +1,7 @@
 namespace TokanPages.WebApi.Tests.SubscribersController
 {
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Net;
     using System.Net.Http;
@@ -7,8 +9,6 @@ namespace TokanPages.WebApi.Tests.SubscribersController
     using System.Net.Http.Headers;
     using Backend.Shared.Resources;
     using Backend.Database.Initializer.Data.Subscribers;
-    using FluentAssertions;
-    using Xunit;
 
     public partial class SubscribersControllerTest
     {
@@ -16,40 +16,40 @@ namespace TokanPages.WebApi.Tests.SubscribersController
         public async Task GivenCorrectIdAndNoJwt_WhenGetSubscriber_ShouldReturnUnauthorized() 
         {
             // Arrange
-            var LTestUserId = Subscriber1.FId;
-            var LRequest = $"{API_BASE_URL}/GetSubscriber/{LTestUserId}/";
-            var LHttpClient = FWebAppFactory.CreateClient();
+            var testUserId = Subscriber1.Id;
+            var request = $"{ApiBaseUrl}/GetSubscriber/{testUserId}/";
+            var httpClient = _webApplicationFactory.CreateClient();
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
         }
 
         [Fact]
         public async Task GivenIncorrectId_WhenGetSubscriber_ShouldReturnJsonObjectWithError()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/GetSubscriber/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, LRequest);
+            var request = $"{ApiBaseUrl}/GetSubscriber/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Get, request);
             
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var tokenExpires = DateTime.Now.AddDays(30);
+            var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
-            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Contain(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
         }
     }
 }

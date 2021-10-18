@@ -12,43 +12,43 @@
 
     public class UpdateUserCommandHandler : TemplateHandler<UpdateUserCommand, Unit>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
         
-        private readonly IDateTimeService FDateTimeService;
+        private readonly IDateTimeService _dateTimeService;
         
-        public UpdateUserCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService) 
+        public UpdateUserCommandHandler(DatabaseContext databaseContext, IDateTimeService dateTimeService) 
         {
-            FDatabaseContext = ADatabaseContext;
-            FDateTimeService = ADateTimeService;
+            _databaseContext = databaseContext;
+            _dateTimeService = dateTimeService;
         }
 
-        public override async Task<Unit> Handle(UpdateUserCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
-            var LUsers = await FDatabaseContext.Users
-                .Where(AUser => AUser.Id == ARequest.Id)
-                .ToListAsync(ACancellationToken);
+            var usersList = await _databaseContext.Users
+                .Where(users => users.Id == request.Id)
+                .ToListAsync(cancellationToken);
 
-            if (!LUsers.Any())
+            if (!usersList.Any())
                 throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-            var LEmailCollection = await FDatabaseContext.Users
+            var emailCollection = await _databaseContext.Users
                 .AsNoTracking()
-                .Where(AUsers => AUsers.EmailAddress == ARequest.EmailAddress)
-                .ToListAsync(ACancellationToken);
+                .Where(users => users.EmailAddress == request.EmailAddress)
+                .ToListAsync(cancellationToken);
 
-            if (LEmailCollection.Count == 1)
+            if (emailCollection.Count == 1)
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-            var LCurrentUser = LUsers.First();
+            var currentUser = usersList.First();
 
-            LCurrentUser.EmailAddress = ARequest.EmailAddress ?? LCurrentUser.EmailAddress;
-            LCurrentUser.UserAlias = ARequest.UserAlias ?? LCurrentUser.UserAlias;
-            LCurrentUser.FirstName = ARequest.FirstName ?? LCurrentUser.FirstName;
-            LCurrentUser.LastName = ARequest.LastName ?? LCurrentUser.LastName;
-            LCurrentUser.IsActivated = ARequest.IsActivated;
-            LCurrentUser.LastUpdated = FDateTimeService.Now;
+            currentUser.EmailAddress = request.EmailAddress ?? currentUser.EmailAddress;
+            currentUser.UserAlias = request.UserAlias ?? currentUser.UserAlias;
+            currentUser.FirstName = request.FirstName ?? currentUser.FirstName;
+            currentUser.LastName = request.LastName ?? currentUser.LastName;
+            currentUser.IsActivated = request.IsActivated;
+            currentUser.LastUpdated = _dateTimeService.Now;
 
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            await _databaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
         }
     }

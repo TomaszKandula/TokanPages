@@ -6,27 +6,27 @@ namespace TokanPages.Backend.Shared.Attributes
 
     public static class ETagGenerator
     {
-        public static string GetETag(string AKey, byte[] AContentBytes)
+        public static string GetETag(string key, byte[] contentBytes)
         {
-            var LKeyBytes = Encoding.UTF8.GetBytes(AKey);
-            var LCombinedBytes = Combine(LKeyBytes, AContentBytes);
-            return GenerateETag(LCombinedBytes);
+            var keyBytes = Encoding.UTF8.GetBytes(key);
+            var combinedBytes = Combine(keyBytes, contentBytes);
+            return GenerateETag(combinedBytes);
         }
 
-        private static string GenerateETag(byte[] AData)
+        private static string GenerateETag(byte[] data)
         {
-            using var LSha256 = SHA256.Create();
-            var LHash = LSha256.ComputeHash(AData);
-            var LHex = BitConverter.ToString(LHash);
-            return LHex.Replace("-", "");
+            using var sha256 = SHA256.Create();
+            var hash = sha256.ComputeHash(data);
+            var hex = BitConverter.ToString(hash);
+            return hex.Replace("-", "");
         }
 
-        private static byte[] Combine(byte[] APrimaryBytes, byte[] ASecondaryBytes)
+        private static byte[] Combine(byte[] primaryBytes, byte[] secondaryBytes)
         {
-            var LBytes = new byte[APrimaryBytes.Length + ASecondaryBytes.Length];
-            Buffer.BlockCopy(APrimaryBytes, 0, LBytes, 0, APrimaryBytes.Length);
-            Buffer.BlockCopy(ASecondaryBytes, 0, LBytes, APrimaryBytes.Length, ASecondaryBytes.Length);
-            return LBytes;
+            var bytes = new byte[primaryBytes.Length + secondaryBytes.Length];
+            Buffer.BlockCopy(primaryBytes, 0, bytes, 0, primaryBytes.Length);
+            Buffer.BlockCopy(secondaryBytes, 0, bytes, primaryBytes.Length, secondaryBytes.Length);
+            return bytes;
         }
     }
 }

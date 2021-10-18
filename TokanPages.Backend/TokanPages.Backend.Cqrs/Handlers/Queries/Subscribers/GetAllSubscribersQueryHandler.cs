@@ -9,24 +9,24 @@
 
     public class GetAllSubscribersQueryHandler : TemplateHandler<GetAllSubscribersQuery, IEnumerable<GetAllSubscribersQueryResult>>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
 
-        public GetAllSubscribersQueryHandler(DatabaseContext ADatabaseContext) => FDatabaseContext = ADatabaseContext;
+        public GetAllSubscribersQueryHandler(DatabaseContext databaseContext) => _databaseContext = databaseContext;
 
-        public override async Task<IEnumerable<GetAllSubscribersQueryResult>> Handle(GetAllSubscribersQuery ARequest, CancellationToken ACancellationToken) 
+        public override async Task<IEnumerable<GetAllSubscribersQueryResult>> Handle(GetAllSubscribersQuery request, CancellationToken cancellationToken) 
         {
-            var LSubscribers = await FDatabaseContext.Subscribers
+            var subscribers = await _databaseContext.Subscribers
                 .AsNoTracking()
-                .Select(AFields => new GetAllSubscribersQueryResult 
+                .Select(subscribers => new GetAllSubscribersQueryResult 
                 { 
-                    Id = AFields.Id,
-                    Email = AFields.Email,
-                    IsActivated = AFields.IsActivated,
-                    NewsletterCount = AFields.Count
+                    Id = subscribers.Id,
+                    Email = subscribers.Email,
+                    IsActivated = subscribers.IsActivated,
+                    NewsletterCount = subscribers.Count
                 })
-                .ToListAsync(ACancellationToken);
+                .ToListAsync(cancellationToken);
             
-            return LSubscribers;
+            return subscribers;
         }
     }
 }

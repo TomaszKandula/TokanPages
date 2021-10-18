@@ -10,10 +10,10 @@
     {
         public string ErrorCode { get; }
 
-        protected BusinessException(SerializationInfo ASerializationInfo, 
-            StreamingContext AStreamingContext) : base(ASerializationInfo, AStreamingContext) { }
+        protected BusinessException(SerializationInfo serializationInfo, 
+            StreamingContext streamingContext) : base(serializationInfo, streamingContext) { }
 
-        public BusinessException(string AErrorCode, string AErrorMessage = "") : base(AErrorMessage)
-            => ErrorCode = AErrorCode;
+        public BusinessException(string errorCode, string errorMessage = "") : base(errorMessage)
+            => ErrorCode = errorCode;
     }
 }

@@ -13,35 +13,35 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
 
     public class UpdateArticleVisibilityCommandHandler : TemplateHandler<UpdateArticleVisibilityCommand, Unit>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
 
-        private readonly IUserServiceProvider FUserServiceProvider;
+        private readonly IUserServiceProvider _userServiceProvider;
         
-        public UpdateArticleVisibilityCommandHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider)
+        public UpdateArticleVisibilityCommandHandler(DatabaseContext databaseContext, IUserServiceProvider userServiceProvider)
         {
-            FDatabaseContext = ADatabaseContext;
-            FUserServiceProvider = AUserServiceProvider;
+            _databaseContext = databaseContext;
+            _userServiceProvider = userServiceProvider;
         }
         
-        public override async Task<Unit> Handle(UpdateArticleVisibilityCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(UpdateArticleVisibilityCommand request, CancellationToken cancellationToken)
         {
-            var LCanPublishArticles = await FUserServiceProvider
+            var canPublishArticles = await _userServiceProvider
                 .HasPermissionAssigned(nameof(Permissions.CanPublishArticles)) ?? false;
             
-            if (!LCanPublishArticles)
+            if (!canPublishArticles)
                 throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
-            var LArticles = await FDatabaseContext.Articles
-                .Where(AArticles => AArticles.Id == ARequest.Id)
-                .ToListAsync(ACancellationToken);
+            var articles = await _databaseContext.Articles
+                .Where(articles => articles.Id == request.Id)
+                .ToListAsync(cancellationToken);
 
-            if (!LArticles.Any())
+            if (!articles.Any())
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-            var LCurrentArticle = LArticles.First();
-            LCurrentArticle.IsPublished = ARequest.IsPublished;
+            var currentArticle = articles.First();
+            currentArticle.IsPublished = request.IsPublished;
 
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            await _databaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
         }
     }

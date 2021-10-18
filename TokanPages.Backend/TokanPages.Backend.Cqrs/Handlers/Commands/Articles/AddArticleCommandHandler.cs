@@ -12,51 +12,51 @@
 
     public class AddArticleCommandHandler : TemplateHandler<AddArticleCommand, Guid>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
         
-        private readonly IUserServiceProvider FUserServiceProvider;
+        private readonly IUserServiceProvider _userServiceProvider;
         
-        private readonly IDateTimeService FDateTimeService;
+        private readonly IDateTimeService _dateTimeService;
         
-        private readonly IAzureBlobStorageFactory FAzureBlobStorageFactory;
+        private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
         
-        public AddArticleCommandHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider, 
-            IDateTimeService ADateTimeService, IAzureBlobStorageFactory AAzureBlobStorageFactory) 
+        public AddArticleCommandHandler(DatabaseContext databaseContext, IUserServiceProvider userServiceProvider, 
+            IDateTimeService dateTimeService, IAzureBlobStorageFactory azureBlobStorageFactory) 
         {
-            FDatabaseContext = ADatabaseContext;
-            FUserServiceProvider = AUserServiceProvider;
-            FDateTimeService = ADateTimeService;
-            FAzureBlobStorageFactory = AAzureBlobStorageFactory;
+            _databaseContext = databaseContext;
+            _userServiceProvider = userServiceProvider;
+            _dateTimeService = dateTimeService;
+            _azureBlobStorageFactory = azureBlobStorageFactory;
         }
 
-        public override async Task<Guid> Handle(AddArticleCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Guid> Handle(AddArticleCommand request, CancellationToken cancellationToken)
         {
-            var LUserId = await FUserServiceProvider.GetUserId();
-            if (LUserId == null)
+            var userId = await _userServiceProvider.GetUserId();
+            if (userId == null)
                 throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
-            var LNewArticle = new Domain.Entities.Articles
+            var newArticle = new Domain.Entities.Articles
             {
-                Title = ARequest.Title,
-                Description = ARequest.Description,
+                Title = request.Title,
+                Description = request.Description,
                 IsPublished = false,
                 ReadCount = 0,
-                CreatedAt = FDateTimeService.Now,
+                CreatedAt = _dateTimeService.Now,
                 UpdatedAt = null,
-                UserId = (Guid) LUserId
+                UserId = (Guid) userId
             };
 
-            await FDatabaseContext.Articles.AddAsync(LNewArticle, ACancellationToken);
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            await _databaseContext.Articles.AddAsync(newArticle, cancellationToken);
+            await _databaseContext.SaveChangesAsync(cancellationToken);
 
-            var LAzureBlob = FAzureBlobStorageFactory.Create();
-            var LTextDestinationPath = $"content\\articles\\{LNewArticle.Id}\\text.json";
-            var LImageDestinationPath = $"content\\articles\\{LNewArticle.Id}\\image.jpg";
+            var azureBlob = _azureBlobStorageFactory.Create();
+            var textDestinationPath = $"content\\articles\\{newArticle.Id}\\text.json";
+            var imageDestinationPath = $"content\\articles\\{newArticle.Id}\\image.jpg";
 
-            await LAzureBlob.UploadContent(ARequest.TextToUpload, LTextDestinationPath, ACancellationToken);
-            await LAzureBlob.UploadContent(ARequest.ImageToUpload, LImageDestinationPath, ACancellationToken);
+            await azureBlob.UploadContent(request.TextToUpload, textDestinationPath, cancellationToken);
+            await azureBlob.UploadContent(request.ImageToUpload, imageDestinationPath, cancellationToken);
             
-            return await Task.FromResult(LNewArticle.Id);
+            return await Task.FromResult(newArticle.Id);
         }
     }
 }

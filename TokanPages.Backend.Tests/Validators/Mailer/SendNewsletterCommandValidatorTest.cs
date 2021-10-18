@@ -14,7 +14,7 @@
         public void GivenAllFieldsAreCorrect_WhenSendNewsletter_ShouldFinishSuccessful() 
         {
             // Arrange
-            var LSendNewsletterCommand = new SendNewsletterCommand
+            var sendNewsletterCommand = new SendNewsletterCommand
             {
                 Message = "Message",
                 Subject = "Subject",
@@ -29,18 +29,18 @@
             };
 
             // Act
-            var LValidator = new SendNewsletterCommandValidator();
-            var LResult = LValidator.Validate(LSendNewsletterCommand);
+            var validator = new SendNewsletterCommandValidator();
+            var result = validator.Validate(sendNewsletterCommand);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenSubscriberInfoIsEmpty_WhenSendNewsletter_ShouldThrowError()
         {
             // Arrange
-            var LSendNewsletterCommand = new SendNewsletterCommand
+            var sendNewsletterCommand = new SendNewsletterCommand
             {
                 Message = "Message",
                 Subject = "Subject",
@@ -48,19 +48,19 @@
             };
 
             // Act
-            var LValidator = new SendNewsletterCommandValidator();
-            var LResult = LValidator.Validate(LSendNewsletterCommand);
+            var validator = new SendNewsletterCommandValidator();
+            var result = validator.Validate(sendNewsletterCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
 
         [Fact]
         public void GivenEmptySubject_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendNewsletterCommand = new SendNewsletterCommand
+            var sendNewsletterCommand = new SendNewsletterCommand
             {
                 Message = "Message",
                 Subject = string.Empty,
@@ -75,19 +75,19 @@
             };
 
             // Act
-            var LValidator = new SendNewsletterCommandValidator();
-            var LResult = LValidator.Validate(LSendNewsletterCommand);
+            var validator = new SendNewsletterCommandValidator();
+            var result = validator.Validate(sendNewsletterCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
 
         [Fact]
         public void GivenTooLongSubject_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendNewsletterCommand = new SendNewsletterCommand
+            var sendNewsletterCommand = new SendNewsletterCommand
             {
                 Message = "Message",
                 Subject = new string('T', 256),
@@ -102,19 +102,19 @@
             };
 
             // Act
-            var LValidator = new SendNewsletterCommandValidator();
-            var LResult = LValidator.Validate(LSendNewsletterCommand);
+            var validator = new SendNewsletterCommandValidator();
+            var result = validator.Validate(sendNewsletterCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.SUBJECT_TOO_LONG));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.SUBJECT_TOO_LONG));
         }
 
         [Fact]
         public void GivenEmptyMessage_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendNewsletterCommand = new SendNewsletterCommand
+            var sendNewsletterCommand = new SendNewsletterCommand
             {
                 Message = string.Empty,
                 Subject = "Subject",
@@ -129,19 +129,19 @@
             };
 
             // Act
-            var LValidator = new SendNewsletterCommandValidator();
-            var LResult = LValidator.Validate(LSendNewsletterCommand);
+            var validator = new SendNewsletterCommandValidator();
+            var result = validator.Validate(sendNewsletterCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
 
         [Fact]
         public void GivenTooLongMessage_WhenSendMessage_ShouldThrowError()
         {
             // Arrange
-            var LSendNewsletterCommand = new SendNewsletterCommand
+            var sendNewsletterCommand = new SendNewsletterCommand
             {
                 Message = new string('T', 256),
                 Subject = "Subject",
@@ -156,12 +156,12 @@
             };
 
             // Act
-            var LValidator = new SendNewsletterCommandValidator();
-            var LResult = LValidator.Validate(LSendNewsletterCommand);
+            var validator = new SendNewsletterCommandValidator();
+            var result = validator.Validate(sendNewsletterCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.MESSAGE_TOO_LONG));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.MESSAGE_TOO_LONG));
         }
     }
 }

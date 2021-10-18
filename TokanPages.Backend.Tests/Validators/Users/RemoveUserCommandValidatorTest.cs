@@ -12,35 +12,35 @@
         public void GivenCorrectId_WhenRemoveUser_ShouldFinishSuccessful()
         {
             // Arrange
-            var LRemoveUserCommand = new RemoveUserCommand
+            var removeUserCommand = new RemoveUserCommand
             {
                 Id = Guid.NewGuid()
             };
 
             // Act
-            var LValidator = new RemoveUserCommandValidator();
-            var LResult = LValidator.Validate(LRemoveUserCommand);
+            var validator = new RemoveUserCommandValidator();
+            var result = validator.Validate(removeUserCommand);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenEmptyId_WhenRemoveUser_ShouldThrowError()
         {
             // Arrange
-            var LRemoveUserCommand = new RemoveUserCommand
+            var removeUserCommand = new RemoveUserCommand
             {
                 Id = Guid.Empty
             };
 
             // Act
-            var LValidator = new RemoveUserCommandValidator();
-            var LResult = LValidator.Validate(LRemoveUserCommand);
+            var validator = new RemoveUserCommandValidator();
+            var result = validator.Validate(removeUserCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
     }
 }

@@ -11,53 +11,53 @@
         public void GivenEmail_WhenVerifyEmailAddress_ShouldFinishSuccessful() 
         {
             // Arrange
-            var LVerifyEmailAddressCommand = new VerifyEmailAddressCommand 
+            var verifyEmailAddressCommand = new VerifyEmailAddressCommand 
             { 
                 Email = "tokan@dfds.com"
             };
 
             // Act
-            var LValidator = new VerifyEmailAddressCommandValidator();
-            var LResult = LValidator.Validate(LVerifyEmailAddressCommand);
+            var validator = new VerifyEmailAddressCommandValidator();
+            var result = validator.Validate(verifyEmailAddressCommand);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenEmptyEmail_WhenVerifyEmailAddress_ShouldThrowError()
         {
             // Arrange
-            var LVerifyEmailAddressCommand = new VerifyEmailAddressCommand
+            var verifyEmailAddressCommand = new VerifyEmailAddressCommand
             {
                 Email = string.Empty
             };
 
             // Act
-            var LValidator = new VerifyEmailAddressCommandValidator();
-            var LResult = LValidator.Validate(LVerifyEmailAddressCommand);
+            var validator = new VerifyEmailAddressCommandValidator();
+            var result = validator.Validate(verifyEmailAddressCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
 
         [Fact]
         public void GivenTooLongEmail_WhenVerifyEmailAddress_ShouldThrowError()
         {
             // Arrange
-            var LVerifyEmailAddressCommand = new VerifyEmailAddressCommand
+            var verifyEmailAddressCommand = new VerifyEmailAddressCommand
             {
                 Email = new string('T', 256)
             };
 
             // Act
-            var LValidator = new VerifyEmailAddressCommandValidator();
-            var LResult = LValidator.Validate(LVerifyEmailAddressCommand);
+            var validator = new VerifyEmailAddressCommandValidator();
+            var result = validator.Validate(verifyEmailAddressCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
         }
     }
 }

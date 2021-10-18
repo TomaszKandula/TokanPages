@@ -11,18 +11,18 @@ namespace TokanPages.Backend.Tests.Services
         public void GivenPlainTextPassword_WhenInvokeGetHashedPassword_ShouldReturnHashedPassword()
         {
             // Arrange
-            const int CIPHER_LOG_ROUNDS = 12;
-            var LPlainTextPassword = DataUtilityService.GetRandomString();
-            var LCipher = new CipheringService();
+            const int cipherLogRounds = 12;
+            var plainTextPassword = DataUtilityService.GetRandomString();
+            var cipher = new CipheringService();
 
             // Act
-            var LSalt = LCipher.GenerateSalt(CIPHER_LOG_ROUNDS);
-            var LHashed = LCipher.GetHashedPassword(LPlainTextPassword, LSalt);
+            var salt = cipher.GenerateSalt(cipherLogRounds);
+            var hashed = cipher.GetHashedPassword(plainTextPassword, salt);
 
             // Assert
-            LHashed.Should().NotBeNullOrEmpty();
-            var LVerify = LCipher.VerifyPassword(LPlainTextPassword, LHashed);
-            LVerify.Should().BeTrue();
+            hashed.Should().NotBeNullOrEmpty();
+            var verify = cipher.VerifyPassword(plainTextPassword, hashed);
+            verify.Should().BeTrue();
         }
     }
 }

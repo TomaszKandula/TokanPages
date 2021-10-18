@@ -1,10 +1,14 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
     using Core.Exceptions;
     using Core.Extensions;
+    using Domain.Entities;
     using Shared.Resources;
     using Storage.AzureBlobStorage;
     using Core.Utilities.DateTimeService;
@@ -12,144 +16,141 @@
     using Storage.AzureBlobStorage.Factory;
     using Cqrs.Services.UserServiceProvider;
     using Core.Utilities.DataUtilityService;
-    using FluentAssertions;
-    using Xunit;
-    using Moq;
 
     public class AddArticleCommandHandlerTest : TestBase
     {
-        private readonly Mock<AzureBlobStorageFactory> FMockedAzureBlobStorageFactory;
+        private readonly Mock<AzureBlobStorageFactory> _mockedAzureBlobStorageFactory;
         
-        private readonly DataUtilityService FDataUtilityService;
+        private readonly DataUtilityService _dataUtilityService;
 
         public AddArticleCommandHandlerTest()
         {
-            FDataUtilityService = new DataUtilityService();
-            FMockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
-            var LMockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
+            _dataUtilityService = new DataUtilityService();
+            _mockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
+            var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
 
-            LMockedAzureBlobStorage
-                .Setup(AAzureBlobStorage => AAzureBlobStorage.UploadFile(
+            mockedAzureBlobStorage
+                .Setup(storage => storage.UploadFile(
                     It.IsAny<Stream>(),
                     It.IsAny<string>(),
                     It.IsAny<CancellationToken>(),
                     It.IsAny<string>()))
                 .Returns(Task.FromResult(string.Empty));
             
-            FMockedAzureBlobStorageFactory
-                .Setup(AAzureBlobStorageFactory => AAzureBlobStorageFactory.Create())
-                .Returns(LMockedAzureBlobStorage.Object);
+            _mockedAzureBlobStorageFactory
+                .Setup(factory => factory.Create())
+                .Returns(mockedAzureBlobStorage.Object);
         }
 
         [Fact]
         public async Task GivenFieldsWithBase64ImageAsLoggedUser_WhenAddArticle_ShouldAddArticle() 
         {
             // Arrange
-            var LAddArticleCommand = new AddArticleCommand
+            var addArticleCommand = new AddArticleCommand
             {
-                Title = FDataUtilityService.GetRandomString(),
-                Description = FDataUtilityService.GetRandomString(),
-                TextToUpload = FDataUtilityService.GetRandomString(),
-                ImageToUpload = FDataUtilityService.GetRandomString().ToBase64Encode()
+                Title = _dataUtilityService.GetRandomString(),
+                Description = _dataUtilityService.GetRandomString(),
+                TextToUpload = _dataUtilityService.GetRandomString(),
+                ImageToUpload = _dataUtilityService.GetRandomString().ToBase64Encode()
             };
 
-            var LUser = new Backend.Domain.Entities.Users
+            var user = new Users
             {
-                UserAlias  = FDataUtilityService.GetRandomString(),
+                UserAlias  = _dataUtilityService.GetRandomString(),
                 IsActivated = true,
-                FirstName = FDataUtilityService.GetRandomString(),
-                LastName = FDataUtilityService.GetRandomString(),
-                EmailAddress = FDataUtilityService.GetRandomEmail(),
-                Registered = FDataUtilityService.GetRandomDateTime(),
-                LastLogged = FDataUtilityService.GetRandomDateTime(),
-                LastUpdated = FDataUtilityService.GetRandomDateTime(),
-                AvatarName = FDataUtilityService.GetRandomString(),
-                ShortBio = FDataUtilityService.GetRandomString(),
-                CryptedPassword = FDataUtilityService.GetRandomString()
+                FirstName = _dataUtilityService.GetRandomString(),
+                LastName = _dataUtilityService.GetRandomString(),
+                EmailAddress = _dataUtilityService.GetRandomEmail(),
+                Registered = _dataUtilityService.GetRandomDateTime(),
+                LastLogged = _dataUtilityService.GetRandomDateTime(),
+                LastUpdated = _dataUtilityService.GetRandomDateTime(),
+                AvatarName = _dataUtilityService.GetRandomString(),
+                ShortBio = _dataUtilityService.GetRandomString(),
+                CryptedPassword = _dataUtilityService.GetRandomString()
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUser);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(user);
+            await databaseContext.SaveChangesAsync();
             
-            var LMockedDateTime = new Mock<DateTimeService>();
-            var LMockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedDateTime = new Mock<DateTimeService>();
+            var mockedUserProvider = new Mock<IUserServiceProvider>();
 
-            LMockedUserProvider
-                .Setup(AMockedUserProvider => AMockedUserProvider.GetUserId())
-                .ReturnsAsync(LUser.Id);
+            mockedUserProvider
+                .Setup(provider => provider.GetUserId())
+                .ReturnsAsync(user.Id);
             
-            var LAddArticleCommandHandler = new AddArticleCommandHandler(
-                LDatabaseContext, 
-                LMockedUserProvider.Object,
-                LMockedDateTime.Object, 
-                FMockedAzureBlobStorageFactory.Object);
+            var addArticleCommandHandler = new AddArticleCommandHandler(
+                databaseContext, 
+                mockedUserProvider.Object,
+                mockedDateTime.Object, 
+                _mockedAzureBlobStorageFactory.Object);
 
             // Act
-            var LResult = await LAddArticleCommandHandler.Handle(LAddArticleCommand, CancellationToken.None);
+            var result = await addArticleCommandHandler.Handle(addArticleCommand, CancellationToken.None);
             
             // Assert
-            LResult.ToString().IsGuid().Should().Be(true);
+            result.ToString().IsGuid().Should().Be(true);
         }
         
         [Fact]
         public async Task GivenFieldsWithBase64ImageAsAnonymousUser_WhenAddArticle_ShouldThrowError() 
         {
             // Arrange
-            var LAddArticleCommand = new AddArticleCommand
+            var addArticleCommand = new AddArticleCommand
             {
-                Title = FDataUtilityService.GetRandomString(),
-                Description = FDataUtilityService.GetRandomString(),
-                TextToUpload = FDataUtilityService.GetRandomString(),
-                ImageToUpload = FDataUtilityService.GetRandomString().ToBase64Encode()
+                Title = _dataUtilityService.GetRandomString(),
+                Description = _dataUtilityService.GetRandomString(),
+                TextToUpload = _dataUtilityService.GetRandomString(),
+                ImageToUpload = _dataUtilityService.GetRandomString().ToBase64Encode()
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            var LMockedDateTime = new Mock<DateTimeService>();
-            var LMockedUserProvider = new Mock<IUserServiceProvider>();
+            var databaseContext = GetTestDatabaseContext();
+            var mockedDateTime = new Mock<DateTimeService>();
+            var mockedUserProvider = new Mock<IUserServiceProvider>();
             
-            var LAddArticleCommandHandler = new AddArticleCommandHandler(
-                LDatabaseContext, 
-                LMockedUserProvider.Object,
-                LMockedDateTime.Object, 
-                FMockedAzureBlobStorageFactory.Object);
+            var addArticleCommandHandler = new AddArticleCommandHandler(
+                databaseContext, 
+                mockedUserProvider.Object,
+                mockedDateTime.Object, 
+                _mockedAzureBlobStorageFactory.Object);
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() 
-                => LAddArticleCommandHandler.Handle(LAddArticleCommand, CancellationToken.None));
+            var result = await Assert.ThrowsAsync<BusinessException>(() 
+                => addArticleCommandHandler.Handle(addArticleCommand, CancellationToken.None));
 
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
         
         [Fact]
         public async Task GivenFieldsWithNoBase64ImageAsAnonymousUser_WhenAddArticle_ShouldThrowError()
         {
             // Arrange
-            var LAddArticleCommand = new AddArticleCommand
+            var addArticleCommand = new AddArticleCommand
             {
-                Title = FDataUtilityService.GetRandomString(),
-                Description = FDataUtilityService.GetRandomString(),
-                TextToUpload = FDataUtilityService.GetRandomString(),
+                Title = _dataUtilityService.GetRandomString(),
+                Description = _dataUtilityService.GetRandomString(),
+                TextToUpload = _dataUtilityService.GetRandomString(),
                 ImageToUpload = "úK¼Æ½t$bþÍs*L2ÕÊª"
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            var LMockedDateTime = new Mock<DateTimeService>();
-            var LMockedUserProvider = new Mock<IUserServiceProvider>();
+            var databaseContext = GetTestDatabaseContext();
+            var mockedDateTime = new Mock<DateTimeService>();
+            var mockedUserProvider = new Mock<IUserServiceProvider>();
 
-            var LAddArticleCommandHandler = new AddArticleCommandHandler(
-                LDatabaseContext, 
-                LMockedUserProvider.Object,
-                LMockedDateTime.Object, 
-                FMockedAzureBlobStorageFactory.Object);
+            var addArticleCommandHandler = new AddArticleCommandHandler(
+                databaseContext, 
+                mockedUserProvider.Object,
+                mockedDateTime.Object, 
+                _mockedAzureBlobStorageFactory.Object);
             
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() 
-                => LAddArticleCommandHandler.Handle(LAddArticleCommand, CancellationToken.None));
+            var result = await Assert.ThrowsAsync<BusinessException>(() 
+                => addArticleCommandHandler.Handle(addArticleCommand, CancellationToken.None));
 
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
     }
 }

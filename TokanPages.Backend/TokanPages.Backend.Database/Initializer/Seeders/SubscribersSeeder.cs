@@ -14,30 +14,30 @@
             {
                 new ()
                 {
-                    Id = Subscriber1.FId,
-                    Email = Subscriber1.EMAIL,
-                    IsActivated = Subscriber1.IS_ACTIVATED,
-                    Count = Subscriber1.COUNT,
-                    Registered = Subscriber1.FRegistered,
-                    LastUpdated = Subscriber1.FLastUpdated
+                    Id = Subscriber1.Id,
+                    Email = Subscriber1.Email,
+                    IsActivated = Subscriber1.IsActivated,
+                    Count = Subscriber1.Count,
+                    Registered = Subscriber1.Registered,
+                    LastUpdated = Subscriber1.LastUpdated
                 },
                 new ()
                 {
-                    Id = Subscriber2.FId,
-                    Email = Subscriber2.EMAIL,
-                    IsActivated = Subscriber2.IS_ACTIVATED,
-                    Count = Subscriber2.COUNT,
-                    Registered = Subscriber2.FRegistered,
-                    LastUpdated = Subscriber2.FLastUpdated
+                    Id = Subscriber2.Id,
+                    Email = Subscriber2.Email,
+                    IsActivated = Subscriber2.IsActivated,
+                    Count = Subscriber2.Count,
+                    Registered = Subscriber2.Registered,
+                    LastUpdated = Subscriber2.LastUpdated
                 },
                 new ()
                 {
-                    Id = Subscriber3.FId,
-                    Email = Subscriber3.EMAIL,
-                    IsActivated = Subscriber3.IS_ACTIVATED,
-                    Count = Subscriber3.COUNT,
-                    Registered = Subscriber3.FRegistered,
-                    LastUpdated = Subscriber3.FLastUpdated
+                    Id = Subscriber3.Id,
+                    Email = Subscriber3.Email,
+                    IsActivated = Subscriber3.IsActivated,
+                    Count = Subscriber3.Count,
+                    Registered = Subscriber3.Registered,
+                    LastUpdated = Subscriber3.LastUpdated
                 }
             };
         }

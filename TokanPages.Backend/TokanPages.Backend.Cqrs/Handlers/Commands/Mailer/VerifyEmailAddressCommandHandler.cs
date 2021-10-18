@@ -7,23 +7,23 @@
 
     public class VerifyEmailAddressCommandHandler : TemplateHandler<VerifyEmailAddressCommand, VerifyEmailAddressCommandResult>
     {
-        private readonly ISmtpClientService FSmtpClientService;
+        private readonly ISmtpClientService _smtpClientService;
 
-        public VerifyEmailAddressCommandHandler(ISmtpClientService ASmtpClientService) 
-            => FSmtpClientService = ASmtpClientService;
+        public VerifyEmailAddressCommandHandler(ISmtpClientService smtpClientService) 
+            => _smtpClientService = smtpClientService;
 
-        public override async Task<VerifyEmailAddressCommandResult> Handle(VerifyEmailAddressCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<VerifyEmailAddressCommandResult> Handle(VerifyEmailAddressCommand request, CancellationToken cancellationToken)
         {
-            var LIsAddressCorrect = FSmtpClientService.IsAddressCorrect(new List<string> { ARequest.Email });
-            var LIsDomainCorrect = false;
+            var isAddressCorrect = _smtpClientService.IsAddressCorrect(new List<string> { request.Email });
+            var isDomainCorrect = false;
             
-            if (LIsAddressCorrect[0].IsValid)
-                LIsDomainCorrect = await FSmtpClientService.IsDomainCorrect(ARequest.Email, ACancellationToken);
+            if (isAddressCorrect[0].IsValid)
+                isDomainCorrect = await _smtpClientService.IsDomainCorrect(request.Email, cancellationToken);
 
             return new VerifyEmailAddressCommandResult
             {
-                IsFormatCorrect = LIsAddressCorrect[0].IsValid,
-                IsDomainCorrect = LIsDomainCorrect
+                IsFormatCorrect = isAddressCorrect[0].IsValid,
+                IsDomainCorrect = isDomainCorrect
             };
         }
     }

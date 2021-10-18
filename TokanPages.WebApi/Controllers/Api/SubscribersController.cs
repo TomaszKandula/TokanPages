@@ -15,31 +15,31 @@
     [Authorize]
     public class SubscribersController : ApiBaseController
     {
-        public SubscribersController(IMediator AMediator) : base(AMediator) { }
+        public SubscribersController(IMediator mediator) : base(mediator) { }
 
         [HttpGet]
         [AuthorizeRoles(Roles.GodOfAsgard)]
         public async Task<IEnumerable<GetAllSubscribersQueryResult>> GetAllSubscribers()
-            => await FMediator.Send(new GetAllSubscribersQuery());
+            => await Mediator.Send(new GetAllSubscribersQuery());
 
-        [HttpGet("{AId}")]
+        [HttpGet("{id:guid}")]
         [AllowAnonymous]
-        public async Task<GetSubscriberQueryResult> GetSubscriber([FromRoute] Guid AId)
-            => await FMediator.Send(new GetSubscriberQuery { Id = AId });
-
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<Guid> AddSubscriber([FromBody] AddSubscriberDto APayLoad) 
-            => await FMediator.Send(SubscribersMapper.MapToAddSubscriberCommand(APayLoad));
+        public async Task<GetSubscriberQueryResult> GetSubscriber([FromRoute] Guid id)
+            => await Mediator.Send(new GetSubscriberQuery { Id = id });
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<Unit> UpdateSubscriber([FromBody] UpdateSubscriberDto APayLoad)
-            => await FMediator.Send(SubscribersMapper.MapToUpdateSubscriberCommand(APayLoad));
+        public async Task<Guid> AddSubscriber([FromBody] AddSubscriberDto payLoad) 
+            => await Mediator.Send(SubscribersMapper.MapToAddSubscriberCommand(payLoad));
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<Unit> RemoveSubscriber([FromBody] RemoveSubscriberDto APayLoad)
-         => await FMediator.Send(SubscribersMapper.MapToRemoveSubscriberCommand(APayLoad));
+        public async Task<Unit> UpdateSubscriber([FromBody] UpdateSubscriberDto payLoad)
+            => await Mediator.Send(SubscribersMapper.MapToUpdateSubscriberCommand(payLoad));
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<Unit> RemoveSubscriber([FromBody] RemoveSubscriberDto payLoad)
+         => await Mediator.Send(SubscribersMapper.MapToRemoveSubscriberCommand(payLoad));
     }
 }

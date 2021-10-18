@@ -1,13 +1,13 @@
 namespace TokanPages.WebApi.Tests.SubscribersController
 {
+    using Xunit;
+    using Newtonsoft.Json;
+    using FluentAssertions;
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
     using Backend.Core.Extensions;
     using Backend.Shared.Dto.Subscribers;
-    using FluentAssertions;
-    using Newtonsoft.Json;
-    using Xunit;
 
     public partial class SubscribersControllerTest
     {
@@ -15,21 +15,21 @@ namespace TokanPages.WebApi.Tests.SubscribersController
         public async Task GivenAllFieldsAreCorrect_WhenAddSubscriber_ShouldReturnNewGuid() 
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/AddSubscriber/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
-            var LPayLoad = new AddSubscriberDto { Email = DataUtilityService.GetRandomEmail() };
+            var request = $"{ApiBaseUrl}/AddSubscriber/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
+            var payLoad = new AddSubscriberDto { Email = DataUtilityService.GetRandomEmail() };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            var httpClient = _webApplicationFactory.CreateClient();
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.IsGuid().Should().BeTrue();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.IsGuid().Should().BeTrue();
         }
     }
 }

@@ -9,48 +9,51 @@ namespace TokanPages.Backend.Shared.Attributes
     [AttributeUsage(AttributeTargets.Method)]
     public class ETagFilterAttribute : Attribute, IActionFilter
     {
-        private const string ETAG = "ETag";
+        private const string Etag = "ETag";
         
-        private const string CACHE_CONTROL = "Cache-Control";
+        private const string CacheControl = "Cache-Control";
 
-        private const string NO_CACHE = "no-cache";
+        private const string NoCache = "no-cache";
 
-        private const string IF_NONE_MATCH = "If-None-Match";
+        private const string IfNoneMatch = "If-None-Match";
 
-        private const string HTTP_GET_METHOD = "GET";
+        private const string HttpGetMethod = "GET";
 
-        private readonly int[] FStatusCodes;
+        private readonly int[] _statusCodes;
 
-        public ETagFilterAttribute(params int[] AStatusCodes)
+        public ETagFilterAttribute(params int[] statusCodes)
         {
-            FStatusCodes = AStatusCodes;
+            _statusCodes = statusCodes;
 
-            if (AStatusCodes.Length == 0) 
-                FStatusCodes = new[] { 200 };
+            if (statusCodes.Length == 0) 
+                _statusCodes = new[] { 200 };
         }
 
-        public void OnActionExecuting(ActionExecutingContext AContext) { }
-
-        public void OnActionExecuted(ActionExecutedContext AContext)
+        public void OnActionExecuting(ActionExecutingContext context)
         {
-            if (AContext.HttpContext.Request.Method != HTTP_GET_METHOD) 
+            // Leave it empty, do not process during execution
+        }
+
+        public void OnActionExecuted(ActionExecutedContext context)
+        {
+            if (context.HttpContext.Request.Method != HttpGetMethod) 
                 return;
 
-            if (!((IList) FStatusCodes).Contains(AContext.HttpContext.Response.StatusCode)) 
+            if (!((IList) _statusCodes).Contains(context.HttpContext.Response.StatusCode)) 
                 return;
 
-            var LContent = AContext.Result.ToString();
-            var LRequestPath = AContext.HttpContext.Request.Path.ToString();
-            var LEtag = ETagGenerator.GetETag(LRequestPath, Encoding.UTF8.GetBytes(LContent ?? string.Empty));
+            var content = context.Result.ToString();
+            var requestPath = context.HttpContext.Request.Path.ToString();
+            var eTag = ETagGenerator.GetETag(requestPath, Encoding.UTF8.GetBytes(content ?? string.Empty));
 
-            var LHasNoneMatchItem = AContext.HttpContext.Request.Headers.Keys.Contains(IF_NONE_MATCH);
-            var LNoneMatchHeader = AContext.HttpContext.Request.Headers[IF_NONE_MATCH].ToString();
-            
-            if (LHasNoneMatchItem && LNoneMatchHeader == LEtag)
-                AContext.Result = new StatusCodeResult(304);
-                    
-            AContext.HttpContext.Response.Headers.Add(ETAG, new[] { LEtag });
-            AContext.HttpContext.Response.Headers.Add(CACHE_CONTROL,NO_CACHE);
+            var hasNoneMatchItem = context.HttpContext.Request.Headers.Keys.Contains(IfNoneMatch);
+            var noneMatchHeader = context.HttpContext.Request.Headers[IfNoneMatch].ToString();
+
+            if (hasNoneMatchItem && noneMatchHeader == eTag)
+                context.Result = new StatusCodeResult(304);
+
+            context.HttpContext.Response.Headers.Add(Etag, new[] { eTag });
+            context.HttpContext.Response.Headers.Add(CacheControl,NoCache);
         }
     }
 }

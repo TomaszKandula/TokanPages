@@ -7,7 +7,7 @@
     {
         public AddArticleCommandValidator() 
         {
-            RuleFor(AField => AField.Title)
+            RuleFor(command => command.Title)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -15,7 +15,7 @@
                 .WithErrorCode(nameof(ValidationCodes.TITLE_TOO_LONG))
                 .WithMessage(ValidationCodes.TITLE_TOO_LONG);
 
-            RuleFor(AField => AField.Description)
+            RuleFor(command => command.Description)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -23,12 +23,12 @@
                 .WithErrorCode(nameof(ValidationCodes.DESCRIPTION_TOO_LONG))
                 .WithMessage(ValidationCodes.DESCRIPTION_TOO_LONG);
 
-            RuleFor(AField => AField.TextToUpload)
+            RuleFor(command => command.TextToUpload)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(AField => AField.ImageToUpload)
+            RuleFor(command => command.ImageToUpload)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

@@ -12,35 +12,35 @@ namespace TokanPages.Backend.Tests.Validators.Users
         public void GivenUserId_WhenReAuthenticateUser_ShouldSucceed()
         {
             // Arrange
-            var LReAuthenticateUserCommand = new ReAuthenticateUserCommand
+            var reAuthenticateUserCommand = new ReAuthenticateUserCommand
             {
                 Id = Guid.NewGuid()
             };
 
             // Act
-            var LReAuthenticateUserCommandValidator = new ReAuthenticateUserCommandValidator();
-            var LResult = LReAuthenticateUserCommandValidator.Validate(LReAuthenticateUserCommand);
+            var reAuthenticateUserCommandValidator = new ReAuthenticateUserCommandValidator();
+            var result = reAuthenticateUserCommandValidator.Validate(reAuthenticateUserCommand);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenEmptyUserId_WhenReAuthenticateUser_ShouldThrowError()
         {
             // Arrange
-            var LReAuthenticateUserCommand = new ReAuthenticateUserCommand
+            var reAuthenticateUserCommand = new ReAuthenticateUserCommand
             {
                 Id = Guid.Empty
             };
 
             // Act
-            var LReAuthenticateUserCommandValidator = new ReAuthenticateUserCommandValidator();
-            var LResult = LReAuthenticateUserCommandValidator.Validate(LReAuthenticateUserCommand);
+            var reAuthenticateUserCommandValidator = new ReAuthenticateUserCommandValidator();
+            var result = reAuthenticateUserCommandValidator.Validate(reAuthenticateUserCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
     }
 }

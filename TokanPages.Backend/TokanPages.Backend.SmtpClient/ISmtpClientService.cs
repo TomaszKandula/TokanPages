@@ -22,12 +22,12 @@
         
         string HtmlBody { get; set; }
 
-        Task<ActionResult> CanConnectAndAuthenticate(CancellationToken ACancellationToken = default);
+        Task<ActionResult> CanConnectAndAuthenticate(CancellationToken cancellationToken = default);
         
-        Task<ActionResult> Send(CancellationToken ACancellationToken = default);
+        Task<ActionResult> Send(CancellationToken cancellationToken = default);
         
-        List<Email> IsAddressCorrect(IEnumerable<string> AEmailAddress);
+        List<Email> IsAddressCorrect(IEnumerable<string> emailAddress);
         
-        Task<bool> IsDomainCorrect(string AEmailAddress, CancellationToken ACancellationToken = default);
+        Task<bool> IsDomainCorrect(string emailAddress, CancellationToken cancellationToken = default);
     }
 }

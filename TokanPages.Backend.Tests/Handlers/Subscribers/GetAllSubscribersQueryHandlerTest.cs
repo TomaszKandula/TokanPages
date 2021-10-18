@@ -15,10 +15,10 @@
         public async Task WhenGetAllSubscribers_ShouldReturnCollection()
         {
             // Arrange
-            var LDatabaseContext = GetTestDatabaseContext();
-            var LGetAllSubscribersQuery = new GetAllSubscribersQuery();
-            var LGetAllSubscribersQueryHandler = new GetAllSubscribersQueryHandler(LDatabaseContext);
-            var LSubscribers = new List<TokanPages.Backend.Domain.Entities.Subscribers>
+            var databaseContext = GetTestDatabaseContext();
+            var getAllSubscribersQuery = new GetAllSubscribersQuery();
+            var getAllSubscribersQueryHandler = new GetAllSubscribersQueryHandler(databaseContext);
+            var subscribers = new List<TokanPages.Backend.Domain.Entities.Subscribers>
             {
                 new ()
                 {
@@ -38,17 +38,17 @@
                 }
             };
             
-            await LDatabaseContext.Subscribers.AddRangeAsync(LSubscribers);
-            await LDatabaseContext.SaveChangesAsync();
+            await databaseContext.Subscribers.AddRangeAsync(subscribers);
+            await databaseContext.SaveChangesAsync();
 
             // Act
-            var LResults = (await LGetAllSubscribersQueryHandler
-                .Handle(LGetAllSubscribersQuery, CancellationToken.None))
+            var result = (await getAllSubscribersQueryHandler
+                .Handle(getAllSubscribersQuery, CancellationToken.None))
                 .ToList();
 
             // Assert
-            LResults.Should().NotBeNull();
-            LResults.Should().HaveCount(2);
+            result.Should().NotBeNull();
+            result.Should().HaveCount(2);
         }
     }
 }

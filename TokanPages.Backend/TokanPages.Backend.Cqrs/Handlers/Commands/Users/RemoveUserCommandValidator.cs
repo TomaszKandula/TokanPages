@@ -7,7 +7,7 @@
     {
         public RemoveUserCommandValidator() 
         {
-            RuleFor(AField => AField.Id)
+            RuleFor(command => command.Id)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

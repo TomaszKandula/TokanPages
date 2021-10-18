@@ -22,19 +22,19 @@ namespace TokanPages.Backend.Tests.Handlers.Users
         public async Task GivenValidRefreshToken_WhenReAuthenticateUser_ShouldSucceed()
         {
             // Arrange
-            var LUserId = Guid.NewGuid();
-            var LEmailAddress = DataUtilityService.GetRandomEmail();
-            var LCryptedPassword = DataUtilityService.GetRandomString(60);
-            var LIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
-            var LGenerateUserRefreshToken = DataUtilityService.GetRandomString(255);
-            var LExpires = DateTimeService.Now.AddMinutes(300);
-            var LCreated = DateTimeService.Now.AddDays(-5);
+            var userId = Guid.NewGuid();
+            var emailAddress = DataUtilityService.GetRandomEmail();
+            var cryptedPassword = DataUtilityService.GetRandomString(60);
+            var ipAddress = DataUtilityService.GetRandomIpAddress().ToString();
+            var generateUserRefreshToken = DataUtilityService.GetRandomString(255);
+            var expires = DateTimeService.Now.AddMinutes(300);
+            var created = DateTimeService.Now.AddDays(-5);
             
-            var LReAuthenticateUserCommand = new ReAuthenticateUserCommand { Id = LUserId };
-            var LUser = new Users
+            var reAuthenticateUserCommand = new ReAuthenticateUserCommand { Id = userId };
+            var user = new Users
             {
-                Id = LUserId,
-                EmailAddress = LEmailAddress,
+                Id = userId,
+                EmailAddress = emailAddress,
                 UserAlias = DataUtilityService.GetRandomString(),
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -42,85 +42,85 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 Registered = DateTimeService.Now,
                 LastUpdated = null,
                 LastLogged = null,
-                CryptedPassword = LCryptedPassword
+                CryptedPassword = cryptedPassword
             };
 
-            var LUserRefreshToken = new UserRefreshTokens
+            var userRefreshToken = new UserRefreshTokens
             {
-                UserId = LUser.Id,
-                Token = LGenerateUserRefreshToken,
-                Expires = LExpires,
-                Created = LCreated,
-                CreatedByIp = LIpAddress,
+                UserId = user.Id,
+                Token = generateUserRefreshToken,
+                Expires = expires,
+                Created = created,
+                CreatedByIp = ipAddress,
                 Revoked = null,
                 RevokedByIp = null,
                 ReplacedByToken = null,
                 ReasonRevoked = null
             };
             
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUser);
-            await LDatabaseContext.UserRefreshTokens.AddAsync(LUserRefreshToken);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(user);
+            await databaseContext.UserRefreshTokens.AddAsync(userRefreshToken);
+            await databaseContext.SaveChangesAsync();
             
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
 
-            LMockedUserServiceProvider
-                .Setup(AUserService => AUserService.GetRefreshTokenCookie(It.IsAny<string>()))
-                .Returns(LGenerateUserRefreshToken);
+            mockedUserServiceProvider
+                .Setup(service => service.GetRefreshTokenCookie(It.IsAny<string>()))
+                .Returns(generateUserRefreshToken);
             
-            LMockedUserServiceProvider
-                .Setup(AUserService => AUserService.GetRequestIpAddress())
-                .Returns(LIpAddress);
+            mockedUserServiceProvider
+                .Setup(service => service.GetRequestIpAddress())
+                .Returns(ipAddress);
 
-            LMockedUserServiceProvider
-                .Setup(AUserService => AUserService.IsRefreshTokenRevoked(It.IsAny<UserRefreshTokens>()))
+            mockedUserServiceProvider
+                .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshTokens>()))
                 .Returns(false);
 
-            LMockedUserServiceProvider
-                .Setup(AUserService => AUserService.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
+            mockedUserServiceProvider
+                .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
                 .Returns(true);
             
-            var LNewRefreshToken = new UserRefreshTokens
+            var newRefreshToken = new UserRefreshTokens
             {
-                UserId = LUser.Id,
+                UserId = user.Id,
                 Token = DataUtilityService.GetRandomString(255),
                 Expires = DateTimeService.Now.AddMinutes(120),
                 Created = DateTimeService.Now,
-                CreatedByIp = LIpAddress,
+                CreatedByIp = ipAddress,
                 Revoked = null,
                 RevokedByIp = null,
                 ReplacedByToken = null,
                 ReasonRevoked = null
             };
-            LMockedUserServiceProvider
-                .Setup(AUserService => AUserService
+            mockedUserServiceProvider
+                .Setup(service => service
                     .ReplaceRefreshToken(
                         It.IsAny<Guid>(), 
                         It.IsAny<UserRefreshTokens>(), 
                         It.IsAny<string>(), 
                         It.IsAny<bool>(), 
                         It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LNewRefreshToken);
+                .ReturnsAsync(newRefreshToken);
 
-            LMockedUserServiceProvider
-                .Setup(AUserService => AUserService
+            mockedUserServiceProvider
+                .Setup(service => service
                     .DeleteOutdatedRefreshTokens(
                         It.IsAny<Guid>(), 
                         It.IsAny<bool>(),
                         It.IsAny<CancellationToken>()));
 
-            var LNewUserToken = DataUtilityService.GetRandomString();
-            LMockedUserServiceProvider
-                .Setup(AUserService => AUserService.GenerateUserToken(
+            var newUserToken = DataUtilityService.GetRandomString();
+            mockedUserServiceProvider
+                .Setup(service => service.GenerateUserToken(
                     It.IsAny<Users>(), 
                     It.IsAny<DateTime>(), 
                     CancellationToken.None))
-                .ReturnsAsync(LNewUserToken);
+                .ReturnsAsync(newUserToken);
 
-            LMockedUserServiceProvider
-                .Setup(AUserService => AUserService
+            mockedUserServiceProvider
+                .Setup(service => service
                     .SetRefreshTokenCookie(
                         It.IsAny<string>(), 
                         It.IsAny<int>(), 
@@ -128,7 +128,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                         It.IsAny<bool>(), 
                         It.IsAny<string>()));
             
-            var LIdentityServer = new IdentityServer
+            var identityServer = new IdentityServer
             {
                 Issuer = DataUtilityService.GetRandomString(),
                 Audience = DataUtilityService.GetRandomString(),
@@ -139,72 +139,72 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             };
             
             // Act
-            var LReAuthenticateUserCommandHandler = new ReAuthenticateUserCommandHandler(
-                LDatabaseContext, 
-                LMockedDateTimeService.Object, 
-                LMockedUserServiceProvider.Object, 
-                LIdentityServer);
+            var reAuthenticateUserCommandHandler = new ReAuthenticateUserCommandHandler(
+                databaseContext, 
+                mockedDateTimeService.Object, 
+                mockedUserServiceProvider.Object, 
+                identityServer);
 
-            var LResult = await LReAuthenticateUserCommandHandler.Handle(LReAuthenticateUserCommand, CancellationToken.None);
+            var result = await reAuthenticateUserCommandHandler.Handle(reAuthenticateUserCommand, CancellationToken.None);
             
             // Assert
-            LResult.UserId.Should().Be(LUser.Id);
-            LResult.AliasName.Should().Be(LUser.UserAlias);
-            LResult.AvatarName.Should().Be(LUser.AvatarName);
-            LResult.FirstName.Should().Be(LUser.FirstName);
-            LResult.LastName.Should().Be(LUser.LastName);
-            LResult.ShortBio.Should().Be(LUser.ShortBio);
-            LResult.Registered.Should().Be(LUser.Registered);
-            LResult.UserToken.Should().Be(LNewUserToken);
+            result.UserId.Should().Be(user.Id);
+            result.AliasName.Should().Be(user.UserAlias);
+            result.AvatarName.Should().Be(user.AvatarName);
+            result.FirstName.Should().Be(user.FirstName);
+            result.LastName.Should().Be(user.LastName);
+            result.ShortBio.Should().Be(user.ShortBio);
+            result.Registered.Should().Be(user.Registered);
+            result.UserToken.Should().Be(newUserToken);
             
-            var LUserTokens = await LDatabaseContext.UserTokens
-                .Where(AUserToken => AUserToken.UserId == LUser.Id)
+            var userTokens = await databaseContext.UserTokens
+                .Where(tokens => tokens.UserId == user.Id)
                 .ToListAsync();
 
-            LUserTokens.Should().NotHaveCount(0);
-            var LUserToken = LUserTokens.First();
+            userTokens.Should().NotHaveCount(0);
+            var userToken = userTokens.First();
 
-            LUserToken.UserId.Should().Be(LUser.Id);
-            LUserToken.Token.Should().NotBeEmpty();
-            LUserToken.Expires.Should().NotBeSameDateAs(DateTimeService.Now);
-            LUserToken.Created.Should().NotBeSameDateAs(DateTimeService.Now);
-            LUserToken.CreatedByIp.Should().NotBeEmpty();
-            LUserToken.Command.Should().Be(nameof(ReAuthenticateUserCommand));
+            userToken.UserId.Should().Be(user.Id);
+            userToken.Token.Should().NotBeEmpty();
+            userToken.Expires.Should().NotBeSameDateAs(DateTimeService.Now);
+            userToken.Created.Should().NotBeSameDateAs(DateTimeService.Now);
+            userToken.CreatedByIp.Should().NotBeEmpty();
+            userToken.Command.Should().Be(nameof(ReAuthenticateUserCommand));
 
-            var LUserRefreshTokens = await LDatabaseContext.UserRefreshTokens
-                .Where(AUserRefreshToken => AUserRefreshToken.UserId == LUser.Id)
+            var userRefreshTokens = await databaseContext.UserRefreshTokens
+                .Where(tokens => tokens.UserId == user.Id)
                 .ToListAsync();
 
-            LUserRefreshTokens.Should().HaveCount(2);
+            userRefreshTokens.Should().HaveCount(2);
             
-            LUserRefreshTokens[1].UserId.Should().Be(LUser.Id);
-            LUserRefreshTokens[1].Token.Should().Be(LNewRefreshToken.Token);
-            LUserRefreshTokens[1].Expires.Should().Be(LNewRefreshToken.Expires);
-            LUserRefreshTokens[1].Created.Should().Be(LNewRefreshToken.Created);
-            LUserRefreshTokens[1].CreatedByIp.Should().Be(LNewRefreshToken.CreatedByIp);
-            LUserRefreshTokens[1].Revoked.Should().Be(LNewRefreshToken.Revoked);
-            LUserRefreshTokens[1].RevokedByIp.Should().Be(LNewRefreshToken.RevokedByIp);
-            LUserRefreshTokens[1].ReplacedByToken.Should().Be(LNewRefreshToken.ReplacedByToken);
-            LUserRefreshTokens[1].ReasonRevoked.Should().Be(LNewRefreshToken.ReasonRevoked);
+            userRefreshTokens[1].UserId.Should().Be(user.Id);
+            userRefreshTokens[1].Token.Should().Be(newRefreshToken.Token);
+            userRefreshTokens[1].Expires.Should().Be(newRefreshToken.Expires);
+            userRefreshTokens[1].Created.Should().Be(newRefreshToken.Created);
+            userRefreshTokens[1].CreatedByIp.Should().Be(newRefreshToken.CreatedByIp);
+            userRefreshTokens[1].Revoked.Should().Be(newRefreshToken.Revoked);
+            userRefreshTokens[1].RevokedByIp.Should().Be(newRefreshToken.RevokedByIp);
+            userRefreshTokens[1].ReplacedByToken.Should().Be(newRefreshToken.ReplacedByToken);
+            userRefreshTokens[1].ReasonRevoked.Should().Be(newRefreshToken.ReasonRevoked);
         }
         
         [Fact]
         public async Task GivenInactiveRefreshToken_WhenReAuthenticateUser_ShouldThrowError()
         {
             // Arrange
-            var LUserId = Guid.NewGuid();
-            var LEmailAddress = DataUtilityService.GetRandomEmail();
-            var LCryptedPassword = DataUtilityService.GetRandomString(60);
-            var LIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
-            var LGenerateUserRefreshToken = DataUtilityService.GetRandomString(255);
-            var LExpires = DateTimeService.Now.AddMinutes(300);
-            var LCreated = DateTimeService.Now.AddDays(-5);
+            var userId = Guid.NewGuid();
+            var emailAddress = DataUtilityService.GetRandomEmail();
+            var cryptedPassword = DataUtilityService.GetRandomString(60);
+            var ipAddress = DataUtilityService.GetRandomIpAddress().ToString();
+            var generateUserRefreshToken = DataUtilityService.GetRandomString(255);
+            var expires = DateTimeService.Now.AddMinutes(300);
+            var created = DateTimeService.Now.AddDays(-5);
             
-            var LReAuthenticateUserCommand = new ReAuthenticateUserCommand { Id = LUserId };
-            var LUser = new Users
+            var reAuthenticateUserCommand = new ReAuthenticateUserCommand { Id = userId };
+            var user = new Users
             {
-                Id = LUserId,
-                EmailAddress = LEmailAddress,
+                Id = userId,
+                EmailAddress = emailAddress,
                 UserAlias = DataUtilityService.GetRandomString(),
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -212,47 +212,47 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 Registered = DateTimeService.Now,
                 LastUpdated = null,
                 LastLogged = null,
-                CryptedPassword = LCryptedPassword
+                CryptedPassword = cryptedPassword
             };
 
-            var LUserRefreshToken = new UserRefreshTokens
+            var userRefreshToken = new UserRefreshTokens
             {
-                UserId = LUser.Id,
-                Token = LGenerateUserRefreshToken,
-                Expires = LExpires,
-                Created = LCreated,
-                CreatedByIp = LIpAddress,
+                UserId = user.Id,
+                Token = generateUserRefreshToken,
+                Expires = expires,
+                Created = created,
+                CreatedByIp = ipAddress,
                 Revoked = null,
                 RevokedByIp = null,
                 ReplacedByToken = null,
                 ReasonRevoked = null
             };
             
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUser);
-            await LDatabaseContext.UserRefreshTokens.AddAsync(LUserRefreshToken);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(user);
+            await databaseContext.UserRefreshTokens.AddAsync(userRefreshToken);
+            await databaseContext.SaveChangesAsync();
             
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
 
-            LMockedUserServiceProvider
-                .Setup(AUserService => AUserService.GetRefreshTokenCookie(It.IsAny<string>()))
-                .Returns(LGenerateUserRefreshToken);
+            mockedUserServiceProvider
+                .Setup(service => service.GetRefreshTokenCookie(It.IsAny<string>()))
+                .Returns(generateUserRefreshToken);
             
-            LMockedUserServiceProvider
-                .Setup(AUserService => AUserService.GetRequestIpAddress())
-                .Returns(LIpAddress);
+            mockedUserServiceProvider
+                .Setup(service => service.GetRequestIpAddress())
+                .Returns(ipAddress);
 
-            LMockedUserServiceProvider
-                .Setup(AUserService => AUserService.IsRefreshTokenRevoked(It.IsAny<UserRefreshTokens>()))
+            mockedUserServiceProvider
+                .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshTokens>()))
                 .Returns(false);
 
-            LMockedUserServiceProvider
-                .Setup(AUserService => AUserService.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
+            mockedUserServiceProvider
+                .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
                 .Returns(false);
             
-            var LIdentityServer = new IdentityServer
+            var identityServer = new IdentityServer
             {
                 Issuer = DataUtilityService.GetRandomString(),
                 Audience = DataUtilityService.GetRandomString(),
@@ -264,46 +264,46 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             
             // Act
             // Assert
-            var LReAuthenticateUserCommandHandler = new ReAuthenticateUserCommandHandler(
-                LDatabaseContext, 
-                LMockedDateTimeService.Object, 
-                LMockedUserServiceProvider.Object, 
-                LIdentityServer);
+            var reAuthenticateUserCommandHandler = new ReAuthenticateUserCommandHandler(
+                databaseContext, 
+                mockedDateTimeService.Object, 
+                mockedUserServiceProvider.Object, 
+                identityServer);
 
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => 
-                LReAuthenticateUserCommandHandler.Handle(LReAuthenticateUserCommand, CancellationToken.None));
+            var result = await Assert.ThrowsAsync<BusinessException>(() => 
+                reAuthenticateUserCommandHandler.Handle(reAuthenticateUserCommand, CancellationToken.None));
 
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_REFRESH_TOKEN));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_REFRESH_TOKEN));
         }
         
         [Fact]
         public async Task GivenMissingRefreshToken_WhenReAuthenticateUser_ShouldThrowError()
         {
             // Arrange
-            var LReAuthenticateUserCommand = new ReAuthenticateUserCommand { Id = Guid.NewGuid() };
-            var LDatabaseContext = GetTestDatabaseContext();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            var reAuthenticateUserCommand = new ReAuthenticateUserCommand { Id = Guid.NewGuid() };
+            var databaseContext = GetTestDatabaseContext();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
 
-            LMockedUserServiceProvider
-                .Setup(AUserService => AUserService
+            mockedUserServiceProvider
+                .Setup(service => service
                     .GetRefreshTokenCookie(It.IsAny<string>()))
                 .Returns(string.Empty);
             
-            var LIdentityServer = new IdentityServer();
+            var identityServer = new Mock<IdentityServer>();
             
             // Act
             // Assert
-            var LReAuthenticateUserCommandHandler = new ReAuthenticateUserCommandHandler(
-                LDatabaseContext, 
-                LMockedDateTimeService.Object, 
-                LMockedUserServiceProvider.Object, 
-                LIdentityServer);
+            var reAuthenticateUserCommandHandler = new ReAuthenticateUserCommandHandler(
+                databaseContext, 
+                mockedDateTimeService.Object, 
+                mockedUserServiceProvider.Object, 
+                identityServer.Object);
 
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => 
-                LReAuthenticateUserCommandHandler.Handle(LReAuthenticateUserCommand, CancellationToken.None));
+            var result = await Assert.ThrowsAsync<BusinessException>(() => 
+                reAuthenticateUserCommandHandler.Handle(reAuthenticateUserCommand, CancellationToken.None));
 
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.MISSING_REFRESH_TOKEN));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.MISSING_REFRESH_TOKEN));
         }
     }
 }

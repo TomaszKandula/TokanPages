@@ -12,35 +12,35 @@
         public void GivenCorrectId_WhenGetArticle_ShouldFinishSuccessful() 
         {
             // Arrange
-            var LGetArticleQuery = new GetArticleQuery 
+            var getArticleQuery = new GetArticleQuery 
             { 
                 Id = Guid.NewGuid()
             };
 
             // Act
-            var LValidator = new GetArticleQueryValidator();
-            var LResult = LValidator.Validate(LGetArticleQuery);
+            var validator = new GetArticleQueryValidator();
+            var result = validator.Validate(getArticleQuery);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenIncorrectId_WhenGetArticle_ShouldThrowError()
         {
             // Arrange
-            var LGetArticleQuery = new GetArticleQuery
+            var getArticleQuery = new GetArticleQuery
             {
                 Id = Guid.Empty
             };
 
             // Act
-            var LValidator = new GetArticleQueryValidator();
-            var LResult = LValidator.Validate(LGetArticleQuery);
+            var validator = new GetArticleQueryValidator();
+            var result = validator.Validate(getArticleQuery);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
     }
 }

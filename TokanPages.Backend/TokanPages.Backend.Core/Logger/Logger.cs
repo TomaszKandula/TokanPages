@@ -16,11 +16,11 @@
         /// <remarks>
         /// Given message will also be printed in debug console.
         /// </remarks>
-        /// <param name="AMessage">A debug message to store.</param>
-        public void LogDebug(string AMessage)
+        /// <param name="message">A debug message to store.</param>
+        public void LogDebug(string message)
         {
-            Debug.WriteLine($"[{nameof(Logger)} output]: {AMessage}");
-            Log.Debug("{AMessage}", AMessage);
+            Debug.WriteLine($"[{nameof(Logger)} output]: {message}");
+            Log.Debug("{AMessage}", message);
         }
 
         /// <summary>
@@ -29,11 +29,11 @@
         /// <remarks>
         /// Given message will also be printed in debug console.
         /// </remarks>
-        /// <param name="AMessage">An information message to store.</param>
-        public void LogInformation(string AMessage)
+        /// <param name="message">An information message to store.</param>
+        public void LogInformation(string message)
         {
-            Debug.WriteLine($"[{nameof(Logger)} output]: {AMessage}");
-            Log.Information("{AMessage}", AMessage);
+            Debug.WriteLine($"[{nameof(Logger)} output]: {message}");
+            Log.Information("{AMessage}", message);
         }
 
         /// <summary>
@@ -42,11 +42,11 @@
         /// <remarks>
         /// Given message will also be printed in debug console.
         /// </remarks>
-        /// <param name="AMessage">A warning message to store.</param>
-        public void LogWarning(string AMessage)
+        /// <param name="message">A warning message to store.</param>
+        public void LogWarning(string message)
         {
-            Debug.WriteLine($"[{nameof(Logger)} output]: {AMessage}");
-            Log.Warning("{AMessage}", AMessage);
+            Debug.WriteLine($"[{nameof(Logger)} output]: {message}");
+            Log.Warning("{AMessage}", message);
         }
 
         /// <summary>
@@ -55,11 +55,11 @@
         /// <remarks>
         /// Given message will also be printed in debug console.
         /// </remarks>
-        /// <param name="AMessage">An error message to store.</param>
-        public void LogError(string AMessage)
+        /// <param name="message">An error message to store.</param>
+        public void LogError(string message)
         {
-            Debug.WriteLine($"[{nameof(Logger)} output]: {AMessage}");
-            Log.Error("{AMessage}", AMessage);
+            Debug.WriteLine($"[{nameof(Logger)} output]: {message}");
+            Log.Error("{AMessage}", message);
         }
 
         /// <summary>
@@ -68,11 +68,11 @@
         /// <remarks>
         /// Given message will also be printed in debug console.
         /// </remarks>
-        /// <param name="AMessage">A critical error message to store.</param>
-        public void LogCriticalError(string AMessage)
+        /// <param name="message">A critical error message to store.</param>
+        public void LogCriticalError(string message)
         {
-            Debug.WriteLine($"[{nameof(Logger)} output]: {AMessage}");
-            Log.Fatal("{AMessage}", AMessage);
+            Debug.WriteLine($"[{nameof(Logger)} output]: {message}");
+            Log.Fatal("{AMessage}", message);
         }
     }
 }

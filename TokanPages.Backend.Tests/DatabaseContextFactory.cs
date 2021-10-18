@@ -5,7 +5,7 @@
 
     internal class DatabaseContextFactory
     {
-        private readonly DbContextOptionsBuilder<DatabaseContext> FDatabaseOptions =
+        private readonly DbContextOptionsBuilder<DatabaseContext> _databaseOptions =
             new DbContextOptionsBuilder<DatabaseContext>()
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
                 .EnableSensitiveDataLogging()
@@ -13,10 +13,10 @@
 
         public DatabaseContext CreateDatabaseContext()
         {
-            var LDatabaseContext = new DatabaseContext(FDatabaseOptions.Options);
-            LDatabaseContext.Database.OpenConnection();
-            LDatabaseContext.Database.EnsureCreated();
-            return LDatabaseContext;
+            var databaseContext = new DatabaseContext(_databaseOptions.Options);
+            databaseContext.Database.OpenConnection();
+            databaseContext.Database.EnsureCreated();
+            return databaseContext;
         }
     }
 }

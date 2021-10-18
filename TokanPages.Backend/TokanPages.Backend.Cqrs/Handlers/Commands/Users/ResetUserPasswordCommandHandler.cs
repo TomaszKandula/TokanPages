@@ -22,90 +22,90 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
     public class ResetUserPasswordCommandHandler : TemplateHandler<ResetUserPasswordCommand, Unit>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
 
-        private readonly ILogger FLogger;
+        private readonly ILogger _logger;
 
-        private readonly ICustomHttpClient FCustomHttpClient;
+        private readonly ICustomHttpClient _customHttpClient;
 
-        private readonly ISmtpClientService FSmtpClientService;
+        private readonly ISmtpClientService _smtpClientService;
 
-        private readonly ITemplateService FTemplateService;
+        private readonly ITemplateService _templateService;
 
-        private readonly IDateTimeService FDateTimeService; 
+        private readonly IDateTimeService _dateTimeService; 
 
-        private readonly AzureStorage FAzureStorage;
+        private readonly AzureStorage _azureStorage;
 
-        private readonly ApplicationPaths FApplicationPaths;
+        private readonly ApplicationPaths _applicationPaths;
 
-        private readonly ExpirationSettings FExpirationSettings;
+        private readonly ExpirationSettings _expirationSettings;
 
-        public ResetUserPasswordCommandHandler(DatabaseContext ADatabaseContext, ILogger ALogger, ICustomHttpClient ACustomHttpClient, 
-            ISmtpClientService ASmtpClientService, ITemplateService ATemplateService, IDateTimeService ADateTimeService, 
-            AzureStorage AAzureStorage, ApplicationPaths AApplicationPaths, ExpirationSettings AExpirationSettings)
+        public ResetUserPasswordCommandHandler(DatabaseContext databaseContext, ILogger logger, ICustomHttpClient customHttpClient, 
+            ISmtpClientService smtpClientService, ITemplateService templateService, IDateTimeService dateTimeService, 
+            AzureStorage azureStorage, ApplicationPaths applicationPaths, ExpirationSettings expirationSettings)
         {
-            FDatabaseContext = ADatabaseContext;
-            FLogger = ALogger;
-            FCustomHttpClient = ACustomHttpClient;
-            FSmtpClientService = ASmtpClientService;
-            FTemplateService = ATemplateService;
-            FDateTimeService = ADateTimeService;
-            FAzureStorage = AAzureStorage;
-            FApplicationPaths = AApplicationPaths;
-            FExpirationSettings = AExpirationSettings;
+            _databaseContext = databaseContext;
+            _logger = logger;
+            _customHttpClient = customHttpClient;
+            _smtpClientService = smtpClientService;
+            _templateService = templateService;
+            _dateTimeService = dateTimeService;
+            _azureStorage = azureStorage;
+            _applicationPaths = applicationPaths;
+            _expirationSettings = expirationSettings;
         }
 
-        public override async Task<Unit> Handle(ResetUserPasswordCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(ResetUserPasswordCommand request, CancellationToken cancellationToken)
         {
-            var LUsers = await FDatabaseContext.Users
-                .Where(AUsers => AUsers.EmailAddress == ARequest.EmailAddress)
-                .ToListAsync(ACancellationToken);
+            var users = await _databaseContext.Users
+                .Where(users => users.EmailAddress == request.EmailAddress)
+                .ToListAsync(cancellationToken);
 
-            if (!LUsers.Any())
+            if (!users.Any())
                 throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-            var LCurrentUser = LUsers.First();
-            var LResetId = Guid.NewGuid();
-            var LExpirationDate = FDateTimeService.Now.AddMinutes(FExpirationSettings.ResetIdExpiresIn);
-            LCurrentUser.CryptedPassword = string.Empty;
-            LCurrentUser.ResetId = LResetId;
-            LCurrentUser.ResetIdEnds = LExpirationDate;
-            LCurrentUser.LastUpdated = FDateTimeService.Now;
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-            await SendNotification(ARequest.EmailAddress, LResetId, LExpirationDate, ACancellationToken);
+            var currentUser = users.First();
+            var resetId = Guid.NewGuid();
+            var expirationDate = _dateTimeService.Now.AddMinutes(_expirationSettings.ResetIdExpiresIn);
+            currentUser.CryptedPassword = string.Empty;
+            currentUser.ResetId = resetId;
+            currentUser.ResetIdEnds = expirationDate;
+            currentUser.LastUpdated = _dateTimeService.Now;
+            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await SendNotification(request.EmailAddress, resetId, expirationDate, cancellationToken);
 
             return await Task.FromResult(Unit.Value);
         }
 
-        private async Task SendNotification(string AEmailAddress, Guid AResetId, DateTime AExpirationDate, CancellationToken ACancellationToken)
+        private async Task SendNotification(string emailAddress, Guid resetId, DateTime expirationDate, CancellationToken cancellationToken)
         {
-            FSmtpClientService.From = Constants.Emails.Addresses.CONTACT;
-            FSmtpClientService.Tos = new List<string> { AEmailAddress };
-            FSmtpClientService.Subject = "Reset user password";
+            _smtpClientService.From = Constants.Emails.Addresses.Contact;
+            _smtpClientService.Tos = new List<string> { emailAddress };
+            _smtpClientService.Subject = "Reset user password";
 
-            var LResetLink = $"{FApplicationPaths.DeploymentOrigin}{FApplicationPaths.UpdatePasswordPath}{AResetId}";
+            var resetLink = $"{_applicationPaths.DeploymentOrigin}{_applicationPaths.UpdatePasswordPath}{resetId}";
             
-            var LNewValues = new Dictionary<string, string>
+            var newValues = new Dictionary<string, string>
             {
-                { "{RESET_LINK}", LResetLink },
-                { "{EXPIRATION}", $"{AExpirationDate}" }
+                { "{RESET_LINK}", resetLink },
+                { "{EXPIRATION}", $"{expirationDate}" }
             };
 
-            var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.RESET_PASSWORD}";
-            FLogger.LogInformation($"Getting email template from URL: {LUrl}.");
+            var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.ResetPassword}";
+            _logger.LogInformation($"Getting email template from URL: {url}.");
 
-            var LConfiguration = new Configuration { Url = LUrl, Method = "GET" };
-            var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
+            var configuration = new Configuration { Url = url, Method = "GET" };
+            var results = await _customHttpClient.Execute(configuration, cancellationToken);
 
-            if (LResults.Content == null)
+            if (results.Content == null)
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
 
-            var LTemplate = System.Text.Encoding.Default.GetString(LResults.Content);
-            FSmtpClientService.HtmlBody = FTemplateService.MakeBody(LTemplate, LNewValues);
+            var template = System.Text.Encoding.Default.GetString(results.Content);
+            _smtpClientService.HtmlBody = _templateService.MakeBody(template, newValues);
 
-            var LResult = await FSmtpClientService.Send(ACancellationToken);
-            if (!LResult.IsSucceeded)
-                throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}. {LResult.ErrorDesc}");
+            var result = await _smtpClientService.Send(cancellationToken);
+            if (!result.IsSucceeded)
+                throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}. {result.ErrorDesc}");
         }
     }
 }

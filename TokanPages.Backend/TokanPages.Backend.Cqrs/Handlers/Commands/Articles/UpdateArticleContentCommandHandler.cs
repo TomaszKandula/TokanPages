@@ -14,58 +14,58 @@
 
     public class UpdateArticleContentCommandHandler : TemplateHandler<UpdateArticleContentCommand, Unit>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
 
-        private readonly IUserServiceProvider FUserServiceProvider;
+        private readonly IUserServiceProvider _userServiceProvider;
         
-        private readonly IDateTimeService FDateTimeService;
+        private readonly IDateTimeService _dateTimeService;
         
-        private readonly IAzureBlobStorageFactory FAzureBlobStorageFactory;
+        private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
         
-        public UpdateArticleContentCommandHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider, 
-            IDateTimeService ADateTimeService, IAzureBlobStorageFactory AAzureBlobStorageFactory)
+        public UpdateArticleContentCommandHandler(DatabaseContext databaseContext, IUserServiceProvider userServiceProvider, 
+            IDateTimeService dateTimeService, IAzureBlobStorageFactory azureBlobStorageFactory)
         {
-            FDatabaseContext = ADatabaseContext;
-            FUserServiceProvider = AUserServiceProvider;
-            FDateTimeService = ADateTimeService;
-            FAzureBlobStorageFactory = AAzureBlobStorageFactory;
+            _databaseContext = databaseContext;
+            _userServiceProvider = userServiceProvider;
+            _dateTimeService = dateTimeService;
+            _azureBlobStorageFactory = azureBlobStorageFactory;
         }
 
-        public override async Task<Unit> Handle(UpdateArticleContentCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(UpdateArticleContentCommand request, CancellationToken cancellationToken)
         {
-            var LUserId = await FUserServiceProvider.GetUserId();
-            if (LUserId == null)
+            var userId = await _userServiceProvider.GetUserId();
+            if (userId == null)
                 throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
-            var LArticles = await FDatabaseContext.Articles
-                .Where(AArticles => AArticles.Id == ARequest.Id)
-                .ToListAsync(ACancellationToken);
+            var articles = await _databaseContext.Articles
+                .Where(articles => articles.Id == request.Id)
+                .ToListAsync(cancellationToken);
 
-            if (!LArticles.Any())
+            if (!articles.Any())
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-            var LAzureBlob = FAzureBlobStorageFactory.Create();
-            if (!string.IsNullOrEmpty(ARequest.TextToUpload))
+            var azureBlob = _azureBlobStorageFactory.Create();
+            if (!string.IsNullOrEmpty(request.TextToUpload))
             {
-                var LTextDestinationPath = $"content\\articles\\{ARequest.Id}\\text.json";
-                await LAzureBlob.UploadContent(ARequest.TextToUpload, LTextDestinationPath, ACancellationToken);
+                var textDestinationPath = $"content\\articles\\{request.Id}\\text.json";
+                await azureBlob.UploadContent(request.TextToUpload, textDestinationPath, cancellationToken);
             }
 
-            if (!string.IsNullOrEmpty(ARequest.ImageToUpload))
+            if (!string.IsNullOrEmpty(request.ImageToUpload))
             {
-                var LImageDestinationPath = $"content\\articles\\{ARequest.Id}\\image.jpg";
-                await LAzureBlob.UploadContent(ARequest.ImageToUpload, LImageDestinationPath, ACancellationToken);
+                var imageDestinationPath = $"content\\articles\\{request.Id}\\image.jpg";
+                await azureBlob.UploadContent(request.ImageToUpload, imageDestinationPath, cancellationToken);
             }
 
-            var LCurrentArticle = LArticles.First();
+            var currentArticle = articles.First();
 
-            LCurrentArticle.Title = ARequest.Title ?? LCurrentArticle.Title;
-            LCurrentArticle.Description = ARequest.Description ?? LCurrentArticle.Description;
-            LCurrentArticle.UpdatedAt = ARequest.Title != null && ARequest.Description != null
-                ? FDateTimeService.Now
-                : LCurrentArticle.UpdatedAt;
+            currentArticle.Title = request.Title ?? currentArticle.Title;
+            currentArticle.Description = request.Description ?? currentArticle.Description;
+            currentArticle.UpdatedAt = request.Title != null && request.Description != null
+                ? _dateTimeService.Now
+                : currentArticle.UpdatedAt;
 
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            await _databaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
         }
     }

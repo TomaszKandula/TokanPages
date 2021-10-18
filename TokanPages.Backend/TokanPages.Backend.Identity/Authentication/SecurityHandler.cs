@@ -8,22 +8,21 @@ namespace TokanPages.Backend.Identity.Authentication
     [ExcludeFromCodeCoverage]
     public class SecurityHandler : ISecurityTokenValidator
     {
-        private readonly JwtSecurityTokenHandler FTokenHandler;
+        private readonly JwtSecurityTokenHandler _tokenHandler;
 
         public bool CanValidateToken => true;
 
         public int MaximumTokenSizeInBytes { get; set; } = TokenValidationParameters.DefaultMaximumTokenSizeInBytes;
 
-        public SecurityHandler() => FTokenHandler = new JwtSecurityTokenHandler();
+        public SecurityHandler() => _tokenHandler = new JwtSecurityTokenHandler();
 
-        public bool CanReadToken(string ASecurityToken) => FTokenHandler.CanReadToken(ASecurityToken);
+        public bool CanReadToken(string securityToken) => _tokenHandler.CanReadToken(securityToken);
 
-        public ClaimsPrincipal ValidateToken(string ASecurityToken, TokenValidationParameters AValidationParameters,
-            out SecurityToken AValidatedToken)
+        public ClaimsPrincipal ValidateToken(string securityToken, TokenValidationParameters validationParameters,
+            out SecurityToken validatedToken)
         {
-            //TODO: extend custom validation
-            var LPrincipal = FTokenHandler.ValidateToken(ASecurityToken, AValidationParameters, out AValidatedToken);
-            return LPrincipal;
+            var principal = _tokenHandler.ValidateToken(securityToken, validationParameters, out validatedToken);
+            return principal;
         }
     }
 }

@@ -11,35 +11,35 @@
         public void GivenEmail_WhenAddSubscriber_ShouldFinishSuccessful() 
         {
             // Arrange
-            var LAddSubscriberCommand = new AddSubscriberCommand 
+            var addSubscriberCommand = new AddSubscriberCommand 
             { 
                 Email = DataUtilityService.GetRandomEmail()
             };
 
             // Act
-            var LValidator = new AddSubscriberCommandValidator();
-            var LResult = LValidator.Validate(LAddSubscriberCommand);
+            var validator = new AddSubscriberCommandValidator();
+            var result = validator.Validate(addSubscriberCommand);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenEmptyEmail_WhenAddSubscriber_ShouldFinishSuccessful()
         {
             // Arrange
-            var LAddSubscriberCommand = new AddSubscriberCommand
+            var addSubscriberCommand = new AddSubscriberCommand
             {
                 Email = string.Empty
             };
 
             // Act
-            var LValidator = new AddSubscriberCommandValidator();
-            var LResult = LValidator.Validate(LAddSubscriberCommand);
+            var validator = new AddSubscriberCommandValidator();
+            var result = validator.Validate(addSubscriberCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
     }
 }

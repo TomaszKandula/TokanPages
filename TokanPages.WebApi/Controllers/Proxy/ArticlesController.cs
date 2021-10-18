@@ -11,21 +11,21 @@ namespace TokanPages.WebApi.Controllers.Proxy
 
     public class ArticlesController : ProxyBaseController
     {
-        public ArticlesController(ICustomHttpClient ACustomHttpClient, SonarQube ASonarQube, AzureStorage AAzureStorage) 
-            : base(ACustomHttpClient, ASonarQube, AAzureStorage) { }
+        public ArticlesController(ICustomHttpClient customHttpClient, SonarQube sonarQube, AzureStorage azureStorage) 
+            : base(customHttpClient, sonarQube, azureStorage) { }
 
         [HttpGet("Images")]
         [ETagFilter(200)]
-        public async Task<IActionResult> GetArticleImage([FromQuery] string AId)
+        public async Task<IActionResult> GetArticleImage([FromQuery] string id)
         {
-            var LRequestUrl = $"{FAzureStorage.BaseUrl}/content/articles/{AId}/image.jpg";
-            var LConfiguration = new Configuration { Url = LRequestUrl, Method = "GET"};
-            var LResults = await FCustomHttpClient.Execute(LConfiguration);
+            var requestUrl = $"{AzureStorage.BaseUrl}/content/articles/{id}/image.jpg";
+            var configuration = new Configuration { Url = requestUrl, Method = "GET"};
+            var results = await CustomHttpClient.Execute(configuration);
 
-            if (LResults.StatusCode != HttpStatusCode.OK)
-                return GetContentResultFromResults(LResults);
+            if (results.StatusCode != HttpStatusCode.OK)
+                return GetContentResultFromResults(results);
 
-            return File(LResults.Content, LResults.ContentType?.MediaType);
+            return File(results.Content, results.ContentType?.MediaType);
         }
     }
 }

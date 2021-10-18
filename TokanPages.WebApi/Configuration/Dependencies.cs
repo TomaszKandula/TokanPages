@@ -36,97 +36,97 @@
     [ExcludeFromCodeCoverage]
     public static class Dependencies
     {
-        public static void Register(IServiceCollection AServices, IConfiguration AConfiguration, IHostEnvironment AEnvironment = default)
+        public static void Register(IServiceCollection services, IConfiguration configuration, IHostEnvironment environment = default)
         {
-            CommonServices(AServices, AConfiguration);
-            SetupDatabase(AServices, AConfiguration);
-            if (AEnvironment != null)
-                SetupRetryPolicyWithPolly(AServices, AConfiguration, AEnvironment);
+            CommonServices(services, configuration);
+            SetupDatabase(services, configuration);
+            if (environment != null)
+                SetupRetryPolicyWithPolly(services, configuration, environment);
         }
 
-        public static void CommonServices(IServiceCollection AServices, IConfiguration AConfiguration)
+        public static void CommonServices(IServiceCollection services, IConfiguration configuration)
         {
-            SetupAppSettings(AServices, AConfiguration);
-            SetupLogger(AServices);
-            SetupServices(AServices);
-            SetupValidators(AServices);
-            SetupMediatR(AServices);
-            WebToken.Configure(AServices, AConfiguration);
+            SetupAppSettings(services, configuration);
+            SetupLogger(services);
+            SetupServices(services);
+            SetupValidators(services);
+            SetupMediatR(services);
+            WebToken.Configure(services, configuration);
         }
 
-        private static void SetupAppSettings(IServiceCollection AServices, IConfiguration AConfiguration) 
+        private static void SetupAppSettings(IServiceCollection services, IConfiguration configuration) 
         {
-            AServices.AddSingleton(AConfiguration.GetSection(nameof(AzureStorage)).Get<AzureStorage>());
-            AServices.AddSingleton(AConfiguration.GetSection(nameof(SmtpServer)).Get<SmtpServer>());
-            AServices.AddSingleton(AConfiguration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>());
-            AServices.AddSingleton(AConfiguration.GetSection(nameof(SonarQube)).Get<SonarQube>());
-            AServices.AddSingleton(AConfiguration.GetSection(nameof(IdentityServer)).Get<IdentityServer>());
-            AServices.AddSingleton(AConfiguration.GetSection(nameof(ExpirationSettings)).Get<ExpirationSettings>());
+            services.AddSingleton(configuration.GetSection(nameof(AzureStorage)).Get<AzureStorage>());
+            services.AddSingleton(configuration.GetSection(nameof(SmtpServer)).Get<SmtpServer>());
+            services.AddSingleton(configuration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>());
+            services.AddSingleton(configuration.GetSection(nameof(SonarQube)).Get<SonarQube>());
+            services.AddSingleton(configuration.GetSection(nameof(IdentityServer)).Get<IdentityServer>());
+            services.AddSingleton(configuration.GetSection(nameof(ExpirationSettings)).Get<ExpirationSettings>());
         }
 
-        private static void SetupLogger(IServiceCollection AServices) 
-            => AServices.AddSingleton<ILogger, Logger>();
+        private static void SetupLogger(IServiceCollection services) 
+            => services.AddSingleton<ILogger, Logger>();
 
-        private static void SetupDatabase(IServiceCollection AServices, IConfiguration AConfiguration) 
+        private static void SetupDatabase(IServiceCollection services, IConfiguration configuration) 
         {
-            const int MAX_RETRY_COUNT = 10;
-            var LMaxRetryDelay = TimeSpan.FromSeconds(5);
+            const int maxRetryCount = 10;
+            var maxRetryDelay = TimeSpan.FromSeconds(5);
             
-            AServices.AddDbContext<DatabaseContext>(AOptions =>
+            services.AddDbContext<DatabaseContext>(options =>
             {
-                AOptions.UseSqlServer(AConfiguration.GetConnectionString("DbConnect"), AAddOptions 
-                    => AAddOptions.EnableRetryOnFailure(MAX_RETRY_COUNT, LMaxRetryDelay, null));
+                options.UseSqlServer(configuration.GetConnectionString("DbConnect"), addOptions 
+                    => addOptions.EnableRetryOnFailure(maxRetryCount, maxRetryDelay, null));
             });
         }
 
-        private static void SetupServices(IServiceCollection AServices) 
+        private static void SetupServices(IServiceCollection services) 
         {
-            AServices.AddHttpContextAccessor();
+            services.AddHttpContextAccessor();
 
-            AServices.AddScoped<HttpClient>();
-            AServices.AddScoped<ISmtpClient, SmtpClient>();
-            AServices.AddScoped<ILookupClient, LookupClient>();
-            AServices.AddScoped<ISmtpClientService, SmtpClientService>();
-            AServices.AddScoped<ITemplateService, TemplateService>();
-            AServices.AddScoped<IDateTimeService, DateTimeService>();
-            AServices.AddScoped<IJwtUtilityService, JwtUtilityService>();
-            AServices.AddScoped<IDataUtilityService, DataUtilityService>();
-            AServices.AddScoped<IUserServiceProvider, UserServiceProvider>();
-            AServices.AddScoped<IDbInitializer, DbInitializer>();
-            AServices.AddScoped<ICipheringService, CipheringService>();
-            AServices.AddScoped<IJsonSerializer, JsonSerializer>();
-            AServices.AddScoped<ICustomHttpClient, CustomHttpClient>();
+            services.AddScoped<HttpClient>();
+            services.AddScoped<ISmtpClient, SmtpClient>();
+            services.AddScoped<ILookupClient, LookupClient>();
+            services.AddScoped<ISmtpClientService, SmtpClientService>();
+            services.AddScoped<ITemplateService, TemplateService>();
+            services.AddScoped<IDateTimeService, DateTimeService>();
+            services.AddScoped<IJwtUtilityService, JwtUtilityService>();
+            services.AddScoped<IDataUtilityService, DataUtilityService>();
+            services.AddScoped<IUserServiceProvider, UserServiceProvider>();
+            services.AddScoped<IDbInitializer, DbInitializer>();
+            services.AddScoped<ICipheringService, CipheringService>();
+            services.AddScoped<IJsonSerializer, JsonSerializer>();
+            services.AddScoped<ICustomHttpClient, CustomHttpClient>();
 
-            AServices.AddSingleton<IAzureBlobStorageFactory>(AProvider =>
+            services.AddSingleton<IAzureBlobStorageFactory>(provider =>
             {
-                var LAzureStorageSettings = AProvider.GetRequiredService<AzureStorage>();
-                return new AzureBlobStorageFactory(LAzureStorageSettings.ConnectionString, LAzureStorageSettings.ContainerName);
+                var azureStorageSettings = provider.GetRequiredService<AzureStorage>();
+                return new AzureBlobStorageFactory(azureStorageSettings.ConnectionString, azureStorageSettings.ContainerName);
             });
         }
 
-        private static void SetupValidators(IServiceCollection AServices)
-            => AServices.AddValidatorsFromAssemblyContaining<TemplateHandler<IRequest, Unit>>();
+        private static void SetupValidators(IServiceCollection services)
+            => services.AddValidatorsFromAssemblyContaining<TemplateHandler<IRequest, Unit>>();
 
-        private static void SetupMediatR(IServiceCollection AServices) 
+        private static void SetupMediatR(IServiceCollection services) 
         {
-            AServices.AddMediatR(AOption => AOption.AsScoped(), 
+            services.AddMediatR(options => options.AsScoped(), 
                 typeof(TemplateHandler<IRequest, Unit>).GetTypeInfo().Assembly);
 
-            AServices.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
-            AServices.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
         }
 
-        private static void SetupRetryPolicyWithPolly(IServiceCollection AServices, IConfiguration AConfiguration, IHostEnvironment AEnvironment)
+        private static void SetupRetryPolicyWithPolly(IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
         {
-            var LApplicationPaths = AConfiguration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>();
-            AServices.AddHttpClient("RetryHttpClient", AOptions =>
+            var applicationPaths = configuration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>();
+            services.AddHttpClient("RetryHttpClient", options =>
             {
-                AOptions.BaseAddress = new Uri(AEnvironment.IsDevelopment() 
-                    ? LApplicationPaths.DevelopmentOrigin 
-                    : LApplicationPaths.DeploymentOrigin);
-                AOptions.DefaultRequestHeaders.Add("Accept", Constants.ContentTypes.JSON);
-                AOptions.Timeout = TimeSpan.FromMinutes(5);
-                AOptions.DefaultRequestHeaders.ConnectionClose = true;
+                options.BaseAddress = new Uri(environment.IsDevelopment() 
+                    ? applicationPaths.DevelopmentOrigin 
+                    : applicationPaths.DeploymentOrigin);
+                options.DefaultRequestHeaders.Add("Accept", Constants.ContentTypes.Json);
+                options.Timeout = TimeSpan.FromMinutes(5);
+                options.DefaultRequestHeaders.ConnectionClose = true;
             }).AddPolicyHandler(Handlers.RetryPolicyHandler());
         }
     }

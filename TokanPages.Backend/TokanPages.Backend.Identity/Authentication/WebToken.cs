@@ -16,82 +16,82 @@ namespace TokanPages.Backend.Identity.Authentication
 	[ExcludeFromCodeCoverage]
 	public static class WebToken
     { 
-	    public static void Configure(IServiceCollection AServices, IConfiguration AConfiguration)
+	    public static void Configure(IServiceCollection services, IConfiguration configuration)
         { 
-	        var LIssuer = AConfiguration.GetValue<string>("IdentityServer:Issuer");
-	        var LAudience = AConfiguration.GetValue<string>("IdentityServer:Audience");
-	        var LWebSecret = AConfiguration.GetValue<string>("IdentityServer:WebSecret");
-	        var LRequireHttps = AConfiguration.GetValue<bool>("IdentityServer:RequireHttps");
+	        var issuer = configuration.GetValue<string>("IdentityServer:Issuer");
+	        var audience = configuration.GetValue<string>("IdentityServer:Audience");
+	        var webSecret = configuration.GetValue<string>("IdentityServer:WebSecret");
+	        var requireHttps = configuration.GetValue<bool>("IdentityServer:RequireHttps");
 
-	        AServices.AddAuthentication(AOption =>
+	        services.AddAuthentication(options =>
 	        {
-		        AOption.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-		        AOption.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-	        }).AddJwtBearer(AOptions =>
+		        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+		        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+	        }).AddJwtBearer(options =>
 	        {
-		        AOptions.Audience = LAudience;
-		        AOptions.SecurityTokenValidators.Clear();
-		        AOptions.SecurityTokenValidators.Add(new SecurityHandler());
-		        AOptions.SaveToken = true;
-		        AOptions.RequireHttpsMetadata = LRequireHttps;
-		        AOptions.TokenValidationParameters = new TokenValidationParameters
+		        options.Audience = audience;
+		        options.SecurityTokenValidators.Clear();
+		        options.SecurityTokenValidators.Add(new SecurityHandler());
+		        options.SaveToken = true;
+		        options.RequireHttpsMetadata = requireHttps;
+		        options.TokenValidationParameters = new TokenValidationParameters
 		        {
 			        ValidateIssuerSigningKey = true,
-			        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(LWebSecret)),
+			        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(webSecret)),
 			        ValidateIssuer = true,
-			        ValidIssuer = LIssuer,
+			        ValidIssuer = issuer,
 			        ValidateAudience = true,
-			        ValidAudience = LAudience,
+			        ValidAudience = audience,
 			        ValidateLifetime = true,
 			        ClockSkew = TimeSpan.Zero
 		        };
-		        AOptions.Events = new JwtBearerEvents
+		        options.Events = new JwtBearerEvents
 		        {
-			        OnTokenValidated = ATokenValidatedContext =>
+			        OnTokenValidated = tokenValidatedContext =>
 			        {
-				        ValidateTokenClaims(ATokenValidatedContext);
+				        ValidateTokenClaims(tokenValidatedContext);
 				        return Task.CompletedTask;
 			        }
 		        };
 	        });
 
-	        AServices.AddAuthorization(AOptions =>
+	        services.AddAuthorization(options =>
 	        {
-		        AOptions.AddPolicy("AuthPolicy", new AuthorizationPolicyBuilder()
+		        options.AddPolicy("AuthPolicy", new AuthorizationPolicyBuilder()
 				        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
 				        .RequireAuthenticatedUser()
 				        .Build());
 
-		        AOptions.AddPolicy(nameof(Policies.AccessToTokanPages), APolicy => APolicy
+		        options.AddPolicy(nameof(Policies.AccessToTokanPages), policy => policy
 			        .RequireRole(nameof(Roles.GodOfAsgard), nameof(Roles.EverydayUser), nameof(Roles.ArticlePublisher), 
 				        nameof(Roles.PhotoPublisher), nameof(Roles.CommentPublisher)));
 	        });
         }
 
-	    private static void ValidateTokenClaims(TokenValidatedContext ATokenValidatedContext)
+	    private static void ValidateTokenClaims(TokenValidatedContext tokenValidatedContext)
 	    {
-		    var LUserAlias = ATokenValidatedContext.Principal?.Claims
-			    .Where(AClaim => AClaim.Type == ClaimTypes.Name) ?? Array.Empty<Claim>();
+		    var userAlias = tokenValidatedContext.Principal?.Claims
+			    .Where(claim => claim.Type == ClaimTypes.Name) ?? Array.Empty<Claim>();
 				        
-		    var LRole = ATokenValidatedContext.Principal?.Claims
-			    .Where(AClaim => AClaim.Type == ClaimTypes.Role) ?? Array.Empty<Claim>();
+		    var role = tokenValidatedContext.Principal?.Claims
+			    .Where(claim => claim.Type == ClaimTypes.Role) ?? Array.Empty<Claim>();
 				        
-		    var LUserId = ATokenValidatedContext.Principal?.Claims
-			    .Where(AClaim => AClaim.Type == ClaimTypes.NameIdentifier) ?? Array.Empty<Claim>();
+		    var userId = tokenValidatedContext.Principal?.Claims
+			    .Where(claim => claim.Type == ClaimTypes.NameIdentifier) ?? Array.Empty<Claim>();
 				        
-		    var LFirstName = ATokenValidatedContext.Principal?.Claims
-			    .Where(AClaim => AClaim.Type == ClaimTypes.GivenName) ?? Array.Empty<Claim>();
+		    var firstName = tokenValidatedContext.Principal?.Claims
+			    .Where(claim => claim.Type == ClaimTypes.GivenName) ?? Array.Empty<Claim>();
 				        
-		    var LLastName = ATokenValidatedContext.Principal?.Claims
-			    .Where(AClaim => AClaim.Type == ClaimTypes.Surname) ?? Array.Empty<Claim>();
+		    var lastName = tokenValidatedContext.Principal?.Claims
+			    .Where(claim => claim.Type == ClaimTypes.Surname) ?? Array.Empty<Claim>();
 				        
-		    var LEmailAddress = ATokenValidatedContext.Principal?.Claims
-			    .Where(AClaim => AClaim.Type == ClaimTypes.Email) ?? Array.Empty<Claim>();
+		    var emailAddress = tokenValidatedContext.Principal?.Claims
+			    .Where(claim => claim.Type == ClaimTypes.Email) ?? Array.Empty<Claim>();
 
-		    if (!LUserAlias.Any() || !LRole.Any() || !LUserId.Any()
-		        || !LFirstName.Any() || !LLastName.Any() || !LEmailAddress.Any())
+		    if (!userAlias.Any() || !role.Any() || !userId.Any()
+		        || !firstName.Any() || !lastName.Any() || !emailAddress.Any())
 		    {
-			    ATokenValidatedContext.Fail("Provided token is invalid.");
+			    tokenValidatedContext.Fail("Provided token is invalid.");
 		    }
 	    }
     }

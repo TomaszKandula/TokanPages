@@ -10,38 +10,38 @@ namespace TokanPages.WebApi.Tests
 
     public class TestStartup
     {
-        private readonly IConfiguration FConfiguration;
+        private readonly IConfiguration _configuration;
 
-        public TestStartup(IConfiguration AConfiguration) => FConfiguration = AConfiguration;
+        public TestStartup(IConfiguration configuration) => _configuration = configuration;
 
-        public void ConfigureServices(IServiceCollection AServices)
+        public void ConfigureServices(IServiceCollection services)
         {
-            AServices.AddMvc().AddApplicationPart(typeof(Startup).Assembly);
-            AServices.AddControllers();
+            services.AddMvc().AddApplicationPart(typeof(Startup).Assembly);
+            services.AddControllers();
 
-            SetupTestDatabase(AServices);
-            Dependencies.CommonServices(AServices, FConfiguration);
+            SetupTestDatabase(services);
+            Dependencies.CommonServices(services, _configuration);
         }
 
-        public static void Configure(IApplicationBuilder ABuilder)
+        public static void Configure(IApplicationBuilder builder)
         {
-            ABuilder.UseMiddleware<CustomCors>();
-            ABuilder.UseMiddleware<CustomException>();
-            ABuilder.UseForwardedHeaders();
-            ABuilder.UseHttpsRedirection();
-            ABuilder.UseRouting();
-            ABuilder.UseAuthentication();
-            ABuilder.UseAuthorization();
-            ABuilder.UseEndpoints(AEndpoints => AEndpoints.MapControllers());
+            builder.UseMiddleware<CustomCors>();
+            builder.UseMiddleware<CustomException>();
+            builder.UseForwardedHeaders();
+            builder.UseHttpsRedirection();
+            builder.UseRouting();
+            builder.UseAuthentication();
+            builder.UseAuthorization();
+            builder.UseEndpoints(endpoints => endpoints.MapControllers());
         }
 
-        private void SetupTestDatabase(IServiceCollection AServices)
+        private void SetupTestDatabase(IServiceCollection services)
         {
-            AServices.AddDbContext<DatabaseContext>(AOptions =>
+            services.AddDbContext<DatabaseContext>(options =>
             {
-                AOptions.UseSqlServer(FConfiguration.GetConnectionString("DbConnectTest"));
-                AOptions.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
-                AOptions.EnableSensitiveDataLogging();
+                options.UseSqlServer(_configuration.GetConnectionString("DbConnectTest"));
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
+                options.EnableSensitiveDataLogging();
             });
         }
     }

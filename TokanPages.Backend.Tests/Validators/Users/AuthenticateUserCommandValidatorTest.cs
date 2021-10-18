@@ -11,102 +11,102 @@ namespace TokanPages.Backend.Tests.Validators.Users
         public void GivenValidFields_WhenAuthenticateUser_ShouldSucceed()
         {
             // Arrange
-            var LAuthenticateUserCommand = new AuthenticateUserCommand
+            var authenticateUserCommand = new AuthenticateUserCommand
             {
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 Password = DataUtilityService.GetRandomString()
             };
 
             // Act
-            var LAuthenticateUserCommandValidator = new AuthenticateUserCommandValidator();
-            var LResult = LAuthenticateUserCommandValidator.Validate(LAuthenticateUserCommand);
+            var authenticateUserCommandValidator = new AuthenticateUserCommandValidator();
+            var result = authenticateUserCommandValidator.Validate(authenticateUserCommand);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
         
         [Theory]
         [InlineData("")]
         [InlineData(null)]
-        public void GivenMissingEmailAddress_WhenAuthenticateUser_ShouldThrowError(string AEmailAddress)
+        public void GivenMissingEmailAddress_WhenAuthenticateUser_ShouldThrowError(string emailAddress)
         {
             // Arrange
-            var LAuthenticateUserCommand = new AuthenticateUserCommand
+            var authenticateUserCommand = new AuthenticateUserCommand
             {
-                EmailAddress = AEmailAddress,
+                EmailAddress = emailAddress,
                 Password = DataUtilityService.GetRandomString()
             };
 
             // Act
-            var LAuthenticateUserCommandValidator = new AuthenticateUserCommandValidator();
-            var LResult = LAuthenticateUserCommandValidator.Validate(LAuthenticateUserCommand);
+            var authenticateUserCommandValidator = new AuthenticateUserCommandValidator();
+            var result = authenticateUserCommandValidator.Validate(authenticateUserCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
         
         [Theory]
         [InlineData("")]
         [InlineData(null)]
-        public void GivenMissingPassword_WhenAuthenticateUser_ShouldThrowError(string APassword)
+        public void GivenMissingPassword_WhenAuthenticateUser_ShouldThrowError(string password)
         {
             // Arrange
-            var LAuthenticateUserCommand = new AuthenticateUserCommand
+            var authenticateUserCommand = new AuthenticateUserCommand
             {
                 EmailAddress = DataUtilityService.GetRandomEmail(),
-                Password = APassword
+                Password = password
             };
 
             // Act
-            var LAuthenticateUserCommandValidator = new AuthenticateUserCommandValidator();
-            var LResult = LAuthenticateUserCommandValidator.Validate(LAuthenticateUserCommand);
+            var authenticateUserCommandValidator = new AuthenticateUserCommandValidator();
+            var result = authenticateUserCommandValidator.Validate(authenticateUserCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
         
         [Theory]
         [InlineData("", "")]
         [InlineData(null, null)]
-        public void GivenMissingFields_WhenAuthenticateUser_ShouldThrowError(string AEmailAddress, string APassword)
+        public void GivenMissingFields_WhenAuthenticateUser_ShouldThrowError(string emailAddress, string password)
         {
             // Arrange
-            var LAuthenticateUserCommand = new AuthenticateUserCommand
+            var authenticateUserCommand = new AuthenticateUserCommand
             {
-                EmailAddress = AEmailAddress,
-                Password = APassword
+                EmailAddress = emailAddress,
+                Password = password
             };
 
             // Act
-            var LAuthenticateUserCommandValidator = new AuthenticateUserCommandValidator();
-            var LResult = LAuthenticateUserCommandValidator.Validate(LAuthenticateUserCommand);
+            var authenticateUserCommandValidator = new AuthenticateUserCommandValidator();
+            var result = authenticateUserCommandValidator.Validate(authenticateUserCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(2);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-            LResult.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(2);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
         
         [Fact]
         public void GivenTooLongValues_WhenAuthenticateUser_ShouldThrowError()
         {
             // Arrange
-            var LAuthenticateUserCommand = new AuthenticateUserCommand
+            var authenticateUserCommand = new AuthenticateUserCommand
             {
                 EmailAddress = DataUtilityService.GetRandomEmail(300),
                 Password = DataUtilityService.GetRandomString(150)
             };
 
             // Act
-            var LAuthenticateUserCommandValidator = new AuthenticateUserCommandValidator();
-            var LResult = LAuthenticateUserCommandValidator.Validate(LAuthenticateUserCommand);
+            var authenticateUserCommandValidator = new AuthenticateUserCommandValidator();
+            var result = authenticateUserCommandValidator.Validate(authenticateUserCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(2);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
-            LResult.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_TOO_LONG));
+            result.Errors.Count.Should().Be(2);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
+            result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_TOO_LONG));
         }
     }
 }

@@ -7,12 +7,12 @@
     {
         public UpdateUserCommandValidator() 
         {
-            RuleFor(AField => AField.Id)
+            RuleFor(command => command.Id)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(AField => AField.UserAlias)
+            RuleFor(command => command.UserAlias)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -20,7 +20,7 @@
                 .WithErrorCode(nameof(ValidationCodes.USERALIAS_TOO_LONG))
                 .WithMessage(ValidationCodes.USERALIAS_TOO_LONG);
 
-            RuleFor(AField => AField.FirstName)
+            RuleFor(command => command.FirstName)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -28,7 +28,7 @@
                 .WithErrorCode(nameof(ValidationCodes.FIRST_NAME_TOO_LONG))
                 .WithMessage(ValidationCodes.FIRST_NAME_TOO_LONG);
 
-            RuleFor(AField => AField.LastName)
+            RuleFor(command => command.LastName)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -36,7 +36,7 @@
                 .WithErrorCode(nameof(ValidationCodes.LAST_NAME_TOO_LONG))
                 .WithMessage(ValidationCodes.LAST_NAME_TOO_LONG);
 
-            RuleFor(AField => AField.EmailAddress)
+            RuleFor(command => command.EmailAddress)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)

@@ -20,96 +20,96 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 
     public class GetArticleQueryHandler : TemplateHandler<GetArticleQuery, GetArticleQueryResult>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
 
-        private readonly IUserServiceProvider FUserServiceProvider;
+        private readonly IUserServiceProvider _userServiceProvider;
 
-        private readonly IJsonSerializer FJsonSerializer;
+        private readonly IJsonSerializer _jsonSerializer;
 
-        private readonly AzureStorage FAzureStorage;
+        private readonly AzureStorage _azureStorage;
 
-        private readonly ICustomHttpClient FCustomHttpClient;
+        private readonly ICustomHttpClient _customHttpClient;
         
-        public GetArticleQueryHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider, 
-            IJsonSerializer AJsonSerializer, AzureStorage AAzureStorage, ICustomHttpClient ACustomHttpClient)
+        public GetArticleQueryHandler(DatabaseContext databaseContext, IUserServiceProvider userServiceProvider, 
+            IJsonSerializer jsonSerializer, AzureStorage azureStorage, ICustomHttpClient customHttpClient)
         {
-            FDatabaseContext = ADatabaseContext;
-            FUserServiceProvider = AUserServiceProvider;
-            FJsonSerializer = AJsonSerializer;
-            FAzureStorage = AAzureStorage;
-            FCustomHttpClient = ACustomHttpClient;
+            _databaseContext = databaseContext;
+            _userServiceProvider = userServiceProvider;
+            _jsonSerializer = jsonSerializer;
+            _azureStorage = azureStorage;
+            _customHttpClient = customHttpClient;
         }
 
-        public override async Task<GetArticleQueryResult> Handle(GetArticleQuery ARequest, CancellationToken ACancellationToken)
+        public override async Task<GetArticleQueryResult> Handle(GetArticleQuery request, CancellationToken cancellationToken)
         {
-            var LUserId = await FUserServiceProvider.GetUserId();
-            var LIsAnonymousUser = LUserId == null;
+            var userId = await _userServiceProvider.GetUserId();
+            var isAnonymousUser = userId == null;
 
-            var LTextRequestUrl = $"{FAzureStorage.BaseUrl}/content/articles/{ARequest.Id}/text.json";
-            var LTextAsString = await GetJsonData(LTextRequestUrl, ACancellationToken);
-            var LTextAsObject = FJsonSerializer.Deserialize<List<Section>>(LTextAsString);
+            var textRequestUrl = $"{_azureStorage.BaseUrl}/content/articles/{request.Id}/text.json";
+            var textAsString = await GetJsonData(textRequestUrl, cancellationToken);
+            var textAsObject = _jsonSerializer.Deserialize<List<Section>>(textAsString);
 
-            var LGetArticleLikes = await FDatabaseContext.ArticleLikes
-                .Where(ALikes => ALikes.ArticleId == ARequest.Id)
-                .WhereIfElse(LIsAnonymousUser,
-                    ALikes => ALikes.IpAddress == FUserServiceProvider.GetRequestIpAddress(),
-                    ALikes => ALikes.UserId == LUserId)
-                .Select(ALikes => ALikes.LikeCount)
-                .ToListAsync(ACancellationToken);
+            var getArticleLikes = await _databaseContext.ArticleLikes
+                .Where(likes => likes.ArticleId == request.Id)
+                .WhereIfElse(isAnonymousUser,
+                    likes => likes.IpAddress == _userServiceProvider.GetRequestIpAddress(),
+                    likes => likes.UserId == userId)
+                .Select(likes => likes.LikeCount)
+                .ToListAsync(cancellationToken);
 
-            var LArticleLikes = !LGetArticleLikes.Any() ? 0 : LGetArticleLikes.FirstOrDefault();
-            var LCurrentArticle = await FDatabaseContext.Articles
+            var articleLikes = !getArticleLikes.Any() ? 0 : getArticleLikes.FirstOrDefault();
+            var currentArticle = await _databaseContext.Articles
                 .AsNoTracking()
-                .Include(ALikes => ALikes.ArticleLikes)
-                .Include(AUsers => AUsers.User)
-                .Where(AArticles => AArticles.Id == ARequest.Id)
-                .Select(AFields => new GetArticleQueryResult
+                .Include(articles => articles.ArticleLikes)
+                .Include(articles => articles.User)
+                .Where(articles => articles.Id == request.Id)
+                .Select(articles => new GetArticleQueryResult
                 {
-                    Id = AFields.Id,
-                    Title = AFields.Title,
-                    Description = AFields.Description,
-                    IsPublished = AFields.IsPublished,
-                    CreatedAt = AFields.CreatedAt,
-                    UpdatedAt = AFields.UpdatedAt,
-                    ReadCount = AFields.ReadCount,
-                    LikeCount = AFields.ArticleLikes
-                        .Where(ALikes => ALikes.ArticleId == ARequest.Id)
-                        .Select(ALikes => ALikes.LikeCount)
+                    Id = articles.Id,
+                    Title = articles.Title,
+                    Description = articles.Description,
+                    IsPublished = articles.IsPublished,
+                    CreatedAt = articles.CreatedAt,
+                    UpdatedAt = articles.UpdatedAt,
+                    ReadCount = articles.ReadCount,
+                    LikeCount = articles.ArticleLikes
+                        .Where(likes => likes.ArticleId == request.Id)
+                        .Select(likes => likes.LikeCount)
                         .Sum(),
-                    UserLikes = LArticleLikes,
+                    UserLikes = articleLikes,
                     Author = new GetUserDto
                     {
-                        AliasName = AFields.User.UserAlias,
-                        AvatarName = AFields.User.AvatarName,
-                        FirstName = AFields.User.FirstName,
-                        LastName = AFields.User.LastName,
-                        ShortBio = AFields.User.ShortBio,
-                        Registered = AFields.User.Registered
+                        AliasName = articles.User.UserAlias,
+                        AvatarName = articles.User.AvatarName,
+                        FirstName = articles.User.FirstName,
+                        LastName = articles.User.LastName,
+                        ShortBio = articles.User.ShortBio,
+                        Registered = articles.User.Registered
                     },
-                    Text = LTextAsObject
+                    Text = textAsObject
                 })
-                .ToListAsync(ACancellationToken);
+                .ToListAsync(cancellationToken);
 
-            if (!LCurrentArticle.Any())
+            if (!currentArticle.Any())
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-            return LCurrentArticle.First();
+            return currentArticle.First();
         }
 
-        private async Task<string> GetJsonData(string AUrl, CancellationToken ACancellationToken)
+        private async Task<string> GetJsonData(string url, CancellationToken cancellationToken)
         {
-            var LConfiguration = new Configuration { Url = AUrl, Method = "GET" };
-            var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
+            var configuration = new Configuration { Url = url, Method = "GET" };
+            var results = await _customHttpClient.Execute(configuration, cancellationToken);
 
-            if (LResults.StatusCode == HttpStatusCode.NotFound)
+            if (results.StatusCode == HttpStatusCode.NotFound)
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
             
-            if (LResults.StatusCode != HttpStatusCode.OK)
+            if (results.StatusCode != HttpStatusCode.OK)
                 throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
 
-            return LResults.Content == null 
+            return results.Content == null 
                 ? string.Empty 
-                : System.Text.Encoding.Default.GetString(LResults.Content);
+                : System.Text.Encoding.Default.GetString(results.Content);
         }
     }
 }

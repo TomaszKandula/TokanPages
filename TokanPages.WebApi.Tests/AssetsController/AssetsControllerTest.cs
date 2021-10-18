@@ -4,10 +4,10 @@ namespace TokanPages.WebApi.Tests.AssetsController
 
     public partial class AssetsControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
-        private const string API_BASE_URL = "/api/v1/assets";
+        private const string ApiBaseUrl = "/api/v1/assets";
         
-        private readonly CustomWebApplicationFactory<TestStartup> FWebAppFactory;
+        private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
 
-        public AssetsControllerTest(CustomWebApplicationFactory<TestStartup> AWebAppFactory) => FWebAppFactory = AWebAppFactory;
+        public AssetsControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
     }
 }

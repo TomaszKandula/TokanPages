@@ -18,64 +18,64 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     
     public class UpdateUserPasswordCommandHandler : TemplateHandler<UpdateUserPasswordCommand, Unit>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
 
-        private readonly IUserServiceProvider FUserServiceProvider;
+        private readonly IUserServiceProvider _userServiceProvider;
 
-        private readonly ICipheringService FCipheringService;
+        private readonly ICipheringService _cipheringService;
 
-        private readonly IDateTimeService FDateTimeService;
+        private readonly IDateTimeService _dateTimeService;
         
-        private readonly ILogger FLogger;
+        private readonly ILogger _logger;
         
-        public UpdateUserPasswordCommandHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider, 
-            ICipheringService ACipheringService, IDateTimeService ADateTimeService, ILogger ALogger)
+        public UpdateUserPasswordCommandHandler(DatabaseContext databaseContext, IUserServiceProvider userServiceProvider, 
+            ICipheringService cipheringService, IDateTimeService dateTimeService, ILogger logger)
         {
-            FDatabaseContext = ADatabaseContext;
-            FUserServiceProvider = AUserServiceProvider;
-            FCipheringService = ACipheringService;
-            FDateTimeService = ADateTimeService;
-            FLogger = ALogger;
+            _databaseContext = databaseContext;
+            _userServiceProvider = userServiceProvider;
+            _cipheringService = cipheringService;
+            _dateTimeService = dateTimeService;
+            _logger = logger;
         }
 
-        public override async Task<Unit> Handle(UpdateUserPasswordCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(UpdateUserPasswordCommand request, CancellationToken cancellationToken)
         {
-            var LIsResetId = ARequest.ResetId != null;
-            var LUsers = await FDatabaseContext.Users
-                .WhereIfElse(!LIsResetId, 
-                    AUser => AUser.Id == ARequest.Id, 
-                    AUser => AUser.ResetId == ARequest.ResetId) 
-                .ToListAsync(ACancellationToken);
+            var resetId = request.ResetId != null;
+            var users = await _databaseContext.Users
+                .WhereIfElse(!resetId, 
+                    users => users.Id == request.Id, 
+                    users => users.ResetId == request.ResetId) 
+                .ToListAsync(cancellationToken);
 
-            if (!LIsResetId)
+            if (!resetId)
             {
-                if (!LUsers.Any())
+                if (!users.Any())
                     throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-                var LHasRoleEverydayUser = await FUserServiceProvider.HasRoleAssigned($"{Roles.EverydayUser}") ?? false;
-                var LHasRoleGodOfAsgard = await FUserServiceProvider.HasRoleAssigned($"{Roles.GodOfAsgard}") ?? false;
+                var hasRoleEverydayUser = await _userServiceProvider.HasRoleAssigned($"{Roles.EverydayUser}") ?? false;
+                var hasRoleGodOfAsgard = await _userServiceProvider.HasRoleAssigned($"{Roles.GodOfAsgard}") ?? false;
 
-                if (!LHasRoleEverydayUser && !LHasRoleGodOfAsgard)
+                if (!hasRoleEverydayUser && !hasRoleGodOfAsgard)
                     throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
             }
 
-            if (!LUsers.Any())
+            if (!users.Any())
                 throw new BusinessException(nameof(ErrorCodes.INVALID_RESET_ID), ErrorCodes.INVALID_RESET_ID);
 
-            var LCurrentUser = LUsers.First();
-            if (LIsResetId && FDateTimeService.Now > LCurrentUser.ResetIdEnds)
+            var currentUser = users.First();
+            if (resetId && _dateTimeService.Now > currentUser.ResetIdEnds)
                 throw new BusinessException(nameof(ErrorCodes.EXPIRED_RESET_ID), ErrorCodes.EXPIRED_RESET_ID);
             
-            var LGetNewSalt = FCipheringService.GenerateSalt(Constants.CIPHER_LOG_ROUNDS);
-            var LGetHashedPassword = FCipheringService.GetHashedPassword(ARequest.NewPassword, LGetNewSalt);
+            var getNewSalt = _cipheringService.GenerateSalt(Constants.CipherLogRounds);
+            var getHashedPassword = _cipheringService.GetHashedPassword(request.NewPassword, getNewSalt);
             
-            LCurrentUser.ResetId = null;
-            LCurrentUser.ResetIdEnds = null;
-            LCurrentUser.CryptedPassword = LGetHashedPassword;
-            LCurrentUser.LastUpdated = FDateTimeService.Now;
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            currentUser.ResetId = null;
+            currentUser.ResetIdEnds = null;
+            currentUser.CryptedPassword = getHashedPassword;
+            currentUser.LastUpdated = _dateTimeService.Now;
+            await _databaseContext.SaveChangesAsync(cancellationToken);
 
-            FLogger.LogInformation($"User password has been updated successfully (UserId: {LCurrentUser.Id}).");
+            _logger.LogInformation($"User password has been updated successfully (UserId: {currentUser.Id}).");
             return await Task.FromResult(Unit.Value);
         }
     }

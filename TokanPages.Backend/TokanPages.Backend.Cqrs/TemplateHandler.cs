@@ -10,6 +10,6 @@
     {
         protected TemplateHandler() { }
 
-        public abstract Task<TResult> Handle(TRequest ARequest, CancellationToken ACancellationToken);
+        public abstract Task<TResult> Handle(TRequest request, CancellationToken cancellationToken);
     }
 }
