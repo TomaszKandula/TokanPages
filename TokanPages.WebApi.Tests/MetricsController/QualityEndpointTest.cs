@@ -56,7 +56,7 @@ namespace TokanPages.WebApi.Tests.MetricsController
             // Assert
             var content = await response.Content.ReadAsStringAsync();
             content.Should().NotBeNullOrEmpty();
-            content.Should().Be("Parameter 'Project' is missing");
+            content.Should().Be("Parameter 'project' is missing");
         }
     }
 }

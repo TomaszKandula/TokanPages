@@ -40,7 +40,7 @@ namespace TokanPages.WebApi.Tests.MetricsController
             // Assert
             var content = await response.Content.ReadAsStringAsync();
             content.Should().NotBeNullOrEmpty();
-            content.Should().Be("Parameters 'Project' and 'Metric' are missing");
+            content.Should().Be("Parameters 'project' and 'metric' are missing");
         }
 
         [Fact]
@@ -58,7 +58,7 @@ namespace TokanPages.WebApi.Tests.MetricsController
             // Assert
             var content = await response.Content.ReadAsStringAsync();
             content.Should().NotBeNullOrEmpty();
-            content.Should().Be("Parameter 'Metric' is missing");
+            content.Should().Be("Parameter 'metric' is missing");
         }
 
         [Fact]
@@ -75,7 +75,7 @@ namespace TokanPages.WebApi.Tests.MetricsController
             // Assert
             var content = await response.Content.ReadAsStringAsync();
             content.Should().NotBeNullOrEmpty();
-            content.Should().Be("Parameter 'Project' is missing");
+            content.Should().Be("Parameter 'project' is missing");
         }
 
         [Fact]
@@ -94,7 +94,7 @@ namespace TokanPages.WebApi.Tests.MetricsController
             // Assert
             var content = await response.Content.ReadAsStringAsync();
             content.Should().NotBeNullOrEmpty();
-            content.Should().Be("Parameter 'Metric' is invalid.");
+            content.Should().Be("Parameter 'metric' is invalid.");
         }
     }
 }
