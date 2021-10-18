@@ -38,6 +38,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 UserEmail = DataUtilityService.GetRandomEmail()
             };
 
+            var databaseContext = GetTestDatabaseContext();
             var mockedLogger = new Mock<ILogger>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
@@ -63,6 +64,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 .ReturnsAsync(mockedResults);
             
             var sendMessageCommandHandler = new SendMessageCommandHandler(
+                databaseContext,
                 mockedLogger.Object,
                 mockedCustomHttpClient.Object,
                 mockedSmtpClientService.Object, 
@@ -92,6 +94,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 UserEmail = DataUtilityService.GetRandomEmail()
             };
 
+            var databaseContext = GetTestDatabaseContext();
             var mockedLogger = new Mock<ILogger>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
@@ -116,6 +119,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 .ReturnsAsync(mockedResults);
             
             var sendMessageCommandHandler = new SendMessageCommandHandler(
+                databaseContext,
                 mockedLogger.Object,
                 mockedCustomHttpClient.Object,
                 mockedSmtpClientService.Object, 
@@ -144,6 +148,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 UserEmail = DataUtilityService.GetRandomEmail()
             };
 
+            var databaseContext = GetTestDatabaseContext();
             var mockedLogger = new Mock<ILogger>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
@@ -169,6 +174,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 .ReturnsAsync(mockedResults);
             
             var sendMessageCommandHandler = new SendMessageCommandHandler(
+                databaseContext,
                 mockedLogger.Object,
                 mockedCustomHttpClient.Object,
                 mockedSmtpClientService.Object, 

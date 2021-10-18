@@ -1,10 +1,12 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using Moq;
     using Xunit;
     using FluentAssertions;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Logger;
     using Core.Exceptions;
     using Domain.Entities;
     using Cqrs.Handlers.Commands.Articles;
@@ -51,8 +53,9 @@
             
             await databaseContext.Articles.AddAsync(articles);
             await databaseContext.SaveChangesAsync();
-
-            var removeArticleCommandHandler = new RemoveArticleCommandHandler(databaseContext);
+            
+            var mockedLogger = new Mock<ILogger>();
+            var removeArticleCommandHandler = new RemoveArticleCommandHandler(databaseContext, mockedLogger.Object);
 
             // Act 
             await removeArticleCommandHandler.Handle(removeArticleCommand, CancellationToken.None);
@@ -104,7 +107,8 @@
             await databaseContext.Articles.AddAsync(articles);
             await databaseContext.SaveChangesAsync();
 
-            var removeArticleCommandHandler = new RemoveArticleCommandHandler(databaseContext);
+            var mockedLogger = new Mock<ILogger>();
+            var removeArticleCommandHandler = new RemoveArticleCommandHandler(databaseContext, mockedLogger.Object);
 
             // Act
             // Assert

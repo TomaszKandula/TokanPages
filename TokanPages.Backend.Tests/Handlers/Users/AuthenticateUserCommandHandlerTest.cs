@@ -8,6 +8,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
+    using Core.Logger;
     using Shared.Models;
     using Domain.Entities;
     using Core.Exceptions;
@@ -54,7 +55,9 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 Password = plainTextPassword
             };
 
+            var mockedLogger = new Mock<ILogger>();
             var mockedCipheringService = new Mock<ICipheringService>();
+
             mockedCipheringService
                 .Setup(service => service
                     .VerifyPassword(It.IsAny<string>(), It.IsAny<string>()))
@@ -123,6 +126,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             // Act
             var authenticateUserCommandHandler = new AuthenticateUserCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedCipheringService.Object, 
                 mockedJwtUtilityService.Object, 
                 mockedDateTimeService.Object, 
@@ -206,6 +210,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 Password = plainTextPassword
             };
 
+            var mockedLogger = new Mock<ILogger>();
             var mockedCipheringService = new Mock<ICipheringService>();
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
@@ -215,6 +220,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             // Act
             var authenticateUserCommandHandler = new AuthenticateUserCommandHandler(
                 databaseContext,
+                mockedLogger.Object,
                 mockedCipheringService.Object,
                 mockedJwtUtilityService.Object,
                 mockedDateTimeService.Object,
@@ -265,6 +271,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                     .VerifyPassword(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(false);
 
+            var mockedLogger = new Mock<ILogger>();
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
@@ -273,6 +280,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             // Act
             var authenticateUserCommandHandler = new AuthenticateUserCommandHandler(
                 databaseContext,
+                mockedLogger.Object,
                 mockedCipheringService.Object,
                 mockedJwtUtilityService.Object,
                 mockedDateTimeService.Object,
@@ -319,7 +327,9 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 Password = plainTextPassword
             };
 
+            var mockedLogger = new Mock<ILogger>();
             var mockedCipheringService = new Mock<ICipheringService>();
+
             mockedCipheringService
                 .Setup(service => service
                     .VerifyPassword(It.IsAny<string>(), It.IsAny<string>()))
@@ -388,6 +398,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             // Act
             var authenticateUserCommandHandler = new AuthenticateUserCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedCipheringService.Object, 
                 mockedJwtUtilityService.Object, 
                 mockedDateTimeService.Object, 

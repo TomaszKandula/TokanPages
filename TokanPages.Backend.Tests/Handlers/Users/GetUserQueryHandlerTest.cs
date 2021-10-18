@@ -1,10 +1,12 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Users
 {
+    using Moq;
     using Xunit;
     using FluentAssertions;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Logger;
     using Domain.Entities;
     using Core.Exceptions;
     using Cqrs.Handlers.Queries.Users;
@@ -33,8 +35,9 @@
             await databaseContext.Users.AddAsync(users);
             await databaseContext.SaveChangesAsync();
 
+            var mockedLogger = new Mock<ILogger>();
             var getUserQuery = new GetUserQuery { Id = users.Id };
-            var getUserQueryHandler = new GetUserQueryHandler(databaseContext);
+            var getUserQueryHandler = new GetUserQueryHandler(databaseContext, mockedLogger.Object);
 
             // Act
             var result = await getUserQueryHandler.Handle(getUserQuery, CancellationToken.None);
@@ -56,8 +59,10 @@
         {
             // Arrange
             var databaseContext = GetTestDatabaseContext();
+            var mockedLogger = new Mock<ILogger>();
+
             var getUserQuery = new GetUserQuery { Id = Guid.Parse("8f4cef66-6f37-49bb-bbe7-db6c54336d76") };
-            var getUserQueryHandler = new GetUserQueryHandler(databaseContext);
+            var getUserQueryHandler = new GetUserQueryHandler(databaseContext, mockedLogger.Object);
 
             // Act
             // Assert

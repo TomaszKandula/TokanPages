@@ -1,5 +1,6 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Users
 {
+    using Moq;
     using Xunit;
     using FluentAssertions;
     using System;
@@ -7,6 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    using Core.Logger;
     using Domain.Entities;
     using Cqrs.Handlers.Queries.Users;
 
@@ -47,8 +49,10 @@
             };
 
             var databaseContext = GetTestDatabaseContext();
+            var mockedLogger = new Mock<ILogger>();
+
             var getAllUsersQuery = new GetAllUsersQuery();
-            var getAllUsersQueryHandler = new GetAllUsersQueryHandler(databaseContext);
+            var getAllUsersQueryHandler = new GetAllUsersQueryHandler(databaseContext, mockedLogger.Object);
 
             await databaseContext.Users.AddRangeAsync(users);
             await databaseContext.SaveChangesAsync();

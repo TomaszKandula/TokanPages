@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Logger;
     using Core.Exceptions;
     using Shared.Resources;
     using Core.Utilities.DateTimeService;
@@ -12,26 +13,24 @@
 
     public class UpdateUserCommandHandler : TemplateHandler<UpdateUserCommand, Unit>
     {
-        private readonly DatabaseContext _databaseContext;
-        
         private readonly IDateTimeService _dateTimeService;
         
-        public UpdateUserCommandHandler(DatabaseContext databaseContext, IDateTimeService dateTimeService) 
+        public UpdateUserCommandHandler(DatabaseContext databaseContext, ILogger logger, 
+            IDateTimeService dateTimeService) : base(databaseContext, logger)
         {
-            _databaseContext = databaseContext;
             _dateTimeService = dateTimeService;
         }
 
         public override async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
-            var usersList = await _databaseContext.Users
+            var usersList = await DatabaseContext.Users
                 .Where(users => users.Id == request.Id)
                 .ToListAsync(cancellationToken);
 
             if (!usersList.Any())
                 throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-            var emailCollection = await _databaseContext.Users
+            var emailCollection = await DatabaseContext.Users
                 .AsNoTracking()
                 .Where(users => users.EmailAddress == request.EmailAddress)
                 .ToListAsync(cancellationToken);
@@ -48,7 +47,7 @@
             currentUser.IsActivated = request.IsActivated;
             currentUser.LastUpdated = _dateTimeService.Now;
 
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
         }
     }

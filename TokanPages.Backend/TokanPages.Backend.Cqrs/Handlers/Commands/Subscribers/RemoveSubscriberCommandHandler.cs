@@ -5,30 +5,27 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Logger;
     using Core.Exceptions;
     using Shared.Resources;
     using MediatR;
 
     public class RemoveSubscriberCommandHandler : TemplateHandler<RemoveSubscriberCommand, Unit>
     {
-        private readonly DatabaseContext _databaseContext;
-
-        public RemoveSubscriberCommandHandler(DatabaseContext databaseContext) 
-            => _databaseContext = databaseContext;
+        public RemoveSubscriberCommandHandler(DatabaseContext databaseContext, ILogger logger) : base(databaseContext, logger) { }
 
         public override async Task<Unit> Handle(RemoveSubscriberCommand request, CancellationToken cancellationToken) 
         {
-            var currentSubscriber = await _databaseContext.Subscribers
+            var currentSubscriber = await DatabaseContext.Subscribers
                 .Where(subscribers => subscribers.Id == request.Id)
                 .ToListAsync(cancellationToken);
             
             if (!currentSubscriber.Any())
                 throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
 
-            _databaseContext.Subscribers.Remove(currentSubscriber.First());
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            DatabaseContext.Subscribers.Remove(currentSubscriber.First());
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
-       
         }
     }
 }

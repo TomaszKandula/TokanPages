@@ -1,14 +1,15 @@
 namespace TokanPages.Backend.Tests.Handlers.Mailer
 {
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using SmtpClient;
+    using Core.Logger;
     using SmtpClient.Models;
     using Cqrs.Handlers.Commands.Mailer;
-    using FluentAssertions;
-    using Xunit;
-    using Moq;
 
     public class VerifyEmailAddressCommandHandlerTest : TestBase
     {
@@ -21,7 +22,10 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 Email = DataUtilityService.GetRandomEmail()
             };
 
+            var databaseContext = GetTestDatabaseContext();
+            var mockedLogger = new Mock<ILogger>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
+
             var checkActionResult = new List<Email>
             {
                 new ()
@@ -39,7 +43,10 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 .Setup(client => client.IsDomainCorrect(It.IsAny<string>(), CancellationToken.None))
                 .Returns(Task.FromResult(true));
             
-            var verifyEmailAddressCommandHandler = new VerifyEmailAddressCommandHandler(mockedSmtpClientService.Object);
+            var verifyEmailAddressCommandHandler = new VerifyEmailAddressCommandHandler(
+                databaseContext,
+                mockedLogger.Object,
+                mockedSmtpClientService.Object);
 
             // Act
             var result = await verifyEmailAddressCommandHandler.Handle(verifyEmailAddressCommand, CancellationToken.None);

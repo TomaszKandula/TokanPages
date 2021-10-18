@@ -6,17 +6,15 @@
     using System.Collections.Generic;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Logger;
 
     public class GetAllArticlesQueryHandler : TemplateHandler<GetAllArticlesQuery, IEnumerable<GetAllArticlesQueryResult>>
     {
-        private readonly DatabaseContext _databaseContext;
-
-        public GetAllArticlesQueryHandler(DatabaseContext databaseContext) 
-            => _databaseContext = databaseContext;
+        public GetAllArticlesQueryHandler(DatabaseContext databaseContext, ILogger logger) : base(databaseContext, logger) { }
 
         public override async Task<IEnumerable<GetAllArticlesQueryResult>> Handle(GetAllArticlesQuery request, CancellationToken cancellationToken) 
         {
-            var articles = await _databaseContext.Articles
+            var articles = await DatabaseContext.Articles
                 .AsNoTracking()
                 .Where(articles => articles.IsPublished == request.IsPublished)
                 .Select(articles => new GetAllArticlesQueryResult 

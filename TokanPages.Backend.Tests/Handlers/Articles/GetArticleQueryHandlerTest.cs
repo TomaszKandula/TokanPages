@@ -3,12 +3,13 @@
     using Moq;
     using Xunit;
     using FluentAssertions;
-    using System.Net;
     using System;
+    using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
     using System.Collections.Generic;
+    using Core.Logger;
     using Storage.Models;
     using Domain.Entities;
     using Core.Exceptions;
@@ -88,6 +89,7 @@
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
             var mockedAzureStorage = new Mock<AzureStorage>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedLogger = new Mock<ILogger>();
 
             mockedUserProvider
                 .Setup(provider => provider.GetRequestIpAddress())
@@ -108,6 +110,7 @@
             var getArticleQuery = new GetArticleQuery { Id = articles.Id };
             var getArticleQueryHandler = new GetArticleQueryHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedUserProvider.Object, 
                 mockedJsonSerializer.Object, 
                 mockedAzureStorage.Object, 
@@ -174,6 +177,7 @@
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
             var mockedAzureStorage = new Mock<AzureStorage>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedLogger = new Mock<ILogger>();
 
             mockedUserProvider
                 .Setup(provider => provider.GetRequestIpAddress())
@@ -193,6 +197,7 @@
             
             var getArticleQueryHandler = new GetArticleQueryHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedUserProvider.Object, 
                 mockedJsonSerializer.Object, 
                 mockedAzureStorage.Object, 

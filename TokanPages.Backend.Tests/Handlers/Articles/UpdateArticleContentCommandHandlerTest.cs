@@ -7,6 +7,7 @@
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Logger;
     using Domain.Entities;
     using Core.Exceptions;
     using Core.Extensions;
@@ -60,6 +61,7 @@
             var mockedDateTime = new Mock<DateTimeService>();
             var mockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
             var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
+            var mockedLogger = new Mock<ILogger>();
 
             mockedUserProvider
                 .Setup(provider => provider.GetUserId())
@@ -79,6 +81,7 @@
 
             var updateArticleCommandHandler = new UpdateArticleContentCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedUserProvider.Object, 
                 mockedDateTime.Object, 
                 mockedAzureBlobStorageFactory.Object);
@@ -146,6 +149,7 @@
             var mockedDateTime = new Mock<DateTimeService>();
             var mockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
             var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
+            var mockedLogger = new Mock<ILogger>();
             
             mockedUserProvider
                 .Setup(provider => provider.GetUserId())
@@ -165,6 +169,7 @@
 
             var updateArticleCommandHandler = new UpdateArticleContentCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedUserProvider.Object, 
                 mockedDateTime.Object, 
                 mockedAzureBlobStorageFactory.Object);
@@ -236,6 +241,7 @@
             var mockedDateTime = new Mock<DateTimeService>();
             var mockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>(); 
             var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
+            var mockedLogger = new Mock<ILogger>();
 
             mockedUserProvider
                 .Setup(provider => provider.GetUserId())
@@ -255,6 +261,7 @@
 
             var updateArticleCommandHandler = new UpdateArticleContentCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedUserProvider.Object, 
                 mockedDateTime.Object, 
                 mockedAzureBlobStorageFactory.Object);

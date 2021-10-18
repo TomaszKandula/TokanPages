@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Logger;
     using Core.Exceptions;
     using Shared.Resources;
     using Core.Utilities.DateTimeService;
@@ -12,26 +13,24 @@
 
     public class UpdateSubscriberCommandHandler : TemplateHandler<UpdateSubscriberCommand, Unit>
     {
-        private readonly DatabaseContext _databaseContext;
-        
         private readonly IDateTimeService _dateTimeService;
         
-        public UpdateSubscriberCommandHandler(DatabaseContext databaseContext, IDateTimeService dateTimeService) 
+        public UpdateSubscriberCommandHandler(DatabaseContext databaseContext, ILogger logger, 
+            IDateTimeService dateTimeService) : base(databaseContext, logger)
         {
-            _databaseContext = databaseContext;
             _dateTimeService = dateTimeService;
         }
 
         public override async Task<Unit> Handle(UpdateSubscriberCommand request, CancellationToken cancellationToken) 
         {
-            var subscribersList = await _databaseContext.Subscribers
+            var subscribersList = await DatabaseContext.Subscribers
                 .Where(subscribers => subscribers.Id == request.Id)
                 .ToListAsync(cancellationToken);
 
             if (!subscribersList.Any()) 
                 throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
 
-            var emailCollection = await _databaseContext.Subscribers
+            var emailCollection = await DatabaseContext.Subscribers
                 .AsNoTracking()
                 .Where(subscribers => subscribers.Email == request.Email)
                 .ToListAsync(cancellationToken);
@@ -46,7 +45,7 @@
             currentSubscriber.IsActivated = request.IsActivated ?? currentSubscriber.IsActivated;
             currentSubscriber.LastUpdated = _dateTimeService.Now;
 
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
         }
     }

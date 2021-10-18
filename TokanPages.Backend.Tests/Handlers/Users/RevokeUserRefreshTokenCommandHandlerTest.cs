@@ -6,6 +6,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Logger;
     using Domain.Entities;
     using Core.Exceptions;
     using Shared.Resources;
@@ -48,6 +49,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             await databaseContext.SaveChangesAsync();
 
             var mockedIUserServiceProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILogger>();
 
             var randomIpAddress = DataUtilityService.GetRandomIpAddress().ToString(); 
             mockedIUserServiceProvider
@@ -67,6 +69,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var revokeUserRefreshTokenCommand = new RevokeUserRefreshTokenCommand { RefreshToken = token };
             var revokeUserRefreshTokenCommandHandler = new RevokeUserRefreshTokenCommandHandler(
                 databaseContext,
+                mockedLogger.Object,
                 mockedIUserServiceProvider.Object
             );
 
@@ -100,6 +103,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             await databaseContext.SaveChangesAsync();
 
             var mockedIUserServiceProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILogger>();
 
             var randomIpAddress = DataUtilityService.GetRandomIpAddress().ToString(); 
             mockedIUserServiceProvider
@@ -119,6 +123,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var revokeUserRefreshTokenCommand = new RevokeUserRefreshTokenCommand { RefreshToken = token };
             var revokeUserRefreshTokenCommandHandler = new RevokeUserRefreshTokenCommandHandler(
                 databaseContext,
+                mockedLogger.Object,
                 mockedIUserServiceProvider.Object
             );
 

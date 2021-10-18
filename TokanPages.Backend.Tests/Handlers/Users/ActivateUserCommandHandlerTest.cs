@@ -4,11 +4,12 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using Xunit;
     using FluentAssertions;
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using Shared;
-    using System.Threading;
     using Core.Logger;
     using Core.Exceptions;
+    using Domain.Entities;
     using Shared.Resources;
     using Cqrs.Handlers.Commands.Users;
     using Core.Utilities.DateTimeService;
@@ -21,7 +22,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
         {
             // Arrange
             var activationId = Guid.NewGuid();
-            var users = new TokanPages.Backend.Domain.Entities.Users
+            var users = new Users
             { 
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString().ToLower(),
@@ -48,8 +49,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var activateUserCommand = new ActivateUserCommand { ActivationId = activationId };
             var activateUserCommandHandler = new ActivateUserCommandHandler(
                 databaseContext, 
-                mockedDateTimeService.Object, 
-                mockedLogger.Object);
+                mockedLogger.Object,
+                mockedDateTimeService.Object);
 
             // Act
             var result = await activateUserCommandHandler.Handle(activateUserCommand, CancellationToken.None);
@@ -62,7 +63,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
         public async Task GivenInvalidActivationId_WhenActivateUser_ShouldThrowError()
         {
             // Arrange
-            var users = new TokanPages.Backend.Domain.Entities.Users
+            var users = new Users
             { 
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString().ToLower(),
@@ -89,8 +90,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var activateUserCommand = new ActivateUserCommand { ActivationId = Guid.NewGuid() };
             var activateUserCommandHandler = new ActivateUserCommandHandler(
                 databaseContext, 
-                mockedDateTimeService.Object, 
-                mockedLogger.Object);
+                mockedLogger.Object,
+                mockedDateTimeService.Object);
 
             // Act
             // Assert
@@ -104,7 +105,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
         {
             // Arrange
             var activationId = Guid.NewGuid();
-            var users = new TokanPages.Backend.Domain.Entities.Users
+            var users = new Users
             { 
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString().ToLower(),
@@ -131,8 +132,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var activateUserCommand = new ActivateUserCommand { ActivationId = activationId };
             var activateUserCommandHandler = new ActivateUserCommandHandler(
                 databaseContext, 
-                mockedDateTimeService.Object, 
-                mockedLogger.Object);
+                mockedLogger.Object,
+                mockedDateTimeService.Object);
 
             // Act
             // Assert

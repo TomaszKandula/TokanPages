@@ -1,12 +1,14 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Logger;
     using Core.Exceptions;
     using Cqrs.Handlers.Queries.Subscribers;
-    using FluentAssertions;
-    using Xunit;
 
     public class GetSubscriberQueryHandlerTest : TestBase
     {
@@ -28,10 +30,11 @@
             await databaseContext.Subscribers.AddAsync(subscribers);
             await databaseContext.SaveChangesAsync();
 
+            var mockedLogger = new Mock<ILogger>();
             var getSubscriberQuery = new GetSubscriberQuery { Id = subscribers.Id };
+            var getSubscriberQueryHandler = new GetSubscriberQueryHandler(databaseContext, mockedLogger.Object);
 
             // Act
-            var getSubscriberQueryHandler = new GetSubscriberQueryHandler(databaseContext);
             var result = await getSubscriberQueryHandler.Handle(getSubscriberQuery, CancellationToken.None);
 
             // Assert
@@ -60,7 +63,8 @@
             await databaseContext.Subscribers.AddAsync(subscribers);
             await databaseContext.SaveChangesAsync();
 
-            var getSubscriberQueryHandler = new GetSubscriberQueryHandler(databaseContext);
+            var mockedLogger = new Mock<ILogger>();
+            var getSubscriberQueryHandler = new GetSubscriberQueryHandler(databaseContext, mockedLogger.Object);
             var getSubscriberQuery = new GetSubscriberQuery
             {
                 Id = Guid.Parse("b6bb37e0-bad3-419c-b61f-45318cb7b68c")

@@ -23,15 +23,11 @@
 
     public class AddUserCommandHandler : TemplateHandler<AddUserCommand, Guid>
     {
-        private readonly DatabaseContext _databaseContext;
-
         private readonly IDateTimeService _dateTimeService;
 
         private readonly ICipheringService _cipheringService;
 
         private readonly ISmtpClientService _smtpClientService;
-
-        private readonly ILogger _logger;
 
         private readonly ITemplateService _templateService;
 
@@ -46,13 +42,11 @@
         public AddUserCommandHandler(DatabaseContext databaseContext, IDateTimeService dateTimeService,
             ICipheringService cipheringService, ISmtpClientService smtpClientService, ILogger logger,
             ITemplateService templateService, ICustomHttpClient customHttpClient, AzureStorage azureStorage,
-            ApplicationPaths applicationPaths, ExpirationSettings expirationSettings)
+            ApplicationPaths applicationPaths, ExpirationSettings expirationSettings) : base(databaseContext, logger)
         {
-            _databaseContext = databaseContext;
             _dateTimeService = dateTimeService;
             _cipheringService = cipheringService;
             _smtpClientService = smtpClientService;
-            _logger = logger;
             _templateService = templateService;
             _customHttpClient = customHttpClient;
             _azureStorage = azureStorage;
@@ -62,7 +56,7 @@
 
         public override async Task<Guid> Handle(AddUserCommand request, CancellationToken cancellationToken)
         {
-            var users = await _databaseContext.Users
+            var users = await DatabaseContext.Users
                 .Where(users => users.EmailAddress == request.EmailAddress)
                 .SingleOrDefaultAsync(cancellationToken);
 
@@ -81,10 +75,10 @@
                 users.ActivationId = activationId;
                 users.ActivationIdEnds = activationIdEnds;
 
-                await _databaseContext.SaveChangesAsync(cancellationToken);
+                await DatabaseContext.SaveChangesAsync(cancellationToken);
                 await SendNotification(request.EmailAddress, activationId, activationIdEnds, cancellationToken);
 
-                _logger.LogInformation($"Re-registering new user after ActivationId expired, user id: {users.Id}.");
+                Logger.LogInformation($"Re-registering new user after ActivationId expired, user id: {users.Id}.");
                 return await Task.FromResult(users.Id);
             }
 
@@ -101,19 +95,19 @@
                 ActivationIdEnds = activationIdEnds
             };
 
-            await _databaseContext.Users.AddAsync(newUser, cancellationToken);
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await DatabaseContext.Users.AddAsync(newUser, cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
             await SetupDefaultPermissions(newUser.Id, cancellationToken);
             await SendNotification(request.EmailAddress, activationId, activationIdEnds, cancellationToken);
 
-            _logger.LogInformation($"Registering new user account, user id: {newUser.Id}.");
+            Logger.LogInformation($"Registering new user account, user id: {newUser.Id}.");
             return await Task.FromResult(newUser.Id);
         }
 
         private async Task SetupDefaultPermissions(Guid userId, CancellationToken cancellationToken)
         {
             var userRoleName = Identity.Authorization.Roles.EverydayUser.ToString();
-            var defaultPermissions = await _databaseContext.DefaultPermissions
+            var defaultPermissions = await DatabaseContext.DefaultPermissions
                 .AsNoTracking()
                 .Include(permissions => permissions.Role)
                 .Include(permissions => permissions.Permission)
@@ -148,9 +142,9 @@
                 PermissionId = item
             }).ToList();
 
-            await _databaseContext.UserRoles.AddAsync(newRole, cancellationToken);
-            await _databaseContext.UserPermissions.AddRangeAsync(newPermissions, cancellationToken);
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await DatabaseContext.UserRoles.AddAsync(newRole, cancellationToken);
+            await DatabaseContext.UserPermissions.AddRangeAsync(newPermissions, cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
         }
 
         private async Task SendNotification(string emailAddress, Guid activationId, DateTime activationIdEnds, CancellationToken cancellationToken)
@@ -168,7 +162,7 @@
             };
 
             var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.RegisterForm}";
-            _logger.LogInformation($"Getting email template from URL: {url}.");
+            Logger.LogInformation($"Getting email template from URL: {url}.");
 
             var configuration = new Configuration { Url = url, Method = "GET" };
             var results = await _customHttpClient.Execute(configuration, cancellationToken);

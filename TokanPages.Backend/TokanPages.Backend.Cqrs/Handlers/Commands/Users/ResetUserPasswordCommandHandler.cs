@@ -22,10 +22,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
     public class ResetUserPasswordCommandHandler : TemplateHandler<ResetUserPasswordCommand, Unit>
     {
-        private readonly DatabaseContext _databaseContext;
-
-        private readonly ILogger _logger;
-
         private readonly ICustomHttpClient _customHttpClient;
 
         private readonly ISmtpClientService _smtpClientService;
@@ -42,10 +38,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         public ResetUserPasswordCommandHandler(DatabaseContext databaseContext, ILogger logger, ICustomHttpClient customHttpClient, 
             ISmtpClientService smtpClientService, ITemplateService templateService, IDateTimeService dateTimeService, 
-            AzureStorage azureStorage, ApplicationPaths applicationPaths, ExpirationSettings expirationSettings)
+            AzureStorage azureStorage, ApplicationPaths applicationPaths, ExpirationSettings expirationSettings) : base(databaseContext, logger)
         {
-            _databaseContext = databaseContext;
-            _logger = logger;
             _customHttpClient = customHttpClient;
             _smtpClientService = smtpClientService;
             _templateService = templateService;
@@ -57,7 +51,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         public override async Task<Unit> Handle(ResetUserPasswordCommand request, CancellationToken cancellationToken)
         {
-            var users = await _databaseContext.Users
+            var users = await DatabaseContext.Users
                 .Where(users => users.EmailAddress == request.EmailAddress)
                 .ToListAsync(cancellationToken);
 
@@ -71,7 +65,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             currentUser.ResetId = resetId;
             currentUser.ResetIdEnds = expirationDate;
             currentUser.LastUpdated = _dateTimeService.Now;
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
             await SendNotification(request.EmailAddress, resetId, expirationDate, cancellationToken);
 
             return await Task.FromResult(Unit.Value);
@@ -92,7 +86,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             };
 
             var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.ResetPassword}";
-            _logger.LogInformation($"Getting email template from URL: {url}.");
+            Logger.LogInformation($"Getting email template from URL: {url}.");
 
             var configuration = new Configuration { Url = url, Method = "GET" };
             var results = await _customHttpClient.Execute(configuration, cancellationToken);

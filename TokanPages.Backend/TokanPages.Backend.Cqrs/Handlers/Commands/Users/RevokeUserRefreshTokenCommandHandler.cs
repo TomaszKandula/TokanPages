@@ -5,6 +5,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Logger;
     using Core.Exceptions;
     using Shared.Resources;
     using Services.UserServiceProvider;
@@ -12,19 +13,17 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     
     public class RevokeUserRefreshTokenCommandHandler : TemplateHandler<RevokeUserRefreshTokenCommand, Unit>
     {
-        private readonly DatabaseContext _databaseContext;
-        
         private readonly IUserServiceProvider _userServiceProvider;
         
-        public RevokeUserRefreshTokenCommandHandler(DatabaseContext databaseContext, IUserServiceProvider userServiceProvider)
+        public RevokeUserRefreshTokenCommandHandler(DatabaseContext databaseContext, ILogger logger, 
+            IUserServiceProvider userServiceProvider) : base(databaseContext, logger)
         {
-            _databaseContext = databaseContext;
             _userServiceProvider = userServiceProvider;
         }
 
         public override async Task<Unit> Handle(RevokeUserRefreshTokenCommand request, CancellationToken cancellationToken)
         {
-            var refreshTokens = await _databaseContext.UserRefreshTokens
+            var refreshTokens = await DatabaseContext.UserRefreshTokens
                 .Where(tokens => tokens.Token == request.RefreshToken)
                 .SingleOrDefaultAsync(cancellationToken);
 

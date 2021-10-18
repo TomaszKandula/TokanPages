@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Logger;
     using Core.Exceptions;
     using Shared.Resources;
     using Services.UserServiceProvider;
@@ -14,18 +15,16 @@
 
     public class UpdateArticleContentCommandHandler : TemplateHandler<UpdateArticleContentCommand, Unit>
     {
-        private readonly DatabaseContext _databaseContext;
-
         private readonly IUserServiceProvider _userServiceProvider;
         
         private readonly IDateTimeService _dateTimeService;
         
         private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
         
-        public UpdateArticleContentCommandHandler(DatabaseContext databaseContext, IUserServiceProvider userServiceProvider, 
-            IDateTimeService dateTimeService, IAzureBlobStorageFactory azureBlobStorageFactory)
+        public UpdateArticleContentCommandHandler(DatabaseContext databaseContext, ILogger logger,
+            IUserServiceProvider userServiceProvider, IDateTimeService dateTimeService, 
+            IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, logger)
         {
-            _databaseContext = databaseContext;
             _userServiceProvider = userServiceProvider;
             _dateTimeService = dateTimeService;
             _azureBlobStorageFactory = azureBlobStorageFactory;
@@ -37,7 +36,7 @@
             if (userId == null)
                 throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
-            var articles = await _databaseContext.Articles
+            var articles = await DatabaseContext.Articles
                 .Where(articles => articles.Id == request.Id)
                 .ToListAsync(cancellationToken);
 
@@ -65,7 +64,7 @@
                 ? _dateTimeService.Now
                 : currentArticle.UpdatedAt;
 
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
         }
     }

@@ -5,28 +5,26 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Logger;
     using Core.Exceptions;
     using Shared.Resources;
     using MediatR;
 
     public class RemoveArticleCommandHandler : TemplateHandler<RemoveArticleCommand, Unit>
     {
-        private readonly DatabaseContext _databaseContext;
-
-        public RemoveArticleCommandHandler(DatabaseContext databaseContext) 
-            => _databaseContext = databaseContext;
+        public RemoveArticleCommandHandler(DatabaseContext databaseContext, ILogger logger) : base(databaseContext, logger) { }
 
         public override async Task<Unit> Handle(RemoveArticleCommand request, CancellationToken cancellationToken) 
         {
-            var currentArticle = await _databaseContext.Articles
+            var currentArticle = await DatabaseContext.Articles
                 .Where(articles => articles.Id == request.Id)
                 .ToListAsync(cancellationToken);
 
             if (!currentArticle.Any())
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-            _databaseContext.Articles.Remove(currentArticle.Single());
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            DatabaseContext.Articles.Remove(currentArticle.Single());
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
         }
     }

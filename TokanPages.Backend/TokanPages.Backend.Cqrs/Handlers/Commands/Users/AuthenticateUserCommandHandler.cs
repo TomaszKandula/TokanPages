@@ -5,6 +5,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Logger;
     using Shared.Models;
     using Domain.Entities;
     using Core.Exceptions;
@@ -16,8 +17,6 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
     public class AuthenticateUserCommandHandler : TemplateHandler<AuthenticateUserCommand, AuthenticateUserCommandResult>
     {
-        private readonly DatabaseContext _databaseContext;
-        
         private readonly ICipheringService _cipheringService;
 
         private readonly IJwtUtilityService _jwtUtilityService;
@@ -28,11 +27,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         private readonly IdentityServer _identityServer;
         
-        public AuthenticateUserCommandHandler(DatabaseContext databaseContext, ICipheringService cipheringService, 
+        public AuthenticateUserCommandHandler(DatabaseContext databaseContext, ILogger logger, ICipheringService cipheringService, 
             IJwtUtilityService jwtUtilityService, IDateTimeService dateTimeService, IUserServiceProvider userServiceProvider, 
-            IdentityServer identityServer)
+            IdentityServer identityServer) : base(databaseContext, logger)
         {
-            _databaseContext = databaseContext;
             _cipheringService = cipheringService;
             _jwtUtilityService = jwtUtilityService;
             _dateTimeService = dateTimeService;
@@ -42,19 +40,25 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         public override async Task<AuthenticateUserCommandResult> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
         {
-            var users = await _databaseContext.Users
+            var users = await DatabaseContext.Users
                 .Where(users => users.EmailAddress == request.EmailAddress)
                 .ToListAsync(cancellationToken);
             
-            if (!users.Any()) 
-                throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS} (1004)");
-
+            if (!users.Any())
+            {
+                Logger.LogError($"Cannot find user with given email address: '{request.EmailAddress}'.");
+                throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
+            }
+            
             var currentUser = users.First();
             var isPasswordValid = _cipheringService.VerifyPassword(request.Password, currentUser.CryptedPassword);
 
             if (!isPasswordValid)
-                throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS} (1006)");
-
+            {
+                Logger.LogError($"Cannot positively verify given password supplied by user (Id: {currentUser.Id}).");
+                throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
+            }
+            
             if (!currentUser.IsActivated)
                 throw new BusinessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
@@ -91,9 +95,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             };
 
             await _userServiceProvider.DeleteOutdatedRefreshTokens(currentUser.Id, false, cancellationToken);
-            await _databaseContext.UserTokens.AddAsync(newUserToken, cancellationToken);
-            await _databaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await DatabaseContext.UserTokens.AddAsync(newUserToken, cancellationToken);
+            await DatabaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
 
             var roles = await _userServiceProvider.GetUserRoles(currentUser.Id);
             var permissions = await _userServiceProvider.GetUserPermissions(currentUser.Id);

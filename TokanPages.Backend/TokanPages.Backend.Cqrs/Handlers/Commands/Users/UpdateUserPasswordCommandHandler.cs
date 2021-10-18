@@ -4,44 +4,38 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
-    using Core.Utilities.DateTimeService;
-    using Services.UserServiceProvider;
-    using Services.CipheringService;
-    using Identity.Authorization;
-    using Shared.Resources;
+    using Shared;
+    using MediatR;
+    using Database;
+    using Core.Logger;
     using Core.Exceptions;
     using Core.Extensions;
-    using Core.Logger;
-    using Database;
-    using MediatR;
-    using Shared;
-    
+    using Shared.Resources;
+    using Identity.Authorization;
+    using Services.CipheringService;
+    using Services.UserServiceProvider;
+    using Core.Utilities.DateTimeService;
+
     public class UpdateUserPasswordCommandHandler : TemplateHandler<UpdateUserPasswordCommand, Unit>
     {
-        private readonly DatabaseContext _databaseContext;
-
         private readonly IUserServiceProvider _userServiceProvider;
 
         private readonly ICipheringService _cipheringService;
 
         private readonly IDateTimeService _dateTimeService;
         
-        private readonly ILogger _logger;
-        
         public UpdateUserPasswordCommandHandler(DatabaseContext databaseContext, IUserServiceProvider userServiceProvider, 
-            ICipheringService cipheringService, IDateTimeService dateTimeService, ILogger logger)
+            ICipheringService cipheringService, IDateTimeService dateTimeService, ILogger logger) : base(databaseContext, logger)
         {
-            _databaseContext = databaseContext;
             _userServiceProvider = userServiceProvider;
             _cipheringService = cipheringService;
             _dateTimeService = dateTimeService;
-            _logger = logger;
         }
 
         public override async Task<Unit> Handle(UpdateUserPasswordCommand request, CancellationToken cancellationToken)
         {
             var resetId = request.ResetId != null;
-            var users = await _databaseContext.Users
+            var users = await DatabaseContext.Users
                 .WhereIfElse(!resetId, 
                     users => users.Id == request.Id, 
                     users => users.ResetId == request.ResetId) 
@@ -73,9 +67,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             currentUser.ResetIdEnds = null;
             currentUser.CryptedPassword = getHashedPassword;
             currentUser.LastUpdated = _dateTimeService.Now;
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-            _logger.LogInformation($"User password has been updated successfully (UserId: {currentUser.Id}).");
+            Logger.LogInformation($"User password has been updated successfully (UserId: {currentUser.Id}).");
             return await Task.FromResult(Unit.Value);
         }
     }

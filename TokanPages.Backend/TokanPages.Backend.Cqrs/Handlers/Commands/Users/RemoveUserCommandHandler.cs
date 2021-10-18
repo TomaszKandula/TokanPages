@@ -5,28 +5,26 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Logger;
     using Core.Exceptions;
     using Shared.Resources;
     using MediatR;
 
     public class RemoveUserCommandHandler : TemplateHandler<RemoveUserCommand, Unit>
     {
-        private readonly DatabaseContext _databaseContext;
-
-        public RemoveUserCommandHandler(DatabaseContext databaseContext) 
-            => _databaseContext = databaseContext;
+        public RemoveUserCommandHandler(DatabaseContext databaseContext, ILogger logger) : base(databaseContext, logger) { }
 
         public override async Task<Unit> Handle(RemoveUserCommand request, CancellationToken cancellationToken)
         {
-            var currentUser = await _databaseContext.Users
+            var currentUser = await DatabaseContext.Users
                 .Where(subscribers => subscribers.Id == request.Id)
                 .ToListAsync(cancellationToken);
 
             if (!currentUser.Any())
                 throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-            _databaseContext.Users.Remove(currentUser.First());
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            DatabaseContext.Users.Remove(currentUser.First());
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
         }
     }

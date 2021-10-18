@@ -1,5 +1,6 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using Moq;
     using Xunit;
     using FluentAssertions;
     using System;
@@ -7,6 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    using Core.Logger;
     using Domain.Entities;
     using Cqrs.Handlers.Queries.Articles;
 
@@ -17,8 +19,10 @@
         {
             // Arrange
             var databaseContext = GetTestDatabaseContext();
+            var mockedLogger = new Mock<ILogger>();
+
             var getAllArticlesQuery = new GetAllArticlesQuery { IsPublished = false };
-            var getAllArticlesQueryHandler = new GetAllArticlesQueryHandler(databaseContext);
+            var getAllArticlesQueryHandler = new GetAllArticlesQueryHandler(databaseContext, mockedLogger.Object);
             
             var user = new Users
             {

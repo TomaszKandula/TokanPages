@@ -6,6 +6,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Logger;
     using Core.Exceptions;
     using Domain.Entities;
     using Shared.Resources;
@@ -38,6 +39,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await databaseContext.SaveChangesAsync();
             
             var mockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILogger>();
 
             mockedUserProvider
                 .Setup(provider => provider.HasPermissionAssigned(It.IsAny<string>()))
@@ -50,7 +52,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             };
 
             var updateArticleVisibilityCommandHandler = new UpdateArticleVisibilityCommandHandler(
-                databaseContext, mockedUserProvider.Object);
+                databaseContext, mockedLogger.Object, mockedUserProvider.Object);
             
             // Act
             await updateArticleVisibilityCommandHandler.Handle(updateArticleVisibilityCommand, CancellationToken.None);
@@ -81,6 +83,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await databaseContext.SaveChangesAsync();
             
             var mockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILogger>();
 
             mockedUserProvider
                 .Setup(provider => provider.HasPermissionAssigned(It.IsAny<string>()))
@@ -93,7 +96,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             };
 
             var updateArticleVisibilityCommandHandler = new UpdateArticleVisibilityCommandHandler(
-                databaseContext, mockedUserProvider.Object);
+                databaseContext, mockedLogger.Object, mockedUserProvider.Object);
             
             // Act
             // Assert
@@ -121,6 +124,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await databaseContext.SaveChangesAsync();
             
             var mockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILogger>();
 
             mockedUserProvider
                 .Setup(provider => provider.HasPermissionAssigned(It.IsAny<string>()))
@@ -133,7 +137,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             };
 
             var updateArticleVisibilityCommandHandler = new UpdateArticleVisibilityCommandHandler(
-                databaseContext, mockedUserProvider.Object);
+                databaseContext, mockedLogger.Object, mockedUserProvider.Object);
             
             // Act
             // Assert

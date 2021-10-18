@@ -7,6 +7,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
     using System.Collections.Generic;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Logger;
     using Storage.Models;
     using Core.Exceptions;
     using Core.Extensions;
@@ -30,8 +31,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 
         private readonly ICustomHttpClient _customHttpClient;
         
-        public GetArticleQueryHandler(DatabaseContext databaseContext, IUserServiceProvider userServiceProvider, 
-            IJsonSerializer jsonSerializer, AzureStorage azureStorage, ICustomHttpClient customHttpClient)
+        public GetArticleQueryHandler(DatabaseContext databaseContext, ILogger logger, IUserServiceProvider userServiceProvider, 
+            IJsonSerializer jsonSerializer, AzureStorage azureStorage, ICustomHttpClient customHttpClient) : base(databaseContext, logger)
         {
             _databaseContext = databaseContext;
             _userServiceProvider = userServiceProvider;

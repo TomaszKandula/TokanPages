@@ -1,10 +1,12 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Users
 {
+    using Moq;
     using Xunit;
     using FluentAssertions;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Logger;
     using Domain.Entities;
     using Core.Exceptions;
     using Cqrs.Handlers.Commands.Users;
@@ -32,8 +34,9 @@
             await databaseContext.Users.AddAsync(users);
             await databaseContext.SaveChangesAsync();
 
+            var mockedLogger = new Mock<ILogger>();
             var removeUserCommand = new RemoveUserCommand { Id = users.Id };
-            var removeUserCommandHandler = new RemoveUserCommandHandler(databaseContext);
+            var removeUserCommandHandler = new RemoveUserCommandHandler(databaseContext, mockedLogger.Object);
 
             // Act
             await removeUserCommandHandler.Handle(removeUserCommand, CancellationToken.None);
@@ -49,8 +52,10 @@
         {
             // Arrange
             var databaseContext = GetTestDatabaseContext();
+            var mockedLogger = new Mock<ILogger>();
+
             var removeUserCommand = new RemoveUserCommand { Id = Guid.Parse("275c1659-ebe2-44ca-b912-b93b1861a9fb") };
-            var removeUserCommandHandler = new RemoveUserCommandHandler(databaseContext);
+            var removeUserCommandHandler = new RemoveUserCommandHandler(databaseContext, mockedLogger.Object);
 
             // Act
             // Assert
