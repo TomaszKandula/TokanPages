@@ -8,6 +8,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
+    using Core.Logger;
     using Shared.Models;
     using Domain.Entities;
     using Core.Exceptions;
@@ -63,6 +64,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             await databaseContext.UserRefreshTokens.AddAsync(userRefreshToken);
             await databaseContext.SaveChangesAsync();
             
+            var mockedLogger = new Mock<ILogger>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
 
@@ -141,6 +143,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             // Act
             var reAuthenticateUserCommandHandler = new ReAuthenticateUserCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedDateTimeService.Object, 
                 mockedUserServiceProvider.Object, 
                 identityServer);
@@ -233,6 +236,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             await databaseContext.UserRefreshTokens.AddAsync(userRefreshToken);
             await databaseContext.SaveChangesAsync();
             
+            var mockedLogger = new Mock<ILogger>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
 
@@ -266,6 +270,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             // Assert
             var reAuthenticateUserCommandHandler = new ReAuthenticateUserCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedDateTimeService.Object, 
                 mockedUserServiceProvider.Object, 
                 identityServer);
@@ -282,6 +287,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             // Arrange
             var reAuthenticateUserCommand = new ReAuthenticateUserCommand { Id = Guid.NewGuid() };
             var databaseContext = GetTestDatabaseContext();
+
+            var mockedLogger = new Mock<ILogger>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
 
@@ -295,7 +302,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             // Act
             // Assert
             var reAuthenticateUserCommandHandler = new ReAuthenticateUserCommandHandler(
-                databaseContext, 
+                databaseContext,
+                mockedLogger.Object,
                 mockedDateTimeService.Object, 
                 mockedUserServiceProvider.Object, 
                 identityServer.Object);

@@ -8,6 +8,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
+    using Core.Logger;
     using Domain.Entities;
     using Core.Exceptions;
     using Shared.Resources;
@@ -58,6 +59,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             var expectedTotalReadCount = articles.ReadCount + 1;
             var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILogger>();
 
             mockedUserServiceProvider
                 .Setup(service => service.GetUserId())
@@ -67,7 +69,11 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 .Setup(service => service.GetRequestIpAddress())
                 .Returns(mockedIpAddress);
 
-            var updateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(databaseContext, mockedUserServiceProvider.Object);
+            var updateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(
+                databaseContext, 
+                mockedLogger.Object, 
+                mockedUserServiceProvider.Object);
+
             var updateArticleCommand = new UpdateArticleCountCommand { Id = articleId };
 
             // Act
@@ -139,6 +145,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             var expectedTotalReadCount = articles.ReadCount + 1;
             var expectedUserReadCount = articlesCounts.ReadCount + 1;
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILogger>();
 
             mockedUserServiceProvider
                 .Setup(service => service.GetUserId())
@@ -148,7 +155,11 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 .Setup(service => service.GetRequestIpAddress())
                 .Returns(mockedIpAddress);
 
-            var updateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(databaseContext, mockedUserServiceProvider.Object);
+            var updateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedUserServiceProvider.Object);
+
             var updateArticleCommand = new UpdateArticleCountCommand { Id = articles.Id };
 
             // Act
@@ -210,6 +221,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             var expectedTotalReadCount = articles.ReadCount + 1;
             var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILogger>();
 
             mockedUserServiceProvider
                 .Setup(service => service.GetUserId())
@@ -219,7 +231,11 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 .Setup(service => service.GetRequestIpAddress())
                 .Returns(mockedIpAddress);
 
-            var updateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(databaseContext, mockedUserServiceProvider.Object);
+            var updateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedUserServiceProvider.Object);
+
             var updateArticleCommand = new UpdateArticleCountCommand { Id = articleId };
 
             // Act
@@ -275,6 +291,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILogger>();
 
             mockedUserServiceProvider
                 .Setup(service => service.GetUserId())
@@ -284,7 +301,11 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 .Setup(service => service.GetRequestIpAddress())
                 .Returns(mockedIpAddress);
 
-            var updateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(databaseContext, mockedUserServiceProvider.Object);
+            var updateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedUserServiceProvider.Object);
+
             var updateArticleCommand = new UpdateArticleCountCommand { Id = Guid.NewGuid() };
 
             // Act

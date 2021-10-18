@@ -1,14 +1,16 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Logger;
+    using Domain.Entities;
     using Core.Exceptions;
     using Core.Utilities.DateTimeService;
     using Cqrs.Handlers.Commands.Subscribers;
-    using FluentAssertions;
-    using Xunit;
-    using Moq;
 
     public class UpdateSubscriberCommandHandlerTest : TestBase
     {
@@ -16,7 +18,7 @@
         public async Task GivenCorrectId_WhenUpdateSubscriber_ShouldUpdateEntity()
         {
             // Arrange
-            var subscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
+            var subscribers = new Subscribers 
             {
                 Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
@@ -37,9 +39,14 @@
                 Count = 10
             };
 
+            var mockedDateTime = new Mock<IDateTimeService>();
+            var mockedLogger = new Mock<ILogger>();
+            var updateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(
+                databaseContext, 
+                mockedLogger.Object, 
+                mockedDateTime.Object);
+
             // Act
-            var mockedDateTime = new Mock<DateTimeService>();
-            var updateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(databaseContext, mockedDateTime.Object);
             await updateSubscriberCommandHandler.Handle(updateSubscriberCommand, CancellationToken.None);
 
             // Assert
@@ -56,7 +63,7 @@
         public async Task GivenCorrectIdAndCountIsNullAndIsActivatedIsNull_WhenUpdateSubscriber_ShouldUpdateEntity()
         {
             // Arrange
-            var subscribers = new TokanPages.Backend.Domain.Entities.Subscribers
+            var subscribers = new Subscribers
             {
                 Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
@@ -77,9 +84,14 @@
                 Count = null
             };
 
+            var mockedDateTime = new Mock<IDateTimeService>();
+            var mockedLogger = new Mock<ILogger>();
+            var updateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(
+                databaseContext, 
+                mockedLogger.Object, 
+                mockedDateTime.Object);
+            
             // Act
-            var mockedDateTime = new Mock<DateTimeService>();
-            var updateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(databaseContext, mockedDateTime.Object);
             await updateSubscriberCommandHandler.Handle(updateSubscriberCommand, CancellationToken.None);
 
             // Assert
@@ -105,7 +117,7 @@
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var subscribers = new TokanPages.Backend.Domain.Entities.Subscribers
+            var subscribers = new Subscribers
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
                 Email = DataUtilityService.GetRandomEmail(),
@@ -117,8 +129,12 @@
             await databaseContext.Subscribers.AddAsync(subscribers);
             await databaseContext.SaveChangesAsync();
 
-            var mockedDateTime = new Mock<DateTimeService>();
-            var updateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(databaseContext, mockedDateTime.Object);
+            var mockedDateTime = new Mock<IDateTimeService>();
+            var mockedLogger = new Mock<ILogger>();
+            var updateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedDateTime.Object);
 
             // Act
             // Assert
@@ -131,7 +147,7 @@
         {
             // Arrange
             var testEmail = DataUtilityService.GetRandomEmail();
-            var subscribers = new TokanPages.Backend.Domain.Entities.Subscribers
+            var subscribers = new Subscribers
             {
                 Email = testEmail,
                 IsActivated = true,
@@ -152,8 +168,12 @@
                 Count = 10
             };
 
-            var mockedDateTime = new Mock<DateTimeService>();
-            var updateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(databaseContext, mockedDateTime.Object);
+            var mockedDateTime = new Mock<IDateTimeService>();
+            var mockedLogger = new Mock<ILogger>();
+            var updateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedDateTime.Object);
 
             // Act
             // Assert

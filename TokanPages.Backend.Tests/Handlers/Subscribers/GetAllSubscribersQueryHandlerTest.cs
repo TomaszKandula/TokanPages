@@ -1,13 +1,15 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {   
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    using Core.Logger;
     using Cqrs.Handlers.Queries.Subscribers;
-    using FluentAssertions;
-    using Xunit;
 
     public class GetAllSubscribersQueryHandlerTest : TestBase
     {
@@ -16,8 +18,11 @@
         {
             // Arrange
             var databaseContext = GetTestDatabaseContext();
+            var mockedLogger = new Mock<ILogger>();
+
             var getAllSubscribersQuery = new GetAllSubscribersQuery();
-            var getAllSubscribersQueryHandler = new GetAllSubscribersQueryHandler(databaseContext);
+            var getAllSubscribersQueryHandler = new GetAllSubscribersQueryHandler(databaseContext, mockedLogger.Object);
+
             var subscribers = new List<TokanPages.Backend.Domain.Entities.Subscribers>
             {
                 new ()

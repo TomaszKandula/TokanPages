@@ -7,6 +7,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Logger;
     using Domain.Entities;
     using Cqrs.Handlers.Commands.Articles;
     using Cqrs.Services.UserServiceProvider;
@@ -54,12 +55,15 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await databaseContext.SaveChangesAsync();
 
             var mockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILogger>();
+
             mockedUserProvider
                 .Setup(provider => provider.GetRequestIpAddress())
                 .Returns(IpAddress);
 
             var updateArticleLikesCommandHandler = new UpdateArticleLikesCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedUserProvider.Object);
 
             var updateArticleLikesCommand = new UpdateArticleLikesCommand
@@ -137,12 +141,15 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await databaseContext.SaveChangesAsync();
 
             var mockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILogger>();
+
             mockedUserProvider
                 .Setup(provider => provider.GetRequestIpAddress())
                 .Returns(IpAddress);
 
             var updateArticleLikesCommandHandler = new UpdateArticleLikesCommandHandler(
                 databaseContext, 
+                mockedLogger.Object, 
                 mockedUserProvider.Object);
 
             var updateArticleLikesCommand = new UpdateArticleLikesCommand
@@ -208,6 +215,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await databaseContext.SaveChangesAsync();
 
             var mockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILogger>();
+
             mockedUserProvider
                 .Setup(provider => provider.GetUserId())
                 .ReturnsAsync(users.Id);
@@ -218,6 +227,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             var updateArticleLikesCommandHandler = new UpdateArticleLikesCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedUserProvider.Object);
 
             var updateArticleLikesCommand = new UpdateArticleLikesCommand
@@ -293,6 +303,8 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await databaseContext.SaveChangesAsync();
 
             var mockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILogger>();
+
             mockedUserProvider
                 .Setup(provider => provider.GetUserId())
                 .ReturnsAsync(users.Id);
@@ -303,6 +315,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             var updateArticleLikesCommandHandler = new UpdateArticleLikesCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedUserProvider.Object);
 
             var updateArticleLikesCommand = new UpdateArticleLikesCommand

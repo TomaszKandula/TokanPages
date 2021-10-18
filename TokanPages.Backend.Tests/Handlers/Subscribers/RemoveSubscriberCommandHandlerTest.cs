@@ -1,12 +1,15 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Logger;
+    using Domain.Entities;
     using Core.Exceptions;
     using Cqrs.Handlers.Commands.Subscribers;
-    using FluentAssertions;
-    using Xunit;
 
     public class RemoveSubscriberCommandHandlerTest : TestBase
     {
@@ -14,7 +17,7 @@
         public async Task GivenCorrectId_WhenRemoveSubscriber_ShouldRemoveEntity() 
         {
             // Arrange
-            var subscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
+            var subscribers = new Subscribers 
             {
                 Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
@@ -27,8 +30,9 @@
             await databaseContext.Subscribers.AddAsync(subscribers);
             await databaseContext.SaveChangesAsync();
 
+            var mockedLogger = new Mock<ILogger>();
             var removeSubscriberCommand = new RemoveSubscriberCommand { Id = subscribers.Id };
-            var removeSubscriberCommandHandler = new RemoveSubscriberCommandHandler(databaseContext);
+            var removeSubscriberCommandHandler = new RemoveSubscriberCommandHandler(databaseContext, mockedLogger.Object);
 
             // Act
             await removeSubscriberCommandHandler.Handle(removeSubscriberCommand, CancellationToken.None);
@@ -49,7 +53,8 @@
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var removeSubscriberCommandHandler = new RemoveSubscriberCommandHandler(databaseContext);
+            var mockedLogger = new Mock<ILogger>();
+            var removeSubscriberCommandHandler = new RemoveSubscriberCommandHandler(databaseContext, mockedLogger.Object);
 
             // Act
             // Assert

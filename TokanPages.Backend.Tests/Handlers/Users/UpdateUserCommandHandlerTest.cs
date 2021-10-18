@@ -6,6 +6,7 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Logger;
     using Domain.Entities;
     using Core.Exceptions;
     using Cqrs.Handlers.Commands.Users;
@@ -44,9 +45,14 @@
                 IsActivated = true,
             };
 
+            var mockedDateTime = new Mock<IDateTimeService>();
+            var mockedLogger = new Mock<ILogger>();
+            var updateUserCommandHandler = new UpdateUserCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedDateTime.Object);
+            
             // Act
-            var mockedDateTime = new Mock<DateTimeService>();
-            var updateUserCommandHandler = new UpdateUserCommandHandler(databaseContext, mockedDateTime.Object);
             await updateUserCommandHandler.Handle(updateUserCommand, CancellationToken.None);
 
             // Assert
@@ -66,8 +72,12 @@
         {
             // Arrange
             var databaseContext = GetTestDatabaseContext();
-            var mockedDateTime = new Mock<DateTimeService>();
-            var updateUserCommandHandler = new UpdateUserCommandHandler(databaseContext, mockedDateTime.Object);
+            var mockedDateTime = new Mock<IDateTimeService>();
+            var mockedLogger = new Mock<ILogger>();
+            var updateUserCommandHandler = new UpdateUserCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedDateTime.Object);
 
             var updateUserCommand = new UpdateUserCommand
             {
@@ -117,8 +127,12 @@
                 IsActivated = true,
             };
 
-            var mockedDateTime = new Mock<DateTimeService>();
-            var updateUserCommandHandler = new UpdateUserCommandHandler(databaseContext, mockedDateTime.Object);
+            var mockedDateTime = new Mock<IDateTimeService>();
+            var mockedLogger = new Mock<ILogger>();
+            var updateUserCommandHandler = new UpdateUserCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedDateTime.Object);
 
             // Act
             // Assert

@@ -1,15 +1,16 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Logger;
     using Core.Exceptions;
     using Core.Utilities.DateTimeService;
     using Cqrs.Handlers.Commands.Subscribers;
-    using FluentAssertions;
-    using Xunit;
-    using Moq;
 
     public class AddSubscriberCommandHandlerTest : TestBase
     {
@@ -23,14 +24,18 @@
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedDateTime = new Mock<DateTimeService>();
+            var mockedLogger = new Mock<ILogger>();
+            var mockedDateTime = new Mock<IDateTimeService>();
 
             const string testDateTime = "2020-01-01";
             mockedDateTime
                 .Setup(dateTime => dateTime.Now)
                 .Returns(DateTime.Parse(testDateTime));
             
-            var addSubscriberCommandHandler = new AddSubscriberCommandHandler(databaseContext, mockedDateTime.Object);
+            var addSubscriberCommandHandler = new AddSubscriberCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedDateTime.Object);
 
             // Act
             await addSubscriberCommandHandler.Handle(addSubscriberCommand, CancellationToken.None);
@@ -66,10 +71,14 @@
             await databaseContext.Subscribers.AddAsync(subscribers);
             await databaseContext.SaveChangesAsync();
 
-            var mockedDateTime = new Mock<DateTimeService>();
+            var mockedLogger = new Mock<ILogger>();
+            var mockedDateTime = new Mock<IDateTimeService>();
 
             var addSubscriberCommand = new AddSubscriberCommand { Email = testEmail };
-            var addSubscriberCommandHandler = new AddSubscriberCommandHandler(databaseContext, mockedDateTime.Object);
+            var addSubscriberCommandHandler = new AddSubscriberCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedDateTime.Object);
 
             // Act
             // Assert

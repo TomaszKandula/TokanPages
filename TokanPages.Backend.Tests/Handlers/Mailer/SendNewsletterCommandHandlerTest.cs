@@ -9,6 +9,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
     using System.Collections.Generic;
+    using Database;
     using SmtpClient;
     using Core.Logger;
     using Shared.Models;
@@ -39,6 +40,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 }
             };
 
+            var mockedDatabase = new Mock<DatabaseContext>();
             var mockedLogger = new Mock<ILogger>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
@@ -64,6 +66,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 .ReturnsAsync(mockedResults);
 
             var sendNewsletterCommandHandler = new SendNewsletterCommandHandler(
+                mockedDatabase.Object,
                 mockedLogger.Object, 
                 mockedCustomHttpClient.Object,
                 mockedSmtpClientService.Object, 
@@ -95,6 +98,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 }
             };
 
+            var mockedDatabase = new Mock<DatabaseContext>();
             var mockedLogger = new Mock<ILogger>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
@@ -119,6 +123,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 .ReturnsAsync(mockedResults);
 
             var sendNewsletterCommandHandler = new SendNewsletterCommandHandler(
+                mockedDatabase.Object,
                 mockedLogger.Object, 
                 mockedCustomHttpClient.Object,
                 mockedSmtpClientService.Object, 
@@ -149,6 +154,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 }
             };
 
+            var mockedDatabase = new Mock<DatabaseContext>();
             var mockedLogger = new Mock<ILogger>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
@@ -174,6 +180,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 .ReturnsAsync(mockedResults);
 
             var sendNewsletterCommandHandler = new SendNewsletterCommandHandler(
+                mockedDatabase.Object,
                 mockedLogger.Object, 
                 mockedCustomHttpClient.Object,
                 mockedSmtpClientService.Object, 
