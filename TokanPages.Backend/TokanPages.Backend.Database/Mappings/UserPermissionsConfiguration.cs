@@ -8,18 +8,18 @@ namespace TokanPages.Backend.Database.Mappings
     [ExcludeFromCodeCoverage]
     public class UserPermissionsConfiguration : IEntityTypeConfiguration<UserPermissions>
     {
-        public void Configure(EntityTypeBuilder<UserPermissions> typeBuilder)
+        public void Configure(EntityTypeBuilder<UserPermissions> builder)
         {
-            typeBuilder.Property(userPermissions => userPermissions.Id).ValueGeneratedOnAdd();
+            builder.Property(userPermissions => userPermissions.Id).ValueGeneratedOnAdd();
             
-            typeBuilder
+            builder
                 .HasOne(userPermissions => userPermissions.User)
                 .WithMany(users => users.UserPermissions)
                 .HasForeignKey(userPermissions => userPermissions.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UserPermissions_Users");
             
-            typeBuilder
+            builder
                 .HasOne(userPermissions => userPermissions.Permission)
                 .WithMany(permissions => permissions.UserPermissions)
                 .HasForeignKey(userPermissions => userPermissions.PermissionId)

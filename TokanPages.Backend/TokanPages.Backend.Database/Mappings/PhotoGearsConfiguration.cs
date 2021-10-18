@@ -8,10 +8,10 @@ namespace TokanPages.Backend.Database.Mappings
     [ExcludeFromCodeCoverage]
     public class PhotoGearsConfiguration : IEntityTypeConfiguration<PhotoGears>
     {
-        public void Configure(EntityTypeBuilder<PhotoGears> typeBuilder)
+        public void Configure(EntityTypeBuilder<PhotoGears> builder)
         {
-            typeBuilder.Property(photoGears => photoGears.Id).ValueGeneratedOnAdd();
-            typeBuilder.Property(photoGears => photoGears.Aperture).HasColumnType("decimal(18,2)");
+            builder.Property(photoGears => photoGears.Id).ValueGeneratedOnAdd();
+            builder.Property(photoGears => photoGears.Aperture).HasColumnType("decimal(18,2)");
         }
     }
 }

@@ -8,11 +8,11 @@
     [ExcludeFromCodeCoverage]
     public class ArticlesConfiguration : IEntityTypeConfiguration<Articles>
     {
-        public void Configure(EntityTypeBuilder<Articles> typeBuilder)
+        public void Configure(EntityTypeBuilder<Articles> builder)
         {
-            typeBuilder.Property(articles => articles.Id).ValueGeneratedOnAdd();
+            builder.Property(articles => articles.Id).ValueGeneratedOnAdd();
             
-            typeBuilder
+            builder
                 .HasOne(articles => articles.User)
                 .WithMany(users => users.Articles)
                 .HasForeignKey(articles => articles.UserId)

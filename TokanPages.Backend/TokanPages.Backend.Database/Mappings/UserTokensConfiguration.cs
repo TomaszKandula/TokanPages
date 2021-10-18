@@ -8,11 +8,11 @@ namespace TokanPages.Backend.Database.Mappings
     [ExcludeFromCodeCoverage]
     public class UserTokensConfiguration : IEntityTypeConfiguration<UserTokens>
     {
-        public void Configure(EntityTypeBuilder<UserTokens> typeBuilder)
+        public void Configure(EntityTypeBuilder<UserTokens> builder)
         {
-            typeBuilder.Property(userTokens => userTokens.Id).ValueGeneratedOnAdd();
+            builder.Property(userTokens => userTokens.Id).ValueGeneratedOnAdd();
             
-            typeBuilder
+            builder
                 .HasOne(userTokens => userTokens.User)
                 .WithMany(users => users.UserTokens)
                 .HasForeignKey(userTokens => userTokens.UserId)

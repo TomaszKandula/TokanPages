@@ -8,18 +8,18 @@ namespace TokanPages.Backend.Database.Mappings
     [ExcludeFromCodeCoverage]
     public class DefaultPermissionsConfiguration : IEntityTypeConfiguration<DefaultPermissions>
     {
-        public void Configure(EntityTypeBuilder<DefaultPermissions> typeBuilder)
+        public void Configure(EntityTypeBuilder<DefaultPermissions> builder)
         {
-            typeBuilder.Property(defaultPermissions => defaultPermissions.Id).ValueGeneratedOnAdd();
+            builder.Property(defaultPermissions => defaultPermissions.Id).ValueGeneratedOnAdd();
             
-            typeBuilder
+            builder
                 .HasOne(defaultPermissions => defaultPermissions.Permission)
                 .WithMany(permissions => permissions.DefaultPermissions)
                 .HasForeignKey(defaultPermissions => defaultPermissions.PermissionId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_DefaultPermissions_Permissions");
 
-            typeBuilder
+            builder
                 .HasOne(defaultPermissions => defaultPermissions.Role)
                 .WithMany(roles => roles.DefaultPermissions)
                 .HasForeignKey(defaultPermissions => defaultPermissions.RoleId)

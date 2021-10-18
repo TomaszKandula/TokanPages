@@ -8,18 +8,18 @@
     [ExcludeFromCodeCoverage]
     public class ArticleLikesConfiguration : IEntityTypeConfiguration<ArticleLikes>
     {
-        public void Configure(EntityTypeBuilder<ArticleLikes> typeBuilder)
+        public void Configure(EntityTypeBuilder<ArticleLikes> builder)
         {
-            typeBuilder.Property(articleLikes => articleLikes.Id).ValueGeneratedOnAdd();
+            builder.Property(articleLikes => articleLikes.Id).ValueGeneratedOnAdd();
             
-            typeBuilder
+            builder
                 .HasOne(articleLikes => articleLikes.Article)
                 .WithMany(articles => articles.ArticleLikes)
                 .HasForeignKey(articleLikes => articleLikes.ArticleId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ArticleLikes_Articles");
 
-            typeBuilder
+            builder
                 .HasOne(articleLikes => articleLikes.User)
                 .WithMany(users => users.ArticleLikes)
                 .HasForeignKey(articleLikes => articleLikes.UserId)

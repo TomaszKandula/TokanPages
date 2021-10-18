@@ -8,7 +8,7 @@ namespace TokanPages.Backend.Database.Mappings
     [ExcludeFromCodeCoverage]
     public class PhotoCategoriesConfiguration : IEntityTypeConfiguration<PhotoCategories>
     {
-        public void Configure(EntityTypeBuilder<PhotoCategories> typeBuilder)
-            => typeBuilder.Property(photoCategories => photoCategories.Id).ValueGeneratedOnAdd();
+        public void Configure(EntityTypeBuilder<PhotoCategories> builder)
+            => builder.Property(photoCategories => photoCategories.Id).ValueGeneratedOnAdd();
     }
 }

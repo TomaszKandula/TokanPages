@@ -8,25 +8,25 @@ namespace TokanPages.Backend.Database.Mappings
     [ExcludeFromCodeCoverage]
     public class PhotosConfiguration : IEntityTypeConfiguration<Photos>
     {
-        public void Configure(EntityTypeBuilder<Photos> typeBuilder)
+        public void Configure(EntityTypeBuilder<Photos> builder)
         {
-            typeBuilder.Property(photos => photos.Id).ValueGeneratedOnAdd();
+            builder.Property(photos => photos.Id).ValueGeneratedOnAdd();
 
-            typeBuilder
+            builder
                 .HasOne(photos => photos.User)
                 .WithMany(users => users.Photos)
                 .HasForeignKey(photos => photos.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Photos_Users");
             
-            typeBuilder
+            builder
                 .HasOne(photos => photos.PhotoGear)
                 .WithMany(photoGears => photoGears.Photos)
                 .HasForeignKey(photos => photos.PhotoGearId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Photos_PhotoGears");
             
-            typeBuilder
+            builder
                 .HasOne(photos => photos.PhotoCategory)
                 .WithMany(photoCategories => photoCategories.Photos)
                 .HasForeignKey(photos => photos.PhotoCategoryId)

@@ -8,18 +8,18 @@ namespace TokanPages.Backend.Database.Mappings
     [ExcludeFromCodeCoverage]
     public class ArticleCountsConfiguration : IEntityTypeConfiguration<ArticleCounts>
     {
-        public void Configure(EntityTypeBuilder<ArticleCounts> typeBuilder)
+        public void Configure(EntityTypeBuilder<ArticleCounts> builder)
         {
-            typeBuilder.Property(articleCounts => articleCounts.Id).ValueGeneratedOnAdd();
+            builder.Property(articleCounts => articleCounts.Id).ValueGeneratedOnAdd();
             
-            typeBuilder
+            builder
                 .HasOne(articleCounts => articleCounts.Article)
                 .WithMany(articles => articles.ArticleCounts)
                 .HasForeignKey(articleCounts => articleCounts.ArticleId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ArticleCounts_Articles");
 
-            typeBuilder
+            builder
                 .HasOne(articleCounts => articleCounts.User)
                 .WithMany(users => users.ArticleCounts)
                 .HasForeignKey(articleCounts => articleCounts.UserId)

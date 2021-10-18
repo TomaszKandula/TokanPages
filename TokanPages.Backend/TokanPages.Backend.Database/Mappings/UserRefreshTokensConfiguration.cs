@@ -6,11 +6,11 @@ namespace TokanPages.Backend.Database.Mappings
 
     public class UserRefreshTokensConfiguration : IEntityTypeConfiguration<UserRefreshTokens>
     {
-        public void Configure(EntityTypeBuilder<UserRefreshTokens> typeBuilder)
+        public void Configure(EntityTypeBuilder<UserRefreshTokens> builder)
         {
-            typeBuilder.Property(userRefreshTokens => userRefreshTokens.Id).ValueGeneratedOnAdd();
+            builder.Property(userRefreshTokens => userRefreshTokens.Id).ValueGeneratedOnAdd();
             
-            typeBuilder
+            builder
                 .HasOne(userRefreshTokens => userRefreshTokens.User)
                 .WithMany(users => users.UserRefreshTokens)
                 .HasForeignKey(userRefreshTokens => userRefreshTokens.UserId)
