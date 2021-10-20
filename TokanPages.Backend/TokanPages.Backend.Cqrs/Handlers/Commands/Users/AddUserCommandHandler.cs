@@ -39,10 +39,10 @@
 
         private readonly ExpirationSettings _expirationSettings;
 
-        public AddUserCommandHandler(DatabaseContext databaseContext, IDateTimeService dateTimeService,
-            ICipheringService cipheringService, ISmtpClientService smtpClientService, ILogger logger,
-            ITemplateService templateService, ICustomHttpClient customHttpClient, AzureStorage azureStorage,
-            ApplicationPaths applicationPaths, ExpirationSettings expirationSettings) : base(databaseContext, logger)
+        public AddUserCommandHandler(DatabaseContext databaseContext, ILogger logger, IDateTimeService dateTimeService,
+            ICipheringService cipheringService, ISmtpClientService smtpClientService, ITemplateService templateService, 
+            ICustomHttpClient customHttpClient, AzureStorage azureStorage, ApplicationPaths applicationPaths, 
+            ExpirationSettings expirationSettings) : base(databaseContext, logger)
         {
             _dateTimeService = dateTimeService;
             _cipheringService = cipheringService;

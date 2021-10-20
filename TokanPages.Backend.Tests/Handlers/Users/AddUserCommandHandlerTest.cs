@@ -113,10 +113,10 @@
 
             var addUserCommandHandler = new AddUserCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedDateTime.Object, 
                 mockedCipher.Object,
                 mockedSmtpClientService.Object,
-                mockedLogger.Object,
                 mockedTemplateService.Object,
                 mockedCustomHttpClient.Object,
                 mockedAzureStorage.Object,
@@ -222,10 +222,10 @@
             
             var addUserCommandHandler = new AddUserCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedDateTime.Object, 
                 mockedCipher.Object,
                 mockedSmtpClientService.Object,
-                mockedLogger.Object,
                 mockedTemplateService.Object,
                 mockedCustomHttpClient.Object,
                 mockedAzureStorage.Object,
@@ -318,10 +318,10 @@
             
             var addUserCommandHandler = new AddUserCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedDateTime.Object, 
                 mockedCipher.Object,
                 mockedSmtpClientService.Object,
-                mockedLogger.Object,
                 mockedTemplateService.Object,
                 mockedCustomHttpClient.Object,
                 mockedAzureStorage.Object,
@@ -420,10 +420,10 @@
 
             var addUserCommandHandler = new AddUserCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedDateTime.Object, 
                 mockedCipher.Object,
                 mockedSmtpClientService.Object,
-                mockedLogger.Object,
                 mockedTemplateService.Object,
                 mockedCustomHttpClient.Object,
                 mockedAzureStorage.Object,

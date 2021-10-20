@@ -70,10 +70,10 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             
             var updateUserCommandHandler = new UpdateUserPasswordCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedUserProvider.Object,
                 mockedCipheringService.Object,
-                mockedDateTimeService.Object,
-                mockedLogger.Object
+                mockedDateTimeService.Object
             );
 
             // Act
@@ -137,10 +137,10 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             
             var updateUserCommandHandler = new UpdateUserPasswordCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedUserProvider.Object,
                 mockedCipheringService.Object,
-                mockedDateTimeService.Object,
-                mockedLogger.Object
+                mockedDateTimeService.Object
             );
 
             // Act
@@ -199,10 +199,10 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             
             var updateUserPasswordCommandHandler = new UpdateUserPasswordCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedUserProvider.Object,
                 mockedCipheringService.Object,
-                mockedDateTimeService.Object,
-                mockedLogger.Object
+                mockedDateTimeService.Object
             );
 
             // Act
@@ -266,10 +266,10 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             
             var updateUserPasswordCommandHandler = new UpdateUserPasswordCommandHandler(
                 databaseContext, 
+                mockedLogger.Object,
                 mockedUserProvider.Object,
                 mockedCipheringService.Object,
-                mockedDateTimeService.Object,
-                mockedLogger.Object
+                mockedDateTimeService.Object
             );
 
             // Act

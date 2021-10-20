@@ -24,8 +24,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         private readonly IDateTimeService _dateTimeService;
         
-        public UpdateUserPasswordCommandHandler(DatabaseContext databaseContext, IUserServiceProvider userServiceProvider, 
-            ICipheringService cipheringService, IDateTimeService dateTimeService, ILogger logger) : base(databaseContext, logger)
+        public UpdateUserPasswordCommandHandler(DatabaseContext databaseContext, ILogger logger, 
+            IUserServiceProvider userServiceProvider, ICipheringService cipheringService, 
+            IDateTimeService dateTimeService) : base(databaseContext, logger)
         {
             _userServiceProvider = userServiceProvider;
             _cipheringService = cipheringService;
