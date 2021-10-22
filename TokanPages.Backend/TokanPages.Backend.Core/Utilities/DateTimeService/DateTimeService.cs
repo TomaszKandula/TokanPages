@@ -10,6 +10,11 @@ namespace TokanPages.Backend.Core.Utilities.DateTimeService
         public override DateTime Now => DateTime.UtcNow;
 
         /// <summary>
+        /// Returns current DateTime relative to UTC (as DateTimeOffset).
+        /// </summary>
+        public override DateTimeOffset RelativeNow => DateTime.UtcNow;
+
+        /// <summary>
         /// Returns today's date and set time at midnight (00:00:00).
         /// </summary>
         public override DateTime TodayStartOfDay => DateTime.Today;

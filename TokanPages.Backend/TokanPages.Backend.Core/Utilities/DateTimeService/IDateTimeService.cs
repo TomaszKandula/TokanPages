@@ -6,6 +6,8 @@ namespace TokanPages.Backend.Core.Utilities.DateTimeService
     {
         DateTime Now { get; }
 
+        DateTimeOffset RelativeNow { get; }
+
         DateTime TodayStartOfDay { get; }
         
         DateTime TodayEndOfDay { get; }
