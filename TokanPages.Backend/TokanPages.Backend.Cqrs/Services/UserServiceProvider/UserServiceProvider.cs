@@ -77,7 +77,7 @@
             if (expiresIn == 0)
                 throw ArgumentZeroException;
 
-            var expires = _dateTimeService.Now.AddMinutes(Math.Abs(expiresIn));
+            var expires = (DateTimeOffset)_dateTimeService.Now.AddMinutes(Math.Abs(expiresIn));
             var cookieOptions = new CookieOptions
             {
                 HttpOnly = isHttpOnly,
