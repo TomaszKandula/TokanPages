@@ -22,7 +22,7 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient
 
         public CustomHttpClient(HttpClient httpClient) => _httpClient = httpClient;
 
-        public async Task<Results> Execute(Configuration configuration, CancellationToken cancellationToken = default)
+        public virtual async Task<Results> Execute(Configuration configuration, CancellationToken cancellationToken = default)
         {
             VerifyConfigurationArgument(configuration);
             using var request = new HttpRequestMessage(new HttpMethod(configuration.Method), configuration.Url);
@@ -55,7 +55,7 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient
             };
         }
 
-        public string SetAuthentication(string login, string password)
+        public virtual string SetAuthentication(string login, string password)
         {
             if (string.IsNullOrEmpty(login))
                 throw new ArgumentException($"Argument '{nameof(login)}' cannot be null or empty.");
@@ -64,7 +64,7 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient
             return $"{Basic} {base64}";
         }
 
-        public string SetAuthentication(string token)
+        public virtual string SetAuthentication(string token)
         {
             if (string.IsNullOrEmpty(token))
                 throw new ArgumentException($"Argument '{nameof(token)}' cannot be null or empty.");
@@ -72,7 +72,7 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient
             return $"{Bearer} {token}";
         }
 
-        public string GetFirstEmptyParameterName(IDictionary<string, string> parameterList)
+        public virtual string GetFirstEmptyParameterName(IDictionary<string, string> parameterList)
         {
             var parameters = parameterList
                 .Where(parameter => string.IsNullOrEmpty(parameter.Value))
