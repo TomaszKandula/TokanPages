@@ -58,8 +58,8 @@
             await databaseContext.SaveChangesAsync();
 
             var mockedUserProvider = new Mock<IUserServiceProvider>();
-            var mockedDateTime = new Mock<DateTimeService>();
-            var mockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
+            var mockedDateTime = new Mock<IDateTimeService>();
+            var mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>();
             var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
             var mockedLogger = new Mock<ILogger>();
 
@@ -146,8 +146,8 @@
             await databaseContext.SaveChangesAsync();
 
             var mockedUserProvider = new Mock<IUserServiceProvider>();
-            var mockedDateTime = new Mock<DateTimeService>();
-            var mockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
+            var mockedDateTime = new Mock<IDateTimeService>();
+            var mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>();
             var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
             var mockedLogger = new Mock<ILogger>();
             
@@ -238,8 +238,8 @@
             await databaseContext.SaveChangesAsync();
 
             var mockedUserProvider = new Mock<IUserServiceProvider>();
-            var mockedDateTime = new Mock<DateTimeService>();
-            var mockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>(); 
+            var mockedDateTime = new Mock<IDateTimeService>();
+            var mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>(); 
             var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
             var mockedLogger = new Mock<ILogger>();
 

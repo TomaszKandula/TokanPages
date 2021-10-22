@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Cqrs.Services.CipheringService
     using System.Security.Cryptography;
     using Helpers;
 
-    public class CipheringService : ICipheringService
+    public sealed class CipheringService : ICipheringService
     {
         /// <summary>
         /// Hash a password using the OpenBSD bcrypt scheme.
@@ -20,7 +20,7 @@ namespace TokanPages.Backend.Cqrs.Services.CipheringService
         /// <returns>
         /// The hashed password.
         /// </returns>
-        public virtual string GetHashedPassword(string password, string salt) 
+        public string GetHashedPassword(string password, string salt) 
         {
             if (password == null) 
                 throw new ArgumentNullException(nameof(password));
@@ -86,7 +86,7 @@ namespace TokanPages.Backend.Cqrs.Services.CipheringService
         /// <returns>
         /// <c>true</c> if the passwords, <c>false</c> otherwise.
         /// </returns>
-        public virtual bool VerifyPassword(string plaintext, string hashedPassword)
+        public bool VerifyPassword(string plaintext, string hashedPassword)
         {
             var getSaltFromHashedPassword = hashedPassword[..29];
             var getHashedPassword = GetHashedPassword(plaintext, getSaltFromHashedPassword);
@@ -103,7 +103,7 @@ namespace TokanPages.Backend.Cqrs.Services.CipheringService
         /// <returns>
         /// An encoded salt value.
         /// </returns>
-        public virtual string GenerateSalt(int logRounds = Constants.GenerateSaltDefaultLog2Rounds) 
+        public string GenerateSalt(int logRounds = Constants.GenerateSaltDefaultLog2Rounds) 
         {
             var randomBytes = new byte[Constants.CryptSaltLength];
 

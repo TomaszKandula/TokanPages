@@ -15,7 +15,7 @@
     using DnsClient;
     using MimeKit;
 
-    public class SmtpClientService : SmtpClientObject, ISmtpClientService
+    public class SmtpClientService : ISmtpClientService
     {
         private readonly ISmtpClient _smtpClient;
 
@@ -30,21 +30,21 @@
             _smtpServer = smtpServer;
         }
 
-        public override string From { get; set; }
+        public virtual string From { get; set; }
         
-        public override List<string> Tos { get; set; }
+        public virtual List<string> Tos { get; set; }
         
-        public override List<string> Ccs { get; set; }
+        public virtual List<string> Ccs { get; set; }
         
-        public override List<string> Bccs { get; set; }
+        public virtual List<string> Bccs { get; set; }
         
-        public override string Subject { get; set; }
+        public virtual string Subject { get; set; }
         
-        public override string PlainText { get; set; }
+        public virtual string PlainText { get; set; }
         
-        public override string HtmlBody { get; set; }
+        public virtual string HtmlBody { get; set; }
 
-        public override async Task<ActionResult> CanConnectAndAuthenticate(CancellationToken cancellationToken = default)
+        public virtual async Task<ActionResult> CanConnectAndAuthenticate(CancellationToken cancellationToken = default)
         {
             try
             {
@@ -90,7 +90,7 @@
             }
         }
 
-        public override async Task<ActionResult> Send(CancellationToken cancellationToken = default)
+        public virtual async Task<ActionResult> Send(CancellationToken cancellationToken = default)
         {
             try
             {
@@ -137,7 +137,7 @@
             }
         }
 
-        public override List<Email> IsAddressCorrect(IEnumerable<string> emailAddress)
+        public virtual List<Email> IsAddressCorrect(IEnumerable<string> emailAddress)
         {
             var results = new List<Email>();
 
@@ -157,7 +157,7 @@
             return results;
         }
 
-        public override async Task<bool> IsDomainCorrect(string emailAddress, CancellationToken cancellationToken = default)
+        public virtual async Task<bool> IsDomainCorrect(string emailAddress, CancellationToken cancellationToken = default)
         {
             try
             {

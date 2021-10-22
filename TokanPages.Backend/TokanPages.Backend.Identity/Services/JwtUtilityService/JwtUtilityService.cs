@@ -19,7 +19,7 @@ namespace TokanPages.Backend.Identity.Services.JwtUtilityService
         /// <param name="issuer">Issuer of a security token.</param>
         /// <param name="targetAudience">Target audience.</param>
         /// <returns>New JSON Web Token.</returns>
-        public string GenerateJwt(DateTime expires, ClaimsIdentity claimsIdentity, string webSecret, string issuer, string targetAudience)
+        public virtual string GenerateJwt(DateTime expires, ClaimsIdentity claimsIdentity, string webSecret, string issuer, string targetAudience)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(webSecret);
@@ -42,7 +42,7 @@ namespace TokanPages.Backend.Identity.Services.JwtUtilityService
         /// <param name="ipAddress">IP address of the machine that requests new refresh token.</param>
         /// <param name="expiresIn">Number of minutes to expire. Cannot be zero.</param>
         /// <returns>New randomized secure token.</returns>
-        public RefreshToken GenerateRefreshToken(string ipAddress, int expiresIn)
+        public virtual RefreshToken GenerateRefreshToken(string ipAddress, int expiresIn)
         {
             if (expiresIn == 0)
                 throw new ArgumentException($"Argument '{nameof(expiresIn)}' cannot be zero.");

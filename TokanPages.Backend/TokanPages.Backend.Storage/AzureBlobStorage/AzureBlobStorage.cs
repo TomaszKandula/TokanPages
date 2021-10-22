@@ -22,7 +22,7 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
             _container = blobServiceClient.GetBlobContainerClient(containerName);
         }
 
-        public async Task<StorageByteContent> ReadAllBytes(string sourceFilePath, CancellationToken cancellationToken)
+        public virtual async Task<StorageByteContent> ReadAllBytes(string sourceFilePath, CancellationToken cancellationToken)
         {
             if (string.IsNullOrEmpty(sourceFilePath))
                 throw new AggregateException($"Argument '{nameof(sourceFilePath)}' cannot be null or empty.");
@@ -45,7 +45,7 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
             };
         }
 
-        public async Task<StorageStreamContent> OpenRead(string sourceFilePath, CancellationToken cancellationToken)
+        public virtual async Task<StorageStreamContent> OpenRead(string sourceFilePath, CancellationToken cancellationToken)
         {
             if (string.IsNullOrEmpty(sourceFilePath))
                 throw new AggregateException($"Argument '{nameof(sourceFilePath)}' cannot be null or empty.");
@@ -61,7 +61,7 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
             };
         }
 
-        public async Task UploadFile(Stream sourceStream, string destinationPath, CancellationToken cancellationToken, string contentType = Constants.ContentTypes.Stream)
+        public virtual async Task UploadFile(Stream sourceStream, string destinationPath, CancellationToken cancellationToken, string contentType = Constants.ContentTypes.Stream)
         {
             if (string.IsNullOrEmpty(destinationPath))
                 throw new AggregateException($"Argument '{nameof(destinationPath)}' cannot be null or empty.");
@@ -82,7 +82,7 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
             return properties.Value.ContentType;
         }
 
-        public async Task<bool> DeleteFile(string sourceFilePath, CancellationToken cancellationToken)
+        public virtual async Task<bool> DeleteFile(string sourceFilePath, CancellationToken cancellationToken)
         {
             if (string.IsNullOrEmpty(sourceFilePath))
                 throw new AggregateException($"Argument '{nameof(sourceFilePath)}' cannot be null or empty.");
@@ -92,7 +92,7 @@ namespace TokanPages.Backend.Storage.AzureBlobStorage
                 .DeleteIfExistsAsync(cancellationToken: cancellationToken);
         }
 
-        public async Task UploadContent(string content, string destinationPath, CancellationToken cancellationToken)
+        public virtual async Task UploadContent(string content, string destinationPath, CancellationToken cancellationToken)
         {
             VerifyUploadContentArguments(content, destinationPath);
             

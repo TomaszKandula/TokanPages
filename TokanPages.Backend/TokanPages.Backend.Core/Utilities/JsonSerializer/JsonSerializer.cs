@@ -6,16 +6,16 @@ namespace TokanPages.Backend.Core.Utilities.JsonSerializer
 
     public class JsonSerializer : IJsonSerializer
     {
-        public string Serialize(object model, JsonSerializerSettings serializerSettings = null)
+        public virtual string Serialize(object model, JsonSerializerSettings serializerSettings = null)
             => JsonConvert.SerializeObject(model, serializerSettings);
 
-        public T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null)
+        public virtual T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null)
             => string.IsNullOrEmpty(json) ? default : JsonConvert.DeserializeObject<T>(json, serializerSettings);
 
-        public JToken Parse(string json)
+        public virtual JToken Parse(string json)
             => string.IsNullOrEmpty(json) ? default : JToken.Parse(json);
 
-        public IEnumerable<T> MapObjects<T>(JToken component) where T : new()
+        public virtual IEnumerable<T> MapObjects<T>(JToken component) where T : new()
         {
             return component switch
             {
@@ -24,7 +24,7 @@ namespace TokanPages.Backend.Core.Utilities.JsonSerializer
             };
         }
 
-        public T MapObject<T>(JToken component) where T : new()
+        public virtual T MapObject<T>(JToken component) where T : new()
         {
             return component switch
             {
