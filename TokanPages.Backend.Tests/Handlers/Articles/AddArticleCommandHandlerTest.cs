@@ -20,14 +20,14 @@
 
     public class AddArticleCommandHandlerTest : TestBase
     {
-        private readonly Mock<AzureBlobStorageFactory> _mockedAzureBlobStorageFactory;
+        private readonly Mock<IAzureBlobStorageFactory> _mockedAzureBlobStorageFactory;
         
         private readonly DataUtilityService _dataUtilityService;
 
         public AddArticleCommandHandlerTest()
         {
             _dataUtilityService = new DataUtilityService();
-            _mockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
+            _mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>();
             var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
 
             mockedAzureBlobStorage
@@ -74,7 +74,7 @@
             await databaseContext.Users.AddAsync(user);
             await databaseContext.SaveChangesAsync();
             
-            var mockedDateTime = new Mock<DateTimeService>();
+            var mockedDateTime = new Mock<IDateTimeService>();
             var mockedUserProvider = new Mock<IUserServiceProvider>();
             var mockedLogger = new Mock<ILogger>();
 
@@ -109,7 +109,7 @@
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedDateTime = new Mock<DateTimeService>();
+            var mockedDateTime = new Mock<IDateTimeService>();
             var mockedUserProvider = new Mock<IUserServiceProvider>();
             var mockedLogger = new Mock<ILogger>();
             
@@ -141,7 +141,7 @@
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedDateTime = new Mock<DateTimeService>();
+            var mockedDateTime = new Mock<IDateTimeService>();
             var mockedUserProvider = new Mock<IUserServiceProvider>();
             var mockedLogger = new Mock<ILogger>();
 
