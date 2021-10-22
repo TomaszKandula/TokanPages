@@ -5,6 +5,8 @@ namespace TokanPages.Backend.Core.Utilities.DateTimeService
     public abstract class DateTimeObject
     {
         public abstract DateTime Now { get; }
+
+        public abstract DateTimeOffset RelativeNow { get; }
         
         public abstract DateTime TodayStartOfDay { get; }
 
