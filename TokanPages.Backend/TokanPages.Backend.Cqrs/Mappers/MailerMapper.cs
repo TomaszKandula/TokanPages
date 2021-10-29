@@ -7,11 +7,6 @@
     [ExcludeFromCodeCoverage]
     public static class MailerMapper
     {
-        public static VerifyEmailAddressCommand MapToVerifyEmailAddressCommand(VerifyEmailAddressDto model) => new() 
-        { 
-            Email = model.Email
-        };
-
         public static SendMessageCommand MapToSendMessageCommand(SendMessageDto model) => new()
         {
             UserEmail = model.UserEmail,

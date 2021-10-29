@@ -1,17 +1,19 @@
 ﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer
 {
     using MediatR;
+    using System.Net;
+    using System.Text;
+    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Shared;
     using Database;
-    using SmtpClient;
-    using Core.Utilities.LoggerService;
     using Shared.Models;
     using Storage.Models;
     using Core.Exceptions;
     using Shared.Resources;
+    using Core.Utilities.LoggerService;
     using Core.Utilities.TemplateService;
     using Core.Utilities.CustomHttpClient;
     using Core.Utilities.CustomHttpClient.Models;
@@ -19,24 +21,26 @@
     public class SendNewsletterCommandHandler : TemplateHandler<SendNewsletterCommand, Unit>
     {
         private readonly ICustomHttpClient _customHttpClient;
-        
-        private readonly ISmtpClientService _smtpClientService;
-        
+
         private readonly ITemplateService _templateService;
         
         private readonly AzureStorage _azureStorage;
         
         private readonly ApplicationPaths _applicationPaths;
 
+        private readonly EmailSender _emailSender;
+
+        private Configuration _configuration;
+
         public SendNewsletterCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-            ICustomHttpClient customHttpClient, ISmtpClientService smtpClientService, ITemplateService templateService, 
-            AzureStorage azureStorage, ApplicationPaths applicationPaths) : base(databaseContext, loggerService)
+            ICustomHttpClient customHttpClient, ITemplateService templateService, AzureStorage azureStorage, 
+            ApplicationPaths applicationPaths, EmailSender emailSender) : base(databaseContext, loggerService)
         {
             _customHttpClient = customHttpClient;
-            _smtpClientService = smtpClientService;
             _templateService = templateService;
             _azureStorage = azureStorage;
             _applicationPaths = applicationPaths;
+            _emailSender = emailSender;
         }
 
         public override async Task<Unit> Handle(SendNewsletterCommand request, CancellationToken cancellationToken) 
@@ -49,11 +53,6 @@
             
             foreach (var subscriber in request.SubscriberInfo)
             {
-                _smtpClientService.From = Constants.Emails.Addresses.Contact;
-                _smtpClientService.Tos = new List<string> { subscriber.Email };
-                _smtpClientService.Bccs = null;
-                _smtpClientService.Subject = request.Subject;
-
                 var updateSubscriberLink = updateSubscriberBaseLink + subscriber.Id;
                 var unsubscribeLink = unsubscribeBaseLink + subscriber.Id;
                 var newValues = new Dictionary<string, string>
@@ -66,18 +65,28 @@
                 var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.Newsletter}";
                 LoggerService.LogInformation($"Getting newsletter template from URL: {url}.");
                 
-                var configuration = new Configuration { Url = url, Method = "GET" };
-                var results = await _customHttpClient.Execute(configuration, cancellationToken);
+                _configuration = new Configuration { Url = url, Method = "GET" };
+                var getTemplate = await _customHttpClient.Execute(_configuration, cancellationToken);
 
-                if (results.Content == null)
+                if (getTemplate.Content == null)
                     throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
 
-                var template = System.Text.Encoding.Default.GetString(results.Content);
-                _smtpClientService.HtmlBody = _templateService.MakeBody(template, newValues);
+                var template = Encoding.Default.GetString(getTemplate.Content);
+                var payload = new EmailSenderPayload
+                {
+                    PrivateKey = _emailSender.PrivateKey,
+                    From = Constants.Emails.Addresses.Contact,
+                    To = new List<string> { subscriber.Email },
+                    Subject = request.Subject,
+                    Body = _templateService.MakeBody(template, newValues)
+                };
+                
+                _configuration = new Configuration { Url = _emailSender.BaseUrl, Method = "POST", StringContent = 
+                    new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload), Encoding.Default, "application/json") };
 
-                var result = await _smtpClientService.Send(cancellationToken);
-                if (!result.IsSucceeded) 
-                    throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}. {result.ErrorDesc}");
+                var sendEMail = await _customHttpClient.Execute(_configuration, cancellationToken);
+                if (sendEMail.StatusCode != HttpStatusCode.OK) 
+                    throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}");
             }
 
             return await Task.FromResult(Unit.Value);

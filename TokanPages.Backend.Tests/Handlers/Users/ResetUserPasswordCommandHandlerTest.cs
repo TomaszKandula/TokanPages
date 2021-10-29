@@ -7,7 +7,6 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using System.Threading;
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
-    using SmtpClient;
     using Core.Utilities.LoggerService;
     using Shared.Models;
     using Storage.Models;
@@ -53,18 +52,13 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             };
 
             var mockedLogger = new Mock<ILoggerService>();
-            var mockedSmtpClientService = new Mock<ISmtpClientService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedExpirationSettings = new Mock<ExpirationSettings>();
             var mockedAzureStorage = new Mock<AzureStorage>();
             var mockedApplicationPaths = new Mock<ApplicationPaths>();
-
-            var sendActionResult = new ActionResult { IsSucceeded = true };
-            mockedSmtpClientService
-                .Setup(client => client.Send(CancellationToken.None))
-                .Returns(Task.FromResult(sendActionResult));
+            var mockedEmailSender = new Mock<EmailSender>();
 
             var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
             var mockedResults = new Results
@@ -83,13 +77,13 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 databaseContext, 
                 mockedLogger.Object,
                 mockedCustomHttpClient.Object,
-                mockedSmtpClientService.Object,
                 mockedTemplateService.Object,
                 mockedDateTimeService.Object,
                 mockedAzureStorage.Object,
                 mockedApplicationPaths.Object,
-                mockedExpirationSettings.Object
-            );
+                mockedExpirationSettings.Object,
+                mockedEmailSender.Object);
+
             await resetUserPasswordCommandHandler.Handle(resetUserPasswordCommand, CancellationToken.None);
 
             // Assert
@@ -138,23 +132,18 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             };
 
             var mockedLogger = new Mock<ILoggerService>();
-            var mockedSmtpClientService = new Mock<ISmtpClientService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedExpirationSettings = new Mock<ExpirationSettings>();
             var mockedAzureStorage = new Mock<AzureStorage>();
             var mockedApplicationPaths = new Mock<ApplicationPaths>();
-            
-            var sendActionResult = new ActionResult { IsSucceeded = false };
-            mockedSmtpClientService
-                .Setup(client => client.Send(CancellationToken.None))
-                .Returns(Task.FromResult(sendActionResult));
+            var mockedEmailSender = new Mock<EmailSender>();
 
             var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
             var mockedResults = new Results
             {
-                StatusCode = HttpStatusCode.OK,
+                StatusCode = HttpStatusCode.InternalServerError,
                 ContentType = new MediaTypeHeaderValue("text/plain"),
                 Content = mockedPayLoad
             };
@@ -167,17 +156,17 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 databaseContext, 
                 mockedLogger.Object,
                 mockedCustomHttpClient.Object,
-                mockedSmtpClientService.Object,
                 mockedTemplateService.Object,
                 mockedDateTimeService.Object,
                 mockedAzureStorage.Object,
                 mockedApplicationPaths.Object,
-                mockedExpirationSettings.Object
-            );
+                mockedExpirationSettings.Object,
+                mockedEmailSender.Object);
 
             // Act
             // Assert
-            var result = await Assert.ThrowsAsync<BusinessException>(() => resetUserPasswordCommandHandler.Handle(resetUserPasswordCommand, CancellationToken.None));
+            var result = await Assert.ThrowsAsync<BusinessException>(() 
+                => resetUserPasswordCommandHandler.Handle(resetUserPasswordCommand, CancellationToken.None));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.CANNOT_SEND_EMAIL));
         }
 
@@ -212,18 +201,13 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             };
 
             var mockedLogger = new Mock<ILoggerService>();
-            var mockedSmtpClientService = new Mock<ISmtpClientService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedExpirationSettings = new Mock<ExpirationSettings>();
             var mockedAzureStorage = new Mock<AzureStorage>();
             var mockedApplicationPaths = new Mock<ApplicationPaths>();
-            
-            var sendActionResult = new ActionResult { IsSucceeded = false };
-            mockedSmtpClientService
-                .Setup(client => client.Send(CancellationToken.None))
-                .Returns(Task.FromResult(sendActionResult));
+            var mockedEmailSender = new Mock<EmailSender>();
 
             var mockedResults = new Results
             {
@@ -240,17 +224,17 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 databaseContext, 
                 mockedLogger.Object,
                 mockedCustomHttpClient.Object,
-                mockedSmtpClientService.Object,
                 mockedTemplateService.Object,
                 mockedDateTimeService.Object,
                 mockedAzureStorage.Object,
                 mockedApplicationPaths.Object,
-                mockedExpirationSettings.Object
-            );
+                mockedExpirationSettings.Object,
+                mockedEmailSender.Object);
 
             // Act
             // Assert
-            var result = await Assert.ThrowsAsync<BusinessException>(() => resetUserPasswordCommandHandler.Handle(resetUserPasswordCommand, CancellationToken.None));
+            var result = await Assert.ThrowsAsync<BusinessException>(() 
+                => resetUserPasswordCommandHandler.Handle(resetUserPasswordCommand, CancellationToken.None));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY));
         }
     }
