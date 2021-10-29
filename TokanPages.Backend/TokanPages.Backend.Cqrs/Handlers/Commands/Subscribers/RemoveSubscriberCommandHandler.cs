@@ -5,14 +5,14 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
     using MediatR;
 
     public class RemoveSubscriberCommandHandler : TemplateHandler<RemoveSubscriberCommand, Unit>
     {
-        public RemoveSubscriberCommandHandler(DatabaseContext databaseContext, ILogger logger) : base(databaseContext, logger) { }
+        public RemoveSubscriberCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
         public override async Task<Unit> Handle(RemoveSubscriberCommand request, CancellationToken cancellationToken) 
         {

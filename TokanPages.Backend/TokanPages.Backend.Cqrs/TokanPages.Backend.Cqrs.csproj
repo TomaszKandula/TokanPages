@@ -11,7 +11,6 @@
     <ProjectReference Include="..\TokanPages.Backend.Domain\TokanPages.Backend.Domain.csproj" />
     <ProjectReference Include="..\TokanPages.Backend.Identity\TokanPages.Backend.Identity.csproj" />
     <ProjectReference Include="..\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
-    <ProjectReference Include="..\TokanPages.Backend.SmtpClient\TokanPages.Backend.SmtpClient.csproj" />
     <ProjectReference Include="..\TokanPages.Backend.Storage\TokanPages.Backend.Storage.csproj" />
   </ItemGroup>
 

@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
     using Services.UserServiceProvider;
@@ -21,9 +21,9 @@
         
         private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
         
-        public UpdateArticleContentCommandHandler(DatabaseContext databaseContext, ILogger logger,
+        public UpdateArticleContentCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService,
             IUserServiceProvider userServiceProvider, IDateTimeService dateTimeService, 
-            IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, logger)
+            IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
         {
             _userServiceProvider = userServiceProvider;
             _dateTimeService = dateTimeService;

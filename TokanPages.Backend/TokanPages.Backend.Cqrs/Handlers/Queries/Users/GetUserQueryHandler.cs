@@ -5,13 +5,13 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
 
     public class GetUserQueryHandler : TemplateHandler<GetUserQuery, GetUserQueryResult>
     {
-        public GetUserQueryHandler(DatabaseContext databaseContext, ILogger logger) : base(databaseContext, logger) { }
+        public GetUserQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
         public override async Task<GetUserQueryResult> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {

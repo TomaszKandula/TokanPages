@@ -7,7 +7,7 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Core.Utilities.DateTimeService;
     using Cqrs.Handlers.Commands.Subscribers;
@@ -24,7 +24,7 @@
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedDateTime = new Mock<IDateTimeService>();
 
             const string testDateTime = "2020-01-01";
@@ -71,7 +71,7 @@
             await databaseContext.Subscribers.AddAsync(subscribers);
             await databaseContext.SaveChangesAsync();
 
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedDateTime = new Mock<IDateTimeService>();
 
             var addSubscriberCommand = new AddSubscriberCommand { Email = testEmail };

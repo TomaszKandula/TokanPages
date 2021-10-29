@@ -9,8 +9,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
     using System.Collections.Generic;
-    using SmtpClient;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Shared.Models;
     using Storage.Models;
     using Core.Exceptions;
@@ -32,7 +31,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 Subject = DataUtilityService.GetRandomString(),
                 SubscriberInfo = new List<SubscriberInfo>
                 {
-                    new ()
+                    new()
                     {
                         Email = DataUtilityService.GetRandomEmail()
                     }
@@ -40,17 +39,12 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var mockedSmtpClientService = new Mock<ISmtpClientService>();
             var mockedTemplateHelper = new Mock<ITemplateService>();
             var mockedAzureStorageSettings = new Mock<AzureStorage>();
             var mockedAppUrls = new Mock<ApplicationPaths>();
-
-            var sendActionResult = new ActionResult { IsSucceeded = true };
-            mockedSmtpClientService
-                .Setup(client => client.Send(CancellationToken.None))
-                .Returns(Task.FromResult(sendActionResult));
+            var mockedEmailSender = new Mock<EmailSender>();
 
             var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
             var mockedResults = new Results
@@ -68,10 +62,10 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 databaseContext,
                 mockedLogger.Object, 
                 mockedCustomHttpClient.Object,
-                mockedSmtpClientService.Object, 
                 mockedTemplateHelper.Object, 
                 mockedAzureStorageSettings.Object, 
-                mockedAppUrls.Object);
+                mockedAppUrls.Object,
+                mockedEmailSender.Object);
 
             // Act
             var result = await sendNewsletterCommandHandler.Handle(sendNewsletterCommand, CancellationToken.None);
@@ -90,7 +84,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 Subject = DataUtilityService.GetRandomString(),
                 SubscriberInfo = new List<SubscriberInfo>
                 {
-                    new ()
+                    new()
                     {
                         Email = DataUtilityService.GetRandomEmail()
                     }
@@ -98,17 +92,12 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var mockedSmtpClientService = new Mock<ISmtpClientService>();
             var mockedTemplateHelper = new Mock<ITemplateService>();
             var mockedAzureStorageSettings = new Mock<AzureStorage>();
             var mockedApplicationPaths = new Mock<ApplicationPaths>();
-
-            var sendActionResult = new ActionResult { IsSucceeded = true };
-            mockedSmtpClientService
-                .Setup(client => client.Send(CancellationToken.None))
-                .Returns(Task.FromResult(sendActionResult));
+            var mockedEmailSender = new Mock<EmailSender>();
 
             var mockedResults = new Results
             {
@@ -125,14 +114,15 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 databaseContext,
                 mockedLogger.Object, 
                 mockedCustomHttpClient.Object,
-                mockedSmtpClientService.Object, 
                 mockedTemplateHelper.Object, 
                 mockedAzureStorageSettings.Object, 
-                mockedApplicationPaths.Object);
+                mockedApplicationPaths.Object, 
+                mockedEmailSender.Object);
 
             // Act
             // Assert
-            var result = await Assert.ThrowsAsync<BusinessException>(() => sendNewsletterCommandHandler.Handle(sendNewsletterCommand, CancellationToken.None));
+            var result = await Assert.ThrowsAsync<BusinessException>(() 
+                => sendNewsletterCommandHandler.Handle(sendNewsletterCommand, CancellationToken.None));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY));
         }
 
@@ -146,7 +136,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 Subject = DataUtilityService.GetRandomString(),
                 SubscriberInfo = new List<SubscriberInfo>
                 {
-                    new ()
+                    new()
                     {
                         Email = DataUtilityService.GetRandomEmail()
                     }
@@ -154,22 +144,17 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var mockedSmtpClientService = new Mock<ISmtpClientService>();
             var mockedTemplateHelper = new Mock<ITemplateService>();
             var mockedAzureStorageSettings = new Mock<AzureStorage>();
             var mockedApplicationPaths = new Mock<ApplicationPaths>();
-
-            var sendActionResult = new ActionResult { IsSucceeded = false };
-            mockedSmtpClientService
-                .Setup(client => client.Send(CancellationToken.None))
-                .Returns(Task.FromResult(sendActionResult));
+            var mockedEmailSender = new Mock<EmailSender>();
 
             var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
             var mockedResults = new Results
             {
-                StatusCode = HttpStatusCode.OK,
+                StatusCode = HttpStatusCode.InternalServerError,
                 ContentType = new MediaTypeHeaderValue("text/plain"),
                 Content = mockedPayLoad
             };
@@ -182,14 +167,15 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 databaseContext,
                 mockedLogger.Object, 
                 mockedCustomHttpClient.Object,
-                mockedSmtpClientService.Object, 
                 mockedTemplateHelper.Object, 
                 mockedAzureStorageSettings.Object, 
-                mockedApplicationPaths.Object);
+                mockedApplicationPaths.Object,
+                mockedEmailSender.Object);
 
             // Act
             // Assert
-            var result = await Assert.ThrowsAsync<BusinessException>(() => sendNewsletterCommandHandler.Handle(sendNewsletterCommand, CancellationToken.None));
+            var result = await Assert.ThrowsAsync<BusinessException>(() 
+                => sendNewsletterCommandHandler.Handle(sendNewsletterCommand, CancellationToken.None));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.CANNOT_SEND_EMAIL));
         }
     }

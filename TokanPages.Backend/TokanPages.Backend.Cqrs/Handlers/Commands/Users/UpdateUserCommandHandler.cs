@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
     using Core.Utilities.DateTimeService;
@@ -15,8 +15,8 @@
     {
         private readonly IDateTimeService _dateTimeService;
         
-        public UpdateUserCommandHandler(DatabaseContext databaseContext, ILogger logger, 
-            IDateTimeService dateTimeService) : base(databaseContext, logger)
+        public UpdateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+            IDateTimeService dateTimeService) : base(databaseContext, loggerService)
         {
             _dateTimeService = dateTimeService;
         }

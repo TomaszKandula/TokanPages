@@ -6,7 +6,7 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Domain.Entities;
     using Core.Exceptions;
     using Core.Utilities.DateTimeService;
@@ -40,7 +40,7 @@
             };
 
             var mockedDateTime = new Mock<IDateTimeService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var updateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(
                 databaseContext, 
                 mockedLogger.Object, 
@@ -85,7 +85,7 @@
             };
 
             var mockedDateTime = new Mock<IDateTimeService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var updateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(
                 databaseContext, 
                 mockedLogger.Object, 
@@ -130,7 +130,7 @@
             await databaseContext.SaveChangesAsync();
 
             var mockedDateTime = new Mock<IDateTimeService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var updateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(
                 databaseContext, 
                 mockedLogger.Object,
@@ -169,7 +169,7 @@
             };
 
             var mockedDateTime = new Mock<IDateTimeService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var updateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(
                 databaseContext, 
                 mockedLogger.Object,

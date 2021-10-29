@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
     using System.Threading.Tasks;
     using Newtonsoft.Json.Linq;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Storage.Models;
     using Core.Exceptions;
     using Shared.Resources;
@@ -25,8 +25,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
         
         private readonly AzureStorage _azureStorage;
 
-        public GetContentQueryHandler(DatabaseContext databaseContext, ILogger logger, ICustomHttpClient customHttpClient, 
-            IJsonSerializer jsonSerializer, AzureStorage azureStorage) : base(databaseContext, logger)
+        public GetContentQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, ICustomHttpClient customHttpClient, 
+            IJsonSerializer jsonSerializer, AzureStorage azureStorage) : base(databaseContext, loggerService)
         {
             _customHttpClient = customHttpClient;
             _jsonSerializer = jsonSerializer;

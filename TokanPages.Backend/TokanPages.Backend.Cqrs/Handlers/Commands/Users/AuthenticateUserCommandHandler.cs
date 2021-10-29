@@ -5,7 +5,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Shared.Models;
     using Domain.Entities;
     using Core.Exceptions;
@@ -27,9 +27,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         private readonly IdentityServer _identityServer;
         
-        public AuthenticateUserCommandHandler(DatabaseContext databaseContext, ILogger logger, ICipheringService cipheringService, 
+        public AuthenticateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, ICipheringService cipheringService, 
             IJwtUtilityService jwtUtilityService, IDateTimeService dateTimeService, IUserServiceProvider userServiceProvider, 
-            IdentityServer identityServer) : base(databaseContext, logger)
+            IdentityServer identityServer) : base(databaseContext, loggerService)
         {
             _cipheringService = cipheringService;
             _jwtUtilityService = jwtUtilityService;
@@ -46,7 +46,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             
             if (!users.Any())
             {
-                Logger.LogError($"Cannot find user with given email address: '{request.EmailAddress}'.");
+                LoggerService.LogError($"Cannot find user with given email address: '{request.EmailAddress}'.");
                 throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
             }
             
@@ -55,7 +55,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
             if (!isPasswordValid)
             {
-                Logger.LogError($"Cannot positively verify given password supplied by user (Id: {currentUser.Id}).");
+                LoggerService.LogError($"Cannot positively verify given password supplied by user (Id: {currentUser.Id}).");
                 throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
             }
             

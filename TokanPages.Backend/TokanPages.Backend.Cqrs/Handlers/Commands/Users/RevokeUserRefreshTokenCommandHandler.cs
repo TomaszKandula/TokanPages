@@ -5,7 +5,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
     using Services.UserServiceProvider;
@@ -15,8 +15,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     {
         private readonly IUserServiceProvider _userServiceProvider;
         
-        public RevokeUserRefreshTokenCommandHandler(DatabaseContext databaseContext, ILogger logger, 
-            IUserServiceProvider userServiceProvider) : base(databaseContext, logger)
+        public RevokeUserRefreshTokenCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+            IUserServiceProvider userServiceProvider) : base(databaseContext, loggerService)
         {
             _userServiceProvider = userServiceProvider;
         }

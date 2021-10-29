@@ -11,7 +11,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
     using System.Collections.Generic;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Storage.Models;
     using Core.Exceptions;
     using Shared.Resources;
@@ -35,7 +35,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
             var mockedAzureStorage = new Mock<AzureStorage>();
@@ -115,7 +115,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
             var mockedAzureStorage = new Mock<AzureStorage>();
@@ -176,7 +176,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
             var mockedAzureStorage = new Mock<AzureStorage>();
@@ -232,7 +232,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
             var mockedAzureStorage = new Mock<AzureStorage>();
@@ -287,7 +287,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
             var mockedAzureStorage = new Mock<AzureStorage>();
@@ -343,7 +343,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
             var mockedAzureStorage = new Mock<AzureStorage>();

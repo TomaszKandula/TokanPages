@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using System.Threading;
     using System.Threading.Tasks;
     using Shared;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Domain.Entities;
     using Shared.Resources;
@@ -40,7 +40,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             await databaseContext.SaveChangesAsync();
 
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedDateTimeService
                 .SetupGet(service => service.Now)
@@ -81,7 +81,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             await databaseContext.SaveChangesAsync();
 
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedDateTimeService
                 .SetupGet(service => service.Now)
@@ -123,7 +123,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             await databaseContext.SaveChangesAsync();
 
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedDateTimeService
                 .SetupGet(service => service.Now)

@@ -6,7 +6,7 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Cqrs.Handlers.Queries.Subscribers;
 
@@ -30,7 +30,7 @@
             await databaseContext.Subscribers.AddAsync(subscribers);
             await databaseContext.SaveChangesAsync();
 
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var getSubscriberQuery = new GetSubscriberQuery { Id = subscribers.Id };
             var getSubscriberQueryHandler = new GetSubscriberQueryHandler(databaseContext, mockedLogger.Object);
 
@@ -63,7 +63,7 @@
             await databaseContext.Subscribers.AddAsync(subscribers);
             await databaseContext.SaveChangesAsync();
 
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var getSubscriberQueryHandler = new GetSubscriberQueryHandler(databaseContext, mockedLogger.Object);
             var getSubscriberQuery = new GetSubscriberQuery
             {
