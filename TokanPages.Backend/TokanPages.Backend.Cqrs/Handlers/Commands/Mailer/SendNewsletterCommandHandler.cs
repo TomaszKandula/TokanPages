@@ -7,7 +7,7 @@
     using Shared;
     using Database;
     using SmtpClient;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Shared.Models;
     using Storage.Models;
     using Core.Exceptions;
@@ -28,9 +28,9 @@
         
         private readonly ApplicationPaths _applicationPaths;
 
-        public SendNewsletterCommandHandler(DatabaseContext databaseContext, ILogger logger, 
+        public SendNewsletterCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
             ICustomHttpClient customHttpClient, ISmtpClientService smtpClientService, ITemplateService templateService, 
-            AzureStorage azureStorage, ApplicationPaths applicationPaths) : base(databaseContext, logger)
+            AzureStorage azureStorage, ApplicationPaths applicationPaths) : base(databaseContext, loggerService)
         {
             _customHttpClient = customHttpClient;
             _smtpClientService = smtpClientService;
@@ -44,8 +44,8 @@
             var updateSubscriberBaseLink = _applicationPaths.DeploymentOrigin + _applicationPaths.UpdateSubscriberPath;
             var unsubscribeBaseLink = _applicationPaths.DeploymentOrigin + _applicationPaths.UnsubscribePath;
 
-            Logger.LogInformation($"Get update subscriber base URL: {updateSubscriberBaseLink}.");
-            Logger.LogInformation($"Get unsubscribe base URL: {unsubscribeBaseLink}.");
+            LoggerService.LogInformation($"Get update subscriber base URL: {updateSubscriberBaseLink}.");
+            LoggerService.LogInformation($"Get unsubscribe base URL: {unsubscribeBaseLink}.");
             
             foreach (var subscriber in request.SubscriberInfo)
             {
@@ -64,7 +64,7 @@
                 };
 
                 var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.Newsletter}";
-                Logger.LogInformation($"Getting newsletter template from URL: {url}.");
+                LoggerService.LogInformation($"Getting newsletter template from URL: {url}.");
                 
                 var configuration = new Configuration { Url = url, Method = "GET" };
                 var results = await _customHttpClient.Execute(configuration, cancellationToken);

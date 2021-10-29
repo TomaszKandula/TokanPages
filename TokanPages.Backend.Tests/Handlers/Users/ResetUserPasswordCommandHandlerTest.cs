@@ -8,7 +8,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
     using SmtpClient;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Shared.Models;
     using Storage.Models;
     using Core.Exceptions;
@@ -52,7 +52,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 EmailAddress = user.EmailAddress
             };
 
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
@@ -137,7 +137,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 EmailAddress = user.EmailAddress
             };
 
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
@@ -211,7 +211,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 EmailAddress = user.EmailAddress
             };
 
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();

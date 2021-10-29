@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Domain.Entities;
     using Cqrs.Handlers.Commands.Articles;
     using Cqrs.Services.UserServiceProvider;
@@ -55,7 +55,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await databaseContext.SaveChangesAsync();
 
             var mockedUserProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserProvider
                 .Setup(provider => provider.GetRequestIpAddress())
@@ -141,7 +141,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await databaseContext.SaveChangesAsync();
 
             var mockedUserProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserProvider
                 .Setup(provider => provider.GetRequestIpAddress())
@@ -215,7 +215,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await databaseContext.SaveChangesAsync();
 
             var mockedUserProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserProvider
                 .Setup(provider => provider.GetUserId())
@@ -303,7 +303,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await databaseContext.SaveChangesAsync();
 
             var mockedUserProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserProvider
                 .Setup(provider => provider.GetUserId())

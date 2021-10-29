@@ -8,7 +8,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Shared.Models;
     using Domain.Entities;
     using Core.Exceptions;
@@ -64,7 +64,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             await databaseContext.UserRefreshTokens.AddAsync(userRefreshToken);
             await databaseContext.SaveChangesAsync();
             
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
 
@@ -236,7 +236,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             await databaseContext.UserRefreshTokens.AddAsync(userRefreshToken);
             await databaseContext.SaveChangesAsync();
             
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
 
@@ -288,7 +288,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var reAuthenticateUserCommand = new ReAuthenticateUserCommand { Id = Guid.NewGuid() };
             var databaseContext = GetTestDatabaseContext();
 
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
 

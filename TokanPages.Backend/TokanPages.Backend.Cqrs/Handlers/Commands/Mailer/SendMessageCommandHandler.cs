@@ -8,7 +8,7 @@
     using Shared;
     using Database;
     using SmtpClient;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Storage.Models;
     using Core.Exceptions;
     using Shared.Resources;
@@ -29,9 +29,9 @@
         
         private readonly AzureStorage _azureStorage;
         
-        public SendMessageCommandHandler(DatabaseContext databaseContext, ILogger logger, 
+        public SendMessageCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
             ICustomHttpClient customHttpClient, ISmtpClientService smtpClientService, ITemplateService templateService, 
-            IDateTimeService dateTimeService, AzureStorage azureStorage) : base(databaseContext, logger)
+            IDateTimeService dateTimeService, AzureStorage azureStorage) : base(databaseContext, loggerService)
         {
             _customHttpClient = customHttpClient;
             _smtpClientService = smtpClientService;
@@ -56,7 +56,7 @@
             };
 
             var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.ContactForm}";
-            Logger.LogInformation($"Getting email template from URL: {url}.");
+            LoggerService.LogInformation($"Getting email template from URL: {url}.");
 
             var configuration = new Configuration { Url = url, Method = "GET" };
             var results = await _customHttpClient.Execute(configuration, cancellationToken);

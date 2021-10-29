@@ -6,11 +6,11 @@
     using System.Collections.Generic;
     using Microsoft.EntityFrameworkCore;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
 
     public class GetAllSubscribersQueryHandler : TemplateHandler<GetAllSubscribersQuery, IEnumerable<GetAllSubscribersQueryResult>>
     {
-        public GetAllSubscribersQueryHandler(DatabaseContext databaseContext, ILogger logger) : base(databaseContext, logger) { }
+        public GetAllSubscribersQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
         public override async Task<IEnumerable<GetAllSubscribersQueryResult>> Handle(GetAllSubscribersQuery request, CancellationToken cancellationToken) 
         {

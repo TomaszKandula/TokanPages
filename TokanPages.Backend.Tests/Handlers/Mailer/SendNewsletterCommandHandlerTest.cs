@@ -10,7 +10,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
     using System.Net.Http.Headers;
     using System.Collections.Generic;
     using SmtpClient;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Shared.Models;
     using Storage.Models;
     using Core.Exceptions;
@@ -40,7 +40,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
             var mockedTemplateHelper = new Mock<ITemplateService>();
@@ -98,7 +98,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
             var mockedTemplateHelper = new Mock<ITemplateService>();
@@ -154,7 +154,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
             var mockedTemplateHelper = new Mock<ITemplateService>();

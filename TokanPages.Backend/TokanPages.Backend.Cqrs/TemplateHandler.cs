@@ -5,19 +5,19 @@
     using System.Diagnostics.CodeAnalysis;
     using MediatR;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
 
     [ExcludeFromCodeCoverage]
     public abstract class TemplateHandler<TRequest, TResult> : IRequestHandler<TRequest, TResult> where TRequest : IRequest<TResult>
     {
         protected readonly DatabaseContext DatabaseContext;
 
-        protected readonly ILogger Logger;
+        protected readonly ILoggerService LoggerService;
 
-        protected TemplateHandler(DatabaseContext databaseContext, ILogger logger)
+        protected TemplateHandler(DatabaseContext databaseContext, ILoggerService loggerService)
         {
             DatabaseContext = databaseContext;
-            Logger = logger;
+            LoggerService = loggerService;
         }
 
         public abstract Task<TResult> Handle(TRequest request, CancellationToken cancellationToken);

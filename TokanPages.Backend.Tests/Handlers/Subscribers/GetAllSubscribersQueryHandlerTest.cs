@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Cqrs.Handlers.Queries.Subscribers;
 
     public class GetAllSubscribersQueryHandlerTest : TestBase
@@ -18,7 +18,7 @@
         {
             // Arrange
             var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             var getAllSubscribersQuery = new GetAllSubscribersQuery();
             var getAllSubscribersQueryHandler = new GetAllSubscribersQueryHandler(databaseContext, mockedLogger.Object);

@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Domain.Entities;
     using Core.Exceptions;
     using Shared.Resources;
@@ -49,7 +49,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             await databaseContext.SaveChangesAsync();
 
             var mockedIUserServiceProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             var randomIpAddress = DataUtilityService.GetRandomIpAddress().ToString(); 
             mockedIUserServiceProvider
@@ -103,7 +103,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             await databaseContext.SaveChangesAsync();
 
             var mockedIUserServiceProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             var randomIpAddress = DataUtilityService.GetRandomIpAddress().ToString(); 
             mockedIUserServiceProvider

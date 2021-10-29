@@ -1,6 +1,6 @@
-﻿namespace TokanPages.Backend.Core.Logger
+﻿namespace TokanPages.Backend.Core.Utilities.LoggerService
 {
-    public interface ILogger
+    public interface ILoggerService
     {
         void LogDebug(string message);
 

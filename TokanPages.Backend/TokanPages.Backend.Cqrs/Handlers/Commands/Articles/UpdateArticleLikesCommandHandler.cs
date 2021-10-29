@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     using Microsoft.EntityFrameworkCore;
     using Shared;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Core.Extensions;
     using Shared.Resources;
@@ -17,8 +17,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     {
         private readonly IUserServiceProvider _userServiceProvider;
         
-        public UpdateArticleLikesCommandHandler(DatabaseContext databaseContext, ILogger logger, 
-            IUserServiceProvider userServiceProvider) : base(databaseContext, logger)
+        public UpdateArticleLikesCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+            IUserServiceProvider userServiceProvider) : base(databaseContext, loggerService)
         {
             _userServiceProvider = userServiceProvider;
         }

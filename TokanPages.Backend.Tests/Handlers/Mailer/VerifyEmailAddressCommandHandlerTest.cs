@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using SmtpClient;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using SmtpClient.Models;
     using Cqrs.Handlers.Commands.Mailer;
 
@@ -23,7 +23,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
 
             var checkActionResult = new List<Email>

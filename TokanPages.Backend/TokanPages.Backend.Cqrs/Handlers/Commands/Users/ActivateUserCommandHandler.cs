@@ -5,7 +5,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Microsoft.EntityFrameworkCore;
     using MediatR;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
     using Core.Utilities.DateTimeService;
@@ -14,8 +14,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     {
         private readonly IDateTimeService _dateTimeService;
        
-        public ActivateUserCommandHandler(DatabaseContext databaseContext, ILogger logger, 
-            IDateTimeService dateTimeService) : base(databaseContext, logger)
+        public ActivateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+            IDateTimeService dateTimeService) : base(databaseContext, loggerService)
         {
             _dateTimeService = dateTimeService;
         }
@@ -35,7 +35,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             users.ActivationId = null;
             users.ActivationIdEnds = null;
 
-            Logger.LogInformation($"User account has been activated, user ID: {users.Id}");
+            LoggerService.LogInformation($"User account has been activated, user ID: {users.Id}");
             await DatabaseContext.SaveChangesAsync(cancellationToken);
 
             return await Task.FromResult(Unit.Value);

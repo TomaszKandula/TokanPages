@@ -7,7 +7,7 @@
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Domain.Entities;
     using Core.Exceptions;
     using Core.Extensions;
@@ -61,7 +61,7 @@
             var mockedDateTime = new Mock<IDateTimeService>();
             var mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>();
             var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserProvider
                 .Setup(provider => provider.GetUserId())
@@ -149,7 +149,7 @@
             var mockedDateTime = new Mock<IDateTimeService>();
             var mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>();
             var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             
             mockedUserProvider
                 .Setup(provider => provider.GetUserId())
@@ -241,7 +241,7 @@
             var mockedDateTime = new Mock<IDateTimeService>();
             var mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>(); 
             var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserProvider
                 .Setup(provider => provider.GetUserId())

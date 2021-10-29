@@ -6,7 +6,7 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Domain.Entities;
     using Cqrs.Handlers.Commands.Articles;
@@ -54,7 +54,7 @@
             await databaseContext.Articles.AddAsync(articles);
             await databaseContext.SaveChangesAsync();
             
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var removeArticleCommandHandler = new RemoveArticleCommandHandler(databaseContext, mockedLogger.Object);
 
             // Act 
@@ -107,7 +107,7 @@
             await databaseContext.Articles.AddAsync(articles);
             await databaseContext.SaveChangesAsync();
 
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var removeArticleCommandHandler = new RemoveArticleCommandHandler(databaseContext, mockedLogger.Object);
 
             // Act

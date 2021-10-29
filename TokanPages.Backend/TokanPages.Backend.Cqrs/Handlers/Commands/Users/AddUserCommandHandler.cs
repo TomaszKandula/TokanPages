@@ -8,7 +8,7 @@
     using Shared;
     using Database;
     using SmtpClient;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Shared.Models;
     using Storage.Models;
     using Core.Exceptions;
@@ -40,9 +40,9 @@
         private readonly ExpirationSettings _expirationSettings;
 
         public AddUserCommandHandler(DatabaseContext databaseContext, IDateTimeService dateTimeService,
-            ICipheringService cipheringService, ISmtpClientService smtpClientService, ILogger logger,
+            ICipheringService cipheringService, ISmtpClientService smtpClientService, ILoggerService loggerService,
             ITemplateService templateService, ICustomHttpClient customHttpClient, AzureStorage azureStorage,
-            ApplicationPaths applicationPaths, ExpirationSettings expirationSettings) : base(databaseContext, logger)
+            ApplicationPaths applicationPaths, ExpirationSettings expirationSettings) : base(databaseContext, loggerService)
         {
             _dateTimeService = dateTimeService;
             _cipheringService = cipheringService;
@@ -78,7 +78,7 @@
                 await DatabaseContext.SaveChangesAsync(cancellationToken);
                 await SendNotification(request.EmailAddress, activationId, activationIdEnds, cancellationToken);
 
-                Logger.LogInformation($"Re-registering new user after ActivationId expired, user id: {users.Id}.");
+                LoggerService.LogInformation($"Re-registering new user after ActivationId expired, user id: {users.Id}.");
                 return await Task.FromResult(users.Id);
             }
 
@@ -100,7 +100,7 @@
             await SetupDefaultPermissions(newUser.Id, cancellationToken);
             await SendNotification(request.EmailAddress, activationId, activationIdEnds, cancellationToken);
 
-            Logger.LogInformation($"Registering new user account, user id: {newUser.Id}.");
+            LoggerService.LogInformation($"Registering new user account, user id: {newUser.Id}.");
             return await Task.FromResult(newUser.Id);
         }
 
@@ -162,7 +162,7 @@
             };
 
             var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.RegisterForm}";
-            Logger.LogInformation($"Getting email template from URL: {url}.");
+            LoggerService.LogInformation($"Getting email template from URL: {url}.");
 
             var configuration = new Configuration { Url = url, Method = "GET" };
             var results = await _customHttpClient.Execute(configuration, cancellationToken);

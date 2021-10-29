@@ -5,12 +5,12 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Microsoft.EntityFrameworkCore;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Database;
 
     public class GetAllUsersQueryHandler : TemplateHandler<GetAllUsersQuery, IEnumerable<GetAllUsersQueryResult>>
     {
-        public GetAllUsersQueryHandler(DatabaseContext databaseContext, ILogger logger) : base(databaseContext, logger) { }
+        public GetAllUsersQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
         public override async Task<IEnumerable<GetAllUsersQueryResult>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {

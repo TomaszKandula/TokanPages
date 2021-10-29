@@ -12,7 +12,7 @@
     using Backend.Shared;
     using Backend.Database;
     using Backend.SmtpClient;
-    using Backend.Core.Logger;
+    using Backend.Core.Utilities.LoggerService;
     using Backend.Shared.Models;
     using Backend.Storage.Models;
     using Backend.Core.Behaviours;
@@ -65,7 +65,7 @@
         }
 
         private static void SetupLogger(IServiceCollection services) 
-            => services.AddSingleton<ILogger, Logger>();
+            => services.AddSingleton<ILoggerService, LoggerService>();
 
         private static void SetupDatabase(IServiceCollection services, IConfiguration configuration) 
         {

@@ -12,7 +12,7 @@
     using System.Collections.Generic;
     using Shared;
     using SmtpClient;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Shared.Models;
     using Storage.Models;
     using Core.Exceptions;
@@ -82,7 +82,7 @@
             var mockedDateTime = new Mock<DateTimeService>();
             var mockedCipher = new Mock<ICipheringService>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedAzureStorage = new Mock<AzureStorage>();
@@ -183,7 +183,7 @@
             var mockedDateTime = new Mock<DateTimeService>();
             var mockedCipher = new Mock<ICipheringService>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedAzureStorage = new Mock<AzureStorage>();
@@ -288,7 +288,7 @@
             var mockedDateTime = new Mock<DateTimeService>();
             var mockedCipher = new Mock<ICipheringService>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedAzureStorage = new Mock<AzureStorage>();
@@ -390,7 +390,7 @@
             var mockedDateTime = new Mock<DateTimeService>();
             var mockedCipher = new Mock<ICipheringService>();
             var mockedSmtpClientService = new Mock<ISmtpClientService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedAzureStorage = new Mock<AzureStorage>();

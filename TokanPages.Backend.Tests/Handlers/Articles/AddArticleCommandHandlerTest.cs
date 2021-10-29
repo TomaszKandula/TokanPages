@@ -6,7 +6,7 @@
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Core.Extensions;
     using Domain.Entities;
@@ -76,7 +76,7 @@
             
             var mockedDateTime = new Mock<IDateTimeService>();
             var mockedUserProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserProvider
                 .Setup(provider => provider.GetUserId())
@@ -111,7 +111,7 @@
             var databaseContext = GetTestDatabaseContext();
             var mockedDateTime = new Mock<IDateTimeService>();
             var mockedUserProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             
             var addArticleCommandHandler = new AddArticleCommandHandler(
                 databaseContext, 
@@ -143,7 +143,7 @@
             var databaseContext = GetTestDatabaseContext();
             var mockedDateTime = new Mock<IDateTimeService>();
             var mockedUserProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             var addArticleCommandHandler = new AddArticleCommandHandler(
                 databaseContext, 

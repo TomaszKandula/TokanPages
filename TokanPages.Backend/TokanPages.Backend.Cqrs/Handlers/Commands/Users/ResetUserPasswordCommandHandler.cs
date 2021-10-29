@@ -10,7 +10,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Shared;
     using Database;
     using SmtpClient;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Shared.Models;
     using Storage.Models;
     using Core.Exceptions;
@@ -36,9 +36,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         private readonly ExpirationSettings _expirationSettings;
 
-        public ResetUserPasswordCommandHandler(DatabaseContext databaseContext, ILogger logger, ICustomHttpClient customHttpClient, 
+        public ResetUserPasswordCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, ICustomHttpClient customHttpClient, 
             ISmtpClientService smtpClientService, ITemplateService templateService, IDateTimeService dateTimeService, 
-            AzureStorage azureStorage, ApplicationPaths applicationPaths, ExpirationSettings expirationSettings) : base(databaseContext, logger)
+            AzureStorage azureStorage, ApplicationPaths applicationPaths, ExpirationSettings expirationSettings) : base(databaseContext, loggerService)
         {
             _customHttpClient = customHttpClient;
             _smtpClientService = smtpClientService;
@@ -86,7 +86,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             };
 
             var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.ResetPassword}";
-            Logger.LogInformation($"Getting email template from URL: {url}.");
+            LoggerService.LogInformation($"Getting email template from URL: {url}.");
 
             var configuration = new Configuration { Url = url, Method = "GET" };
             var results = await _customHttpClient.Execute(configuration, cancellationToken);
