@@ -5,7 +5,6 @@ namespace TokanPages.WebApi
     using System.Net.Sockets;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.AspNetCore.HttpOverrides;
@@ -19,67 +18,67 @@ namespace TokanPages.WebApi
     [ExcludeFromCodeCoverage]
     public class Startup
     {
-        private readonly IConfiguration FConfiguration;
+        private readonly IConfiguration _configuration;
 
-        private readonly IWebHostEnvironment FEnvironment;
+        private readonly IHostEnvironment _environment;
 
-        public Startup(IConfiguration AConfiguration, IWebHostEnvironment AEnvironment)
+        public Startup(IConfiguration configuration, IHostEnvironment environment)
         {
-            FConfiguration = AConfiguration;
-            FEnvironment = AEnvironment;
+            _configuration = configuration;
+            _environment = environment;
         }
 
-        public void ConfigureServices(IServiceCollection AServices)
+        public void ConfigureServices(IServiceCollection services)
         {
-            AServices.AddControllers().AddNewtonsoftJson(AOptions => AOptions.SerializerSettings.Converters.Add(new StringEnumConverter()));
-            AServices.AddResponseCompression(AOptions => AOptions.Providers.Add<GzipCompressionProvider>());
-            Dependencies.Register(AServices, FConfiguration, FEnvironment);
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new StringEnumConverter()));
+            services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
+            Dependencies.Register(services, _configuration, _environment);
 
-            if (FEnvironment.IsDevelopment() || FEnvironment.IsStaging())
-                Swagger.SetupSwaggerOptions(AServices);
+            if (_environment.IsDevelopment() || _environment.IsStaging())
+                Swagger.SetupSwaggerOptions(services);
 
-            if (!FEnvironment.IsProduction() && !FEnvironment.IsStaging()) 
+            if (!_environment.IsProduction() && !_environment.IsStaging()) 
                 return;
 
             // Since this app is meant to run in Docker only
             // We get the Docker's internal network IP(s)
-            var LHostName = Dns.GetHostName();
-            var LAddresses = Dns.GetHostEntry(LHostName).AddressList
-                .Where(AIpAddress => AIpAddress.AddressFamily == AddressFamily.InterNetwork)
+            var hostName = Dns.GetHostName();
+            var addresses = Dns.GetHostEntry(hostName).AddressList
+                .Where(ipAddress => ipAddress.AddressFamily == AddressFamily.InterNetwork)
                 .ToList();
 
-            AServices.Configure<ForwardedHeadersOptions>(AOptions =>
+            services.Configure<ForwardedHeadersOptions>(options =>
             {
-                AOptions.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-                AOptions.ForwardLimit = null;
-                AOptions.RequireHeaderSymmetry = false;
+                options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+                options.ForwardLimit = null;
+                options.RequireHeaderSymmetry = false;
 
-                foreach (var LAddress in LAddresses) 
-                    AOptions.KnownProxies.Add(LAddress);
+                foreach (var address in addresses) 
+                    options.KnownProxies.Add(address);
             });
         }
 
-        public void Configure(IApplicationBuilder ABuilder)
+        public void Configure(IApplicationBuilder builder)
         {
-            ABuilder.UseSerilogRequestLogging();
+            builder.UseSerilogRequestLogging();
 
-            ABuilder.UseMiddleware<CustomCors>();
-            ABuilder.UseMiddleware<CustomException>();
+            builder.UseMiddleware<CustomCors>();
+            builder.UseMiddleware<CustomException>();
             
-            ABuilder.UseHttpsRedirection();
-            ABuilder.UseForwardedHeaders();
-            ABuilder.UseResponseCompression();
+            builder.UseHttpsRedirection();
+            builder.UseForwardedHeaders();
+            builder.UseResponseCompression();
 
-            ABuilder.UseRouting();
-            ABuilder.UseAuthentication();
-            ABuilder.UseAuthorization();
-            ABuilder.UseEndpoints(AEndpoints => AEndpoints.MapControllers());
+            builder.UseRouting();
+            builder.UseAuthentication();
+            builder.UseAuthorization();
+            builder.UseEndpoints(endpoints => endpoints.MapControllers());
 
-            if (!FEnvironment.IsDevelopment() && !FEnvironment.IsStaging()) 
+            if (!_environment.IsDevelopment() && !_environment.IsStaging()) 
                 return;
 
-            ABuilder.UseSwagger();
-            Swagger.SetupSwaggerUi(ABuilder, FConfiguration);
+            builder.UseSwagger();
+            Swagger.SetupSwaggerUi(builder, _configuration);
         }
     }
 }

@@ -1,14 +1,16 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Users
 {
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Utilities.LoggerService;
+    using Domain.Entities;
     using Core.Exceptions;
     using Cqrs.Handlers.Commands.Users;
-    using Shared.Services.DateTimeService;
-    using FluentAssertions;
-    using Xunit;
-    using Moq;
+    using Core.Utilities.DateTimeService;
 
     public class UpdateUserCommandHandlerTest : TestBase
     {
@@ -16,7 +18,7 @@
         public async Task GivenCorrectId_WhenUpdateUser_ShouldUpdateEntity()
         {
             // Arrange
-            var LUser = new TokanPages.Backend.Domain.Entities.Users
+            var user = new Users
             {
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
@@ -29,13 +31,13 @@
                 CryptedPassword = DataUtilityService.GetRandomString()
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUser);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(user);
+            await databaseContext.SaveChangesAsync();
 
-            var LUpdateUserCommand = new UpdateUserCommand
+            var updateUserCommand = new UpdateUserCommand
             {
-                Id = LUser.Id,
+                Id = user.Id,
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
                 FirstName = DataUtilityService.GetRandomString(),
@@ -43,32 +45,41 @@
                 IsActivated = true,
             };
 
+            var mockedDateTime = new Mock<IDateTimeService>();
+            var mockedLogger = new Mock<ILoggerService>();
+            var updateUserCommandHandler = new UpdateUserCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedDateTime.Object);
+            
             // Act
-            var LMockedDateTime = new Mock<DateTimeService>();
-            var LUpdateUserCommandHandler = new UpdateUserCommandHandler(LDatabaseContext, LMockedDateTime.Object);
-            await LUpdateUserCommandHandler.Handle(LUpdateUserCommand, CancellationToken.None);
+            await updateUserCommandHandler.Handle(updateUserCommand, CancellationToken.None);
 
             // Assert
-            var LUserEntity = await LDatabaseContext.Users.FindAsync(LUpdateUserCommand.Id);
+            var userEntity = await databaseContext.Users.FindAsync(updateUserCommand.Id);
 
-            LUserEntity.Should().NotBeNull();
-            LUserEntity.EmailAddress.Should().Be(LUpdateUserCommand.EmailAddress);
-            LUserEntity.UserAlias.Should().Be(LUpdateUserCommand.UserAlias);
-            LUserEntity.FirstName.Should().Be(LUpdateUserCommand.FirstName);
-            LUserEntity.LastName.Should().Be(LUpdateUserCommand.LastName);
-            LUserEntity.IsActivated.Should().BeTrue();
-            LUserEntity.LastUpdated.Should().NotBeNull();
+            userEntity.Should().NotBeNull();
+            userEntity.EmailAddress.Should().Be(updateUserCommand.EmailAddress);
+            userEntity.UserAlias.Should().Be(updateUserCommand.UserAlias);
+            userEntity.FirstName.Should().Be(updateUserCommand.FirstName);
+            userEntity.LastName.Should().Be(updateUserCommand.LastName);
+            userEntity.IsActivated.Should().BeTrue();
+            userEntity.LastUpdated.Should().NotBeNull();
         }
 
         [Fact]
         public async Task GivenIncorrectId_WhenUpdateUser_ShouldThrowError()
         {
             // Arrange
-            var LDatabaseContext = GetTestDatabaseContext();
-            var LMockedDateTime = new Mock<DateTimeService>();
-            var LUpdateUserCommandHandler = new UpdateUserCommandHandler(LDatabaseContext, LMockedDateTime.Object);
+            var databaseContext = GetTestDatabaseContext();
+            var mockedDateTime = new Mock<IDateTimeService>();
+            var mockedLogger = new Mock<ILoggerService>();
+            var updateUserCommandHandler = new UpdateUserCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedDateTime.Object);
 
-            var LUpdateUserCommand = new UpdateUserCommand
+            var updateUserCommand = new UpdateUserCommand
             {
                 Id = Guid.Parse("1edb4c7d-8cf0-4811-b721-af5caf74d7a8"),
                 EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -81,17 +92,17 @@
             // Act
             // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
-                => LUpdateUserCommandHandler.Handle(LUpdateUserCommand, CancellationToken.None));
+                => updateUserCommandHandler.Handle(updateUserCommand, CancellationToken.None));
         }
 
         [Fact]
         public async Task GivenExistingEmail_WhenUpdateUser_ShouldThrowError()
         {
             // Arrange
-            var LTestEmail = DataUtilityService.GetRandomEmail();
-            var LUser = new TokanPages.Backend.Domain.Entities.Users
+            var testEmail = DataUtilityService.GetRandomEmail();
+            var user = new Users
             {
-                EmailAddress = LTestEmail,
+                EmailAddress = testEmail,
                 UserAlias = DataUtilityService.GetRandomString(),
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -102,27 +113,31 @@
                 CryptedPassword = DataUtilityService.GetRandomString()
             };
             
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUser);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(user);
+            await databaseContext.SaveChangesAsync();
 
-            var LUpdateUserCommand = new UpdateUserCommand
+            var updateUserCommand = new UpdateUserCommand
             {
-                Id = LUser.Id,
-                EmailAddress = LTestEmail,
+                Id = user.Id,
+                EmailAddress = testEmail,
                 UserAlias = DataUtilityService.GetRandomString(),
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
             };
 
-            var LMockedDateTime = new Mock<DateTimeService>();
-            var LUpdateUserCommandHandler = new UpdateUserCommandHandler(LDatabaseContext, LMockedDateTime.Object);
+            var mockedDateTime = new Mock<IDateTimeService>();
+            var mockedLogger = new Mock<ILoggerService>();
+            var updateUserCommandHandler = new UpdateUserCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedDateTime.Object);
 
             // Act
             // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
-                => LUpdateUserCommandHandler.Handle(LUpdateUserCommand, CancellationToken.None));
+                => updateUserCommandHandler.Handle(updateUserCommand, CancellationToken.None));
         }
     }
 }

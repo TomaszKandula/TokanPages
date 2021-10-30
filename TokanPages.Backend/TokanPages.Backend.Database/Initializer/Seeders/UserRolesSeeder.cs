@@ -17,20 +17,20 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
                 new ()
                 {
                     Id = Guid.Parse("829c4857-7a80-42f9-97c9-62aff21127cf"),
-                    UserId = User1.FId,
-                    RoleId = Role2.FId
+                    UserId = User1.Id,
+                    RoleId = Role2.Id
                 },
                 new ()
                 {
                     Id = Guid.Parse("6227f1a3-3dd4-4800-a31b-be6ee1d388ef"),
-                    UserId = User2.FId,
-                    RoleId = Role2.FId
+                    UserId = User2.Id,
+                    RoleId = Role2.Id
                 },
                 new ()
                 {
                     Id = Guid.Parse("bc9ad7c2-0ea0-425b-a63f-cdc8582c521c"),
-                    UserId = User3.FId,
-                    RoleId = Role2.FId
+                    UserId = User3.Id,
+                    RoleId = Role2.Id
                 }
             };
         }

@@ -1,12 +1,15 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Users
 {
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Utilities.LoggerService;
+    using Domain.Entities;
     using Core.Exceptions;
     using Cqrs.Handlers.Queries.Users;
-    using FluentAssertions;
-    using Xunit;
 
     public class GetUserQueryHandlerTest : TestBase
     {
@@ -14,54 +17,57 @@
         public async Task GivenCorrectId_WhenGetUser_ShouldReturnEntity() 
         {
             // Arrange
-            var LTestDate = DateTime.Now;
-            var LUsers = new TokanPages.Backend.Domain.Entities.Users 
+            var testDate = DateTime.Now;
+            var users = new Users 
             { 
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                Registered = LTestDate,
+                Registered = testDate,
                 LastUpdated = null,
                 LastLogged = null,
                 CryptedPassword = DataUtilityService.GetRandomString()
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LGetUserQuery = new GetUserQuery { Id = LUsers.Id };
-            var LGetUserQueryHandler = new GetUserQueryHandler(LDatabaseContext);
+            var mockedLogger = new Mock<ILoggerService>();
+            var getUserQuery = new GetUserQuery { Id = users.Id };
+            var getUserQueryHandler = new GetUserQueryHandler(databaseContext, mockedLogger.Object);
 
             // Act
-            var LResult = await LGetUserQueryHandler.Handle(LGetUserQuery, CancellationToken.None);
+            var result = await getUserQueryHandler.Handle(getUserQuery, CancellationToken.None);
 
             // Assert
-            LResult.Should().NotBeNull();
-            LResult.Email.Should().Be(LUsers.EmailAddress);
-            LResult.AliasName.Should().Be(LUsers.UserAlias);
-            LResult.FirstName.Should().Be(LUsers.FirstName);
-            LResult.LastName.Should().Be(LUsers.LastName);
-            LResult.IsActivated.Should().BeTrue();
-            LResult.Registered.Should().Be(LTestDate);
-            LResult.LastUpdated.Should().BeNull();
-            LResult.LastLogged.Should().BeNull();
+            result.Should().NotBeNull();
+            result.Email.Should().Be(users.EmailAddress);
+            result.AliasName.Should().Be(users.UserAlias);
+            result.FirstName.Should().Be(users.FirstName);
+            result.LastName.Should().Be(users.LastName);
+            result.IsActivated.Should().BeTrue();
+            result.Registered.Should().Be(testDate);
+            result.LastUpdated.Should().BeNull();
+            result.LastLogged.Should().BeNull();
         }
 
         [Fact]
         public async Task GivenIncorrectId_WhenGetUser_ShouldThrowError()
         {
             // Arrange
-            var LDatabaseContext = GetTestDatabaseContext();
-            var LGetUserQuery = new GetUserQuery { Id = Guid.Parse("8f4cef66-6f37-49bb-bbe7-db6c54336d76") };
-            var LGetUserQueryHandler = new GetUserQueryHandler(LDatabaseContext);
+            var databaseContext = GetTestDatabaseContext();
+            var mockedLogger = new Mock<ILoggerService>();
+
+            var getUserQuery = new GetUserQuery { Id = Guid.Parse("8f4cef66-6f37-49bb-bbe7-db6c54336d76") };
+            var getUserQueryHandler = new GetUserQueryHandler(databaseContext, mockedLogger.Object);
 
             // Act
             // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
-                => LGetUserQueryHandler.Handle(LGetUserQuery, CancellationToken.None));
+                => getUserQueryHandler.Handle(getUserQuery, CancellationToken.None));
         }
     }
 }

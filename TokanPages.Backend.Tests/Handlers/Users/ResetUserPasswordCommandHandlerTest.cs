@@ -7,14 +7,15 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using System.Threading;
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
-    using Shared.Services.TemplateService;
-    using Shared.Services.DateTimeService;
-    using Cqrs.Handlers.Commands.Users;
-    using SmtpClient;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Shared.Models;
     using Storage.Models;
     using Core.Exceptions;
+    using Shared.Resources;
+    using Domain.Entities;
+    using Cqrs.Handlers.Commands.Users;
+    using Core.Utilities.DateTimeService;
+    using Core.Utilities.TemplateService;
     using Core.Utilities.CustomHttpClient;
     using Core.Utilities.CustomHttpClient.Models;
 
@@ -24,7 +25,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
         public async Task GivenValidEmailAddress_WhenResetUserPassword_ShouldFinishSuccessful()
         {
             // Arrange
-            var LUser = new TokanPages.Backend.Domain.Entities.Users
+            var user = new Users
             {
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
@@ -41,75 +42,70 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 ActivationIdEnds = null
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUser);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(user);
+            await databaseContext.SaveChangesAsync();
 
-            var LResetUserPasswordCommand = new ResetUserPasswordCommand
+            var resetUserPasswordCommand = new ResetUserPasswordCommand
             {
-                EmailAddress = LUser.EmailAddress
+                EmailAddress = user.EmailAddress
             };
 
-            var LMockedLogger = new Mock<ILogger>();
-            var LMockedSmtpClientService = new Mock<ISmtpClientService>();
-            var LMockedTemplateService = new Mock<ITemplateService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var LMockedExpirationSettings = new Mock<ExpirationSettings>();
-            var LMockedAzureStorage = new Mock<AzureStorage>();
-            var LMockedApplicationPaths = new Mock<ApplicationPaths>();
+            var mockedLogger = new Mock<ILoggerService>();
+            var mockedTemplateService = new Mock<ITemplateService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedExpirationSettings = new Mock<ExpirationSettings>();
+            var mockedAzureStorage = new Mock<AzureStorage>();
+            var mockedApplicationPaths = new Mock<ApplicationPaths>();
+            var mockedEmailSender = new Mock<EmailSender>();
 
-            var LSendActionResult = new ActionResult { IsSucceeded = true };
-            LMockedSmtpClientService
-                .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
-                .Returns(Task.FromResult(LSendActionResult));
-
-            var LMockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-            var LMockedResults = new Results
+            var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
+            var mockedResults = new Results
             {
                 StatusCode = HttpStatusCode.OK,
                 ContentType = new MediaTypeHeaderValue("text/plain"),
-                Content = LMockedPayLoad
+                Content = mockedPayLoad
             };
 
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LMockedResults);
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockedResults);
 
             // Act
-            var LResetUserPasswordCommandHandler = new ResetUserPasswordCommandHandler(
-                LDatabaseContext, 
-                LMockedLogger.Object,
-                LMockedCustomHttpClient.Object,
-                LMockedSmtpClientService.Object,
-                LMockedTemplateService.Object,
-                LMockedDateTimeService.Object,
-                LMockedAzureStorage.Object,
-                LMockedApplicationPaths.Object,
-                LMockedExpirationSettings.Object
-            );
-            await LResetUserPasswordCommandHandler.Handle(LResetUserPasswordCommand, CancellationToken.None);
+            var resetUserPasswordCommandHandler = new ResetUserPasswordCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedCustomHttpClient.Object,
+                mockedTemplateService.Object,
+                mockedDateTimeService.Object,
+                mockedAzureStorage.Object,
+                mockedApplicationPaths.Object,
+                mockedExpirationSettings.Object,
+                mockedEmailSender.Object);
+
+            await resetUserPasswordCommandHandler.Handle(resetUserPasswordCommand, CancellationToken.None);
 
             // Assert
-            var LUserEntity = await LDatabaseContext.Users.FindAsync(LUser.Id);
+            var userEntity = await databaseContext.Users.FindAsync(user.Id);
 
-            LUserEntity.Should().NotBeNull();
-            LUserEntity.EmailAddress.Should().Be(LUser.EmailAddress);
-            LUserEntity.UserAlias.Should().Be(LUser.UserAlias);
-            LUserEntity.FirstName.Should().Be(LUser.FirstName);
-            LUserEntity.LastName.Should().Be(LUser.LastName);
-            LUserEntity.IsActivated.Should().BeTrue();
-            LUserEntity.LastUpdated.Should().NotBeNull();
-            LUserEntity.LastLogged.Should().BeNull();
-            LUserEntity.CryptedPassword.Should().BeEmpty();
-            LUserEntity.ResetId.Should().NotBeNull();
+            userEntity.Should().NotBeNull();
+            userEntity.EmailAddress.Should().Be(user.EmailAddress);
+            userEntity.UserAlias.Should().Be(user.UserAlias);
+            userEntity.FirstName.Should().Be(user.FirstName);
+            userEntity.LastName.Should().Be(user.LastName);
+            userEntity.IsActivated.Should().BeTrue();
+            userEntity.LastUpdated.Should().NotBeNull();
+            userEntity.LastLogged.Should().BeNull();
+            userEntity.CryptedPassword.Should().BeEmpty();
+            userEntity.ResetId.Should().NotBeNull();
         }
 
         [Fact]
         public async Task GivenSmtpError_WhenResetUserPassword_ShouldThrowError()
         {
             // Arrange
-            var LUser = new TokanPages.Backend.Domain.Entities.Users
+            var user = new Users
             {
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
@@ -126,57 +122,120 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 ActivationIdEnds = null
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUser);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(user);
+            await databaseContext.SaveChangesAsync();
 
-            var LResetUserPasswordCommand = new ResetUserPasswordCommand
+            var resetUserPasswordCommand = new ResetUserPasswordCommand
             {
-                EmailAddress = LUser.EmailAddress
+                EmailAddress = user.EmailAddress
             };
 
-            var LMockedLogger = new Mock<ILogger>();
-            var LMockedSmtpClientService = new Mock<ISmtpClientService>();
-            var LMockedTemplateService = new Mock<ITemplateService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var LMockedExpirationSettings = new Mock<ExpirationSettings>();
-            var LMockedAzureStorage = new Mock<AzureStorage>();
-            var LMockedApplicationPaths = new Mock<ApplicationPaths>();
-            
-            var LSendActionResult = new ActionResult { IsSucceeded = false };
-            LMockedSmtpClientService
-                .Setup(ASmtpClient => ASmtpClient.Send(CancellationToken.None))
-                .Returns(Task.FromResult(LSendActionResult));
+            var mockedLogger = new Mock<ILoggerService>();
+            var mockedTemplateService = new Mock<ITemplateService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedExpirationSettings = new Mock<ExpirationSettings>();
+            var mockedAzureStorage = new Mock<AzureStorage>();
+            var mockedApplicationPaths = new Mock<ApplicationPaths>();
+            var mockedEmailSender = new Mock<EmailSender>();
 
-            var LMockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-            var LMockedResults = new Results
+            var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
+            var mockedResults = new Results
             {
-                StatusCode = HttpStatusCode.OK,
+                StatusCode = HttpStatusCode.InternalServerError,
                 ContentType = new MediaTypeHeaderValue("text/plain"),
-                Content = LMockedPayLoad
+                Content = mockedPayLoad
             };
 
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LMockedResults);
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockedResults);
 
-            var LResetUserPasswordCommandHandler = new ResetUserPasswordCommandHandler(
-                LDatabaseContext, 
-                LMockedLogger.Object,
-                LMockedCustomHttpClient.Object,
-                LMockedSmtpClientService.Object,
-                LMockedTemplateService.Object,
-                LMockedDateTimeService.Object,
-                LMockedAzureStorage.Object,
-                LMockedApplicationPaths.Object,
-                LMockedExpirationSettings.Object
-            );
+            var resetUserPasswordCommandHandler = new ResetUserPasswordCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedCustomHttpClient.Object,
+                mockedTemplateService.Object,
+                mockedDateTimeService.Object,
+                mockedAzureStorage.Object,
+                mockedApplicationPaths.Object,
+                mockedExpirationSettings.Object,
+                mockedEmailSender.Object);
 
             // Act
             // Assert
-            await Assert.ThrowsAsync<BusinessException>(() 
-                => LResetUserPasswordCommandHandler.Handle(LResetUserPasswordCommand, CancellationToken.None));
+            var result = await Assert.ThrowsAsync<BusinessException>(() 
+                => resetUserPasswordCommandHandler.Handle(resetUserPasswordCommand, CancellationToken.None));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.CANNOT_SEND_EMAIL));
+        }
+
+        [Fact]
+        public async Task GivenEmptyTemplate_WhenResetUserPassword_ShouldThrowError()
+        {
+            // Arrange
+            var user = new Users
+            {
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                IsActivated = true,
+                Registered = DateTimeService.Now,
+                LastUpdated = null,
+                LastLogged = null,
+                CryptedPassword = DataUtilityService.GetRandomString(),
+                ResetId = null,
+                ResetIdEnds = null,
+                ActivationId = null,
+                ActivationIdEnds = null
+            };
+
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(user);
+            await databaseContext.SaveChangesAsync();
+
+            var resetUserPasswordCommand = new ResetUserPasswordCommand
+            {
+                EmailAddress = user.EmailAddress
+            };
+
+            var mockedLogger = new Mock<ILoggerService>();
+            var mockedTemplateService = new Mock<ITemplateService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedExpirationSettings = new Mock<ExpirationSettings>();
+            var mockedAzureStorage = new Mock<AzureStorage>();
+            var mockedApplicationPaths = new Mock<ApplicationPaths>();
+            var mockedEmailSender = new Mock<EmailSender>();
+
+            var mockedResults = new Results
+            {
+                StatusCode = HttpStatusCode.OK,
+                ContentType = new MediaTypeHeaderValue("text/plain"),
+                Content = null
+            };
+
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockedResults);
+
+            var resetUserPasswordCommandHandler = new ResetUserPasswordCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedCustomHttpClient.Object,
+                mockedTemplateService.Object,
+                mockedDateTimeService.Object,
+                mockedAzureStorage.Object,
+                mockedApplicationPaths.Object,
+                mockedExpirationSettings.Object,
+                mockedEmailSender.Object);
+
+            // Act
+            // Assert
+            var result = await Assert.ThrowsAsync<BusinessException>(() 
+                => resetUserPasswordCommandHandler.Handle(resetUserPasswordCommand, CancellationToken.None));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY));
         }
     }
 }

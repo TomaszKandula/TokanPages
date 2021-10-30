@@ -7,27 +7,22 @@
     [ExcludeFromCodeCoverage]
     public static class MailerMapper
     {
-        public static VerifyEmailAddressCommand MapToVerifyEmailAddressCommand(VerifyEmailAddressDto AModel) => new() 
-        { 
-            Email = AModel.Email
-        };
-
-        public static SendMessageCommand MapToSendMessageCommand(SendMessageDto AModel) => new()
+        public static SendMessageCommand MapToSendMessageCommand(SendMessageDto model) => new()
         {
-            UserEmail = AModel.UserEmail,
-            FirstName = AModel.FirstName,
-            LastName = AModel.LastName,
-            EmailFrom = AModel.EmailFrom,
-            EmailTos = AModel.EmailTos,
-            Subject = AModel.Subject,
-            Message = AModel.Message
+            UserEmail = model.UserEmail,
+            FirstName = model.FirstName,
+            LastName = model.LastName,
+            EmailFrom = model.EmailFrom,
+            EmailTos = model.EmailTos,
+            Subject = model.Subject,
+            Message = model.Message
         };
 
-        public static SendNewsletterCommand MapToSendNewsletterCommand(SendNewsletterDto AModel) => new() 
+        public static SendNewsletterCommand MapToSendNewsletterCommand(SendNewsletterDto model) => new() 
         { 
-            SubscriberInfo = AModel.SubscriberInfo,
-            Subject = AModel.Subject,
-            Message = AModel.Message
+            SubscriberInfo = model.SubscriberInfo,
+            Subject = model.Subject,
+            Message = model.Message
         };
     }
 }

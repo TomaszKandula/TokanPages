@@ -5,61 +5,66 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
     using Services.UserServiceProvider;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     using Storage.AzureBlobStorage.Factory;
     using MediatR;
 
     public class UpdateArticleContentCommandHandler : TemplateHandler<UpdateArticleContentCommand, Unit>
     {
-        private readonly DatabaseContext FDatabaseContext;
-
-        private readonly IUserServiceProvider FUserServiceProvider;
+        private readonly IUserServiceProvider _userServiceProvider;
         
-        private readonly IDateTimeService FDateTimeService;
+        private readonly IDateTimeService _dateTimeService;
         
-        private readonly IAzureBlobStorageFactory FAzureBlobStorageFactory;
+        private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
         
-        public UpdateArticleContentCommandHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider, 
-            IDateTimeService ADateTimeService, IAzureBlobStorageFactory AAzureBlobStorageFactory)
+        public UpdateArticleContentCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService,
+            IUserServiceProvider userServiceProvider, IDateTimeService dateTimeService, 
+            IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
         {
-            FDatabaseContext = ADatabaseContext;
-            FUserServiceProvider = AUserServiceProvider;
-            FDateTimeService = ADateTimeService;
-            FAzureBlobStorageFactory = AAzureBlobStorageFactory;
+            _userServiceProvider = userServiceProvider;
+            _dateTimeService = dateTimeService;
+            _azureBlobStorageFactory = azureBlobStorageFactory;
         }
 
-        public override async Task<Unit> Handle(UpdateArticleContentCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(UpdateArticleContentCommand request, CancellationToken cancellationToken)
         {
-            var LUserId = await FUserServiceProvider.GetUserId();
-            if (LUserId == null)
+            var userId = await _userServiceProvider.GetUserId();
+            if (userId == null)
                 throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
-            var LArticles = await FDatabaseContext.Articles
-                .Where(AArticles => AArticles.Id == ARequest.Id)
-                .ToListAsync(ACancellationToken);
+            var articles = await DatabaseContext.Articles
+                .Where(articles => articles.Id == request.Id)
+                .ToListAsync(cancellationToken);
 
-            if (!LArticles.Any())
+            if (!articles.Any())
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
-            
-            var LAzureBlob = FAzureBlobStorageFactory.Create();
-            if (!string.IsNullOrEmpty(ARequest.TextToUpload))
-                await LAzureBlob.UploadText(ARequest.Id, ARequest.TextToUpload);
 
-            if (!string.IsNullOrEmpty(ARequest.ImageToUpload))
-                await LAzureBlob.UploadImage(ARequest.Id, ARequest.ImageToUpload);
+            var azureBlob = _azureBlobStorageFactory.Create();
+            if (!string.IsNullOrEmpty(request.TextToUpload))
+            {
+                var textDestinationPath = $"content\\articles\\{request.Id}\\text.json";
+                await azureBlob.UploadContent(request.TextToUpload, textDestinationPath, cancellationToken);
+            }
 
-            var LCurrentArticle = LArticles.First();
+            if (!string.IsNullOrEmpty(request.ImageToUpload))
+            {
+                var imageDestinationPath = $"content\\articles\\{request.Id}\\image.jpg";
+                await azureBlob.UploadContent(request.ImageToUpload, imageDestinationPath, cancellationToken);
+            }
 
-            LCurrentArticle.Title = ARequest.Title ?? LCurrentArticle.Title;
-            LCurrentArticle.Description = ARequest.Description ?? LCurrentArticle.Description;
-            LCurrentArticle.UpdatedAt = ARequest.Title != null && ARequest.Description != null
-                ? FDateTimeService.Now
-                : LCurrentArticle.UpdatedAt;
+            var currentArticle = articles.First();
 
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            currentArticle.Title = request.Title ?? currentArticle.Title;
+            currentArticle.Description = request.Description ?? currentArticle.Description;
+            currentArticle.UpdatedAt = request.Title != null && request.Description != null
+                ? _dateTimeService.Now
+                : currentArticle.UpdatedAt;
+
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
         }
     }

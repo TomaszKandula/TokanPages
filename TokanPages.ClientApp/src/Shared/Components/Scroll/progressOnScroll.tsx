@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
 
 interface IProgressStyle 
 {
@@ -33,7 +32,7 @@ interface IProgressOnScroll
 
 const ProgressOnScroll = (props: IProgressOnScroll) => 
 {
-    const [width, setWidth] = useState(0);
+    const [width, setWidth] = React.useState(0);
 
     const Scrolling = () => 
     {
@@ -51,7 +50,7 @@ const ProgressOnScroll = (props: IProgressOnScroll) =>
         }
     }
 
-    useEffect(() => 
+    React.useEffect(() => 
     {
         window.addEventListener("scroll", Scrolling);
         return () => { window.removeEventListener("scroll", Scrolling); }

@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     {
         public RevokeUserRefreshTokenCommandValidator()
         {
-            RuleFor(AField => AField.RefreshToken)
+            RuleFor(command => command.RefreshToken)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

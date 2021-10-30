@@ -7,12 +7,12 @@
     {
         public UpdateSubscriberCommandValidator() 
         {
-            RuleFor(AField => AField.Id)
+            RuleFor(command => command.Id)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(AField => AField.Email)
+            RuleFor(command => command.Email)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)
@@ -20,7 +20,7 @@
                 .WithErrorCode(nameof(ValidationCodes.EMAIL_TOO_LONG))
                 .WithMessage(ValidationCodes.EMAIL_TOO_LONG);
 
-            When(AField => AField.Count != null, () => 
+            When(command => command.Count != null, () => 
             {
                 RuleFor(AField => AField.Count)
                     .GreaterThan(-1)

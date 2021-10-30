@@ -6,27 +6,26 @@
     using System.Collections.Generic;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Utilities.LoggerService;
 
     public class GetAllSubscribersQueryHandler : TemplateHandler<GetAllSubscribersQuery, IEnumerable<GetAllSubscribersQueryResult>>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        public GetAllSubscribersQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
-        public GetAllSubscribersQueryHandler(DatabaseContext ADatabaseContext) => FDatabaseContext = ADatabaseContext;
-
-        public override async Task<IEnumerable<GetAllSubscribersQueryResult>> Handle(GetAllSubscribersQuery ARequest, CancellationToken ACancellationToken) 
+        public override async Task<IEnumerable<GetAllSubscribersQueryResult>> Handle(GetAllSubscribersQuery request, CancellationToken cancellationToken) 
         {
-            var LSubscribers = await FDatabaseContext.Subscribers
+            var subscribers = await DatabaseContext.Subscribers
                 .AsNoTracking()
-                .Select(AFields => new GetAllSubscribersQueryResult 
+                .Select(subscribers => new GetAllSubscribersQueryResult 
                 { 
-                    Id = AFields.Id,
-                    Email = AFields.Email,
-                    IsActivated = AFields.IsActivated,
-                    NewsletterCount = AFields.Count
+                    Id = subscribers.Id,
+                    Email = subscribers.Email,
+                    IsActivated = subscribers.IsActivated,
+                    NewsletterCount = subscribers.Count
                 })
-                .ToListAsync(ACancellationToken);
+                .ToListAsync(cancellationToken);
             
-            return LSubscribers;
+            return subscribers;
         }
     }
 }

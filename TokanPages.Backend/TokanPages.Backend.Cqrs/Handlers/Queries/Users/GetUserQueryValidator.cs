@@ -7,7 +7,7 @@
     {
         public GetUserQueryValidator() 
         {
-            RuleFor(AField => AField.Id)
+            RuleFor(query => query.Id)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

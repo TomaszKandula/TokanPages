@@ -9,10 +9,10 @@ namespace TokanPages.Backend.Core.Models
         public DateTime StartDate { get; }
         public DateTime EndDate { get; }
 
-        public DateRangeValidator(DateTime AStartDate, DateTime AEndDate)
+        public DateRangeValidator(DateTime startDate, DateTime endDate)
         {
-            StartDate = AStartDate;
-            EndDate = AEndDate;
+            StartDate = startDate;
+            EndDate = endDate;
         }
     }
 }

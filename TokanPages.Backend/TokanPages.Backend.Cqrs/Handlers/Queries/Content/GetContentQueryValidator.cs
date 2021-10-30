@@ -7,12 +7,12 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
     {
         public GetContentQueryValidator()
         {
-            RuleFor(AField => AField.Type)
+            RuleFor(query => query.Type)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(AField => AField.Name)
+            RuleFor(query => query.Name)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

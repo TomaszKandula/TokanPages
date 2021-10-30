@@ -1,11 +1,12 @@
 namespace TokanPages.Backend.Storage.Models
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
     public class StorageByteContent
     {
-        public byte[] Content { get; set; }
+        public BinaryData Content { get; set; }
 
         public string ContentType { get; set; }
     }

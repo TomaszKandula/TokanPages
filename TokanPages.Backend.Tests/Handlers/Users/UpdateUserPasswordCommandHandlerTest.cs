@@ -6,12 +6,13 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
+    using Domain.Entities;
     using Shared.Resources;
     using Cqrs.Handlers.Commands.Users;
     using Cqrs.Services.CipheringService;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     using Cqrs.Services.UserServiceProvider;
 
     public class UpdateUserPasswordCommandHandlerTest : TestBase
@@ -20,7 +21,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
         public async Task GivenValidUserDataAndNewPasswordAsLoggedUser_WhenUpdateUserPassword_ShouldFinishSuccessful()
         {
             // Arrange
-            var LUser = new TokanPages.Backend.Domain.Entities.Users
+            var users = new Users
             {
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
@@ -37,60 +38,60 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 ActivationIdEnds = null
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUser);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LUpdateUserPasswordCommand = new UpdateUserPasswordCommand
+            var updateUserPasswordCommand = new UpdateUserPasswordCommand
             {
-                Id = LUser.Id,
+                Id = users.Id,
                 NewPassword = DataUtilityService.GetRandomString()
             };
 
-            var LMockedLogger = new Mock<ILogger>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedUserProvider = new Mock<IUserServiceProvider>();
-            var LMockedCipheringService = new Mock<ICipheringService>();
+            var mockedLogger = new Mock<ILoggerService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedCipheringService = new Mock<ICipheringService>();
 
-            LMockedUserProvider
-                .Setup(AService => AService.HasRoleAssigned(It.IsAny<string>()))
+            mockedUserProvider
+                .Setup(service => service.HasRoleAssigned(It.IsAny<string>()))
                 .ReturnsAsync(true);
             
-            var LMockedPassword = DataUtilityService.GetRandomString();
-            LMockedCipheringService
-                .Setup(AService => AService.GetHashedPassword(
+            var mockedPassword = DataUtilityService.GetRandomString();
+            mockedCipheringService
+                .Setup(service => service.GetHashedPassword(
                     It.IsAny<string>(), 
                     It.IsAny<string>()))
-                .Returns(LMockedPassword);
+                .Returns(mockedPassword);
 
-            LMockedCipheringService
-                .Setup(AService => AService.GenerateSalt(It.IsAny<int>()))
+            mockedCipheringService
+                .Setup(service => service.GenerateSalt(It.IsAny<int>()))
                 .Returns(string.Empty);
             
-            var LUpdateUserCommandHandler = new UpdateUserPasswordCommandHandler(
-                LDatabaseContext, 
-                LMockedUserProvider.Object,
-                LMockedCipheringService.Object,
-                LMockedDateTimeService.Object,
-                LMockedLogger.Object
+            var updateUserCommandHandler = new UpdateUserPasswordCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedUserProvider.Object,
+                mockedCipheringService.Object,
+                mockedDateTimeService.Object
             );
 
             // Act
-            await LUpdateUserCommandHandler.Handle(LUpdateUserPasswordCommand, CancellationToken.None);
+            await updateUserCommandHandler.Handle(updateUserPasswordCommand, CancellationToken.None);
 
             // Assert
-            var LUserEntity = await LDatabaseContext.Users.FindAsync(LUser.Id);
+            var userEntity = await databaseContext.Users.FindAsync(users.Id);
             
-            LUserEntity.Should().NotBeNull();
-            LUserEntity.CryptedPassword.Should().NotBeEmpty();
-            LUserEntity.ResetId.Should().BeNull();
+            userEntity.Should().NotBeNull();
+            userEntity.CryptedPassword.Should().NotBeEmpty();
+            userEntity.ResetId.Should().BeNull();
         }
 
         [Fact]
         public async Task GivenInvalidResetId_WhenUpdateUserPassword_ShouldThrowError()
         {
             // Arrange
-            var LUser = new TokanPages.Backend.Domain.Entities.Users
+            var users = new Users
             {
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
@@ -107,53 +108,53 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 ActivationIdEnds = null
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUser);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LUpdateUserPasswordCommand = new UpdateUserPasswordCommand
+            var updateUserPasswordCommand = new UpdateUserPasswordCommand
             {
-                Id = LUser.Id,
+                Id = users.Id,
                 ResetId = Guid.NewGuid(),
                 NewPassword = DataUtilityService.GetRandomString()
             };
 
-            var LMockedLogger = new Mock<ILogger>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedUserProvider = new Mock<IUserServiceProvider>();
-            var LMockedCipheringService = new Mock<ICipheringService>();
+            var mockedLogger = new Mock<ILoggerService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedCipheringService = new Mock<ICipheringService>();
 
-            var LMockedPassword = DataUtilityService.GetRandomString();
-            LMockedCipheringService
-                .Setup(AService => AService.GetHashedPassword(
+            var mockedPassword = DataUtilityService.GetRandomString();
+            mockedCipheringService
+                .Setup(service => service.GetHashedPassword(
                     It.IsAny<string>(), 
                     It.IsAny<string>()))
-                .Returns(LMockedPassword);
+                .Returns(mockedPassword);
 
-            LMockedCipheringService
-                .Setup(AService => AService.GenerateSalt(It.IsAny<int>()))
+            mockedCipheringService
+                .Setup(service => service.GenerateSalt(It.IsAny<int>()))
                 .Returns(string.Empty);
             
-            var LUpdateUserCommandHandler = new UpdateUserPasswordCommandHandler(
-                LDatabaseContext, 
-                LMockedUserProvider.Object,
-                LMockedCipheringService.Object,
-                LMockedDateTimeService.Object,
-                LMockedLogger.Object
+            var updateUserCommandHandler = new UpdateUserPasswordCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedUserProvider.Object,
+                mockedCipheringService.Object,
+                mockedDateTimeService.Object
             );
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() 
-                => LUpdateUserCommandHandler.Handle(LUpdateUserPasswordCommand, CancellationToken.None));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_RESET_ID));
+            var result = await Assert.ThrowsAsync<BusinessException>(() 
+                => updateUserCommandHandler.Handle(updateUserPasswordCommand, CancellationToken.None));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_RESET_ID));
         }
 
         [Fact]
         public async Task GivenInvalidUserId_WhenUpdateUserPassword_ShouldThrowError()
         {
             // Arrange
-            var LUser = new TokanPages.Backend.Domain.Entities.Users
+            var users = new Users
             {
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
@@ -170,52 +171,52 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 ActivationIdEnds = null
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUser);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LUpdateUserPasswordCommand = new UpdateUserPasswordCommand
+            var updateUserPasswordCommand = new UpdateUserPasswordCommand
             {
                 Id = Guid.NewGuid(),
                 NewPassword = DataUtilityService.GetRandomString()
             };
 
-            var LMockedLogger = new Mock<ILogger>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedUserProvider = new Mock<IUserServiceProvider>();
-            var LMockedCipheringService = new Mock<ICipheringService>();
+            var mockedLogger = new Mock<ILoggerService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedCipheringService = new Mock<ICipheringService>();
 
-            var LMockedPassword = DataUtilityService.GetRandomString();
-            LMockedCipheringService
-                .Setup(AService => AService.GetHashedPassword(
+            var mockedPassword = DataUtilityService.GetRandomString();
+            mockedCipheringService
+                .Setup(service => service.GetHashedPassword(
                     It.IsAny<string>(), 
                     It.IsAny<string>()))
-                .Returns(LMockedPassword);
+                .Returns(mockedPassword);
 
-            LMockedCipheringService
-                .Setup(AService => AService.GenerateSalt(It.IsAny<int>()))
+            mockedCipheringService
+                .Setup(service => service.GenerateSalt(It.IsAny<int>()))
                 .Returns(string.Empty);
             
-            var LUpdateUserCommandHandler = new UpdateUserPasswordCommandHandler(
-                LDatabaseContext, 
-                LMockedUserProvider.Object,
-                LMockedCipheringService.Object,
-                LMockedDateTimeService.Object,
-                LMockedLogger.Object
+            var updateUserPasswordCommandHandler = new UpdateUserPasswordCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedUserProvider.Object,
+                mockedCipheringService.Object,
+                mockedDateTimeService.Object
             );
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() 
-                => LUpdateUserCommandHandler.Handle(LUpdateUserPasswordCommand, CancellationToken.None));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.USER_DOES_NOT_EXISTS));
+            var result = await Assert.ThrowsAsync<BusinessException>(() 
+                => updateUserPasswordCommandHandler.Handle(updateUserPasswordCommand, CancellationToken.None));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.USER_DOES_NOT_EXISTS));
         }
 
         [Fact]
         public async Task GivenNoResetIdAsNotLoggedUser_WhenUpdateUserPassword_ShouldThrowError()
         {
             // Arrange
-            var LUser = new TokanPages.Backend.Domain.Entities.Users
+            var users = new Users
             {
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
@@ -232,50 +233,50 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 ActivationIdEnds = null
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUser);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LUpdateUserPasswordCommand = new UpdateUserPasswordCommand
+            var updateUserPasswordCommand = new UpdateUserPasswordCommand
             {
-                Id = LUser.Id,
+                Id = users.Id,
                 ResetId = null,
                 NewPassword = DataUtilityService.GetRandomString()
             };
 
-            var LMockedLogger = new Mock<ILogger>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedUserProvider = new Mock<IUserServiceProvider>();
-            var LMockedCipheringService = new Mock<ICipheringService>();
+            var mockedLogger = new Mock<ILoggerService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedCipheringService = new Mock<ICipheringService>();
 
-            LMockedUserProvider
-                .Setup(AProvider => AProvider.HasRoleAssigned(It.IsAny<string>()))
+            mockedUserProvider
+                .Setup(provider => provider.HasRoleAssigned(It.IsAny<string>()))
                 .ReturnsAsync(false);
             
-            var LMockedPassword = DataUtilityService.GetRandomString();
-            LMockedCipheringService
-                .Setup(AService => AService.GetHashedPassword(
+            var mockedPassword = DataUtilityService.GetRandomString();
+            mockedCipheringService
+                .Setup(service => service.GetHashedPassword(
                     It.IsAny<string>(), 
                     It.IsAny<string>()))
-                .Returns(LMockedPassword);
+                .Returns(mockedPassword);
 
-            LMockedCipheringService
-                .Setup(AService => AService.GenerateSalt(It.IsAny<int>()))
+            mockedCipheringService
+                .Setup(service => service.GenerateSalt(It.IsAny<int>()))
                 .Returns(string.Empty);
             
-            var LUpdateUserCommandHandler = new UpdateUserPasswordCommandHandler(
-                LDatabaseContext, 
-                LMockedUserProvider.Object,
-                LMockedCipheringService.Object,
-                LMockedDateTimeService.Object,
-                LMockedLogger.Object
+            var updateUserPasswordCommandHandler = new UpdateUserPasswordCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedUserProvider.Object,
+                mockedCipheringService.Object,
+                mockedDateTimeService.Object
             );
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() 
-                => LUpdateUserCommandHandler.Handle(LUpdateUserPasswordCommand, CancellationToken.None));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+            var result = await Assert.ThrowsAsync<BusinessException>(() 
+                => updateUserPasswordCommandHandler.Handle(updateUserPasswordCommand, CancellationToken.None));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
     }
 }

@@ -182,5 +182,41 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("EXPIRED_ACTIVATION_ID", resourceCulture);
             }
         }
+        
+        public static string COMPONENT_TYPE_NOT_SUPPORTED {
+            get {
+                return ResourceManager.GetString("COMPONENT_TYPE_NOT_SUPPORTED", resourceCulture);
+            }
+        }
+        
+        public static string COMPONENT_NAME_UNKNOWN {
+            get {
+                return ResourceManager.GetString("COMPONENT_NAME_UNKNOWN", resourceCulture);
+            }
+        }
+        
+        public static string COMPONENT_CONTENT_EMPTY {
+            get {
+                return ResourceManager.GetString("COMPONENT_CONTENT_EMPTY", resourceCulture);
+            }
+        }
+        
+        public static string COMPONENT_CONTENT_MISSING_TOKEN {
+            get {
+                return ResourceManager.GetString("COMPONENT_CONTENT_MISSING_TOKEN", resourceCulture);
+            }
+        }
+        
+        public static string EMAIL_TEMPLATE_EMPTY {
+            get {
+                return ResourceManager.GetString("EMAIL_TEMPLATE_EMPTY", resourceCulture);
+            }
+        }
+        
+        public static string COMPONENT_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("COMPONENT_NOT_FOUND", resourceCulture);
+            }
+        }
     }
 }

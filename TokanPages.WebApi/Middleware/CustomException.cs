@@ -7,48 +7,48 @@ namespace TokanPages.WebApi.Middleware
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Http;
     using Backend.Core.Models;
-    using Backend.Shared.Helpers;
     using Backend.Core.Exceptions;
     using Backend.Shared.Resources;
+    using Configuration;
     
     [ExcludeFromCodeCoverage]
     public class CustomException
     {
-        private readonly RequestDelegate FRequestDelegate;
+        private readonly RequestDelegate _requestDelegate;
         
-        public CustomException(RequestDelegate ARequestDelegate) 
-            => FRequestDelegate = ARequestDelegate;
+        public CustomException(RequestDelegate requestDelegate) 
+            => _requestDelegate = requestDelegate;
         
-        public async Task Invoke(HttpContext AHttpContext)
+        public async Task Invoke(HttpContext httpContext)
         {
             try
             {
-                await FRequestDelegate.Invoke(AHttpContext);
+                await _requestDelegate.Invoke(httpContext);
             }
-            catch (ValidationException LValidationException)
+            catch (ValidationException validationException)
             {
-                var LApplicationError = new ApplicationError(LValidationException.ErrorCode, LValidationException.Message, LValidationException.ValidationResult);
-                await WriteErrorResponse(AHttpContext, LApplicationError, HttpStatusCode.BadRequest).ConfigureAwait(false);
+                var applicationError = new ApplicationError(validationException.ErrorCode, validationException.Message, validationException.ValidationResult);
+                await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.BadRequest).ConfigureAwait(false);
             }
-            catch (BusinessException LBusinessException)
+            catch (BusinessException businessException)
             {
-                var LApplicationError = new ApplicationError(LBusinessException.ErrorCode, LBusinessException.Message);
-                await WriteErrorResponse(AHttpContext, LApplicationError, HttpStatusCode.BadRequest).ConfigureAwait(false);
+                var applicationError = new ApplicationError(businessException.ErrorCode, businessException.Message);
+                await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.BadRequest).ConfigureAwait(false);
             }
-            catch (Exception LException)
+            catch (Exception exception)
             {
-                var LApplicationError = new ApplicationError(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED, LException.Message);
-                await WriteErrorResponse(AHttpContext, LApplicationError, HttpStatusCode.InternalServerError).ConfigureAwait(false);
+                var applicationError = new ApplicationError(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED, exception.Message);
+                await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.InternalServerError).ConfigureAwait(false);
             }
         }
 
-        private static Task WriteErrorResponse(HttpContext AHttpContext, ApplicationError AApplicationError, HttpStatusCode AStatusCode)
+        private static Task WriteErrorResponse(HttpContext httpContext, ApplicationError applicationError, HttpStatusCode statusCode)
         {
-            var LResult = JsonSerializer.Serialize(AApplicationError);
-            AHttpContext.Response.ContentType = "application/json";
-            AHttpContext.Response.StatusCode = (int)AStatusCode;
-            CorsHeaders.Ensure(AHttpContext);
-            return AHttpContext.Response.WriteAsync(LResult);
+            var result = JsonSerializer.Serialize(applicationError);
+            httpContext.Response.ContentType = "application/json";
+            httpContext.Response.StatusCode = (int)statusCode;
+            CorsHeaders.Ensure(httpContext);
+            return httpContext.Response.WriteAsync(result);
         }
     }
 }

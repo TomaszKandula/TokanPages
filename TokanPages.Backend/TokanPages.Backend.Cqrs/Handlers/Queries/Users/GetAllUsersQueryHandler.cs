@@ -5,29 +5,27 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Microsoft.EntityFrameworkCore;
+    using Core.Utilities.LoggerService;
     using Database;
 
     public class GetAllUsersQueryHandler : TemplateHandler<GetAllUsersQuery, IEnumerable<GetAllUsersQueryResult>>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        public GetAllUsersQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
-        public GetAllUsersQueryHandler(DatabaseContext ADatabaseContext) 
-            => FDatabaseContext = ADatabaseContext;
-
-        public override async Task<IEnumerable<GetAllUsersQueryResult>> Handle(GetAllUsersQuery ARequest, CancellationToken ACancellationToken)
+        public override async Task<IEnumerable<GetAllUsersQueryResult>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
-            var LUsers = await FDatabaseContext.Users
+            var users = await DatabaseContext.Users
                 .AsNoTracking()
-                .Select(AFields => new GetAllUsersQueryResult 
+                .Select(users => new GetAllUsersQueryResult 
                 { 
-                    Id = AFields.Id,
-                    AliasName = AFields.UserAlias,
-                    Email = AFields.EmailAddress,
-                    IsActivated = AFields.IsActivated
+                    Id = users.Id,
+                    AliasName = users.UserAlias,
+                    Email = users.EmailAddress,
+                    IsActivated = users.IsActivated
                 })
-                .ToListAsync(ACancellationToken);
+                .ToListAsync(cancellationToken);
             
-            return LUsers;
+            return users;
         }
     }
 }

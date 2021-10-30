@@ -1,13 +1,16 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Users
 {
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    using Core.Utilities.LoggerService;
+    using Domain.Entities;
     using Cqrs.Handlers.Queries.Users;
-    using FluentAssertions;
-    using Xunit;
 
     public class GetAllUsersQueryHandlerTest : TestBase
     {
@@ -15,7 +18,7 @@
         public async Task WhenGetAllArticles_ShouldReturnCollection()
         {
             // Arrange
-            var LUsers = new List<TokanPages.Backend.Domain.Entities.Users>
+            var users = new List<Users>
             {
                 new ()
                 {
@@ -45,21 +48,23 @@
                 }
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            var LGetAllUsersQuery = new GetAllUsersQuery();
-            var LGetAllUsersQueryHandler = new GetAllUsersQueryHandler(LDatabaseContext);
+            var databaseContext = GetTestDatabaseContext();
+            var mockedLogger = new Mock<ILoggerService>();
 
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var getAllUsersQuery = new GetAllUsersQuery();
+            var getAllUsersQueryHandler = new GetAllUsersQueryHandler(databaseContext, mockedLogger.Object);
+
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.SaveChangesAsync();
 
             // Act
-            var LResults = (await LGetAllUsersQueryHandler
-                .Handle(LGetAllUsersQuery, CancellationToken.None))
+            var result = (await getAllUsersQueryHandler
+                .Handle(getAllUsersQuery, CancellationToken.None))
                 .ToList();
 
             // Assert
-            LResults.Should().NotBeNull();
-            LResults.Should().HaveCount(2);
+            result.Should().NotBeNull();
+            result.Should().HaveCount(2);
         }
     }
 }

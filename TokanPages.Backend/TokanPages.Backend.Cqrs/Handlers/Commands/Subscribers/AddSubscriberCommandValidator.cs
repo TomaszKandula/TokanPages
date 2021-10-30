@@ -7,7 +7,7 @@
     {
         public AddSubscriberCommandValidator() 
         {
-            RuleFor(AField => AField.Email)
+            RuleFor(command => command.Email)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)

@@ -1,19 +1,21 @@
 namespace TokanPages.Backend.Database.Mappings
 {
+    using System.Diagnostics.CodeAnalysis;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
     using Domain.Entities;
 
+    [ExcludeFromCodeCoverage]
     public class UserRefreshTokensConfiguration : IEntityTypeConfiguration<UserRefreshTokens>
     {
-        public void Configure(EntityTypeBuilder<UserRefreshTokens> ABuilder)
+        public void Configure(EntityTypeBuilder<UserRefreshTokens> builder)
         {
-            ABuilder.Property(AUserRefreshTokens => AUserRefreshTokens.Id).ValueGeneratedOnAdd();
+            builder.Property(userRefreshTokens => userRefreshTokens.Id).ValueGeneratedOnAdd();
             
-            ABuilder
-                .HasOne(AUserRefreshTokens => AUserRefreshTokens.User)
-                .WithMany(AUsers => AUsers.UserRefreshTokens)
-                .HasForeignKey(AUserRefreshTokens => AUserRefreshTokens.UserId)
+            builder
+                .HasOne(userRefreshTokens => userRefreshTokens.User)
+                .WithMany(users => users.UserRefreshTokens)
+                .HasForeignKey(userRefreshTokens => userRefreshTokens.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UserRefreshTokens_Users");
         }

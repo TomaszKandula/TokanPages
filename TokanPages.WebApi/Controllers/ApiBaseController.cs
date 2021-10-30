@@ -7,8 +7,8 @@
     [ApiController]
     public class ApiBaseController : ControllerBase
     {
-        protected readonly IMediator FMediator;
+        protected readonly IMediator Mediator;
 
-        public ApiBaseController(IMediator AMediator) => FMediator = AMediator;
+        public ApiBaseController(IMediator mediator) => Mediator = mediator;
     }
 }

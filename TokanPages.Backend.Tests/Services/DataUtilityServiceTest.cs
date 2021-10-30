@@ -1,36 +1,47 @@
 namespace TokanPages.Backend.Tests.Services
 {
+    using Xunit;
     using System;
     using FluentAssertions;
-    using Xunit;
 
     public class DataUtilityServiceTest : TestBase
     {
+        [Fact]
+        public void GivenZeroLength_WhenInvokeGetRandomString_ShouldReturnEmptyString()
+        {
+            // Arrange 
+            // Act
+            var result = DataUtilityService.GetRandomString(0);
+
+            // Assert
+            result.Should().BeEmpty();
+        }
+
         [Fact]
         public void GivenNoParameters_WhenInvokeGetRandomString_ShouldReturnTwelveChars()
         {
             // Arrange 
             // Act
-            var LResult = DataUtilityService.GetRandomString();
+            var result = DataUtilityService.GetRandomString();
 
             // Assert
-            LResult.Length.Should().Be(12);
+            result.Length.Should().Be(12);
         }
         
         [Fact]
         public void GivenPrefixAndLength_WhenInvokeGetRandomString_ShouldReturnTwelveCharsWithPrefix()
         {
             // Arrange 
-            const string PREFIX = "TEST_";
-            const int LENGTH = 12;
-            var LPrefixLength = PREFIX.Length;
+            const string prefix = "TEST_";
+            const int length = 12;
+            var prefixLength = prefix.Length;
             
             // Act
-            var LResult = DataUtilityService.GetRandomString(LENGTH, PREFIX);
+            var result = DataUtilityService.GetRandomString(length, prefix);
 
             // Assert
-            LResult.Length.Should().Be(LENGTH + LPrefixLength);
-            LResult.Should().Contain(PREFIX);
+            result.Length.Should().Be(length + prefixLength);
+            result.Should().Contain(prefix);
         }
 
         [Fact]
@@ -38,56 +49,56 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = DataUtilityService.GetRandomEmail();
+            var result = DataUtilityService.GetRandomEmail();
 
             // Assert
-            LResult.Length.Should().BeGreaterThan(12);
-            LResult.Should().Contain("@gmail.com");
+            result.Length.Should().BeGreaterThan(12);
+            result.Should().Contain("@gmail.com");
         }
 
         [Fact]
         public void GivenLengthAndDomain_WhenInvokeGetRandomEmail_ShouldReturnNewEmailAddress()
         {
             // Arrange
-            const string DOMAIN = "hotmail.com";
-            const int LENGTH = 20;
-            var LExpectedLength = DOMAIN.Length + LENGTH + 1;
+            const string domain = "hotmail.com";
+            const int length = 20;
+            var expectedLength = domain.Length + length + 1;
             
             // Act
-            var LResult = DataUtilityService.GetRandomEmail(LENGTH, DOMAIN);
+            var result = DataUtilityService.GetRandomEmail(length, domain);
 
             // Assert
-            LResult.Length.Should().Be(LExpectedLength);
-            LResult.Should().Contain(DOMAIN);
+            result.Length.Should().Be(expectedLength);
+            result.Should().Contain(domain);
         }
 
         [Fact]
         public void GivenNoParameters_WhenInvokeGetRandom_ShouldReturnNewByteArray()
         {
             // Arrange
-            const int EXPECTED_LENGTH = 12 * 1024;
+            const int expectedLength = 12 * 1024;
             
             // Act
-            var LResult = DataUtilityService.GetRandomStream();
+            var result = DataUtilityService.GetRandomStream();
 
             // Assert
-            LResult.Should().NotBeNull();
-            LResult.Length.Should().Be(EXPECTED_LENGTH);
+            result.Should().NotBeNull();
+            result.Length.Should().Be(expectedLength);
         }
 
         [Fact]
         public void GivenSizeParameter_WhenInvokeGetRandom_ShouldReturnNewByteArray()
         {
             // Arrange
-            const int SIZE_IN_KB = 150;
-            const int EXPECTED_LENGTH = SIZE_IN_KB * 1024;
+            const int sizeInKb = 150;
+            const int expectedLength = sizeInKb * 1024;
             
             // Act
-            var LResult = DataUtilityService.GetRandomStream(SIZE_IN_KB);
+            var result = DataUtilityService.GetRandomStream(sizeInKb);
 
             // Assert
-            LResult.Should().NotBeNull();
-            LResult.Length.Should().Be(EXPECTED_LENGTH);
+            result.Should().NotBeNull();
+            result.Length.Should().Be(expectedLength);
         }
 
         [Fact]
@@ -95,10 +106,10 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = DataUtilityService.GetRandomInteger();
+            var result = DataUtilityService.GetRandomInteger();
 
             // Assert
-            LResult.Should().BeInRange(0, 12);
+            result.Should().BeInRange(0, 12);
         }
 
         [Fact]
@@ -106,38 +117,38 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = DataUtilityService.GetRandomDecimal();
+            var result = DataUtilityService.GetRandomDecimal();
 
             // Assert
-            LResult.Should().BeInRange(0m, 9999m);
+            result.Should().BeInRange(0m, 9999m);
         }
         
         [Theory]
         [InlineData(-3, 3)]
         [InlineData(12, 50)]
         [InlineData(100, 200)]
-        public void GivenMinAndMaxParameters_WhenInvokeGetRandomInteger_ShouldReturnInteger(int AMin, int AMax)
+        public void GivenMinAndMaxParameters_WhenInvokeGetRandomInteger_ShouldReturnInteger(int min, int max)
         {
             // Arrange
             // Act
-            var LResult = DataUtilityService.GetRandomInteger(AMin, AMax);
+            var result = DataUtilityService.GetRandomInteger(min, max);
 
             // Assert
-            LResult.Should().BeInRange(AMin, AMax);
+            result.Should().BeInRange(min, max);
         }
 
         [Theory]
         [InlineData(-3.3, 5.6)]
         [InlineData(10.1, 20.91)]
         [InlineData(100.5, 205.45)]
-        public void GivenMinAndMaxParameters_WhenInvokeGetRandomDecimal_ShouldReturnDecimal(int AMin, int AMax)
+        public void GivenMinAndMaxParameters_WhenInvokeGetRandomDecimal_ShouldReturnDecimal(int min, int max)
         {
             // Arrange
             // Act
-            var LResult = DataUtilityService.GetRandomDecimal(AMin, AMax);
+            var result = DataUtilityService.GetRandomDecimal(min, max);
             
             // Assert
-            LResult.Should().BeInRange(AMin, AMax);
+            result.Should().BeInRange(min, max);
         }
 
         [Fact]
@@ -145,11 +156,11 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = DataUtilityService.GetRandomEnum<DayOfWeek>();
+            var result = DataUtilityService.GetRandomEnum<DayOfWeek>();
 
             // Assert
-            LResult.Should().NotBeNull();
-            LResult.Should().BeOfType<DayOfWeek>();
+            result.Should().NotBeNull();
+            result.Should().BeOfType<DayOfWeek>();
         }
 
         [Fact]
@@ -157,28 +168,63 @@ namespace TokanPages.Backend.Tests.Services
         {
             // Arrange
             // Act
-            var LResult = DataUtilityService.GetRandomDateTime();
+            var result = DataUtilityService.GetRandomDateTime();
 
             // Assert
-            LResult.Should().HaveYear(2020);
-            LResult.Month.Should().BeInRange(1, 12);
-            LResult.Day.Should().BeInRange(1, 31);
+            result.Should().HaveYear(2020);
+            result.Month.Should().BeInRange(1, 12);
+            result.Day.Should().BeInRange(1, 31);
         }
         
         [Fact]
         public void GivenMinAndMaxDateTime_WhenInvokeGetRandomDateTime_ShouldReturnDateTime()
         {
             // Arrange
-            var LDateTimeMin = new DateTime(2020, 1, 1);
-            var LDateTimeMax = new DateTime(2021, 10, 15);
+            var dateTimeMin = new DateTime(2020, 1, 1);
+            var dateTimeMax = new DateTime(2021, 10, 15);
             
             // Act
-            var LResult = DataUtilityService.GetRandomDateTime(LDateTimeMin, LDateTimeMax);
+            var result = DataUtilityService.GetRandomDateTime(dateTimeMin, dateTimeMax);
 
             // Assert
-            LResult.Year.Should().BeInRange(2020, 2021);
-            LResult.Month.Should().BeInRange(1, 12);
-            LResult.Day.Should().BeInRange(1, 31);
+            result.Year.Should().BeInRange(2020, 2021);
+            result.Month.Should().BeInRange(1, 12);
+            result.Day.Should().BeInRange(1, 31);
+        }
+
+        [Fact]
+        public void GivenOnlyDefaultYear_WhenInvokeGetRandomDateTime_ShouldReturnDateTime()
+        {
+            // Arrange
+            // Act
+            var result = DataUtilityService.GetRandomDateTime(null, null, 2015);
+
+            // Assert
+            result.Year.Should().BeInRange(2015, 2015);
+            result.Month.Should().BeInRange(1, 12);
+            result.Day.Should().BeInRange(1, 31);
+        }
+
+        [Fact]
+        public void GivenFlagFalse_WhenGetRandomIpAddress_ShouldReturnRandomIPv4()
+        {
+            // Arrange
+            // Act
+            var result = DataUtilityService.GetRandomIpAddress();
+            
+            // Assert
+            result.AddressFamily.Should().Be(System.Net.Sockets.AddressFamily.InterNetwork);
+        }
+
+        [Fact]
+        public void GivenFlagTrue_WhenGetRandomIpAddress_ShouldReturnRandomIPv6()
+        {
+            // Arrange
+            // Act
+            var result = DataUtilityService.GetRandomIpAddress(true);
+            
+            // Assert
+            result.AddressFamily.Should().Be(System.Net.Sockets.AddressFamily.InterNetworkV6);
         }
     }
 }

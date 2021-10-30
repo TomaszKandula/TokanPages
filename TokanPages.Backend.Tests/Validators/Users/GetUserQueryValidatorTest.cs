@@ -12,35 +12,35 @@
         public void GivenCorrectId_WhenGetUser_ShouldFinishSuccessful()
         {
             // Arrange
-            var LGetUserQuery = new GetUserQuery
+            var getUserQuery = new GetUserQuery
             {
                 Id = Guid.NewGuid()
             };
 
             // Act
-            var LValidator = new GetUserQueryValidator();
-            var LResult = LValidator.Validate(LGetUserQuery);
+            var validator = new GetUserQueryValidator();
+            var result = validator.Validate(getUserQuery);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenEmptyId_WhenGetUser_ShouldThrowError()
         {
             // Arrange
-            var LGetUserQuery = new GetUserQuery
+            var getUserQuery = new GetUserQuery
             {
                 Id = Guid.Empty
             };
 
             // Act
-            var LValidator = new GetUserQueryValidator();
-            var LResult = LValidator.Validate(LGetUserQuery);
+            var validator = new GetUserQueryValidator();
+            var result = validator.Validate(getUserQuery);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
     }
 }

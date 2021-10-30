@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Cqrs.Services.CipheringService.Helpers
 
         public static uint[] ExpandedBlowfishKeySecondary { get; set; }
 
-        public static readonly uint[] FBCryptCipherText = 
+        public static readonly uint[] CryptCipherText = 
         {
             0x4f727068, 0x65616e42, 0x65686f6c,
             0x64657253, 0x63727944, 0x6f756274

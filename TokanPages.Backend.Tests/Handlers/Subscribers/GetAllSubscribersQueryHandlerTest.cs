@@ -1,13 +1,15 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {   
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    using Core.Utilities.LoggerService;
     using Cqrs.Handlers.Queries.Subscribers;
-    using FluentAssertions;
-    using Xunit;
 
     public class GetAllSubscribersQueryHandlerTest : TestBase
     {
@@ -15,10 +17,13 @@
         public async Task WhenGetAllSubscribers_ShouldReturnCollection()
         {
             // Arrange
-            var LDatabaseContext = GetTestDatabaseContext();
-            var LGetAllSubscribersQuery = new GetAllSubscribersQuery();
-            var LGetAllSubscribersQueryHandler = new GetAllSubscribersQueryHandler(LDatabaseContext);
-            var LSubscribers = new List<TokanPages.Backend.Domain.Entities.Subscribers>
+            var databaseContext = GetTestDatabaseContext();
+            var mockedLogger = new Mock<ILoggerService>();
+
+            var getAllSubscribersQuery = new GetAllSubscribersQuery();
+            var getAllSubscribersQueryHandler = new GetAllSubscribersQueryHandler(databaseContext, mockedLogger.Object);
+
+            var subscribers = new List<TokanPages.Backend.Domain.Entities.Subscribers>
             {
                 new ()
                 {
@@ -38,17 +43,17 @@
                 }
             };
             
-            await LDatabaseContext.Subscribers.AddRangeAsync(LSubscribers);
-            await LDatabaseContext.SaveChangesAsync();
+            await databaseContext.Subscribers.AddRangeAsync(subscribers);
+            await databaseContext.SaveChangesAsync();
 
             // Act
-            var LResults = (await LGetAllSubscribersQueryHandler
-                .Handle(LGetAllSubscribersQuery, CancellationToken.None))
+            var result = (await getAllSubscribersQueryHandler
+                .Handle(getAllSubscribersQuery, CancellationToken.None))
                 .ToList();
 
             // Assert
-            LResults.Should().NotBeNull();
-            LResults.Should().HaveCount(2);
+            result.Should().NotBeNull();
+            result.Should().HaveCount(2);
         }
     }
 }

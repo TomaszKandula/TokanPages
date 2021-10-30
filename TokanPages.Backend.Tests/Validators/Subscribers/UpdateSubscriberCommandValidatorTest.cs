@@ -12,7 +12,7 @@
         public void GivenAllFieldsAreCorrect_WhenUpdateSubscriber_ShouldFinishSuccessful() 
         {
             // Arrange
-            var LUpdateSubscriberCommand = new UpdateSubscriberCommand 
+            var updateSubscriberCommand = new UpdateSubscriberCommand 
             { 
                 Id = Guid.NewGuid(),
                 Email = DataUtilityService.GetRandomEmail(),
@@ -21,18 +21,18 @@
             };
 
             // Act
-            var LValidator = new UpdateSubscriberCommandValidator();
-            var LResult = LValidator.Validate(LUpdateSubscriberCommand);
+            var validator = new UpdateSubscriberCommandValidator();
+            var result = validator.Validate(updateSubscriberCommand);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenAllFieldsAreCorrectAndCountIsNull_WhenUpdateSubscriber_ShouldFinishSuccessful()
         {
             // Arrange
-            var LUpdateSubscriberCommand = new UpdateSubscriberCommand
+            var updateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.NewGuid(),
                 Email = DataUtilityService.GetRandomEmail(),
@@ -41,18 +41,18 @@
             };
 
             // Act
-            var LValidator = new UpdateSubscriberCommandValidator();
-            var LResult = LValidator.Validate(LUpdateSubscriberCommand);
+            var validator = new UpdateSubscriberCommandValidator();
+            var result = validator.Validate(updateSubscriberCommand);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenEmptyId_WhenUpdateSubscriber_ShouldThrowError()
         {
             // Arrange
-            var LUpdateSubscriberCommand = new UpdateSubscriberCommand
+            var updateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.Empty,
                 Email = DataUtilityService.GetRandomEmail(),
@@ -61,19 +61,19 @@
             };
 
             // Act
-            var LValidator = new UpdateSubscriberCommandValidator();
-            var LResult = LValidator.Validate(LUpdateSubscriberCommand);
+            var validator = new UpdateSubscriberCommandValidator();
+            var result = validator.Validate(updateSubscriberCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
 
         [Fact]
         public void GivenEmptyEmail_WhenUpdateSubscriber_ShouldThrowError()
         {
             // Arrange
-            var LUpdateSubscriberCommand = new UpdateSubscriberCommand
+            var updateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.NewGuid(),
                 Email = string.Empty,
@@ -82,19 +82,19 @@
             };
 
             // Act
-            var LValidator = new UpdateSubscriberCommandValidator();
-            var LResult = LValidator.Validate(LUpdateSubscriberCommand);
+            var validator = new UpdateSubscriberCommandValidator();
+            var result = validator.Validate(updateSubscriberCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
 
         [Fact]
         public void GivenEmailTooLong_WhenUpdateSubscriber_ShouldThrowError()
         {
             // Arrange
-            var LUpdateSubscriberCommand = new UpdateSubscriberCommand
+            var updateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.NewGuid(),
                 Email = new string('T', 256),
@@ -103,19 +103,19 @@
             };
 
             // Act
-            var LValidator = new UpdateSubscriberCommandValidator();
-            var LResult = LValidator.Validate(LUpdateSubscriberCommand);
+            var validator = new UpdateSubscriberCommandValidator();
+            var result = validator.Validate(updateSubscriberCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
         }
 
         [Fact]
         public void GivenCountIsLessThanZero_WhenUpdateSubscriber_ShouldThrowError()
         {
             // Arrange
-            var LUpdateSubscriberCommand = new UpdateSubscriberCommand
+            var updateSubscriberCommand = new UpdateSubscriberCommand
             {
                 Id = Guid.NewGuid(),
                 Email = DataUtilityService.GetRandomEmail(),
@@ -124,12 +124,12 @@
             };
 
             // Act
-            var LValidator = new UpdateSubscriberCommandValidator();
-            var LResult = LValidator.Validate(LUpdateSubscriberCommand);
+            var validator = new UpdateSubscriberCommandValidator();
+            var result = validator.Validate(updateSubscriberCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LESS_THAN_ZERO));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LESS_THAN_ZERO));
         }
     }
 }

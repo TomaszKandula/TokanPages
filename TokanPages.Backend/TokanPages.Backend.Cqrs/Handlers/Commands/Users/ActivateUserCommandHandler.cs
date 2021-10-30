@@ -5,43 +5,38 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Microsoft.EntityFrameworkCore;
     using MediatR;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     
     public class ActivateUserCommandHandler : TemplateHandler<ActivateUserCommand, Unit>
     {
-        private readonly DatabaseContext FDatabaseContext;
-
-        private readonly IDateTimeService FDateTimeService;
-        
-        private readonly ILogger FLogger;
-        
-        public ActivateUserCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService, ILogger ALogger)
+        private readonly IDateTimeService _dateTimeService;
+       
+        public ActivateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+            IDateTimeService dateTimeService) : base(databaseContext, loggerService)
         {
-            FDatabaseContext = ADatabaseContext;
-            FDateTimeService = ADateTimeService;
-            FLogger = ALogger;
+            _dateTimeService = dateTimeService;
         }
 
-        public override async Task<Unit> Handle(ActivateUserCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(ActivateUserCommand request, CancellationToken cancellationToken)
         {
-            var LUser = await FDatabaseContext.Users
-                .SingleOrDefaultAsync(AUsers => AUsers.ActivationId == ARequest.ActivationId, ACancellationToken);
+            var users = await DatabaseContext.Users
+                .SingleOrDefaultAsync(users => users.ActivationId == request.ActivationId, cancellationToken);
 
-            if (LUser == null)
+            if (users == null)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_ACTIVATION_ID), ErrorCodes.INVALID_ACTIVATION_ID);
 
-            if (LUser.ActivationIdEnds < FDateTimeService.Now)
+            if (users.ActivationIdEnds < _dateTimeService.Now)
                 throw new BusinessException(nameof(ErrorCodes.EXPIRED_ACTIVATION_ID), ErrorCodes.EXPIRED_ACTIVATION_ID);
             
-            LUser.IsActivated = true;
-            LUser.ActivationId = null;
-            LUser.ActivationIdEnds = null;
+            users.IsActivated = true;
+            users.ActivationId = null;
+            users.ActivationIdEnds = null;
 
-            FLogger.LogInformation($"User account has been activated, user ID: {LUser.Id}");
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            LoggerService.LogInformation($"User account has been activated, user ID: {users.Id}");
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
 
             return await Task.FromResult(Unit.Value);
         }

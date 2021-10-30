@@ -4,14 +4,15 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using Xunit;
     using FluentAssertions;
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using Shared;
-    using System.Threading;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
+    using Domain.Entities;
     using Shared.Resources;
     using Cqrs.Handlers.Commands.Users;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     using MediatR;
 
     public class ActivateUserCommandHandlerTest : TestBase
@@ -20,125 +21,125 @@ namespace TokanPages.Backend.Tests.Handlers.Users
         public async Task GivenValidActivationId_WhenActivateUser_ShouldFinishSuccessful()
         {
             // Arrange
-            var LActivationId = Guid.NewGuid();
-            var LUsers = new TokanPages.Backend.Domain.Entities.Users
+            var activationId = Guid.NewGuid();
+            var users = new Users
             { 
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString().ToLower(),
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 Registered = DateTimeService.Now,
-                AvatarName = Constants.Defaults.AVATAR_NAME,
+                AvatarName = Constants.Defaults.AvatarName,
                 CryptedPassword = DataUtilityService.GetRandomString(),
-                ActivationId = LActivationId,
+                ActivationId = activationId,
                 ActivationIdEnds = DateTimeService.Now.AddMinutes(30)
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedLogger = new Mock<ILogger>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedLogger = new Mock<ILoggerService>();
 
-            LMockedDateTimeService
-                .SetupGet(AService => AService.Now)
+            mockedDateTimeService
+                .SetupGet(service => service.Now)
                 .Returns(DateTimeService.Now);
             
-            var LActivateUserCommand = new ActivateUserCommand { ActivationId = LActivationId };
-            var LActivateUserCommandHandler = new ActivateUserCommandHandler(
-                LDatabaseContext, 
-                LMockedDateTimeService.Object, 
-                LMockedLogger.Object);
+            var activateUserCommand = new ActivateUserCommand { ActivationId = activationId };
+            var activateUserCommandHandler = new ActivateUserCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedDateTimeService.Object);
 
             // Act
-            var LResult = await LActivateUserCommandHandler.Handle(LActivateUserCommand, CancellationToken.None);
+            var result = await activateUserCommandHandler.Handle(activateUserCommand, CancellationToken.None);
 
             // Assert
-            LResult.Should().Be(Unit.Value);
+            result.Should().Be(Unit.Value);
         }
 
         [Fact]
         public async Task GivenInvalidActivationId_WhenActivateUser_ShouldThrowError()
         {
             // Arrange
-            var LUsers = new TokanPages.Backend.Domain.Entities.Users
+            var users = new Users
             { 
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString().ToLower(),
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 Registered = DateTimeService.Now,
-                AvatarName = Constants.Defaults.AVATAR_NAME,
+                AvatarName = Constants.Defaults.AvatarName,
                 CryptedPassword = DataUtilityService.GetRandomString(),
                 ActivationId = Guid.NewGuid(),
                 ActivationIdEnds = DateTimeService.Now.AddMinutes(30)
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedLogger = new Mock<ILogger>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedLogger = new Mock<ILoggerService>();
 
-            LMockedDateTimeService
-                .SetupGet(AService => AService.Now)
+            mockedDateTimeService
+                .SetupGet(service => service.Now)
                 .Returns(DateTimeService.Now);
             
-            var LActivateUserCommand = new ActivateUserCommand { ActivationId = Guid.NewGuid() };
-            var LActivateUserCommandHandler = new ActivateUserCommandHandler(
-                LDatabaseContext, 
-                LMockedDateTimeService.Object, 
-                LMockedLogger.Object);
+            var activateUserCommand = new ActivateUserCommand { ActivationId = Guid.NewGuid() };
+            var activateUserCommandHandler = new ActivateUserCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedDateTimeService.Object);
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() 
-                => LActivateUserCommandHandler.Handle(LActivateUserCommand, CancellationToken.None));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_ACTIVATION_ID));
+            var result = await Assert.ThrowsAsync<BusinessException>(() 
+                => activateUserCommandHandler.Handle(activateUserCommand, CancellationToken.None));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_ACTIVATION_ID));
         }
         
         [Fact]
         public async Task GivenExpiredActivationId_WhenActivateUser_ShouldThrowError()
         {
             // Arrange
-            var LActivationId = Guid.NewGuid();
-            var LUsers = new TokanPages.Backend.Domain.Entities.Users
+            var activationId = Guid.NewGuid();
+            var users = new Users
             { 
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString().ToLower(),
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 Registered = DateTimeService.Now,
-                AvatarName = Constants.Defaults.AVATAR_NAME,
+                AvatarName = Constants.Defaults.AvatarName,
                 CryptedPassword = DataUtilityService.GetRandomString(),
-                ActivationId = LActivationId,
+                ActivationId = activationId,
                 ActivationIdEnds = DateTimeService.Now.AddMinutes(-100)
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedLogger = new Mock<ILogger>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedLogger = new Mock<ILoggerService>();
 
-            LMockedDateTimeService
-                .SetupGet(AService => AService.Now)
+            mockedDateTimeService
+                .SetupGet(service => service.Now)
                 .Returns(DateTimeService.Now);
             
-            var LActivateUserCommand = new ActivateUserCommand { ActivationId = LActivationId };
-            var LActivateUserCommandHandler = new ActivateUserCommandHandler(
-                LDatabaseContext, 
-                LMockedDateTimeService.Object, 
-                LMockedLogger.Object);
+            var activateUserCommand = new ActivateUserCommand { ActivationId = activationId };
+            var activateUserCommandHandler = new ActivateUserCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedDateTimeService.Object);
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() 
-                => LActivateUserCommandHandler.Handle(LActivateUserCommand, CancellationToken.None));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.EXPIRED_ACTIVATION_ID));
+            var result = await Assert.ThrowsAsync<BusinessException>(() 
+                => activateUserCommandHandler.Handle(activateUserCommand, CancellationToken.None));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.EXPIRED_ACTIVATION_ID));
         }
     }
 }

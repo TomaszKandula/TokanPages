@@ -11,35 +11,35 @@ namespace TokanPages.Backend.Tests.Validators.Users
         public void GivenEmailAddress_WhenResetUserPassword_ShouldFinishSuccessful()
         {
             // Arrange
-            var LResetUserPasswordCommand = new ResetUserPasswordCommand
+            var resetUserPasswordCommand = new ResetUserPasswordCommand
             {
                 EmailAddress = DataUtilityService.GetRandomEmail(),
             };
 
             // Act
-            var LResetUserPasswordCommandValidator = new ResetUserPasswordCommandValidator();
-            var LResults = LResetUserPasswordCommandValidator.Validate(LResetUserPasswordCommand);
+            var resetUserPasswordCommandValidator = new ResetUserPasswordCommandValidator();
+            var result = resetUserPasswordCommandValidator.Validate(resetUserPasswordCommand);
 
             // Assert
-            LResults.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenNoEmailAddress_WhenResetUserPassword_ShouldThrowError()
         {
             // Arrange
-            var LResetUserPasswordCommand = new ResetUserPasswordCommand
+            var resetUserPasswordCommand = new ResetUserPasswordCommand
             {
                 EmailAddress = string.Empty
             };
 
             // Act
-            var LResetUserPasswordCommandValidator = new ResetUserPasswordCommandValidator();
-            var LResults = LResetUserPasswordCommandValidator.Validate(LResetUserPasswordCommand);
+            var resetUserPasswordCommandValidator = new ResetUserPasswordCommandValidator();
+            var result = resetUserPasswordCommandValidator.Validate(resetUserPasswordCommand);
 
             // Assert
-            LResults.Errors.Count.Should().Be(1);
-            LResults.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
     }
 }

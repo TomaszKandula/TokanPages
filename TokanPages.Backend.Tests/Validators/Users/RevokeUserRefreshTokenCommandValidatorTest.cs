@@ -11,35 +11,35 @@ namespace TokanPages.Backend.Tests.Validators.Users
         public void GivenRefreshToken_WhenRevokeUserRefreshToken_ShouldFinishSuccessful()
         {
             // Arrange
-            var LRevokeUserRefreshTokenCommand = new RevokeUserRefreshTokenCommand
+            var revokeUserRefreshTokenCommand = new RevokeUserRefreshTokenCommand
             {
                 RefreshToken = DataUtilityService.GetRandomString(100)
             };
 
             // Act
-            var LRevokeUserRefreshTokenCommandValidator = new RevokeUserRefreshTokenCommandValidator();
-            var LResult = LRevokeUserRefreshTokenCommandValidator.Validate(LRevokeUserRefreshTokenCommand);
+            var revokeUserRefreshTokenCommandValidator = new RevokeUserRefreshTokenCommandValidator();
+            var result = revokeUserRefreshTokenCommandValidator.Validate(revokeUserRefreshTokenCommand);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenNoRefreshToken_WhenRevokeUserRefreshToken_ShouldThrowError()
         {
             // Arrange
-            var LRevokeUserRefreshTokenCommand = new RevokeUserRefreshTokenCommand
+            var revokeUserRefreshTokenCommand = new RevokeUserRefreshTokenCommand
             {
                 RefreshToken = string.Empty
             };
 
             // Act
-            var LRevokeUserRefreshTokenCommandValidator = new RevokeUserRefreshTokenCommandValidator();
-            var LResult = LRevokeUserRefreshTokenCommandValidator.Validate(LRevokeUserRefreshTokenCommand);
+            var revokeUserRefreshTokenCommandValidator = new RevokeUserRefreshTokenCommandValidator();
+            var result = revokeUserRefreshTokenCommandValidator.Validate(revokeUserRefreshTokenCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
     }
 }

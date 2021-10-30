@@ -3,22 +3,22 @@
     using System.Threading;
     using System.Threading.Tasks;
     using System.Diagnostics.CodeAnalysis;
-    using Logger;
+    using Utilities.LoggerService;
     using MediatR;
 
     [ExcludeFromCodeCoverage]
     public class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
-        private readonly ILogger FLogger;
+        private readonly ILoggerService _loggerService;
 
-        public LoggingBehaviour(ILogger ALogger) => FLogger = ALogger;
+        public LoggingBehaviour(ILoggerService loggerService) => _loggerService = loggerService;
 
-        public async Task<TResponse> Handle(TRequest ARequest, CancellationToken ACancellationToken, RequestHandlerDelegate<TResponse> ANext)
+        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            FLogger.LogInformation($"Begin: Handle {typeof(TRequest).Name}");
-            var LResponse = await ANext();
-            FLogger.LogInformation($"Finish: Handle {typeof(TResponse).Name}");
-            return LResponse;
+            _loggerService.LogInformation($"Begin: Handle {typeof(TRequest).Name}");
+            var response = await next();
+            _loggerService.LogInformation($"Finish: Handle {typeof(TResponse).Name}");
+            return response;
         }
     }
 }

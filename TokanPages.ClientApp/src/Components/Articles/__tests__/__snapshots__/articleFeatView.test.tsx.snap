@@ -119,7 +119,7 @@ exports[`Test articles group component: articleFeatView. Renders correctly '<Art
                   >
                     <WithStyles(ForwardRef(CardMedia))
                       className="makeStyles-media-3"
-                      image="https://.../image1.jpg"
+                      image="http://localhost:5000/api/v1/assets/?BlobName=images/sections/articles/image1.jpg"
                     />
                   </WithStyles(ForwardRef(Card))>
                 </WithStyles(ForwardRef(Grid))>
@@ -133,7 +133,7 @@ exports[`Test articles group component: articleFeatView. Renders correctly '<Art
                   >
                     <WithStyles(ForwardRef(CardMedia))
                       className="makeStyles-media-3"
-                      image="https://.../image2.jpg"
+                      image="http://localhost:5000/api/v1/assets/?BlobName=images/sections/articles/image2.jpg"
                     />
                   </WithStyles(ForwardRef(Card))>
                 </WithStyles(ForwardRef(Grid))>
@@ -147,7 +147,7 @@ exports[`Test articles group component: articleFeatView. Renders correctly '<Art
                   >
                     <WithStyles(ForwardRef(CardMedia))
                       className="makeStyles-media-3"
-                      image="https://.../image3.jpg"
+                      image="http://localhost:5000/api/v1/assets/?BlobName=images/sections/articles/image3.jpg"
                     />
                   </WithStyles(ForwardRef(Card))>
                 </WithStyles(ForwardRef(Grid))>
@@ -161,7 +161,7 @@ exports[`Test articles group component: articleFeatView. Renders correctly '<Art
                   >
                     <WithStyles(ForwardRef(CardMedia))
                       className="makeStyles-media-3"
-                      image="https://.../image4.jpg"
+                      image="http://localhost:5000/api/v1/assets/?BlobName=images/sections/articles/image4.jpg"
                     />
                   </WithStyles(ForwardRef(Card))>
                 </WithStyles(ForwardRef(Grid))>

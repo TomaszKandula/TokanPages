@@ -3,40 +3,48 @@
 
 TokanPages is the repository that holds my web page to share my programming interests (among others), primarily Microsoft technologies. I also plan album functionality and comment section under articles among article editor and user account capabilities.
 
+## CI/CD Pipelines
+
+[![Build & run tests (dev)](https://github.com/TomaszKandula/TokanPages/actions/workflows/dev_build_test.yml/badge.svg)](https://github.com/TomaszKandula/TokanPages/actions/workflows/dev_build_test.yml)
+
+[![Build, test and publish (stage)](https://github.com/TomaszKandula/TokanPages/actions/workflows/stage_build_test_publish.yml/badge.svg)](https://github.com/TomaszKandula/TokanPages/actions/workflows/stage_build_test_publish.yml)
+
+[![Build, test and publish (master)](https://github.com/TomaszKandula/TokanPages/actions/workflows/master_build_test_publish.yml/badge.svg)](https://github.com/TomaszKandula/TokanPages/actions/workflows/master_build_test_publish.yml)
+
 ## Project metrics
 ### Client-App
 
 <p>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-frontend&ametric=ncloc&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=ncloc&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-frontend&ametric=code_smells&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=code_smells&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-frontend&ametric=bugs&kill_cache=1">
-  </a>
-</p>
-<p>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-frontend&ametric=sqale_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-frontend&ametric=security_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-frontend&ametric=reliability_rating&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=bugs&kill_cache=1">
   </a>
 </p>
 <p>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-frontend&ametric=sqale_index&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=sqale_rating&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-frontend&ametric=duplicated_lines_density&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=security_rating&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-frontend&ametric=coverage&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=reliability_rating&kill_cache=1">
+  </a>
+</p>
+<p>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=sqale_index&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=duplicated_lines_density&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=coverage&kill_cache=1">
   </a>
 </p>
 
@@ -44,35 +52,35 @@ TokanPages is the repository that holds my web page to share my programming inte
 
 <p>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-backend&ametric=ncloc&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=ncloc&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-backend&ametric=code_smells&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=code_smells&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-backend&ametric=bugs&kill_cache=1">
-  </a>
-</p>
-<p>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-backend&ametric=sqale_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-backend&ametric=security_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-backend&ametric=reliability_rating&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=bugs&kill_cache=1">
   </a>
 </p>
 <p>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-backend&ametric=sqale_index&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=sqale_rating&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-backend&ametric=duplicated_lines_density&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=security_rating&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?aproject=tokanpages-backend&ametric=coverage&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=reliability_rating&kill_cache=1">
+  </a>
+</p>
+<p>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=sqale_index&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=duplicated_lines_density&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=coverage&kill_cache=1">
   </a>
 </p>
 
@@ -93,13 +101,11 @@ TokanPages is the repository that holds my web page to share my programming inte
 1. Semantic-Release.
 1. NGINX.
 
-The client app uses functional approach and React Hooks. 
-
-Tests are provided using JEST, but there is no full coverage yet.
+The client app uses React Hooks. Tests are provided using JEST, but there is no full coverage yet.
 
 Project is dockerized and deployed via GitHub Actions to Azure App Service (main domain) that uses Container Registry. Web Server of choice is NGINX.
 
-<img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/Metrics/Quality?AProject=tokanpages-frontend&kill_cache=1">
+<img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/Metrics/Quality?Project=tokanpages-frontend&kill_cache=1">
 
 ### Back-end
 
@@ -108,8 +114,6 @@ Project is dockerized and deployed via GitHub Actions to Azure App Service (main
 1. Azure Blob Storage.
 1. MediatR library.
 1. CQRS pattern with no event sourcing.
-1. MailKit.
-1. DnsClient.
 1. FluentValidation.
 1. Sentry.
 1. SeriLog.
@@ -120,7 +124,7 @@ Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAsse
 
 Project is dockerized and deployed via GitHub Actions to Azure App Service that uses Container Registry.
 
-<img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/Metrics/Quality?AProject=tokanpages-backend&kill_cache=1">
+<img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/Metrics/Quality?Project=tokanpages-backend&kill_cache=1">
 
 ## Project structure
 
@@ -145,7 +149,6 @@ _TokanPages.Backend_
 | Backend.Database | Database context |
 | Backend.Domain | Domain entities |
 | Backend.Shared | Shared models and resources |
-| Backend.SmtpClient | SmtpClient service |
 | Backend.Storage | Azure Storage service |
 
 _TokanPages.Backend.Tests_
@@ -184,7 +187,7 @@ Unit tests use SQLite in-memory database (a lightweight database that supports R
 ```csharp
 internal class DatabaseContextFactory
 {
-    private readonly DbContextOptionsBuilder<DatabaseContext> FDatabaseOptions =
+    private readonly DbContextOptionsBuilder<DatabaseContext> _databaseOptions =
         new DbContextOptionsBuilder<DatabaseContext>()
             .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
             .EnableSensitiveDataLogging()
@@ -192,10 +195,10 @@ internal class DatabaseContextFactory
 
     public DatabaseContext CreateDatabaseContext()
     {
-        var LDatabaseContext = new DatabaseContext(FDatabaseOptions.Options);
-        LDatabaseContext.Database.OpenConnection();
-        LDatabaseContext.Database.EnsureCreated();
-        return LDatabaseContext;
+        var databaseContext = new DatabaseContext(_databaseOptions.Options);
+        databaseContext.Database.OpenConnection();
+        databaseContext.Database.EnsureCreated();
+        return databaseContext;
     }
 }
 ```
@@ -205,26 +208,32 @@ Each test can easily access `CreateDatabaseContext()` method via `GetTestDatabas
 ```csharp
 public class TestBase
 {
-    private readonly DatabaseContextFactory FDatabaseContextFactory;
-
-    protected TestBase() 
+    protected IDataUtilityService DataUtilityService { get; }
+    protected IJwtUtilityService JwtUtilityService { get; }
+    protected IDateTimeService DateTimeService { get; }
+    private readonly DatabaseContextFactory _databaseContextFactory;
+        
+    protected TestBase()
     {
-        var LServices = new ServiceCollection();
+        DataUtilityService = new DataUtilityService();
+        JwtUtilityService = new JwtUtilityService();
+        DateTimeService = new DateTimeService();
 
-        LServices.AddSingleton<DatabaseContextFactory>();
-        LServices.AddScoped(AContext =>
+        var services = new ServiceCollection();
+        services.AddSingleton<DatabaseContextFactory>();
+        services.AddScoped(context =>
         {
-            var LFactory = AContext.GetService<DatabaseContextFactory>();
-            return LFactory?.CreateDatabaseContext();
+            var factory = context.GetService<DatabaseContextFactory>();
+            return factory?.CreateDatabaseContext();
         });
 
-        var LServiceScope = LServices.BuildServiceProvider(true).CreateScope();
-        var LServiceProvider = LServiceScope.ServiceProvider;
-        FDatabaseContextFactory = LServiceProvider.GetService<DatabaseContextFactory>();
+        var serviceScope = services.BuildServiceProvider(true).CreateScope();
+        var serviceProvider = serviceScope.ServiceProvider;
+        _databaseContextFactory = serviceProvider.GetService<DatabaseContextFactory>();
     }
 
-    protected DatabaseContext GetTestDatabaseContext()
-        =>  FDatabaseContextFactory.CreateDatabaseContext();
+    protected DatabaseContext GetTestDatabaseContext() 
+        => _databaseContextFactory.CreateDatabaseContext();
 }
 ```
 
@@ -235,24 +244,33 @@ Integration test uses SQL Server database either local or remote, accordingly to
 ```csharp
 public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<TTestStartup> where TTestStartup : class
 {
+    public string WebSecret { get; private set; }
+    public string Issuer { get; private set; }
+    public string Audience { get; private set; }
+        
     protected override IWebHostBuilder CreateWebHostBuilder()
     {
-        var LBuilder = WebHost.CreateDefaultBuilder()
-            .ConfigureAppConfiguration(AConfig =>
+        var builder = WebHost.CreateDefaultBuilder()
+            .ConfigureAppConfiguration(configurationBuilder =>
             {
-                var LStartupAssembly = typeof(TTestStartup).GetTypeInfo().Assembly;
-                var LTestConfig = new ConfigurationBuilder()
+                var startupAssembly = typeof(TTestStartup).GetTypeInfo().Assembly;
+                var testConfig = new ConfigurationBuilder()
                     .AddJsonFile("appsettings.Staging.json", optional: true, reloadOnChange: true)
-                    .AddUserSecrets(LStartupAssembly)
+                    .AddUserSecrets(startupAssembly)
                     .AddEnvironmentVariables()
                     .Build();
-              
-                AConfig.AddConfiguration(LTestConfig);
+                
+                configurationBuilder.AddConfiguration(testConfig);
+
+                var config = configurationBuilder.Build();
+                Issuer = config.GetValue<string>("IdentityServer:Issuer");
+                Audience = config.GetValue<string>("IdentityServer:Audience");
+                WebSecret = config.GetValue<string>("IdentityServer:WebSecret");
             })
             .UseStartup<TTestStartup>()
             .UseTestServer();
             
-        return LBuilder;
+        return builder;
     }
 }
 ```
@@ -272,22 +290,27 @@ The file `TemplateHandler.cs` presented below allow easy registration (mapping t
 ```csharp
 public abstract class TemplateHandler<TRequest, TResult> : IRequestHandler<TRequest, TResult> where TRequest : IRequest<TResult>
 {
-    protected TemplateHandler() { }
+    protected readonly DatabaseContext DatabaseContext;
+    protected readonly ILoggerService LoggerService;
 
-    public abstract Task<TResult> Handle(TRequest ARequest, CancellationToken ACancellationToken);
+    protected TemplateHandler(DatabaseContext databaseContext, ILoggerService loggerService)
+    {
+        DatabaseContext = databaseContext;
+        LoggerService = loggerService;
+    }
+
+    public abstract Task<TResult> Handle(TRequest request, CancellationToken cancellationToken);
 }
 ```
 
 To configure it, in `Dependencies.cs` (registered at startup), we invoke:
 
 ```csharp
-private static void SetupMediatR(IServiceCollection AServices) 
+private static void SetupMediatR(IServiceCollection services) 
 {
-    AServices.AddMediatR(AOption => AOption.AsScoped(), 
-        typeof(TemplateHandler<IRequest, Unit>).GetTypeInfo().Assembly);
-
-    AServices.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
-    AServices.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
+    services.AddMediatR(options => options.AsScoped(), typeof(TemplateHandler<IRequest, Unit>).GetTypeInfo().Assembly);
+    services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
+    services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
 }
 ```
 
@@ -296,12 +319,12 @@ The two additional lines register both `LoggingBehaviour` and `FluentValidationB
 `LoggingBehaviour.cs`:
 
 ```csharp
-public async Task<TResponse> Handle(TRequest ARequest, CancellationToken ACancellationToken, RequestHandlerDelegate<TResponse> ANext)
+public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
 {
-    FLogger.LogInfo($"Begin: Handle {typeof(TRequest).Name}");
-    var LResponse = await ANext();
-    FLogger.LogInfo($"Finish: Handle {typeof(TResponse).Name}");
-    return LResponse;
+    _loggerService.LogInformation($"Begin: Handle {typeof(TRequest).Name}");
+    var response = await next();
+    _loggerService.LogInformation($"Finish: Handle {typeof(TResponse).Name}");
+    return response;
 }
 ```
 
@@ -310,17 +333,17 @@ Logging is part of the middleware pipeline, and as said, we log info before and 
 `FluentValidationBehavior.cs`:
 
 ```csharp
-public Task<TResponse> Handle(TRequest ARequest, CancellationToken ACancellationToken, RequestHandlerDelegate<TResponse> ANext)
+public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
 {
-    if (FValidator == null) return ANext();
+    if (_validator == null) return next();
 
-    var LValidationContext = new ValidationContext<TRequest>(ARequest);
-    var LValidationResults = FValidator.Validate(LValidationContext);
+    var validationContext = new ValidationContext<TRequest>(request);
+    var validationResults = _validator.Validate(validationContext);
 
-    if (!LValidationResults.IsValid)
-        throw new ValidationException(LValidationResults);
+    if (!validationResults.IsValid)
+        throw new Exceptions.ValidationException(validationResults);
 
-    return ANext();
+    return next();
 }
 ```
 
@@ -330,8 +353,8 @@ Such setup allow to have very thin controllers, example endpoint:
 
 ```csharp
 [HttpGet]
-public async Task<IEnumerable<GetAllArticlesQueryResult>> GetAllArticles([FromQuery] bool AIsPublished = true) 
-    => await FMediator.Send(new GetAllArticlesQuery { IsPublished = AIsPublished });
+public async Task<IEnumerable<GetAllArticlesQueryResult>> GetAllArticles([FromQuery] bool isPublished = true) 
+    => await Mediator.Send(new GetAllArticlesQuery { IsPublished = isPublished });
 ```
 
 When we call `GetAllArticles` endpoint, it sends `GetAllArticlesQuery` request with given parameters. The appropriate handler is `GetAllArticlesQueryHandler`:
@@ -339,30 +362,27 @@ When we call `GetAllArticles` endpoint, it sends `GetAllArticlesQuery` request w
 ```csharp
 public class GetAllArticlesQueryHandler : TemplateHandler<GetAllArticlesQuery, IEnumerable<GetAllArticlesQueryResult>>
 {
-    private readonly DatabaseContext FDatabaseContext;
+    public GetAllArticlesQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
-    public GetAllArticlesQueryHandler(DatabaseContext ADatabaseContext) 
-        => FDatabaseContext = ADatabaseContext;
-
-    public override async Task<IEnumerable<GetAllArticlesQueryResult>> Handle(GetAllArticlesQuery ARequest, CancellationToken ACancellationToken) 
+    public override async Task<IEnumerable<GetAllArticlesQueryResult>> Handle(GetAllArticlesQuery request, CancellationToken cancellationToken) 
     {
-        var LArticles = await FDatabaseContext.Articles
+        var articles = await DatabaseContext.Articles
             .AsNoTracking()
-            .Where(AArticles => AArticles.IsPublished == ARequest.IsPublished)
-            .Select(AFields => new GetAllArticlesQueryResult 
+            .Where(articles => articles.IsPublished == request.IsPublished)
+            .Select(articles => new GetAllArticlesQueryResult 
             { 
-                Id = AFields.Id,
-                Title = AFields.Title,
-                Description = AFields.Description,
-                IsPublished = AFields.IsPublished,
-                ReadCount = AFields.ReadCount,
-                CreatedAt = AFields.CreatedAt,
-                UpdatedAt = AFields.UpdatedAt
+                Id = articles.Id,
+                Title = articles.Title,
+                Description = articles.Description,
+                IsPublished = articles.IsPublished,
+                ReadCount = articles.ReadCount,
+                CreatedAt = articles.CreatedAt,
+                UpdatedAt = articles.UpdatedAt
             })
-            .OrderByDescending(AArticles => AArticles.CreatedAt)
-            .ToListAsync(ACancellationToken);
+            .OrderByDescending(articles => articles.CreatedAt)
+            .ToListAsync(cancellationToken);
 
-        return LArticles; 
+        return articles; 
     }
 }
 ```
@@ -372,7 +392,7 @@ public class GetAllArticlesQueryHandler : TemplateHandler<GetAllArticlesQuery, I
 After adding custom exception handler to the middleware pipeline:
 
 ```csharp
-AApplication.UseExceptionHandler(ExceptionHandler.Handle);
+builder.UseExceptionHandler(ExceptionHandler.Handle);
 ```
 
 It will catch exceptions and sets HTTP status: bad request (400) or internal server error (500). Thus, if we throw an error (business or validation) manually in the handler, the response is appropriately set up.
@@ -380,41 +400,41 @@ It will catch exceptions and sets HTTP status: bad request (400) or internal ser
 ```csharp
 public class CustomException
 {
-    private readonly RequestDelegate FRequestDelegate;
+    private readonly RequestDelegate _requestDelegate;
         
-    public CustomException(RequestDelegate ARequestDelegate) 
-        => FRequestDelegate = ARequestDelegate;
+    public CustomException(RequestDelegate requestDelegate) 
+        => _requestDelegate = requestDelegate;
         
-    public async Task Invoke(HttpContext AHttpContext)
+    public async Task Invoke(HttpContext httpContext)
     {
         try
         {
-            await FRequestDelegate.Invoke(AHttpContext);
+            await _requestDelegate.Invoke(httpContext);
         }
-        catch (ValidationException LValidationException)
+        catch (ValidationException validationException)
         {
-            var LApplicationError = new ApplicationError(LValidationException.ErrorCode, LValidationException.Message, LValidationException.ValidationResult);
-            await WriteErrorResponse(AHttpContext, LApplicationError, HttpStatusCode.BadRequest).ConfigureAwait(false);
+            var applicationError = new ApplicationError(validationException.ErrorCode, validationException.Message, validationException.ValidationResult);
+            await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.BadRequest).ConfigureAwait(false);
         }
-        catch (BusinessException LBusinessException)
+        catch (BusinessException businessException)
         {
-            var LApplicationError = new ApplicationError(LBusinessException.ErrorCode, LBusinessException.Message);
-            await WriteErrorResponse(AHttpContext, LApplicationError, HttpStatusCode.BadRequest).ConfigureAwait(false);
+            var applicationError = new ApplicationError(businessException.ErrorCode, businessException.Message);
+            await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.BadRequest).ConfigureAwait(false);
         }
-        catch (Exception LException)
+        catch (Exception exception)
         {
-            var LApplicationError = new ApplicationError(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED, LException.Message);
-            await WriteErrorResponse(AHttpContext, LApplicationError, HttpStatusCode.InternalServerError).ConfigureAwait(false);
+            var applicationError = new ApplicationError(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED, exception.Message);
+            await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.InternalServerError).ConfigureAwait(false);
         }
     }
 
-    private static Task WriteErrorResponse(HttpContext AHttpContext, ApplicationError AApplicationError, HttpStatusCode AStatusCode)
+    private static Task WriteErrorResponse(HttpContext httpContext, ApplicationError applicationError, HttpStatusCode statusCode)
     {
-        var LResult = JsonSerializer.Serialize(AApplicationError);
-        AHttpContext.Response.ContentType = "application/json";
-        AHttpContext.Response.StatusCode = (int)AStatusCode;
-        CorsHeaders.Ensure(AHttpContext);
-        return AHttpContext.Response.WriteAsync(LResult);
+        var result = JsonSerializer.Serialize(applicationError);
+        httpContext.Response.ContentType = "application/json";
+        httpContext.Response.StatusCode = (int)statusCode;
+        CorsHeaders.Ensure(httpContext);
+        return httpContext.Response.WriteAsync(result);
     }
 }
 ```
@@ -424,22 +444,19 @@ Please note that handlers usually contains manual business exceptions while havi
 ```csharp
 public class RemoveArticleCommandHandler : TemplateHandler<RemoveArticleCommand, Unit>
 {
-    private readonly DatabaseContext FDatabaseContext;
+    public RemoveArticleCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
-    public RemoveArticleCommandHandler(DatabaseContext ADatabaseContext) 
-        => FDatabaseContext = ADatabaseContext;
-
-    public override async Task<Unit> Handle(RemoveArticleCommand ARequest, CancellationToken ACancellationToken) 
+    public override async Task<Unit> Handle(RemoveArticleCommand request, CancellationToken cancellationToken) 
     {
-        var LCurrentArticle = await FDatabaseContext.Articles
-            .Where(AArticles => AArticles.Id == ARequest.Id)
-            .ToListAsync(ACancellationToken);
+        var currentArticle = await DatabaseContext.Articles
+            .Where(articles => articles.Id == request.Id)
+            .ToListAsync(cancellationToken);
 
-        if (!LCurrentArticle.Any())
+        if (!currentArticle.Any())
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-        FDatabaseContext.Articles.Remove(LCurrentArticle.Single());
-        await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+        DatabaseContext.Articles.Remove(currentArticle.Single());
+        await DatabaseContext.SaveChangesAsync(cancellationToken);
         return await Task.FromResult(Unit.Value);
     }
 }
@@ -483,7 +500,6 @@ BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
 ALLOWED_ORIGINS="http://localnode:5000/;"
 APP_FRONTEND="http://localhost:3000"
 APP_BACKEND="http://localhost:5000"
-APP_STORAGE="https://maindbstorage.blob.core.windows.net/tokanpages"
 APP_SENTRY="<dsn>"
 SONAR_TOKEN="<token>"
 SONAR_KEY="<key>"
@@ -494,7 +510,6 @@ docker build . \
   --build-arg "APP_DATE_TIME=$BUILD_TIMESTAMP" \
   --build-arg "APP_FRONTEND=$APP_FRONTEND" \
   --build-arg "APP_BACKEND=$APP_BACKEND" \
-  --build-arg "APP_STORAGE=$APP_STORAGE" \
   --build-arg "APP_SENTRY=$APP_SENTRY" \
   --build-arg "ALLOWED_ORIGINS=$ALLOWED_ORIGINS" \
   --build-arg "SONAR_TOKEN=$SONAR_TOKEN" \
@@ -526,7 +541,6 @@ ARG APP_VERSION
 ARG APP_DATE_TIME
 ARG APP_FRONTEND
 ARG APP_BACKEND
-ARG APP_STORAGE
 ARG APP_SENTRY
 ARG SONAR_TOKEN
 ARG SONAR_KEY
@@ -536,7 +550,6 @@ ENV REACT_APP_VERSION_NUMBER=${APP_VERSION}
 ENV REACT_APP_VERSION_DATE_TIME=${APP_DATE_TIME}
 ENV REACT_APP_FRONTEND=${APP_FRONTEND}
 ENV REACT_APP_BACKEND=${APP_BACKEND}
-ENV REACT_APP_STORAGE=${APP_STORAGE}
 ENV REACT_APP_SENTRY=${APP_SENTRY}
 
 RUN if [ !-z $SONAR_TOKEN ] || [ !-z $SONAR_KEY ] || [ !-z $SONAR_HOST ]; \

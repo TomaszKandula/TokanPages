@@ -1,0 +1,75 @@
+namespace TokanPages.WebApi.Tests.ContentController
+{
+    using Xunit;
+    using Newtonsoft.Json;
+    using FluentAssertions;
+    using System.Net;
+    using System.Threading.Tasks;
+    using Backend.Shared.Resources;
+    using Backend.Cqrs.Handlers.Queries.Content;
+
+    public partial class ContentControllerTest
+    {
+        [Fact]
+        public async Task GivenComponentNameAndType_WhenGetContent_ShouldSucceed()
+        {
+            // Arrange
+            const string componentName = "activateAccount";
+            const string componentType = "component";
+            
+            var request = $"{ApiBaseUrl}/GetContent/?Name={componentName}&Type={componentType}";
+            var httpClient = _webApplicationFactory.CreateClient();
+
+            // Act
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
+
+            // Assert
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+
+            var deserialized = JsonConvert.DeserializeObject<GetContentQueryResult>(content);
+            deserialized.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task GivenInvalidComponentNameAndValidType_WhenGetContent_ShouldReturnBadRequest()
+        {
+            // Arrange
+            var componentName = DataUtilityService.GetRandomString(10, "", true);
+            const string componentType = "component";
+            
+            var request = $"{ApiBaseUrl}/GetContent/?Name={componentName}&Type={componentType}";
+            var httpClient = _webApplicationFactory.CreateClient();
+
+            // Act
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
+
+            // Assert
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Contain(ErrorCodes.COMPONENT_NOT_FOUND);
+        }
+
+        [Fact]
+        public async Task GivenValidComponentNameAndInvalidType_WhenGetContent_ShouldReturnBadRequest()
+        {
+            // Arrange
+            const string componentName = "activateAccount";
+            var componentType = DataUtilityService.GetRandomString(6, "", true);
+            
+            var request = $"{ApiBaseUrl}/GetContent/?Name={componentName}&Type={componentType}";
+            var httpClient = _webApplicationFactory.CreateClient();
+
+            // Act
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
+
+            // Assert
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Contain(ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED);
+        }
+    }
+}

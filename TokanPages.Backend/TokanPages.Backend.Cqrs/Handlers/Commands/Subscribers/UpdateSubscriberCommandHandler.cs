@@ -5,48 +5,47 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
-    using Shared.Services.DateTimeService;
+    using Core.Utilities.DateTimeService;
     using MediatR;
 
     public class UpdateSubscriberCommandHandler : TemplateHandler<UpdateSubscriberCommand, Unit>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly IDateTimeService _dateTimeService;
         
-        private readonly IDateTimeService FDateTimeService;
-        
-        public UpdateSubscriberCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService) 
+        public UpdateSubscriberCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+            IDateTimeService dateTimeService) : base(databaseContext, loggerService)
         {
-            FDatabaseContext = ADatabaseContext;
-            FDateTimeService = ADateTimeService;
+            _dateTimeService = dateTimeService;
         }
 
-        public override async Task<Unit> Handle(UpdateSubscriberCommand ARequest, CancellationToken ACancellationToken) 
+        public override async Task<Unit> Handle(UpdateSubscriberCommand request, CancellationToken cancellationToken) 
         {
-            var LSubscribers = await FDatabaseContext.Subscribers
-                .Where(ASubscribers => ASubscribers.Id == ARequest.Id)
-                .ToListAsync(ACancellationToken);
+            var subscribersList = await DatabaseContext.Subscribers
+                .Where(subscribers => subscribers.Id == request.Id)
+                .ToListAsync(cancellationToken);
 
-            if (!LSubscribers.Any()) 
+            if (!subscribersList.Any()) 
                 throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
 
-            var LEmailCollection = await FDatabaseContext.Subscribers
+            var emailCollection = await DatabaseContext.Subscribers
                 .AsNoTracking()
-                .Where(AUsers => AUsers.Email == ARequest.Email)
-                .ToListAsync(ACancellationToken);
+                .Where(subscribers => subscribers.Email == request.Email)
+                .ToListAsync(cancellationToken);
 
-            if (LEmailCollection.Count == 1)
+            if (emailCollection.Count == 1)
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-            var LCurrentSubscriber = LSubscribers.First();
+            var currentSubscriber = subscribersList.First();
 
-            LCurrentSubscriber.Email = ARequest.Email;
-            LCurrentSubscriber.Count = ARequest.Count ?? LCurrentSubscriber.Count;
-            LCurrentSubscriber.IsActivated = ARequest.IsActivated ?? LCurrentSubscriber.IsActivated;
-            LCurrentSubscriber.LastUpdated = FDateTimeService.Now;
+            currentSubscriber.Email = request.Email;
+            currentSubscriber.Count = request.Count ?? currentSubscriber.Count;
+            currentSubscriber.IsActivated = request.IsActivated ?? currentSubscriber.IsActivated;
+            currentSubscriber.LastUpdated = _dateTimeService.Now;
 
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
         }
     }

@@ -1,12 +1,15 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Articles
 {
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
+    using Domain.Entities;
     using Cqrs.Handlers.Commands.Articles;
-    using FluentAssertions;
-    using Xunit;
 
     public class RemoveArticleCommandHandlerTest : TestBase
     {
@@ -14,12 +17,12 @@
         public async Task GivenCorrectId_WhenRemoveArticle_ShouldRemoveEntity() 
         {
             // Arrange
-            var LRemoveArticleCommand = new RemoveArticleCommand
+            var removeArticleCommand = new RemoveArticleCommand
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")
             };
 
-            var LUsers = new TokanPages.Backend.Domain.Entities.Users
+            var users = new Users
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -32,11 +35,11 @@
                 CryptedPassword = DataUtilityService.GetRandomString()
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LArticles = new TokanPages.Backend.Domain.Entities.Articles
+            var articles = new Articles
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
                 Title = DataUtilityService.GetRandomString(),
@@ -45,33 +48,34 @@
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null,
-                UserId = LUsers.Id
+                UserId = users.Id
             };
             
-            await LDatabaseContext.Articles.AddAsync(LArticles);
-            await LDatabaseContext.SaveChangesAsync();
-
-            var LRemoveArticleCommandHandler = new RemoveArticleCommandHandler(LDatabaseContext);
+            await databaseContext.Articles.AddAsync(articles);
+            await databaseContext.SaveChangesAsync();
+            
+            var mockedLogger = new Mock<ILoggerService>();
+            var removeArticleCommandHandler = new RemoveArticleCommandHandler(databaseContext, mockedLogger.Object);
 
             // Act 
-            await LRemoveArticleCommandHandler.Handle(LRemoveArticleCommand, CancellationToken.None);
+            await removeArticleCommandHandler.Handle(removeArticleCommand, CancellationToken.None);
 
             // Assert
-            var LAssertDbContext = GetTestDatabaseContext();
-            var LArticlesEntity = await LAssertDbContext.Articles.FindAsync(LRemoveArticleCommand.Id);
-            LArticlesEntity.Should().BeNull();
+            var assertDbContext = GetTestDatabaseContext();
+            var articlesEntity = await assertDbContext.Articles.FindAsync(removeArticleCommand.Id);
+            articlesEntity.Should().BeNull();
         }
 
         [Fact]
         public async Task GivenIncorrectId_WhenRemoveArticle_ShouldThrowError()
         {
             // Arrange
-            var LRemoveArticleCommand = new RemoveArticleCommand
+            var removeArticleCommand = new RemoveArticleCommand
             {
                 Id = Guid.Parse("84e85026-aca9-4709-b9b3-86f2d1300575")
             };
 
-            var LUsers = new TokanPages.Backend.Domain.Entities.Users
+            var users = new Users
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -84,11 +88,11 @@
                 CryptedPassword = DataUtilityService.GetRandomString()
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LArticles = new TokanPages.Backend.Domain.Entities.Articles
+            var articles = new Articles
             {
                 Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
                 Title = DataUtilityService.GetRandomString(),
@@ -97,18 +101,19 @@
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null,
-                UserId = LUsers.Id
+                UserId = users.Id
             };
             
-            await LDatabaseContext.Articles.AddAsync(LArticles);
-            await LDatabaseContext.SaveChangesAsync();
+            await databaseContext.Articles.AddAsync(articles);
+            await databaseContext.SaveChangesAsync();
 
-            var LRemoveArticleCommandHandler = new RemoveArticleCommandHandler(LDatabaseContext);
+            var mockedLogger = new Mock<ILoggerService>();
+            var removeArticleCommandHandler = new RemoveArticleCommandHandler(databaseContext, mockedLogger.Object);
 
             // Act
             // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
-                => LRemoveArticleCommandHandler.Handle(LRemoveArticleCommand, CancellationToken.None));
+                => removeArticleCommandHandler.Handle(removeArticleCommand, CancellationToken.None));
         }
     }
 }

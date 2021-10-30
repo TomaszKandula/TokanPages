@@ -54,7 +54,9 @@
         public ICollection<Articles> Articles { get; set; } = new HashSet<Articles>();
 
         public ICollection<ArticleLikes> ArticleLikes { get; set; } = new HashSet<ArticleLikes>();
-        
+
+        public ICollection<ArticleCounts> ArticleCounts { get; set; } = new HashSet<ArticleCounts>();
+
         public ICollection<Photos> Photos { get; set; } = new HashSet<Photos>();
         
         public ICollection<Albums> Albums { get; set; } = new HashSet<Albums>();
@@ -62,6 +64,8 @@
         public ICollection<UserPermissions> UserPermissions { get; set; } = new HashSet<UserPermissions>();
 
         public ICollection<UserRoles> UserRoles { get; set; } = new HashSet<UserRoles>();
+
+        public ICollection<UserTokens> UserTokens { get; set; } = new HashSet<UserTokens>();
 
         public ICollection<UserRefreshTokens> UserRefreshTokens { get; set; } = new HashSet<UserRefreshTokens>();
     }

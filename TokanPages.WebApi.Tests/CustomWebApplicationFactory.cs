@@ -19,27 +19,27 @@
         
         protected override IWebHostBuilder CreateWebHostBuilder()
         {
-            var LBuilder = WebHost.CreateDefaultBuilder()
-                .ConfigureAppConfiguration(AConfig =>
+            var builder = WebHost.CreateDefaultBuilder()
+                .ConfigureAppConfiguration(configurationBuilder =>
                 {
-                    var LStartupAssembly = typeof(TTestStartup).GetTypeInfo().Assembly;
-                    var LTestConfig = new ConfigurationBuilder()
+                    var startupAssembly = typeof(TTestStartup).GetTypeInfo().Assembly;
+                    var testConfig = new ConfigurationBuilder()
                         .AddJsonFile("appsettings.Staging.json", optional: true, reloadOnChange: true)
-                        .AddUserSecrets(LStartupAssembly)
+                        .AddUserSecrets(startupAssembly)
                         .AddEnvironmentVariables()
                         .Build();
                 
-                    AConfig.AddConfiguration(LTestConfig);
+                    configurationBuilder.AddConfiguration(testConfig);
 
-                    var LConfig = AConfig.Build();
-                    Issuer = LConfig.GetValue<string>("IdentityServer:Issuer");
-                    Audience = LConfig.GetValue<string>("IdentityServer:Audience");
-                    WebSecret = LConfig.GetValue<string>("IdentityServer:WebSecret");
+                    var config = configurationBuilder.Build();
+                    Issuer = config.GetValue<string>("IdentityServer:Issuer");
+                    Audience = config.GetValue<string>("IdentityServer:Audience");
+                    WebSecret = config.GetValue<string>("IdentityServer:WebSecret");
                 })
                 .UseStartup<TTestStartup>()
                 .UseTestServer();
             
-            return LBuilder;
+            return builder;
         }
     }
 }
