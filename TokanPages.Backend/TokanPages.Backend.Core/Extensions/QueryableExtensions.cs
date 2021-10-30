@@ -8,19 +8,19 @@
     [ExcludeFromCodeCoverage]
     public static class QueryableExtensions
     {
-        public static IQueryable<T> WhereIf<T>(this IQueryable<T> ASet, bool ACondition, 
-            Expression<Func<T, bool>> AFunc)
-            => ACondition ? ASet.Where(AFunc) : ASet;
+        public static IQueryable<T> WhereIf<T>(this IQueryable<T> set, bool condition, 
+            Expression<Func<T, bool>> func)
+            => condition ? set.Where(func) : set;
 
-        public static IQueryable<T> WhereIfElse<T>(this IQueryable<T> ASet, bool ACondition, 
-            Expression<Func<T, bool>> AIfFunc, Expression<Func<T, bool>> AElseFunc)
-            => ASet.Where(ACondition ? AIfFunc : AElseFunc);
+        public static IQueryable<T> WhereIfElse<T>(this IQueryable<T> set, bool condition, 
+            Expression<Func<T, bool>> ifFunc, Expression<Func<T, bool>> elseFunc)
+            => set.Where(condition ? ifFunc : elseFunc);
 
-        public static Expression<Func<T, bool>> Not<T>(this Expression<Func<T, bool>> AExpression)
+        public static Expression<Func<T, bool>> Not<T>(this Expression<Func<T, bool>> expression)
         {
-            var LCandidateExpr = AExpression.Parameters[0];
-            var LBody = Expression.Not(AExpression.Body);
-            return Expression.Lambda<Func<T, bool>>(LBody, LCandidateExpr);
+            var candidateExpr = expression.Parameters[0];
+            var body = Expression.Not(expression.Body);
+            return Expression.Lambda<Func<T, bool>>(body, candidateExpr);
         }
     }
 }

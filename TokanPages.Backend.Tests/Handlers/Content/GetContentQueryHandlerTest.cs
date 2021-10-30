@@ -11,6 +11,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
     using System.Collections.Generic;
+    using Core.Utilities.LoggerService;
     using Storage.Models;
     using Core.Exceptions;
     using Shared.Resources;
@@ -27,338 +28,362 @@ namespace TokanPages.Backend.Tests.Handlers.Content
         public async Task GivenValidComponentNameAndType_WhenGetContent_ShouldSucceed()
         {
             // Arrange
-            var LGetContentQuery = new GetContentQuery
+            var getContentQuery = new GetContentQuery
             {
                 Name = "activateAccount",
                 Type = "component"
             };
 
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var LMockedJsonSerializer = new Mock<IJsonSerializer>();
-            var LMockedAzureStorage = new Mock<AzureStorage>();
+            var databaseContext = GetTestDatabaseContext();
+            var mockedLogger = new Mock<ILoggerService>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedJsonSerializer = new Mock<IJsonSerializer>();
+            var mockedAzureStorage = new Mock<AzureStorage>();
 
-            var LContent = await new StringContent(DataUtilityService.GetRandomString()).ReadAsByteArrayAsync();
-            var LContentType = MediaTypeHeaderValue.Parse("application/json");
-            var LContentResult = new Results
+            var content = await new StringContent(DataUtilityService.GetRandomString()).ReadAsByteArrayAsync();
+            var contentType = MediaTypeHeaderValue.Parse("application/json");
+            var contentResult = new Results
             {
                 StatusCode = HttpStatusCode.OK,
-                ContentType = LContentType,
-                Content = LContent
+                ContentType = contentType,
+                Content = content
             };
 
-            var LTestObject = GetActivateAccountContent();
-            var LActivateAccountObject = new ValidActivateAccountObject { ActivateAccount = LTestObject };
-            var LTestJObject = JObject.FromObject(LActivateAccountObject);
+            var testObject = GetActivateAccountContent();
+            var activateAccountObject = new ValidActivateAccountObject { ActivateAccount = testObject };
+            var testJObject = JObject.FromObject(activateAccountObject);
 
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(
                     It.IsAny<Configuration>(), 
                     It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LContentResult);
+                .ReturnsAsync(contentResult);
 
-            LMockedJsonSerializer
-                .Setup(ASerializer => ASerializer.Parse(It.IsAny<string>()))
-                .Returns(LTestJObject);
+            mockedJsonSerializer
+                .Setup(serializer => serializer.Parse(It.IsAny<string>()))
+                .Returns(testJObject);
 
-            LMockedJsonSerializer
-                .Setup(ASerializer => ASerializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
-                .Returns(LTestObject);
+            mockedJsonSerializer
+                .Setup(serializer => serializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
+                .Returns(testObject);
 
-            var LGetContentQueryHandler = new GetContentQueryHandler(
-                LMockedCustomHttpClient.Object,
-                LMockedJsonSerializer.Object,
-                LMockedAzureStorage.Object);
+            var getContentQueryHandler = new GetContentQueryHandler(
+                databaseContext,
+                mockedLogger.Object,
+                mockedCustomHttpClient.Object,
+                mockedJsonSerializer.Object,
+                mockedAzureStorage.Object);
 
             // Act
-            var LResult = await LGetContentQueryHandler.Handle(LGetContentQuery, CancellationToken.None);
+            var result = await getContentQueryHandler.Handle(getContentQuery, CancellationToken.None);
 
             // Assert
-            LResult.ContentName.Should().Be("activateAccount");
-            LResult.ContentType.Should().Be("component");
+            result.ContentName.Should().Be("activateAccount");
+            result.ContentType.Should().Be("component");
 
-            var LActivateAccountDto = LResult.Content as ActivateAccountDto;
-            LActivateAccountDto.Should().NotBeNull();
+            var activateAccountDto = result.Content as ActivateAccountDto;
+            activateAccountDto.Should().NotBeNull();
             
-            LActivateAccountDto?.OnProcessing.Type.Should().Be(LTestObject[0].OnProcessing.Type);
-            LActivateAccountDto?.OnProcessing.Caption.Should().Be(LTestObject[0].OnProcessing.Caption);
-            LActivateAccountDto?.OnProcessing.Text1.Should().Be(LTestObject[0].OnProcessing.Text1);
-            LActivateAccountDto?.OnProcessing.Text2.Should().Be(LTestObject[0].OnProcessing.Text2);
-            LActivateAccountDto?.OnProcessing.Button.Should().Be(LTestObject[0].OnProcessing.Button);
+            activateAccountDto?.OnProcessing.Type.Should().Be(testObject[0].OnProcessing.Type);
+            activateAccountDto?.OnProcessing.Caption.Should().Be(testObject[0].OnProcessing.Caption);
+            activateAccountDto?.OnProcessing.Text1.Should().Be(testObject[0].OnProcessing.Text1);
+            activateAccountDto?.OnProcessing.Text2.Should().Be(testObject[0].OnProcessing.Text2);
+            activateAccountDto?.OnProcessing.Button.Should().Be(testObject[0].OnProcessing.Button);
 
-            LActivateAccountDto?.OnSuccess.Type.Should().Be(LTestObject[0].OnSuccess.Type);
-            LActivateAccountDto?.OnSuccess.Caption.Should().Be(LTestObject[0].OnSuccess.Caption);
-            LActivateAccountDto?.OnSuccess.Text1.Should().Be(LTestObject[0].OnSuccess.Text1);
-            LActivateAccountDto?.OnSuccess.Text2.Should().Be(LTestObject[0].OnSuccess.Text2);
-            LActivateAccountDto?.OnSuccess.Button.Should().Be(LTestObject[0].OnSuccess.Button);
+            activateAccountDto?.OnSuccess.Type.Should().Be(testObject[0].OnSuccess.Type);
+            activateAccountDto?.OnSuccess.Caption.Should().Be(testObject[0].OnSuccess.Caption);
+            activateAccountDto?.OnSuccess.Text1.Should().Be(testObject[0].OnSuccess.Text1);
+            activateAccountDto?.OnSuccess.Text2.Should().Be(testObject[0].OnSuccess.Text2);
+            activateAccountDto?.OnSuccess.Button.Should().Be(testObject[0].OnSuccess.Button);
 
-            LActivateAccountDto?.OnError.Type.Should().Be(LTestObject[0].OnError.Type);
-            LActivateAccountDto?.OnError.Caption.Should().Be(LTestObject[0].OnError.Caption);
-            LActivateAccountDto?.OnError.Text1.Should().Be(LTestObject[0].OnError.Text1);
-            LActivateAccountDto?.OnError.Text2.Should().Be(LTestObject[0].OnError.Text2);
-            LActivateAccountDto?.OnError.Button.Should().Be(LTestObject[0].OnError.Button);
+            activateAccountDto?.OnError.Type.Should().Be(testObject[0].OnError.Type);
+            activateAccountDto?.OnError.Caption.Should().Be(testObject[0].OnError.Caption);
+            activateAccountDto?.OnError.Text1.Should().Be(testObject[0].OnError.Text1);
+            activateAccountDto?.OnError.Text2.Should().Be(testObject[0].OnError.Text2);
+            activateAccountDto?.OnError.Button.Should().Be(testObject[0].OnError.Button);
         }
 
         [Fact]
         public async Task GivenValidComponentNameAndTypeAndNonExistingLanguage_WhenGetContent_ShouldReturnNoContent()
         {
             // Arrange
-            var LGetContentQuery = new GetContentQuery
+            var getContentQuery = new GetContentQuery
             {
                 Name = "activateAccount",
                 Type = "component",
                 Language = "pl" 
             };
 
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var LMockedJsonSerializer = new Mock<IJsonSerializer>();
-            var LMockedAzureStorage = new Mock<AzureStorage>();
+            var databaseContext = GetTestDatabaseContext();
+            var mockedLogger = new Mock<ILoggerService>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedJsonSerializer = new Mock<IJsonSerializer>();
+            var mockedAzureStorage = new Mock<AzureStorage>();
 
-            var LContent = await new StringContent(DataUtilityService.GetRandomString()).ReadAsByteArrayAsync();
-            var LContentType = MediaTypeHeaderValue.Parse("application/json");
-            var LContentResult = new Results
+            var content = await new StringContent(DataUtilityService.GetRandomString()).ReadAsByteArrayAsync();
+            var contentType = MediaTypeHeaderValue.Parse("application/json");
+            var contentResult = new Results
             {
                 StatusCode = HttpStatusCode.OK,
-                ContentType = LContentType,
-                Content = LContent
+                ContentType = contentType,
+                Content = content
             };
 
-            var LTestObject = GetActivateAccountContent();
-            var LActivateAccountObject = new ValidActivateAccountObject { ActivateAccount = LTestObject };
-            var LTestJObject = JObject.FromObject(LActivateAccountObject);
+            var testObject = GetActivateAccountContent();
+            var activateAccountObject = new ValidActivateAccountObject { ActivateAccount = testObject };
+            var testJObject = JObject.FromObject(activateAccountObject);
 
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(
                     It.IsAny<Configuration>(), 
                     It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LContentResult);
+                .ReturnsAsync(contentResult);
 
-            LMockedJsonSerializer
-                .Setup(ASerializer => ASerializer.Parse(It.IsAny<string>()))
-                .Returns(LTestJObject);
+            mockedJsonSerializer
+                .Setup(serializer => serializer.Parse(It.IsAny<string>()))
+                .Returns(testJObject);
 
-            LMockedJsonSerializer
-                .Setup(ASerializer => ASerializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
-                .Returns(LTestObject);
+            mockedJsonSerializer
+                .Setup(serializer => serializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
+                .Returns(testObject);
 
-            var LGetContentQueryHandler = new GetContentQueryHandler(
-                LMockedCustomHttpClient.Object,
-                LMockedJsonSerializer.Object,
-                LMockedAzureStorage.Object);
+            var getContentQueryHandler = new GetContentQueryHandler(
+                databaseContext,
+                mockedLogger.Object,
+                mockedCustomHttpClient.Object,
+                mockedJsonSerializer.Object,
+                mockedAzureStorage.Object);
 
             // Act
-            var LResult = await LGetContentQueryHandler.Handle(LGetContentQuery, CancellationToken.None);
+            var result = await getContentQueryHandler.Handle(getContentQuery, CancellationToken.None);
 
             // Assert
-            LResult.ContentName.Should().Be("activateAccount");
-            LResult.ContentType.Should().Be("component");
+            result.ContentName.Should().Be("activateAccount");
+            result.ContentType.Should().Be("component");
 
-            var LActivateAccountDto = LResult.Content as ActivateAccountDto;
-            LActivateAccountDto.Should().BeNull();
+            var activateAccountDto = result.Content as ActivateAccountDto;
+            activateAccountDto.Should().BeNull();
         }
 
         [Fact]
         public async Task GivenInvalidComponentType_WhenGetContent_ShouldThrowError()
         {
             // Arrange
-            var LGetContentQuery = new GetContentQuery
+            var getContentQuery = new GetContentQuery
             {
                 Name = "activateAccount",
                 Type = DataUtilityService.GetRandomString()
             };
 
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var LMockedJsonSerializer = new Mock<IJsonSerializer>();
-            var LMockedAzureStorage = new Mock<AzureStorage>();
+            var databaseContext = GetTestDatabaseContext();
+            var mockedLogger = new Mock<ILoggerService>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedJsonSerializer = new Mock<IJsonSerializer>();
+            var mockedAzureStorage = new Mock<AzureStorage>();
 
-            var LContent = await new StringContent(DataUtilityService.GetRandomString()).ReadAsByteArrayAsync();
-            var LContentType = MediaTypeHeaderValue.Parse("application/json");
-            var LContentResult = new Results
+            var content = await new StringContent(DataUtilityService.GetRandomString()).ReadAsByteArrayAsync();
+            var contentType = MediaTypeHeaderValue.Parse("application/json");
+            var contentResult = new Results
             {
                 StatusCode = HttpStatusCode.OK,
-                ContentType = LContentType,
-                Content = LContent
+                ContentType = contentType,
+                Content = content
             };
 
-            var LTestObject = GetActivateAccountContent();
-            var LActivateAccountObject = new ValidActivateAccountObject { ActivateAccount = LTestObject };
-            var LTestJObject = JObject.FromObject(LActivateAccountObject);
+            var testObject = GetActivateAccountContent();
+            var activateAccountObject = new ValidActivateAccountObject { ActivateAccount = testObject };
+            var testJObject = JObject.FromObject(activateAccountObject);
 
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(
                     It.IsAny<Configuration>(), 
                     It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LContentResult);
+                .ReturnsAsync(contentResult);
 
-            LMockedJsonSerializer
-                .Setup(ASerializer => ASerializer.Parse(It.IsAny<string>()))
-                .Returns(LTestJObject);
+            mockedJsonSerializer
+                .Setup(serializer => serializer.Parse(It.IsAny<string>()))
+                .Returns(testJObject);
 
-            LMockedJsonSerializer
-                .Setup(ASerializer => ASerializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
-                .Returns(LTestObject);
+            mockedJsonSerializer
+                .Setup(serializer => serializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
+                .Returns(testObject);
 
-            var LGetContentQueryHandler = new GetContentQueryHandler(
-                LMockedCustomHttpClient.Object,
-                LMockedJsonSerializer.Object,
-                LMockedAzureStorage.Object);
+            var getContentQueryHandler = new GetContentQueryHandler(
+                databaseContext,
+                mockedLogger.Object,
+                mockedCustomHttpClient.Object,
+                mockedJsonSerializer.Object,
+                mockedAzureStorage.Object);
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LGetContentQueryHandler.Handle(LGetContentQuery, CancellationToken.None));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED));
+            var result = await Assert.ThrowsAsync<BusinessException>(() => getContentQueryHandler.Handle(getContentQuery, CancellationToken.None));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED));
         }
 
         [Fact]
         public async Task GivenEmptyContentFromRemoteService_WhenGetContent_ShouldThrowError()
         {
             // Arrange
-            var LGetContentQuery = new GetContentQuery
+            var getContentQuery = new GetContentQuery
             {
                 Name = "activateAccount",
                 Type = "component"
             };
 
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var LMockedJsonSerializer = new Mock<IJsonSerializer>();
-            var LMockedAzureStorage = new Mock<AzureStorage>();
+            var databaseContext = GetTestDatabaseContext();
+            var mockedLogger = new Mock<ILoggerService>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedJsonSerializer = new Mock<IJsonSerializer>();
+            var mockedAzureStorage = new Mock<AzureStorage>();
 
-            var LContentType = MediaTypeHeaderValue.Parse("application/json");
-            var LContentResult = new Results
+            var contentType = MediaTypeHeaderValue.Parse("application/json");
+            var contentResult = new Results
             {
                 StatusCode = HttpStatusCode.OK,
-                ContentType = LContentType,
+                ContentType = contentType,
                 Content = null
             };
 
-            var LTestObject = GetActivateAccountContent();
-            var LActivateAccountObject = new ValidActivateAccountObject { ActivateAccount = LTestObject };
-            var LTestJObject = JObject.FromObject(LActivateAccountObject);
+            var testObject = GetActivateAccountContent();
+            var activateAccountObject = new ValidActivateAccountObject { ActivateAccount = testObject };
+            var testJObject = JObject.FromObject(activateAccountObject);
 
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(
                     It.IsAny<Configuration>(), 
                     It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LContentResult);
+                .ReturnsAsync(contentResult);
 
-            LMockedJsonSerializer
-                .Setup(ASerializer => ASerializer.Parse(It.IsAny<string>()))
-                .Returns(LTestJObject);
+            mockedJsonSerializer
+                .Setup(serializer => serializer.Parse(It.IsAny<string>()))
+                .Returns(testJObject);
 
-            LMockedJsonSerializer
-                .Setup(ASerializer => ASerializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
-                .Returns(LTestObject);
+            mockedJsonSerializer
+                .Setup(serializer => serializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
+                .Returns(testObject);
 
-            var LGetContentQueryHandler = new GetContentQueryHandler(
-                LMockedCustomHttpClient.Object,
-                LMockedJsonSerializer.Object,
-                LMockedAzureStorage.Object);
+            var getContentQueryHandler = new GetContentQueryHandler(
+                databaseContext,
+                mockedLogger.Object,
+                mockedCustomHttpClient.Object,
+                mockedJsonSerializer.Object,
+                mockedAzureStorage.Object);
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LGetContentQueryHandler.Handle(LGetContentQuery, CancellationToken.None));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.COMPONENT_CONTENT_EMPTY));
+            var result = await Assert.ThrowsAsync<BusinessException>(() => getContentQueryHandler.Handle(getContentQuery, CancellationToken.None));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.COMPONENT_CONTENT_EMPTY));
         }
 
         [Fact]
         public async Task GivenInvalidRemoteComponent_WhenGetContent_ShouldThrowError()
         {
             // Arrange
-            var LGetContentQuery = new GetContentQuery
+            var getContentQuery = new GetContentQuery
             {
                 Name = "activateAccount",
                 Type = "component"
             };
 
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var LMockedJsonSerializer = new Mock<IJsonSerializer>();
-            var LMockedAzureStorage = new Mock<AzureStorage>();
+            var databaseContext = GetTestDatabaseContext();
+            var mockedLogger = new Mock<ILoggerService>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedJsonSerializer = new Mock<IJsonSerializer>();
+            var mockedAzureStorage = new Mock<AzureStorage>();
 
-            var LContent = await new StringContent(DataUtilityService.GetRandomString()).ReadAsByteArrayAsync();
-            var LContentType = MediaTypeHeaderValue.Parse("application/json");
-            var LContentResult = new Results
+            var content = await new StringContent(DataUtilityService.GetRandomString()).ReadAsByteArrayAsync();
+            var contentType = MediaTypeHeaderValue.Parse("application/json");
+            var contentResult = new Results
             {
                 StatusCode = HttpStatusCode.OK,
-                ContentType = LContentType,
-                Content = LContent
+                ContentType = contentType,
+                Content = content
             };
 
-            var LTestObject = GetActivateAccountContent();
-            var LActivateAccountObject = new InvalidActivateAccountObject { ActivateAccount = LTestObject };
-            var LTestJObject = JObject.FromObject(LActivateAccountObject);
+            var testObject = GetActivateAccountContent();
+            var activateAccountObject = new InvalidActivateAccountObject { ActivateAccount = testObject };
+            var testJObject = JObject.FromObject(activateAccountObject);
 
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(
                     It.IsAny<Configuration>(), 
                     It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LContentResult);
+                .ReturnsAsync(contentResult);
 
-            LMockedJsonSerializer
-                .Setup(ASerializer => ASerializer.Parse(It.IsAny<string>()))
-                .Returns(LTestJObject);
+            mockedJsonSerializer
+                .Setup(serializer => serializer.Parse(It.IsAny<string>()))
+                .Returns(testJObject);
 
-            LMockedJsonSerializer
-                .Setup(ASerializer => ASerializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
-                .Returns(LTestObject);
+            mockedJsonSerializer
+                .Setup(serializer => serializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
+                .Returns(testObject);
 
-            var LGetContentQueryHandler = new GetContentQueryHandler(
-                LMockedCustomHttpClient.Object,
-                LMockedJsonSerializer.Object,
-                LMockedAzureStorage.Object);
+            var getContentQueryHandler = new GetContentQueryHandler(
+                databaseContext,
+                mockedLogger.Object,
+                mockedCustomHttpClient.Object,
+                mockedJsonSerializer.Object,
+                mockedAzureStorage.Object);
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LGetContentQueryHandler.Handle(LGetContentQuery, CancellationToken.None));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.COMPONENT_CONTENT_MISSING_TOKEN));
+            var result = await Assert.ThrowsAsync<BusinessException>(() => getContentQueryHandler.Handle(getContentQuery, CancellationToken.None));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.COMPONENT_CONTENT_MISSING_TOKEN));
         }
 
         [Fact]
         public async Task GivenInvalidRemoteServiceResponse_WhenGetContent_ShouldThrowError()
         {
             // Arrange
-            var LGetContentQuery = new GetContentQuery
+            var getContentQuery = new GetContentQuery
             {
                 Name = "activateAccount",
                 Type = "component"
             };
 
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var LMockedJsonSerializer = new Mock<IJsonSerializer>();
-            var LMockedAzureStorage = new Mock<AzureStorage>();
+            var databaseContext = GetTestDatabaseContext();
+            var mockedLogger = new Mock<ILoggerService>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedJsonSerializer = new Mock<IJsonSerializer>();
+            var mockedAzureStorage = new Mock<AzureStorage>();
 
-            var LContentResult = new Results
+            var contentResult = new Results
             {
                 StatusCode = HttpStatusCode.BadRequest,
                 ContentType = null,
                 Content = null
             };
 
-            var LTestObject = GetActivateAccountContent();
-            var LActivateAccountObject = new ValidActivateAccountObject { ActivateAccount = LTestObject };
-            var LTestJObject = JObject.FromObject(LActivateAccountObject);
+            var testObject = GetActivateAccountContent();
+            var activateAccountObject = new ValidActivateAccountObject { ActivateAccount = testObject };
+            var testJObject = JObject.FromObject(activateAccountObject);
 
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(
                     It.IsAny<Configuration>(), 
                     It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LContentResult);
+                .ReturnsAsync(contentResult);
 
-            LMockedJsonSerializer
-                .Setup(ASerializer => ASerializer.Parse(It.IsAny<string>()))
-                .Returns(LTestJObject);
+            mockedJsonSerializer
+                .Setup(serializer => serializer.Parse(It.IsAny<string>()))
+                .Returns(testJObject);
 
-            LMockedJsonSerializer
-                .Setup(ASerializer => ASerializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
-                .Returns(LTestObject);
+            mockedJsonSerializer
+                .Setup(serializer => serializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
+                .Returns(testObject);
 
-            var LGetContentQueryHandler = new GetContentQueryHandler(
-                LMockedCustomHttpClient.Object,
-                LMockedJsonSerializer.Object,
-                LMockedAzureStorage.Object);
+            var getContentQueryHandler = new GetContentQueryHandler(
+                databaseContext,
+                mockedLogger.Object,
+                mockedCustomHttpClient.Object,
+                mockedJsonSerializer.Object,
+                mockedAzureStorage.Object);
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LGetContentQueryHandler.Handle(LGetContentQuery, CancellationToken.None));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.COMPONENT_NOT_FOUND));
+            var result = await Assert.ThrowsAsync<BusinessException>(() => getContentQueryHandler.Handle(getContentQuery, CancellationToken.None));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.COMPONENT_NOT_FOUND));
         }
 
         private static List<ActivateAccountDto> GetActivateAccountContent() => new ()

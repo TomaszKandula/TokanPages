@@ -5,28 +5,26 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
     using MediatR;
 
     public class RemoveArticleCommandHandler : TemplateHandler<RemoveArticleCommand, Unit>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        public RemoveArticleCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
-        public RemoveArticleCommandHandler(DatabaseContext ADatabaseContext) 
-            => FDatabaseContext = ADatabaseContext;
-
-        public override async Task<Unit> Handle(RemoveArticleCommand ARequest, CancellationToken ACancellationToken) 
+        public override async Task<Unit> Handle(RemoveArticleCommand request, CancellationToken cancellationToken) 
         {
-            var LCurrentArticle = await FDatabaseContext.Articles
-                .Where(AArticles => AArticles.Id == ARequest.Id)
-                .ToListAsync(ACancellationToken);
+            var currentArticle = await DatabaseContext.Articles
+                .Where(articles => articles.Id == request.Id)
+                .ToListAsync(cancellationToken);
 
-            if (!LCurrentArticle.Any())
+            if (!currentArticle.Any())
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-            FDatabaseContext.Articles.Remove(LCurrentArticle.Single());
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            DatabaseContext.Articles.Remove(currentArticle.Single());
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
             return await Task.FromResult(Unit.Value);
         }
     }

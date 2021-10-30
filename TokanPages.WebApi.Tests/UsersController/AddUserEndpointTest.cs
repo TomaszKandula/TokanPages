@@ -1,8 +1,8 @@
 namespace TokanPages.WebApi.Tests.UsersController
 {
     using Xunit;
-    using FluentAssertions;
     using Newtonsoft.Json;
+    using FluentAssertions;
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
@@ -14,10 +14,10 @@ namespace TokanPages.WebApi.Tests.UsersController
         public async Task GivenAllFieldsAreProvided_WhenAddUser_ShouldReturnNewGuid() 
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/AddUser/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            var request = $"{ApiBaseUrl}/AddUser/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
-            var LPayLoad = new AddUserDto 
+            var payLoad = new AddUserDto 
             { 
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
@@ -26,16 +26,16 @@ namespace TokanPages.WebApi.Tests.UsersController
                 Password = DataUtilityService.GetRandomString()
             };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            var httpClient = _webApplicationFactory.CreateClient();
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
         }
     }
 }

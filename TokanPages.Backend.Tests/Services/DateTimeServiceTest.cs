@@ -7,89 +7,89 @@ namespace TokanPages.Backend.Tests.Services
 
     public class DateTimeServiceTest
     {
-        private const int YEAR = 2020;
-        private const int MONTH = 10;
-        private const int DAY = 15;
-        private const int HOUR = 9;
-        private const int MINUTE = 30;
-        private const int SECOND = 30;
+        private const int Year = 2020;
+        private const int Month = 10;
+        private const int Day = 15;
+        private const int Hour = 9;
+        private const int Minute = 30;
+        private const int Second = 30;
         
         [Fact]
         public void GivenDateTime_WhenInvokeGetStartOfDay_ShouldReturnSameDateAndTimeAtMidnight()
         {
             // Arrange
-            var LDateTime = new DateTime(YEAR, MONTH, DAY, HOUR, MINUTE, SECOND);
-            var LDateTimeService = new DateTimeService();
+            var dateTime = new DateTime(Year, Month, Day, Hour, Minute, Second);
+            var dateTimeService = new DateTimeService();
 
             // Act
-            var LResult = LDateTimeService.GetStartOfDay(LDateTime);
+            var result = dateTimeService.GetStartOfDay(dateTime);
 
             // Assert
-            LResult.Should().HaveYear(YEAR);
-            LResult.Should().HaveMonth(MONTH);
-            LResult.Should().HaveDay(DAY);
+            result.Should().HaveYear(Year);
+            result.Should().HaveMonth(Month);
+            result.Should().HaveDay(Day);
             
-            LResult.Should().HaveHour(0);
-            LResult.Should().HaveMinute(0);
-            LResult.Should().HaveSecond(0);
+            result.Should().HaveHour(0);
+            result.Should().HaveMinute(0);
+            result.Should().HaveSecond(0);
         }
         
         [Fact]
         public void GivenDateTime_WhenInvokeGetEndOfDay_ShouldReturnSameDateAndTimeBeforeMidnight()
         {
             // Arrange
-            var LDateTime = new DateTime(YEAR, MONTH, DAY, HOUR, MINUTE, SECOND);
-            var LDateTimeService = new DateTimeService();
+            var dateTime = new DateTime(Year, Month, Day, Hour, Minute, Second);
+            var dateTimeService = new DateTimeService();
 
             // Act
-            var LResult = LDateTimeService.GetEndOfDay(LDateTime);
+            var result = dateTimeService.GetEndOfDay(dateTime);
 
             // Assert
-            LResult.Should().HaveYear(YEAR);
-            LResult.Should().HaveMonth(MONTH);
-            LResult.Should().HaveDay(DAY);
+            result.Should().HaveYear(Year);
+            result.Should().HaveMonth(Month);
+            result.Should().HaveDay(Day);
             
-            LResult.Should().HaveHour(23);
-            LResult.Should().HaveMinute(59);
-            LResult.Should().HaveSecond(59);
+            result.Should().HaveHour(23);
+            result.Should().HaveMinute(59);
+            result.Should().HaveSecond(59);
         }
         
         [Fact]
         public void GivenDateTime_WhenInvokeGetFirstDayOfMonth_ShouldReturnSameFirstDayOfGivenDate()
         {
             // Arrange
-            var LDateTime = new DateTime(YEAR, MONTH, DAY, HOUR, MINUTE, SECOND);
-            var LDateTimeService = new DateTimeService();
+            var dateTime = new DateTime(Year, Month, Day, Hour, Minute, Second);
+            var dateTimeService = new DateTimeService();
 
             // Act
-            var LResult = LDateTimeService.GetFirstDayOfMonth(LDateTime);
+            var result = dateTimeService.GetFirstDayOfMonth(dateTime);
 
             // Assert
-            LResult.Should().HaveYear(YEAR);
-            LResult.Should().HaveMonth(MONTH);
-            LResult.Should().HaveDay(1);
+            result.Should().HaveYear(Year);
+            result.Should().HaveMonth(Month);
+            result.Should().HaveDay(1);
             
-            LResult.Should().HaveHour(0);
-            LResult.Should().HaveMinute(0);
-            LResult.Should().HaveSecond(0);
+            result.Should().HaveHour(0);
+            result.Should().HaveMinute(0);
+            result.Should().HaveSecond(0);
         }
 
         [Fact]
         public void GivenTodayEndOfDayAndTodayStartOfDay_WhenMeasuringDifference_ShouldReturnSecondBeforeMidnight()
         {
             // Arrange
-            var LDateTimeService = new DateTimeService();
+            var dateTimeService = new DateTimeService();
 
             // Act
-            var LTodayStartOfDay = LDateTimeService.TodayStartOfDay;
-            var LTodayEndOfDay = LDateTimeService.TodayEndOfDay;
+            var todayStartOfDay = dateTimeService.TodayStartOfDay;
+            var todayEndOfDay = dateTimeService.TodayEndOfDay;
 
-            var LDifference = LTodayEndOfDay - LTodayStartOfDay;
+            var difference = todayEndOfDay - todayStartOfDay;
             
             // Assert
-            LDifference.Hours.Should().Be(23);
-            LDifference.Minutes.Should().Be(59);
-            LDifference.Seconds.Should().Be(59);
+            difference.Hours.Should().Be(23);
+            difference.Minutes.Should().Be(59);
+            difference.Seconds.Should().Be(59);
         }
     }
 }

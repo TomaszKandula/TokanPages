@@ -7,20 +7,20 @@
     [ExcludeFromCodeCoverage]
     public static class Article4
     {
-        public const string TITLE = ".NET Memory Management";
+        public const string Title = ".NET Memory Management";
 
-        public const string DESCRIPTION = "The basics you should know";
+        public const string Description = "The basics you should know";
         
-        public const bool IS_PUBLISHED = true;
+        public const bool IsPublished = true;
         
-        public const int READ_COUNT = 0;
+        public const int ReadCount = 0;
         
-        public static readonly Guid FId = Guid.Parse("d797cf99-a993-43e5-a71e-ad6a0791b56d");
+        public static readonly Guid Id = Guid.Parse("d797cf99-a993-43e5-a71e-ad6a0791b56d");
         
-        public static readonly DateTime FCreated = DateTime.Parse("2020-09-30 12:01:33");
+        public static readonly DateTime Created = DateTime.Parse("2020-09-30 12:01:33");
         
-        public static readonly DateTime? FLastUpdated = null;
+        public static readonly DateTime? LastUpdated = null;
         
-        public static readonly Guid FUserId = User3.FId;
+        public static readonly Guid UserId = User3.Id;
     }
 }

@@ -16,61 +16,61 @@
     [Authorize]
     public class UsersController : ApiBaseController
     {
-        public UsersController(IMediator AMediator) : base(AMediator) { }
+        public UsersController(IMediator mediator) : base(mediator) { }
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<AuthenticateUserCommandResult> AuthenticateUser([FromBody] AuthenticateUserDto APayLoad)
-            => await FMediator.Send(UsersMapper.MapToAuthenticateUserCommand(APayLoad));
+        public async Task<AuthenticateUserCommandResult> AuthenticateUser([FromBody] AuthenticateUserDto payLoad)
+            => await Mediator.Send(UsersMapper.MapToAuthenticateUserCommand(payLoad));
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ReAuthenticateUserCommandResult> ReAuthenticateUser([FromBody] ReAuthenticateUserDto APayLoad)
-            => await FMediator.Send(UsersMapper.MapToReAuthenticateUserCommand(APayLoad));
+        public async Task<ReAuthenticateUserCommandResult> ReAuthenticateUser([FromBody] ReAuthenticateUserDto payLoad)
+            => await Mediator.Send(UsersMapper.MapToReAuthenticateUserCommand(payLoad));
 
         [HttpPost]
         [AuthorizeRoles(Roles.GodOfAsgard)]
-        public async Task<Unit> RevokeUserRefreshToken([FromBody] RevokeUserRefreshTokenDto APayLoad)
-            => await FMediator.Send(UsersMapper.MapToRevokeUserRefreshTokenCommand(APayLoad));
+        public async Task<Unit> RevokeUserRefreshToken([FromBody] RevokeUserRefreshTokenDto payLoad)
+            => await Mediator.Send(UsersMapper.MapToRevokeUserRefreshTokenCommand(payLoad));
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<Unit> ActivateUser([FromBody] ActivateUserDto APayLoad)
-            => await FMediator.Send(UsersMapper.MapToActivateUserCommand(APayLoad));
+        public async Task<Unit> ActivateUser([FromBody] ActivateUserDto payLoad)
+            => await Mediator.Send(UsersMapper.MapToActivateUserCommand(payLoad));
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<Unit> ResetUserPassword([FromBody] ResetUserPasswordDto APayLoad) 
-            => await FMediator.Send(UsersMapper.MapToResetUserPasswordCommand(APayLoad));
+        public async Task<Unit> ResetUserPassword([FromBody] ResetUserPasswordDto payLoad) 
+            => await Mediator.Send(UsersMapper.MapToResetUserPasswordCommand(payLoad));
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<Unit> UpdateUserPassword([FromBody] UpdateUserPasswordDto APayLoad) 
-            => await FMediator.Send(UsersMapper.MapToUpdateUserPasswordCommand(APayLoad));
+        public async Task<Unit> UpdateUserPassword([FromBody] UpdateUserPasswordDto payLoad) 
+            => await Mediator.Send(UsersMapper.MapToUpdateUserPasswordCommand(payLoad));
 
         [HttpGet]
         [AuthorizeRoles(Roles.GodOfAsgard)]
         public async Task<IEnumerable<GetAllUsersQueryResult>> GetAllUsers()
-            => await FMediator.Send(new GetAllUsersQuery());
+            => await Mediator.Send(new GetAllUsersQuery());
 
-        [HttpGet("{AId}")]
+        [HttpGet("{id:guid}")]
         [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
-        public async Task<GetUserQueryResult> GetUser([FromRoute] Guid AId)
-            => await FMediator.Send(new GetUserQuery { Id = AId });
+        public async Task<GetUserQueryResult> GetUser([FromRoute] Guid id)
+            => await Mediator.Send(new GetUserQuery { Id = id });
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<Guid> AddUser([FromBody] AddUserDto APayLoad)
-            => await FMediator.Send(UsersMapper.MapToAddUserCommand(APayLoad));
+        public async Task<Guid> AddUser([FromBody] AddUserDto payLoad)
+            => await Mediator.Send(UsersMapper.MapToAddUserCommand(payLoad));
 
         [HttpPost]
         [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
-        public async Task<Unit> UpdateUser([FromBody] UpdateUserDto APayLoad)
-            => await FMediator.Send(UsersMapper.MapToUpdateUserCommand(APayLoad));
+        public async Task<Unit> UpdateUser([FromBody] UpdateUserDto payLoad)
+            => await Mediator.Send(UsersMapper.MapToUpdateUserCommand(payLoad));
 
         [HttpPost]
         [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
-        public async Task<Unit> RemoveUser([FromBody] RemoveUserDto APayLoad)
-            => await FMediator.Send(UsersMapper.MapToRemoveUserCommand(APayLoad));
+        public async Task<Unit> RemoveUser([FromBody] RemoveUserDto payLoad)
+            => await Mediator.Send(UsersMapper.MapToRemoveUserCommand(payLoad));
     }
 }

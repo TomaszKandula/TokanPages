@@ -13,7 +13,7 @@ interface IBinding
 interface IProperties
 {
     isAnonymous: boolean;
-    items: IItem[];
+    items: IItem[] | undefined;
 }
 
 export const RenderList = (props: IBinding): JSX.Element =>
@@ -69,7 +69,7 @@ export const RenderList = (props: IBinding): JSX.Element =>
 
             default:
             {
-                renderBuffer.push(<div>Unknown element.</div>);
+                renderBuffer.push(<div key={item.id}>Unknown element.</div>);
             }
         }
     });

@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     {
         public UpdateArticleCountCommandValidator()
         {
-            RuleFor(AField => AField.Id)
+            RuleFor(command => command.Id)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

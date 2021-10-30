@@ -1,5 +1,8 @@
 namespace TokanPages.WebApi.Tests.UsersController
 {
+    using Xunit;
+    using Newtonsoft.Json;
+    using FluentAssertions;
     using System;
     using System.Net;
     using System.Net.Http;
@@ -7,9 +10,6 @@ namespace TokanPages.WebApi.Tests.UsersController
     using Backend.Shared;
     using Backend.Shared.Dto.Users;
     using Backend.Shared.Resources;
-    using FluentAssertions;
-    using Newtonsoft.Json;
-    using Xunit;
 
     public partial class UsersControllerTest
     {
@@ -17,27 +17,27 @@ namespace TokanPages.WebApi.Tests.UsersController
         public async Task GivenNoRefreshTokensSaved_WhenReAuthenticateUser_ShouldThrowError()
         {
             // Arrange
-            var LCookieValue = DataUtilityService.GetRandomString();
-            var LRequest = $"{API_BASE_URL}/ReAuthenticateUser/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            var cookieValue = DataUtilityService.GetRandomString(150, "", true);
+            var request = $"{ApiBaseUrl}/ReAuthenticateUser/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
-            var LPayLoad = new ReAuthenticateUserDto
+            var payLoad = new ReAuthenticateUserDto
             {
                 Id = Guid.NewGuid()
             };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
-            LNewRequest.Headers.Add("Cookie", $"{Constants.CookieNames.REFRESH_TOKEN}={LCookieValue};");
+            var httpClient = _webApplicationFactory.CreateClient();
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
+            newRequest.Headers.Add("Cookie", $"{Constants.CookieNames.RefreshToken}={cookieValue};");
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
             
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.INVALID_REFRESH_TOKEN);            
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Contain(ErrorCodes.INVALID_REFRESH_TOKEN);            
         }
     }
 }

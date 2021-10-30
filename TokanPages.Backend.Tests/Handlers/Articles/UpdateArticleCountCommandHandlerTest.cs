@@ -8,9 +8,10 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
+    using Core.Utilities.LoggerService;
+    using Domain.Entities;
     using Core.Exceptions;
     using Shared.Resources;
-    using Domain.Entities;
     using Cqrs.Handlers.Commands.Articles;
     using Cqrs.Services.UserServiceProvider;
 
@@ -20,10 +21,10 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
         public async Task GivenLoggedUserAndExistingArticleAndNoReads_WhenUpdateArticleCount_ShouldReturnSuccessful()
         {
             // Arrange
-            var LUserId = Guid.NewGuid();
-            var LUsers = new Users
+            var userId = Guid.NewGuid();
+            var users = new Users
             {
-                Id = LUserId,
+                Id = userId,
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
@@ -35,66 +36,71 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 CryptedPassword = DataUtilityService.GetRandomString()
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LArticleId = Guid.NewGuid();
-            var LArticles = new Articles
+            var articleId = Guid.NewGuid();
+            var articles = new Articles
             {
-                Id = LArticleId,
+                Id = articleId,
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null,
-                UserId = LUserId
+                UserId = userId
             };
 
-            await LDatabaseContext.Articles.AddAsync(LArticles);
-            await LDatabaseContext.SaveChangesAsync();
+            await databaseContext.Articles.AddAsync(articles);
+            await databaseContext.SaveChangesAsync();
 
-            var LExpectedTotalReadCount = LArticles.ReadCount + 1;
-            var LMockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
-            var LMockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            var expectedTotalReadCount = articles.ReadCount + 1;
+            var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
+            var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILoggerService>();
 
-            LMockedUserServiceProvider
-                .Setup(AService => AService.GetUserId())
-                .ReturnsAsync(LUserId);
+            mockedUserServiceProvider
+                .Setup(service => service.GetUserId())
+                .ReturnsAsync(userId);
 
-            LMockedUserServiceProvider
-                .Setup(AService => AService.GetRequestIpAddress())
-                .Returns(LMockedIpAddress);
+            mockedUserServiceProvider
+                .Setup(service => service.GetRequestIpAddress())
+                .Returns(mockedIpAddress);
 
-            var LUpdateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(LDatabaseContext, LMockedUserServiceProvider.Object);
-            var LUpdateArticleCommand = new UpdateArticleCountCommand { Id = LArticleId };
+            var updateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(
+                databaseContext, 
+                mockedLogger.Object, 
+                mockedUserServiceProvider.Object);
+
+            var updateArticleCommand = new UpdateArticleCountCommand { Id = articleId };
 
             // Act
-            await LUpdateArticleCountCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
+            await updateArticleCountCommandHandler.Handle(updateArticleCommand, CancellationToken.None);
 
-            var LArticlesEntity = await LDatabaseContext.Articles
-                .FindAsync(LUpdateArticleCommand.Id);
+            var articlesEntity = await databaseContext.Articles
+                .FindAsync(updateArticleCommand.Id);
 
-            var LArticleCounts = await LDatabaseContext.ArticleCounts
-                .Where(ACounts => ACounts.ArticleId == LArticleId)
+            var articleCounts = await databaseContext.ArticleCounts
+                .Where(counts => counts.ArticleId == articleId)
                 .ToListAsync();
 
             // Assert
-            LArticlesEntity.Should().NotBeNull();
-            LArticlesEntity.ReadCount.Should().Be(LExpectedTotalReadCount);
-            LArticleCounts.Should().HaveCount(1);
-            LArticleCounts.Select(ACounts => ACounts.ReadCount).First().Should().Be(1);
+            articlesEntity.Should().NotBeNull();
+            articlesEntity.ReadCount.Should().Be(expectedTotalReadCount);
+            articleCounts.Should().HaveCount(1);
+            articleCounts.Select(counts => counts.ReadCount).First().Should().Be(1);
         }
 
         [Fact]
         public async Task GivenLoggedUserAndExistingArticleAndExistingReads_WhenUpdateArticleCount_ShouldReturnSuccessful()
         {
             // Arrange
-            var LUserId = Guid.NewGuid();
-            var LUsers = new Users
+            var userId = Guid.NewGuid();
+            var users = new Users
             {
-                Id = LUserId,
+                Id = userId,
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
@@ -106,76 +112,81 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 CryptedPassword = DataUtilityService.GetRandomString()
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LArticleId = Guid.NewGuid();
-            var LArticles = new Articles
+            var articleId = Guid.NewGuid();
+            var articles = new Articles
             {
-                Id = LArticleId,
+                Id = articleId,
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null,
-                UserId = LUserId
+                UserId = userId
             };
 
-            var LMockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
-            var LArticlesCounts = new ArticleCounts
+            var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
+            var articlesCounts = new ArticleCounts
             {
-                UserId = LUserId,
-                ArticleId = LArticleId,
-                IpAddress = LMockedIpAddress,
+                UserId = userId,
+                ArticleId = articleId,
+                IpAddress = mockedIpAddress,
                 ReadCount = 5
             };
 
-            await LDatabaseContext.Articles.AddAsync(LArticles);
-            await LDatabaseContext.ArticleCounts.AddAsync(LArticlesCounts);
-            await LDatabaseContext.SaveChangesAsync();
+            await databaseContext.Articles.AddAsync(articles);
+            await databaseContext.ArticleCounts.AddAsync(articlesCounts);
+            await databaseContext.SaveChangesAsync();
 
-            var LExpectedTotalReadCount = LArticles.ReadCount + 1;
-            var LExpectedUserReadCount = LArticlesCounts.ReadCount + 1;
-            var LMockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            var expectedTotalReadCount = articles.ReadCount + 1;
+            var expectedUserReadCount = articlesCounts.ReadCount + 1;
+            var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILoggerService>();
 
-            LMockedUserServiceProvider
-                .Setup(AService => AService.GetUserId())
-                .ReturnsAsync(LUserId);
+            mockedUserServiceProvider
+                .Setup(service => service.GetUserId())
+                .ReturnsAsync(userId);
 
-            LMockedUserServiceProvider
-                .Setup(AService => AService.GetRequestIpAddress())
-                .Returns(LMockedIpAddress);
+            mockedUserServiceProvider
+                .Setup(service => service.GetRequestIpAddress())
+                .Returns(mockedIpAddress);
 
-            var LUpdateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(LDatabaseContext, LMockedUserServiceProvider.Object);
-            var LUpdateArticleCommand = new UpdateArticleCountCommand { Id = LArticles.Id };
+            var updateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedUserServiceProvider.Object);
+
+            var updateArticleCommand = new UpdateArticleCountCommand { Id = articles.Id };
 
             // Act
-            await LUpdateArticleCountCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
+            await updateArticleCountCommandHandler.Handle(updateArticleCommand, CancellationToken.None);
 
-            var LArticlesEntity = await LDatabaseContext.Articles
-                .FindAsync(LUpdateArticleCommand.Id);
+            var articlesEntity = await databaseContext.Articles
+                .FindAsync(updateArticleCommand.Id);
 
-            var LArticleCounts = await LDatabaseContext.ArticleCounts
-                .Where(ACounts => ACounts.ArticleId == LArticles.Id)
+            var articleCounts = await databaseContext.ArticleCounts
+                .Where(counts => counts.ArticleId == articles.Id)
                 .ToListAsync();
             
             // Assert
-            LArticlesEntity.Should().NotBeNull();
-            LArticlesEntity.ReadCount.Should().Be(LExpectedTotalReadCount);
-            LArticleCounts.Should().HaveCount(1);
-            LArticleCounts.Select(ACounts => ACounts.ReadCount).First().Should().Be(LExpectedUserReadCount);
+            articlesEntity.Should().NotBeNull();
+            articlesEntity.ReadCount.Should().Be(expectedTotalReadCount);
+            articleCounts.Should().HaveCount(1);
+            articleCounts.Select(counts => counts.ReadCount).First().Should().Be(expectedUserReadCount);
         }
 
         [Fact]
         public async Task GivenAnonymousUserAndExistingArticle_WhenUpdateArticleCount_ShouldReturnSuccessful()
         {
             // Arrange
-            var LUserId = Guid.NewGuid();
-            var LUsers = new Users
+            var userId = Guid.NewGuid();
+            var users = new Users
             {
-                Id = LUserId,
+                Id = userId,
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
@@ -187,62 +198,67 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 CryptedPassword = DataUtilityService.GetRandomString()
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LArticleId = Guid.NewGuid();
-            var LArticles = new Articles
+            var articleId = Guid.NewGuid();
+            var articles = new Articles
             {
-                Id = LArticleId,
+                Id = articleId,
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null,
-                UserId = LUserId
+                UserId = userId
             };
 
-            await LDatabaseContext.Articles.AddAsync(LArticles);
-            await LDatabaseContext.SaveChangesAsync();
+            await databaseContext.Articles.AddAsync(articles);
+            await databaseContext.SaveChangesAsync();
 
-            var LExpectedTotalReadCount = LArticles.ReadCount + 1;
-            var LMockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
-            var LMockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            var expectedTotalReadCount = articles.ReadCount + 1;
+            var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
+            var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILoggerService>();
 
-            LMockedUserServiceProvider
-                .Setup(AService => AService.GetUserId())
+            mockedUserServiceProvider
+                .Setup(service => service.GetUserId())
                 .ReturnsAsync((Guid?)null);
 
-            LMockedUserServiceProvider
-                .Setup(AService => AService.GetRequestIpAddress())
-                .Returns(LMockedIpAddress);
+            mockedUserServiceProvider
+                .Setup(service => service.GetRequestIpAddress())
+                .Returns(mockedIpAddress);
 
-            var LUpdateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(LDatabaseContext, LMockedUserServiceProvider.Object);
-            var LUpdateArticleCommand = new UpdateArticleCountCommand { Id = LArticleId };
+            var updateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedUserServiceProvider.Object);
+
+            var updateArticleCommand = new UpdateArticleCountCommand { Id = articleId };
 
             // Act
-            await LUpdateArticleCountCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None);
+            await updateArticleCountCommandHandler.Handle(updateArticleCommand, CancellationToken.None);
 
-            var LArticlesEntity = await LDatabaseContext.Articles
-                .FindAsync(LUpdateArticleCommand.Id);
+            var articlesEntity = await databaseContext.Articles
+                .FindAsync(updateArticleCommand.Id);
 
-            var LArticleCounts = await LDatabaseContext.ArticleCounts
-                .Where(ACounts => ACounts.ArticleId == LArticleId)
+            var articleCounts = await databaseContext.ArticleCounts
+                .Where(counts => counts.ArticleId == articleId)
                 .ToListAsync();
 
             // Assert
-            LArticlesEntity.Should().NotBeNull();
-            LArticlesEntity.ReadCount.Should().Be(LExpectedTotalReadCount);
-            LArticleCounts.Should().HaveCount(0);
+            articlesEntity.Should().NotBeNull();
+            articlesEntity.ReadCount.Should().Be(expectedTotalReadCount);
+            articleCounts.Should().HaveCount(0);
         }
 
         [Fact]
         public async Task GivenExistingArticleAndIncorrectArticleId_WhenUpdateArticleCount_ShouldThrowError()
         {
             // Arrange
-            var LUsers = new Users
+            var users = new Users
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -255,11 +271,11 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 CryptedPassword = DataUtilityService.GetRandomString()
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LArticles = new Articles
+            var articles = new Articles
             {
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
@@ -267,31 +283,36 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null,
-                UserId = LUsers.Id
+                UserId = users.Id
             };
 
-            await LDatabaseContext.Articles.AddAsync(LArticles);
-            await LDatabaseContext.SaveChangesAsync();
+            await databaseContext.Articles.AddAsync(articles);
+            await databaseContext.SaveChangesAsync();
 
-            var LMockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
-            var LMockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
+            var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            var mockedLogger = new Mock<ILoggerService>();
 
-            LMockedUserServiceProvider
-                .Setup(AService => AService.GetUserId())
+            mockedUserServiceProvider
+                .Setup(service => service.GetUserId())
                 .ReturnsAsync((Guid?)null);
 
-            LMockedUserServiceProvider
-                .Setup(AService => AService.GetRequestIpAddress())
-                .Returns(LMockedIpAddress);
+            mockedUserServiceProvider
+                .Setup(service => service.GetRequestIpAddress())
+                .Returns(mockedIpAddress);
 
-            var LUpdateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(LDatabaseContext, LMockedUserServiceProvider.Object);
-            var LUpdateArticleCommand = new UpdateArticleCountCommand { Id = Guid.NewGuid() };
+            var updateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedUserServiceProvider.Object);
+
+            var updateArticleCommand = new UpdateArticleCountCommand { Id = Guid.NewGuid() };
 
             // Act
             // Assert
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() 
-                => LUpdateArticleCountCommandHandler.Handle(LUpdateArticleCommand, CancellationToken.None));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS));
+            var result = await Assert.ThrowsAsync<BusinessException>(() 
+                => updateArticleCountCommandHandler.Handle(updateArticleCommand, CancellationToken.None));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS));
         }
     }
 }

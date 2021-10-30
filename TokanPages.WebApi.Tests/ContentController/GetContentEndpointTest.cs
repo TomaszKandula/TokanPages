@@ -1,8 +1,8 @@
 namespace TokanPages.WebApi.Tests.ContentController
 {
     using Xunit;
-    using FluentAssertions;
     using Newtonsoft.Json;
+    using FluentAssertions;
     using System.Net;
     using System.Threading.Tasks;
     using Backend.Shared.Resources;
@@ -14,62 +14,62 @@ namespace TokanPages.WebApi.Tests.ContentController
         public async Task GivenComponentNameAndType_WhenGetContent_ShouldSucceed()
         {
             // Arrange
-            const string COMPONENT_NAME = "activateAccount";
-            const string COMPONENT_TYPE = "component";
+            const string componentName = "activateAccount";
+            const string componentType = "component";
             
-            var LRequest = $"{API_BASE_URL}/GetContent/?AName={COMPONENT_NAME}&AType={COMPONENT_TYPE}";
-            var LHttpClient = FWebAppFactory.CreateClient();
+            var request = $"{ApiBaseUrl}/GetContent/?Name={componentName}&Type={componentType}";
+            var httpClient = _webApplicationFactory.CreateClient();
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
 
-            var LDeserialized = JsonConvert.DeserializeObject<GetContentQueryResult>(LContent);
-            LDeserialized.Should().NotBeNull();
+            var deserialized = JsonConvert.DeserializeObject<GetContentQueryResult>(content);
+            deserialized.Should().NotBeNull();
         }
 
         [Fact]
         public async Task GivenInvalidComponentNameAndValidType_WhenGetContent_ShouldReturnBadRequest()
         {
             // Arrange
-            var LComponentName = DataUtilityService.GetRandomString();
-            const string COMPONENT_TYPE = "component";
+            var componentName = DataUtilityService.GetRandomString(10, "", true);
+            const string componentType = "component";
             
-            var LRequest = $"{API_BASE_URL}/GetContent/?AName={LComponentName}&AType={COMPONENT_TYPE}";
-            var LHttpClient = FWebAppFactory.CreateClient();
+            var request = $"{ApiBaseUrl}/GetContent/?Name={componentName}&Type={componentType}";
+            var httpClient = _webApplicationFactory.CreateClient();
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.COMPONENT_NOT_FOUND);
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Contain(ErrorCodes.COMPONENT_NOT_FOUND);
         }
 
         [Fact]
         public async Task GivenValidComponentNameAndInvalidType_WhenGetContent_ShouldReturnBadRequest()
         {
             // Arrange
-            const string COMPONENT_NAME = "activateAccount";
-            var LComponentType = DataUtilityService.GetRandomString();
+            const string componentName = "activateAccount";
+            var componentType = DataUtilityService.GetRandomString(6, "", true);
             
-            var LRequest = $"{API_BASE_URL}/GetContent/?AName={COMPONENT_NAME}&AType={LComponentType}";
-            var LHttpClient = FWebAppFactory.CreateClient();
+            var request = $"{ApiBaseUrl}/GetContent/?Name={componentName}&Type={componentType}";
+            var httpClient = _webApplicationFactory.CreateClient();
 
             // Act
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED);
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Contain(ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED);
         }
     }
 }

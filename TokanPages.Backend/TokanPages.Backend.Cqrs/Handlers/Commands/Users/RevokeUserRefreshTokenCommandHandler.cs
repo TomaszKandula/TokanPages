@@ -5,6 +5,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
     using Services.UserServiceProvider;
@@ -12,29 +13,27 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     
     public class RevokeUserRefreshTokenCommandHandler : TemplateHandler<RevokeUserRefreshTokenCommand, Unit>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly IUserServiceProvider _userServiceProvider;
         
-        private readonly IUserServiceProvider FUserServiceProvider;
-        
-        public RevokeUserRefreshTokenCommandHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider)
+        public RevokeUserRefreshTokenCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+            IUserServiceProvider userServiceProvider) : base(databaseContext, loggerService)
         {
-            FDatabaseContext = ADatabaseContext;
-            FUserServiceProvider = AUserServiceProvider;
+            _userServiceProvider = userServiceProvider;
         }
 
-        public override async Task<Unit> Handle(RevokeUserRefreshTokenCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Unit> Handle(RevokeUserRefreshTokenCommand request, CancellationToken cancellationToken)
         {
-            var LToken = await FDatabaseContext.UserRefreshTokens
-                .Where(AUserRefreshToken => AUserRefreshToken.Token == ARequest.RefreshToken)
-                .SingleOrDefaultAsync(ACancellationToken);
+            var refreshTokens = await DatabaseContext.UserRefreshTokens
+                .Where(tokens => tokens.Token == request.RefreshToken)
+                .SingleOrDefaultAsync(cancellationToken);
 
-            if (LToken == null)
+            if (refreshTokens == null)
                 throw new BusinessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
-            var LRequestIpAddress = FUserServiceProvider.GetRequestIpAddress();
-            const string REASON = "Revoked by Admin";
+            var requestIpAddress = _userServiceProvider.GetRequestIpAddress();
+            const string reason = "Revoked by Admin";
             
-            await FUserServiceProvider.RevokeRefreshToken(LToken, LRequestIpAddress, REASON, null, true, ACancellationToken);            
+            await _userServiceProvider.RevokeRefreshToken(refreshTokens, requestIpAddress, reason, null, true, cancellationToken);            
             return await Task.FromResult(Unit.Value);
         }
     }

@@ -5,38 +5,37 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
 
     public class GetUserQueryHandler : TemplateHandler<GetUserQuery, GetUserQueryResult>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        public GetUserQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
-        public GetUserQueryHandler(DatabaseContext ADatabaseContext) => FDatabaseContext = ADatabaseContext;
-
-        public override async Task<GetUserQueryResult> Handle(GetUserQuery ARequest, CancellationToken ACancellationToken)
+        public override async Task<GetUserQueryResult> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
-            var LCurrentUser = await FDatabaseContext.Users
+            var currentUser = await DatabaseContext.Users
                 .AsNoTracking()
-                .Where(AUser => AUser.Id == ARequest.Id)
-                .Select(AFields => new GetUserQueryResult
+                .Where(users => users.Id == request.Id)
+                .Select(users => new GetUserQueryResult
                 {
-                    Id = AFields.Id,
-                    Email = AFields.EmailAddress,
-                    AliasName = AFields.UserAlias,
-                    IsActivated = AFields.IsActivated,
-                    FirstName = AFields.FirstName,
-                    LastName = AFields.LastName,
-                    Registered = AFields.Registered,
-                    LastUpdated = AFields.LastUpdated,
-                    LastLogged = AFields.LastLogged
+                    Id = users.Id,
+                    Email = users.EmailAddress,
+                    AliasName = users.UserAlias,
+                    IsActivated = users.IsActivated,
+                    FirstName = users.FirstName,
+                    LastName = users.LastName,
+                    Registered = users.Registered,
+                    LastUpdated = users.LastUpdated,
+                    LastLogged = users.LastLogged
                 })
-                .ToListAsync(ACancellationToken);
+                .ToListAsync(cancellationToken);
 
-            if (!LCurrentUser.Any())
+            if (!currentUser.Any())
                 throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-            return LCurrentUser.First();
+            return currentUser.First();
         }
     }
 }

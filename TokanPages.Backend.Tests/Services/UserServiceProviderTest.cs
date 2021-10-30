@@ -28,763 +28,768 @@ namespace TokanPages.Backend.Tests.Services
         public async Task GivenValidClaimsInHttpContext_WhenInvokeGetUserId_ShouldReturnLoggedUserId()
         {
             // Arrange
-            var LLoggedUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
-            var LUsers = GetUser(LLoggedUserId);
-            var LHttpContext = GetMockedHttpContext(LLoggedUserId);
+            var loggedUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
+            var users = GetUser(loggedUserId);
+            var httpContext = GetMockedHttpContext(loggedUserId);
             
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await LUserProvider.GetUserId();
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedIdentityServer.Object);
+
+            var result = await userProvider.GetUserId();
 
             // Assert
-            LResult.Should().NotBeNull();
-            LResult.Should().Be(LLoggedUserId);
+            result.Should().NotBeNull();
+            result.Should().Be(loggedUserId);
         }
         
         [Fact]
         public async Task GivenNoUserClaimsInHttpContext_WhenInvokeGetUserId_ShouldReturnNull()
         {
             // Arrange
-            var LLoggedUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
-            var LUsers = GetUser(LLoggedUserId);
-            var LHttpContext = GetMockedHttpContext(null);
+            var loggedUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
+            var users = GetUser(loggedUserId);
+            var httpContext = GetMockedHttpContext(null);
             
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.SaveChangesAsync();
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
 
             // Assert
-            var LResult = await LUserProvider.GetUserId();
-            LResult.Should().BeNull();
+            var result = await userProvider.GetUserId();
+            result.Should().BeNull();
         }
         
         [Fact]
         public async Task GivenInvalidClaimsInHttpContext_WhenInvokeGetUserId_ShouldThrowError()
         {
             // Arrange
-            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
-            var LHttpContext = GetMockedHttpContext(Guid.NewGuid());
+            var users = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
+            var httpContext = GetMockedHttpContext(Guid.NewGuid());
             
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.SaveChangesAsync();
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await Assert.ThrowsAsync<BusinessException>(LUserProvider.GetUserId);
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var result = await Assert.ThrowsAsync<BusinessException>(userProvider.GetUserId);
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
 
         [Fact]
         public async Task GivenValidClaimsInHttpContext_WhenInvokeGetUser_ShouldReturnJsonObject()
         {
             // Arrange
-            var LLoggedUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
-            var LUsers = GetUser(LLoggedUserId).ToList();
-            var LHttpContext = GetMockedHttpContext(LLoggedUserId);
+            var loggedUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
+            var users = GetUser(loggedUserId).ToList();
+            var httpContext = GetMockedHttpContext(loggedUserId);
             
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.SaveChangesAsync();
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await LUserProvider.GetUser();
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var result = await userProvider.GetUser();
             
             // Assert
-            LResult.UserId.Should().Be(LUsers[0].Id);
-            LResult.AliasName.Should().Be(LUsers[0].UserAlias);
-            LResult.AvatarName.Should().Be(LUsers[0].AvatarName);
-            LResult.FirstName.Should().Be(LUsers[0].FirstName);
-            LResult.LastName.Should().Be(LUsers[0].LastName);
-            LResult.ShortBio.Should().Be(LUsers[0].ShortBio);
-            LResult.Registered.Should().Be(LUsers[0].Registered);
+            result.UserId.Should().Be(users[0].Id);
+            result.AliasName.Should().Be(users[0].UserAlias);
+            result.AvatarName.Should().Be(users[0].AvatarName);
+            result.FirstName.Should().Be(users[0].FirstName);
+            result.LastName.Should().Be(users[0].LastName);
+            result.ShortBio.Should().Be(users[0].ShortBio);
+            result.Registered.Should().Be(users[0].Registered);
         }
         
         [Fact]
         public async Task GivenInvalidClaimsInHttpContext_WhenInvokeGetUser_ShouldThrowError()
         {
             // Arrange
-            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
-            var LHttpContext = GetMockedHttpContext(Guid.NewGuid());
+            var users = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
+            var httpContext = GetMockedHttpContext(Guid.NewGuid());
             
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.SaveChangesAsync();
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await Assert.ThrowsAsync<BusinessException>(LUserProvider.GetUser);
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var result = await Assert.ThrowsAsync<BusinessException>(userProvider.GetUser);
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
 
         [Fact]
         public async Task GivenNoUserClaimsInHttpContext_WhenInvokeGetUser_ShouldReturnNull()
         {
             // Arrange
-            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
-            var LHttpContext = GetMockedHttpContext(null);
+            var users = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
+            var httpContext = GetMockedHttpContext(null);
             
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.SaveChangesAsync();
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await LUserProvider.GetUser();
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var result = await userProvider.GetUser();
 
             // Assert
-            LResult.Should().BeNull();
+            result.Should().BeNull();
         }
         
         [Fact]
         public async Task GivenValidClaimsInHttpContext_WhenInvokeGetUserRoles_ShouldReturnJsonObject()
         {
             // Arrange
-            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
-            var LRoles = GetRole().ToList();
-            var LUserRoles = new UserRoles
+            var users = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
+            var roles = GetRole().ToList();
+            var userRoles = new UserRoles
             {
-                UserId = LUsers[0].Id,
-                RoleId = LRoles[0].Id
+                UserId = users[0].Id,
+                RoleId = roles[0].Id
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.Roles.AddRangeAsync(LRoles);
-            await LDatabaseContext.UserRoles.AddRangeAsync(LUserRoles);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.Roles.AddRangeAsync(roles);
+            await databaseContext.UserRoles.AddRangeAsync(userRoles);
+            await databaseContext.SaveChangesAsync();
 
-            var LHttpContext = GetMockedHttpContext(LUsers[0].Id);
+            var httpContext = GetMockedHttpContext(users[0].Id);
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await LUserProvider.GetUserRoles(null);
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var lResult = await userProvider.GetUserRoles(null);
 
             // Assert
-            LResult.Should().HaveCount(1);
-            LResult[0].Name.Should().Be(LRoles[0].Name);
-            LResult[0].Description.Should().Be(LRoles[0].Description);
+            lResult.Should().HaveCount(1);
+            lResult[0].Name.Should().Be(roles[0].Name);
+            lResult[0].Description.Should().Be(roles[0].Description);
         }
 
         [Fact]
         public async Task GivenInvalidClaimsInHttpContext_WhenInvokeGetUserRoles_ShouldThrowError()
         {
             // Arrange
-            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
-            var LRoles = GetRole().ToList();
-            var LUserRoles = new UserRoles
+            var users = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
+            var roles = GetRole().ToList();
+            var userRoles = new UserRoles
             {
-                UserId = LUsers[0].Id,
-                RoleId = LRoles[0].Id
+                UserId = users[0].Id,
+                RoleId = roles[0].Id
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.Roles.AddRangeAsync(LRoles);
-            await LDatabaseContext.UserRoles.AddRangeAsync(LUserRoles);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.Roles.AddRangeAsync(roles);
+            await databaseContext.UserRoles.AddRangeAsync(userRoles);
+            await databaseContext.SaveChangesAsync();
 
-            var LHttpContext = GetMockedHttpContext(Guid.NewGuid());
+            var httpContext = GetMockedHttpContext(Guid.NewGuid());
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LUserProvider.GetUserRoles(null));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.GetUserRoles(null));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
         
         [Fact]
         public async Task GivenNoUserClaimsInHttpContext_WhenInvokeGetUserRoles_ShouldThrowError()
         {
             // Arrange
-            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
-            var LRoles = GetRole().ToList();
-            var LUserRoles = new UserRoles
+            var users = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
+            var roles = GetRole().ToList();
+            var userRoles = new UserRoles
             {
-                UserId = LUsers[0].Id,
-                RoleId = LRoles[0].Id
+                UserId = users[0].Id,
+                RoleId = roles[0].Id
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.Roles.AddRangeAsync(LRoles);
-            await LDatabaseContext.UserRoles.AddRangeAsync(LUserRoles);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.Roles.AddRangeAsync(roles);
+            await databaseContext.UserRoles.AddRangeAsync(userRoles);
+            await databaseContext.SaveChangesAsync();
 
-            var LHttpContext = GetMockedHttpContext(null);
+            var httpContext = GetMockedHttpContext(null);
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LUserProvider.GetUserRoles(null));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.GetUserRoles(null));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
         
         [Fact]
         public async Task GivenValidClaimsInHttpContext_WhenInvokeGetUserPermissions_ShouldReturnJsonObject()
         {
             // Arrange
-            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
-            var LUsers = GetUser(LUserId);
-            var LPermissions = GetPermissions().ToList();
-            var LUserPermissions = new List<UserPermissions>
+            var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
+            var users = GetUser(userId);
+            var permissions = GetPermissions().ToList();
+            var userPermissions = new List<UserPermissions>
             {
                 new ()
                 {
-                    UserId = LUserId,
-                    PermissionId = LPermissions[0].Id
+                    UserId = userId,
+                    PermissionId = permissions[0].Id
                 },
                 new ()
                 {
-                    UserId = LUserId,
-                    PermissionId = LPermissions[1].Id
+                    UserId = userId,
+                    PermissionId = permissions[1].Id
                 }
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.Permissions.AddRangeAsync(LPermissions);
-            await LDatabaseContext.UserPermissions.AddRangeAsync(LUserPermissions);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.Permissions.AddRangeAsync(permissions);
+            await databaseContext.UserPermissions.AddRangeAsync(userPermissions);
+            await databaseContext.SaveChangesAsync();
 
-            var LHttpContext = GetMockedHttpContext(LUserId);
+            var httpContext = GetMockedHttpContext(userId);
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await LUserProvider.GetUserPermissions(null);
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var result = await userProvider.GetUserPermissions(null);
 
             // Assert
-            LResult.Should().HaveCount(2);
-            LResult[0].Name.Should().Be(LPermissions[0].Name);
-            LResult[1].Name.Should().Be(LPermissions[1].Name);
+            result.Should().HaveCount(2);
+            result[0].Name.Should().Be(permissions[0].Name);
+            result[1].Name.Should().Be(permissions[1].Name);
         }
 
         [Fact]
         public async Task GivenInvalidClaimsInHttpContext_WhenInvokeGetUserPermissions_ShouldThrowError()
         {
             // Arrange
-            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
-            var LUsers = GetUser(LUserId);
-            var LPermissions = GetPermissions().ToList();
-            var LUserPermissions = new List<UserPermissions>
+            var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
+            var users = GetUser(userId);
+            var permissions = GetPermissions().ToList();
+            var userPermissions = new List<UserPermissions>
             {
                 new ()
                 {
-                    UserId = LUserId,
-                    PermissionId = LPermissions[0].Id
+                    UserId = userId,
+                    PermissionId = permissions[0].Id
                 },
                 new ()
                 {
-                    UserId = LUserId,
-                    PermissionId = LPermissions[1].Id
+                    UserId = userId,
+                    PermissionId = permissions[1].Id
                 }
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.Permissions.AddRangeAsync(LPermissions);
-            await LDatabaseContext.UserPermissions.AddRangeAsync(LUserPermissions);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.Permissions.AddRangeAsync(permissions);
+            await databaseContext.UserPermissions.AddRangeAsync(userPermissions);
+            await databaseContext.SaveChangesAsync();
 
-            var LHttpContext = GetMockedHttpContext(Guid.NewGuid());
+            var httpContext = GetMockedHttpContext(Guid.NewGuid());
 
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LUserProvider.GetUserPermissions(null));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.GetUserPermissions(null));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
         
         [Fact]
         public async Task GivenNoUserClaimsInHttpContext_WhenInvokeGetUserPermissions_ShouldThrowError()
         {
             // Arrange
-            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
-            var LUsers = GetUser(LUserId);
-            var LPermissions = GetPermissions().ToList();
-            var LUserPermissions = new List<UserPermissions>
+            var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
+            var users = GetUser(userId);
+            var permissions = GetPermissions().ToList();
+            var userPermissions = new List<UserPermissions>
             {
                 new ()
                 {
-                    UserId = LUserId,
-                    PermissionId = LPermissions[0].Id
+                    UserId = userId,
+                    PermissionId = permissions[0].Id
                 },
                 new ()
                 {
-                    UserId = LUserId,
-                    PermissionId = LPermissions[1].Id
+                    UserId = userId,
+                    PermissionId = permissions[1].Id
                 }
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.Permissions.AddRangeAsync(LPermissions);
-            await LDatabaseContext.UserPermissions.AddRangeAsync(LUserPermissions);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.Permissions.AddRangeAsync(permissions);
+            await databaseContext.UserPermissions.AddRangeAsync(userPermissions);
+            await databaseContext.SaveChangesAsync();
 
-            var LHttpContext = GetMockedHttpContext(null);
+            var httpContext = GetMockedHttpContext(null);
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LUserProvider.GetUserPermissions(null));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.GetUserPermissions(null));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
 
         [Fact]
         public async Task GivenValidClaimsInHttpContext_WhenInvokeHasRoleAssigned_ShouldReturnTrue()
         {
             // Arrange
-            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
-            var LRoles = GetRole().ToList();
-            var LUserRoles = new UserRoles
+            var users = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
+            var roles = GetRole().ToList();
+            var userRoles = new UserRoles
             {
-                UserId = LUsers[0].Id,
-                RoleId = LRoles[0].Id
+                UserId = users[0].Id,
+                RoleId = roles[0].Id
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.Roles.AddRangeAsync(LRoles);
-            await LDatabaseContext.UserRoles.AddRangeAsync(LUserRoles);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.Roles.AddRangeAsync(roles);
+            await databaseContext.UserRoles.AddRangeAsync(userRoles);
+            await databaseContext.SaveChangesAsync();
 
-            var LHttpContext = GetMockedHttpContext(LUsers[0].Id);
+            var httpContext = GetMockedHttpContext(users[0].Id);
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await LUserProvider.HasRoleAssigned(nameof(Roles.EverydayUser));
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var result = await userProvider.HasRoleAssigned(nameof(Roles.EverydayUser));
 
             // Assert
-            LResult.Should().BeTrue();
+            result.Should().BeTrue();
         }
         
         [Fact]
         public async Task GivenValidClaimsInHttpContextAndInvalidRole_WhenInvokeHasRoleAssigned_ShouldReturnFalse()
         {
             // Arrange
-            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
-            var LRoles = GetRole().ToList();
-            var LUserRoles = new UserRoles
+            var users = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
+            var roles = GetRole().ToList();
+            var userRoles = new UserRoles
             {
-                UserId = LUsers[0].Id,
-                RoleId = LRoles[0].Id
+                UserId = users[0].Id,
+                RoleId = roles[0].Id
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.Roles.AddRangeAsync(LRoles);
-            await LDatabaseContext.UserRoles.AddRangeAsync(LUserRoles);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.Roles.AddRangeAsync(roles);
+            await databaseContext.UserRoles.AddRangeAsync(userRoles);
+            await databaseContext.SaveChangesAsync();
 
-            var LHttpContext = GetMockedHttpContext(LUsers[0].Id);
+            var httpContext = GetMockedHttpContext(users[0].Id);
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await LUserProvider.HasRoleAssigned(nameof(Roles.PhotoPublisher));
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var result = await userProvider.HasRoleAssigned(nameof(Roles.PhotoPublisher));
 
             // Assert
-            LResult.Should().BeFalse();
+            result.Should().BeFalse();
         }
         
         [Fact]
         public async Task GivenNoUserClaimsInHttpContext_WhenInvokeHasRoleAssigned_ShouldReturnNull()
         {
             // Arrange
-            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
-            var LRoles = GetRole().ToList();
-            var LUserRoles = new UserRoles
+            var users = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
+            var roles = GetRole().ToList();
+            var userRoles = new UserRoles
             {
-                UserId = LUsers[0].Id,
-                RoleId = LRoles[0].Id
+                UserId = users[0].Id,
+                RoleId = roles[0].Id
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.Roles.AddRangeAsync(LRoles);
-            await LDatabaseContext.UserRoles.AddRangeAsync(LUserRoles);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.Roles.AddRangeAsync(roles);
+            await databaseContext.UserRoles.AddRangeAsync(userRoles);
+            await databaseContext.SaveChangesAsync();
 
-            var LHttpContext = GetMockedHttpContext(null);
+            var httpContext = GetMockedHttpContext(null);
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
 
             // Assert
-            var LResult = await LUserProvider.HasRoleAssigned(nameof(Roles.EverydayUser));
-            LResult.Should().BeNull();
+            var result = await userProvider.HasRoleAssigned(nameof(Roles.EverydayUser));
+            result.Should().BeNull();
         }
         
         [Fact]
         public async Task GivenValidClaimsInHttpContextAndNoRole_WhenInvokeHasRoleAssigned_ShouldThrowError()
         {
             // Arrange
-            var LUsers = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
-            var LRoles = GetRole().ToList();
-            var LUserRoles = new UserRoles
+            var users = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
+            var roles = GetRole().ToList();
+            var userRoles = new UserRoles
             {
-                UserId = LUsers[0].Id,
-                RoleId = LRoles[0].Id
+                UserId = users[0].Id,
+                RoleId = roles[0].Id
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.Roles.AddRangeAsync(LRoles);
-            await LDatabaseContext.UserRoles.AddRangeAsync(LUserRoles);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.Roles.AddRangeAsync(roles);
+            await databaseContext.UserRoles.AddRangeAsync(userRoles);
+            await databaseContext.SaveChangesAsync();
 
-            var LHttpContext = GetMockedHttpContext(LUsers[0].Id);
+            var httpContext = GetMockedHttpContext(users[0].Id);
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LUserProvider.HasRoleAssigned(string.Empty));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION));
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.HasRoleAssigned(string.Empty));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION));
         }
 
         [Fact]
         public async Task GivenValidClaimsInHttpContext_WhenInvokeHasPermissionAssigned_ShouldReturnTrue()
         {
             // Arrange
-            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
-            var LUsers = GetUser(LUserId).ToList();
-            var LPermissions = GetPermissions().ToList();
-            var LUserPermissions = new List<UserPermissions>
+            var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
+            var users = GetUser(userId).ToList();
+            var permissions = GetPermissions().ToList();
+            var userPermissions = new List<UserPermissions>
             {
                 new ()
                 {
-                    UserId = LUserId,
-                    PermissionId = LPermissions[0].Id
+                    UserId = userId,
+                    PermissionId = permissions[0].Id
                 },
                 new ()
                 {
-                    UserId = LUserId,
-                    PermissionId = LPermissions[1].Id
+                    UserId = userId,
+                    PermissionId = permissions[1].Id
                 }
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.Permissions.AddRangeAsync(LPermissions);
-            await LDatabaseContext.UserPermissions.AddRangeAsync(LUserPermissions);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.Permissions.AddRangeAsync(permissions);
+            await databaseContext.UserPermissions.AddRangeAsync(userPermissions);
+            await databaseContext.SaveChangesAsync();
 
-            var LHttpContext = GetMockedHttpContext(LUserId);
+            var httpContext = GetMockedHttpContext(userId);
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanSelectArticles.ToString());
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var result = await userProvider.HasPermissionAssigned(Permissions.CanSelectArticles.ToString());
 
             // Assert
-            LResult.Should().BeTrue();
+            result.Should().BeTrue();
         }
 
         [Fact]
         public async Task GivenValidClaimsInHttpContextAndInvalidPermission_WhenInvokeHasPermissionAssigned_ShouldReturnFalse()
         {
             // Arrange
-            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
-            var LUsers = GetUser(LUserId).ToList();
-            var LPermissions = GetPermissions().ToList();
-            var LUserPermissions = new List<UserPermissions>
+            var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
+            var users = GetUser(userId).ToList();
+            var permissions = GetPermissions().ToList();
+            var userPermissions = new List<UserPermissions>
             {
                 new ()
                 {
-                    UserId = LUserId,
-                    PermissionId = LPermissions[0].Id
+                    UserId = userId,
+                    PermissionId = permissions[0].Id
                 },
                 new ()
                 {
-                    UserId = LUserId,
-                    PermissionId = LPermissions[1].Id
+                    UserId = userId,
+                    PermissionId = permissions[1].Id
                 }
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.Permissions.AddRangeAsync(LPermissions);
-            await LDatabaseContext.UserPermissions.AddRangeAsync(LUserPermissions);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.Permissions.AddRangeAsync(permissions);
+            await databaseContext.UserPermissions.AddRangeAsync(userPermissions);
+            await databaseContext.SaveChangesAsync();
 
-            var LHttpContext = GetMockedHttpContext(LUserId);
+            var httpContext = GetMockedHttpContext(userId);
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanAddLikes.ToString());
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var result = await userProvider.HasPermissionAssigned(Permissions.CanAddLikes.ToString());
 
             // Assert
-            LResult.Should().BeFalse();
+            result.Should().BeFalse();
         }
         
         [Fact]
         public async Task GivenNoUserClaimsInHttpContext_WhenInvokeHasPermissionAssigned_ShouldReturnNull()
         {
             // Arrange
-            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
-            var LUsers = GetUser(LUserId).ToList();
-            var LPermissions = GetPermissions().ToList();
-            var LUserPermissions = new List<UserPermissions>
+            var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
+            var users = GetUser(userId).ToList();
+            var permissions = GetPermissions().ToList();
+            var userPermissions = new List<UserPermissions>
             {
                 new ()
                 {
-                    UserId = LUserId,
-                    PermissionId = LPermissions[0].Id
+                    UserId = userId,
+                    PermissionId = permissions[0].Id
                 },
                 new ()
                 {
-                    UserId = LUserId,
-                    PermissionId = LPermissions[1].Id
+                    UserId = userId,
+                    PermissionId = permissions[1].Id
                 }
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.Permissions.AddRangeAsync(LPermissions);
-            await LDatabaseContext.UserPermissions.AddRangeAsync(LUserPermissions);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.Permissions.AddRangeAsync(permissions);
+            await databaseContext.UserPermissions.AddRangeAsync(userPermissions);
+            await databaseContext.SaveChangesAsync();
 
-            var LHttpContext = GetMockedHttpContext(null);
+            var httpContext = GetMockedHttpContext(null);
             
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
 
             // Assert
-            var LResult = await LUserProvider.HasPermissionAssigned(Permissions.CanSelectArticles.ToString());
-            LResult.Should().BeNull();
+            var result = await userProvider.HasPermissionAssigned(Permissions.CanSelectArticles.ToString());
+            result.Should().BeNull();
         }
 
         [Fact]
         public async Task GivenValidClaimsInHttpContextAndNoPermission_WhenInvokeHasPermissionAssigned_ShouldThrowError()
         {
             // Arrange
-            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
-            var LUsers = GetUser(LUserId).ToList();
-            var LPermissions = GetPermissions().ToList();
-            var LUserPermissions = new List<UserPermissions>
+            var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
+            var users = GetUser(userId).ToList();
+            var permissions = GetPermissions().ToList();
+            var userPermissions = new List<UserPermissions>
             {
                 new ()
                 {
-                    UserId = LUserId,
-                    PermissionId = LPermissions[0].Id
+                    UserId = userId,
+                    PermissionId = permissions[0].Id
                 },
                 new ()
                 {
-                    UserId = LUserId,
-                    PermissionId = LPermissions[1].Id
+                    UserId = userId,
+                    PermissionId = permissions[1].Id
                 }
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.Permissions.AddRangeAsync(LPermissions);
-            await LDatabaseContext.UserPermissions.AddRangeAsync(LUserPermissions);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.Permissions.AddRangeAsync(permissions);
+            await databaseContext.UserPermissions.AddRangeAsync(userPermissions);
+            await databaseContext.SaveChangesAsync();
 
-            var LHttpContext = GetMockedHttpContext(LUserId);
+            var httpContext = GetMockedHttpContext(userId);
 
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
             // Act
             // Assert
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
-            var LResult = await Assert.ThrowsAsync<BusinessException>(() => LUserProvider.HasPermissionAssigned(string.Empty));
-            LResult.ErrorCode.Should().Be(nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION));
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.HasPermissionAssigned(string.Empty));
+            result.ErrorCode.Should().Be(nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION));
         }
 
         [Fact]
         public async Task GivenValidClaimsInHttpContextWithNoIpAddress_WhenInvokeGetRequestIpAddress_ShouldSucceed()
         {
             // Arrange
-            const string LOCALHOST = "127.0.0.1";
-            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
-            var LUsers = GetUser(LUserId).ToList();
+            const string localhost = "127.0.0.1";
+            var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
+            var users = GetUser(userId).ToList();
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LHttpContext = GetMockedHttpContext(LUserId);
+            var httpContext = GetMockedHttpContext(userId);
 
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
 
             // Act
-            var LResult = LUserProvider.GetRequestIpAddress();
+            var result = userProvider.GetRequestIpAddress();
 
             // Assert
-            LResult.Should().Be(LOCALHOST);
+            result.Should().Be(localhost);
         }
 
         [Fact]
         public async Task GivenValidClaimsInHttpContextWithIpAddress_WhenInvokeGetRequestIpAddress_ShouldSucceed()
         {
             // Arrange
-            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
-            var LUsers = GetUser(LUserId).ToList();
+            var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
+            var users = GetUser(userId).ToList();
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LIpAddress = DataUtilityService.GetRandomIpAddress();
-            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
+            var ipAddress = DataUtilityService.GetRandomIpAddress();
+            var httpContext = GetMockedHttpContext(userId, ipAddress);
 
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
 
             // Act
-            var LResult = LUserProvider.GetRequestIpAddress();
+            var result = userProvider.GetRequestIpAddress();
 
             // Assert
-            LResult.Should().Be(LIpAddress.ToString());
+            result.Should().Be(ipAddress.ToString());
         }
 
         [Fact]
         public async Task WhenInvokeSetRefreshTokenCookie_ShouldSucceed()
         {
             // Arrange
-            const int EXPIRES_IN = 15;
-            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
-            var LUsers = GetUser(LUserId).ToList();
+            const int expiresIn = 15;
+            var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
+            var users = GetUser(userId).ToList();
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LIpAddress = DataUtilityService.GetRandomIpAddress();
-            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
+            var ipAddress = DataUtilityService.GetRandomIpAddress();
+            var httpContext = GetMockedHttpContext(userId, ipAddress);
 
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
 
             // Act
-            LUserProvider.SetRefreshTokenCookie(DataUtilityService.GetRandomString(255), EXPIRES_IN);
+            userProvider.SetRefreshTokenCookie(DataUtilityService.GetRandomString(255), expiresIn);
 
             // Assert
-            LHttpContext
-                .Verify(AHttpContext => AHttpContext.HttpContext.Response.Cookies
+            httpContext
+                .Verify(context => context.HttpContext.Response.Cookies
                     .Append(
                         It.IsAny<string>(), 
                         It.IsAny<string>(), 
@@ -795,167 +800,167 @@ namespace TokanPages.Backend.Tests.Services
         [Theory]
         [InlineData("")]
         [InlineData(null)]
-        public async Task GivenNoRefreshToken_WhenInvokeSetRefreshTokenCookie_ShouldThrowError(string ARefreshToken)
+        public async Task GivenNoRefreshToken_WhenInvokeSetRefreshTokenCookie_ShouldThrowError(string refreshToken)
         {
             // Arrange
-            const int EXPIRES_IN = 15;
-            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
-            var LUsers = GetUser(LUserId).ToList();
+            const int expiresIn = 15;
+            var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
+            var users = GetUser(userId).ToList();
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LIpAddress = DataUtilityService.GetRandomIpAddress();
-            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
+            var ipAddress = DataUtilityService.GetRandomIpAddress();
+            var httpContext = GetMockedHttpContext(userId, ipAddress);
 
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
 
             // Act
             // Assert
-            Assert.Throws<BusinessException>(() => LUserProvider.SetRefreshTokenCookie(ARefreshToken, EXPIRES_IN));
+            Assert.Throws<BusinessException>(() => userProvider.SetRefreshTokenCookie(refreshToken, expiresIn));
         }
 
         [Fact]
         public async Task GivenExpirationInZeroMinutes_WhenInvokeSetRefreshTokenCookie_ShouldThrowError()
         {
             // Arrange
-            const int EXPIRES_IN = 0;
-            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
-            var LUsers = GetUser(LUserId).ToList();
+            const int expiresIn = 0;
+            var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
+            var users = GetUser(userId).ToList();
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LIpAddress = DataUtilityService.GetRandomIpAddress();
-            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
+            var ipAddress = DataUtilityService.GetRandomIpAddress();
+            var httpContext = GetMockedHttpContext(userId, ipAddress);
 
-            var LMockedJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LMockedDateTimeService = new Mock<IDateTimeService>();
-            var LMockedIdentityServer = new Mock<IdentityServer>();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
-            var LUserProvider = new UserServiceProvider(LHttpContext.Object, LDatabaseContext, 
-                LMockedJwtUtilityService.Object, LMockedDateTimeService.Object, LMockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
+                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
 
             // Act
             // Assert
-            Assert.Throws<BusinessException>(() => LUserProvider.SetRefreshTokenCookie(DataUtilityService.GetRandomString(), EXPIRES_IN));
+            Assert.Throws<BusinessException>(() => userProvider.SetRefreshTokenCookie(DataUtilityService.GetRandomString(), expiresIn));
         }
 
         [Fact]
         public async Task GivenUser_WhenMakeClaimsIdentity_ShouldSucceed()
         {
             // Arrange
-            var LUserId = Guid.NewGuid();
-            var LUsers = GetUser(LUserId).ToList();
-            var LRoles = GetRole().ToList();
-            var LUserRoles = new UserRoles
+            var userId = Guid.NewGuid();
+            var users = GetUser(userId).ToList();
+            var roles = GetRole().ToList();
+            var userRoles = new UserRoles
             {
-                UserId = LUsers[0].Id,
-                RoleId = LRoles[0].Id
+                UserId = users[0].Id,
+                RoleId = roles[0].Id
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.Roles.AddRangeAsync(LRoles);
-            await LDatabaseContext.UserRoles.AddRangeAsync(LUserRoles);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.Roles.AddRangeAsync(roles);
+            await databaseContext.UserRoles.AddRangeAsync(userRoles);
+            await databaseContext.SaveChangesAsync();
             
-            var LIpAddress = DataUtilityService.GetRandomIpAddress();
-            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
+            var ipAddress = DataUtilityService.GetRandomIpAddress();
+            var httpContext = GetMockedHttpContext(userId, ipAddress);
 
-            var LJwtUtilityService = new Mock<IJwtUtilityService>();
-            var LDateTimeService = new Mock<IDateTimeService>();
-            var LIdentityServer = new IdentityServer();
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
-            var LUserServiceProvider = new UserServiceProvider(
-                LHttpContext.Object, 
-                LDatabaseContext,
-                LJwtUtilityService.Object, 
-                LDateTimeService.Object, 
-                LIdentityServer);
+            var userServiceProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext,
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedIdentityServer.Object);
 
             // Act
-            var LResult = await LUserServiceProvider.MakeClaimsIdentity(LUsers[0], CancellationToken.None);
+            var result = await userServiceProvider.MakeClaimsIdentity(users[0], CancellationToken.None);
             
             // Assert
-            LResult.Claims.First(AClaim => AClaim.Type == ClaimTypes.Name).Value.Should().Be(LUsers[0].UserAlias);
-            LResult.Claims.First(AClaim => AClaim.Type == ClaimTypes.Role).Value.Should().Be(LRoles[0].Name);
-            LResult.Claims.First(AClaim => AClaim.Type == ClaimTypes.NameIdentifier).Value.Should().Be(LUsers[0].Id.ToString());
-            LResult.Claims.First(AClaim => AClaim.Type == ClaimTypes.GivenName).Value.Should().Be(LUsers[0].FirstName);
-            LResult.Claims.First(AClaim => AClaim.Type == ClaimTypes.Surname).Value.Should().Be(LUsers[0].LastName);
-            LResult.Claims.First(AClaim => AClaim.Type == ClaimTypes.Email).Value.Should().Be(LUsers[0].EmailAddress);
+            result.Claims.First(claim => claim.Type == ClaimTypes.Name).Value.Should().Be(users[0].UserAlias);
+            result.Claims.First(claim => claim.Type == ClaimTypes.Role).Value.Should().Be(roles[0].Name);
+            result.Claims.First(claim => claim.Type == ClaimTypes.NameIdentifier).Value.Should().Be(users[0].Id.ToString());
+            result.Claims.First(claim => claim.Type == ClaimTypes.GivenName).Value.Should().Be(users[0].FirstName);
+            result.Claims.First(claim => claim.Type == ClaimTypes.Surname).Value.Should().Be(users[0].LastName);
+            result.Claims.First(claim => claim.Type == ClaimTypes.Email).Value.Should().Be(users[0].EmailAddress);
         }
 
         [Fact]
         public async Task WhenGenerateUserToken_ShouldSucceed()
         {
             // Arrange
-            var LTokenExpires = DataUtilityService.GetRandomDateTime();
-            var LUserToken = DataUtilityService.GetRandomString();
-            var LUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
-            var LUsers = GetUser(LUserId).ToList();
-            var LRoles = GetRole().ToList();
-            var LUserRoles = new UserRoles
+            var tokenExpires = DataUtilityService.GetRandomDateTime();
+            var userToken = DataUtilityService.GetRandomString();
+            var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
+            var users = GetUser(userId).ToList();
+            var roles = GetRole().ToList();
+            var userRoles = new UserRoles
             {
-                UserId = LUsers[0].Id,
-                RoleId = LRoles[0].Id
+                UserId = users[0].Id,
+                RoleId = roles[0].Id
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.Roles.AddRangeAsync(LRoles);
-            await LDatabaseContext.UserRoles.AddRangeAsync(LUserRoles);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.Roles.AddRangeAsync(roles);
+            await databaseContext.UserRoles.AddRangeAsync(userRoles);
+            await databaseContext.SaveChangesAsync();
             
-            var LIpAddress = DataUtilityService.GetRandomIpAddress();
-            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
+            var ipAddress = DataUtilityService.GetRandomIpAddress();
+            var httpContext = GetMockedHttpContext(userId, ipAddress);
 
-            var LJwtUtilityService = new Mock<IJwtUtilityService>();
-            LJwtUtilityService
-                .Setup(AUtilityService => AUtilityService
+            var jwtUtilityService = new Mock<IJwtUtilityService>();
+            jwtUtilityService
+                .Setup(service => service
                     .GenerateJwt(
                         It.IsAny<DateTime>(), 
                         It.IsAny<ClaimsIdentity>(), 
                         It.IsAny<string>(), 
                         It.IsAny<string>(), 
                         It.IsAny<string>()))
-                .Returns(LUserToken);
+                .Returns(userToken);
             
-            var LDateTimeService = new Mock<IDateTimeService>();
-            var LIdentityServer = new IdentityServer();
+            var mockedDateTimeService = new Mock<IDateTimeService>();
+            var mockedIdentityServer = new Mock<IdentityServer>();
             
-            var LUserServiceProvider = new UserServiceProvider(
-                LHttpContext.Object, 
-                LDatabaseContext,
-                LJwtUtilityService.Object, 
-                LDateTimeService.Object, 
-                LIdentityServer);
+            var userServiceProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext,
+                jwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedIdentityServer.Object);
 
             // Act
-            var LResult = await LUserServiceProvider.GenerateUserToken(LUsers[0], LTokenExpires, CancellationToken.None);
+            var result = await userServiceProvider.GenerateUserToken(users[0], tokenExpires, CancellationToken.None);
             
             // Assert
-            LResult.Should().NotBeNullOrEmpty();
+            result.Should().NotBeNullOrEmpty();
         }
 
         [Fact]
         public async Task GivenManyRefreshTokens_WhenDeleteOutdatedRefreshTokens_ShouldSucceed()
         {
             // Arrange
-            var LUserId = Guid.NewGuid();
-            var LUsers = GetUser(LUserId).ToList();
-            var LUserRefreshTokens = new List<UserRefreshTokens>
+            var userId = Guid.NewGuid();
+            var users = GetUser(userId).ToList();
+            var userRefreshTokens = new List<UserRefreshTokens>
             {
                 new () // New token
                 {
-                    UserId = LUserId,
+                    UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
                     Expires = DateTimeService.Now.AddMinutes(120),
                     Created = DateTimeService.Now,
@@ -967,7 +972,7 @@ namespace TokanPages.Backend.Tests.Services
                 },
                 new () // Old token
                 {
-                    UserId = LUserId,
+                    UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
                     Expires = DateTimeService.Now.AddDays(-6),
                     Created = DateTimeService.Now.AddDays(-5),
@@ -979,7 +984,7 @@ namespace TokanPages.Backend.Tests.Services
                 },
                 new () // Old token
                 {
-                    UserId = LUserId,
+                    UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
                     Expires = DateTimeService.Now.AddMinutes(-360),
                     Created = DateTimeService.Now.AddMinutes(-220),
@@ -991,16 +996,16 @@ namespace TokanPages.Backend.Tests.Services
                 },
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.UserRefreshTokens.AddRangeAsync(LUserRefreshTokens);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.UserRefreshTokens.AddRangeAsync(userRefreshTokens);
+            await databaseContext.SaveChangesAsync();
             
-            var LIpAddress = DataUtilityService.GetRandomIpAddress();
-            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
-            var LJwtUtilityService = new Mock<IJwtUtilityService>();
+            var ipAddress = DataUtilityService.GetRandomIpAddress();
+            var httpContext = GetMockedHttpContext(userId, ipAddress);
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             
-            var LIdentityServer = new IdentityServer
+            var identityServer = new IdentityServer
             {
                 Issuer = DataUtilityService.GetRandomString(),
                 Audience = DataUtilityService.GetRandomString(),
@@ -1010,33 +1015,33 @@ namespace TokanPages.Backend.Tests.Services
                 RefreshTokenExpiresIn = 120
             };
             
-            var LUserServiceProvider = new UserServiceProvider(
-                LHttpContext.Object, 
-                LDatabaseContext,
-                LJwtUtilityService.Object, 
+            var userServiceProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext,
+                mockedJwtUtilityService.Object, 
                 DateTimeService, 
-                LIdentityServer);
+                identityServer);
             
             // Act
-            await LUserServiceProvider.DeleteOutdatedRefreshTokens(LUserId, true);
+            await userServiceProvider.DeleteOutdatedRefreshTokens(userId, true);
 
             // Assert
-            var LUpdatedUserRefreshTokens = LDatabaseContext.UserRefreshTokens.ToList();
-            LUpdatedUserRefreshTokens.Count.Should().Be(1);
-            LUpdatedUserRefreshTokens[0].Token.Should().Be(LUserRefreshTokens[0].Token);
+            var updatedUserRefreshTokens = databaseContext.UserRefreshTokens.ToList();
+            updatedUserRefreshTokens.Count.Should().Be(1);
+            updatedUserRefreshTokens[0].Token.Should().Be(userRefreshTokens[0].Token);
         }
 
         [Fact]
         public async Task GivenNewRefreshTokens_WhenDeleteOutdatedRefreshTokens_ShouldSucceed()
         {
             // Arrange
-            var LUserId = Guid.NewGuid();
-            var LUsers = GetUser(LUserId).ToList();
-            var LUserRefreshTokens = new List<UserRefreshTokens>
+            var userId = Guid.NewGuid();
+            var users = GetUser(userId).ToList();
+            var userRefreshTokens = new List<UserRefreshTokens>
             {
                 new ()
                 {
-                    UserId = LUserId,
+                    UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
                     Expires = DateTimeService.Now.AddMinutes(140),
                     Created = DateTimeService.Now,
@@ -1048,7 +1053,7 @@ namespace TokanPages.Backend.Tests.Services
                 },
                 new ()
                 {
-                    UserId = LUserId,
+                    UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
                     Expires = DateTimeService.Now.AddMinutes(110),
                     Created = DateTimeService.Now,
@@ -1060,7 +1065,7 @@ namespace TokanPages.Backend.Tests.Services
                 },
                 new ()
                 {
-                    UserId = LUserId,
+                    UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
                     Expires = DateTimeService.Now.AddMinutes(90),
                     Created = DateTimeService.Now,
@@ -1072,16 +1077,16 @@ namespace TokanPages.Backend.Tests.Services
                 },
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.UserRefreshTokens.AddRangeAsync(LUserRefreshTokens);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.UserRefreshTokens.AddRangeAsync(userRefreshTokens);
+            await databaseContext.SaveChangesAsync();
             
-            var LIpAddress = DataUtilityService.GetRandomIpAddress();
-            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
-            var LJwtUtilityService = new Mock<IJwtUtilityService>();
+            var ipAddress = DataUtilityService.GetRandomIpAddress();
+            var httpContext = GetMockedHttpContext(userId, ipAddress);
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             
-            var LIdentityServer = new IdentityServer
+            var identityServer = new IdentityServer
             {
                 Issuer = DataUtilityService.GetRandomString(),
                 Audience = DataUtilityService.GetRandomString(),
@@ -1091,33 +1096,33 @@ namespace TokanPages.Backend.Tests.Services
                 RefreshTokenExpiresIn = 120
             };
             
-            var LUserServiceProvider = new UserServiceProvider(
-                LHttpContext.Object, 
-                LDatabaseContext,
-                LJwtUtilityService.Object, 
+            var userServiceProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext,
+                mockedJwtUtilityService.Object, 
                 DateTimeService, 
-                LIdentityServer);
+                identityServer);
             
             // Act
-            await LUserServiceProvider.DeleteOutdatedRefreshTokens(LUserId, true);
+            await userServiceProvider.DeleteOutdatedRefreshTokens(userId, true);
 
             // Assert
-            var LUpdatedUserRefreshTokens = LDatabaseContext.UserRefreshTokens.ToList();
-            LUpdatedUserRefreshTokens.Count.Should().Be(3);
+            var updatedUserRefreshTokens = databaseContext.UserRefreshTokens.ToList();
+            updatedUserRefreshTokens.Count.Should().Be(3);
         }
 
         [Fact]
         public async Task GivenNewRefreshTokens_WhenReplaceRefreshToken_ShouldSucceed()
         {
             // Arrange
-            var LUserId = Guid.NewGuid();
-            var LUsers = GetUser(LUserId).ToList();
-            var LUserRefreshTokens = new List<UserRefreshTokens>
+            var userId = Guid.NewGuid();
+            var users = GetUser(userId).ToList();
+            var userRefreshTokens = new List<UserRefreshTokens>
             {
                 new ()
                 {
                     Id = Guid.NewGuid(),
-                    UserId = LUserId,
+                    UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
                     Expires = DateTimeService.Now.AddMinutes(140),
                     Created = DateTimeService.Now,
@@ -1130,7 +1135,7 @@ namespace TokanPages.Backend.Tests.Services
                 new ()
                 {
                     Id = Guid.NewGuid(),
-                    UserId = LUserId,
+                    UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
                     Expires = DateTimeService.Now.AddMinutes(110),
                     Created = DateTimeService.Now,
@@ -1143,7 +1148,7 @@ namespace TokanPages.Backend.Tests.Services
                 new ()
                 {
                     Id = Guid.NewGuid(),
-                    UserId = LUserId,
+                    UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
                     Expires = DateTimeService.Now.AddMinutes(90),
                     Created = DateTimeService.Now,
@@ -1155,30 +1160,30 @@ namespace TokanPages.Backend.Tests.Services
                 },
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.UserRefreshTokens.AddRangeAsync(LUserRefreshTokens);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.UserRefreshTokens.AddRangeAsync(userRefreshTokens);
+            await databaseContext.SaveChangesAsync();
             
-            var LIpAddress = DataUtilityService.GetRandomIpAddress();
-            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
-            var LJwtUtilityService = new Mock<IJwtUtilityService>();
+            var ipAddress = DataUtilityService.GetRandomIpAddress();
+            var httpContext = GetMockedHttpContext(userId, ipAddress);
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
 
-            var LRefreshToken = new RefreshToken
+            var refreshToken = new RefreshToken
             {
                 Token = DataUtilityService.GetRandomString(),
                 Expires = DateTimeService.Now.AddMinutes(120),
                 Created = DateTimeService.Now,
-                CreatedByIp = LIpAddress.ToString()
+                CreatedByIp = ipAddress.ToString()
             };
-            LJwtUtilityService
-                .Setup(AUtilityService => AUtilityService
+            mockedJwtUtilityService
+                .Setup(service => service
                     .GenerateRefreshToken(
                         It.IsAny<string>(), 
                         It.IsAny<int>()))
-                .Returns(LRefreshToken);
+                .Returns(refreshToken);
             
-            var LIdentityServer = new IdentityServer
+            var identityServer = new IdentityServer
             {
                 Issuer = DataUtilityService.GetRandomString(),
                 Audience = DataUtilityService.GetRandomString(),
@@ -1188,62 +1193,62 @@ namespace TokanPages.Backend.Tests.Services
                 RefreshTokenExpiresIn = 120
             };
             
-            var LUserServiceProvider = new UserServiceProvider(
-                LHttpContext.Object, 
-                LDatabaseContext,
-                LJwtUtilityService.Object, 
+            var userServiceProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext,
+                mockedJwtUtilityService.Object, 
                 DateTimeService, 
-                LIdentityServer);
+                identityServer);
             
             // Act
-            var LResult = await LUserServiceProvider.ReplaceRefreshToken(LUserId, LUserRefreshTokens[0], LIpAddress.ToString(), true);
+            var result = await userServiceProvider.ReplaceRefreshToken(userId, userRefreshTokens[0], ipAddress.ToString(), true);
 
             // Assert
-            LResult.UserId.Should().Be(LUserId);
-            LResult.Token.Should().Be(LRefreshToken.Token);
-            LResult.Expires.Should().Be(LRefreshToken.Expires);
-            LResult.Created.Should().Be(LRefreshToken.Created);
-            LResult.CreatedByIp.Should().Be(LRefreshToken.CreatedByIp);
-            LResult.Revoked.Should().BeNull();
-            LResult.RevokedByIp.Should().BeNull();
-            LResult.ReplacedByToken.Should().BeNull();
-            LResult.ReasonRevoked.Should().BeNull();
+            result.UserId.Should().Be(userId);
+            result.Token.Should().Be(refreshToken.Token);
+            result.Expires.Should().Be(refreshToken.Expires);
+            result.Created.Should().Be(refreshToken.Created);
+            result.CreatedByIp.Should().Be(refreshToken.CreatedByIp);
+            result.Revoked.Should().BeNull();
+            result.RevokedByIp.Should().BeNull();
+            result.ReplacedByToken.Should().BeNull();
+            result.ReasonRevoked.Should().BeNull();
            
-            var LSavedUserRefreshToken = await LDatabaseContext.UserRefreshTokens.FindAsync(LUserRefreshTokens[0].Id);
-            LSavedUserRefreshToken.Revoked.Should().NotBeNull();
-            LSavedUserRefreshToken.RevokedByIp.Should().NotBeNull();
-            LSavedUserRefreshToken.ReplacedByToken.Should().NotBeNull();
-            LSavedUserRefreshToken.ReasonRevoked.Should().NotBeNull();
+            var savedUserRefreshToken = await databaseContext.UserRefreshTokens.FindAsync(userRefreshTokens[0].Id);
+            savedUserRefreshToken.Revoked.Should().NotBeNull();
+            savedUserRefreshToken.RevokedByIp.Should().NotBeNull();
+            savedUserRefreshToken.ReplacedByToken.Should().NotBeNull();
+            savedUserRefreshToken.ReasonRevoked.Should().NotBeNull();
         }
 
         [Fact]
         public async Task GivenCompromisedRefreshTokens_WhenRevokeDescendantRefreshTokens_ShouldSucceed()
         {
             // Arrange
-            const string REASON_REVOKED = "Attempted reuse of revoked ancestor token";
-            var LUserId = Guid.NewGuid();
-            var LUsers = GetUser(LUserId).ToList();
-            var LToken = DataUtilityService.GetRandomString(255);
-            var LUserRefreshTokens = new List<UserRefreshTokens>
+            const string reasonRevoked = "Attempted reuse of revoked ancestor token";
+            var userId = Guid.NewGuid();
+            var users = GetUser(userId).ToList();
+            var token = DataUtilityService.GetRandomString(255);
+            var userRefreshTokens = new List<UserRefreshTokens>
             {
                 new () // Already revoked
                 {
                     Id = Guid.NewGuid(),
-                    UserId = LUserId,
+                    UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
                     Expires = DateTimeService.Now.AddMinutes(-310),
                     Created = DateTimeService.Now.AddMinutes(-400),
                     CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
                     Revoked = DateTimeService.Now.AddMinutes(-120),
                     RevokedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
-                    ReplacedByToken = LToken,
+                    ReplacedByToken = token,
                     ReasonRevoked = "Replaced by new token"
                 },
                 new () // Outdated
                 {
                     Id = Guid.NewGuid(),
-                    UserId = LUserId,
-                    Token = LToken,
+                    UserId = userId,
+                    Token = token,
                     Expires = DateTimeService.Now.AddMinutes(6),
                     Created = DateTimeService.Now.AddMinutes(-5),
                     CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
@@ -1255,7 +1260,7 @@ namespace TokanPages.Backend.Tests.Services
                 new () // Active
                 {
                     Id = Guid.NewGuid(),
-                    UserId = LUserId,
+                    UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
                     Expires = DateTimeService.Now.AddMinutes(120),
                     Created = DateTimeService.Now,
@@ -1267,30 +1272,30 @@ namespace TokanPages.Backend.Tests.Services
                 },
             };
             
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddRangeAsync(LUsers);
-            await LDatabaseContext.UserRefreshTokens.AddRangeAsync(LUserRefreshTokens);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddRangeAsync(users);
+            await databaseContext.UserRefreshTokens.AddRangeAsync(userRefreshTokens);
+            await databaseContext.SaveChangesAsync();
             
-            var LIpAddress = DataUtilityService.GetRandomIpAddress();
-            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
-            var LJwtUtilityService = new Mock<IJwtUtilityService>();
+            var ipAddress = DataUtilityService.GetRandomIpAddress();
+            var httpContext = GetMockedHttpContext(userId, ipAddress);
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
 
-            var LRefreshToken = new RefreshToken
+            var refreshToken = new RefreshToken
             {
                 Token = DataUtilityService.GetRandomString(),
                 Expires = DateTimeService.Now.AddMinutes(120),
                 Created = DateTimeService.Now,
-                CreatedByIp = LIpAddress.ToString()
+                CreatedByIp = ipAddress.ToString()
             };
-            LJwtUtilityService
-                .Setup(AUtilityService => AUtilityService
+            mockedJwtUtilityService
+                .Setup(service => service
                     .GenerateRefreshToken(
                         It.IsAny<string>(), 
                         It.IsAny<int>()))
-                .Returns(LRefreshToken);
+                .Returns(refreshToken);
             
-            var LIdentityServer = new IdentityServer
+            var identityServer = new IdentityServer
             {
                 Issuer = DataUtilityService.GetRandomString(),
                 Audience = DataUtilityService.GetRandomString(),
@@ -1300,38 +1305,38 @@ namespace TokanPages.Backend.Tests.Services
                 RefreshTokenExpiresIn = 120
             };
             
-            var LUserServiceProvider = new UserServiceProvider(
-                LHttpContext.Object, 
-                LDatabaseContext,
-                LJwtUtilityService.Object, 
+            var userServiceProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext,
+                mockedJwtUtilityService.Object, 
                 DateTimeService, 
-                LIdentityServer);
+                identityServer);
             
             // Act
-            await LUserServiceProvider.RevokeDescendantRefreshTokens(
-                LUserRefreshTokens, 
-                LUserRefreshTokens[0], 
-                LIpAddress.ToString(), 
-                REASON_REVOKED, 
+            await userServiceProvider.RevokeDescendantRefreshTokens(
+                userRefreshTokens, 
+                userRefreshTokens[0], 
+                ipAddress.ToString(), 
+                reasonRevoked, 
                 true, 
                 CancellationToken.None);
 
             // Assert
-            var LGetRefreshTokens = LDatabaseContext.UserRefreshTokens.ToList();
-            LGetRefreshTokens[1].ReasonRevoked.Should().Be(REASON_REVOKED);
+            var getRefreshTokens = databaseContext.UserRefreshTokens.ToList();
+            getRefreshTokens[1].ReasonRevoked.Should().Be(reasonRevoked);
         }
 
         [Fact]
         public async Task GivenValidRefreshToken_WhenRevokeUserRefreshToken_ShouldUpdateEntity()
         {
             // Arrange
-            var LUserId = Guid.NewGuid();
-            var LToken = DataUtilityService.GetRandomString(100);
-            const string REASON_REVOKED = "Revoked by Admin";
+            var userId = Guid.NewGuid();
+            var token = DataUtilityService.GetRandomString(100);
+            const string reasonRevoked = "Revoked by Admin";
             
-            var LUser = new Users
+            var user = new Users
             {
-                Id = LUserId,
+                Id = userId,
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
                 FirstName = DataUtilityService.GetRandomString(),
@@ -1341,25 +1346,25 @@ namespace TokanPages.Backend.Tests.Services
                 CryptedPassword = DataUtilityService.GetRandomString()
             };
 
-            var LUserRefreshToken = new UserRefreshTokens
+            var userRefreshToken = new UserRefreshTokens
             {
-                UserId = LUserId,
-                Token = LToken,
+                UserId = userId,
+                Token = token,
                 Expires = DateTimeService.Now,
                 Created = DateTimeService.Now.AddMinutes(300),
                 CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString()
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUser);
-            await LDatabaseContext.UserRefreshTokens.AddAsync(LUserRefreshToken);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(user);
+            await databaseContext.UserRefreshTokens.AddAsync(userRefreshToken);
+            await databaseContext.SaveChangesAsync();
 
-            var LIpAddress = DataUtilityService.GetRandomIpAddress();
-            var LHttpContext = GetMockedHttpContext(LUserId, LIpAddress);
-            var LJwtUtilityService = new Mock<IJwtUtilityService>();
+            var ipAddress = DataUtilityService.GetRandomIpAddress();
+            var httpContext = GetMockedHttpContext(userId, ipAddress);
+            var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
 
-            var LIdentityServer = new IdentityServer
+            var identityServer = new IdentityServer
             {
                 Issuer = DataUtilityService.GetRandomString(),
                 Audience = DataUtilityService.GetRandomString(),
@@ -1369,30 +1374,30 @@ namespace TokanPages.Backend.Tests.Services
                 RefreshTokenExpiresIn = 120
             };
 
-            var LUserServiceProvider = new UserServiceProvider(
-                LHttpContext.Object, 
-                LDatabaseContext,
-                LJwtUtilityService.Object, 
+            var userServiceProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext,
+                mockedJwtUtilityService.Object, 
                 DateTimeService, 
-                LIdentityServer);
+                identityServer);
 
             // Act
-            await LUserServiceProvider.RevokeRefreshToken(LUserRefreshToken, LIpAddress.ToString(), REASON_REVOKED, null, true, CancellationToken.None);
+            await userServiceProvider.RevokeRefreshToken(userRefreshToken, ipAddress.ToString(), reasonRevoked, null, true, CancellationToken.None);
 
             // Assert
-            var LGetRefreshTokens = LDatabaseContext.UserRefreshTokens.ToList();
-            LGetRefreshTokens[0].RevokedByIp.Should().Be(LIpAddress.ToString());
-            LGetRefreshTokens[0].ReasonRevoked.Should().Be(REASON_REVOKED);
-            LGetRefreshTokens[0].ReplacedByToken.Should().BeNull();
+            var getRefreshTokens = databaseContext.UserRefreshTokens.ToList();
+            getRefreshTokens[0].RevokedByIp.Should().Be(ipAddress.ToString());
+            getRefreshTokens[0].ReasonRevoked.Should().Be(reasonRevoked);
+            getRefreshTokens[0].ReplacedByToken.Should().BeNull();
         }
 
-        private  IEnumerable<Users> GetUser(Guid AUserId)
+        private  IEnumerable<Users> GetUser(Guid userId)
         {
             return new List<Users>
             {
                 new ()
                 {
-                    Id = AUserId,
+                    Id = userId,
                     EmailAddress = DataUtilityService.GetRandomEmail(),
                     UserAlias = DataUtilityService.GetRandomString(),
                     FirstName = DataUtilityService.GetRandomString(),
@@ -1436,42 +1441,42 @@ namespace TokanPages.Backend.Tests.Services
             };   
         }
 
-        private static Mock<IHttpContextAccessor> GetMockedHttpContext(Guid? AUserId, IPAddress ARequesterIpAddress = null)
+        private static Mock<IHttpContextAccessor> GetMockedHttpContext(Guid? userId, IPAddress requesterIpAddress = null)
         {
-            var LMockedHttpContext = new Mock<IHttpContextAccessor>();
-            var LClaims = new List<Claim>();
+            var mockedHttpContext = new Mock<IHttpContextAccessor>();
+            var claims = new List<Claim>();
             
-            if (AUserId != null && AUserId != Guid.Empty)
-                LClaims.Add(new Claim(ClaimTypes.NameIdentifier, AUserId.ToString()));
+            if (userId != null && userId != Guid.Empty)
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, userId.ToString()));
 
-            LMockedHttpContext
-                .SetupGet(AHttpContext => AHttpContext.HttpContext.User.Claims)
-                .Returns(LClaims);
+            mockedHttpContext
+                .SetupGet(context => context.HttpContext.User.Claims)
+                .Returns(claims);
 
-            var LIpAddress = ARequesterIpAddress == null
+            var ipAddress = requesterIpAddress == null
                 ? StringValues.Empty 
-                : new StringValues(ARequesterIpAddress.ToString());
+                : new StringValues(requesterIpAddress.ToString());
             
-            var LHeaders = new HeaderDictionary
+            var headers = new HeaderDictionary
             {
-                { "X-Forwarded-For", LIpAddress }
+                { "X-Forwarded-For", ipAddress }
             };
 
-            LMockedHttpContext
-                .SetupGet(AHttpContext => AHttpContext.HttpContext.Request.Headers)
-                .Returns(LHeaders);
+            mockedHttpContext
+                .SetupGet(context => context.HttpContext.Request.Headers)
+                .Returns(headers);
 
-            var LResponse = new Mock<HttpResponse>();
-            var LAnyStringValues = new StringValues(It.IsAny<string>());
-            LResponse
-                .Setup(AHttpResponse => AHttpResponse.Cookies
-                .Append(It.IsAny<string>(), LAnyStringValues));
+            var response = new Mock<HttpResponse>();
+            var anyStringValues = new StringValues(It.IsAny<string>());
+            response
+                .Setup(httpResponse => httpResponse.Cookies
+                .Append(It.IsAny<string>(), anyStringValues));
             
-            LMockedHttpContext
-                .SetupGet(AHttpContext => AHttpContext.HttpContext.Response)
-                .Returns(LResponse.Object);
+            mockedHttpContext
+                .SetupGet(context => context.HttpContext.Response)
+                .Returns(response.Object);
             
-            return LMockedHttpContext;
+            return mockedHttpContext;
         }
     }
 }

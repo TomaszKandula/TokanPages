@@ -12,84 +12,84 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient
 
     public class CustomHttpClient : ICustomHttpClient
     {
-        private const string HEADER = "Authorization";
+        private const string Header = "Authorization";
 
-        private const string BASIC = "Basic";
+        private const string Basic = "Basic";
 
-        private const string BEARER = "Bearer";
+        private const string Bearer = "Bearer";
 
-        private readonly HttpClient FHttpClient;
+        private readonly HttpClient _httpClient;
 
-        public CustomHttpClient(HttpClient AHttpClient) => FHttpClient = AHttpClient;
+        public CustomHttpClient(HttpClient httpClient) => _httpClient = httpClient;
 
-        public async Task<Results> Execute(Configuration AConfiguration, CancellationToken ACancellationToken = default)
+        public virtual async Task<Results> Execute(Configuration configuration, CancellationToken cancellationToken = default)
         {
-            VerifyConfigurationArgument(AConfiguration);
-            using var LRequest = new HttpRequestMessage(new HttpMethod(AConfiguration.Method), AConfiguration.Url);
+            VerifyConfigurationArgument(configuration);
+            using var request = new HttpRequestMessage(new HttpMethod(configuration.Method), configuration.Url);
 
-            if (AConfiguration.StringContent != null)
-                LRequest.Content = AConfiguration.StringContent;
+            if (configuration.StringContent != null)
+                request.Content = configuration.StringContent;
             
-            switch (AConfiguration.Authentication)
+            switch (configuration.Authentication)
             {
-                case BasicAuthentication LBasicAuthentication:
-                    var LBasic = SetAuthentication(LBasicAuthentication.Login, LBasicAuthentication.Password);
-                    LRequest.Headers.TryAddWithoutValidation(HEADER, LBasic); 
+                case BasicAuthentication basicAuthentication:
+                    var basic = SetAuthentication(basicAuthentication.Login, basicAuthentication.Password);
+                    request.Headers.TryAddWithoutValidation(Header, basic); 
                     break;
                 
-                case BearerAuthentication LBearerAuthentication:
-                    var LBearer = SetAuthentication(LBearerAuthentication.Token);
-                    LRequest.Headers.TryAddWithoutValidation(HEADER, LBearer); 
+                case BearerAuthentication bearerAuthentication:
+                    var bearer = SetAuthentication(bearerAuthentication.Token);
+                    request.Headers.TryAddWithoutValidation(Header, bearer); 
                     break;
             }
 
-            var LResponse = await FHttpClient.SendAsync(LRequest, ACancellationToken);
-            var LContentType = LResponse.Content.Headers.ContentType;
-            var LContent = await LResponse.Content.ReadAsByteArrayAsync(ACancellationToken);
+            var response = await _httpClient.SendAsync(request, cancellationToken);
+            var contentType = response.Content.Headers.ContentType;
+            var content = await response.Content.ReadAsByteArrayAsync(cancellationToken);
 
             return new Results
             {
-                StatusCode = LResponse.StatusCode,
-                ContentType = LContentType,
-                Content = LContent
+                StatusCode = response.StatusCode,
+                ContentType = contentType,
+                Content = content
             };
         }
 
-        public string SetAuthentication(string ALogin, string APassword)
+        public virtual string SetAuthentication(string login, string password)
         {
-            if (string.IsNullOrEmpty(ALogin))
-                throw new ArgumentException($"Argument '{nameof(ALogin)}' cannot be null or empty.");
+            if (string.IsNullOrEmpty(login))
+                throw new ArgumentException($"Argument '{nameof(login)}' cannot be null or empty.");
 
-            var LBase64 = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{ALogin}:{APassword}"));
-            return $"{BASIC} {LBase64}";
+            var base64 = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{login}:{password}"));
+            return $"{Basic} {base64}";
         }
 
-        public string SetAuthentication(string AToken)
+        public virtual string SetAuthentication(string token)
         {
-            if (string.IsNullOrEmpty(AToken))
-                throw new ArgumentException($"Argument '{nameof(AToken)}' cannot be null or empty.");
+            if (string.IsNullOrEmpty(token))
+                throw new ArgumentException($"Argument '{nameof(token)}' cannot be null or empty.");
 
-            return $"{BEARER} {AToken}";
+            return $"{Bearer} {token}";
         }
 
-        public string GetFirstEmptyParameterName(IDictionary<string, string> AParameterList)
+        public virtual string GetFirstEmptyParameterName(IDictionary<string, string> parameterList)
         {
-            var LParameters = AParameterList
-                .Where(AParameter => string.IsNullOrEmpty(AParameter.Value))
+            var parameters = parameterList
+                .Where(parameter => string.IsNullOrEmpty(parameter.Value))
                 .ToList();
 
-            return LParameters.Any() 
-                ? LParameters.Select(AParameterModel => AParameterModel.Key).FirstOrDefault() 
+            return parameters.Any() 
+                ? parameters.Select(parameter => parameter.Key).FirstOrDefault() 
                 : string.Empty;
         }
 
-        private static void VerifyConfigurationArgument(Configuration AConfiguration)
+        private static void VerifyConfigurationArgument(Configuration configuration)
         {
-            if (string.IsNullOrEmpty(AConfiguration.Method))
-                throw new ArgumentException($"Argument '{nameof(AConfiguration.Method)}' cannot be null or empty.");
+            if (string.IsNullOrEmpty(configuration.Method))
+                throw new ArgumentException($"Argument '{nameof(configuration.Method)}' cannot be null or empty.");
 
-            if (string.IsNullOrEmpty(AConfiguration.Url))
-                throw new ArgumentException($"Argument '{nameof(AConfiguration.Url)}' cannot be null or empty.");
+            if (string.IsNullOrEmpty(configuration.Url))
+                throw new ArgumentException($"Argument '{nameof(configuration.Url)}' cannot be null or empty.");
         }
     }
 }

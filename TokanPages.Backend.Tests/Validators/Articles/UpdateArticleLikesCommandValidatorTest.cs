@@ -12,57 +12,57 @@ namespace TokanPages.Backend.Tests.Validators.Articles
         public void GivenValidGuidAndLikes_WhenUpdateArticleLikes_ShouldReturnSuccess()
         {
             // Arrange
-            var LUpdateArticleLikesCommand = new UpdateArticleLikesCommand
+            var updateArticleLikesCommand = new UpdateArticleLikesCommand
             {
                 Id = Guid.NewGuid(),
                 AddToLikes = DataUtilityService.GetRandomInteger(1, 25)
             };
 
             // Act
-            var LUpdateArticleLikesCommandValidator = new UpdateArticleLikesCommandValidator();
-            var LResult = LUpdateArticleLikesCommandValidator.Validate(LUpdateArticleLikesCommand);
+            var updateArticleLikesCommandValidator = new UpdateArticleLikesCommandValidator();
+            var result = updateArticleLikesCommandValidator.Validate(updateArticleLikesCommand);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenValidGuidNegativeLikes_WhenUpdateArticleLikes_ShouldThrownError()
         {
             // Arrange
-            var LUpdateArticleLikesCommand = new UpdateArticleLikesCommand
+            var updateArticleLikesCommand = new UpdateArticleLikesCommand
             {
                 Id = Guid.NewGuid(),
                 AddToLikes = DataUtilityService.GetRandomInteger(-25, -1)
             };
 
             // Act
-            var LUpdateArticleLikesCommandValidator = new UpdateArticleLikesCommandValidator();
-            var LResult = LUpdateArticleLikesCommandValidator.Validate(LUpdateArticleLikesCommand);
+            var updateArticleLikesCommandValidator = new UpdateArticleLikesCommandValidator();
+            var result = updateArticleLikesCommandValidator.Validate(updateArticleLikesCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LESS_THAN_ZERO));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LESS_THAN_ZERO));
         }
         
         [Fact]
         public void GivenEmptyGuidAndNegativeLikes_WhenUpdateArticleLikes_ShouldThrownError()
         {
             // Arrange
-            var LUpdateArticleLikesCommand = new UpdateArticleLikesCommand
+            var updateArticleLikesCommand = new UpdateArticleLikesCommand
             {
                 Id = Guid.Empty,
                 AddToLikes = DataUtilityService.GetRandomInteger(-25, -1)
             };
 
             // Act
-            var LUpdateArticleLikesCommandValidator = new UpdateArticleLikesCommandValidator();
-            var LResult = LUpdateArticleLikesCommandValidator.Validate(LUpdateArticleLikesCommand);
+            var updateArticleLikesCommandValidator = new UpdateArticleLikesCommandValidator();
+            var result = updateArticleLikesCommandValidator.Validate(updateArticleLikesCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(2);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-            LResult.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.LESS_THAN_ZERO));
+            result.Errors.Count.Should().Be(2);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.LESS_THAN_ZERO));
         }
     }
 }

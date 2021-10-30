@@ -1,5 +1,8 @@
 namespace TokanPages.WebApi.Tests.ArticlesController
 {
+    using Xunit;
+    using Newtonsoft.Json;
+    using FluentAssertions;
     using System;
     using System.Net;
     using System.Net.Http;
@@ -7,9 +10,6 @@ namespace TokanPages.WebApi.Tests.ArticlesController
     using System.Net.Http.Headers;
     using Backend.Core.Extensions;
     using Backend.Shared.Dto.Articles;
-    using Newtonsoft.Json;
-    using FluentAssertions;
-    using Xunit;
 
     public partial class ArticlesControllerTest
     {
@@ -17,10 +17,10 @@ namespace TokanPages.WebApi.Tests.ArticlesController
         public async Task GivenAllFieldsAreCorrectAsAnonymousUser_WhenAddArticle_ShouldReturnUnauthorized()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/AddArticle/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            var request = $"{ApiBaseUrl}/AddArticle/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
-            var LPayLoad = new AddArticleDto
+            var payLoad = new AddArticleDto
             {
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
@@ -28,26 +28,26 @@ namespace TokanPages.WebApi.Tests.ArticlesController
                 ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
             };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            var httpClient = _webApplicationFactory.CreateClient();
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.Unauthorized);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
 
             // Assert
-            var LResult = await LResponse.Content.ReadAsStringAsync();
-            LResult.Should().BeEmpty();
+            var result = await response.Content.ReadAsStringAsync();
+            result.Should().BeEmpty();
         }
 
         [Fact]
         public async Task GivenAllFieldsAreCorrectAsLoggedUser_WhenAddArticle_ShouldSucceed()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/AddArticle/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            var request = $"{ApiBaseUrl}/AddArticle/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
-            var LPayLoad = new AddArticleDto
+            var payLoad = new AddArticleDto
             {
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
@@ -55,21 +55,21 @@ namespace TokanPages.WebApi.Tests.ArticlesController
                 ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
             };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), 
-                FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var tokenExpires = DateTime.Now.AddDays(30);
+            var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
+                _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
-            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
 
             // Assert
-            var LResult = await LResponse.Content.ReadAsStringAsync();
-            LResult.Should().NotBeNullOrEmpty();
+            var result = await response.Content.ReadAsStringAsync();
+            result.Should().NotBeNullOrEmpty();
         }
     }
 }

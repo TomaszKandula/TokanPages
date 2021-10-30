@@ -5,11 +5,11 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
     using System.Net;
     using System.Linq;
 
-    public class DataUtilityService : DataUtilityObject, IDataUtilityService
+    public class DataUtilityService : IDataUtilityService
     {
-        private readonly Random FRandom;
+        private readonly Random _random;
 
-        public DataUtilityService() => FRandom = new Random();
+        public DataUtilityService() => _random = new Random();
 
         /// <summary>
         /// Returns randomized Date within given range.
@@ -18,18 +18,18 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
         /// It uses System.Random function, therefore it should not be used
         /// for security-critical applications or for protecting sensitive data.
         /// </remarks>
-        /// <param name="AMin">Minimum value of expected date. Value can be null (if so, default day and month is: 1 JAN).</param>
-        /// <param name="AMax">Maximum value of expected date. Value can be null (if so, default day and month is: 31 DEC).</param>
-        /// <param name="ADefaultYear">If not given, it uses 2020 year as default value.</param>
+        /// <param name="min">Minimum value of expected date. Value can be null (if so, default day and month is: 1 JAN).</param>
+        /// <param name="max">Maximum value of expected date. Value can be null (if so, default day and month is: 31 DEC).</param>
+        /// <param name="defaultYear">If not given, it uses 2020 year as default value.</param>
         /// <returns>New randomized date.</returns>
-        public override DateTime GetRandomDateTime(DateTime? AMin = null, DateTime? AMax = null, int ADefaultYear = 2020)
+        public virtual DateTime GetRandomDateTime(DateTime? min = null, DateTime? max = null, int defaultYear = 2020)
         {
-            AMin ??= new DateTime(ADefaultYear, 1, 1); 
-            AMax ??= new DateTime(ADefaultYear, 12, 31); 
+            min ??= new DateTime(defaultYear, 1, 1); 
+            max ??= new DateTime(defaultYear, 12, 31); 
 
-            var LDayRange = (AMax - AMin).Value.Days; 
+            var daysRange = (max - min).Value.Days; 
 
-            return AMin.Value.AddDays(FRandom.Next(0, LDayRange));
+            return min.Value.AddDays(_random.Next(0, daysRange));
         }
         
         /// <summary>
@@ -41,10 +41,10 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
         /// </remarks>
         /// <typeparam name="T">Given type.</typeparam>
         /// <returns>New randomized enumeration.</returns>
-        public override T GetRandomEnum<T>()
+        public virtual T GetRandomEnum<T>()
         {
-            var LValues = Enum.GetValues(typeof(T)); 
-            return (T)LValues.GetValue(FRandom.Next(LValues.Length));
+            var values = Enum.GetValues(typeof(T)); 
+            return (T)values.GetValue(_random.Next(values.Length));
         }
 
         /// <summary>
@@ -54,10 +54,10 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
         /// It uses System.Random function, therefore it should not be used
         /// for security-critical applications or for protecting sensitive data.
         /// </remarks>
-        /// <param name="AMin">A boundary value, lowest possible.</param>
-        /// <param name="AMax">A boundary value, highest possible.</param>
+        /// <param name="min">A boundary value, lowest possible.</param>
+        /// <param name="max">A boundary value, highest possible.</param>
         /// <returns>New randomized integer number.</returns>
-        public override int GetRandomInteger(int AMin = 0, int AMax = 12) => FRandom.Next(AMin, AMax + 1);
+        public virtual int GetRandomInteger(int min = 0, int max = 12) => _random.Next(min, max + 1);
 
         /// <summary>
         /// Returns randomized decimal number within given range.
@@ -66,10 +66,10 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
         /// It uses System.Random function, therefore it should not be used
         /// for security-critical applications or for protecting sensitive data.
         /// </remarks>
-        /// <param name="AMin">A boundary value, lowest possible.</param>
-        /// <param name="AMax">A boundary value, highest possible.</param>
+        /// <param name="min">A boundary value, lowest possible.</param>
+        /// <param name="max">A boundary value, highest possible.</param>
         /// <returns>New randomized decimal number.</returns>
-        public override decimal GetRandomDecimal(int AMin = 0, int AMax = 9999) => FRandom.Next(AMin, AMax);
+        public virtual decimal GetRandomDecimal(int min = 0, int max = 9999) => _random.Next(min, max);
 
         /// <summary>
         /// Returns randomized stream of bytes.
@@ -78,13 +78,13 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
         /// It uses System.Random function, therefore it should not be used
         /// for security-critical applications or for protecting sensitive data.
         /// </remarks>
-        /// <param name="ASizeInKb">Expected size in kBytes.</param>
+        /// <param name="sizeInKb">Expected size in kBytes.</param>
         /// <returns>New randomized stream of bytes.</returns>
-        public override MemoryStream GetRandomStream(int ASizeInKb = 12)
+        public virtual MemoryStream GetRandomStream(int sizeInKb = 12)
         {
-            var LByteBuffer = new byte[ASizeInKb * 1024]; 
-            FRandom.NextBytes(LByteBuffer);
-            return new MemoryStream(LByteBuffer);
+            var byteBuffer = new byte[sizeInKb * 1024]; 
+            _random.NextBytes(byteBuffer);
+            return new MemoryStream(byteBuffer);
         }
         
         /// <summary>
@@ -94,10 +94,11 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
         /// It uses System.Random function, therefore it should not be used
         /// for security-critical applications or for protecting sensitive data.
         /// </remarks>
-        /// <param name="ALength">Expected length of the name, 12 characters by default.</param>
-        /// <param name="ADomain">Domain, "gmail.com" by default.</param>
+        /// <param name="length">Expected length of the name, 12 characters by default.</param>
+        /// <param name="domain">Domain, "gmail.com" by default.</param>
         /// <returns>New randomized e-mail address.</returns>
-        public override string GetRandomEmail(int ALength = 12, string ADomain = "gmail.com") => $"{GetRandomString(ALength)}@{ADomain}";
+        public virtual string GetRandomEmail(int length = 12, string domain = "gmail.com") 
+            => $"{GetRandomString(length, "", true)}@{domain}";
 
         /// <summary>
         /// Returns randomized string with given length and prefix (optional).
@@ -106,24 +107,26 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
         /// It uses System.Random function, therefore it should not be used
         /// for security-critical applications or for protecting sensitive data.
         /// </remarks>
-        /// <param name="ALength">Expected length, 12 characters by default.</param>
-        /// <param name="APrefix">Optional prefix.</param>
+        /// <param name="length">Expected length, 12 characters by default.</param>
+        /// <param name="prefix">Optional prefix.</param>
+        /// <param name="useAlphabetOnly">Generate string from alphabet letters only.</param>
         /// <returns>New randomized string.</returns>
-        public override string GetRandomString(int ALength = 12, string APrefix = "")
+        public virtual string GetRandomString(int length = 12, string prefix = "", bool useAlphabetOnly = false)
         {
-            if (ALength == 0) 
+            if (length == 0) 
                 return string.Empty; 
 
-            const string CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; 
+            const string allChars = "!@#$%^&*()?\\/:'<>{}[]0123456789abcdefghijklmnopqrstuvwxyz";
+            const string alphabetOnly = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
-            var LString = new string(Enumerable.Repeat(CHARS, ALength)
-                .Select(AString => AString[FRandom.Next(AString.Length)])
+            var randomString = new string(Enumerable.Repeat(useAlphabetOnly ? alphabetOnly : allChars, length)
+                .Select(strings => strings[_random.Next(strings.Length)])
                 .ToArray()); 
 
-            if (!string.IsNullOrEmpty(APrefix)) 
-                return APrefix.Trim() + LString; 
+            if (!string.IsNullOrEmpty(prefix)) 
+                return prefix.Trim() + randomString; 
 
-            return LString;
+            return randomString;
         }
 
         /// <summary>
@@ -133,16 +136,16 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
         /// It uses System.Random function, therefore it should not be used
         /// for security-critical applications or for protecting sensitive data.
         /// </remarks>
-        /// <param name="AShouldReturnIPv6">Allow to select IPv4 or IPv6.</param>
+        /// <param name="shouldReturnIPv6">Allow to select IPv4 or IPv6.</param>
         /// <returns>New randomized IP address.</returns>
-        public override IPAddress GetRandomIpAddress(bool AShouldReturnIPv6 = false)
+        public virtual IPAddress GetRandomIpAddress(bool shouldReturnIPv6 = false)
         {
-            var LBytes = AShouldReturnIPv6 
+            var bytes = shouldReturnIPv6 
                 ? new byte[16] 
                 : new byte[4];
             
-            FRandom.NextBytes(LBytes);
-            return new IPAddress(LBytes);
+            _random.NextBytes(bytes);
+            return new IPAddress(bytes);
         }
     }
 }

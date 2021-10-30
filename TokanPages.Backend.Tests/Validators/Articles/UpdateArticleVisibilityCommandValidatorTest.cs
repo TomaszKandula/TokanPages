@@ -12,37 +12,37 @@ namespace TokanPages.Backend.Tests.Validators.Articles
         public void GivenValidGuidAndPublishFlag_WhenUpdateArticleVisibility_ShouldReturnSuccess()
         {
             // Arrange
-            var LUpdateArticleVisibilityCommand = new UpdateArticleVisibilityCommand
+            var updateArticleVisibilityCommand = new UpdateArticleVisibilityCommand
             {
                 Id = Guid.NewGuid(),
                 IsPublished = true
             };
 
             // Act
-            var LUpdateArticleVisibilityCommandValidator = new UpdateArticleVisibilityCommandValidator();
-            var LResult = LUpdateArticleVisibilityCommandValidator.Validate(LUpdateArticleVisibilityCommand);
+            var updateArticleVisibilityCommandValidator = new UpdateArticleVisibilityCommandValidator();
+            var result = updateArticleVisibilityCommandValidator.Validate(updateArticleVisibilityCommand);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
         
         [Fact]
         public void GivenEmptyGuidAndPublishFlag_WhenUpdateArticleVisibility_ShouldReturnSuccess()
         {
             // Arrange
-            var LUpdateArticleVisibilityCommand = new UpdateArticleVisibilityCommand
+            var updateArticleVisibilityCommand = new UpdateArticleVisibilityCommand
             {
                 Id = Guid.Empty,
                 IsPublished = true
             };
 
             // Act
-            var LUpdateArticleVisibilityCommandValidator = new UpdateArticleVisibilityCommandValidator();
-            var LResult = LUpdateArticleVisibilityCommandValidator.Validate(LUpdateArticleVisibilityCommand);
+            var updateArticleVisibilityCommandValidator = new UpdateArticleVisibilityCommandValidator();
+            var result = updateArticleVisibilityCommandValidator.Validate(updateArticleVisibilityCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
     }
 }

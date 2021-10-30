@@ -14,47 +14,47 @@
             {
                 new ()
                 {
-                    Id = Article1.FId,
-                    Title = Article1.TITLE,
-                    Description = Article1.DESCRIPTION,
-                    IsPublished = Article1.IS_PUBLISHED,
-                    ReadCount = Article1.READ_COUNT,
-                    CreatedAt = Article1.FCreated,
-                    UpdatedAt = Article1.FLastUpdated,
-                    UserId = Article1.FUserId
+                    Id = Article1.Id,
+                    Title = Article1.Title,
+                    Description = Article1.Description,
+                    IsPublished = Article1.IsPublished,
+                    ReadCount = Article1.ReadCount,
+                    CreatedAt = Article1.Created,
+                    UpdatedAt = Article1.LastUpdated,
+                    UserId = Article1.UserId
                 },
                 new ()
                 {
-                    Id = Article2.FId,
-                    Title = Article2.TITLE,
-                    Description = Article2.DESCRIPTION,
-                    IsPublished = Article2.IS_PUBLISHED,
-                    ReadCount = Article2.READ_COUNT,
-                    CreatedAt = Article2.FCreated,
-                    UpdatedAt = Article2.FLastUpdated,
-                    UserId = Article2.FUserId
+                    Id = Article2.Id,
+                    Title = Article2.Title,
+                    Description = Article2.Description,
+                    IsPublished = Article2.IsPublished,
+                    ReadCount = Article2.ReadCount,
+                    CreatedAt = Article2.Created,
+                    UpdatedAt = Article2.LastUpdated,
+                    UserId = Article2.UserId
                 },
                 new ()
                 {
-                    Id = Article3.FId,
-                    Title = Article3.TITLE,
-                    Description = Article3.DESCRIPTION,
-                    IsPublished = Article3.IS_PUBLISHED,
-                    ReadCount = Article3.READ_COUNT,
-                    CreatedAt = Article3.FCreated,
-                    UpdatedAt = Article3.FLastUpdated,
-                    UserId = Article3.FUserId
+                    Id = Article3.Id,
+                    Title = Article3.Title,
+                    Description = Article3.Description,
+                    IsPublished = Article3.IsPublished,
+                    ReadCount = Article3.ReadCount,
+                    CreatedAt = Article3.Created,
+                    UpdatedAt = Article3.LastUpdated,
+                    UserId = Article3.UserId
                 },
                 new ()
                 {
-                    Id = Article4.FId,
-                    Title = Article4.TITLE,
-                    Description = Article4.DESCRIPTION,
-                    IsPublished = Article4.IS_PUBLISHED,
-                    ReadCount = Article4.READ_COUNT,
-                    CreatedAt = Article4.FCreated,
-                    UpdatedAt = Article4.FLastUpdated,
-                    UserId = Article4.FUserId
+                    Id = Article4.Id,
+                    Title = Article4.Title,
+                    Description = Article4.Description,
+                    IsPublished = Article4.IsPublished,
+                    ReadCount = Article4.ReadCount,
+                    CreatedAt = Article4.Created,
+                    UpdatedAt = Article4.LastUpdated,
+                    UserId = Article4.UserId
                 }
             };
         }

@@ -8,13 +8,13 @@ namespace TokanPages.Backend.Core.Extensions
     [ExcludeFromCodeCoverage]
     public static class DateValidationExtensions
     {
-        public static IRuleBuilderOptions<T, DateTime> IsSameOrLaterThanDate<T>(this IRuleBuilder<T, DateTime> ARuleBuilder, DateTime ABeforeDate)
-            => ARuleBuilder.Must(ADate => ADate >= ABeforeDate);
+        public static IRuleBuilderOptions<T, DateTime> IsSameOrLaterThanDate<T>(this IRuleBuilder<T, DateTime> ruleBuilder, DateTime beforeDate)
+            => ruleBuilder.Must(date => date >= beforeDate);
 
-        public static IRuleBuilderOptions<T, DateRangeValidator> IsValidDateRange<T>(this IRuleBuilder<T, DateRangeValidator> ARuleBuilder)
-            =>  ARuleBuilder.Must(ADate => ADate.StartDate <= ADate.EndDate);
+        public static IRuleBuilderOptions<T, DateRangeValidator> IsValidDateRange<T>(this IRuleBuilder<T, DateRangeValidator> ruleBuilder)
+            =>  ruleBuilder.Must(date => date.StartDate <= date.EndDate);
         
-        public static IRuleBuilderOptions<T, DateRangeValidator> AreDatesSame<T>(this IRuleBuilder<T, DateRangeValidator> ARuleBuilder)
-            =>  ARuleBuilder.Must(ADate => ADate.StartDate.Date != ADate.EndDate.Date);
+        public static IRuleBuilderOptions<T, DateRangeValidator> AreDatesSame<T>(this IRuleBuilder<T, DateRangeValidator> ruleBuilder)
+            =>  ruleBuilder.Must(date => date.StartDate.Date != date.EndDate.Date);
     }
 }

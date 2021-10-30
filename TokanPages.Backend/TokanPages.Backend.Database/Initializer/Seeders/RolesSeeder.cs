@@ -14,33 +14,33 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
             {
                 new ()
                 {
-                    Id = Role1.FId,
-                    Name = Role1.FName,
-                    Description = Role1.DESCRIPTION
+                    Id = Role1.Id,
+                    Name = Role1.Name,
+                    Description = Role1.Description
                 },
                 new ()
                 {
-                    Id = Role2.FId,
-                    Name = Role2.FName,
-                    Description = Role2.DESCRIPTION
+                    Id = Role2.Id,
+                    Name = Role2.Name,
+                    Description = Role2.Description
                 },
                 new ()
                 {
-                    Id = Role3.FId,
-                    Name = Role3.FName,
-                    Description = Role3.DESCRIPTION
+                    Id = Role3.Id,
+                    Name = Role3.Name,
+                    Description = Role3.Description
                 },
                 new ()
                 {
-                    Id = Role4.FId,
-                    Name = Role4.FName,
-                    Description = Role4.DESCRIPTION
+                    Id = Role4.Id,
+                    Name = Role4.Name,
+                    Description = Role4.Description
                 },
                 new ()
                 {
-                    Id = Role5.FId,
-                    Name = Role5.FName,
-                    Description = Role5.DESCRIPTION
+                    Id = Role5.Id,
+                    Name = Role5.Name,
+                    Description = Role5.Description
                 },
             };
         }

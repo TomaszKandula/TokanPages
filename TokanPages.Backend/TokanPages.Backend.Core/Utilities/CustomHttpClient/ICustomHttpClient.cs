@@ -7,12 +7,12 @@ namespace TokanPages.Backend.Core.Utilities.CustomHttpClient
 
     public interface ICustomHttpClient
     {
-        Task<Results> Execute(Configuration AConfiguration, CancellationToken ACancellationToken = default);
+        Task<Results> Execute(Configuration configuration, CancellationToken cancellationToken = default);
 
-        string SetAuthentication(string ALogin, string APassword);
+        string SetAuthentication(string login, string password);
 
-        string SetAuthentication(string AToken);
+        string SetAuthentication(string token);
 
-        string GetFirstEmptyParameterName(IDictionary<string, string> AParameterList);
+        string GetFirstEmptyParameterName(IDictionary<string, string> parameterList);
     }
 }

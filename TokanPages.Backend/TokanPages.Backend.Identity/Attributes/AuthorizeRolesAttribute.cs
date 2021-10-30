@@ -9,7 +9,7 @@ namespace TokanPages.Backend.Identity.Attributes
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class AuthorizeRolesAttribute : AuthorizeAttribute
     {
-        public AuthorizeRolesAttribute(params Roles[] ARoles)
-            => Roles = string.Join(",", ARoles);
+        public AuthorizeRolesAttribute(params Roles[] roles)
+            => Roles = string.Join(",", roles);
     }
 }

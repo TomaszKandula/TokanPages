@@ -8,28 +8,28 @@ namespace TokanPages.Backend.Database.Mappings
     [ExcludeFromCodeCoverage]
     public class PhotosConfiguration : IEntityTypeConfiguration<Photos>
     {
-        public void Configure(EntityTypeBuilder<Photos> ABuilder)
+        public void Configure(EntityTypeBuilder<Photos> builder)
         {
-            ABuilder.Property(APhotos => APhotos.Id).ValueGeneratedOnAdd();
+            builder.Property(photos => photos.Id).ValueGeneratedOnAdd();
 
-            ABuilder
-                .HasOne(APhotos => APhotos.User)
-                .WithMany(AUsers => AUsers.Photos)
-                .HasForeignKey(APhotos => APhotos.UserId)
+            builder
+                .HasOne(photos => photos.User)
+                .WithMany(users => users.Photos)
+                .HasForeignKey(photos => photos.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Photos_Users");
             
-            ABuilder
-                .HasOne(APhotos => APhotos.PhotoGear)
-                .WithMany(APhotoGears => APhotoGears.Photos)
-                .HasForeignKey(APhotos => APhotos.PhotoGearId)
+            builder
+                .HasOne(photos => photos.PhotoGear)
+                .WithMany(photoGears => photoGears.Photos)
+                .HasForeignKey(photos => photos.PhotoGearId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Photos_PhotoGears");
             
-            ABuilder
-                .HasOne(APhotos => APhotos.PhotoCategory)
-                .WithMany(APhotoCategories => APhotoCategories.Photos)
-                .HasForeignKey(APhotos => APhotos.PhotoCategoryId)
+            builder
+                .HasOne(photos => photos.PhotoCategory)
+                .WithMany(photoCategories => photoCategories.Photos)
+                .HasForeignKey(photos => photos.PhotoCategoryId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Photos_PhotoCategories");
         }

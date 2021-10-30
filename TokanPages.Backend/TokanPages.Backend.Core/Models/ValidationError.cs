@@ -12,14 +12,14 @@
         
         public string ErrorMessage { get; }
 
-        public ValidationError(string APropertyName, string AErrorCode, string AErrorMessage = null)
+        public ValidationError(string propertyName, string errorCode, string errorMessage = null)
         {
-            PropertyName = APropertyName;
-            ErrorCode = AErrorCode;
-            ErrorMessage = AErrorMessage;
+            PropertyName = propertyName;
+            ErrorCode = errorCode;
+            ErrorMessage = errorMessage;
         }
 
-        public ValidationError(ValidationFailure AValidationFailure) 
-            : this(AValidationFailure.PropertyName, AValidationFailure.ErrorCode, AValidationFailure.ErrorMessage) { }
+        public ValidationError(ValidationFailure validationFailure) 
+            : this(validationFailure.PropertyName, validationFailure.ErrorCode, validationFailure.ErrorMessage) { }
     }
 }

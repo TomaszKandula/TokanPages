@@ -1,14 +1,14 @@
 namespace TokanPages.WebApi.Tests.ArticlesController
 {
+    using Xunit;
+    using Newtonsoft.Json;
+    using FluentAssertions;
     using System;
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
     using Backend.Core.Extensions;
     using Backend.Shared.Dto.Articles;
-    using Newtonsoft.Json;
-    using FluentAssertions;
-    using Xunit;
 
     public partial class ArticlesControllerTest
     {
@@ -16,10 +16,10 @@ namespace TokanPages.WebApi.Tests.ArticlesController
         public async Task GivenNoJwt_WhenUpdateArticleContent_ShouldReturnUnauthorized()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/UpdateArticleContent/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            var request = $"{ApiBaseUrl}/UpdateArticleContent/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
-            var LPayLoad = new UpdateArticleContentDto
+            var payLoad = new UpdateArticleContentDto
             {
                 Id = Guid.NewGuid(),
                 Title = DataUtilityService.GetRandomString(),
@@ -28,17 +28,17 @@ namespace TokanPages.WebApi.Tests.ArticlesController
                 ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
             };
             
-            var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), 
+            var httpClient = _webApplicationFactory.CreateClient();
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), 
                 System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.Unauthorized);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
 
             // Assert
-            var LResult = await LResponse.Content.ReadAsStringAsync();
-            LResult.Should().BeEmpty();
+            var result = await response.Content.ReadAsStringAsync();
+            result.Should().BeEmpty();
         }
     }
 }

@@ -16,17 +16,17 @@
         
         public IEnumerable<ValidationError> ValidationErrors { get; set; }
 
-        public ApplicationError(string AErrorCode, string AErrorMessage, string AErrorInnerMessage = "")
+        public ApplicationError(string errorCode, string errorMessage, string errorInnerMessage = "")
         {
-            ErrorCode = AErrorCode;
-            ErrorMessage = AErrorMessage;
-            ErrorInnerMessage = AErrorInnerMessage;
+            ErrorCode = errorCode;
+            ErrorMessage = errorMessage;
+            ErrorInnerMessage = errorInnerMessage;
         }
 
-        public ApplicationError(string AErrorCode, string AErrorMessage, ValidationResult AValidationResult) : this(AErrorCode, AErrorMessage)
+        public ApplicationError(string errorCode, string errorMessage, ValidationResult validationResult) : this(errorCode, errorMessage)
         {
-            ValidationErrors = AValidationResult.Errors
-                .Select(AValidationFailure => new ValidationError(AValidationFailure))
+            ValidationErrors = validationResult.Errors
+                .Select(validationFailure => new ValidationError(validationFailure))
                 .ToList();
         }
     }

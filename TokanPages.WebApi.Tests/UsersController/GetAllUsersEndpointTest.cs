@@ -1,5 +1,8 @@
 namespace TokanPages.WebApi.Tests.UsersController
 {
+    using Xunit;
+    using Newtonsoft.Json;
+    using FluentAssertions;
     using System;
     using System.Net;
     using System.Linq;
@@ -8,9 +11,6 @@ namespace TokanPages.WebApi.Tests.UsersController
     using System.Net.Http.Headers;
     using System.Collections.Generic;
     using Backend.Cqrs.Handlers.Queries.Users;
-    using FluentAssertions;
-    using Newtonsoft.Json;
-    using Xunit;
 
     public partial class UsersControllerTest
     {
@@ -18,27 +18,27 @@ namespace TokanPages.WebApi.Tests.UsersController
         public async Task GivenValidJwt_WhenGetAllUsers_ShouldReturnCollection() 
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/GetAllUsers/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Get, LRequest);
+            var request = $"{ApiBaseUrl}/GetAllUsers/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Get, request);
             
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var tokenExpires = DateTime.Now.AddDays(30);
+            var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
-            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
+            newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
 
-            var LDeserialized = (JsonConvert.DeserializeObject<IEnumerable<GetAllUsersQueryResult>>(LContent) ?? Array.Empty<GetAllUsersQueryResult>())
+            var deserialized = (JsonConvert.DeserializeObject<IEnumerable<GetAllUsersQueryResult>>(content) ?? Array.Empty<GetAllUsersQueryResult>())
                 .ToList();
-            LDeserialized.Should().NotBeNullOrEmpty();
-            LDeserialized.Should().HaveCountGreaterThan(0);
+            deserialized.Should().NotBeNullOrEmpty();
+            deserialized.Should().HaveCountGreaterThan(0);
         }
     }
 }

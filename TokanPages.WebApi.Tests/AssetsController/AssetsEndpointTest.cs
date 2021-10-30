@@ -10,35 +10,35 @@ namespace TokanPages.WebApi.Tests.AssetsController
         [Theory]
         [InlineData("images/icons/__github.png")]
         [InlineData("images/icons/__linkedin.png")]
-        public async Task GivenValidBlobName_WhenRequestingAsset_ShouldSucceed(string ABlobName)
+        public async Task GivenValidBlobName_WhenRequestingAsset_ShouldSucceed(string blobName)
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/?ABlobName={ABlobName}";
+            var request = $"{ApiBaseUrl}/?BlobName={blobName}";
 
             // Act
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.OK);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.OK);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
         }
 
         [Fact]
         public async Task GivenInvalidBlobName_WhenRequestingAsset_ShouldReturnNotFound()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/?ABlobName={DataUtilityService.GetRandomString()}";
+            var request = $"{ApiBaseUrl}/?BlobName={DataUtilityService.GetRandomString()}";
 
             // Act
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LResponse = await LHttpClient.GetAsync(LRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.NotFound);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var response = await httpClient.GetAsync(request);
+            await EnsureStatusCode(response, HttpStatusCode.NotFound);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
         }
     }
 }

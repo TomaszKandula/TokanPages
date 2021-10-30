@@ -18,205 +18,204 @@
     using Core.Utilities.DateTimeService;
     using Identity.Services.JwtUtilityService;
 
-    public class UserServiceProvider : IUserServiceProvider
+    public sealed class UserServiceProvider : IUserServiceProvider
     {
-        private const string LOCALHOST = "127.0.0.1";
+        private const string Localhost = "127.0.0.1";
 
-        private const string NEW_REFRESH_TOKEN_TEXT = "Replaced by new token";
+        private const string NewRefreshTokenText = "Replaced by new token";
         
-        private readonly IHttpContextAccessor FHttpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly DatabaseContext _databaseContext;
         
-        private readonly IJwtUtilityService FJwtUtilityService;
+        private readonly IJwtUtilityService _jwtUtilityService;
         
-        private readonly IDateTimeService FDateTimeService;
+        private readonly IDateTimeService _dateTimeService;
         
-        private readonly IdentityServer FIdentityServer;
+        private readonly IdentityServer _identityServer;
 
-        private List<GetUserPermissionDto> FUserPermissions;
+        private List<GetUserPermissionDto> _userPermissions;
 
-        private List<GetUserRoleDto> FUserRoles;
+        private List<GetUserRoleDto> _userRoles;
         
-        private GetUserDto FUsers;
+        private GetUserDto _user;
         
-        public UserServiceProvider(IHttpContextAccessor AHttpContextAccessor, DatabaseContext ADatabaseContext, 
-            IJwtUtilityService AJwtUtilityService, IDateTimeService ADateTimeService, IdentityServer AIdentityServer)
+        public UserServiceProvider(IHttpContextAccessor httpContextAccessor, DatabaseContext databaseContext, 
+            IJwtUtilityService jwtUtilityService, IDateTimeService dateTimeService, IdentityServer identityServer)
         {
-            FHttpContextAccessor = AHttpContextAccessor;
-            FDatabaseContext = ADatabaseContext;
-            FJwtUtilityService = AJwtUtilityService;
-            FDateTimeService = ADateTimeService;
-            FIdentityServer = AIdentityServer;
+            _httpContextAccessor = httpContextAccessor;
+            _databaseContext = databaseContext;
+            _jwtUtilityService = jwtUtilityService;
+            _dateTimeService = dateTimeService;
+            _identityServer = identityServer;
         }
 
-        public virtual string GetRequestIpAddress() 
+        public string GetRequestIpAddress() 
         {
-            var LRemoteIpAddress = FHttpContextAccessor.HttpContext?
+            var remoteIpAddress = _httpContextAccessor.HttpContext?
                 .Request.Headers["X-Forwarded-For"].ToString();
             
-            return string.IsNullOrEmpty(LRemoteIpAddress) 
-                ? LOCALHOST 
-                : LRemoteIpAddress.Split(':')[0];
+            return string.IsNullOrEmpty(remoteIpAddress) 
+                ? Localhost 
+                : remoteIpAddress.Split(':')[0];
         }
 
-        public virtual string GetRefreshTokenCookie(string ACookieName)
+        public string GetRefreshTokenCookie(string cookieName)
         {
-            if (string.IsNullOrEmpty(ACookieName))
+            if (string.IsNullOrEmpty(cookieName))
                 throw ArgumentNullException;
 
-            return FHttpContextAccessor.HttpContext?.Request.Cookies[ACookieName];
+            return _httpContextAccessor.HttpContext?.Request.Cookies[cookieName];
         }
 
-        public virtual void SetRefreshTokenCookie(string ARefreshToken, int AExpiresIn, bool AIsHttpOnly = true, 
-            bool ASecure = true, string ACookieName = Constants.CookieNames.REFRESH_TOKEN)
+        public void SetRefreshTokenCookie(string refreshToken, int expiresIn, bool isHttpOnly = true, 
+            bool secure = true, string cookieName = Constants.CookieNames.RefreshToken)
         {
-            if (string.IsNullOrEmpty(ARefreshToken))
+            if (string.IsNullOrEmpty(refreshToken))
                 throw ArgumentNullException;
 
-            if (AExpiresIn == 0)
+            if (expiresIn == 0)
                 throw ArgumentZeroException;
-            
-            var LDateTimeOffset = new DateTimeOffset();
-            var LExpires = LDateTimeOffset.UtcDateTime.AddMinutes(AExpiresIn);
-            var LCookieOptions = new CookieOptions
+
+            var expires = _dateTimeService.RelativeNow.AddMinutes(Math.Abs(expiresIn));
+            var cookieOptions = new CookieOptions
             {
-                HttpOnly = AIsHttpOnly,
-                Expires = LExpires,
-                Secure = ASecure
+                HttpOnly = isHttpOnly,
+                Expires = expires,
+                Secure = secure
             };
             
-            FHttpContextAccessor.HttpContext?.Response.Cookies
-                .Append(ACookieName, ARefreshToken, LCookieOptions);
+            _httpContextAccessor.HttpContext?.Response.Cookies
+                .Append(cookieName, refreshToken, cookieOptions);
         }
 
-        public virtual async Task<Guid?> GetUserId()
+        public async Task<Guid?> GetUserId()
         {
             await EnsureUserData();
-            return FUsers?.UserId;
+            return _user?.UserId;
         }
 
-        public virtual async Task<GetUserDto> GetUser()
+        public async Task<GetUserDto> GetUser()
         {
             await EnsureUserData();
-            return FUsers;
+            return _user;
         }
 
-        public virtual async Task<List<GetUserRoleDto>> GetUserRoles(Guid? AUserId)
+        public async Task<List<GetUserRoleDto>> GetUserRoles(Guid? userId)
         {
-            await EnsureUserRoles(AUserId);
-            return FUserRoles;
+            await EnsureUserRoles(userId);
+            return _userRoles;
         }
 
-        public virtual async Task<List<GetUserPermissionDto>> GetUserPermissions(Guid? AUserId)
+        public async Task<List<GetUserPermissionDto>> GetUserPermissions(Guid? userId)
         {
-            await EnsureUserPermissions(AUserId);
-            return FUserPermissions;
+            await EnsureUserPermissions(userId);
+            return _userPermissions;
         }
 
-        public virtual async Task<bool?> HasRoleAssigned(string AUserRoleName)
+        public async Task<bool?> HasRoleAssigned(string userRoleName)
         {
-            if (string.IsNullOrEmpty(AUserRoleName))
+            if (string.IsNullOrEmpty(userRoleName))
                 throw ArgumentNullException;
             
-            var LUserId = UserIdFromClaim();
-            if (LUserId == null)
+            var userId = UserIdFromClaim();
+            if (userId == null)
                 return null;
             
-            var LGivenRoles = await FDatabaseContext.UserRoles
+            var givenRoles = await _databaseContext.UserRoles
                 .AsNoTracking()
-                .Include(AUserRoles => AUserRoles.Role)
-                .Where(AUserRole => AUserRole.UserId == LUserId && AUserRole.Role.Name == AUserRoleName)
+                .Include(roles => roles.Role)
+                .Where(roles => roles.UserId == userId && roles.Role.Name == userRoleName)
                 .ToListAsync();
 
-            return LGivenRoles.Any();
+            return givenRoles.Any();
         }
 
-        public virtual async Task<bool?> HasPermissionAssigned(string AUserPermissionName)
+        public async Task<bool?> HasPermissionAssigned(string userPermissionName)
         {
-            if (string.IsNullOrEmpty(AUserPermissionName))
+            if (string.IsNullOrEmpty(userPermissionName))
                 throw ArgumentNullException;
             
-            var LUserId = UserIdFromClaim();
-            if (LUserId == null)
+            var userId = UserIdFromClaim();
+            if (userId == null)
                 return null;
 
-            var LGivenPermissions = await FDatabaseContext.UserPermissions
+            var givenPermissions = await _databaseContext.UserPermissions
                 .AsNoTracking()
-                .Include(AUserPermissions => AUserPermissions.Permission)
-                .Where(AUserPermissions => AUserPermissions.UserId == LUserId && AUserPermissions.Permission.Name == AUserPermissionName)
+                .Include(permissions => permissions.Permission)
+                .Where(permissions => permissions.UserId == userId && permissions.Permission.Name == userPermissionName)
                 .ToListAsync();
 
-            return LGivenPermissions.Any();
+            return givenPermissions.Any();
         }
 
-        public virtual async Task<ClaimsIdentity> MakeClaimsIdentity(Users AUsers, CancellationToken ACancellationToken = default)
+        public async Task<ClaimsIdentity> MakeClaimsIdentity(Users users, CancellationToken cancellationToken = default)
         {
-            var LUserRoles = await FDatabaseContext.UserRoles
+            var userRoles = await _databaseContext.UserRoles
                 .AsNoTracking()
-                .Include(AUserRole => AUserRole.User)
-                .Include(AUserRole => AUserRole.Role)
-                .Where(AUserRole => AUserRole.UserId == AUsers.Id)
-                .ToListAsync(ACancellationToken);
+                .Include(roles => roles.User)
+                .Include(roles => roles.Role)
+                .Where(roles => roles.UserId == users.Id)
+                .ToListAsync(cancellationToken);
             
-            var LClaimsIdentity = new ClaimsIdentity(new[]
+            var claimsIdentity = new ClaimsIdentity(new[]
             {
-                new Claim(ClaimTypes.Name, AUsers.UserAlias),
-                new Claim(ClaimTypes.NameIdentifier, AUsers.Id.ToString()),
-                new Claim(ClaimTypes.GivenName, AUsers.FirstName),
-                new Claim(ClaimTypes.Surname, AUsers.LastName),
-                new Claim(ClaimTypes.Email, AUsers.EmailAddress)
+                new Claim(ClaimTypes.Name, users.UserAlias),
+                new Claim(ClaimTypes.NameIdentifier, users.Id.ToString()),
+                new Claim(ClaimTypes.GivenName, users.FirstName),
+                new Claim(ClaimTypes.Surname, users.LastName),
+                new Claim(ClaimTypes.Email, users.EmailAddress)
             });
 
-            LClaimsIdentity.AddClaims(LUserRoles
-                .Select(AUserRole => new Claim(ClaimTypes.Role, AUserRole.Role.Name)));
+            claimsIdentity.AddClaims(userRoles
+                .Select(roles => new Claim(ClaimTypes.Role, roles.Role.Name)));
 
-            return LClaimsIdentity;
+            return claimsIdentity;
         }
 
-        public virtual async Task<string> GenerateUserToken(Users AUsers, DateTime ATokenExpires, CancellationToken ACancellationToken = default)
+        public async Task<string> GenerateUserToken(Users users, DateTime tokenExpires, CancellationToken cancellationToken = default)
         {
-            var LClaimsIdentity = await MakeClaimsIdentity(AUsers, ACancellationToken);
+            var claimsIdentity = await MakeClaimsIdentity(users, cancellationToken);
             
-            return FJwtUtilityService.GenerateJwt(
-                ATokenExpires, 
-                LClaimsIdentity, 
-                FIdentityServer.WebSecret, 
-                FIdentityServer.Issuer, 
-                FIdentityServer.Audience);
+            return _jwtUtilityService.GenerateJwt(
+                tokenExpires, 
+                claimsIdentity, 
+                _identityServer.WebSecret, 
+                _identityServer.Issuer, 
+                _identityServer.Audience);
         }
 
-        public virtual async Task DeleteOutdatedRefreshTokens(Guid AUserId, bool ASaveImmediately = false, CancellationToken ACancellationToken = default)
+        public async Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default)
         {
-            var LRefreshTokens = await FDatabaseContext.UserRefreshTokens
-                .Where(ATokens => ATokens.UserId == AUserId 
-                    && ATokens.Expires <= FDateTimeService.Now 
-                    && ATokens.Created.AddMinutes(FIdentityServer.RefreshTokenExpiresIn) <= FDateTimeService.Now
-                    && ATokens.Revoked == null)
-                .ToListAsync(ACancellationToken);
+            var refreshTokens = await _databaseContext.UserRefreshTokens
+                .Where(tokens => tokens.UserId == userId 
+                    && tokens.Expires <= _dateTimeService.Now 
+                    && tokens.Created.AddMinutes(_identityServer.RefreshTokenExpiresIn) <= _dateTimeService.Now
+                    && tokens.Revoked == null)
+                .ToListAsync(cancellationToken);
 
-            if (LRefreshTokens.Any())
-                FDatabaseContext.UserRefreshTokens.RemoveRange(LRefreshTokens);
+            if (refreshTokens.Any())
+                _databaseContext.UserRefreshTokens.RemoveRange(refreshTokens);
             
-            if (ASaveImmediately && LRefreshTokens.Any())
-                await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            if (saveImmediately && refreshTokens.Any())
+                await _databaseContext.SaveChangesAsync(cancellationToken);
         }        
         
-        public virtual async Task<UserRefreshTokens> ReplaceRefreshToken(Guid AUserId, UserRefreshTokens ASavedUserRefreshTokens, string ARequesterIpAddress, 
-            bool ASaveImmediately = false, CancellationToken ACancellationToken = default)
+        public async Task<UserRefreshTokens> ReplaceRefreshToken(Guid userId, UserRefreshTokens savedUserRefreshTokens, string requesterIpAddress, 
+            bool saveImmediately = false, CancellationToken cancellationToken = default)
         {
-            var LNewRefreshToken = FJwtUtilityService.GenerateRefreshToken(ARequesterIpAddress, FIdentityServer.RefreshTokenExpiresIn);
+            var newRefreshToken = _jwtUtilityService.GenerateRefreshToken(requesterIpAddress, _identityServer.RefreshTokenExpiresIn);
             
-            await RevokeRefreshToken(ASavedUserRefreshTokens, ARequesterIpAddress, NEW_REFRESH_TOKEN_TEXT, 
-                LNewRefreshToken.Token, ASaveImmediately, ACancellationToken);
+            await RevokeRefreshToken(savedUserRefreshTokens, requesterIpAddress, NewRefreshTokenText, 
+                newRefreshToken.Token, saveImmediately, cancellationToken);
 
             return new UserRefreshTokens
             {
-                UserId = AUserId,
-                Token = LNewRefreshToken.Token,
-                Expires = LNewRefreshToken.Expires,
-                Created = LNewRefreshToken.Created,
-                CreatedByIp = LNewRefreshToken.CreatedByIp,
+                UserId = userId,
+                Token = newRefreshToken.Token,
+                Expires = newRefreshToken.Expires,
+                Created = newRefreshToken.Created,
+                CreatedByIp = newRefreshToken.CreatedByIp,
                 Revoked = null,
                 RevokedByIp = null,
                 ReplacedByToken = null,
@@ -224,46 +223,46 @@
             };
         }
         
-        public virtual async Task RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> AUserRefreshTokens,  UserRefreshTokens ASavedUserRefreshTokens, 
-            string ARequesterIpAddress, string AReason, bool ASaveImmediately = false, CancellationToken ACancellationToken = default)
+        public async Task RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> userRefreshTokens,  UserRefreshTokens savedUserRefreshTokens, 
+            string requesterIpAddress, string reason, bool saveImmediately = false, CancellationToken cancellationToken = default)
         {
-            if (string.IsNullOrEmpty(ASavedUserRefreshTokens.ReplacedByToken)) 
+            if (string.IsNullOrEmpty(savedUserRefreshTokens.ReplacedByToken)) 
                 return;
 
-            var LUserRefreshTokens = AUserRefreshTokens.ToList();
-            var LChildToken = LUserRefreshTokens.SingleOrDefault(ARefreshTokens => ARefreshTokens.Token == ASavedUserRefreshTokens.ReplacedByToken);
-            if (IsRefreshTokenActive(LChildToken))
+            var userRefreshTokensList = userRefreshTokens.ToList();
+            var childToken = userRefreshTokensList.SingleOrDefault(tokens => tokens.Token == savedUserRefreshTokens.ReplacedByToken);
+            if (IsRefreshTokenActive(childToken))
             {
-                await RevokeRefreshToken(LChildToken, ARequesterIpAddress, AReason, null, ASaveImmediately, ACancellationToken);
+                await RevokeRefreshToken(childToken, requesterIpAddress, reason, null, saveImmediately, cancellationToken);
             }
             else
             {
-                await RevokeDescendantRefreshTokens(LUserRefreshTokens, ASavedUserRefreshTokens, ARequesterIpAddress, AReason, ASaveImmediately, ACancellationToken);
+                await RevokeDescendantRefreshTokens(userRefreshTokensList, savedUserRefreshTokens, requesterIpAddress, reason, saveImmediately, cancellationToken);
             }
         }
 
-        public virtual async Task RevokeRefreshToken(UserRefreshTokens AUserRefreshTokens, string ARequesterIpAddress, string AReason = null, 
-            string AReplacedByToken = null, bool ASaveImmediately = false, CancellationToken ACancellationToken = default)
+        public async Task RevokeRefreshToken(UserRefreshTokens userRefreshTokens, string requesterIpAddress, string reason = null, 
+            string replacedByToken = null, bool saveImmediately = false, CancellationToken cancellationToken = default)
         {
-            AUserRefreshTokens.Revoked = FDateTimeService.Now;
-            AUserRefreshTokens.RevokedByIp = ARequesterIpAddress;
-            AUserRefreshTokens.ReasonRevoked = AReason;
-            AUserRefreshTokens.ReplacedByToken = AReplacedByToken;
+            userRefreshTokens.Revoked = _dateTimeService.Now;
+            userRefreshTokens.RevokedByIp = requesterIpAddress;
+            userRefreshTokens.ReasonRevoked = reason;
+            userRefreshTokens.ReplacedByToken = replacedByToken;
 
-            FDatabaseContext.UserRefreshTokens.Update(AUserRefreshTokens);
+            _databaseContext.UserRefreshTokens.Update(userRefreshTokens);
 
-            if (ASaveImmediately)
-                await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            if (saveImmediately)
+                await _databaseContext.SaveChangesAsync(cancellationToken);
         }
 
-        public virtual bool IsRefreshTokenExpired(UserRefreshTokens AUserRefreshTokens) 
-            => AUserRefreshTokens.Expires <= FDateTimeService.Now;
+        public bool IsRefreshTokenExpired(UserRefreshTokens userRefreshTokens) 
+            => userRefreshTokens.Expires <= _dateTimeService.Now;
 
-        public virtual bool IsRefreshTokenRevoked(UserRefreshTokens AUserRefreshTokens) 
-            => AUserRefreshTokens.Revoked != null;
+        public bool IsRefreshTokenRevoked(UserRefreshTokens userRefreshTokens) 
+            => userRefreshTokens.Revoked != null;
 
-        public virtual bool IsRefreshTokenActive(UserRefreshTokens AUserRefreshTokens) 
-            => !IsRefreshTokenRevoked(AUserRefreshTokens) && !IsRefreshTokenExpired(AUserRefreshTokens);
+        public bool IsRefreshTokenActive(UserRefreshTokens userRefreshTokens) 
+            => !IsRefreshTokenRevoked(userRefreshTokens) && !IsRefreshTokenExpired(userRefreshTokens);
         
         private static BusinessException AccessDeniedException 
             => new (nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
@@ -276,102 +275,102 @@
         
         private Guid? UserIdFromClaim()
         {
-            var LUserClaims = FHttpContextAccessor.HttpContext?.User.Claims ?? Array.Empty<Claim>();
+            var userClaims = _httpContextAccessor.HttpContext?.User.Claims ?? Array.Empty<Claim>();
             
-            var LClaimsArray = LUserClaims as Claim[] ?? LUserClaims.ToArray();
-            if (!LClaimsArray.Any())
+            var claimsArray = userClaims as Claim[] ?? userClaims.ToArray();
+            if (!claimsArray.Any())
                 return null;
             
-            var LUserIds = LClaimsArray
-                .Where(AClaim => AClaim.Type.Contains(ClaimTypes.NameIdentifier))
+            var userIds = claimsArray
+                .Where(claim => claim.Type.Contains(ClaimTypes.NameIdentifier))
                 .ToList();
             
-            if (!LUserIds.Any())
+            if (!userIds.Any())
                 throw AccessDeniedException;
             
-            return Guid.Parse(LUserIds.First().Value);
+            return Guid.Parse(userIds.First().Value);
         }
 
-        private async Task EnsureUserRoles(Guid? AUserId)
+        private async Task EnsureUserRoles(Guid? userId)
         {
-            if (FUserRoles != null)
+            if (_userRoles != null)
                 return;
             
-            var LUserId = AUserId ?? UserIdFromClaim();
-            var LUserRoles = await FDatabaseContext.UserRoles
+            var getUserId = userId ?? UserIdFromClaim();
+            var userRoles = await _databaseContext.UserRoles
                 .AsNoTracking()
-                .Include(AUserRoles => AUserRoles.Role)
-                .Where(AUserRoles => AUserRoles.UserId == LUserId)
+                .Include(roles => roles.Role)
+                .Where(roles => roles.UserId == getUserId)
                 .ToListAsync();
 
-            if (!LUserRoles.Any())
+            if (!userRoles.Any())
                 throw AccessDeniedException;
 
-            FUserRoles = new List<GetUserRoleDto>();
-            foreach (var LItem in LUserRoles)
+            _userRoles = new List<GetUserRoleDto>();
+            foreach (var userRole in userRoles)
             {
-                FUserRoles.Add(new GetUserRoleDto
+                _userRoles.Add(new GetUserRoleDto
                 {
-                    Name = LItem.Role.Name,
-                    Description = LItem.Role.Description
+                    Name = userRole.Role.Name,
+                    Description = userRole.Role.Description
                 });
             }
         }
 
-        private async Task EnsureUserPermissions(Guid? AUserId)
+        private async Task EnsureUserPermissions(Guid? userId)
         {
-            if (FUserPermissions != null)
+            if (_userPermissions != null)
                 return;
             
-            var LUserId = AUserId ?? UserIdFromClaim();
-            var LUserPermissions = await FDatabaseContext.UserPermissions
+            var getUserId = userId ?? UserIdFromClaim();
+            var userPermissions = await _databaseContext.UserPermissions
                 .AsNoTracking()
-                .Include(AUserPermissions => AUserPermissions.Permission)
-                .Where(AUserPermissions => AUserPermissions.UserId == LUserId)
+                .Include(permissions => permissions.Permission)
+                .Where(permissions => permissions.UserId == getUserId)
                 .ToListAsync();
 
-            if (!LUserPermissions.Any())
+            if (!userPermissions.Any())
                 throw AccessDeniedException;
 
-            FUserPermissions = new List<GetUserPermissionDto>();
-            foreach (var LItem in LUserPermissions)
+            _userPermissions = new List<GetUserPermissionDto>();
+            foreach (var userPermission in userPermissions)
             {
-                FUserPermissions.Add(new GetUserPermissionDto
+                _userPermissions.Add(new GetUserPermissionDto
                 {
-                    Name = LItem.Permission.Name
+                    Name = userPermission.Permission.Name
                 });
             }
         }
 
         private async Task EnsureUserData()
         {
-            if (FUsers != null) 
+            if (_user != null) 
                 return;
             
-            var LUserId = UserIdFromClaim();
-            if (LUserId == null)
+            var userId = UserIdFromClaim();
+            if (userId == null)
             {
-                FUsers = null;
+                _user = null;
                 return;
             }
 
-            var LUsers = await FDatabaseContext.Users
+            var users = await _databaseContext.Users
                 .AsNoTracking()
-                .Where(AUsers => AUsers.Id == LUserId)
+                .Where(users => users.Id == userId)
                 .ToListAsync();
 
-            if (!LUsers.Any())
+            if (!users.Any())
                 throw AccessDeniedException;
 
-            FUsers = new GetUserDto
+            _user = new GetUserDto
             {
-                UserId = LUsers.First().Id,
-                AliasName = LUsers.First().UserAlias,
-                AvatarName = LUsers.First().AvatarName,
-                FirstName = LUsers.First().FirstName,
-                LastName = LUsers.First().LastName,
-                ShortBio = LUsers.First().ShortBio,
-                Registered = LUsers.First().Registered
+                UserId = users.First().Id,
+                AliasName = users.First().UserAlias,
+                AvatarName = users.First().AvatarName,
+                FirstName = users.First().FirstName,
+                LastName = users.First().LastName,
+                ShortBio = users.First().ShortBio,
+                Registered = users.First().Registered
             };
         }
     }

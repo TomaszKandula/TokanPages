@@ -11,10 +11,10 @@
     {
         public ValidationResult ValidationResult { get; }
 
-        protected ValidationException(SerializationInfo ASerializationInfo, 
-            StreamingContext AStreamingContext) : base(ASerializationInfo, AStreamingContext) { }
+        protected ValidationException(SerializationInfo serializationInfo, 
+            StreamingContext streamingContext) : base(serializationInfo, streamingContext) { }
 
-        public ValidationException(ValidationResult AValidationResult, string AErrorMessage = "") : base(AErrorMessage)
+        public ValidationException(ValidationResult AValidationResult, string errorMessage = "") : base(errorMessage)
             => ValidationResult = AValidationResult;
     }
 }

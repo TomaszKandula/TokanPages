@@ -6,44 +6,43 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
     using Core.Utilities.DateTimeService;
 
     public class AddSubscriberCommandHandler : TemplateHandler<AddSubscriberCommand, Guid>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly IDateTimeService _dateTimeService;
         
-        private readonly IDateTimeService FDateTimeService;
-        
-        public AddSubscriberCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService) 
+        public AddSubscriberCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+            IDateTimeService dateTimeService) : base(databaseContext, loggerService)
         {
-            FDatabaseContext = ADatabaseContext;
-            FDateTimeService = ADateTimeService;
+            _dateTimeService = dateTimeService;
         }
 
-        public override async Task<Guid> Handle(AddSubscriberCommand ARequest, CancellationToken ACancellationToken) 
+        public override async Task<Guid> Handle(AddSubscriberCommand request, CancellationToken cancellationToken) 
         {
-            var LEmailCollection = await FDatabaseContext.Subscribers
+            var emailCollection = await DatabaseContext.Subscribers
                 .AsNoTracking()
-                .Where(AUsers => AUsers.Email == ARequest.Email)
-                .ToListAsync(ACancellationToken);
+                .Where(subscribers => subscribers.Email == request.Email)
+                .ToListAsync(cancellationToken);
 
-            if (LEmailCollection.Count == 1)
+            if (emailCollection.Count == 1)
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-            var LNewSubscriber = new Domain.Entities.Subscribers
+            var newSubscriber = new Domain.Entities.Subscribers
             {
-                Email = ARequest.Email,
+                Email = request.Email,
                 Count = 0,
                 IsActivated = true,
                 LastUpdated = null,
-                Registered = FDateTimeService.Now
+                Registered = _dateTimeService.Now
             };
 
-            await FDatabaseContext.Subscribers.AddAsync(LNewSubscriber, ACancellationToken);
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-            return await Task.FromResult(LNewSubscriber.Id);
+            await DatabaseContext.Subscribers.AddAsync(newSubscriber, cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
+            return await Task.FromResult(newSubscriber.Id);
         }
     }
 }

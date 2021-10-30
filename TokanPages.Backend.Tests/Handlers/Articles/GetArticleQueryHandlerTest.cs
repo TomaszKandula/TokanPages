@@ -1,144 +1,148 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Articles
 {
-    using System.Net;
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System;
+    using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
     using System.Collections.Generic;
+    using Core.Utilities.LoggerService;
     using Storage.Models;
+    using Domain.Entities;
     using Core.Exceptions;
     using Core.Utilities.JsonSerializer;
     using Cqrs.Handlers.Queries.Articles;
     using Core.Utilities.CustomHttpClient;
     using Cqrs.Services.UserServiceProvider;
     using Core.Utilities.CustomHttpClient.Models;
-    using FluentAssertions;
-    using Xunit;
-    using Moq;
 
     public class GetArticleQueryHandlerTest : TestBase
     {
-        private const string USER_ALIAS = "Ester";
+        private const string UserAlias = "Ester";
 
-        private const string IP_ADDRESS_FIRST = "255.255.255.255";
+        private const string IpAddressFirst = "255.255.255.255";
         
-        private const string IP_ADDRESS_SECOND = "1.1.1.1";
+        private const string IpAddressSecond = "1.1.1.1";
 
         [Fact]
         public async Task GivenCorrectId_WhenGetArticle_ShouldReturnEntity() 
         {
             // Arrange
-            var LDatabaseContext = GetTestDatabaseContext();
-            var LTestDate = DateTime.Now;
+            var databaseContext = GetTestDatabaseContext();
+            var testDate = DateTime.Now;
             
-            var LUsers = new TokanPages.Backend.Domain.Entities.Users
+            var users = new Users
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
                 EmailAddress = DataUtilityService.GetRandomEmail(),
-                UserAlias = USER_ALIAS,
+                UserAlias = UserAlias,
                 Registered = DataUtilityService.GetRandomDateTime(),
                 LastLogged = null,
                 LastUpdated = null,
                 CryptedPassword = DataUtilityService.GetRandomString()
             };
 
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LArticles = new TokanPages.Backend.Domain.Entities.Articles
+            var articles = new Articles
             {
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
                 IsPublished = false,
                 ReadCount = 0,
-                CreatedAt = LTestDate,
+                CreatedAt = testDate,
                 UpdatedAt = null,
-                UserId = LUsers.Id
+                UserId = users.Id
             };
 
-            await LDatabaseContext.Articles.AddAsync(LArticles);
-            await LDatabaseContext.SaveChangesAsync();
+            await databaseContext.Articles.AddAsync(articles);
+            await databaseContext.SaveChangesAsync();
 
-            var LLikes = new List<Domain.Entities.ArticleLikes> 
+            var likes = new List<ArticleLikes> 
             { 
                 new ()
                 {
-                    ArticleId = LArticles.Id,
+                    ArticleId = articles.Id,
                     UserId = null,
                     LikeCount = 10,
-                    IpAddress = IP_ADDRESS_FIRST
+                    IpAddress = IpAddressFirst
                 },
                 new ()
                 {
-                    ArticleId = LArticles.Id,
+                    ArticleId = articles.Id,
                     UserId = null,
                     LikeCount = 15,
-                    IpAddress = IP_ADDRESS_SECOND
+                    IpAddress = IpAddressSecond
                 }
             };
             
-            await LDatabaseContext.ArticleLikes.AddRangeAsync(LLikes);
-            await LDatabaseContext.SaveChangesAsync();
+            await databaseContext.ArticleLikes.AddRangeAsync(likes);
+            await databaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<IUserServiceProvider>();
-            var LMockedJsonSerializer = new Mock<IJsonSerializer>();
-            var LMockedAzureStorage = new Mock<AzureStorage>();
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedJsonSerializer = new Mock<IJsonSerializer>();
+            var mockedAzureStorage = new Mock<AzureStorage>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedLogger = new Mock<ILoggerService>();
 
-            LMockedUserProvider
-                .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
-                .Returns(IP_ADDRESS_FIRST);
+            mockedUserProvider
+                .Setup(provider => provider.GetRequestIpAddress())
+                .Returns(IpAddressFirst);
 
-            var LMockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-            var LMockedResults = new Results
+            var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
+            var mockedResults = new Results
             {
                 StatusCode = HttpStatusCode.OK,
                 ContentType = new MediaTypeHeaderValue("text/plain"),
-                Content = LMockedPayLoad
+                Content = mockedPayLoad
             };
 
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LMockedResults);
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockedResults);
 
-            var LGetArticleQuery = new GetArticleQuery { Id = LArticles.Id };
-            var LGetArticleQueryHandler = new GetArticleQueryHandler(
-                LDatabaseContext, 
-                LMockedUserProvider.Object, 
-                LMockedJsonSerializer.Object, 
-                LMockedAzureStorage.Object, 
-                LMockedCustomHttpClient.Object);
+            var getArticleQuery = new GetArticleQuery { Id = articles.Id };
+            var getArticleQueryHandler = new GetArticleQueryHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedUserProvider.Object, 
+                mockedJsonSerializer.Object, 
+                mockedAzureStorage.Object, 
+                mockedCustomHttpClient.Object);
 
             // Act
-            var LResults = await LGetArticleQueryHandler.Handle(LGetArticleQuery, CancellationToken.None);
+            var result = await getArticleQueryHandler.Handle(getArticleQuery, CancellationToken.None);
 
             // Assert
-            LResults.Should().NotBeNull();
-            LResults.Title.Should().Be(LArticles.Title);
-            LResults.Description.Should().Be(LArticles.Description);
-            LResults.IsPublished.Should().BeFalse();
-            LResults.ReadCount.Should().Be(LArticles.ReadCount);
-            LResults.UserLikes.Should().Be(10);
-            LResults.UpdatedAt.Should().BeNull();
-            LResults.CreatedAt.Should().Be(LTestDate);
-            LResults.LikeCount.Should().Be(25);
-            LResults.Author.AliasName.Should().Be(USER_ALIAS);
-            LResults.Author.AvatarName.Should().BeNull();
+            result.Should().NotBeNull();
+            result.Title.Should().Be(articles.Title);
+            result.Description.Should().Be(articles.Description);
+            result.IsPublished.Should().BeFalse();
+            result.ReadCount.Should().Be(articles.ReadCount);
+            result.UserLikes.Should().Be(10);
+            result.UpdatedAt.Should().BeNull();
+            result.CreatedAt.Should().Be(testDate);
+            result.LikeCount.Should().Be(25);
+            result.Author.AliasName.Should().Be(UserAlias);
+            result.Author.AvatarName.Should().BeNull();
         }
 
         [Fact]
         public async Task GivenIncorrectId_WhenGetArticle_ShouldThrowError()
         {
             // Arrange
-            var LGetArticleQuery = new GetArticleQuery
+            var getArticleQuery = new GetArticleQuery
             {
                 Id = Guid.Parse("9bc64ac6-cb57-448e-81b7-32f9a8f2f27c")
             };
 
-            var LUsers = new TokanPages.Backend.Domain.Entities.Users
+            var users = new Users
             {
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
@@ -151,11 +155,11 @@
                 CryptedPassword = DataUtilityService.GetRandomString()
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Users.AddAsync(LUsers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Users.AddAsync(users);
+            await databaseContext.SaveChangesAsync();
 
-            var LArticles = new TokanPages.Backend.Domain.Entities.Articles
+            var articles = new Articles
             {
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
@@ -163,44 +167,46 @@
                 ReadCount = 0,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = null,
-                UserId = LUsers.Id
+                UserId = users.Id
             };
             
-            await LDatabaseContext.Articles.AddAsync(LArticles);
-            await LDatabaseContext.SaveChangesAsync();
+            await databaseContext.Articles.AddAsync(articles);
+            await databaseContext.SaveChangesAsync();
 
-            var LMockedUserProvider = new Mock<IUserServiceProvider>();
-            var LMockedJsonSerializer = new Mock<IJsonSerializer>();
-            var LMockedAzureStorage = new Mock<AzureStorage>();
-            var LMockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedUserProvider = new Mock<IUserServiceProvider>();
+            var mockedJsonSerializer = new Mock<IJsonSerializer>();
+            var mockedAzureStorage = new Mock<AzureStorage>();
+            var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+            var mockedLogger = new Mock<ILoggerService>();
 
-            LMockedUserProvider
-                .Setup(AMockedUserProvider => AMockedUserProvider.GetRequestIpAddress())
-                .Returns(IP_ADDRESS_FIRST);
+            mockedUserProvider
+                .Setup(provider => provider.GetRequestIpAddress())
+                .Returns(IpAddressFirst);
 
-            var LMockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-            var LMockedResults = new Results
+            var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
+            var mockedResults = new Results
             {
                 StatusCode = HttpStatusCode.OK,
                 ContentType = new MediaTypeHeaderValue("text/plain"),
-                Content = LMockedPayLoad
+                Content = mockedPayLoad
             };
 
-            LMockedCustomHttpClient
-                .Setup(AClient => AClient.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(LMockedResults);
+            mockedCustomHttpClient
+                .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockedResults);
             
-            var LGetArticleQueryHandler = new GetArticleQueryHandler(
-                LDatabaseContext, 
-                LMockedUserProvider.Object, 
-                LMockedJsonSerializer.Object, 
-                LMockedAzureStorage.Object, 
-                LMockedCustomHttpClient.Object);
+            var getArticleQueryHandler = new GetArticleQueryHandler(
+                databaseContext, 
+                mockedLogger.Object,
+                mockedUserProvider.Object, 
+                mockedJsonSerializer.Object, 
+                mockedAzureStorage.Object, 
+                mockedCustomHttpClient.Object);
 
             // Act
             // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
-                => LGetArticleQueryHandler.Handle(LGetArticleQuery, CancellationToken.None));
+                => getArticleQueryHandler.Handle(getArticleQuery, CancellationToken.None));
         }
     }
 }

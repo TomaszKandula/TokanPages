@@ -7,61 +7,61 @@
     [ExcludeFromCodeCoverage]
     public static class UsersMapper
     {
-        public static AuthenticateUserCommand MapToAuthenticateUserCommand(AuthenticateUserDto AModel) => new()
+        public static AuthenticateUserCommand MapToAuthenticateUserCommand(AuthenticateUserDto model) => new()
         {
-            EmailAddress = AModel.EmailAddress,
-            Password = AModel.Password
+            EmailAddress = model.EmailAddress,
+            Password = model.Password
         };
 
-        public static ReAuthenticateUserCommand MapToReAuthenticateUserCommand(ReAuthenticateUserDto AModel) => new()
+        public static ReAuthenticateUserCommand MapToReAuthenticateUserCommand(ReAuthenticateUserDto model) => new()
         {
-            Id = AModel.Id
+            Id = model.Id
         };
 
-        public static RevokeUserRefreshTokenCommand MapToRevokeUserRefreshTokenCommand(RevokeUserRefreshTokenDto AModel) => new()
+        public static RevokeUserRefreshTokenCommand MapToRevokeUserRefreshTokenCommand(RevokeUserRefreshTokenDto model) => new()
         {
-            RefreshToken = AModel.RefreshToken
+            RefreshToken = model.RefreshToken
         };
 
-        public static ActivateUserCommand MapToActivateUserCommand(ActivateUserDto AModel) => new()
+        public static ActivateUserCommand MapToActivateUserCommand(ActivateUserDto model) => new()
         {
-            ActivationId = AModel.ActivationId
+            ActivationId = model.ActivationId
         };
         
-        public static ResetUserPasswordCommand MapToResetUserPasswordCommand(ResetUserPasswordDto AModel) => new()
+        public static ResetUserPasswordCommand MapToResetUserPasswordCommand(ResetUserPasswordDto model) => new()
         {
-            EmailAddress = AModel.EmailAddress
+            EmailAddress = model.EmailAddress
         };
 
-        public static UpdateUserPasswordCommand MapToUpdateUserPasswordCommand(UpdateUserPasswordDto AModel) => new()
+        public static UpdateUserPasswordCommand MapToUpdateUserPasswordCommand(UpdateUserPasswordDto model) => new()
         {
-            Id = AModel.Id,
-            ResetId = AModel.ResetId,
-            NewPassword = AModel.NewPassword
+            Id = model.Id,
+            ResetId = model.ResetId,
+            NewPassword = model.NewPassword
         };
         
-        public static AddUserCommand MapToAddUserCommand(AddUserDto AModel) => new() 
+        public static AddUserCommand MapToAddUserCommand(AddUserDto model) => new() 
         { 
-            EmailAddress = AModel.EmailAddress,
-            UserAlias = AModel.UserAlias,
-            FirstName = AModel.FirstName,
-            LastName = AModel.LastName,
-            Password = AModel.Password
+            EmailAddress = model.EmailAddress,
+            UserAlias = model.UserAlias,
+            FirstName = model.FirstName,
+            LastName = model.LastName,
+            Password = model.Password
         };
 
-        public static UpdateUserCommand MapToUpdateUserCommand(UpdateUserDto AModel) => new()
+        public static UpdateUserCommand MapToUpdateUserCommand(UpdateUserDto model) => new()
         {
-            Id = AModel.Id,
-            UserAlias = AModel.UserAlias,
-            IsActivated = AModel.IsActivated,
-            FirstName = AModel.FirstName,
-            LastName = AModel.LastName,
-            EmailAddress = AModel.EmailAddress,
+            Id = model.Id,
+            UserAlias = model.UserAlias,
+            IsActivated = model.IsActivated,
+            FirstName = model.FirstName,
+            LastName = model.LastName,
+            EmailAddress = model.EmailAddress,
         };
 
-        public static RemoveUserCommand MapToRemoveUserCommand(RemoveUserDto AModel) => new()
+        public static RemoveUserCommand MapToRemoveUserCommand(RemoveUserDto model) => new()
         {
-            Id = AModel.Id
+            Id = model.Id
         };
     }
 }

@@ -15,46 +15,46 @@
     [Authorize]
     public class ArticlesController : ApiBaseController
     {
-        public ArticlesController(IMediator AMediator) : base(AMediator) { }
+        public ArticlesController(IMediator mediator) : base(mediator) { }
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IEnumerable<GetAllArticlesQueryResult>> GetAllArticles([FromQuery] bool AIsPublished = true) 
-            => await FMediator.Send(new GetAllArticlesQuery { IsPublished = AIsPublished });
+        public async Task<IEnumerable<GetAllArticlesQueryResult>> GetAllArticles([FromQuery] bool isPublished = true) 
+            => await Mediator.Send(new GetAllArticlesQuery { IsPublished = isPublished });
 
-        [HttpGet("{AId}")]
+        [HttpGet("{id:guid}")]
         [AllowAnonymous]
-        public async Task<GetArticleQueryResult> GetArticle([FromRoute] Guid AId)
-            => await FMediator.Send(new GetArticleQuery { Id = AId});
+        public async Task<GetArticleQueryResult> GetArticle([FromRoute] Guid id)
+            => await Mediator.Send(new GetArticleQuery { Id = id});
 
         [HttpPost]
         [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
-        public async Task<Guid> AddArticle([FromBody] AddArticleDto APayLoad) 
-            => await FMediator.Send(ArticlesMapper.MapToAddArticleCommand(APayLoad));
-        
+        public async Task<Guid> AddArticle([FromBody] AddArticleDto payLoad) 
+            => await Mediator.Send(ArticlesMapper.MapToAddArticleCommand(payLoad));
+
         [HttpPost]
         [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
-        public async Task<Unit> UpdateArticleContent([FromBody] UpdateArticleContentDto APayLoad)
-            => await FMediator.Send(ArticlesMapper.MapToUpdateArticleCommand(APayLoad));
-        
+        public async Task<Unit> UpdateArticleContent([FromBody] UpdateArticleContentDto payLoad)
+            => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payLoad));
+
         [HttpPost]
         [AllowAnonymous]
-        public async Task<Unit> UpdateArticleCount([FromBody] UpdateArticleCountDto APayLoad)
-            => await FMediator.Send(ArticlesMapper.MapToUpdateArticleCommand(APayLoad));
-        
+        public async Task<Unit> UpdateArticleCount([FromBody] UpdateArticleCountDto payLoad)
+            => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payLoad));
+
         [HttpPost]
         [AllowAnonymous]
-        public async Task<Unit> UpdateArticleLikes([FromBody] UpdateArticleLikesDto APayLoad)
-            => await FMediator.Send(ArticlesMapper.MapToUpdateArticleCommand(APayLoad));
-        
+        public async Task<Unit> UpdateArticleLikes([FromBody] UpdateArticleLikesDto payLoad)
+            => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payLoad));
+
         [HttpPost]
         [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
-        public async Task<Unit> UpdateArticleVisibility([FromBody] UpdateArticleVisibilityDto APayLoad)
-            => await FMediator.Send(ArticlesMapper.MapToUpdateArticleCommand(APayLoad));
-        
+        public async Task<Unit> UpdateArticleVisibility([FromBody] UpdateArticleVisibilityDto payLoad)
+            => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payLoad));
+
         [HttpPost]
         [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
-        public async Task<Unit> RemoveArticle([FromBody] RemoveArticleDto APayLoad)
-            => await FMediator.Send(ArticlesMapper.MapToRemoveArticleCommand(APayLoad));
+        public async Task<Unit> RemoveArticle([FromBody] RemoveArticleDto payLoad)
+            => await Mediator.Send(ArticlesMapper.MapToRemoveArticleCommand(payLoad));
     }
 }

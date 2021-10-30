@@ -1,14 +1,15 @@
 ﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 {   
     using System;
+    using System.Net;
+    using System.Text;
     using System.Linq;
+    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Shared;
     using Database;
-    using SmtpClient;
-    using Core.Logger;
     using Shared.Models;
     using Storage.Models;
     using Core.Exceptions;
@@ -16,6 +17,7 @@
     using Shared.Resources;
     using Services.CipheringService;
     using System.Collections.Generic;
+    using Core.Utilities.LoggerService;
     using Core.Utilities.DateTimeService;
     using Core.Utilities.TemplateService;
     using Core.Utilities.CustomHttpClient;
@@ -23,165 +25,166 @@
 
     public class AddUserCommandHandler : TemplateHandler<AddUserCommand, Guid>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly IDateTimeService _dateTimeService;
 
-        private readonly IDateTimeService FDateTimeService;
+        private readonly ICipheringService _cipheringService;
 
-        private readonly ICipheringService FCipheringService;
+        private readonly ITemplateService _templateService;
 
-        private readonly ISmtpClientService FSmtpClientService;
+        private readonly ICustomHttpClient _customHttpClient;
 
-        private readonly ILogger FLogger;
+        private readonly AzureStorage _azureStorage;
 
-        private readonly ITemplateService FTemplateService;
+        private readonly ApplicationPaths _applicationPaths;
 
-        private readonly ICustomHttpClient FCustomHttpClient;
+        private readonly ExpirationSettings _expirationSettings;
 
-        private readonly AzureStorage FAzureStorage;
+        private readonly EmailSender _emailSender;
 
-        private readonly ApplicationPaths FApplicationPaths;
+        private Configuration _configuration;
 
-        private readonly ExpirationSettings FExpirationSettings;
-
-        public AddUserCommandHandler(DatabaseContext ADatabaseContext, IDateTimeService ADateTimeService,
-            ICipheringService ACipheringService, ISmtpClientService ASmtpClientService, ILogger ALogger,
-            ITemplateService ATemplateService, ICustomHttpClient ACustomHttpClient, AzureStorage AAzureStorage,
-            ApplicationPaths AApplicationPaths, ExpirationSettings AExpirationSettings)
+        public AddUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService,
+            ICipheringService cipheringService, ITemplateService templateService, 
+            ICustomHttpClient customHttpClient, AzureStorage azureStorage, ApplicationPaths applicationPaths, 
+            ExpirationSettings expirationSettings, EmailSender emailSender) : base(databaseContext, loggerService)
         {
-            FDatabaseContext = ADatabaseContext;
-            FDateTimeService = ADateTimeService;
-            FCipheringService = ACipheringService;
-            FSmtpClientService = ASmtpClientService;
-            FLogger = ALogger;
-            FTemplateService = ATemplateService;
-            FCustomHttpClient = ACustomHttpClient;
-            FAzureStorage = AAzureStorage;
-            FApplicationPaths = AApplicationPaths;
-            FExpirationSettings = AExpirationSettings;
+            _dateTimeService = dateTimeService;
+            _cipheringService = cipheringService;
+            _templateService = templateService;
+            _customHttpClient = customHttpClient;
+            _azureStorage = azureStorage;
+            _applicationPaths = applicationPaths;
+            _expirationSettings = expirationSettings;
+            _emailSender = emailSender;
         }
 
-        public override async Task<Guid> Handle(AddUserCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Guid> Handle(AddUserCommand request, CancellationToken cancellationToken)
         {
-            var LUsers = await FDatabaseContext.Users
-                .Where(AUsers => AUsers.EmailAddress == ARequest.EmailAddress)
-                .SingleOrDefaultAsync(ACancellationToken);
+            var users = await DatabaseContext.Users
+                .Where(users => users.EmailAddress == request.EmailAddress)
+                .SingleOrDefaultAsync(cancellationToken);
 
-            if (LUsers != null && (LUsers.ActivationIdEnds == null || LUsers.ActivationIdEnds > FDateTimeService.Now))
+            if (users != null && (users.ActivationIdEnds == null || users.ActivationIdEnds > _dateTimeService.Now))
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-            var LGetNewSalt = FCipheringService.GenerateSalt(Constants.CIPHER_LOG_ROUNDS);
-            var LGetHashedPassword = FCipheringService.GetHashedPassword(ARequest.Password, LGetNewSalt);
+            var getNewSalt = _cipheringService.GenerateSalt(Constants.CipherLogRounds);
+            var getHashedPassword = _cipheringService.GetHashedPassword(request.Password, getNewSalt);
 
-            var LActivationId = Guid.NewGuid();
-            var LActivationIdEnds = FDateTimeService.Now.AddMinutes(FExpirationSettings.ActivationIdExpiresIn);
+            var activationId = Guid.NewGuid();
+            var activationIdEnds = _dateTimeService.Now.AddMinutes(_expirationSettings.ActivationIdExpiresIn);
 
-            if (LUsers != null && (LUsers.ActivationIdEnds != null || LUsers.ActivationIdEnds < FDateTimeService.Now))
+            if (users != null && (users.ActivationIdEnds != null || users.ActivationIdEnds < _dateTimeService.Now))
             {
-                LUsers.CryptedPassword = LGetHashedPassword;
-                LUsers.ActivationId = LActivationId;
-                LUsers.ActivationIdEnds = LActivationIdEnds;
+                users.CryptedPassword = getHashedPassword;
+                users.ActivationId = activationId;
+                users.ActivationIdEnds = activationIdEnds;
 
-                await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-                await SendNotification(ARequest.EmailAddress, LActivationId, LActivationIdEnds, ACancellationToken);
+                await DatabaseContext.SaveChangesAsync(cancellationToken);
+                await SendNotification(request.EmailAddress, activationId, activationIdEnds, cancellationToken);
 
-                FLogger.LogInformation($"Re-registering new user after ActivationId expired, user id: {LUsers.Id}.");
-                return await Task.FromResult(LUsers.Id);
+                LoggerService.LogInformation($"Re-registering new user after ActivationId expired, user id: {users.Id}.");
+                return await Task.FromResult(users.Id);
             }
 
-            var LNewUser = new Users
+            var newUser = new Users
             {
-                EmailAddress = ARequest.EmailAddress,
-                UserAlias = ARequest.UserAlias.ToLower(),
-                FirstName = ARequest.FirstName,
-                LastName = ARequest.LastName,
-                Registered = FDateTimeService.Now,
-                AvatarName = Constants.Defaults.AVATAR_NAME,
-                CryptedPassword = LGetHashedPassword,
-                ActivationId = LActivationId,
-                ActivationIdEnds = LActivationIdEnds
+                EmailAddress = request.EmailAddress,
+                UserAlias = request.UserAlias.ToLower(),
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Registered = _dateTimeService.Now,
+                AvatarName = Constants.Defaults.AvatarName,
+                CryptedPassword = getHashedPassword,
+                ActivationId = activationId,
+                ActivationIdEnds = activationIdEnds
             };
 
-            await FDatabaseContext.Users.AddAsync(LNewUser, ACancellationToken);
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
-            await SetupDefaultPermissions(LNewUser.Id, ACancellationToken);
-            await SendNotification(ARequest.EmailAddress, LActivationId, LActivationIdEnds, ACancellationToken);
+            await DatabaseContext.Users.AddAsync(newUser, cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
+            await SetupDefaultPermissions(newUser.Id, cancellationToken);
+            await SendNotification(request.EmailAddress, activationId, activationIdEnds, cancellationToken);
 
-            FLogger.LogInformation($"Registering new user account, user id: {LNewUser.Id}.");
-            return await Task.FromResult(LNewUser.Id);
+            LoggerService.LogInformation($"Registering new user account, user id: {newUser.Id}.");
+            return await Task.FromResult(newUser.Id);
         }
 
-        private async Task SetupDefaultPermissions(Guid AUserId, CancellationToken ACancellationToken)
+        private async Task SetupDefaultPermissions(Guid userId, CancellationToken cancellationToken)
         {
-            var LUserRoleName = Identity.Authorization.Roles.EverydayUser.ToString();
-            var LDefaultPermissions = await FDatabaseContext.DefaultPermissions
+            var userRoleName = Identity.Authorization.Roles.EverydayUser.ToString();
+            var defaultPermissions = await DatabaseContext.DefaultPermissions
                 .AsNoTracking()
-                .Include(ADefaultPermissions => ADefaultPermissions.Role)
-                .Include(ADefaultPermissions => ADefaultPermissions.Permission)
-                .Where(ADefaultPermissions => ADefaultPermissions.Role.Name == LUserRoleName)
-                .Select(AFields => new DefaultPermissions
+                .Include(permissions => permissions.Role)
+                .Include(permissions => permissions.Permission)
+                .Where(permissions => permissions.Role.Name == userRoleName)
+                .Select(permissions => new DefaultPermissions
                 {
-                    Id = AFields.Id,
-                    RoleId = AFields.RoleId,
-                    Role = AFields.Role,
-                    PermissionId = AFields.PermissionId,
-                    Permission = AFields.Permission
+                    Id = permissions.Id,
+                    RoleId = permissions.RoleId,
+                    Role = permissions.Role,
+                    PermissionId = permissions.PermissionId,
+                    Permission = permissions.Permission
                 })
-                .ToListAsync(ACancellationToken);
+                .ToListAsync(cancellationToken);
 
-            var LEverydayUserRoleId = LDefaultPermissions
-                .Select(ADefaultPermissions => ADefaultPermissions.RoleId)
+            var everydayUserRoleId = defaultPermissions
+                .Select(permissions => permissions.RoleId)
                 .First(); 
             
-            var LUserPermissions = LDefaultPermissions
-                .Select(ADefaultPermissions => ADefaultPermissions.PermissionId)
+            var userPermissions = defaultPermissions
+                .Select(permissions => permissions.PermissionId)
                 .ToList();
 
-            var LNewRole = new UserRoles
+            var newRole = new UserRoles
             {
-                UserId = AUserId,
-                RoleId = LEverydayUserRoleId
+                UserId = userId,
+                RoleId = everydayUserRoleId
             };
 
-            var LNewPermissions = LUserPermissions.Select(AItem => new UserPermissions
+            var newPermissions = userPermissions.Select(item => new UserPermissions
             {
-                UserId = AUserId, 
-                PermissionId = AItem
+                UserId = userId, 
+                PermissionId = item
             }).ToList();
 
-            await FDatabaseContext.UserRoles.AddAsync(LNewRole, ACancellationToken);
-            await FDatabaseContext.UserPermissions.AddRangeAsync(LNewPermissions, ACancellationToken);
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            await DatabaseContext.UserRoles.AddAsync(newRole, cancellationToken);
+            await DatabaseContext.UserPermissions.AddRangeAsync(newPermissions, cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
         }
 
-        private async Task SendNotification(string AEmailAddress, Guid AActivationId, DateTime AActivationIdEnds, CancellationToken ACancellationToken)
+        private async Task SendNotification(string emailAddress, Guid activationId, DateTime activationIdEnds, CancellationToken cancellationToken)
         {
-            FSmtpClientService.From = Constants.Emails.Addresses.CONTACT;
-            FSmtpClientService.Tos = new List<string> { AEmailAddress };
-            FSmtpClientService.Subject = "New account registration";
-
-            var LActivationLink = $"{FApplicationPaths.DeploymentOrigin}{FApplicationPaths.ActivationPath}{AActivationId}";
-
-            var LNewValues = new Dictionary<string, string>
+            var activationLink = $"{_applicationPaths.DeploymentOrigin}{_applicationPaths.ActivationPath}{activationId}";
+            var newValues = new Dictionary<string, string>
             {
-                { "{ACTIVATION_LINK}", LActivationLink },
-                { "{EXPIRATION}", $"{AActivationIdEnds}" }
+                { "{ACTIVATION_LINK}", activationLink },
+                { "{EXPIRATION}", $"{activationIdEnds}" }
             };
 
-            var LUrl = $"{FAzureStorage.BaseUrl}{Constants.Emails.Templates.REGISTER_FORM}";
-            FLogger.LogInformation($"Getting email template from URL: {LUrl}.");
+            var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.RegisterForm}";
+            LoggerService.LogInformation($"Getting email template from URL: {url}.");
 
-            var LConfiguration = new Configuration { Url = LUrl, Method = "GET" };
-            var LResults = await FCustomHttpClient.Execute(LConfiguration, ACancellationToken);
+            _configuration = new Configuration { Url = url, Method = "GET" };
+            var getTemplate = await _customHttpClient.Execute(_configuration, cancellationToken);
 
-            if (LResults.Content == null)
+            if (getTemplate.Content == null)
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
 
-            var LTemplate = System.Text.Encoding.Default.GetString(LResults.Content);
-            FSmtpClientService.HtmlBody = FTemplateService.MakeBody(LTemplate, LNewValues);
+            var template = Encoding.Default.GetString(getTemplate.Content);
+            var payload = new EmailSenderPayload
+            {
+                PrivateKey = _emailSender.PrivateKey,
+                From = Constants.Emails.Addresses.Contact,
+                To = new List<string> { emailAddress },
+                Subject = "New account registration",
+                Body = _templateService.MakeBody(template, newValues)
+            };
 
-            var LResult = await FSmtpClientService.Send(ACancellationToken);
-            if (!LResult.IsSucceeded)
-                throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}. {LResult.ErrorDesc}");
+            _configuration = new Configuration { Url = _emailSender.BaseUrl, Method = "POST", StringContent = 
+                new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload), Encoding.Default, "application/json") };
+
+            var sendEmail = await _customHttpClient.Execute(_configuration, cancellationToken);
+            if (sendEmail.StatusCode != HttpStatusCode.OK)
+                throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}");
         }
     }
 }

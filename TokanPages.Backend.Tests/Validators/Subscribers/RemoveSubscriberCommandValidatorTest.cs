@@ -12,35 +12,35 @@
         public void GivenCorrectId_WhenRemoveSubscriber_ShouldFinishSuccessful() 
         {
             // Arrange
-            var LRemoveSubscriberCommand = new RemoveSubscriberCommand 
+            var removeSubscriberCommand = new RemoveSubscriberCommand 
             { 
                 Id = Guid.NewGuid()
             };
 
             // Act
-            var LValidator = new RemoveSubscriberCommandValidator();
-            var LResult = LValidator.Validate(LRemoveSubscriberCommand);
+            var validator = new RemoveSubscriberCommandValidator();
+            var result = validator.Validate(removeSubscriberCommand);
 
             // Assert
-            LResult.Errors.Should().BeEmpty();
+            result.Errors.Should().BeEmpty();
         }
 
         [Fact]
         public void GivenEmptyId_WhenRemoveSubscriber_ShouldThrowError()
         {
             // Arrange
-            var LRemoveSubscriberCommand = new RemoveSubscriberCommand
+            var removeSubscriberCommand = new RemoveSubscriberCommand
             {
                 Id = Guid.Empty
             };
 
             // Act
-            var LValidator = new RemoveSubscriberCommandValidator();
-            var LResult = LValidator.Validate(LRemoveSubscriberCommand);
+            var validator = new RemoveSubscriberCommandValidator();
+            var result = validator.Validate(removeSubscriberCommand);
 
             // Assert
-            LResult.Errors.Count.Should().Be(1);
-            LResult.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+            result.Errors.Count.Should().Be(1);
+            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         }
     }
 }

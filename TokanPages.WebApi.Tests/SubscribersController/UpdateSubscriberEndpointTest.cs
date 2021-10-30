@@ -1,14 +1,14 @@
 namespace TokanPages.WebApi.Tests.SubscribersController
 {
+    using Xunit;
+    using Newtonsoft.Json;
+    using FluentAssertions;
     using System;
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
     using Backend.Shared.Resources;
     using Backend.Shared.Dto.Subscribers;
-    using Newtonsoft.Json;
-    using FluentAssertions;
-    using Xunit;
 
     public partial class SubscribersControllerTest
     {
@@ -16,10 +16,10 @@ namespace TokanPages.WebApi.Tests.SubscribersController
         public async Task GivenIncorrectIdAndNoJwt_WhenUpdateSubscriber_ShouldReturnUnauthorized()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/UpdateSubscriber/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            var request = $"{ApiBaseUrl}/UpdateSubscriber/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
-            var LPayLoad = new UpdateSubscriberDto
+            var payLoad = new UpdateSubscriberDto
             {
                 Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
                 Email = DataUtilityService.GetRandomEmail(),
@@ -27,17 +27,17 @@ namespace TokanPages.WebApi.Tests.SubscribersController
                 IsActivated = null
             };
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), System.Text.Encoding.Default, "application/json");
+            var httpClient = _webApplicationFactory.CreateClient();
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Contain(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
         }
     }
 }

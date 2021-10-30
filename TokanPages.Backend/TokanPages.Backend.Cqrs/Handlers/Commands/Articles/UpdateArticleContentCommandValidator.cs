@@ -7,14 +7,14 @@
     {
         public UpdateArticleContentCommandValidator()
         {
-            RuleFor(AField => AField.Id)
+            RuleFor(command => command.Id)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
 
-            When(AField => AField.Title != null, () => 
+            When(command => command.Title != null, () => 
             {
-                RuleFor(AField => AField.Title)
+                RuleFor(command => command.Title)
                     .NotEmpty()
                     .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                     .WithMessage(ValidationCodes.REQUIRED)
@@ -23,9 +23,9 @@
                     .WithMessage(ValidationCodes.TITLE_TOO_LONG);
             });
 
-            When(AField => AField.Description !=null, () => 
+            When(command => command.Description !=null, () => 
             {
-                RuleFor(AField => AField.Description)
+                RuleFor(command => command.Description)
                     .NotEmpty()
                     .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                     .WithMessage(ValidationCodes.REQUIRED)

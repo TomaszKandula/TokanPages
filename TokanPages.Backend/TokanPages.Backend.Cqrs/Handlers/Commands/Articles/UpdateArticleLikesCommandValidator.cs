@@ -7,12 +7,12 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     {
         public UpdateArticleLikesCommandValidator()
         {
-            RuleFor(AField => AField.Id)
+            RuleFor(command => command.Id)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
             
-            RuleFor(AField => AField.AddToLikes)
+            RuleFor(command => command.AddToLikes)
                 .GreaterThan(-1)
                 .WithErrorCode(nameof(ValidationCodes.LESS_THAN_ZERO))
                 .WithMessage(ValidationCodes.LESS_THAN_ZERO);

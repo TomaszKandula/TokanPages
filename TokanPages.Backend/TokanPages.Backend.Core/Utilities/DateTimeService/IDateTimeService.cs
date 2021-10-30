@@ -6,14 +6,16 @@ namespace TokanPages.Backend.Core.Utilities.DateTimeService
     {
         DateTime Now { get; }
 
+        DateTimeOffset RelativeNow { get; }
+
         DateTime TodayStartOfDay { get; }
         
         DateTime TodayEndOfDay { get; }
         
-        DateTime GetStartOfDay(DateTime AValue);
+        DateTime GetStartOfDay(DateTime value);
         
-        DateTime GetEndOfDay(DateTime AValue);
+        DateTime GetEndOfDay(DateTime value);
         
-        DateTime GetFirstDayOfMonth(DateTime AValue);
+        DateTime GetFirstDayOfMonth(DateTime value);
     }
 }

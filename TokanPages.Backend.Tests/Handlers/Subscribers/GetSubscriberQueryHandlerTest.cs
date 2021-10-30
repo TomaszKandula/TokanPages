@@ -1,12 +1,14 @@
 ﻿namespace TokanPages.Backend.Tests.Handlers.Subscribers
 {
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Cqrs.Handlers.Queries.Subscribers;
-    using FluentAssertions;
-    using Xunit;
 
     public class GetSubscriberQueryHandlerTest : TestBase
     {
@@ -14,40 +16,41 @@
         public async Task GivenCorrectId_WhenGetSubscriber_ShouldReturnEntity() 
         {
             // Arrange
-            var LTestDate = DateTime.Now;
-            var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
+            var testDate = DateTime.Now;
+            var subscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
                 Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10,
-                Registered = LTestDate,
+                Registered = testDate,
                 LastUpdated = null
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Subscribers.AddAsync(subscribers);
+            await databaseContext.SaveChangesAsync();
 
-            var LGetSubscriberQuery = new GetSubscriberQuery { Id = LSubscribers.Id };
+            var mockedLogger = new Mock<ILoggerService>();
+            var getSubscriberQuery = new GetSubscriberQuery { Id = subscribers.Id };
+            var getSubscriberQueryHandler = new GetSubscriberQueryHandler(databaseContext, mockedLogger.Object);
 
             // Act
-            var LGetSubscriberQueryHandler = new GetSubscriberQueryHandler(LDatabaseContext);
-            var LResults = await LGetSubscriberQueryHandler.Handle(LGetSubscriberQuery, CancellationToken.None);
+            var result = await getSubscriberQueryHandler.Handle(getSubscriberQuery, CancellationToken.None);
 
             // Assert
-            LResults.Should().NotBeNull();
-            LResults.Email.Should().Be(LSubscribers.Email);
-            LResults.IsActivated.Should().BeTrue();
-            LResults.NewsletterCount.Should().Be(LSubscribers.Count);
-            LResults.Registered.Should().Be(LTestDate);
-            LResults.LastUpdated.Should().BeNull();
+            result.Should().NotBeNull();
+            result.Email.Should().Be(subscribers.Email);
+            result.IsActivated.Should().BeTrue();
+            result.NewsletterCount.Should().Be(subscribers.Count);
+            result.Registered.Should().Be(testDate);
+            result.LastUpdated.Should().BeNull();
         }
 
         [Fact]
         public async Task GivenIncorrectId_WhenGetSubscriber_ShouldThrowError()
         {
             // Arrange
-            var LSubscribers = new TokanPages.Backend.Domain.Entities.Subscribers
+            var subscribers = new TokanPages.Backend.Domain.Entities.Subscribers
             {
                 Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
@@ -56,12 +59,13 @@
                 LastUpdated = null
             };
 
-            var LDatabaseContext = GetTestDatabaseContext();
-            await LDatabaseContext.Subscribers.AddAsync(LSubscribers);
-            await LDatabaseContext.SaveChangesAsync();
+            var databaseContext = GetTestDatabaseContext();
+            await databaseContext.Subscribers.AddAsync(subscribers);
+            await databaseContext.SaveChangesAsync();
 
-            var LGetSubscriberQueryHandler = new GetSubscriberQueryHandler(LDatabaseContext);
-            var LGetSubscriberQuery = new GetSubscriberQuery
+            var mockedLogger = new Mock<ILoggerService>();
+            var getSubscriberQueryHandler = new GetSubscriberQueryHandler(databaseContext, mockedLogger.Object);
+            var getSubscriberQuery = new GetSubscriberQuery
             {
                 Id = Guid.Parse("b6bb37e0-bad3-419c-b61f-45318cb7b68c")
             };
@@ -69,7 +73,7 @@
             // Act
             // Assert
             await Assert.ThrowsAsync<BusinessException>(() 
-                => LGetSubscriberQueryHandler.Handle(LGetSubscriberQuery, CancellationToken.None));
+                => getSubscriberQueryHandler.Handle(getSubscriberQuery, CancellationToken.None));
         }
     }
 }

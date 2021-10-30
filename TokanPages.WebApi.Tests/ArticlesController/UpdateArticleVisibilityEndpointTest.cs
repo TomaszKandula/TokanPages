@@ -1,5 +1,8 @@
 namespace TokanPages.WebApi.Tests.ArticlesController
 {
+    using Xunit;
+    using Newtonsoft.Json;
+    using FluentAssertions;
     using System;
     using System.Net;
     using System.Net.Http;
@@ -7,9 +10,6 @@ namespace TokanPages.WebApi.Tests.ArticlesController
     using System.Net.Http.Headers;
     using Backend.Shared.Resources;
     using Backend.Shared.Dto.Articles;
-    using FluentAssertions;
-    using Newtonsoft.Json;
-    using Xunit;
 
     public partial class ArticlesControllerTest
     {
@@ -17,63 +17,63 @@ namespace TokanPages.WebApi.Tests.ArticlesController
         public async Task GivenInvalidArticleIdAndValidJwt_WhenUpdateArticleVisibility_ShouldReturnBadRequest()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/UpdateArticleVisibility/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            var request = $"{ApiBaseUrl}/UpdateArticleVisibility/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetValidClaimsIdentity(), 
-                FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var tokenExpires = DateTime.Now.AddDays(30);
+            var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
+                _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
 
-            var LPayLoad = new UpdateArticleVisibilityDto
+            var payLoad = new UpdateArticleVisibilityDto
             {
                 Id = Guid.NewGuid(),
                 IsPublished = true
             };
             
-            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), 
+            newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), 
                 System.Text.Encoding.Default, "application/json");
             
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.BadRequest);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
             // Assert
-            var LContent = await LResponse.Content.ReadAsStringAsync();
-            LContent.Should().NotBeNullOrEmpty();
-            LContent.Should().Contain(ErrorCodes.ACCESS_DENIED);
+            var content = await response.Content.ReadAsStringAsync();
+            content.Should().NotBeNullOrEmpty();
+            content.Should().Contain(ErrorCodes.ACCESS_DENIED);
         }
         
         [Fact]
         public async Task GivenInvalidArticleIdAndInvalidJwt_WhenUpdateArticleVisibility_ShouldReturnForbidden()
         {
             // Arrange
-            var LRequest = $"{API_BASE_URL}/UpdateArticleVisibility/";
-            var LNewRequest = new HttpRequestMessage(HttpMethod.Post, LRequest);
+            var request = $"{ApiBaseUrl}/UpdateArticleVisibility/";
+            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
-            var LHttpClient = FWebAppFactory.CreateClient();
-            var LTokenExpires = DateTime.Now.AddDays(30);
-            var LJwt = JwtUtilityService.GenerateJwt(LTokenExpires, GetInvalidClaimsIdentity(), 
-                FWebAppFactory.WebSecret, FWebAppFactory.Issuer, FWebAppFactory.Audience);
+            var httpClient = _webApplicationFactory.CreateClient();
+            var tokenExpires = DateTime.Now.AddDays(30);
+            var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
+                _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
 
-            var LPayLoad = new UpdateArticleVisibilityDto
+            var payLoad = new UpdateArticleVisibilityDto
             {
                 Id = Guid.NewGuid(),
                 IsPublished = true
             };
             
-            LNewRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", LJwt);
-            LNewRequest.Content = new StringContent(JsonConvert.SerializeObject(LPayLoad), 
+            newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
+            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), 
                 System.Text.Encoding.Default, "application/json");
             
             // Act
-            var LResponse = await LHttpClient.SendAsync(LNewRequest);
-            await EnsureStatusCode(LResponse, HttpStatusCode.Forbidden);
+            var response = await httpClient.SendAsync(newRequest);
+            await EnsureStatusCode(response, HttpStatusCode.Forbidden);
 
             // Assert
-            var LResult = await LResponse.Content.ReadAsStringAsync();
-            LResult.Should().BeEmpty();
+            var result = await response.Content.ReadAsStringAsync();
+            result.Should().BeEmpty();
         }
     }
 }

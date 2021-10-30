@@ -4,6 +4,6 @@
 
     public interface ITemplateService
     {
-        string MakeBody(string ATemplate, IDictionary<string, string> AItems);
+        string MakeBody(string template, IDictionary<string, string> items);
     }
 }

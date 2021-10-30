@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     {
         public ActivateUserCommandValidator()
         {
-            RuleFor(AField => AField.ActivationId)
+            RuleFor(command => command.ActivationId)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

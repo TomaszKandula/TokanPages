@@ -4,6 +4,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Database;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
     using Services.UserServiceProvider;
@@ -12,48 +13,48 @@
 
     public class AddArticleCommandHandler : TemplateHandler<AddArticleCommand, Guid>
     {
-        private readonly DatabaseContext FDatabaseContext;
+        private readonly IUserServiceProvider _userServiceProvider;
         
-        private readonly IUserServiceProvider FUserServiceProvider;
+        private readonly IDateTimeService _dateTimeService;
         
-        private readonly IDateTimeService FDateTimeService;
+        private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
         
-        private readonly IAzureBlobStorageFactory FAzureBlobStorageFactory;
-        
-        public AddArticleCommandHandler(DatabaseContext ADatabaseContext, IUserServiceProvider AUserServiceProvider, 
-            IDateTimeService ADateTimeService, IAzureBlobStorageFactory AAzureBlobStorageFactory) 
+        public AddArticleCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserServiceProvider userServiceProvider, 
+            IDateTimeService dateTimeService, IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
         {
-            FDatabaseContext = ADatabaseContext;
-            FUserServiceProvider = AUserServiceProvider;
-            FDateTimeService = ADateTimeService;
-            FAzureBlobStorageFactory = AAzureBlobStorageFactory;
+            _userServiceProvider = userServiceProvider;
+            _dateTimeService = dateTimeService;
+            _azureBlobStorageFactory = azureBlobStorageFactory;
         }
 
-        public override async Task<Guid> Handle(AddArticleCommand ARequest, CancellationToken ACancellationToken)
+        public override async Task<Guid> Handle(AddArticleCommand request, CancellationToken cancellationToken)
         {
-            var LUserId = await FUserServiceProvider.GetUserId();
-            if (LUserId == null)
+            var userId = await _userServiceProvider.GetUserId();
+            if (userId == null)
                 throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
-            var LNewArticle = new Domain.Entities.Articles
+            var newArticle = new Domain.Entities.Articles
             {
-                Title = ARequest.Title,
-                Description = ARequest.Description,
+                Title = request.Title,
+                Description = request.Description,
                 IsPublished = false,
                 ReadCount = 0,
-                CreatedAt = FDateTimeService.Now,
+                CreatedAt = _dateTimeService.Now,
                 UpdatedAt = null,
-                UserId = (Guid) LUserId
+                UserId = (Guid) userId
             };
 
-            await FDatabaseContext.Articles.AddAsync(LNewArticle, ACancellationToken);
-            await FDatabaseContext.SaveChangesAsync(ACancellationToken);
+            await DatabaseContext.Articles.AddAsync(newArticle, cancellationToken);
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
+
+            var azureBlob = _azureBlobStorageFactory.Create();
+            var textDestinationPath = $"content\\articles\\{newArticle.Id}\\text.json";
+            var imageDestinationPath = $"content\\articles\\{newArticle.Id}\\image.jpg";
+
+            await azureBlob.UploadContent(request.TextToUpload, textDestinationPath, cancellationToken);
+            await azureBlob.UploadContent(request.ImageToUpload, imageDestinationPath, cancellationToken);
             
-            var LAzureBlob = FAzureBlobStorageFactory.Create();
-            await LAzureBlob.UploadText(LNewArticle.Id, ARequest.TextToUpload);
-            await LAzureBlob.UploadImage(LNewArticle.Id, ARequest.ImageToUpload);
-            
-            return await Task.FromResult(LNewArticle.Id);
+            return await Task.FromResult(newArticle.Id);
         }
     }
 }

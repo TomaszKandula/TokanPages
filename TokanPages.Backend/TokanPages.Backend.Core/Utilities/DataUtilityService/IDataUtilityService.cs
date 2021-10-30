@@ -6,20 +6,20 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
 
     public interface IDataUtilityService
     {
-        DateTime GetRandomDateTime(DateTime? AMin = null, DateTime? AMax = null, int ADefaultYear = 2020);
+        DateTime GetRandomDateTime(DateTime? min = null, DateTime? max = null, int defaultYear = 2020);
 
         T GetRandomEnum<T>();
 
-        int GetRandomInteger(int AMin = 0, int AMax = 12);
+        int GetRandomInteger(int min = 0, int max = 12);
 
-        decimal GetRandomDecimal(int AMin = 0, int AMax = 9999);
+        decimal GetRandomDecimal(int min = 0, int max = 9999);
 
-        MemoryStream GetRandomStream(int ASizeInKb = 12);
+        MemoryStream GetRandomStream(int sizeInKb = 12);
 
-        string GetRandomEmail(int ALength = 12, string ADomain = "gmail.com");
+        string GetRandomEmail(int length = 12, string domain = "gmail.com");
 
-        string GetRandomString(int ALength = 12, string APrefix = "");
-        
-        public abstract IPAddress GetRandomIpAddress(bool AShouldReturnIPv6 = false);
+        string GetRandomString(int length = 12, string prefix = "", bool useAlphabetOnly = false);
+
+        IPAddress GetRandomIpAddress(bool shouldReturnIPv6 = false);
     }
 }

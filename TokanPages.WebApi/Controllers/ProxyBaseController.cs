@@ -13,26 +13,26 @@ namespace TokanPages.WebApi.Controllers
     [AllowAnonymous]
     public class ProxyBaseController : ControllerBase
     {
-        protected readonly ICustomHttpClient FCustomHttpClient;
+        protected readonly ICustomHttpClient CustomHttpClient;
 
-        protected readonly SonarQube FSonarQube;
+        protected readonly SonarQube SonarQube;
 
-        protected readonly AzureStorage FAzureStorage;
+        protected readonly AzureStorage AzureStorage;
 
-        protected static ContentResult GetContentResultFromResults(Results AResults) => new ()
+        protected static ContentResult GetContentResultFromResults(Results results) => new ()
         {
-            StatusCode = (int)AResults.StatusCode,
-            ContentType = Constants.ContentTypes.TEXT_PLAIN,
-            Content = AResults.Content == null 
+            StatusCode = (int)results.StatusCode,
+            ContentType = Constants.ContentTypes.TextPlain,
+            Content = results.Content == null 
                 ? string.Empty 
-                : System.Text.Encoding.Default.GetString(AResults.Content)
+                : System.Text.Encoding.Default.GetString(results.Content)
         };
 
-        public ProxyBaseController(ICustomHttpClient ACustomHttpClient, SonarQube ASonarQube, AzureStorage AAzureStorage)
+        public ProxyBaseController(ICustomHttpClient customHttpClient, SonarQube sonarQube, AzureStorage azureStorage)
         {
-            FCustomHttpClient = ACustomHttpClient;
-            FSonarQube = ASonarQube;
-            FAzureStorage = AAzureStorage;
+            CustomHttpClient = customHttpClient;
+            SonarQube = sonarQube;
+            AzureStorage = azureStorage;
         }
     }
 }
