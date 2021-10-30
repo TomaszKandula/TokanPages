@@ -79,6 +79,8 @@ export const IMAGE_URL = `${APP_BACKEND}/api/v${API_VER}/articles/images/?Id={ID
 
 export const ARTICLE_PATH = `/articles/?id={ID}`;
 export const IMAGES_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?BlobName=images/`;
+export const ARTICLE_IMAGE_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?BlobName=images/sections/articles/`;
+export const FEATURED_IMAGE_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?BlobName=images/sections/featured/`;
 export const TESTIMONIALS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?BlobName=images/sections/testimonials/`;
 export const ICONS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?BlobName=images/icons/`;
 export const AVATARS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/?BlobName=images/avatars/`;

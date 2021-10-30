@@ -5,6 +5,6 @@ exports[`Test rendering 'Custom Card Media' component. Should not render 'Custom
 exports[`Test rendering 'Custom Card Media' component. Should render 'Custom Card Media' component. 1`] = `
 <WithStyles(ForwardRef(CardMedia))
   className="style"
-  image="test-image.jpg"
+  image="http://domain.com/test-image.jpg"
 />
 `;

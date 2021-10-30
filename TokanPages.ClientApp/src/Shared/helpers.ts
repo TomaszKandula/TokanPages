@@ -164,7 +164,7 @@ const GetDataFromStorage = (key: string): {} | any[] =>
     let serialized = localStorage.getItem(key) as string;
     if (Validate.isEmpty(serialized)) return { };
 
-    let deserialized: string | {} | [] = "";
+    let deserialized: string | {} | any[] = "";
     try 
     {
         deserialized = JSON.parse(serialized);

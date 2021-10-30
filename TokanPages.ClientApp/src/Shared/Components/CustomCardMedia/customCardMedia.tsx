@@ -2,9 +2,9 @@ import * as React from "react";
 import CardMedia from "@material-ui/core/CardMedia";
 import validate from "validate.js";
 
-export const renderCardMedia = (imageSource: string | undefined, className: string): JSX.Element =>
+export const renderCardMedia = (basePath: string, imageSource: string | undefined, className: string): JSX.Element =>
 {
-    return validate.isEmpty(imageSource)
+    return validate.isEmpty(imageSource) || validate.isEmpty(basePath)
         ? <div></div>
-        : <CardMedia className={className} image={imageSource} />;
+        : <CardMedia image={basePath + imageSource} className={className} />;
 }
