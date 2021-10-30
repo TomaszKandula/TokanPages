@@ -7,18 +7,12 @@
     using Backend.Shared.Dto.Mailer;
     using Backend.Identity.Attributes;
     using Backend.Identity.Authorization;
-    using Backend.Cqrs.Handlers.Commands.Mailer;
     using MediatR;
 
     [Authorize]
     public class MailerController : ApiBaseController
     {
         public MailerController(IMediator mediator) : base(mediator) { }
-
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<VerifyEmailAddressCommandResult> VerifyEmailAddress([FromBody] VerifyEmailAddressDto payLoad) 
-            => await Mediator.Send(MailerMapper.MapToVerifyEmailAddressCommand(payLoad));
 
         [HttpPost]
         [AllowAnonymous]

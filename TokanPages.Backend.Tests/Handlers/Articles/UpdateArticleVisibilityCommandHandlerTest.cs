@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Domain.Entities;
     using Shared.Resources;
@@ -39,7 +39,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await databaseContext.SaveChangesAsync();
             
             var mockedUserProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserProvider
                 .Setup(provider => provider.HasPermissionAssigned(It.IsAny<string>()))
@@ -83,7 +83,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await databaseContext.SaveChangesAsync();
             
             var mockedUserProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserProvider
                 .Setup(provider => provider.HasPermissionAssigned(It.IsAny<string>()))
@@ -124,7 +124,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             await databaseContext.SaveChangesAsync();
             
             var mockedUserProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserProvider
                 .Setup(provider => provider.HasPermissionAssigned(It.IsAny<string>()))

@@ -40,36 +40,6 @@ namespace TokanPages.WebApi.Tests.HealthController
         }
 
         [Fact]
-        public async Task GivenInvalidSmtpServer_WhenRequestStatusCheck_ShouldThrowError()
-        {
-            // Arrange
-            var request = $"{ApiBaseUrl}/Status/";
-            var webAppFactory = _webApplicationFactory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureAppConfiguration((_, configurationBuilder) =>
-                {
-                    configurationBuilder.AddInMemoryCollection(
-                        new Dictionary<string, string> { ["SmtpServer:Server"] = DataUtilityService.GetRandomString() });
-                });
-            });
-            
-            // Act
-            var httpClient = webAppFactory.CreateClient();
-            var response = await httpClient.GetAsync(request);
-            await EnsureStatusCode(response, HttpStatusCode.InternalServerError);
-
-            // Assert
-            var content = await response.Content.ReadAsStringAsync();
-            content.Should().NotBeNullOrEmpty();
-            
-            var deserialized = JsonConvert.DeserializeObject<ActionResult>(content);
-            deserialized.Should().NotBeNull();
-            deserialized?.IsSucceeded.Should().BeFalse();
-            deserialized?.ErrorCode.Should().NotBeEmpty();
-            deserialized?.ErrorDesc.Should().NotBeEmpty();
-        }
-
-        [Fact]
         public async Task GivenInvalidDatabaseServer_WhenRequestStatusCheck_ShouldThrowError()
         {
             // Arrange

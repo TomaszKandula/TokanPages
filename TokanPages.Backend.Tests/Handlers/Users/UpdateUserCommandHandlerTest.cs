@@ -6,7 +6,7 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Domain.Entities;
     using Core.Exceptions;
     using Cqrs.Handlers.Commands.Users;
@@ -46,7 +46,7 @@
             };
 
             var mockedDateTime = new Mock<IDateTimeService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var updateUserCommandHandler = new UpdateUserCommandHandler(
                 databaseContext, 
                 mockedLogger.Object,
@@ -73,7 +73,7 @@
             // Arrange
             var databaseContext = GetTestDatabaseContext();
             var mockedDateTime = new Mock<IDateTimeService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var updateUserCommandHandler = new UpdateUserCommandHandler(
                 databaseContext, 
                 mockedLogger.Object,
@@ -128,7 +128,7 @@
             };
 
             var mockedDateTime = new Mock<IDateTimeService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var updateUserCommandHandler = new UpdateUserCommandHandler(
                 databaseContext, 
                 mockedLogger.Object,

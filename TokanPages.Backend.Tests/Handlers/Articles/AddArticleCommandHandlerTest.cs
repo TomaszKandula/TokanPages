@@ -6,7 +6,7 @@
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Core.Extensions;
     using Domain.Entities;
@@ -20,14 +20,14 @@
 
     public class AddArticleCommandHandlerTest : TestBase
     {
-        private readonly Mock<AzureBlobStorageFactory> _mockedAzureBlobStorageFactory;
+        private readonly Mock<IAzureBlobStorageFactory> _mockedAzureBlobStorageFactory;
         
         private readonly DataUtilityService _dataUtilityService;
 
         public AddArticleCommandHandlerTest()
         {
             _dataUtilityService = new DataUtilityService();
-            _mockedAzureBlobStorageFactory = new Mock<AzureBlobStorageFactory>();
+            _mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>();
             var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
 
             mockedAzureBlobStorage
@@ -74,9 +74,9 @@
             await databaseContext.Users.AddAsync(user);
             await databaseContext.SaveChangesAsync();
             
-            var mockedDateTime = new Mock<DateTimeService>();
+            var mockedDateTime = new Mock<IDateTimeService>();
             var mockedUserProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserProvider
                 .Setup(provider => provider.GetUserId())
@@ -109,9 +109,9 @@
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedDateTime = new Mock<DateTimeService>();
+            var mockedDateTime = new Mock<IDateTimeService>();
             var mockedUserProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             
             var addArticleCommandHandler = new AddArticleCommandHandler(
                 databaseContext, 
@@ -141,9 +141,9 @@
             };
 
             var databaseContext = GetTestDatabaseContext();
-            var mockedDateTime = new Mock<DateTimeService>();
+            var mockedDateTime = new Mock<IDateTimeService>();
             var mockedUserProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             var addArticleCommandHandler = new AddArticleCommandHandler(
                 databaseContext, 

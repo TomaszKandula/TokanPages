@@ -5,7 +5,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
     using Identity.Authorization;
@@ -16,8 +16,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     {
         private readonly IUserServiceProvider _userServiceProvider;
         
-        public UpdateArticleVisibilityCommandHandler(DatabaseContext databaseContext, ILogger logger, 
-            IUserServiceProvider userServiceProvider) : base(databaseContext, logger)
+        public UpdateArticleVisibilityCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+            IUserServiceProvider userServiceProvider) : base(databaseContext, loggerService)
         {
             _userServiceProvider = userServiceProvider;
         }

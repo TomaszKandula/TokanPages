@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Domain.Entities;
     using Cqrs.Handlers.Queries.Articles;
 
@@ -19,7 +19,7 @@
         {
             // Arrange
             var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             var getAllArticlesQuery = new GetAllArticlesQuery { IsPublished = false };
             var getAllArticlesQueryHandler = new GetAllArticlesQueryHandler(databaseContext, mockedLogger.Object);

@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Microsoft.EntityFrameworkCore;
     using Shared;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Shared.Models;
     using Domain.Entities;
     using Core.Exceptions;
@@ -22,8 +22,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         private readonly IdentityServer _identityServer;
 
-        public ReAuthenticateUserCommandHandler(DatabaseContext databaseContext, ILogger logger, IDateTimeService dateTimeService, 
-            IUserServiceProvider userServiceProvider, IdentityServer identityServer) : base(databaseContext, logger)
+        public ReAuthenticateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService, 
+            IUserServiceProvider userServiceProvider, IdentityServer identityServer) : base(databaseContext, loggerService)
         {
             _dateTimeService = dateTimeService;
             _userServiceProvider = userServiceProvider;

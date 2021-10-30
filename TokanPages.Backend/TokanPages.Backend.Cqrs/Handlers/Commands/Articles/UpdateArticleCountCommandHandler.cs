@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Domain.Entities;
     using Core.Exceptions;
     using Shared.Resources;
@@ -16,7 +16,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     {
         private readonly IUserServiceProvider _userServiceProvider;
 
-        public UpdateArticleCountCommandHandler(DatabaseContext databaseContext, ILogger logger, IUserServiceProvider userServiceProvider) : base(databaseContext, logger)
+        public UpdateArticleCountCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserServiceProvider userServiceProvider) : base(databaseContext, loggerService)
         {
             _userServiceProvider = userServiceProvider;
         }

@@ -11,12 +11,10 @@
     using Backend.Cqrs;
     using Backend.Shared;
     using Backend.Database;
-    using Backend.SmtpClient;
-    using Backend.Core.Logger;
+    using Backend.Core.Utilities.LoggerService;
     using Backend.Shared.Models;
     using Backend.Storage.Models;
     using Backend.Core.Behaviours;
-    using Backend.SmtpClient.Models;
     using Backend.Database.Initializer;
     using Backend.Identity.Authentication;
     using Backend.Core.Utilities.JsonSerializer;
@@ -29,8 +27,6 @@
     using Backend.Cqrs.Services.UserServiceProvider;
     using Backend.Identity.Services.JwtUtilityService;
     using FluentValidation;
-    using MailKit.Net.Smtp;
-    using DnsClient;
     using MediatR;
 
     [ExcludeFromCodeCoverage]
@@ -57,7 +53,7 @@
         private static void SetupAppSettings(IServiceCollection services, IConfiguration configuration) 
         {
             services.AddSingleton(configuration.GetSection(nameof(AzureStorage)).Get<AzureStorage>());
-            services.AddSingleton(configuration.GetSection(nameof(SmtpServer)).Get<SmtpServer>());
+            services.AddSingleton(configuration.GetSection(nameof(EmailSender)).Get<EmailSender>());
             services.AddSingleton(configuration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>());
             services.AddSingleton(configuration.GetSection(nameof(SonarQube)).Get<SonarQube>());
             services.AddSingleton(configuration.GetSection(nameof(IdentityServer)).Get<IdentityServer>());
@@ -65,7 +61,7 @@
         }
 
         private static void SetupLogger(IServiceCollection services) 
-            => services.AddSingleton<ILogger, Logger>();
+            => services.AddSingleton<ILoggerService, LoggerService>();
 
         private static void SetupDatabase(IServiceCollection services, IConfiguration configuration) 
         {
@@ -84,9 +80,6 @@
             services.AddHttpContextAccessor();
 
             services.AddScoped<HttpClient>();
-            services.AddScoped<ISmtpClient, SmtpClient>();
-            services.AddScoped<ILookupClient, LookupClient>();
-            services.AddScoped<ISmtpClientService, SmtpClientService>();
             services.AddScoped<ITemplateService, TemplateService>();
             services.AddScoped<IDateTimeService, DateTimeService>();
             services.AddScoped<IJwtUtilityService, JwtUtilityService>();

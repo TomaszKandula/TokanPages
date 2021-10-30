@@ -9,7 +9,7 @@
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
     using System.Collections.Generic;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Storage.Models;
     using Domain.Entities;
     using Core.Exceptions;
@@ -89,7 +89,7 @@
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
             var mockedAzureStorage = new Mock<AzureStorage>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserProvider
                 .Setup(provider => provider.GetRequestIpAddress())
@@ -177,7 +177,7 @@
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
             var mockedAzureStorage = new Mock<AzureStorage>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserProvider
                 .Setup(provider => provider.GetRequestIpAddress())

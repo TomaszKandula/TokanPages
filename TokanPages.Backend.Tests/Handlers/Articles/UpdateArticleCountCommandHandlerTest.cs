@@ -8,7 +8,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Domain.Entities;
     using Core.Exceptions;
     using Shared.Resources;
@@ -59,7 +59,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             var expectedTotalReadCount = articles.ReadCount + 1;
             var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserServiceProvider
                 .Setup(service => service.GetUserId())
@@ -145,7 +145,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             var expectedTotalReadCount = articles.ReadCount + 1;
             var expectedUserReadCount = articlesCounts.ReadCount + 1;
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserServiceProvider
                 .Setup(service => service.GetUserId())
@@ -221,7 +221,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
             var expectedTotalReadCount = articles.ReadCount + 1;
             var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserServiceProvider
                 .Setup(service => service.GetUserId())
@@ -291,7 +291,7 @@ namespace TokanPages.Backend.Tests.Handlers.Articles
 
             var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
 
             mockedUserServiceProvider
                 .Setup(service => service.GetUserId())

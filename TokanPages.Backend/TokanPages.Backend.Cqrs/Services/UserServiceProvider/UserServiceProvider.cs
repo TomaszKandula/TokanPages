@@ -18,7 +18,7 @@
     using Core.Utilities.DateTimeService;
     using Identity.Services.JwtUtilityService;
 
-    public class UserServiceProvider : IUserServiceProvider
+    public sealed class UserServiceProvider : IUserServiceProvider
     {
         private const string Localhost = "127.0.0.1";
 
@@ -50,7 +50,7 @@
             _identityServer = identityServer;
         }
 
-        public virtual string GetRequestIpAddress() 
+        public string GetRequestIpAddress() 
         {
             var remoteIpAddress = _httpContextAccessor.HttpContext?
                 .Request.Headers["X-Forwarded-For"].ToString();
@@ -60,7 +60,7 @@
                 : remoteIpAddress.Split(':')[0];
         }
 
-        public virtual string GetRefreshTokenCookie(string cookieName)
+        public string GetRefreshTokenCookie(string cookieName)
         {
             if (string.IsNullOrEmpty(cookieName))
                 throw ArgumentNullException;
@@ -68,7 +68,7 @@
             return _httpContextAccessor.HttpContext?.Request.Cookies[cookieName];
         }
 
-        public virtual void SetRefreshTokenCookie(string refreshToken, int expiresIn, bool isHttpOnly = true, 
+        public void SetRefreshTokenCookie(string refreshToken, int expiresIn, bool isHttpOnly = true, 
             bool secure = true, string cookieName = Constants.CookieNames.RefreshToken)
         {
             if (string.IsNullOrEmpty(refreshToken))
@@ -89,31 +89,31 @@
                 .Append(cookieName, refreshToken, cookieOptions);
         }
 
-        public virtual async Task<Guid?> GetUserId()
+        public async Task<Guid?> GetUserId()
         {
             await EnsureUserData();
             return _user?.UserId;
         }
 
-        public virtual async Task<GetUserDto> GetUser()
+        public async Task<GetUserDto> GetUser()
         {
             await EnsureUserData();
             return _user;
         }
 
-        public virtual async Task<List<GetUserRoleDto>> GetUserRoles(Guid? userId)
+        public async Task<List<GetUserRoleDto>> GetUserRoles(Guid? userId)
         {
             await EnsureUserRoles(userId);
             return _userRoles;
         }
 
-        public virtual async Task<List<GetUserPermissionDto>> GetUserPermissions(Guid? userId)
+        public async Task<List<GetUserPermissionDto>> GetUserPermissions(Guid? userId)
         {
             await EnsureUserPermissions(userId);
             return _userPermissions;
         }
 
-        public virtual async Task<bool?> HasRoleAssigned(string userRoleName)
+        public async Task<bool?> HasRoleAssigned(string userRoleName)
         {
             if (string.IsNullOrEmpty(userRoleName))
                 throw ArgumentNullException;
@@ -131,7 +131,7 @@
             return givenRoles.Any();
         }
 
-        public virtual async Task<bool?> HasPermissionAssigned(string userPermissionName)
+        public async Task<bool?> HasPermissionAssigned(string userPermissionName)
         {
             if (string.IsNullOrEmpty(userPermissionName))
                 throw ArgumentNullException;
@@ -149,7 +149,7 @@
             return givenPermissions.Any();
         }
 
-        public virtual async Task<ClaimsIdentity> MakeClaimsIdentity(Users users, CancellationToken cancellationToken = default)
+        public async Task<ClaimsIdentity> MakeClaimsIdentity(Users users, CancellationToken cancellationToken = default)
         {
             var userRoles = await _databaseContext.UserRoles
                 .AsNoTracking()
@@ -173,7 +173,7 @@
             return claimsIdentity;
         }
 
-        public virtual async Task<string> GenerateUserToken(Users users, DateTime tokenExpires, CancellationToken cancellationToken = default)
+        public async Task<string> GenerateUserToken(Users users, DateTime tokenExpires, CancellationToken cancellationToken = default)
         {
             var claimsIdentity = await MakeClaimsIdentity(users, cancellationToken);
             
@@ -185,7 +185,7 @@
                 _identityServer.Audience);
         }
 
-        public virtual async Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default)
+        public async Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default)
         {
             var refreshTokens = await _databaseContext.UserRefreshTokens
                 .Where(tokens => tokens.UserId == userId 
@@ -201,7 +201,7 @@
                 await _databaseContext.SaveChangesAsync(cancellationToken);
         }        
         
-        public virtual async Task<UserRefreshTokens> ReplaceRefreshToken(Guid userId, UserRefreshTokens savedUserRefreshTokens, string requesterIpAddress, 
+        public async Task<UserRefreshTokens> ReplaceRefreshToken(Guid userId, UserRefreshTokens savedUserRefreshTokens, string requesterIpAddress, 
             bool saveImmediately = false, CancellationToken cancellationToken = default)
         {
             var newRefreshToken = _jwtUtilityService.GenerateRefreshToken(requesterIpAddress, _identityServer.RefreshTokenExpiresIn);
@@ -223,7 +223,7 @@
             };
         }
         
-        public virtual async Task RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> userRefreshTokens,  UserRefreshTokens savedUserRefreshTokens, 
+        public async Task RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> userRefreshTokens,  UserRefreshTokens savedUserRefreshTokens, 
             string requesterIpAddress, string reason, bool saveImmediately = false, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(savedUserRefreshTokens.ReplacedByToken)) 
@@ -241,7 +241,7 @@
             }
         }
 
-        public virtual async Task RevokeRefreshToken(UserRefreshTokens userRefreshTokens, string requesterIpAddress, string reason = null, 
+        public async Task RevokeRefreshToken(UserRefreshTokens userRefreshTokens, string requesterIpAddress, string reason = null, 
             string replacedByToken = null, bool saveImmediately = false, CancellationToken cancellationToken = default)
         {
             userRefreshTokens.Revoked = _dateTimeService.Now;
@@ -255,13 +255,13 @@
                 await _databaseContext.SaveChangesAsync(cancellationToken);
         }
 
-        public virtual bool IsRefreshTokenExpired(UserRefreshTokens userRefreshTokens) 
+        public bool IsRefreshTokenExpired(UserRefreshTokens userRefreshTokens) 
             => userRefreshTokens.Expires <= _dateTimeService.Now;
 
-        public virtual bool IsRefreshTokenRevoked(UserRefreshTokens userRefreshTokens) 
+        public bool IsRefreshTokenRevoked(UserRefreshTokens userRefreshTokens) 
             => userRefreshTokens.Revoked != null;
 
-        public virtual bool IsRefreshTokenActive(UserRefreshTokens userRefreshTokens) 
+        public bool IsRefreshTokenActive(UserRefreshTokens userRefreshTokens) 
             => !IsRefreshTokenRevoked(userRefreshTokens) && !IsRefreshTokenExpired(userRefreshTokens);
         
         private static BusinessException AccessDeniedException 

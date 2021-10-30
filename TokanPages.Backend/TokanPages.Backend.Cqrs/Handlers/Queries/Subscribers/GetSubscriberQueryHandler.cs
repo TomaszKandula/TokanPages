@@ -5,13 +5,13 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
 
     public class GetSubscriberQueryHandler : TemplateHandler<GetSubscriberQuery, GetSubscriberQueryResult>
     {
-        public GetSubscriberQueryHandler(DatabaseContext databaseContext, ILogger logger) : base(databaseContext, logger) { }
+        public GetSubscriberQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
         public override async Task<GetSubscriberQueryResult> Handle(GetSubscriberQuery request, CancellationToken cancellationToken) 
         {

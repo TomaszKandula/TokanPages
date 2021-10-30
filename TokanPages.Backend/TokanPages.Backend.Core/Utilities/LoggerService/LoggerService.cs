@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Core.Logger
+﻿namespace TokanPages.Backend.Core.Utilities.LoggerService
 {
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
@@ -8,7 +8,7 @@
     /// Logger service that allows to store messages from application.
     /// </summary>
     [ExcludeFromCodeCoverage]
-    public sealed class Logger : ILogger
+    public sealed class LoggerService : ILoggerService
     {
         /// <summary>
         /// Log debug information to storage with current datetime stamp.
@@ -19,7 +19,7 @@
         /// <param name="message">A debug message to store.</param>
         public void LogDebug(string message)
         {
-            Debug.WriteLine($"[{nameof(Logger)} output]: {message}");
+            Debug.WriteLine($"[{nameof(LoggerService)} output]: {message}");
             Log.Debug("{AMessage}", message);
         }
 
@@ -32,7 +32,7 @@
         /// <param name="message">An information message to store.</param>
         public void LogInformation(string message)
         {
-            Debug.WriteLine($"[{nameof(Logger)} output]: {message}");
+            Debug.WriteLine($"[{nameof(LoggerService)} output]: {message}");
             Log.Information("{AMessage}", message);
         }
 
@@ -45,7 +45,7 @@
         /// <param name="message">A warning message to store.</param>
         public void LogWarning(string message)
         {
-            Debug.WriteLine($"[{nameof(Logger)} output]: {message}");
+            Debug.WriteLine($"[{nameof(LoggerService)} output]: {message}");
             Log.Warning("{AMessage}", message);
         }
 
@@ -58,7 +58,7 @@
         /// <param name="message">An error message to store.</param>
         public void LogError(string message)
         {
-            Debug.WriteLine($"[{nameof(Logger)} output]: {message}");
+            Debug.WriteLine($"[{nameof(LoggerService)} output]: {message}");
             Log.Error("{AMessage}", message);
         }
 
@@ -71,7 +71,7 @@
         /// <param name="message">A critical error message to store.</param>
         public void LogCriticalError(string message)
         {
-            Debug.WriteLine($"[{nameof(Logger)} output]: {message}");
+            Debug.WriteLine($"[{nameof(LoggerService)} output]: {message}");
             Log.Fatal("{AMessage}", message);
         }
     }
