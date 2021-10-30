@@ -1,3 +1,41 @@
+# [0.25.0](https://github.com/TomaszKandula/TokanPages/compare/v0.24.0...v0.25.0) (2021-10-30)
+
+
+### Bug Fixes
+
+* add missing casting ([00332bb](https://github.com/TomaszKandula/TokanPages/commit/00332bb7fae79babe477181a726ae6c9a49041e4))
+* add missing HTTP attribute ([754c1ee](https://github.com/TomaszKandula/TokanPages/commit/754c1eec4f3c7fabc1cc7fa1c537d308fba2d5d1))
+* add missing key for div element in array ([e5e535c](https://github.com/TomaszKandula/TokanPages/commit/e5e535c44d378f3b3445bb5fa16fd3a6f697e02d))
+* add missing key for div element in array ([4786a19](https://github.com/TomaszKandula/TokanPages/commit/4786a191d12af6435050de613880d5269cc53b4d))
+* aligning default export name and file name ([a9f69f6](https://github.com/TomaszKandula/TokanPages/commit/a9f69f683368ae24dc530cd71fd42edb59abd3fc))
+* change error code ([83b4409](https://github.com/TomaszKandula/TokanPages/commit/83b4409bd83ad3c91f17d9f00a51391b89033030))
+* correct date and time implementation ([7eb29c2](https://github.com/TomaszKandula/TokanPages/commit/7eb29c280f84e5a8725a60c0aaecfbe8150d7ce0))
+* correct implementation using base url, update tests and related code ([76b788f](https://github.com/TomaszKandula/TokanPages/commit/76b788f7cbb9a806511f76b0f674cc7b5fa5fe5e))
+* refactor common code so it can be reused ([36dc56e](https://github.com/TomaszKandula/TokanPages/commit/36dc56ea741db6f074ef7d1c4bdd58e6d55a93d1))
+* remove unnecessary semicolon ([f70ff57](https://github.com/TomaszKandula/TokanPages/commit/f70ff57edc403610880a960cf8aa43dc4d25c707))
+* removed unnecessary React import ([c8c02fb](https://github.com/TomaszKandula/TokanPages/commit/c8c02fb9968d47c598f2d7e4f3690a9f7473c2d2))
+* resolve merge issues ([2fb473d](https://github.com/TomaszKandula/TokanPages/commit/2fb473d7015515ce3377a1d3bf574437d678adee))
+* use interfaces not implementations to create mock object ([7418f00](https://github.com/TomaszKandula/TokanPages/commit/7418f009adcc67a6938a1f7e6cad9d25072ce1fe))
+
+
+### Features
+
+* add command column to user tokens table ([f95a5d9](https://github.com/TomaszKandula/TokanPages/commit/f95a5d93167a611f926f0bfb8e199e6c05243789))
+* add command name when saving new user token ([7654226](https://github.com/TomaszKandula/TokanPages/commit/7654226e471ea31ff4a9fddc481fc24f068cb233))
+* add database context and logger to template handler ([b8d4703](https://github.com/TomaszKandula/TokanPages/commit/b8d47036368af2a4fe470b72b3d88f07b82d0091))
+* add error code for empty email template ([644c9d0](https://github.com/TomaszKandula/TokanPages/commit/644c9d0f83cbf35e39cd391d2521e5f0022c1bed))
+* add new error codes ([34f707b](https://github.com/TomaszKandula/TokanPages/commit/34f707b84259b49ba7ae4778689ef3b9dab764b9))
+* add new property for current date time relative to UTC ([3809d97](https://github.com/TomaszKandula/TokanPages/commit/3809d97caf9ef0d4a2f8ec66e29f241f86f0b6fe))
+* add table to store all article read counts ([0312db2](https://github.com/TomaszKandula/TokanPages/commit/0312db297545f1bb99c57258a856cc32d6989ea0))
+* add user tokens to database ([34ea0b9](https://github.com/TomaszKandula/TokanPages/commit/34ea0b96d48d69adbe3f66f1b710601ebaff38f5))
+* extend error codes by adding COMPONENT_NOT_FOUND ([3c5f266](https://github.com/TomaszKandula/TokanPages/commit/3c5f266de278d6e45d0c56499a5e1b486d0f136b))
+* improve GetDataFromStorage implementation ([79d95e8](https://github.com/TomaszKandula/TokanPages/commit/79d95e84685a80e21a09a0f856150b69091421a2))
+* improve implementation with new Azure Storage Blob SDK v12 ([6e81b53](https://github.com/TomaszKandula/TokanPages/commit/6e81b538db3b1d0fba7ddde6f2d5dcf40be0dd90))
+* improve implementation, add exceptions ([e91b937](https://github.com/TomaszKandula/TokanPages/commit/e91b937208c8f1943f87e6a104ca6a565f6e8c87))
+* improve SetCookie implementation ([ea0b3cf](https://github.com/TomaszKandula/TokanPages/commit/ea0b3cf972ca02cf6594f85c5bd9b927024c196d))
+* save generated user token on (re)authentication to database ([b8ad533](https://github.com/TomaszKandula/TokanPages/commit/b8ad5337b3538f994215222bb2d97b3fc622772b))
+* save individual read count for logged user for viewed article ([58af7ed](https://github.com/TomaszKandula/TokanPages/commit/58af7ed26aa332e2b137b149ad6843d01f73f53a))
+
 # [0.24.0](https://github.com/TomaszKandula/TokanPages/compare/v0.23.0...v0.24.0) (2021-10-03)
 
 
