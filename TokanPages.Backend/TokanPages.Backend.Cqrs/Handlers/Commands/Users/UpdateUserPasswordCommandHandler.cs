@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Shared;
     using MediatR;
     using Database;
-    using Core.Logger;
+    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Core.Extensions;
     using Shared.Resources;
@@ -24,9 +24,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         private readonly IDateTimeService _dateTimeService;
         
-        public UpdateUserPasswordCommandHandler(DatabaseContext databaseContext, ILogger logger, 
+        public UpdateUserPasswordCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
             IUserServiceProvider userServiceProvider, ICipheringService cipheringService, 
-            IDateTimeService dateTimeService) : base(databaseContext, logger)
+            IDateTimeService dateTimeService) : base(databaseContext, loggerService)
         {
             _userServiceProvider = userServiceProvider;
             _cipheringService = cipheringService;
@@ -70,7 +70,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             currentUser.LastUpdated = _dateTimeService.Now;
             await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-            Logger.LogInformation($"User password has been updated successfully (UserId: {currentUser.Id}).");
+            LoggerService.LogInformation($"User password has been updated successfully (UserId: {currentUser.Id}).");
             return await Task.FromResult(Unit.Value);
         }
     }

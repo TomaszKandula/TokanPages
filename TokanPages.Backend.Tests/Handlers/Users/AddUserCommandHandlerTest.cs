@@ -11,18 +11,17 @@
     using System.Net.Http.Headers;
     using System.Collections.Generic;
     using Shared;
-    using SmtpClient;
-    using Core.Logger;
     using Shared.Models;
     using Storage.Models;
     using Core.Exceptions;
     using Domain.Entities;
     using Shared.Resources;
     using Cqrs.Handlers.Commands.Users;
-    using Core.Utilities.CustomHttpClient;
+    using Core.Utilities.LoggerService;
     using Cqrs.Services.CipheringService;
     using Core.Utilities.DateTimeService;
     using Core.Utilities.TemplateService;
+    using Core.Utilities.CustomHttpClient;
     using Core.Utilities.CustomHttpClient.Models;
 
     public class AddUserCommandHandlerTest : TestBase
@@ -48,11 +47,11 @@
 
             var permissions = new List<Permissions>
             {
-                new ()
+                new()
                 {
                     Name = Identity.Authorization.Permissions.CanSelectArticles.ToString()
                 },
-                new ()
+                new()
                 {
                     Name = Identity.Authorization.Permissions.CanSelectComments.ToString()
                 }
@@ -60,13 +59,13 @@
 
             var defaultPermissions = new List<DefaultPermissions>
             {
-                new ()
+                new()
                 {
                     Id = Guid.NewGuid(),
                     Role = roles,
                     Permission = permissions[0]
                 },
-                new ()
+                new()
                 {
                     Id = Guid.NewGuid(),
                     Role = roles,
@@ -81,23 +80,18 @@
 
             var mockedDateTime = new Mock<DateTimeService>();
             var mockedCipher = new Mock<ICipheringService>();
-            var mockedSmtpClientService = new Mock<ISmtpClientService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedAzureStorage = new Mock<AzureStorage>();
             var mockedApplicationPaths = new Mock<ApplicationPaths>();
             var mockedExpirationSettings = new Mock<ExpirationSettings>();
+            var mockedEmailSender = new Mock<EmailSender>();
 
             const string mockedPassword = "MockedPassword";
             mockedCipher
                 .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(mockedPassword);
-            
-            var sendActionResult = new ActionResult { IsSucceeded = true };
-            mockedSmtpClientService
-                .Setup(client => client.Send(CancellationToken.None))
-                .Returns(Task.FromResult(sendActionResult));
 
             var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
             var mockedResults = new Results
@@ -116,13 +110,12 @@
                 mockedLogger.Object,
                 mockedDateTime.Object, 
                 mockedCipher.Object,
-                mockedSmtpClientService.Object,
                 mockedTemplateService.Object,
                 mockedCustomHttpClient.Object,
                 mockedAzureStorage.Object,
                 mockedApplicationPaths.Object,
-                mockedExpirationSettings.Object
-            );
+                mockedExpirationSettings.Object, 
+                mockedEmailSender.Object);
 
             // Act
             await addUserCommandHandler.Handle(addUserCommand, CancellationToken.None);
@@ -182,12 +175,12 @@
             
             var mockedDateTime = new Mock<DateTimeService>();
             var mockedCipher = new Mock<ICipheringService>();
-            var mockedSmtpClientService = new Mock<ISmtpClientService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedAzureStorage = new Mock<AzureStorage>();
             var mockedApplicationPaths = new Mock<ApplicationPaths>();
+            var mockedEmailSender = new Mock<EmailSender>();
 
             var expirationSettings = new ExpirationSettings
             {
@@ -202,11 +195,6 @@
             mockedDateTime
                 .Setup(dateTime => dateTime.Now)
                 .Returns(DateTimeService.Now);
-            
-            var sendActionResult = new ActionResult { IsSucceeded = true };
-            mockedSmtpClientService
-                .Setup(client => client.Send(CancellationToken.None))
-                .Returns(Task.FromResult(sendActionResult));
 
             var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
             var mockedResults = new Results
@@ -225,13 +213,12 @@
                 mockedLogger.Object,
                 mockedDateTime.Object, 
                 mockedCipher.Object,
-                mockedSmtpClientService.Object,
                 mockedTemplateService.Object,
                 mockedCustomHttpClient.Object,
                 mockedAzureStorage.Object,
                 mockedApplicationPaths.Object,
-                expirationSettings
-            );
+                expirationSettings, 
+                mockedEmailSender.Object);
 
             // Act
             await addUserCommandHandler.Handle(addUserCommand, CancellationToken.None);
@@ -287,22 +274,17 @@
 
             var mockedDateTime = new Mock<DateTimeService>();
             var mockedCipher = new Mock<ICipheringService>();
-            var mockedSmtpClientService = new Mock<ISmtpClientService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedAzureStorage = new Mock<AzureStorage>();
             var mockedApplicationPaths = new Mock<ApplicationPaths>();
             var mockedExpirationSettings = new Mock<ExpirationSettings>();
+            var mockedEmailSender = new Mock<EmailSender>();
             
             mockedCipher
                 .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns("MockedPassword");
-            
-            var sendActionResult = new ActionResult { IsSucceeded = true };
-            mockedSmtpClientService
-                .Setup(client => client.Send(CancellationToken.None))
-                .Returns(Task.FromResult(sendActionResult));
 
             var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
             var mockedResults = new Results
@@ -321,13 +303,12 @@
                 mockedLogger.Object,
                 mockedDateTime.Object, 
                 mockedCipher.Object,
-                mockedSmtpClientService.Object,
                 mockedTemplateService.Object,
                 mockedCustomHttpClient.Object,
                 mockedAzureStorage.Object,
                 mockedApplicationPaths.Object,
-                mockedExpirationSettings.Object
-            );
+                mockedExpirationSettings.Object, 
+                mockedEmailSender.Object);
 
             // Act
             // Assert
@@ -356,11 +337,11 @@
 
             var permissions = new List<Permissions>
             {
-                new ()
+                new()
                 {
                     Name = Identity.Authorization.Permissions.CanSelectArticles.ToString()
                 },
-                new ()
+                new()
                 {
                     Name = Identity.Authorization.Permissions.CanSelectComments.ToString()
                 }
@@ -368,13 +349,13 @@
 
             var defaultPermissions = new List<DefaultPermissions>
             {
-                new ()
+                new()
                 {
                     Id = Guid.NewGuid(),
                     Role = roles,
                     Permission = permissions[0]
                 },
-                new ()
+                new()
                 {
                     Id = Guid.NewGuid(),
                     Role = roles,
@@ -389,23 +370,18 @@
 
             var mockedDateTime = new Mock<DateTimeService>();
             var mockedCipher = new Mock<ICipheringService>();
-            var mockedSmtpClientService = new Mock<ISmtpClientService>();
-            var mockedLogger = new Mock<ILogger>();
+            var mockedLogger = new Mock<ILoggerService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedAzureStorage = new Mock<AzureStorage>();
             var mockedApplicationPaths = new Mock<ApplicationPaths>();
             var mockedExpirationSettings = new Mock<ExpirationSettings>();
+            var mockedEmailSender = new Mock<EmailSender>();
 
             const string mockedPassword = "MockedPassword";
             mockedCipher
                 .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(mockedPassword);
-            
-            var sendActionResult = new ActionResult { IsSucceeded = true };
-            mockedSmtpClientService
-                .Setup(client => client.Send(CancellationToken.None))
-                .Returns(Task.FromResult(sendActionResult));
 
             var mockedResults = new Results
             {
@@ -423,13 +399,12 @@
                 mockedLogger.Object,
                 mockedDateTime.Object, 
                 mockedCipher.Object,
-                mockedSmtpClientService.Object,
                 mockedTemplateService.Object,
                 mockedCustomHttpClient.Object,
                 mockedAzureStorage.Object,
                 mockedApplicationPaths.Object,
-                mockedExpirationSettings.Object
-            );
+                mockedExpirationSettings.Object, 
+                mockedEmailSender.Object);
 
             // Act
             // Assert
