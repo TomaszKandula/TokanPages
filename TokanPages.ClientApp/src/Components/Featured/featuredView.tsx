@@ -9,6 +9,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetFeaturedContent } from "../../Redux/States/Content/getFeaturedContentState";
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
+import { FEATURED_IMAGE_PATH } from "../../Shared/constants";
 import featuredStyle from "./featuredStyle";
 
 const FeaturedView = (props: IGetFeaturedContent): JSX.Element => 
@@ -37,7 +38,7 @@ const FeaturedView = (props: IGetFeaturedContent): JSX.Element =>
                                             <CardActionArea href={props.content?.link1} target="_blank">
                                                 {props.isLoading 
                                                     ? <Skeleton variant="rect" height="256px" /> 
-                                                    : renderCardMedia(props.content?.image1, classes.media)}
+                                                    : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image1, classes.media)}
                                                 <CardHeader 
                                                     title={props.content?.title1} 
                                                     subheader={props.content?.subtitle1} 
@@ -51,7 +52,7 @@ const FeaturedView = (props: IGetFeaturedContent): JSX.Element =>
                                             <CardActionArea href={props.content?.link2} target="_blank">
                                                 {props.isLoading 
                                                     ? <Skeleton variant="rect" height="256px" /> 
-                                                    : renderCardMedia(props.content?.image2, classes.media)}
+                                                    : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image2, classes.media)}
                                                 <CardHeader 
                                                     title={props.content?.title2} 
                                                     subheader={props.content?.subtitle2} 
@@ -65,7 +66,7 @@ const FeaturedView = (props: IGetFeaturedContent): JSX.Element =>
                                             <CardActionArea href={props.content?.link3} target="_blank">
                                                 {props.isLoading 
                                                     ? <Skeleton variant="rect" height="256px" /> 
-                                                    : renderCardMedia(props.content?.image3, classes.media)}
+                                                    : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image3, classes.media)}
                                                 <CardHeader 
                                                     title={props.content?.title3} 
                                                     subheader={props.content?.subtitle3} 

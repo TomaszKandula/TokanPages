@@ -60,7 +60,7 @@ exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when
                   >
                     <WithStyles(ForwardRef(CardMedia))
                       className="makeStyles-media-2"
-                      image="https://.../images/section_featured/article0.jpg"
+                      image="http://localhost:5000/api/v1/assets/?BlobName=images/sections/featured/article0.jpg"
                     />
                     <WithStyles(ForwardRef(CardHeader))
                       subheader="The basics you should know, when writing an application..."
@@ -88,7 +88,7 @@ exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when
                   >
                     <WithStyles(ForwardRef(CardMedia))
                       className="makeStyles-media-2"
-                      image="https://.../images/section_featured/article1.jpg"
+                      image="http://localhost:5000/api/v1/assets/?BlobName=images/sections/featured/article1.jpg"
                     />
                     <WithStyles(ForwardRef(CardHeader))
                       subheader="I explain why I do not need them that much..."
@@ -116,7 +116,7 @@ exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when
                   >
                     <WithStyles(ForwardRef(CardMedia))
                       className="makeStyles-media-2"
-                      image="https://.../images/section_featured/article2.jpg"
+                      image="http://localhost:5000/api/v1/assets/?BlobName=images/sections/featured/article2.jpg"
                     />
                     <WithStyles(ForwardRef(CardHeader))
                       subheader="This article will explore the issue in greater detail..."
