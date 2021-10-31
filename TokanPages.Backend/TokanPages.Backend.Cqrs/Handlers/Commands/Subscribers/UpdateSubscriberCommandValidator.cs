@@ -22,7 +22,7 @@
 
             When(command => command.Count != null, () => 
             {
-                RuleFor(AField => AField.Count)
+                RuleFor(command => command.Count)
                     .GreaterThan(-1)
                     .WithErrorCode(nameof(ValidationCodes.LESS_THAN_ZERO))
                     .WithMessage(ValidationCodes.LESS_THAN_ZERO);

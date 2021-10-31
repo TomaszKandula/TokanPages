@@ -64,6 +64,7 @@ namespace TokanPages.WebApi
 
             builder.UseMiddleware<CustomCors>();
             builder.UseMiddleware<CustomException>();
+            builder.UseMiddleware<CustomCacheControl>();
             
             builder.UseHttpsRedirection();
             builder.UseForwardedHeaders();

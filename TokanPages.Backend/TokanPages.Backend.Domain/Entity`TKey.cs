@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Core.Entities
+﻿namespace TokanPages.Backend.Domain
 {
     using System.Diagnostics.CodeAnalysis;
     using System.ComponentModel.DataAnnotations;
