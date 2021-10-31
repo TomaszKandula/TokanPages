@@ -1,3 +1,10 @@
+# [0.26.0](https://github.com/TomaszKandula/TokanPages/compare/v0.25.0...v0.26.0) (2021-10-31)
+
+
+### Features
+
+* add custom cache control middleware ([b76f886](https://github.com/TomaszKandula/TokanPages/commit/b76f88629a8097929029f69b776183e23d6ba77c))
+
 # [0.25.0](https://github.com/TomaszKandula/TokanPages/compare/v0.24.0...v0.25.0) (2021-10-30)
 
 
