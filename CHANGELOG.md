@@ -1,3 +1,15 @@
+# [0.27.0](https://github.com/TomaszKandula/TokanPages/compare/v0.26.0...v0.27.0) (2021-10-31)
+
+
+### Bug Fixes
+
+* remove ETag filter to solve retrieval issues ([188fbf1](https://github.com/TomaszKandula/TokanPages/commit/188fbf1bcf603ad0d955728f6c4481906dd0c7f4))
+
+
+### Features
+
+* move article asset endpoint to assets controller ([f492536](https://github.com/TomaszKandula/TokanPages/commit/f49253635cbc0f953f3d7c4d1258622aa172dc49))
+
 # [0.26.0](https://github.com/TomaszKandula/TokanPages/compare/v0.25.0...v0.26.0) (2021-10-31)
 
 
