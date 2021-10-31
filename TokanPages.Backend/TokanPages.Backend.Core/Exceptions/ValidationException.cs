@@ -14,7 +14,7 @@
         protected ValidationException(SerializationInfo serializationInfo, 
             StreamingContext streamingContext) : base(serializationInfo, streamingContext) { }
 
-        public ValidationException(ValidationResult AValidationResult, string errorMessage = "") : base(errorMessage)
-            => ValidationResult = AValidationResult;
+        public ValidationException(ValidationResult validationResult, string errorMessage = "") : base(errorMessage)
+            => ValidationResult = validationResult;
     }
 }
