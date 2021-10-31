@@ -7,7 +7,6 @@ namespace TokanPages.WebApi.Controllers.Proxy
     using Backend.Shared;
     using Backend.Shared.Models;
     using Backend.Storage.Models;
-    using Backend.Core.Attributes;
     using Backend.Core.Utilities.CustomHttpClient;
     using Backend.Core.Utilities.CustomHttpClient.Models;
     using Backend.Core.Utilities.CustomHttpClient.Authentication;
@@ -25,7 +24,6 @@ namespace TokanPages.WebApi.Controllers.Proxy
         /// <param name="metric">SonarQube metric type</param>
         /// <returns>SonarQube badge</returns>
         [HttpGet]
-        [ETagFilter(200)]
         public async Task<IActionResult> GetMetrics([FromQuery] string project, string metric)
         {
             if (string.IsNullOrEmpty(project) && string.IsNullOrEmpty(metric))
@@ -77,7 +75,6 @@ namespace TokanPages.WebApi.Controllers.Proxy
         /// <param name="project">SonarQube analysis project name</param>
         /// <returns>SonarQube badge</returns>
         [HttpGet("Quality")]
-        [ETagFilter(200)]
         public async Task<IActionResult> GetQualityGate([FromQuery] string project)
         {
             if (string.IsNullOrEmpty(project))
