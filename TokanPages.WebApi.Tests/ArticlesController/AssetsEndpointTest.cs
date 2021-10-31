@@ -10,11 +10,11 @@ namespace TokanPages.WebApi.Tests.ArticlesController
     public partial class ArticlesControllerTest
     {
         [Fact]
-        public async Task GivenCorrectId_WhenGetArticleImage_ShouldSucceed()
+        public async Task GivenCorrectId_WhenGetArticleAsset_ShouldSucceed()
         {
             // Arrange
             var testUserId = Article1.Id;
-            var request = $"{ApiBaseUrl}/images/?Id={testUserId}";
+            var request = $"{ApiBaseUrl}/assets/?Id={testUserId}&assetName=image.jpg";
             var httpClient = _webApplicationFactory.CreateClient();
 
             // Act
@@ -27,11 +27,11 @@ namespace TokanPages.WebApi.Tests.ArticlesController
         }
 
         [Fact]
-        public async Task GivenIncorrectId_WhenGetArticleImage_ShouldReturnNotFound()
+        public async Task GivenIncorrectId_WhenGetArticleAsset_ShouldReturnNotFound()
         {
             // Arrange
             var testUserId = Guid.NewGuid();
-            var request = $"{ApiBaseUrl}/images/?Id={testUserId}";
+            var request = $"{ApiBaseUrl}/assets/?Id={testUserId}&assetName=image.jpg";
             var httpClient = _webApplicationFactory.CreateClient();
 
             // Act
