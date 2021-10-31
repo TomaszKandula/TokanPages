@@ -1,3 +1,10 @@
+## [0.27.1](https://github.com/TomaszKandula/TokanPages/compare/v0.27.0...v0.27.1) (2021-10-31)
+
+
+### Bug Fixes
+
+* remove whitespace ([17dd22e](https://github.com/TomaszKandula/TokanPages/commit/17dd22e17a6c7935f5cb2ab7b0575fd4eff40819))
+
 # [0.27.0](https://github.com/TomaszKandula/TokanPages/compare/v0.26.0...v0.27.0) (2021-10-31)
 
 
