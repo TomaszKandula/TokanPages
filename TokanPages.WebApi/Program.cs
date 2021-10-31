@@ -14,8 +14,7 @@ namespace TokanPages.WebApi
     [ExcludeFromCodeCoverage]
     public static class Program
     {
-        private static readonly bool FIsDevelopment 
-            = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Development;
+        private static readonly bool FIsDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Development;
         
         public static int Main(string[] args)
         {
