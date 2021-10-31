@@ -3,7 +3,6 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.ComponentModel.DataAnnotations;
-    using Core.Entities;
 
     [ExcludeFromCodeCoverage]
     public class Subscribers : Entity<Guid>
