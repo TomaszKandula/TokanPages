@@ -6,8 +6,4 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
-  </ItemGroup>
-
 </Project>

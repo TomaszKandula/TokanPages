@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.ComponentModel.DataAnnotations;
-    using Core.Entities;
 
     [ExcludeFromCodeCoverage]
     public class Users : Entity<Guid>

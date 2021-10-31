@@ -4,7 +4,6 @@ namespace TokanPages.Backend.Domain.Entities
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.ComponentModel.DataAnnotations;
-    using Core.Entities;
 
     [ExcludeFromCodeCoverage]
     public class PhotoGears : Entity<Guid>

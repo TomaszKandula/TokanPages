@@ -2,7 +2,6 @@ namespace TokanPages.Backend.Domain.Entities
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
-    using Core.Entities;
 
     [ExcludeFromCodeCoverage]
     public class DefaultPermissions : Entity<Guid>
