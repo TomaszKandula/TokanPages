@@ -14,11 +14,11 @@ namespace TokanPages.WebApi.Controllers.Proxy
         public ArticlesController(ICustomHttpClient customHttpClient, SonarQube sonarQube, AzureStorage azureStorage) 
             : base(customHttpClient, sonarQube, azureStorage) { }
 
-        [HttpGet("Images")]
+        [HttpGet("Assets")]
         [ETagFilter(200)]
-        public async Task<IActionResult> GetArticleImage([FromQuery] string id)
+        public async Task<IActionResult> GetArticleAsset([FromQuery] string id, string assetName)
         {
-            var requestUrl = $"{AzureStorage.BaseUrl}/content/articles/{id}/image.jpg";
+            var requestUrl = $"{AzureStorage.BaseUrl}/content/articles/{id}/{assetName}";
             var configuration = new Configuration { Url = requestUrl, Method = "GET"};
             var results = await CustomHttpClient.Execute(configuration);
 
