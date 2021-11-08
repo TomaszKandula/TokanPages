@@ -11,9 +11,9 @@
     using Shared;
     using Database;
     using Shared.Models;
-    using Storage.Models;
     using Core.Exceptions;
     using Domain.Entities;
+    using Shared.Services;
     using Shared.Resources;
     using Services.CipheringService;
     using System.Collections.Generic;
@@ -33,29 +33,17 @@
 
         private readonly ICustomHttpClient _customHttpClient;
 
-        private readonly AzureStorage _azureStorage;
-
-        private readonly ApplicationPaths _applicationPaths;
-
-        private readonly ExpirationSettings _expirationSettings;
-
-        private readonly EmailSender _emailSender;
-
-        private Configuration _configuration;
+        private readonly IApplicationSettings _applicationSettings;
 
         public AddUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService,
             ICipheringService cipheringService, ITemplateService templateService, 
-            ICustomHttpClient customHttpClient, AzureStorage azureStorage, ApplicationPaths applicationPaths, 
-            ExpirationSettings expirationSettings, EmailSender emailSender) : base(databaseContext, loggerService)
+            ICustomHttpClient customHttpClient, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
         {
             _dateTimeService = dateTimeService;
             _cipheringService = cipheringService;
             _templateService = templateService;
             _customHttpClient = customHttpClient;
-            _azureStorage = azureStorage;
-            _applicationPaths = applicationPaths;
-            _expirationSettings = expirationSettings;
-            _emailSender = emailSender;
+            _applicationSettings = applicationSettings;
         }
 
         public override async Task<Guid> Handle(AddUserCommand request, CancellationToken cancellationToken)
@@ -71,7 +59,7 @@
             var getHashedPassword = _cipheringService.GetHashedPassword(request.Password, getNewSalt);
 
             var activationId = Guid.NewGuid();
-            var activationIdEnds = _dateTimeService.Now.AddMinutes(_expirationSettings.ActivationIdExpiresIn);
+            var activationIdEnds = _dateTimeService.Now.AddMinutes(_applicationSettings.ExpirationSettings.ActivationIdExpiresIn);
 
             if (users != null && (users.ActivationIdEnds != null || users.ActivationIdEnds < _dateTimeService.Now))
             {
@@ -153,18 +141,18 @@
 
         private async Task SendNotification(string emailAddress, Guid activationId, DateTime activationIdEnds, CancellationToken cancellationToken)
         {
-            var activationLink = $"{_applicationPaths.DeploymentOrigin}{_applicationPaths.ActivationPath}{activationId}";
+            var activationLink = $"{_applicationSettings.ApplicationPaths.DeploymentOrigin}{_applicationSettings.ApplicationPaths.ActivationPath}{activationId}";
             var newValues = new Dictionary<string, string>
             {
                 { "{ACTIVATION_LINK}", activationLink },
                 { "{EXPIRATION}", $"{activationIdEnds}" }
             };
 
-            var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.RegisterForm}";
+            var url = $"{_applicationSettings.AzureStorage.BaseUrl}{Constants.Emails.Templates.RegisterForm}";
             LoggerService.LogInformation($"Getting email template from URL: {url}.");
 
-            _configuration = new Configuration { Url = url, Method = "GET" };
-            var getTemplate = await _customHttpClient.Execute(_configuration, cancellationToken);
+            var configuration = new Configuration { Url = url, Method = "GET" };
+            var getTemplate = await _customHttpClient.Execute(configuration, cancellationToken);
 
             if (getTemplate.Content == null)
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
@@ -172,17 +160,17 @@
             var template = Encoding.Default.GetString(getTemplate.Content);
             var payload = new EmailSenderPayload
             {
-                PrivateKey = _emailSender.PrivateKey,
+                PrivateKey = _applicationSettings.EmailSender.PrivateKey,
                 From = Constants.Emails.Addresses.Contact,
                 To = new List<string> { emailAddress },
                 Subject = "New account registration",
                 Body = _templateService.MakeBody(template, newValues)
             };
 
-            _configuration = new Configuration { Url = _emailSender.BaseUrl, Method = "POST", StringContent = 
+            configuration = new Configuration { Url = _applicationSettings.EmailSender.BaseUrl, Method = "POST", StringContent = 
                 new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload), Encoding.Default, "application/json") };
 
-            var sendEmail = await _customHttpClient.Execute(_configuration, cancellationToken);
+            var sendEmail = await _customHttpClient.Execute(configuration, cancellationToken);
             if (sendEmail.StatusCode != HttpStatusCode.OK)
                 throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}");
         }

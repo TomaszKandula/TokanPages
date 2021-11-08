@@ -7,14 +7,14 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
     using System.Collections.Generic;
     using Microsoft.EntityFrameworkCore;
     using Database;
-    using Core.Utilities.LoggerService;
-    using Shared.Models;
+    using Shared.Services;
     using Core.Exceptions;
     using Core.Extensions;
     using Shared.Resources;
     using Shared.Dto.Users;
     using Shared.Dto.Content.Common;
     using Services.UserServiceProvider;
+    using Core.Utilities.LoggerService;
     using Core.Utilities.JsonSerializer;
     using Core.Utilities.CustomHttpClient;
     using Core.Utilities.CustomHttpClient.Models;
@@ -27,18 +27,18 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 
         private readonly IJsonSerializer _jsonSerializer;
 
-        private readonly AzureStorage _azureStorage;
-
         private readonly ICustomHttpClient _customHttpClient;
+
+        private readonly IApplicationSettings _applicationSettings;
         
         public GetArticleQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserServiceProvider userServiceProvider, 
-            IJsonSerializer jsonSerializer, AzureStorage azureStorage, ICustomHttpClient customHttpClient) : base(databaseContext, loggerService)
+            IJsonSerializer jsonSerializer, ICustomHttpClient customHttpClient, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
         {
             _databaseContext = databaseContext;
             _userServiceProvider = userServiceProvider;
             _jsonSerializer = jsonSerializer;
-            _azureStorage = azureStorage;
             _customHttpClient = customHttpClient;
+            _applicationSettings = applicationSettings;
         }
 
         public override async Task<GetArticleQueryResult> Handle(GetArticleQuery request, CancellationToken cancellationToken)
@@ -46,7 +46,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
             var userId = await _userServiceProvider.GetUserId();
             var isAnonymousUser = userId == null;
 
-            var textRequestUrl = $"{_azureStorage.BaseUrl}/content/articles/{request.Id}/text.json";
+            var textRequestUrl = $"{_applicationSettings.AzureStorage.BaseUrl}/content/articles/{request.Id}/text.json";
             var textAsString = await GetJsonData(textRequestUrl, cancellationToken);
             var textAsObject = _jsonSerializer.Deserialize<List<Section>>(textAsString);
 

@@ -11,7 +11,7 @@
     using Shared;
     using Database;
     using Shared.Models;
-    using Storage.Models;
+    using Shared.Services;
     using Core.Exceptions;
     using Shared.Resources;
     using Core.Utilities.LoggerService;
@@ -27,22 +27,17 @@
         private readonly ITemplateService _templateService;
         
         private readonly IDateTimeService _dateTimeService;
-        
-        private readonly AzureStorage _azureStorage;
 
-        private readonly EmailSender _emailSender;
-
-        private Configuration _configuration;
+        private readonly IApplicationSettings _applicationSettings;
         
         public SendMessageCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
             ICustomHttpClient customHttpClient, ITemplateService templateService, IDateTimeService dateTimeService, 
-            AzureStorage azureStorage, EmailSender emailSender) : base(databaseContext, loggerService)
+            IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
         {
             _customHttpClient = customHttpClient;
             _templateService = templateService;
             _dateTimeService = dateTimeService;
-            _azureStorage = azureStorage;
-            _emailSender = emailSender;
+            _applicationSettings = applicationSettings;
         }
 
         public override async Task<Unit> Handle(SendMessageCommand request, CancellationToken cancellationToken)
@@ -56,11 +51,11 @@
                 { "{DATE_TIME}", _dateTimeService.Now.ToString(CultureInfo.InvariantCulture) }
             };
 
-            var url = $"{_azureStorage.BaseUrl}{Constants.Emails.Templates.ContactForm}";
+            var url = $"{_applicationSettings.AzureStorage.BaseUrl}{Constants.Emails.Templates.ContactForm}";
             LoggerService.LogInformation($"Getting email template from URL: {url}.");
 
-            _configuration = new Configuration { Url = url, Method = "GET" };
-            var getTemplate = await _customHttpClient.Execute(_configuration, cancellationToken);
+            var configuration = new Configuration { Url = url, Method = "GET" };
+            var getTemplate = await _customHttpClient.Execute(configuration, cancellationToken);
 
             if (getTemplate.Content == null)
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
@@ -68,17 +63,17 @@
             var template = Encoding.Default.GetString(getTemplate.Content);
             var payload = new EmailSenderPayload
             {
-                PrivateKey = _emailSender.PrivateKey,
+                PrivateKey = _applicationSettings.EmailSender.PrivateKey,
                 From = Constants.Emails.Addresses.Contact,
                 To = new List<string> { Constants.Emails.Addresses.Contact },
                 Subject = $"New user message from {request.FirstName}",
                 Body = _templateService.MakeBody(template, newValues)
             };
 
-            _configuration = new Configuration { Url = _emailSender.BaseUrl, Method = "POST", StringContent = 
+            configuration = new Configuration { Url = _applicationSettings.EmailSender.BaseUrl, Method = "POST", StringContent = 
                 new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload), Encoding.Default, "application/json") };
 
-            var sendEmail = await _customHttpClient.Execute(_configuration, cancellationToken);
+            var sendEmail = await _customHttpClient.Execute(configuration, cancellationToken);
             if (sendEmail.StatusCode != HttpStatusCode.OK)
                 throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}");
 

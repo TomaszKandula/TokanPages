@@ -6,11 +6,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
     using System.Threading.Tasks;
     using Newtonsoft.Json.Linq;
     using Database;
-    using Core.Utilities.LoggerService;
-    using Shared.Models;
     using Core.Exceptions;
+    using Shared.Services;
     using Shared.Resources;
     using Shared.Dto.Content;
+    using Core.Utilities.LoggerService;
     using Core.Utilities.JsonSerializer;
     using Core.Utilities.CustomHttpClient;
     using Core.Utilities.CustomHttpClient.Models;
@@ -21,16 +21,16 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
         
         private readonly ICustomHttpClient _customHttpClient;
 
-        private readonly IJsonSerializer _jsonSerializer; 
-        
-        private readonly AzureStorage _azureStorage;
+        private readonly IJsonSerializer _jsonSerializer;
+
+        private readonly IApplicationSettings _applicationSettings;
 
         public GetContentQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, ICustomHttpClient customHttpClient, 
-            IJsonSerializer jsonSerializer, AzureStorage azureStorage) : base(databaseContext, loggerService)
+            IJsonSerializer jsonSerializer, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
         {
             _customHttpClient = customHttpClient;
             _jsonSerializer = jsonSerializer;
-            _azureStorage = azureStorage;
+            _applicationSettings = applicationSettings;
         }
 
         public override async Task<GetContentQueryResult> Handle(GetContentQuery request, CancellationToken cancellationToken)
@@ -42,7 +42,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
             if (request.Type is not ("component" or "document"))
                 throw new BusinessException(nameof(ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED), ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED);
 
-            var componentRequestUrl = $"{_azureStorage.BaseUrl}/content/{request.Type}s/{request.Name}.json";
+            var componentRequestUrl = $"{_applicationSettings.AzureStorage.BaseUrl}/content/{request.Type}s/{request.Name}.json";
             var componentContent = await GetJsonData(componentRequestUrl, cancellationToken);
 
             if (string.IsNullOrEmpty(componentContent))
