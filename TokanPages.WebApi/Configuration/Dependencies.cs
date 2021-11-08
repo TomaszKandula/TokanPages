@@ -13,7 +13,6 @@
     using Backend.Database;
     using Backend.Core.Utilities.LoggerService;
     using Backend.Shared.Models;
-    using Backend.Storage.Models;
     using Backend.Core.Behaviours;
     using Backend.Database.Initializer;
     using Backend.Identity.Authentication;
