@@ -5,10 +5,10 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
-    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
     using Services.UserServiceProvider;
+    using Core.Utilities.LoggerService;
     using Core.Utilities.DateTimeService;
     using Storage.AzureBlobStorage.Factory;
     using MediatR;

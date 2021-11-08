@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Storage.Models
+﻿namespace TokanPages.Backend.Shared.Models
 {
     using System.Diagnostics.CodeAnalysis;
 

@@ -10,8 +10,6 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
     using System.Net.Http.Headers;
     using System.Collections.Generic;
     using Core.Utilities.LoggerService;
-    using Shared.Models;
-    using Storage.Models;
     using Core.Exceptions;
     using Shared.Resources;
     using Cqrs.Handlers.Commands.Mailer;
@@ -42,8 +40,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedTemplateHelper = new Mock<ITemplateService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedAzureStorageSettings = new Mock<AzureStorage>();
-            var mockedEmailSender = new Mock<EmailSender>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
             var mockedResults = new Results
@@ -63,8 +60,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 mockedCustomHttpClient.Object,
                 mockedTemplateHelper.Object, 
                 mockedDateTimeService.Object,
-                mockedAzureStorageSettings.Object, 
-                mockedEmailSender.Object);
+                mockedApplicationSettings.Object);
 
             // Act
             var result = await sendMessageCommandHandler.Handle(sendMessageCommand, CancellationToken.None);
@@ -93,8 +89,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedTemplateHelper = new Mock<ITemplateService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedAzureStorageSettings = new Mock<AzureStorage>();
-            var mockedEmailSender = new Mock<EmailSender>();
+            var mockedApplicationSettings = MockApplicationSettings();
 
             var mockedResults = new Results
             {
@@ -113,8 +108,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 mockedCustomHttpClient.Object,
                 mockedTemplateHelper.Object, 
                 mockedDateTimeService.Object,
-                mockedAzureStorageSettings.Object, 
-                mockedEmailSender.Object);
+                mockedApplicationSettings.Object);
 
             // Act
             // Assert
@@ -143,8 +137,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedTemplateHelper = new Mock<ITemplateService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedAzureStorageSettings = new Mock<AzureStorage>();
-            var mockedEmailSender = new Mock<EmailSender>();
+            var mockedApplicationSettings = MockApplicationSettings();
 
             var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
             var mockedResults = new Results
@@ -164,8 +157,7 @@ namespace TokanPages.Backend.Tests.Handlers.Mailer
                 mockedCustomHttpClient.Object,
                 mockedTemplateHelper.Object, 
                 mockedDateTimeService.Object,
-                mockedAzureStorageSettings.Object,
-                mockedEmailSender.Object);
+                mockedApplicationSettings.Object);
 
             // Act
             // Assert

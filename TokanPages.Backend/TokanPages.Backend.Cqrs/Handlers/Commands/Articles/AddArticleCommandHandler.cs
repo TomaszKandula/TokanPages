@@ -4,9 +4,9 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Database;
-    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
+    using Core.Utilities.LoggerService;
     using Services.UserServiceProvider;
     using Core.Utilities.DateTimeService;
     using Storage.AzureBlobStorage.Factory;

@@ -122,6 +122,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 WebTokenExpiresIn = 90,
                 RefreshTokenExpiresIn = 120
             };
+
+            var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
             
             // Act
             var authenticateUserCommandHandler = new AuthenticateUserCommandHandler(
@@ -131,7 +133,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 mockedJwtUtilityService.Object, 
                 mockedDateTimeService.Object, 
                 mockedUserServiceProvider.Object, 
-                identityServer);
+                mockedApplicationSettings.Object);
             
             var result = await authenticateUserCommandHandler.Handle(authenticateUserCommand, CancellationToken.None);
 
@@ -215,7 +217,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
 
             // Act
             var authenticateUserCommandHandler = new AuthenticateUserCommandHandler(
@@ -225,7 +227,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 mockedJwtUtilityService.Object,
                 mockedDateTimeService.Object,
                 mockedUserServiceProvider.Object,
-                mockedIdentityServer.Object);
+                mockedApplicationSettings.Object);
 
             // Assert
             var result = await Assert.ThrowsAsync<BusinessException>(() 
@@ -275,7 +277,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
 
             // Act
             var authenticateUserCommandHandler = new AuthenticateUserCommandHandler(
@@ -285,7 +287,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 mockedJwtUtilityService.Object,
                 mockedDateTimeService.Object,
                 mockedUserServiceProvider.Object,
-                mockedIdentityServer.Object);
+                mockedApplicationSettings.Object);
 
             // Assert
             var result = await Assert.ThrowsAsync<BusinessException>(() 
@@ -394,6 +396,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 WebTokenExpiresIn = 90,
                 RefreshTokenExpiresIn = 120
             };
+
+            var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
             
             // Act
             var authenticateUserCommandHandler = new AuthenticateUserCommandHandler(
@@ -403,7 +407,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 mockedJwtUtilityService.Object, 
                 mockedDateTimeService.Object, 
                 mockedUserServiceProvider.Object, 
-                identityServer);
+                mockedApplicationSettings.Object);
             
             var result = await Assert.ThrowsAsync<BusinessException>(() 
                 => authenticateUserCommandHandler.Handle(authenticateUserCommand, CancellationToken.None));
