@@ -140,13 +140,15 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 RefreshTokenExpiresIn = 120
             };
             
+            var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
+
             // Act
             var reAuthenticateUserCommandHandler = new ReAuthenticateUserCommandHandler(
                 databaseContext, 
                 mockedLogger.Object,
                 mockedDateTimeService.Object, 
                 mockedUserServiceProvider.Object, 
-                identityServer);
+                mockedApplicationSettings.Object);
 
             var result = await reAuthenticateUserCommandHandler.Handle(reAuthenticateUserCommand, CancellationToken.None);
             
@@ -266,6 +268,8 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 RefreshTokenExpiresIn = 120
             };
             
+            var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
+
             // Act
             // Assert
             var reAuthenticateUserCommandHandler = new ReAuthenticateUserCommandHandler(
@@ -273,7 +277,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 mockedLogger.Object,
                 mockedDateTimeService.Object, 
                 mockedUserServiceProvider.Object, 
-                identityServer);
+                mockedApplicationSettings.Object);
 
             var result = await Assert.ThrowsAsync<BusinessException>(() => 
                 reAuthenticateUserCommandHandler.Handle(reAuthenticateUserCommand, CancellationToken.None));
@@ -291,13 +295,12 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var mockedLogger = new Mock<ILoggerService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+            var mockedApplicationSettings = MockApplicationSettings();
 
             mockedUserServiceProvider
                 .Setup(service => service
                     .GetRefreshTokenCookie(It.IsAny<string>()))
                 .Returns(string.Empty);
-            
-            var identityServer = new Mock<IdentityServer>();
             
             // Act
             // Assert
@@ -306,7 +309,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 mockedLogger.Object,
                 mockedDateTimeService.Object, 
                 mockedUserServiceProvider.Object, 
-                identityServer.Object);
+                mockedApplicationSettings.Object);
 
             var result = await Assert.ThrowsAsync<BusinessException>(() => 
                 reAuthenticateUserCommandHandler.Handle(reAuthenticateUserCommand, CancellationToken.None));

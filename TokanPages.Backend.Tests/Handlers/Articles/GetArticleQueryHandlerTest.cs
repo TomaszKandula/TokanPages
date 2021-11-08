@@ -10,7 +10,6 @@
     using System.Net.Http.Headers;
     using System.Collections.Generic;
     using Core.Utilities.LoggerService;
-    using Shared.Models;
     using Domain.Entities;
     using Core.Exceptions;
     using Core.Utilities.JsonSerializer;
@@ -87,10 +86,10 @@
 
             var mockedUserProvider = new Mock<IUserServiceProvider>();
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
-            var mockedAzureStorage = new Mock<AzureStorage>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedLogger = new Mock<ILoggerService>();
-
+            var mockedApplicationSettings = MockApplicationSettings();
+            
             mockedUserProvider
                 .Setup(provider => provider.GetRequestIpAddress())
                 .Returns(IpAddressFirst);
@@ -113,8 +112,8 @@
                 mockedLogger.Object,
                 mockedUserProvider.Object, 
                 mockedJsonSerializer.Object, 
-                mockedAzureStorage.Object, 
-                mockedCustomHttpClient.Object);
+                mockedCustomHttpClient.Object, 
+                mockedApplicationSettings.Object);
 
             // Act
             var result = await getArticleQueryHandler.Handle(getArticleQuery, CancellationToken.None);
@@ -175,9 +174,9 @@
 
             var mockedUserProvider = new Mock<IUserServiceProvider>();
             var mockedJsonSerializer = new Mock<IJsonSerializer>();
-            var mockedAzureStorage = new Mock<AzureStorage>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
             var mockedLogger = new Mock<ILoggerService>();
+            var mockedApplicationSettings = MockApplicationSettings();
 
             mockedUserProvider
                 .Setup(provider => provider.GetRequestIpAddress())
@@ -200,8 +199,8 @@
                 mockedLogger.Object,
                 mockedUserProvider.Object, 
                 mockedJsonSerializer.Object, 
-                mockedAzureStorage.Object, 
-                mockedCustomHttpClient.Object);
+                mockedCustomHttpClient.Object, 
+                mockedApplicationSettings.Object);
 
             // Act
             // Assert
