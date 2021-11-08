@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
     using Newtonsoft.Json.Linq;
     using Database;
     using Core.Utilities.LoggerService;
-    using Storage.Models;
+    using Shared.Models;
     using Core.Exceptions;
     using Shared.Resources;
     using Shared.Dto.Content;

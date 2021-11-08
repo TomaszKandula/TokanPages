@@ -8,7 +8,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
     using Microsoft.EntityFrameworkCore;
     using Database;
     using Core.Utilities.LoggerService;
-    using Storage.Models;
+    using Shared.Models;
     using Core.Exceptions;
     using Core.Extensions;
     using Shared.Resources;

@@ -12,7 +12,7 @@ namespace TokanPages.Backend.Tests.Handlers.Content
     using System.Net.Http.Headers;
     using System.Collections.Generic;
     using Core.Utilities.LoggerService;
-    using Storage.Models;
+    using Shared.Models;
     using Core.Exceptions;
     using Shared.Resources;
     using Shared.Dto.Content;
