@@ -1,5 +1,8 @@
 namespace TokanPages.Backend.Tests.Services
 {
+    using Moq;
+    using Xunit;
+    using FluentAssertions;
     using System;
     using System.Net;
     using System.Linq;
@@ -18,9 +21,6 @@ namespace TokanPages.Backend.Tests.Services
     using Identity.Services.JwtUtilityService;
     using Roles = Identity.Authorization.Roles;
     using Permissions = Identity.Authorization.Permissions;
-    using FluentAssertions;
-    using Xunit;
-    using Moq;
 
     public class UserServiceProviderTest : TestBase
     {
@@ -38,15 +38,15 @@ namespace TokanPages.Backend.Tests.Services
 
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
-            
+            var mockedApplicationSettings = MockApplicationSettings();
+
             // Act
             var userProvider = new UserServiceProvider(
                 httpContext.Object, 
                 databaseContext, 
                 mockedJwtUtilityService.Object, 
                 mockedDateTimeService.Object, 
-                mockedIdentityServer.Object);
+                mockedApplicationSettings.Object);
 
             var result = await userProvider.GetUserId();
 
@@ -69,11 +69,15 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
 
             // Assert
             var result = await userProvider.GetUserId();
@@ -93,12 +97,17 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
             // Assert
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
+
             var result = await Assert.ThrowsAsync<BusinessException>(userProvider.GetUserId);
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
@@ -117,11 +126,16 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
+
             var result = await userProvider.GetUser();
             
             // Assert
@@ -147,12 +161,17 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
             // Assert
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
+ 
             var result = await Assert.ThrowsAsync<BusinessException>(userProvider.GetUser);
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
@@ -170,11 +189,16 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
+
             var result = await userProvider.GetUser();
 
             // Assert
@@ -203,17 +227,22 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
-            var lResult = await userProvider.GetUserRoles(null);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
+
+            var result = await userProvider.GetUserRoles(null);
 
             // Assert
-            lResult.Should().HaveCount(1);
-            lResult[0].Name.Should().Be(roles[0].Name);
-            lResult[0].Description.Should().Be(roles[0].Description);
+            result.Should().HaveCount(1);
+            result[0].Name.Should().Be(roles[0].Name);
+            result[0].Description.Should().Be(roles[0].Description);
         }
 
         [Fact]
@@ -238,12 +267,17 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
             // Assert
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
+
             var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.GetUserRoles(null));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
@@ -270,12 +304,17 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
             // Assert
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
+
             var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.GetUserRoles(null));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
@@ -289,12 +328,12 @@ namespace TokanPages.Backend.Tests.Services
             var permissions = GetPermissions().ToList();
             var userPermissions = new List<UserPermissions>
             {
-                new ()
+                new()
                 {
                     UserId = userId,
                     PermissionId = permissions[0].Id
                 },
-                new ()
+                new()
                 {
                     UserId = userId,
                     PermissionId = permissions[1].Id
@@ -311,12 +350,17 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
             // Assert
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
+
             var result = await userProvider.GetUserPermissions(null);
 
             // Assert
@@ -334,12 +378,12 @@ namespace TokanPages.Backend.Tests.Services
             var permissions = GetPermissions().ToList();
             var userPermissions = new List<UserPermissions>
             {
-                new ()
+                new()
                 {
                     UserId = userId,
                     PermissionId = permissions[0].Id
                 },
-                new ()
+                new()
                 {
                     UserId = userId,
                     PermissionId = permissions[1].Id
@@ -356,12 +400,17 @@ namespace TokanPages.Backend.Tests.Services
 
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
             // Assert
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
+
             var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.GetUserPermissions(null));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
@@ -375,12 +424,12 @@ namespace TokanPages.Backend.Tests.Services
             var permissions = GetPermissions().ToList();
             var userPermissions = new List<UserPermissions>
             {
-                new ()
+                new()
                 {
                     UserId = userId,
                     PermissionId = permissions[0].Id
                 },
-                new ()
+                new()
                 {
                     UserId = userId,
                     PermissionId = permissions[1].Id
@@ -397,12 +446,17 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
             // Assert
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
+
             var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.GetUserPermissions(null));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
@@ -429,11 +483,16 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
+
             var result = await userProvider.HasRoleAssigned(nameof(Roles.EverydayUser));
 
             // Assert
@@ -462,11 +521,16 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
+
             var result = await userProvider.HasRoleAssigned(nameof(Roles.PhotoPublisher));
 
             // Assert
@@ -495,11 +559,15 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
 
             // Assert
             var result = await userProvider.HasRoleAssigned(nameof(Roles.EverydayUser));
@@ -528,12 +596,17 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
             // Assert
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
+
             var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.HasRoleAssigned(string.Empty));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION));
         }
@@ -547,12 +620,12 @@ namespace TokanPages.Backend.Tests.Services
             var permissions = GetPermissions().ToList();
             var userPermissions = new List<UserPermissions>
             {
-                new ()
+                new()
                 {
                     UserId = userId,
                     PermissionId = permissions[0].Id
                 },
-                new ()
+                new()
                 {
                     UserId = userId,
                     PermissionId = permissions[1].Id
@@ -569,12 +642,17 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
             // Assert
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
+
             var result = await userProvider.HasPermissionAssigned(Permissions.CanSelectArticles.ToString());
 
             // Assert
@@ -590,12 +668,12 @@ namespace TokanPages.Backend.Tests.Services
             var permissions = GetPermissions().ToList();
             var userPermissions = new List<UserPermissions>
             {
-                new ()
+                new()
                 {
                     UserId = userId,
                     PermissionId = permissions[0].Id
                 },
-                new ()
+                new()
                 {
                     UserId = userId,
                     PermissionId = permissions[1].Id
@@ -612,11 +690,16 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
+
             var result = await userProvider.HasPermissionAssigned(Permissions.CanAddLikes.ToString());
 
             // Assert
@@ -632,12 +715,12 @@ namespace TokanPages.Backend.Tests.Services
             var permissions = GetPermissions().ToList();
             var userPermissions = new List<UserPermissions>
             {
-                new ()
+                new()
                 {
                     UserId = userId,
                     PermissionId = permissions[0].Id
                 },
-                new ()
+                new()
                 {
                     UserId = userId,
                     PermissionId = permissions[1].Id
@@ -654,11 +737,15 @@ namespace TokanPages.Backend.Tests.Services
             
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
 
             // Assert
             var result = await userProvider.HasPermissionAssigned(Permissions.CanSelectArticles.ToString());
@@ -674,12 +761,12 @@ namespace TokanPages.Backend.Tests.Services
             var permissions = GetPermissions().ToList();
             var userPermissions = new List<UserPermissions>
             {
-                new ()
+                new()
                 {
                     UserId = userId,
                     PermissionId = permissions[0].Id
                 },
-                new ()
+                new()
                 {
                     UserId = userId,
                     PermissionId = permissions[1].Id
@@ -696,12 +783,17 @@ namespace TokanPages.Backend.Tests.Services
 
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             // Act
             // Assert
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
+
             var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.HasPermissionAssigned(string.Empty));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION));
         }
@@ -722,10 +814,14 @@ namespace TokanPages.Backend.Tests.Services
 
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
 
             // Act
             var result = userProvider.GetRequestIpAddress();
@@ -750,10 +846,14 @@ namespace TokanPages.Backend.Tests.Services
 
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
 
             // Act
             var result = userProvider.GetRequestIpAddress();
@@ -779,10 +879,14 @@ namespace TokanPages.Backend.Tests.Services
 
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
 
             // Act
             userProvider.SetRefreshTokenCookie(DataUtilityService.GetRandomString(255), expiresIn);
@@ -816,10 +920,14 @@ namespace TokanPages.Backend.Tests.Services
 
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
 
             // Act
             // Assert
@@ -843,10 +951,14 @@ namespace TokanPages.Backend.Tests.Services
 
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
-            var userProvider = new UserServiceProvider(httpContext.Object, databaseContext, 
-                mockedJwtUtilityService.Object, mockedDateTimeService.Object, mockedIdentityServer.Object);
+            var userProvider = new UserServiceProvider(
+                httpContext.Object, 
+                databaseContext, 
+                mockedJwtUtilityService.Object, 
+                mockedDateTimeService.Object, 
+                mockedApplicationSettings.Object);
 
             // Act
             // Assert
@@ -877,14 +989,14 @@ namespace TokanPages.Backend.Tests.Services
 
             var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             var userServiceProvider = new UserServiceProvider(
                 httpContext.Object, 
                 databaseContext,
                 mockedJwtUtilityService.Object, 
                 mockedDateTimeService.Object, 
-                mockedIdentityServer.Object);
+                mockedApplicationSettings.Object);
 
             // Act
             var result = await userServiceProvider.MakeClaimsIdentity(users[0], CancellationToken.None);
@@ -934,14 +1046,14 @@ namespace TokanPages.Backend.Tests.Services
                 .Returns(userToken);
             
             var mockedDateTimeService = new Mock<IDateTimeService>();
-            var mockedIdentityServer = new Mock<IdentityServer>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             var userServiceProvider = new UserServiceProvider(
                 httpContext.Object, 
                 databaseContext,
                 jwtUtilityService.Object, 
                 mockedDateTimeService.Object, 
-                mockedIdentityServer.Object);
+                mockedApplicationSettings.Object);
 
             // Act
             var result = await userServiceProvider.GenerateUserToken(users[0], tokenExpires, CancellationToken.None);
@@ -958,7 +1070,7 @@ namespace TokanPages.Backend.Tests.Services
             var users = GetUser(userId).ToList();
             var userRefreshTokens = new List<UserRefreshTokens>
             {
-                new () // New token
+                new() // New token
                 {
                     UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
@@ -970,7 +1082,7 @@ namespace TokanPages.Backend.Tests.Services
                     ReplacedByToken = null,
                     ReasonRevoked = null
                 },
-                new () // Old token
+                new() // Old token
                 {
                     UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
@@ -982,7 +1094,7 @@ namespace TokanPages.Backend.Tests.Services
                     ReplacedByToken = null,
                     ReasonRevoked = null
                 },
-                new () // Old token
+                new() // Old token
                 {
                     UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
@@ -1015,12 +1127,14 @@ namespace TokanPages.Backend.Tests.Services
                 RefreshTokenExpiresIn = 120
             };
             
+            var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
+
             var userServiceProvider = new UserServiceProvider(
                 httpContext.Object, 
                 databaseContext,
                 mockedJwtUtilityService.Object, 
                 DateTimeService, 
-                identityServer);
+                mockedApplicationSettings.Object);
             
             // Act
             await userServiceProvider.DeleteOutdatedRefreshTokens(userId, true);
@@ -1039,7 +1153,7 @@ namespace TokanPages.Backend.Tests.Services
             var users = GetUser(userId).ToList();
             var userRefreshTokens = new List<UserRefreshTokens>
             {
-                new ()
+                new()
                 {
                     UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
@@ -1051,7 +1165,7 @@ namespace TokanPages.Backend.Tests.Services
                     ReplacedByToken = null,
                     ReasonRevoked = null
                 },
-                new ()
+                new()
                 {
                     UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
@@ -1063,7 +1177,7 @@ namespace TokanPages.Backend.Tests.Services
                     ReplacedByToken = null,
                     ReasonRevoked = null
                 },
-                new ()
+                new()
                 {
                     UserId = userId,
                     Token = DataUtilityService.GetRandomString(255),
@@ -1096,12 +1210,14 @@ namespace TokanPages.Backend.Tests.Services
                 RefreshTokenExpiresIn = 120
             };
             
+            var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
+
             var userServiceProvider = new UserServiceProvider(
                 httpContext.Object, 
                 databaseContext,
                 mockedJwtUtilityService.Object, 
                 DateTimeService, 
-                identityServer);
+                mockedApplicationSettings.Object);
             
             // Act
             await userServiceProvider.DeleteOutdatedRefreshTokens(userId, true);
@@ -1119,7 +1235,7 @@ namespace TokanPages.Backend.Tests.Services
             var users = GetUser(userId).ToList();
             var userRefreshTokens = new List<UserRefreshTokens>
             {
-                new ()
+                new()
                 {
                     Id = Guid.NewGuid(),
                     UserId = userId,
@@ -1132,7 +1248,7 @@ namespace TokanPages.Backend.Tests.Services
                     ReplacedByToken = null,
                     ReasonRevoked = null
                 },
-                new ()
+                new()
                 {
                     Id = Guid.NewGuid(),
                     UserId = userId,
@@ -1145,7 +1261,7 @@ namespace TokanPages.Backend.Tests.Services
                     ReplacedByToken = null,
                     ReasonRevoked = null
                 },
-                new ()
+                new()
                 {
                     Id = Guid.NewGuid(),
                     UserId = userId,
@@ -1193,12 +1309,14 @@ namespace TokanPages.Backend.Tests.Services
                 RefreshTokenExpiresIn = 120
             };
             
+            var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
+
             var userServiceProvider = new UserServiceProvider(
                 httpContext.Object, 
                 databaseContext,
                 mockedJwtUtilityService.Object, 
                 DateTimeService, 
-                identityServer);
+                mockedApplicationSettings.Object);
             
             // Act
             var result = await userServiceProvider.ReplaceRefreshToken(userId, userRefreshTokens[0], ipAddress.ToString(), true);
@@ -1231,7 +1349,7 @@ namespace TokanPages.Backend.Tests.Services
             var token = DataUtilityService.GetRandomString(255);
             var userRefreshTokens = new List<UserRefreshTokens>
             {
-                new () // Already revoked
+                new() // Already revoked
                 {
                     Id = Guid.NewGuid(),
                     UserId = userId,
@@ -1244,7 +1362,7 @@ namespace TokanPages.Backend.Tests.Services
                     ReplacedByToken = token,
                     ReasonRevoked = "Replaced by new token"
                 },
-                new () // Outdated
+                new() // Outdated
                 {
                     Id = Guid.NewGuid(),
                     UserId = userId,
@@ -1257,7 +1375,7 @@ namespace TokanPages.Backend.Tests.Services
                     ReplacedByToken = null,
                     ReasonRevoked = null
                 },
-                new () // Active
+                new() // Active
                 {
                     Id = Guid.NewGuid(),
                     UserId = userId,
@@ -1305,13 +1423,15 @@ namespace TokanPages.Backend.Tests.Services
                 RefreshTokenExpiresIn = 120
             };
             
+            var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
+
             var userServiceProvider = new UserServiceProvider(
                 httpContext.Object, 
                 databaseContext,
                 mockedJwtUtilityService.Object, 
                 DateTimeService, 
-                identityServer);
-            
+                mockedApplicationSettings.Object);
+
             // Act
             await userServiceProvider.RevokeDescendantRefreshTokens(
                 userRefreshTokens, 
@@ -1374,12 +1494,14 @@ namespace TokanPages.Backend.Tests.Services
                 RefreshTokenExpiresIn = 120
             };
 
+            var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
+
             var userServiceProvider = new UserServiceProvider(
                 httpContext.Object, 
                 databaseContext,
                 mockedJwtUtilityService.Object, 
                 DateTimeService, 
-                identityServer);
+                mockedApplicationSettings.Object);
 
             // Act
             await userServiceProvider.RevokeRefreshToken(userRefreshToken, ipAddress.ToString(), reasonRevoked, null, true, CancellationToken.None);
@@ -1395,7 +1517,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             return new List<Users>
             {
-                new ()
+                new()
                 {
                     Id = userId,
                     EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -1415,7 +1537,7 @@ namespace TokanPages.Backend.Tests.Services
         {
             return new List<Domain.Entities.Roles> 
             {
-                new ()
+                new()
                 {
                     Id = Guid.Parse("dbb74bc8-dd33-4c9f-9744-84ad4c37035b"),
                     Name = nameof(Roles.EverydayUser),
@@ -1428,12 +1550,12 @@ namespace TokanPages.Backend.Tests.Services
         {
             return new List<Domain.Entities.Permissions>
             {
-                new ()
+                new()
                 {
                     Id = Guid.Parse("dbb74bc8-dd33-4c9f-9744-84ad4c37035b"),
                     Name = Permissions.CanSelectArticles.ToString()
                 },
-                new ()
+                new()
                 {
                     Id = Guid.Parse("76fb3d47-f10d-467e-9e68-61d8a9fc5f6d"),
                     Name = Permissions.CanInsertArticles.ToString()

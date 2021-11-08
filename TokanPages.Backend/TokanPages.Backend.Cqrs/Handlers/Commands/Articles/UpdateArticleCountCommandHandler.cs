@@ -6,10 +6,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
-    using Core.Utilities.LoggerService;
     using Domain.Entities;
     using Core.Exceptions;
     using Shared.Resources;
+    using Core.Utilities.LoggerService;
     using Services.UserServiceProvider;
 
     public class UpdateArticleCountCommandHandler : TemplateHandler<UpdateArticleCountCommand, Unit>

@@ -12,7 +12,6 @@
     using System.Collections.Generic;
     using Shared;
     using Shared.Models;
-    using Storage.Models;
     using Core.Exceptions;
     using Domain.Entities;
     using Shared.Resources;
@@ -83,10 +82,7 @@
             var mockedLogger = new Mock<ILoggerService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var mockedAzureStorage = new Mock<AzureStorage>();
-            var mockedApplicationPaths = new Mock<ApplicationPaths>();
-            var mockedExpirationSettings = new Mock<ExpirationSettings>();
-            var mockedEmailSender = new Mock<EmailSender>();
+            var mockedApplicationSettings = MockApplicationSettings();
 
             const string mockedPassword = "MockedPassword";
             mockedCipher
@@ -112,10 +108,7 @@
                 mockedCipher.Object,
                 mockedTemplateService.Object,
                 mockedCustomHttpClient.Object,
-                mockedAzureStorage.Object,
-                mockedApplicationPaths.Object,
-                mockedExpirationSettings.Object, 
-                mockedEmailSender.Object);
+                mockedApplicationSettings.Object);
 
             // Act
             await addUserCommandHandler.Handle(addUserCommand, CancellationToken.None);
@@ -178,14 +171,9 @@
             var mockedLogger = new Mock<ILoggerService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var mockedAzureStorage = new Mock<AzureStorage>();
-            var mockedApplicationPaths = new Mock<ApplicationPaths>();
-            var mockedEmailSender = new Mock<EmailSender>();
 
-            var expirationSettings = new ExpirationSettings
-            {
-                ActivationIdExpiresIn = 30
-            };
+            var expirationSettings = new ExpirationSettings { ActivationIdExpiresIn = 30 };
+            var mockedApplicationSettings = MockApplicationSettings(expirationSettings: expirationSettings);
 
             const string mockedPassword = "MockedPassword";
             mockedCipher
@@ -215,10 +203,7 @@
                 mockedCipher.Object,
                 mockedTemplateService.Object,
                 mockedCustomHttpClient.Object,
-                mockedAzureStorage.Object,
-                mockedApplicationPaths.Object,
-                expirationSettings, 
-                mockedEmailSender.Object);
+                mockedApplicationSettings.Object);
 
             // Act
             await addUserCommandHandler.Handle(addUserCommand, CancellationToken.None);
@@ -277,10 +262,7 @@
             var mockedLogger = new Mock<ILoggerService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var mockedAzureStorage = new Mock<AzureStorage>();
-            var mockedApplicationPaths = new Mock<ApplicationPaths>();
-            var mockedExpirationSettings = new Mock<ExpirationSettings>();
-            var mockedEmailSender = new Mock<EmailSender>();
+            var mockedApplicationSettings = MockApplicationSettings();
             
             mockedCipher
                 .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
@@ -305,10 +287,7 @@
                 mockedCipher.Object,
                 mockedTemplateService.Object,
                 mockedCustomHttpClient.Object,
-                mockedAzureStorage.Object,
-                mockedApplicationPaths.Object,
-                mockedExpirationSettings.Object, 
-                mockedEmailSender.Object);
+                mockedApplicationSettings.Object);
 
             // Act
             // Assert
@@ -373,10 +352,7 @@
             var mockedLogger = new Mock<ILoggerService>();
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var mockedAzureStorage = new Mock<AzureStorage>();
-            var mockedApplicationPaths = new Mock<ApplicationPaths>();
-            var mockedExpirationSettings = new Mock<ExpirationSettings>();
-            var mockedEmailSender = new Mock<EmailSender>();
+            var mockedApplicationSettings = MockApplicationSettings();
 
             const string mockedPassword = "MockedPassword";
             mockedCipher
@@ -401,10 +377,7 @@
                 mockedCipher.Object,
                 mockedTemplateService.Object,
                 mockedCustomHttpClient.Object,
-                mockedAzureStorage.Object,
-                mockedApplicationPaths.Object,
-                mockedExpirationSettings.Object, 
-                mockedEmailSender.Object);
+                mockedApplicationSettings.Object);
 
             // Act
             // Assert

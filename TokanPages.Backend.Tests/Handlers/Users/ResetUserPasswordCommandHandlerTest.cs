@@ -8,8 +8,6 @@ namespace TokanPages.Backend.Tests.Handlers.Users
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
     using Core.Utilities.LoggerService;
-    using Shared.Models;
-    using Storage.Models;
     using Core.Exceptions;
     using Shared.Resources;
     using Domain.Entities;
@@ -55,10 +53,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var mockedExpirationSettings = new Mock<ExpirationSettings>();
-            var mockedAzureStorage = new Mock<AzureStorage>();
-            var mockedApplicationPaths = new Mock<ApplicationPaths>();
-            var mockedEmailSender = new Mock<EmailSender>();
+            var mockedApplicationSettings = MockApplicationSettings();
 
             var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
             var mockedResults = new Results
@@ -79,10 +74,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 mockedCustomHttpClient.Object,
                 mockedTemplateService.Object,
                 mockedDateTimeService.Object,
-                mockedAzureStorage.Object,
-                mockedApplicationPaths.Object,
-                mockedExpirationSettings.Object,
-                mockedEmailSender.Object);
+                mockedApplicationSettings.Object);
 
             await resetUserPasswordCommandHandler.Handle(resetUserPasswordCommand, CancellationToken.None);
 
@@ -135,10 +127,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var mockedExpirationSettings = new Mock<ExpirationSettings>();
-            var mockedAzureStorage = new Mock<AzureStorage>();
-            var mockedApplicationPaths = new Mock<ApplicationPaths>();
-            var mockedEmailSender = new Mock<EmailSender>();
+            var mockedApplicationSettings = MockApplicationSettings();
 
             var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
             var mockedResults = new Results
@@ -158,10 +147,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 mockedCustomHttpClient.Object,
                 mockedTemplateService.Object,
                 mockedDateTimeService.Object,
-                mockedAzureStorage.Object,
-                mockedApplicationPaths.Object,
-                mockedExpirationSettings.Object,
-                mockedEmailSender.Object);
+                mockedApplicationSettings.Object);
 
             // Act
             // Assert
@@ -204,10 +190,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
             var mockedTemplateService = new Mock<ITemplateService>();
             var mockedDateTimeService = new Mock<IDateTimeService>();
             var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-            var mockedExpirationSettings = new Mock<ExpirationSettings>();
-            var mockedAzureStorage = new Mock<AzureStorage>();
-            var mockedApplicationPaths = new Mock<ApplicationPaths>();
-            var mockedEmailSender = new Mock<EmailSender>();
+            var mockedApplicationSettings = MockApplicationSettings();
 
             var mockedResults = new Results
             {
@@ -226,10 +209,7 @@ namespace TokanPages.Backend.Tests.Handlers.Users
                 mockedCustomHttpClient.Object,
                 mockedTemplateService.Object,
                 mockedDateTimeService.Object,
-                mockedAzureStorage.Object,
-                mockedApplicationPaths.Object,
-                mockedExpirationSettings.Object,
-                mockedEmailSender.Object);
+                mockedApplicationSettings.Object);
 
             // Act
             // Assert

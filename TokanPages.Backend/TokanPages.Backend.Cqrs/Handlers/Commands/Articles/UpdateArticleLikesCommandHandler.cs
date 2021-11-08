@@ -6,10 +6,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     using Microsoft.EntityFrameworkCore;
     using Shared;
     using Database;
-    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Core.Extensions;
     using Shared.Resources;
+    using Core.Utilities.LoggerService;
     using Services.UserServiceProvider;
     using MediatR;
 

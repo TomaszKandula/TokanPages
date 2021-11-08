@@ -5,13 +5,13 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
-    using Core.Utilities.LoggerService;
-    using Shared.Models;
     using Domain.Entities;
     using Core.Exceptions;
+    using Shared.Services;
     using Shared.Resources;
     using Services.CipheringService;
     using Services.UserServiceProvider;
+    using Core.Utilities.LoggerService;
     using Core.Utilities.DateTimeService;
     using Identity.Services.JwtUtilityService;
 
@@ -25,17 +25,17 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         private readonly IUserServiceProvider _userServiceProvider;
 
-        private readonly IdentityServer _identityServer;
+        private readonly IApplicationSettings _applicationSettings;
         
         public AuthenticateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, ICipheringService cipheringService, 
             IJwtUtilityService jwtUtilityService, IDateTimeService dateTimeService, IUserServiceProvider userServiceProvider, 
-            IdentityServer identityServer) : base(databaseContext, loggerService)
+            IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
         {
             _cipheringService = cipheringService;
             _jwtUtilityService = jwtUtilityService;
             _dateTimeService = dateTimeService;
             _userServiceProvider = userServiceProvider;
-            _identityServer = identityServer;
+            _applicationSettings = applicationSettings;
         }
 
         public override async Task<AuthenticateUserCommandResult> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
@@ -64,11 +64,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
             var currentDateTime = _dateTimeService.Now;
             var ipAddress = _userServiceProvider.GetRequestIpAddress();
-            var tokenExpires = _dateTimeService.Now.AddMinutes(_identityServer.WebTokenExpiresIn);
+            var tokenExpires = _dateTimeService.Now.AddMinutes(_applicationSettings.IdentityServer.WebTokenExpiresIn);
             var userToken = await _userServiceProvider.GenerateUserToken(currentUser, tokenExpires, cancellationToken);
-            var refreshToken = _jwtUtilityService.GenerateRefreshToken(ipAddress, _identityServer.RefreshTokenExpiresIn);
+            var refreshToken = _jwtUtilityService.GenerateRefreshToken(ipAddress, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
 
-            _userServiceProvider.SetRefreshTokenCookie(refreshToken.Token, _identityServer.RefreshTokenExpiresIn);
+            _userServiceProvider.SetRefreshTokenCookie(refreshToken.Token, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
             currentUser.LastLogged = currentDateTime;
             
             var newUserToken = new UserTokens

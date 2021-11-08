@@ -5,9 +5,9 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
-    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
+    using Core.Utilities.LoggerService;
     using Core.Utilities.DateTimeService;
     using MediatR;
 
