@@ -4,12 +4,13 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
     using System.IO;
     using System.Net;
     using System.Linq;
+    using System.Security.Cryptography;
 
     public class DataUtilityService : IDataUtilityService
     {
-        private readonly Random _random;
+        private readonly RandomNumberGenerator _numberGenerator;
 
-        public DataUtilityService() => _random = new Random();
+        public DataUtilityService() => _numberGenerator = RandomNumberGenerator.Create();
 
         /// <summary>
         /// Returns randomized Date within given range.
@@ -29,7 +30,7 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
 
             var daysRange = (max - min).Value.Days; 
 
-            return min.Value.AddDays(_random.Next(0, daysRange));
+            return min.Value.AddDays(RandomNext(0, daysRange));
         }
         
         /// <summary>
@@ -44,7 +45,7 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
         public virtual T GetRandomEnum<T>()
         {
             var values = Enum.GetValues(typeof(T)); 
-            return (T)values.GetValue(_random.Next(values.Length));
+            return (T)values.GetValue(RandomNext(values.Length));
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
         /// <param name="min">A boundary value, lowest possible.</param>
         /// <param name="max">A boundary value, highest possible.</param>
         /// <returns>New randomized integer number.</returns>
-        public virtual int GetRandomInteger(int min = 0, int max = 12) => _random.Next(min, max + 1);
+        public virtual int GetRandomInteger(int min = 0, int max = 12) => RandomNext(min, max + 1);
 
         /// <summary>
         /// Returns randomized decimal number within given range.
@@ -69,7 +70,7 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
         /// <param name="min">A boundary value, lowest possible.</param>
         /// <param name="max">A boundary value, highest possible.</param>
         /// <returns>New randomized decimal number.</returns>
-        public virtual decimal GetRandomDecimal(int min = 0, int max = 9999) => _random.Next(min, max);
+        public virtual decimal GetRandomDecimal(int min = 0, int max = 9999) => RandomNext(min, max);
 
         /// <summary>
         /// Returns randomized stream of bytes.
@@ -83,7 +84,7 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
         public virtual MemoryStream GetRandomStream(int sizeInKb = 12)
         {
             var byteBuffer = new byte[sizeInKb * 1024]; 
-            _random.NextBytes(byteBuffer);
+            _numberGenerator.GetBytes(byteBuffer);
             return new MemoryStream(byteBuffer);
         }
         
@@ -120,7 +121,7 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
             const string alphabetOnly = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
             var randomString = new string(Enumerable.Repeat(useAlphabetOnly ? alphabetOnly : allChars, length)
-                .Select(strings => strings[_random.Next(strings.Length)])
+                .Select(strings => strings[RandomNext(strings.Length)])
                 .ToArray()); 
 
             if (!string.IsNullOrEmpty(prefix)) 
@@ -144,8 +145,12 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService
                 ? new byte[16] 
                 : new byte[4];
             
-            _random.NextBytes(bytes);
+            _numberGenerator.GetBytes(bytes);
             return new IPAddress(bytes);
         }
+
+        private static int RandomNext(int min, int max) => RandomNumberGenerator.GetInt32(min, max);
+
+        private static int RandomNext(int max) => RandomNumberGenerator.GetInt32(max);
     }
 }
