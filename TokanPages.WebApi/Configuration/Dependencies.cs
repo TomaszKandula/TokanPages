@@ -13,6 +13,7 @@
     using Backend.Database;
     using Backend.Core.Utilities.LoggerService;
     using Backend.Shared.Models;
+    using Backend.Shared.Services;
     using Backend.Core.Behaviours;
     using Backend.Database.Initializer;
     using Backend.Identity.Authentication;
@@ -57,6 +58,7 @@
             services.AddSingleton(configuration.GetSection(nameof(SonarQube)).Get<SonarQube>());
             services.AddSingleton(configuration.GetSection(nameof(IdentityServer)).Get<IdentityServer>());
             services.AddSingleton(configuration.GetSection(nameof(ExpirationSettings)).Get<ExpirationSettings>());
+            services.AddSingleton<IApplicationSettings, ApplicationSettings>();
         }
 
         private static void SetupLogger(IServiceCollection services) 
