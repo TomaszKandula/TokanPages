@@ -6,11 +6,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Microsoft.EntityFrameworkCore;
     using Shared;
     using Database;
-    using Core.Utilities.LoggerService;
-    using Shared.Models;
     using Domain.Entities;
     using Core.Exceptions;
+    using Shared.Services;
     using Shared.Resources;
+    using Core.Utilities.LoggerService;
     using Services.UserServiceProvider;
     using Core.Utilities.DateTimeService;
 
@@ -20,14 +20,14 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
 
         private readonly IUserServiceProvider _userServiceProvider;
 
-        private readonly IdentityServer _identityServer;
+        private readonly IApplicationSettings _applicationSettings;
 
         public ReAuthenticateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService, 
-            IUserServiceProvider userServiceProvider, IdentityServer identityServer) : base(databaseContext, loggerService)
+            IUserServiceProvider userServiceProvider, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
         {
             _dateTimeService = dateTimeService;
             _userServiceProvider = userServiceProvider;
-            _identityServer = identityServer;
+            _applicationSettings = applicationSettings;
         }
 
         public override async Task<ReAuthenticateUserCommandResult> Handle(ReAuthenticateUserCommand request, CancellationToken cancellationToken)
@@ -69,10 +69,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             var currentDateTime = _dateTimeService.Now;
             var currentUser = await DatabaseContext.Users.SingleAsync(users => users.Id == request.Id, cancellationToken);
             var ipAddress = _userServiceProvider.GetRequestIpAddress();
-            var tokenExpires = _dateTimeService.Now.AddMinutes(_identityServer.WebTokenExpiresIn);
+            var tokenExpires = _dateTimeService.Now.AddMinutes(_applicationSettings.IdentityServer.WebTokenExpiresIn);
             var userToken = await _userServiceProvider.GenerateUserToken(currentUser, tokenExpires, cancellationToken);
 
-            _userServiceProvider.SetRefreshTokenCookie(newRefreshToken.Token, _identityServer.RefreshTokenExpiresIn);
+            _userServiceProvider.SetRefreshTokenCookie(newRefreshToken.Token, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
             currentUser.LastLogged = currentDateTime;
 
             var roles = await _userServiceProvider.GetUserRoles(currentUser.Id);

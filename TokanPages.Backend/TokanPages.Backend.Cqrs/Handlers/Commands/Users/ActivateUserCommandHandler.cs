@@ -5,9 +5,9 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Microsoft.EntityFrameworkCore;
     using MediatR;
     using Database;
-    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Shared.Resources;
+    using Core.Utilities.LoggerService;
     using Core.Utilities.DateTimeService;
     
     public class ActivateUserCommandHandler : TemplateHandler<ActivateUserCommand, Unit>

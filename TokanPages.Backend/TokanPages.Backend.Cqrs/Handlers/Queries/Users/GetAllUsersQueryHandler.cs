@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Microsoft.EntityFrameworkCore;
-    using Core.Utilities.LoggerService;
     using Database;
+    using Core.Utilities.LoggerService;
 
     public class GetAllUsersQueryHandler : TemplateHandler<GetAllUsersQuery, IEnumerable<GetAllUsersQueryResult>>
     {

@@ -7,12 +7,12 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Shared;
     using MediatR;
     using Database;
-    using Core.Utilities.LoggerService;
     using Core.Exceptions;
     using Core.Extensions;
     using Shared.Resources;
     using Identity.Authorization;
     using Services.CipheringService;
+    using Core.Utilities.LoggerService;
     using Services.UserServiceProvider;
     using Core.Utilities.DateTimeService;
 

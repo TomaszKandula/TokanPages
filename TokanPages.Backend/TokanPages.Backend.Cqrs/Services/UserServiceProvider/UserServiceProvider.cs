@@ -10,7 +10,7 @@
     using Microsoft.EntityFrameworkCore;
     using Shared;
     using Database;
-    using Shared.Models;
+    using Shared.Services;
     using Core.Exceptions;
     using Domain.Entities;
     using Shared.Resources;
@@ -31,8 +31,8 @@
         private readonly IJwtUtilityService _jwtUtilityService;
         
         private readonly IDateTimeService _dateTimeService;
-        
-        private readonly IdentityServer _identityServer;
+
+        private readonly IApplicationSettings _applicationSettings;
 
         private List<GetUserPermissionDto> _userPermissions;
 
@@ -41,13 +41,13 @@
         private GetUserDto _user;
         
         public UserServiceProvider(IHttpContextAccessor httpContextAccessor, DatabaseContext databaseContext, 
-            IJwtUtilityService jwtUtilityService, IDateTimeService dateTimeService, IdentityServer identityServer)
+            IJwtUtilityService jwtUtilityService, IDateTimeService dateTimeService, IApplicationSettings applicationSettings)
         {
             _httpContextAccessor = httpContextAccessor;
             _databaseContext = databaseContext;
             _jwtUtilityService = jwtUtilityService;
             _dateTimeService = dateTimeService;
-            _identityServer = identityServer;
+            _applicationSettings = applicationSettings;
         }
 
         public string GetRequestIpAddress() 
@@ -180,9 +180,9 @@
             return _jwtUtilityService.GenerateJwt(
                 tokenExpires, 
                 claimsIdentity, 
-                _identityServer.WebSecret, 
-                _identityServer.Issuer, 
-                _identityServer.Audience);
+                _applicationSettings.IdentityServer.WebSecret, 
+                _applicationSettings.IdentityServer.Issuer, 
+                _applicationSettings.IdentityServer.Audience);
         }
 
         public async Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default)
@@ -190,7 +190,7 @@
             var refreshTokens = await _databaseContext.UserRefreshTokens
                 .Where(tokens => tokens.UserId == userId 
                     && tokens.Expires <= _dateTimeService.Now 
-                    && tokens.Created.AddMinutes(_identityServer.RefreshTokenExpiresIn) <= _dateTimeService.Now
+                    && tokens.Created.AddMinutes(_applicationSettings.IdentityServer.RefreshTokenExpiresIn) <= _dateTimeService.Now
                     && tokens.Revoked == null)
                 .ToListAsync(cancellationToken);
 
@@ -204,7 +204,7 @@
         public async Task<UserRefreshTokens> ReplaceRefreshToken(Guid userId, UserRefreshTokens savedUserRefreshTokens, string requesterIpAddress, 
             bool saveImmediately = false, CancellationToken cancellationToken = default)
         {
-            var newRefreshToken = _jwtUtilityService.GenerateRefreshToken(requesterIpAddress, _identityServer.RefreshTokenExpiresIn);
+            var newRefreshToken = _jwtUtilityService.GenerateRefreshToken(requesterIpAddress, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
             
             await RevokeRefreshToken(savedUserRefreshTokens, requesterIpAddress, NewRefreshTokenText, 
                 newRefreshToken.Token, saveImmediately, cancellationToken);
