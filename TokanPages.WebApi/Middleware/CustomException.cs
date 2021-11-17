@@ -47,7 +47,7 @@ namespace TokanPages.WebApi.Middleware
             var result = JsonSerializer.Serialize(applicationError);
             httpContext.Response.ContentType = "application/json";
             httpContext.Response.StatusCode = (int)statusCode;
-            CorsHeaders.Ensure(httpContext);
+            CorsHeaders.Apply(httpContext);
             return httpContext.Response.WriteAsync(result);
         }
     }

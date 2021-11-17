@@ -16,7 +16,7 @@
         
         private const string AccessControlMaxAge = "Access-Control-Max-Age";
 
-        public static void Ensure(HttpContext httpContext)
+        public static void Apply(HttpContext httpContext)
         {
             var getAllowOrigin = httpContext.Response.Headers[AccessControlAllowOrigin];
             var getAllowHeaders = httpContext.Response.Headers[AccessControlAllowHeaders];
