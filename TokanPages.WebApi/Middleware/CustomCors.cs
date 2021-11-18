@@ -24,7 +24,7 @@
             if (!developmentOrigins.Contains(requestOrigin) && !deploymentOrigins.Contains(requestOrigin))
                 return _requestDelegate(httpContext);
             
-            CorsHeaders.Ensure(httpContext);
+            CorsHeaders.Apply(httpContext);
 
             // Necessary for pre-flight
             if (httpContext.Request.Method != "OPTIONS") 
