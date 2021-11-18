@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Shared",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Storage", "TokanPages.Backend\TokanPages.Backend.Storage\TokanPages.Backend.Storage.csproj", "{EC20EE58-ED90-419E-84E7-8D298B59CE79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.WebApi.Tests", "TokanPages.WebApi.Tests\TokanPages.WebApi.Tests.csproj", "{A32A854C-3D91-4643-8B44-D6E4B92CCBF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.IntegrationTests", "TokanPages.IntegrationTests\TokanPages.IntegrationTests.csproj", "{A32A854C-3D91-4643-8B44-D6E4B92CCBF5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.UnitTests", "TokanPages.UnitTests\TokanPages.UnitTests.csproj", "{3A138774-9DA3-40E3-8DA3-50620F0FD310}"
 EndProject
