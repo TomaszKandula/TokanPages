@@ -30,6 +30,7 @@ namespace TokanPages.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new StringEnumConverter()));
             services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
             Dependencies.Register(services, _configuration, _environment);
@@ -62,15 +63,16 @@ namespace TokanPages.WebApi
         {
             builder.UseSerilogRequestLogging();
 
-            builder.UseMiddleware<CustomCors>();
+            builder.UseForwardedHeaders();
+            builder.UseHttpsRedirection();
+            CorsPolicy.Apply(builder, _configuration);
+
             builder.UseMiddleware<CustomException>();
             builder.UseMiddleware<CustomCacheControl>();
-            
-            builder.UseHttpsRedirection();
-            builder.UseForwardedHeaders();
-            builder.UseResponseCompression();
 
+            builder.UseResponseCompression();
             builder.UseRouting();
+
             builder.UseAuthentication();
             builder.UseAuthorization();
             builder.UseEndpoints(endpoints => endpoints.MapControllers());
