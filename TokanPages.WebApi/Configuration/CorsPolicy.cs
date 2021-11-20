@@ -9,7 +9,7 @@ namespace TokanPages.WebApi.Configuration
     [ExcludeFromCodeCoverage]
     public static class CorsPolicy
     {
-        public static void Apply(IApplicationBuilder builder, IConfiguration configuration)
+        public static void ApplyCorsPolicy(this IApplicationBuilder builder, IConfiguration configuration)
         {
             builder.UseCors(policyBuilder =>
             {

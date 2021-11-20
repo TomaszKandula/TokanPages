@@ -29,7 +29,7 @@ namespace TokanPages.IntegrationTests
         {
             builder.UseForwardedHeaders();
             builder.UseHttpsRedirection();
-            CorsPolicy.Apply(builder, _configuration);
+            builder.ApplyCorsPolicy(_configuration);
             builder.UseMiddleware<CustomException>();
             builder.UseRouting();
             builder.UseAuthentication();

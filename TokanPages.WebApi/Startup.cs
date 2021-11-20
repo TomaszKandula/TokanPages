@@ -36,7 +36,7 @@ namespace TokanPages.WebApi
             Dependencies.Register(services, _configuration, _environment);
 
             if (_environment.IsDevelopment() || _environment.IsStaging())
-                Swagger.SetupSwaggerOptions(services);
+                services.SetupSwaggerOptions();
 
             if (!_environment.IsProduction() && !_environment.IsStaging()) 
                 return;
@@ -65,7 +65,7 @@ namespace TokanPages.WebApi
 
             builder.UseForwardedHeaders();
             builder.UseHttpsRedirection();
-            CorsPolicy.Apply(builder, _configuration);
+            builder.ApplyCorsPolicy(_configuration);
 
             builder.UseMiddleware<CustomException>();
             builder.UseMiddleware<CustomCacheControl>();
@@ -81,7 +81,7 @@ namespace TokanPages.WebApi
                 return;
 
             builder.UseSwagger();
-            Swagger.SetupSwaggerUi(builder, _configuration);
+            builder.SetupSwaggerUi(_configuration);
         }
     }
 }
