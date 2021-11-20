@@ -69,7 +69,7 @@ namespace TokanPages.IntegrationTests.UsersController
 
             // Assert
             var response = await httpClient.SendAsync(newRequest);
-            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
+            await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
 
             // Assert
             var content = await response.Content.ReadAsStringAsync();

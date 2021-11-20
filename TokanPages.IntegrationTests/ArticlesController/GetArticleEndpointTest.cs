@@ -41,7 +41,7 @@ namespace TokanPages.IntegrationTests.ArticlesController
 
             // Act
             var response = await httpClient.GetAsync(request);
-            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
+            await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
 
             // Assert
             var content = await response.Content.ReadAsStringAsync();

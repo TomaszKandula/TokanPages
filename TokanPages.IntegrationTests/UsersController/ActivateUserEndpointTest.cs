@@ -14,7 +14,7 @@ namespace TokanPages.IntegrationTests.UsersController
     public partial class UsersControllerTest
     {
         [Fact]
-        public async Task GivenRandomActivationId_WhenActivateUser_ShouldReturnBadRequest()
+        public async Task GivenRandomActivationId_WhenActivateUser_ShouldReturnUnprocessableEntity()
         {
             // Arrange
             var request = $"{ApiBaseUrl}/ActivateUser/";
@@ -26,7 +26,7 @@ namespace TokanPages.IntegrationTests.UsersController
 
             // Act
             var response = await httpClient.SendAsync(newRequest);
-            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
+            await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
 
             // Assert
             var content = await response.Content.ReadAsStringAsync();
@@ -35,7 +35,7 @@ namespace TokanPages.IntegrationTests.UsersController
         }
         
         [Fact]
-        public async Task GivenrandomActivationId_WhenActivateUserAsLoggedUser_ShouldReturnBadRequest()
+        public async Task GivenrandomActivationId_WhenActivateUserAsLoggedUser_ShouldReturnUnprocessableEntity()
         {
             // Arrange
             var request = $"{ApiBaseUrl}/ActivateUser/";
@@ -53,7 +53,7 @@ namespace TokanPages.IntegrationTests.UsersController
             
             // Act
             var response = await httpClient.SendAsync(newRequest);
-            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
+            await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
 
             // Assert
             var content = await response.Content.ReadAsStringAsync();
