@@ -33,7 +33,7 @@ namespace TokanPages.IntegrationTests.ContentController
         }
 
         [Fact]
-        public async Task GivenInvalidComponentNameAndValidType_WhenGetContent_ShouldReturnBadRequest()
+        public async Task GivenInvalidComponentNameAndValidType_WhenGetContent_ShouldReturnUnprocessableEntity()
         {
             // Arrange
             var componentName = DataUtilityService.GetRandomString(10, "", true);
@@ -44,7 +44,7 @@ namespace TokanPages.IntegrationTests.ContentController
 
             // Act
             var response = await httpClient.GetAsync(request);
-            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
+            await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
 
             // Assert
             var content = await response.Content.ReadAsStringAsync();
@@ -53,7 +53,7 @@ namespace TokanPages.IntegrationTests.ContentController
         }
 
         [Fact]
-        public async Task GivenValidComponentNameAndInvalidType_WhenGetContent_ShouldReturnBadRequest()
+        public async Task GivenValidComponentNameAndInvalidType_WhenGetContent_ShouldReturnUnprocessableEntity()
         {
             // Arrange
             const string componentName = "activateAccount";
@@ -64,7 +64,7 @@ namespace TokanPages.IntegrationTests.ContentController
 
             // Act
             var response = await httpClient.GetAsync(request);
-            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
+            await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
 
             // Assert
             var content = await response.Content.ReadAsStringAsync();

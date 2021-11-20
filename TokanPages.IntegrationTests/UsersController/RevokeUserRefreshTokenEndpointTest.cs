@@ -36,7 +36,7 @@ namespace TokanPages.IntegrationTests.UsersController
         }
         
         [Fact]
-        public async Task GivenUnknownRefreshToken_WhenRevokeUserRefreshTokenAsAdmin_ShouldReturnBadRequest()
+        public async Task GivenUnknownRefreshToken_WhenRevokeUserRefreshTokenAsAdmin_ShouldReturnUnprocessableEntity()
         {
             // Arrange
             var request = $"{ApiBaseUrl}/RevokeUserRefreshToken/";
@@ -58,7 +58,7 @@ namespace TokanPages.IntegrationTests.UsersController
             
             // Act
             var response = await httpClient.SendAsync(newRequest);
-            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
+            await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
 
             // Assert
             var content = await response.Content.ReadAsStringAsync();

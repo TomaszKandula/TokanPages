@@ -14,7 +14,7 @@ namespace TokanPages.IntegrationTests.ArticlesController
     public partial class ArticlesControllerTest
     {
         [Fact]
-        public async Task GivenInvalidArticleIdAndValidJwt_WhenUpdateArticleVisibility_ShouldReturnBadRequest()
+        public async Task GivenInvalidArticleIdAndValidJwt_WhenUpdateArticleVisibility_ShouldReturnUnprocessableEntity()
         {
             // Arrange
             var request = $"{ApiBaseUrl}/UpdateArticleVisibility/";
@@ -37,7 +37,7 @@ namespace TokanPages.IntegrationTests.ArticlesController
             
             // Act
             var response = await httpClient.SendAsync(newRequest);
-            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
+            await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
 
             // Assert
             var content = await response.Content.ReadAsStringAsync();

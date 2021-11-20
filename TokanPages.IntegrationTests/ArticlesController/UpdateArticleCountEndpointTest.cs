@@ -13,7 +13,7 @@ namespace TokanPages.IntegrationTests.ArticlesController
     public partial class ArticlesControllerTest
     {
         [Fact]
-        public async Task GivenInvalidArticleId_WhenUpdateArticleCount_ShouldReturnBadRequest()
+        public async Task GivenInvalidArticleId_WhenUpdateArticleCount_ShouldReturnUnprocessableEntity()
         {
             // Arrange
             var request = $"{ApiBaseUrl}/UpdateArticleCount/";
@@ -30,7 +30,7 @@ namespace TokanPages.IntegrationTests.ArticlesController
 
             // Act
             var response = await httpClient.SendAsync(newRequest);
-            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
+            await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
 
             // Assert
             var content = await response.Content.ReadAsStringAsync();
