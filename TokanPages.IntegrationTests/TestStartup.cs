@@ -17,6 +17,7 @@ namespace TokanPages.IntegrationTests
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddMvc().AddApplicationPart(typeof(Startup).Assembly);
             services.AddControllers();
 
@@ -24,12 +25,12 @@ namespace TokanPages.IntegrationTests
             Dependencies.CommonServices(services, _configuration);
         }
 
-        public static void Configure(IApplicationBuilder builder)
+        public void Configure(IApplicationBuilder builder)
         {
-            builder.UseMiddleware<CustomCors>();
-            builder.UseMiddleware<CustomException>();
             builder.UseForwardedHeaders();
             builder.UseHttpsRedirection();
+            builder.ApplyCorsPolicy(_configuration);
+            builder.UseMiddleware<CustomException>();
             builder.UseRouting();
             builder.UseAuthentication();
             builder.UseAuthorization();

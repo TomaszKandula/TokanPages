@@ -30,12 +30,13 @@ namespace TokanPages.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new StringEnumConverter()));
             services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
             Dependencies.Register(services, _configuration, _environment);
 
             if (_environment.IsDevelopment() || _environment.IsStaging())
-                Swagger.SetupSwaggerOptions(services);
+                services.SetupSwaggerOptions();
 
             if (!_environment.IsProduction() && !_environment.IsStaging()) 
                 return;
@@ -62,15 +63,16 @@ namespace TokanPages.WebApi
         {
             builder.UseSerilogRequestLogging();
 
-            builder.UseMiddleware<CustomCors>();
+            builder.UseForwardedHeaders();
+            builder.UseHttpsRedirection();
+            builder.ApplyCorsPolicy(_configuration);
+
             builder.UseMiddleware<CustomException>();
             builder.UseMiddleware<CustomCacheControl>();
-            
-            builder.UseHttpsRedirection();
-            builder.UseForwardedHeaders();
-            builder.UseResponseCompression();
 
+            builder.UseResponseCompression();
             builder.UseRouting();
+
             builder.UseAuthentication();
             builder.UseAuthorization();
             builder.UseEndpoints(endpoints => endpoints.MapControllers());
@@ -79,7 +81,7 @@ namespace TokanPages.WebApi
                 return;
 
             builder.UseSwagger();
-            Swagger.SetupSwaggerUi(builder, _configuration);
+            builder.SetupSwaggerUi(_configuration);
         }
     }
 }

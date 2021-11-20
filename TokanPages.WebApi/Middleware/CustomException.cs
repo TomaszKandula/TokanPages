@@ -9,7 +9,6 @@ namespace TokanPages.WebApi.Middleware
     using Backend.Core.Models;
     using Backend.Core.Exceptions;
     using Backend.Shared.Resources;
-    using Configuration;
     
     [ExcludeFromCodeCoverage]
     public class CustomException
@@ -47,7 +46,6 @@ namespace TokanPages.WebApi.Middleware
             var result = JsonSerializer.Serialize(applicationError);
             httpContext.Response.ContentType = "application/json";
             httpContext.Response.StatusCode = (int)statusCode;
-            CorsHeaders.Apply(httpContext);
             return httpContext.Response.WriteAsync(result);
         }
     }
