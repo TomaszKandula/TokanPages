@@ -1,3 +1,11 @@
+# [0.28.0](https://github.com/TomaszKandula/TokanPages/compare/v0.27.1...v0.28.0) (2021-11-20)
+
+
+### Features
+
+* update startup configuration to use extension methods ([1900632](https://github.com/TomaszKandula/TokanPages/commit/190063246bd01e076e0c3ad504f35814eee03742))
+* upgrade implementation for cors and swagger configurations ([70b3482](https://github.com/TomaszKandula/TokanPages/commit/70b3482b3c55fb5778a3bb92c16792d39ee27326))
+
 ## [0.27.1](https://github.com/TomaszKandula/TokanPages/compare/v0.27.0...v0.27.1) (2021-10-31)
 
 
