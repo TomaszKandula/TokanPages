@@ -175,7 +175,7 @@ _TokanPages.WebApi.Tests_
 |--------|-------------|
 | WebApi.Tests | Http client tests |
 
-Tests focuses on testing HTTP client responses, dependencies and theirs configuration. 
+Tests focuses on testing HTTP client responses, dependencies and theirs configuration.
 
 To run backend tests, use command `dotnet test`.
 
