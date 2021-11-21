@@ -16,24 +16,24 @@ TokanPages is the repository that holds my web page to share my programming inte
 
 <p>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=ncloc&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=ncloc&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=code_smells&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=code_smells&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=bugs&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=bugs&kill_cache=1">
   </a>
 </p>
 <p>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=sqale_rating&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=sqale_rating&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=security_rating&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=security_rating&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=reliability_rating&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=reliability_rating&kill_cache=1">
   </a>
 </p>
 <p>
@@ -41,10 +41,10 @@ TokanPages is the repository that holds my web page to share my programming inte
     <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=sqale_index&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=duplicated_lines_density&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=duplicated_lines_density&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=coverage&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=coverage&kill_cache=1">
   </a>
 </p>
 
@@ -52,35 +52,35 @@ TokanPages is the repository that holds my web page to share my programming inte
 
 <p>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=ncloc&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=ncloc&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=code_smells&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=code_smells&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=bugs&kill_cache=1">
-  </a>
-</p>
-<p>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=sqale_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=security_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=reliability_rating&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=bugs&kill_cache=1">
   </a>
 </p>
 <p>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=sqale_index&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=sqale_rating&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=duplicated_lines_density&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=security_rating&kill_cache=1">
   </a>
   <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=coverage&kill_cache=1">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=reliability_rating&kill_cache=1">
+  </a>
+</p>
+<p>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=sqale_index&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=duplicated_lines_density&kill_cache=1">
+  </a>
+  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
+    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=coverage&kill_cache=1">
   </a>
 </p>
 
@@ -105,7 +105,7 @@ The client app uses React Hooks. Tests are provided using JEST, but there is no 
 
 Project is dockerized and deployed via GitHub Actions to Azure App Service (main domain) that uses Container Registry. Web Server of choice is NGINX.
 
-<img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/Metrics/Quality?Project=tokanpages-frontend&kill_cache=1">
+<img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/Metrics/Quality?Project=tokanpages-frontend&kill_cache=1">
 
 ### Back-end
 
@@ -124,7 +124,7 @@ Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAsse
 
 Project is dockerized and deployed via GitHub Actions to Azure App Service that uses Container Registry.
 
-<img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/Metrics/Quality?Project=tokanpages-backend&kill_cache=1">
+<img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/Metrics/Quality?Project=tokanpages-backend&kill_cache=1">
 
 ## Project structure
 
@@ -147,7 +147,8 @@ _TokanPages.Backend_
 | Backend.Core | Reusable core elements |
 | Backend.Cqrs | Handlers, mappers and related services |
 | Backend.Database | Database context |
-| Backend.Domain | Domain entities |
+| Backend.Domain | Domain entities, contracts and enums |
+| Backend.Identity | Identity service with JWT |
 | Backend.Shared | Shared models and resources |
 | Backend.Storage | Azure Storage service |
 
@@ -418,22 +419,23 @@ public class CustomException
         }
         catch (BusinessException businessException)
         {
-            var applicationError = new ApplicationError(businessException.ErrorCode, businessException.Message);
-            await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.BadRequest).ConfigureAwait(false);
+            var innerMessage = businessException.InnerException?.Message;
+            var applicationError = new ApplicationError(businessException.ErrorCode, businessException.Message, innerMessage);
+            await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.UnprocessableEntity).ConfigureAwait(false);
         }
         catch (Exception exception)
         {
-            var applicationError = new ApplicationError(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED, exception.Message);
+            var innerMessage = exception.InnerException?.Message;
+            var applicationError = new ApplicationError(nameof(ErrorCodes.ERROR_UNEXPECTED), exception.Message, innerMessage);
             await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.InternalServerError).ConfigureAwait(false);
         }
     }
 
     private static Task WriteErrorResponse(HttpContext httpContext, ApplicationError applicationError, HttpStatusCode statusCode)
     {
-        var result = JsonSerializer.Serialize(applicationError);
+        var result = JsonConvert.SerializeObject(applicationError);
         httpContext.Response.ContentType = "application/json";
         httpContext.Response.StatusCode = (int)statusCode;
-        CorsHeaders.Ensure(httpContext);
         return httpContext.Response.WriteAsync(result);
     }
 }
