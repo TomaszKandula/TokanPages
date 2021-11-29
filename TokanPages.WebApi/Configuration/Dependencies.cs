@@ -1,22 +1,29 @@
 ﻿namespace TokanPages.WebApi.Configuration
 {
     using System;
+    using System.Linq;
+    using System.Text;
     using System.Net.Http;
     using System.Reflection;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Hosting;
     using Microsoft.EntityFrameworkCore;
+	using Microsoft.IdentityModel.Tokens;
     using Microsoft.Extensions.Configuration;
+	using Microsoft.AspNetCore.Authorization;
     using Microsoft.Extensions.DependencyInjection;
+	using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Backend.Cqrs;
     using Backend.Shared;
     using Backend.Database;
-    using Backend.Core.Utilities.LoggerService;
     using Backend.Shared.Models;
     using Backend.Shared.Services;
     using Backend.Core.Behaviours;
     using Backend.Database.Initializer;
-    using Backend.Identity.Authentication;
+	using Backend.Identity.Authorization;
+    using Backend.Core.Utilities.LoggerService;
     using Backend.Core.Utilities.JsonSerializer;
     using Backend.Core.Utilities.DateTimeService;
     using Backend.Core.Utilities.TemplateService;
@@ -47,7 +54,7 @@
             SetupServices(services);
             SetupValidators(services);
             SetupMediatR(services);
-            WebToken.Configure(services, configuration);
+            SetupWebToken(services, configuration);
         }
 
         private static void SetupAppSettings(IServiceCollection services, IConfiguration configuration) 
@@ -110,7 +117,86 @@
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
         }
 
-        private static void SetupRetryPolicyWithPolly(IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
+	    private static void SetupWebToken(IServiceCollection services, IConfiguration configuration)
+        { 
+	        var issuer = configuration.GetValue<string>("IdentityServer:Issuer");
+	        var audience = configuration.GetValue<string>("IdentityServer:Audience");
+	        var webSecret = configuration.GetValue<string>("IdentityServer:WebSecret");
+	        var requireHttps = configuration.GetValue<bool>("IdentityServer:RequireHttps");
+
+	        services.AddAuthentication(options =>
+	        {
+		        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+		        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+	        }).AddJwtBearer(options =>
+	        {
+		        options.Audience = audience;
+		        options.SecurityTokenValidators.Clear();
+		        options.SecurityTokenValidators.Add(new SecurityHandler());
+		        options.SaveToken = true;
+		        options.RequireHttpsMetadata = requireHttps;
+		        options.TokenValidationParameters = new TokenValidationParameters
+		        {
+			        ValidateIssuerSigningKey = true,
+			        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(webSecret)),
+			        ValidateIssuer = true,
+			        ValidIssuer = issuer,
+			        ValidateAudience = true,
+			        ValidAudience = audience,
+			        ValidateLifetime = true,
+			        ClockSkew = TimeSpan.Zero
+		        };
+		        options.Events = new JwtBearerEvents
+		        {
+			        OnTokenValidated = tokenValidatedContext =>
+			        {
+				        ValidateTokenClaims(tokenValidatedContext);
+				        return Task.CompletedTask;
+			        }
+		        };
+	        });
+
+	        services.AddAuthorization(options =>
+	        {
+		        options.AddPolicy("AuthPolicy", new AuthorizationPolicyBuilder()
+				        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+				        .RequireAuthenticatedUser()
+				        .Build());
+
+		        options.AddPolicy(nameof(Policies.AccessToTokanPages), policy => policy
+			        .RequireRole(nameof(Roles.GodOfAsgard), nameof(Roles.EverydayUser), nameof(Roles.ArticlePublisher), 
+				        nameof(Roles.PhotoPublisher), nameof(Roles.CommentPublisher)));
+	        });
+        }
+
+	    private static void ValidateTokenClaims(TokenValidatedContext tokenValidatedContext)
+	    {
+		    var userAlias = tokenValidatedContext.Principal?.Claims
+			    .Where(claim => claim.Type == ClaimTypes.Name) ?? Array.Empty<Claim>();
+				        
+		    var role = tokenValidatedContext.Principal?.Claims
+			    .Where(claim => claim.Type == ClaimTypes.Role) ?? Array.Empty<Claim>();
+				        
+		    var userId = tokenValidatedContext.Principal?.Claims
+			    .Where(claim => claim.Type == ClaimTypes.NameIdentifier) ?? Array.Empty<Claim>();
+				        
+		    var firstName = tokenValidatedContext.Principal?.Claims
+			    .Where(claim => claim.Type == ClaimTypes.GivenName) ?? Array.Empty<Claim>();
+				        
+		    var lastName = tokenValidatedContext.Principal?.Claims
+			    .Where(claim => claim.Type == ClaimTypes.Surname) ?? Array.Empty<Claim>();
+				        
+		    var emailAddress = tokenValidatedContext.Principal?.Claims
+			    .Where(claim => claim.Type == ClaimTypes.Email) ?? Array.Empty<Claim>();
+
+		    if (!userAlias.Any() || !role.Any() || !userId.Any()
+		        || !firstName.Any() || !lastName.Any() || !emailAddress.Any())
+		    {
+			    tokenValidatedContext.Fail("Provided token is invalid.");
+		    }
+	    }
+
+	    private static void SetupRetryPolicyWithPolly(IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
         {
             var applicationPaths = configuration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>();
             services.AddHttpClient("RetryHttpClient", options =>
