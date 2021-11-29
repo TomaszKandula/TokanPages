@@ -43,7 +43,7 @@ namespace TokanPages.WebApi
             builder.ApplyCorsPolicy(_configuration);
 
             builder.UseMiddleware<Exceptions>();
-            builder.UseMiddleware<CustomCacheControl>();
+            builder.UseMiddleware<CacheControl>();
 
             builder.UseResponseCompression();
             builder.UseRouting();
