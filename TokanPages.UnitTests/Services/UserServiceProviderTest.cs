@@ -109,7 +109,7 @@ namespace TokanPages.UnitTests.Services
                 mockedDateTimeService.Object, 
                 mockedApplicationSettings.Object);
 
-            var result = await Assert.ThrowsAsync<BusinessException>(userProvider.GetUserId);
+            var result = await Assert.ThrowsAsync<AccessException>(userProvider.GetUserId);
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
 
@@ -173,7 +173,7 @@ namespace TokanPages.UnitTests.Services
                 mockedDateTimeService.Object, 
                 mockedApplicationSettings.Object);
  
-            var result = await Assert.ThrowsAsync<BusinessException>(userProvider.GetUser);
+            var result = await Assert.ThrowsAsync<AccessException>(userProvider.GetUser);
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
 
@@ -279,7 +279,7 @@ namespace TokanPages.UnitTests.Services
                 mockedDateTimeService.Object, 
                 mockedApplicationSettings.Object);
 
-            var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.GetUserRoles(null));
+            var result = await Assert.ThrowsAsync<AccessException>(() => userProvider.GetUserRoles(null));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
         
@@ -316,7 +316,7 @@ namespace TokanPages.UnitTests.Services
                 mockedDateTimeService.Object, 
                 mockedApplicationSettings.Object);
 
-            var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.GetUserRoles(null));
+            var result = await Assert.ThrowsAsync<AccessException>(() => userProvider.GetUserRoles(null));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
         
@@ -412,7 +412,7 @@ namespace TokanPages.UnitTests.Services
                 mockedDateTimeService.Object, 
                 mockedApplicationSettings.Object);
 
-            var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.GetUserPermissions(null));
+            var result = await Assert.ThrowsAsync<AccessException>(() => userProvider.GetUserPermissions(null));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
         
@@ -458,7 +458,7 @@ namespace TokanPages.UnitTests.Services
                 mockedDateTimeService.Object, 
                 mockedApplicationSettings.Object);
 
-            var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.GetUserPermissions(null));
+            var result = await Assert.ThrowsAsync<AccessException>(() => userProvider.GetUserPermissions(null));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
 
