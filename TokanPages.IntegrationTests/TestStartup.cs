@@ -22,7 +22,7 @@ namespace TokanPages.IntegrationTests
             services.AddControllers();
 
             SetupTestDatabase(services);
-            Dependencies.CommonServices(services, _configuration);
+            services.CommonServices(_configuration);
         }
 
         public void Configure(IApplicationBuilder builder)
