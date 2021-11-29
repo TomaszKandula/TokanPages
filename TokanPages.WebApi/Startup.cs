@@ -1,13 +1,9 @@
 namespace TokanPages.WebApi
 {
-    using System.Net;
-    using System.Linq;
-    using System.Net.Sockets;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Configuration;
-    using Microsoft.AspNetCore.HttpOverrides;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.ResponseCompression;
     using Newtonsoft.Json.Converters;
@@ -35,22 +31,7 @@ namespace TokanPages.WebApi
             services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
             Dependencies.Register(services, _configuration, _environment);
             services.SetupSwaggerOptions(_environment);
-
-
-            var hostName = Dns.GetHostName();
-            var addresses = Dns.GetHostEntry(hostName).AddressList
-                .Where(ipAddress => ipAddress.AddressFamily == AddressFamily.InterNetwork)
-                .ToList();
-
-            services.Configure<ForwardedHeadersOptions>(options =>
-            {
-                options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-                options.ForwardLimit = null;
-                options.RequireHeaderSymmetry = false;
-
-                foreach (var address in addresses) 
-                    options.KnownProxies.Add(address);
-            });
+            services.SetupDockerInternalNetwork();
         }
 
         public void Configure(IApplicationBuilder builder)
