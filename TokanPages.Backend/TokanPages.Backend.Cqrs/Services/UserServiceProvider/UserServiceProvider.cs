@@ -16,7 +16,7 @@
     using Shared.Resources;
     using Shared.Dto.Users;
     using Core.Utilities.DateTimeService;
-    using Identity.Services.JwtUtilityService;
+    using Core.Utilities.JwtUtilityService;
 
     public sealed class UserServiceProvider : IUserServiceProvider
     {

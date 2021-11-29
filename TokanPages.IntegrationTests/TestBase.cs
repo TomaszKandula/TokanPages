@@ -8,8 +8,8 @@ namespace TokanPages.IntegrationTests
     using Backend.Identity.Authorization;
     using Backend.Core.Utilities.DateTimeService;
     using Backend.Database.Initializer.Data.Users;
+    using Backend.Core.Utilities.JwtUtilityService;
     using Backend.Core.Utilities.DataUtilityService;
-    using Backend.Identity.Services.JwtUtilityService;
 
     public class TestBase
     {

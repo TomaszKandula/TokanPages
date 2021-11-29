@@ -23,9 +23,9 @@
     using Backend.Cqrs.Services.CipheringService;
     using Backend.Core.Utilities.CustomHttpClient;
     using Backend.Storage.AzureBlobStorage.Factory;
+    using Backend.Core.Utilities.JwtUtilityService;
     using Backend.Core.Utilities.DataUtilityService;
     using Backend.Cqrs.Services.UserServiceProvider;
-    using Backend.Identity.Services.JwtUtilityService;
     using FluentValidation;
     using MediatR;
 

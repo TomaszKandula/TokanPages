@@ -16,8 +16,9 @@ namespace TokanPages.UnitTests.Handlers.Users
     using Backend.Cqrs.Handlers.Commands.Users;
     using Backend.Cqrs.Services.CipheringService;
     using Backend.Core.Utilities.DateTimeService;
+    using Backend.Core.Utilities.JwtUtilityService;
     using Backend.Cqrs.Services.UserServiceProvider;
-    using Backend.Identity.Services.JwtUtilityService;
+    using Backend.Core.Utilities.JwtUtilityService.Models;
 
     public class AuthenticateUserCommandHandlerTest : TestBase
     {

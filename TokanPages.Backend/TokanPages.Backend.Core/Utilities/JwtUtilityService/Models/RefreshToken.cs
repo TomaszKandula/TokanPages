@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Shared.Models
+namespace TokanPages.Backend.Core.Utilities.JwtUtilityService.Models
 {
     using System;
     using System.Diagnostics.CodeAnalysis;

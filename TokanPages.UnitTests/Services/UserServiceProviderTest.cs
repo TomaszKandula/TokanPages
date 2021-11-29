@@ -17,8 +17,9 @@ namespace TokanPages.UnitTests.Services
     using Backend.Core.Exceptions;
     using Backend.Shared.Resources;
     using Backend.Core.Utilities.DateTimeService;
+    using Backend.Core.Utilities.JwtUtilityService;
     using Backend.Cqrs.Services.UserServiceProvider;
-    using Backend.Identity.Services.JwtUtilityService;
+    using Backend.Core.Utilities.JwtUtilityService.Models;
     using Roles = Backend.Identity.Authorization.Roles;
     using Permissions = Backend.Identity.Authorization.Permissions;
 
