@@ -78,7 +78,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 Expires = tokenExpires,
                 Created = currentDateTime,
                 CreatedByIp = ipAddress,
-                Command = nameof(AuthenticateUserCommand)
+                Command = nameof(AuthenticateUserCommand),
+                Revoked = null,
+                RevokedByIp = null,
+                ReasonRevoked = null
             };
 
             var newRefreshToken = new UserRefreshTokens
