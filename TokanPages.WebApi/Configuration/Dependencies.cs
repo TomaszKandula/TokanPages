@@ -121,7 +121,7 @@
                 options.DefaultRequestHeaders.Add("Accept", Constants.ContentTypes.Json);
                 options.Timeout = TimeSpan.FromMinutes(5);
                 options.DefaultRequestHeaders.ConnectionClose = true;
-            }).AddPolicyHandler(Handlers.RetryPolicyHandler());
+            }).AddPolicyHandler(HttpPolicyHandlers.SetupRetry());
         }
     }
 }

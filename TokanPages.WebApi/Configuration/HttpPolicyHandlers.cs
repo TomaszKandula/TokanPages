@@ -9,9 +9,9 @@ namespace TokanPages.WebApi.Configuration
     using Polly;
 
     [ExcludeFromCodeCoverage]
-    public static class Handlers
+    public static class HttpPolicyHandlers
     {
-        public static IAsyncPolicy<HttpResponseMessage> RetryPolicyHandler()
+        public static IAsyncPolicy<HttpResponseMessage> SetupRetry()
         {
             const int retryCount = 3;
             const double durationBetweenRetries = 150;
