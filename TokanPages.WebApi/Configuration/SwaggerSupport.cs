@@ -3,21 +3,25 @@ namespace TokanPages.WebApi.Configuration
     using System;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.OpenApi.Models;
+    using Microsoft.Extensions.Hosting;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
     [ExcludeFromCodeCoverage]
-    public static class Swagger
+    public static class SwaggerSupport
     {
         private const string APiVersion = "v1";
 
         private const string ApiName = "TokanPages API";
-        
+
         private const string AuthorizationScheme = "Bearer";
-        
-        public static void SetupSwaggerOptions(this IServiceCollection services)
+
+        public static void SetupSwaggerOptions(this IServiceCollection services, IHostEnvironment environment)
         {
+            if (environment.IsProduction())
+                return;
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc(APiVersion, new OpenApiInfo
@@ -25,7 +29,7 @@ namespace TokanPages.WebApi.Configuration
                     Title = ApiName, 
                     Version = APiVersion
                 });
-                
+
                 options.AddSecurityDefinition(AuthorizationScheme, new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
@@ -35,7 +39,7 @@ namespace TokanPages.WebApi.Configuration
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey
                 });
-                
+
                 options.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
@@ -53,8 +57,12 @@ namespace TokanPages.WebApi.Configuration
             });
         }
 
-        public static void SetupSwaggerUi(this IApplicationBuilder builder, IConfiguration configuration)
+        public static void SetupSwaggerUi(this IApplicationBuilder builder, IConfiguration configuration, IHostEnvironment environment)
         {
+            if (environment.IsProduction())
+                return;
+
+            builder.UseSwagger();
             builder.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint($"/swagger/{APiVersion}/swagger.json", ApiName);

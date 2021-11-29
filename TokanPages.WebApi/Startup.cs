@@ -34,15 +34,9 @@ namespace TokanPages.WebApi
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new StringEnumConverter()));
             services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
             Dependencies.Register(services, _configuration, _environment);
+            services.SetupSwaggerOptions(_environment);
 
-            if (_environment.IsDevelopment() || _environment.IsStaging())
-                services.SetupSwaggerOptions();
 
-            if (!_environment.IsProduction() && !_environment.IsStaging()) 
-                return;
-
-            // Since this app is meant to run in Docker only
-            // We get the Docker's internal network IP(s)
             var hostName = Dns.GetHostName();
             var addresses = Dns.GetHostEntry(hostName).AddressList
                 .Where(ipAddress => ipAddress.AddressFamily == AddressFamily.InterNetwork)
@@ -77,11 +71,7 @@ namespace TokanPages.WebApi
             builder.UseAuthorization();
             builder.UseEndpoints(endpoints => endpoints.MapControllers());
 
-            if (!_environment.IsDevelopment() && !_environment.IsStaging()) 
-                return;
-
-            builder.UseSwagger();
-            builder.SetupSwaggerUi(_configuration);
+            builder.SetupSwaggerUi(_configuration, _environment);
         }
     }
 }
