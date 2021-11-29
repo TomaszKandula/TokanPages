@@ -1,15 +1,15 @@
-namespace TokanPages.Backend.Identity.Attributes
+namespace TokanPages.WebApi.Attributes
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Authorization;
-    using Authorization;
+    using Backend.Identity.Authorization;
 
     [ExcludeFromCodeCoverage]
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
-    public class AuthorizeRolesAttribute : AuthorizeAttribute
+    public class AuthorizeUserAttribute : AuthorizeAttribute
     {
-        public AuthorizeRolesAttribute(params Roles[] roles)
+        public AuthorizeUserAttribute(params Roles[] roles)
             => Roles = string.Join(",", roles);
     }
 }
