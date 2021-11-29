@@ -29,7 +29,7 @@ namespace TokanPages.WebApi
             services.AddCors();
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new StringEnumConverter()));
             services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
-            Dependencies.Register(services, _configuration, _environment);
+            services.RegisterDependencies(_configuration, _environment);
             services.SetupSwaggerOptions(_environment);
             services.SetupDockerInternalNetwork();
         }
