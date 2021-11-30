@@ -231,7 +231,7 @@ namespace TokanPages.UnitTests.Handlers.Users
                 mockedApplicationSettings.Object);
 
             // Assert
-            var result = await Assert.ThrowsAsync<BusinessException>(() 
+            var result = await Assert.ThrowsAsync<AccessException>(() 
                 => authenticateUserCommandHandler.Handle(authenticateUserCommand, CancellationToken.None));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_CREDENTIALS));
         }
@@ -291,7 +291,7 @@ namespace TokanPages.UnitTests.Handlers.Users
                 mockedApplicationSettings.Object);
 
             // Assert
-            var result = await Assert.ThrowsAsync<BusinessException>(() 
+            var result = await Assert.ThrowsAsync<AccessException>(() 
                 => authenticateUserCommandHandler.Handle(authenticateUserCommand, CancellationToken.None));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_CREDENTIALS));
         }
@@ -410,7 +410,7 @@ namespace TokanPages.UnitTests.Handlers.Users
                 mockedUserServiceProvider.Object, 
                 mockedApplicationSettings.Object);
             
-            var result = await Assert.ThrowsAsync<BusinessException>(() 
+            var result = await Assert.ThrowsAsync<AccessException>(() 
                 => authenticateUserCommandHandler.Handle(authenticateUserCommand, CancellationToken.None));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE));
         }

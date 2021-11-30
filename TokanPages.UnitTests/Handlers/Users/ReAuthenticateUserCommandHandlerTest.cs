@@ -279,7 +279,7 @@ namespace TokanPages.UnitTests.Handlers.Users
                 mockedUserServiceProvider.Object, 
                 mockedApplicationSettings.Object);
 
-            var result = await Assert.ThrowsAsync<BusinessException>(() => 
+            var result = await Assert.ThrowsAsync<AccessException>(() => 
                 reAuthenticateUserCommandHandler.Handle(reAuthenticateUserCommand, CancellationToken.None));
 
             result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_REFRESH_TOKEN));
@@ -311,7 +311,7 @@ namespace TokanPages.UnitTests.Handlers.Users
                 mockedUserServiceProvider.Object, 
                 mockedApplicationSettings.Object);
 
-            var result = await Assert.ThrowsAsync<BusinessException>(() => 
+            var result = await Assert.ThrowsAsync<AccessException>(() => 
                 reAuthenticateUserCommandHandler.Handle(reAuthenticateUserCommand, CancellationToken.None));
 
             result.ErrorCode.Should().Be(nameof(ErrorCodes.MISSING_REFRESH_TOKEN));
