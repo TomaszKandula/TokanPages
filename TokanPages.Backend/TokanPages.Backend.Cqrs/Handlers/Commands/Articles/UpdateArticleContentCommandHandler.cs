@@ -34,7 +34,7 @@
         {
             var userId = await _userServiceProvider.GetUserId();
             if (userId == null)
-                throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
+                throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
             var articles = await DatabaseContext.Articles
                 .Where(articles => articles.Id == request.Id)
@@ -65,7 +65,7 @@
                 : currentArticle.UpdatedAt;
 
             await DatabaseContext.SaveChangesAsync(cancellationToken);
-            return await Task.FromResult(Unit.Value);
+            return Unit.Value;
         }
     }
 }

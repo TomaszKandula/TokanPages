@@ -16,7 +16,8 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
     {
         private readonly IUserServiceProvider _userServiceProvider;
 
-        public UpdateArticleCountCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserServiceProvider userServiceProvider) : base(databaseContext, loggerService)
+        public UpdateArticleCountCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+            IUserServiceProvider userServiceProvider) : base(databaseContext, loggerService)
         {
             _userServiceProvider = userServiceProvider;
         }
@@ -59,7 +60,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             }
 
             await DatabaseContext.SaveChangesAsync(cancellationToken);
-            return await Task.FromResult(Unit.Value);
+            return Unit.Value;
         }
     }
 }
