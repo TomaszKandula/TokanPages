@@ -5,8 +5,8 @@
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
+    using Attributes;
     using Backend.Cqrs.Mappers;
-    using Backend.Identity.Attributes;
     using Backend.Identity.Authorization;
     using Backend.Shared.Dto.Subscribers;
     using Backend.Cqrs.Handlers.Queries.Subscribers;
@@ -18,7 +18,7 @@
         public SubscribersController(IMediator mediator) : base(mediator) { }
 
         [HttpGet]
-        [AuthorizeRoles(Roles.GodOfAsgard)]
+        [AuthorizeUser(Roles.GodOfAsgard)]
         public async Task<IEnumerable<GetAllSubscribersQueryResult>> GetAllSubscribers()
             => await Mediator.Send(new GetAllSubscribersQuery());
 

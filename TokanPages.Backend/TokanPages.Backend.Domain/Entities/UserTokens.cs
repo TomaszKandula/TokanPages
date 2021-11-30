@@ -26,6 +26,14 @@ namespace TokanPages.Backend.Domain.Entities
         [MaxLength(255)]
         public string Command { get; set; }
 
+        public DateTime? Revoked { get; set; }
+
+        [MaxLength(15)]
+        public string RevokedByIp { get; set; }
+
+        [MaxLength(255)]
+        public string ReasonRevoked { get; set; }
+
         public Users User { get; set; }
     }
 }

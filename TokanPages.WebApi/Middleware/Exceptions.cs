@@ -11,22 +11,45 @@ namespace TokanPages.WebApi.Middleware
     using Newtonsoft.Json;
     
     [ExcludeFromCodeCoverage]
-    public class CustomException
+    public class Exceptions
     {
         private readonly RequestDelegate _requestDelegate;
-        
-        public CustomException(RequestDelegate requestDelegate) => _requestDelegate = requestDelegate;
-        
-        public async Task Invoke(HttpContext httpContext)
+
+        public Exceptions(RequestDelegate requestDelegate) => _requestDelegate = requestDelegate;
+
+        /// <summary>
+        /// Pre-defined application exceptions for status codes:
+        /// <list>
+        ///   <item>400 - Bad Request</item>
+        ///   <item>401 - Unauthorized</item>
+        ///   <item>403 - Forbidden</item>
+        ///   <item>422 - Unprocessable Entity</item>
+        ///   <item>500 - Internal Server Error</item>
+        /// </list>
+        /// </summary>
+        /// <param name="httpContext">Current HTTP context.</param>
+        public async Task InvokeAsync(HttpContext httpContext)
         {
             try
             {
-                await _requestDelegate.Invoke(httpContext);
+                await _requestDelegate(httpContext);
             }
             catch (ValidationException validationException)
             {
                 var applicationError = new ApplicationError(validationException.ErrorCode, validationException.Message, validationException.ValidationResult);
                 await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.BadRequest).ConfigureAwait(false);
+            }
+            catch (AuthorizationException authenticationException)
+            {
+                var innerMessage = authenticationException.InnerException?.Message;
+                var applicationError = new ApplicationError(authenticationException.ErrorCode, authenticationException.Message, innerMessage);
+                await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.Unauthorized).ConfigureAwait(false);
+            }
+            catch (AccessException authorizationException)
+            {
+                var innerMessage = authorizationException.InnerException?.Message;
+                var applicationError = new ApplicationError(authorizationException.ErrorCode, authorizationException.Message, innerMessage);
+                await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.Forbidden).ConfigureAwait(false);
             }
             catch (BusinessException businessException)
             {

@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Identity.Services.JwtUtilityService
+namespace TokanPages.Backend.Core.Utilities.JwtUtilityService
 {
     using System;
     using System.Text;
@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Identity.Services.JwtUtilityService
     using System.Security.Cryptography;
     using System.IdentityModel.Tokens.Jwt;
     using Microsoft.IdentityModel.Tokens;
-    using Shared.Models;
+    using Models;
     
     public class JwtUtilityService : IJwtUtilityService
     {

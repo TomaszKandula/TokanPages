@@ -204,4 +204,10 @@
   <data name="COMPONENT_NOT_FOUND" xml:space="preserve">
     <value>Cannot find component by given name and type</value>
   </data>
+  <data name="INVALID_USER_TOKEN" xml:space="preserve">
+    <value>Provided user token is invalid</value>
+  </data>
+  <data name="REVOKED_USER_TOKEN" xml:space="preserve">
+    <value>The token has been revoked and cannot be reused</value>
+  </data>
 </root>

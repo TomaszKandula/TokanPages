@@ -13,7 +13,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
     using Services.UserServiceProvider;
     using Core.Utilities.LoggerService;
     using Core.Utilities.DateTimeService;
-    using Identity.Services.JwtUtilityService;
+    using Core.Utilities.JwtUtilityService;
 
     public class AuthenticateUserCommandHandler : TemplateHandler<AuthenticateUserCommand, AuthenticateUserCommandResult>
     {
@@ -78,7 +78,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 Expires = tokenExpires,
                 Created = currentDateTime,
                 CreatedByIp = ipAddress,
-                Command = nameof(AuthenticateUserCommand)
+                Command = nameof(AuthenticateUserCommand),
+                Revoked = null,
+                RevokedByIp = null,
+                ReasonRevoked = null
             };
 
             var newRefreshToken = new UserRefreshTokens

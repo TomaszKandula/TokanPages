@@ -18,6 +18,10 @@
         void SetRefreshTokenCookie(string refreshToken, int expiresIn, bool isHttpOnly = true, 
             bool secure = true, string cookieName = Constants.CookieNames.RefreshToken);
 
+        string GetWebTokenFromHeader();
+
+        Task VerifyUserToken(); 
+
         Task<Guid?> GetUserId();
 
         Task<GetUserDto> GetUser();
