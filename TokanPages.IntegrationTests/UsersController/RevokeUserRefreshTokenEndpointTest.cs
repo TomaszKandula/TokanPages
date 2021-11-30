@@ -54,6 +54,8 @@ namespace TokanPages.IntegrationTests.UsersController
             var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, 
                 _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
+            await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
+            
             newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
             
             // Act
