@@ -11,14 +11,14 @@
 
     public class TestBase
     {
+        private readonly DatabaseContextFactory _databaseContextFactory;
+
         protected IDataUtilityService DataUtilityService { get; }
-        
+
         protected IJwtUtilityService JwtUtilityService { get; }
 
         protected IDateTimeService DateTimeService { get; }
-        
-        private readonly DatabaseContextFactory _databaseContextFactory;
-        
+
         protected TestBase()
         {
             DataUtilityService = new DataUtilityService();
