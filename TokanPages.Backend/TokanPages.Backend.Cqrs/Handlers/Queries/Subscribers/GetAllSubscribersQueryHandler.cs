@@ -14,7 +14,7 @@
 
         public override async Task<IEnumerable<GetAllSubscribersQueryResult>> Handle(GetAllSubscribersQuery request, CancellationToken cancellationToken) 
         {
-            var subscribers = await DatabaseContext.Subscribers
+             return await DatabaseContext.Subscribers
                 .AsNoTracking()
                 .Select(subscribers => new GetAllSubscribersQueryResult 
                 { 
@@ -24,8 +24,6 @@
                     NewsletterCount = subscribers.Count
                 })
                 .ToListAsync(cancellationToken);
-            
-            return subscribers;
         }
     }
 }

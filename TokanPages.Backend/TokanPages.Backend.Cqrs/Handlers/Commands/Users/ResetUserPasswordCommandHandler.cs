@@ -61,7 +61,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             await DatabaseContext.SaveChangesAsync(cancellationToken);
             await SendNotification(request.EmailAddress, resetId, expirationDate, cancellationToken);
 
-            return await Task.FromResult(Unit.Value);
+            return Unit.Value;
         }
 
         private async Task SendNotification(string emailAddress, Guid resetId, DateTime expirationDate, CancellationToken cancellationToken)

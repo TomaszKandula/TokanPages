@@ -26,6 +26,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
         public override async Task<Unit> Handle(UpdateArticleLikesCommand request, CancellationToken cancellationToken)
         {
             var articles = await DatabaseContext.Articles
+                .AsNoTracking()
                 .Where(articles => articles.Id == request.Id)
                 .ToListAsync(cancellationToken);
 
@@ -52,7 +53,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
             }
 
             await DatabaseContext.SaveChangesAsync(cancellationToken);
-            return await Task.FromResult(Unit.Value);
+            return Unit.Value;
         }
         
         private async Task AddNewArticleLikes(bool isAnonymousUser, UpdateArticleLikesCommand request, CancellationToken cancellationToken)

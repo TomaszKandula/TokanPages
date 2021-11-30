@@ -274,7 +274,7 @@ namespace TokanPages.UnitTests.Handlers.Users
 
             // Act
             // Assert
-            var result = await Assert.ThrowsAsync<BusinessException>(() 
+            var result = await Assert.ThrowsAsync<AccessException>(() 
                 => updateUserPasswordCommandHandler.Handle(updateUserPasswordCommand, CancellationToken.None));
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
         }
