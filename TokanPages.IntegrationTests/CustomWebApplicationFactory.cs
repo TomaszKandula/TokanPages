@@ -16,7 +16,9 @@
         public string Issuer { get; private set; }
         
         public string Audience { get; private set; }
-        
+
+        public string Connection { get; private set; }
+
         protected override IWebHostBuilder CreateWebHostBuilder()
         {
             var builder = WebHost.CreateDefaultBuilder()
@@ -28,17 +30,18 @@
                         .AddUserSecrets(startupAssembly)
                         .AddEnvironmentVariables()
                         .Build();
-                
+
                     configurationBuilder.AddConfiguration(testConfig);
 
                     var config = configurationBuilder.Build();
                     Issuer = config.GetValue<string>("IdentityServer:Issuer");
                     Audience = config.GetValue<string>("IdentityServer:Audience");
                     WebSecret = config.GetValue<string>("IdentityServer:WebSecret");
+                    Connection = config.GetValue<string>("ConnectionStrings:DbConnectTest");
                 })
                 .UseStartup<TTestStartup>()
                 .UseTestServer();
-            
+
             return builder;
         }
     }

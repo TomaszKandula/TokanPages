@@ -1,8 +1,8 @@
-namespace TokanPages.Backend.Identity.Services.JwtUtilityService
+namespace TokanPages.Backend.Core.Utilities.JwtUtilityService
 {
     using System;
     using System.Security.Claims;
-    using Shared.Models;
+    using Models;
 
     public interface IJwtUtilityService
     {

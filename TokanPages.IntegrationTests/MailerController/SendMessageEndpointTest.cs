@@ -70,6 +70,8 @@ namespace TokanPages.IntegrationTests.MailerController
             var tokenExpires = DateTime.Now.AddDays(30);
             var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
+            await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
+            
             newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
             newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 

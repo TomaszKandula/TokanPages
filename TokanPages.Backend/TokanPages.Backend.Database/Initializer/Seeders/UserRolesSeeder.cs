@@ -18,6 +18,12 @@ namespace TokanPages.Backend.Database.Initializer.Seeders
                 {
                     Id = Guid.Parse("829c4857-7a80-42f9-97c9-62aff21127cf"),
                     UserId = User1.Id,
+                    RoleId = Role1.Id
+                },
+                new ()
+                {
+                    Id = Guid.Parse("829c4857-7a80-42f9-97c9-62aff21127cf"),
+                    UserId = User1.Id,
                     RoleId = Role2.Id
                 },
                 new ()

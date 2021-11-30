@@ -5,9 +5,9 @@
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
+    using Attributes;
     using Backend.Cqrs.Mappers;
     using Backend.Shared.Dto.Articles;
-    using Backend.Identity.Attributes;
     using Backend.Identity.Authorization;
     using Backend.Cqrs.Handlers.Queries.Articles;
     using MediatR;
@@ -28,12 +28,12 @@
             => await Mediator.Send(new GetArticleQuery { Id = id});
 
         [HttpPost]
-        [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
+        [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
         public async Task<Guid> AddArticle([FromBody] AddArticleDto payLoad) 
             => await Mediator.Send(ArticlesMapper.MapToAddArticleCommand(payLoad));
 
         [HttpPost]
-        [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
+        [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
         public async Task<Unit> UpdateArticleContent([FromBody] UpdateArticleContentDto payLoad)
             => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payLoad));
 
@@ -48,12 +48,12 @@
             => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payLoad));
 
         [HttpPost]
-        [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
+        [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
         public async Task<Unit> UpdateArticleVisibility([FromBody] UpdateArticleVisibilityDto payLoad)
             => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payLoad));
 
         [HttpPost]
-        [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
+        [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
         public async Task<Unit> RemoveArticle([FromBody] RemoveArticleDto payLoad)
             => await Mediator.Send(ArticlesMapper.MapToRemoveArticleCommand(payLoad));
     }

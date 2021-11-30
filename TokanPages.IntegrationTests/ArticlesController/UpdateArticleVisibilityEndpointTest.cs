@@ -25,6 +25,8 @@ namespace TokanPages.IntegrationTests.ArticlesController
             var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
                 _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
 
+            await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
+
             var payLoad = new UpdateArticleVisibilityDto
             {
                 Id = Guid.NewGuid(),

@@ -22,7 +22,7 @@ namespace TokanPages.IntegrationTests
             services.AddControllers();
 
             SetupTestDatabase(services);
-            Dependencies.CommonServices(services, _configuration);
+            services.CommonServices(_configuration);
         }
 
         public void Configure(IApplicationBuilder builder)
@@ -30,10 +30,11 @@ namespace TokanPages.IntegrationTests
             builder.UseForwardedHeaders();
             builder.UseHttpsRedirection();
             builder.ApplyCorsPolicy(_configuration);
-            builder.UseMiddleware<CustomException>();
+            builder.UseMiddleware<Exceptions>();
             builder.UseRouting();
             builder.UseAuthentication();
             builder.UseAuthorization();
+            builder.UseMiddleware<TokenControl>();
             builder.UseEndpoints(endpoints => endpoints.MapControllers());
         }
 

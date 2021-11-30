@@ -3,9 +3,9 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
+    using Attributes;
     using Backend.Cqrs.Mappers;
     using Backend.Shared.Dto.Mailer;
-    using Backend.Identity.Attributes;
     using Backend.Identity.Authorization;
     using MediatR;
 
@@ -20,7 +20,7 @@
             => await Mediator.Send(MailerMapper.MapToSendMessageCommand(payLoad));
 
         [HttpPost]
-        [AuthorizeRoles(Roles.GodOfAsgard)]
+        [AuthorizeUser(Roles.GodOfAsgard)]
         public async Task<Unit> SendNewsletter([FromBody] SendNewsletterDto payLoad)
             => await Mediator.Send(MailerMapper.MapToSendNewsletterCommand(payLoad));
     }
