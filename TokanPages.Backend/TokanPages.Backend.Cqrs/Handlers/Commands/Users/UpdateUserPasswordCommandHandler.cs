@@ -51,7 +51,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 var hasRoleGodOfAsgard = await _userServiceProvider.HasRoleAssigned($"{Roles.GodOfAsgard}") ?? false;
 
                 if (!hasRoleEverydayUser && !hasRoleGodOfAsgard)
-                    throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
+                    throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
             }
 
             if (!users.Any())
@@ -71,7 +71,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             await DatabaseContext.SaveChangesAsync(cancellationToken);
 
             LoggerService.LogInformation($"User password has been updated successfully (UserId: {currentUser.Id}).");
-            return await Task.FromResult(Unit.Value);
+            return Unit.Value;
         }
     }
 }
