@@ -100,7 +100,7 @@ namespace TokanPages.UnitTests.Handlers.Articles
             
             // Act
             // Assert
-            var result = await Assert.ThrowsAsync<BusinessException>(() => 
+            var result = await Assert.ThrowsAsync<AccessException>(() => 
                 updateArticleVisibilityCommandHandler.Handle(updateArticleVisibilityCommand, CancellationToken.None));
 
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));

@@ -268,7 +268,7 @@
 
             // Act
             // Assert
-            var result = await Assert.ThrowsAsync<BusinessException>(() 
+            var result = await Assert.ThrowsAsync<AccessException>(() 
                 => updateArticleCommandHandler.Handle(updateArticleContentCommand, CancellationToken.None));
 
             result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
