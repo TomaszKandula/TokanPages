@@ -14,7 +14,7 @@
 
         public override async Task<IEnumerable<GetAllArticlesQueryResult>> Handle(GetAllArticlesQuery request, CancellationToken cancellationToken) 
         {
-            var articles = await DatabaseContext.Articles
+            return await DatabaseContext.Articles
                 .AsNoTracking()
                 .Where(articles => articles.IsPublished == request.IsPublished)
                 .Select(articles => new GetAllArticlesQueryResult 
@@ -29,8 +29,6 @@
                 })
                 .OrderByDescending(articles => articles.CreatedAt)
                 .ToListAsync(cancellationToken);
-
-            return articles; 
         }
     }
 }

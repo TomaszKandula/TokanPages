@@ -34,7 +34,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             const string reason = "Revoked by Admin";
             
             await _userServiceProvider.RevokeRefreshToken(refreshTokens, requestIpAddress, reason, null, true, cancellationToken);            
-            return await Task.FromResult(Unit.Value);
+            return Unit.Value;
         }
     }
 }

@@ -38,7 +38,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             LoggerService.LogInformation($"User account has been activated, user ID: {users.Id}");
             await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-            return await Task.FromResult(Unit.Value);
+            return Unit.Value;
         }
     }
 }

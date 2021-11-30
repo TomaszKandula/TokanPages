@@ -14,7 +14,7 @@
 
         public override async Task<IEnumerable<GetAllUsersQueryResult>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
-            var users = await DatabaseContext.Users
+            return await DatabaseContext.Users
                 .AsNoTracking()
                 .Select(users => new GetAllUsersQueryResult 
                 { 
@@ -24,8 +24,6 @@
                     IsActivated = users.IsActivated
                 })
                 .ToListAsync(cancellationToken);
-            
-            return users;
         }
     }
 }

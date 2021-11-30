@@ -71,7 +71,7 @@
                 await SendNotification(request.EmailAddress, activationId, activationIdEnds, cancellationToken);
 
                 LoggerService.LogInformation($"Re-registering new user after ActivationId expired, user id: {users.Id}.");
-                return await Task.FromResult(users.Id);
+                return users.Id;
             }
 
             var newUser = new Users
@@ -93,7 +93,7 @@
             await SendNotification(request.EmailAddress, activationId, activationIdEnds, cancellationToken);
 
             LoggerService.LogInformation($"Registering new user account, user id: {newUser.Id}.");
-            return await Task.FromResult(newUser.Id);
+            return newUser.Id;
         }
 
         private async Task SetupDefaultPermissions(Guid userId, CancellationToken cancellationToken)

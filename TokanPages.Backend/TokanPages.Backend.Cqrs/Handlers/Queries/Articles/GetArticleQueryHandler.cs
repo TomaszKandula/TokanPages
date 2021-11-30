@@ -1,7 +1,9 @@
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
 {
+    using System;
     using System.Net;
     using System.Linq;
+    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
@@ -106,11 +108,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
                 throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
             
             if (results.StatusCode != HttpStatusCode.OK)
-                throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+                throw new Exception(ErrorCodes.ERROR_UNEXPECTED);
 
             return results.Content == null 
                 ? string.Empty 
-                : System.Text.Encoding.Default.GetString(results.Content);
+                : Encoding.Default.GetString(results.Content);
         }
     }
 }

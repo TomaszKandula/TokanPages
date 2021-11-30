@@ -106,10 +106,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             };
         }
 
-        private static BusinessException MissingRefreshTokenException 
+        private static AccessException MissingRefreshTokenException 
             => new (nameof(ErrorCodes.MISSING_REFRESH_TOKEN), ErrorCodes.MISSING_REFRESH_TOKEN);
 
-        private static BusinessException InvalidTokenException 
+        private static AccessException InvalidTokenException 
             => new (nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
     }
 }

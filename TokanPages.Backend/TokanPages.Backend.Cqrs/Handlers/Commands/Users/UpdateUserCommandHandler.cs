@@ -48,7 +48,7 @@
             currentUser.LastUpdated = _dateTimeService.Now;
 
             await DatabaseContext.SaveChangesAsync(cancellationToken);
-            return await Task.FromResult(Unit.Value);
+            return Unit.Value;
         }
     }
 }

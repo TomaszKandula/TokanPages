@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Database;
+    using Domain.Entities;
     using Core.Exceptions;
     using Shared.Resources;
     using Core.Utilities.LoggerService;
@@ -31,7 +32,7 @@
             if (emailCollection.Count == 1)
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-            var newSubscriber = new Domain.Entities.Subscribers
+            var newSubscriber = new Subscribers
             {
                 Email = request.Email,
                 Count = 0,
@@ -42,7 +43,7 @@
 
             await DatabaseContext.Subscribers.AddAsync(newSubscriber, cancellationToken);
             await DatabaseContext.SaveChangesAsync(cancellationToken);
-            return await Task.FromResult(newSubscriber.Id);
+            return newSubscriber.Id;
         }
     }
 }

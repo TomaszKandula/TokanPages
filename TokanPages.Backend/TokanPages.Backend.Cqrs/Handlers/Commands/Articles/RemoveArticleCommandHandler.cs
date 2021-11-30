@@ -25,7 +25,7 @@
 
             DatabaseContext.Articles.Remove(currentArticle.Single());
             await DatabaseContext.SaveChangesAsync(cancellationToken);
-            return await Task.FromResult(Unit.Value);
+            return Unit.Value;
         }
     }
 }

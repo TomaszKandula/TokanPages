@@ -81,7 +81,7 @@
                     throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}");
             }
 
-            return await Task.FromResult(Unit.Value);
+            return Unit.Value;
         }
     }
 }
