@@ -1,3 +1,10 @@
+## [0.29.1](https://github.com/TomaszKandula/TokanPages/compare/v0.29.0...v0.29.1) (2021-11-30)
+
+
+### Bug Fixes
+
+* change expected exception types ([89a7bc5](https://github.com/TomaszKandula/TokanPages/commit/89a7bc5405bdf081cc5b8f4e6c37077f71805f25))
+
 # [0.29.0](https://github.com/TomaszKandula/TokanPages/compare/v0.28.0...v0.29.0) (2021-11-30)
 
 
