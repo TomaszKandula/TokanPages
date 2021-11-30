@@ -25,7 +25,7 @@
 
             DatabaseContext.Subscribers.Remove(currentSubscriber.First());
             await DatabaseContext.SaveChangesAsync(cancellationToken);
-            return await Task.FromResult(Unit.Value);
+            return Unit.Value;
         }
     }
 }

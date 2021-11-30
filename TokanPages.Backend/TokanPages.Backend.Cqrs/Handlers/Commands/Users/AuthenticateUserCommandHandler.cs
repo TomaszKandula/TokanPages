@@ -47,7 +47,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             if (!users.Any())
             {
                 LoggerService.LogError($"Cannot find user with given email address: '{request.EmailAddress}'.");
-                throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
+                throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
             }
             
             var currentUser = users.First();
@@ -56,11 +56,11 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
             if (!isPasswordValid)
             {
                 LoggerService.LogError($"Cannot positively verify given password supplied by user (Id: {currentUser.Id}).");
-                throw new BusinessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
+                throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
             }
             
             if (!currentUser.IsActivated)
-                throw new BusinessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
+                throw new AccessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
             var currentDateTime = _dateTimeService.Now;
             var ipAddress = _userServiceProvider.GetRequestIpAddress();
@@ -78,10 +78,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 Expires = tokenExpires,
                 Created = currentDateTime,
                 CreatedByIp = ipAddress,
-                Command = nameof(AuthenticateUserCommand),
-                Revoked = null,
-                RevokedByIp = null,
-                ReasonRevoked = null
+                Command = nameof(AuthenticateUserCommand)
             };
 
             var newRefreshToken = new UserRefreshTokens
@@ -90,11 +87,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
                 Token = refreshToken.Token,
                 Expires = refreshToken.Expires,
                 Created = refreshToken.Created,
-                CreatedByIp = refreshToken.CreatedByIp,
-                Revoked = null,
-                RevokedByIp = null,
-                ReplacedByToken = null,
-                ReasonRevoked = null
+                CreatedByIp = refreshToken.CreatedByIp
             };
 
             await _userServiceProvider.DeleteOutdatedRefreshTokens(currentUser.Id, false, cancellationToken);

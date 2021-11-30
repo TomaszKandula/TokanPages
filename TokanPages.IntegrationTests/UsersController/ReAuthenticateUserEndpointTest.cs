@@ -32,7 +32,7 @@ namespace TokanPages.IntegrationTests.UsersController
 
             // Act
             var response = await httpClient.SendAsync(newRequest);
-            await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
+            await EnsureStatusCode(response, HttpStatusCode.Forbidden);
             
             // Assert
             var content = await response.Content.ReadAsStringAsync();

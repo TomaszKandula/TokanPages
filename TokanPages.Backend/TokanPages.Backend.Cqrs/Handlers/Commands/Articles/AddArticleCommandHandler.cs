@@ -31,7 +31,7 @@
         {
             var userId = await _userServiceProvider.GetUserId();
             if (userId == null)
-                throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
+                throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
             var newArticle = new Domain.Entities.Articles
             {

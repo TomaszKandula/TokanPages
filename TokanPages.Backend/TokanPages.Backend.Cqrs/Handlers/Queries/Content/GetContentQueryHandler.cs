@@ -2,6 +2,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
 {
     using System.Net;
     using System.Linq;
+    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
     using Newtonsoft.Json.Linq;
@@ -105,7 +106,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content
 
             return results.Content == null 
                 ? string.Empty 
-                : System.Text.Encoding.Default.GetString(results.Content);
+                : Encoding.Default.GetString(results.Content);
         }
     }
 }
