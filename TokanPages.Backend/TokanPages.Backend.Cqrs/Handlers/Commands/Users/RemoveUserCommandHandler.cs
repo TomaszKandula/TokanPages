@@ -25,7 +25,7 @@
 
             DatabaseContext.Users.Remove(currentUser.First());
             await DatabaseContext.SaveChangesAsync(cancellationToken);
-            return await Task.FromResult(Unit.Value);
+            return Unit.Value;
         }
     }
 }
