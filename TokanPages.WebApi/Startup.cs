@@ -50,6 +50,7 @@ namespace TokanPages.WebApi
 
             builder.UseAuthentication();
             builder.UseAuthorization();
+            builder.UseMiddleware<TokenControl>();
             builder.UseEndpoints(endpoints => endpoints.MapControllers());
 
             builder.SetupSwaggerUi(_configuration, _environment);
