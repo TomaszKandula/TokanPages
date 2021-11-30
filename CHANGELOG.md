@@ -1,3 +1,12 @@
+# [0.29.0](https://github.com/TomaszKandula/TokanPages/compare/v0.28.0...v0.29.0) (2021-11-30)
+
+
+### Features
+
+* add error codes ([c088b9b](https://github.com/TomaszKandula/TokanPages/commit/c088b9b4b8dd5a1df165927a7b548dd1561c6b84))
+* add extension method for IEnumerable ([9410e45](https://github.com/TomaszKandula/TokanPages/commit/9410e45b95c5046cf96d179d7a4cd2def26286dd))
+* add methods to deal with user token ([ddf0964](https://github.com/TomaszKandula/TokanPages/commit/ddf09643788f8d2772d64fbc9ec109c2b524eed6))
+
 # [0.28.0](https://github.com/TomaszKandula/TokanPages/compare/v0.27.1...v0.28.0) (2021-11-20)
 
 
