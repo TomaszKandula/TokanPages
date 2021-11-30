@@ -1,24 +1,24 @@
 ﻿namespace TokanPages.UnitTests
 {
     using Moq;
+    using Microsoft.Extensions.DependencyInjection;
     using Backend.Database;
     using Backend.Shared.Models;
     using Backend.Shared.Services;
     using Backend.Core.Utilities.DateTimeService;
+    using Backend.Core.Utilities.JwtUtilityService;
     using Backend.Core.Utilities.DataUtilityService;
-    using Backend.Identity.Services.JwtUtilityService;
-    using Microsoft.Extensions.DependencyInjection;
 
     public class TestBase
     {
+        private readonly DatabaseContextFactory _databaseContextFactory;
+
         protected IDataUtilityService DataUtilityService { get; }
-        
+
         protected IJwtUtilityService JwtUtilityService { get; }
 
         protected IDateTimeService DateTimeService { get; }
-        
-        private readonly DatabaseContextFactory _databaseContextFactory;
-        
+
         protected TestBase()
         {
             DataUtilityService = new DataUtilityService();

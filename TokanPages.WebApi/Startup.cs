@@ -1,13 +1,9 @@
 namespace TokanPages.WebApi
 {
-    using System.Net;
-    using System.Linq;
-    using System.Net.Sockets;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Configuration;
-    using Microsoft.AspNetCore.HttpOverrides;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.ResponseCompression;
     using Newtonsoft.Json.Converters;
@@ -33,30 +29,9 @@ namespace TokanPages.WebApi
             services.AddCors();
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new StringEnumConverter()));
             services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
-            Dependencies.Register(services, _configuration, _environment);
-
-            if (_environment.IsDevelopment() || _environment.IsStaging())
-                services.SetupSwaggerOptions();
-
-            if (!_environment.IsProduction() && !_environment.IsStaging()) 
-                return;
-
-            // Since this app is meant to run in Docker only
-            // We get the Docker's internal network IP(s)
-            var hostName = Dns.GetHostName();
-            var addresses = Dns.GetHostEntry(hostName).AddressList
-                .Where(ipAddress => ipAddress.AddressFamily == AddressFamily.InterNetwork)
-                .ToList();
-
-            services.Configure<ForwardedHeadersOptions>(options =>
-            {
-                options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-                options.ForwardLimit = null;
-                options.RequireHeaderSymmetry = false;
-
-                foreach (var address in addresses) 
-                    options.KnownProxies.Add(address);
-            });
+            services.RegisterDependencies(_configuration, _environment);
+            services.SetupSwaggerOptions(_environment);
+            services.SetupDockerInternalNetwork();
         }
 
         public void Configure(IApplicationBuilder builder)
@@ -67,21 +42,18 @@ namespace TokanPages.WebApi
             builder.UseHttpsRedirection();
             builder.ApplyCorsPolicy(_configuration);
 
-            builder.UseMiddleware<CustomException>();
-            builder.UseMiddleware<CustomCacheControl>();
+            builder.UseMiddleware<Exceptions>();
+            builder.UseMiddleware<CacheControl>();
 
             builder.UseResponseCompression();
             builder.UseRouting();
 
             builder.UseAuthentication();
             builder.UseAuthorization();
+            builder.UseMiddleware<TokenControl>();
             builder.UseEndpoints(endpoints => endpoints.MapControllers());
 
-            if (!_environment.IsDevelopment() && !_environment.IsStaging()) 
-                return;
-
-            builder.UseSwagger();
-            builder.SetupSwaggerUi(_configuration);
+            builder.SetupSwaggerUi(_configuration, _environment);
         }
     }
 }

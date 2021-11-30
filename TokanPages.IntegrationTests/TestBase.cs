@@ -2,21 +2,27 @@ namespace TokanPages.IntegrationTests
 {
     using System;
     using System.Net;
+    using System.Linq;
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Security.Claims;
-    using Backend.Identity.Authorization;
+    using System.IdentityModel.Tokens.Jwt;
+    using Microsoft.Extensions.DependencyInjection;
+    using Backend.Database;
+    using Backend.Domain.Entities;
     using Backend.Core.Utilities.DateTimeService;
     using Backend.Database.Initializer.Data.Users;
+    using Backend.Core.Utilities.JwtUtilityService;
     using Backend.Core.Utilities.DataUtilityService;
-    using Backend.Identity.Services.JwtUtilityService;
 
     public class TestBase
     {
+        private readonly DatabaseContextFactory _databaseContextFactory;
+
         protected IDataUtilityService DataUtilityService { get; }
 
         protected IDateTimeService DateTimeService { get; }
-        
+
         protected IJwtUtilityService JwtUtilityService { get; }
 
         protected TestBase()
@@ -24,6 +30,45 @@ namespace TokanPages.IntegrationTests
             DataUtilityService = new DataUtilityService();
             DateTimeService = new DateTimeService();
             JwtUtilityService = new JwtUtilityService();
+            
+            var services = new ServiceCollection();
+            services.AddSingleton<DatabaseContextFactory>();
+            services.AddScoped(context =>
+            {
+                var factory = context.GetService<DatabaseContextFactory>();
+                return factory?.CreateDatabaseContext(string.Empty);
+            });
+
+            var serviceScope = services.BuildServiceProvider(true).CreateScope();
+            var serviceProvider = serviceScope.ServiceProvider;
+            _databaseContextFactory = serviceProvider.GetService<DatabaseContextFactory>();
+        }
+
+        private DatabaseContext GetTestDatabaseContext(string connection) =>  _databaseContextFactory.CreateDatabaseContext(connection);
+
+        protected async Task RegisterTestJwtInDatabase(string token, string connection)
+        {
+            var databaseContext = GetTestDatabaseContext(connection);
+
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(token);
+            var securityToken = (JwtSecurityToken)jsonToken;
+
+            var userId = securityToken.Claims.First(claim => claim.Type == "nameid").Value;
+            var guid = Guid.Parse(userId);
+
+            var newUserToken = new UserTokens
+            {
+                UserId = guid,
+                Token = token,
+                Expires = securityToken.ValidTo,
+                Created = securityToken.ValidFrom,
+                CreatedByIp = "127.0.0.1",
+                Command = nameof(RegisterTestJwtInDatabase)
+            };
+
+            await databaseContext.UserTokens.AddAsync(newUserToken);
+            await databaseContext.SaveChangesAsync();
         }
 
         protected static async Task EnsureStatusCode(HttpResponseMessage responseMessage, HttpStatusCode expectedStatusCode)
@@ -70,8 +115,8 @@ namespace TokanPages.IntegrationTests
             var newClaim = new ClaimsIdentity(new []
             {
                 new Claim(ClaimTypes.Name, DataUtilityService.GetRandomString()),
-                new Claim(ClaimTypes.Role, nameof(Roles.EverydayUser)),
-                new Claim(ClaimTypes.Role, nameof(Roles.GodOfAsgard)),
+                new Claim(ClaimTypes.Role, nameof(Backend.Identity.Authorization.Roles.EverydayUser)),
+                new Claim(ClaimTypes.Role, nameof(Backend.Identity.Authorization.Roles.GodOfAsgard)),
                 new Claim(ClaimTypes.NameIdentifier, userId),
                 new Claim(ClaimTypes.GivenName, userFirstName),
                 new Claim(ClaimTypes.Surname, userLastName),

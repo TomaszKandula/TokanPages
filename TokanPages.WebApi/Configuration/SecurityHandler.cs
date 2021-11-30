@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Identity.Authentication
+namespace TokanPages.WebApi.Configuration
 {
     using System.Security.Claims;
     using System.Diagnostics.CodeAnalysis;

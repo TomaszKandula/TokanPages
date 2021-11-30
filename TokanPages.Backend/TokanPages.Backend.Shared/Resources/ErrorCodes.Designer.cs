@@ -218,5 +218,17 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("COMPONENT_NOT_FOUND", resourceCulture);
             }
         }
+        
+        public static string INVALID_USER_TOKEN {
+            get {
+                return ResourceManager.GetString("INVALID_USER_TOKEN", resourceCulture);
+            }
+        }
+        
+        public static string REVOKED_USER_TOKEN {
+            get {
+                return ResourceManager.GetString("REVOKED_USER_TOKEN", resourceCulture);
+            }
+        }
     }
 }

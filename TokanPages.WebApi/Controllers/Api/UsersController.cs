@@ -5,9 +5,9 @@
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Authorization;
+    using Attributes;
     using Backend.Cqrs.Mappers;
     using Backend.Shared.Dto.Users;
-    using Backend.Identity.Attributes;
     using Backend.Identity.Authorization;
     using Backend.Cqrs.Handlers.Queries.Users;
     using Backend.Cqrs.Handlers.Commands.Users;
@@ -29,7 +29,7 @@
             => await Mediator.Send(UsersMapper.MapToReAuthenticateUserCommand(payLoad));
 
         [HttpPost]
-        [AuthorizeRoles(Roles.GodOfAsgard)]
+        [AuthorizeUser(Roles.GodOfAsgard)]
         public async Task<Unit> RevokeUserRefreshToken([FromBody] RevokeUserRefreshTokenDto payLoad)
             => await Mediator.Send(UsersMapper.MapToRevokeUserRefreshTokenCommand(payLoad));
 
@@ -49,12 +49,12 @@
             => await Mediator.Send(UsersMapper.MapToUpdateUserPasswordCommand(payLoad));
 
         [HttpGet]
-        [AuthorizeRoles(Roles.GodOfAsgard)]
+        [AuthorizeUser(Roles.GodOfAsgard)]
         public async Task<IEnumerable<GetAllUsersQueryResult>> GetAllUsers()
             => await Mediator.Send(new GetAllUsersQuery());
 
         [HttpGet("{id:guid}")]
-        [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
+        [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
         public async Task<GetUserQueryResult> GetUser([FromRoute] Guid id)
             => await Mediator.Send(new GetUserQuery { Id = id });
 
@@ -64,12 +64,12 @@
             => await Mediator.Send(UsersMapper.MapToAddUserCommand(payLoad));
 
         [HttpPost]
-        [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
+        [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
         public async Task<Unit> UpdateUser([FromBody] UpdateUserDto payLoad)
             => await Mediator.Send(UsersMapper.MapToUpdateUserCommand(payLoad));
 
         [HttpPost]
-        [AuthorizeRoles(Roles.GodOfAsgard, Roles.EverydayUser)]
+        [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
         public async Task<Unit> RemoveUser([FromBody] RemoveUserDto payLoad)
             => await Mediator.Send(UsersMapper.MapToRemoveUserCommand(payLoad));
     }
