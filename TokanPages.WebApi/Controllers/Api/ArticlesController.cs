@@ -10,22 +10,26 @@
     using Backend.Shared.Dto.Articles;
     using Backend.Identity.Authorization;
     using Backend.Cqrs.Handlers.Queries.Articles;
+    using Services.Caching.Articles;
     using MediatR;
-    
+
     [Authorize]
     public class ArticlesController : ApiBaseController
     {
-        public ArticlesController(IMediator mediator) : base(mediator) { }
+        private readonly IArticlesCache _articlesCache;
+
+        public ArticlesController(IMediator mediator, IArticlesCache articlesCache) 
+            : base(mediator) => _articlesCache = articlesCache;
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IEnumerable<GetAllArticlesQueryResult>> GetAllArticles([FromQuery] bool isPublished = true) 
-            => await Mediator.Send(new GetAllArticlesQuery { IsPublished = isPublished });
+        public async Task<IEnumerable<GetAllArticlesQueryResult>> GetAllArticles([FromQuery] bool isPublished = true, bool noCache = false)
+            => await _articlesCache.GetArticles(isPublished, noCache);
 
         [HttpGet("{id:guid}")]
         [AllowAnonymous]
-        public async Task<GetArticleQueryResult> GetArticle([FromRoute] Guid id)
-            => await Mediator.Send(new GetArticleQuery { Id = id});
+        public async Task<GetArticleQueryResult> GetArticle([FromRoute] Guid id, [FromQuery] bool noCache = false)
+            => await _articlesCache.GetArticle(id, noCache);
 
         [HttpPost]
         [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
