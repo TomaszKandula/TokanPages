@@ -15,7 +15,7 @@ namespace TokanPages.IntegrationTests.AssetsController
         public async Task GivenValidBlobName_WhenRequestingAsset_ShouldSucceed(string blobName)
         {
             // Arrange
-            var request = $"{ApiBaseUrl}/?BlobName={blobName}";
+            var request = $"{ApiBaseUrl}/?BlobName={blobName}&noCache=true";
 
             // Act
             var httpClient = _webApplicationFactory.CreateClient();
@@ -28,10 +28,10 @@ namespace TokanPages.IntegrationTests.AssetsController
         }
 
         [Fact]
-        public async Task GivenInvalidBlobName_WhenRequestingAsset_ShouldReturnNotFound()
+        public async Task GivenInvalidBlobName_WhenRequestingAsset_ShouldThrowError()
         {
             // Arrange
-            var request = $"{ApiBaseUrl}/?BlobName={DataUtilityService.GetRandomString()}";
+            var request = $"{ApiBaseUrl}/?BlobName={DataUtilityService.GetRandomString(useAlphabetOnly: true)}&noCache=true";
 
             // Act
             var httpClient = _webApplicationFactory.CreateClient();
@@ -48,7 +48,7 @@ namespace TokanPages.IntegrationTests.AssetsController
         {
             // Arrange
             var testUserId = Article1.Id;
-            var request = $"{ApiBaseUrl}/article/?Id={testUserId}&assetName=image.jpg";
+            var request = $"{ApiBaseUrl}/article/?Id={testUserId}&assetName=image.jpg&noCache=true";
             var httpClient = _webApplicationFactory.CreateClient();
 
             // Act
@@ -61,11 +61,11 @@ namespace TokanPages.IntegrationTests.AssetsController
         }
 
         [Fact]
-        public async Task GivenIncorrectId_WhenGetArticleAsset_ShouldReturnNotFound()
+        public async Task GivenIncorrectId_WhenGetArticleAsset_ShouldThrowError()
         {
             // Arrange
             var testUserId = Guid.NewGuid();
-            var request = $"{ApiBaseUrl}/article/?Id={testUserId}&assetName=image.jpg";
+            var request = $"{ApiBaseUrl}/article/?Id={testUserId}&assetName=image.jpg&noCache=true";
             var httpClient = _webApplicationFactory.CreateClient();
 
             // Act

@@ -18,7 +18,7 @@ namespace TokanPages.IntegrationTests.UsersController
         public async Task GivenValidJwt_WhenGetAllUsers_ShouldReturnCollection() 
         {
             // Arrange
-            var request = $"{ApiBaseUrl}/GetAllUsers/";
+            var request = $"{ApiBaseUrl}/GetAllUsers/?noCache=true";
             var newRequest = new HttpRequestMessage(HttpMethod.Get, request);
             
             var httpClient = _webApplicationFactory.CreateClient();

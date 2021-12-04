@@ -13,7 +13,7 @@ namespace TokanPages.IntegrationTests.MetricsController
         public async Task GivenProjectName_WhenRequestQualityGate_ShouldReturnSvgFile(string project)
         {
             // Arrange
-            var request = $"{ApiBaseUrl}/Quality/?Project={project}";
+            var request = $"{ApiBaseUrl}/Quality/?Project={project}&noCache=true";
 
             // Act
             var httpClient = _webApplicationFactory.CreateClient();
@@ -30,7 +30,7 @@ namespace TokanPages.IntegrationTests.MetricsController
         {
             // Arrange
             const string invalidProjectName = "InvalidProjectName"; 
-            var request = $"{ApiBaseUrl}/Quality/?Project={invalidProjectName}";
+            var request = $"{ApiBaseUrl}/Quality/?Project={invalidProjectName}&noCache=true";
 
             // Act
             var httpClient = _webApplicationFactory.CreateClient();
@@ -46,7 +46,7 @@ namespace TokanPages.IntegrationTests.MetricsController
         public async Task GivenEmptyProjectName_WhenRequestQualityGate_ShouldThrowError()
         {
             // Arrange
-            var request = $"{ApiBaseUrl}/Quality/?Project=";
+            var request = $"{ApiBaseUrl}/Quality/?Project=&noCache=true";
 
             // Act
             var httpClient = _webApplicationFactory.CreateClient();
@@ -56,7 +56,6 @@ namespace TokanPages.IntegrationTests.MetricsController
             // Assert
             var content = await response.Content.ReadAsStringAsync();
             content.Should().NotBeNullOrEmpty();
-            content.Should().Be("Parameter 'project' is missing");
         }
     }
 }

@@ -17,7 +17,7 @@ namespace TokanPages.IntegrationTests.SubscribersController
         {
             // Arrange
             var testUserId = Subscriber1.Id;
-            var request = $"{ApiBaseUrl}/GetSubscriber/{testUserId}/";
+            var request = $"{ApiBaseUrl}/GetSubscriber/{testUserId}/?noCache=true";
             var httpClient = _webApplicationFactory.CreateClient();
 
             // Act
@@ -33,7 +33,7 @@ namespace TokanPages.IntegrationTests.SubscribersController
         public async Task GivenIncorrectId_WhenGetSubscriber_ShouldReturnJsonObjectWithError()
         {
             // Arrange
-            var request = $"{ApiBaseUrl}/GetSubscriber/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
+            var request = $"{ApiBaseUrl}/GetSubscriber/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/?noCache=true";
             var newRequest = new HttpRequestMessage(HttpMethod.Get, request);
             
             var httpClient = _webApplicationFactory.CreateClient();

@@ -210,4 +210,7 @@
   <data name="REVOKED_USER_TOKEN" xml:space="preserve">
     <value>The token has been revoked and cannot be reused</value>
   </data>
+  <data name="INVALID_ARGUMENT" xml:space="preserve">
+    <value>Argument value cannot be null or empty</value>
+  </data>
 </root>

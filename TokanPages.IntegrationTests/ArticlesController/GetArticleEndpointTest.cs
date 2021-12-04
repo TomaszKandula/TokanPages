@@ -17,7 +17,7 @@ namespace TokanPages.IntegrationTests.ArticlesController
         {
             // Arrange
             var testUserId = Article1.Id;
-            var request = $"{ApiBaseUrl}/GetArticle/{testUserId}/";
+            var request = $"{ApiBaseUrl}/GetArticle/{testUserId}/?noCache=true";
             var httpClient = _webApplicationFactory.CreateClient();
 
             // Act
@@ -37,7 +37,7 @@ namespace TokanPages.IntegrationTests.ArticlesController
         {
             // Arrange
             var httpClient = _webApplicationFactory.CreateClient();
-            var request = $"{ApiBaseUrl}/GetArticle/{Guid.NewGuid()}/";
+            var request = $"{ApiBaseUrl}/GetArticle/{Guid.NewGuid()}/?noCache=true";
 
             // Act
             var response = await httpClient.GetAsync(request);
