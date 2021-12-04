@@ -38,7 +38,7 @@ namespace TokanPages.WebApi.Services.Caching.Subscribers
 
         public async Task<GetSubscriberQueryResult> GetSubscriber(Guid id, bool noCache = false)
         {
-            const string key = "GetSubscriberQueryResult";
+            var key = $"subscriber-{id:N}";
             if (noCache)
                 return await _mediator.Send(new GetSubscriberQuery { Id = id });
 
