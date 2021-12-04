@@ -33,8 +33,15 @@
     using Backend.Core.Utilities.JwtUtilityService;
     using Backend.Core.Utilities.DataUtilityService;
     using Backend.Cqrs.Services.UserServiceProvider;
-    using FluentValidation;
     using MediatR;
+    using FluentValidation;
+    using Services.Caching;
+    using Services.Caching.Users;
+    using Services.Caching.Assets;
+    using Services.Caching.Content;
+    using Services.Caching.Metrics;
+    using Services.Caching.Articles;
+    using Services.Caching.Subscribers;
 
     [ExcludeFromCodeCoverage]
     public static class Dependencies
@@ -60,6 +67,7 @@
         private static void SetupAppSettings(IServiceCollection services, IConfiguration configuration) 
         {
             services.AddSingleton(configuration.GetSection(nameof(AzureStorage)).Get<AzureStorage>());
+            services.AddSingleton(configuration.GetSection(nameof(AzureRedis)).Get<AzureRedis>());
             services.AddSingleton(configuration.GetSection(nameof(EmailSender)).Get<EmailSender>());
             services.AddSingleton(configuration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>());
             services.AddSingleton(configuration.GetSection(nameof(SonarQube)).Get<SonarQube>());
@@ -88,6 +96,7 @@
             services.AddHttpContextAccessor();
 
             services.AddScoped<HttpClient>();
+
             services.AddScoped<ITemplateService, TemplateService>();
             services.AddScoped<IDateTimeService, DateTimeService>();
             services.AddScoped<IJwtUtilityService, JwtUtilityService>();
@@ -97,6 +106,15 @@
             services.AddScoped<ICipheringService, CipheringService>();
             services.AddScoped<IJsonSerializer, JsonSerializer>();
             services.AddScoped<ICustomHttpClient, CustomHttpClient>();
+
+            services.AddScoped<IArticlesCache, ArticlesCache>();
+            services.AddScoped<IAssetsCache, AssetsCache>();
+            services.AddScoped<IContentCache, ContentCache>();
+            services.AddScoped<IMetricsCache, MetricsCache>();
+            services.AddScoped<ISubscribersCache, SubscribersCache>();
+            services.AddScoped<IUsersCache, UsersCache>();
+
+            services.AddScoped<IRedisDistributedCache, RedisDistributedCache>();
 
             services.AddSingleton<IAzureBlobStorageFactory>(provider =>
             {
