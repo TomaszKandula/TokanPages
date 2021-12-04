@@ -79,7 +79,7 @@ namespace TokanPages.IntegrationTests.MetricsController
         public async Task GivenProjectNameWithInvalidMetricName_WhenRequestCoverage_ShouldThrowError()
         {
             // Arrange
-            var metricName = DataUtilityService.GetRandomString();
+            var metricName = DataUtilityService.GetRandomString(useAlphabetOnly: true);
             const string projectName = "tokanpages-backend";
             var request = $"{ApiBaseUrl}/?Project={projectName}&Metric={metricName}&noCache=true";
 
