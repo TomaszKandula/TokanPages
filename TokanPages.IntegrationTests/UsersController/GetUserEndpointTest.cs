@@ -19,7 +19,7 @@ namespace TokanPages.IntegrationTests.UsersController
         {
             // Arrange
             var testUserId = User1.Id;
-            var request = $"{ApiBaseUrl}/GetUser/{testUserId}/";
+            var request = $"{ApiBaseUrl}/GetUser/{testUserId}/?noCache=true";
             var newRequest = new HttpRequestMessage(HttpMethod.Get, request);
             
             var httpClient = _webApplicationFactory.CreateClient();
@@ -47,7 +47,7 @@ namespace TokanPages.IntegrationTests.UsersController
         {
             // Arrange
             var testUserId = User1.Id;
-            var request = $"{ApiBaseUrl}/GetUser/{testUserId}/";
+            var request = $"{ApiBaseUrl}/GetUser/{testUserId}/?noCache=true";
             var newRequest = new HttpRequestMessage(HttpMethod.Get, request);
             
             var httpClient = _webApplicationFactory.CreateClient();

@@ -11,12 +11,16 @@
     using Backend.Identity.Authorization;
     using Backend.Cqrs.Handlers.Queries.Users;
     using Backend.Cqrs.Handlers.Commands.Users;
+    using Services.Caching.Users;
     using MediatR;
 
     [Authorize]
     public class UsersController : ApiBaseController
     {
-        public UsersController(IMediator mediator) : base(mediator) { }
+        private readonly IUsersCache _usersCache;
+
+        public UsersController(IMediator mediator, IUsersCache usersCache) 
+            : base(mediator) => _usersCache = usersCache;
 
         [HttpPost]
         [AllowAnonymous]
@@ -50,13 +54,13 @@
 
         [HttpGet]
         [AuthorizeUser(Roles.GodOfAsgard)]
-        public async Task<IEnumerable<GetAllUsersQueryResult>> GetAllUsers()
-            => await Mediator.Send(new GetAllUsersQuery());
+        public async Task<IEnumerable<GetAllUsersQueryResult>> GetAllUsers([FromQuery] bool noCache = false)
+            => await _usersCache.GetUsers(noCache);
 
         [HttpGet("{id:guid}")]
         [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
-        public async Task<GetUserQueryResult> GetUser([FromRoute] Guid id)
-            => await Mediator.Send(new GetUserQuery { Id = id });
+        public async Task<GetUserQueryResult> GetUser([FromRoute] Guid id, [FromQuery] bool noCache = false)
+            => await _usersCache.GetUser(id, noCache);
 
         [HttpPost]
         [AllowAnonymous]

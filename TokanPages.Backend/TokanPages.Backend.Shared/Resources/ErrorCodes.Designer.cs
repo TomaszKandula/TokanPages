@@ -230,5 +230,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("REVOKED_USER_TOKEN", resourceCulture);
             }
         }
+        
+        public static string INVALID_ARGUMENT {
+            get {
+                return ResourceManager.GetString("INVALID_ARGUMENT", resourceCulture);
+            }
+        }
     }
 }
