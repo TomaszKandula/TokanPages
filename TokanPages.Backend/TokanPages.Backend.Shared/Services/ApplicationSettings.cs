@@ -14,12 +14,15 @@ namespace TokanPages.Backend.Shared.Services
 
         public AzureStorage AzureStorage { get; }
 
+        public AzureRedis AzureRedis { get; }
+
         public SonarQube SonarQube { get; }
 
-        public ApplicationSettings(AzureStorage azureStorage, ApplicationPaths applicationPaths, IdentityServer identityServer, 
+        public ApplicationSettings(AzureStorage azureStorage, AzureRedis azureRedis, ApplicationPaths applicationPaths, IdentityServer identityServer, 
             ExpirationSettings expirationSettings, EmailSender emailSender, SonarQube sonarQube)
         {
             AzureStorage = azureStorage;
+            AzureRedis = azureRedis;
             ApplicationPaths = applicationPaths;
             IdentityServer = identityServer;
             ExpirationSettings = expirationSettings;

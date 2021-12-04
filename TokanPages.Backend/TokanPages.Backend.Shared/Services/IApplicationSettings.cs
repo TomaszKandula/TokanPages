@@ -14,6 +14,8 @@ namespace TokanPages.Backend.Shared.Services
 
         AzureStorage AzureStorage { get; }
 
+        AzureRedis AzureRedis { get; }
+
         SonarQube SonarQube { get; }
     }
 }
