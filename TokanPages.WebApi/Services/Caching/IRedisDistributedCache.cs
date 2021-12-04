@@ -28,7 +28,7 @@ namespace TokanPages.WebApi.Services.Caching
         /// <param name="value">Value to be set.</param>
         /// <param name="absoluteExpirationMinute">Duration.</param>
         /// <param name="slidingExpirationSecond">Elongation time.</param>
-        void SetObject<TEntity>(string key, TEntity value, int absoluteExpirationMinute = 1, int slidingExpirationSecond = 10);
+        void SetObject<TEntity>(string key, TEntity value, int absoluteExpirationMinute = 0, int slidingExpirationSecond = 0);
 
         /// <summary>
         /// Caches any type of data we want.
@@ -38,7 +38,7 @@ namespace TokanPages.WebApi.Services.Caching
         /// <param name="value">Value to be set.</param>
         /// <param name="absoluteExpirationMinute">Duration.</param>
         /// <param name="slidingExpirationSecond">Elongation time.</param>
-        Task SetObjectAsync<TEntity>(string key, TEntity value, int absoluteExpirationMinute = 1, int slidingExpirationSecond = 10);
+        Task SetObjectAsync<TEntity>(string key, TEntity value, int absoluteExpirationMinute = 0, int slidingExpirationSecond = 0);
 
         /// <summary>
         /// Removes from cache.
