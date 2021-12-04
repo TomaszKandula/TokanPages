@@ -38,7 +38,7 @@ namespace TokanPages.WebApi.Services.Caching.Users
 
         public async Task<GetUserQueryResult> GetUser(Guid id, bool noCache = false)
         {
-            const string key = "GetUserQueryResult";
+            var key = $"user-{id:N}";
             if (noCache)
                 return await _mediator.Send(new GetUserQuery { Id = id });
 

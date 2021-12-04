@@ -38,7 +38,7 @@ namespace TokanPages.WebApi.Services.Caching.Articles
 
         public async Task<GetArticleQueryResult> GetArticle(Guid id, bool noCache = false)
         {
-            const string key = "GetArticleQueryResult";
+            var key = $"article-{id:N}";
             if (noCache)
                 return await _mediator.Send(new GetArticleQuery { Id = id});
 
