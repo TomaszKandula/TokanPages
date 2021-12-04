@@ -11,7 +11,7 @@ namespace TokanPages.IntegrationTests.SubscribersController
         public async Task GivenNoJwt_WhenGetAllSubscribers_ShouldReturnUnauthorized()
         {
             // Arrange
-            var request = $"{ApiBaseUrl}/GetAllSubscribers/";
+            var request = $"{ApiBaseUrl}/GetAllSubscribers/?noCache=true";
             var httpClient = _webApplicationFactory.CreateClient();
 
             // Act

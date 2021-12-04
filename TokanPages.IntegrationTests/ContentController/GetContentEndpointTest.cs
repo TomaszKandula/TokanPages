@@ -17,7 +17,7 @@ namespace TokanPages.IntegrationTests.ContentController
             const string componentName = "activateAccount";
             const string componentType = "component";
             
-            var request = $"{ApiBaseUrl}/GetContent/?Name={componentName}&Type={componentType}";
+            var request = $"{ApiBaseUrl}/GetContent/?Name={componentName}&Type={componentType}&noCache=true";
             var httpClient = _webApplicationFactory.CreateClient();
 
             // Act
@@ -39,7 +39,7 @@ namespace TokanPages.IntegrationTests.ContentController
             var componentName = DataUtilityService.GetRandomString(10, "", true);
             const string componentType = "component";
             
-            var request = $"{ApiBaseUrl}/GetContent/?Name={componentName}&Type={componentType}";
+            var request = $"{ApiBaseUrl}/GetContent/?Name={componentName}&Type={componentType}&noCache=true";
             var httpClient = _webApplicationFactory.CreateClient();
 
             // Act
@@ -59,7 +59,7 @@ namespace TokanPages.IntegrationTests.ContentController
             const string componentName = "activateAccount";
             var componentType = DataUtilityService.GetRandomString(6, "", true);
             
-            var request = $"{ApiBaseUrl}/GetContent/?Name={componentName}&Type={componentType}";
+            var request = $"{ApiBaseUrl}/GetContent/?Name={componentName}&Type={componentType}&noCache=true";
             var httpClient = _webApplicationFactory.CreateClient();
 
             // Act

@@ -10,22 +10,26 @@
     using Backend.Identity.Authorization;
     using Backend.Shared.Dto.Subscribers;
     using Backend.Cqrs.Handlers.Queries.Subscribers;
+    using Services.Caching.Subscribers;
     using MediatR;
 
     [Authorize]
     public class SubscribersController : ApiBaseController
     {
-        public SubscribersController(IMediator mediator) : base(mediator) { }
+        private readonly ISubscribersCache _subscribersCache;
+
+        public SubscribersController(IMediator mediator, ISubscribersCache subscribersCache) 
+            : base(mediator) => _subscribersCache = subscribersCache;
 
         [HttpGet]
         [AuthorizeUser(Roles.GodOfAsgard)]
-        public async Task<IEnumerable<GetAllSubscribersQueryResult>> GetAllSubscribers()
-            => await Mediator.Send(new GetAllSubscribersQuery());
+        public async Task<IEnumerable<GetAllSubscribersQueryResult>> GetAllSubscribers([FromQuery] bool noCache = false)
+            => await _subscribersCache.GetSubscribers(noCache);
 
         [HttpGet("{id:guid}")]
         [AllowAnonymous]
-        public async Task<GetSubscriberQueryResult> GetSubscriber([FromRoute] Guid id)
-            => await Mediator.Send(new GetSubscriberQuery { Id = id });
+        public async Task<GetSubscriberQueryResult> GetSubscriber([FromRoute] Guid id, [FromQuery] bool noCache = false)
+            => await _subscribersCache.GetSubscriber(id, noCache);
 
         [HttpPost]
         [AllowAnonymous]
