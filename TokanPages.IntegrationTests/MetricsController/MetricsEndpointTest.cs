@@ -14,7 +14,7 @@ namespace TokanPages.IntegrationTests.MetricsController
         public async Task GivenAllFieldsAreCorrect_WhenRequestCoverage_ShouldReturnSvgFile(string project)
         {
             // Arrange
-            var request = $"{ApiBaseUrl}/?Project={project}&Metric={Constants.MetricNames.Coverage}";
+            var request = $"{ApiBaseUrl}/?Project={project}&Metric={Constants.MetricNames.Coverage}&noCache=true";
 
             // Act
             var httpClient = _webApplicationFactory.CreateClient();
@@ -30,7 +30,7 @@ namespace TokanPages.IntegrationTests.MetricsController
         public async Task GivenNoParameters_WhenRequestCoverage_ShouldThrowError()
         {
             // Arrange
-            var request = $"{ApiBaseUrl}/?Project=&Metric=";
+            var request = $"{ApiBaseUrl}/?Project=&Metric=&noCache=true";
 
             // Act
             var httpClient = _webApplicationFactory.CreateClient();
@@ -40,7 +40,6 @@ namespace TokanPages.IntegrationTests.MetricsController
             // Assert
             var content = await response.Content.ReadAsStringAsync();
             content.Should().NotBeNullOrEmpty();
-            content.Should().Be("Parameters 'project' and 'metric' are missing");
         }
 
         [Fact]
@@ -48,7 +47,7 @@ namespace TokanPages.IntegrationTests.MetricsController
         {
             // Arrange
             const string projectName = "tokanpages-backend";
-            var request = $"{ApiBaseUrl}/?Project={projectName}&Metric=";
+            var request = $"{ApiBaseUrl}/?Project={projectName}&Metric=&noCache=true";
 
             // Act
             var httpClient = _webApplicationFactory.CreateClient();
@@ -58,14 +57,13 @@ namespace TokanPages.IntegrationTests.MetricsController
             // Assert
             var content = await response.Content.ReadAsStringAsync();
             content.Should().NotBeNullOrEmpty();
-            content.Should().Be("Parameter 'metric' is missing");
         }
 
         [Fact]
         public async Task GivenMissingProjectNameWithGivenMetric_WhenRequestCoverage_ShouldThrowError()
         {
             // Arrange
-            var request = $"{ApiBaseUrl}/?Project=&Metric={Constants.MetricNames.Coverage}";
+            var request = $"{ApiBaseUrl}/?Project=&Metric={Constants.MetricNames.Coverage}&noCache=true";
 
             // Act
             var httpClient = _webApplicationFactory.CreateClient();
@@ -75,7 +73,6 @@ namespace TokanPages.IntegrationTests.MetricsController
             // Assert
             var content = await response.Content.ReadAsStringAsync();
             content.Should().NotBeNullOrEmpty();
-            content.Should().Be("Parameter 'project' is missing");
         }
 
         [Fact]
@@ -84,17 +81,16 @@ namespace TokanPages.IntegrationTests.MetricsController
             // Arrange
             var metricName = DataUtilityService.GetRandomString();
             const string projectName = "tokanpages-backend";
-            var request = $"{ApiBaseUrl}/?Project={projectName}&Metric={metricName}";
+            var request = $"{ApiBaseUrl}/?Project={projectName}&Metric={metricName}&noCache=true";
 
             // Act
             var httpClient = _webApplicationFactory.CreateClient();
             var response = await httpClient.GetAsync(request);
-            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
+            await EnsureStatusCode(response, HttpStatusCode.InternalServerError);
 
             // Assert
             var content = await response.Content.ReadAsStringAsync();
             content.Should().NotBeNullOrEmpty();
-            content.Should().Be("Parameter 'metric' is invalid.");
         }
     }
 }
