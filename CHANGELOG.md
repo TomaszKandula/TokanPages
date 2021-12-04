@@ -1,3 +1,10 @@
+## [0.30.1](https://github.com/TomaszKandula/TokanPages/compare/v0.30.0...v0.30.1) (2021-12-04)
+
+
+### Bug Fixes
+
+* change Redis Cache key to be unique for different content request ([53dde19](https://github.com/TomaszKandula/TokanPages/commit/53dde19233815c4db271d6f0a2f586bd617f7e86))
+
 # [0.30.0](https://github.com/TomaszKandula/TokanPages/compare/v0.29.1...v0.30.0) (2021-12-04)
 
 
