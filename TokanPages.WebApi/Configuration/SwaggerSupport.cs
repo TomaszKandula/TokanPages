@@ -13,7 +13,7 @@ namespace TokanPages.WebApi.Configuration
     {
         private const string APiVersion = "v1";
 
-        private const string ApiName = "TokanPages API";
+        private const string ApiName = "Tokan Pages API";
 
         private const string AuthorizationScheme = "Bearer";
 
