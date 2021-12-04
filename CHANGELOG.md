@@ -1,3 +1,17 @@
+# [0.30.0](https://github.com/TomaszKandula/TokanPages/compare/v0.29.1...v0.30.0) (2021-12-04)
+
+
+### Features
+
+* add new Error Code for invalid argument ([90866e2](https://github.com/TomaszKandula/TokanPages/commit/90866e258f684ccd5154876c5f3d9c9daefe7aa6))
+* add Redis Cache configuration to application settings ([c9ad5fa](https://github.com/TomaszKandula/TokanPages/commit/c9ad5fa0cdc620d82c75f8611fcc4f4917d26ac2))
+* add Redis Cache extension package ([7c9e337](https://github.com/TomaszKandula/TokanPages/commit/7c9e3377e7a7359930b3527737515c4015fc933c))
+* add Redis Cache implementation to services ([c6a8efb](https://github.com/TomaszKandula/TokanPages/commit/c6a8efb93dd88c1a31b091f8007c6dfd0c812373))
+* add services for caching the endpoints result content ([c75ab8d](https://github.com/TomaszKandula/TokanPages/commit/c75ab8d25eff2b2dec6e6660960062ae6eeeaf87))
+* register new services for Redis Cache ([a071167](https://github.com/TomaszKandula/TokanPages/commit/a07116700c4159aadfd9ac11363292b0815c13ec))
+* relocate content properties to separate class ([738261b](https://github.com/TomaszKandula/TokanPages/commit/738261b9bbe514baa6f00fc75750eaefcb3b8142))
+* use caching services for GET endpoints ([51f317c](https://github.com/TomaszKandula/TokanPages/commit/51f317c79a56ecec42f119638209bfa0b8d78921))
+
 ## [0.29.1](https://github.com/TomaszKandula/TokanPages/compare/v0.29.0...v0.29.1) (2021-11-30)
 
 
