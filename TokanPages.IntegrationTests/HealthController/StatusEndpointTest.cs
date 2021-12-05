@@ -11,7 +11,7 @@ namespace TokanPages.IntegrationTests.HealthController
 
     public class StatusEndpointTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
-        private const string ApiBaseUrl = "/api/v1/health";
+        private const string ApiBaseUrl = "/api/v1.0/health";
 
         private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
 

@@ -4,7 +4,7 @@ namespace TokanPages.IntegrationTests.MetricsController
 
     public partial class MetricsControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
-        private const string ApiBaseUrl = "/api/v1/metrics";
+        private const string ApiBaseUrl = "/api/v1.0/metrics";
         
         private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
 
