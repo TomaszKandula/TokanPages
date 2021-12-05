@@ -4,7 +4,7 @@ namespace TokanPages.IntegrationTests.ArticlesController
 
     public partial class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
-        private const string ApiBaseUrl = "/api/v1/articles";
+        private const string ApiBaseUrl = "/api/v1.0/articles";
 
         private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
 
