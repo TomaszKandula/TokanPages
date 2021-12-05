@@ -1,5 +1,6 @@
 namespace TokanPages.IntegrationTests
 {
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
@@ -8,6 +9,7 @@ namespace TokanPages.IntegrationTests
     using Backend.Database;
     using WebApi.Middleware;
     using WebApi.Configuration;
+    using Backend.Core.Exceptions;
 
     public class TestStartup
     {
@@ -20,6 +22,13 @@ namespace TokanPages.IntegrationTests
             services.AddCors();
             services.AddMvc().AddApplicationPart(typeof(Startup).Assembly);
             services.AddControllers();
+            services.AddApiVersioning(options =>
+            {
+                options.ReportApiVersions = true;
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.ErrorResponses = new ApiVersionException();
+            });
 
             SetupTestDatabase(services);
             services.CommonServices(_configuration);
