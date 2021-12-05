@@ -1,3 +1,14 @@
+# [0.31.0](https://github.com/TomaszKandula/TokanPages/compare/v0.30.1...v0.31.0) (2021-12-05)
+
+
+### Features
+
+* add api version in configuration/build workflow, docker ([bceb67c](https://github.com/TomaszKandula/TokanPages/commit/bceb67c91ea44be39214aa20b118b27f2cb851ce))
+* add api versioning to all controllers ([8383af4](https://github.com/TomaszKandula/TokanPages/commit/8383af4ede9d150c43c6ff58fd460867593dc308))
+* add error code for invalid api version ([6aac3a6](https://github.com/TomaszKandula/TokanPages/commit/6aac3a6bf9b73f5e53894e9b2a0561e5e0789314))
+* add new Api version exception ([45d1705](https://github.com/TomaszKandula/TokanPages/commit/45d170532738fe15c8196a28e7381a697baba28b))
+* configure startup fpr api versioning ([61fa9ba](https://github.com/TomaszKandula/TokanPages/commit/61fa9babe1d9ae22401bac9c2b1742aa53c94314))
+
 ## [0.30.1](https://github.com/TomaszKandula/TokanPages/compare/v0.30.0...v0.30.1) (2021-12-04)
 
 
