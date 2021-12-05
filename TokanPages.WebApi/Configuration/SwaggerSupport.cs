@@ -11,7 +11,7 @@ namespace TokanPages.WebApi.Configuration
     [ExcludeFromCodeCoverage]
     public static class SwaggerSupport
     {
-        private const string APiVersion = "v1";
+        private const string ApiVersion = "v1";
 
         private const string ApiName = "Tokan Pages API";
 
@@ -24,10 +24,10 @@ namespace TokanPages.WebApi.Configuration
 
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc(APiVersion, new OpenApiInfo
+                options.SwaggerDoc(ApiVersion, new OpenApiInfo
                 {
                     Title = ApiName, 
-                    Version = APiVersion
+                    Version = ApiVersion
                 });
 
                 options.AddSecurityDefinition(AuthorizationScheme, new OpenApiSecurityScheme
@@ -65,7 +65,7 @@ namespace TokanPages.WebApi.Configuration
             builder.UseSwagger();
             builder.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint($"/swagger/{APiVersion}/swagger.json", ApiName);
+                options.SwaggerEndpoint($"/swagger/{ApiVersion}/swagger.json", ApiName);
                 options.OAuthAppName(ApiName);
                 options.OAuthClientSecret(configuration.GetSection("IdentityServer")["WebSecret"]);
             });

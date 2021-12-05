@@ -1,15 +1,17 @@
 namespace TokanPages.WebApi
 {
     using System.Diagnostics.CodeAnalysis;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.ResponseCompression;
-    using Newtonsoft.Json.Converters;
+    using Serilog;
     using Middleware;
     using Configuration;
-    using Serilog;
+    using Backend.Core.Exceptions;
+    using Newtonsoft.Json.Converters;
 
     [ExcludeFromCodeCoverage]
     public class Startup
@@ -28,6 +30,13 @@ namespace TokanPages.WebApi
         {
             services.AddCors();
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new StringEnumConverter()));
+            services.AddApiVersioning(options =>
+            {
+                options.ReportApiVersions = true;
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.ErrorResponses = new ApiVersionException();
+            });
             services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
             services.RegisterDependencies(_configuration, _environment);
             services.SetupRedisCache(_configuration);

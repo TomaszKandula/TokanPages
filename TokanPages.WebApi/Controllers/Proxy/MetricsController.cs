@@ -2,8 +2,10 @@ namespace TokanPages.WebApi.Controllers.Proxy
 {
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Http;
     using Services.Caching.Metrics;
 
+    [ApiVersion("1.0")]
     public class Metrics : ProxyBaseController
     {
         private readonly IMetricsCache _metricsCache;
@@ -19,6 +21,7 @@ namespace TokanPages.WebApi.Controllers.Proxy
         /// <param name="noCache">Allows to disable response cache.</param>
         /// <returns>SonarQube badge</returns>
         [HttpGet]
+        [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetMetrics([FromQuery] string project, string metric, bool noCache = false)
             => await _metricsCache.GetMetrics(project, metric, noCache);
 
@@ -29,6 +32,7 @@ namespace TokanPages.WebApi.Controllers.Proxy
         /// <param name="noCache">Allows to disable response cache.</param>
         /// <returns>SonarQube badge</returns>
         [HttpGet("Quality")]
+        [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetQualityGate([FromQuery] string project, bool noCache = false)
             => await _metricsCache.GetQualityGate(project, noCache);
     }
