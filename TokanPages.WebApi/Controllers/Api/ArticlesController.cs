@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Authorization;
     using Attributes;
     using Backend.Cqrs.Mappers;
@@ -14,6 +15,7 @@
     using MediatR;
 
     [Authorize]
+    [ApiVersion("1.0")]
     public class ArticlesController : ApiBaseController
     {
         private readonly IArticlesCache _articlesCache;
@@ -23,41 +25,49 @@
 
         [HttpGet]
         [AllowAnonymous]
+        [ProducesResponseType(typeof(IEnumerable<GetAllArticlesQueryResult>), StatusCodes.Status200OK)]
         public async Task<IEnumerable<GetAllArticlesQueryResult>> GetAllArticles([FromQuery] bool isPublished = true, bool noCache = false)
             => await _articlesCache.GetArticles(isPublished, noCache);
 
         [HttpGet("{id:guid}")]
         [AllowAnonymous]
+        [ProducesResponseType(typeof(GetArticleQueryResult), StatusCodes.Status200OK)]
         public async Task<GetArticleQueryResult> GetArticle([FromRoute] Guid id, [FromQuery] bool noCache = false)
             => await _articlesCache.GetArticle(id, noCache);
 
         [HttpPost]
         [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+        [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
         public async Task<Guid> AddArticle([FromBody] AddArticleDto payLoad) 
             => await Mediator.Send(ArticlesMapper.MapToAddArticleCommand(payLoad));
 
         [HttpPost]
         [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+        [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
         public async Task<Unit> UpdateArticleContent([FromBody] UpdateArticleContentDto payLoad)
             => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payLoad));
 
         [HttpPost]
         [AllowAnonymous]
+        [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
         public async Task<Unit> UpdateArticleCount([FromBody] UpdateArticleCountDto payLoad)
             => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payLoad));
 
         [HttpPost]
         [AllowAnonymous]
+        [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
         public async Task<Unit> UpdateArticleLikes([FromBody] UpdateArticleLikesDto payLoad)
             => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payLoad));
 
         [HttpPost]
         [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+        [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
         public async Task<Unit> UpdateArticleVisibility([FromBody] UpdateArticleVisibilityDto payLoad)
             => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payLoad));
 
         [HttpPost]
         [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+        [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
         public async Task<Unit> RemoveArticle([FromBody] RemoveArticleDto payLoad)
             => await Mediator.Send(ArticlesMapper.MapToRemoveArticleCommand(payLoad));
     }

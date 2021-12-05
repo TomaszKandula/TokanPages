@@ -4,7 +4,7 @@ namespace TokanPages.IntegrationTests.UsersController
 
     public partial class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
-        private const string ApiBaseUrl = "/api/v1/users";
+        private const string ApiBaseUrl = "/api/v1.0/users";
         
         private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
 

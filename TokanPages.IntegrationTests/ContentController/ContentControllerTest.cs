@@ -4,7 +4,7 @@ namespace TokanPages.IntegrationTests.ContentController
 
     public partial class ContentControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
-        private const string ApiBaseUrl = "/api/v1/content";
+        private const string ApiBaseUrl = "/api/v1.0/content";
 
         private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
 

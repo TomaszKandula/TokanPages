@@ -65,6 +65,7 @@ jobs:
         APP_VERSION=${{ needs.versioning.outputs.outputs1 }}
         BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
         docker build . \
+        --build-arg "API_VERSION=${{ secrets.API_VERSION }}" \
         --build-arg "APP_VERSION=$APP_VERSION" \
         --build-arg "APP_DATE_TIME=$BUILD_TIMESTAMP" \
         --build-arg "APP_FRONTEND=${{ secrets.APP_FRONTEND_PRODUCTION }}" \

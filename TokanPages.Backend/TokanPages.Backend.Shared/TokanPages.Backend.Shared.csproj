@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Resources\ErrorCodes.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

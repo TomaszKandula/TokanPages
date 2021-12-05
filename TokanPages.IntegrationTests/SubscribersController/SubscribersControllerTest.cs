@@ -4,7 +4,7 @@ namespace TokanPages.IntegrationTests.SubscribersController
 
     public partial class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
     {
-        private const string ApiBaseUrl = "/api/v1/subscribers";
+        private const string ApiBaseUrl = "/api/v1.0/subscribers";
         
         private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
 
