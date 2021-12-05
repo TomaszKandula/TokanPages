@@ -1,3 +1,4 @@
+API_VERSION="1.0"
 APP_VERSION="0.0.1-local-dev"
 BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
 ALLOWED_ORIGINS="http://localnode:5000/;"
@@ -9,6 +10,7 @@ SONAR_KEY=""
 SONAR_HOST=""
 
 docker build . \
+  --build-arg "API_VERSION=$API_VERSION" \
   --build-arg "APP_VERSION=$APP_VERSION" \
   --build-arg "APP_DATE_TIME=$BUILD_TIMESTAMP" \
   --build-arg "APP_FRONTEND=$APP_FRONTEND" \
