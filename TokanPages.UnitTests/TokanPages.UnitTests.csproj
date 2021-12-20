@@ -2,9 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <IsPackable>false</IsPackable>
     <UserSecretsId>48baa36e-195a-4d4d-a0e1-1b8e582f0692</UserSecretsId>
-    <LangVersion>9</LangVersion>
+    <LangVersion>10</LangVersion>
+    <IsPackable>false</IsPackable>
+    <IsPublishable>false</IsPublishable>
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
