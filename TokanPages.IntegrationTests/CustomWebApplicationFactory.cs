@@ -27,7 +27,7 @@
                     var startupAssembly = typeof(TTestStartup).GetTypeInfo().Assembly;
                     var testConfig = new ConfigurationBuilder()
                         .AddJsonFile("appsettings.Staging.json", optional: true, reloadOnChange: true)
-                        .AddUserSecrets(startupAssembly)
+                        .AddUserSecrets(startupAssembly, true)
                         .AddEnvironmentVariables()
                         .Build();
 
