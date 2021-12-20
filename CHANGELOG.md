@@ -1,3 +1,11 @@
+# [0.32.0](https://github.com/TomaszKandula/TokanPages/compare/v0.31.0...v0.32.0) (2021-12-20)
+
+
+### Features
+
+* after migration to NET6, set user secrets to be optional explicite ([9b163cd](https://github.com/TomaszKandula/TokanPages/commit/9b163cd9387e737a2099338aeaeb5ff11320fba7))
+* upgrade to NET6, upgrade all libraries ([ca4ebef](https://github.com/TomaszKandula/TokanPages/commit/ca4ebefbfad583926538a70eae224df91272a479))
+
 # [0.31.0](https://github.com/TomaszKandula/TokanPages/compare/v0.30.1...v0.31.0) (2021-12-05)
 
 
