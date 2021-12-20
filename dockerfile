@@ -1,5 +1,5 @@
 # 1 - Build .NET Core WebAPI
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /app
 
 # Copy csproj and restore as distinct layers
@@ -14,7 +14,7 @@ RUN dotnet test -c Release --no-build --no-restore
 RUN dotnet publish -c Release -o out
 
 # 2 - Build runtime image
-FROM mcr.microsoft.com/dotnet/sdk:5.0
+FROM mcr.microsoft.com/dotnet/sdk:6.0
 ENV ASPNETCORE_URLS=http://+:80  
 EXPOSE 80
 WORKDIR /app
