@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40</UserSecretsId>
     <LangVersion>9</LangVersion>
     <Nullable>disable</Nullable>
@@ -31,9 +31,9 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.5">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.13">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
