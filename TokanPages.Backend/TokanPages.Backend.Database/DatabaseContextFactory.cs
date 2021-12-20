@@ -26,7 +26,7 @@
             var builder = new ConfigurationBuilder()
                 .AddJsonFile($"appsettings.json", true, true)
                 .AddJsonFile($"appsettings.{environment}.json", true, true)
-                .AddUserSecrets<DatabaseContext>()
+                .AddUserSecrets<DatabaseContext>(optional: true)
                 .AddEnvironmentVariables()
                 .Build();
 
