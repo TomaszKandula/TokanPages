@@ -159,8 +159,8 @@ namespace TokanPages.UnitTests.Services
             var result = DataUtilityService.GetRandomEnum<DayOfWeek>();
 
             // Assert
-            result.Should().NotBeNull();
-            result.Should().BeOfType<DayOfWeek>();
+            result.Should().NotBe(null);
+            result.GetType().Should().Be<DayOfWeek>();
         }
 
         [Fact]
