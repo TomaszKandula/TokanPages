@@ -1,3 +1,11 @@
+# [0.33.0](https://github.com/TomaszKandula/TokanPages/compare/v0.32.0...v0.33.0) (2021-12-20)
+
+
+### Features
+
+* switch language version to 10, disable publishing ([ba1a3d6](https://github.com/TomaszKandula/TokanPages/commit/ba1a3d6483c7bf36aa05e44df3b67a2aa4158c1a))
+* switch to C# 10 ([38fbecc](https://github.com/TomaszKandula/TokanPages/commit/38fbecc883643e71cb889b44d810041a50a22b46))
+
 # [0.32.0](https://github.com/TomaszKandula/TokanPages/compare/v0.31.0...v0.32.0) (2021-12-20)
 
 
