@@ -7,9 +7,13 @@ namespace TokanPages.Backend.Core.Utilities.JwtUtilityService
     using System.IdentityModel.Tokens.Jwt;
     using Microsoft.IdentityModel.Tokens;
     using Models;
-    
+
     public class JwtUtilityService : IJwtUtilityService
     {
+        private readonly RandomNumberGenerator _numberGenerator;
+
+        public JwtUtilityService() => _numberGenerator = RandomNumberGenerator.Create();
+
         /// <summary>
         /// Returns a new security token with given claims and expiration date and time.
         /// </summary>
@@ -47,10 +51,9 @@ namespace TokanPages.Backend.Core.Utilities.JwtUtilityService
             if (expiresIn == 0)
                 throw new ArgumentException($"Argument '{nameof(expiresIn)}' cannot be zero.");
 
-            using var rngCryptoServiceProvider = new RNGCryptoServiceProvider();
             var randomBytes = new byte[256];
-            
-            rngCryptoServiceProvider.GetBytes(randomBytes);
+            _numberGenerator.GetBytes(randomBytes);
+
             var refreshToken = new RefreshToken
             {
                 Token = Convert.ToBase64String(randomBytes),
