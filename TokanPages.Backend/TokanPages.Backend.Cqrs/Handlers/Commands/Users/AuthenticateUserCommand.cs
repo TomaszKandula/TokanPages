@@ -1,11 +1,10 @@
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
+namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
+
+using MediatR;
+
+public class AuthenticateUserCommand : IRequest<AuthenticateUserCommandResult>
 {
-    using MediatR;
+    public string EmailAddress { get; set; }
 
-    public class AuthenticateUserCommand : IRequest<AuthenticateUserCommandResult>
-    {
-        public string EmailAddress { get; set; }
-
-        public string Password { get; set; }        
-    }
+    public string Password { get; set; }        
 }

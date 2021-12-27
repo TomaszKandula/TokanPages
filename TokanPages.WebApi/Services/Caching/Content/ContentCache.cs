@@ -1,34 +1,35 @@
-namespace TokanPages.WebApi.Services.Caching.Content
+namespace TokanPages.WebApi.Services.Caching.Content;
+
+using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
+using Backend.Cqrs.Handlers.Queries.Content;
+using MediatR;
+
+[ExcludeFromCodeCoverage]
+public class ContentCache : IContentCache
 {
-    using System.Threading.Tasks;
-    using Backend.Cqrs.Handlers.Queries.Content;
-    using MediatR;
+    private readonly IRedisDistributedCache _redisDistributedCache;
 
-    public class ContentCache : IContentCache
+    private readonly IMediator _mediator;
+
+    public ContentCache(IRedisDistributedCache redisDistributedCache, IMediator mediator)
     {
-        private readonly IRedisDistributedCache _redisDistributedCache;
+        _redisDistributedCache = redisDistributedCache;
+        _mediator = mediator;
+    }
 
-        private readonly IMediator _mediator;
+    public async Task<GetContentQueryResult> GetContent(string type, string name, string language, bool noCache = false)
+    {
+        var key = $"{type}/{name}/{language}";
+        if (noCache)
+            return await _mediator.Send(new GetContentQuery { Type = type, Name = name, Language = language });
 
-        public ContentCache(IRedisDistributedCache redisDistributedCache, IMediator mediator)
-        {
-            _redisDistributedCache = redisDistributedCache;
-            _mediator = mediator;
-        }
+        var value = await _redisDistributedCache.GetObjectAsync<GetContentQueryResult>(key);
+        if (value is not null) return value;
 
-        public async Task<GetContentQueryResult> GetContent(string type, string name, string language, bool noCache = false)
-        {
-            var key = $"{type}/{name}/{language}";
-            if (noCache)
-                return await _mediator.Send(new GetContentQuery { Type = type, Name = name, Language = language });
+        value = await _mediator.Send(new GetContentQuery { Type = type, Name = name, Language = language });
+        await _redisDistributedCache.SetObjectAsync(key, value);
 
-            var value = await _redisDistributedCache.GetObjectAsync<GetContentQueryResult>(key);
-            if (value is not null) return value;
-
-            value = await _mediator.Send(new GetContentQuery { Type = type, Name = name, Language = language });
-            await _redisDistributedCache.SetObjectAsync(key, value);
-
-            return value;
-        }
+        return value;
     }
 }

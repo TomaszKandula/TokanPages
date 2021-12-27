@@ -1,9 +1,8 @@
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
-{
-    using MediatR;
+namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
-    public class RevokeUserRefreshTokenCommand : IRequest<Unit>
-    {
-        public string RefreshToken { get; set; }
-    }
+using MediatR;
+
+public class RevokeUserRefreshTokenCommand : IRequest<Unit>
+{
+    public string RefreshToken { get; set; }
 }

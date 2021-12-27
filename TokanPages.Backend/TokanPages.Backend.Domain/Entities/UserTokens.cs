@@ -1,39 +1,38 @@
-namespace TokanPages.Backend.Domain.Entities
+namespace TokanPages.Backend.Domain.Entities;
+
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.ComponentModel.DataAnnotations;
+
+[ExcludeFromCodeCoverage]
+public class UserTokens : Entity<Guid>
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.ComponentModel.DataAnnotations;
+    public Guid UserId { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class UserTokens : Entity<Guid>
-    {
-        public Guid UserId { get; set; }
+    [Required]
+    public string Token { get; set; }
 
-        [Required]
-        public string Token { get; set; }
+    [Required]
+    public DateTime Expires { get; set; }
 
-        [Required]
-        public DateTime Expires { get; set; }
+    [Required]
+    public DateTime Created { get; set; }
 
-        [Required]
-        public DateTime Created { get; set; }
+    [Required]
+    [MaxLength(15)]
+    public string CreatedByIp { get; set; }
 
-        [Required]
-        [MaxLength(15)]
-        public string CreatedByIp { get; set; }
+    [Required]
+    [MaxLength(255)]
+    public string Command { get; set; }
 
-        [Required]
-        [MaxLength(255)]
-        public string Command { get; set; }
+    public DateTime? Revoked { get; set; }
 
-        public DateTime? Revoked { get; set; }
+    [MaxLength(15)]
+    public string RevokedByIp { get; set; }
 
-        [MaxLength(15)]
-        public string RevokedByIp { get; set; }
+    [MaxLength(255)]
+    public string ReasonRevoked { get; set; }
 
-        [MaxLength(255)]
-        public string ReasonRevoked { get; set; }
-
-        public Users User { get; set; }
-    }
+    public Users User { get; set; }
 }

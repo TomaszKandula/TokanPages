@@ -1,46 +1,45 @@
-namespace TokanPages.UnitTests.Validators.Users
+namespace TokanPages.UnitTests.Validators.Users;
+
+using Xunit;
+using FluentAssertions;
+using System;
+using Backend.Shared.Resources;
+using Backend.Cqrs.Handlers.Commands.Users;
+
+public class ReAuthenticateUserCommandValidatorTest : TestBase
 {
-    using Xunit;
-    using FluentAssertions;
-    using System;
-    using Backend.Shared.Resources;
-    using Backend.Cqrs.Handlers.Commands.Users;
-
-    public class ReAuthenticateUserCommandValidatorTest : TestBase
+    [Fact]
+    public void GivenUserId_WhenReAuthenticateUser_ShouldSucceed()
     {
-        [Fact]
-        public void GivenUserId_WhenReAuthenticateUser_ShouldSucceed()
+        // Arrange
+        var reAuthenticateUserCommand = new ReAuthenticateUserCommand
         {
-            // Arrange
-            var reAuthenticateUserCommand = new ReAuthenticateUserCommand
-            {
-                Id = Guid.NewGuid()
-            };
+            Id = Guid.NewGuid()
+        };
 
-            // Act
-            var reAuthenticateUserCommandValidator = new ReAuthenticateUserCommandValidator();
-            var result = reAuthenticateUserCommandValidator.Validate(reAuthenticateUserCommand);
+        // Act
+        var reAuthenticateUserCommandValidator = new ReAuthenticateUserCommandValidator();
+        var result = reAuthenticateUserCommandValidator.Validate(reAuthenticateUserCommand);
 
-            // Assert
-            result.Errors.Should().BeEmpty();
-        }
+        // Assert
+        result.Errors.Should().BeEmpty();
+    }
 
-        [Fact]
-        public void GivenEmptyUserId_WhenReAuthenticateUser_ShouldThrowError()
+    [Fact]
+    public void GivenEmptyUserId_WhenReAuthenticateUser_ShouldThrowError()
+    {
+        // Arrange
+        var reAuthenticateUserCommand = new ReAuthenticateUserCommand
         {
-            // Arrange
-            var reAuthenticateUserCommand = new ReAuthenticateUserCommand
-            {
-                Id = Guid.Empty
-            };
+            Id = Guid.Empty
+        };
 
-            // Act
-            var reAuthenticateUserCommandValidator = new ReAuthenticateUserCommandValidator();
-            var result = reAuthenticateUserCommandValidator.Validate(reAuthenticateUserCommand);
+        // Act
+        var reAuthenticateUserCommandValidator = new ReAuthenticateUserCommandValidator();
+        var result = reAuthenticateUserCommandValidator.Validate(reAuthenticateUserCommand);
 
-            // Assert
-            result.Errors.Count.Should().Be(1);
-            result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-        }
+        // Assert
+        result.Errors.Count.Should().Be(1);
+        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
     }
 }

@@ -1,18 +1,17 @@
-namespace TokanPages.Backend.Core.Models
+namespace TokanPages.Backend.Core.Models;
+
+using System;
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class DateRangeValidator
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
+    public DateTime StartDate { get; }
+    public DateTime EndDate { get; }
 
-    [ExcludeFromCodeCoverage]
-    public class DateRangeValidator
+    public DateRangeValidator(DateTime startDate, DateTime endDate)
     {
-        public DateTime StartDate { get; }
-        public DateTime EndDate { get; }
-
-        public DateRangeValidator(DateTime startDate, DateTime endDate)
-        {
-            StartDate = startDate;
-            EndDate = endDate;
-        }
+        StartDate = startDate;
+        EndDate = endDate;
     }
 }

@@ -1,16 +1,15 @@
-﻿namespace TokanPages.Backend.Shared.Models
+﻿namespace TokanPages.Backend.Shared.Models;
+
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class ActionResult
 {
-    using System.Diagnostics.CodeAnalysis;
+    public bool IsSucceeded { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class ActionResult
-    {
-        public bool IsSucceeded { get; set; }
-
-        public string ErrorCode { get; set; }
+    public string ErrorCode { get; set; }
         
-        public string ErrorDesc { get; set; }
+    public string ErrorDesc { get; set; }
         
-        public string InnerMessage { get; set; }
-    }
+    public string InnerMessage { get; set; }
 }

@@ -1,15 +1,14 @@
-﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
+
+using System;
+
+public class GetAllSubscribersQueryResult
 {
-    using System;
+    public Guid Id { get; set; }
 
-    public class GetAllSubscribersQueryResult
-    {
-        public Guid Id { get; set; }
+    public string Email { get; set; }
 
-        public string Email { get; set; }
+    public bool IsActivated { get; set; }
 
-        public bool IsActivated { get; set; }
-
-        public int NewsletterCount { get; set; }
-    }
+    public int NewsletterCount { get; set; }
 }

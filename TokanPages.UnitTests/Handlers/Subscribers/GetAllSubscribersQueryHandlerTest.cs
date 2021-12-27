@@ -1,59 +1,58 @@
-﻿namespace TokanPages.UnitTests.Handlers.Subscribers
-{   
-    using Moq;
-    using Xunit;
-    using FluentAssertions;
-    using System;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
-    using Backend.Core.Utilities.LoggerService;
-    using Backend.Cqrs.Handlers.Queries.Subscribers;
+﻿namespace TokanPages.UnitTests.Handlers.Subscribers;
 
-    public class GetAllSubscribersQueryHandlerTest : TestBase
+using Moq;
+using Xunit;
+using FluentAssertions;
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using Backend.Core.Utilities.LoggerService;
+using Backend.Cqrs.Handlers.Queries.Subscribers;
+
+public class GetAllSubscribersQueryHandlerTest : TestBase
+{
+    [Fact]
+    public async Task WhenGetAllSubscribers_ShouldReturnCollection()
     {
-        [Fact]
-        public async Task WhenGetAllSubscribers_ShouldReturnCollection()
+        // Arrange
+        var databaseContext = GetTestDatabaseContext();
+        var mockedLogger = new Mock<ILoggerService>();
+
+        var getAllSubscribersQuery = new GetAllSubscribersQuery();
+        var getAllSubscribersQueryHandler = new GetAllSubscribersQueryHandler(databaseContext, mockedLogger.Object);
+
+        var subscribers = new List<TokanPages.Backend.Domain.Entities.Subscribers>
         {
-            // Arrange
-            var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILoggerService>();
-
-            var getAllSubscribersQuery = new GetAllSubscribersQuery();
-            var getAllSubscribersQueryHandler = new GetAllSubscribersQueryHandler(databaseContext, mockedLogger.Object);
-
-            var subscribers = new List<TokanPages.Backend.Domain.Entities.Subscribers>
+            new ()
             {
-                new ()
-                {
-                    Email = DataUtilityService.GetRandomEmail(),
-                    IsActivated = true,
-                    Count = 10,
-                    Registered = DateTime.Now,
-                    LastUpdated = null
-                },
-                new ()
-                {
-                    Email = DataUtilityService.GetRandomEmail(),
-                    IsActivated = true,
-                    Count = 100,
-                    Registered = DateTime.Now,
-                    LastUpdated = null
-                }
-            };
+                Email = DataUtilityService.GetRandomEmail(),
+                IsActivated = true,
+                Count = 10,
+                Registered = DateTime.Now,
+                LastUpdated = null
+            },
+            new ()
+            {
+                Email = DataUtilityService.GetRandomEmail(),
+                IsActivated = true,
+                Count = 100,
+                Registered = DateTime.Now,
+                LastUpdated = null
+            }
+        };
             
-            await databaseContext.Subscribers.AddRangeAsync(subscribers);
-            await databaseContext.SaveChangesAsync();
+        await databaseContext.Subscribers.AddRangeAsync(subscribers);
+        await databaseContext.SaveChangesAsync();
 
-            // Act
-            var result = (await getAllSubscribersQueryHandler
+        // Act
+        var result = (await getAllSubscribersQueryHandler
                 .Handle(getAllSubscribersQuery, CancellationToken.None))
-                .ToList();
+            .ToList();
 
-            // Assert
-            result.Should().NotBeNull();
-            result.Should().HaveCount(2);
-        }
+        // Assert
+        result.Should().NotBeNull();
+        result.Should().HaveCount(2);
     }
 }

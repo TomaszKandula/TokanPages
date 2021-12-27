@@ -1,20 +1,19 @@
-﻿namespace TokanPages.Backend.Shared.Models
+﻿namespace TokanPages.Backend.Shared.Models;
+
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class ApplicationPaths
 {
-    using System.Diagnostics.CodeAnalysis;
+    public string UpdateSubscriberPath { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class ApplicationPaths
-    {
-        public string UpdateSubscriberPath { get; set; }
-
-        public string UnsubscribePath { get; set; }
+    public string UnsubscribePath { get; set; }
         
-        public string UpdatePasswordPath { get; set; }
+    public string UpdatePasswordPath { get; set; }
         
-        public string ActivationPath { get; set; }
+    public string ActivationPath { get; set; }
         
-        public string DevelopmentOrigin { get; set; }
+    public string DevelopmentOrigin { get; set; }
         
-        public string DeploymentOrigin { get; set; }
-    }
+    public string DeploymentOrigin { get; set; }
 }

@@ -1,21 +1,20 @@
-namespace TokanPages.Backend.Shared.Services
+namespace TokanPages.Backend.Shared.Services;
+
+using Models;
+
+public interface IApplicationSettings
 {
-    using Models;
+    ApplicationPaths ApplicationPaths { get; }
 
-    public interface IApplicationSettings
-    {
-        ApplicationPaths ApplicationPaths { get; }
+    IdentityServer IdentityServer { get; }
 
-        IdentityServer IdentityServer { get; }
+    ExpirationSettings ExpirationSettings { get; }
 
-        ExpirationSettings ExpirationSettings { get; }
+    EmailSender EmailSender { get; }
 
-        EmailSender EmailSender { get; }
+    AzureStorage AzureStorage { get; }
 
-        AzureStorage AzureStorage { get; }
+    AzureRedis AzureRedis { get; }
 
-        AzureRedis AzureRedis { get; }
-
-        SonarQube SonarQube { get; }
-    }
+    SonarQube SonarQube { get; }
 }

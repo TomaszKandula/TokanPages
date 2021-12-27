@@ -1,10 +1,9 @@
-﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
-{
-    using System;
-    using MediatR;
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
-    public class RemoveArticleCommand : IRequest<Unit>
-    {
-        public Guid Id { get; set; }
-    }
+using System;
+using MediatR;
+
+public class RemoveArticleCommand : IRequest<Unit>
+{
+    public Guid Id { get; set; }
 }

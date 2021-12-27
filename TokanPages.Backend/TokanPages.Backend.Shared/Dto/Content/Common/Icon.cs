@@ -1,12 +1,11 @@
-namespace TokanPages.Backend.Shared.Dto.Content.Common
+namespace TokanPages.Backend.Shared.Dto.Content.Common;
+
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class Icon
 {
-    using System.Diagnostics.CodeAnalysis;
+    public string Name { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class Icon
-    {
-        public string Name { get; set; }
-
-        public string Link { get; set; }
-    }
+    public string Link { get; set; }
 }

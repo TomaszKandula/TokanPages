@@ -1,11 +1,10 @@
-﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
+
+using System;
+
+public class GetSubscriberQueryResult : GetAllSubscribersQueryResult
 {
-    using System;
+    public DateTime Registered { get; set; }
 
-    public class GetSubscriberQueryResult : GetAllSubscribersQueryResult
-    {
-        public DateTime Registered { get; set; }
-
-        public DateTime? LastUpdated { get; set; }
-    }
+    public DateTime? LastUpdated { get; set; }
 }
