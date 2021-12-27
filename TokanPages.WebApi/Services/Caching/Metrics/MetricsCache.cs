@@ -1,6 +1,5 @@
 namespace TokanPages.WebApi.Services.Caching.Metrics
 {
-    using System;
     using System.Net;
     using System.Text;
     using System.Linq;
@@ -118,7 +117,7 @@ namespace TokanPages.WebApi.Services.Caching.Metrics
                 ? ErrorCodes.ERROR_UNEXPECTED 
                 : Encoding.Default.GetString(results.Content);
 
-            throw new Exception(message);
+            throw new BusinessException(message, $"Received null content with status code: {results.StatusCode}");
         }
     }
 }
