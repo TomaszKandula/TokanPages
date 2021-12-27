@@ -1,5 +1,6 @@
 namespace TokanPages.WebApi.Services.Caching.Metrics;
 
+using System;
 using System.Net;
 using System.Text;
 using System.Linq;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Backend.Core.Exceptions;
 using Backend.Shared.Services;
 using Backend.Shared.Resources;
+using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.CustomHttpClient;
 using Backend.Core.Utilities.CustomHttpClient.Models;
 using Backend.Core.Utilities.CustomHttpClient.Authentication;
@@ -22,13 +24,16 @@ public class MetricsCache : IMetricsCache
 
     private readonly ICustomHttpClient _customHttpClient;
 
+    private readonly ILoggerService _loggerService;
+
     private readonly IApplicationSettings _applicationSettings;
 
     public MetricsCache(ICustomHttpClient customHttpClient, IRedisDistributedCache redisDistributedCache, 
-        IApplicationSettings applicationSettings)
+        ILoggerService loggerService, IApplicationSettings applicationSettings)
     {
         _customHttpClient = customHttpClient;
         _redisDistributedCache = redisDistributedCache;
+        _loggerService = loggerService;
         _applicationSettings = applicationSettings;
     }
 
@@ -117,6 +122,7 @@ public class MetricsCache : IMetricsCache
             ? ErrorCodes.ERROR_UNEXPECTED 
             : Encoding.Default.GetString(results.Content);
 
-        throw new BusinessException(message, $"Received null content with status code: {results.StatusCode}");
+        _loggerService.LogError($"Received null content with status code: {results.StatusCode}");
+        throw new Exception(message);
     }
 }
