@@ -11,7 +11,7 @@ using Core.Utilities.LoggerService;
 using Services.UserServiceProvider;
 using MediatR;
     
-public class RevokeUserRefreshTokenCommandHandler : TemplateHandler<RevokeUserRefreshTokenCommand, Unit>
+public class RevokeUserRefreshTokenCommandHandler : Cqrs.RequestHandler<RevokeUserRefreshTokenCommand, Unit>
 {
     private readonly IUserServiceProvider _userServiceProvider;
         

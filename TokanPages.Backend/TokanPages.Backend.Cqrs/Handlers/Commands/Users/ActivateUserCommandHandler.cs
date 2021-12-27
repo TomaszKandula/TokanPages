@@ -10,7 +10,7 @@ using Shared.Resources;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
     
-public class ActivateUserCommandHandler : TemplateHandler<ActivateUserCommand, Unit>
+public class ActivateUserCommandHandler : Cqrs.RequestHandler<ActivateUserCommand, Unit>
 {
     private readonly IDateTimeService _dateTimeService;
        

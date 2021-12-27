@@ -12,7 +12,7 @@ using Core.Utilities.LoggerService;
 using Services.UserServiceProvider;
 using MediatR;
 
-public class UpdateArticleVisibilityCommandHandler : TemplateHandler<UpdateArticleVisibilityCommand, Unit>
+public class UpdateArticleVisibilityCommandHandler : Cqrs.RequestHandler<UpdateArticleVisibilityCommand, Unit>
 {
     private readonly IUserServiceProvider _userServiceProvider;
         

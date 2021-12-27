@@ -9,7 +9,7 @@ using Core.Exceptions;
 using Shared.Resources;
 using Core.Utilities.LoggerService;
 
-public class GetSubscriberQueryHandler : TemplateHandler<GetSubscriberQuery, GetSubscriberQueryResult>
+public class GetSubscriberQueryHandler : RequestHandler<GetSubscriberQuery, GetSubscriberQueryResult>
 {
     public GetSubscriberQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 

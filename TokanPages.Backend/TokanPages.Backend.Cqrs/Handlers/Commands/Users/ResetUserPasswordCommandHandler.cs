@@ -22,7 +22,7 @@ using Core.Utilities.TemplateService;
 using Core.Utilities.CustomHttpClient;
 using Core.Utilities.CustomHttpClient.Models;
 
-public class ResetUserPasswordCommandHandler : TemplateHandler<ResetUserPasswordCommand, Unit>
+public class ResetUserPasswordCommandHandler : Cqrs.RequestHandler<ResetUserPasswordCommand, Unit>
 {
     private readonly ICustomHttpClient _customHttpClient;
 

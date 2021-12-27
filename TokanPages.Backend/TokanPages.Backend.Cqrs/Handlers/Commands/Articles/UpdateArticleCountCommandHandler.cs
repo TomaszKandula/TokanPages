@@ -12,7 +12,7 @@ using Shared.Resources;
 using Core.Utilities.LoggerService;
 using Services.UserServiceProvider;
 
-public class UpdateArticleCountCommandHandler : TemplateHandler<UpdateArticleCountCommand, Unit>
+public class UpdateArticleCountCommandHandler : Cqrs.RequestHandler<UpdateArticleCountCommand, Unit>
 {
     private readonly IUserServiceProvider _userServiceProvider;
 

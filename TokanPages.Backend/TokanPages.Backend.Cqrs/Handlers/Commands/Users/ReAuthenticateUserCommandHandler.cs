@@ -14,7 +14,7 @@ using Core.Utilities.LoggerService;
 using Services.UserServiceProvider;
 using Core.Utilities.DateTimeService;
 
-public class ReAuthenticateUserCommandHandler : TemplateHandler<ReAuthenticateUserCommand, ReAuthenticateUserCommandResult>
+public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUserCommand, ReAuthenticateUserCommandResult>
 {
     private readonly IDateTimeService _dateTimeService;
 

@@ -13,7 +13,7 @@ using Core.Utilities.DateTimeService;
 using Storage.AzureBlobStorage.Factory;
 using MediatR;
 
-public class UpdateArticleContentCommandHandler : TemplateHandler<UpdateArticleContentCommand, Unit>
+public class UpdateArticleContentCommandHandler : Cqrs.RequestHandler<UpdateArticleContentCommand, Unit>
 {
     private readonly IUserServiceProvider _userServiceProvider;
         

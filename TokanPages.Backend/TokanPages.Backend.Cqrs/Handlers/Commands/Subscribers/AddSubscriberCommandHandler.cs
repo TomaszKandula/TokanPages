@@ -12,7 +12,7 @@ using Shared.Resources;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
 
-public class AddSubscriberCommandHandler : TemplateHandler<AddSubscriberCommand, Guid>
+public class AddSubscriberCommandHandler : RequestHandler<AddSubscriberCommand, Guid>
 {
     private readonly IDateTimeService _dateTimeService;
         

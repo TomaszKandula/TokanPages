@@ -11,7 +11,7 @@ using Services.UserServiceProvider;
 using Core.Utilities.DateTimeService;
 using Storage.AzureBlobStorage.Factory;
 
-public class AddArticleCommandHandler : TemplateHandler<AddArticleCommand, Guid>
+public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
 {
     private readonly IUserServiceProvider _userServiceProvider;
         

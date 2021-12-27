@@ -15,7 +15,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Backend.Cqrs;
 using Backend.Shared;
 using Backend.Database;
 using Backend.Shared.Models;
@@ -124,12 +123,12 @@ public static class Dependencies
 	}
 
 	private static void SetupValidators(IServiceCollection services)
-		=> services.AddValidatorsFromAssemblyContaining<TemplateHandler<IRequest, Unit>>();
+		=> services.AddValidatorsFromAssemblyContaining<Backend.Cqrs.RequestHandler<IRequest, Unit>>();
 
 	private static void SetupMediatR(IServiceCollection services) 
 	{
 		services.AddMediatR(options => options.AsScoped(), 
-			typeof(TemplateHandler<IRequest, Unit>).GetTypeInfo().Assembly);
+			typeof(Backend.Cqrs.RequestHandler<IRequest, Unit>).GetTypeInfo().Assembly);
 
 		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
 		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));

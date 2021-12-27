@@ -10,7 +10,7 @@ using Shared.Resources;
 using Core.Utilities.LoggerService;
 using MediatR;
 
-public class RemoveArticleCommandHandler : TemplateHandler<RemoveArticleCommand, Unit>
+public class RemoveArticleCommandHandler : Cqrs.RequestHandler<RemoveArticleCommand, Unit>
 {
     public RemoveArticleCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 

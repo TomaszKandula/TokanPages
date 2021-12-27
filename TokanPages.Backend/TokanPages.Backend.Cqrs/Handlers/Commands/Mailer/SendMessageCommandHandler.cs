@@ -20,7 +20,7 @@ using Core.Utilities.TemplateService;
 using Core.Utilities.CustomHttpClient;
 using Core.Utilities.CustomHttpClient.Models;
 
-public class SendMessageCommandHandler : TemplateHandler<SendMessageCommand, Unit>
+public class SendMessageCommandHandler : Cqrs.RequestHandler<SendMessageCommand, Unit>
 {
     private readonly ICustomHttpClient _customHttpClient;
         

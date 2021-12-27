@@ -16,7 +16,7 @@ using Core.Utilities.JsonSerializer;
 using Core.Utilities.CustomHttpClient;
 using Core.Utilities.CustomHttpClient.Models;
 
-public class GetContentQueryHandler : TemplateHandler<GetContentQuery, GetContentQueryResult>
+public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContentQueryResult>
 {
     private const string DefaultLanguage = "en";
         

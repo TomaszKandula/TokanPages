@@ -18,7 +18,7 @@ using Core.Utilities.TemplateService;
 using Core.Utilities.CustomHttpClient;
 using Core.Utilities.CustomHttpClient.Models;
 
-public class SendNewsletterCommandHandler : TemplateHandler<SendNewsletterCommand, Unit>
+public class SendNewsletterCommandHandler : Cqrs.RequestHandler<SendNewsletterCommand, Unit>
 {
     private readonly ICustomHttpClient _customHttpClient;
 

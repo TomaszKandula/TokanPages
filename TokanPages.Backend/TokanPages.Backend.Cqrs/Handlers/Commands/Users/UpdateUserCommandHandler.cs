@@ -11,7 +11,7 @@ using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
 using MediatR;
 
-public class UpdateUserCommandHandler : TemplateHandler<UpdateUserCommand, Unit>
+public class UpdateUserCommandHandler : Cqrs.RequestHandler<UpdateUserCommand, Unit>
 {
     private readonly IDateTimeService _dateTimeService;
         

@@ -13,7 +13,7 @@ using Core.Utilities.LoggerService;
 using Services.UserServiceProvider;
 using MediatR;
 
-public class UpdateArticleLikesCommandHandler : TemplateHandler<UpdateArticleLikesCommand, Unit>
+public class UpdateArticleLikesCommandHandler : Cqrs.RequestHandler<UpdateArticleLikesCommand, Unit>
 {
     private readonly IUserServiceProvider _userServiceProvider;
         

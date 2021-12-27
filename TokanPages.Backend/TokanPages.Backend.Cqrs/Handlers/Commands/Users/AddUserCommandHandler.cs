@@ -23,7 +23,7 @@ using Core.Utilities.TemplateService;
 using Core.Utilities.CustomHttpClient;
 using Core.Utilities.CustomHttpClient.Models;
 
-public class AddUserCommandHandler : TemplateHandler<AddUserCommand, Guid>
+public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 {
     private readonly IDateTimeService _dateTimeService;
 

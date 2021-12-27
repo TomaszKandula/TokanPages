@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Database;
 using Core.Utilities.LoggerService;
 
-public class GetAllSubscribersQueryHandler : TemplateHandler<GetAllSubscribersQuery, IEnumerable<GetAllSubscribersQueryResult>>
+public class GetAllSubscribersQueryHandler : RequestHandler<GetAllSubscribersQuery, IEnumerable<GetAllSubscribersQueryResult>>
 {
     public GetAllSubscribersQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 

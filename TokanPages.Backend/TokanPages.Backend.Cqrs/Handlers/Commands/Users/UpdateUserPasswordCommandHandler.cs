@@ -16,7 +16,7 @@ using Core.Utilities.LoggerService;
 using Services.UserServiceProvider;
 using Core.Utilities.DateTimeService;
 
-public class UpdateUserPasswordCommandHandler : TemplateHandler<UpdateUserPasswordCommand, Unit>
+public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPasswordCommand, Unit>
 {
     private readonly IUserServiceProvider _userServiceProvider;
 

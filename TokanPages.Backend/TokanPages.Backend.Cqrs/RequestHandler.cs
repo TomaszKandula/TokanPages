@@ -8,13 +8,13 @@ using Database;
 using Core.Utilities.LoggerService;
 
 [ExcludeFromCodeCoverage]
-public abstract class TemplateHandler<TRequest, TResult> : IRequestHandler<TRequest, TResult> where TRequest : IRequest<TResult>
+public abstract class RequestHandler<TRequest, TResult> : IRequestHandler<TRequest, TResult> where TRequest : IRequest<TResult>
 {
     protected readonly DatabaseContext DatabaseContext;
 
     protected readonly ILoggerService LoggerService;
 
-    protected TemplateHandler(DatabaseContext databaseContext, ILoggerService loggerService)
+    protected RequestHandler(DatabaseContext databaseContext, ILoggerService loggerService)
     {
         DatabaseContext = databaseContext;
         LoggerService = loggerService;

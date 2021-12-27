@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Database;
 using Core.Utilities.LoggerService;
 
-public class GetAllArticlesQueryHandler : TemplateHandler<GetAllArticlesQuery, IEnumerable<GetAllArticlesQueryResult>>
+public class GetAllArticlesQueryHandler : RequestHandler<GetAllArticlesQuery, IEnumerable<GetAllArticlesQueryResult>>
 {
     public GetAllArticlesQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 

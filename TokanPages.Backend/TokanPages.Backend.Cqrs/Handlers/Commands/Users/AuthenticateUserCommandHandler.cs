@@ -15,7 +15,7 @@ using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
 using Core.Utilities.JwtUtilityService;
 
-public class AuthenticateUserCommandHandler : TemplateHandler<AuthenticateUserCommand, AuthenticateUserCommandResult>
+public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCommand, AuthenticateUserCommandResult>
 {
     private readonly ICipheringService _cipheringService;
 

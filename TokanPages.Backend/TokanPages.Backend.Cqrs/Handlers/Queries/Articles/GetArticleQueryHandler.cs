@@ -21,7 +21,7 @@ using Core.Utilities.JsonSerializer;
 using Core.Utilities.CustomHttpClient;
 using Core.Utilities.CustomHttpClient.Models;
 
-public class GetArticleQueryHandler : TemplateHandler<GetArticleQuery, GetArticleQueryResult>
+public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticleQueryResult>
 {
     private readonly DatabaseContext _databaseContext;
 

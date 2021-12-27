@@ -9,7 +9,7 @@ using Core.Exceptions;
 using Shared.Resources;
 using Core.Utilities.LoggerService;
 
-public class GetUserQueryHandler : TemplateHandler<GetUserQuery, GetUserQueryResult>
+public class GetUserQueryHandler : RequestHandler<GetUserQuery, GetUserQueryResult>
 {
     public GetUserQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
