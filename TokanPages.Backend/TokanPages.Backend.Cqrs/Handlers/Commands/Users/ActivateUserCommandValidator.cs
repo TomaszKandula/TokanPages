@@ -1,16 +1,15 @@
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
-{
-    using FluentValidation;
-    using Shared.Resources;
+namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
-    public class ActivateUserCommandValidator : AbstractValidator<ActivateUserCommand>
+using FluentValidation;
+using Shared.Resources;
+
+public class ActivateUserCommandValidator : AbstractValidator<ActivateUserCommand>
+{
+    public ActivateUserCommandValidator()
     {
-        public ActivateUserCommandValidator()
-        {
-            RuleFor(command => command.ActivationId)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
-        }
+        RuleFor(command => command.ActivationId)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED);
     }
 }

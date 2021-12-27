@@ -1,12 +1,11 @@
-namespace TokanPages.Backend.Shared.Models
+namespace TokanPages.Backend.Shared.Models;
+
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class EmailSender
 {
-    using System.Diagnostics.CodeAnalysis;
+    public string PrivateKey { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class EmailSender
-    {
-        public string PrivateKey { get; set; }
-
-        public string BaseUrl { get; set; }
-    }
+    public string BaseUrl { get; set; }
 }

@@ -1,25 +1,24 @@
-namespace TokanPages.WebApi.Middleware
+namespace TokanPages.WebApi.Middleware;
+
+using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Net.Http.Headers;
+
+[ExcludeFromCodeCoverage]
+public class CacheControl
 {
-    using System.Threading.Tasks;
-    using System.Diagnostics.CodeAnalysis;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.Net.Http.Headers;
+    private readonly RequestDelegate _requestDelegate;
 
-    [ExcludeFromCodeCoverage]
-    public class CacheControl
+    public CacheControl(RequestDelegate requestDelegate) => _requestDelegate = requestDelegate;
+
+    public async Task InvokeAsync(HttpContext httpContext)
     {
-        private readonly RequestDelegate _requestDelegate;
-
-        public CacheControl(RequestDelegate requestDelegate) => _requestDelegate = requestDelegate;
-
-        public async Task InvokeAsync(HttpContext httpContext)
+        httpContext.Response.GetTypedHeaders().CacheControl = new CacheControlHeaderValue
         {
-            httpContext.Response.GetTypedHeaders().CacheControl = new CacheControlHeaderValue
-            {
-                NoCache = true
-            };
+            NoCache = true
+        };
 
-            await _requestDelegate(httpContext);
-        }
+        await _requestDelegate(httpContext);
     }
 }

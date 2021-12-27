@@ -1,26 +1,25 @@
-namespace TokanPages.IntegrationTests.SubscribersController
+namespace TokanPages.IntegrationTests.SubscribersController;
+
+using Xunit;
+using FluentAssertions;
+using System.Net;
+using System.Threading.Tasks;
+
+public partial class SubscribersControllerTest
 {
-    using Xunit;
-    using FluentAssertions;
-    using System.Net;
-    using System.Threading.Tasks;
-
-    public partial class SubscribersControllerTest
+    [Fact]
+    public async Task GivenNoJwt_WhenGetAllSubscribers_ShouldReturnUnauthorized()
     {
-        [Fact]
-        public async Task GivenNoJwt_WhenGetAllSubscribers_ShouldReturnUnauthorized()
-        {
-            // Arrange
-            var request = $"{ApiBaseUrl}/GetAllSubscribers/?noCache=true";
-            var httpClient = _webApplicationFactory.CreateClient();
+        // Arrange
+        var request = $"{ApiBaseUrl}/GetAllSubscribers/?noCache=true";
+        var httpClient = _webApplicationFactory.CreateClient();
 
-            // Act
-            var response = await httpClient.GetAsync(request);
-            await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
+        // Act
+        var response = await httpClient.GetAsync(request);
+        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
 
-            // Assert
-            var content = await response.Content.ReadAsStringAsync();
-            content.Should().BeEmpty();
-        }
+        // Assert
+        var content = await response.Content.ReadAsStringAsync();
+        content.Should().BeEmpty();
     }
 }

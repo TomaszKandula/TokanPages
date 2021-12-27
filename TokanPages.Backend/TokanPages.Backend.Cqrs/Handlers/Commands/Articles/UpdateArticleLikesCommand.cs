@@ -1,12 +1,11 @@
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
-{
-    using System;
-    using MediatR;
+namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
-    public class UpdateArticleLikesCommand : IRequest<Unit>
-    {
-        public Guid Id { get; set; }
+using System;
+using MediatR;
+
+public class UpdateArticleLikesCommand : IRequest<Unit>
+{
+    public Guid Id { get; set; }
         
-        public int AddToLikes { get; set; }
-    }
+    public int AddToLikes { get; set; }
 }

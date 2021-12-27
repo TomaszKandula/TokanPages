@@ -1,13 +1,12 @@
-namespace TokanPages.Backend.Core.Utilities.JwtUtilityService
+namespace TokanPages.Backend.Core.Utilities.JwtUtilityService;
+
+using System;
+using System.Security.Claims;
+using Models;
+
+public interface IJwtUtilityService
 {
-    using System;
-    using System.Security.Claims;
-    using Models;
+    string GenerateJwt(DateTime expires, ClaimsIdentity claimsIdentity, string webSecret, string issuer, string targetAudience);
 
-    public interface IJwtUtilityService
-    {
-        string GenerateJwt(DateTime expires, ClaimsIdentity claimsIdentity, string webSecret, string issuer, string targetAudience);
-
-        RefreshToken GenerateRefreshToken(string ipAddress, int expiresIn);
-    }
+    RefreshToken GenerateRefreshToken(string ipAddress, int expiresIn);
 }

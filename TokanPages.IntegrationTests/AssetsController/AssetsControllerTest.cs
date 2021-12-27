@@ -1,13 +1,12 @@
-namespace TokanPages.IntegrationTests.AssetsController
+namespace TokanPages.IntegrationTests.AssetsController;
+
+using Xunit;
+
+public partial class AssetsControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
-    using Xunit;
-
-    public partial class AssetsControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
-    {
-        private const string ApiBaseUrl = "/api/v1.0/assets";
+    private const string ApiBaseUrl = "/api/v1.0/assets";
         
-        private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
+    private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
 
-        public AssetsControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
-    }
+    public AssetsControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
 }

@@ -1,13 +1,12 @@
-namespace TokanPages.IntegrationTests.MetricsController
+namespace TokanPages.IntegrationTests.MetricsController;
+
+using Xunit;
+
+public partial class MetricsControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
-    using Xunit;
-
-    public partial class MetricsControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
-    {
-        private const string ApiBaseUrl = "/api/v1.0/metrics";
+    private const string ApiBaseUrl = "/api/v1.0/metrics";
         
-        private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
+    private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
 
-        public MetricsControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
-    }
+    public MetricsControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
 }

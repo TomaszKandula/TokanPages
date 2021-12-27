@@ -1,74 +1,73 @@
-namespace TokanPages.WebApi.Configuration
+namespace TokanPages.WebApi.Configuration;
+
+using System;
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+[ExcludeFromCodeCoverage]
+public static class SwaggerSupport
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using Microsoft.OpenApi.Models;
-    using Microsoft.Extensions.Hosting;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
+    private const string ApiVersion = "v1";
 
-    [ExcludeFromCodeCoverage]
-    public static class SwaggerSupport
+    private const string ApiName = "Tokan Pages API";
+
+    private const string AuthorizationScheme = "Bearer";
+
+    public static void SetupSwaggerOptions(this IServiceCollection services, IHostEnvironment environment)
     {
-        private const string ApiVersion = "v1";
+        if (environment.IsProduction())
+            return;
 
-        private const string ApiName = "Tokan Pages API";
-
-        private const string AuthorizationScheme = "Bearer";
-
-        public static void SetupSwaggerOptions(this IServiceCollection services, IHostEnvironment environment)
+        services.AddSwaggerGen(options =>
         {
-            if (environment.IsProduction())
-                return;
-
-            services.AddSwaggerGen(options =>
+            options.SwaggerDoc(ApiVersion, new OpenApiInfo
             {
-                options.SwaggerDoc(ApiVersion, new OpenApiInfo
-                {
-                    Title = ApiName, 
-                    Version = ApiVersion
-                });
+                Title = ApiName, 
+                Version = ApiVersion
+            });
 
-                options.AddSecurityDefinition(AuthorizationScheme, new OpenApiSecurityScheme
-                {
-                    Name = "Authorization",
-                    Description = "Please provide JWT",
-                    BearerFormat = "JWT",
-                    Scheme = AuthorizationScheme.ToLower(),
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey
-                });
+            options.AddSecurityDefinition(AuthorizationScheme, new OpenApiSecurityScheme
+            {
+                Name = "Authorization",
+                Description = "Please provide JWT",
+                BearerFormat = "JWT",
+                Scheme = AuthorizationScheme.ToLower(),
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.ApiKey
+            });
 
-                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
                 {
+                    new OpenApiSecurityScheme
                     {
-                        new OpenApiSecurityScheme
+                        Reference = new OpenApiReference 
                         {
-                            Reference = new OpenApiReference 
-                            {
-                                Id = AuthorizationScheme,
-                                Type = ReferenceType.SecurityScheme
-                            }
-                        },
-                        Array.Empty<string>()
-                    }
-                });
+                            Id = AuthorizationScheme,
+                            Type = ReferenceType.SecurityScheme
+                        }
+                    },
+                    Array.Empty<string>()
+                }
             });
-        }
+        });
+    }
 
-        public static void SetupSwaggerUi(this IApplicationBuilder builder, IConfiguration configuration, IHostEnvironment environment)
+    public static void SetupSwaggerUi(this IApplicationBuilder builder, IConfiguration configuration, IHostEnvironment environment)
+    {
+        if (environment.IsProduction())
+            return;
+
+        builder.UseSwagger();
+        builder.UseSwaggerUI(options =>
         {
-            if (environment.IsProduction())
-                return;
-
-            builder.UseSwagger();
-            builder.UseSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint($"/swagger/{ApiVersion}/swagger.json", ApiName);
-                options.OAuthAppName(ApiName);
-                options.OAuthClientSecret(configuration.GetSection("IdentityServer")["WebSecret"]);
-            });
-        }
+            options.SwaggerEndpoint($"/swagger/{ApiVersion}/swagger.json", ApiName);
+            options.OAuthAppName(ApiName);
+            options.OAuthClientSecret(configuration.GetSection("IdentityServer")["WebSecret"]);
+        });
     }
 }

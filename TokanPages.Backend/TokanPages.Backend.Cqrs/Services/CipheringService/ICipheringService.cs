@@ -1,13 +1,12 @@
-namespace TokanPages.Backend.Cqrs.Services.CipheringService
+namespace TokanPages.Backend.Cqrs.Services.CipheringService;
+
+using Helpers;
+
+public interface ICipheringService
 {
-    using Helpers;
+    string GetHashedPassword(string password, string salt);
 
-    public interface ICipheringService
-    {
-        string GetHashedPassword(string password, string salt);
+    bool VerifyPassword(string plaintext, string hashedPassword);
 
-        bool VerifyPassword(string plaintext, string hashedPassword);
-
-        string GenerateSalt(int logRounds = Constants.GenerateSaltDefaultLog2Rounds);
-    }
+    string GenerateSalt(int logRounds = Constants.GenerateSaltDefaultLog2Rounds);
 }

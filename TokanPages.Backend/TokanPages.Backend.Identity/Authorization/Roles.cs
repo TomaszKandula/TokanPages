@@ -1,11 +1,10 @@
-namespace TokanPages.Backend.Identity.Authorization
+namespace TokanPages.Backend.Identity.Authorization;
+
+public enum Roles
 {
-    public enum Roles
-    {
-        GodOfAsgard,
-        EverydayUser,
-        ArticlePublisher,
-        PhotoPublisher,
-        CommentPublisher
-    }
+    GodOfAsgard,
+    EverydayUser,
+    ArticlePublisher,
+    PhotoPublisher,
+    CommentPublisher
 }

@@ -1,7 +1,6 @@
-namespace TokanPages.Backend.Identity.Authorization
+namespace TokanPages.Backend.Identity.Authorization;
+
+public enum Policies
 {
-    public enum Policies
-    {
-        AccessToTokanPages
-    }
+    AccessToTokanPages
 }

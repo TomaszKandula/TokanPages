@@ -1,77 +1,76 @@
-namespace TokanPages.UnitTests.Services
+namespace TokanPages.UnitTests.Services;
+
+using Xunit;
+using FluentAssertions;
+using System.Collections.Generic;
+using Backend.Core.Utilities.TemplateService;
+
+public class TemplateServiceTest
 {
-    using Xunit;
-    using FluentAssertions;
-    using System.Collections.Generic;
-    using Backend.Core.Utilities.TemplateService;
-
-    public class TemplateServiceTest
+    [Fact]
+    public void GivenBodyTemplateAndItems_WhenInvokeMakeBody_ShouldReplaceTagsWithValues()
     {
-        [Fact]
-        public void GivenBodyTemplateAndItems_WhenInvokeMakeBody_ShouldReplaceTagsWithValues()
+        // Arrange
+        const string bodyTemplate = "This is {VALUE1} test for {VALUE2}.";
+        const string expectedContent = "This is unit test for MakeBody method.";
+        var items = new Dictionary<string, string>
         {
-            // Arrange
-            const string bodyTemplate = "This is {VALUE1} test for {VALUE2}.";
-            const string expectedContent = "This is unit test for MakeBody method.";
-            var items = new Dictionary<string, string>
-            {
-                { "{VALUE1}", "unit" },
-                { "{VALUE2}", "MakeBody method" }
-            };
+            { "{VALUE1}", "unit" },
+            { "{VALUE2}", "MakeBody method" }
+        };
 
-            var templateHelper = new TemplateService();
+        var templateHelper = new TemplateService();
             
-            // Act
-            var result = templateHelper.MakeBody(bodyTemplate, items);
+        // Act
+        var result = templateHelper.MakeBody(bodyTemplate, items);
 
-            // Assert
-            result.Should().Be(expectedContent);
-        }
+        // Assert
+        result.Should().Be(expectedContent);
+    }
         
-        [Theory]
-        [InlineData("")]
-        [InlineData(" ")]
-        [InlineData(null)]
-        public void GivenEmptyBodyTemplateAndItems_WhenInvokeMakeBody_ShouldReturnNull(string bodyTemplate)
+    [Theory]
+    [InlineData("")]
+    [InlineData(" ")]
+    [InlineData(null)]
+    public void GivenEmptyBodyTemplateAndItems_WhenInvokeMakeBody_ShouldReturnNull(string bodyTemplate)
+    {
+        // Arrange
+        var items = new Dictionary<string, string>
         {
-            // Arrange
-            var items = new Dictionary<string, string>
-            {
-                { "{VALUE1}", "unit" },
-                { "{VALUE2}", "MakeBody method" }
-            };
+            { "{VALUE1}", "unit" },
+            { "{VALUE2}", "MakeBody method" }
+        };
 
-            var templateHelper = new TemplateService();
+        var templateHelper = new TemplateService();
             
-            // Act
-            var result = templateHelper.MakeBody(bodyTemplate, items);
+        // Act
+        var result = templateHelper.MakeBody(bodyTemplate, items);
 
-            // Assert
-            result.Should().BeNull();
-        }
+        // Assert
+        result.Should().BeNull();
+    }
 
-        [Theory]
-        [InlineData(null)]
-        [MemberData(nameof(InputTestObject))]
-        public void GivenBodyTemplateAndEmptyItems_WhenInvokeMakeBody_ShouldReturnNull(Dictionary<string, string> items)
-        {
-            // Arrange
-            const string bodyTemplate = "This is {VALUE1} test for {VALUE2}.";
-            var templateHelper = new TemplateService();
+    [Theory]
+    [InlineData(null)]
+    [MemberData(nameof(InputTestObject))]
+    public void GivenBodyTemplateAndEmptyItems_WhenInvokeMakeBody_ShouldReturnNull(Dictionary<string, string> items)
+    {
+        // Arrange
+        const string bodyTemplate = "This is {VALUE1} test for {VALUE2}.";
+        var templateHelper = new TemplateService();
             
-            // Act
-            var result = templateHelper.MakeBody(bodyTemplate, items);
+        // Act
+        var result = templateHelper.MakeBody(bodyTemplate, items);
 
-            // Assert
-            result.Should().BeNull();
-        }
+        // Assert
+        result.Should().BeNull();
+    }
 
-        public static IEnumerable<object[]> InputTestObject()
+    public static IEnumerable<object[]> InputTestObject()
+    {
+        return new List<object[]>
         {
-            return new List<object[]>
-            {
-                new object[] { new Dictionary<string, string>() }  
-            };
-        }
+            new object[] { new Dictionary<string, string>() }  
+        };
     }
 }

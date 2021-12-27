@@ -1,10 +1,9 @@
-namespace TokanPages.Backend.Core.Utilities.CustomHttpClient.Authentication
-{
-    using System.Diagnostics.CodeAnalysis;
+namespace TokanPages.Backend.Core.Utilities.CustomHttpClient.Authentication;
 
-    [ExcludeFromCodeCoverage]
-    public class BearerAuthentication : IAuthentication
-    {
-        public string Token { get; set; }
-    }
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class BearerAuthentication : IAuthentication
+{
+    public string Token { get; set; }
 }

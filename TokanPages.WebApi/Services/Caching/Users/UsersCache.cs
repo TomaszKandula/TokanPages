@@ -1,55 +1,54 @@
-namespace TokanPages.WebApi.Services.Caching.Users
+namespace TokanPages.WebApi.Services.Caching.Users;
+
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
+using MediatR;
+
+[ExcludeFromCodeCoverage]
+public class UsersCache : IUsersCache
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
-    using MediatR;
+    private readonly IRedisDistributedCache _redisDistributedCache;
 
-    [ExcludeFromCodeCoverage]
-    public class UsersCache : IUsersCache
+    private readonly IMediator _mediator;
+
+    public UsersCache(IRedisDistributedCache redisDistributedCache, IMediator mediator)
     {
-        private readonly IRedisDistributedCache _redisDistributedCache;
+        _redisDistributedCache = redisDistributedCache;
+        _mediator = mediator;
+    }
 
-        private readonly IMediator _mediator;
+    [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
+    public async Task<IEnumerable<GetAllUsersQueryResult>> GetUsers(bool noCache = false)
+    {
+        const string key = "GetAllUsersQueryResult";
+        if (noCache)
+            return await _mediator.Send(new GetAllUsersQuery());
 
-        public UsersCache(IRedisDistributedCache redisDistributedCache, IMediator mediator)
-        {
-            _redisDistributedCache = redisDistributedCache;
-            _mediator = mediator;
-        }
+        var value = await _redisDistributedCache.GetObjectAsync<IEnumerable<GetAllUsersQueryResult>>(key);
+        if (value is not null && value.Any()) return value;
 
-        [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
-        public async Task<IEnumerable<GetAllUsersQueryResult>> GetUsers(bool noCache = false)
-        {
-            const string key = "GetAllUsersQueryResult";
-            if (noCache)
-                return await _mediator.Send(new GetAllUsersQuery());
+        value = await _mediator.Send(new GetAllUsersQuery());
+        await _redisDistributedCache.SetObjectAsync(key, value);
 
-            var value = await _redisDistributedCache.GetObjectAsync<IEnumerable<GetAllUsersQueryResult>>(key);
-            if (value is not null && value.Any()) return value;
+        return value;
+    }
 
-            value = await _mediator.Send(new GetAllUsersQuery());
-            await _redisDistributedCache.SetObjectAsync(key, value);
+    public async Task<GetUserQueryResult> GetUser(Guid id, bool noCache = false)
+    {
+        var key = $"user-{id:N}";
+        if (noCache)
+            return await _mediator.Send(new GetUserQuery { Id = id });
 
-            return value;
-        }
+        var value = await _redisDistributedCache.GetObjectAsync<GetUserQueryResult>(key);
+        if (value is not null) return value;
 
-        public async Task<GetUserQueryResult> GetUser(Guid id, bool noCache = false)
-        {
-            var key = $"user-{id:N}";
-            if (noCache)
-                return await _mediator.Send(new GetUserQuery { Id = id });
+        value = await _mediator.Send(new GetUserQuery { Id = id });
+        await _redisDistributedCache.SetObjectAsync(key, value);
 
-            var value = await _redisDistributedCache.GetObjectAsync<GetUserQueryResult>(key);
-            if (value is not null) return value;
-
-            value = await _mediator.Send(new GetUserQuery { Id = id });
-            await _redisDistributedCache.SetObjectAsync(key, value);
-
-            return value;
-        }
+        return value;
     }
 }

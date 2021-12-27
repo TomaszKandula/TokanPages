@@ -1,52 +1,51 @@
-namespace TokanPages.Backend.Database.Initializer
+namespace TokanPages.Backend.Database.Initializer;
+
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
+using Seeders;
+
+[ExcludeFromCodeCoverage]
+public class DbInitializer : IDbInitializer
 {
-    using System.Linq;
-    using System.Diagnostics.CodeAnalysis;
-    using Microsoft.EntityFrameworkCore;
-    using Seeders;
+    private readonly DatabaseContext _databaseContext;
 
-    [ExcludeFromCodeCoverage]
-    public class DbInitializer : IDbInitializer
+    public DbInitializer(DatabaseContext databaseContext) => _databaseContext = databaseContext;
+
+    public void StartMigration() => _databaseContext.Database.Migrate();
+
+    public void SeedData()
     {
-        private readonly DatabaseContext _databaseContext;
+        if (!_databaseContext.Users.Any())
+            _databaseContext.Users.AddRange(UsersSeeder.SeedUsers());
 
-        public DbInitializer(DatabaseContext databaseContext) => _databaseContext = databaseContext;
+        if (!_databaseContext.Articles.Any())
+            _databaseContext.Articles.AddRange(ArticlesSeeder.SeedArticles());
 
-        public void StartMigration() => _databaseContext.Database.Migrate();
+        if (!_databaseContext.Subscribers.Any())
+            _databaseContext.Subscribers.AddRange(SubscribersSeeder.SeedSubscribers());
 
-        public void SeedData()
-        {
-            if (!_databaseContext.Users.Any())
-                _databaseContext.Users.AddRange(UsersSeeder.SeedUsers());
+        if (!_databaseContext.ArticleLikes.Any())
+            _databaseContext.ArticleLikes.AddRange(ArticleLikesSeeder.SeedArticleLikes());
 
-            if (!_databaseContext.Articles.Any())
-                _databaseContext.Articles.AddRange(ArticlesSeeder.SeedArticles());
+        if (!_databaseContext.PhotoCategories.Any()) 
+            _databaseContext.PhotoCategories.AddRange(PhotoCategoriesSeeder.SeedPhotoCategories());
 
-            if (!_databaseContext.Subscribers.Any())
-                _databaseContext.Subscribers.AddRange(SubscribersSeeder.SeedSubscribers());
+        if (!_databaseContext.Roles.Any()) 
+            _databaseContext.Roles.AddRange(RolesSeeder.SeedRoles());
 
-            if (!_databaseContext.ArticleLikes.Any())
-                _databaseContext.ArticleLikes.AddRange(ArticleLikesSeeder.SeedArticleLikes());
+        if (!_databaseContext.Permissions.Any()) 
+            _databaseContext.Permissions.AddRange(PermissionsSeeder.SeedPermissions());
 
-            if (!_databaseContext.PhotoCategories.Any()) 
-                _databaseContext.PhotoCategories.AddRange(PhotoCategoriesSeeder.SeedPhotoCategories());
+        if (!_databaseContext.DefaultPermissions.Any()) 
+            _databaseContext.DefaultPermissions.AddRange(DefaultPermissionsSeeder.SeedDefaultPermissions());
 
-            if (!_databaseContext.Roles.Any()) 
-                _databaseContext.Roles.AddRange(RolesSeeder.SeedRoles());
+        if (!_databaseContext.UserPermissions.Any()) 
+            _databaseContext.UserPermissions.AddRange(UserPermissionsSeeder.SeedUserPermissions());
 
-            if (!_databaseContext.Permissions.Any()) 
-                _databaseContext.Permissions.AddRange(PermissionsSeeder.SeedPermissions());
-
-            if (!_databaseContext.DefaultPermissions.Any()) 
-                _databaseContext.DefaultPermissions.AddRange(DefaultPermissionsSeeder.SeedDefaultPermissions());
-
-            if (!_databaseContext.UserPermissions.Any()) 
-                _databaseContext.UserPermissions.AddRange(UserPermissionsSeeder.SeedUserPermissions());
-
-            if (!_databaseContext.UserRoles.Any()) 
-                _databaseContext.UserRoles.AddRange(UserRolesSeeder.SeedUserRoles());
+        if (!_databaseContext.UserRoles.Any()) 
+            _databaseContext.UserRoles.AddRange(UserRolesSeeder.SeedUserRoles());
             
-            _databaseContext.SaveChanges();
-        }
+        _databaseContext.SaveChanges();
     }
 }

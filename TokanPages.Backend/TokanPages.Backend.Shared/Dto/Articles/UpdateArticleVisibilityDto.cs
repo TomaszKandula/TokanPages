@@ -1,13 +1,12 @@
-﻿namespace TokanPages.Backend.Shared.Dto.Articles
-{
-    using System;
-    using System.Diagnostics.CodeAnalysis;
+﻿namespace TokanPages.Backend.Shared.Dto.Articles;
 
-    [ExcludeFromCodeCoverage]
-    public class UpdateArticleVisibilityDto
-    {
-        public Guid Id { get; set; }
+using System;
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class UpdateArticleVisibilityDto
+{
+    public Guid Id { get; set; }
         
-        public bool IsPublished { get; set; }
-    }
+    public bool IsPublished { get; set; }
 }

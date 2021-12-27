@@ -1,16 +1,15 @@
-﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers
-{
-    using FluentValidation;
-    using Shared.Resources;
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
 
-    public class GetSubscriberQueryValidator : AbstractValidator<GetSubscriberQuery>
+using FluentValidation;
+using Shared.Resources;
+
+public class GetSubscriberQueryValidator : AbstractValidator<GetSubscriberQuery>
+{
+    public GetSubscriberQueryValidator() 
     {
-        public GetSubscriberQueryValidator() 
-        {
-            RuleFor(query => query.Id)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
-        }
+        RuleFor(query => query.Id)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED);
     }
 }

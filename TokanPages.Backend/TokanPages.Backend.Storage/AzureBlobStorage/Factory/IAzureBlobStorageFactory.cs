@@ -1,9 +1,8 @@
-namespace TokanPages.Backend.Storage.AzureBlobStorage.Factory
-{
-    public interface IAzureBlobStorageFactory
-    {
-        IAzureBlobStorage Create();
+namespace TokanPages.Backend.Storage.AzureBlobStorage.Factory;
 
-        IAzureBlobStorage Create(string containerName);
-    }
+public interface IAzureBlobStorageFactory
+{
+    IAzureBlobStorage Create();
+
+    IAzureBlobStorage Create(string containerName);
 }
