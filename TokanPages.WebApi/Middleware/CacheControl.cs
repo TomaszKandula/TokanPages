@@ -1,9 +1,11 @@
 namespace TokanPages.WebApi.Middleware
 {
     using System.Threading.Tasks;
+    using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Net.Http.Headers;
 
+    [ExcludeFromCodeCoverage]
     public class CacheControl
     {
         private readonly RequestDelegate _requestDelegate;
@@ -16,6 +18,7 @@ namespace TokanPages.WebApi.Middleware
             {
                 NoCache = true
             };
+
             await _requestDelegate(httpContext);
         }
     }
