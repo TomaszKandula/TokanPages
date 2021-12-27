@@ -1,19 +1,18 @@
-namespace TokanPages.Backend.Core.Utilities.JsonSerializer
+namespace TokanPages.Backend.Core.Utilities.JsonSerializer;
+
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+public interface IJsonSerializer
 {
-    using System.Collections.Generic;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
+    string Serialize(object model, JsonSerializerSettings serializerSettings = null);
 
-    public interface IJsonSerializer
-    {
-        string Serialize(object model, JsonSerializerSettings serializerSettings = null);
+    T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null);
 
-        T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null);
+    JToken Parse(string json);
 
-        JToken Parse(string json);
+    IEnumerable<T> MapObjects<T>(JToken component) where T : new();
 
-        IEnumerable<T> MapObjects<T>(JToken component) where T : new();
-
-        T MapObject<T>(JToken component) where T : new();
-    }
+    T MapObject<T>(JToken component) where T : new();
 }

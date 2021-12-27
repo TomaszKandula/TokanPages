@@ -1,42 +1,41 @@
-namespace TokanPages.IntegrationTests.ArticlesController
-{
-    using Xunit;
-    using Newtonsoft.Json;
-    using FluentAssertions;
-    using System;
-    using System.Net;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-    using Backend.Shared.Resources;
-    using Backend.Shared.Dto.Articles;
+namespace TokanPages.IntegrationTests.ArticlesController;
+
+using Xunit;
+using Newtonsoft.Json;
+using FluentAssertions;
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Backend.Shared.Resources;
+using Backend.Shared.Dto.Articles;
     
-    public partial class ArticlesControllerTest
+public partial class ArticlesControllerTest
+{
+    [Fact]
+    public async Task GivenInvalidArticleId_WhenUpdateArticleLikes_ShouldReturnUnprocessableEntityt()
     {
-        [Fact]
-        public async Task GivenInvalidArticleId_WhenUpdateArticleLikes_ShouldReturnUnprocessableEntityt()
+        // Arrange
+        var request = $"{ApiBaseUrl}/UpdateArticleLikes/";
+        var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
+
+        var payLoad = new UpdateArticleLikesDto
         {
-            // Arrange
-            var request = $"{ApiBaseUrl}/UpdateArticleLikes/";
-            var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
-
-            var payLoad = new UpdateArticleLikesDto
-            {
-                Id = Guid.NewGuid(),
-                AddToLikes = 10
-            };
+            Id = Guid.NewGuid(),
+            AddToLikes = 10
+        };
             
-            var httpClient = _webApplicationFactory.CreateClient();
-            newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), 
-                System.Text.Encoding.Default, "application/json");
+        var httpClient = _webApplicationFactory.CreateClient();
+        newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), 
+            System.Text.Encoding.Default, "application/json");
 
-            // Act
-            var response = await httpClient.SendAsync(newRequest);
-            await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
+        // Act
+        var response = await httpClient.SendAsync(newRequest);
+        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
 
-            // Assert
-            var content = await response.Content.ReadAsStringAsync();
-            content.Should().NotBeNullOrEmpty();
-            content.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
-        }
+        // Assert
+        var content = await response.Content.ReadAsStringAsync();
+        content.Should().NotBeNullOrEmpty();
+        content.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
     }
 }

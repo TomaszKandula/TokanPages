@@ -216,4 +216,7 @@
   <data name="INVALID_API_VERSION" xml:space="preserve">
     <value>Provided API version seems to be invalid</value>
   </data>
+  <data name="ARGUMENT_EMPTY_OR_NULL" xml:space="preserve">
+    <value>Argument cannot be null or empty</value>
+  </data>
 </root>

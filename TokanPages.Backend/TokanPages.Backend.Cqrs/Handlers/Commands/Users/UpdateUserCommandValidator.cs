@@ -1,48 +1,47 @@
-﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
+
+using FluentValidation;
+using Shared.Resources;
+
+public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
 {
-    using FluentValidation;
-    using Shared.Resources;
-
-    public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
+    public UpdateUserCommandValidator() 
     {
-        public UpdateUserCommandValidator() 
-        {
-            RuleFor(command => command.Id)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
+        RuleFor(command => command.Id)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(command => command.UserAlias)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED)
-                .MaximumLength(255)
-                .WithErrorCode(nameof(ValidationCodes.USERALIAS_TOO_LONG))
-                .WithMessage(ValidationCodes.USERALIAS_TOO_LONG);
+        RuleFor(command => command.UserAlias)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED)
+            .MaximumLength(255)
+            .WithErrorCode(nameof(ValidationCodes.USERALIAS_TOO_LONG))
+            .WithMessage(ValidationCodes.USERALIAS_TOO_LONG);
 
-            RuleFor(command => command.FirstName)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED)
-                .MaximumLength(255)
-                .WithErrorCode(nameof(ValidationCodes.FIRST_NAME_TOO_LONG))
-                .WithMessage(ValidationCodes.FIRST_NAME_TOO_LONG);
+        RuleFor(command => command.FirstName)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED)
+            .MaximumLength(255)
+            .WithErrorCode(nameof(ValidationCodes.FIRST_NAME_TOO_LONG))
+            .WithMessage(ValidationCodes.FIRST_NAME_TOO_LONG);
 
-            RuleFor(command => command.LastName)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED)
-                .MaximumLength(255)
-                .WithErrorCode(nameof(ValidationCodes.LAST_NAME_TOO_LONG))
-                .WithMessage(ValidationCodes.LAST_NAME_TOO_LONG);
+        RuleFor(command => command.LastName)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED)
+            .MaximumLength(255)
+            .WithErrorCode(nameof(ValidationCodes.LAST_NAME_TOO_LONG))
+            .WithMessage(ValidationCodes.LAST_NAME_TOO_LONG);
 
-            RuleFor(command => command.EmailAddress)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED)
-                .MaximumLength(255)
-                .WithErrorCode(nameof(ValidationCodes.EMAIL_TOO_LONG))
-                .WithMessage(ValidationCodes.EMAIL_TOO_LONG);
-        }
+        RuleFor(command => command.EmailAddress)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED)
+            .MaximumLength(255)
+            .WithErrorCode(nameof(ValidationCodes.EMAIL_TOO_LONG))
+            .WithMessage(ValidationCodes.EMAIL_TOO_LONG);
     }
 }

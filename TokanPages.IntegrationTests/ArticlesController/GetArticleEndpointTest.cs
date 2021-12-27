@@ -1,52 +1,51 @@
-namespace TokanPages.IntegrationTests.ArticlesController
+namespace TokanPages.IntegrationTests.ArticlesController;
+
+using Xunit;
+using Newtonsoft.Json;
+using FluentAssertions;
+using System;
+using System.Net;
+using System.Threading.Tasks;
+using Backend.Shared.Resources;
+using Backend.Cqrs.Handlers.Queries.Articles;
+using Backend.Database.Initializer.Data.Articles;
+
+public partial class ArticlesControllerTest
 {
-    using Xunit;
-    using Newtonsoft.Json;
-    using FluentAssertions;
-    using System;
-    using System.Net;
-    using System.Threading.Tasks;
-    using Backend.Shared.Resources;
-    using Backend.Cqrs.Handlers.Queries.Articles;
-    using Backend.Database.Initializer.Data.Articles;
-
-    public partial class ArticlesControllerTest
+    [Fact]
+    public async Task GivenCorrectId_WhenGetArticle_ShouldReturnEntityAsJsonObject()
     {
-        [Fact]
-        public async Task GivenCorrectId_WhenGetArticle_ShouldReturnEntityAsJsonObject()
-        {
-            // Arrange
-            var testUserId = Article1.Id;
-            var request = $"{ApiBaseUrl}/GetArticle/{testUserId}/?noCache=true";
-            var httpClient = _webApplicationFactory.CreateClient();
+        // Arrange
+        var testUserId = Article1.Id;
+        var request = $"{ApiBaseUrl}/GetArticle/{testUserId}/?noCache=true";
+        var httpClient = _webApplicationFactory.CreateClient();
 
-            // Act
-            var response = await httpClient.GetAsync(request);
-            await EnsureStatusCode(response, HttpStatusCode.OK);
+        // Act
+        var response = await httpClient.GetAsync(request);
+        await EnsureStatusCode(response, HttpStatusCode.OK);
 
-            // Assert
-            var content = await response.Content.ReadAsStringAsync();
-            content.Should().NotBeNullOrEmpty();
+        // Assert
+        var content = await response.Content.ReadAsStringAsync();
+        content.Should().NotBeNullOrEmpty();
 
-            var deserialized = JsonConvert.DeserializeObject<GetAllArticlesQueryResult>(content);
-            deserialized.Should().NotBeNull();
-        }
+        var deserialized = JsonConvert.DeserializeObject<GetAllArticlesQueryResult>(content);
+        deserialized.Should().NotBeNull();
+    }
 
-        [Fact]
-        public async Task GivenIncorrectId_WhenGetArticle_ShouldReturnJsonObjectWithError()
-        {
-            // Arrange
-            var httpClient = _webApplicationFactory.CreateClient();
-            var request = $"{ApiBaseUrl}/GetArticle/{Guid.NewGuid()}/?noCache=true";
+    [Fact]
+    public async Task GivenIncorrectId_WhenGetArticle_ShouldReturnJsonObjectWithError()
+    {
+        // Arrange
+        var httpClient = _webApplicationFactory.CreateClient();
+        var request = $"{ApiBaseUrl}/GetArticle/{Guid.NewGuid()}/?noCache=true";
 
-            // Act
-            var response = await httpClient.GetAsync(request);
-            await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
+        // Act
+        var response = await httpClient.GetAsync(request);
+        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
 
-            // Assert
-            var content = await response.Content.ReadAsStringAsync();
-            content.Should().NotBeNullOrEmpty();
-            content.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
-        }
+        // Assert
+        var content = await response.Content.ReadAsStringAsync();
+        content.Should().NotBeNullOrEmpty();
+        content.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
     }
 }

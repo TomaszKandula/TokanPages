@@ -1,70 +1,69 @@
-﻿namespace TokanPages.UnitTests.Handlers.Users
+﻿namespace TokanPages.UnitTests.Handlers.Users;
+
+using Moq;
+using Xunit;
+using FluentAssertions;
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using Backend.Domain.Entities;
+using Backend.Core.Utilities.LoggerService;
+using Backend.Cqrs.Handlers.Queries.Users;
+
+public class GetAllUsersQueryHandlerTest : TestBase
 {
-    using Moq;
-    using Xunit;
-    using FluentAssertions;
-    using System;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
-    using Backend.Domain.Entities;
-    using Backend.Core.Utilities.LoggerService;
-    using Backend.Cqrs.Handlers.Queries.Users;
-
-    public class GetAllUsersQueryHandlerTest : TestBase
+    [Fact]
+    public async Task WhenGetAllArticles_ShouldReturnCollection()
     {
-        [Fact]
-        public async Task WhenGetAllArticles_ShouldReturnCollection()
+        // Arrange
+        var users = new List<Users>
         {
-            // Arrange
-            var users = new List<Users>
+            new ()
             {
-                new ()
-                {
-                    Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
-                    EmailAddress = DataUtilityService.GetRandomEmail(),
-                    UserAlias = DataUtilityService.GetRandomString(),
-                    FirstName = DataUtilityService.GetRandomString(),
-                    LastName = DataUtilityService.GetRandomString(),
-                    IsActivated = true,
-                    Registered = DateTime.Now,
-                    LastUpdated = null,
-                    LastLogged = null,
-                    CryptedPassword = DataUtilityService.GetRandomString()
-                },
-                new ()
-                {
-                    Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
-                    EmailAddress = DataUtilityService.GetRandomEmail(),
-                    UserAlias = DataUtilityService.GetRandomString(),
-                    FirstName = DataUtilityService.GetRandomString(),
-                    LastName = DataUtilityService.GetRandomString(),
-                    IsActivated = true,
-                    Registered = DateTime.Now,
-                    LastUpdated = null,
-                    LastLogged = null,
-                    CryptedPassword = DataUtilityService.GetRandomString()
-                }
-            };
+                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                IsActivated = true,
+                Registered = DateTime.Now,
+                LastUpdated = null,
+                LastLogged = null,
+                CryptedPassword = DataUtilityService.GetRandomString()
+            },
+            new ()
+            {
+                Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
+                EmailAddress = DataUtilityService.GetRandomEmail(),
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                IsActivated = true,
+                Registered = DateTime.Now,
+                LastUpdated = null,
+                LastLogged = null,
+                CryptedPassword = DataUtilityService.GetRandomString()
+            }
+        };
 
-            var databaseContext = GetTestDatabaseContext();
-            var mockedLogger = new Mock<ILoggerService>();
+        var databaseContext = GetTestDatabaseContext();
+        var mockedLogger = new Mock<ILoggerService>();
 
-            var getAllUsersQuery = new GetAllUsersQuery();
-            var getAllUsersQueryHandler = new GetAllUsersQueryHandler(databaseContext, mockedLogger.Object);
+        var getAllUsersQuery = new GetAllUsersQuery();
+        var getAllUsersQueryHandler = new GetAllUsersQueryHandler(databaseContext, mockedLogger.Object);
 
-            await databaseContext.Users.AddRangeAsync(users);
-            await databaseContext.SaveChangesAsync();
+        await databaseContext.Users.AddRangeAsync(users);
+        await databaseContext.SaveChangesAsync();
 
-            // Act
-            var result = (await getAllUsersQueryHandler
+        // Act
+        var result = (await getAllUsersQueryHandler
                 .Handle(getAllUsersQuery, CancellationToken.None))
-                .ToList();
+            .ToList();
 
-            // Assert
-            result.Should().NotBeNull();
-            result.Should().HaveCount(2);
-        }
+        // Assert
+        result.Should().NotBeNull();
+        result.Should().HaveCount(2);
     }
 }

@@ -1,46 +1,45 @@
-namespace TokanPages.IntegrationTests.UsersController
+namespace TokanPages.IntegrationTests.UsersController;
+
+using Xunit;
+using Newtonsoft.Json;
+using FluentAssertions;
+using System;
+using System.Net;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Net.Http.Headers;
+using System.Collections.Generic;
+using Backend.Cqrs.Handlers.Queries.Users;
+
+public partial class UsersControllerTest
 {
-    using Xunit;
-    using Newtonsoft.Json;
-    using FluentAssertions;
-    using System;
-    using System.Net;
-    using System.Linq;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-    using System.Net.Http.Headers;
-    using System.Collections.Generic;
-    using Backend.Cqrs.Handlers.Queries.Users;
-
-    public partial class UsersControllerTest
+    [Fact]
+    public async Task GivenValidJwt_WhenGetAllUsers_ShouldReturnCollection() 
     {
-        [Fact]
-        public async Task GivenValidJwt_WhenGetAllUsers_ShouldReturnCollection() 
-        {
-            // Arrange
-            var request = $"{ApiBaseUrl}/GetAllUsers/?noCache=true";
-            var newRequest = new HttpRequestMessage(HttpMethod.Get, request);
+        // Arrange
+        var request = $"{ApiBaseUrl}/GetAllUsers/?noCache=true";
+        var newRequest = new HttpRequestMessage(HttpMethod.Get, request);
             
-            var httpClient = _webApplicationFactory.CreateClient();
-            var tokenExpires = DateTime.Now.AddDays(30);
-            var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+        var httpClient = _webApplicationFactory.CreateClient();
+        var tokenExpires = DateTime.Now.AddDays(30);
+        var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
-            await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
+        await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
 
-            newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
+        newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
-            // Act
-            var response = await httpClient.SendAsync(newRequest);
-            await EnsureStatusCode(response, HttpStatusCode.OK);
+        // Act
+        var response = await httpClient.SendAsync(newRequest);
+        await EnsureStatusCode(response, HttpStatusCode.OK);
 
-            // Assert
-            var content = await response.Content.ReadAsStringAsync();
-            content.Should().NotBeNullOrEmpty();
+        // Assert
+        var content = await response.Content.ReadAsStringAsync();
+        content.Should().NotBeNullOrEmpty();
 
-            var deserialized = (JsonConvert.DeserializeObject<IEnumerable<GetAllUsersQueryResult>>(content) ?? Array.Empty<GetAllUsersQueryResult>())
-                .ToList();
-            deserialized.Should().NotBeNullOrEmpty();
-            deserialized.Should().HaveCountGreaterThan(0);
-        }
+        var deserialized = (JsonConvert.DeserializeObject<IEnumerable<GetAllUsersQueryResult>>(content) ?? Array.Empty<GetAllUsersQueryResult>())
+            .ToList();
+        deserialized.Should().NotBeNullOrEmpty();
+        deserialized.Should().HaveCountGreaterThan(0);
     }
 }

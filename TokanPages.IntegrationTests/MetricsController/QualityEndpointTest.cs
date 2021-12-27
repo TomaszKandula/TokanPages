@@ -1,61 +1,60 @@
-namespace TokanPages.IntegrationTests.MetricsController
+namespace TokanPages.IntegrationTests.MetricsController;
+
+using Xunit;
+using FluentAssertions;
+using System.Net;
+using System.Threading.Tasks;
+
+public partial class MetricsControllerTest
 {
-    using Xunit;
-    using FluentAssertions;
-    using System.Net;
-    using System.Threading.Tasks;
-
-    public partial class MetricsControllerTest
+    [Theory]
+    [InlineData("tokanpages-backend")]
+    [InlineData("tokanpages-frontend")]
+    public async Task GivenProjectName_WhenRequestQualityGate_ShouldReturnSvgFile(string project)
     {
-        [Theory]
-        [InlineData("tokanpages-backend")]
-        [InlineData("tokanpages-frontend")]
-        public async Task GivenProjectName_WhenRequestQualityGate_ShouldReturnSvgFile(string project)
-        {
-            // Arrange
-            var request = $"{ApiBaseUrl}/Quality/?Project={project}&noCache=true";
+        // Arrange
+        var request = $"{ApiBaseUrl}/Quality/?Project={project}&noCache=true";
 
-            // Act
-            var httpClient = _webApplicationFactory.CreateClient();
-            var response = await httpClient.GetAsync(request);
-            await EnsureStatusCode(response, HttpStatusCode.OK);
+        // Act
+        var httpClient = _webApplicationFactory.CreateClient();
+        var response = await httpClient.GetAsync(request);
+        await EnsureStatusCode(response, HttpStatusCode.OK);
 
-            // Assert
-            var content = await response.Content.ReadAsStringAsync();
-            content.Should().NotBeNullOrEmpty();
-        }
+        // Assert
+        var content = await response.Content.ReadAsStringAsync();
+        content.Should().NotBeNullOrEmpty();
+    }
         
-        [Fact]
-        public async Task GivenInvalidProjectName_WhenRequestQualityGate_ShouldReturnSvgWithError()
-        {
-            // Arrange
-            const string invalidProjectName = "InvalidProjectName"; 
-            var request = $"{ApiBaseUrl}/Quality/?Project={invalidProjectName}&noCache=true";
+    [Fact]
+    public async Task GivenInvalidProjectName_WhenRequestQualityGate_ShouldReturnSvgWithError()
+    {
+        // Arrange
+        const string invalidProjectName = "InvalidProjectName"; 
+        var request = $"{ApiBaseUrl}/Quality/?Project={invalidProjectName}&noCache=true";
 
-            // Act
-            var httpClient = _webApplicationFactory.CreateClient();
-            var response = await httpClient.GetAsync(request);
-            await EnsureStatusCode(response, HttpStatusCode.OK);
+        // Act
+        var httpClient = _webApplicationFactory.CreateClient();
+        var response = await httpClient.GetAsync(request);
+        await EnsureStatusCode(response, HttpStatusCode.OK);
 
-            // Assert
-            var content = await response.Content.ReadAsStringAsync();
-            content.Should().Contain("Project has not been found");
-        }
+        // Assert
+        var content = await response.Content.ReadAsStringAsync();
+        content.Should().Contain("Project has not been found");
+    }
 
-        [Fact]
-        public async Task GivenEmptyProjectName_WhenRequestQualityGate_ShouldThrowError()
-        {
-            // Arrange
-            var request = $"{ApiBaseUrl}/Quality/?Project=&noCache=true";
+    [Fact]
+    public async Task GivenEmptyProjectName_WhenRequestQualityGate_ShouldThrowError()
+    {
+        // Arrange
+        var request = $"{ApiBaseUrl}/Quality/?Project=&noCache=true";
 
-            // Act
-            var httpClient = _webApplicationFactory.CreateClient();
-            var response = await httpClient.GetAsync(request);
-            await EnsureStatusCode(response, HttpStatusCode.BadRequest);
+        // Act
+        var httpClient = _webApplicationFactory.CreateClient();
+        var response = await httpClient.GetAsync(request);
+        await EnsureStatusCode(response, HttpStatusCode.BadRequest);
 
-            // Assert
-            var content = await response.Content.ReadAsStringAsync();
-            content.Should().NotBeNullOrEmpty();
-        }
+        // Assert
+        var content = await response.Content.ReadAsStringAsync();
+        content.Should().NotBeNullOrEmpty();
     }
 }

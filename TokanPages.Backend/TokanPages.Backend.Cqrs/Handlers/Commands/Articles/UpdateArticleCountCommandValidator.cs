@@ -1,16 +1,15 @@
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
-{
-    using FluentValidation;
-    using Shared.Resources;
+namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
-    public class UpdateArticleCountCommandValidator : AbstractValidator<UpdateArticleCountCommand>
+using FluentValidation;
+using Shared.Resources;
+
+public class UpdateArticleCountCommandValidator : AbstractValidator<UpdateArticleCountCommand>
+{
+    public UpdateArticleCountCommandValidator()
     {
-        public UpdateArticleCountCommandValidator()
-        {
-            RuleFor(command => command.Id)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
-        }
+        RuleFor(command => command.Id)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED);
     }
 }

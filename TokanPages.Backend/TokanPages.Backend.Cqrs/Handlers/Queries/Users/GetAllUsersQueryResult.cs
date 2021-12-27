@@ -1,15 +1,14 @@
-﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Users;
+
+using System;
+
+public class GetAllUsersQueryResult
 {
-    using System;
+    public Guid Id { get; set; }
 
-    public class GetAllUsersQueryResult
-    {
-        public Guid Id { get; set; }
+    public string AliasName { get; set; }
 
-        public string AliasName { get; set; }
+    public bool IsActivated { get; set; }
 
-        public bool IsActivated { get; set; }
-
-        public string Email { get; set; }
-    }
+    public string Email { get; set; }
 }

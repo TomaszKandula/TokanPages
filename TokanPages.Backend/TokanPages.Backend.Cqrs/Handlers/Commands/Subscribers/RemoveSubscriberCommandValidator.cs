@@ -1,16 +1,15 @@
-﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
-{
-    using FluentValidation;
-    using Shared.Resources;
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
-    public class RemoveSubscriberCommandValidator : AbstractValidator<RemoveSubscriberCommand>
+using FluentValidation;
+using Shared.Resources;
+
+public class RemoveSubscriberCommandValidator : AbstractValidator<RemoveSubscriberCommand>
+{
+    public RemoveSubscriberCommandValidator() 
     {
-        public RemoveSubscriberCommandValidator() 
-        {
-            RuleFor(command => command.Id)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
-        }
+        RuleFor(command => command.Id)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED);
     }
 }

@@ -1,16 +1,15 @@
-﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles
-{
-    using FluentValidation;
-    using Shared.Resources;
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
-    public class RemoveArticleCommandValidator : AbstractValidator<RemoveArticleCommand>
+using FluentValidation;
+using Shared.Resources;
+
+public class RemoveArticleCommandValidator : AbstractValidator<RemoveArticleCommand>
+{
+    public RemoveArticleCommandValidator() 
     {
-        public RemoveArticleCommandValidator() 
-        {
-            RuleFor(command => command.Id)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
-        }
+        RuleFor(command => command.Id)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED);
     }
 }

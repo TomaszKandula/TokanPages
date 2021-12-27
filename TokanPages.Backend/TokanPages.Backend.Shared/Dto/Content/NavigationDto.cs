@@ -1,14 +1,13 @@
-namespace TokanPages.Backend.Shared.Dto.Content
+namespace TokanPages.Backend.Shared.Dto.Content;
+
+using Base;
+using Common;
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class NavigationDto : BaseClass
 {
-    using Base;
-    using Common;
-    using System.Diagnostics.CodeAnalysis;
+    public string Logo { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class NavigationDto : BaseClass
-    {
-        public string Logo { get; set; }
-
-        public Menu Menu { get; set; }
-    }
+    public Menu Menu { get; set; }
 }

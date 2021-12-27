@@ -1,21 +1,20 @@
-﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
+
+using System;
+
+public class GetAllArticlesQueryResult
 {
-    using System;
+    public Guid Id { get; set; }
 
-    public class GetAllArticlesQueryResult
-    {
-        public Guid Id { get; set; }
+    public string Title { get; set; }
 
-        public string Title { get; set; }
+    public string Description { get; set; }
 
-        public string Description { get; set; }
+    public bool IsPublished { get; set; }
 
-        public bool IsPublished { get; set; }
+    public int ReadCount { get; set; }
 
-        public int ReadCount { get; set; }
+    public DateTime CreatedAt { get; set; }
 
-        public DateTime CreatedAt { get; set; }
-
-        public DateTime? UpdatedAt { get; set; }
-    }
+    public DateTime? UpdatedAt { get; set; }
 }

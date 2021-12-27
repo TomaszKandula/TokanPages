@@ -1,15 +1,14 @@
-namespace TokanPages.Backend.Core.Models.Paging
+namespace TokanPages.Backend.Core.Models.Paging;
+
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class PagingResults<T> where T : class
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    public PagingInfo PagingInfo { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class PagingResults<T> where T : class
-    {
-        public PagingInfo PagingInfo { get; set; }
-
-        public int TotalSize { get; set; }
+    public int TotalSize { get; set; }
         
-        public ICollection<T> Results { get; set; }
-    }
+    public ICollection<T> Results { get; set; }
 }

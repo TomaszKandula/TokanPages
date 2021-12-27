@@ -1,10 +1,9 @@
-namespace TokanPages.Backend.Shared.Dto.Users
-{
-    using System.Diagnostics.CodeAnalysis;
+namespace TokanPages.Backend.Shared.Dto.Users;
 
-    [ExcludeFromCodeCoverage]
-    public class ResetUserPasswordDto
-    {
-        public string EmailAddress { get; set; }        
-    }
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class ResetUserPasswordDto
+{
+    public string EmailAddress { get; set; }        
 }

@@ -1,28 +1,27 @@
-namespace TokanPages.WebApi.Configuration
+namespace TokanPages.WebApi.Configuration;
+
+using System.Security.Claims;
+using System.Diagnostics.CodeAnalysis;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+
+[ExcludeFromCodeCoverage]
+public class SecurityHandler : ISecurityTokenValidator
 {
-    using System.Security.Claims;
-    using System.Diagnostics.CodeAnalysis;
-    using System.IdentityModel.Tokens.Jwt;
-    using Microsoft.IdentityModel.Tokens;
+    private readonly JwtSecurityTokenHandler _tokenHandler;
 
-    [ExcludeFromCodeCoverage]
-    public class SecurityHandler : ISecurityTokenValidator
+    public bool CanValidateToken => true;
+
+    public int MaximumTokenSizeInBytes { get; set; } = TokenValidationParameters.DefaultMaximumTokenSizeInBytes;
+
+    public SecurityHandler() => _tokenHandler = new JwtSecurityTokenHandler();
+
+    public bool CanReadToken(string securityToken) => _tokenHandler.CanReadToken(securityToken);
+
+    public ClaimsPrincipal ValidateToken(string securityToken, TokenValidationParameters validationParameters,
+        out SecurityToken validatedToken)
     {
-        private readonly JwtSecurityTokenHandler _tokenHandler;
-
-        public bool CanValidateToken => true;
-
-        public int MaximumTokenSizeInBytes { get; set; } = TokenValidationParameters.DefaultMaximumTokenSizeInBytes;
-
-        public SecurityHandler() => _tokenHandler = new JwtSecurityTokenHandler();
-
-        public bool CanReadToken(string securityToken) => _tokenHandler.CanReadToken(securityToken);
-
-        public ClaimsPrincipal ValidateToken(string securityToken, TokenValidationParameters validationParameters,
-            out SecurityToken validatedToken)
-        {
-            var principal = _tokenHandler.ValidateToken(securityToken, validationParameters, out validatedToken);
-            return principal;
-        }
+        var principal = _tokenHandler.ValidateToken(securityToken, validationParameters, out validatedToken);
+        return principal;
     }
 }
