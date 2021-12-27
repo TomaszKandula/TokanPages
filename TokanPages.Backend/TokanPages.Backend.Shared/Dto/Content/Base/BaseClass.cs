@@ -1,10 +1,9 @@
-namespace TokanPages.Backend.Shared.Dto.Content.Base
-{
-    using System.Diagnostics.CodeAnalysis;
+namespace TokanPages.Backend.Shared.Dto.Content.Base;
 
-    [ExcludeFromCodeCoverage]
-    public class BaseClass
-    {
-        public string Language { get; set; }
-    }
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class BaseClass
+{
+    public string Language { get; set; }
 }

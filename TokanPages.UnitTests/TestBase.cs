@@ -1,82 +1,81 @@
-﻿namespace TokanPages.UnitTests
+﻿namespace TokanPages.UnitTests;
+
+using Moq;
+using Microsoft.Extensions.DependencyInjection;
+using Backend.Database;
+using Backend.Shared.Models;
+using Backend.Shared.Services;
+using Backend.Core.Utilities.DateTimeService;
+using Backend.Core.Utilities.JwtUtilityService;
+using Backend.Core.Utilities.DataUtilityService;
+
+public class TestBase
 {
-    using Moq;
-    using Microsoft.Extensions.DependencyInjection;
-    using Backend.Database;
-    using Backend.Shared.Models;
-    using Backend.Shared.Services;
-    using Backend.Core.Utilities.DateTimeService;
-    using Backend.Core.Utilities.JwtUtilityService;
-    using Backend.Core.Utilities.DataUtilityService;
+    private readonly DatabaseContextFactory _databaseContextFactory;
 
-    public class TestBase
+    protected IDataUtilityService DataUtilityService { get; }
+
+    protected IJwtUtilityService JwtUtilityService { get; }
+
+    protected IDateTimeService DateTimeService { get; }
+
+    protected TestBase()
     {
-        private readonly DatabaseContextFactory _databaseContextFactory;
+        DataUtilityService = new DataUtilityService();
+        JwtUtilityService = new JwtUtilityService();
+        DateTimeService = new DateTimeService();
 
-        protected IDataUtilityService DataUtilityService { get; }
-
-        protected IJwtUtilityService JwtUtilityService { get; }
-
-        protected IDateTimeService DateTimeService { get; }
-
-        protected TestBase()
+        var services = new ServiceCollection();
+        services.AddSingleton<DatabaseContextFactory>();
+        services.AddScoped(context =>
         {
-            DataUtilityService = new DataUtilityService();
-            JwtUtilityService = new JwtUtilityService();
-            DateTimeService = new DateTimeService();
+            var factory = context.GetService<DatabaseContextFactory>();
+            return factory?.CreateDatabaseContext();
+        });
 
-            var services = new ServiceCollection();
-            services.AddSingleton<DatabaseContextFactory>();
-            services.AddScoped(context =>
-            {
-                var factory = context.GetService<DatabaseContextFactory>();
-                return factory?.CreateDatabaseContext();
-            });
+        var serviceScope = services.BuildServiceProvider(true).CreateScope();
+        var serviceProvider = serviceScope.ServiceProvider;
+        _databaseContextFactory = serviceProvider.GetService<DatabaseContextFactory>();
+    }
 
-            var serviceScope = services.BuildServiceProvider(true).CreateScope();
-            var serviceProvider = serviceScope.ServiceProvider;
-            _databaseContextFactory = serviceProvider.GetService<DatabaseContextFactory>();
-        }
+    protected DatabaseContext GetTestDatabaseContext() =>  _databaseContextFactory.CreateDatabaseContext();
 
-        protected DatabaseContext GetTestDatabaseContext() =>  _databaseContextFactory.CreateDatabaseContext();
+    protected static Mock<IApplicationSettings> MockApplicationSettings(ApplicationPaths applicationPaths = default, 
+        IdentityServer identityServer = default, ExpirationSettings expirationSettings = default, 
+        EmailSender emailSender = default, AzureStorage azureStorage = default, SonarQube sonarQube = default)
+    {
+        var applicationSettings = new Mock<IApplicationSettings>();
 
-        protected static Mock<IApplicationSettings> MockApplicationSettings(ApplicationPaths applicationPaths = default, 
-            IdentityServer identityServer = default, ExpirationSettings expirationSettings = default, 
-            EmailSender emailSender = default, AzureStorage azureStorage = default, SonarQube sonarQube = default)
-        {
-            var applicationSettings = new Mock<IApplicationSettings>();
+        var returnApplicationPaths = applicationPaths ?? new ApplicationPaths();
+        applicationSettings
+            .SetupGet(settings => settings.ApplicationPaths)
+            .Returns(returnApplicationPaths);
 
-            var returnApplicationPaths = applicationPaths ?? new ApplicationPaths();
-            applicationSettings
-                .SetupGet(settings => settings.ApplicationPaths)
-                .Returns(returnApplicationPaths);
+        var returnIdentityServer = identityServer ?? new IdentityServer();
+        applicationSettings
+            .SetupGet(settings => settings.IdentityServer)
+            .Returns(returnIdentityServer);
 
-            var returnIdentityServer = identityServer ?? new IdentityServer();
-            applicationSettings
-                .SetupGet(settings => settings.IdentityServer)
-                .Returns(returnIdentityServer);
+        var returnExpirationSettings = expirationSettings ?? new ExpirationSettings();
+        applicationSettings
+            .SetupGet(settings => settings.ExpirationSettings)
+            .Returns(returnExpirationSettings);
 
-            var returnExpirationSettings = expirationSettings ?? new ExpirationSettings();
-            applicationSettings
-                .SetupGet(settings => settings.ExpirationSettings)
-                .Returns(returnExpirationSettings);
+        var returnEmailSender = emailSender ?? new EmailSender();
+        applicationSettings
+            .SetupGet(settings => settings.EmailSender)
+            .Returns(returnEmailSender);
 
-            var returnEmailSender = emailSender ?? new EmailSender();
-            applicationSettings
-                .SetupGet(settings => settings.EmailSender)
-                .Returns(returnEmailSender);
+        var returnAzureStorage = azureStorage ?? new AzureStorage();
+        applicationSettings
+            .SetupGet(settings => settings.AzureStorage)
+            .Returns(returnAzureStorage);
 
-            var returnAzureStorage = azureStorage ?? new AzureStorage();
-            applicationSettings
-                .SetupGet(settings => settings.AzureStorage)
-                .Returns(returnAzureStorage);
+        var returnSonarQube = sonarQube ?? new SonarQube();
+        applicationSettings
+            .SetupGet(settings => settings.SonarQube)
+            .Returns(returnSonarQube);
 
-            var returnSonarQube = sonarQube ?? new SonarQube();
-            applicationSettings
-                .SetupGet(settings => settings.SonarQube)
-                .Returns(returnSonarQube);
-
-            return applicationSettings;
-        }
+        return applicationSettings;
     }
 }

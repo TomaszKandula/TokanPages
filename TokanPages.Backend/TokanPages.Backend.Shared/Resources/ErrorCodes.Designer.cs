@@ -242,5 +242,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("INVALID_API_VERSION", resourceCulture);
             }
         }
+        
+        public static string ARGUMENT_EMPTY_OR_NULL {
+            get {
+                return ResourceManager.GetString("ARGUMENT_EMPTY_OR_NULL", resourceCulture);
+            }
+        }
     }
 }

@@ -1,13 +1,12 @@
-namespace TokanPages.IntegrationTests.ArticlesController
+namespace TokanPages.IntegrationTests.ArticlesController;
+
+using Xunit;
+
+public partial class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
-    using Xunit;
+    private const string ApiBaseUrl = "/api/v1.0/articles";
 
-    public partial class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
-    {
-        private const string ApiBaseUrl = "/api/v1.0/articles";
+    private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
 
-        private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
-
-        public ArticlesControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
-    }
+    public ArticlesControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
 }

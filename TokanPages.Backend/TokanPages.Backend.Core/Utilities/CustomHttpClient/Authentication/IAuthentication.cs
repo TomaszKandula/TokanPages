@@ -1,4 +1,3 @@
-namespace TokanPages.Backend.Core.Utilities.CustomHttpClient.Authentication
-{
-    public interface IAuthentication { }
-}
+namespace TokanPages.Backend.Core.Utilities.CustomHttpClient.Authentication;
+
+public interface IAuthentication { }

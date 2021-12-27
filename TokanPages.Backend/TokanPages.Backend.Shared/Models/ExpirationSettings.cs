@@ -1,12 +1,11 @@
-namespace TokanPages.Backend.Shared.Models
-{
-    using System.Diagnostics.CodeAnalysis;
+namespace TokanPages.Backend.Shared.Models;
 
-    [ExcludeFromCodeCoverage]
-    public class ExpirationSettings
-    {
-        public int ResetIdExpiresIn { get; set; }
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class ExpirationSettings
+{
+    public int ResetIdExpiresIn { get; set; }
         
-        public int ActivationIdExpiresIn { get; set; }
-    }
+    public int ActivationIdExpiresIn { get; set; }
 }

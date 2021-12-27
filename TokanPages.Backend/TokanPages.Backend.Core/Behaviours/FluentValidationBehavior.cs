@@ -1,30 +1,29 @@
-﻿namespace TokanPages.Backend.Core.Behaviours
+﻿namespace TokanPages.Backend.Core.Behaviours;
+
+using System.Threading;
+using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
+using FluentValidation;
+using MediatR;
+
+[ExcludeFromCodeCoverage]
+public class FluentValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
 {
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Diagnostics.CodeAnalysis;
-    using FluentValidation;
-    using MediatR;
+    private readonly IValidator<TRequest> _validator;
 
-    [ExcludeFromCodeCoverage]
-    public class FluentValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public FluentValidationBehavior(IValidator<TRequest> validator = null) 
+        => _validator = validator;
+
+    public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
     {
-        private readonly IValidator<TRequest> _validator;
+        if (_validator == null) return next();
 
-        public FluentValidationBehavior(IValidator<TRequest> validator = null) 
-            => _validator = validator;
+        var validationContext = new ValidationContext<TRequest>(request);
+        var validationResults = _validator.Validate(validationContext);
 
-        public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
-        {
-            if (_validator == null) return next();
+        if (!validationResults.IsValid)
+            throw new Exceptions.ValidationException(validationResults);
 
-            var validationContext = new ValidationContext<TRequest>(request);
-            var validationResults = _validator.Validate(validationContext);
-
-            if (!validationResults.IsValid)
-                throw new Exceptions.ValidationException(validationResults);
-
-            return next();
-        }
+        return next();
     }
 }

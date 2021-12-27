@@ -1,4 +1,3 @@
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
-{
-    public class ReAuthenticateUserCommandResult : AuthenticateUserCommandResult { }
-}
+namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
+
+public class ReAuthenticateUserCommandResult : AuthenticateUserCommandResult { }

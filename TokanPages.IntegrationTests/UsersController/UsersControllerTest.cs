@@ -1,13 +1,12 @@
-namespace TokanPages.IntegrationTests.UsersController
+namespace TokanPages.IntegrationTests.UsersController;
+
+using Xunit;
+
+public partial class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
-    using Xunit;
-
-    public partial class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
-    {
-        private const string ApiBaseUrl = "/api/v1.0/users";
+    private const string ApiBaseUrl = "/api/v1.0/users";
         
-        private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
+    private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
 
-        public UsersControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
-    }
+    public UsersControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
 }

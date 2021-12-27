@@ -1,25 +1,24 @@
-namespace TokanPages.Backend.Shared.Models
+namespace TokanPages.Backend.Shared.Models;
+
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class EmailSenderPayload
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    public string PrivateKey { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class EmailSenderPayload
-    {
-        public string PrivateKey { get; set; }
+    public string From { get; set; }
 
-        public string From { get; set; }
+    public IEnumerable<string> To { get; set; }
 
-        public IEnumerable<string> To { get; set; }
+    public IEnumerable<string> Cc { get; set; }
 
-        public IEnumerable<string> Cc { get; set; }
+    public IEnumerable<string> Bcc { get; set; }
 
-        public IEnumerable<string> Bcc { get; set; }
+    public string Subject { get; set; }
 
-        public string Subject { get; set; }
+    public string Body { get; set; }
 
-        public string Body { get; set; }
-
-        public bool IsHtml { get; set; } = true;
-    }
+    public bool IsHtml { get; set; } = true;
 }

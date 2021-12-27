@@ -1,10 +1,9 @@
-﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users
-{  
-    using System;
-    using MediatR;
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
-    public class RemoveUserCommand : IRequest<Unit>
-    {
-        public Guid Id { get; set; }
-    }
+using System;
+using MediatR;
+
+public class RemoveUserCommand : IRequest<Unit>
+{
+    public Guid Id { get; set; }
 }

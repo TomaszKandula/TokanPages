@@ -1,21 +1,20 @@
-namespace TokanPages.Backend.Core.Utilities.DateTimeService
+namespace TokanPages.Backend.Core.Utilities.DateTimeService;
+
+using System;
+
+public interface IDateTimeService
 {
-    using System;
+    DateTime Now { get; }
 
-    public interface IDateTimeService
-    {
-        DateTime Now { get; }
+    DateTimeOffset RelativeNow { get; }
 
-        DateTimeOffset RelativeNow { get; }
-
-        DateTime TodayStartOfDay { get; }
+    DateTime TodayStartOfDay { get; }
         
-        DateTime TodayEndOfDay { get; }
+    DateTime TodayEndOfDay { get; }
         
-        DateTime GetStartOfDay(DateTime value);
+    DateTime GetStartOfDay(DateTime value);
         
-        DateTime GetEndOfDay(DateTime value);
+    DateTime GetEndOfDay(DateTime value);
         
-        DateTime GetFirstDayOfMonth(DateTime value);
-    }
+    DateTime GetFirstDayOfMonth(DateTime value);
 }

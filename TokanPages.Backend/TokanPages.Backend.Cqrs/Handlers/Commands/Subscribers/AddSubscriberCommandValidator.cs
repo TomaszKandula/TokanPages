@@ -1,19 +1,18 @@
-﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers
-{   
-    using FluentValidation;
-    using Shared.Resources;
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
-    public class AddSubscriberCommandValidator : AbstractValidator<AddSubscriberCommand>
+using FluentValidation;
+using Shared.Resources;
+
+public class AddSubscriberCommandValidator : AbstractValidator<AddSubscriberCommand>
+{
+    public AddSubscriberCommandValidator() 
     {
-        public AddSubscriberCommandValidator() 
-        {
-            RuleFor(command => command.Email)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED)
-                .MaximumLength(255)
-                .WithErrorCode(nameof(ValidationCodes.EMAIL_TOO_LONG))
-                .WithMessage(ValidationCodes.EMAIL_TOO_LONG);
-        }
+        RuleFor(command => command.Email)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED)
+            .MaximumLength(255)
+            .WithErrorCode(nameof(ValidationCodes.EMAIL_TOO_LONG))
+            .WithMessage(ValidationCodes.EMAIL_TOO_LONG);
     }
 }

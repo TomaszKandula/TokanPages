@@ -1,14 +1,13 @@
-﻿namespace TokanPages.Backend.Shared.Models
+﻿namespace TokanPages.Backend.Shared.Models;
+
+using System.Diagnostics.CodeAnalysis;
+
+[ExcludeFromCodeCoverage]
+public class AzureStorage
 {
-    using System.Diagnostics.CodeAnalysis;
+    public string BaseUrl { get; set; }
 
-    [ExcludeFromCodeCoverage]
-    public class AzureStorage
-    {
-        public string BaseUrl { get; set; }
-
-        public string ContainerName { get; set; }
+    public string ContainerName { get; set; }
         
-        public string ConnectionString { get; set; }
-    }
+    public string ConnectionString { get; set; }
 }
