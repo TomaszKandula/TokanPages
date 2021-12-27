@@ -1,3 +1,16 @@
+# [0.34.0](https://github.com/TomaszKandula/TokanPages/compare/v0.33.0...v0.34.0) (2021-12-27)
+
+
+### Bug Fixes
+
+* change exception type from System.Exception to BusinessException ([36a55af](https://github.com/TomaszKandula/TokanPages/commit/36a55af99c50e105acf0f33ac0130d17dde38b77))
+* change exception type, add logger ([bcb3520](https://github.com/TomaszKandula/TokanPages/commit/bcb3520f8b9b18a27a13805cf142a0dd7909c039))
+
+
+### Features
+
+* add new error code ([b93032a](https://github.com/TomaszKandula/TokanPages/commit/b93032a685e6baa7840f23126bdf8ae8bb4c9e04))
+
 # [0.33.0](https://github.com/TomaszKandula/TokanPages/compare/v0.32.0...v0.33.0) (2021-12-20)
 
 
