@@ -1,7 +1,9 @@
 namespace TokanPages.Backend.Shared.Services
 {
     using Models;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     public class ApplicationSettings : IApplicationSettings
     {
         public ApplicationPaths ApplicationPaths { get; }

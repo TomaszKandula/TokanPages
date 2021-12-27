@@ -4,12 +4,14 @@ namespace TokanPages.WebApi.Services.Caching.Assets
     using System.Text;
     using System.Threading.Tasks;
     using System.Net.Http.Headers;
+    using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Mvc;
     using Backend.Shared.Services;
     using Backend.Shared.Resources;
     using Backend.Core.Utilities.CustomHttpClient;
     using Backend.Core.Utilities.CustomHttpClient.Models;
 
+    [ExcludeFromCodeCoverage]
     public class AssetsCache : IAssetsCache
     {
         private readonly IRedisDistributedCache _redisDistributedCache;
@@ -35,19 +37,19 @@ namespace TokanPages.WebApi.Services.Caching.Assets
 
             var value = await _redisDistributedCache.GetObjectAsync<HttpContentResult>(blobName);
             if (value is not null)
-                return new FileContentResult(value.Content, value.ContentType?.MediaType);
+                return new FileContentResult(value.Content!, value.ContentType?.MediaType!);
 
             var request = await ExecuteRequest(requestUrl);
             value = new HttpContentResult();
 
             if (request is not FileContentResult result)
-                return new FileContentResult(value.Content, value.ContentType?.MediaType);
+                return new FileContentResult(value.Content!, value.ContentType?.MediaType!);
 
             value.Content = result.FileContents;
             value.ContentType = new MediaTypeHeaderValue(result.ContentType);
 
             await _redisDistributedCache.SetObjectAsync(blobName, value);
-            return new FileContentResult(value.Content, value.ContentType?.MediaType);
+            return new FileContentResult(value.Content, value.ContentType?.MediaType!);
         }
 
         public async Task<IActionResult> GetArticleAsset(string id, string assetName, bool noCache = false)
@@ -60,19 +62,19 @@ namespace TokanPages.WebApi.Services.Caching.Assets
 
             var value = await _redisDistributedCache.GetObjectAsync<HttpContentResult>(key);
             if (value is not null)
-                return new FileContentResult(value.Content, value.ContentType?.MediaType);
+                return new FileContentResult(value.Content!, value.ContentType?.MediaType!);
 
             var request = await ExecuteRequest(requestUrl);
             value = new HttpContentResult();
 
             if (request is not FileContentResult result)
-                return new FileContentResult(value.Content, value.ContentType?.MediaType);
+                return new FileContentResult(value.Content!, value.ContentType?.MediaType!);
 
             value.Content = result.FileContents;
             value.ContentType = new MediaTypeHeaderValue(result.ContentType);
 
             await _redisDistributedCache.SetObjectAsync(key, value);
-            return new FileContentResult(value.Content, value.ContentType?.MediaType);
+            return new FileContentResult(value.Content, value.ContentType?.MediaType!);
         }
 
         private async Task<IActionResult> ExecuteRequest(string requestUrl)
@@ -80,7 +82,7 @@ namespace TokanPages.WebApi.Services.Caching.Assets
             var configuration = new Configuration { Url = requestUrl, Method = "GET" };
             var results = await _customHttpClient.Execute(configuration);
             if (results.StatusCode == HttpStatusCode.OK)
-                return new FileContentResult(results.Content, results.ContentType?.MediaType);
+                return new FileContentResult(results.Content!, results.ContentType?.MediaType!);
 
             return new ContentResult
             {

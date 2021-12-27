@@ -1,9 +1,11 @@
 namespace TokanPages.WebApi.Services.Caching.Content
 {
     using System.Threading.Tasks;
+    using System.Diagnostics.CodeAnalysis;
     using Backend.Cqrs.Handlers.Queries.Content;
     using MediatR;
 
+    [ExcludeFromCodeCoverage]
     public class ContentCache : IContentCache
     {
         private readonly IRedisDistributedCache _redisDistributedCache;

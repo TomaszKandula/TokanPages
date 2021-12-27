@@ -6,6 +6,7 @@ namespace TokanPages.WebApi.Services.Caching.Metrics
     using System.Linq;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Microsoft.AspNetCore.Mvc;
     using Backend.Core.Exceptions;
     using Backend.Shared.Services;
@@ -15,6 +16,7 @@ namespace TokanPages.WebApi.Services.Caching.Metrics
     using Backend.Core.Utilities.CustomHttpClient.Authentication;
     using FluentValidation.Results;
 
+    [ExcludeFromCodeCoverage]
     public class MetricsCache : IMetricsCache
     {
         private readonly IRedisDistributedCache _redisDistributedCache;
@@ -110,7 +112,7 @@ namespace TokanPages.WebApi.Services.Caching.Metrics
 
             var results = await _customHttpClient.Execute(configuration);
             if (results.StatusCode == HttpStatusCode.OK)
-                return new FileContentResult(results.Content, results.ContentType?.MediaType);
+                return new FileContentResult(results.Content!, results.ContentType?.MediaType!);
 
             var message = results.Content is null 
                 ? ErrorCodes.ERROR_UNEXPECTED 

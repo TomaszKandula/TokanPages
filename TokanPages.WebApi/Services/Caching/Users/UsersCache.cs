@@ -8,6 +8,7 @@ namespace TokanPages.WebApi.Services.Caching.Users
     using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
     using MediatR;
 
+    [ExcludeFromCodeCoverage]
     public class UsersCache : IUsersCache
     {
         private readonly IRedisDistributedCache _redisDistributedCache;

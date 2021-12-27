@@ -8,6 +8,7 @@ namespace TokanPages.WebApi.Services.Caching.Articles
     using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
     using MediatR;
 
+    [ExcludeFromCodeCoverage]
     public class ArticlesCache : IArticlesCache
     {
         private readonly IRedisDistributedCache _redisDistributedCache;

@@ -8,6 +8,7 @@ namespace TokanPages.WebApi.Services.Caching.Subscribers
     using Backend.Cqrs.Handlers.Queries.Subscribers;
     using MediatR;
 
+    [ExcludeFromCodeCoverage]
     public class SubscribersCache : ISubscribersCache
     {
         private readonly IRedisDistributedCache _redisDistributedCache;
