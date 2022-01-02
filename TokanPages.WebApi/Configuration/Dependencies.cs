@@ -19,7 +19,6 @@ using Backend.Shared;
 using Backend.Database;
 using Backend.Shared.Models;
 using Backend.Shared.Services;
-using Backend.Core.Behaviours;
 using Backend.Database.Initializer;
 using Backend.Identity.Authorization;
 using Backend.Core.Utilities.LoggerService;
@@ -40,6 +39,7 @@ using Services.Caching.Content;
 using Services.Caching.Metrics;
 using Services.Caching.Articles;
 using Services.Caching.Subscribers;
+using TokanPages.Services.BehaviourService;
 using TokanPages.Services.AzureStorageService.AzureBlobStorage.Factory;
 
 [ExcludeFromCodeCoverage]
@@ -130,6 +130,7 @@ public static class Dependencies
 		services.AddMediatR(options => options.AsScoped(), 
 			typeof(Backend.Cqrs.RequestHandler<IRequest, Unit>).GetTypeInfo().Assembly);
 
+		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(TokenCheckBehaviour<,>));
 		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
 		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
 	}
