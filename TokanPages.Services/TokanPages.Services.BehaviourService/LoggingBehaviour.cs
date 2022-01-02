@@ -1,13 +1,13 @@
-﻿namespace TokanPages.Backend.Core.Behaviours;
+﻿namespace TokanPages.Services.BehaviourService;
 
 using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
-using Utilities.LoggerService;
+using Backend.Core.Utilities.LoggerService;
 using MediatR;
 
 [ExcludeFromCodeCoverage]
-public class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+public class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
 {
     private readonly ILoggerService _loggerService;
 
