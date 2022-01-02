@@ -12,7 +12,7 @@ jobs:
 
     env:
       TARGET_DIRECTORY: $PWD/sonarqubecoverage
-      COVERAGE_REPORT: $PWD/*/TestResults/*/coverage.cobertura.xml
+      COVERAGE_REPORT: $PWD/*/*/TestResults/*/coverage.cobertura.xml
       SONAR_REPORT: SonarQube.xml
 
     steps:
