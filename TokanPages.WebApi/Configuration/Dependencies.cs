@@ -28,7 +28,6 @@ using Backend.Core.Utilities.DateTimeService;
 using Backend.Core.Utilities.TemplateService;
 using Backend.Cqrs.Services.CipheringService;
 using Backend.Core.Utilities.CustomHttpClient;
-using Backend.Storage.AzureBlobStorage.Factory;
 using Backend.Core.Utilities.JwtUtilityService;
 using Backend.Core.Utilities.DataUtilityService;
 using Backend.Cqrs.Services.UserServiceProvider;
@@ -41,6 +40,7 @@ using Services.Caching.Content;
 using Services.Caching.Metrics;
 using Services.Caching.Articles;
 using Services.Caching.Subscribers;
+using TokanPages.Services.AzureStorageService.AzureBlobStorage.Factory;
 
 [ExcludeFromCodeCoverage]
 public static class Dependencies

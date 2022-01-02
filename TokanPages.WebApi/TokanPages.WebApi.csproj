@@ -35,7 +35,7 @@
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Identity\TokanPages.Backend.Identity.csproj" />
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
-    <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Storage\TokanPages.Backend.Storage.csproj" />
+    <ProjectReference Include="..\TokanPages.Backend\TokanPages.Services.AzureStorageService\TokanPages.Services.AzureStorageService.csproj" />
   </ItemGroup>
 
 </Project>

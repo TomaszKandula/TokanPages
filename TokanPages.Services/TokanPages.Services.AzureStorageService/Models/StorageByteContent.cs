@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Storage.Models;
+namespace TokanPages.Services.AzureStorageService.Models;
 
 using System;
 using System.Diagnostics.CodeAnalysis;
