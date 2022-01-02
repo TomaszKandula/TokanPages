@@ -12,8 +12,6 @@ public class AzureBlobStorageFactory : IAzureBlobStorageFactory
         _containerName = containerName;
     }
 
-    public AzureBlobStorageFactory() { }
-
     public IAzureBlobStorage Create() 
         => new AzureBlobStorage(_connectionString, _containerName);
 
