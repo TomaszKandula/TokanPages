@@ -25,7 +25,7 @@ public class AzureBlobStorage : IAzureBlobStorage
     public virtual async Task<StorageByteContent> ReadAllBytes(string sourceFilePath, CancellationToken cancellationToken)
     {
         if (string.IsNullOrEmpty(sourceFilePath))
-            throw new AggregateException($"Argument '{nameof(sourceFilePath)}' cannot be null or empty.");
+            throw new ArgumentException($"Argument '{nameof(sourceFilePath)}' cannot be null or empty.");
 
         var blobClient = _container.GetBlobClient(sourceFilePath);
 
@@ -48,7 +48,7 @@ public class AzureBlobStorage : IAzureBlobStorage
     public virtual async Task<StorageStreamContent> OpenRead(string sourceFilePath, CancellationToken cancellationToken)
     {
         if (string.IsNullOrEmpty(sourceFilePath))
-            throw new AggregateException($"Argument '{nameof(sourceFilePath)}' cannot be null or empty.");
+            throw new ArgumentException($"Argument '{nameof(sourceFilePath)}' cannot be null or empty.");
 
         var blobClient = _container.GetBlobClient(sourceFilePath);
         var stream = await blobClient.OpenReadAsync(cancellationToken: cancellationToken);
@@ -64,7 +64,7 @@ public class AzureBlobStorage : IAzureBlobStorage
     public virtual async Task UploadFile(Stream sourceStream, string destinationPath, CancellationToken cancellationToken, string contentType = Constants.ContentTypes.Stream)
     {
         if (string.IsNullOrEmpty(destinationPath))
-            throw new AggregateException($"Argument '{nameof(destinationPath)}' cannot be null or empty.");
+            throw new ArgumentException($"Argument '{nameof(destinationPath)}' cannot be null or empty.");
 
         var blobClient = _container.GetBlobClient(destinationPath);
         var blobHttpHeaders = new BlobHttpHeaders { ContentType = contentType };
@@ -74,7 +74,7 @@ public class AzureBlobStorage : IAzureBlobStorage
     public async Task<string> GetFileContentType(string sourceFilePath, CancellationToken cancellationToken)
     {
         if (string.IsNullOrEmpty(sourceFilePath))
-            throw new AggregateException($"Argument '{nameof(sourceFilePath)}' cannot be null or empty.");
+            throw new ArgumentException($"Argument '{nameof(sourceFilePath)}' cannot be null or empty.");
 
         var blobClient = _container.GetBlobClient(sourceFilePath);
         var properties = await blobClient.GetPropertiesAsync(cancellationToken: cancellationToken);
@@ -85,7 +85,7 @@ public class AzureBlobStorage : IAzureBlobStorage
     public virtual async Task<bool> DeleteFile(string sourceFilePath, CancellationToken cancellationToken)
     {
         if (string.IsNullOrEmpty(sourceFilePath))
-            throw new AggregateException($"Argument '{nameof(sourceFilePath)}' cannot be null or empty.");
+            throw new ArgumentException($"Argument '{nameof(sourceFilePath)}' cannot be null or empty.");
             
         return await _container
             .GetBlobClient(sourceFilePath)
