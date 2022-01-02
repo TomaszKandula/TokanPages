@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>10</LangVersion>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
+    <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
