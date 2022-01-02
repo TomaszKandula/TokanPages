@@ -10,7 +10,7 @@ using Shared.Resources;
 using Services.UserServiceProvider;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
-using Storage.AzureBlobStorage.Factory;
+using TokanPages.Services.AzureStorageService.AzureBlobStorage.Factory;
 using MediatR;
 
 public class UpdateArticleContentCommandHandler : Cqrs.RequestHandler<UpdateArticleContentCommand, Unit>

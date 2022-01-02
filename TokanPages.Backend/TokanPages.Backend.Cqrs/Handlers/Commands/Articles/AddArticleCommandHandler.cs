@@ -9,7 +9,7 @@ using Shared.Resources;
 using Core.Utilities.LoggerService;
 using Services.UserServiceProvider;
 using Core.Utilities.DateTimeService;
-using Storage.AzureBlobStorage.Factory;
+using TokanPages.Services.AzureStorageService.AzureBlobStorage.Factory;
 
 public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
 {
