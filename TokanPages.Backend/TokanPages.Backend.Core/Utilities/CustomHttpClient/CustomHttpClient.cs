@@ -27,6 +27,12 @@ public class CustomHttpClient : ICustomHttpClient
         VerifyConfigurationArgument(configuration);
         using var request = new HttpRequestMessage(new HttpMethod(configuration.Method), configuration.Url);
 
+        if (configuration.Headers != null)
+            foreach (var (name, value) in configuration.Headers)
+            {
+                request.Headers.TryAddWithoutValidation(name, value);
+            }
+
         if (configuration.StringContent != null)
             request.Content = configuration.StringContent;
             
