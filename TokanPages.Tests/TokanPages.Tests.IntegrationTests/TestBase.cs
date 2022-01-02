@@ -30,7 +30,7 @@ public class TestBase
         DataUtilityService = new DataUtilityService();
         DateTimeService = new DateTimeService();
         JwtUtilityService = new JwtUtilityService();
-            
+
         var services = new ServiceCollection();
         services.AddSingleton<Factories.DatabaseContextFactory>();
         services.AddScoped(context =>
