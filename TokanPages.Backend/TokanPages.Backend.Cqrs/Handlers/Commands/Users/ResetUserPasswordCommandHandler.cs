@@ -85,15 +85,15 @@ public class ResetUserPasswordCommandHandler : Cqrs.RequestHandler<ResetUserPass
         var template = Encoding.Default.GetString(getTemplate.Content);
         var payload = new EmailSenderPayload
         {
-            PrivateKey = _applicationSettings.EmailSender.PrivateKey,
             From = Constants.Emails.Addresses.Contact,
             To = new List<string> { emailAddress },
             Subject = "Reset user password",
             Body = _templateService.MakeBody(template, newValues)
         };            
 
-        configuration = new Configuration { Url = _applicationSettings.EmailSender.BaseUrl, Method = "POST", StringContent = 
-            new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload), Encoding.Default, "application/json") };
+        var headers = new Dictionary<string, string> { ["X-Private-Key"] = _applicationSettings.EmailSender.PrivateKey };
+        configuration = new Configuration { Url = _applicationSettings.EmailSender.BaseUrl, Method = "POST", Headers = headers, 
+            StringContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload), Encoding.Default, "application/json") };
 
         var sendEmail = await _customHttpClient.Execute(configuration, cancellationToken);
         if (sendEmail.StatusCode != HttpStatusCode.OK)
