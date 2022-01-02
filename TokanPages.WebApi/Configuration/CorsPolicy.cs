@@ -27,7 +27,7 @@ public static class CorsPolicy
                     HeaderNames.AccessControlAllowMethods,
                     HeaderNames.AccessControlAllowCredentials,
                     HeaderNames.AccessControlMaxAge)
-                .WithMethods("GET", "PUT", "POST", "PATCH", "DELETE")
+                .WithMethods("GET", "POST")
                 .AllowCredentials()
                 .SetPreflightMaxAge(TimeSpan.FromSeconds(86400));
         });            
