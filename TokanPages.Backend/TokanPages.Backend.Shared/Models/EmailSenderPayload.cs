@@ -6,8 +6,6 @@ using System.Diagnostics.CodeAnalysis;
 [ExcludeFromCodeCoverage]
 public class EmailSenderPayload
 {
-    public string PrivateKey { get; set; }
-
     public string From { get; set; }
 
     public IEnumerable<string> To { get; set; }
