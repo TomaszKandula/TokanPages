@@ -43,7 +43,6 @@ public class TestStartup
         builder.UseRouting();
         builder.UseAuthentication();
         builder.UseAuthorization();
-        builder.UseMiddleware<TokenControl>();
         builder.UseEndpoints(endpoints => endpoints.MapControllers());
     }
 
