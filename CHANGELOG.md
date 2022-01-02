@@ -1,3 +1,12 @@
+# [0.35.0](https://github.com/TomaszKandula/TokanPages/compare/v0.34.0...v0.35.0) (2022-01-02)
+
+
+### Features
+
+* add optional headers to custom http client configuration ([44ab49d](https://github.com/TomaszKandula/TokanPages/commit/44ab49d22786f3995f5a6d3a20b4f067a063fecb))
+* remove private key property from model ([ed1a429](https://github.com/TomaszKandula/TokanPages/commit/ed1a429f81f0ebb8fc0c33249cb400a158a4cbc4))
+* use private key in request header ([5d7461f](https://github.com/TomaszKandula/TokanPages/commit/5d7461fdeb043f0ee064aed09249299f44480519))
+
 # [0.34.0](https://github.com/TomaszKandula/TokanPages/compare/v0.33.0...v0.34.0) (2021-12-27)
 
 
