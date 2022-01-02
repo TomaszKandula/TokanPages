@@ -1,3 +1,20 @@
+# [0.36.0](https://github.com/TomaszKandula/TokanPages/compare/v0.35.0...v0.36.0) (2022-01-02)
+
+
+### Bug Fixes
+
+* correct coverage report path ([b5e5a8f](https://github.com/TomaszKandula/TokanPages/commit/b5e5a8f0c597ec9d11caf9e987b4c90667c72506))
+* remove aggregate exception ([ad3e07f](https://github.com/TomaszKandula/TokanPages/commit/ad3e07fab49928100c918881e3932f80ba44b765))
+* remove old reference ([4014669](https://github.com/TomaszKandula/TokanPages/commit/40146697bde265301e54f7a23dd1dba426dac32a))
+
+
+### Features
+
+* add behaviour service, update references ([2e3b4a7](https://github.com/TomaszKandula/TokanPages/commit/2e3b4a74e9d858732fb6b8a6d80880460691ac5a))
+* add behaviours services ([ece9f0b](https://github.com/TomaszKandula/TokanPages/commit/ece9f0bc8865815ee912a550988f872f5d57ab14))
+* allow only GET and POST methods ([9b68d1b](https://github.com/TomaszKandula/TokanPages/commit/9b68d1be79d741c51196de40f3bb229c3a3b67ea))
+* register web token check behaviour ([438aabf](https://github.com/TomaszKandula/TokanPages/commit/438aabf50d9c4bd56878f7285350e7ae014a0ed2))
+
 # [0.35.0](https://github.com/TomaszKandula/TokanPages/compare/v0.34.0...v0.35.0) (2022-01-02)
 
 
