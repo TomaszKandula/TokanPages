@@ -39,6 +39,7 @@ using TokanPages.Services.WebTokenService;
 using TokanPages.Services.CipheringService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.HttpClientService;
+using TokanPages.Services.WebTokenService.Validation;
 using TokanPages.Services.AzureStorageService.AzureBlobStorage.Factory;
 
 [ExcludeFromCodeCoverage]
@@ -95,14 +96,16 @@ public static class Dependencies
 		services.AddScoped<HttpClient>();
 
 		services.AddScoped<IWebTokenUtility, WebTokenUtility>();
+		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
 
+		services.AddScoped<IDbInitializer, DbInitializer>();
+		services.AddScoped<IUserService, UserService>();
+		services.AddScoped<ICipheringService, CipheringService>();
+		services.AddScoped<IHttpClientService, HttpClientService>();
+
+		services.AddScoped<IJsonSerializer, JsonSerializer>();
 		services.AddScoped<IDateTimeService, DateTimeService>();
 		services.AddScoped<IDataUtilityService, DataUtilityService>();
-		services.AddScoped<IUserService, UserService>();
-		services.AddScoped<IDbInitializer, DbInitializer>();
-		services.AddScoped<ICipheringService, CipheringService>();
-		services.AddScoped<IJsonSerializer, JsonSerializer>();
-		services.AddScoped<IHttpClientService, HttpClientService>();
 
 		services.AddScoped<IArticlesCache, ArticlesCache>();
 		services.AddScoped<IAssetsCache, AssetsCache>();
