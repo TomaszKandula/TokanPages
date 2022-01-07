@@ -12,13 +12,13 @@ using Backend.Shared.Models;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
+using TokanPages.Services.WebTokenService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Users;
 using Backend.Cqrs.Services.CipheringService;
 using Backend.Core.Utilities.DateTimeService;
-using Backend.Core.Utilities.JwtUtilityService;
 using Backend.Cqrs.Services.UserServiceProvider;
-using Backend.Core.Utilities.JwtUtilityService.Models;
+using TokanPages.Services.WebTokenService.Models;
 
 public class AuthenticateUserCommandHandlerTest : TestBase
 {

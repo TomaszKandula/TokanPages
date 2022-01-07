@@ -13,7 +13,7 @@ using Services.CipheringService;
 using Services.UserServiceProvider;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
-using Core.Utilities.JwtUtilityService;
+using TokanPages.Services.WebTokenService;
 
 public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCommand, AuthenticateUserCommandResult>
 {

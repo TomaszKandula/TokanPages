@@ -17,9 +17,9 @@ using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
 using Backend.Core.Utilities.DateTimeService;
-using Backend.Core.Utilities.JwtUtilityService;
 using Backend.Cqrs.Services.UserServiceProvider;
-using Backend.Core.Utilities.JwtUtilityService.Models;
+using TokanPages.Services.WebTokenService;
+using TokanPages.Services.WebTokenService.Models;
 using Roles = Backend.Domain.Enums.Roles;
 using Permissions = Backend.Domain.Enums.Permissions;
 

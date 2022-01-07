@@ -10,9 +10,9 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.DependencyInjection;
 using Backend.Database;
 using Backend.Domain.Entities;
+using Services.WebTokenService;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Database.Initializer.Data.Users;
-using Backend.Core.Utilities.JwtUtilityService;
 using Backend.Core.Utilities.DataUtilityService;
 
 public class TestBase

@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.Behavio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.HttpClientService", "TokanPages.Services\TokanPages.Services.HttpClientService\TokanPages.Services.HttpClientService.csproj", "{0DBE85CF-FC71-4DE1-B026-3BCB2E814C06}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.WebTokenService", "TokanPages.Services\TokanPages.Services.WebTokenService\TokanPages.Services.WebTokenService.csproj", "{4CD10263-BF18-4365-9C0E-C0AE520137B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{0DBE85CF-FC71-4DE1-B026-3BCB2E814C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DBE85CF-FC71-4DE1-B026-3BCB2E814C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DBE85CF-FC71-4DE1-B026-3BCB2E814C06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CD10263-BF18-4365-9C0E-C0AE520137B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CD10263-BF18-4365-9C0E-C0AE520137B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CD10263-BF18-4365-9C0E-C0AE520137B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CD10263-BF18-4365-9C0E-C0AE520137B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +105,7 @@ Global
 		{EC20EE58-ED90-419E-84E7-8D298B59CE79} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 		{0E68D499-C546-42A7-BFF7-9585002DA3A7} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 		{0DBE85CF-FC71-4DE1-B026-3BCB2E814C06} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
+		{4CD10263-BF18-4365-9C0E-C0AE520137B0} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4A63A58-F64E-4EB2-92DD-70486490D8CE}

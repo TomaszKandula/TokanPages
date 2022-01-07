@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Core.Utilities.JwtUtilityService.Models;
+namespace TokanPages.Services.WebTokenService.Models;
 
 using System;
 using System.Diagnostics.CodeAnalysis;

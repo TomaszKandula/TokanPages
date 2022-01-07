@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Core.Utilities.JwtUtilityService;
+namespace TokanPages.Services.WebTokenService;
 
 using System;
 using System.Security.Claims;

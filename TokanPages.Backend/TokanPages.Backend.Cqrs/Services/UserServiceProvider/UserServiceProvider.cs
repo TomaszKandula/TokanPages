@@ -1,4 +1,6 @@
-﻿namespace TokanPages.Backend.Cqrs.Services.UserServiceProvider;
+﻿using TokanPages.Services.WebTokenService;
+
+namespace TokanPages.Backend.Cqrs.Services.UserServiceProvider;
 
 using System;
 using System.Linq;
@@ -16,7 +18,6 @@ using Domain.Entities;
 using Shared.Resources;
 using Shared.Dto.Users;
 using Core.Utilities.DateTimeService;
-using Core.Utilities.JwtUtilityService;
 
 public sealed class UserServiceProvider : IUserServiceProvider
 {
