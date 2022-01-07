@@ -39,6 +39,7 @@ using TokanPages.Services.WebTokenService;
 using TokanPages.Services.CipheringService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.HttpClientService;
+using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.WebTokenService.Validation;
 using TokanPages.Services.AzureStorageService.AzureBlobStorage.Factory;
 
@@ -102,6 +103,7 @@ public static class Dependencies
 		services.AddScoped<IUserService, UserService>();
 		services.AddScoped<ICipheringService, CipheringService>();
 		services.AddScoped<IHttpClientService, HttpClientService>();
+		services.AddScoped<IEmailSenderService, EmailSenderService>();
 
 		services.AddScoped<IJsonSerializer, JsonSerializer>();
 		services.AddScoped<IDateTimeService, DateTimeService>();
