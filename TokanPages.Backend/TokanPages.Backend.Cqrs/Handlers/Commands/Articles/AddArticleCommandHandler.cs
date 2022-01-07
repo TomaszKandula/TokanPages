@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using Database;
 using Core.Exceptions;
 using Shared.Resources;
+using Services.UserService;
 using Core.Utilities.LoggerService;
-using Services.UserServiceProvider;
 using Core.Utilities.DateTimeService;
-using TokanPages.Services.AzureStorageService.AzureBlobStorage.Factory;
+using Services.AzureStorageService.AzureBlobStorage.Factory;
 
 public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
 {

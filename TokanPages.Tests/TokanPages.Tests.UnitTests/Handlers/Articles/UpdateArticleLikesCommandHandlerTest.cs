@@ -8,9 +8,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Backend.Domain.Entities;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Articles;
-using Backend.Cqrs.Services.UserServiceProvider;
 
 public class UpdateArticleLikesCommandHandlerTest : TestBase
 {

@@ -14,12 +14,12 @@ using Core.Exceptions;
 using Core.Extensions;
 using Shared.Resources;
 using Shared.Dto.Users;
+using Services.UserService;
 using Shared.Dto.Content.Common;
-using Services.UserServiceProvider;
 using Core.Utilities.LoggerService;
 using Core.Utilities.JsonSerializer;
-using TokanPages.Services.HttpClientService;
-using TokanPages.Services.HttpClientService.Models;
+using Services.HttpClientService;
+using Services.HttpClientService.Models;
 
 public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticleQueryResult>
 {

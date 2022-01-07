@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Database;
 using Core.Exceptions;
 using Shared.Resources;
+using Services.UserService;
 using Core.Utilities.LoggerService;
-using Services.UserServiceProvider;
 using MediatR;
     
 public class RevokeUserRefreshTokenCommandHandler : Cqrs.RequestHandler<RevokeUserRefreshTokenCommand, Unit>

@@ -9,8 +9,8 @@ using Database;
 using Domain.Entities;
 using Core.Exceptions;
 using Shared.Resources;
+using Services.UserService;
 using Core.Utilities.LoggerService;
-using Services.UserServiceProvider;
 
 public class UpdateArticleCountCommandHandler : Cqrs.RequestHandler<UpdateArticleCountCommand, Unit>
 {

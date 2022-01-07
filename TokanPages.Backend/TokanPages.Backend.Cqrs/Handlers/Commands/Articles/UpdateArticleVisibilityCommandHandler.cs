@@ -8,8 +8,8 @@ using Database;
 using Domain.Enums;
 using Core.Exceptions;
 using Shared.Resources;
+using Services.UserService;
 using Core.Utilities.LoggerService;
-using Services.UserServiceProvider;
 using MediatR;
 
 public class UpdateArticleVisibilityCommandHandler : Cqrs.RequestHandler<UpdateArticleVisibilityCommand, Unit>

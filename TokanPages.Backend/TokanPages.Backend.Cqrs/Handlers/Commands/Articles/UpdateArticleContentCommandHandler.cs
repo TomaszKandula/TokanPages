@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore;
 using Database;
 using Core.Exceptions;
 using Shared.Resources;
-using Services.UserServiceProvider;
+using Services.UserService;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
-using TokanPages.Services.AzureStorageService.AzureBlobStorage.Factory;
+using Services.AzureStorageService.AzureBlobStorage.Factory;
 using MediatR;
 
 public class UpdateArticleContentCommandHandler : Cqrs.RequestHandler<UpdateArticleContentCommand, Unit>

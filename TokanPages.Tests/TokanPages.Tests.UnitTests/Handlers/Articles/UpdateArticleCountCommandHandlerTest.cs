@@ -11,9 +11,9 @@ using Microsoft.EntityFrameworkCore;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Articles;
-using Backend.Cqrs.Services.UserServiceProvider;
 
 public class UpdateArticleCountCommandHandlerTest : TestBase
 {

@@ -10,8 +10,8 @@ using Domain.Entities;
 using Core.Exceptions;
 using Shared.Services;
 using Shared.Resources;
+using Services.UserService;
 using Core.Utilities.LoggerService;
-using Services.UserServiceProvider;
 using Core.Utilities.DateTimeService;
 
 public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUserCommand, ReAuthenticateUserCommandResult>

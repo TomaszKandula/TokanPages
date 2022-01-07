@@ -1,13 +1,13 @@
-﻿namespace TokanPages.Backend.Cqrs.Services.UserServiceProvider;
+﻿namespace TokanPages.Services.UserService;
 
 using System;
 using System.Threading;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Shared;
-using Domain.Entities;
-using Shared.Dto.Users;
+using Backend.Shared;
+using Backend.Domain.Entities;
+using Backend.Shared.Dto.Users;
 
 public interface IUserServiceProvider
 {

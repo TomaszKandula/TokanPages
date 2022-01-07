@@ -9,8 +9,8 @@ using Database;
 using Core.Exceptions;
 using Core.Extensions;
 using Shared.Resources;
+using Services.UserService;
 using Core.Utilities.LoggerService;
-using Services.UserServiceProvider;
 using MediatR;
 
 public class UpdateArticleLikesCommandHandler : Cqrs.RequestHandler<UpdateArticleLikesCommand, Unit>

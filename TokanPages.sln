@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.WebToke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.CipheringService", "TokanPages.Services\TokanPages.Services.CipheringService\TokanPages.Services.CipheringService.csproj", "{A5B8C7EE-02B2-457A-980D-43A8959AC285}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.UserService", "TokanPages.Services\TokanPages.Services.UserService\TokanPages.Services.UserService.csproj", "{4E6E66DD-C624-466E-9DF1-64CD7E8A65C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +97,10 @@ Global
 		{A5B8C7EE-02B2-457A-980D-43A8959AC285}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5B8C7EE-02B2-457A-980D-43A8959AC285}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5B8C7EE-02B2-457A-980D-43A8959AC285}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E6E66DD-C624-466E-9DF1-64CD7E8A65C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E6E66DD-C624-466E-9DF1-64CD7E8A65C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E6E66DD-C624-466E-9DF1-64CD7E8A65C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E6E66DD-C624-466E-9DF1-64CD7E8A65C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -113,6 +119,7 @@ Global
 		{0DBE85CF-FC71-4DE1-B026-3BCB2E814C06} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 		{4CD10263-BF18-4365-9C0E-C0AE520137B0} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 		{A5B8C7EE-02B2-457A-980D-43A8959AC285} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
+		{4E6E66DD-C624-466E-9DF1-64CD7E8A65C0} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4A63A58-F64E-4EB2-92DD-70486490D8CE}

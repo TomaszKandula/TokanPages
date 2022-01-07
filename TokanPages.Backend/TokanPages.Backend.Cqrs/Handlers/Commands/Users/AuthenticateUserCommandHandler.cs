@@ -9,11 +9,11 @@ using Domain.Entities;
 using Core.Exceptions;
 using Shared.Services;
 using Shared.Resources;
-using Services.UserServiceProvider;
+using Services.UserService;
+using Services.WebTokenService;
+using Services.CipheringService;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
-using TokanPages.Services.WebTokenService;
-using TokanPages.Services.CipheringService;
 
 public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCommand, AuthenticateUserCommandResult>
 {

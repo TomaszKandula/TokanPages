@@ -11,11 +11,11 @@ using System.Net.Http.Headers;
 using System.Collections.Generic;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.JsonSerializer;
 using Backend.Cqrs.Handlers.Queries.Articles;
 using TokanPages.Services.HttpClientService;
-using Backend.Cqrs.Services.UserServiceProvider;
 using TokanPages.Services.HttpClientService.Models;
 
 public class GetArticleQueryHandlerTest : TestBase

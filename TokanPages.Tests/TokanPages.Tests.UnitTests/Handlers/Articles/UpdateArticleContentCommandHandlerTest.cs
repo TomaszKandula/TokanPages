@@ -11,10 +11,10 @@ using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Core.Extensions;
 using Backend.Shared.Resources;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Cqrs.Handlers.Commands.Articles;
-using Backend.Cqrs.Services.UserServiceProvider;
 using TokanPages.Services.AzureStorageService.AzureBlobStorage;
 using TokanPages.Services.AzureStorageService.AzureBlobStorage.Factory;
 

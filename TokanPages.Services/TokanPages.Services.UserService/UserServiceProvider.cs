@@ -1,6 +1,4 @@
-﻿using TokanPages.Services.WebTokenService;
-
-namespace TokanPages.Backend.Cqrs.Services.UserServiceProvider;
+﻿namespace TokanPages.Services.UserService;
 
 using System;
 using System.Linq;
@@ -10,14 +8,15 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Shared;
-using Database;
-using Shared.Services;
-using Core.Exceptions;
-using Domain.Entities;
-using Shared.Resources;
-using Shared.Dto.Users;
-using Core.Utilities.DateTimeService;
+using Backend.Shared;
+using WebTokenService;
+using Backend.Database;
+using Backend.Core.Exceptions;
+using Backend.Domain.Entities;
+using Backend.Shared.Services;
+using Backend.Shared.Resources;
+using Backend.Shared.Dto.Users;
+using Backend.Core.Utilities.DateTimeService;
 
 public sealed class UserServiceProvider : IUserServiceProvider
 {
