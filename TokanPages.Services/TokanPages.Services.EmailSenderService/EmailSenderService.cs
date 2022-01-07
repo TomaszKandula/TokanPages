@@ -13,13 +13,13 @@ using Backend.Shared.Services;
 using Backend.Shared.Resources;
 using HttpClientService.Models;
 
-public class EmailSender : IEmailSender
+public class EmailSenderService : IEmailSenderService
 {
     private readonly IHttpClientService _httpClientService;
 
     private readonly IApplicationSettings _applicationSettings;
 
-    public EmailSender(IHttpClientService httpClientService, IApplicationSettings applicationSettings)
+    public EmailSenderService(IHttpClientService httpClientService, IApplicationSettings applicationSettings)
     {
         _httpClientService = httpClientService;
         _applicationSettings = applicationSettings;

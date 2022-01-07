@@ -2,7 +2,7 @@ namespace TokanPages.Services.EmailSenderService;
 
 using Models.Interfaces;
 
-public interface IEmailSender
+public interface IEmailSenderService
 {
     Task SendNotification(IConfiguration configuration, CancellationToken cancellationToken = default);
 
