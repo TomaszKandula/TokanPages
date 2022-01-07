@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Authorization;
-using UserService;
+using WebTokenService.Validation;
 using Backend.Core.Utilities.LoggerService;
 using MediatR;
 
@@ -15,15 +15,15 @@ public class TokenCheckBehaviour<TRequest, TResponse> : IPipelineBehavior<TReque
 {
     private readonly ILoggerService _logger;
 
-    private readonly IUserService _userService;
+    private readonly IWebTokenValidation _webTokenValidation;
     
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public TokenCheckBehaviour(ILoggerService logger, IHttpContextAccessor httpContextAccessor, IUserService userService)
+    public TokenCheckBehaviour(ILoggerService logger, IHttpContextAccessor httpContextAccessor, IWebTokenValidation webTokenValidation)
     {
         _logger = logger;
         _httpContextAccessor = httpContextAccessor;
-        _userService = userService;
+        _webTokenValidation = webTokenValidation;
     }
 
     public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
@@ -33,8 +33,8 @@ public class TokenCheckBehaviour<TRequest, TResponse> : IPipelineBehavior<TReque
         if (hasAllowAnonymousAttribute)
             return await next();
 
-        _logger.LogInformation("JWT verification...");
-        await _userService.VerifyUserToken();
+        await _webTokenValidation.VerifyUserToken();
+        _logger.LogInformation("JWT verification... passed");
 
         return await next();
     }
