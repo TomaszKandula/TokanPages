@@ -1,4 +1,4 @@
-namespace TokanPages.Services.AzureStorageService.AzureBlobStorage;
+namespace TokanPages.Services.AzureStorageService;
 
 using System;
 using System.IO;

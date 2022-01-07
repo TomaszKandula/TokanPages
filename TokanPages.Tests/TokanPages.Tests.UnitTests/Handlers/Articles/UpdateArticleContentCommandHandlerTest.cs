@@ -15,8 +15,8 @@ using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Cqrs.Handlers.Commands.Articles;
-using TokanPages.Services.AzureStorageService.AzureBlobStorage;
-using TokanPages.Services.AzureStorageService.AzureBlobStorage.Factory;
+using TokanPages.Services.AzureStorageService;
+using TokanPages.Services.AzureStorageService.Factory;
 
 public class UpdateArticleContentCommandHandlerTest : TestBase
 {
