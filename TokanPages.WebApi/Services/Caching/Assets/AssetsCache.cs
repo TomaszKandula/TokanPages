@@ -8,8 +8,8 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc;
 using Backend.Shared.Services;
 using Backend.Shared.Resources;
-using Backend.Core.Utilities.CustomHttpClient;
-using Backend.Core.Utilities.CustomHttpClient.Models;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
 
 [ExcludeFromCodeCoverage]
 public class AssetsCache : IAssetsCache

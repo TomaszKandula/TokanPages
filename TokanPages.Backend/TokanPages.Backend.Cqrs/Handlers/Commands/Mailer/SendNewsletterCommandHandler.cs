@@ -15,8 +15,8 @@ using Core.Exceptions;
 using Core.Extensions;
 using Shared.Resources;
 using Core.Utilities.LoggerService;
-using Core.Utilities.CustomHttpClient;
-using Core.Utilities.CustomHttpClient.Models;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
 
 public class SendNewsletterCommandHandler : Cqrs.RequestHandler<SendNewsletterCommand, Unit>
 {

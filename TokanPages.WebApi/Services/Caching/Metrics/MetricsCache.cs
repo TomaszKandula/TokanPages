@@ -12,9 +12,9 @@ using Backend.Core.Exceptions;
 using Backend.Shared.Services;
 using Backend.Shared.Resources;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Core.Utilities.CustomHttpClient;
-using Backend.Core.Utilities.CustomHttpClient.Models;
-using Backend.Core.Utilities.CustomHttpClient.Authentication;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
+using TokanPages.Services.HttpClientService.Authentication;
 using FluentValidation.Results;
 
 [ExcludeFromCodeCoverage]

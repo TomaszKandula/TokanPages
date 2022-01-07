@@ -25,7 +25,6 @@ using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.JsonSerializer;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Cqrs.Services.CipheringService;
-using Backend.Core.Utilities.CustomHttpClient;
 using Backend.Core.Utilities.JwtUtilityService;
 using Backend.Core.Utilities.DataUtilityService;
 using Backend.Cqrs.Services.UserServiceProvider;
@@ -39,6 +38,7 @@ using Services.Caching.Metrics;
 using Services.Caching.Articles;
 using Services.Caching.Subscribers;
 using TokanPages.Services.BehaviourService;
+using TokanPages.Services.HttpClientService;
 using TokanPages.Services.AzureStorageService.AzureBlobStorage.Factory;
 
 [ExcludeFromCodeCoverage]

@@ -14,8 +14,8 @@ using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Mailer;
-using Backend.Core.Utilities.CustomHttpClient;
-using Backend.Core.Utilities.CustomHttpClient.Models;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
 
 public class SendNewsletterCommandHandlerTest : TestBase
 {

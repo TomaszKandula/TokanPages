@@ -1,6 +1,5 @@
 #nullable enable
-
-namespace TokanPages.Backend.Core.Utilities.CustomHttpClient.Models;
+namespace TokanPages.Services.HttpClientService.Models;
 
 using System.Net;
 using System.Diagnostics.CodeAnalysis;

@@ -13,8 +13,8 @@ using Shared.Resources;
 using Shared.Dto.Content;
 using Core.Utilities.LoggerService;
 using Core.Utilities.JsonSerializer;
-using Core.Utilities.CustomHttpClient;
-using Core.Utilities.CustomHttpClient.Models;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
 
 public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContentQueryResult>
 {

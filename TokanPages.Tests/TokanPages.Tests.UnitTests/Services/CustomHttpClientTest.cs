@@ -12,8 +12,8 @@ using System.Collections;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Backend.Core.Extensions;
-using Backend.Core.Utilities.CustomHttpClient;
-using Backend.Core.Utilities.CustomHttpClient.Models;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
 
 public class CustomHttpClientTest : TestBase
 {

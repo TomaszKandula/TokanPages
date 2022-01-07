@@ -17,8 +17,8 @@ using Core.Extensions;
 using Shared.Resources;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
-using Core.Utilities.CustomHttpClient;
-using Core.Utilities.CustomHttpClient.Models;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
 
 public class SendMessageCommandHandler : Cqrs.RequestHandler<SendMessageCommand, Unit>
 {

@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Core.Utilities.CustomHttpClient;
+namespace TokanPages.Services.HttpClientService;
 
 using System.Threading;
 using System.Threading.Tasks;

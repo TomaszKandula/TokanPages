@@ -18,8 +18,8 @@ using Shared.Dto.Content.Common;
 using Services.UserServiceProvider;
 using Core.Utilities.LoggerService;
 using Core.Utilities.JsonSerializer;
-using Core.Utilities.CustomHttpClient;
-using Core.Utilities.CustomHttpClient.Models;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
 
 public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticleQueryResult>
 {

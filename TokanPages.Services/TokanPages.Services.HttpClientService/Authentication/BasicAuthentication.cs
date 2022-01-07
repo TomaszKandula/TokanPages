@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Core.Utilities.CustomHttpClient.Authentication;
+namespace TokanPages.Services.HttpClientService.Authentication;
 
 using System.Diagnostics.CodeAnalysis;
 

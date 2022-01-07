@@ -14,9 +14,9 @@ using Backend.Core.Exceptions;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.JsonSerializer;
 using Backend.Cqrs.Handlers.Queries.Articles;
-using Backend.Core.Utilities.CustomHttpClient;
+using TokanPages.Services.HttpClientService;
 using Backend.Cqrs.Services.UserServiceProvider;
-using Backend.Core.Utilities.CustomHttpClient.Models;
+using TokanPages.Services.HttpClientService.Models;
 
 public class GetArticleQueryHandlerTest : TestBase
 {
