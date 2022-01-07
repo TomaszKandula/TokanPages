@@ -3,7 +3,7 @@ namespace TokanPages.WebApi.Attributes;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Authorization;
-using Backend.Identity.Authorization;
+using Backend.Domain.Enums;
 
 [ExcludeFromCodeCoverage]
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]

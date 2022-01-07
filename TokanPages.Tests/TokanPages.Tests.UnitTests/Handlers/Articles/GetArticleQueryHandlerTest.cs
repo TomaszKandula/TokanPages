@@ -11,12 +11,12 @@ using System.Net.Http.Headers;
 using System.Collections.Generic;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.JsonSerializer;
 using Backend.Cqrs.Handlers.Queries.Articles;
-using Backend.Core.Utilities.CustomHttpClient;
-using Backend.Cqrs.Services.UserServiceProvider;
-using Backend.Core.Utilities.CustomHttpClient.Models;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
 
 public class GetArticleQueryHandlerTest : TestBase
 {
@@ -84,9 +84,9 @@ public class GetArticleQueryHandlerTest : TestBase
         await databaseContext.ArticleLikes.AddRangeAsync(likes);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
@@ -172,9 +172,9 @@ public class GetArticleQueryHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedApplicationSettings = MockApplicationSettings();
 

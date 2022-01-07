@@ -74,7 +74,7 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
-        var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
         newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 

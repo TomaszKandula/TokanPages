@@ -14,38 +14,38 @@ using Core.Exceptions;
 using Core.Extensions;
 using Shared.Resources;
 using Shared.Dto.Users;
+using Services.UserService;
 using Shared.Dto.Content.Common;
-using Services.UserServiceProvider;
 using Core.Utilities.LoggerService;
 using Core.Utilities.JsonSerializer;
-using Core.Utilities.CustomHttpClient;
-using Core.Utilities.CustomHttpClient.Models;
+using Services.HttpClientService;
+using Services.HttpClientService.Models;
 
 public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticleQueryResult>
 {
     private readonly DatabaseContext _databaseContext;
 
-    private readonly IUserServiceProvider _userServiceProvider;
+    private readonly IUserService _userService;
 
     private readonly IJsonSerializer _jsonSerializer;
 
-    private readonly ICustomHttpClient _customHttpClient;
+    private readonly IHttpClientService _httpClientService;
 
     private readonly IApplicationSettings _applicationSettings;
         
-    public GetArticleQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserServiceProvider userServiceProvider, 
-        IJsonSerializer jsonSerializer, ICustomHttpClient customHttpClient, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+    public GetArticleQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService, 
+        IJsonSerializer jsonSerializer, IHttpClientService httpClientService, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
         _databaseContext = databaseContext;
-        _userServiceProvider = userServiceProvider;
+        _userService = userService;
         _jsonSerializer = jsonSerializer;
-        _customHttpClient = customHttpClient;
+        _httpClientService = httpClientService;
         _applicationSettings = applicationSettings;
     }
 
     public override async Task<GetArticleQueryResult> Handle(GetArticleQuery request, CancellationToken cancellationToken)
     {
-        var userId = await _userServiceProvider.GetUserId();
+        var userId = await _userService.GetUserId();
         var isAnonymousUser = userId == null;
 
         var textRequestUrl = $"{_applicationSettings.AzureStorage.BaseUrl}/content/articles/{request.Id}/text.json";
@@ -55,7 +55,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         var getArticleLikes = await _databaseContext.ArticleLikes
             .Where(likes => likes.ArticleId == request.Id)
             .WhereIfElse(isAnonymousUser,
-                likes => likes.IpAddress == _userServiceProvider.GetRequestIpAddress(),
+                likes => likes.IpAddress == _userService.GetRequestIpAddress(),
                 likes => likes.UserId == userId)
             .Select(likes => likes.LikeCount)
             .ToListAsync(cancellationToken);
@@ -102,7 +102,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
     private async Task<string> GetJsonData(string url, CancellationToken cancellationToken)
     {
         var configuration = new Configuration { Url = url, Method = "GET" };
-        var results = await _customHttpClient.Execute(configuration, cancellationToken);
+        var results = await _httpClientService.Execute(configuration, cancellationToken);
 
         if (results.StatusCode == HttpStatusCode.NotFound)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);

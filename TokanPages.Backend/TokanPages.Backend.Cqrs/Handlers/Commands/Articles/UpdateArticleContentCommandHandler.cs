@@ -7,32 +7,32 @@ using Microsoft.EntityFrameworkCore;
 using Database;
 using Core.Exceptions;
 using Shared.Resources;
-using Services.UserServiceProvider;
+using Services.UserService;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
-using TokanPages.Services.AzureStorageService.AzureBlobStorage.Factory;
+using Services.AzureStorageService.AzureBlobStorage.Factory;
 using MediatR;
 
 public class UpdateArticleContentCommandHandler : Cqrs.RequestHandler<UpdateArticleContentCommand, Unit>
 {
-    private readonly IUserServiceProvider _userServiceProvider;
+    private readonly IUserService _userService;
         
     private readonly IDateTimeService _dateTimeService;
         
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
         
     public UpdateArticleContentCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService,
-        IUserServiceProvider userServiceProvider, IDateTimeService dateTimeService, 
+        IUserService userService, IDateTimeService dateTimeService, 
         IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
     {
-        _userServiceProvider = userServiceProvider;
+        _userService = userService;
         _dateTimeService = dateTimeService;
         _azureBlobStorageFactory = azureBlobStorageFactory;
     }
 
     public override async Task<Unit> Handle(UpdateArticleContentCommand request, CancellationToken cancellationToken)
     {
-        var userId = await _userServiceProvider.GetUserId();
+        var userId = await _userService.GetUserId();
         if (userId == null)
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 

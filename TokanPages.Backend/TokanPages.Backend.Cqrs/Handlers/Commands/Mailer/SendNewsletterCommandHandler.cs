@@ -12,26 +12,22 @@ using Database;
 using Shared.Models;
 using Shared.Services;
 using Core.Exceptions;
+using Core.Extensions;
 using Shared.Resources;
 using Core.Utilities.LoggerService;
-using Core.Utilities.TemplateService;
-using Core.Utilities.CustomHttpClient;
-using Core.Utilities.CustomHttpClient.Models;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
 
 public class SendNewsletterCommandHandler : Cqrs.RequestHandler<SendNewsletterCommand, Unit>
 {
-    private readonly ICustomHttpClient _customHttpClient;
-
-    private readonly ITemplateService _templateService;
+    private readonly IHttpClientService _httpClientService;
 
     private readonly IApplicationSettings _applicationSettings;
         
     public SendNewsletterCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        ICustomHttpClient customHttpClient, ITemplateService templateService, 
-        IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+        IHttpClientService httpClientService, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
-        _customHttpClient = customHttpClient;
-        _templateService = templateService;
+        _httpClientService = httpClientService;
         _applicationSettings = applicationSettings;
     }
 
@@ -58,7 +54,7 @@ public class SendNewsletterCommandHandler : Cqrs.RequestHandler<SendNewsletterCo
             LoggerService.LogInformation($"Getting newsletter template from URL: {url}.");
 
             var configuration = new Configuration { Url = url, Method = "GET" };
-            var getTemplate = await _customHttpClient.Execute(configuration, cancellationToken);
+            var getTemplate = await _httpClientService.Execute(configuration, cancellationToken);
 
             if (getTemplate.Content == null)
                 throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
@@ -69,14 +65,14 @@ public class SendNewsletterCommandHandler : Cqrs.RequestHandler<SendNewsletterCo
                 From = Constants.Emails.Addresses.Contact,
                 To = new List<string> { subscriber.Email },
                 Subject = request.Subject,
-                Body = _templateService.MakeBody(template, newValues)
+                Body = template.MakeBody(newValues)
             };
 
             var headers = new Dictionary<string, string> { ["X-Private-Key"] = _applicationSettings.EmailSender.PrivateKey };
             configuration = new Configuration { Url = _applicationSettings.EmailSender.BaseUrl, Method = "POST", Headers = headers, 
                 StringContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload), Encoding.Default, "application/json") };
 
-            var sendEMail = await _customHttpClient.Execute(configuration, cancellationToken);
+            var sendEMail = await _httpClientService.Execute(configuration, cancellationToken);
             if (sendEMail.StatusCode != HttpStatusCode.OK) 
                 throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}");
         }

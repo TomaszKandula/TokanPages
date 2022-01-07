@@ -7,28 +7,28 @@ using Microsoft.EntityFrameworkCore;
 using Shared;
 using MediatR;
 using Database;
+using Domain.Enums;
 using Core.Exceptions;
 using Core.Extensions;
 using Shared.Resources;
-using Identity.Authorization;
+using Services.UserService;
 using Services.CipheringService;
 using Core.Utilities.LoggerService;
-using Services.UserServiceProvider;
 using Core.Utilities.DateTimeService;
 
 public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPasswordCommand, Unit>
 {
-    private readonly IUserServiceProvider _userServiceProvider;
+    private readonly IUserService _userService;
 
     private readonly ICipheringService _cipheringService;
 
     private readonly IDateTimeService _dateTimeService;
         
     public UpdateUserPasswordCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserServiceProvider userServiceProvider, ICipheringService cipheringService, 
+        IUserService userService, ICipheringService cipheringService, 
         IDateTimeService dateTimeService) : base(databaseContext, loggerService)
     {
-        _userServiceProvider = userServiceProvider;
+        _userService = userService;
         _cipheringService = cipheringService;
         _dateTimeService = dateTimeService;
     }
@@ -47,8 +47,8 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
             if (!users.Any())
                 throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-            var hasRoleEverydayUser = await _userServiceProvider.HasRoleAssigned($"{Roles.EverydayUser}") ?? false;
-            var hasRoleGodOfAsgard = await _userServiceProvider.HasRoleAssigned($"{Roles.GodOfAsgard}") ?? false;
+            var hasRoleEverydayUser = await _userService.HasRoleAssigned($"{Roles.EverydayUser}") ?? false;
+            var hasRoleGodOfAsgard = await _userService.HasRoleAssigned($"{Roles.GodOfAsgard}") ?? false;
 
             if (!hasRoleEverydayUser && !hasRoleGodOfAsgard)
                 throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 using Backend.Core.Exceptions;
 using Backend.Domain.Entities;
 using Backend.Shared.Resources;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Users;
-using Backend.Cqrs.Services.CipheringService;
+using TokanPages.Services.CipheringService;
 using Backend.Core.Utilities.DateTimeService;
-using Backend.Cqrs.Services.UserServiceProvider;
 
 public class UpdateUserPasswordCommandHandlerTest : TestBase
 {
@@ -50,7 +50,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedCipheringService = new Mock<ICipheringService>();
 
         mockedUserProvider
@@ -121,7 +121,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedCipheringService = new Mock<ICipheringService>();
 
         var mockedPassword = DataUtilityService.GetRandomString();
@@ -183,7 +183,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedCipheringService = new Mock<ICipheringService>();
 
         var mockedPassword = DataUtilityService.GetRandomString();
@@ -246,7 +246,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedCipheringService = new Mock<ICipheringService>();
 
         mockedUserProvider

@@ -14,9 +14,8 @@ using Backend.Shared.Resources;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Mailer;
 using Backend.Core.Utilities.DateTimeService;
-using Backend.Core.Utilities.TemplateService;
-using Backend.Core.Utilities.CustomHttpClient;
-using Backend.Core.Utilities.CustomHttpClient.Models;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
 
 public class SendMessageCommandHandlerTest : TestBase
 {
@@ -37,8 +36,7 @@ public class SendMessageCommandHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-        var mockedTemplateHelper = new Mock<ITemplateService>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
@@ -58,7 +56,6 @@ public class SendMessageCommandHandlerTest : TestBase
             databaseContext,
             mockedLogger.Object,
             mockedCustomHttpClient.Object,
-            mockedTemplateHelper.Object, 
             mockedDateTimeService.Object,
             mockedApplicationSettings.Object);
 
@@ -86,8 +83,7 @@ public class SendMessageCommandHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-        var mockedTemplateHelper = new Mock<ITemplateService>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
@@ -106,7 +102,6 @@ public class SendMessageCommandHandlerTest : TestBase
             databaseContext,
             mockedLogger.Object,
             mockedCustomHttpClient.Object,
-            mockedTemplateHelper.Object, 
             mockedDateTimeService.Object,
             mockedApplicationSettings.Object);
 
@@ -134,8 +129,7 @@ public class SendMessageCommandHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-        var mockedTemplateHelper = new Mock<ITemplateService>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
@@ -155,7 +149,6 @@ public class SendMessageCommandHandlerTest : TestBase
             databaseContext,
             mockedLogger.Object,
             mockedCustomHttpClient.Object,
-            mockedTemplateHelper.Object, 
             mockedDateTimeService.Object,
             mockedApplicationSettings.Object);
 
