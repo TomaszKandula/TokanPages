@@ -1,3 +1,15 @@
+# [0.38.0](https://github.com/TomaszKandula/TokanPages/compare/v0.37.0...v0.38.0) (2022-01-07)
+
+
+### Features
+
+* add new service for email sending ([fc3647a](https://github.com/TomaszKandula/TokanPages/commit/fc3647a6d3e1d76b18f98a4409e22989dbc23b34))
+* add saving default user avatar from predefined image kept on Azure Storage ([12ed015](https://github.com/TomaszKandula/TokanPages/commit/12ed0151500bb9d29a9e630f51c7baf25f69ab00))
+* change behaviour from return null to thorw exception ([ac30ae3](https://github.com/TomaszKandula/TokanPages/commit/ac30ae3e80ee2fe83baf699c90176bfe0b446abf))
+* improve Azure Blob Storage implementation, add new method ([fc64c8c](https://github.com/TomaszKandula/TokanPages/commit/fc64c8cf42ef2a281ab31d0fb245f7a806ecda2f))
+* register email sender service ([2734c82](https://github.com/TomaszKandula/TokanPages/commit/2734c829c06b67fbb5708797e3238493ff6a9903))
+* update implementation, use email sender service to simplify code ([5b625c8](https://github.com/TomaszKandula/TokanPages/commit/5b625c8bd76026f09194f39651659b3e61d70850))
+
 # [0.37.0](https://github.com/TomaszKandula/TokanPages/compare/v0.36.0...v0.37.0) (2022-01-07)
 
 
