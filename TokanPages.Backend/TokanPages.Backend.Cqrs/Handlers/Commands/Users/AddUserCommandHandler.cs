@@ -16,12 +16,12 @@ using Core.Extensions;
 using Domain.Entities;
 using Shared.Services;
 using Shared.Resources;
-using Services.CipheringService;
 using System.Collections.Generic;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
 using TokanPages.Services.HttpClientService;
 using TokanPages.Services.HttpClientService.Models;
+using TokanPages.Services.CipheringService;
 
 public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 {

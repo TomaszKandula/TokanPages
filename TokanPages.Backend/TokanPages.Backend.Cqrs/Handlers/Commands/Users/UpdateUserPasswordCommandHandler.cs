@@ -11,10 +11,10 @@ using Domain.Enums;
 using Core.Exceptions;
 using Core.Extensions;
 using Shared.Resources;
-using Services.CipheringService;
 using Core.Utilities.LoggerService;
 using Services.UserServiceProvider;
 using Core.Utilities.DateTimeService;
+using TokanPages.Services.CipheringService;
 
 public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPasswordCommand, Unit>
 {

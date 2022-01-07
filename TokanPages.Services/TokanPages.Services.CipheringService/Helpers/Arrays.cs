@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Cqrs.Services.CipheringService.Helpers;
+namespace TokanPages.Services.CipheringService.Helpers;
 
 public static class Arrays
 {

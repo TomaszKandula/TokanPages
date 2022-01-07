@@ -2,7 +2,7 @@ namespace TokanPages.Tests.UnitTests.Services;
 
 using Xunit;
 using FluentAssertions;
-using Backend.Cqrs.Services.CipheringService;
+using TokanPages.Services.CipheringService;
 
 public class CipheringServiceTest : TestBase
 {

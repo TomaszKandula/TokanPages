@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Cqrs.Services.CipheringService;
+namespace TokanPages.Services.CipheringService;
 
 using System;
 using System.Text;

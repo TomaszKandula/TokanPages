@@ -36,6 +36,7 @@
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
     <ProjectReference Include="..\TokanPages.Services\TokanPages.Services.AzureStorageService\TokanPages.Services.AzureStorageService.csproj" />
     <ProjectReference Include="..\TokanPages.Services\TokanPages.Services.BehaviourService\TokanPages.Services.BehaviourService.csproj" />
+    <ProjectReference Include="..\TokanPages.Services\TokanPages.Services.CipheringService\TokanPages.Services.CipheringService.csproj" />
     <ProjectReference Include="..\TokanPages.Services\TokanPages.Services.HttpClientService\TokanPages.Services.HttpClientService.csproj" />
     <ProjectReference Include="..\TokanPages.Services\TokanPages.Services.WebTokenService\TokanPages.Services.WebTokenService.csproj" />
   </ItemGroup>
