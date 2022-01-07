@@ -15,8 +15,8 @@ using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Cqrs.Handlers.Commands.Articles;
-using TokanPages.Services.AzureStorageService.AzureBlobStorage;
-using TokanPages.Services.AzureStorageService.AzureBlobStorage.Factory;
+using TokanPages.Services.AzureStorageService;
+using TokanPages.Services.AzureStorageService.Factory;
 
 public class UpdateArticleContentCommandHandlerTest : TestBase
 {
@@ -71,8 +71,8 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             .Setup(storage => storage.UploadFile(
                 It.IsAny<Stream>(),
                 It.IsAny<string>(),
-                It.IsAny<CancellationToken>(),
-                It.IsAny<string>()))
+                It.IsAny<string>(),
+                It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(string.Empty));
             
         mockedAzureBlobStorageFactory
@@ -158,9 +158,9 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         mockedAzureBlobStorage
             .Setup(storage => storage.UploadFile(
                 It.IsAny<Stream>(),
+                It.IsAny<string>(), 
                 It.IsAny<string>(),
-                It.IsAny<CancellationToken>(),
-                It.IsAny<string>()))
+                It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(string.Empty));
             
         mockedAzureBlobStorageFactory
@@ -251,8 +251,8 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             .Setup(storage => storage.UploadFile(
                 It.IsAny<Stream>(),
                 It.IsAny<string>(),
-                It.IsAny<CancellationToken>(),
-                It.IsAny<string>()))
+                It.IsAny<string>(),
+                It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(string.Empty));
             
         mockedAzureBlobStorageFactory

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Globalization;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Exceptions;
+using Shared.Resources;
 
 [ExcludeFromCodeCoverage]
 public static class StringExtensions
@@ -32,14 +34,14 @@ public static class StringExtensions
     public static string MakeBody(this string template, IDictionary<string, string> items)
     {
         if (string.IsNullOrEmpty(template) || string.IsNullOrWhiteSpace(template))
-            return null;
-            
+            throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL));
+
         if (items == null) 
-            return null;
-            
+            throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL));
+
         var templateItemModels = items.ToList();
         if (!templateItemModels.Any()) 
-            return null;
+            throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL));
 
         return templateItemModels.Aggregate(template, (current, item) 
             => current.Replace(item.Key, item.Value));

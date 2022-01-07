@@ -4,18 +4,15 @@ using Moq;
 using Xunit;
 using MediatR;
 using FluentAssertions;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Net.Http.Headers;
 using System.Collections.Generic;
 using Backend.Shared.Models;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Mailer;
-using TokanPages.Services.HttpClientService;
-using TokanPages.Services.HttpClientService.Models;
+using TokanPages.Services.EmailSenderService;
 
 public class SendNewsletterCommandHandlerTest : TestBase
 {
@@ -38,25 +35,18 @@ public class SendNewsletterCommandHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<IHttpClientService>();
+        var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
-        var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-        var mockedResults = new Results
-        {
-            StatusCode = HttpStatusCode.OK,
-            ContentType = new MediaTypeHeaderValue("text/plain"),
-            Content = mockedPayLoad
-        };
-            
-        mockedCustomHttpClient
-            .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(mockedResults);
+        var randomString = DataUtilityService.GetRandomString();
+        mockedEmailSenderService
+            .Setup(sender => sender.GetEmailTemplate(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(randomString);
 
         var sendNewsletterCommandHandler = new SendNewsletterCommandHandler(
             databaseContext,
             mockedLogger.Object, 
-            mockedCustomHttpClient.Object,
+            mockedEmailSenderService.Object,
             mockedApplicationSettings.Object);
 
         // Act
@@ -85,77 +75,23 @@ public class SendNewsletterCommandHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<IHttpClientService>();
+        var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
-        var mockedResults = new Results
-        {
-            StatusCode = HttpStatusCode.OK,
-            ContentType = new MediaTypeHeaderValue("text/plain"),
-            Content = null
-        };
-            
-        mockedCustomHttpClient
-            .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(mockedResults);
+        mockedEmailSenderService
+            .Setup(sender => sender.GetEmailTemplate(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(string.Empty);
 
         var sendNewsletterCommandHandler = new SendNewsletterCommandHandler(
             databaseContext,
             mockedLogger.Object, 
-            mockedCustomHttpClient.Object,
+            mockedEmailSenderService.Object,
             mockedApplicationSettings.Object);
 
         // Act
         // Assert
         var result = await Assert.ThrowsAsync<BusinessException>(() 
             => sendNewsletterCommandHandler.Handle(sendNewsletterCommand, CancellationToken.None));
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY));
-    }
-
-    [Fact]
-    public async Task GivenRemoteSmtpFailure_WhenSendNewsletter_ShouldThrowError()
-    {
-        // Arrange
-        var sendNewsletterCommand = new SendNewsletterCommand
-        {
-            Message = DataUtilityService.GetRandomString(),
-            Subject = DataUtilityService.GetRandomString(),
-            SubscriberInfo = new List<SubscriberInfo>
-            {
-                new()
-                {
-                    Email = DataUtilityService.GetRandomEmail()
-                }
-            }
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<IHttpClientService>();
-        var mockedApplicationSettings = MockApplicationSettings();
-
-        var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-        var mockedResults = new Results
-        {
-            StatusCode = HttpStatusCode.InternalServerError,
-            ContentType = new MediaTypeHeaderValue("text/plain"),
-            Content = mockedPayLoad
-        };
-            
-        mockedCustomHttpClient
-            .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(mockedResults);
-
-        var sendNewsletterCommandHandler = new SendNewsletterCommandHandler(
-            databaseContext,
-            mockedLogger.Object, 
-            mockedCustomHttpClient.Object,
-            mockedApplicationSettings.Object);
-
-        // Act
-        // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() 
-            => sendNewsletterCommandHandler.Handle(sendNewsletterCommand, CancellationToken.None));
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.CANNOT_SEND_EMAIL));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL));
     }
 }
