@@ -3,18 +3,14 @@ namespace TokanPages.Tests.UnitTests.Handlers.Users;
 using Moq;
 using Xunit;
 using FluentAssertions;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Net.Http.Headers;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
 using Backend.Domain.Entities;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Users;
 using Backend.Core.Utilities.DateTimeService;
-using TokanPages.Services.HttpClientService;
-using TokanPages.Services.HttpClientService.Models;
+using TokanPages.Services.EmailSenderService;
+using TokanPages.Services.EmailSenderService.Models.Interfaces;
 
 public class ResetUserPasswordCommandHandlerTest : TestBase
 {
@@ -50,26 +46,18 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedCustomHttpClient = new Mock<IHttpClientService>();
+        var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
-        var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-        var mockedResults = new Results
-        {
-            StatusCode = HttpStatusCode.OK,
-            ContentType = new MediaTypeHeaderValue("text/plain"),
-            Content = mockedPayLoad
-        };
-
-        mockedCustomHttpClient
-            .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(mockedResults);
+        mockedEmailSenderService
+            .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
+            .Returns(Task.CompletedTask);
 
         // Act
         var resetUserPasswordCommandHandler = new ResetUserPasswordCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedCustomHttpClient.Object,
+            mockedEmailSenderService.Object,
             mockedDateTimeService.Object,
             mockedApplicationSettings.Object);
 
@@ -88,126 +76,5 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
         userEntity.LastLogged.Should().BeNull();
         userEntity.CryptedPassword.Should().BeEmpty();
         userEntity.ResetId.Should().NotBeNull();
-    }
-
-    [Fact]
-    public async Task GivenSmtpError_WhenResetUserPassword_ShouldThrowError()
-    {
-        // Arrange
-        var user = new Users
-        {
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
-            LastLogged = null,
-            CryptedPassword = DataUtilityService.GetRandomString(),
-            ResetId = null,
-            ResetIdEnds = null,
-            ActivationId = null,
-            ActivationIdEnds = null
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(user);
-        await databaseContext.SaveChangesAsync();
-
-        var resetUserPasswordCommand = new ResetUserPasswordCommand
-        {
-            EmailAddress = user.EmailAddress
-        };
-
-        var mockedLogger = new Mock<ILoggerService>();
-        var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedCustomHttpClient = new Mock<IHttpClientService>();
-        var mockedApplicationSettings = MockApplicationSettings();
-
-        var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-        var mockedResults = new Results
-        {
-            StatusCode = HttpStatusCode.InternalServerError,
-            ContentType = new MediaTypeHeaderValue("text/plain"),
-            Content = mockedPayLoad
-        };
-
-        mockedCustomHttpClient
-            .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(mockedResults);
-
-        var resetUserPasswordCommandHandler = new ResetUserPasswordCommandHandler(
-            databaseContext, 
-            mockedLogger.Object,
-            mockedCustomHttpClient.Object,
-            mockedDateTimeService.Object,
-            mockedApplicationSettings.Object);
-
-        // Act
-        // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() 
-            => resetUserPasswordCommandHandler.Handle(resetUserPasswordCommand, CancellationToken.None));
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.CANNOT_SEND_EMAIL));
-    }
-
-    [Fact]
-    public async Task GivenEmptyTemplate_WhenResetUserPassword_ShouldThrowError()
-    {
-        // Arrange
-        var user = new Users
-        {
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
-            LastLogged = null,
-            CryptedPassword = DataUtilityService.GetRandomString(),
-            ResetId = null,
-            ResetIdEnds = null,
-            ActivationId = null,
-            ActivationIdEnds = null
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(user);
-        await databaseContext.SaveChangesAsync();
-
-        var resetUserPasswordCommand = new ResetUserPasswordCommand
-        {
-            EmailAddress = user.EmailAddress
-        };
-
-        var mockedLogger = new Mock<ILoggerService>();
-        var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedCustomHttpClient = new Mock<IHttpClientService>();
-        var mockedApplicationSettings = MockApplicationSettings();
-
-        var mockedResults = new Results
-        {
-            StatusCode = HttpStatusCode.OK,
-            ContentType = new MediaTypeHeaderValue("text/plain"),
-            Content = null
-        };
-
-        mockedCustomHttpClient
-            .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(mockedResults);
-
-        var resetUserPasswordCommandHandler = new ResetUserPasswordCommandHandler(
-            databaseContext, 
-            mockedLogger.Object,
-            mockedCustomHttpClient.Object,
-            mockedDateTimeService.Object,
-            mockedApplicationSettings.Object);
-
-        // Act
-        // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() 
-            => resetUserPasswordCommandHandler.Handle(resetUserPasswordCommand, CancellationToken.None));
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY));
     }
 }

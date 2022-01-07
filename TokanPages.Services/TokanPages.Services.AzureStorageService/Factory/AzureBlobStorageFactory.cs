@@ -1,4 +1,4 @@
-namespace TokanPages.Services.AzureStorageService.AzureBlobStorage.Factory;
+namespace TokanPages.Services.AzureStorageService.Factory;
 
 public class AzureBlobStorageFactory : IAzureBlobStorageFactory
 {
@@ -6,7 +6,7 @@ public class AzureBlobStorageFactory : IAzureBlobStorageFactory
 
     private readonly string _containerName;
 
-    public AzureBlobStorageFactory(string connectionString, string containerName = null)
+    public AzureBlobStorageFactory(string connectionString, string containerName = "")
     {
         _connectionString = connectionString;
         _containerName = containerName;

@@ -2,39 +2,32 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
 using MediatR;
 using System;
-using System.Net;
-using System.Text;
 using System.Linq;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Shared;
 using Database;
-using Shared.Models;
 using Core.Exceptions;
-using Core.Extensions;
 using Shared.Services;
 using Shared.Resources;
+using Services.EmailSenderService;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
-using TokanPages.Services.HttpClientService;
-using TokanPages.Services.HttpClientService.Models;
+using Services.EmailSenderService.Models;
 
 public class ResetUserPasswordCommandHandler : Cqrs.RequestHandler<ResetUserPasswordCommand, Unit>
 {
-    private readonly IHttpClientService _httpClientService;
+    private readonly IEmailSenderService _emailSenderService;
 
     private readonly IDateTimeService _dateTimeService;
 
     private readonly IApplicationSettings _applicationSettings;
 
     public ResetUserPasswordCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IHttpClientService httpClientService, IDateTimeService dateTimeService, 
+        IEmailSenderService emailSenderService, IDateTimeService dateTimeService, 
         IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
-        _httpClientService = httpClientService;
+        _emailSenderService = emailSenderService;
         _dateTimeService = dateTimeService;
         _applicationSettings = applicationSettings;
     }
@@ -63,37 +56,13 @@ public class ResetUserPasswordCommandHandler : Cqrs.RequestHandler<ResetUserPass
 
     private async Task SendNotification(string emailAddress, Guid resetId, DateTime expirationDate, CancellationToken cancellationToken)
     {
-        var resetLink = $"{_applicationSettings.ApplicationPaths.DeploymentOrigin}{_applicationSettings.ApplicationPaths.UpdatePasswordPath}{resetId}";
-        var newValues = new Dictionary<string, string>
+        var configuration = new ResetPasswordConfiguration
         {
-            { "{RESET_LINK}", resetLink },
-            { "{EXPIRATION}", $"{expirationDate}" }
+            EmailAddress = emailAddress,
+            ResetId = resetId,
+            ExpirationDate = expirationDate
         };
 
-        var url = $"{_applicationSettings.AzureStorage.BaseUrl}{Constants.Emails.Templates.ResetPassword}";
-        LoggerService.LogInformation($"Getting email template from URL: {url}.");
-
-        var configuration = new Configuration { Url = url, Method = "GET" };
-        var getTemplate = await _httpClientService.Execute(configuration, cancellationToken);
-
-        if (getTemplate.Content == null)
-            throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
-
-        var template = Encoding.Default.GetString(getTemplate.Content);
-        var payload = new EmailSenderPayload
-        {
-            From = Constants.Emails.Addresses.Contact,
-            To = new List<string> { emailAddress },
-            Subject = "Reset user password",
-            Body = template.MakeBody(newValues)
-        };            
-
-        var headers = new Dictionary<string, string> { ["X-Private-Key"] = _applicationSettings.EmailSender.PrivateKey };
-        configuration = new Configuration { Url = _applicationSettings.EmailSender.BaseUrl, Method = "POST", Headers = headers, 
-            StringContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload), Encoding.Default, "application/json") };
-
-        var sendEmail = await _httpClientService.Execute(configuration, cancellationToken);
-        if (sendEmail.StatusCode != HttpStatusCode.OK)
-            throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}");
+        await _emailSenderService.SendNotification(configuration, cancellationToken);
     }
 }
