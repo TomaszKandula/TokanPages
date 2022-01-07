@@ -115,8 +115,8 @@ public class TestBase
         var newClaim = new ClaimsIdentity(new []
         {
             new Claim(ClaimTypes.Name, DataUtilityService.GetRandomString()),
-            new Claim(ClaimTypes.Role, nameof(Backend.Identity.Authorization.Roles.EverydayUser)),
-            new Claim(ClaimTypes.Role, nameof(Backend.Identity.Authorization.Roles.GodOfAsgard)),
+            new Claim(ClaimTypes.Role, nameof(Backend.Domain.Enums.Roles.EverydayUser)),
+            new Claim(ClaimTypes.Role, nameof(Backend.Domain.Enums.Roles.GodOfAsgard)),
             new Claim(ClaimTypes.NameIdentifier, userId),
             new Claim(ClaimTypes.GivenName, userFirstName),
             new Claim(ClaimTypes.Surname, userLastName),

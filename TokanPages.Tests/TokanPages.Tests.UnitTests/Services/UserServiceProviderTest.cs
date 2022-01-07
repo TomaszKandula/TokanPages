@@ -20,8 +20,8 @@ using Backend.Core.Utilities.DateTimeService;
 using Backend.Core.Utilities.JwtUtilityService;
 using Backend.Cqrs.Services.UserServiceProvider;
 using Backend.Core.Utilities.JwtUtilityService.Models;
-using Roles = Backend.Identity.Authorization.Roles;
-using Permissions = Backend.Identity.Authorization.Permissions;
+using Roles = Backend.Domain.Enums.Roles;
+using Permissions = Backend.Domain.Enums.Permissions;
 
 public class UserServiceProviderTest : TestBase
 {

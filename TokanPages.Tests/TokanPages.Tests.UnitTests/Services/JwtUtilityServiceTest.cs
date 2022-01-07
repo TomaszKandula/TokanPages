@@ -6,7 +6,7 @@ using System;
 using System.Linq;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
-using Backend.Identity.Authorization;
+using Backend.Domain.Enums;
 using Backend.Database.Initializer.Data.Users;
     
 public class JwtUtilityServiceTest : TestBase

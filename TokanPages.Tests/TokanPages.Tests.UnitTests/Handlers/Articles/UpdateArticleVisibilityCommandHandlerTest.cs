@@ -15,7 +15,7 @@ using Backend.Cqrs.Services.UserServiceProvider;
 using UsersEntity = Backend.Domain.Entities.Users;
 using ArticlesEntity = Backend.Domain.Entities.Articles;
 using PermissionsEntity = Backend.Domain.Entities.Permissions;
-using AuthorizationPermissions = Backend.Identity.Authorization.Permissions;
+using AuthorizationPermissions = Backend.Domain.Enums.Permissions;
 
 public class UpdateArticleVisibilityCommandHandlerTest : TestBase
 {

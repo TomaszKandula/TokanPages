@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Identity.Authorization;
+namespace TokanPages.Backend.Domain.Enums;
 
 public enum Permissions
 {

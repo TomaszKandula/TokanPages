@@ -40,19 +40,19 @@ public class AddUserCommandHandlerTest : TestBase
 
         var roles = new Roles
         {
-            Name = Backend.Identity.Authorization.Roles.EverydayUser.ToString(),
-            Description = Backend.Identity.Authorization.Roles.EverydayUser.ToString()
+            Name = Backend.Domain.Enums.Roles.EverydayUser.ToString(),
+            Description = Backend.Domain.Enums.Roles.EverydayUser.ToString()
         };
 
         var permissions = new List<Permissions>
         {
             new()
             {
-                Name = Backend.Identity.Authorization.Permissions.CanSelectArticles.ToString()
+                Name = Backend.Domain.Enums.Permissions.CanSelectArticles.ToString()
             },
             new()
             {
-                Name = Backend.Identity.Authorization.Permissions.CanSelectComments.ToString()
+                Name = Backend.Domain.Enums.Permissions.CanSelectComments.ToString()
             }
         };
 
@@ -310,19 +310,19 @@ public class AddUserCommandHandlerTest : TestBase
 
         var roles = new Roles
         {
-            Name = Backend.Identity.Authorization.Roles.EverydayUser.ToString(),
-            Description = Backend.Identity.Authorization.Roles.EverydayUser.ToString()
+            Name = Backend.Domain.Enums.Roles.EverydayUser.ToString(),
+            Description = Backend.Domain.Enums.Roles.EverydayUser.ToString()
         };
 
         var permissions = new List<Permissions>
         {
             new()
             {
-                Name = Backend.Identity.Authorization.Permissions.CanSelectArticles.ToString()
+                Name = Backend.Domain.Enums.Permissions.CanSelectArticles.ToString()
             },
             new()
             {
-                Name = Backend.Identity.Authorization.Permissions.CanSelectComments.ToString()
+                Name = Backend.Domain.Enums.Permissions.CanSelectComments.ToString()
             }
         };
 
