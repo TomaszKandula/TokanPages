@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Models;
 
-public interface ICustomHttpClient
+public interface IHttpClientService
 {
     Task<Results> Execute(Configuration configuration, CancellationToken cancellationToken = default);
 

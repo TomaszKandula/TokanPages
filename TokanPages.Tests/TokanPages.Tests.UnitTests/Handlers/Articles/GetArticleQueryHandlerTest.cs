@@ -86,7 +86,7 @@ public class GetArticleQueryHandlerTest : TestBase
 
         var mockedUserProvider = new Mock<IUserServiceProvider>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
@@ -174,7 +174,7 @@ public class GetArticleQueryHandlerTest : TestBase
 
         var mockedUserProvider = new Mock<IUserServiceProvider>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedApplicationSettings = MockApplicationSettings();
 

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using Authentication;
 using Models;
 
-public class CustomHttpClient : ICustomHttpClient
+public class HttpClientService : IHttpClientService
 {
     private const string Header = "Authorization";
 
@@ -20,7 +20,7 @@ public class CustomHttpClient : ICustomHttpClient
 
     private readonly HttpClient _httpClient;
 
-    public CustomHttpClient(HttpClient httpClient) => _httpClient = httpClient;
+    public HttpClientService(HttpClient httpClient) => _httpClient = httpClient;
 
     public virtual async Task<Results> Execute(Configuration configuration, CancellationToken cancellationToken = default)
     {

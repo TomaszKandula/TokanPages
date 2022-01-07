@@ -29,17 +29,17 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     private readonly ICipheringService _cipheringService;
 
-    private readonly ICustomHttpClient _customHttpClient;
+    private readonly IHttpClientService _httpClientService;
 
     private readonly IApplicationSettings _applicationSettings;
 
     public AddUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService,
-        ICipheringService cipheringService, ICustomHttpClient customHttpClient, 
+        ICipheringService cipheringService, IHttpClientService httpClientService, 
         IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _cipheringService = cipheringService;
-        _customHttpClient = customHttpClient;
+        _httpClientService = httpClientService;
         _applicationSettings = applicationSettings;
     }
 
@@ -149,7 +149,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         LoggerService.LogInformation($"Getting email template from URL: {url}.");
 
         var configuration = new Configuration { Url = url, Method = "GET" };
-        var getTemplate = await _customHttpClient.Execute(configuration, cancellationToken);
+        var getTemplate = await _httpClientService.Execute(configuration, cancellationToken);
 
         if (getTemplate.Content == null)
             throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
@@ -167,7 +167,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         configuration = new Configuration { Url = _applicationSettings.EmailSender.BaseUrl, Method = "POST", Headers = headers, 
             StringContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload), Encoding.Default, "application/json") };
 
-        var sendEmail = await _customHttpClient.Execute(configuration, cancellationToken);
+        var sendEmail = await _httpClientService.Execute(configuration, cancellationToken);
         if (sendEmail.StatusCode != HttpStatusCode.OK)
             throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}");
     }

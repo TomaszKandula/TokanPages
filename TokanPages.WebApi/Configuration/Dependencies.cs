@@ -102,7 +102,7 @@ public static class Dependencies
 		services.AddScoped<IDbInitializer, DbInitializer>();
 		services.AddScoped<ICipheringService, CipheringService>();
 		services.AddScoped<IJsonSerializer, JsonSerializer>();
-		services.AddScoped<ICustomHttpClient, CustomHttpClient>();
+		services.AddScoped<IHttpClientService, HttpClientService>();
 
 		services.AddScoped<IArticlesCache, ArticlesCache>();
 		services.AddScoped<IAssetsCache, AssetsCache>();

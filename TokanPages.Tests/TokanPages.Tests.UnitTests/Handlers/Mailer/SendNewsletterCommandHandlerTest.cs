@@ -38,7 +38,7 @@ public class SendNewsletterCommandHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
@@ -85,7 +85,7 @@ public class SendNewsletterCommandHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         var mockedResults = new Results
@@ -131,7 +131,7 @@ public class SendNewsletterCommandHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();

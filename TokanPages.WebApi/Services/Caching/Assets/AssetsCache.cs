@@ -16,15 +16,15 @@ public class AssetsCache : IAssetsCache
 {
     private readonly IRedisDistributedCache _redisDistributedCache;
 
-    private readonly ICustomHttpClient _customHttpClient;
+    private readonly IHttpClientService _httpClientService;
         
     private readonly IApplicationSettings _applicationSettings;
         
-    public AssetsCache(IRedisDistributedCache redisDistributedCache, ICustomHttpClient customHttpClient, 
+    public AssetsCache(IRedisDistributedCache redisDistributedCache, IHttpClientService httpClientService, 
         IApplicationSettings applicationSettings)
     {
         _redisDistributedCache = redisDistributedCache;
-        _customHttpClient = customHttpClient;
+        _httpClientService = httpClientService;
         _applicationSettings = applicationSettings;
     }
 
@@ -80,7 +80,7 @@ public class AssetsCache : IAssetsCache
     private async Task<IActionResult> ExecuteRequest(string requestUrl)
     {
         var configuration = new Configuration { Url = requestUrl, Method = "GET" };
-        var results = await _customHttpClient.Execute(configuration);
+        var results = await _httpClientService.Execute(configuration);
         if (results.StatusCode == HttpStatusCode.OK)
             return new FileContentResult(results.Content!, results.ContentType?.MediaType!);
 

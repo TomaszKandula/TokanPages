@@ -36,7 +36,7 @@ public class SendMessageCommandHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
@@ -83,7 +83,7 @@ public class SendMessageCommandHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
@@ -129,7 +129,7 @@ public class SendMessageCommandHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
 

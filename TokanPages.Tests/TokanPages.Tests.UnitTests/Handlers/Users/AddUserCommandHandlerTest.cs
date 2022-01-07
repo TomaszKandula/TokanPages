@@ -79,7 +79,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         const string mockedPassword = "MockedPassword";
@@ -166,7 +166,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
 
         var expirationSettings = new ExpirationSettings { ActivationIdExpiresIn = 30 };
         var mockedApplicationSettings = MockApplicationSettings(expirationSettings: expirationSettings);
@@ -255,7 +255,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         mockedCipher
@@ -343,7 +343,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         const string mockedPassword = "MockedPassword";

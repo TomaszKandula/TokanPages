@@ -29,17 +29,17 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
 
     private readonly IJsonSerializer _jsonSerializer;
 
-    private readonly ICustomHttpClient _customHttpClient;
+    private readonly IHttpClientService _httpClientService;
 
     private readonly IApplicationSettings _applicationSettings;
         
     public GetArticleQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserServiceProvider userServiceProvider, 
-        IJsonSerializer jsonSerializer, ICustomHttpClient customHttpClient, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+        IJsonSerializer jsonSerializer, IHttpClientService httpClientService, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
         _databaseContext = databaseContext;
         _userServiceProvider = userServiceProvider;
         _jsonSerializer = jsonSerializer;
-        _customHttpClient = customHttpClient;
+        _httpClientService = httpClientService;
         _applicationSettings = applicationSettings;
     }
 
@@ -102,7 +102,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
     private async Task<string> GetJsonData(string url, CancellationToken cancellationToken)
     {
         var configuration = new Configuration { Url = url, Method = "GET" };
-        var results = await _customHttpClient.Execute(configuration, cancellationToken);
+        var results = await _httpClientService.Execute(configuration, cancellationToken);
 
         if (results.StatusCode == HttpStatusCode.NotFound)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);

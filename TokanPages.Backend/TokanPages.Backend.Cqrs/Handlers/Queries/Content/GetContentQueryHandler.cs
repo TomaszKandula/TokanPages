@@ -20,16 +20,16 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
 {
     private const string DefaultLanguage = "en";
         
-    private readonly ICustomHttpClient _customHttpClient;
+    private readonly IHttpClientService _httpClientService;
 
     private readonly IJsonSerializer _jsonSerializer;
 
     private readonly IApplicationSettings _applicationSettings;
 
-    public GetContentQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, ICustomHttpClient customHttpClient, 
+    public GetContentQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IHttpClientService httpClientService, 
         IJsonSerializer jsonSerializer, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
-        _customHttpClient = customHttpClient;
+        _httpClientService = httpClientService;
         _jsonSerializer = jsonSerializer;
         _applicationSettings = applicationSettings;
     }
@@ -99,7 +99,7 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
     private async Task<string> GetJsonData(string url, CancellationToken cancellationToken)
     {
         var configuration = new Configuration { Url = url, Method = "GET" };
-        var results = await _customHttpClient.Execute(configuration, cancellationToken);
+        var results = await _httpClientService.Execute(configuration, cancellationToken);
 
         if (results.StatusCode != HttpStatusCode.OK)
             throw new BusinessException(nameof(ErrorCodes.COMPONENT_NOT_FOUND), ErrorCodes.COMPONENT_NOT_FOUND);
