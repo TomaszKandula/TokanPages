@@ -4,11 +4,9 @@ using Moq;
 using Xunit;
 using FluentAssertions;
 using System;
-using System.Net;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Net.Http.Headers;
 using System.Collections.Generic;
 using Backend.Shared;
 using Backend.Shared.Models;
@@ -19,8 +17,8 @@ using Backend.Cqrs.Handlers.Commands.Users;
 using Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.CipheringService;
 using Backend.Core.Utilities.DateTimeService;
-using TokanPages.Services.HttpClientService;
-using TokanPages.Services.HttpClientService.Models;
+using TokanPages.Services.EmailSenderService;
+using TokanPages.Services.EmailSenderService.Models.Interfaces;
 
 public class AddUserCommandHandlerTest : TestBase
 {
@@ -79,7 +77,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<IHttpClientService>();
+        var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         const string mockedPassword = "MockedPassword";
@@ -87,24 +85,16 @@ public class AddUserCommandHandlerTest : TestBase
             .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
             .Returns(mockedPassword);
 
-        var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-        var mockedResults = new Results
-        {
-            StatusCode = HttpStatusCode.OK,
-            ContentType = new MediaTypeHeaderValue("text/plain"),
-            Content = mockedPayLoad
-        };
-
-        mockedCustomHttpClient
-            .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(mockedResults);
+        mockedEmailSenderService
+            .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
+            .Returns(Task.CompletedTask);
 
         var addUserCommandHandler = new AddUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTime.Object, 
             mockedCipher.Object,
-            mockedCustomHttpClient.Object,
+            mockedEmailSenderService.Object,
             mockedApplicationSettings.Object);
 
         // Act
@@ -166,7 +156,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<IHttpClientService>();
+        var mockedEmailSenderService = new Mock<IEmailSenderService>();
 
         var expirationSettings = new ExpirationSettings { ActivationIdExpiresIn = 30 };
         var mockedApplicationSettings = MockApplicationSettings(expirationSettings: expirationSettings);
@@ -180,24 +170,16 @@ public class AddUserCommandHandlerTest : TestBase
             .Setup(dateTime => dateTime.Now)
             .Returns(DateTimeService.Now);
 
-        var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-        var mockedResults = new Results
-        {
-            StatusCode = HttpStatusCode.OK,
-            ContentType = new MediaTypeHeaderValue("text/plain"),
-            Content = mockedPayLoad
-        };
-            
-        mockedCustomHttpClient
-            .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(mockedResults);
-            
+        mockedEmailSenderService
+            .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
+            .Returns(Task.CompletedTask);
+
         var addUserCommandHandler = new AddUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTime.Object, 
             mockedCipher.Object,
-            mockedCustomHttpClient.Object,
+            mockedEmailSenderService.Object,
             mockedApplicationSettings.Object);
 
         // Act
@@ -255,124 +237,28 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<IHttpClientService>();
+        var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedApplicationSettings = MockApplicationSettings();
-            
+
         mockedCipher
             .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
             .Returns("MockedPassword");
 
-        var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-        var mockedResults = new Results
-        {
-            StatusCode = HttpStatusCode.OK,
-            ContentType = new MediaTypeHeaderValue("text/plain"),
-            Content = mockedPayLoad
-        };
-            
-        mockedCustomHttpClient
-            .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(mockedResults);
-            
+        mockedEmailSenderService
+            .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
+            .Returns(Task.CompletedTask);
+
         var addUserCommandHandler = new AddUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTime.Object, 
             mockedCipher.Object,
-            mockedCustomHttpClient.Object,
+            mockedEmailSenderService.Object,
             mockedApplicationSettings.Object);
 
         // Act
         // Assert
         var result = await Assert.ThrowsAsync<BusinessException>(() => addUserCommandHandler.Handle(addUserCommand, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS));
-    }
-
-    [Fact]
-    public async Task GivenEmptyEmailTemplate_WhenAddUser_ShouldThrowError() 
-    {
-        // Arrange
-        var addUserCommand = new AddUserCommand 
-        {
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Password = DataUtilityService.GetRandomString()
-        };
-
-        var roles = new Roles
-        {
-            Name = Backend.Domain.Enums.Roles.EverydayUser.ToString(),
-            Description = Backend.Domain.Enums.Roles.EverydayUser.ToString()
-        };
-
-        var permissions = new List<Permissions>
-        {
-            new()
-            {
-                Name = Backend.Domain.Enums.Permissions.CanSelectArticles.ToString()
-            },
-            new()
-            {
-                Name = Backend.Domain.Enums.Permissions.CanSelectComments.ToString()
-            }
-        };
-
-        var defaultPermissions = new List<DefaultPermissions>
-        {
-            new()
-            {
-                Id = Guid.NewGuid(),
-                Role = roles,
-                Permission = permissions[0]
-            },
-            new()
-            {
-                Id = Guid.NewGuid(),
-                Role = roles,
-                Permission = permissions[1]
-            }
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Roles.AddAsync(roles);
-        await databaseContext.Permissions.AddRangeAsync(permissions);
-        await databaseContext.DefaultPermissions.AddRangeAsync(defaultPermissions);
-
-        var mockedDateTime = new Mock<DateTimeService>();
-        var mockedCipher = new Mock<ICipheringService>();
-        var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<IHttpClientService>();
-        var mockedApplicationSettings = MockApplicationSettings();
-
-        const string mockedPassword = "MockedPassword";
-        mockedCipher
-            .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
-            .Returns(mockedPassword);
-
-        var mockedResults = new Results
-        {
-            StatusCode = HttpStatusCode.OK,
-            ContentType = new MediaTypeHeaderValue("text/plain"),
-            Content = null
-        };
-
-        mockedCustomHttpClient
-            .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(mockedResults);
-
-        var addUserCommandHandler = new AddUserCommandHandler(
-            databaseContext, 
-            mockedLogger.Object,
-            mockedDateTime.Object, 
-            mockedCipher.Object,
-            mockedCustomHttpClient.Object,
-            mockedApplicationSettings.Object);
-
-        // Act
-        // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() => addUserCommandHandler.Handle(addUserCommand, CancellationToken.None));
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY));
     }
 }
