@@ -15,14 +15,14 @@ public class TestBase
 
     protected IDataUtilityService DataUtilityService { get; }
 
-    protected IJwtUtilityService JwtUtilityService { get; }
+    protected IWebTokenUtility WebTokenUtility { get; }
 
     protected IDateTimeService DateTimeService { get; }
 
     protected TestBase()
     {
         DataUtilityService = new DataUtilityService();
-        JwtUtilityService = new JwtUtilityService();
+        WebTokenUtility = new WebTokenUtility();
         DateTimeService = new DateTimeService();
 
         var services = new ServiceCollection();

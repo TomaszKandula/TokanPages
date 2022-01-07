@@ -23,13 +23,13 @@ public class TestBase
 
     protected IDateTimeService DateTimeService { get; }
 
-    protected IJwtUtilityService JwtUtilityService { get; }
+    protected IWebTokenUtility WebTokenUtility { get; }
 
     protected TestBase()
     {
         DataUtilityService = new DataUtilityService();
         DateTimeService = new DateTimeService();
-        JwtUtilityService = new JwtUtilityService();
+        WebTokenUtility = new WebTokenUtility();
 
         var services = new ServiceCollection();
         services.AddSingleton<Factories.DatabaseContextFactory>();

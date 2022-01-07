@@ -8,11 +8,11 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using Models;
 
-public class JwtUtilityService : IJwtUtilityService
+public class WebTokenUtility : IWebTokenUtility
 {
     private readonly RandomNumberGenerator _numberGenerator;
 
-    public JwtUtilityService() => _numberGenerator = RandomNumberGenerator.Create();
+    public WebTokenUtility() => _numberGenerator = RandomNumberGenerator.Create();
 
     /// <summary>
     /// Returns a new security token with given claims and expiration date and time.

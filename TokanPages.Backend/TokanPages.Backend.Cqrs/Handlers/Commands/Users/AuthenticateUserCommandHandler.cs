@@ -19,7 +19,7 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 {
     private readonly ICipheringService _cipheringService;
 
-    private readonly IJwtUtilityService _jwtUtilityService;
+    private readonly IWebTokenUtility _webTokenUtility;
         
     private readonly IDateTimeService _dateTimeService;
 
@@ -28,11 +28,11 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
     private readonly IApplicationSettings _applicationSettings;
         
     public AuthenticateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, ICipheringService cipheringService, 
-        IJwtUtilityService jwtUtilityService, IDateTimeService dateTimeService, IUserServiceProvider userServiceProvider, 
+        IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IUserServiceProvider userServiceProvider, 
         IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
         _cipheringService = cipheringService;
-        _jwtUtilityService = jwtUtilityService;
+        _webTokenUtility = webTokenUtility;
         _dateTimeService = dateTimeService;
         _userServiceProvider = userServiceProvider;
         _applicationSettings = applicationSettings;
@@ -66,7 +66,7 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
         var ipAddress = _userServiceProvider.GetRequestIpAddress();
         var tokenExpires = _dateTimeService.Now.AddMinutes(_applicationSettings.IdentityServer.WebTokenExpiresIn);
         var userToken = await _userServiceProvider.GenerateUserToken(currentUser, tokenExpires, cancellationToken);
-        var refreshToken = _jwtUtilityService.GenerateRefreshToken(ipAddress, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
+        var refreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
 
         _userServiceProvider.SetRefreshTokenCookie(refreshToken.Token, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
         currentUser.LastLogged = currentDateTime;

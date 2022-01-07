@@ -4,7 +4,7 @@ using System;
 using System.Security.Claims;
 using Models;
 
-public interface IJwtUtilityService
+public interface IWebTokenUtility
 {
     string GenerateJwt(DateTime expires, ClaimsIdentity claimsIdentity, string webSecret, string issuer, string targetAudience);
 

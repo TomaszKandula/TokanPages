@@ -39,7 +39,7 @@ public class JwtUtilityServiceTest : TestBase
         });
             
         // Act
-        var jwt = JwtUtilityService.GenerateJwt(tokenExpires, getValidClaims, webSecret, issuer, audience);
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, getValidClaims, webSecret, issuer, audience);
             
         // Assert
         jwt.Should().NotBeNullOrEmpty();
@@ -69,7 +69,7 @@ public class JwtUtilityServiceTest : TestBase
         const string ipAddress = "127.0.0.1";
             
         // Act
-        var result = JwtUtilityService.GenerateRefreshToken(ipAddress, expiresIn);
+        var result = WebTokenUtility.GenerateRefreshToken(ipAddress, expiresIn);
 
         // Assert
         result.Token.Should().HaveLength(344);
@@ -84,6 +84,6 @@ public class JwtUtilityServiceTest : TestBase
             
         // Act
         // Assert
-        Assert.Throws<ArgumentException>(() => JwtUtilityService.GenerateRefreshToken(ipAddress, 0));
+        Assert.Throws<ArgumentException>(() => WebTokenUtility.GenerateRefreshToken(ipAddress, 0));
     }
 }

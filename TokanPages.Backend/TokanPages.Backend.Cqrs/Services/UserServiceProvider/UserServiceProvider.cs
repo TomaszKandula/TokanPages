@@ -31,7 +31,7 @@ public sealed class UserServiceProvider : IUserServiceProvider
 
     private readonly DatabaseContext _databaseContext;
 
-    private readonly IJwtUtilityService _jwtUtilityService;
+    private readonly IWebTokenUtility _webTokenUtility;
 
     private readonly IDateTimeService _dateTimeService;
 
@@ -44,11 +44,11 @@ public sealed class UserServiceProvider : IUserServiceProvider
     private GetUserDto _user;
 
     public UserServiceProvider(IHttpContextAccessor httpContextAccessor, DatabaseContext databaseContext, 
-        IJwtUtilityService jwtUtilityService, IDateTimeService dateTimeService, IApplicationSettings applicationSettings)
+        IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IApplicationSettings applicationSettings)
     {
         _httpContextAccessor = httpContextAccessor;
         _databaseContext = databaseContext;
-        _jwtUtilityService = jwtUtilityService;
+        _webTokenUtility = webTokenUtility;
         _dateTimeService = dateTimeService;
         _applicationSettings = applicationSettings;
     }
@@ -211,7 +211,7 @@ public sealed class UserServiceProvider : IUserServiceProvider
     {
         var claimsIdentity = await MakeClaimsIdentity(users, cancellationToken);
             
-        return _jwtUtilityService.GenerateJwt(
+        return _webTokenUtility.GenerateJwt(
             tokenExpires, 
             claimsIdentity, 
             _applicationSettings.IdentityServer.WebSecret, 
@@ -238,7 +238,7 @@ public sealed class UserServiceProvider : IUserServiceProvider
     public async Task<UserRefreshTokens> ReplaceRefreshToken(Guid userId, UserRefreshTokens savedUserRefreshTokens, string requesterIpAddress, 
         bool saveImmediately = false, CancellationToken cancellationToken = default)
     {
-        var newRefreshToken = _jwtUtilityService.GenerateRefreshToken(requesterIpAddress, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
+        var newRefreshToken = _webTokenUtility.GenerateRefreshToken(requesterIpAddress, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
             
         await RevokeRefreshToken(savedUserRefreshTokens, requesterIpAddress, NewRefreshTokenText, 
             newRefreshToken.Token, saveImmediately, cancellationToken);

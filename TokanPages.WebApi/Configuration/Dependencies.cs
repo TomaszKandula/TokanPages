@@ -94,7 +94,7 @@ public static class Dependencies
 		services.AddHttpContextAccessor();
 		services.AddScoped<HttpClient>();
 
-		services.AddScoped<IJwtUtilityService, JwtUtilityService>();
+		services.AddScoped<IWebTokenUtility, WebTokenUtility>();
 
 		services.AddScoped<IDateTimeService, DateTimeService>();
 		services.AddScoped<IDataUtilityService, DataUtilityService>();
