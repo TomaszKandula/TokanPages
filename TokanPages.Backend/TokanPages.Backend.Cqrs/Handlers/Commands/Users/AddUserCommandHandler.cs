@@ -16,6 +16,7 @@ using Services.EmailSenderService;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
 using Services.EmailSenderService.Models;
+using Services.AzureStorageService.Factory;
 
 public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 {
@@ -27,14 +28,17 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     private readonly IApplicationSettings _applicationSettings;
 
+    private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
+
     public AddUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService,
-        ICipheringService cipheringService, IEmailSenderService emailSenderService, 
-        IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+        ICipheringService cipheringService, IEmailSenderService emailSenderService, IApplicationSettings applicationSettings, 
+        IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _cipheringService = cipheringService;
         _emailSenderService = emailSenderService;
         _applicationSettings = applicationSettings;
+        _azureBlobStorageFactory = azureBlobStorageFactory;
     }
 
     public override async Task<Guid> Handle(AddUserCommand request, CancellationToken cancellationToken)
@@ -48,6 +52,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
         var getNewSalt = _cipheringService.GenerateSalt(Constants.CipherLogRounds);
         var getHashedPassword = _cipheringService.GetHashedPassword(request.Password, getNewSalt);
+        LoggerService.LogInformation($"New hashed password has been generated. Requested by: {request.EmailAddress}.");
 
         var activationId = Guid.NewGuid();
         var activationIdEnds = _dateTimeService.Now.AddMinutes(_applicationSettings.ExpirationSettings.ActivationIdExpiresIn);
@@ -65,14 +70,27 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             return users.Id;
         }
 
+        var newUserId = Guid.NewGuid();
+        const string defaultAvatarPath = "content/assets/images/avatars/";
+        const string defaultAvatarName = "avatar-default-288.jpeg";
+        const string sourceAvatarPath = $"{defaultAvatarPath}{defaultAvatarName}";
+
+        var azureBlob = _azureBlobStorageFactory.Create();
+        var destinationAvatarPath = $"content/users/{newUserId}/{defaultAvatarName}";
+
+        var defaultAvatar = await azureBlob.OpenRead(sourceAvatarPath, cancellationToken);
+        if (defaultAvatar is not null)
+            await azureBlob.UploadFile(defaultAvatar.Content, destinationAvatarPath, cancellationToken: cancellationToken);
+
         var newUser = new Users
         {
+            Id = newUserId,
             EmailAddress = request.EmailAddress,
             UserAlias = request.UserAlias.ToLower(),
             FirstName = request.FirstName,
             LastName = request.LastName,
             Registered = _dateTimeService.Now,
-            AvatarName = Constants.Defaults.AvatarName,
+            AvatarName = defaultAvatar != null ? defaultAvatarName : null,
             CryptedPassword = getHashedPassword,
             ActivationId = activationId,
             ActivationIdEnds = activationIdEnds

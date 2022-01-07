@@ -18,6 +18,9 @@ using Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.CipheringService;
 using Backend.Core.Utilities.DateTimeService;
 using TokanPages.Services.EmailSenderService;
+using TokanPages.Services.AzureStorageService;
+using TokanPages.Services.AzureStorageService.Models;
+using TokanPages.Services.AzureStorageService.Factory;
 using TokanPages.Services.EmailSenderService.Models.Interfaces;
 
 public class AddUserCommandHandlerTest : TestBase
@@ -77,8 +80,18 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
+        var mockedBlobStorage = new Mock<IAzureBlobStorage>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedApplicationSettings = MockApplicationSettings();
+
+        mockedBlobStorage
+            .Setup(storage => storage.OpenRead(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync((StorageStreamContent)null);
+
+        mockedAzureStorage
+            .Setup(factory => factory.Create())
+            .Returns(mockedBlobStorage.Object);
 
         const string mockedPassword = "MockedPassword";
         mockedCipher
@@ -95,7 +108,8 @@ public class AddUserCommandHandlerTest : TestBase
             mockedDateTime.Object, 
             mockedCipher.Object,
             mockedEmailSenderService.Object,
-            mockedApplicationSettings.Object);
+            mockedApplicationSettings.Object, 
+            mockedAzureStorage.Object);
 
         // Act
         await addUserCommandHandler.Handle(addUserCommand, CancellationToken.None);
@@ -112,7 +126,7 @@ public class AddUserCommandHandlerTest : TestBase
         result[0].IsActivated.Should().BeFalse();
         result[0].LastLogged.Should().BeNull();
         result[0].LastUpdated.Should().BeNull();
-        result[0].AvatarName.Should().Be(Constants.Defaults.AvatarName);
+        result[0].AvatarName.Should().Be(null);
         result[0].ShortBio.Should().BeNull();
         result[0].CryptedPassword.Should().HaveLength(mockedPassword.Length);
         result[0].ResetId.Should().BeNull();
@@ -156,6 +170,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
 
         var expirationSettings = new ExpirationSettings { ActivationIdExpiresIn = 30 };
@@ -180,7 +195,8 @@ public class AddUserCommandHandlerTest : TestBase
             mockedDateTime.Object, 
             mockedCipher.Object,
             mockedEmailSenderService.Object,
-            mockedApplicationSettings.Object);
+            mockedApplicationSettings.Object, 
+            mockedAzureStorage.Object);
 
         // Act
         await addUserCommandHandler.Handle(addUserCommand, CancellationToken.None);
@@ -237,6 +253,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
@@ -254,7 +271,8 @@ public class AddUserCommandHandlerTest : TestBase
             mockedDateTime.Object, 
             mockedCipher.Object,
             mockedEmailSenderService.Object,
-            mockedApplicationSettings.Object);
+            mockedApplicationSettings.Object, 
+            mockedAzureStorage.Object);
 
         // Act
         // Assert
