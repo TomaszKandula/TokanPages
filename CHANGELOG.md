@@ -1,3 +1,13 @@
+# [0.37.0](https://github.com/TomaszKandula/TokanPages/compare/v0.36.0...v0.37.0) (2022-01-07)
+
+
+### Features
+
+* add new string extension to generate from template ([3c47a91](https://github.com/TomaszKandula/TokanPages/commit/3c47a913055e0f9224a3829fbbb483ec001022cf))
+* add web token validation implementation in the service ([1a8c067](https://github.com/TomaszKandula/TokanPages/commit/1a8c067de8ba7ddfc0c91e51304ad707b588ad7b))
+* register IWebTokenValidation ([ac56bc7](https://github.com/TomaszKandula/TokanPages/commit/ac56bc738c8b09b8a91c0f911089c6b6f99df6eb))
+* use implementation from newly added service ([44243ab](https://github.com/TomaszKandula/TokanPages/commit/44243ab02bf2b663c7b7675bfbfe2b7c07c00417))
+
 # [0.36.0](https://github.com/TomaszKandula/TokanPages/compare/v0.35.0...v0.36.0) (2022-01-02)
 
 
