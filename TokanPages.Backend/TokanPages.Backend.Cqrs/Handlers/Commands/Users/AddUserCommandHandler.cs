@@ -1,27 +1,22 @@
 ﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
 using System;
-using System.Net;
-using System.Text;
 using System.Linq;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Shared;
 using Database;
-using Shared.Models;
 using Core.Exceptions;
-using Core.Extensions;
 using Domain.Entities;
 using Shared.Services;
 using Shared.Resources;
-using System.Collections.Generic;
+using Services.CipheringService;
+using Services.EmailSenderService;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
-using TokanPages.Services.HttpClientService;
-using TokanPages.Services.HttpClientService.Models;
-using TokanPages.Services.CipheringService;
+using Services.EmailSenderService.Models;
+using Services.AzureStorageService.Factory;
 
 public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 {
@@ -29,18 +24,21 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     private readonly ICipheringService _cipheringService;
 
-    private readonly IHttpClientService _httpClientService;
+    private readonly IEmailSenderService _emailSenderService;
 
     private readonly IApplicationSettings _applicationSettings;
 
+    private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
+
     public AddUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService,
-        ICipheringService cipheringService, IHttpClientService httpClientService, 
-        IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+        ICipheringService cipheringService, IEmailSenderService emailSenderService, IApplicationSettings applicationSettings, 
+        IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _cipheringService = cipheringService;
-        _httpClientService = httpClientService;
+        _emailSenderService = emailSenderService;
         _applicationSettings = applicationSettings;
+        _azureBlobStorageFactory = azureBlobStorageFactory;
     }
 
     public override async Task<Guid> Handle(AddUserCommand request, CancellationToken cancellationToken)
@@ -54,6 +52,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
         var getNewSalt = _cipheringService.GenerateSalt(Constants.CipherLogRounds);
         var getHashedPassword = _cipheringService.GetHashedPassword(request.Password, getNewSalt);
+        LoggerService.LogInformation($"New hashed password has been generated. Requested by: {request.EmailAddress}.");
 
         var activationId = Guid.NewGuid();
         var activationIdEnds = _dateTimeService.Now.AddMinutes(_applicationSettings.ExpirationSettings.ActivationIdExpiresIn);
@@ -71,14 +70,27 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             return users.Id;
         }
 
+        var newUserId = Guid.NewGuid();
+        const string defaultAvatarPath = "content/assets/images/avatars/";
+        const string defaultAvatarName = "avatar-default-288.jpeg";
+        const string sourceAvatarPath = $"{defaultAvatarPath}{defaultAvatarName}";
+
+        var azureBlob = _azureBlobStorageFactory.Create();
+        var destinationAvatarPath = $"content/users/{newUserId}/{defaultAvatarName}";
+
+        var defaultAvatar = await azureBlob.OpenRead(sourceAvatarPath, cancellationToken);
+        if (defaultAvatar is not null)
+            await azureBlob.UploadFile(defaultAvatar.Content, destinationAvatarPath, cancellationToken: cancellationToken);
+
         var newUser = new Users
         {
+            Id = newUserId,
             EmailAddress = request.EmailAddress,
             UserAlias = request.UserAlias.ToLower(),
             FirstName = request.FirstName,
             LastName = request.LastName,
             Registered = _dateTimeService.Now,
-            AvatarName = Constants.Defaults.AvatarName,
+            AvatarName = defaultAvatar != null ? defaultAvatarName : null,
             CryptedPassword = getHashedPassword,
             ActivationId = activationId,
             ActivationIdEnds = activationIdEnds
@@ -138,37 +150,13 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     private async Task SendNotification(string emailAddress, Guid activationId, DateTime activationIdEnds, CancellationToken cancellationToken)
     {
-        var activationLink = $"{_applicationSettings.ApplicationPaths.DeploymentOrigin}{_applicationSettings.ApplicationPaths.ActivationPath}{activationId}";
-        var newValues = new Dictionary<string, string>
+        var configuration = new CreateUserConfiguration
         {
-            { "{ACTIVATION_LINK}", activationLink },
-            { "{EXPIRATION}", $"{activationIdEnds}" }
+            EmailAddress = emailAddress,
+            ActivationId = activationId,
+            ActivationIdEnds = activationIdEnds
         };
 
-        var url = $"{_applicationSettings.AzureStorage.BaseUrl}{Constants.Emails.Templates.RegisterForm}";
-        LoggerService.LogInformation($"Getting email template from URL: {url}.");
-
-        var configuration = new Configuration { Url = url, Method = "GET" };
-        var getTemplate = await _httpClientService.Execute(configuration, cancellationToken);
-
-        if (getTemplate.Content == null)
-            throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
-
-        var template = Encoding.Default.GetString(getTemplate.Content);
-        var payload = new EmailSenderPayload
-        {
-            From = Constants.Emails.Addresses.Contact,
-            To = new List<string> { emailAddress },
-            Subject = "New account registration",
-            Body = template.MakeBody(newValues)
-        };
-
-        var headers = new Dictionary<string, string> { ["X-Private-Key"] = _applicationSettings.EmailSender.PrivateKey };
-        configuration = new Configuration { Url = _applicationSettings.EmailSender.BaseUrl, Method = "POST", Headers = headers, 
-            StringContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload), Encoding.Default, "application/json") };
-
-        var sendEmail = await _httpClientService.Execute(configuration, cancellationToken);
-        if (sendEmail.StatusCode != HttpStatusCode.OK)
-            throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}");
+        await _emailSenderService.SendNotification(configuration, cancellationToken);
     }
 }
