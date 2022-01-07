@@ -14,7 +14,6 @@ using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Mailer;
-using Backend.Core.Utilities.TemplateService;
 using Backend.Core.Utilities.CustomHttpClient;
 using Backend.Core.Utilities.CustomHttpClient.Models;
 
@@ -40,7 +39,6 @@ public class SendNewsletterCommandHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-        var mockedTemplateHelper = new Mock<ITemplateService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
@@ -59,7 +57,6 @@ public class SendNewsletterCommandHandlerTest : TestBase
             databaseContext,
             mockedLogger.Object, 
             mockedCustomHttpClient.Object,
-            mockedTemplateHelper.Object, 
             mockedApplicationSettings.Object);
 
         // Act
@@ -89,7 +86,6 @@ public class SendNewsletterCommandHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-        var mockedTemplateHelper = new Mock<ITemplateService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         var mockedResults = new Results
@@ -107,7 +103,6 @@ public class SendNewsletterCommandHandlerTest : TestBase
             databaseContext,
             mockedLogger.Object, 
             mockedCustomHttpClient.Object,
-            mockedTemplateHelper.Object, 
             mockedApplicationSettings.Object);
 
         // Act
@@ -137,7 +132,6 @@ public class SendNewsletterCommandHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
-        var mockedTemplateHelper = new Mock<ITemplateService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
@@ -156,7 +150,6 @@ public class SendNewsletterCommandHandlerTest : TestBase
             databaseContext,
             mockedLogger.Object, 
             mockedCustomHttpClient.Object,
-            mockedTemplateHelper.Object, 
             mockedApplicationSettings.Object);
 
         // Act

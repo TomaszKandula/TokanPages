@@ -12,9 +12,9 @@ using Database;
 using Shared.Models;
 using Shared.Services;
 using Core.Exceptions;
+using Core.Extensions;
 using Shared.Resources;
 using Core.Utilities.LoggerService;
-using Core.Utilities.TemplateService;
 using Core.Utilities.CustomHttpClient;
 using Core.Utilities.CustomHttpClient.Models;
 
@@ -22,16 +22,12 @@ public class SendNewsletterCommandHandler : Cqrs.RequestHandler<SendNewsletterCo
 {
     private readonly ICustomHttpClient _customHttpClient;
 
-    private readonly ITemplateService _templateService;
-
     private readonly IApplicationSettings _applicationSettings;
         
     public SendNewsletterCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        ICustomHttpClient customHttpClient, ITemplateService templateService, 
-        IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+        ICustomHttpClient customHttpClient, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
         _customHttpClient = customHttpClient;
-        _templateService = templateService;
         _applicationSettings = applicationSettings;
     }
 
@@ -69,7 +65,7 @@ public class SendNewsletterCommandHandler : Cqrs.RequestHandler<SendNewsletterCo
                 From = Constants.Emails.Addresses.Contact,
                 To = new List<string> { subscriber.Email },
                 Subject = request.Subject,
-                Body = _templateService.MakeBody(template, newValues)
+                Body = template.MakeBody(newValues)
             };
 
             var headers = new Dictionary<string, string> { ["X-Private-Key"] = _applicationSettings.EmailSender.PrivateKey };

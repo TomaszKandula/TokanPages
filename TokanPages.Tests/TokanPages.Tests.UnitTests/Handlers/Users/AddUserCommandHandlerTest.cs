@@ -19,7 +19,6 @@ using Backend.Cqrs.Handlers.Commands.Users;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Services.CipheringService;
 using Backend.Core.Utilities.DateTimeService;
-using Backend.Core.Utilities.TemplateService;
 using Backend.Core.Utilities.CustomHttpClient;
 using Backend.Core.Utilities.CustomHttpClient.Models;
 
@@ -80,7 +79,6 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedTemplateService = new Mock<ITemplateService>();
         var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
         var mockedApplicationSettings = MockApplicationSettings();
 
@@ -106,7 +104,6 @@ public class AddUserCommandHandlerTest : TestBase
             mockedLogger.Object,
             mockedDateTime.Object, 
             mockedCipher.Object,
-            mockedTemplateService.Object,
             mockedCustomHttpClient.Object,
             mockedApplicationSettings.Object);
 
@@ -169,7 +166,6 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedTemplateService = new Mock<ITemplateService>();
         var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
 
         var expirationSettings = new ExpirationSettings { ActivationIdExpiresIn = 30 };
@@ -201,7 +197,6 @@ public class AddUserCommandHandlerTest : TestBase
             mockedLogger.Object,
             mockedDateTime.Object, 
             mockedCipher.Object,
-            mockedTemplateService.Object,
             mockedCustomHttpClient.Object,
             mockedApplicationSettings.Object);
 
@@ -260,7 +255,6 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedTemplateService = new Mock<ITemplateService>();
         var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
         var mockedApplicationSettings = MockApplicationSettings();
             
@@ -285,7 +279,6 @@ public class AddUserCommandHandlerTest : TestBase
             mockedLogger.Object,
             mockedDateTime.Object, 
             mockedCipher.Object,
-            mockedTemplateService.Object,
             mockedCustomHttpClient.Object,
             mockedApplicationSettings.Object);
 
@@ -350,7 +343,6 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedTemplateService = new Mock<ITemplateService>();
         var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
         var mockedApplicationSettings = MockApplicationSettings();
 
@@ -375,7 +367,6 @@ public class AddUserCommandHandlerTest : TestBase
             mockedLogger.Object,
             mockedDateTime.Object, 
             mockedCipher.Object,
-            mockedTemplateService.Object,
             mockedCustomHttpClient.Object,
             mockedApplicationSettings.Object);
 

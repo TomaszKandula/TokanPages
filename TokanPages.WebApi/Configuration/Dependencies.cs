@@ -24,7 +24,6 @@ using Backend.Database.Initializer;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.JsonSerializer;
 using Backend.Core.Utilities.DateTimeService;
-using Backend.Core.Utilities.TemplateService;
 using Backend.Cqrs.Services.CipheringService;
 using Backend.Core.Utilities.CustomHttpClient;
 using Backend.Core.Utilities.JwtUtilityService;
@@ -93,12 +92,11 @@ public static class Dependencies
 	private static void SetupServices(IServiceCollection services) 
 	{
 		services.AddHttpContextAccessor();
-
 		services.AddScoped<HttpClient>();
 
-		services.AddScoped<ITemplateService, TemplateService>();
-		services.AddScoped<IDateTimeService, DateTimeService>();
 		services.AddScoped<IJwtUtilityService, JwtUtilityService>();
+
+		services.AddScoped<IDateTimeService, DateTimeService>();
 		services.AddScoped<IDataUtilityService, DataUtilityService>();
 		services.AddScoped<IUserServiceProvider, UserServiceProvider>();
 		services.AddScoped<IDbInitializer, DbInitializer>();

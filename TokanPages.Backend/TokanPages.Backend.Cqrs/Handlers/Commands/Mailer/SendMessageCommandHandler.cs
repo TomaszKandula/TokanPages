@@ -13,10 +13,10 @@ using Database;
 using Shared.Models;
 using Shared.Services;
 using Core.Exceptions;
+using Core.Extensions;
 using Shared.Resources;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
-using Core.Utilities.TemplateService;
 using Core.Utilities.CustomHttpClient;
 using Core.Utilities.CustomHttpClient.Models;
 
@@ -24,18 +24,15 @@ public class SendMessageCommandHandler : Cqrs.RequestHandler<SendMessageCommand,
 {
     private readonly ICustomHttpClient _customHttpClient;
         
-    private readonly ITemplateService _templateService;
-        
     private readonly IDateTimeService _dateTimeService;
 
     private readonly IApplicationSettings _applicationSettings;
         
     public SendMessageCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        ICustomHttpClient customHttpClient, ITemplateService templateService, IDateTimeService dateTimeService, 
+        ICustomHttpClient customHttpClient, IDateTimeService dateTimeService, 
         IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
         _customHttpClient = customHttpClient;
-        _templateService = templateService;
         _dateTimeService = dateTimeService;
         _applicationSettings = applicationSettings;
     }
@@ -66,7 +63,7 @@ public class SendMessageCommandHandler : Cqrs.RequestHandler<SendMessageCommand,
             From = Constants.Emails.Addresses.Contact,
             To = new List<string> { Constants.Emails.Addresses.Contact },
             Subject = $"New user message from {request.FirstName}",
-            Body = _templateService.MakeBody(template, newValues)
+            Body = template.MakeBody(newValues)
         };
 
         var headers = new Dictionary<string, string> { ["X-Private-Key"] = _applicationSettings.EmailSender.PrivateKey };

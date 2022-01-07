@@ -13,7 +13,6 @@ using Backend.Domain.Entities;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Users;
 using Backend.Core.Utilities.DateTimeService;
-using Backend.Core.Utilities.TemplateService;
 using Backend.Core.Utilities.CustomHttpClient;
 using Backend.Core.Utilities.CustomHttpClient.Models;
 
@@ -50,7 +49,6 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
         };
 
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedTemplateService = new Mock<ITemplateService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
         var mockedApplicationSettings = MockApplicationSettings();
@@ -72,7 +70,6 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object,
             mockedCustomHttpClient.Object,
-            mockedTemplateService.Object,
             mockedDateTimeService.Object,
             mockedApplicationSettings.Object);
 
@@ -124,7 +121,6 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
         };
 
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedTemplateService = new Mock<ITemplateService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
         var mockedApplicationSettings = MockApplicationSettings();
@@ -145,7 +141,6 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object,
             mockedCustomHttpClient.Object,
-            mockedTemplateService.Object,
             mockedDateTimeService.Object,
             mockedApplicationSettings.Object);
 
@@ -187,7 +182,6 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
         };
 
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedTemplateService = new Mock<ITemplateService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
         var mockedApplicationSettings = MockApplicationSettings();
@@ -207,7 +201,6 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object,
             mockedCustomHttpClient.Object,
-            mockedTemplateService.Object,
             mockedDateTimeService.Object,
             mockedApplicationSettings.Object);
 

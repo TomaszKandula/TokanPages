@@ -12,6 +12,7 @@ using Shared;
 using Database;
 using Shared.Models;
 using Core.Exceptions;
+using Core.Extensions;
 using Domain.Entities;
 using Shared.Services;
 using Shared.Resources;
@@ -19,7 +20,6 @@ using Services.CipheringService;
 using System.Collections.Generic;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
-using Core.Utilities.TemplateService;
 using Core.Utilities.CustomHttpClient;
 using Core.Utilities.CustomHttpClient.Models;
 
@@ -29,19 +29,16 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     private readonly ICipheringService _cipheringService;
 
-    private readonly ITemplateService _templateService;
-
     private readonly ICustomHttpClient _customHttpClient;
 
     private readonly IApplicationSettings _applicationSettings;
 
     public AddUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService,
-        ICipheringService cipheringService, ITemplateService templateService, 
-        ICustomHttpClient customHttpClient, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+        ICipheringService cipheringService, ICustomHttpClient customHttpClient, 
+        IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _cipheringService = cipheringService;
-        _templateService = templateService;
         _customHttpClient = customHttpClient;
         _applicationSettings = applicationSettings;
     }
@@ -163,7 +160,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             From = Constants.Emails.Addresses.Contact,
             To = new List<string> { emailAddress },
             Subject = "New account registration",
-            Body = _templateService.MakeBody(template, newValues)
+            Body = template.MakeBody(newValues)
         };
 
         var headers = new Dictionary<string, string> { ["X-Private-Key"] = _applicationSettings.EmailSender.PrivateKey };
