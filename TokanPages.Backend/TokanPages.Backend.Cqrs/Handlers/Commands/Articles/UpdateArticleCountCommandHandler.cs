@@ -14,12 +14,12 @@ using Core.Utilities.LoggerService;
 
 public class UpdateArticleCountCommandHandler : Cqrs.RequestHandler<UpdateArticleCountCommand, Unit>
 {
-    private readonly IUserServiceProvider _userServiceProvider;
+    private readonly IUserService _userService;
 
     public UpdateArticleCountCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserServiceProvider userServiceProvider) : base(databaseContext, loggerService)
+        IUserService userService) : base(databaseContext, loggerService)
     {
-        _userServiceProvider = userServiceProvider;
+        _userService = userService;
     }
 
     public override async Task<Unit> Handle(UpdateArticleCountCommand request, CancellationToken cancellationToken)
@@ -34,7 +34,7 @@ public class UpdateArticleCountCommandHandler : Cqrs.RequestHandler<UpdateArticl
         var currentArticle = articles.First();
         currentArticle.ReadCount += 1;
 
-        var userId = await _userServiceProvider.GetUserId();
+        var userId = await _userService.GetUserId();
         if (userId != null)
         {
             var readCounts = await DatabaseContext.ArticleCounts
@@ -47,7 +47,7 @@ public class UpdateArticleCountCommandHandler : Cqrs.RequestHandler<UpdateArticl
             }
             else
             {
-                var ipAddress = _userServiceProvider.GetRequestIpAddress();
+                var ipAddress = _userService.GetRequestIpAddress();
                 var articleCount = new ArticleCounts
                 {
                     UserId = currentArticle.UserId,

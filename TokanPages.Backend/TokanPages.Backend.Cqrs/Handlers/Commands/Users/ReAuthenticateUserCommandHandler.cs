@@ -18,21 +18,21 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
 {
     private readonly IDateTimeService _dateTimeService;
 
-    private readonly IUserServiceProvider _userServiceProvider;
+    private readonly IUserService _userService;
 
     private readonly IApplicationSettings _applicationSettings;
 
     public ReAuthenticateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService, 
-        IUserServiceProvider userServiceProvider, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+        IUserService userService, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
         _dateTimeService = dateTimeService;
-        _userServiceProvider = userServiceProvider;
+        _userService = userService;
         _applicationSettings = applicationSettings;
     }
 
     public override async Task<ReAuthenticateUserCommandResult> Handle(ReAuthenticateUserCommand request, CancellationToken cancellationToken)
     {
-        var refreshTokenFromRequest = _userServiceProvider.GetRefreshTokenCookie(Constants.CookieNames.RefreshToken);
+        var refreshTokenFromRequest = _userService.GetRefreshTokenCookie(Constants.CookieNames.RefreshToken);
         if (string.IsNullOrEmpty(refreshTokenFromRequest))
             throw MissingRefreshTokenException;
 
@@ -45,38 +45,38 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         if (savedRefreshToken == null)
             throw InvalidTokenException;
             
-        var requesterIpAddress = _userServiceProvider.GetRequestIpAddress();
+        var requesterIpAddress = _userService.GetRequestIpAddress();
 
-        if (_userServiceProvider.IsRefreshTokenRevoked(savedRefreshToken))
+        if (_userService.IsRefreshTokenRevoked(savedRefreshToken))
         {
             var reason = $"Attempted reuse of revoked ancestor token: {refreshTokenFromRequest}";
-            await _userServiceProvider.RevokeDescendantRefreshTokens(userRefreshTokens, savedRefreshToken, requesterIpAddress, 
+            await _userService.RevokeDescendantRefreshTokens(userRefreshTokens, savedRefreshToken, requesterIpAddress, 
                 reason, false, cancellationToken);
                 
             DatabaseContext.UserRefreshTokens.Update(savedRefreshToken);
             await DatabaseContext.SaveChangesAsync(cancellationToken);
         }
 
-        if (!_userServiceProvider.IsRefreshTokenActive(savedRefreshToken))
+        if (!_userService.IsRefreshTokenActive(savedRefreshToken))
             throw InvalidTokenException;
 
-        var newRefreshToken = await _userServiceProvider.ReplaceRefreshToken(request.Id, savedRefreshToken, 
+        var newRefreshToken = await _userService.ReplaceRefreshToken(request.Id, savedRefreshToken, 
             requesterIpAddress, true, cancellationToken);
 
-        await _userServiceProvider.DeleteOutdatedRefreshTokens(request.Id, false, cancellationToken);
+        await _userService.DeleteOutdatedRefreshTokens(request.Id, false, cancellationToken);
         await DatabaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
 
         var currentDateTime = _dateTimeService.Now;
         var currentUser = await DatabaseContext.Users.SingleAsync(users => users.Id == request.Id, cancellationToken);
-        var ipAddress = _userServiceProvider.GetRequestIpAddress();
+        var ipAddress = _userService.GetRequestIpAddress();
         var tokenExpires = _dateTimeService.Now.AddMinutes(_applicationSettings.IdentityServer.WebTokenExpiresIn);
-        var userToken = await _userServiceProvider.GenerateUserToken(currentUser, tokenExpires, cancellationToken);
+        var userToken = await _userService.GenerateUserToken(currentUser, tokenExpires, cancellationToken);
 
-        _userServiceProvider.SetRefreshTokenCookie(newRefreshToken.Token, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
+        _userService.SetRefreshTokenCookie(newRefreshToken.Token, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
         currentUser.LastLogged = currentDateTime;
 
-        var roles = await _userServiceProvider.GetUserRoles(currentUser.Id);
-        var permissions = await _userServiceProvider.GetUserPermissions(currentUser.Id);
+        var roles = await _userService.GetUserRoles(currentUser.Id);
+        var permissions = await _userService.GetUserPermissions(currentUser.Id);
 
         var newUserToken = new UserTokens
         {

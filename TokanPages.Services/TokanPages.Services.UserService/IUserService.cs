@@ -9,7 +9,7 @@ using Backend.Shared;
 using Backend.Domain.Entities;
 using Backend.Shared.Dto.Users;
 
-public interface IUserServiceProvider
+public interface IUserService
 {
     string GetRequestIpAddress();
 

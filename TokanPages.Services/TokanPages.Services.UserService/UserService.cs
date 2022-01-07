@@ -18,7 +18,7 @@ using Backend.Shared.Resources;
 using Backend.Shared.Dto.Users;
 using Backend.Core.Utilities.DateTimeService;
 
-public sealed class UserServiceProvider : IUserServiceProvider
+public sealed class UserService : IUserService
 {
     private const string Localhost = "127.0.0.1";
 
@@ -42,7 +42,7 @@ public sealed class UserServiceProvider : IUserServiceProvider
 
     private GetUserDto _user;
 
-    public UserServiceProvider(IHttpContextAccessor httpContextAccessor, DatabaseContext databaseContext, 
+    public UserService(IHttpContextAccessor httpContextAccessor, DatabaseContext databaseContext, 
         IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IApplicationSettings applicationSettings)
     {
         _httpContextAccessor = httpContextAccessor;

@@ -48,7 +48,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
         await databaseContext.UserRefreshTokens.AddAsync(userRefreshToken);
         await databaseContext.SaveChangesAsync();
 
-        var mockedIUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedIUserServiceProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
         var randomIpAddress = DataUtilityService.GetRandomIpAddress().ToString(); 
@@ -102,7 +102,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
         await databaseContext.Users.AddAsync(user);
         await databaseContext.SaveChangesAsync();
 
-        var mockedIUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedIUserServiceProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
         var randomIpAddress = DataUtilityService.GetRandomIpAddress().ToString(); 

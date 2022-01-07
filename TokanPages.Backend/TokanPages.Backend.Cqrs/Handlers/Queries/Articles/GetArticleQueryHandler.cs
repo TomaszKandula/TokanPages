@@ -25,7 +25,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
 {
     private readonly DatabaseContext _databaseContext;
 
-    private readonly IUserServiceProvider _userServiceProvider;
+    private readonly IUserService _userService;
 
     private readonly IJsonSerializer _jsonSerializer;
 
@@ -33,11 +33,11 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
 
     private readonly IApplicationSettings _applicationSettings;
         
-    public GetArticleQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserServiceProvider userServiceProvider, 
+    public GetArticleQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService, 
         IJsonSerializer jsonSerializer, IHttpClientService httpClientService, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
         _databaseContext = databaseContext;
-        _userServiceProvider = userServiceProvider;
+        _userService = userService;
         _jsonSerializer = jsonSerializer;
         _httpClientService = httpClientService;
         _applicationSettings = applicationSettings;
@@ -45,7 +45,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
 
     public override async Task<GetArticleQueryResult> Handle(GetArticleQuery request, CancellationToken cancellationToken)
     {
-        var userId = await _userServiceProvider.GetUserId();
+        var userId = await _userService.GetUserId();
         var isAnonymousUser = userId == null;
 
         var textRequestUrl = $"{_applicationSettings.AzureStorage.BaseUrl}/content/articles/{request.Id}/text.json";
@@ -55,7 +55,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         var getArticleLikes = await _databaseContext.ArticleLikes
             .Where(likes => likes.ArticleId == request.Id)
             .WhereIfElse(isAnonymousUser,
-                likes => likes.IpAddress == _userServiceProvider.GetRequestIpAddress(),
+                likes => likes.IpAddress == _userService.GetRequestIpAddress(),
                 likes => likes.UserId == userId)
             .Select(likes => likes.LikeCount)
             .ToListAsync(cancellationToken);

@@ -98,7 +98,7 @@ public static class Dependencies
 
 		services.AddScoped<IDateTimeService, DateTimeService>();
 		services.AddScoped<IDataUtilityService, DataUtilityService>();
-		services.AddScoped<IUserServiceProvider, UserServiceProvider>();
+		services.AddScoped<IUserService, UserService>();
 		services.AddScoped<IDbInitializer, DbInitializer>();
 		services.AddScoped<ICipheringService, CipheringService>();
 		services.AddScoped<IJsonSerializer, JsonSerializer>();

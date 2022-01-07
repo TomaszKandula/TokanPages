@@ -54,7 +54,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider
@@ -140,7 +140,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         await databaseContext.ArticleLikes.AddAsync(likes);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider
@@ -214,7 +214,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider
@@ -302,7 +302,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         await databaseContext.ArticleLikes.AddAsync(likes);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider

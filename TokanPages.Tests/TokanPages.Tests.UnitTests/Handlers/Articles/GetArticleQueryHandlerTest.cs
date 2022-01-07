@@ -84,7 +84,7 @@ public class GetArticleQueryHandlerTest : TestBase
         await databaseContext.ArticleLikes.AddRangeAsync(likes);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
         var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedLogger = new Mock<ILoggerService>();
@@ -172,7 +172,7 @@ public class GetArticleQueryHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
         var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedLogger = new Mock<ILoggerService>();

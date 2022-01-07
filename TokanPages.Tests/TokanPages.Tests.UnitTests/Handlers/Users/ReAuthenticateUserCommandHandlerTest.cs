@@ -66,7 +66,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
 
         mockedUserServiceProvider
             .Setup(service => service.GetRefreshTokenCookie(It.IsAny<string>()))
@@ -240,7 +240,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
 
         mockedUserServiceProvider
             .Setup(service => service.GetRefreshTokenCookie(It.IsAny<string>()))
@@ -294,7 +294,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         mockedUserServiceProvider

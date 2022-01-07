@@ -50,7 +50,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedCipheringService = new Mock<ICipheringService>();
 
         mockedUserProvider
@@ -121,7 +121,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedCipheringService = new Mock<ICipheringService>();
 
         var mockedPassword = DataUtilityService.GetRandomString();
@@ -183,7 +183,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedCipheringService = new Mock<ICipheringService>();
 
         var mockedPassword = DataUtilityService.GetRandomString();
@@ -246,7 +246,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedCipheringService = new Mock<ICipheringService>();
 
         mockedUserProvider

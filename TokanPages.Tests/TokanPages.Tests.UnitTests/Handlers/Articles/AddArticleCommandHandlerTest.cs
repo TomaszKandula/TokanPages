@@ -75,7 +75,7 @@ public class AddArticleCommandHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
             
         var mockedDateTime = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider
@@ -110,7 +110,7 @@ public class AddArticleCommandHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedDateTime = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
             
         var addArticleCommandHandler = new AddArticleCommandHandler(
@@ -142,7 +142,7 @@ public class AddArticleCommandHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedDateTime = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
         var addArticleCommandHandler = new AddArticleCommandHandler(

@@ -58,7 +58,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
 
         var expectedTotalReadCount = articles.ReadCount + 1;
         var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserServiceProvider
@@ -144,7 +144,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
 
         var expectedTotalReadCount = articles.ReadCount + 1;
         var expectedUserReadCount = articlesCounts.ReadCount + 1;
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserServiceProvider
@@ -220,7 +220,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
 
         var expectedTotalReadCount = articles.ReadCount + 1;
         var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserServiceProvider
@@ -290,7 +290,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
 
         var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserServiceProvider

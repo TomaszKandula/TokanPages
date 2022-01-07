@@ -57,7 +57,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>();
         var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
@@ -145,7 +145,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>();
         var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
@@ -237,7 +237,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>(); 
         var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();

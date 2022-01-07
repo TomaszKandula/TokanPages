@@ -15,15 +15,15 @@ public class TokenCheckBehaviour<TRequest, TResponse> : IPipelineBehavior<TReque
 {
     private readonly ILoggerService _logger;
 
-    private readonly IUserServiceProvider _userServiceProvider;
+    private readonly IUserService _userService;
     
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public TokenCheckBehaviour(ILoggerService logger, IHttpContextAccessor httpContextAccessor, IUserServiceProvider userServiceProvider)
+    public TokenCheckBehaviour(ILoggerService logger, IHttpContextAccessor httpContextAccessor, IUserService userService)
     {
         _logger = logger;
         _httpContextAccessor = httpContextAccessor;
-        _userServiceProvider = userServiceProvider;
+        _userService = userService;
     }
 
     public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
@@ -34,7 +34,7 @@ public class TokenCheckBehaviour<TRequest, TResponse> : IPipelineBehavior<TReque
             return await next();
 
         _logger.LogInformation("JWT verification...");
-        await _userServiceProvider.VerifyUserToken();
+        await _userService.VerifyUserToken();
 
         return await next();
     }

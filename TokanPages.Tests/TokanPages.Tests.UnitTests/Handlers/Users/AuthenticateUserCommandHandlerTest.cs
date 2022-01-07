@@ -86,7 +86,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             .SetupGet(service => service.Now)
             .Returns(randomDateTime);
             
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
         mockedUserServiceProvider
             .Setup(service => service.GenerateUserToken(
                 It.IsAny<Users>(), 
@@ -217,7 +217,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var mockedCipheringService = new Mock<ICipheringService>();
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         // Act
@@ -277,7 +277,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         // Act
@@ -360,7 +360,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             .SetupGet(service => service.Now)
             .Returns(randomDateTime);
             
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
         mockedUserServiceProvider
             .Setup(service => service.GenerateUserToken(
                 It.IsAny<Users>(), 
