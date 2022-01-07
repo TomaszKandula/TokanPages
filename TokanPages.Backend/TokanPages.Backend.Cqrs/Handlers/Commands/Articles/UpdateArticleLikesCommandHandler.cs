@@ -9,18 +9,18 @@ using Database;
 using Core.Exceptions;
 using Core.Extensions;
 using Shared.Resources;
+using Services.UserService;
 using Core.Utilities.LoggerService;
-using Services.UserServiceProvider;
 using MediatR;
 
 public class UpdateArticleLikesCommandHandler : Cqrs.RequestHandler<UpdateArticleLikesCommand, Unit>
 {
-    private readonly IUserServiceProvider _userServiceProvider;
+    private readonly IUserService _userService;
         
     public UpdateArticleLikesCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserServiceProvider userServiceProvider) : base(databaseContext, loggerService)
+        IUserService userService) : base(databaseContext, loggerService)
     {
-        _userServiceProvider = userServiceProvider;
+        _userService = userService;
     }
 
     public override async Task<Unit> Handle(UpdateArticleLikesCommand request, CancellationToken cancellationToken)
@@ -33,13 +33,13 @@ public class UpdateArticleLikesCommandHandler : Cqrs.RequestHandler<UpdateArticl
         if (!articles.Any())
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-        var userId = await _userServiceProvider.GetUserId();
+        var userId = await _userService.GetUserId();
         var isAnonymousUser = userId == null;
             
         var articleLikes = await DatabaseContext.ArticleLikes
             .Where(likes => likes.ArticleId == request.Id)
             .WhereIfElse(isAnonymousUser,
-                likes => likes.IpAddress == _userServiceProvider.GetRequestIpAddress(),
+                likes => likes.IpAddress == _userService.GetRequestIpAddress(),
                 likes => likes.UserId == userId)
             .ToListAsync(cancellationToken);
 
@@ -65,8 +65,8 @@ public class UpdateArticleLikesCommandHandler : Cqrs.RequestHandler<UpdateArticl
         var entity = new Domain.Entities.ArticleLikes
         {
             ArticleId = request.Id,
-            UserId = await _userServiceProvider.GetUserId(),
-            IpAddress = _userServiceProvider.GetRequestIpAddress(),
+            UserId = await _userService.GetUserId(),
+            IpAddress = _userService.GetRequestIpAddress(),
             LikeCount = request.AddToLikes > likesLimit ? likesLimit : request.AddToLikes
         };
             

@@ -5,26 +5,26 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Database;
+using Domain.Enums;
 using Core.Exceptions;
 using Shared.Resources;
-using Identity.Authorization;
+using Services.UserService;
 using Core.Utilities.LoggerService;
-using Services.UserServiceProvider;
 using MediatR;
 
 public class UpdateArticleVisibilityCommandHandler : Cqrs.RequestHandler<UpdateArticleVisibilityCommand, Unit>
 {
-    private readonly IUserServiceProvider _userServiceProvider;
+    private readonly IUserService _userService;
         
     public UpdateArticleVisibilityCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserServiceProvider userServiceProvider) : base(databaseContext, loggerService)
+        IUserService userService) : base(databaseContext, loggerService)
     {
-        _userServiceProvider = userServiceProvider;
+        _userService = userService;
     }
         
     public override async Task<Unit> Handle(UpdateArticleVisibilityCommand request, CancellationToken cancellationToken)
     {
-        var canPublishArticles = await _userServiceProvider
+        var canPublishArticles = await _userService
             .HasPermissionAssigned(nameof(Permissions.CanPublishArticles)) ?? false;
             
         if (!canPublishArticles)

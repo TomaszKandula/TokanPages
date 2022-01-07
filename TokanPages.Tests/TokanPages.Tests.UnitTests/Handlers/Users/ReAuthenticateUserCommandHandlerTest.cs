@@ -12,10 +12,10 @@ using Backend.Shared.Models;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Users;
 using Backend.Core.Utilities.DateTimeService;
-using Backend.Cqrs.Services.UserServiceProvider;
 
 public class ReAuthenticateUserCommandHandlerTest : TestBase
 {
@@ -66,7 +66,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
 
         mockedUserServiceProvider
             .Setup(service => service.GetRefreshTokenCookie(It.IsAny<string>()))
@@ -240,7 +240,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
 
         mockedUserServiceProvider
             .Setup(service => service.GetRefreshTokenCookie(It.IsAny<string>()))
@@ -294,7 +294,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         mockedUserServiceProvider

@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 using Database;
 using Core.Exceptions;
 using Shared.Resources;
+using Services.UserService;
 using Core.Utilities.LoggerService;
-using Services.UserServiceProvider;
 using Core.Utilities.DateTimeService;
-using TokanPages.Services.AzureStorageService.AzureBlobStorage.Factory;
+using Services.AzureStorageService.AzureBlobStorage.Factory;
 
 public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
 {
-    private readonly IUserServiceProvider _userServiceProvider;
+    private readonly IUserService _userService;
         
     private readonly IDateTimeService _dateTimeService;
         
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
         
-    public AddArticleCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserServiceProvider userServiceProvider, 
+    public AddArticleCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService, 
         IDateTimeService dateTimeService, IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
     {
-        _userServiceProvider = userServiceProvider;
+        _userService = userService;
         _dateTimeService = dateTimeService;
         _azureBlobStorageFactory = azureBlobStorageFactory;
     }
 
     public override async Task<Guid> Handle(AddArticleCommand request, CancellationToken cancellationToken)
     {
-        var userId = await _userServiceProvider.GetUserId();
+        var userId = await _userService.GetUserId();
         if (userId == null)
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 

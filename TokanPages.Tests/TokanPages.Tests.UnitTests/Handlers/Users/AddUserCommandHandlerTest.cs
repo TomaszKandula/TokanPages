@@ -17,11 +17,10 @@ using Backend.Domain.Entities;
 using Backend.Shared.Resources;
 using Backend.Cqrs.Handlers.Commands.Users;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Services.CipheringService;
+using TokanPages.Services.CipheringService;
 using Backend.Core.Utilities.DateTimeService;
-using Backend.Core.Utilities.TemplateService;
-using Backend.Core.Utilities.CustomHttpClient;
-using Backend.Core.Utilities.CustomHttpClient.Models;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
 
 public class AddUserCommandHandlerTest : TestBase
 {
@@ -40,19 +39,19 @@ public class AddUserCommandHandlerTest : TestBase
 
         var roles = new Roles
         {
-            Name = Backend.Identity.Authorization.Roles.EverydayUser.ToString(),
-            Description = Backend.Identity.Authorization.Roles.EverydayUser.ToString()
+            Name = Backend.Domain.Enums.Roles.EverydayUser.ToString(),
+            Description = Backend.Domain.Enums.Roles.EverydayUser.ToString()
         };
 
         var permissions = new List<Permissions>
         {
             new()
             {
-                Name = Backend.Identity.Authorization.Permissions.CanSelectArticles.ToString()
+                Name = Backend.Domain.Enums.Permissions.CanSelectArticles.ToString()
             },
             new()
             {
-                Name = Backend.Identity.Authorization.Permissions.CanSelectComments.ToString()
+                Name = Backend.Domain.Enums.Permissions.CanSelectComments.ToString()
             }
         };
 
@@ -80,8 +79,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedTemplateService = new Mock<ITemplateService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         const string mockedPassword = "MockedPassword";
@@ -106,7 +104,6 @@ public class AddUserCommandHandlerTest : TestBase
             mockedLogger.Object,
             mockedDateTime.Object, 
             mockedCipher.Object,
-            mockedTemplateService.Object,
             mockedCustomHttpClient.Object,
             mockedApplicationSettings.Object);
 
@@ -169,8 +166,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedTemplateService = new Mock<ITemplateService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
 
         var expirationSettings = new ExpirationSettings { ActivationIdExpiresIn = 30 };
         var mockedApplicationSettings = MockApplicationSettings(expirationSettings: expirationSettings);
@@ -201,7 +197,6 @@ public class AddUserCommandHandlerTest : TestBase
             mockedLogger.Object,
             mockedDateTime.Object, 
             mockedCipher.Object,
-            mockedTemplateService.Object,
             mockedCustomHttpClient.Object,
             mockedApplicationSettings.Object);
 
@@ -260,8 +255,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedTemplateService = new Mock<ITemplateService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         mockedCipher
@@ -285,7 +279,6 @@ public class AddUserCommandHandlerTest : TestBase
             mockedLogger.Object,
             mockedDateTime.Object, 
             mockedCipher.Object,
-            mockedTemplateService.Object,
             mockedCustomHttpClient.Object,
             mockedApplicationSettings.Object);
 
@@ -310,19 +303,19 @@ public class AddUserCommandHandlerTest : TestBase
 
         var roles = new Roles
         {
-            Name = Backend.Identity.Authorization.Roles.EverydayUser.ToString(),
-            Description = Backend.Identity.Authorization.Roles.EverydayUser.ToString()
+            Name = Backend.Domain.Enums.Roles.EverydayUser.ToString(),
+            Description = Backend.Domain.Enums.Roles.EverydayUser.ToString()
         };
 
         var permissions = new List<Permissions>
         {
             new()
             {
-                Name = Backend.Identity.Authorization.Permissions.CanSelectArticles.ToString()
+                Name = Backend.Domain.Enums.Permissions.CanSelectArticles.ToString()
             },
             new()
             {
-                Name = Backend.Identity.Authorization.Permissions.CanSelectComments.ToString()
+                Name = Backend.Domain.Enums.Permissions.CanSelectComments.ToString()
             }
         };
 
@@ -350,8 +343,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedTemplateService = new Mock<ITemplateService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         const string mockedPassword = "MockedPassword";
@@ -375,7 +367,6 @@ public class AddUserCommandHandlerTest : TestBase
             mockedLogger.Object,
             mockedDateTime.Object, 
             mockedCipher.Object,
-            mockedTemplateService.Object,
             mockedCustomHttpClient.Object,
             mockedApplicationSettings.Object);
 

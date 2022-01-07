@@ -167,7 +167,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
-        var jwt = JwtUtilityService.GenerateJwt(
+        var jwt = WebTokenUtility.GenerateJwt(
             tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
         newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
@@ -283,7 +283,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
-        var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, 
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, 
             _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
         await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
@@ -311,7 +311,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
-        var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
             _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
         await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
@@ -344,7 +344,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
-        var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
             _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
         await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
@@ -375,7 +375,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
-        var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
             _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
         newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
@@ -400,7 +400,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
-        var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
             _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
         await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
@@ -501,7 +501,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
-        var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), 
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), 
             _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
         newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
@@ -536,7 +536,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
-        var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
             _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
         newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
@@ -572,7 +572,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
-        var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), 
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), 
             _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
         newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
@@ -608,7 +608,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
-        var jwt = JwtUtilityService.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), 
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), 
             _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
             
         newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);

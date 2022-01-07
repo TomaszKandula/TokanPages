@@ -12,9 +12,9 @@ using Backend.Core.Exceptions;
 using Backend.Shared.Services;
 using Backend.Shared.Resources;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Core.Utilities.CustomHttpClient;
-using Backend.Core.Utilities.CustomHttpClient.Models;
-using Backend.Core.Utilities.CustomHttpClient.Authentication;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
+using TokanPages.Services.HttpClientService.Authentication;
 using FluentValidation.Results;
 
 [ExcludeFromCodeCoverage]
@@ -22,16 +22,16 @@ public class MetricsCache : IMetricsCache
 {
     private readonly IRedisDistributedCache _redisDistributedCache;
 
-    private readonly ICustomHttpClient _customHttpClient;
+    private readonly IHttpClientService _httpClientService;
 
     private readonly ILoggerService _loggerService;
 
     private readonly IApplicationSettings _applicationSettings;
 
-    public MetricsCache(ICustomHttpClient customHttpClient, IRedisDistributedCache redisDistributedCache, 
+    public MetricsCache(IHttpClientService httpClientService, IRedisDistributedCache redisDistributedCache, 
         ILoggerService loggerService, IApplicationSettings applicationSettings)
     {
-        _customHttpClient = customHttpClient;
+        _httpClientService = httpClientService;
         _redisDistributedCache = redisDistributedCache;
         _loggerService = loggerService;
         _applicationSettings = applicationSettings;
@@ -114,7 +114,7 @@ public class MetricsCache : IMetricsCache
             Authentication = authentication
         };
 
-        var results = await _customHttpClient.Execute(configuration);
+        var results = await _httpClientService.Execute(configuration);
         if (results.StatusCode == HttpStatusCode.OK)
             return new FileContentResult(results.Content!, results.ContentType?.MediaType!);
 
