@@ -71,8 +71,8 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             .Setup(storage => storage.UploadFile(
                 It.IsAny<Stream>(),
                 It.IsAny<string>(),
-                It.IsAny<CancellationToken>(),
-                It.IsAny<string>()))
+                It.IsAny<string>(),
+                It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(string.Empty));
             
         mockedAzureBlobStorageFactory
@@ -158,9 +158,9 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         mockedAzureBlobStorage
             .Setup(storage => storage.UploadFile(
                 It.IsAny<Stream>(),
+                It.IsAny<string>(), 
                 It.IsAny<string>(),
-                It.IsAny<CancellationToken>(),
-                It.IsAny<string>()))
+                It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(string.Empty));
             
         mockedAzureBlobStorageFactory
@@ -251,8 +251,8 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             .Setup(storage => storage.UploadFile(
                 It.IsAny<Stream>(),
                 It.IsAny<string>(),
-                It.IsAny<CancellationToken>(),
-                It.IsAny<string>()))
+                It.IsAny<string>(),
+                It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(string.Empty));
             
         mockedAzureBlobStorageFactory

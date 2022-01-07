@@ -34,8 +34,8 @@ public class AddArticleCommandHandlerTest : TestBase
             .Setup(storage => storage.UploadFile(
                 It.IsAny<Stream>(),
                 It.IsAny<string>(),
-                It.IsAny<CancellationToken>(),
-                It.IsAny<string>()))
+                It.IsAny<string>(),
+                It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(string.Empty));
             
         _mockedAzureBlobStorageFactory

@@ -87,7 +87,8 @@ public class AzureBlobStorage : IAzureBlobStorage
         return result;
     }
 
-    public virtual async Task UploadFile(Stream sourceStream, string destinationPath, CancellationToken cancellationToken = default, string contentType = Constants.ContentTypes.Stream)
+    public virtual async Task UploadFile(Stream sourceStream, string destinationPath, string contentType = Constants.ContentTypes.Stream, 
+        CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrEmpty(destinationPath))
             throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL),
@@ -134,7 +135,7 @@ public class AzureBlobStorage : IAzureBlobStorage
 
         try
         {
-            await UploadFile(contents, destinationPath, cancellationToken);
+            await UploadFile(contents, destinationPath, cancellationToken: cancellationToken);
         }
         catch (Exception exception)
         {

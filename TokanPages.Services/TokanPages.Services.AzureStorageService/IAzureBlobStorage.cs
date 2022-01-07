@@ -16,7 +16,7 @@ public interface IAzureBlobStorage
         
     Task<List<string>> GetBlobListing(string? filterByPath = default, int pageSize = 10, string? continuationToken = default, CancellationToken cancellationToken = default);
 
-    Task UploadFile(Stream sourceStream, string destinationPath, CancellationToken cancellationToken = default, string contentType = Constants.ContentTypes.Stream);
+    Task UploadFile(Stream sourceStream, string destinationPath, string contentType = Constants.ContentTypes.Stream, CancellationToken cancellationToken = default);
         
     Task<string> GetFileContentType(string sourceFilePath, CancellationToken cancellationToken = default);
         
