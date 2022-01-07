@@ -2,7 +2,9 @@ namespace TokanPages.Backend.Core.Extensions;
 
 using System;
 using System.Text;
+using System.Linq;
 using System.Globalization;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 [ExcludeFromCodeCoverage]
@@ -25,5 +27,21 @@ public static class StringExtensions
         var buffer = new Span<byte>(new byte[base64.Length]);
         var width = base64.Length / 4 * 4 + (base64.Length % 4 == 0 ? 0 : 4);
         return Convert.TryFromBase64String(base64.PadRight(width, '='), buffer, out _);
+    }
+
+    public static string MakeBody(this string template, IDictionary<string, string> items)
+    {
+        if (string.IsNullOrEmpty(template) || string.IsNullOrWhiteSpace(template))
+            return null;
+            
+        if (items == null) 
+            return null;
+            
+        var templateItemModels = items.ToList();
+        if (!templateItemModels.Any()) 
+            return null;
+
+        return templateItemModels.Aggregate(template, (current, item) 
+            => current.Replace(item.Key, item.Value));
     }
 }

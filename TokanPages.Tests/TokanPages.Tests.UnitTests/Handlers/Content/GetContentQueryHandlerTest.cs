@@ -18,8 +18,8 @@ using Backend.Shared.Dto.Content.Common;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Queries.Content;
 using Backend.Core.Utilities.JsonSerializer;
-using Backend.Core.Utilities.CustomHttpClient;
-using Backend.Core.Utilities.CustomHttpClient.Models;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
 
 public class GetContentQueryHandlerTest : TestBase
 {
@@ -35,7 +35,7 @@ public class GetContentQueryHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
         var mockedApplicationSettings = MockApplicationSettings();
 
@@ -115,7 +115,7 @@ public class GetContentQueryHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
         var mockedApplicationSettings = MockApplicationSettings();
 
@@ -176,7 +176,7 @@ public class GetContentQueryHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
         var mockedApplicationSettings = MockApplicationSettings();
 
@@ -232,7 +232,7 @@ public class GetContentQueryHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
         var mockedApplicationSettings = MockApplicationSettings();
 
@@ -287,7 +287,7 @@ public class GetContentQueryHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
         var mockedApplicationSettings = MockApplicationSettings();
 
@@ -343,7 +343,7 @@ public class GetContentQueryHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedCustomHttpClient = new Mock<ICustomHttpClient>();
+        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
         var mockedApplicationSettings = MockApplicationSettings();
 

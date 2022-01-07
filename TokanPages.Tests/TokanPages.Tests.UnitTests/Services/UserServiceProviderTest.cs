@@ -16,12 +16,12 @@ using Backend.Shared.Models;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.DateTimeService;
-using Backend.Core.Utilities.JwtUtilityService;
-using Backend.Cqrs.Services.UserServiceProvider;
-using Backend.Core.Utilities.JwtUtilityService.Models;
-using Roles = Backend.Identity.Authorization.Roles;
-using Permissions = Backend.Identity.Authorization.Permissions;
+using TokanPages.Services.WebTokenService;
+using TokanPages.Services.WebTokenService.Models;
+using Roles = Backend.Domain.Enums.Roles;
+using Permissions = Backend.Domain.Enums.Permissions;
 
 public class UserServiceProviderTest : TestBase
 {
@@ -37,12 +37,12 @@ public class UserServiceProviderTest : TestBase
         await databaseContext.Users.AddRangeAsync(users);
         await databaseContext.SaveChangesAsync();
 
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         // Act
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -68,12 +68,12 @@ public class UserServiceProviderTest : TestBase
         await databaseContext.Users.AddRangeAsync(users);
         await databaseContext.SaveChangesAsync();
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -96,13 +96,13 @@ public class UserServiceProviderTest : TestBase
         await databaseContext.Users.AddRangeAsync(users);
         await databaseContext.SaveChangesAsync();
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
         // Assert
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -125,12 +125,12 @@ public class UserServiceProviderTest : TestBase
         await databaseContext.Users.AddRangeAsync(users);
         await databaseContext.SaveChangesAsync();
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -160,13 +160,13 @@ public class UserServiceProviderTest : TestBase
         await databaseContext.Users.AddRangeAsync(users);
         await databaseContext.SaveChangesAsync();
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
         // Assert
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -188,12 +188,12 @@ public class UserServiceProviderTest : TestBase
         await databaseContext.Users.AddRangeAsync(users);
         await databaseContext.SaveChangesAsync();
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -226,12 +226,12 @@ public class UserServiceProviderTest : TestBase
 
         var httpContext = GetMockedHttpContext(users[0].Id);
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -266,13 +266,13 @@ public class UserServiceProviderTest : TestBase
 
         var httpContext = GetMockedHttpContext(Guid.NewGuid());
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
         // Assert
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -303,13 +303,13 @@ public class UserServiceProviderTest : TestBase
 
         var httpContext = GetMockedHttpContext(null);
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
         // Assert
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -349,13 +349,13 @@ public class UserServiceProviderTest : TestBase
 
         var httpContext = GetMockedHttpContext(userId);
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
         // Assert
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -399,13 +399,13 @@ public class UserServiceProviderTest : TestBase
 
         var httpContext = GetMockedHttpContext(Guid.NewGuid());
 
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
         // Assert
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -445,13 +445,13 @@ public class UserServiceProviderTest : TestBase
 
         var httpContext = GetMockedHttpContext(null);
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
         // Assert
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -482,12 +482,12 @@ public class UserServiceProviderTest : TestBase
 
         var httpContext = GetMockedHttpContext(users[0].Id);
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -520,12 +520,12 @@ public class UserServiceProviderTest : TestBase
 
         var httpContext = GetMockedHttpContext(users[0].Id);
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -558,12 +558,12 @@ public class UserServiceProviderTest : TestBase
 
         var httpContext = GetMockedHttpContext(null);
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -595,13 +595,13 @@ public class UserServiceProviderTest : TestBase
 
         var httpContext = GetMockedHttpContext(users[0].Id);
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
         // Assert
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -641,13 +641,13 @@ public class UserServiceProviderTest : TestBase
 
         var httpContext = GetMockedHttpContext(userId);
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
         // Assert
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -689,12 +689,12 @@ public class UserServiceProviderTest : TestBase
 
         var httpContext = GetMockedHttpContext(userId);
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -736,12 +736,12 @@ public class UserServiceProviderTest : TestBase
 
         var httpContext = GetMockedHttpContext(null);
             
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -782,13 +782,13 @@ public class UserServiceProviderTest : TestBase
 
         var httpContext = GetMockedHttpContext(userId);
 
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
         // Act
         // Assert
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -813,11 +813,11 @@ public class UserServiceProviderTest : TestBase
 
         var httpContext = GetMockedHttpContext(userId);
 
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -845,11 +845,11 @@ public class UserServiceProviderTest : TestBase
         var ipAddress = DataUtilityService.GetRandomIpAddress();
         var httpContext = GetMockedHttpContext(userId, ipAddress);
 
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -878,11 +878,11 @@ public class UserServiceProviderTest : TestBase
         var ipAddress = DataUtilityService.GetRandomIpAddress();
         var httpContext = GetMockedHttpContext(userId, ipAddress);
 
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -919,11 +919,11 @@ public class UserServiceProviderTest : TestBase
         var ipAddress = DataUtilityService.GetRandomIpAddress();
         var httpContext = GetMockedHttpContext(userId, ipAddress);
 
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -950,11 +950,11 @@ public class UserServiceProviderTest : TestBase
         var ipAddress = DataUtilityService.GetRandomIpAddress();
         var httpContext = GetMockedHttpContext(userId, ipAddress);
 
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
-        var userProvider = new UserServiceProvider(
+        var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
             mockedJwtUtilityService.Object, 
@@ -988,11 +988,11 @@ public class UserServiceProviderTest : TestBase
         var ipAddress = DataUtilityService.GetRandomIpAddress();
         var httpContext = GetMockedHttpContext(userId, ipAddress);
 
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
-        var userServiceProvider = new UserServiceProvider(
+        var userServiceProvider = new UserService(
             httpContext.Object, 
             databaseContext,
             mockedJwtUtilityService.Object, 
@@ -1035,7 +1035,7 @@ public class UserServiceProviderTest : TestBase
         var ipAddress = DataUtilityService.GetRandomIpAddress();
         var httpContext = GetMockedHttpContext(userId, ipAddress);
 
-        var jwtUtilityService = new Mock<IJwtUtilityService>();
+        var jwtUtilityService = new Mock<IWebTokenUtility>();
         jwtUtilityService
             .Setup(service => service
                 .GenerateJwt(
@@ -1049,7 +1049,7 @@ public class UserServiceProviderTest : TestBase
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
             
-        var userServiceProvider = new UserServiceProvider(
+        var userServiceProvider = new UserService(
             httpContext.Object, 
             databaseContext,
             jwtUtilityService.Object, 
@@ -1116,7 +1116,7 @@ public class UserServiceProviderTest : TestBase
             
         var ipAddress = DataUtilityService.GetRandomIpAddress();
         var httpContext = GetMockedHttpContext(userId, ipAddress);
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
             
         var identityServer = new IdentityServer
         {
@@ -1130,7 +1130,7 @@ public class UserServiceProviderTest : TestBase
             
         var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
 
-        var userServiceProvider = new UserServiceProvider(
+        var userServiceProvider = new UserService(
             httpContext.Object, 
             databaseContext,
             mockedJwtUtilityService.Object, 
@@ -1199,7 +1199,7 @@ public class UserServiceProviderTest : TestBase
             
         var ipAddress = DataUtilityService.GetRandomIpAddress();
         var httpContext = GetMockedHttpContext(userId, ipAddress);
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
             
         var identityServer = new IdentityServer
         {
@@ -1213,7 +1213,7 @@ public class UserServiceProviderTest : TestBase
             
         var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
 
-        var userServiceProvider = new UserServiceProvider(
+        var userServiceProvider = new UserService(
             httpContext.Object, 
             databaseContext,
             mockedJwtUtilityService.Object, 
@@ -1284,7 +1284,7 @@ public class UserServiceProviderTest : TestBase
             
         var ipAddress = DataUtilityService.GetRandomIpAddress();
         var httpContext = GetMockedHttpContext(userId, ipAddress);
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
 
         var refreshToken = new RefreshToken
         {
@@ -1312,7 +1312,7 @@ public class UserServiceProviderTest : TestBase
             
         var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
 
-        var userServiceProvider = new UserServiceProvider(
+        var userServiceProvider = new UserService(
             httpContext.Object, 
             databaseContext,
             mockedJwtUtilityService.Object, 
@@ -1398,7 +1398,7 @@ public class UserServiceProviderTest : TestBase
             
         var ipAddress = DataUtilityService.GetRandomIpAddress();
         var httpContext = GetMockedHttpContext(userId, ipAddress);
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
 
         var refreshToken = new RefreshToken
         {
@@ -1426,7 +1426,7 @@ public class UserServiceProviderTest : TestBase
             
         var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
 
-        var userServiceProvider = new UserServiceProvider(
+        var userServiceProvider = new UserService(
             httpContext.Object, 
             databaseContext,
             mockedJwtUtilityService.Object, 
@@ -1483,7 +1483,7 @@ public class UserServiceProviderTest : TestBase
 
         var ipAddress = DataUtilityService.GetRandomIpAddress();
         var httpContext = GetMockedHttpContext(userId, ipAddress);
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
 
         var identityServer = new IdentityServer
         {
@@ -1497,7 +1497,7 @@ public class UserServiceProviderTest : TestBase
 
         var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
 
-        var userServiceProvider = new UserServiceProvider(
+        var userServiceProvider = new UserService(
             httpContext.Object, 
             databaseContext,
             mockedJwtUtilityService.Object, 

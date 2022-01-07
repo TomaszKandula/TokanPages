@@ -10,9 +10,9 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.DependencyInjection;
 using Backend.Database;
 using Backend.Domain.Entities;
+using Services.WebTokenService;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Database.Initializer.Data.Users;
-using Backend.Core.Utilities.JwtUtilityService;
 using Backend.Core.Utilities.DataUtilityService;
 
 public class TestBase
@@ -23,13 +23,13 @@ public class TestBase
 
     protected IDateTimeService DateTimeService { get; }
 
-    protected IJwtUtilityService JwtUtilityService { get; }
+    protected IWebTokenUtility WebTokenUtility { get; }
 
     protected TestBase()
     {
         DataUtilityService = new DataUtilityService();
         DateTimeService = new DateTimeService();
-        JwtUtilityService = new JwtUtilityService();
+        WebTokenUtility = new WebTokenUtility();
 
         var services = new ServiceCollection();
         services.AddSingleton<Factories.DatabaseContextFactory>();
@@ -115,8 +115,8 @@ public class TestBase
         var newClaim = new ClaimsIdentity(new []
         {
             new Claim(ClaimTypes.Name, DataUtilityService.GetRandomString()),
-            new Claim(ClaimTypes.Role, nameof(Backend.Identity.Authorization.Roles.EverydayUser)),
-            new Claim(ClaimTypes.Role, nameof(Backend.Identity.Authorization.Roles.GodOfAsgard)),
+            new Claim(ClaimTypes.Role, nameof(Backend.Domain.Enums.Roles.EverydayUser)),
+            new Claim(ClaimTypes.Role, nameof(Backend.Domain.Enums.Roles.GodOfAsgard)),
             new Claim(ClaimTypes.NameIdentifier, userId),
             new Claim(ClaimTypes.GivenName, userFirstName),
             new Claim(ClaimTypes.Surname, userLastName),

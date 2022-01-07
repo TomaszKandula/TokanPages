@@ -9,32 +9,32 @@ using Domain.Entities;
 using Core.Exceptions;
 using Shared.Services;
 using Shared.Resources;
+using Services.UserService;
+using Services.WebTokenService;
 using Services.CipheringService;
-using Services.UserServiceProvider;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
-using Core.Utilities.JwtUtilityService;
 
 public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCommand, AuthenticateUserCommandResult>
 {
     private readonly ICipheringService _cipheringService;
 
-    private readonly IJwtUtilityService _jwtUtilityService;
+    private readonly IWebTokenUtility _webTokenUtility;
         
     private readonly IDateTimeService _dateTimeService;
 
-    private readonly IUserServiceProvider _userServiceProvider;
+    private readonly IUserService _userService;
 
     private readonly IApplicationSettings _applicationSettings;
         
     public AuthenticateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, ICipheringService cipheringService, 
-        IJwtUtilityService jwtUtilityService, IDateTimeService dateTimeService, IUserServiceProvider userServiceProvider, 
+        IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IUserService userService, 
         IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
         _cipheringService = cipheringService;
-        _jwtUtilityService = jwtUtilityService;
+        _webTokenUtility = webTokenUtility;
         _dateTimeService = dateTimeService;
-        _userServiceProvider = userServiceProvider;
+        _userService = userService;
         _applicationSettings = applicationSettings;
     }
 
@@ -63,12 +63,12 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
             throw new AccessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
         var currentDateTime = _dateTimeService.Now;
-        var ipAddress = _userServiceProvider.GetRequestIpAddress();
+        var ipAddress = _userService.GetRequestIpAddress();
         var tokenExpires = _dateTimeService.Now.AddMinutes(_applicationSettings.IdentityServer.WebTokenExpiresIn);
-        var userToken = await _userServiceProvider.GenerateUserToken(currentUser, tokenExpires, cancellationToken);
-        var refreshToken = _jwtUtilityService.GenerateRefreshToken(ipAddress, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
+        var userToken = await _userService.GenerateUserToken(currentUser, tokenExpires, cancellationToken);
+        var refreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
 
-        _userServiceProvider.SetRefreshTokenCookie(refreshToken.Token, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
+        _userService.SetRefreshTokenCookie(refreshToken.Token, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
         currentUser.LastLogged = currentDateTime;
             
         var newUserToken = new UserTokens
@@ -90,13 +90,13 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
             CreatedByIp = refreshToken.CreatedByIp
         };
 
-        await _userServiceProvider.DeleteOutdatedRefreshTokens(currentUser.Id, false, cancellationToken);
+        await _userService.DeleteOutdatedRefreshTokens(currentUser.Id, false, cancellationToken);
         await DatabaseContext.UserTokens.AddAsync(newUserToken, cancellationToken);
         await DatabaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        var roles = await _userServiceProvider.GetUserRoles(currentUser.Id);
-        var permissions = await _userServiceProvider.GetUserPermissions(currentUser.Id);
+        var roles = await _userService.GetUserRoles(currentUser.Id);
+        var permissions = await _userService.GetUserPermissions(currentUser.Id);
 
         return new AuthenticateUserCommandResult
         {

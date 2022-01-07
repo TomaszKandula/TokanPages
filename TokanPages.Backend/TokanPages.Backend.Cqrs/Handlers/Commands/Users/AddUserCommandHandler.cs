@@ -12,16 +12,16 @@ using Shared;
 using Database;
 using Shared.Models;
 using Core.Exceptions;
+using Core.Extensions;
 using Domain.Entities;
 using Shared.Services;
 using Shared.Resources;
-using Services.CipheringService;
 using System.Collections.Generic;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
-using Core.Utilities.TemplateService;
-using Core.Utilities.CustomHttpClient;
-using Core.Utilities.CustomHttpClient.Models;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
+using TokanPages.Services.CipheringService;
 
 public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 {
@@ -29,20 +29,17 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     private readonly ICipheringService _cipheringService;
 
-    private readonly ITemplateService _templateService;
-
-    private readonly ICustomHttpClient _customHttpClient;
+    private readonly IHttpClientService _httpClientService;
 
     private readonly IApplicationSettings _applicationSettings;
 
     public AddUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService,
-        ICipheringService cipheringService, ITemplateService templateService, 
-        ICustomHttpClient customHttpClient, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+        ICipheringService cipheringService, IHttpClientService httpClientService, 
+        IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _cipheringService = cipheringService;
-        _templateService = templateService;
-        _customHttpClient = customHttpClient;
+        _httpClientService = httpClientService;
         _applicationSettings = applicationSettings;
     }
 
@@ -98,7 +95,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     private async Task SetupDefaultPermissions(Guid userId, CancellationToken cancellationToken)
     {
-        var userRoleName = Identity.Authorization.Roles.EverydayUser.ToString();
+        var userRoleName = Domain.Enums.Roles.EverydayUser.ToString();
         var defaultPermissions = await DatabaseContext.DefaultPermissions
             .AsNoTracking()
             .Include(permissions => permissions.Role)
@@ -152,7 +149,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         LoggerService.LogInformation($"Getting email template from URL: {url}.");
 
         var configuration = new Configuration { Url = url, Method = "GET" };
-        var getTemplate = await _customHttpClient.Execute(configuration, cancellationToken);
+        var getTemplate = await _httpClientService.Execute(configuration, cancellationToken);
 
         if (getTemplate.Content == null)
             throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
@@ -163,14 +160,14 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             From = Constants.Emails.Addresses.Contact,
             To = new List<string> { emailAddress },
             Subject = "New account registration",
-            Body = _templateService.MakeBody(template, newValues)
+            Body = template.MakeBody(newValues)
         };
 
         var headers = new Dictionary<string, string> { ["X-Private-Key"] = _applicationSettings.EmailSender.PrivateKey };
         configuration = new Configuration { Url = _applicationSettings.EmailSender.BaseUrl, Method = "POST", Headers = headers, 
             StringContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload), Encoding.Default, "application/json") };
 
-        var sendEmail = await _customHttpClient.Execute(configuration, cancellationToken);
+        var sendEmail = await _httpClientService.Execute(configuration, cancellationToken);
         if (sendEmail.StatusCode != HttpStatusCode.OK)
             throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}");
     }

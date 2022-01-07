@@ -12,13 +12,13 @@ using Backend.Shared.Models;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
+using TokanPages.Services.UserService;
+using TokanPages.Services.WebTokenService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Users;
-using Backend.Cqrs.Services.CipheringService;
+using TokanPages.Services.CipheringService;
 using Backend.Core.Utilities.DateTimeService;
-using Backend.Core.Utilities.JwtUtilityService;
-using Backend.Cqrs.Services.UserServiceProvider;
-using Backend.Core.Utilities.JwtUtilityService.Models;
+using TokanPages.Services.WebTokenService.Models;
 
 public class AuthenticateUserCommandHandlerTest : TestBase
 {
@@ -74,7 +74,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             CreatedByIp = ipAddress
         };
 
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         mockedJwtUtilityService
             .Setup(service => service
                 .GenerateRefreshToken(It.IsAny<string>(), It.IsAny<int>()))
@@ -86,7 +86,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             .SetupGet(service => service.Now)
             .Returns(randomDateTime);
             
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
         mockedUserServiceProvider
             .Setup(service => service.GenerateUserToken(
                 It.IsAny<Users>(), 
@@ -215,9 +215,9 @@ public class AuthenticateUserCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedCipheringService = new Mock<ICipheringService>();
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         // Act
@@ -275,9 +275,9 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             .Returns(false);
 
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         // Act
@@ -348,7 +348,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             CreatedByIp = ipAddress
         };
 
-        var mockedJwtUtilityService = new Mock<IJwtUtilityService>();
+        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         mockedJwtUtilityService
             .Setup(service => service
                 .GenerateRefreshToken(It.IsAny<string>(), It.IsAny<int>()))
@@ -360,7 +360,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             .SetupGet(service => service.Now)
             .Returns(randomDateTime);
             
-        var mockedUserServiceProvider = new Mock<IUserServiceProvider>();
+        var mockedUserServiceProvider = new Mock<IUserService>();
         mockedUserServiceProvider
             .Setup(service => service.GenerateUserToken(
                 It.IsAny<Users>(), 

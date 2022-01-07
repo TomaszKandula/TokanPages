@@ -12,8 +12,8 @@ using System.Collections;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Backend.Core.Extensions;
-using Backend.Core.Utilities.CustomHttpClient;
-using Backend.Core.Utilities.CustomHttpClient.Models;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
 
 public class CustomHttpClientTest : TestBase
 {
@@ -36,7 +36,7 @@ public class CustomHttpClientTest : TestBase
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
             
         // Act
-        var customHttpClient = new CustomHttpClient(httpClient);
+        var customHttpClient = new HttpClientService(httpClient);
         var result = await customHttpClient.Execute(configuration, CancellationToken.None);
 
         // Assert
@@ -60,7 +60,7 @@ public class CustomHttpClientTest : TestBase
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(stringContent));
             
         // Act
-        var customHttpClient = new CustomHttpClient(httpClient);
+        var customHttpClient = new HttpClientService(httpClient);
         var result = await customHttpClient.Execute(configuration, CancellationToken.None);
 
         // Assert
@@ -83,7 +83,7 @@ public class CustomHttpClientTest : TestBase
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
             
         // Act
-        var customHttpClient = new CustomHttpClient(httpClient);
+        var customHttpClient = new HttpClientService(httpClient);
         var result = await Assert.ThrowsAsync<ArgumentException>(() => customHttpClient.Execute(configuration, CancellationToken.None));
 
         // Assert
@@ -103,7 +103,7 @@ public class CustomHttpClientTest : TestBase
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
             
         // Act
-        var customHttpClient = new CustomHttpClient(httpClient);
+        var customHttpClient = new HttpClientService(httpClient);
         var result = await Assert.ThrowsAsync<ArgumentException>(() => customHttpClient.Execute(configuration, CancellationToken.None));
 
         // Assert
@@ -117,7 +117,7 @@ public class CustomHttpClientTest : TestBase
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
             
         // Act
-        var customHttpClient = new CustomHttpClient(httpClient);
+        var customHttpClient = new HttpClientService(httpClient);
         var result = customHttpClient.SetAuthentication(DataUtilityService.GetRandomString(), DataUtilityService.GetRandomString());
 
         // Assert
@@ -132,7 +132,7 @@ public class CustomHttpClientTest : TestBase
     {
         // Arrange
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-        var customHttpClient = new CustomHttpClient(httpClient);
+        var customHttpClient = new HttpClientService(httpClient);
             
         // Act
         // Assert
@@ -145,7 +145,7 @@ public class CustomHttpClientTest : TestBase
     {
         // Arrange
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-        var customHttpClient = new CustomHttpClient(httpClient);
+        var customHttpClient = new HttpClientService(httpClient);
             
         // Act
         var result = customHttpClient.SetAuthentication(DataUtilityService.GetRandomString());
@@ -161,7 +161,7 @@ public class CustomHttpClientTest : TestBase
     {
         // Arrange
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-        var customHttpClient = new CustomHttpClient(httpClient);
+        var customHttpClient = new HttpClientService(httpClient);
             
         // Act
         // Assert
@@ -182,7 +182,7 @@ public class CustomHttpClientTest : TestBase
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
 
         // Act
-        var customHttpClient = new CustomHttpClient(httpClient);
+        var customHttpClient = new HttpClientService(httpClient);
         var result = customHttpClient.GetFirstEmptyParameterName(testList);
 
         // Assert
@@ -197,7 +197,7 @@ public class CustomHttpClientTest : TestBase
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
 
         // Act
-        var customHttpClient = new CustomHttpClient(httpClient);
+        var customHttpClient = new HttpClientService(httpClient);
         var result = customHttpClient.GetFirstEmptyParameterName(items);
 
         // Assert

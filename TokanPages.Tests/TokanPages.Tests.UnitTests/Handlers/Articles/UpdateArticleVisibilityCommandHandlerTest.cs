@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 using Backend.Core.Exceptions;
 using Backend.Domain.Entities;
 using Backend.Shared.Resources;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Articles;
-using Backend.Cqrs.Services.UserServiceProvider;
 using UsersEntity = Backend.Domain.Entities.Users;
 using ArticlesEntity = Backend.Domain.Entities.Articles;
 using PermissionsEntity = Backend.Domain.Entities.Permissions;
-using AuthorizationPermissions = Backend.Identity.Authorization.Permissions;
+using AuthorizationPermissions = Backend.Domain.Enums.Permissions;
 
 public class UpdateArticleVisibilityCommandHandlerTest : TestBase
 {
@@ -38,7 +38,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
             
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider
@@ -82,7 +82,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
             
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider
@@ -123,7 +123,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
             
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider

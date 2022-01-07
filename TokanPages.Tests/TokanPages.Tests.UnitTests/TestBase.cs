@@ -5,8 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Backend.Database;
 using Backend.Shared.Models;
 using Backend.Shared.Services;
+using TokanPages.Services.WebTokenService;
 using Backend.Core.Utilities.DateTimeService;
-using Backend.Core.Utilities.JwtUtilityService;
 using Backend.Core.Utilities.DataUtilityService;
 
 public class TestBase
@@ -15,14 +15,14 @@ public class TestBase
 
     protected IDataUtilityService DataUtilityService { get; }
 
-    protected IJwtUtilityService JwtUtilityService { get; }
+    protected IWebTokenUtility WebTokenUtility { get; }
 
     protected IDateTimeService DateTimeService { get; }
 
     protected TestBase()
     {
         DataUtilityService = new DataUtilityService();
-        JwtUtilityService = new JwtUtilityService();
+        WebTokenUtility = new WebTokenUtility();
         DateTimeService = new DateTimeService();
 
         var services = new ServiceCollection();

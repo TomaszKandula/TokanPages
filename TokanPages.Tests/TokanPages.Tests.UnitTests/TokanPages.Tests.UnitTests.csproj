@@ -30,7 +30,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Cqrs\TokanPages.Backend.Cqrs.csproj" />
     <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
-    <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Identity\TokanPages.Backend.Identity.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.AzureStorageService\TokanPages.Services.AzureStorageService.csproj" />
   </ItemGroup>
 

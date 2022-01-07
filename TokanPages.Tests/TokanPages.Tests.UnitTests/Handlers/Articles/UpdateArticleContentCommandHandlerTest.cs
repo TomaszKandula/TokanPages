@@ -11,10 +11,10 @@ using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Core.Extensions;
 using Backend.Shared.Resources;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Cqrs.Handlers.Commands.Articles;
-using Backend.Cqrs.Services.UserServiceProvider;
 using TokanPages.Services.AzureStorageService.AzureBlobStorage;
 using TokanPages.Services.AzureStorageService.AzureBlobStorage.Factory;
 
@@ -57,7 +57,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>();
         var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
@@ -145,7 +145,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>();
         var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
@@ -237,7 +237,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserServiceProvider>();
+        var mockedUserProvider = new Mock<IUserService>();
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>(); 
         var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
