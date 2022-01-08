@@ -17,7 +17,6 @@ public class MailerController : ApiBaseController
     public MailerController(IMediator mediator) : base(mediator) { }
 
     [HttpPost]
-    [AllowAnonymous]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> SendMessage([FromBody] SendMessageDto payLoad)
         => await Mediator.Send(MailerMapper.MapToSendMessageCommand(payLoad));

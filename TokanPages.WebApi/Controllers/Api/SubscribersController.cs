@@ -30,25 +30,21 @@ public class SubscribersController : ApiBaseController
         => await _subscribersCache.GetSubscribers(noCache);
 
     [HttpGet("{id:guid}")]
-    [AllowAnonymous]
     [ProducesResponseType(typeof(GetSubscriberQueryResult), StatusCodes.Status200OK)]
     public async Task<GetSubscriberQueryResult> GetSubscriber([FromRoute] Guid id, [FromQuery] bool noCache = false)
         => await _subscribersCache.GetSubscriber(id, noCache);
 
     [HttpPost]
-    [AllowAnonymous]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
     public async Task<Guid> AddSubscriber([FromBody] AddSubscriberDto payLoad) 
         => await Mediator.Send(SubscribersMapper.MapToAddSubscriberCommand(payLoad));
 
     [HttpPost]
-    [AllowAnonymous]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> UpdateSubscriber([FromBody] UpdateSubscriberDto payLoad)
         => await Mediator.Send(SubscribersMapper.MapToUpdateSubscriberCommand(payLoad));
 
     [HttpPost]
-    [AllowAnonymous]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RemoveSubscriber([FromBody] RemoveSubscriberDto payLoad)
         => await Mediator.Send(SubscribersMapper.MapToRemoveSubscriberCommand(payLoad));
