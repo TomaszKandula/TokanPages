@@ -3,9 +3,9 @@ namespace TokanPages.WebApi.Controllers.Proxy;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using Attributes;
-using Services.Caching.Assets;
 using Backend.Domain.Enums;
+using Services.Caching.Assets;
+using Backend.Shared.Attributes;
 using Backend.Cqrs.Handlers.Queries.Assets;
 using MediatR;
 

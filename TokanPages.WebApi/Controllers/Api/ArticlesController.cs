@@ -6,12 +6,12 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
-using Attributes;
 using Backend.Domain.Enums;
 using Backend.Cqrs.Mappers;
 using Backend.Shared.Dto.Articles;
 using Backend.Cqrs.Handlers.Queries.Articles;
 using Services.Caching.Articles;
+using Backend.Shared.Attributes;
 using MediatR;
 
 [Authorize]
