@@ -21,14 +21,13 @@ public class ArticlesCache : IArticlesCache
         _mediator = mediator;
     }
 
-    [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
-    public async Task<IEnumerable<GetAllArticlesQueryResult>> GetArticles(bool isPublished = true, bool noCache = false)
+    public async Task<List<GetAllArticlesQueryResult>> GetArticles(bool isPublished = true, bool noCache = false)
     {
         const string key = "GetAllArticlesQueryResult";
         if (noCache)
             return await _mediator.Send(new GetAllArticlesQuery { IsPublished = isPublished });
 
-        var value = await _redisDistributedCache.GetObjectAsync<IEnumerable<GetAllArticlesQueryResult>>(key);
+        var value = await _redisDistributedCache.GetObjectAsync<List<GetAllArticlesQueryResult>>(key);
         if (value is not null && value.Any()) return value;
 
         value = await _mediator.Send(new GetAllArticlesQuery { IsPublished = isPublished });

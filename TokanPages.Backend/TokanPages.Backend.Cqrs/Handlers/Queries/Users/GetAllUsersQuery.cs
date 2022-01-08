@@ -3,4 +3,4 @@
 using System.Collections.Generic;
 using MediatR;
 
-public class GetAllUsersQuery : IRequest<IEnumerable<GetAllUsersQueryResult>> { }
+public class GetAllUsersQuery : IRequest<List<GetAllUsersQueryResult>> { }
