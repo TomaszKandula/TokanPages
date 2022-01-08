@@ -110,5 +110,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("PASSWORD_TOO_LONG", resourceCulture);
             }
         }
+        
+        public static string NAME_TOO_LONG {
+            get {
+                return ResourceManager.GetString("NAME_TOO_LONG", resourceCulture);
+            }
+        }
     }
 }

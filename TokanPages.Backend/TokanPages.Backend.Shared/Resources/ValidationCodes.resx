@@ -150,4 +150,7 @@
   <data name="PASSWORD_TOO_LONG" xml:space="preserve">
     <value>The user password cannot be longer than 100 characters</value>
   </data>
+  <data name="NAME_TOO_LONG" xml:space="preserve">
+    <value>The given name is too long</value>
+  </data>
 </root>

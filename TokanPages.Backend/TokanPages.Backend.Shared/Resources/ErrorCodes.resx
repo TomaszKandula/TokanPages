@@ -219,4 +219,7 @@
   <data name="ARGUMENT_EMPTY_OR_NULL" xml:space="preserve">
     <value>Argument cannot be null or empty</value>
   </data>
+  <data name="ASSET_NOT_FOUND" xml:space="preserve">
+    <value>Cannot find given asset by name</value>
+  </data>
 </root>
