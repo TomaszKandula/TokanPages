@@ -254,5 +254,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("ASSET_NOT_FOUND", resourceCulture);
             }
         }
+        
+        public static string FILE_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("FILE_NOT_FOUND", resourceCulture);
+            }
+        }
     }
 }
