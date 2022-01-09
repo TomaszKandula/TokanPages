@@ -73,7 +73,7 @@ export const POLICY_URL = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Na
 
 /* OTHER URL */
 
-export const IMAGE_URL = `${APP_BACKEND}/api/v${API_VER}/assets/getArticleAsset/article/?Id={ID}&assetName=image.jpg`;
+export const IMAGE_URL = `${APP_BACKEND}/api/v${API_VER}/assets/getArticleAsset/?Id={ID}&assetName=image.jpg`;
 
 /* PATHS */
 
