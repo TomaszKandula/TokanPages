@@ -1,3 +1,19 @@
+# [0.39.0](https://github.com/TomaszKandula/TokanPages/compare/v0.38.0...v0.39.0) (2022-01-09)
+
+
+### Features
+
+* add controller with endpoints for log files ([ee3f61e](https://github.com/TomaszKandula/TokanPages/commit/ee3f61e10345e33a4951b37614ed12d875748e79))
+* add cqrs for getting assets and article assets ([8a7b908](https://github.com/TomaszKandula/TokanPages/commit/8a7b908720f378a97dc575577dec908d28414f79))
+* add cqrs to handle log files ([8154f4c](https://github.com/TomaszKandula/TokanPages/commit/8154f4c2ab51809b98c0ebb0b748707946bbb116))
+* add new endpoint to get assets list ([48e7121](https://github.com/TomaszKandula/TokanPages/commit/48e71211b2abf56631f450ad361e52fc3596efa2))
+* add new error code ([91cae89](https://github.com/TomaszKandula/TokanPages/commit/91cae89a51e3420bd855d50be46f8e08094cd86a))
+* add new error code ([2c9582b](https://github.com/TomaszKandula/TokanPages/commit/2c9582b5da50d96a1e68b3740084467a845d782c))
+* add new validation and error codes ([ab5e01e](https://github.com/TomaszKandula/TokanPages/commit/ab5e01e999488b9ddfd19785d98c1685a35f7823))
+* change endpoint route ([9f9b1bd](https://github.com/TomaszKandula/TokanPages/commit/9f9b1bdfce6d6383e3c9b19a99c6742346a26a73))
+* change logger configuration, allow to log to the file ([df0df70](https://github.com/TomaszKandula/TokanPages/commit/df0df7074b7e1d90b2d9cc9b85dcb727f24581b4))
+* improve Azure Storage implementations ([841c078](https://github.com/TomaszKandula/TokanPages/commit/841c07872427308d411f6bd72bfc9553937b655e))
+
 # [0.38.0](https://github.com/TomaszKandula/TokanPages/compare/v0.37.0...v0.38.0) (2022-01-07)
 
 
