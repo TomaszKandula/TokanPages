@@ -3,7 +3,6 @@ namespace TokanPages.WebApi.Controllers.Api;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Authorization;
 using Backend.Cqrs.Handlers.Queries.Content;
 using Services.Caching.Content;
 using MediatR;
@@ -17,7 +16,6 @@ public class ContentController : ApiBaseController
         : base(mediator) => _contentCache = contentCache;
 
     [HttpGet]
-    [AllowAnonymous]
     [ProducesResponseType(typeof(GetContentQueryResult), StatusCodes.Status200OK)]
     public async Task<GetContentQueryResult> GetContent([FromQuery] string type, string name, string language, bool noCache = false)
         => await _contentCache.GetContent(type, name, language, noCache);

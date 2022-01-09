@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Database;
 using Core.Utilities.LoggerService;
 
-public class GetAllUsersQueryHandler : RequestHandler<GetAllUsersQuery, IEnumerable<GetAllUsersQueryResult>>
+public class GetAllUsersQueryHandler : RequestHandler<GetAllUsersQuery, List<GetAllUsersQueryResult>>
 {
     public GetAllUsersQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
-    public override async Task<IEnumerable<GetAllUsersQueryResult>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
+    public override async Task<List<GetAllUsersQueryResult>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
     {
         return await DatabaseContext.Users
             .AsNoTracking()

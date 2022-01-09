@@ -1,96 +1,70 @@
 namespace TokanPages.WebApi.Services.Caching.Assets;
 
-using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc;
-using Backend.Shared.Services;
-using Backend.Shared.Resources;
-using TokanPages.Services.HttpClientService;
+using Backend.Cqrs.Handlers.Queries.Assets;
 using TokanPages.Services.HttpClientService.Models;
+using MediatR;
 
 [ExcludeFromCodeCoverage]
 public class AssetsCache : IAssetsCache
 {
     private readonly IRedisDistributedCache _redisDistributedCache;
 
-    private readonly IHttpClientService _httpClientService;
-        
-    private readonly IApplicationSettings _applicationSettings;
-        
-    public AssetsCache(IRedisDistributedCache redisDistributedCache, IHttpClientService httpClientService, 
-        IApplicationSettings applicationSettings)
+    private readonly IMediator _mediator;
+    
+    public AssetsCache(IRedisDistributedCache redisDistributedCache, IMediator mediator)
     {
         _redisDistributedCache = redisDistributedCache;
-        _httpClientService = httpClientService;
-        _applicationSettings = applicationSettings;
+        _mediator = mediator;
     }
 
     public async Task<IActionResult> GetAsset(string blobName, bool noCache = false)
     {
-        var requestUrl = $"{_applicationSettings.AzureStorage.BaseUrl}/content/assets/{blobName}";
-            
         if (noCache)
-            return await ExecuteRequest(requestUrl);
+            return await _mediator.Send(new GetSingleAssetQuery { BlobName = blobName });
 
-        var value = await _redisDistributedCache.GetObjectAsync<HttpContentResult>(blobName);
-        if (value is not null)
-            return new FileContentResult(value.Content!, value.ContentType?.MediaType!);
+        var cache = await _redisDistributedCache.GetObjectAsync<HttpContentResult>(blobName);
+        if (cache is not null)
+            return new FileContentResult(cache.Content!, cache.ContentType?.MediaType!);
 
-        var request = await ExecuteRequest(requestUrl);
-        value = new HttpContentResult();
+        var result = await _mediator.Send(new GetSingleAssetQuery { BlobName = blobName });
+        await SaveToCache(result, blobName);
 
-        if (request is not FileContentResult result)
-            return new FileContentResult(value.Content!, value.ContentType?.MediaType!);
-
-        value.Content = result.FileContents;
-        value.ContentType = new MediaTypeHeaderValue(result.ContentType);
-
-        await _redisDistributedCache.SetObjectAsync(blobName, value);
-        return new FileContentResult(value.Content, value.ContentType?.MediaType!);
+        return result;
     }
 
     public async Task<IActionResult> GetArticleAsset(string id, string assetName, bool noCache = false)
     {
         var key = $"{id}/{assetName}";
-        var requestUrl = $"{_applicationSettings.AzureStorage.BaseUrl}/content/articles/{id}/{assetName}";
 
         if (noCache)
-            return await ExecuteRequest(requestUrl);
+            return await _mediator.Send(new GetArticleAssetQuery {  Id = id, AssetName = assetName });
 
-        var value = await _redisDistributedCache.GetObjectAsync<HttpContentResult>(key);
-        if (value is not null)
-            return new FileContentResult(value.Content!, value.ContentType?.MediaType!);
+        var cache = await _redisDistributedCache.GetObjectAsync<HttpContentResult>(key);
+        if (cache is not null)
+            return new FileContentResult(cache.Content!, cache.ContentType?.MediaType!);
 
-        var request = await ExecuteRequest(requestUrl);
-        value = new HttpContentResult();
+        var result = await _mediator.Send(new GetArticleAssetQuery {  Id = id, AssetName = assetName });
+        await SaveToCache(result, key);
 
-        if (request is not FileContentResult result)
-            return new FileContentResult(value.Content!, value.ContentType?.MediaType!);
-
-        value.Content = result.FileContents;
-        value.ContentType = new MediaTypeHeaderValue(result.ContentType);
-
-        await _redisDistributedCache.SetObjectAsync(key, value);
-        return new FileContentResult(value.Content, value.ContentType?.MediaType!);
+        return result;
     }
 
-    private async Task<IActionResult> ExecuteRequest(string requestUrl)
+    private async Task SaveToCache(FileContentResult content, string key)
     {
-        var configuration = new Configuration { Url = requestUrl, Method = "GET" };
-        var results = await _httpClientService.Execute(configuration);
-        if (results.StatusCode == HttpStatusCode.OK)
-            return new FileContentResult(results.Content!, results.ContentType?.MediaType!);
+        // We will not cache asset which is larger than 1.44 MB
+        if (content.FileContents.Length > 1.44 * 1024 * 1024)
+            return;
 
-        return new ContentResult
+        var value = new HttpContentResult
         {
-            StatusCode = (int)results.StatusCode,
-            ContentType = results.ContentType?.MediaType,
-            Content = results.Content is null 
-                ? ErrorCodes.ERROR_UNEXPECTED 
-                : Encoding.Default.GetString(results.Content)
+            Content = content.FileContents,
+            ContentType = new MediaTypeHeaderValue(content.ContentType)
         };
+
+        await _redisDistributedCache.SetObjectAsync(key, value);
     }
 }

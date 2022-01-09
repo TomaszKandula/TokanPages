@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
-using Attributes;
 using Backend.Domain.Enums;
 using Backend.Cqrs.Mappers;
+using Backend.Shared.Attributes;
 using Backend.Shared.Dto.Mailer;
 using MediatR;
 
@@ -17,7 +17,6 @@ public class MailerController : ApiBaseController
     public MailerController(IMediator mediator) : base(mediator) { }
 
     [HttpPost]
-    [AllowAnonymous]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> SendMessage([FromBody] SendMessageDto payLoad)
         => await Mediator.Send(MailerMapper.MapToSendMessageCommand(payLoad));

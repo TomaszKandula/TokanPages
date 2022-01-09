@@ -6,6 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Authorization;
+using Backend.Shared.Attributes;
 using WebTokenService.Validation;
 using Backend.Core.Utilities.LoggerService;
 using MediatR;
@@ -29,8 +30,10 @@ public class TokenCheckBehaviour<TRequest, TResponse> : IPipelineBehavior<TReque
     public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
     {
         var endpoint = _httpContextAccessor.HttpContext?.Features.Get<IEndpointFeature>()?.Endpoint;
-        var hasAllowAnonymousAttribute = endpoint != null && endpoint.Metadata.Any(@object => @object is AllowAnonymousAttribute);
-        if (hasAllowAnonymousAttribute)
+        var attributes = endpoint?.Metadata.Where(@object => @object is AllowAnonymousAttribute or AuthorizeUserAttribute);
+
+        var hasAllowAnonymousOnly = attributes != null && !attributes.Any(@object => @object is AuthorizeUserAttribute);
+        if (hasAllowAnonymousOnly)
             return await next();
 
         await _webTokenValidation.VerifyUserToken();
