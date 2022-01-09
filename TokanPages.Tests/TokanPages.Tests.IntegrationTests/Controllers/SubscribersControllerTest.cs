@@ -40,7 +40,7 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
 
         // Assert
         var content = await response.Content.ReadAsStringAsync();
-        content.Should().BeEmpty();
+        content.Should().Contain(nameof(ErrorCodes.INVALID_USER_TOKEN));
     }
 
     [Fact]

@@ -63,7 +63,7 @@ public class ContentControllerTest : TestBase, IClassFixture<CustomWebApplicatio
         // Assert
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
-        content.Should().Contain(ErrorCodes.COMPONENT_NOT_FOUND);
+        content.Should().Contain(nameof(ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE));
     }
 
     [Fact]
@@ -85,6 +85,6 @@ public class ContentControllerTest : TestBase, IClassFixture<CustomWebApplicatio
         // Assert
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
-        content.Should().Contain(ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED);
+        content.Should().Contain(nameof(ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED));
     }
 }
