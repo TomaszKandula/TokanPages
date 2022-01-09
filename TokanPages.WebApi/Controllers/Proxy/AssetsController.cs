@@ -27,7 +27,7 @@ public class AssetsController : ApiBaseController
     public async Task<GetAssetsListQueryResult> GetAssetsList() 
         => await Mediator.Send(new GetAssetsListQuery());
 
-    [HttpGet("Article")]
+    [HttpGet]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetArticleAsset([FromQuery] string id, string assetName, bool noCache = false)
         => await _assetsCache.GetArticleAsset(id, assetName, noCache);
