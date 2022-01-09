@@ -7,7 +7,7 @@ using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
 
 public interface ISubscribersCache
 {
-    Task<IEnumerable<GetAllSubscribersQueryResult>> GetSubscribers(bool noCache = false);
+    Task<List<GetAllSubscribersQueryResult>> GetSubscribers(bool noCache = false);
 
     Task<GetSubscriberQueryResult> GetSubscriber(Guid id, bool noCache = false);
 }

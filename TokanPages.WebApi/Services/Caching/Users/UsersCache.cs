@@ -21,14 +21,13 @@ public class UsersCache : IUsersCache
         _mediator = mediator;
     }
 
-    [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
-    public async Task<IEnumerable<GetAllUsersQueryResult>> GetUsers(bool noCache = false)
+    public async Task<List<GetAllUsersQueryResult>> GetUsers(bool noCache = false)
     {
         const string key = "GetAllUsersQueryResult";
         if (noCache)
             return await _mediator.Send(new GetAllUsersQuery());
 
-        var value = await _redisDistributedCache.GetObjectAsync<IEnumerable<GetAllUsersQueryResult>>(key);
+        var value = await _redisDistributedCache.GetObjectAsync<List<GetAllUsersQueryResult>>(key);
         if (value is not null && value.Any()) return value;
 
         value = await _mediator.Send(new GetAllUsersQuery());

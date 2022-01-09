@@ -6,6 +6,7 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.TestHost;
+using Backend.Shared.Resources;
 using Backend.Database.Initializer.Data.Articles;
 using Factories;
 
@@ -25,7 +26,7 @@ public class AssetsControllerTest : TestBase, IClassFixture<CustomWebApplication
     public async Task GivenValidBlobName_WhenRequestingAsset_ShouldSucceed(string blobName)
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/?BlobName={blobName}&noCache=true";
+        var request = $"{ApiBaseUrl}/getAsset/?BlobName={blobName}&noCache=true";
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
@@ -43,18 +44,18 @@ public class AssetsControllerTest : TestBase, IClassFixture<CustomWebApplication
     public async Task GivenInvalidBlobName_WhenRequestingAsset_ShouldThrowError()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/?BlobName={DataUtilityService.GetRandomString(useAlphabetOnly: true)}&noCache=true";
+        var request = $"{ApiBaseUrl}/getAsset/?BlobName={DataUtilityService.GetRandomString(useAlphabetOnly: true)}&noCache=true";
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         // Act
         var response = await httpClient.GetAsync(request);
-        await EnsureStatusCode(response, HttpStatusCode.NotFound);
+        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
 
         // Assert
         var content = await response.Content.ReadAsStringAsync();
-        content.Should().NotBeNullOrEmpty();
+        content.Should().Contain(nameof(ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE));
     }
 
     [Fact]
@@ -62,7 +63,7 @@ public class AssetsControllerTest : TestBase, IClassFixture<CustomWebApplication
     {
         // Arrange
         var testUserId = Article1.Id;
-        var request = $"{ApiBaseUrl}/article/?Id={testUserId}&assetName=image.jpg&noCache=true";
+        var request = $"{ApiBaseUrl}/getArticleAsset/?Id={testUserId}&assetName=image.jpg&noCache=true";
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
@@ -81,17 +82,17 @@ public class AssetsControllerTest : TestBase, IClassFixture<CustomWebApplication
     {
         // Arrange
         var testUserId = Guid.NewGuid();
-        var request = $"{ApiBaseUrl}/article/?Id={testUserId}&assetName=image.jpg&noCache=true";
+        var request = $"{ApiBaseUrl}/getArticleAsset/?Id={testUserId}&assetName=image.jpg&noCache=true";
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         // Act
         var response = await httpClient.GetAsync(request);
-        await EnsureStatusCode(response, HttpStatusCode.NotFound);
+        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
 
         // Assert
         var content = await response.Content.ReadAsStringAsync();
-        content.Should().NotBeNullOrEmpty();
+        content.Should().Contain(nameof(ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE));
     }
 }

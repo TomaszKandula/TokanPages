@@ -1,9 +1,9 @@
-namespace TokanPages.WebApi.Attributes;
+namespace TokanPages.Backend.Shared.Attributes;
 
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Authorization;
-using Backend.Domain.Enums;
+using Domain.Enums;
 
 [ExcludeFromCodeCoverage]
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]

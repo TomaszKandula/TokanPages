@@ -248,5 +248,23 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("ARGUMENT_EMPTY_OR_NULL", resourceCulture);
             }
         }
+        
+        public static string ASSET_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("ASSET_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        public static string FILE_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("FILE_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        public static string CANNOT_READ_FROM_AZURE_STORAGE {
+            get {
+                return ResourceManager.GetString("CANNOT_READ_FROM_AZURE_STORAGE", resourceCulture);
+            }
+        }
     }
 }

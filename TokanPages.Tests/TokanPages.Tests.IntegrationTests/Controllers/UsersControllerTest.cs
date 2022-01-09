@@ -261,7 +261,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
 
         // Assert
         var content = await response.Content.ReadAsStringAsync();
-        content.Should().BeEmpty();
+        content.Should().Contain(nameof(ErrorCodes.INVALID_USER_TOKEN));
     }
 
     [Fact]
@@ -364,7 +364,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
     }
 
     [Fact]
-    public async Task GivenCorrectIdAndInvalidJwt_WhenGetUser_ShouldReturnEntityAsJsonObject() 
+    public async Task GivenCorrectIdAndInvalidJwt_WhenGetUser_ShouldReturnUnauthorized() 
     {
         // Arrange
         var testUserId = User1.Id;
@@ -382,11 +382,11 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             
         // Act
         var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.Forbidden);
+        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
 
         // Assert
         var content = await response.Content.ReadAsStringAsync();
-        content.Should().BeEmpty();
+        content.Should().Contain(nameof(ErrorCodes.INVALID_USER_TOKEN));
     }
 
     [Fact]
@@ -477,7 +477,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
 
         // Assert
         var content = await response.Content.ReadAsStringAsync();
-        content.Should().BeEmpty();
+        content.Should().Contain(nameof(ErrorCodes.INVALID_USER_TOKEN));
     }
 
     [Fact]
@@ -647,6 +647,6 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
 
         // Assert
         var content = await response.Content.ReadAsStringAsync();
-        content.Should().BeEmpty();
+        content.Should().Contain(nameof(ErrorCodes.INVALID_USER_TOKEN));
     }
 }
