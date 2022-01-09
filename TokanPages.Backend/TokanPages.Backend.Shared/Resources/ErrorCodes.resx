@@ -225,4 +225,7 @@
   <data name="FILE_NOT_FOUND" xml:space="preserve">
     <value>Cannot find given file</value>
   </data>
+  <data name="CANNOT_READ_FROM_AZURE_STORAGE" xml:space="preserve">
+    <value>Cannot read from Azure Storage Blob</value>
+  </data>
 </root>
