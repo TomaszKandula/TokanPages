@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
-using Attributes;
 using Backend.Domain.Enums;
 using Backend.Cqrs.Mappers;
 using Backend.Shared.Dto.Users;
+using Backend.Shared.Attributes;
 using Backend.Cqrs.Handlers.Queries.Users;
 using Backend.Cqrs.Handlers.Commands.Users;
 using Services.Caching.Users;
@@ -25,13 +25,11 @@ public class UsersController : ApiBaseController
         : base(mediator) => _usersCache = usersCache;
 
     [HttpPost]
-    [AllowAnonymous]
     [ProducesResponseType(typeof(AuthenticateUserCommandResult), StatusCodes.Status200OK)]
     public async Task<AuthenticateUserCommandResult> AuthenticateUser([FromBody] AuthenticateUserDto payLoad)
         => await Mediator.Send(UsersMapper.MapToAuthenticateUserCommand(payLoad));
 
     [HttpPost]
-    [AllowAnonymous]
     [ProducesResponseType(typeof(ReAuthenticateUserCommandResult), StatusCodes.Status200OK)]
     public async Task<ReAuthenticateUserCommandResult> ReAuthenticateUser([FromBody] ReAuthenticateUserDto payLoad)
         => await Mediator.Send(UsersMapper.MapToReAuthenticateUserCommand(payLoad));
@@ -43,19 +41,16 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToRevokeUserRefreshTokenCommand(payLoad));
 
     [HttpPost]
-    [AllowAnonymous]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> ActivateUser([FromBody] ActivateUserDto payLoad)
         => await Mediator.Send(UsersMapper.MapToActivateUserCommand(payLoad));
 
     [HttpPost]
-    [AllowAnonymous]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> ResetUserPassword([FromBody] ResetUserPasswordDto payLoad) 
         => await Mediator.Send(UsersMapper.MapToResetUserPasswordCommand(payLoad));
 
     [HttpPost]
-    [AllowAnonymous]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> UpdateUserPassword([FromBody] UpdateUserPasswordDto payLoad) 
         => await Mediator.Send(UsersMapper.MapToUpdateUserPasswordCommand(payLoad));
@@ -73,7 +68,6 @@ public class UsersController : ApiBaseController
         => await _usersCache.GetUser(id, noCache);
 
     [HttpPost]
-    [AllowAnonymous]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
     public async Task<Guid> AddUser([FromBody] AddUserDto payLoad)
         => await Mediator.Send(UsersMapper.MapToAddUserCommand(payLoad));

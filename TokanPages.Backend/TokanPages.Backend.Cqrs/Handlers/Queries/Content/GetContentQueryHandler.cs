@@ -1,6 +1,6 @@
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content;
 
-using System.Net;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -8,30 +8,25 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using Database;
 using Core.Exceptions;
-using Shared.Services;
 using Shared.Resources;
 using Shared.Dto.Content;
 using Core.Utilities.LoggerService;
 using Core.Utilities.JsonSerializer;
-using TokanPages.Services.HttpClientService;
-using TokanPages.Services.HttpClientService.Models;
+using Services.AzureStorageService.Factory;
 
 public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContentQueryResult>
 {
     private const string DefaultLanguage = "en";
         
-    private readonly IHttpClientService _httpClientService;
+    private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
     private readonly IJsonSerializer _jsonSerializer;
 
-    private readonly IApplicationSettings _applicationSettings;
-
-    public GetContentQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IHttpClientService httpClientService, 
-        IJsonSerializer jsonSerializer, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+    public GetContentQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+        IJsonSerializer jsonSerializer, IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
     {
-        _httpClientService = httpClientService;
         _jsonSerializer = jsonSerializer;
-        _applicationSettings = applicationSettings;
+        _azureBlobStorageFactory = azureBlobStorageFactory;
     }
 
     public override async Task<GetContentQueryResult> Handle(GetContentQuery request, CancellationToken cancellationToken)
@@ -42,9 +37,17 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
 
         if (request.Type is not ("component" or "document"))
             throw new BusinessException(nameof(ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED), ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED);
+        
+        var componentRequestUrl = $"content/{request.Type}s/{request.Name}.json";
+        var azureBob = _azureBlobStorageFactory.Create();
+        
+        var streamContent = await azureBob.OpenRead(componentRequestUrl, cancellationToken);
+        if (streamContent is null)
+            throw new BusinessException(nameof(ErrorCodes.COMPONENT_NOT_FOUND), ErrorCodes.COMPONENT_NOT_FOUND);
 
-        var componentRequestUrl = $"{_applicationSettings.AzureStorage.BaseUrl}/content/{request.Type}s/{request.Name}.json";
-        var componentContent = await GetJsonData(componentRequestUrl, cancellationToken);
+        var memoryStream = new MemoryStream();
+        await streamContent.Content.CopyToAsync(memoryStream, cancellationToken);
+        var componentContent = Encoding.Default.GetString(memoryStream.ToArray());
 
         if (string.IsNullOrEmpty(componentContent))
             throw new BusinessException(nameof(ErrorCodes.COMPONENT_CONTENT_EMPTY), ErrorCodes.COMPONENT_CONTENT_EMPTY);
@@ -94,18 +97,5 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
             "myStory" => _jsonSerializer.MapObjects<DocumentDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
             _ => throw new BusinessException(nameof(ErrorCodes.COMPONENT_NAME_UNKNOWN), ErrorCodes.COMPONENT_NAME_UNKNOWN)
         };
-    }
-
-    private async Task<string> GetJsonData(string url, CancellationToken cancellationToken)
-    {
-        var configuration = new Configuration { Url = url, Method = "GET" };
-        var results = await _httpClientService.Execute(configuration, cancellationToken);
-
-        if (results.StatusCode != HttpStatusCode.OK)
-            throw new BusinessException(nameof(ErrorCodes.COMPONENT_NOT_FOUND), ErrorCodes.COMPONENT_NOT_FOUND);
-
-        return results.Content == null 
-            ? string.Empty 
-            : Encoding.Default.GetString(results.Content);
     }
 }

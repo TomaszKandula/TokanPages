@@ -1,30 +1,64 @@
 namespace TokanPages.WebApi;
 
 using System;
+using System.IO;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Backend.Database.Initializer;
-using Serilog.Events;
-using Serilog;
 using Sentry;
+using Serilog;
+using Serilog.Events;
 
 [ExcludeFromCodeCoverage]
 public static class Program
 {
-    private static readonly bool FIsDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Development;
-        
+    private static readonly string EnvironmentValue 
+        = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+    private static readonly bool IsDevelopment 
+        = EnvironmentValue == Environments.Development;
+
+    private const string LogTemplate 
+        = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}";
+
     public static int Main(string[] args)
     {
         try
         {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .Enrich.FromLogContext()
+                .WriteTo.Console()
+                .WriteTo.File(
+                    GetLogPathFile(),
+                    outputTemplate: LogTemplate,
+                    rollingInterval: RollingInterval.Day,
+                    rollOnFileSizeLimit: true,
+                    retainedFileCountLimit: null,
+                    shared: false
+                )
+                .WriteTo.Sentry(options =>
+                {
+                    options.SendDefaultPii = true;
+                    options.MinimumBreadcrumbLevel = LogEventLevel.Debug;
+                    options.MinimumEventLevel = LogEventLevel.Warning;
+                    options.AttachStacktrace = true;
+                    options.Debug = true;
+                    options.DiagnosticLevel = SentryLevel.Error;
+                }).CreateLogger();
+
             Log.Information("Starting WebHost...");
+            Log.Information("Environment: {Environment}", EnvironmentValue);
+
             CreateWebHostBuilder(args)
                 .Build()
                 .MigrateDatabase()
                 .Run();
+
             return 0;
         }
         catch (Exception exception)
@@ -38,27 +72,21 @@ public static class Program
         }
     }
 
+    private static string GetLogPathFile()
+    {
+        var pathFolder = $"{AppDomain.CurrentDomain.BaseDirectory}logs";
+
+        if (!Directory.Exists(pathFolder)) 
+            Directory.CreateDirectory(pathFolder);
+
+        return $"{pathFolder}{Path.DirectorySeparatorChar}log-.txt";
+    }
+
     private static IWebHostBuilder CreateWebHostBuilder(string[] args)
     {
         return WebHost.CreateDefaultBuilder(args)
             .UseStartup<Startup>()
-            .UseSerilog((context, config) =>
-            {
-                config.ReadFrom.Configuration(context.Configuration);
-                config.WriteTo.Console();
-                config.MinimumLevel.Information();
-                config.MinimumLevel.Override("Microsoft", LogEventLevel.Warning);
-                config.Enrich.FromLogContext();
-                config.WriteTo.Sentry(sentry =>
-                {
-                    sentry.SendDefaultPii = true;
-                    sentry.MinimumBreadcrumbLevel = LogEventLevel.Debug;
-                    sentry.MinimumEventLevel = LogEventLevel.Warning;
-                    sentry.AttachStacktrace = true;
-                    sentry.Debug = true;
-                    sentry.DiagnosticLevel = SentryLevel.Error;
-                });
-            })
+            .UseSerilog()
             .UseSentry();
     }
 
@@ -72,7 +100,7 @@ public static class Program
         var services = scope.ServiceProvider;
         var dbInitializer = services.GetRequiredService<IDbInitializer>();
 
-        if (!FIsDevelopment) 
+        if (!IsDevelopment) 
             return webHost;
 
         dbInitializer.StartMigration();

@@ -7,7 +7,7 @@ using Backend.Cqrs.Handlers.Queries.Users;
 
 public interface IUsersCache
 {
-    Task<IEnumerable<GetAllUsersQueryResult>> GetUsers(bool noCache = false);
+    Task<List<GetAllUsersQueryResult>> GetUsers(bool noCache = false);
 
     Task<GetUserQueryResult> GetUser(Guid id, bool noCache = false);
 }

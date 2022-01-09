@@ -113,6 +113,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
+
         newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
         // Act
@@ -121,7 +122,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
 
         // Assert
         var result = await response.Content.ReadAsStringAsync();
-        result.Should().BeEmpty();
+        result.Should().Contain(nameof(ErrorCodes.INVALID_USER_TOKEN));
     }
 
     [Fact]
@@ -175,6 +176,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
+
         newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
 
         // Act
@@ -183,7 +185,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
 
         // Assert
         var result = await response.Content.ReadAsStringAsync();
-        result.Should().BeEmpty();
+        result.Should().Contain(nameof(ErrorCodes.INVALID_USER_TOKEN));
     }
 
     [Fact]
@@ -205,6 +207,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
+
         newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), 
             System.Text.Encoding.Default, "application/json");
 
@@ -214,7 +217,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
 
         // Assert
         var result = await response.Content.ReadAsStringAsync();
-        result.Should().BeEmpty();
+        result.Should().Contain(nameof(ErrorCodes.INVALID_USER_TOKEN));
     }
 
     [Fact]
@@ -232,6 +235,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
+
         newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), 
             System.Text.Encoding.Default, "application/json");
 
@@ -261,6 +265,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
+
         newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), 
             System.Text.Encoding.Default, "application/json");
 
@@ -284,6 +289,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
+
         var tokenExpires = DateTime.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
             _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
@@ -311,7 +317,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
     }
 
     [Fact]
-    public async Task GivenInvalidArticleIdAndInvalidJwt_WhenUpdateArticleVisibility_ShouldReturnForbidden()
+    public async Task GivenInvalidArticleIdAndInvalidJwt_WhenUpdateArticleVisibility_ShouldReturnUnauthorized()
     {
         // Arrange
         var request = $"{ApiBaseUrl}/UpdateArticleVisibility/";
@@ -320,6 +326,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
+
         var tokenExpires = DateTime.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
             _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
@@ -336,10 +343,10 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
             
         // Act
         var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.Forbidden);
+        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
 
         // Assert
         var result = await response.Content.ReadAsStringAsync();
-        result.Should().BeEmpty();
+        result.Should().Contain(nameof(ErrorCodes.INVALID_USER_TOKEN));
     }
 }

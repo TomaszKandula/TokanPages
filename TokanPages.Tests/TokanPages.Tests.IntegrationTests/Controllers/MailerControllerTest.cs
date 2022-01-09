@@ -11,6 +11,7 @@ using System.Net.Http.Headers;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.TestHost;
 using Backend.Shared.Models;
+using Backend.Shared.Resources;
 using Backend.Shared.Dto.Mailer;
 using Factories;
 
@@ -135,10 +136,10 @@ public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplication
 
         // Act
         var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.Forbidden);
+        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
 
         // Assert
         var content = await response.Content.ReadAsStringAsync();
-        content.Should().BeEmpty();
+        content.Should().Contain(nameof(ErrorCodes.INVALID_USER_TOKEN));
     }
 }
