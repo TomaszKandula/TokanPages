@@ -4,7 +4,7 @@ namespace TokanPages.Services.HttpClientService.Models;
 using System.Net.Http;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Authentication;
+using Abstractions;
 
 [ExcludeFromCodeCoverage]
 public class Configuration
