@@ -92,7 +92,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         // Assert
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
-        content.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+        content.Should().Contain(nameof(ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE));
     }
 
     [Fact]
