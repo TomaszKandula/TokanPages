@@ -4,11 +4,11 @@ using Xunit;
 using Moq;
 using Moq.Protected;
 using FluentAssertions;
-using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Backend.Core.Exceptions;
 using TokanPages.Services.HttpClientService;
 using TokanPages.Services.HttpClientService.Models;
 
@@ -75,7 +75,7 @@ public class CustomHttpClientTest : TestBase
             
         // Act
         var customHttpClient = new HttpClientService(httpClient);
-        var result = await Assert.ThrowsAsync<ArgumentException>(() => customHttpClient.Execute(configuration, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<BusinessException>(() => customHttpClient.Execute(configuration, CancellationToken.None));
 
         // Assert
         result.Message.Should().Be("Argument 'Url' cannot be null or empty.");
@@ -95,7 +95,7 @@ public class CustomHttpClientTest : TestBase
 
         // Act
         var customHttpClient = new HttpClientService(httpClient);
-        var result = await Assert.ThrowsAsync<ArgumentException>(() => customHttpClient.Execute(configuration, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<BusinessException>(() => customHttpClient.Execute(configuration, CancellationToken.None));
 
         // Assert
         result.Message.Should().Be("Argument 'Method' cannot be null or empty.");
