@@ -8,21 +8,12 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
-using System.Collections;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using Backend.Core.Extensions;
 using TokanPages.Services.HttpClientService;
 using TokanPages.Services.HttpClientService.Models;
 
 public class CustomHttpClientTest : TestBase
 {
-    public enum TestCasesEnums
-    {
-        EmptyKey1,
-        EmptyKey2
-    }
-
     [Fact]
     public async Task GivenValidConfigurationWithoutPayload_WhenInvokeExecute_ShouldSucceed()
     {
@@ -101,126 +92,13 @@ public class CustomHttpClientTest : TestBase
         };
 
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-            
+
         // Act
         var customHttpClient = new HttpClientService(httpClient);
         var result = await Assert.ThrowsAsync<ArgumentException>(() => customHttpClient.Execute(configuration, CancellationToken.None));
 
         // Assert
         result.Message.Should().Be("Argument 'Method' cannot be null or empty.");
-    }
-
-    [Fact]
-    public void GivenLoginAndPassword_WhenSetAuthentication_ShouldReturnBase64String()
-    {
-        // Arrange
-        var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-            
-        // Act
-        var customHttpClient = new HttpClientService(httpClient);
-        var result = customHttpClient.SetAuthentication(DataUtilityService.GetRandomString(), DataUtilityService.GetRandomString());
-
-        // Assert
-        result.Should().NotBeNullOrEmpty();
-        var strings = result.Split(" ");
-        strings[0].Should().Be("Basic");
-        strings[1].IsBase64String().Should().BeTrue();
-    }
-
-    [Fact]
-    public void GivenMissingLoginAndPresentPassword_WhenSetAuthentication_ShouldThrowError()
-    {
-        // Arrange
-        var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-        var customHttpClient = new HttpClientService(httpClient);
-            
-        // Act
-        // Assert
-        var result = Assert.Throws<ArgumentException>(() => customHttpClient.SetAuthentication(string.Empty, DataUtilityService.GetRandomString()));
-        result.Message.Should().Be("Argument 'login' cannot be null or empty.");
-    }
-
-    [Fact]
-    public void GivenToken_WhenInvokeSetAuthentication_ShouldReturnPlainString()
-    {
-        // Arrange
-        var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-        var customHttpClient = new HttpClientService(httpClient);
-            
-        // Act
-        var result = customHttpClient.SetAuthentication(DataUtilityService.GetRandomString());
-            
-        // Assert
-        var strings = result.Split(" ");
-        strings[0].Should().Be("Bearer");
-        strings[1].Should().NotBeNullOrEmpty();
-    }
-
-    [Fact]
-    public void GivenMissingToken_WhenInvokeSetAuthentication_ShouldThrowError()
-    {
-        // Arrange
-        var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-        var customHttpClient = new HttpClientService(httpClient);
-            
-        // Act
-        // Assert
-        var result = Assert.Throws<ArgumentException>(() => customHttpClient.SetAuthentication(string.Empty));
-        result.Message.Should().Be("Argument 'token' cannot be null or empty.");
-    }
-
-    [Fact]
-    public void GivenNonEmptyParameterList_WhenGetFirstEmptyParameterName_ShouldReturnEmptyString()
-    {
-        // Arrange
-        var testList = new Dictionary<string, string>
-        {
-            ["Key1"] = "Value1",
-            ["Key2"] = "Value2"
-        };
-
-        var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-
-        // Act
-        var customHttpClient = new HttpClientService(httpClient);
-        var result = customHttpClient.GetFirstEmptyParameterName(testList);
-
-        // Assert
-        result.Should().BeEmpty();
-    }
-
-    [Theory]
-    [ClassData(typeof(TestCases))]
-    public void GivenListWithEmptyParameter_WhenGetFirstEmptyParameterName_ShouldReturnEmptyString(Dictionary<string, string> items, TestCasesEnums cases)
-    {
-        // Arrange
-        var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-
-        // Act
-        var customHttpClient = new HttpClientService(httpClient);
-        var result = customHttpClient.GetFirstEmptyParameterName(items);
-
-        // Assert
-        switch (cases)
-        {
-            case TestCasesEnums.EmptyKey1:
-                result.Should().Be("Key1");
-                break;
-            case TestCasesEnums.EmptyKey2:
-                result.Should().Be("Key2");
-                break;
-        }
-    }
-
-    private class TestCases : IEnumerable<object[]>
-    {
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-            
-        public IEnumerator<object[]> GetEnumerator()
-        {
-            yield return new object[] { new Dictionary<string, string> { ["Key1"] = "", ["Key2"] = "Value2" }, TestCasesEnums.EmptyKey1 };
-            yield return new object[] { new Dictionary<string, string> { ["Key1"] = "Value1", ["Key2"] = "" }, TestCasesEnums.EmptyKey2 };
-        }
     }
 
     private static Mock<HttpMessageHandler> SetMockedHttpMessageHandler(HttpResponseMessage httpResponseMessage)
