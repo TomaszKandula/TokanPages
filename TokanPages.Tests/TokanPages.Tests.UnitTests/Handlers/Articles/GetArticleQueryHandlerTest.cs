@@ -95,7 +95,7 @@ public class GetArticleQueryHandlerTest : TestBase
             .Returns(IpAddressFirst);
 
         var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-        var mockedResults = new Results
+        var mockedResults = new ExecutionResult
         {
             StatusCode = HttpStatusCode.OK,
             ContentType = new MediaTypeHeaderValue("text/plain"),
@@ -183,7 +183,7 @@ public class GetArticleQueryHandlerTest : TestBase
             .Returns(IpAddressFirst);
 
         var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-        var mockedResults = new Results
+        var mockedResults = new ExecutionResult
         {
             StatusCode = HttpStatusCode.OK,
             ContentType = new MediaTypeHeaderValue("text/plain"),

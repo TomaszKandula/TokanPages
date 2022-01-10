@@ -108,7 +108,7 @@ public class AzureBlobStorage : IAzureBlobStorage
         }
     }
 
-    public async Task<string> GetFileContentType(string sourceFilePath, CancellationToken cancellationToken)
+    public async Task<string> GetFileContentType(string sourceFilePath, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrEmpty(sourceFilePath))
             throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL),
@@ -167,7 +167,7 @@ public class AzureBlobStorage : IAzureBlobStorage
         }
     }
 
-    public virtual async Task<bool> DeleteFile(string sourceFilePath, CancellationToken cancellationToken)
+    public virtual async Task<bool> DeleteFile(string sourceFilePath, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrEmpty(sourceFilePath))
             throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL),
