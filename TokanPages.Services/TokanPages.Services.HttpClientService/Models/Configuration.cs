@@ -14,7 +14,9 @@ public class Configuration
     public string Method { get; set; } = "";
 
     public IDictionary<string, string>? Headers { get; set; }
-    
+
+    public IDictionary<string, string>? QueryParameters { get; set; }
+
     public IAuthentication? Authentication { get; set; }
 
     public StringContent? StringContent { get; set; } 
