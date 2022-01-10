@@ -1,7 +1,7 @@
 namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 
 using System;
-using System.Net;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Database;
-using Shared.Services;
 using Core.Exceptions;
 using Core.Extensions;
 using Shared.Resources;
@@ -18,8 +17,7 @@ using Services.UserService;
 using Shared.Dto.Content.Common;
 using Core.Utilities.LoggerService;
 using Core.Utilities.JsonSerializer;
-using Services.HttpClientService;
-using Services.HttpClientService.Models;
+using Services.AzureStorageService.Factory;
 
 public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticleQueryResult>
 {
@@ -29,18 +27,15 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
 
     private readonly IJsonSerializer _jsonSerializer;
 
-    private readonly IHttpClientService _httpClientService;
-
-    private readonly IApplicationSettings _applicationSettings;
+    private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
         
     public GetArticleQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService, 
-        IJsonSerializer jsonSerializer, IHttpClientService httpClientService, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+        IJsonSerializer jsonSerializer, IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
     {
         _databaseContext = databaseContext;
         _userService = userService;
         _jsonSerializer = jsonSerializer;
-        _httpClientService = httpClientService;
-        _applicationSettings = applicationSettings;
+        _azureBlobStorageFactory = azureBlobStorageFactory;
     }
 
     public override async Task<GetArticleQueryResult> Handle(GetArticleQuery request, CancellationToken cancellationToken)
@@ -48,10 +43,9 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         var userId = await _userService.GetUserId();
         var isAnonymousUser = userId == null;
 
-        var textRequestUrl = $"{_applicationSettings.AzureStorage.BaseUrl}/content/articles/{request.Id}/text.json";
-        var textAsString = await GetJsonData(textRequestUrl, cancellationToken);
+        var textAsString = await GetArticleTextContent(request.Id, cancellationToken);
         var textAsObject = _jsonSerializer.Deserialize<List<Section>>(textAsString);
-
+        
         var getArticleLikes = await _databaseContext.ArticleLikes
             .Where(likes => likes.ArticleId == request.Id)
             .WhereIfElse(isAnonymousUser,
@@ -99,19 +93,16 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         return currentArticle.First();
     }
 
-    private async Task<string> GetJsonData(string url, CancellationToken cancellationToken)
+    private async Task<string> GetArticleTextContent(Guid articleId, CancellationToken cancellationToken)
     {
-        var configuration = new Configuration { Url = url, Method = "GET" };
-        var results = await _httpClientService.Execute(configuration, cancellationToken);
-
-        if (results.StatusCode == HttpStatusCode.NotFound)
+        var azureBlob = _azureBlobStorageFactory.Create();
+        var streamContent = await azureBlob.OpenRead($"content/articles/{articleId}/text.json", cancellationToken);
+        if (streamContent is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
-            
-        if (results.StatusCode != HttpStatusCode.OK)
-            throw new Exception(ErrorCodes.ERROR_UNEXPECTED);
+        
+        var memoryStream = new MemoryStream();
+        await streamContent.Content.CopyToAsync(memoryStream, cancellationToken);
 
-        return results.Content == null 
-            ? string.Empty 
-            : Encoding.Default.GetString(results.Content);
+        return Encoding.Default.GetString(memoryStream.ToArray());
     }
 }
