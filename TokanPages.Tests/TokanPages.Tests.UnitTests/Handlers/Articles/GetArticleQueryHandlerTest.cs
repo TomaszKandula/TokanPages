@@ -4,19 +4,23 @@ using Moq;
 using Xunit;
 using FluentAssertions;
 using System;
-using System.Net;
+using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Net.Http.Headers;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
+using Backend.Shared.Resources;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.JsonSerializer;
 using Backend.Cqrs.Handlers.Queries.Articles;
-using TokanPages.Services.HttpClientService;
-using TokanPages.Services.HttpClientService.Models;
+using TokanPages.Services.AzureStorageService;
+using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Backend.Shared.Dto.Content.Common;
+using TokanPages.Services.AzureStorageService.Models;
 
 public class GetArticleQueryHandlerTest : TestBase
 {
@@ -80,31 +84,28 @@ public class GetArticleQueryHandlerTest : TestBase
                 IpAddress = IpAddressSecond
             }
         };
-            
+
         await databaseContext.ArticleLikes.AddRangeAsync(likes);
         await databaseContext.SaveChangesAsync();
 
         var mockedUserProvider = new Mock<IUserService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
-        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedApplicationSettings = MockApplicationSettings();
-            
+        var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
+        var mockedAzureBlob = new Mock<IAzureBlobStorage>();
+
+        var mockedArticleText = GetArticleSectionsAsJson();
+        mockedAzureBlob
+            .Setup(storage => storage.OpenRead(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(mockedArticleText);
+
+        mockedAzureStorage
+            .Setup(factory => factory.Create())
+            .Returns(mockedAzureBlob.Object);
+
         mockedUserProvider
             .Setup(provider => provider.GetRequestIpAddress())
             .Returns(IpAddressFirst);
-
-        var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-        var mockedResults = new ExecutionResult
-        {
-            StatusCode = HttpStatusCode.OK,
-            ContentType = new MediaTypeHeaderValue("text/plain"),
-            Content = mockedPayLoad
-        };
-
-        mockedCustomHttpClient
-            .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(mockedResults);
 
         var getArticleQuery = new GetArticleQuery { Id = articles.Id };
         var getArticleQueryHandler = new GetArticleQueryHandler(
@@ -112,8 +113,7 @@ public class GetArticleQueryHandlerTest : TestBase
             mockedLogger.Object,
             mockedUserProvider.Object, 
             mockedJsonSerializer.Object, 
-            mockedCustomHttpClient.Object, 
-            mockedApplicationSettings.Object);
+            mockedAzureStorage.Object);
 
         // Act
         var result = await getArticleQueryHandler.Handle(getArticleQuery, CancellationToken.None);
@@ -174,37 +174,66 @@ public class GetArticleQueryHandlerTest : TestBase
 
         var mockedUserProvider = new Mock<IUserService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
-        var mockedCustomHttpClient = new Mock<IHttpClientService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedApplicationSettings = MockApplicationSettings();
+        var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
+        var mockedAzureBlob = new Mock<IAzureBlobStorage>();
 
+        mockedAzureBlob
+            .Setup(storage => storage.OpenRead(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync((StorageStreamContent)null);
+
+        mockedAzureStorage
+            .Setup(factory => factory.Create())
+            .Returns(mockedAzureBlob.Object);
+        
         mockedUserProvider
             .Setup(provider => provider.GetRequestIpAddress())
             .Returns(IpAddressFirst);
 
-        var mockedPayLoad = DataUtilityService.GetRandomStream().ToArray();
-        var mockedResults = new ExecutionResult
-        {
-            StatusCode = HttpStatusCode.OK,
-            ContentType = new MediaTypeHeaderValue("text/plain"),
-            Content = mockedPayLoad
-        };
-
-        mockedCustomHttpClient
-            .Setup(client => client.Execute(It.IsAny<Configuration>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(mockedResults);
-            
         var getArticleQueryHandler = new GetArticleQueryHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedUserProvider.Object, 
             mockedJsonSerializer.Object, 
-            mockedCustomHttpClient.Object, 
-            mockedApplicationSettings.Object);
+            mockedAzureStorage.Object);
 
         // Act
         // Assert
-        await Assert.ThrowsAsync<BusinessException>(() 
+        var result = await Assert.ThrowsAsync<BusinessException>(()
             => getArticleQueryHandler.Handle(getArticleQuery, CancellationToken.None));
+
+        result.ErrorCode.Should().Contain(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS));
+    }
+
+    private StorageStreamContent GetArticleSectionsAsJson()
+    {
+        var sections = new List<Section>
+        {
+            new()
+            {
+                Id = Guid.NewGuid(),
+                Type = DataUtilityService.GetRandomString(useAlphabetOnly: true),
+                Value = DataUtilityService.GetRandomString(useAlphabetOnly: true),
+                Prop = DataUtilityService.GetRandomString(useAlphabetOnly: true),
+                Text = DataUtilityService.GetRandomString(useAlphabetOnly: true)
+            },
+            new()
+            {
+                Id = Guid.NewGuid(),
+                Type = DataUtilityService.GetRandomString(useAlphabetOnly: true),
+                Value = DataUtilityService.GetRandomString(useAlphabetOnly: true),
+                Prop = DataUtilityService.GetRandomString(useAlphabetOnly: true),
+                Text = DataUtilityService.GetRandomString(useAlphabetOnly: true)
+            }
+        };
+
+        var serialized = JsonConvert.SerializeObject(sections);
+        var bytes = Encoding.Default.GetBytes(serialized);
+        
+        return new StorageStreamContent
+        {
+            Content = new MemoryStream(bytes),
+            ContentType = "application/json"
+        };
     }
 }
