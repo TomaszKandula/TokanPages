@@ -24,6 +24,11 @@ public class UsersController : ApiBaseController
     public UsersController(IMediator mediator, IUsersCache usersCache) 
         : base(mediator) => _usersCache = usersCache;
 
+    [HttpGet]
+    [ProducesResponseType(typeof(GetUserVisitCountQueryResult), StatusCodes.Status200OK)]
+    public async Task<GetUserVisitCountQueryResult> GetVisitCount()
+        => await Mediator.Send(new GetUserVisitCountQuery());
+
     [HttpPost]
     [ProducesResponseType(typeof(AuthenticateUserCommandResult), StatusCodes.Status200OK)]
     public async Task<AuthenticateUserCommandResult> AuthenticateUser([FromBody] AuthenticateUserDto payLoad)
