@@ -60,6 +60,20 @@ public sealed class UserService : IUserService
             : remoteIpAddress.Split(':')[0];
     }
 
+    public async Task LogHttpRequest(string handlerName)
+    {
+        var ipAddress = GetRequestIpAddress();
+        var httpRequest = new HttpRequests
+        {
+            SourceAddress = ipAddress,
+            RequestedAt = _dateTimeService.Now,
+            RequestedHandlerName = handlerName
+        };
+
+        await _databaseContext.HttpRequests.AddAsync(httpRequest);
+        await _databaseContext.SaveChangesAsync();
+    }
+
     public string GetRefreshTokenCookie(string cookieName)
     {
         if (string.IsNullOrEmpty(cookieName))

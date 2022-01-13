@@ -133,6 +133,7 @@ public static class Dependencies
 		services.AddMediatR(options => options.AsScoped(), 
 			typeof(Backend.Cqrs.RequestHandler<IRequest, Unit>).GetTypeInfo().Assembly);
 
+		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(HttpRequestBehaviour<,>));
 		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(TokenCheckBehaviour<,>));
 		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
 		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
