@@ -13,6 +13,8 @@ public interface IUserService
 {
     string GetRequestIpAddress();
 
+    Task LogHttpRequest(string handlerName);
+
     string GetRefreshTokenCookie(string cookieName);
 
     void SetRefreshTokenCookie(string refreshToken, int expiresIn, bool isHttpOnly = true, 
