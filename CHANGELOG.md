@@ -1,3 +1,10 @@
+# [0.41.0](https://github.com/TomaszKandula/TokanPages/compare/v0.40.0...v0.41.0) (2022-01-15)
+
+
+### Features
+
+* add root path response ([d3c8817](https://github.com/TomaszKandula/TokanPages/commit/d3c88178b0dee4ae19b64da69a30ef6c3ec13df2))
+
 # [0.40.0](https://github.com/TomaszKandula/TokanPages/compare/v0.39.0...v0.40.0) (2022-01-15)
 
 
