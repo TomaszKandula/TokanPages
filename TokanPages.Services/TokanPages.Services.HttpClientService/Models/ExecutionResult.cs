@@ -5,7 +5,7 @@ using System.Net;
 using System.Diagnostics.CodeAnalysis;
 
 [ExcludeFromCodeCoverage]
-public class Results : HttpContentResult
+public class ExecutionResult : HttpContentResult
 {
     public HttpStatusCode StatusCode { get; set; }
 }
