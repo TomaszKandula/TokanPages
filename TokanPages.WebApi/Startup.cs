@@ -2,6 +2,7 @@ namespace TokanPages.WebApi;
 
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -60,7 +61,11 @@ public class Startup
 
         builder.UseAuthentication();
         builder.UseAuthorization();
-        builder.UseEndpoints(endpoints => endpoints.MapControllers());
+        builder.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+            endpoints.MapGet("/", context => context.Response.WriteAsync("Tokan Pages API"));
+        });
 
         builder.SetupSwaggerUi(_configuration, _environment);
     }
