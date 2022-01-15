@@ -1,3 +1,21 @@
+# [0.40.0](https://github.com/TomaszKandula/TokanPages/compare/v0.39.0...v0.40.0) (2022-01-15)
+
+
+### Bug Fixes
+
+* add missing default values ([4dd89d6](https://github.com/TomaszKandula/TokanPages/commit/4dd89d69a2fcc23d58d5b63ce8ab89e189872e8e))
+
+
+### Features
+
+* add controller for getting visit count ([8a30411](https://github.com/TomaszKandula/TokanPages/commit/8a3041193e69b3ea7c77e740e076801831d2fb98))
+* add cqrs for getting visit count (unique ip addresses) ([2fffcef](https://github.com/TomaszKandula/TokanPages/commit/2fffcef1471da7b9b8118f5341bb1004a63ec4c8))
+* add http request to the pipeline, log all incoming requests to handlers ([dc64fd3](https://github.com/TomaszKandula/TokanPages/commit/dc64fd3d4ea3d858626acd2c777affe01f21c039))
+* add HttpRequests database table ([3bfc94c](https://github.com/TomaszKandula/TokanPages/commit/3bfc94c06547fc598016eba061f7d44e4d69fc1b))
+* add method to log http request ([fe67742](https://github.com/TomaszKandula/TokanPages/commit/fe677427129e15e462c7369ef7bb8e0e5b29e4d0))
+* add query strings parameters, improve implementation ([8d4b10f](https://github.com/TomaszKandula/TokanPages/commit/8d4b10fa91acc4c56d73cde79df9a88f30aabef0))
+* change implementation to use AzureStorage service, update tests ([8fbbc87](https://github.com/TomaszKandula/TokanPages/commit/8fbbc871b22fe8a471483b5fcc8ac8f0c768316d))
+
 # [0.39.0](https://github.com/TomaszKandula/TokanPages/compare/v0.38.0...v0.39.0) (2022-01-09)
 
 
