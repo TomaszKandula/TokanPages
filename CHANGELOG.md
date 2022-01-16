@@ -1,3 +1,10 @@
+## [0.41.1](https://github.com/TomaszKandula/TokanPages/compare/v0.41.0...v0.41.1) (2022-01-16)
+
+
+### Bug Fixes
+
+* remove incorrect path setup ([4c6a623](https://github.com/TomaszKandula/TokanPages/commit/4c6a6236f2a22a69ec0fba6eca61336444c7c8ab))
+
 # [0.41.0](https://github.com/TomaszKandula/TokanPages/compare/v0.40.0...v0.41.0) (2022-01-15)
 
 
