@@ -5,7 +5,7 @@ exports[`Test user avatar component. Should correctly render user avatar compone
   <WithStyles(ForwardRef(Avatar))
     alt=""
     className="makeStyles-avatarLarge-2"
-    src="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/avatars/test-avatar.png"
+    src="test-avatar.png"
   />
 </Fragment>
 `;
