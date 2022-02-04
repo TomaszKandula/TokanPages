@@ -1,3 +1,10 @@
+# [0.42.0](https://github.com/TomaszKandula/TokanPages/compare/v0.41.1...v0.42.0) (2022-02-04)
+
+
+### Features
+
+* remove Sentry from BE/FE projects ([f05b8ff](https://github.com/TomaszKandula/TokanPages/commit/f05b8ff0b69e7e2dcd9187343db209d77e4605e9))
+
 ## [0.41.1](https://github.com/TomaszKandula/TokanPages/compare/v0.41.0...v0.41.1) (2022-01-16)
 
 
