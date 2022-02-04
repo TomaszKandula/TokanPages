@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Backend.Database.Initializer;
-using Sentry;
 using Serilog;
 using Serilog.Events;
 
@@ -40,16 +39,7 @@ public static class Program
                     rollOnFileSizeLimit: true,
                     retainedFileCountLimit: null,
                     shared: false
-                )
-                .WriteTo.Sentry(options =>
-                {
-                    options.SendDefaultPii = true;
-                    options.MinimumBreadcrumbLevel = LogEventLevel.Debug;
-                    options.MinimumEventLevel = LogEventLevel.Warning;
-                    options.AttachStacktrace = true;
-                    options.Debug = true;
-                    options.DiagnosticLevel = SentryLevel.Error;
-                }).CreateLogger();
+                ).CreateLogger();
 
             Log.Information("Starting WebHost...");
             Log.Information("Environment: {Environment}", EnvironmentValue);
@@ -86,8 +76,7 @@ public static class Program
     {
         return WebHost.CreateDefaultBuilder(args)
             .UseStartup<Startup>()
-            .UseSerilog()
-            .UseSentry();
+            .UseSerilog();
     }
 
     private static IWebHost MigrateDatabase(this IWebHost webHost)
