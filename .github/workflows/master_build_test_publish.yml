@@ -70,7 +70,6 @@ jobs:
         --build-arg "APP_DATE_TIME=$BUILD_TIMESTAMP" \
         --build-arg "APP_FRONTEND=${{ secrets.APP_FRONTEND_PRODUCTION }}" \
         --build-arg "APP_BACKEND=${{ secrets.APP_BACKEND_PRODUCTION }}" \
-        --build-arg "APP_SENTRY=${{ secrets.APP_SENTRY_PRODUCTION }}" \
         --build-arg "ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS_PRODUCTION }}" \
         -t ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:frontend-production-${{ github.sha }}
 
@@ -119,7 +118,6 @@ jobs:
         AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL_STAGE }}"
         AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME_STAGE }}"
         AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING_STAGE }}"
-        Sentry.Dsn: "${{ secrets.SENTRY__DSN_STAGE }}"
         ConnectionStrings.DbConnect: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_STAGE }}"
         ConnectionStrings.DbConnectTest: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_TEST }}"
         EmailSender.PrivateKey: "${{ secrets.EMAILSENDER__PRIVATEKEY_STAGE }}"
