@@ -57,7 +57,6 @@ jobs:
         AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL_TEST }}"
         AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME_TEST }}"
         AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING_TEST }}"
-        Sentry.Dsn: "${{ secrets.SENTRY__DSN_STAGE }}"
         ConnectionStrings.DbConnect: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_STAGE }}"
         ConnectionStrings.DbConnectTest: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_TEST }}"
         EmailSender.PrivateKey: "${{ secrets.EMAILSENDER__PRIVATEKEY_STAGE }}"
