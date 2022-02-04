@@ -90,7 +90,7 @@ TokanPages is the repository that holds my web page to share my programming inte
 
 1. React/Redux with TypeScript.
 1. Material-UI.
-1. Jest.
+1. JEST.
 1. Axios.
 1. AOS.
 1. Validate.js.
@@ -109,13 +109,13 @@ Project is dockerized and deployed via GitHub Actions to Azure App Service (main
 
 ### Back-end
 
-1. WebApi (NET 5, C#).
+1. WebApi (NET 6, C#).
 1. Azure SQL Database (with EF Core).
 1. Azure Blob Storage.
+1. Azure Redis Cache.
 1. MediatR library.
 1. CQRS pattern with no event sourcing.
 1. FluentValidation.
-1. Sentry.
 1. SeriLog.
 1. Swagger-UI.
 1. Polly.
@@ -138,7 +138,7 @@ _TokanPages.ClientApp_
 
 React application runs on NGINX in Docker. It is deployed on the main domain.
 
-Unit tests for the frontend are provided; use command `yarn test` to run all tests.
+Unit tests for the frontend are provided; use command `yarn app-test` to run all tests.
 
 _TokanPages.Backend_
 
@@ -148,40 +148,49 @@ _TokanPages.Backend_
 | Backend.Cqrs | Handlers, mappers and related services |
 | Backend.Database | Database context |
 | Backend.Domain | Domain entities, contracts and enums |
-| Backend.Identity | Identity service with JWT |
 | Backend.Shared | Shared models and resources |
 | Backend.Storage | Azure Storage service |
 
-_TokanPages.Backend.Tests_
+_TokanPages.Services_
 
 | Folder | Description |
 |--------|-------------|
-| Backend.Tests | Handlers and validators tests |
-
-Tests covers handlers and validators. All dependencies are mocked. For mocking [Moq](https://github.com/moq/moq4) has been used.
+| Services.AzureStorageService | Application remote storage |
+| Services.BehaviourService | MediatR pipelines |
+| Services.CipheringService | Password hashing |
+| Services.EmailSenderService | Email handling |
+| Services.HttpClientService | Custom HTTP client |
+| Services.UserService | User provider |
+| Services.WebTokenService | JWT handling |
 
 _TokanPages.WebApi_
 
 | Folder | Description |
 |--------|-------------|
+| Properties | Lunch settings |
 | Configuration | Application dependencies |
 | Controllers | WebApi |
 | Middleware | Custom middleware |
-| Properties | Lunch settings |
+| Services | WebApi Services |
 
-_TokanPages.WebApi.Tests_
+WebApi services currently holds only data caching (Azure Redis Cache) for all query actions (http GET method).
+
+_TokanPages.Tests_
 
 | Folder | Description |
 |--------|-------------|
-| WebApi.Tests | Http client tests |
+| IntegrationTests | Http client tests |
+| UnitTests | Handlers and validators tests |
 
-Tests focuses on testing HTTP client responses, dependencies and theirs configuration.
+Unit tests covers handlers and validators. All dependencies are mocked. For mocking [Moq](https://github.com/moq/moq4) has been used.
+
+Integration tests focuses on testing HTTP client responses, dependencies and theirs configuration.
 
 To run backend tests, use command `dotnet test`.
 
-## WebApi / Backend testing
+## Testing
 
-### Backend tests setup (unit tests)
+### Backend/Services tests setup (unit tests)
 
 Unit tests use SQLite in-memory database (a lightweight database that supports RDBMS). Each test uses a separate database instance, and therefore tables must be populated before a test can be run. Database instances are provided via the factory:
 
@@ -248,6 +257,7 @@ public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<T
     public string WebSecret { get; private set; }
     public string Issuer { get; private set; }
     public string Audience { get; private set; }
+    public string Connection { get; private set; }
         
     protected override IWebHostBuilder CreateWebHostBuilder()
     {
@@ -257,7 +267,7 @@ public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<T
                 var startupAssembly = typeof(TTestStartup).GetTypeInfo().Assembly;
                 var testConfig = new ConfigurationBuilder()
                     .AddJsonFile("appsettings.Staging.json", optional: true, reloadOnChange: true)
-                    .AddUserSecrets(startupAssembly)
+                    .AddUserSecrets(startupAssembly, true)
                     .AddEnvironmentVariables()
                     .Build();
                 
@@ -267,6 +277,7 @@ public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<T
                 Issuer = config.GetValue<string>("IdentityServer:Issuer");
                 Audience = config.GetValue<string>("IdentityServer:Audience");
                 WebSecret = config.GetValue<string>("IdentityServer:WebSecret");
+                Connection = config.GetValue<string>("ConnectionStrings:DbConnectTest");
             })
             .UseStartup<TTestStartup>()
             .UseTestServer();
@@ -286,10 +297,10 @@ Note: before integration tests can run, the test database must be already up and
 
 The project uses a CQRS architectural pattern with no event sourcing (changes to the application state are **not** stored as a sequence of events). I used the MediatR library (mediator pattern) with the handler template.
 
-The file `TemplateHandler.cs` presented below allow easy registration (mapping the handlers).
+The file `RequestHandler.cs` presented below allow easy registration (mapping the handlers).
 
 ```csharp
-public abstract class TemplateHandler<TRequest, TResult> : IRequestHandler<TRequest, TResult> where TRequest : IRequest<TResult>
+public abstract class RequestHandler<TRequest, TResult> : IRequestHandler<TRequest, TResult> where TRequest : IRequest<TResult>
 {
     protected readonly DatabaseContext DatabaseContext;
     protected readonly ILoggerService LoggerService;
@@ -309,13 +320,17 @@ To configure it, in `Dependencies.cs` (registered at startup), we invoke:
 ```csharp
 private static void SetupMediatR(IServiceCollection services) 
 {
-    services.AddMediatR(options => options.AsScoped(), typeof(TemplateHandler<IRequest, Unit>).GetTypeInfo().Assembly);
+    services.AddMediatR(options => options.AsScoped(), 
+        typeof(Backend.Cqrs.RequestHandler<IRequest, Unit>).GetTypeInfo().Assembly);
+
+    services.AddScoped(typeof(IPipelineBehavior<,>), typeof(HttpRequestBehaviour<,>));
+    services.AddScoped(typeof(IPipelineBehavior<,>), typeof(TokenCheckBehaviour<,>));
     services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
     services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
 }
 ```
 
-The two additional lines register both `LoggingBehaviour` and `FluentValidationBehavior` as scoped services. Thus we not only log event before and after handler execution, but also we perform validation of payload before executing the handler.
+We register behaviours as scoped services. Depending on needs, we can register events before/after handler execution. Example being:
 
 `LoggingBehaviour.cs`:
 
@@ -329,7 +344,7 @@ public async Task<TResponse> Handle(TRequest request, CancellationToken cancella
 }
 ```
 
-Logging is part of the middleware pipeline, and as said, we log info before and after handler execution.
+Logging is part of the middleware pipeline, we log info before and after handler execution.
 
 `FluentValidationBehavior.cs`:
 
@@ -348,7 +363,7 @@ public Task<TResponse> Handle(TRequest request, CancellationToken cancellationTo
 }
 ```
 
-Validator is registered within the middleware pipeline, and if it exists (not null), then we execute it and raise an exception if invalid, otherwise we proceed. Note: `ValidationException.cs` inherits from `BusinessException.cs` which inherits form `System.Exception`.
+Validator is registered within the middleware pipeline, and if it exists (not null), then we execute it and raise an exception if invalid, otherwise we proceed. Note: `ValidationException.cs` inherits from `BusinessException.cs` which inherits form `System.Exception` (I try not to use `System.Exception` directly).
 
 Such setup allow to have very thin controllers, example endpoint:
 
@@ -367,7 +382,7 @@ public class GetAllArticlesQueryHandler : TemplateHandler<GetAllArticlesQuery, I
 
     public override async Task<IEnumerable<GetAllArticlesQueryResult>> Handle(GetAllArticlesQuery request, CancellationToken cancellationToken) 
     {
-        var articles = await DatabaseContext.Articles
+        return await DatabaseContext.Articles
             .AsNoTracking()
             .Where(articles => articles.IsPublished == request.IsPublished)
             .Select(articles => new GetAllArticlesQueryResult 
@@ -382,8 +397,6 @@ public class GetAllArticlesQueryHandler : TemplateHandler<GetAllArticlesQuery, I
             })
             .OrderByDescending(articles => articles.CreatedAt)
             .ToListAsync(cancellationToken);
-
-        return articles; 
     }
 }
 ```
@@ -393,58 +406,54 @@ public class GetAllArticlesQueryHandler : TemplateHandler<GetAllArticlesQuery, I
 After adding custom exception handler to the middleware pipeline:
 
 ```csharp
-builder.UseExceptionHandler(ExceptionHandler.Handle);
+builder.UseMiddleware<Exceptions>();
 ```
 
-It will catch exceptions and sets HTTP status: bad request (400) or internal server error (500). Thus, if we throw an error (business or validation) manually in the handler, the response is appropriately set up.
+It will catch exceptions and sets HTTP status. Thus, if we throw an error (business or validation, etc.) manually in the handler, the response is appropriately set up.
 
 ```csharp
-public class CustomException
+public async Task InvokeAsync(HttpContext httpContext)
 {
-    private readonly RequestDelegate _requestDelegate;
-        
-    public CustomException(RequestDelegate requestDelegate) 
-        => _requestDelegate = requestDelegate;
-        
-    public async Task Invoke(HttpContext httpContext)
+    try
     {
-        try
-        {
-            await _requestDelegate.Invoke(httpContext);
-        }
-        catch (ValidationException validationException)
-        {
-            var applicationError = new ApplicationError(validationException.ErrorCode, validationException.Message, validationException.ValidationResult);
-            await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.BadRequest).ConfigureAwait(false);
-        }
-        catch (BusinessException businessException)
-        {
-            var innerMessage = businessException.InnerException?.Message;
-            var applicationError = new ApplicationError(businessException.ErrorCode, businessException.Message, innerMessage);
-            await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.UnprocessableEntity).ConfigureAwait(false);
-        }
-        catch (Exception exception)
-        {
-            var innerMessage = exception.InnerException?.Message;
-            var applicationError = new ApplicationError(nameof(ErrorCodes.ERROR_UNEXPECTED), exception.Message, innerMessage);
-            await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.InternalServerError).ConfigureAwait(false);
-        }
+        await _requestDelegate(httpContext);
     }
-
-    private static Task WriteErrorResponse(HttpContext httpContext, ApplicationError applicationError, HttpStatusCode statusCode)
+    catch (ValidationException validationException)
     {
-        var result = JsonConvert.SerializeObject(applicationError);
-        httpContext.Response.ContentType = "application/json";
-        httpContext.Response.StatusCode = (int)statusCode;
-        return httpContext.Response.WriteAsync(result);
+        var applicationError = new ApplicationError(validationException.ErrorCode, validationException.Message, validationException.ValidationResult);
+        await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.BadRequest).ConfigureAwait(false);
+    }
+    catch (AuthorizationException authenticationException)
+    {
+        var innerMessage = authenticationException.InnerException?.Message;
+        var applicationError = new ApplicationError(authenticationException.ErrorCode, authenticationException.Message, innerMessage);
+        await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.Unauthorized).ConfigureAwait(false);
+    }
+    catch (AccessException authorizationException)
+    {
+        var innerMessage = authorizationException.InnerException?.Message;
+        var applicationError = new ApplicationError(authorizationException.ErrorCode, authorizationException.Message, innerMessage);
+        await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.Forbidden).ConfigureAwait(false);
+    }
+    catch (BusinessException businessException)
+    {
+        var innerMessage = businessException.InnerException?.Message;
+        var applicationError = new ApplicationError(businessException.ErrorCode, businessException.Message, innerMessage);
+        await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.UnprocessableEntity).ConfigureAwait(false);
+    }
+    catch (Exception exception)
+    {
+        var innerMessage = exception.InnerException?.Message;
+        var applicationError = new ApplicationError(nameof(ErrorCodes.ERROR_UNEXPECTED), exception.Message, innerMessage);
+        await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.InternalServerError).ConfigureAwait(false);
     }
 }
 ```
 
-Please note that handlers usually contains manual business exceptions while having validation exceptions very rarely as they are typically raised by the `FluentValidation` before handler is invoked, an example being:
+Please note that handlers usually contain manual exceptions other than validation exceptions. They rarely have validation exceptions, typically raised by the `FluentValidation` before the handler is invoked, an example being:
 
 ```csharp
-public class RemoveArticleCommandHandler : TemplateHandler<RemoveArticleCommand, Unit>
+public class RemoveArticleCommandHandler : RequestHandler<RemoveArticleCommand, Unit>
 {
     public RemoveArticleCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
@@ -464,7 +473,7 @@ public class RemoveArticleCommandHandler : TemplateHandler<RemoveArticleCommand,
 }
 ```
 
-These business exceptions (`ARTICLE_DOES_NOT_EXISTS`) shall never be an validation error (invoked by `FluentValidation`). Furthermore, it is unlikely that we would want to perform database requests during validation. The validator is responsible for ensuring that input data is valid (not for checking available articles etc.).
+These business exceptions (`ARTICLE_DOES_NOT_EXISTS`) shall never be an validation error. Furthermore, it is unlikely that we would want to perform database requests during validation. The validator is responsible for ensuring that input data is valid (not for checking available articles etc.).
 
 ## Setting-up the database
 
@@ -490,7 +499,7 @@ Go to Package Manager Console (PMC) to execute following command:
 
 `Update-Database -StartupProject TokanPages -Project TokanPages.Backend.Database -Context DatabaseContext`
 
-EF Core will create all the necessary tables and seed test data. More on migrations here: [TokanPages.Backend.Database](https://github.com/TomaszKandula/TokanPages/tree/dev/Backend/TokanPages.Backend.Database).
+EF Core will create all the necessary tables and seed test data. More on migrations here: [TokanPages.Backend.Database](https://github.com/TomaszKandula/TokanPages/tree/master/TokanPages.Backend/TokanPages.Backend.Database).
 
 ## Client-App
 
@@ -502,7 +511,6 @@ BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
 ALLOWED_ORIGINS="http://localnode:5000/;"
 APP_FRONTEND="http://localhost:3000"
 APP_BACKEND="http://localhost:5000"
-APP_SENTRY="<dsn>"
 SONAR_TOKEN="<token>"
 SONAR_KEY="<key>"
 SONAR_HOST="<host>"
@@ -512,7 +520,6 @@ docker build . \
   --build-arg "APP_DATE_TIME=$BUILD_TIMESTAMP" \
   --build-arg "APP_FRONTEND=$APP_FRONTEND" \
   --build-arg "APP_BACKEND=$APP_BACKEND" \
-  --build-arg "APP_SENTRY=$APP_SENTRY" \
   --build-arg "ALLOWED_ORIGINS=$ALLOWED_ORIGINS" \
   --build-arg "SONAR_TOKEN=$SONAR_TOKEN" \
   --build-arg "SONAR_KEY=$SONAR_KEY" \
@@ -543,7 +550,6 @@ ARG APP_VERSION
 ARG APP_DATE_TIME
 ARG APP_FRONTEND
 ARG APP_BACKEND
-ARG APP_SENTRY
 ARG SONAR_TOKEN
 ARG SONAR_KEY
 ARG SONAR_HOST
@@ -552,7 +558,6 @@ ENV REACT_APP_VERSION_NUMBER=${APP_VERSION}
 ENV REACT_APP_VERSION_DATE_TIME=${APP_DATE_TIME}
 ENV REACT_APP_FRONTEND=${APP_FRONTEND}
 ENV REACT_APP_BACKEND=${APP_BACKEND}
-ENV REACT_APP_SENTRY=${APP_SENTRY}
 
 RUN if [ !-z $SONAR_TOKEN ] || [ !-z $SONAR_KEY ] || [ !-z $SONAR_HOST ]; \
 then yarn install && yarn app-test --ci --coverage && yarn build; \
