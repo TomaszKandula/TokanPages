@@ -7,7 +7,7 @@ using Backend.Core.Utilities.LoggerService;
 using MediatR;
 
 [ExcludeFromCodeCoverage]
-public class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
+public class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {
     private readonly ILoggerService _loggerService;
 

@@ -7,7 +7,7 @@ using UserService;
 using MediatR;
 
 [ExcludeFromCodeCoverage]
-public class HttpRequestBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
+public class HttpRequestBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {
     private readonly IUserService _userService;
 
