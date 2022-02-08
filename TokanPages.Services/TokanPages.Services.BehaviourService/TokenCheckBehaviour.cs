@@ -12,7 +12,7 @@ using Backend.Core.Utilities.LoggerService;
 using MediatR;
 
 [ExcludeFromCodeCoverage]
-public class TokenCheckBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
+public class TokenCheckBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {
     private readonly ILoggerService _logger;
 

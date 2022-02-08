@@ -7,10 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="10.3.6" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
       <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Cqrs\TokanPages.Backend.Cqrs.csproj" />
       <ProjectReference Include="..\TokanPages.Services.UserService\TokanPages.Services.UserService.csproj" />
