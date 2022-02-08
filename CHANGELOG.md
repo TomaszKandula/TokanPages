@@ -1,3 +1,10 @@
+# [0.43.0](https://github.com/TomaszKandula/TokanPages/compare/v0.42.0...v0.43.0) (2022-02-08)
+
+
+### Features
+
+* upgrade libraries ([f9ba542](https://github.com/TomaszKandula/TokanPages/commit/f9ba54284a131b8698522025a0c867609a7fb0cc))
+
 # [0.42.0](https://github.com/TomaszKandula/TokanPages/compare/v0.41.1...v0.42.0) (2022-02-04)
 
 
