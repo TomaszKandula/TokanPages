@@ -1,3 +1,10 @@
+# [0.44.0](https://github.com/TomaszKandula/TokanPages/compare/v0.43.0...v0.44.0) (2022-02-15)
+
+
+### Features
+
+* remove metrics controller and related code/tests ([8ac24b5](https://github.com/TomaszKandula/TokanPages/commit/8ac24b5e3ce3b51899ece3d742e0a208f1a6d495))
+
 # [0.43.0](https://github.com/TomaszKandula/TokanPages/compare/v0.42.0...v0.43.0) (2022-02-08)
 
 
