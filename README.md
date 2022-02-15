@@ -105,7 +105,7 @@ The client app uses React Hooks. Tests are provided using JEST, but there is no 
 
 Project is dockerized and deployed via GitHub Actions to Azure App Service (main domain) that uses Container Registry. Web Server of choice is NGINX.
 
-<img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/Metrics/Quality?Project=tokanpages-frontend&kill_cache=1">
+<img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/Metrics/Quality?Project=tokanpages-frontend&kill_cache=1">
 
 ### Back-end
 
@@ -124,7 +124,7 @@ Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAsse
 
 Project is dockerized and deployed via GitHub Actions to Azure App Service that uses Container Registry.
 
-<img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/Metrics/Quality?Project=tokanpages-backend&kill_cache=1">
+<img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/Metrics/Quality?Project=tokanpages-backend&kill_cache=1">
 
 ## Project structure
 
