@@ -1,4 +1,4 @@
-namespace TokanPages.WebApi.Controllers.Proxy;
+namespace TokanPages.WebApi.Controllers.Api;
 
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;

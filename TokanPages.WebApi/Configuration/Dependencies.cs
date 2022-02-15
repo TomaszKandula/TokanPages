@@ -31,7 +31,6 @@ using Services.Caching;
 using Services.Caching.Users;
 using Services.Caching.Assets;
 using Services.Caching.Content;
-using Services.Caching.Metrics;
 using Services.Caching.Articles;
 using Services.Caching.Subscribers;
 using TokanPages.Services.UserService;
@@ -112,7 +111,6 @@ public static class Dependencies
 		services.AddScoped<IArticlesCache, ArticlesCache>();
 		services.AddScoped<IAssetsCache, AssetsCache>();
 		services.AddScoped<IContentCache, ContentCache>();
-		services.AddScoped<IMetricsCache, MetricsCache>();
 		services.AddScoped<ISubscribersCache, SubscribersCache>();
 		services.AddScoped<IUsersCache, UsersCache>();
 
