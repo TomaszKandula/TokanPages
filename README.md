@@ -15,72 +15,72 @@ TokanPages is the repository that holds my web page to share my programming inte
 ### Client-App
 
 <p>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=ncloc&kill_cache=1">
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=ncloc&kill_cache=1">
   </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=code_smells&kill_cache=1">
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=code_smells&kill_cache=1">
   </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=bugs&kill_cache=1">
-  </a>
-</p>
-<p>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=sqale_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=security_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=reliability_rating&kill_cache=1">
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=bugs&kill_cache=1">
   </a>
 </p>
 <p>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend-staging.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=sqale_index&kill_cache=1">
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=sqale_rating&kill_cache=1">
   </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=duplicated_lines_density&kill_cache=1">
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=security_rating&kill_cache=1">
   </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-frontend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=coverage&kill_cache=1">
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=reliability_rating&kill_cache=1">
+  </a>
+</p>
+<p>
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=sqale_index&kill_cache=1">
+  </a>
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=duplicated_lines_density&kill_cache=1">
+  </a>
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=coverage&kill_cache=1">
   </a>
 </p>
 
 ### WebApi / Backend
 
 <p>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=ncloc&kill_cache=1">
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=ncloc&kill_cache=1">
   </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=code_smells&kill_cache=1">
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=code_smells&kill_cache=1">
   </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=bugs&kill_cache=1">
-  </a>
-</p>
-<p>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=sqale_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=security_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=reliability_rating&kill_cache=1">
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=bugs&kill_cache=1">
   </a>
 </p>
 <p>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=sqale_index&kill_cache=1">
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=sqale_rating&kill_cache=1">
   </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=duplicated_lines_density&kill_cache=1">
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=security_rating&kill_cache=1">
   </a>
-  <a href="https://tokansonar.azurewebsites.net/dashboard?id=tokanpages-backend">
-    <img alt="" src="https://tokanpages-backend.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=coverage&kill_cache=1">
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=reliability_rating&kill_cache=1">
+  </a>
+</p>
+<p>
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=sqale_index&kill_cache=1">
+  </a>
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=duplicated_lines_density&kill_cache=1">
+  </a>
+  <a href="https://tokansonar-app.azurewebsites.net/about">
+    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=coverage&kill_cache=1">
   </a>
 </p>
 
