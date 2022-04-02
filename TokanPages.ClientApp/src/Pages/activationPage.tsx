@@ -26,16 +26,15 @@ const ActivationPage = (): JSX.Element =>
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
 
-    const getContent = React.useCallback(() =>
+    React.useEffect(() => 
     {
         dispatch(ActivateAccountContent.getActivateAccountContent());
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
-    }, [ dispatch ]);
+    }, 
+    [ dispatch ]);
 
-    React.useEffect(() => getContent(), [ getContent ]);
-
-    const ErrorMessageOnId = () => 
+    const ErrorMessage = () => 
     {
         // TODO: improve UI for message
         return (
@@ -53,7 +52,7 @@ const ActivationPage = (): JSX.Element =>
             <Container>
                 {id 
                     ? <ActivateAccount id={id} content={activation?.content} isLoading={activation?.isLoading} /> 
-                    : <ErrorMessageOnId />
+                    : <ErrorMessage />
                 }
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />

@@ -33,15 +33,15 @@ const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
     const showWarning = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(WarningMessage(SIGNIN_FORM, text))), [ dispatch ]);
     const signinUser = React.useCallback((payload: IAuthenticateUserDto) => dispatch(ActionCreators.signin(payload)), [ dispatch ]);
     const clearUser = React.useCallback(() => dispatch(ActionCreators.clear()), [ dispatch ]);
-
     const clearForm = React.useCallback(() => 
     {
         if (!progress) return;
         setProgress(false);
         clearUser();
-    }, [ progress, clearUser ]);
-    
-    const callSigninUser = React.useCallback(() => 
+    }, 
+    [ progress, clearUser ]);
+
+    React.useEffect(() => 
     {
         if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
@@ -64,10 +64,8 @@ const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
                 history.push("/");
             break;
         }
-
-    }, [ progress, clearForm, form, history, raiseErrorState, signinUser, signinUserState ]);
-
-    React.useEffect(() => callSigninUser(), [ callSigninUser ]);
+    }, 
+    [ progress, clearForm, form, history, raiseErrorState, signinUser, signinUserState ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});
     const buttonHandler = () => 

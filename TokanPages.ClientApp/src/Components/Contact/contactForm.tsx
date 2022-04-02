@@ -43,9 +43,10 @@ const ContactForm = (props: IGetContactFormContent): JSX.Element =>
         if (!progress) return;
         setProgress(false);
         sendMessageClear();
-    }, [ progress, sendMessageClear ]);
+    }, 
+    [ progress, sendMessageClear ]);
 
-    const callSendMessage = React.useCallback(() => 
+    React.useEffect(() => 
     {
         if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
@@ -74,9 +75,8 @@ const ContactForm = (props: IGetContactFormContent): JSX.Element =>
                 showSuccess(MESSAGE_OUT_SUCCESS);
             break;
         }
-    }, [ sendMessage, sendMessageState, clearForm, progress, form, showSuccess, raiseErrorState ]);
-
-    React.useEffect(() => callSendMessage(), [ callSendMessage ]);
+    }, 
+    [ sendMessage, sendMessageState, clearForm, progress, form, showSuccess, raiseErrorState ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {

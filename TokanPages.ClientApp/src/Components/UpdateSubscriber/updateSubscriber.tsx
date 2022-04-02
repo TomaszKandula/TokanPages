@@ -24,7 +24,7 @@ const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Eleme
     const dispatch = useDispatch();
     const updateSubscriberState = useSelector((state: IApplicationState) => state.updateSubscriber);
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
-    
+
     const [form, setForm] = React.useState({email: ""});
     const [buttonState, setButtonState] = React.useState(true);
     const [progress, setProgress] = React.useState(false);
@@ -32,15 +32,16 @@ const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Eleme
     const showSuccess = React.useCallback((text: string) => dispatch(RaiseDialogAction.raiseDialog(SuccessMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
     const showWarning = React.useCallback((text: string)=> dispatch(RaiseDialogAction.raiseDialog(WarningMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
     const updateSubscriber = React.useCallback((payload: IUpdateSubscriberDto) => dispatch(SubscriberAction.updateSubscriber(payload)), [ dispatch ]);
-    
+
     const clearForm = React.useCallback(() => 
     { 
         if (!progress) return;
         setProgress(false);
         setButtonState(true);
-    }, [ progress ]);
+    }, 
+    [ progress ]);
 
-    const callUpdateSubscriber = React.useCallback(() => 
+    React.useEffect(() => 
     {
         if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
@@ -66,9 +67,8 @@ const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Eleme
                 showSuccess(NEWSLETTER_SUCCESS);
             break;
         }           
-    }, [ updateSubscriber, updateSubscriberState, progress, form, props.id, showSuccess, clearForm, raiseErrorState ]);
-
-    React.useEffect(() => callUpdateSubscriber(), [ callUpdateSubscriber ]);
+    }, 
+    [ updateSubscriber, updateSubscriberState, progress, form, props.id, showSuccess, clearForm, raiseErrorState ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {

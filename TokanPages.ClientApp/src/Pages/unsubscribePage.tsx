@@ -25,14 +25,13 @@ const UnsubscribePage = (): JSX.Element =>
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const unsubscribe = useSelector((state: IApplicationState) => state.getUnsubscribeContent);
 
-    const getContent = React.useCallback(() =>
+    React.useEffect(() => 
     {
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
         dispatch(UnsubscribeContent.getUnsubscribeContent());
-    }, [ dispatch ]);
-
-    React.useEffect(() => getContent(), [ getContent ]);
+    }, 
+    [ dispatch ]);
     
     return(
         <>

@@ -33,15 +33,15 @@ const ResetPassword = (props: IGetResetPasswordContent): JSX.Element =>
 
     const resetAction = React.useCallback((payload: IResetUserPasswordDto) => dispatch(ActionCreators.reset(payload)), [ dispatch ]);
     const clearAction = React.useCallback(() => dispatch(ActionCreators.clear()), [ dispatch ]);
-    
     const clearForm = React.useCallback(() => 
     {
         if (!progress) return;
         setProgress(false);
         clearAction();
-    }, [ progress, clearAction ]);
+    }, 
+    [ progress, clearAction ]);
 
-    const callResetUserPassword = React.useCallback(() => 
+    React.useEffect(() => 
     {
         if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
@@ -64,10 +64,8 @@ const ResetPassword = (props: IGetResetPasswordContent): JSX.Element =>
                 showSuccess(RESET_PASSWORD_SUCCESS);
             break;
         }
-
-    }, [ progress, clearForm, resetAction, showSuccess, form, raiseErrorState, resetUserPasswordState ]);
-
-    React.useEffect(() => callResetUserPassword(), [ callResetUserPassword ]);
+    }, 
+    [ progress, clearForm, resetAction, showSuccess, form, raiseErrorState, resetUserPasswordState ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     { 
