@@ -42,9 +42,10 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
         if (!progress) return;
         setProgress(false);
         clearUser();
-    }, [ progress, clearUser ]);
+    }, 
+    [ progress, clearUser ]);
 
-    const callSignupUser = React.useCallback(() => 
+    React.useEffect(() => 
     {
         if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
@@ -75,10 +76,8 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
                 showSuccess(SIGNUP_SUCCESS);
             break;
         }
-
-    }, [ progress, clearForm, form, raiseErrorState, signupUser, signupUserState, showSuccess ]);
-
-    React.useEffect(() => callSignupUser(), [ callSignupUser ]);
+    }, 
+    [ progress, clearForm, form, raiseErrorState, signupUser, signupUserState, showSuccess ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {

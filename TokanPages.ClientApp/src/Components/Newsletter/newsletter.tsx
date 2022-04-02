@@ -33,9 +33,10 @@ const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
         if (!progress) return;
         setProgress(false);
         addSubscriberClear();
-    }, [ progress, addSubscriberClear ]);
+    }, 
+    [ progress, addSubscriberClear ]);
   
-    const callAddSubscriber = React.useCallback(() => 
+    React.useEffect(() => 
     {
         if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
@@ -55,9 +56,8 @@ const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
                 showSuccess(NEWSLETTER_SUCCESS);
             break;
         }
-    }, [ addSubscriber, addSubscriberState, clearForm, progress, form, showSuccess, raiseErrorState ]);
-
-    React.useEffect(() => callAddSubscriber(), [ callAddSubscriber ]);
+    }, 
+    [ addSubscriber, addSubscriberState, clearForm, progress, form, showSuccess, raiseErrorState ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     { 

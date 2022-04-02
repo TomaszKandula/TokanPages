@@ -52,9 +52,10 @@ const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element =>
         setProgress(false);
         setButtonState(true);
         setContent(contentPost);
-    }, [ progress, contentPost ]);
+    }, 
+    [ progress, contentPost ]);
 
-    const callRemoveSubscriber = React.useCallback(() => 
+    React.useEffect(() => 
     {
         if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
@@ -73,9 +74,8 @@ const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element =>
                 showSuccess(NEWSLETTER_SUCCESS);
             break;
         }
-    }, [ removeSubscriber, removeSubscriberState, progress, props.id, showSuccess, clearForm, raiseErrorState ]);
-
-    React.useEffect(() => callRemoveSubscriber(), [ callRemoveSubscriber ]);
+    }, 
+    [ removeSubscriber, removeSubscriberState, progress, props.id, showSuccess, clearForm, raiseErrorState ]);
 
     const buttonHandler = () =>
     {
