@@ -42,7 +42,7 @@ const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.Element
         text2: props.content?.onError.text2, 
         button: props.content?.onError.button
     };
-        
+
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -54,8 +54,8 @@ const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.Element
     const [buttonDisabled, setButtonDisabled] = React.useState(true);
     const [progress, setProgress] = React.useState(true);
     const [requested, setRequested] = React.useState(false);
-
-    const callActivateAccount = React.useCallback(() => 
+ 
+    React.useEffect(() => 
     {
         if (!progress) return;
         
@@ -95,10 +95,8 @@ const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.Element
         }
     }, 
     [ content.type, props.id, progress, requested, activateAccount, 
-    activateAccountState, raiseErrorState, onProcessing, onSuccess, onError ]);
-
-    React.useEffect(() => callActivateAccount(), [ callActivateAccount ]);
-
+        activateAccountState, raiseErrorState, onProcessing, onSuccess, onError ]);
+    
     const buttonHandler = () =>
     {
         if (content.type === "Error")

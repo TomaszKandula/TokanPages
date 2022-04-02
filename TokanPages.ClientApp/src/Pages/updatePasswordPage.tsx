@@ -17,14 +17,13 @@ const UpdatePasswordPage = (): JSX.Element =>
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const updateForm = useSelector((state: IApplicationState) => state.getUpdatePasswordContent);
 
-    const getContent = React.useCallback(() =>
+    React.useEffect(() => 
     {
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
         dispatch(UpdateFormContent.getUpdatePasswordContent());
-    }, [ dispatch ]);
-
-    React.useEffect(() => getContent(), [ getContent ]);
+    }, 
+    [ dispatch ]);
     
     return (
         <>     

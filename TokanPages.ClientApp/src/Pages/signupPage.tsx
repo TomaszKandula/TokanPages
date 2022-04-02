@@ -17,14 +17,13 @@ const SignupPage = (): JSX.Element =>
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const signupForm = useSelector((state: IApplicationState) => state.getUserSignupContent);
 
-    const getContent = React.useCallback(() =>
+    React.useEffect(() => 
     {
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
         dispatch(SignupFormContent.getUserSignupContent());
-    }, [ dispatch ]);
-
-    React.useEffect(() => getContent(), [ getContent ]);
+    }, 
+    [ dispatch ]);
 
     return (
         <>

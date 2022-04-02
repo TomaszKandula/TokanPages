@@ -38,7 +38,7 @@ const MainPage = (): JSX.Element =>
     const contactForm = useSelector((state: IApplicationState) => state.getContactFormContent);
     const cookiesPrompt = useSelector((state: IApplicationState) => state.getCookiesPromptContent);
     
-    const getContent = React.useCallback(() =>
+    React.useEffect(() => 
     {
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
@@ -50,9 +50,9 @@ const MainPage = (): JSX.Element =>
         dispatch(NewsletterContent.getNewsletterContent());
         dispatch(ContactFormContent.getContactFormContent());
         dispatch(CookiesContent.getCookiesPromptContent());
-    }, [ dispatch ]);
+    }, 
+    [ dispatch ]);
 
-    React.useEffect(() => getContent(), [ getContent ]);
     React.useEffect(() => AOS.refresh());
 
     return (

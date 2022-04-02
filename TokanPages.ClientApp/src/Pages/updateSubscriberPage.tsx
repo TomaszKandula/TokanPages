@@ -25,14 +25,13 @@ const UpdateSubscriberPage = (): JSX.Element =>
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const updateSubscriber = useSelector((state: IApplicationState) => state.getUpdateSubscriberContent);
 
-    const getContent = React.useCallback(() =>
+    React.useEffect(() => 
     {
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
         dispatch(UpdateSubscriberContent.getUpdateSubscriberContent());
-    }, [ dispatch ]);
-
-    React.useEffect(() => getContent(), [ getContent ]);
+    }, 
+    [ dispatch ]);
     
     return(
         <>
