@@ -17,14 +17,13 @@ const ResetPasswordPage = (): JSX.Element =>
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const resetForm = useSelector((state: IApplicationState) => state.getResetPasswordContent);
 
-    const getContent = React.useCallback(() =>
+    React.useEffect(() => 
     {
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
         dispatch(ResetFormContent.getResetPasswordContent());
-    }, [ dispatch ]);
-
-    React.useEffect(() => getContent(), [ getContent ]);
+    }, 
+    [ dispatch ]);
     
     return (
         <>     

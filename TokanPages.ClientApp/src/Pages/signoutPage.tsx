@@ -17,14 +17,13 @@ const SignoutPage = (): JSX.Element =>
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const signoutView = useSelector((state: IApplicationState) => state.getUserSignoutContent);
 
-    const getContent = React.useCallback(() =>
+    React.useEffect(() => 
     {
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
         dispatch(SignoutContent.getUserSignoutContent());
-    }, [ dispatch ]);
-
-    React.useEffect(() => getContent(), [ getContent ]);
+    }, 
+    [ dispatch ]);
 
     return (
         <>

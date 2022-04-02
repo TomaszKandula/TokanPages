@@ -6,8 +6,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as WrongPagePromptContent } from "../Redux/Actions/Content/getWrongPagePromptContentAction";
 
-const useStyles = makeStyles(() => (
-{
+const useStyles = makeStyles(() => 
+({
     mainLink:
     {
         textDecoration: "none"
@@ -20,12 +20,12 @@ const WrongPage = (): JSX.Element =>
     const dispatch = useDispatch();
 
     const wrongPagePrompt = useSelector((state: IApplicationState) => state.getWrongPagePromptContent);
-    const getContent = React.useCallback(() =>
+
+    React.useEffect(() => 
     {
         dispatch(WrongPagePromptContent.getWrongPagePromptContent());
-    }, [ dispatch ]);
-
-    React.useEffect(() => getContent(), [ getContent ]);
+    }, 
+    [ dispatch ]);
 
     return (
         <section>

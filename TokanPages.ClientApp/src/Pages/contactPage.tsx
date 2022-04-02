@@ -18,14 +18,13 @@ const ContactPage = () =>
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const contactForm = useSelector((state: IApplicationState) => state.getContactFormContent);
 
-    const getContent = React.useCallback(() =>
+    React.useEffect(() => 
     {
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
         dispatch(ContactFormContent.getContactFormContent());
-    }, [ dispatch ]);
-
-    React.useEffect(() => getContent(), [ getContent ]);
+    }, 
+    [ dispatch ]);
 
     return (
         <>

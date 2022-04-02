@@ -14,15 +14,16 @@ const UserSignout = (props: IGetUserSignoutContent): JSX.Element =>
     const data = useSelector((state: IApplicationState) => state.updateUserData);
     const [progress, setProgress] = React.useState(true);
 
-    const callSignout = React.useCallback(() => 
+    React.useEffect(() => 
     {
         if (!progress) return;
         dispatch(UserAction.clear());
         dispatch(DataAction.clear());
-    }, [ progress, dispatch ]);
-
-    const dataCheckout = React.useCallback(() => 
-    {  
+    }, 
+    [ progress, dispatch ]);
+    
+    React.useEffect(() => 
+    {
         const isUserTokenRemoved = (): boolean => localStorage.getItem(USER_DATA) === null; 
         const isUserDataEmpty = (): boolean => data.userData === combinedDefaults.updateUserData.userData;
 
@@ -30,10 +31,8 @@ const UserSignout = (props: IGetUserSignoutContent): JSX.Element =>
         {
             setProgress(false);
         }
-    }, [ progress, data.userData ]);
-
-    React.useEffect(() => callSignout(), [ callSignout ]);
-    React.useEffect(() => dataCheckout(), [ dataCheckout ]);
+    }, 
+    [ progress, data.userData ]);
 
     return (<UserSignoutView bind=
     {{

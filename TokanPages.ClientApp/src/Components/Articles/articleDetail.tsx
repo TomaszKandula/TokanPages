@@ -40,13 +40,6 @@ const ArticleDetail = (props: IArticleDetail): JSX.Element =>
     const userLetter = selection.article.author.aliasName.charAt(0).toUpperCase();
     const isAnonymous = Validate.isEmpty(user.userData.userId);
 
-    const updateLikesLeft = React.useCallback(() =>
-    {
-        setLikesLeft(isAnonymous 
-            ? LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs
-            : LIKES_LIMIT_FOR_USER - selection.article.userLikes - totalThumbs);
-    }, [ selection.article.userLikes, isAnonymous, totalThumbs ]);
-
     const updateUserLikes = React.useCallback(() => 
     {
         dispatch(UpdateArticleAction.updateArticleLikes(
@@ -54,9 +47,24 @@ const ArticleDetail = (props: IArticleDetail): JSX.Element =>
             id: props.id, 
             addToLikes: userLikes, 
         }))
-    }, [ dispatch, userLikes, props.id ]);
+    }, 
+    [ dispatch, userLikes, props.id ]);
 
-    const updateReadCount = React.useCallback(() => 
+    React.useEffect(() =>
+    {
+        const likesLimitForAnonym = LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs;
+        const likesLimitForUser = LIKES_LIMIT_FOR_USER - selection.article.userLikes - totalThumbs;
+        setLikesLeft(isAnonymous ? likesLimitForAnonym : likesLimitForUser);
+    }, 
+    [ selection.article.userLikes, isAnonymous, totalThumbs ]);
+
+    React.useEffect(() => 
+    {
+        setTotalLikes(selection.article.likeCount)
+    }, 
+    [ selection.article.likeCount ]);
+
+    React.useEffect(() => 
     {
         if (selection.isLoading) return; 
         dispatch(UpdateArticleAction.updateArticleCount(
@@ -66,7 +74,7 @@ const ArticleDetail = (props: IArticleDetail): JSX.Element =>
     }, 
     [ dispatch, props.id, selection.isLoading ]);
 
-    const updateUserLikesWithDelay = React.useCallback(() =>
+    React.useEffect(() =>
     {
         const intervalId = setInterval(() => 
         { 
@@ -80,16 +88,11 @@ const ArticleDetail = (props: IArticleDetail): JSX.Element =>
         return(() => { clearInterval(intervalId) });
     }, [ userLikes, thumbClicked, updateUserLikes ]);
 
-    React.useEffect(() => setTotalLikes(selection.article.likeCount), [ selection.article.likeCount ]);
-    React.useEffect(() => updateLikesLeft(), [ updateLikesLeft ]);
-    React.useEffect(() => updateReadCount(), [ updateReadCount ]);
-    React.useEffect(() => updateUserLikesWithDelay(), [ updateUserLikesWithDelay ]);
-
     const thumbsHandler = () =>
     {
-        let likesToAdd = isAnonymous 
-            ? LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs
-            : LIKES_LIMIT_FOR_USER - selection.article.userLikes - totalThumbs;
+        const likesLimitForAnonym = LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs;
+        const likesLimitForUser = LIKES_LIMIT_FOR_USER - selection.article.userLikes - totalThumbs;
+        const likesToAdd = isAnonymous ? likesLimitForAnonym : likesLimitForUser;
 
         if (likesToAdd > 0) 
         {
