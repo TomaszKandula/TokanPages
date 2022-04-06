@@ -8,9 +8,12 @@ const ArticleList = (): JSX.Element =>
 {
     const dispatch = useDispatch();
     const listArticles = useSelector((state: IApplicationState) => state.listArticles);
-    const fetchData = React.useCallback(() => dispatch(ActionCreators.requestArticles()), [ dispatch ]);
     
-    React.useEffect(() => { fetchData() }, [ fetchData ]);
+    React.useEffect(() => 
+    { 
+        dispatch(ActionCreators.requestArticles())
+    }, 
+    [ dispatch ]);
 
     return (<ArticleListView bind=
     {{
