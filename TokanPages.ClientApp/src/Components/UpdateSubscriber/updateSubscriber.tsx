@@ -68,7 +68,8 @@ const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Eleme
             break;
         }           
     }, 
-    [ updateSubscriber, updateSubscriberState, progress, form, props.id, showSuccess, clearForm, raiseErrorState ]);
+    [ progress, raiseErrorState?.defaultErrorMessage, updateSubscriberState?.operationStatus, 
+        OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {

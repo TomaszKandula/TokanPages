@@ -48,7 +48,7 @@ const ArticleDetail = (props: IArticleDetail): JSX.Element =>
             addToLikes: userLikes, 
         }))
     }, 
-    [ dispatch, userLikes, props.id ]);
+    [ userLikes, props.id ]);
 
     React.useEffect(() =>
     {
@@ -72,7 +72,7 @@ const ArticleDetail = (props: IArticleDetail): JSX.Element =>
             id: props.id
         }));
     }, 
-    [ dispatch, props.id, selection.isLoading ]);
+    [ props.id, selection.isLoading ]);
 
     React.useEffect(() =>
     {
@@ -86,7 +86,7 @@ const ArticleDetail = (props: IArticleDetail): JSX.Element =>
         3000);
         
         return(() => { clearInterval(intervalId) });
-    }, [ userLikes, thumbClicked, updateUserLikes ]);
+    }, [ userLikes, thumbClicked ]);
 
     const thumbsHandler = () =>
     {

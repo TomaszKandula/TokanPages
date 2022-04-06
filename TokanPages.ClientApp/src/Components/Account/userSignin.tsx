@@ -65,7 +65,8 @@ const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
             break;
         }
     }, 
-    [ progress, clearForm, form, history, raiseErrorState, signinUser, signinUserState ]);
+    [ progress, raiseErrorState?.defaultErrorMessage, signinUserState?.operationStatus, 
+        OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});
     const buttonHandler = () => 

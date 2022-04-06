@@ -35,7 +35,7 @@ const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
         addSubscriberClear();
     }, 
     [ progress, addSubscriberClear ]);
-  
+
     React.useEffect(() => 
     {
         if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
@@ -57,7 +57,8 @@ const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
             break;
         }
     }, 
-    [ addSubscriber, addSubscriberState, clearForm, progress, form, showSuccess, raiseErrorState ]);
+    [ progress, raiseErrorState?.defaultErrorMessage, addSubscriberState?.operationStatus, 
+        OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     { 
