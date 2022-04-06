@@ -79,7 +79,7 @@ const ContactFormView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12}>
                                         <TextField 
                                             onChange={props.bind?.formHandler} value={props.bind?.message} variant="outlined" 
-                                            required multiline rows={6} fullWidth autoComplete="message" name="message" id="message" label="Message" 
+                                            required multiline minRows={6} fullWidth autoComplete="message" name="message" id="message" label="Message" 
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
