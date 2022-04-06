@@ -8,7 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
-import resetPasswordStyle from "./Styles/resetPasswordStyle";
+import updatePasswordStyle from "./Styles/updatePasswordStyle";
 
 interface IBinding 
 {
@@ -30,7 +30,7 @@ interface IProperties
 
 const UpdatePasswordView = (props: IBinding): JSX.Element =>
 {
-    const classes = resetPasswordStyle();
+    const classes = updatePasswordStyle();
     return (
         <section>
             <Container maxWidth="sm">
