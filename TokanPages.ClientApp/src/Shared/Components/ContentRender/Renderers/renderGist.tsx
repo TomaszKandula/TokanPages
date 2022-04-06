@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
-import * as Sentry from "@sentry/react";
 import { Card } from "@material-ui/core";
 import { ITextItem } from "../Models/textModel";
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -35,7 +34,6 @@ export const RenderGist = (props: ITextItem): JSX.Element =>
         if (result.error !== null)
         {
             dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(result.error) });
-            Sentry.captureException(result.error);
         }
  
     }, [ dispatch, gistUrl ]);

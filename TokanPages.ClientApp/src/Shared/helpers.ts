@@ -1,4 +1,3 @@
-import * as Sentry from "@sentry/react";
 import Validate from "validate.js";
 import { ITextObject } from "./Components/ContentRender/Models/textModel";
 import { IErrorDto } from "../Api/Models";
@@ -140,7 +139,7 @@ const RaiseError = (dispatch: any, errorObject: any): string =>
         : errorObject;
 
     dispatch({ type: RAISE_ERROR, errorObject: error });
-    return Sentry.captureException(errorObject);
+    return "";
 }
 
 const DelDataFromStorage = (key: string): boolean => 

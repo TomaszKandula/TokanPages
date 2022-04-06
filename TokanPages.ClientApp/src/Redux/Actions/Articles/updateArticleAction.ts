@@ -1,4 +1,3 @@
-import * as Sentry from "@sentry/react";
 import { AppThunkAction } from "../../applicationState";
 import { RAISE_ERROR, TErrorActions } from "./../raiseErrorAction";
 import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
@@ -38,7 +37,6 @@ const DispatchCall = async (dispatch: any, url: string, data: any) =>
     if (result.error !== null)
     {
         dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(result.error) });
-        Sentry.captureException(result.error);
         return;
     }
 
@@ -50,7 +48,6 @@ const DispatchCall = async (dispatch: any, url: string, data: any) =>
 
     const error = UnexpectedStatusCode(result.status as number);
     dispatch({ type: RAISE_ERROR, errorObject: error });
-    Sentry.captureException(error);
 }
 
 export const ActionCreators = 

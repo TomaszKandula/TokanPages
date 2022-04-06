@@ -1,4 +1,3 @@
-import * as Sentry from "@sentry/react";
 import { DialogType } from "Shared/enums";
 import { AppThunkAction } from "../applicationState";
 
@@ -19,6 +18,5 @@ export const ActionCreators =
     raiseError: (errorMessage: any, dialogType?: DialogType): AppThunkAction<TErrorActions> => (dispatch) => 
     {
         dispatch({ type: RAISE_ERROR, errorObject: errorMessage, dialogType: dialogType });
-        Sentry.captureException(errorMessage);
     }
 }
