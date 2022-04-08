@@ -15,10 +15,6 @@ public class DataUtilityService : IDataUtilityService
     /// <summary>
     /// Returns randomized Date within given range.
     /// </summary>
-    /// <remarks>
-    /// It uses System.Random function, therefore it should not be used
-    /// for security-critical applications or for protecting sensitive data.
-    /// </remarks>
     /// <param name="min">Minimum value of expected date. Value can be null (if so, default day and month is: 1 JAN).</param>
     /// <param name="max">Maximum value of expected date. Value can be null (if so, default day and month is: 31 DEC).</param>
     /// <param name="defaultYear">If not given, it uses 2020 year as default value.</param>
@@ -36,10 +32,6 @@ public class DataUtilityService : IDataUtilityService
     /// <summary>
     /// Returns randomized enumeration.
     /// </summary>
-    /// <remarks>
-    /// It uses System.Random function, therefore it should not be used
-    /// for security-critical applications or for protecting sensitive data.
-    /// </remarks>
     /// <typeparam name="T">Given type.</typeparam>
     /// <returns>New randomized enumeration.</returns>
     public virtual T GetRandomEnum<T>()
@@ -51,10 +43,6 @@ public class DataUtilityService : IDataUtilityService
     /// <summary>
     /// Returns randomized integer number within given range.
     /// </summary>
-    /// <remarks>
-    /// It uses System.Random function, therefore it should not be used
-    /// for security-critical applications or for protecting sensitive data.
-    /// </remarks>
     /// <param name="min">A boundary value, lowest possible.</param>
     /// <param name="max">A boundary value, highest possible.</param>
     /// <returns>New randomized integer number.</returns>
@@ -63,10 +51,6 @@ public class DataUtilityService : IDataUtilityService
     /// <summary>
     /// Returns randomized decimal number within given range.
     /// </summary>
-    /// <remarks>
-    /// It uses System.Random function, therefore it should not be used
-    /// for security-critical applications or for protecting sensitive data.
-    /// </remarks>
     /// <param name="min">A boundary value, lowest possible.</param>
     /// <param name="max">A boundary value, highest possible.</param>
     /// <returns>New randomized decimal number.</returns>
@@ -75,10 +59,6 @@ public class DataUtilityService : IDataUtilityService
     /// <summary>
     /// Returns randomized stream of bytes.
     /// </summary>
-    /// <remarks>
-    /// It uses System.Random function, therefore it should not be used
-    /// for security-critical applications or for protecting sensitive data.
-    /// </remarks>
     /// <param name="sizeInKb">Expected size in kBytes.</param>
     /// <returns>New randomized stream of bytes.</returns>
     public virtual MemoryStream GetRandomStream(int sizeInKb = 12)
@@ -91,10 +71,6 @@ public class DataUtilityService : IDataUtilityService
     /// <summary>
     /// Returns randomized e-mail address.
     /// </summary>
-    /// <remarks>
-    /// It uses System.Random function, therefore it should not be used
-    /// for security-critical applications or for protecting sensitive data.
-    /// </remarks>
     /// <param name="length">Expected length of the name, 12 characters by default.</param>
     /// <param name="domain">Domain, "gmail.com" by default.</param>
     /// <returns>New randomized e-mail address.</returns>
@@ -104,10 +80,6 @@ public class DataUtilityService : IDataUtilityService
     /// <summary>
     /// Returns randomized string with given length and prefix (optional).
     /// </summary>
-    /// <remarks>
-    /// It uses System.Random function, therefore it should not be used
-    /// for security-critical applications or for protecting sensitive data.
-    /// </remarks>
     /// <param name="length">Expected length, 12 characters by default.</param>
     /// <param name="prefix">Optional prefix.</param>
     /// <param name="useAlphabetOnly">Generate string from alphabet letters only.</param>
@@ -133,10 +105,6 @@ public class DataUtilityService : IDataUtilityService
     /// <summary>
     /// Returns randomized IP address, either IPv4 or IPv6.
     /// </summary>
-    /// <remarks>
-    /// It uses System.Random function, therefore it should not be used
-    /// for security-critical applications or for protecting sensitive data.
-    /// </remarks>
     /// <param name="shouldReturnIPv6">Allow to select IPv4 or IPv6.</param>
     /// <returns>New randomized IP address.</returns>
     public virtual IPAddress GetRandomIpAddress(bool shouldReturnIPv6 = false)
