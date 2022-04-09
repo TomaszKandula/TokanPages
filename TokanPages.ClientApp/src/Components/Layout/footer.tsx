@@ -21,7 +21,7 @@ const Footer = (props: IGetFooterContentExtended): JSX.Element =>
     const hasVersionInfo = validate.isEmpty(versionNumber) && validate.isEmpty(versionDateTime);
 
     const backgroundColor: string = !props.backgroundColor 
-        ? CustomColours.background.lightGray1 
+        ? CustomColours.colours.lightGray1 
         : props.backgroundColor;
 
     const boxPaddingBottom: number = hasVersionInfo 

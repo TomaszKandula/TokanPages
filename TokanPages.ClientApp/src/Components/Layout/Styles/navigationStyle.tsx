@@ -5,7 +5,7 @@ const navigationStyle = makeStyles((theme) => (
 {
     appBar:
     {
-        background: CustomColours.application.navigationBlue
+        background: CustomColours.application.navigation
     },
     toolBar: 
     { 
@@ -52,7 +52,7 @@ const navigationStyle = makeStyles((theme) => (
         {
             display: "none"
         },
-        color: CustomColours.typography.white,
+        color: CustomColours.colours.white,
         alignSelf: "center"
     }
 }));

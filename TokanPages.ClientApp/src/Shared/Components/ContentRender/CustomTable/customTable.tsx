@@ -10,8 +10,8 @@ const CustomTableCell = withStyles(() => createStyles(
 {
     head: 
     {
-        backgroundColor: CustomColours.background.gray1,
-        color: CustomColours.typography.white,
+        backgroundColor: CustomColours.colours.gray1,
+        color: CustomColours.colours.white,
         fontSize: 18,
         fontWeight: "bold"
     },
@@ -28,7 +28,7 @@ const CustomTableRow = withStyles(() => createStyles(
     {
         '&:nth-of-type(odd)': 
         {
-            backgroundColor: CustomColours.background.lightGray2,
+            backgroundColor: CustomColours.colours.lightGray2,
         },
     },
 }),

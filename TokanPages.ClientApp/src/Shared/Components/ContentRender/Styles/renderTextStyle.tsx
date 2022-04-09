@@ -7,7 +7,7 @@ const renderTextStyle = makeStyles(() => (
     {
         fontSize: 19,
         textAlign: "left",
-        color: CustomColours.typography.darkGray1
+        color: CustomColours.colours.gray3
     },
     title:
     {

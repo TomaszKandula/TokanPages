@@ -20,7 +20,7 @@ const footerStyle = makeStyles((theme) => (
     }, 
     copy: 
     {
-        color: CustomColours.typography.gray2,
+        color: CustomColours.colours.gray2,
         [theme.breakpoints.down("md")]: 
         {
             width: "100%",
@@ -29,12 +29,12 @@ const footerStyle = makeStyles((theme) => (
     },
     links:
     {
-        color: CustomColours.typography.gray2,
+        color: CustomColours.colours.gray2,
         textDecoration: "none"
     },
     version:
     {
-        color: CustomColours.typography.gray1,
+        color: CustomColours.colours.gray1,
     }
 }));
 

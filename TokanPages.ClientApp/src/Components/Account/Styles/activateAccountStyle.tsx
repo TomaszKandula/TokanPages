@@ -5,7 +5,7 @@ const activateAccountStyle = makeStyles(() => (
 {
     section:
     {
-        backgroundColor: CustomColours.background.white
+        backgroundColor: CustomColours.colours.white
     },
     card:
     {

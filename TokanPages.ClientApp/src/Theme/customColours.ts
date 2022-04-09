@@ -1,27 +1,23 @@
 export const CustomColours =
 {
-    background:
+    application:
+    {
+        navigation: "#6367EF"
+    },
+    colours:
     {
         white: "#FFFFFF",
         ghostWhite: "#F8F8FF",
+        violet: "#6367EF",
+        lightViolet: "#EBECFB",
+        darkViolet1: "#4649C3",
+        darkViolet2: "#171E33",
         lightGray1: "#FAFAFA",
         lightGray2: "#EFEFEF",
         gray1: "#9E9E9E",
         gray2: "#757575",
+        gray3: "#616161",
+        gray4: "#212121",
         black: "#000000"
-    },
-    typography:
-    {
-        white: "#FFFFFF",
-        ghostWhite: "#F8F8FF",
-        gray1: "#9E9E9E",
-        gray2: "#757575",
-        darkGray1: "#616161",
-        darkGray2: "#212121",
-        black: "#000000"
-    },
-    application:
-    {
-        navigationBlue: "#1976D2"
     }
 }

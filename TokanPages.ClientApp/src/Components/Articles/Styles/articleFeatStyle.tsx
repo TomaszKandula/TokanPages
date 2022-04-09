@@ -5,7 +5,7 @@ const articleFeatStyle = makeStyles((theme) => (
 {
     section:
     {
-        backgroundColor: CustomColours.background.white
+        backgroundColor: CustomColours.colours.white
     },
     info: 
     {

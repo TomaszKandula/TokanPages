@@ -5,7 +5,7 @@ const testimonialsStyle = makeStyles((theme) => (
 {
     section:
     {
-        backgroundColor: CustomColours.background.white
+        backgroundColor: CustomColours.colours.white
     },
     img:
     {

@@ -5,7 +5,7 @@ const newsletterStyle = makeStyles(() => (
 {
     section:
     {
-        backgroundColor: CustomColours.background.lightGray1
+        backgroundColor: CustomColours.colours.lightGray1
     }
 }));
 

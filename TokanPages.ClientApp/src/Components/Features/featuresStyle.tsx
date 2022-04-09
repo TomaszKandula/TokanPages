@@ -5,7 +5,7 @@ const featuresStyle = makeStyles((theme) => (
 {
     section:
     {
-        backgroundColor: CustomColours.background.lightGray1
+        backgroundColor: CustomColours.colours.lightGray1
     },
     icon: 
     {
