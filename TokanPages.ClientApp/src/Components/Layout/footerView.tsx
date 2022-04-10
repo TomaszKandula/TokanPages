@@ -8,7 +8,6 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import WarningIcon from '@material-ui/icons/Warning';
 import { IFooterContentIconDto } from "../../Api/Models";
-import { MediumIcon } from "../../Theme/Icons/mediumIcon";
 import footerStyle from "./Styles/footerStyle";
 
 interface IBinding
@@ -55,7 +54,7 @@ const FooterView = (props: IBinding): JSX.Element =>
         {
             case "GitHubIcon": return <GitHubIcon />;
             case "LinkedInIcon": return <LinkedInIcon />;
-            case "MediumIcon": return <MediumIcon />;
+            case "MediumIcon": return <div></div>;
             default: return <WarningIcon />;
         }
     };
@@ -73,19 +72,20 @@ const FooterView = (props: IBinding): JSX.Element =>
             ? <div></div> 
             : applicationVersionInfo
     };
-    
+
     const classes = footerStyle();
     return (
-        <footer className={classes.root} style={{ backgroundColor: props.bind?.backgroundColor }} >
+        <footer className={classes.root}>
             <Container maxWidth="lg">
                 <div data-aos="zoom-in">
                     <Box pt={6} pb={props.bind?.boxPaddingBottom} display="flex" flexWrap="wrap" alignItems="center">
                         <Typography component="p" gutterBottom={false} className={classes.copy}>
                             {props.bind?.copyright} | {props.bind?.reserved} | <SetTermsLink /> | <SetPolicyLink />
                         </Typography>
-                        <Box ml="auto" className={classes.iconsBoxRoot}>
+                        <Box ml="auto" className={classes.icon_box}>
                             {props.bind?.icons?.map((item: IFooterContentIconDto, index: number) => (
                                 <IconButton 
+                                    className={classes.icon}
                                     key={index}
                                     color="default" 
                                     aria-label={item.name} 

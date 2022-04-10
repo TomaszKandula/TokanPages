@@ -5,11 +5,11 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import contactFormStyle from "./contactFormStyle";
+import VioletCheckbox from "../../Theme/customCheckboxes";
 
 interface IBinding 
 {
@@ -43,11 +43,8 @@ const ContactFormView = (props: IBinding): JSX.Element =>
                     <div data-aos="fade-up">
                         <Box pt={8} pb={10}>
                             <Box mb={6} textAlign="center">
-                                <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
-                                </Typography>
-                                <Typography variant="subtitle1" color="textSecondary" paragraph={true}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.text}
+                                <Typography gutterBottom={true} className={classes.caption}>
+                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption.toUpperCase()}
                                 </Typography>
                             </Box>
                             <Box>
@@ -84,13 +81,13 @@ const ContactFormView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                     <Grid item xs={12}>
                                         <FormControlLabel 
-                                            control={<Checkbox onChange={props.bind?.formHandler} checked={props.bind?.terms} name="terms" id="terms" color="primary" />} 
+                                            control={<VioletCheckbox onChange={props.bind?.formHandler} checked={props.bind?.terms} name="terms" id="terms" />} 
                                             label="I agree to the terms of use and privacy policy." 
                                         />
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    <Button onClick={props.bind?.buttonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={props.bind?.progress}>
+                                    <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" disabled={props.bind?.progress} className={classes.button}>
                                         {props.bind?.progress &&  <CircularProgress size={20} />}
                                         {!props.bind?.progress && props.bind?.buttonText}
                                     </Button>

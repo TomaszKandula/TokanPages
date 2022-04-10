@@ -1,8 +1,10 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { AccountCircle } from "@material-ui/icons";
@@ -15,8 +17,10 @@ interface IBinding
 
 interface IProperties
 {
+    isLoading: boolean;
     caption: string;
     status: string;
+    buttonText: string;
 }
 
 const UserSignoutView = (props: IBinding): JSX.Element => 
@@ -29,19 +33,20 @@ const UserSignoutView = (props: IBinding): JSX.Element =>
                     <Card elevation={4}>
                         <CardContent className={classes.card}>
                             <Box mb={3} textAlign="center">
-                                <AccountCircle color="primary" style={{ fontSize: 72 }} />
-                                <Typography variant="h5" component="h2" color="textSecondary">
-                                    {props.bind.caption}
-                                </Typography>
+                                <AccountCircle className={classes.account} />
+                                <Typography className={classes.caption}>{props.bind.caption}</Typography>
                             </Box>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        <Typography variant="body1" component="p" color="textSecondary">
-                                            {props.bind.status}
-                                        </Typography>
+                                        <Typography className={classes.status}>{props.bind.status}</Typography>
                                     </Grid>
                                 </Grid>
+                            </Box>
+                            <Box mt={4}>
+                                <Link to="/" className={classes.link}>
+                                    <Button fullWidth variant="contained" className={classes.button} disabled={props.bind?.isLoading}>{props.bind?.buttonText}</Button>
+                                </Link>
                             </Box>
                         </CardContent>   
                     </Card>                    

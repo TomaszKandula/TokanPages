@@ -3,56 +3,73 @@ import { CustomColours } from "../../../Theme/customColours";
 
 const navigationStyle = makeStyles((theme) => (
 {
-    appBar:
+    app_bar:
     {
-        background: CustomColours.application.navigation
+        background: CustomColours.colours.white
     },
-    toolBar: 
+    tool_bar: 
     { 
-        justifyContent: "center", 
+        justifyContent: "center"
     },
-    logo:
-    {        
-        width: 210,
-    },
-    menu: 
+    app_full_logo:
     {
+        [theme.breakpoints.down(700)]:
+        {
+            display: "none"
+        },
+        marginLeft: "auto",
+        marginRight: "auto",
+        fontSize: "1.5rem",
+        fontWeight: 500,
+        color: CustomColours.colours.violet,
+        cursor: "default",
+        alignSelf: "center"
+    },
+    app_just_logo:
+    {
+        [theme.breakpoints.down(700)]:
+        {
+            display: "block"
+        },
+        [theme.breakpoints.up(700)]:
+        {
+            display: "none"
+        },
+        marginLeft: "auto",
+        marginRight: "auto",
+        fontSize: "1.5rem",
+        fontWeight: 500,
+        color: CustomColours.colours.violet,
+        cursor: "default",
+        alignSelf: "center"
+    },
+    nav_menu: 
+    {
+        color: CustomColours.colours.violet,
         display: "flex",
         justifyContent: "flex-start"
     },
-    link:
+    app_link:
     {
-        [theme.breakpoints.down("xs")]:
+        [theme.breakpoints.down(700)]:
         {
             justifyContent: "right"
         },
         display: "flex",
         justifyContent: "center"
     },
-    image:
+    user_avatar:
     {
-        [theme.breakpoints.down("xs")]:
-        {
-            marginTop: "12px"
-        },
-        marginTop: "18px"
-    },
-    avatar:
-    {
-        [theme.breakpoints.down("xs")]:
-        {
-            display: "none"
-        },
         display: "flex",
         justifyContent: "flex-end"
     },
-    userAlias:
+    user_alias:
     {
-        [theme.breakpoints.down("xs")]:
+        [theme.breakpoints.down(700)]:
         {
             display: "none"
         },
-        color: CustomColours.colours.white,
+        color: CustomColours.colours.gray1,
         alignSelf: "center"
     }
 }));

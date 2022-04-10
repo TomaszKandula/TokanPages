@@ -36,10 +36,10 @@ const NewsletterView = (props: IBinding): JSX.Element =>
                     <Box py={8} textAlign="center">
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={5}>
-                                <Typography variant="h4" component="h2">
+                                <Typography className={classes.caption}>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
                                 </Typography>
-                                <Typography variant="subtitle1" color="textSecondary">
+                                <Typography className={classes.text}>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.text}
                                 </Typography>
                             </Grid>
@@ -49,13 +49,13 @@ const NewsletterView = (props: IBinding): JSX.Element =>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12} sm={7}>
                                                 <TextField 
-                                                    onChange={props.bind?.formHandler} value={props.bind?.email} variant="outlined" 
-                                                    required fullWidth size="small" name="email" id="email_newletter" 
-                                                    label="Email address" autoComplete="email" 
+                                                    required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} 
+                                                    variant="outlined" size="small" name="email" id="email_newletter" label="Email address" autoComplete="email" 
                                                 />
                                             </Grid>
                                             <Grid item xs={12} sm={5}>
-                                                <Button onClick={props.bind?.buttonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={props.bind?.progress}>
+                                                <Button onClick={props.bind?.buttonHandler} 
+                                                    fullWidth type="submit" variant="contained" className={classes.button} disabled={props.bind?.progress}>
                                                     {props.bind?.progress &&  <CircularProgress size={20} />}
                                                     {!props.bind?.progress && props.bind?.buttonText}
                                                 </Button>

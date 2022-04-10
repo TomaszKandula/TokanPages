@@ -38,8 +38,8 @@ const UpdatePasswordView = (props: IBinding): JSX.Element =>
                     <Card elevation={4}>
                         <CardContent className={classes.card}>
                             <Box mb={3} textAlign="center">
-                                <AccountCircle color="primary" style={{ fontSize: 72 }} />
-                                <Typography variant="h5" component="h2" color="textSecondary">
+                                <AccountCircle className={classes.account} />
+                                <Typography className={classes.caption}>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
                                 </Typography>
                             </Box>
@@ -47,19 +47,22 @@ const UpdatePasswordView = (props: IBinding): JSX.Element =>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
                                         <TextField 
-                                            onChange={props.bind?.formHandler} value={props.bind?.newPassword}  variant="outlined" required fullWidth 
-                                            name="newPassword" id="newPassword" label="New password" type="password" autoComplete="password" disabled={props.bind?.disableForm}
+                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.newPassword} 
+                                            variant="outlined" name="newPassword" id="newPassword" label="New password" type="password" 
+                                            autoComplete="password" disabled={props.bind?.disableForm}
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField 
-                                            onChange={props.bind?.formHandler} value={props.bind?.verifyPassword}  variant="outlined" required fullWidth 
-                                            name="verifyPassword" id="verifyPassword" label="Verify new password" type="password" autoComplete="password" disabled={props.bind?.disableForm}
+                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.verifyPassword}
+                                            variant="outlined" name="verifyPassword" id="verifyPassword" label="Verify new password" 
+                                            type="password" autoComplete="password" disabled={props.bind?.disableForm}
                                         />
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    <Button onClick={props.bind?.buttonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={props.bind?.progress || props.bind?.disableForm}>
+                                    <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
+                                        className={classes.button} disabled={props.bind?.progress || props.bind?.disableForm}>
                                         {props.bind?.progress &&  <CircularProgress size={20} />}
                                         {!props.bind?.progress && props.bind?.button}
                                     </Button>

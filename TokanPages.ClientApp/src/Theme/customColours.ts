@@ -14,6 +14,7 @@ export const CustomColours =
         darkViolet2: "#171E33",
         lightGray1: "#FAFAFA",
         lightGray2: "#EFEFEF",
+        lightGray3: "#FCFCFC",
         gray1: "#9E9E9E",
         gray2: "#757575",
         gray3: "#616161",

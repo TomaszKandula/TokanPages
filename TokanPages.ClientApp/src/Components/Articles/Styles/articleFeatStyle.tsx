@@ -12,11 +12,26 @@ const articleFeatStyle = makeStyles((theme) => (
         height: "100%",
         minHeight: "128px",
     },
+    title:
+    {
+        textAlign: "center",
+        fontSize: "2.0rem",
+        color: CustomColours.colours.darkViolet1
+    },
+    text1:
+    {
+        fontSize: "1.5rem"
+    },
+    text2:
+    {
+        fontSize: "1.0rem",
+        color: CustomColours.colours.gray2
+    },
     media: 
     {
         height: "128px",
     },
-    firstColumn: 
+    content: 
     {
         paddingRight: theme.spacing(2),
         [theme.breakpoints.down("md")]: 
@@ -28,6 +43,16 @@ const articleFeatStyle = makeStyles((theme) => (
     link:
     {
         textDecoration: "none"
+    },
+    button:
+    {
+        "&:hover": 
+        {
+            color: CustomColours.colours.white,
+            background: CustomColours.colours.darkViolet1,
+        },
+        color: CustomColours.colours.white,
+        background: CustomColours.colours.violet,
     }
 }));
 

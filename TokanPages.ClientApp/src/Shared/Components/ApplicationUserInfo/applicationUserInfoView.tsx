@@ -14,6 +14,7 @@ import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { FormatDateTime } from "../../../Shared/helpers";
 import { IAuthenticateUserResultDto } from "../../../Api/Models";
 import UserAvatar from "../UserAvatar/userAvatar";
+import ApplicationUserInfoStyle from "./applicationUserInfoStyle";
 
 interface IBinding
 {
@@ -27,22 +28,26 @@ interface IProperties
     closeHandler: any;
 }
 
-const Items = (props: { item: string }): JSX.Element => 
+const Items = (props: { item: string, className: string }): JSX.Element => 
 {
     return (
         <ListItem>
             <ListItemIcon style={{ color: green[500] }}>
                 <CheckIcon />
             </ListItemIcon>
-            <ListItemText>{props.item}</ListItemText>
+            <ListItemText>
+                <Typography className={props.className}>{props.item}</Typography>
+            </ListItemText>
         </ListItem>
     );
 }
 
 const ApplicationUserInfoView = (props: IBinding): JSX.Element => 
 {
+    const classes = ApplicationUserInfoStyle();
     return (
-        <Dialog fullWidth maxWidth="xs" open={props.bind?.state} onClose={props.bind?.closeHandler} aria-labelledby="dialog-title" aria-describedby="dialog-description">
+        <Dialog fullWidth maxWidth="xs" open={props.bind?.state} onClose={props.bind?.closeHandler} 
+            aria-labelledby="dialog-title" aria-describedby="dialog-description">
             <DialogTitle id="dialog-title">
                 <Grid container spacing={2} direction="column" alignItems="center">
                     <Grid item xs={12}>
@@ -55,7 +60,7 @@ const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
                         </Box>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography component={"p"} variant={"h5"} >
+                        <Typography className={classes.fullname}>
                             {props.bind?.data.firstName} {props.bind?.data.lastName}
                         </Typography>
                     </Grid>
@@ -64,43 +69,41 @@ const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
             <Divider />
             <DialogContent>
                 <Box pt={2}>
-                    <Typography component={"p"} variant={"body1"} >
-                        User alias: {props.bind?.data.aliasName}
+                    <Typography className={classes.item}>
+                        User alias: <Typography component="span" className={classes.value}>{props.bind?.data.aliasName}</Typography>
                     </Typography>
                 </Box>
                 <Box pt={2}>
-                    <Typography component={"p"} variant={"body1"} >
-                        Registered: {FormatDateTime(props.bind?.data.registered, true)}
+                    <Typography className={classes.item}>
+                        Registered: <Typography component="span" className={classes.value}>{FormatDateTime(props.bind?.data.registered, true)}</Typography>
                     </Typography>
                 </Box>
                 <Box pt={2}>
-                    <Typography component={"p"} variant={"body1"} >
+                    <Typography className={classes.item}>
                         Roles assigned:
                     </Typography>
                 </Box>
                 <List dense={true}>
                 {props.bind?.data.roles?.map((item, index) => 
                 (
-                    <Items item={item.name} key={index} />
+                    <Items item={item.name} key={index} className={classes.value} />
                 ))}
                 </List>
                 <Box pt={0}>
-                    <Typography component={"p"} variant={"body1"} >
+                    <Typography className={classes.item}>
                         Permissions assigned:
                     </Typography>
                 </Box>                
                 <List dense={true}>
                 {props.bind?.data.permissions?.map((item, index) => 
                 (
-                    <Items item={item.name} key={index} />
+                    <Items item={item.name} key={index} className={classes.value} />
                 ))}
                 </List>
             </DialogContent>
             <Divider />
             <DialogActions>
-                <Button onClick={props.bind?.closeHandler} color="primary" autoFocus>
-                    OK
-                </Button>
+                <Button onClick={props.bind?.closeHandler} className={classes.button} autoFocus>OK</Button>
             </DialogActions>
         </Dialog>
     );

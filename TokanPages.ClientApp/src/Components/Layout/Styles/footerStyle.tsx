@@ -9,18 +9,23 @@ const footerStyle = makeStyles((theme) => (
         {
             textAlign: "center"
         },
+        background: CustomColours.colours.violet,
     },
-    iconsBoxRoot: 
+    icon_box: 
     {
         [theme.breakpoints.down("md")]: 
         {
             width: "100%",
             marginBottom: theme.spacing(0),
         }
-    }, 
+    },
+    icon:
+    {
+        color: CustomColours.colours.white
+    },
     copy: 
     {
-        color: CustomColours.colours.gray2,
+        color: CustomColours.colours.white,
         [theme.breakpoints.down("md")]: 
         {
             width: "100%",
@@ -29,12 +34,12 @@ const footerStyle = makeStyles((theme) => (
     },
     links:
     {
-        color: CustomColours.colours.gray2,
+        color: CustomColours.colours.white,
         textDecoration: "none"
     },
     version:
     {
-        color: CustomColours.colours.gray1,
+        color: CustomColours.colours.white,
     }
 }));
 

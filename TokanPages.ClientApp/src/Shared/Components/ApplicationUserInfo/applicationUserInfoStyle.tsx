@@ -1,34 +1,22 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../../Theme/customColours";
 
-const articleCardStyle = makeStyles(() => (
+const ApplicationUserInfoStyle = makeStyles(() => (
 {
-    root: 
-    {
-        marginTop: 25,
-        marginBottom: 25
-    },
-    link:
-    {
-        textDecoration: "none"
-    },
-    image:
-    {
-        margin: "auto",
-        display: "block",
-        objectFit: "cover",
-        height: 180,
-        maxWidth: "100%"
-    },
-    title:
+    fullname:
     {
         fontSize: "1.5rem",
         color: CustomColours.colours.black
     },
-    description:
+    item:
     {
-        fontSize: "1.0rem",
-        color: CustomColours.colours.gray1
+        fontSize: "1.1rem",
+        color: CustomColours.colours.black
+    },
+    value:
+    {
+        fontSize: "1.1rem",
+        color: CustomColours.colours.gray2
     },
     button:
     {
@@ -42,4 +30,4 @@ const articleCardStyle = makeStyles(() => (
     }
 }));
 
-export default articleCardStyle;
+export default ApplicationUserInfoStyle;
