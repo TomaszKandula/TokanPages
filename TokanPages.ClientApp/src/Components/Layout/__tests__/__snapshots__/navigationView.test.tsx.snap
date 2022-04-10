@@ -32,10 +32,10 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
   }
 >
   <WithStyles(ForwardRef(AppBar))
-    className="makeStyles-appBar-1"
+    className="makeStyles-app_bar-1"
   >
     <WithStyles(ForwardRef(Toolbar))
-      className="makeStyles-toolBar-2"
+      className="makeStyles-tool_bar-2"
     >
       <WithStyles(ForwardRef(Grid))
         container={true}
@@ -44,7 +44,7 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
         xs={12}
       >
         <WithStyles(ForwardRef(Grid))
-          className="makeStyles-menu-4"
+          className="makeStyles-nav_menu-5"
           item={true}
           xs={true}
         >
@@ -53,32 +53,32 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
             color="inherit"
             onClick={[MockFunction]}
           >
-            <MenuIcon />
+            <Memo(ForwardRef(MenuIcon)) />
           </WithStyles(ForwardRef(IconButton))>
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Grid))
-          className="makeStyles-link-5"
-          item={true}
-          xs={true}
-        >
-          <Link
-            to="/"
-          >
-            <div
-              className="makeStyles-image-6"
-              data-aos="fade-down"
-            />
-          </Link>
-        </WithStyles(ForwardRef(Grid))>
-        <WithStyles(ForwardRef(Grid))
-          className="makeStyles-avatar-7"
+          className="makeStyles-app_link-6"
           item={true}
           xs={true}
         >
           <WithStyles(ForwardRef(Typography))
-            className="makeStyles-userAlias-8"
-            component="span"
-            variant="body1"
+            className="makeStyles-app_full_logo-3"
+          >
+            &lt;/&gt; tom kandula
+          </WithStyles(ForwardRef(Typography))>
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-app_just_logo-4"
+          >
+            &lt;/&gt;
+          </WithStyles(ForwardRef(Typography))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          className="makeStyles-user_avatar-7"
+          item={true}
+          xs={true}
+        >
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-user_alias-8"
           />
           <WithStyles(ForwardRef(IconButton))
             color="inherit"

@@ -18,7 +18,7 @@ exports[`Test articles group component: articleCardView. Renders correctly '<Art
       >
         <img
           alt=""
-          className="makeStyles-img-4"
+          className="makeStyles-image-3"
           src="/images/card.jpg"
         />
       </WithStyles(ForwardRef(Grid))>
@@ -28,25 +28,20 @@ exports[`Test articles group component: articleCardView. Renders correctly '<Art
       >
         <WithStyles(ForwardRef(CardContent))>
           <WithStyles(ForwardRef(Typography))
-            className="makeStyles-title-5"
-            component="h2"
+            className="makeStyles-title-4"
             gutterBottom={true}
-            variant="h5"
           >
             Article title
           </WithStyles(ForwardRef(Typography))>
           <WithStyles(ForwardRef(Typography))
-            className="makeStyles-description-6"
-            color="textSecondary"
-            component="p"
-            variant="body2"
+            className="makeStyles-description-5"
           >
             Article short description
           </WithStyles(ForwardRef(Typography))>
         </WithStyles(ForwardRef(CardContent))>
         <WithStyles(ForwardRef(CardActions))>
           <WithStyles(ForwardRef(Button))
-            color="primary"
+            className="makeStyles-button-6"
             onClick={[MockFunction]}
             size="small"
           >

@@ -22,7 +22,7 @@ exports[`Test articles group component: articleDetailView. Renders correctly '<A
             <WithStyles(ForwardRef(IconButton))
               onClick={[MockFunction]}
             >
-              <ArrowBackIcon />
+              <Memo(ForwardRef(ArrowBackIcon)) />
             </WithStyles(ForwardRef(IconButton))>
           </WithStyles(ForwardRef(Grid))>
           <WithStyles(ForwardRef(Grid))
@@ -187,7 +187,7 @@ exports[`Test articles group component: articleDetailView. Renders correctly '<A
                 </span>
               }
             >
-              <ThumbUpIcon
+              <Memo(ForwardRef(ThumbUpIcon))
                 className="makeStyles-thumbsMedium-8"
                 onClick={[MockFunction]}
               />

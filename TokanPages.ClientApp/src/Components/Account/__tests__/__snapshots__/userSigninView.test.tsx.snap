@@ -13,24 +13,17 @@ exports[`Test account group component: userSigninView. Renders correctly '<UserS
         elevation={4}
       >
         <WithStyles(ForwardRef(CardContent))
-          className="makeStyles-card-3"
+          className="makeStyles-card-5"
         >
           <Styled(MuiBox)
             mb={3}
             textAlign="center"
           >
-            <AccountCircleIcon
-              color="primary"
-              style={
-                Object {
-                  "fontSize": 72,
-                }
-              }
+            <Memo(ForwardRef(AccountCircleIcon))
+              className="makeStyles-account-3"
             />
             <WithStyles(ForwardRef(Typography))
-              color="textSecondary"
-              component="h2"
-              variant="h5"
+              className="makeStyles-caption-4"
             >
               Sign in
             </WithStyles(ForwardRef(Typography))>
@@ -78,7 +71,7 @@ exports[`Test account group component: userSigninView. Renders correctly '<UserS
               my={2}
             >
               <WithStyles(ForwardRef(Button))
-                color="primary"
+                className="makeStyles-button-6"
                 disabled={false}
                 fullWidth={true}
                 onClick={[MockFunction]}

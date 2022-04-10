@@ -19,7 +19,7 @@ exports[`Test component: updateSubscriberView. Renders correctly '<UpdateSubscri
             mb={3}
             textAlign="center"
           >
-            <AccountCircleIcon
+            <Memo(ForwardRef(AccountCircleIcon))
               color="primary"
               style={
                 Object {

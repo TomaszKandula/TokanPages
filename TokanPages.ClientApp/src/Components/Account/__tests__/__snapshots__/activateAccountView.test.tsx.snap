@@ -14,7 +14,7 @@ exports[`Test account group component: activateAccountView. Renders correctly '<
         elevation={4}
       >
         <WithStyles(ForwardRef(CardContent))
-          className="makeStyles-card-2"
+          className="makeStyles-card-5"
         >
           <Styled(MuiBox)
             mb={3}
@@ -25,9 +25,8 @@ exports[`Test account group component: activateAccountView. Renders correctly '<
               mt={2}
             >
               <WithStyles(ForwardRef(Typography))
-                component="h4"
+                className="makeStyles-caption-2"
                 gutterBottom={true}
-                variant="h4"
               >
                 Account Activation
               </WithStyles(ForwardRef(Typography))>
@@ -37,9 +36,7 @@ exports[`Test account group component: activateAccountView. Renders correctly '<
               mt={5}
             >
               <WithStyles(ForwardRef(Typography))
-                color="textSecondary"
-                component="h6"
-                variant="h6"
+                className="makeStyles-text1-3"
               >
                 Your account has been successfully activated!
               </WithStyles(ForwardRef(Typography))>
@@ -49,14 +46,13 @@ exports[`Test account group component: activateAccountView. Renders correctly '<
               mt={2}
             >
               <WithStyles(ForwardRef(Typography))
-                color="textSecondary"
-                variant="body1"
+                className="makeStyles-text2-4"
               >
                 You can now sign in.
               </WithStyles(ForwardRef(Typography))>
             </Styled(MuiBox)>
             <WithStyles(ForwardRef(Button))
-              color="primary"
+              className="makeStyles-button-6"
               disabled={false}
               fullWidth={true}
               onClick={[MockFunction]}

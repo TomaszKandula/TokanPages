@@ -14,7 +14,7 @@ exports[`Test component: menuView. Renders correctly '<MenuView />' when content
       className="makeStyles-menuBackground-1"
       src=""
     />
-    <Component
+    <RenderList
       bind={
         Object {
           "isAnonymous": true,

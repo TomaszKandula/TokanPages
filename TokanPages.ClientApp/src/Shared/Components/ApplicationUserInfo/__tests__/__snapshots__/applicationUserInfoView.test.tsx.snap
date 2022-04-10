@@ -37,8 +37,7 @@ exports[`Test view component for application user info. Renders correctly view c
         xs={12}
       >
         <WithStyles(ForwardRef(Typography))
-          component="p"
-          variant="h5"
+          className="makeStyles-fullname-1"
         >
           Tester
            
@@ -53,30 +52,37 @@ exports[`Test view component for application user info. Renders correctly view c
       pt={2}
     >
       <WithStyles(ForwardRef(Typography))
-        component="p"
-        variant="body1"
+        className="makeStyles-item-2"
       >
         User alias: 
-        tester
+        <WithStyles(ForwardRef(Typography))
+          className="makeStyles-value-3"
+          component="span"
+        >
+          tester
+        </WithStyles(ForwardRef(Typography))>
       </WithStyles(ForwardRef(Typography))>
     </Styled(MuiBox)>
     <Styled(MuiBox)
       pt={2}
     >
       <WithStyles(ForwardRef(Typography))
-        component="p"
-        variant="body1"
+        className="makeStyles-item-2"
       >
         Registered: 
-        01/01/2020, 03:02 PM
+        <WithStyles(ForwardRef(Typography))
+          className="makeStyles-value-3"
+          component="span"
+        >
+          01/01/2020, 03:02 PM
+        </WithStyles(ForwardRef(Typography))>
       </WithStyles(ForwardRef(Typography))>
     </Styled(MuiBox)>
     <Styled(MuiBox)
       pt={2}
     >
       <WithStyles(ForwardRef(Typography))
-        component="p"
-        variant="body1"
+        className="makeStyles-item-2"
       >
         Roles assigned:
       </WithStyles(ForwardRef(Typography))>
@@ -85,10 +91,12 @@ exports[`Test view component for application user info. Renders correctly view c
       dense={true}
     >
       <Items
+        className="makeStyles-value-3"
         item="EverydayUser"
         key="0"
       />
       <Items
+        className="makeStyles-value-3"
         item="Tester"
         key="1"
       />
@@ -97,8 +105,7 @@ exports[`Test view component for application user info. Renders correctly view c
       pt={0}
     >
       <WithStyles(ForwardRef(Typography))
-        component="p"
-        variant="body1"
+        className="makeStyles-item-2"
       >
         Permissions assigned:
       </WithStyles(ForwardRef(Typography))>
@@ -107,10 +114,12 @@ exports[`Test view component for application user info. Renders correctly view c
       dense={true}
     >
       <Items
+        className="makeStyles-value-3"
         item="CanTestEverything"
         key="0"
       />
       <Items
+        className="makeStyles-value-3"
         item="CanOrderPizza"
         key="1"
       />
@@ -120,7 +129,7 @@ exports[`Test view component for application user info. Renders correctly view c
   <WithStyles(ForwardRef(DialogActions))>
     <WithStyles(ForwardRef(Button))
       autoFocus={true}
-      color="primary"
+      className="makeStyles-button-4"
       onClick={[MockFunction]}
     >
       OK

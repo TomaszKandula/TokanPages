@@ -9,7 +9,9 @@ exports[`Test progress bar component. Should correctly render 'CenteredCircularL
   <Styled(MuiBox)
     m="auto"
   >
-    <WithStyles(ForwardRef(CircularProgress)) />
+    <WithStyles(ForwardRef(CircularProgress))
+      className="makeStyles-main-1"
+    />
   </Styled(MuiBox)>
 </Styled(MuiBox)>
 `;

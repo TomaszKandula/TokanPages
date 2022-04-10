@@ -50,7 +50,7 @@ exports[`Test component: unsubscribeView. Renders correctly '<UnsubscribeView />
             >
               <WithStyles(ForwardRef(Typography))
                 color="textSecondary"
-                variant="body1"
+                variant="h6"
               >
                 ...but we understand there are circumstances
               </WithStyles(ForwardRef(Typography))>
@@ -61,21 +61,12 @@ exports[`Test component: unsubscribeView. Renders correctly '<UnsubscribeView />
             >
               <WithStyles(ForwardRef(Typography))
                 color="textSecondary"
-                variant="body1"
+                variant="h6"
               >
                 Please contact us should you have any questions
               </WithStyles(ForwardRef(Typography))>
             </Styled(MuiBox)>
-            <WithStyles(ForwardRef(Button))
-              color="primary"
-              disabled={true}
-              fullWidth={true}
-              onClick={[MockFunction]}
-              type="submit"
-              variant="contained"
-            >
-              Unsubscribe Now
-            </WithStyles(ForwardRef(Button))>
+            <ActiveButton />
           </Styled(MuiBox)>
         </WithStyles(ForwardRef(CardContent))>
       </WithStyles(ForwardRef(Card))>
