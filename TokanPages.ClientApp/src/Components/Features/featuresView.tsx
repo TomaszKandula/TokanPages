@@ -22,7 +22,7 @@ const FeaturesView = (props: IGetFeaturesContent): JSX.Element =>
                     <Box py={8}>
                         <Box mb={8}>
                             <Typography gutterBottom={true} className={classes.caption_text}>
-                                {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption.toUpperCase()}
+                                {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption?.toUpperCase()}
                             </Typography>
                         </Box>
                         <Grid container spacing={6}>

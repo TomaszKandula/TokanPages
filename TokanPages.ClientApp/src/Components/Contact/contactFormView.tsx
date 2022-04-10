@@ -44,7 +44,7 @@ const ContactFormView = (props: IBinding): JSX.Element =>
                         <Box pt={8} pb={10}>
                             <Box mb={6} textAlign="center">
                                 <Typography gutterBottom={true} className={classes.caption}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption.toUpperCase()}
+                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption?.toUpperCase()}
                                 </Typography>
                             </Box>
                             <Box>
