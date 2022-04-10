@@ -36,8 +36,10 @@ const UserSignout = (props: IGetUserSignoutContent): JSX.Element =>
 
     return (<UserSignoutView bind=
     {{
+        isLoading: props.isLoading,
         caption: props.content.caption,
-        status: progress ? props.content.onProcessing : props.content.onFinish
+        status: progress ? props.content.onProcessing : props.content.onFinish,
+        buttonText: props.content.buttonText
     }}/>);
 }
 
