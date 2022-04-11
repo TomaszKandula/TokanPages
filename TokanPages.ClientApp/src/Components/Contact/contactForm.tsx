@@ -125,7 +125,8 @@ const ContactForm = (props: IGetContactFormContent): JSX.Element =>
         terms: form.terms,
         buttonHandler: buttonHandler,
         progress: progress,
-        buttonText: props.content?.button
+        buttonText: props.content?.button,
+        consent: props.content.consent
     }}/>);
 }
 

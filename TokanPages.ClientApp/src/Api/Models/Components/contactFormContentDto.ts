@@ -5,5 +5,6 @@ export interface IContactFormContentDto
         caption: string;
         text: string;
         button: string;
+        consent: string;
     };
 }

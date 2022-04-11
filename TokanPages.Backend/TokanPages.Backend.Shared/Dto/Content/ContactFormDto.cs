@@ -11,4 +11,6 @@ public class ContactFormDto : BaseClass
     public string Text { get; set; }
 
     public string Button { get; set; }
+
+    public string Consent { get; set; } 
 }

@@ -31,6 +31,7 @@ interface IProperties
     buttonHandler: any;
     progress: boolean;
     buttonText: string;
+    consent: string;
 }
 
 const ContactFormView = (props: IBinding): JSX.Element =>
@@ -82,7 +83,7 @@ const ContactFormView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12}>
                                         <FormControlLabel 
                                             control={<VioletCheckbox onChange={props.bind?.formHandler} checked={props.bind?.terms} name="terms" id="terms" />} 
-                                            label="I agree to the terms of use and privacy policy." 
+                                            label={props.bind?.consent} 
                                         />
                                     </Grid>
                                 </Grid>
