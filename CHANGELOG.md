@@ -1,3 +1,44 @@
+# [0.45.0](https://github.com/TomaszKandula/TokanPages/compare/v0.44.0...v0.45.0) (2022-04-11)
+
+
+### Bug Fixes
+
+* add missing style for UpdatePasswordView component ([5e81be8](https://github.com/TomaszKandula/TokanPages/commit/5e81be81cb17aa0bc62f8c6fcc8fa47228df6bad))
+* remove out dated XML comments ([1d5b54c](https://github.com/TomaszKandula/TokanPages/commit/1d5b54c41166c31bbbfa43891909d02f481cee62))
+* remove unnecessary callback ([267eef1](https://github.com/TomaszKandula/TokanPages/commit/267eef140eaf7c175de62f5720860204ba4be872))
+* replace deprecated import ([d379946](https://github.com/TomaszKandula/TokanPages/commit/d3799460a58ab81aaa18926de684ea82251ff037))
+* replace deprecated property ([1cb9ca6](https://github.com/TomaszKandula/TokanPages/commit/1cb9ca635966aba46b6ca07350958483c5c0cdf7))
+* resolve issues with dependency arrays ([37afde0](https://github.com/TomaszKandula/TokanPages/commit/37afde0770af801b87b2ea4c3eb70f1ad323bc00))
+* take into account undefined ([39f6628](https://github.com/TomaszKandula/TokanPages/commit/39f66286a574b2bbbdef1d374483d7ce5a43e5c7))
+
+
+### Features
+
+* add consent property to the component ([9c273a4](https://github.com/TomaszKandula/TokanPages/commit/9c273a4485e69fd5487326c86ddc33ca33de819e))
+* add label properties for signin component ([b0c5e42](https://github.com/TomaszKandula/TokanPages/commit/b0c5e42682b9f0fca6a4462bce1174923b5a3c0d))
+* add label properties for update password component ([f32ab26](https://github.com/TomaszKandula/TokanPages/commit/f32ab2662b6fccbf54ec598f5e2483b0e3bedeb9))
+* add label properties to contact form component ([3c1c947](https://github.com/TomaszKandula/TokanPages/commit/3c1c9474f71cc0d5b9ed5a0b60e06632d6249eb0))
+* add label properties to signup component ([3f8b408](https://github.com/TomaszKandula/TokanPages/commit/3f8b408810ef12dab9373ee128a15deee8152113))
+* add label property for newsletter component ([67aa23c](https://github.com/TomaszKandula/TokanPages/commit/67aa23cd941c4798be528e31e25d7628ab002eff))
+* add label property for reset password component ([a5643eb](https://github.com/TomaszKandula/TokanPages/commit/a5643ebb04e2cb1aafebaabd48b9dbfb2e97c8b6))
+* add label property to update subscriber component ([345a3e1](https://github.com/TomaszKandula/TokanPages/commit/345a3e1666fda4bff4ce5abfd13fb929b08af78b))
+* add new property for button text ([2d833af](https://github.com/TomaszKandula/TokanPages/commit/2d833af99136fe2725ed7b8cf181b7197d10d07b))
+* apply new colour scheme ([bbe3574](https://github.com/TomaszKandula/TokanPages/commit/bbe35745c0e5fbb829e2f706a9c891ca3a53f45b))
+* apply new style and look ([60a930a](https://github.com/TomaszKandula/TokanPages/commit/60a930a77538bf1e6870cdd54ecb9688d84e05b5))
+* change footer font size ([58f3c58](https://github.com/TomaszKandula/TokanPages/commit/58f3c5838b45a8e764b0ef7a518a0b1d8adb1658))
+* change footer font size ([d4be621](https://github.com/TomaszKandula/TokanPages/commit/d4be6211234e0582937765e3294913a3ce4d55ee))
+* extend logging behaviour by adding execution time ([62a031b](https://github.com/TomaszKandula/TokanPages/commit/62a031b28f06681c17b0426daad9efed4c168457))
+* improve logic and layout of component view for unsubscribe action ([b487a67](https://github.com/TomaszKandula/TokanPages/commit/b487a675204cb508f20f8d331bc3a133347d5f3b))
+* remove sentry ([1b4498e](https://github.com/TomaszKandula/TokanPages/commit/1b4498e6babf47ea1c9aefa89b601bc91c4188c5))
+* update component layouts ([d1f8bf7](https://github.com/TomaszKandula/TokanPages/commit/d1f8bf7bc88b968aceced036910dc0d0fa6d7992))
+* update component styles ([7e02a1b](https://github.com/TomaszKandula/TokanPages/commit/7e02a1b284dbf646d49c59e760865ab21e2c3587))
+* update components logic ([b2a9cfa](https://github.com/TomaszKandula/TokanPages/commit/b2a9cfad0bdda3af5c94e59f494def8728a466f7))
+* update layout and style for small screens and large screens ([220f714](https://github.com/TomaszKandula/TokanPages/commit/220f71453b88a9295d0ef9b340b4e035b96533c2))
+* update style of navigation and its side menu ([8c50fb6](https://github.com/TomaszKandula/TokanPages/commit/8c50fb65c6b5194ab46c05f3020725185dcf1578))
+* update tests and snapshots after change in implementation ([3164b78](https://github.com/TomaszKandula/TokanPages/commit/3164b786910edb600632f89aba8d85211b2d71cf))
+* upgrade node.js ([df0884e](https://github.com/TomaszKandula/TokanPages/commit/df0884ec2777da118ecc549ec45b2a2d30411344))
+* use Ubuntu font from Google ([1bd4aed](https://github.com/TomaszKandula/TokanPages/commit/1bd4aed39878bc718c1effa73986f7b6331f9b89))
+
 # [0.44.0](https://github.com/TomaszKandula/TokanPages/compare/v0.43.0...v0.44.0) (2022-02-15)
 
 
