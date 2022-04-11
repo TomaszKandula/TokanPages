@@ -25,6 +25,7 @@ const footerStyle = makeStyles((theme) => (
     },
     copy: 
     {
+        fontSize: "1.2rem",
         color: CustomColours.colours.white,
         [theme.breakpoints.down("md")]: 
         {
