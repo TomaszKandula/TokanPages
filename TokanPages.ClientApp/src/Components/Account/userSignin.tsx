@@ -98,7 +98,9 @@ const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
             progress: progress,
             formHandler: formHandler,
             email: form.email,
-            password: form.password
+            password: form.password,
+            labelEmail: props.content.labelEmail,
+            labelPassword: props.content.labelPassword
         }}/>
     );
 }

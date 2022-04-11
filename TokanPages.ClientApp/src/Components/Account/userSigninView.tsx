@@ -28,6 +28,8 @@ interface IProperties
     formHandler: any;
     email: string;
     password: string;
+    labelEmail: string;
+    labelPassword: string;
 }
 
 const UserSigninView = (props: IBinding): JSX.Element =>
@@ -61,14 +63,14 @@ const UserSigninView = (props: IBinding): JSX.Element =>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
                                         <TextField 
-                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email}
-                                            variant="outlined" name="email" id="email" label="Email address" autoComplete="email" 
+                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail}
+                                            variant="outlined" name="email" id="email" autoComplete="email" 
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField 
-                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.password} 
-                                            variant="outlined" name="password" id="password" label="Password" type="password" autoComplete="current-password" 
+                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.password} label={props.bind?.labelPassword}
+                                            variant="outlined" name="password" id="password" type="password" autoComplete="current-password" 
                                         />
                                     </Grid>
                                 </Grid>
