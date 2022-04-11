@@ -7,6 +7,7 @@ export const GetNewsletterContentDefault: IGetNewsletterContent =
     {
         caption: "",
         text: "",
-        button: ""
+        button: "",
+        labelEmail: ""
     }    
 }

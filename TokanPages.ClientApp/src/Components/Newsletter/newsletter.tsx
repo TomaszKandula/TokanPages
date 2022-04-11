@@ -87,7 +87,8 @@ const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
         email: form.email,
         buttonHandler: buttonHandler,
         progress: progress,
-        buttonText: props.content?.button
+        buttonText: props.content?.button,
+        labelEmail: props.content?.labelEmail
     }}/>);
 }
 

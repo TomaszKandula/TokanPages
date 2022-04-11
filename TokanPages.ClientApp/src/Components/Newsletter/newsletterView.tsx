@@ -24,6 +24,7 @@ interface IProperties
     buttonHandler: any;
     progress: boolean;
     buttonText: string;
+    labelEmail: string;
 }
 
 const NewsletterView = (props: IBinding): JSX.Element =>
@@ -61,8 +62,8 @@ const NewsletterView = (props: IBinding): JSX.Element =>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12} sm={7}>
                                                 <TextField 
-                                                    required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} 
-                                                    variant="outlined" size="small" name="email" id="email_newletter" label="Email address" autoComplete="email" 
+                                                    required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail}
+                                                    variant="outlined" size="small" name="email" id="email_newletter" autoComplete="email" 
                                                 />
                                             </Grid>
                                             <Grid item xs={12} sm={5}>
