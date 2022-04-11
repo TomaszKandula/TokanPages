@@ -4,5 +4,6 @@ export interface IUpdateSubscriberContentDto
     {
         caption: string;
         button: string;
+        labelEmail: string;
     };
 }

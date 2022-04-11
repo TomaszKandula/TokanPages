@@ -16,7 +16,7 @@ exports[`Test articles group component: articleListView. Renders correctly '<Art
           to="/"
         >
           <WithStyles(ForwardRef(IconButton))>
-            <ArrowBackIcon />
+            <Memo(ForwardRef(ArrowBackIcon)) />
           </WithStyles(ForwardRef(IconButton))>
         </Link>
         <WithStyles(ForwardRef(Divider))

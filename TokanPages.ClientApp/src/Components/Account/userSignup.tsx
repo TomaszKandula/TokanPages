@@ -77,7 +77,8 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
             break;
         }
     }, 
-    [ progress, clearForm, form, raiseErrorState, signupUser, signupUserState, showSuccess ]);
+    [ progress, raiseErrorState?.defaultErrorMessage, signupUserState?.operationStatus, 
+        OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
@@ -89,7 +90,7 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
 
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.checked});
     };
-    
+
     const buttonHandler = () => 
     {
         let validationResult = ValidateSignupForm( 
@@ -114,7 +115,7 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
     {{
         isLoading: props.isLoading,
         caption: props.content.caption,
-        label: props.content.label,
+        consent: props.content.consent,
         button: props.content.button,
         link: props.content.link,
         buttonHandler: buttonHandler,
@@ -124,7 +125,11 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
         lastName: form.lastName,
         email: form.email,
         password: form.password,
-        terms: form.terms
+        terms: form.terms,
+        labelFirstName: props.content.labelFirstName,
+        labelLastName: props.content.labelLastName,
+        labelEmail: props.content.labelEmail,
+        labelPassword: props.content.labelPassword
     }}/>);
 }
 

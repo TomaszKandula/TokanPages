@@ -103,7 +103,7 @@
 
 .carousel .control-next.control-arrow:before 
 {
-    border: solid #3F51B5;
+    border: solid #6367EF;
     border-width: 0 8px 8px 0;
     display: inline-block;
     padding: 14px;
@@ -114,7 +114,7 @@
 
 .carousel .control-prev.control-arrow:before 
 {
-    border: solid #3F51B5;
+    border: solid #6367EF;
     border-width: 0 8px 8px 0;
     display: inline-block;
     padding: 14px;

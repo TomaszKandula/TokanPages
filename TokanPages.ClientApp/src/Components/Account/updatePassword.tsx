@@ -63,7 +63,7 @@ const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
             clearForm();
             return;
         }
-        
+
         switch(updateUserPasswordState?.operationStatus)
         {
             case OperationStatus.notStarted:
@@ -82,7 +82,8 @@ const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
             break;
         }
     }, 
-    [ progress, clearForm, updateAction, showSuccess, form, resetId, userId, raiseErrorState, updateUserPasswordState ]);
+    [ progress, raiseErrorState?.defaultErrorMessage, updateUserPasswordState?.operationStatus, 
+        OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     { 
@@ -117,7 +118,9 @@ const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
             verifyPassword: form.verifyPassword,
             formHandler: formHandler,
             buttonHandler: buttonHandler,
-            disableForm: disableForm
+            disableForm: disableForm,
+            labelNewPassword: props.content.labelNewPassword,
+            labelVerifyPassword: props.content.labelVerifyPassword
         }}/>
     );
 }

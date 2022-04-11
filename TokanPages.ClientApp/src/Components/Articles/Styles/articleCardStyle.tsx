@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { CustomColours } from "../../../Theme/customColours";
 
 const articleCardStyle = makeStyles((theme) => (
 {
@@ -7,43 +8,63 @@ const articleCardStyle = makeStyles((theme) => (
         marginTop: 25,
         marginBottom: 25
     },
-    media: 
-    {
-        height: 140,
-    },
     link:
     {
         textDecoration: "none"
     },
-    img:
+    large_screen:
+    {
+        [theme.breakpoints.down(700)]:
+        {
+            display: "none"
+        },
+        [theme.breakpoints.up(700)]:
+        {
+            display: "flex"
+        }
+    },
+    small_screen:
+    {
+        [theme.breakpoints.up(700)]:
+        {
+            display: "none"
+        }
+    },
+    image:
     {
         margin: "auto",
         display: "block",
         objectFit: "cover",
-        height: 150,
+        height: 180,
         maxWidth: "100%"
     },
     title:
     {
-        [theme.breakpoints.down("md")]:
-        {
-            fontSize: "1.2rem"
-        },
-        [theme.breakpoints.down("sm")]:
-        {
-            fontSize: "1.0rem"
-        }
+        fontSize: "1.5rem",
+        color: CustomColours.colours.black
     },
     description:
     {
-        [theme.breakpoints.down("md")]:
+        fontSize: "1.0rem",
+        color: CustomColours.colours.gray1
+    },
+    button:
+    {
+        [theme.breakpoints.down(700)]:
         {
-            fontSize: "0.85rem"
+            marginTop: "0px"
         },
-        [theme.breakpoints.down("sm")]:
+        [theme.breakpoints.up(700)]:
         {
-            fontSize: "0.75rem"
-        }
+            marginTop: "18px"
+        },
+        "&:hover": 
+        {
+            color: CustomColours.colours.white,
+            background: CustomColours.colours.darkViolet1,
+        },
+        color: CustomColours.colours.white,
+        background: CustomColours.colours.violet,
     }
 }));
 

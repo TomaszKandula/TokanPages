@@ -9,4 +9,8 @@ public class UpdatePasswordDto : BaseClass
     public string Caption { get; set; }
 
     public string Button { get; set; }
+
+    public string LabelNewPassword { get; set; }
+
+    public string LabelVerifyPassword { get; set; }
 }

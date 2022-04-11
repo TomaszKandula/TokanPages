@@ -5,13 +5,13 @@ const userAvatarStyle = makeStyles(() => (
 {
     avatarSmall:
     {
-        color: CustomColours.typography.white,
+        color: CustomColours.colours.white,
         width: "48px", 
         height: "48px"
     },
     avatarLarge:
     {
-        color: CustomColours.typography.white,
+        color: CustomColours.colours.white,
         width: "96px", 
         height: "96px"
     }

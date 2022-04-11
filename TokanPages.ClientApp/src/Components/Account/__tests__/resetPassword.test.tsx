@@ -16,7 +16,8 @@ describe("Test account group component: resetPassword.", () =>
     const testContent = 
     {
         caption: "Reset Password",
-        button: "Reset"
+        button: "Reset",
+        labelEmail: "Email address"
     };
 
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");

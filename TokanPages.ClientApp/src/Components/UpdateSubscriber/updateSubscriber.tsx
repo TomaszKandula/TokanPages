@@ -21,12 +21,13 @@ interface IGetUpdateSubscriberContentExtended extends IGetUpdateSubscriberConten
 
 const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Element =>
 {
+    const buttonDefaultState = props.id === null ? false : true;
     const dispatch = useDispatch();
     const updateSubscriberState = useSelector((state: IApplicationState) => state.updateSubscriber);
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
 
     const [form, setForm] = React.useState({email: ""});
-    const [buttonState, setButtonState] = React.useState(true);
+    const [buttonState, setButtonState] = React.useState(buttonDefaultState);
     const [progress, setProgress] = React.useState(false);
 
     const showSuccess = React.useCallback((text: string) => dispatch(RaiseDialogAction.raiseDialog(SuccessMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
@@ -68,7 +69,8 @@ const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Eleme
             break;
         }           
     }, 
-    [ updateSubscriber, updateSubscriberState, progress, form, props.id, showSuccess, clearForm, raiseErrorState ]);
+    [ progress, raiseErrorState?.defaultErrorMessage, updateSubscriberState?.operationStatus, 
+        OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
@@ -101,7 +103,8 @@ const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Eleme
         buttonHandler: buttonHandler,
         buttonState: buttonState,
         progress: progress,
-        buttonText: props.content?.button
+        buttonText: props.content?.button,
+        labelEmail: props.content.labelEmail
     }}/>);
 }
 

@@ -14,7 +14,7 @@ exports[`Test component: unsubscribeView. Renders correctly '<UnsubscribeView />
         elevation={4}
       >
         <WithStyles(ForwardRef(CardContent))
-          className="makeStyles-card-2"
+          className="makeStyles-card-6"
         >
           <Styled(MuiBox)
             mb={3}
@@ -25,9 +25,8 @@ exports[`Test component: unsubscribeView. Renders correctly '<UnsubscribeView />
               mt={2}
             >
               <WithStyles(ForwardRef(Typography))
-                component="h4"
+                className="makeStyles-caption-2"
                 gutterBottom={true}
-                variant="h4"
               >
                 Cancel your subscribtion
               </WithStyles(ForwardRef(Typography))>
@@ -37,9 +36,7 @@ exports[`Test component: unsubscribeView. Renders correctly '<UnsubscribeView />
               mt={5}
             >
               <WithStyles(ForwardRef(Typography))
-                color="textSecondary"
-                component="h6"
-                variant="h6"
+                className="makeStyles-text1-3"
               >
                 We are sorry to see you go...
               </WithStyles(ForwardRef(Typography))>
@@ -49,8 +46,7 @@ exports[`Test component: unsubscribeView. Renders correctly '<UnsubscribeView />
               mt={5}
             >
               <WithStyles(ForwardRef(Typography))
-                color="textSecondary"
-                variant="body1"
+                className="makeStyles-text2-4"
               >
                 ...but we understand there are circumstances
               </WithStyles(ForwardRef(Typography))>
@@ -60,22 +56,12 @@ exports[`Test component: unsubscribeView. Renders correctly '<UnsubscribeView />
               mt={5}
             >
               <WithStyles(ForwardRef(Typography))
-                color="textSecondary"
-                variant="body1"
+                className="makeStyles-text3-5"
               >
                 Please contact us should you have any questions
               </WithStyles(ForwardRef(Typography))>
             </Styled(MuiBox)>
-            <WithStyles(ForwardRef(Button))
-              color="primary"
-              disabled={true}
-              fullWidth={true}
-              onClick={[MockFunction]}
-              type="submit"
-              variant="contained"
-            >
-              Unsubscribe Now
-            </WithStyles(ForwardRef(Button))>
+            <ActiveButton />
           </Styled(MuiBox)>
         </WithStyles(ForwardRef(CardContent))>
       </WithStyles(ForwardRef(Card))>

@@ -16,7 +16,8 @@ describe("Test account group component: resetPasswordView.", () =>
             button: "Reset",
             email: "tokan@dfds.com",
             formHandler: jest.fn(),
-            buttonHandler: jest.fn()
+            buttonHandler: jest.fn(),
+            labelEmail: "Email address"
         }}/>);
         expect(tree).toMatchSnapshot();
     });

@@ -2,11 +2,10 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as SubscriberAction } from "../../Redux/Actions/Subscribers/removeSubscriberAction";
-import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
 import { IGetUnsubscribeContent } from "../../Redux/States/Content/getUnsubscribeContentState";
 import { OperationStatus } from "../../Shared/enums";
-import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
-import { RECEIVED_ERROR_MESSAGE, REMOVE_SUBSCRIBER, NEWSLETTER_SUCCESS } from "../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
+import { IContent } from "../../Api/Models/Components/unsubscribeContentDto";
 import { IRemoveSubscriberDto } from "../../Api/Models";
 import UnsubscribeView from "./unsubscribeView";
 
@@ -17,41 +16,40 @@ interface IGetUnsubscribeContentExtended extends IGetUnsubscribeContent
 
 const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element =>
 {
-    const contentPre = 
+    const contentPre: IContent = 
     { 
         caption: props.content?.contentPre.caption,
-        text1:   props.content?.contentPre.text1, 
-        text2:   props.content?.contentPre.text2, 
-        text3:   props.content?.contentPre.text3, 
-        button:  props.content?.contentPre.button
+        text1: props.content?.contentPre.text1, 
+        text2: props.content?.contentPre.text2, 
+        text3: props.content?.contentPre.text3, 
+        button: props.content?.contentPre.button
     };
 
-    const contentPost = 
+    const contentPost: IContent = 
     {
         caption: props.content?.contentPost.caption,
-        text1:   props.content?.contentPost.text1, 
-        text2:   props.content?.contentPost.text2, 
-        text3:   props.content?.contentPost.text3, 
-        button:  props.content?.contentPost.button
+        text1: props.content?.contentPost.text1, 
+        text2: props.content?.contentPost.text2, 
+        text3: props.content?.contentPost.text3, 
+        button: props.content?.contentPost.button
     };
 
     const dispatch = useDispatch();
     const removeSubscriberState = useSelector((state: IApplicationState) => state.removeSubscriber);
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
 
-    const [content, setContent] = React.useState(contentPre);
+    const [isRemoved, setIsRemoved] = React.useState(false);
     const [buttonState, setButtonState] = React.useState(true);
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(REMOVE_SUBSCRIBER, text))), [ dispatch ]);
     const removeSubscriber = React.useCallback((payload: IRemoveSubscriberDto) => dispatch(SubscriberAction.removeSubscriber(payload)), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 
     {
         if (!progress) return;
-        setProgress(false);
+        setIsRemoved(false);
         setButtonState(true);
-        setContent(contentPost);
+        setProgress(false);
     }, 
     [ progress, contentPost ]);
 
@@ -70,12 +68,14 @@ const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element =>
             break;
 
             case OperationStatus.hasFinished:
-                clearForm();
-                showSuccess(NEWSLETTER_SUCCESS);
+                setIsRemoved(true);
+                setButtonState(false);
+                setProgress(false);                        
             break;
         }
     }, 
-    [ removeSubscriber, removeSubscriberState, progress, props.id, showSuccess, clearForm, raiseErrorState ]);
+    [ progress, raiseErrorState?.defaultErrorMessage, removeSubscriberState?.operationStatus, 
+        OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const buttonHandler = () =>
     {
@@ -86,14 +86,12 @@ const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element =>
     return (<UnsubscribeView bind=
     {{
         isLoading: props.isLoading,
-        caption: content.caption,
-        text1: content.text1,
-        text2: content.text2,
-        text3: content.text3,
+        contentPre: contentPre,
+        contentPost: contentPost,
         buttonHandler: buttonHandler,
         buttonState: buttonState,
         progress: progress,
-        buttonText: content.button
+        isRemoved: isRemoved
     }}/>);
 }
 

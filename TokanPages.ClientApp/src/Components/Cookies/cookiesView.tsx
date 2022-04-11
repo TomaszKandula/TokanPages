@@ -7,6 +7,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import cookiesStyle from "./cookiesStyle";
+import { Skeleton } from "@material-ui/lab";
 
 interface IBinding
 {
@@ -15,6 +16,7 @@ interface IBinding
 
 interface IProperties
 {
+    isLoading: boolean;
     modalClose: boolean;
     shouldShow: boolean;
     caption: string;
@@ -26,24 +28,32 @@ interface IProperties
 const CookiesView = (props: IBinding): JSX.Element => 
 {
     const classes = cookiesStyle();
+
+    const ActiveButton = (): JSX.Element => 
+    {
+        return(
+            <Button onClick={props.bind?.onClickEvent} className={classes.button}>
+                {props.bind?.buttonText}
+            </Button>
+        );
+    }
+
     const renderConsent = (): JSX.Element => 
     {
         return (		
             <Box position="fixed" width="100%" bottom={0} p={2} zIndex="modal" className={props.bind?.modalClose ? classes.close : classes.open}>
                 <Container maxWidth="md">
-                    <Card>
+                    <Card elevation={8} className={classes.container}>
                         <CardContent>
-                            <Typography variant="h5" component="h2" gutterBottom={true}>
-                                {props.bind?.caption}
+                            <Typography gutterBottom={true} className={classes.caption}>
+                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
                             </Typography>
-                            <Typography variant="subtitle1" component="p" color="textSecondary">
-                                {props.bind?.text}
-                            </Typography>            
+                            <Typography className={classes.text}>
+                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.text}
+                            </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button onClick={props.bind?.onClickEvent} color="primary">
-                                {props.bind?.buttonText}
-                            </Button>
+                            {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
                         </CardActions>
                     </Card>
                 </Container>

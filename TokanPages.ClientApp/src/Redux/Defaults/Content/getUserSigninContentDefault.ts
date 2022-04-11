@@ -8,6 +8,8 @@ export const GetUserSigninContentDefault: IGetUserSigninContent =
         caption: "",
         button: "",
         link1: "",
-        link2: ""
+        link2: "",
+        labelEmail: "",
+        labelPassword: ""
     }    
 }

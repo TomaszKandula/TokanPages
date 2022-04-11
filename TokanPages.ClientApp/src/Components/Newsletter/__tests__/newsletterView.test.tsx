@@ -17,6 +17,7 @@ describe("Test component: newsletterView.", () =>
             buttonHandler: jest.fn(),
             progress: false,
             buttonText: "Subscribe",
+            labelEmail: "Email address"
         }}/>);
         expect(tree).toMatchSnapshot();
     });

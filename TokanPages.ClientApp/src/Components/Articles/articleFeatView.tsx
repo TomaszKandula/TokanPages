@@ -24,31 +24,28 @@ const ArticleFeatView = (props: IGetArticleFeatContent): JSX.Element =>
                     <Box pt={8} pb={10}>
                         <Container maxWidth="sm">
                             <Box textAlign="center" mb={5}>
-                                <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.title}
-                                </Typography>
-                                <Typography variant="subtitle1" color="textSecondary">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.desc}
+                                <Typography gutterBottom={true} className={classes.title}>
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.title.toUpperCase()}
                                 </Typography>
                             </Box>
                         </Container>
                         <Container maxWidth="lg">
                             <Grid container>
-                                <Grid item xs={12} lg={6} className={classes.firstColumn}>
+                                <Grid item xs={12} lg={6} className={classes.content}>
                                     <Card className={classes.info} elevation={3}>
                                         <CardContent className={classes.info}>
                                             <Box display="flex" flexDirection="column" height="100%" pt={2} px={2}>
-                                                <Typography variant="h5" component="h2" gutterBottom={true}>
+                                                <Typography className={classes.text1}>
                                                     {props.isLoading ? <Skeleton variant="text" /> : props.content?.text1}
                                                 </Typography>
                                                 <Box mt="auto" mb={2}>
-                                                    <Typography variant="body1" component="p" color="textSecondary">
+                                                    <Typography className={classes.text2}>
                                                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.text2}
                                                     </Typography>
                                                 </Box>
                                                 <Box textAlign="right">
                                                     <Link to="/articles" className={classes.link}>
-                                                        <Button color="primary" endIcon={<ArrowRightAltIcon />}>
+                                                        <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
                                                             {props.isLoading ? <Skeleton variant="text" /> : props.content?.button}
                                                         </Button>
                                                     </Link>

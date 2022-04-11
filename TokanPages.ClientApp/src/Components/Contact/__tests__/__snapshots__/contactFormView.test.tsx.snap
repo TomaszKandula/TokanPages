@@ -22,18 +22,10 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
             textAlign="center"
           >
             <WithStyles(ForwardRef(Typography))
-              component="h2"
+              className="makeStyles-caption-2"
               gutterBottom={true}
-              variant="h4"
             >
-              Contact me
-            </WithStyles(ForwardRef(Typography))>
-            <WithStyles(ForwardRef(Typography))
-              color="textSecondary"
-              paragraph={true}
-              variant="subtitle1"
-            >
-              If you have any questions...
+              CONTACT ME
             </WithStyles(ForwardRef(Typography))>
           </Styled(MuiBox)>
           <Styled(MuiBox)>
@@ -116,11 +108,11 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   fullWidth={true}
                   id="message"
                   label="Message"
+                  minRows={6}
                   multiline={true}
                   name="message"
                   onChange={[MockFunction]}
                   required={true}
-                  rows={6}
                   value="Test message..."
                   variant="outlined"
                 />
@@ -131,31 +123,21 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
               >
                 <WithStyles(ForwardRef(FormControlLabel))
                   control={
-                    <ForwardRef(WithStyles(ForwardRef(Checkbox)))
+                    <WithStyles(Component)
                       checked={false}
-                      color="primary"
                       id="terms"
                       name="terms"
                       onChange={[MockFunction]}
                     />
                   }
-                  label="I agree to the terms of use and privacy policy."
+                  label="I agree!"
                 />
               </WithStyles(ForwardRef(Grid))>
             </WithStyles(ForwardRef(Grid))>
             <Styled(MuiBox)
               my={2}
             >
-              <WithStyles(ForwardRef(Button))
-                color="primary"
-                disabled={false}
-                fullWidth={true}
-                onClick={[MockFunction]}
-                type="submit"
-                variant="contained"
-              >
-                Submit
-              </WithStyles(ForwardRef(Button))>
+              <ActiveButton />
             </Styled(MuiBox)>
           </Styled(MuiBox)>
         </Styled(MuiBox)>

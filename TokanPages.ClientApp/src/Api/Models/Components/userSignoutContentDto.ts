@@ -5,5 +5,6 @@ export interface IUserSignoutContentDto
         caption: string;
         onProcessing: string;
         onFinish: string;
+        buttonText: string;
     };
 }

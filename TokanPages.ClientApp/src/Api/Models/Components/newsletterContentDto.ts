@@ -5,5 +5,6 @@ export interface INewsletterContentDto
         caption: string;
         text: string;
         button: string;
+        labelEmail: string;
     };
 }

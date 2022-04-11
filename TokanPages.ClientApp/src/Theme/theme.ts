@@ -1,6 +1,6 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from "@material-ui/core/styles";
 
-const theme = createMuiTheme(
+const theme = createTheme(
 {
     palette:
     {
@@ -11,7 +11,7 @@ const theme = createMuiTheme(
     },
     typography: 
     {
-        "fontFamily": `charter, Georgia, Cambria, "Times New Roman", Times, serif`,
+        "fontFamily": ["Ubuntu", "sans-serif"].join(","),
         "fontSize": 14,
         "fontWeightLight": 300,
         "fontWeightRegular": 400,

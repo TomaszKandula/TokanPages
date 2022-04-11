@@ -4,5 +4,6 @@ export interface IResetPasswordContentDto
     {
         caption: string;
         button: string;
+        labelEmail: string;
     };
 }

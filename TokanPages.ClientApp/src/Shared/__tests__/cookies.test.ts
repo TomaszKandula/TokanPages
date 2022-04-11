@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { SetCookie, GetCookie, EraseCookie } from "../cookies";
 
 describe("Verify cookies module functionality.", () => 

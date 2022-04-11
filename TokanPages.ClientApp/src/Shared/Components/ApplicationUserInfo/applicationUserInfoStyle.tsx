@@ -1,24 +1,22 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../../Theme/customColours";
 
-const resetPasswordStyle = makeStyles(() => (
+const ApplicationUserInfoStyle = makeStyles(() => (
 {
-    account:
+    fullname:
     {
-        fontSize: 72,
-        color: CustomColours.colours.violet
+        fontSize: "1.5rem",
+        color: CustomColours.colours.black
     },
-    caption:
+    item:
     {
-        fontSize: "1.8rem",
-        color: CustomColours.colours.gray1
+        fontSize: "1.1rem",
+        color: CustomColours.colours.black
     },
-    card:
+    value:
     {
-        marginTop: 10,
-        marginLeft: 15,
-        marginRight: 15,
-        marginBottom: 10
+        fontSize: "1.1rem",
+        color: CustomColours.colours.gray2
     },
     button:
     {
@@ -32,4 +30,4 @@ const resetPasswordStyle = makeStyles(() => (
     }
 }));
 
-export default resetPasswordStyle;
+export default ApplicationUserInfoStyle;

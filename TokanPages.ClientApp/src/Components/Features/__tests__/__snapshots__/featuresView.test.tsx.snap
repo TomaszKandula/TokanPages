@@ -17,20 +17,10 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
           mb={8}
         >
           <WithStyles(ForwardRef(Typography))
-            align="center"
-            color="primary"
-            component="h3"
+            className="makeStyles-caption_text-3"
             gutterBottom={true}
-            variant="button"
           >
-            Technologies
-          </WithStyles(ForwardRef(Typography))>
-          <WithStyles(ForwardRef(Typography))
-            align="center"
-            component="h2"
-            variant="h4"
-          >
-            I work primarily with
+            TECHNOLOGIES
           </WithStyles(ForwardRef(Typography))>
         </Styled(MuiBox)>
         <WithStyles(ForwardRef(Grid))
@@ -47,21 +37,17 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
               display="flex"
               mb={2}
             >
-              <CodeIcon
+              <Memo(ForwardRef(CodeIcon))
                 className="makeStyles-icon-2"
-                color="primary"
               />
               <WithStyles(ForwardRef(Typography))
-                component="h3"
-                variant="h5"
+                className="makeStyles-feature_title-4"
               >
                 Languages
               </WithStyles(ForwardRef(Typography))>
             </Styled(MuiBox)>
             <WithStyles(ForwardRef(Typography))
-              color="textSecondary"
-              component="p"
-              variant="body1"
+              className="makeStyles-feature_text-5"
             >
               Today in my daily job, I use...
             </WithStyles(ForwardRef(Typography))>
@@ -76,21 +62,17 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
               display="flex"
               mb={2}
             >
-              <LibraryBooksIcon
+              <Memo(ForwardRef(LibraryBooksIcon))
                 className="makeStyles-icon-2"
-                color="primary"
               />
               <WithStyles(ForwardRef(Typography))
-                component="h3"
-                variant="h5"
+                className="makeStyles-feature_title-4"
               >
                 Frameworks/Libraries
               </WithStyles(ForwardRef(Typography))>
             </Styled(MuiBox)>
             <WithStyles(ForwardRef(Typography))
-              color="textSecondary"
-              component="p"
-              variant="body1"
+              className="makeStyles-feature_text-5"
             >
               Back-End: NET Framework 4.5 (for one project)...
             </WithStyles(ForwardRef(Typography))>
@@ -105,21 +87,17 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
               display="flex"
               mb={2}
             >
-              <StorageIcon
+              <Memo(ForwardRef(StorageIcon))
                 className="makeStyles-icon-2"
-                color="primary"
               />
               <WithStyles(ForwardRef(Typography))
-                component="h3"
-                variant="h5"
+                className="makeStyles-feature_title-4"
               >
                 OR/M
               </WithStyles(ForwardRef(Typography))>
             </Styled(MuiBox)>
             <WithStyles(ForwardRef(Typography))
-              color="textSecondary"
-              component="p"
-              variant="body1"
+              className="makeStyles-feature_text-5"
             >
               I have started with Entity Framework...
             </WithStyles(ForwardRef(Typography))>
@@ -134,21 +112,18 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
               display="flex"
               mb={2}
             >
-              <CloudIcon
+              <Memo(ForwardRef(CloudIcon))
                 className="makeStyles-icon-2"
                 color="primary"
               />
               <WithStyles(ForwardRef(Typography))
-                component="h3"
-                variant="h5"
+                className="makeStyles-feature_title-4"
               >
                 Cloud Services
               </WithStyles(ForwardRef(Typography))>
             </Styled(MuiBox)>
             <WithStyles(ForwardRef(Typography))
-              color="textSecondary"
-              component="p"
-              variant="body1"
+              className="makeStyles-feature_text-5"
             >
               I have experience with...
             </WithStyles(ForwardRef(Typography))>

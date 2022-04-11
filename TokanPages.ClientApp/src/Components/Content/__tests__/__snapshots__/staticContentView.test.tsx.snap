@@ -15,7 +15,7 @@ exports[`Test component: staticContentView. Renders correctly '<StaticContentVie
           to="/"
         >
           <WithStyles(ForwardRef(IconButton))>
-            <ArrowBackIcon />
+            <Memo(ForwardRef(ArrowBackIcon)) />
           </WithStyles(ForwardRef(IconButton))>
         </Link>
         <WithStyles(ForwardRef(Divider))
@@ -25,7 +25,7 @@ exports[`Test component: staticContentView. Renders correctly '<StaticContentVie
       <div
         data-aos="fade-up"
       >
-        <Component
+        <RenderContent
           items={
             Array [
               Object {

@@ -5,11 +5,11 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import contactFormStyle from "./contactFormStyle";
+import VioletCheckbox from "../../Theme/customCheckboxes";
 
 interface IBinding 
 {
@@ -31,11 +31,29 @@ interface IProperties
     buttonHandler: any;
     progress: boolean;
     buttonText: string;
+    consent: string;
+    labelFirstName: string;
+    labelLastName: string;
+    labelEmail: string;
+    labelSubject: string;
+    labelMessage: string;
 }
 
 const ContactFormView = (props: IBinding): JSX.Element =>
 {
     const classes = contactFormStyle();
+
+    const ActiveButton = (): JSX.Element => 
+    {
+        return(
+            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
+                disabled={props.bind?.progress} className={classes.button}>
+                {props.bind?.progress &&  <CircularProgress size={20} />}
+                {!props.bind?.progress && props.bind?.buttonText}
+            </Button>
+        );
+    }
+
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
@@ -43,57 +61,51 @@ const ContactFormView = (props: IBinding): JSX.Element =>
                     <div data-aos="fade-up">
                         <Box pt={8} pb={10}>
                             <Box mb={6} textAlign="center">
-                                <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
-                                </Typography>
-                                <Typography variant="subtitle1" color="textSecondary" paragraph={true}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.text}
+                                <Typography gutterBottom={true} className={classes.caption}>
+                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption?.toUpperCase()}
                                 </Typography>
                             </Box>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={6}>
                                         <TextField 
-                                            onChange={props.bind?.formHandler} value={props.bind?.firstName} variant="outlined" 
-                                            required fullWidth name="firstName" id="firstName" label="First name" autoComplete="fname" 
+                                            onChange={props.bind?.formHandler} value={props.bind?.firstName} label={props.bind?.labelFirstName} 
+                                            required fullWidth name="firstName" id="firstName" autoComplete="fname" variant="outlined"
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
                                         <TextField 
-                                            onChange={props.bind?.formHandler} value={props.bind?.lastName} variant="outlined" 
-                                            required fullWidth name="lastName" id="lastName" label="Last name" autoComplete="lname" 
+                                            onChange={props.bind?.formHandler} value={props.bind?.lastName} label={props.bind?.labelLastName} 
+                                            required fullWidth name="lastName" id="lastName" autoComplete="lname" variant="outlined" 
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField 
-                                            onChange={props.bind?.formHandler} value={props.bind?.email} variant="outlined" 
-                                            required fullWidth name="email" id="email" label="Email address" autoComplete="email" 
+                                            onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail} 
+                                            required fullWidth name="email" id="email" autoComplete="email" variant="outlined" 
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField 
-                                            onChange={props.bind?.formHandler} value={props.bind?.subject} variant="outlined" 
-                                            required fullWidth name="subject" id="subject" label="Subject" autoComplete="subject" 
+                                            onChange={props.bind?.formHandler} value={props.bind?.subject} label={props.bind?.labelSubject} 
+                                            required fullWidth name="subject" id="subject" autoComplete="subject" variant="outlined" 
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField 
-                                            onChange={props.bind?.formHandler} value={props.bind?.message} variant="outlined" 
-                                            required multiline rows={6} fullWidth autoComplete="message" name="message" id="message" label="Message" 
+                                            onChange={props.bind?.formHandler} value={props.bind?.message} label={props.bind?.labelMessage} 
+                                            required multiline minRows={6} fullWidth autoComplete="message" name="message" id="message" variant="outlined" 
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <FormControlLabel 
-                                            control={<Checkbox onChange={props.bind?.formHandler} checked={props.bind?.terms} name="terms" id="terms" color="primary" />} 
-                                            label="I agree to the terms of use and privacy policy." 
+                                            control={<VioletCheckbox onChange={props.bind?.formHandler} checked={props.bind?.terms} name="terms" id="terms" />} 
+                                            label={props.bind?.consent} 
                                         />
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    <Button onClick={props.bind?.buttonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={props.bind?.progress}>
-                                        {props.bind?.progress &&  <CircularProgress size={20} />}
-                                        {!props.bind?.progress && props.bind?.buttonText}
-                                    </Button>
+                                    {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
                                 </Box>
                             </Box>
                         </Box>

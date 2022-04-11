@@ -28,6 +28,7 @@ import { ActionCreators } from "./Redux/Actions/Users/updateUserDataAction";
 import { IApplicationState } from "./Redux/applicationState";
 import { IAuthenticateUserResultDto } from "./Api/Models";
 import Validate from "validate.js";
+import styles from "../src/app.style";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -39,7 +40,8 @@ const App = (): JSX.Element =>
         AOS.refresh();
     });
 
-    const dispatch = useDispatch();
+    const classes = styles();
+    const dispatch = useDispatch();    
     const selector = useSelector((state: IApplicationState) => state.updateUserData);
     const data = GetDataFromStorage(USER_DATA) as IAuthenticateUserResultDto;
 
@@ -75,7 +77,7 @@ const App = (): JSX.Element =>
             <ApplicationDialogBox />
             <ApplicationUserInfo />
             <ScrollTop>
-                <Fab color="primary" size="small" aria-label="scroll back to top">
+                <Fab size="small" aria-label="scroll back to top" className={classes.button}>
                     <KeyboardArrowUpIcon/>
                 </Fab>
             </ScrollTop>

@@ -22,11 +22,8 @@ const FeaturedView = (props: IGetFeaturedContent): JSX.Element =>
                     <Box pt={8} pb={10}>
                         <Container maxWidth="sm">
                             <Box textAlign="center" mb={5}>
-                                <Typography variant="h4" component="h2" gutterBottom={true}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption}
-                                </Typography>
-                                <Typography variant="subtitle1" color="textSecondary">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.text}
+                                <Typography gutterBottom={true} className={classes.caption_text}>
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption?.toUpperCase()}
                                 </Typography>
                             </Box>
                         </Container>

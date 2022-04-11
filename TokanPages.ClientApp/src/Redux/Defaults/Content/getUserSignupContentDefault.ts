@@ -8,6 +8,10 @@ export const GetUserSignupContentDefault: IGetUserSignupContent =
         caption: "",
         button: "",
         link: "",
-        label: ""
+        consent: "",
+        labelFirstName: "",
+        labelLastName: "",
+        labelEmail: "",
+        labelPassword: ""
     }    
 }
