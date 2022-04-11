@@ -103,7 +103,8 @@ const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Eleme
         buttonHandler: buttonHandler,
         buttonState: buttonState,
         progress: progress,
-        buttonText: props.content?.button
+        buttonText: props.content?.button,
+        labelEmail: props.content.labelEmail
     }}/>);
 }
 

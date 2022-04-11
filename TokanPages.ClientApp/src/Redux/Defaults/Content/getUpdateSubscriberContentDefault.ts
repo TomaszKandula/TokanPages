@@ -6,6 +6,7 @@ export const GetUpdateSubscriberContentDefault: IGetUpdateSubscriberContent =
     content: 
     {
         caption: "",
-        button: ""
+        button: "",
+        labelEmail: ""
     }    
 }
