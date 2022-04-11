@@ -45,9 +45,15 @@ const navigationStyle = makeStyles((theme) => (
     },
     nav_menu: 
     {
-        color: CustomColours.colours.violet,
+        color: CustomColours.colours.gray1,
         display: "flex",
         justifyContent: "flex-start"
+    },
+    nav_icon:
+    {
+        height: "48px",
+        marginTop: "6px",
+        marginBottom: "6px"
     },
     app_link:
     {

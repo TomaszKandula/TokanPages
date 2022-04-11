@@ -41,7 +41,7 @@ const NavigationView = (props: IBinding): JSX.Element =>
 
                     <Grid container item xs={12} spacing={3}>
                         <Grid item xs className={classes.nav_menu}>
-                            <IconButton color="inherit" aria-label="menu" onClick={props.bind?.openHandler}>
+                            <IconButton color="inherit" aria-label="menu" onClick={props.bind?.openHandler} className={classes.nav_icon}>
                                 <MenuIcon />
                             </IconButton>
                         </Grid>
