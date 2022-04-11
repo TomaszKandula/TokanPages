@@ -6,6 +6,8 @@ export const GetUpdatePasswordContentDefault: IGetUpdatePasswordContent =
     content: 
     {
         caption: "",
-        button: ""
-  }    
+        button: "",
+        labelNewPassword: "",
+        labelVerifyPassword: ""
+    }    
 }

@@ -26,6 +26,8 @@ interface IProperties
     formHandler: any;
     buttonHandler: any;
     disableForm: boolean;
+    labelNewPassword: string;
+    labelVerifyPassword: string;
 }
 
 const UpdatePasswordView = (props: IBinding): JSX.Element =>
@@ -59,15 +61,15 @@ const UpdatePasswordView = (props: IBinding): JSX.Element =>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
                                         <TextField 
-                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.newPassword} 
-                                            variant="outlined" name="newPassword" id="newPassword" label="New password" type="password" 
+                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.newPassword} label={props.bind?.labelNewPassword}
+                                            variant="outlined" name="newPassword" id="newPassword" type="password" 
                                             autoComplete="password" disabled={props.bind?.disableForm}
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField 
-                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.verifyPassword}
-                                            variant="outlined" name="verifyPassword" id="verifyPassword" label="Verify new password" 
+                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.verifyPassword} label={props.bind?.labelVerifyPassword}
+                                            variant="outlined" name="verifyPassword" id="verifyPassword"
                                             type="password" autoComplete="password" disabled={props.bind?.disableForm}
                                         />
                                     </Grid>

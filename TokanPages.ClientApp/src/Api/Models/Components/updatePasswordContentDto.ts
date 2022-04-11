@@ -4,5 +4,7 @@ export interface IUpdatePasswordContentDto
     {
         caption: string;
         button: string;
+        labelNewPassword: string;
+        labelVerifyPassword: string;
     };
 }

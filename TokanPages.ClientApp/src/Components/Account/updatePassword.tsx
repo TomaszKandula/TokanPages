@@ -118,7 +118,9 @@ const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
             verifyPassword: form.verifyPassword,
             formHandler: formHandler,
             buttonHandler: buttonHandler,
-            disableForm: disableForm
+            disableForm: disableForm,
+            labelNewPassword: props.content.labelNewPassword,
+            labelVerifyPassword: props.content.labelVerifyPassword
         }}/>
     );
 }
