@@ -27,7 +27,8 @@ const ArticleCardView = (props: IBinding): JSX.Element =>
     return(
         <div data-aos="fade-up">
             <Card className={classes.root} elevation={4}>
-                <Grid container spacing={2}>
+
+                <Grid container spacing={2} className={classes.large_screen}>
                     <Grid item xs={4}>
                         <img className={classes.image} alt="" src={props.bind?.imageUrl} />
                     </Grid>
@@ -45,6 +46,23 @@ const ArticleCardView = (props: IBinding): JSX.Element =>
                         </CardActions>
                     </Grid>
                 </Grid>
+
+                <Grid container spacing={2} className={classes.small_screen}>
+                    <Grid item xs={12}>
+                        <CardContent>
+                            <Typography gutterBottom={true} className={classes.title}>
+                                {props.bind?.title}
+                            </Typography>
+                            <Typography className={classes.description}>
+                                {props.bind?.description}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button onClick={props.bind?.onClickEvent} size="small" className={classes.button}>{props.bind?.buttonText}</Button>
+                        </CardActions>
+                    </Grid>
+                </Grid>
+
             </Card>
         </div>
     );

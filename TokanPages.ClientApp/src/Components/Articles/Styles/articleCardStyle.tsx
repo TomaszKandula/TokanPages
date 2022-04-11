@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../../Theme/customColours";
 
-const articleCardStyle = makeStyles(() => (
+const articleCardStyle = makeStyles((theme) => (
 {
     root: 
     {
@@ -11,6 +11,24 @@ const articleCardStyle = makeStyles(() => (
     link:
     {
         textDecoration: "none"
+    },
+    large_screen:
+    {
+        [theme.breakpoints.down(700)]:
+        {
+            display: "none"
+        },
+        [theme.breakpoints.up(700)]:
+        {
+            display: "flex"
+        }
+    },
+    small_screen:
+    {
+        [theme.breakpoints.up(700)]:
+        {
+            display: "none"
+        }
     },
     image:
     {
@@ -32,6 +50,14 @@ const articleCardStyle = makeStyles(() => (
     },
     button:
     {
+        [theme.breakpoints.down(700)]:
+        {
+            marginTop: "0px"
+        },
+        [theme.breakpoints.up(700)]:
+        {
+            marginTop: "18px"
+        },
         "&:hover": 
         {
             color: CustomColours.colours.white,
