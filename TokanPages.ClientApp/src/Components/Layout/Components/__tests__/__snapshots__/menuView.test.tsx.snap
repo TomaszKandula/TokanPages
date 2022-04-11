@@ -7,13 +7,17 @@ exports[`Test component: menuView. Renders correctly '<MenuView />' when content
   open={false}
 >
   <div
-    className="makeStyles-drawerContainer-2"
+    className="makeStyles-drawer_container-2"
   >
-    <img
-      alt=""
-      className="makeStyles-menuBackground-1"
-      src=""
-    />
+    <Styled(MuiBox)
+      className="makeStyles-drawer_hero-3"
+    >
+      <div
+        className="makeStyles-drawer_logo-4"
+      >
+        &lt;/&gt;
+      </div>
+    </Styled(MuiBox)>
     <RenderList
       bind={
         Object {

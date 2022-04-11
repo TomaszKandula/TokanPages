@@ -19,7 +19,9 @@ describe("Test account group component: userSignin.", () =>
         caption: "Sign in",
         button: "Sign in",
         link1: "Don't have an account?",
-        link2: "Forgot password?"
+        link2: "Forgot password?",
+        labelEmail: "Email address",
+        labelPassword: "Password"
     };
 
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");

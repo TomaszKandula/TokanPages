@@ -19,7 +19,6 @@ exports[`Test component: footerView. Renders correctly '<FooterView />' when con
       >
         <WithStyles(ForwardRef(Typography))
           className="makeStyles-copy-4"
-          component="p"
           gutterBottom={false}
         >
           © 2020 - 2021 Tomasz Kandula

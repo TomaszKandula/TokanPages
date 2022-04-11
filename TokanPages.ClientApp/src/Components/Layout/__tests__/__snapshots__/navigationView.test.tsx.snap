@@ -50,6 +50,7 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
         >
           <WithStyles(ForwardRef(IconButton))
             aria-label="menu"
+            className="makeStyles-nav_icon-6"
             color="inherit"
             onClick={[MockFunction]}
           >
@@ -57,7 +58,7 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
           </WithStyles(ForwardRef(IconButton))>
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Grid))
-          className="makeStyles-app_link-6"
+          className="makeStyles-app_link-7"
           item={true}
           xs={true}
         >
@@ -73,12 +74,12 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
           </WithStyles(ForwardRef(Typography))>
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Grid))
-          className="makeStyles-user_avatar-7"
+          className="makeStyles-user_avatar-8"
           item={true}
           xs={true}
         >
           <WithStyles(ForwardRef(Typography))
-            className="makeStyles-user_alias-8"
+            className="makeStyles-user_alias-9"
           />
           <WithStyles(ForwardRef(IconButton))
             color="inherit"

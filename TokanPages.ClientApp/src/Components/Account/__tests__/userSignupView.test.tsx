@@ -11,7 +11,7 @@ describe("Test account group component: userSignupView.", () =>
         {{
             isLoading: false,
             caption: "Create a new account",
-            label: "I agree to the terms of use and privacy policy.",
+            consent: "I agree to the terms of use and privacy policy.",
             button: "Sign up",
             link: "Already have an account? Sign in",
             buttonHandler: jest.fn(),
@@ -21,7 +21,11 @@ describe("Test account group component: userSignupView.", () =>
             lastName: "Exposito",
             email: "ester.exposito@gmail.com",
             password: "madrilena123",
-            terms: false
+            terms: false,
+            labelFirstName: "First name",
+            labelLastName: "Last name",
+            labelEmail: "Email address",
+            labelPassword: "Password"
         }}/>);
         expect(tree).toMatchSnapshot();
     });

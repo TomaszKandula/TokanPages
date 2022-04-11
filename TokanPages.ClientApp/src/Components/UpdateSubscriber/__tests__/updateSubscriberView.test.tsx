@@ -16,7 +16,8 @@ describe("Test component: updateSubscriberView.", () =>
             buttonHandler: jest.fn(),
             buttonState: false,
             progress: false,
-            buttonText: "Update"
+            buttonText: "Update",
+            labelEmail: "Email address"
         }}/>);
         expect(tree).toMatchSnapshot();
     });

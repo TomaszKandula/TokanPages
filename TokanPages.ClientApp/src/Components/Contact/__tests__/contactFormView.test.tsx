@@ -22,7 +22,12 @@ describe("Test component: contactFormView.", () =>
             buttonHandler: jest.fn(),
             progress: false,
             buttonText: "Submit",
-            consent: "I agree!"
+            consent: "I agree!",
+            labelFirstName: "First name",
+            labelLastName: "Last name",
+            labelEmail: "Email address",
+            labelSubject: "Subject",
+            labelMessage: "Message"
         }}/>);
         expect(tree).toMatchSnapshot();
     });
