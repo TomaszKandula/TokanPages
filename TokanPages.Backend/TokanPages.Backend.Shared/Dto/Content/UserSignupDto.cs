@@ -12,5 +12,13 @@ public class UserSignupDto : BaseClass
 
     public string Link { get; set; }
 
-    public string Label { get; set; }
+    public string Consent { get; set; }
+
+    public string LabelFirstName { get; set; }
+
+    public string LabelLastName { get; set; }
+
+    public string LabelEmail { get; set; }
+
+    public string LabelPassword { get; set; }
 }

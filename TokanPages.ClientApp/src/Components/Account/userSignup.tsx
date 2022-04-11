@@ -115,7 +115,7 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
     {{
         isLoading: props.isLoading,
         caption: props.content.caption,
-        label: props.content.label,
+        consent: props.content.consent,
         button: props.content.button,
         link: props.content.link,
         buttonHandler: buttonHandler,
@@ -125,7 +125,11 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
         lastName: form.lastName,
         email: form.email,
         password: form.password,
-        terms: form.terms
+        terms: form.terms,
+        labelFirstName: props.content.labelFirstName,
+        labelLastName: props.content.labelLastName,
+        labelEmail: props.content.labelEmail,
+        labelPassword: props.content.labelPassword
     }}/>);
 }
 

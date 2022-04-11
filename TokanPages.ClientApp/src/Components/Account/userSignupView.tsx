@@ -22,7 +22,7 @@ interface IProperties
 {
     isLoading: boolean;
     caption: string;
-    label: string;
+    consent: string;
     button: string;
     link: string;
     buttonHandler: any;
@@ -33,6 +33,10 @@ interface IProperties
     email: string;
     password: string;
     terms?: boolean;
+    labelFirstName: string;
+    labelLastName: string;
+    labelEmail: string;
+    labelPassword: string;
 }
 
 const UserSignupView = (props: IBinding): JSX.Element =>
@@ -66,32 +70,32 @@ const UserSignupView = (props: IBinding): JSX.Element =>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={6}>
                                         <TextField 
-                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.firstName}
-                                            variant="outlined" autoComplete="fname" name="firstName" id="firstName" label="First name"
+                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.firstName} label={props.bind?.labelFirstName}
+                                            variant="outlined" autoComplete="fname" name="firstName" id="firstName" 
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
                                         <TextField 
-                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.lastName}
-                                            variant="outlined" name="lastName" id="lastName" label="Last name" autoComplete="lname"
+                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.lastName} label={props.bind?.labelLastName}
+                                            variant="outlined" name="lastName" id="lastName" autoComplete="lname"
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField 
-                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} 
-                                            variant="outlined" name="email" id="email" label="Email address" autoComplete="email"
+                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail}
+                                            variant="outlined" name="email" id="email" autoComplete="email"
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField 
-                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.password}
-                                            variant="outlined" name="password" id="password" label="Password" type="password" autoComplete="current-password" 
+                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.password} label={props.bind?.labelPassword}
+                                            variant="outlined" name="password" id="password" type="password" autoComplete="current-password" 
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <FormControlLabel 
                                             control={<VioletCheckbox onChange={props.bind?.formHandler} checked={props.bind?.terms} name="terms" id="terms" />} 
-                                            label={props.bind?.label} 
+                                            label={props.bind?.consent} 
                                         />
                                     </Grid>
                                 </Grid>
