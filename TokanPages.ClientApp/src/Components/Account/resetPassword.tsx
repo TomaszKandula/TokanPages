@@ -95,7 +95,8 @@ const ResetPassword = (props: IGetResetPasswordContent): JSX.Element =>
             button: props.content.button,
             email: form.email,
             formHandler: formHandler,
-            buttonHandler: buttonHandler
+            buttonHandler: buttonHandler,
+            labelEmail: props.content.labelEmail
         }}/>
     );
 }
