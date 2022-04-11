@@ -34,7 +34,8 @@ const UnsubscribeView = (props: IBinding): JSX.Element =>
     const ActiveButton = (): JSX.Element => 
     {
         return(
-            <Button onClick={props.bind?.buttonHandler} type="submit" fullWidth variant="contained" disabled={props.bind?.progress || !props.bind?.buttonState}>
+            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
+                className={classes.button} disabled={props.bind?.progress || !props.bind?.buttonState}>
                 {props.bind?.progress &&  <CircularProgress size={20} />}
                 {!props.bind?.progress && content.button}
             </Button>
@@ -49,22 +50,22 @@ const UnsubscribeView = (props: IBinding): JSX.Element =>
                         <CardContent className={classes.card}>
                         <Box textAlign="center" mb={3}>
                             <Box mt={2} mb={2}>
-                                <Typography variant="h4" component="h4" gutterBottom={true}>
+                                <Typography gutterBottom={true} className={classes.caption}>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : content.caption}
                                 </Typography>
                             </Box>
                             <Box mt={5} mb={2}>
-                                <Typography variant="h6" component="h6" color="textSecondary">
+                                <Typography className={classes.text1}>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : content.text1}
                                 </Typography>
                             </Box>
                             <Box mt={5} mb={2}>
-                                <Typography variant="h6" color="textSecondary">
+                                <Typography className={classes.text2}>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : content.text2}
                                 </Typography>
                             </Box>
                             <Box mt={5} mb={7}>
-                                <Typography variant="h6" color="textSecondary">
+                                <Typography className={classes.text3}>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : content.text3}
                                 </Typography>
                             </Box>

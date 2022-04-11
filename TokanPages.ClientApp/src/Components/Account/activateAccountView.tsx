@@ -28,6 +28,18 @@ interface IProperties
 const ActivateAccountView = (props: IBinding): JSX.Element =>
 {
     const classes = activateAccountStyle();
+
+    const ActiveButton = (): JSX.Element => 
+    {
+        return(
+            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
+                className={classes.button} disabled={props.bind?.buttonDisabled}>
+                {props.bind?.progress &&  <CircularProgress size={20} />}
+                {!props.bind?.progress && props.bind?.buttonText}
+            </Button>
+        );
+    }
+
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">
@@ -50,11 +62,7 @@ const ActivateAccountView = (props: IBinding): JSX.Element =>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.text2}
                                 </Typography>
                             </Box>
-                            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
-                                className={classes.button} disabled={props.bind?.buttonDisabled}>
-                                {props.bind?.progress &&  <CircularProgress size={20} />}
-                                {!props.bind?.progress && props.bind?.buttonText}
-                            </Button>
+                            {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
                         </Box>
                         </CardContent>
                     </Card>

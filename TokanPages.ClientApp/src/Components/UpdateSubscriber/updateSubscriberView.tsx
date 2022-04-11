@@ -32,6 +32,18 @@ interface IProperties
 const UpdateSubscriberView = (props: IBinding): JSX.Element =>
 {
     const classes = updateSubscriberStyle();
+
+    const ActiveButton = (): JSX.Element => 
+    {
+        return(
+            <Button fullWidth onClick={props.bind?.buttonHandler} variant="contained" 
+                className={classes.button} disabled={props.bind?.progress || !props.bind?.buttonState}>
+                {props.bind?.progress &&  <CircularProgress size={20} />}
+                {!props.bind?.progress && props.bind?.buttonText}
+            </Button>
+        );
+    }
+
     return (
         <section>
             <Container maxWidth="sm">
@@ -39,8 +51,8 @@ const UpdateSubscriberView = (props: IBinding): JSX.Element =>
                     <Card elevation={4}>
                         <CardContent className={classes.card}>
                             <Box mb={3} textAlign="center">
-                                <AccountCircle color="primary" style={{ fontSize: 72 }} />
-                                <Typography variant="h5" component="h2" color="textSecondary">
+                                <AccountCircle className={classes.account} />
+                                <Typography className={classes.caption}>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
                                 </Typography>
                             </Box>
@@ -48,16 +60,13 @@ const UpdateSubscriberView = (props: IBinding): JSX.Element =>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
                                         <TextField 
-                                            onChange={props.bind?.formHandler} value={props.bind?.email} variant="outlined" required fullWidth 
-                                            name="email" id="email" label="Email address" autoComplete="email" 
+                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} 
+                                            variant="outlined" name="email" id="email" label="Email address" autoComplete="email" 
                                         />
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    <Button onClick={props.bind?.buttonHandler} fullWidth variant="contained" color="primary" disabled={!props.bind?.buttonState}>
-                                        {props.bind?.progress &&  <CircularProgress size={20} />}
-                                        {!props.bind?.progress && props.bind?.buttonText}
-                                    </Button>
+                                    {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
                                 </Box>
                             </Box>
                         </CardContent>

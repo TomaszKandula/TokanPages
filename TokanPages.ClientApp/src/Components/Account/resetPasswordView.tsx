@@ -29,6 +29,17 @@ interface IProperties
 const ResetPasswordView = (props: IBinding): JSX.Element =>
 {
     const classes = resetPasswordStyle();
+
+    const ActiveButton = (): JSX.Element => 
+    {
+        return(
+            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" className={classes.button} disabled={props.bind?.progress}>
+                {props.bind?.progress &&  <CircularProgress size={20} />}
+                {!props.bind?.progress && props.bind?.button}
+            </Button>
+        );
+    }
+
     return (
         <section>
             <Container maxWidth="sm">
@@ -51,10 +62,7 @@ const ResetPasswordView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" className={classes.button} disabled={props.bind?.progress}>
-                                        {props.bind?.progress &&  <CircularProgress size={20} />}
-                                        {!props.bind?.progress && props.bind?.button}
-                                    </Button>
+                                    {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
                                 </Box>
                             </Box>
                         </CardContent>   

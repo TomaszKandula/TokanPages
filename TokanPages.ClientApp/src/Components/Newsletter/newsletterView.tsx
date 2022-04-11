@@ -29,6 +29,18 @@ interface IProperties
 const NewsletterView = (props: IBinding): JSX.Element =>
 {
     const classes = newsletterStyle();
+
+    const ActiveButton = (): JSX.Element => 
+    {
+        return(
+            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
+                className={classes.button} disabled={props.bind?.progress}>
+                {props.bind?.progress &&  <CircularProgress size={20} />}
+                {!props.bind?.progress && props.bind?.buttonText}
+            </Button>
+        );
+    }
+
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
@@ -54,11 +66,7 @@ const NewsletterView = (props: IBinding): JSX.Element =>
                                                 />
                                             </Grid>
                                             <Grid item xs={12} sm={5}>
-                                                <Button onClick={props.bind?.buttonHandler} 
-                                                    fullWidth type="submit" variant="contained" className={classes.button} disabled={props.bind?.progress}>
-                                                    {props.bind?.progress &&  <CircularProgress size={20} />}
-                                                    {!props.bind?.progress && props.bind?.buttonText}
-                                                </Button>
+                                                {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
                                             </Grid>
                                         </Grid>
                                     </Box>

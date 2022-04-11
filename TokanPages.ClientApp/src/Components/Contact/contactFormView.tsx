@@ -37,6 +37,18 @@ interface IProperties
 const ContactFormView = (props: IBinding): JSX.Element =>
 {
     const classes = contactFormStyle();
+
+    const ActiveButton = (): JSX.Element => 
+    {
+        return(
+            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
+                disabled={props.bind?.progress} className={classes.button}>
+                {props.bind?.progress &&  <CircularProgress size={20} />}
+                {!props.bind?.progress && props.bind?.buttonText}
+            </Button>
+        );
+    }
+
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
@@ -88,10 +100,7 @@ const ContactFormView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" disabled={props.bind?.progress} className={classes.button}>
-                                        {props.bind?.progress &&  <CircularProgress size={20} />}
-                                        {!props.bind?.progress && props.bind?.buttonText}
-                                    </Button>
+                                    {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
                                 </Box>
                             </Box>
                         </Box>
