@@ -63,7 +63,7 @@ const FooterView = (props: IBinding): JSX.Element =>
     {
         const applicationVersionInfo = 
             <Box pt={1} pb={6} display="flex"  justifyContent="center" alignItems="center">
-                <Typography component="p" className={classes.version}>
+                <Typography className={classes.version}>
                     {props.bind?.versionInfo}
                 </Typography>
             </Box>;
@@ -79,7 +79,7 @@ const FooterView = (props: IBinding): JSX.Element =>
             <Container maxWidth="lg">
                 <div data-aos="zoom-in">
                     <Box pt={6} pb={props.bind?.boxPaddingBottom} display="flex" flexWrap="wrap" alignItems="center">
-                        <Typography component="p" gutterBottom={false} className={classes.copy}>
+                        <Typography gutterBottom={false} className={classes.copy}>
                             {props.bind?.copyright} | {props.bind?.reserved} | <SetTermsLink /> | <SetPolicyLink />
                         </Typography>
                         <Box ml="auto" className={classes.icon_box}>
