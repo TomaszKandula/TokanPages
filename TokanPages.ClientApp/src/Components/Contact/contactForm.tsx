@@ -126,7 +126,12 @@ const ContactForm = (props: IGetContactFormContent): JSX.Element =>
         buttonHandler: buttonHandler,
         progress: progress,
         buttonText: props.content?.button,
-        consent: props.content?.consent
+        consent: props.content?.consent,
+        labelFirstName: props.content?.labelFirstName,
+        labelLastName: props.content?.labelLastName,
+        labelEmail: props.content?.labelEmail,
+        labelSubject: props.content?.labelSubject,
+        labelMessage: props.content?.labelMessage
     }}/>);
 }
 

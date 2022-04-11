@@ -12,5 +12,15 @@ public class ContactFormDto : BaseClass
 
     public string Button { get; set; }
 
-    public string Consent { get; set; } 
+    public string Consent { get; set; }
+
+    public string LabelFirstName { get; set; }
+
+    public string LabelLastName { get; set; }
+
+    public string LabelEmail { get; set; }
+
+    public string LabelSubject { get; set; }
+
+    public string LabelMessage { get; set; }
 }

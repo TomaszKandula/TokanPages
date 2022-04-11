@@ -8,6 +8,11 @@ export const GetContactFormContentDefault: IGetContactFormContent =
         caption: "",
         text: "",
         button: "",
-        consent: ""
+        consent: "",
+        labelFirstName: "",
+        labelLastName: "",
+        labelEmail: "",
+        labelSubject: "",
+        labelMessage: ""
     }
 }
