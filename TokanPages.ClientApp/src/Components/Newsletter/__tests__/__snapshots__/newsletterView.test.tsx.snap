@@ -74,16 +74,7 @@ exports[`Test component: newsletterView. Renders correctly '<NewsletterView />' 
                     sm={5}
                     xs={12}
                   >
-                    <WithStyles(ForwardRef(Button))
-                      className="makeStyles-button-4"
-                      disabled={false}
-                      fullWidth={true}
-                      onClick={[MockFunction]}
-                      type="submit"
-                      variant="contained"
-                    >
-                      Subscribe
-                    </WithStyles(ForwardRef(Button))>
+                    <ActiveButton />
                   </WithStyles(ForwardRef(Grid))>
                 </WithStyles(ForwardRef(Grid))>
               </Styled(MuiBox)>

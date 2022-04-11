@@ -70,16 +70,7 @@ exports[`Test account group component: userSigninView. Renders correctly '<UserS
             <Styled(MuiBox)
               my={2}
             >
-              <WithStyles(ForwardRef(Button))
-                className="makeStyles-button-6"
-                disabled={false}
-                fullWidth={true}
-                onClick={[MockFunction]}
-                type="submit"
-                variant="contained"
-              >
-                Sign in
-              </WithStyles(ForwardRef(Button))>
+              <ActiveButton />
             </Styled(MuiBox)>
             <WithStyles(ForwardRef(Grid))
               className="makeStyles-actions-2"

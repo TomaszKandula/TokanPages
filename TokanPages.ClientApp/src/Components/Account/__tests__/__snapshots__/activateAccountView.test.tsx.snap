@@ -51,16 +51,7 @@ exports[`Test account group component: activateAccountView. Renders correctly '<
                 You can now sign in.
               </WithStyles(ForwardRef(Typography))>
             </Styled(MuiBox)>
-            <WithStyles(ForwardRef(Button))
-              className="makeStyles-button-6"
-              disabled={false}
-              fullWidth={true}
-              onClick={[MockFunction]}
-              type="submit"
-              variant="contained"
-            >
-              Go to main
-            </WithStyles(ForwardRef(Button))>
+            <ActiveButton />
           </Styled(MuiBox)>
         </WithStyles(ForwardRef(CardContent))>
       </WithStyles(ForwardRef(Card))>

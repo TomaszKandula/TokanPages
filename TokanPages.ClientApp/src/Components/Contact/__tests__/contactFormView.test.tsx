@@ -21,7 +21,8 @@ describe("Test component: contactFormView.", () =>
             terms: false,
             buttonHandler: jest.fn(),
             progress: false,
-            buttonText: "Submit"
+            buttonText: "Submit",
+            consent: "I agree!"
         }}/>);
         expect(tree).toMatchSnapshot();
     });

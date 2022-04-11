@@ -130,23 +130,14 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                       onChange={[MockFunction]}
                     />
                   }
-                  label="I agree to the terms of use and privacy policy."
+                  label="I agree!"
                 />
               </WithStyles(ForwardRef(Grid))>
             </WithStyles(ForwardRef(Grid))>
             <Styled(MuiBox)
               my={2}
             >
-              <WithStyles(ForwardRef(Button))
-                className="makeStyles-button-3"
-                disabled={false}
-                fullWidth={true}
-                onClick={[MockFunction]}
-                type="submit"
-                variant="contained"
-              >
-                Submit
-              </WithStyles(ForwardRef(Button))>
+              <ActiveButton />
             </Styled(MuiBox)>
           </Styled(MuiBox)>
         </Styled(MuiBox)>
