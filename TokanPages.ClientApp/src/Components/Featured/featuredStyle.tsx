@@ -5,12 +5,18 @@ const featuredStyle = makeStyles(() => (
 {
     section:
     {
-        backgroundColor: CustomColours.background.lightGray1
+        backgroundColor: CustomColours.colours.lightGray3
+    },
+    caption_text:
+    {
+        textAlign: "center",
+        fontSize: "2.0rem",
+        color: CustomColours.colours.darkViolet1
     },
     media: 
     {
         height: "256px"
-    }
+    },
 }));
 
 export default featuredStyle;

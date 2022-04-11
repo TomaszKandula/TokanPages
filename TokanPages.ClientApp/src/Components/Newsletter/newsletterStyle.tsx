@@ -5,7 +5,26 @@ const newsletterStyle = makeStyles(() => (
 {
     section:
     {
-        backgroundColor: CustomColours.background.lightGray1
+        backgroundColor: CustomColours.colours.lightGray3
+    },
+    caption:
+    {
+        fontSize: "2.0rem"
+    },
+    text:
+    {
+        fontSize: "1.2rem",
+        color: CustomColours.colours.gray2
+    },
+    button:
+    {
+        "&:hover": 
+        {
+            color: CustomColours.colours.white,
+            background: CustomColours.colours.darkViolet1,
+        },
+        color: CustomColours.colours.white,
+        background: CustomColours.colours.violet
     }
 }));
 

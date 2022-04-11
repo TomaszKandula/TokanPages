@@ -27,24 +27,42 @@ const ArticleCardView = (props: IBinding): JSX.Element =>
     return(
         <div data-aos="fade-up">
             <Card className={classes.root} elevation={4}>
-                <Grid container spacing={2}>
+
+                <Grid container spacing={2} className={classes.large_screen}>
                     <Grid item xs={4}>
-                        <img className={classes.img} alt="" src={props.bind?.imageUrl} />
+                        <img className={classes.image} alt="" src={props.bind?.imageUrl} />
                     </Grid>
                     <Grid item xs={8}>
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
+                            <Typography gutterBottom={true} className={classes.title}>
                                 {props.bind?.title}
                             </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p" className={classes.description}>
+                            <Typography className={classes.description}>
                                 {props.bind?.description}
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button onClick={props.bind?.onClickEvent} size="small" color="primary">{props.bind?.buttonText}</Button>
+                            <Button onClick={props.bind?.onClickEvent} size="small" className={classes.button}>{props.bind?.buttonText}</Button>
                         </CardActions>
                     </Grid>
                 </Grid>
+
+                <Grid container spacing={2} className={classes.small_screen}>
+                    <Grid item xs={12}>
+                        <CardContent>
+                            <Typography gutterBottom={true} className={classes.title}>
+                                {props.bind?.title}
+                            </Typography>
+                            <Typography className={classes.description}>
+                                {props.bind?.description}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button onClick={props.bind?.onClickEvent} size="small" className={classes.button}>{props.bind?.buttonText}</Button>
+                        </CardActions>
+                    </Grid>
+                </Grid>
+
             </Card>
         </div>
     );

@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../Theme/customColours";
+import { CustomColours } from "../../../Theme/customColours";
 
-const updateSubscriberStyle = makeStyles(() => (
+const updatePasswordStyle = makeStyles(() => (
 {
     account:
     {
@@ -12,7 +12,7 @@ const updateSubscriberStyle = makeStyles(() => (
     {
         fontSize: "1.8rem",
         color: CustomColours.colours.gray1
-    },
+    },    
     card:
     {
         marginTop: 10,
@@ -32,4 +32,4 @@ const updateSubscriberStyle = makeStyles(() => (
     }
 }));
 
-export default updateSubscriberStyle;
+export default updatePasswordStyle;

@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import * as helpers from "../helpers";
 import { ITextObject } from "../../Shared/Components/ContentRender/Models/textModel";
 import { IErrorDto } from "../../Api/Models";

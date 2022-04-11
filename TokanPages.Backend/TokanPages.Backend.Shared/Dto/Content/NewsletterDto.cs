@@ -11,4 +11,6 @@ public class NewsletterDto : BaseClass
     public string Text { get; set; }
 
     public string Button { get; set; }
+
+    public string LabelEmail { get; set; }
 }

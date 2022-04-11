@@ -1,14 +1,31 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { CustomColours } from "../../../Theme/customColours";
 
 const menuStyle = makeStyles(() => (
 {
-    menuBackground:
+    menu_background:
     {
         width: 300
     },   
-    drawerContainer: 
+    drawer_container: 
     {
         width: 300
+    },
+    drawer_hero:
+    {
+        height: 200,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: CustomColours.colours.lightViolet
+    },
+    drawer_logo:
+    {
+        fontSize: "3.5rem",
+        fontWeight: 900,
+        color: CustomColours.colours.violet,
+        textAlign: "center",
+        cursor: "default"
     }
 }));
 

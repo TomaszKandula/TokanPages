@@ -11,4 +11,6 @@ public class UserSignoutDto : BaseClass
     public string OnProcessing { get; set; }
 
     public string OnFinish { get; set; }
+
+    public string ButtonText { get; set; }
 }

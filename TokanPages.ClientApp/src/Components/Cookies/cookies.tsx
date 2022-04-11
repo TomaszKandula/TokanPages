@@ -23,6 +23,7 @@ const Cookies = (props: IGetCookiesPromptContent): JSX.Element =>
 
     return (<CookiesView bind=
     {{
+        isLoading: props.isLoading,
         modalClose: modalClose,
         shouldShow: Validate.isEmpty(currentCookie),
         caption: props.content?.caption,

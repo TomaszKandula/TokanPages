@@ -13,4 +13,8 @@ public class UserSigninDto : BaseClass
     public string Link1 { get; set; }
         
     public string Link2 { get; set; }
+
+    public string LabelEmail { get; set; }
+
+    public string LabelPassword { get; set; }
 }

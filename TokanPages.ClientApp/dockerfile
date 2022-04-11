@@ -1,5 +1,5 @@
 # 1 - Build ClientApp
-FROM node:15 AS node
+FROM node:16 AS node
 WORKDIR /app
 
 COPY ./*.* ./

@@ -24,14 +24,12 @@ exports[`Test component: newsletterView. Renders correctly '<NewsletterView />' 
             xs={12}
           >
             <WithStyles(ForwardRef(Typography))
-              component="h2"
-              variant="h4"
+              className="makeStyles-caption-2"
             >
               Join the newsletter!
             </WithStyles(ForwardRef(Typography))>
             <WithStyles(ForwardRef(Typography))
-              color="textSecondary"
-              variant="subtitle1"
+              className="makeStyles-text-3"
             >
               We will never share your email address.
             </WithStyles(ForwardRef(Typography))>
@@ -76,16 +74,7 @@ exports[`Test component: newsletterView. Renders correctly '<NewsletterView />' 
                     sm={5}
                     xs={12}
                   >
-                    <WithStyles(ForwardRef(Button))
-                      color="primary"
-                      disabled={false}
-                      fullWidth={true}
-                      onClick={[MockFunction]}
-                      type="submit"
-                      variant="contained"
-                    >
-                      Subscribe
-                    </WithStyles(ForwardRef(Button))>
+                    <ActiveButton />
                   </WithStyles(ForwardRef(Grid))>
                 </WithStyles(ForwardRef(Grid))>
               </Styled(MuiBox)>

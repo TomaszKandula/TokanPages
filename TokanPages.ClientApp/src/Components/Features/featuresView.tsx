@@ -21,55 +21,52 @@ const FeaturesView = (props: IGetFeaturesContent): JSX.Element =>
                 <div data-aos="fade-up">
                     <Box py={8}>
                         <Box mb={8}>
-                            <Typography color="primary" variant="button" component="h3" align="center" gutterBottom={true}>
-                                {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption}
-                            </Typography>
-                            <Typography variant="h4" component="h2" align="center">
-                                {props.isLoading ? <Skeleton variant="text" /> : props.content?.header}
+                            <Typography gutterBottom={true} className={classes.caption_text}>
+                                {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption?.toUpperCase()}
                             </Typography>
                         </Box>
                         <Grid container spacing={6}>
                             <Grid item xs={12} sm={6}>
                                 <Box mb={2} display="flex" alignItems="center">
-                                    <CodeIcon color="primary" className={classes.icon} />
-                                    <Typography variant="h5" component="h3">
+                                    <CodeIcon className={classes.icon} />
+                                    <Typography className={classes.feature_title}>
                                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.title1}
                                     </Typography>
                                 </Box>
-                                <Typography variant="body1" component="p" color="textSecondary">
+                                <Typography className={classes.feature_text}>
                                     {props.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser(props.content?.text1)}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <Box mb={2} display="flex" alignItems="center">
-                                    <LibraryBooksIcon color="primary" className={classes.icon} />
-                                    <Typography variant="h5" component="h3">
+                                    <LibraryBooksIcon className={classes.icon} />
+                                    <Typography className={classes.feature_title}>
                                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.title2}
                                     </Typography>
                                 </Box>
-                                <Typography variant="body1" component="p" color="textSecondary">
+                                <Typography className={classes.feature_text}>
                                     {props.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser(props.content?.text2)}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <Box mb={2} display="flex" alignItems="center">
-                                    <StorageIcon color="primary" className={classes.icon} />
-                                    <Typography variant="h5" component="h3">
+                                    <StorageIcon className={classes.icon} />
+                                    <Typography className={classes.feature_title}>
                                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.title3}
                                     </Typography>
                                 </Box>
-                                <Typography variant="body1" component="p" color="textSecondary">
+                                <Typography className={classes.feature_text}>
                                     {props.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser(props.content?.text3)}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} sm={6}>         
                                 <Box mb={2} display="flex" alignItems="center">
                                     <CloudIcon color="primary" className={classes.icon} />
-                                    <Typography variant="h5" component="h3">
+                                    <Typography className={classes.feature_title}>
                                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.title4}
                                     </Typography>
                                 </Box>
-                                <Typography variant="body1" component="p" color="textSecondary">
+                                <Typography className={classes.feature_text}>
                                     {props.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser(props.content?.text4)}
                                 </Typography>
                             </Grid>

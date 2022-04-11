@@ -36,7 +36,7 @@ const ArticlesPage = (): JSX.Element =>
     return (
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
-            {id ? <ProgressOnScroll height={10} bgcolor={CustomColours.application.navigationBlue} duration={1} /> : null}
+            {id ? <ProgressOnScroll height={10} bgcolor={CustomColours.application.navigation} duration={1} /> : null}
             <Container>
                 {id ? <ArticleDetail id={id} /> : <ArticleList />}
             </Container>

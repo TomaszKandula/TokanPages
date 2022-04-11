@@ -1,4 +1,3 @@
-import * as Sentry from "@sentry/react";
 import { AppThunkAction } from "../../applicationState";
 import { ITextObject } from "../../../Shared/Components/ContentRender/Models/textModel";
 import { GetErrorMessage } from "../../../Shared/helpers";
@@ -40,7 +39,6 @@ const DispatchCall = async (dispatch: (action: TKnownActions) => void, url: stri
     if (result.error !== null)
     {
         dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(result.error) });
-        Sentry.captureException(result.error);
         return;
     }
 
@@ -52,7 +50,6 @@ const DispatchCall = async (dispatch: (action: TKnownActions) => void, url: stri
 
     const error = UnexpectedStatusCode(result.status as number);
     dispatch({ type: RAISE_ERROR, errorObject: error });
-    Sentry.captureException(error);
 }
 
 export const ActionCreators = 

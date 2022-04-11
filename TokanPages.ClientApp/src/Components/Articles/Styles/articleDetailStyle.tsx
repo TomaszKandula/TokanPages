@@ -27,19 +27,19 @@ const articleDetailStyle = makeStyles(() => (
     },
     avatarSmall:
     {
-        color: CustomColours.typography.white,
+        color: CustomColours.colours.white,
         width: "48px", 
         height: "48px"
     },
     avatarLarge:
     {
-        color: CustomColours.typography.white,
+        color: CustomColours.colours.white,
         width: "96px", 
         height: "96px"
     },
     thumbsMedium:
     {
-        color: CustomColours.background.gray1,
+        color: CustomColours.colours.gray1,
         cursor: "pointer",
         width: "24px", 
         height: "24px"

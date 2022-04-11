@@ -9,6 +9,7 @@ describe("Test component: cookiesView.", () =>
     {
         const tree = shallow(<CookiesView bind=
         {{
+            isLoading: false,
             modalClose: false,
             shouldShow: false,
             caption: "Cookie Policy",

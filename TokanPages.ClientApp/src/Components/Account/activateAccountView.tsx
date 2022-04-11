@@ -28,6 +28,18 @@ interface IProperties
 const ActivateAccountView = (props: IBinding): JSX.Element =>
 {
     const classes = activateAccountStyle();
+
+    const ActiveButton = (): JSX.Element => 
+    {
+        return(
+            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
+                className={classes.button} disabled={props.bind?.buttonDisabled}>
+                {props.bind?.progress &&  <CircularProgress size={20} />}
+                {!props.bind?.progress && props.bind?.buttonText}
+            </Button>
+        );
+    }
+
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">
@@ -36,24 +48,21 @@ const ActivateAccountView = (props: IBinding): JSX.Element =>
                         <CardContent className={classes.card}>
                         <Box textAlign="center" mb={3}>
                             <Box mt={2} mb={2}>
-                                <Typography variant="h4" component="h4" gutterBottom={true}>
+                                <Typography gutterBottom={true} className={classes.caption}>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
                                 </Typography>
                             </Box>
                             <Box mt={5} mb={2}>
-                                <Typography variant="h6" component="h6" color="textSecondary">
+                                <Typography className={classes.text1}>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.text1}
                                 </Typography>
                             </Box>
                             <Box mt={2} mb={5}>
-                                <Typography variant="body1" color="textSecondary">
+                                <Typography className={classes.text2}>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.text2}
                                 </Typography>
                             </Box>
-                            <Button onClick={props.bind?.buttonHandler} type="submit" fullWidth variant="contained" color="primary" disabled={props.bind?.buttonDisabled}>
-                                {props.bind?.progress &&  <CircularProgress size={20} />}
-                                {!props.bind?.progress && props.bind?.buttonText}
-                            </Button>
+                            {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
                         </Box>
                         </CardContent>
                     </Card>

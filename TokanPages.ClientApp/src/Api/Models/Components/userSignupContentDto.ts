@@ -5,6 +5,10 @@ export interface IUserSignupContentDto
         caption: string;
         button: string;
         link: string;
-        label: string;
+        consent: string;
+        labelFirstName: string;
+        labelLastName: string;
+        labelEmail: string;
+        labelPassword: string;
     };
 }
