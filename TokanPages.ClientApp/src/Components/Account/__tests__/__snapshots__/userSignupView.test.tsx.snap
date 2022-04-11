@@ -13,24 +13,17 @@ exports[`Test account group component: userSignupView. Renders correctly '<UserS
         elevation={4}
       >
         <WithStyles(ForwardRef(CardContent))
-          className="makeStyles-card-1"
+          className="makeStyles-card-3"
         >
           <Styled(MuiBox)
             mb={3}
             textAlign="center"
           >
-            <AccountCircleIcon
-              color="primary"
-              style={
-                Object {
-                  "fontSize": 72,
-                }
-              }
+            <Memo(ForwardRef(AccountCircleIcon))
+              className="makeStyles-account-1"
             />
             <WithStyles(ForwardRef(Typography))
-              color="textSecondary"
-              component="h2"
-              variant="h5"
+              className="makeStyles-caption-2"
             >
               Create a new account
             </WithStyles(ForwardRef(Typography))>
@@ -113,9 +106,8 @@ exports[`Test account group component: userSignupView. Renders correctly '<UserS
               >
                 <WithStyles(ForwardRef(FormControlLabel))
                   control={
-                    <ForwardRef(WithStyles(ForwardRef(Checkbox)))
+                    <WithStyles(Component)
                       checked={false}
-                      color="primary"
                       id="terms"
                       name="terms"
                       onChange={[MockFunction]}
@@ -128,16 +120,7 @@ exports[`Test account group component: userSignupView. Renders correctly '<UserS
             <Styled(MuiBox)
               my={2}
             >
-              <WithStyles(ForwardRef(Button))
-                color="primary"
-                disabled={false}
-                fullWidth={true}
-                onClick={[MockFunction]}
-                type="submit"
-                variant="contained"
-              >
-                Sign up
-              </WithStyles(ForwardRef(Button))>
+              <ActiveButton />
             </Styled(MuiBox)>
             <Styled(MuiBox)
               textAlign="right"

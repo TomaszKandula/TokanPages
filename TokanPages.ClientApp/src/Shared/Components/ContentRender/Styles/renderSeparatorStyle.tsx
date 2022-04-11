@@ -14,7 +14,7 @@ const renderSeparatorStyle = makeStyles(() => (
         width: "5px",
         height: "5px",
         borderRadius: "50%",
-        background: CustomColours.background.gray1,
+        background: CustomColours.colours.gray1,
         display: "inline-block",
         margin: "0 10px"
     }

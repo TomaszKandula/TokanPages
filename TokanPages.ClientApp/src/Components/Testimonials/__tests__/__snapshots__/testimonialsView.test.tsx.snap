@@ -22,21 +22,15 @@ exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView 
             textAlign="center"
           >
             <WithStyles(ForwardRef(Typography))
-              component="h2"
+              className="makeStyles-caption_text-3"
               gutterBottom={true}
-              variant="h4"
             >
-              Testimonials
-            </WithStyles(ForwardRef(Typography))>
-            <WithStyles(ForwardRef(Typography))
-              color="textSecondary"
-              variant="subtitle1"
-            >
-              You can read few commendations...
+              TESTIMONIALS
             </WithStyles(ForwardRef(Typography))>
           </Styled(MuiBox)>
         </WithStyles(ForwardRef(Container))>
         <Carousel
+          animationHandler="slide"
           autoPlay={true}
           axis="horizontal"
           centerSlidePercentage={80}
@@ -68,6 +62,8 @@ exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView 
           showThumbs={false}
           statusFormatter={[Function]}
           stopOnHover={true}
+          stopSwipingHandler={[Function]}
+          swipeAnimationHandler={[Function]}
           swipeScrollTolerance={5}
           swipeable={true}
           transitionTime={350}
@@ -75,88 +71,58 @@ exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView 
           width="100%"
         >
           <Styled(MuiBox)
-            className="makeStyles-boxPadding-6"
+            className="makeStyles-box_padding-7"
           >
             <WithStyles(ForwardRef(Typography))
-              align="center"
-              className="makeStyles-title-3"
-              component="h3"
-              variant="h4"
+              className="makeStyles-title-4"
             >
               Joanna
             </WithStyles(ForwardRef(Typography))>
             <WithStyles(ForwardRef(Typography))
-              align="center"
-              className="makeStyles-subtitle-4"
-              component="h4"
-              variant="subtitle1"
+              className="makeStyles-subtitle-5"
             >
               Senior Digital Tax Specialist
             </WithStyles(ForwardRef(Typography))>
             <WithStyles(ForwardRef(Typography))
-              align="center"
-              className="makeStyles-commendation-5"
-              color="textSecondary"
-              component="p"
-              variant="body1"
+              className="makeStyles-commendation-6"
             >
               Joe is very motivated...
             </WithStyles(ForwardRef(Typography))>
           </Styled(MuiBox)>
           <Styled(MuiBox)
-            className="makeStyles-boxPadding-6"
+            className="makeStyles-box_padding-7"
           >
             <WithStyles(ForwardRef(Typography))
-              align="center"
-              className="makeStyles-title-3"
-              component="h3"
-              variant="h4"
+              className="makeStyles-title-4"
             >
               Adama
             </WithStyles(ForwardRef(Typography))>
             <WithStyles(ForwardRef(Typography))
-              align="center"
-              className="makeStyles-subtitle-4"
-              component="h4"
-              variant="subtitle1"
+              className="makeStyles-subtitle-5"
             >
               Full-stack Developer chez DFDS POLSKA
             </WithStyles(ForwardRef(Typography))>
             <WithStyles(ForwardRef(Typography))
-              align="center"
-              className="makeStyles-commendation-5"
-              color="textSecondary"
-              component="p"
-              variant="body1"
+              className="makeStyles-commendation-6"
             >
               Joe have done very good work...
             </WithStyles(ForwardRef(Typography))>
           </Styled(MuiBox)>
           <Styled(MuiBox)
-            className="makeStyles-boxPadding-6"
+            className="makeStyles-box_padding-7"
           >
             <WithStyles(ForwardRef(Typography))
-              align="center"
-              className="makeStyles-title-3"
-              component="h3"
-              variant="h4"
+              className="makeStyles-title-4"
             >
               Scott
             </WithStyles(ForwardRef(Typography))>
             <WithStyles(ForwardRef(Typography))
-              align="center"
-              className="makeStyles-subtitle-4"
-              component="h4"
-              variant="subtitle1"
+              className="makeStyles-subtitle-5"
             >
               BPO
             </WithStyles(ForwardRef(Typography))>
             <WithStyles(ForwardRef(Typography))
-              align="center"
-              className="makeStyles-commendation-5"
-              color="textSecondary"
-              component="p"
-              variant="body1"
+              className="makeStyles-commendation-6"
             >
               Joe is one of those rare talents...
             </WithStyles(ForwardRef(Typography))>

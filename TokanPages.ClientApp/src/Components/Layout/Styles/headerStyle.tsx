@@ -1,23 +1,31 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { CustomColours } from "../../../Theme/customColours";
 
 const headerStyle = makeStyles((theme) => (
 {
-    gridMargin:
+    top_margin:
     {
         marginTop: "65px"
     },
-    mainAction: 
+    action_button: 
     {
+        "&:hover": 
+        {
+            color: CustomColours.colours.lightViolet,
+            background: CustomColours.colours.darkViolet1,
+        },
+        color: CustomColours.colours.darkViolet1,
+        background: CustomColours.colours.lightViolet,
         [theme.breakpoints.down("xs")]: 
         {
             width: "100%",
         }
     },
-    mainLink:
+    action_link:
     {
         textDecoration: "none"
     },
-    contentBox: 
+    content_box: 
     {
         maxWidth: theme.breakpoints.values["md"],
         paddingTop: theme.spacing(12),
@@ -31,7 +39,7 @@ const headerStyle = makeStyles((theme) => (
             maxHeight: 400,
             paddingTop: theme.spacing(12),
             paddingBottom: theme.spacing(16),
-            marginRight: 0,
+            paddingRight: theme.spacing(24),
             textAlign: "left",
         },
         [theme.breakpoints.down("xs")]: 
@@ -39,7 +47,12 @@ const headerStyle = makeStyles((theme) => (
             paddingTop: theme.spacing(3),
         }
     },
-    imageBox:
+    content_description:
+    {
+        color: CustomColours.colours.gray2,
+        fontWeight: 400
+    },
+    image_box:
     {
         position: "relative",
         height: 400, 
@@ -47,14 +60,10 @@ const headerStyle = makeStyles((theme) => (
         justifyContent: "center", 
         alignItems: "center"
     },
-    img: 
+    image: 
     {
         borderRadius: "50%",
         border: "25px solid white",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
         objectFit: "cover",
         height: 400,
         maxWidth: "100%"

@@ -18,7 +18,9 @@ describe("Test account group component: userSigninView.", () =>
             progress: false,
             formHandler: jest.fn(),
             email: "ester.exposito@gmail.com",
-            password: "madrilena123"
+            password: "madrilena123",
+            labelEmail: "Email address",
+            labelPassword: "Password"
         }}/>);
         expect(tree).toMatchSnapshot();
     });

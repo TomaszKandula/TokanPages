@@ -2,7 +2,7 @@
 
 exports[`Test render function 'renderContent'. Should correctly render passed items. 1`] = `
 <Fragment>
-  <Component
+  <RenderText
     id="e7f4a895-b18c-4378-98b6-e85ef7c27e42"
     key="e7f4a895-b18c-4378-98b6-e85ef7c27e42"
     prop="title"
@@ -10,7 +10,7 @@ exports[`Test render function 'renderContent'. Should correctly render passed it
     type="html"
     value="<p>Test line</p>"
   />
-  <Component
+  <RenderText
     id="b36cb3f6-673a-432c-8c65-b0c0a259f5ae"
     key="b36cb3f6-673a-432c-8c65-b0c0a259f5ae"
     prop="subtitle"
@@ -18,7 +18,7 @@ exports[`Test render function 'renderContent'. Should correctly render passed it
     type="html"
     value="<p>Test line</p>"
   />
-  <Component
+  <RenderImage
     id="2a429fc0-099d-480e-bb08-5cbee9885597"
     key="2a429fc0-099d-480e-bb08-5cbee9885597"
     prop=""
@@ -26,7 +26,7 @@ exports[`Test render function 'renderContent'. Should correctly render passed it
     type="image"
     value="image.jpg"
   />
-  <Component
+  <RenderText
     id="cd75d329-1fce-4650-9870-455f37f5d6f4"
     key="cd75d329-1fce-4650-9870-455f37f5d6f4"
     prop="dropcap"
@@ -34,7 +34,7 @@ exports[`Test render function 'renderContent'. Should correctly render passed it
     type="html"
     value="<p>Test line</p>"
   />
-  <Component
+  <RenderText
     id="47156d85-ed78-49e1-ad1a-20ca72efee5d"
     key="47156d85-ed78-49e1-ad1a-20ca72efee5d"
     prop=""
@@ -42,10 +42,10 @@ exports[`Test render function 'renderContent'. Should correctly render passed it
     type="html"
     value="<p>Test line</p>"
   />
-  <Component
+  <RenderSeparator
     key="4191a77f-2618-4757-9e97-fedefc40748c"
   />
-  <Component
+  <RenderTable
     id="e40d98e8-8e66-4bc8-a170-675b7d8aaac9"
     key="e40d98e8-8e66-4bc8-a170-675b7d8aaac9"
     prop=""
@@ -81,7 +81,7 @@ exports[`Test render function 'renderContent'. Should correctly render passed it
       ]
     }
   />
-  <Component
+  <RenderVideo
     id="7e2a6a15-2676-43ac-b2b0-f65297b90db2"
     key="7e2a6a15-2676-43ac-b2b0-f65297b90db2"
     prop="cheers-commercial.png"

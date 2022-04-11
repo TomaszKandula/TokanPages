@@ -14,7 +14,7 @@ exports[`Test render function 'renderList'. Should return 'Cannot render content
 
 exports[`Test render function 'renderList'. Should return rendered list when items are provided. 1`] = `
 <WithStyles(ForwardRef(List))>
-  <Component
+  <RenderItem
     enabled={true}
     icon="Person"
     id="e8284fe7-5ced-46a5-b779-2fe516fe88c2"
@@ -23,7 +23,7 @@ exports[`Test render function 'renderList'. Should return rendered list when ite
     type="item"
     value="My account"
   />
-  <Component
+  <RenderItem
     enabled={true}
     icon="Lock"
     id="d3ada751-012d-4c58-a4dd-a89c89928338"
@@ -36,7 +36,7 @@ exports[`Test render function 'renderList'. Should return rendered list when ite
     key="945b6c9c-f37f-4b03-bb6f-3256a559fafe"
     variant="middle"
   />
-  <Component
+  <RenderItem
     enabled={true}
     icon="Home"
     id="c44bb2cd-ee75-470c-942e-5560e3589102"
@@ -45,7 +45,7 @@ exports[`Test render function 'renderList'. Should return rendered list when ite
     type="item"
     value="Home"
   />
-  <Component
+  <RenderItem
     enabled={true}
     icon="ViewList"
     id="7c3f3893-2ac1-4ee8-94dc-baa44b668ec7"
@@ -54,7 +54,7 @@ exports[`Test render function 'renderList'. Should return rendered list when ite
     type="item"
     value="Articles"
   />
-  <Component
+  <RenderItemSpan
     enabled={true}
     icon="Build"
     id="d5303362-76fb-4638-a6ee-5077cac76826"
@@ -75,7 +75,7 @@ exports[`Test render function 'renderList'. Should return rendered list when ite
     type="itemspan"
     value="My projects"
   />
-  <Component
+  <RenderItemSpan
     enabled={true}
     icon="Star"
     id="5e8a29af-ada6-40dc-a07d-1c16d42cef87"
@@ -113,7 +113,7 @@ exports[`Test render function 'renderList'. Should return rendered list when ite
     key="2455c0e2-da5e-4ba9-ac29-e87c82d998cc"
     variant="middle"
   />
-  <Component
+  <RenderItem
     enabled={true}
     icon="Policy"
     id="3b54919c-837e-4efb-afd2-abd1c1d8b53b"

@@ -22,17 +22,10 @@ exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when
             textAlign="center"
           >
             <WithStyles(ForwardRef(Typography))
-              component="h2"
+              className="makeStyles-caption_text-2"
               gutterBottom={true}
-              variant="h4"
             >
-              Featured
-            </WithStyles(ForwardRef(Typography))>
-            <WithStyles(ForwardRef(Typography))
-              color="textSecondary"
-              variant="subtitle1"
-            >
-              I picked three articles that I wrote...
+              FEATURED
             </WithStyles(ForwardRef(Typography))>
           </Styled(MuiBox)>
         </WithStyles(ForwardRef(Container))>
@@ -59,7 +52,7 @@ exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when
                     target="_blank"
                   >
                     <WithStyles(ForwardRef(CardMedia))
-                      className="makeStyles-media-2"
+                      className="makeStyles-media-3"
                       image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/featured/article0.jpg"
                     />
                     <WithStyles(ForwardRef(CardHeader))
@@ -87,7 +80,7 @@ exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when
                     target="_blank"
                   >
                     <WithStyles(ForwardRef(CardMedia))
-                      className="makeStyles-media-2"
+                      className="makeStyles-media-3"
                       image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/featured/article1.jpg"
                     />
                     <WithStyles(ForwardRef(CardHeader))
@@ -115,7 +108,7 @@ exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when
                     target="_blank"
                   >
                     <WithStyles(ForwardRef(CardMedia))
-                      className="makeStyles-media-2"
+                      className="makeStyles-media-3"
                       image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/featured/article2.jpg"
                     />
                     <WithStyles(ForwardRef(CardHeader))

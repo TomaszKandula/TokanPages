@@ -8,15 +8,11 @@ exports[`Test view component for application diaog box. Renders correctly view c
   open={true}
 >
   <WithStyles(ForwardRef(DialogTitle))
+    className="makeStyles-title-5"
     id="alert-dialog-title"
   >
     <div
-      style={
-        Object {
-          "alignItems": "center",
-          "display": "flex",
-        }
-      }
+      className="makeStyles-icon_holder-1"
     >
       <RenderIcon />
       Test title
@@ -25,10 +21,8 @@ exports[`Test view component for application diaog box. Renders correctly view c
   <WithStyles(ForwardRef(Divider)) />
   <WithStyles(ForwardRef(DialogContent))>
     <WithStyles(ForwardRef(Typography))
-      className="makeStyles-Typography-4"
-      component="span"
+      className="makeStyles-description-6"
       id="alert-dialog-description"
-      variant="body1"
     >
       Test message
     </WithStyles(ForwardRef(Typography))>
@@ -37,7 +31,7 @@ exports[`Test view component for application diaog box. Renders correctly view c
   <WithStyles(ForwardRef(DialogActions))>
     <WithStyles(ForwardRef(Button))
       autoFocus={true}
-      color="primary"
+      className="makeStyles-button-7"
       onClick={[MockFunction]}
     >
       OK

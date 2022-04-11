@@ -6,5 +6,7 @@ export interface IUserSigninContentDto
         button: string;
         link1: string;
         link2: string;
+        labelEmail: string;
+        labelPassword: string;
     };
 }

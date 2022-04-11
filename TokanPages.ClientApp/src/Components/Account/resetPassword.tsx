@@ -65,7 +65,8 @@ const ResetPassword = (props: IGetResetPasswordContent): JSX.Element =>
             break;
         }
     }, 
-    [ progress, clearForm, resetAction, showSuccess, form, raiseErrorState, resetUserPasswordState ]);
+    [ progress, raiseErrorState?.defaultErrorMessage, resetUserPasswordState?.operationStatus, 
+        OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     { 
@@ -94,7 +95,8 @@ const ResetPassword = (props: IGetResetPasswordContent): JSX.Element =>
             button: props.content.button,
             email: form.email,
             formHandler: formHandler,
-            buttonHandler: buttonHandler
+            buttonHandler: buttonHandler,
+            labelEmail: props.content.labelEmail
         }}/>
     );
 }

@@ -6,7 +6,7 @@ exports[`Test component: headerView. Renders correctly '<HeaderView />' when con
     maxWidth="lg"
   >
     <WithStyles(ForwardRef(Grid))
-      className="makeStyles-gridMargin-1"
+      className="makeStyles-top_margin-1"
       container={true}
     >
       <WithStyles(ForwardRef(Grid))
@@ -15,7 +15,7 @@ exports[`Test component: headerView. Renders correctly '<HeaderView />' when con
         xs={12}
       >
         <Styled(MuiBox)
-          className="makeStyles-imageBox-5"
+          className="makeStyles-image_box-6"
         >
           <div
             data-aos="fade-right"
@@ -28,22 +28,20 @@ exports[`Test component: headerView. Renders correctly '<HeaderView />' when con
         xs={12}
       >
         <Styled(MuiBox)
-          className="makeStyles-contentBox-4"
+          className="makeStyles-content_box-4"
         >
           <div
             data-aos="fade-left"
           >
             <WithStyles(ForwardRef(Typography))
-              component="span"
               gutterBottom={true}
-              variant="overline"
+              variant="h3"
             >
               Welcome to my web page
             </WithStyles(ForwardRef(Typography))>
             <WithStyles(ForwardRef(Typography))
-              color="textSecondary"
-              paragraph={true}
-              variant="h5"
+              className="makeStyles-content_description-5"
+              variant="h6"
             >
               I do programming for a living...
             </WithStyles(ForwardRef(Typography))>
@@ -51,11 +49,11 @@ exports[`Test component: headerView. Renders correctly '<HeaderView />' when con
               mt={4}
             >
               <Link
-                className="makeStyles-mainLink-3"
+                className="makeStyles-action_link-3"
                 to="/mystory"
               >
                 <WithStyles(ForwardRef(Button))
-                  className="makeStyles-mainAction-2"
+                  className="makeStyles-action_button-2"
                   variant="contained"
                 >
                   Read the story

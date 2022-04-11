@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from '@material-ui/core/IconButton';
@@ -7,8 +6,6 @@ import Avatar from '@material-ui/core/Avatar';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Grid, Typography } from "@material-ui/core";
 import HideOnScroll from "../../Shared/Components/Scroll/hideOnScroll";
-import { ICONS_PATH } from "../../Shared/constants";
-import { renderImage } from "../../Shared/Components/CustomImage/customImage";
 import { IItem } from "../../Shared/Components/ListRender/Models/item";
 import MenuView from "./Components/menuView";
 import navigationStyle from "./Styles/navigationStyle";
@@ -35,26 +32,25 @@ interface IProperties
 const NavigationView = (props: IBinding): JSX.Element => 
 {
     const classes = navigationStyle();
+    const fullName = "</> tom kandula";
+    const justLogo = "</>";
     return (
         <HideOnScroll {...props}>
-            <AppBar className={classes.appBar}>
-                <Toolbar className={classes.toolBar}>
+            <AppBar className={classes.app_bar}>
+                <Toolbar className={classes.tool_bar}>
 
                     <Grid container item xs={12} spacing={3}>
-                        <Grid item xs className={classes.menu}>
-                            <IconButton color="inherit" aria-label="menu" onClick={props.bind?.openHandler}>
+                        <Grid item xs className={classes.nav_menu}>
+                            <IconButton color="inherit" aria-label="menu" onClick={props.bind?.openHandler} className={classes.nav_icon}>
                                 <MenuIcon />
                             </IconButton>
                         </Grid>
-                        <Grid item xs className={classes.link}>
-                            <Link to="/">
-                                <div data-aos="fade-down" className={classes.image} >
-                                    {renderImage(ICONS_PATH, props.bind?.logo, classes.logo)}
-                                </div>
-                            </Link>
+                        <Grid item xs className={classes.app_link}>
+                            <Typography className={classes.app_full_logo}>{fullName}</Typography>
+                            <Typography className={classes.app_just_logo}>{justLogo}</Typography>
                         </Grid>
-                        <Grid item xs className={classes.avatar}>
-                            <Typography className={classes.userAlias} component={"span"} variant={"body1"} >
+                        <Grid item xs className={classes.user_avatar}>
+                            <Typography className={classes.user_alias}>
                                 {props.bind?.isAnonymous ? props.bind?.anonymousText : props.bind?.userAliasText}
                             </Typography>
                             <IconButton color="inherit" onClick={props.bind?.infoHandler} >

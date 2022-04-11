@@ -18,7 +18,9 @@ describe("Test account group component: updatePasswordView.", () =>
             verifyPassword: "user1password",
             formHandler: jest.fn(),
             buttonHandler: jest.fn(),
-            disableForm: false
+            disableForm: false,
+            labelNewPassword: "New password",
+            labelVerifyPassword: "Verify password"
         }}/>);
         expect(tree).toMatchSnapshot();
     });

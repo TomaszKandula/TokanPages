@@ -2,75 +2,75 @@
 
 exports[`Test render function 'getIcon'. Render SVG icon based on input string. 1`] = `
 <div>
-  <Component
+  <GetIcon
     iconName="Person"
     key="0"
   />
-  <Component
+  <GetIcon
     iconName="PersonAdd"
     key="1"
   />
-  <Component
+  <GetIcon
     iconName="Home"
     key="2"
   />
-  <Component
+  <GetIcon
     iconName="ViewList"
     key="3"
   />
-  <Component
+  <GetIcon
     iconName="Subject"
     key="4"
   />
-  <Component
+  <GetIcon
     iconName="Build"
     key="5"
   />
-  <Component
+  <GetIcon
     iconName="Assignment"
     key="6"
   />
-  <Component
+  <GetIcon
     iconName="Star"
     key="7"
   />
-  <Component
+  <GetIcon
     iconName="PhotoCamera"
     key="8"
   />
-  <Component
+  <GetIcon
     iconName="SportsSoccer"
     key="9"
   />
-  <Component
+  <GetIcon
     iconName="MusicNote"
     key="10"
   />
-  <Component
+  <GetIcon
     iconName="DirectionsBike"
     key="11"
   />
-  <Component
+  <GetIcon
     iconName="ContactMail"
     key="12"
   />
-  <Component
+  <GetIcon
     iconName="Gavel"
     key="13"
   />
-  <Component
+  <GetIcon
     iconName="Policy"
     key="14"
   />
-  <Component
+  <GetIcon
     iconName="VpnKey"
     key="15"
   />
-  <Component
+  <GetIcon
     iconName="Lock"
     key="16"
   />
-  <Component
+  <GetIcon
     iconName="Unknown element renders apple icon"
     key="17"
   />

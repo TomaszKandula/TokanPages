@@ -27,11 +27,18 @@ const ArticleCard = (props: IArticleCard): JSX.Element =>
         history.push(articleUrl);
     };
 
+    const shortenText = (value: string, limit: number): string => 
+    {
+        let result = value;
+        if (value.length > limit) result = `${value.substring(0, limit)}...`;
+        return result;
+    }
+
     return (<ArticleCardView bind=
     {{
         imageUrl: imageUrl,
-        title: props.title,
-        description: props.description,
+        title: shortenText(props.title, 30),
+        description: shortenText(props.description, 50),
         onClickEvent: onClickEvent,
         buttonText: content.button
     }}/>);

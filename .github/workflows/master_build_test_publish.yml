@@ -22,7 +22,7 @@ jobs:
     - name: Semantic Release (install node.js)
       uses: actions/setup-node@v1
       with:
-        node-version: 14
+        node-version: 16
 
     - name: Semantic Release (install dependencies)
       run: |

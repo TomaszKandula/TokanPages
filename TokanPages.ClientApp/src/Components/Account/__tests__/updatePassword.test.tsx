@@ -26,7 +26,9 @@ describe("Test account group component: updatePassword.", () =>
     const testContent = 
     {
         caption: "Update Password",
-        button: "Submit"
+        button: "Submit",
+        labelNewPassword: "New password",
+        labelVerifyPassword: "Verify new password"
     };
 
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");

@@ -15,7 +15,7 @@ const renderVideoStyle = makeStyles(() => (
     },
     text:
     {
-        color: CustomColours.typography.gray1,
+        color: CustomColours.colours.gray1,
         paddingTop: "1px",
         paddingBottom: "1px",
         paddingLeft: "10px",

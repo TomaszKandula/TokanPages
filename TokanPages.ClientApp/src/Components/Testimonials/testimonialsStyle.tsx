@@ -5,30 +5,45 @@ const testimonialsStyle = makeStyles((theme) => (
 {
     section:
     {
-        backgroundColor: CustomColours.background.white
+        backgroundColor: CustomColours.colours.white
     },
-    img:
+    image:
     {
-        width: "120px !important",
+        width: "150px !important",
         borderRadius: "50%"
+    },
+    caption_text:
+    {
+        textAlign: "center",
+        fontSize: "2.0rem",
+        color: CustomColours.colours.darkViolet1
     },
     title:
     {
+        fontSize: "1.2rem",
+        fontWeight: 400,
+        textAlign: "center",
         marginTop: "15px",
         marginBottom: "15px"
     },
     subtitle:
     {
+        fontSize: "1.2rem",
+        fontWeight: 400,
+        textAlign: "center",
         marginTop: "15px",
         marginBottom: "15px"
     },
     commendation:
     {
+        fontSize: "1.2rem",
+        fontWeight: 400,
+        lineHeight: 2.0,
         marginLeft: "25px",
         marginRight: "25px",
-        lineHeight: 2.0
+        color: CustomColours.colours.gray2
     },
-    boxPadding:
+    box_padding:
     {
         [theme.breakpoints.up("xl")]: 
         {

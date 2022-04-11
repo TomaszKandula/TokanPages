@@ -16,26 +16,26 @@ const HeaderView = (props: IGetHeaderContent): JSX.Element =>
     return (
         <section>
             <Container maxWidth="lg">
-                <Grid container className={classes.gridMargin}>
+                <Grid container className={classes.top_margin}>
                     <Grid item xs={12} sm={6}>
-                        <Box className={classes.imageBox}>
+                        <Box className={classes.image_box}>
                             <div data-aos="fade-right">
-                                {renderImage(IMAGES_PATH, props.content?.photo, classes.img)}
+                                {renderImage(IMAGES_PATH, props.content?.photo, classes.image)}
                             </div>
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <Box className={classes.contentBox}>
+                        <Box className={classes.content_box}>
                             <div data-aos="fade-left">
-                                <Typography variant="overline" component="span" gutterBottom={true}>
+                                <Typography variant="h3" gutterBottom={true}>
                                     {props.content?.caption}
                                 </Typography>
-                                <Typography variant="h5" color="textSecondary" paragraph={true}>
+                                <Typography variant="h6" className={classes.content_description}>
                                     {props.content?.description}
                                 </Typography>
                                 <Box mt={4}>
-                                    <Link to="/mystory" className={classes.mainLink}>
-                                        <Button variant="contained" className={classes.mainAction}>{props.content?.action}</Button>
+                                    <Link to="/mystory" className={classes.action_link}>
+                                        <Button variant="contained" className={classes.action_button}>{props.content?.action}</Button>
                                     </Link>
                                 </Box>
                             </div>

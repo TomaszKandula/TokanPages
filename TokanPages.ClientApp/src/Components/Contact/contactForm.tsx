@@ -76,7 +76,8 @@ const ContactForm = (props: IGetContactFormContent): JSX.Element =>
             break;
         }
     }, 
-    [ sendMessage, sendMessageState, clearForm, progress, form, showSuccess, raiseErrorState ]);
+    [ progress, raiseErrorState?.defaultErrorMessage, sendMessageState?.operationStatus, 
+        OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
@@ -124,7 +125,13 @@ const ContactForm = (props: IGetContactFormContent): JSX.Element =>
         terms: form.terms,
         buttonHandler: buttonHandler,
         progress: progress,
-        buttonText: props.content?.button
+        buttonText: props.content?.button,
+        consent: props.content?.consent,
+        labelFirstName: props.content?.labelFirstName,
+        labelLastName: props.content?.labelLastName,
+        labelEmail: props.content?.labelEmail,
+        labelSubject: props.content?.labelSubject,
+        labelMessage: props.content?.labelMessage
     }}/>);
 }
 
