@@ -51,7 +51,7 @@ const ArticleListView = (props: IBinding): JSX.Element =>
                         </Link> 
                         <Divider className={classes.divider} />
                     </div>
-                    <Grid container justify="center">
+                    <Grid container justifyContent="center">
                         <Grid item xs={12} sm={12}>
                             {props.bind?.isLoading 
                                 ? <CenteredCircularLoader /> 
