@@ -7,6 +7,7 @@ import { GET_FEATURED_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/const
 import { TErrorActions } from "./../raiseErrorAction";
 import { IFeaturedContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
+import { GetUserLanguage } from "../../../Shared/Services/languageService";
 
 export const REQUEST_FEATURED_CONTENT = "REQUEST_FEATURED_CONTENT";
 export const RECEIVE_FEATURED_CONTENT = "RECEIVE_FEATURED_CONTENT";
@@ -16,17 +17,20 @@ export type TKnownActions = IRequestFeaturedContent | IReceiveFeaturedContent | 
 
 export const ActionCreators = 
 {
-    getFeaturedContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getFeaturedContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        if (getState().getFeaturedContent.content !== combinedDefaults.getFeaturedContent.content) 
+        if (getState().getFeaturedContent.content !== combinedDefaults.getFeaturedContent.content && !isLanguageChanged) 
             return;
 
         dispatch({ type: REQUEST_FEATURED_CONTENT });
 
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
         axios(EnrichConfiguration(
         {
             method: "GET", 
-            url: GET_FEATURED_CONTENT,
+            url: `${GET_FEATURED_CONTENT}${queryParam}`,
             responseType: "json"
         }))
         .then(response =>

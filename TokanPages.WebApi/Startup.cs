@@ -13,6 +13,7 @@ using Middleware;
 using Configuration;
 using Backend.Core.Exceptions;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 [ExcludeFromCodeCoverage]
 public class Startup
@@ -30,7 +31,11 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddCors();
-        services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.Converters.Add(new StringEnumConverter()));
+        services.AddControllers().AddNewtonsoftJson(options =>
+        {
+            options.SerializerSettings.Converters.Add(new StringEnumConverter());
+            options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+        });
         services.AddApiVersioning(options =>
         {
             options.ReportApiVersions = true;

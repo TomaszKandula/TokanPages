@@ -3,6 +3,7 @@ import { ITextObject } from "../../../Shared/Components/ContentRender/Models/tex
 import { GetErrorMessage } from "../../../Shared/helpers";
 import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { POLICY_URL, STORY_URL, TERMS_URL } from "../../../Shared/constants";
+import { GetUserLanguage } from "../../../Shared/Services/languageService";
 import { RAISE_ERROR, TErrorActions } from "./../raiseErrorAction";
 import { ApiCall, EnrichConfiguration } from "../../../Api/Request";
 
@@ -29,9 +30,13 @@ export type TRequestContent = typeof REQUEST_STORY | typeof REQUEST_TERMS | type
 const DispatchCall = async (dispatch: (action: TKnownActions) => void, url: string, request: TRequestContent, receive: TReceiveContent) =>
 {
     dispatch({ type: request });
+
+    const language = GetUserLanguage();
+    const queryParam = language === "" ? "" : `&language=${language}`;
+
     let result = await ApiCall(EnrichConfiguration(
     {
-        url: url,
+        url: `${url}${queryParam}`,
         method: "GET",
         responseType: "json"
     }));
