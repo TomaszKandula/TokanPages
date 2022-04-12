@@ -318,7 +318,7 @@ public class GetContentQueryHandlerTest : TestBase
     {
         new ActivateAccountDto
         {
-            Language = "en",
+            Language = "eng",
             OnProcessing = new ContentActivation
             {
                 Type = "Processing",
