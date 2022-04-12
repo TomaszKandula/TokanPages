@@ -12,6 +12,20 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
       },
       "infoHandler": [MockFunction],
       "isAnonymous": false,
+      "isLoading": false,
+      "languageHandler": [MockFunction],
+      "languages": Array [
+        Object {
+          "id": "eng",
+          "isDefault": true,
+          "name": "English",
+        },
+        Object {
+          "id": "pol",
+          "isDefault": false,
+          "name": "Polski",
+        },
+      ],
       "logo": "",
       "menu": Object {
         "image": "",
@@ -27,6 +41,7 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
         ],
       },
       "openHandler": [MockFunction],
+      "selectedLanguage": "eng",
       "userAliasText": "",
     }
   }
@@ -74,22 +89,34 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
           </WithStyles(ForwardRef(Typography))>
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Grid))
-          className="makeStyles-user_avatar-8"
+          className="makeStyles-content_right_side-11"
           item={true}
           xs={true}
         >
-          <WithStyles(ForwardRef(Typography))
-            className="makeStyles-user_alias-9"
-          />
-          <WithStyles(ForwardRef(IconButton))
-            color="inherit"
-            onClick={[MockFunction]}
+          <Styled(MuiBox)
+            className="makeStyles-languagesBox-8"
           >
-            <WithStyles(ForwardRef(Avatar))
-              alt="Avatar"
-              src=""
+            <LanguageSelection
+              styleMenu="makeStyles-languages_menu-10"
+              styleSelect="makeStyles-languages_selection-9"
             />
-          </WithStyles(ForwardRef(IconButton))>
+          </Styled(MuiBox)>
+          <div
+            className="makeStyles-user_avatar-12"
+          >
+            <WithStyles(ForwardRef(Typography))
+              className="makeStyles-user_alias-13"
+            />
+            <WithStyles(ForwardRef(IconButton))
+              color="inherit"
+              onClick={[MockFunction]}
+            >
+              <WithStyles(ForwardRef(Avatar))
+                alt="Avatar"
+                src=""
+              />
+            </WithStyles(ForwardRef(IconButton))>
+          </div>
         </WithStyles(ForwardRef(Grid))>
       </WithStyles(ForwardRef(Grid))>
     </WithStyles(ForwardRef(Toolbar))>
