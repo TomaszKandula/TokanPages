@@ -25,7 +25,7 @@ exports[`Test articles group component: articleListView. Renders correctly '<Art
       </div>
       <WithStyles(ForwardRef(Grid))
         container={true}
-        justify="center"
+        justifyContent="center"
       >
         <WithStyles(ForwardRef(Grid))
           item={true}
