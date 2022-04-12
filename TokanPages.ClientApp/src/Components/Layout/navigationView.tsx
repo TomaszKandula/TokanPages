@@ -4,7 +4,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import MenuIcon from '@material-ui/icons/Menu';
-import { FormControl, Grid, MenuItem, Select, Typography } from "@material-ui/core";
+import { FormControl, Grid, MenuItem, Select, Typography, Box } from "@material-ui/core";
 import HideOnScroll from "../../Shared/Components/Scroll/hideOnScroll";
 import { IItem } from "../../Shared/Components/ListRender/Models/item";
 import { ILanguage } from "../../Shared/Services/languageService";
@@ -40,10 +40,10 @@ const NavigationView = (props: IBinding): JSX.Element =>
     const fullName = "</> tom kandula";
     const justLogo = "</>";
 
-    const LanguageSelection = (args: { styleSelect?: string, styleMenu?: string }): JSX.Element => 
+    const LanguageSelection = (args: { styleControl?: string, styleSelect?: string, styleMenu?: string }): JSX.Element => 
     {
         return(
-            <FormControl>
+            <FormControl className={args.styleControl}>
                 <Select value={props.bind?.selectedLanguage} onChange={props.bind?.languageHandler} disableUnderline className={args.styleSelect}>
                     {props.bind?.languages.map((item: ILanguage, index: number) => (
                         <MenuItem value={item.id} key={index} className={args.styleMenu}>
@@ -71,9 +71,11 @@ const NavigationView = (props: IBinding): JSX.Element =>
                             <Typography className={classes.app_just_logo}>{justLogo}</Typography>
                         </Grid>
                         <Grid item xs className={classes.content_right_side}>
-                            <Grid item xs={3} className={classes.languagesBox}>
-                                {props.bind?.isLoading ? null : <LanguageSelection styleSelect={classes.languages_selection} styleMenu={classes.languages_menu} />}
-                            </Grid>
+                            <Box className={classes.languagesBox}>
+                                {props.bind?.isLoading ? null : <LanguageSelection 
+                                    styleSelect={classes.languages_selection} 
+                                    styleMenu={classes.languages_menu} />}
+                            </Box>
                             <div className={classes.user_avatar}>
                                 <Typography className={classes.user_alias}>
                                     {props.bind?.isAnonymous ? props.bind?.anonymousText : props.bind?.userAliasText}

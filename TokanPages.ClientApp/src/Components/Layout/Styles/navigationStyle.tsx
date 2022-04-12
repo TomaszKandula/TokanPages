@@ -66,7 +66,11 @@ const navigationStyle = makeStyles((theme) => (
     },
     languagesBox:
     {
-        justifyContent: "center",
+        [theme.breakpoints.down(700)]:
+        {
+            marginRight: "0px",
+        },
+        marginRight: "30px",
         alignSelf: "center"
     },
     languages_selection:
