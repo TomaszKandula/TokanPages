@@ -7,6 +7,7 @@ import { GET_COOKIES_PROMPT_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared
 import { TErrorActions } from "./../raiseErrorAction";
 import { ICookiesPromptContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
+import { GetUserLanguage } from "../../../Shared/Services/languageService";
 
 export const REQUEST_COOKIES_PROMPT_CONTENT = "REQUEST_COOKIES_PROMPT_CONTENT";
 export const RECEIVE_COOKIES_PROMPT_CONTENT = "RECEIVE_COOKIES_PROMPT_CONTENT";
@@ -16,17 +17,20 @@ export type TKnownActions = IRequestCookiesPromptContent | IReceiveCookiesPrompt
 
 export const ActionCreators = 
 {
-    getCookiesPromptContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getCookiesPromptContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        if (getState().getCookiesPromptContent.content !== combinedDefaults.getCookiesPromptContent.content) 
+        if (getState().getCookiesPromptContent.content !== combinedDefaults.getCookiesPromptContent.content && !isLanguageChanged) 
             return;
 
         dispatch({ type: REQUEST_COOKIES_PROMPT_CONTENT });
 
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
         axios(EnrichConfiguration(
         {
             method: "GET", 
-            url: GET_COOKIES_PROMPT_CONTENT,
+            url: `${GET_COOKIES_PROMPT_CONTENT}${queryParam}`,
             responseType: "json"
         }))
         .then(response =>

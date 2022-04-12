@@ -7,6 +7,7 @@ import { GET_WRONG_PAGE_PROMPT_CONTENT, NULL_RESPONSE_ERROR } from "../../../Sha
 import { TErrorActions } from "./../raiseErrorAction";
 import { IWrongPagePromptContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
+import { GetUserLanguage } from "../../../Shared/Services/languageService";
 
 export const REQUEST_WRONG_PAGE_CONTENT = "REQUEST_WRONG_PAGE_CONTENT";
 export const RECEIVE_WRONG_PAGE_CONTENT = "RECEIVE_WRONG_PAGE_CONTENT";
@@ -16,17 +17,20 @@ export type TKnownActions = IRequestWrongPageContent | IReceiveWrongPageContent 
 
 export const ActionCreators = 
 {
-    getWrongPagePromptContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getWrongPagePromptContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        if (getState().getWrongPagePromptContent.content !== combinedDefaults.getWrongPagePromptContent.content)
+        if (getState().getWrongPagePromptContent.content !== combinedDefaults.getWrongPagePromptContent.content && !isLanguageChanged)
             return;
 
         dispatch({ type: REQUEST_WRONG_PAGE_CONTENT });
 
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
         axios(EnrichConfiguration( 
         {
             method: "GET", 
-            url: GET_WRONG_PAGE_PROMPT_CONTENT,
+            url: `${GET_WRONG_PAGE_PROMPT_CONTENT}${queryParam}`,
             responseType: "json"
         }))
         .then(response =>

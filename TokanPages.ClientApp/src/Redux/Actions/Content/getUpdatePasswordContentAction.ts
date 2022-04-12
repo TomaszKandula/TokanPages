@@ -7,6 +7,7 @@ import { GET_UPDATE_PASSWORD_CONTENT, NULL_RESPONSE_ERROR } from "../../../Share
 import { TErrorActions } from "../raiseErrorAction";
 import { IUpdatePasswordContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
+import { GetUserLanguage } from "../../../Shared/Services/languageService";
 
 export const REQUEST_UPDATE_PASSWORD_CONTENT = "REQUEST_UPDATE_PASSWORD_CONTENT";
 export const RECEIVE_UPDATE_PASSWORD_CONTENT = "RECEIVE_UPDATE_PASSWORD_CONTENT";
@@ -16,17 +17,20 @@ export type TKnownActions = IRequestUpdatePasswordContent | IReceiveUpdatePasswo
 
 export const ActionCreators = 
 {
-    getUpdatePasswordContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getUpdatePasswordContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        if (getState().getUpdatePasswordContent.content !== combinedDefaults.getUpdatePasswordContent.content) 
+        if (getState().getUpdatePasswordContent.content !== combinedDefaults.getUpdatePasswordContent.content && !isLanguageChanged) 
             return;
 
         dispatch({ type: REQUEST_UPDATE_PASSWORD_CONTENT });
 
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
         axios(EnrichConfiguration(
         {
             method: "GET", 
-            url: GET_UPDATE_PASSWORD_CONTENT,
+            url: `${GET_UPDATE_PASSWORD_CONTENT}${queryParam}`,
             responseType: "json"
         }))
         .then(response =>

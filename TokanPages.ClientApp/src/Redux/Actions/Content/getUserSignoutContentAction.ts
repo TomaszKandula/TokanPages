@@ -7,6 +7,7 @@ import { GET_SIGNOUT_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/consta
 import { TErrorActions } from "./../raiseErrorAction";
 import { IUserSignoutContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
+import { GetUserLanguage } from "../../../Shared/Services/languageService";
 
 export const REQUEST_USER_SIGNOUT_CONTENT = "REQUEST_USER_SIGNOUT_CONTENT";
 export const RECEIVE_USER_SIGNOUT_CONTENT = "RECEIVE_USER_SIGNOUT_CONTENT";
@@ -16,17 +17,20 @@ export type TKnownActions = IRequestSignoutFormContent | IReceiveSignoutFormCont
 
 export const ActionCreators = 
 {
-    getUserSignoutContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getUserSignoutContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        if (getState().getUserSignoutContent.content !== combinedDefaults.getUserSignoutContent.content) 
+        if (getState().getUserSignoutContent.content !== combinedDefaults.getUserSignoutContent.content && !isLanguageChanged) 
             return;
 
         dispatch({ type: REQUEST_USER_SIGNOUT_CONTENT });
 
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
         axios(EnrichConfiguration(
         {
             method: "GET", 
-            url: GET_SIGNOUT_CONTENT,
+            url: `${GET_SIGNOUT_CONTENT}${queryParam}`,
             responseType: "json"
         }))
         .then(response =>
