@@ -64,17 +64,35 @@ const navigationStyle = makeStyles((theme) => (
         display: "flex",
         justifyContent: "center"
     },
-    user_avatar:
+    languagesBox:
+    {
+        justifyContent: "center",
+        alignSelf: "center"
+    },
+    languages_selection:
+    {
+        color: CustomColours.colours.gray1
+    },
+    languages_menu:
+    {
+        color: CustomColours.colours.violet
+    },
+    content_right_side:
     {
         display: "flex",
         justifyContent: "flex-end"
     },
-    user_alias:
+    user_avatar:
     {
         [theme.breakpoints.down(700)]:
         {
             display: "none"
         },
+        display: "flex"
+    },
+    user_alias:
+    {
+        display: "none",
         color: CustomColours.colours.gray1,
         alignSelf: "center"
     }
