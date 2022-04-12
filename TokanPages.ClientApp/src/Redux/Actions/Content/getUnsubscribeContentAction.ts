@@ -7,6 +7,7 @@ import { GET_UNSUBSCRIBE_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/co
 import { TErrorActions } from "./../raiseErrorAction";
 import { IUnsubscribeContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
+import { GetUserLanguage } from "../../../Shared/Services/languageService";
 
 export const REQUEST_UNSUBSCRIBE_CONTENT = "REQUEST_UNSUBSCRIBE_CONTENT";
 export const RECEIVE_UNSUBSCRIBE_CONTENT = "RECEIVE_UNSUBSCRIBE_CONTENT";
@@ -16,17 +17,20 @@ export type TKnownActions = IRequestUnsubscribeContent | IReceiveUnsubscribeCont
 
 export const ActionCreators = 
 {
-    getUnsubscribeContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getUnsubscribeContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        if (getState().getUnsubscribeContent.content !== combinedDefaults.getUnsubscribeContent.content) 
+        if (getState().getUnsubscribeContent.content !== combinedDefaults.getUnsubscribeContent.content && !isLanguageChanged) 
             return;
         
         dispatch({ type: REQUEST_UNSUBSCRIBE_CONTENT });
 
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
         axios(EnrichConfiguration(
         {
             method: "GET", 
-            url: GET_UNSUBSCRIBE_CONTENT,
+            url: `${GET_UNSUBSCRIBE_CONTENT}${queryParam}`,
             responseType: "json"
         }))
         .then(response =>

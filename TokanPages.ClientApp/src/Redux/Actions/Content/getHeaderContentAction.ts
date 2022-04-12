@@ -7,6 +7,7 @@ import { GET_HEADER_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/constan
 import { TErrorActions } from "./../raiseErrorAction";
 import { IHeaderContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
+import { GetUserLanguage } from "../../../Shared/Services/languageService";
 
 export const REQUEST_HEADER_CONTENT = "REQUEST_HEADER_CONTENT";
 export const RECEIVE_HEADER_CONTENT = "RECEIVE_HEADER_CONTENT";
@@ -16,17 +17,20 @@ export type TKnownActions = IRequestHeaderContent | IReceiveHeaderContent | TErr
 
 export const ActionCreators = 
 {
-    getHeaderContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getHeaderContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        if (getState().getHeaderContent.content !== combinedDefaults.getHeaderContent.content) 
+        if (getState().getHeaderContent.content !== combinedDefaults.getHeaderContent.content && !isLanguageChanged) 
             return;
 
         dispatch({ type: REQUEST_HEADER_CONTENT });
 
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
         axios(EnrichConfiguration(
         {
             method: "GET", 
-            url: GET_HEADER_CONTENT,
+            url: `${GET_HEADER_CONTENT}${queryParam}`,
             responseType: "json"
         }))
         .then(response =>

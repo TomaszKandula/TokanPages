@@ -7,6 +7,7 @@ import { GET_ACTIVATE_ACCOUNT_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shar
 import { TErrorActions } from "../raiseErrorAction";
 import { IActivateAccountContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
+import { GetUserLanguage } from "../../../Shared/Services/languageService";
 
 export const REQUEST_ACTIVATE_ACCOUNT_CONTENT = "REQUEST_ACTIVATE_ACCOUNT_CONTENT";
 export const RECEIVE_ACTIVATE_ACCOUNT_CONTENT = "RECEIVE_ACTIVATE_ACCOUNT_CONTENT";
@@ -16,17 +17,20 @@ export type TKnownActions = IRequestActivateAccountContent | IReceiveActivateAcc
 
 export const ActionCreators = 
 {
-    getActivateAccountContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getActivateAccountContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        if (getState().getActivateAccountContent.content !== combinedDefaults.getActivateAccountContent.content) 
+        if (getState().getActivateAccountContent.content !== combinedDefaults.getActivateAccountContent.content && !isLanguageChanged) 
             return;
 
         dispatch({ type: REQUEST_ACTIVATE_ACCOUNT_CONTENT });
 
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
         axios(EnrichConfiguration(
         {
             method: "GET", 
-            url: GET_ACTIVATE_ACCOUNT_CONTENT,
+            url: `${GET_ACTIVATE_ACCOUNT_CONTENT}${queryParam}`,
             responseType: "json"
         }))
         .then(response =>

@@ -7,6 +7,7 @@ import { GET_SIGNIN_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/constan
 import { TErrorActions } from "./../raiseErrorAction";
 import { IUserSigninContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
+import { GetUserLanguage } from "../../../Shared/Services/languageService";
 
 export const REQUEST_USER_SIGNIN_CONTENT = "REQUEST_USER_SIGNIN_CONTENT";
 export const RECEIVE_USER_SIGNIN_CONTENT = "RECEIVE_USER_SIGNIN_CONTENT";
@@ -16,17 +17,20 @@ export type TKnownActions = IRequestSigninFormContent | IReceiveSigninFormConten
 
 export const ActionCreators = 
 {
-    getUserSigninContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getUserSigninContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        if (getState().getUserSigninContent.content !== combinedDefaults.getUserSigninContent.content) 
+        if (getState().getUserSigninContent.content !== combinedDefaults.getUserSigninContent.content && !isLanguageChanged) 
             return;
         
         dispatch({ type: REQUEST_USER_SIGNIN_CONTENT });
 
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
         axios(EnrichConfiguration(
         {
             method: "GET", 
-            url: GET_SIGNIN_CONTENT,
+            url: `${GET_SIGNIN_CONTENT}${queryParam}`,
             responseType: "json"
         }))
         .then(response =>

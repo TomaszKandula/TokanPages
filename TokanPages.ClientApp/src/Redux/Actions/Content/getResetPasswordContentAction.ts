@@ -7,6 +7,7 @@ import { GET_RESET_PASSWORD_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared
 import { TErrorActions } from "./../raiseErrorAction";
 import { IResetPasswordContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
+import { GetUserLanguage } from "../../../Shared/Services/languageService";
 
 export const REQUEST_RESET_PASSWORD_CONTENT = "REQUEST_RESET_PASSWORD_CONTENT";
 export const RECEIVE_RESET_PASSWORD_CONTENT = "RECEIVE_RESET_PASSWORD_CONTENT";
@@ -16,17 +17,20 @@ export type TKnownActions = IRequestResetPasswordContent | IReceiveResetPassword
 
 export const ActionCreators = 
 {
-    getResetPasswordContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getResetPasswordContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        if (getState().getResetPasswordContent.content !== combinedDefaults.getResetPasswordContent.content) 
+        if (getState().getResetPasswordContent.content !== combinedDefaults.getResetPasswordContent.content && !isLanguageChanged) 
             return;
 
         dispatch({ type: REQUEST_RESET_PASSWORD_CONTENT });
 
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
         axios(EnrichConfiguration(
         {
             method: "GET", 
-            url: GET_RESET_PASSWORD_CONTENT,
+            url: `${GET_RESET_PASSWORD_CONTENT}${queryParam}`,
             responseType: "json"
         }))
         .then(response =>
