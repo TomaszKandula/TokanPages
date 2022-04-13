@@ -7,6 +7,7 @@ import { GET_NEWSLETTER_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/con
 import { TErrorActions } from "./../raiseErrorAction";
 import { INewsletterContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
+import { GetUserLanguage } from "../../../Shared/Services/languageService";
 
 export const REQUEST_NEWSLETTER_CONTENT = "REQUEST_NEWSLETTER_CONTENT";
 export const RECEIVE_NEWSLETTER_CONTENT = "RECEIVE_NEWSLETTER_CONTENT";
@@ -16,17 +17,20 @@ export type TKnownActions = IRequestNewsletterContent | IReceiveNewsletterConten
 
 export const ActionCreators = 
 {
-    getNewsletterContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getNewsletterContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        if (getState().getNewsletterContent.content !== combinedDefaults.getNewsletterContent.content) 
+        if (getState().getNewsletterContent.content !== combinedDefaults.getNewsletterContent.content && !isLanguageChanged) 
             return;
 
         dispatch({ type: REQUEST_NEWSLETTER_CONTENT });
 
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
         axios(EnrichConfiguration(
         {
             method: "GET", 
-            url: GET_NEWSLETTER_CONTENT,
+            url: `${GET_NEWSLETTER_CONTENT}${queryParam}`,
             responseType: "json"
         }))
         .then(response =>

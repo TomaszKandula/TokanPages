@@ -7,6 +7,7 @@ import { GET_ARTICLE_FEAT_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/c
 import { TErrorActions } from "../raiseErrorAction";
 import { IArticleFeatContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
+import { GetUserLanguage } from "../../../Shared/Services/languageService";
 
 export const REQUEST_ARTICE_FEATURES = "REQUEST_ARTICE_FEATURES";
 export const RECEIVE_ARTICE_FEATURES = "RECEIVE_ARTICE_FEATURES";
@@ -16,17 +17,20 @@ export type TKnownActions = IRequestArticleFeatures | IReceiveArticleFeatures | 
 
 export const ActionCreators = 
 {
-    getArticleFeaturesContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getArticleFeaturesContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        if (getState().getArticleFeatContent.content !== combinedDefaults.getArticleFeatContent.content) 
+        if (getState().getArticleFeatContent.content !== combinedDefaults.getArticleFeatContent.content && !isLanguageChanged) 
             return;
 
         dispatch({ type: REQUEST_ARTICE_FEATURES });
 
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
         axios(EnrichConfiguration(
         {
             method: "GET", 
-            url: GET_ARTICLE_FEAT_CONTENT,
+            url: `${GET_ARTICLE_FEAT_CONTENT}${queryParam}`,
             responseType: "json"
         }))
         .then(response =>

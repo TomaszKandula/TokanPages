@@ -7,6 +7,7 @@ import { GET_NAVIGATION_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/con
 import { TErrorActions } from "./../raiseErrorAction";
 import { INavigationContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
+import { GetUserLanguage } from "../../../Shared/Services/languageService";
 
 export const REQUEST_NAVIGATION_CONTENT = "REQUEST_NAVIGATION_CONTENT";
 export const RECEIVE_NAVIGATION_CONTENT = "RECEIVE_NAVIGATION_CONTENT";
@@ -16,17 +17,20 @@ export type TKnownActions = IRequestNavigationContent | IReceiveNavigationConten
 
 export const ActionCreators =
 {
-    getNavigationContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getNavigationContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        if (getState().getNavigationContent.content !== combinedDefaults.getNavigationContent.content)
+        if (getState().getNavigationContent.content !== combinedDefaults.getNavigationContent.content && !isLanguageChanged)
             return;
 
         dispatch({ type: REQUEST_NAVIGATION_CONTENT });
 
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
         axios(EnrichConfiguration(
         {
             method: "GET",
-            url: GET_NAVIGATION_CONTENT,
+            url: `${GET_NAVIGATION_CONTENT}${queryParam}`,
             responseType: "json"
         }))
         .then(response =>

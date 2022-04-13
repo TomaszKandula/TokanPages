@@ -51,7 +51,7 @@ const StaticContent = (props: { content: TRequestContent }): JSX.Element =>
     return (<StaticContentView bind=
     {{
         data: data,
-        isLoading: Validate.isEmpty(data)
+        isLoading: Validate.isEmpty(data?.items)
     }}/>);
 }
 

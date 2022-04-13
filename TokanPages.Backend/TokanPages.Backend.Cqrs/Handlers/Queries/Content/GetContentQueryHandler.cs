@@ -16,7 +16,7 @@ using Services.AzureStorageService.Factory;
 
 public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContentQueryResult>
 {
-    private const string DefaultLanguage = "en";
+    private const string DefaultLanguage = "eng";
         
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 

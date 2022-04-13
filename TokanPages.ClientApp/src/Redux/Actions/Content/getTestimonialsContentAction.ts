@@ -7,6 +7,7 @@ import { GET_TESTIMONIALS_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/c
 import { TErrorActions } from "./../raiseErrorAction";
 import { ITestimonialsContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
+import { GetUserLanguage } from "../../../Shared/Services/languageService";
 
 export const REQUEST_TESTIMONIALS_CONTENT = "REQUEST_TESTIMONIALS_CONTENT";
 export const RECEIVE_TESTIMONIALS_CONTENT = "RECEIVE_TESTIMONIALS_CONTENT";
@@ -16,17 +17,20 @@ export type TKnownActions = IRequestTestimonialsContent | IReceiveTestimonialsCo
 
 export const ActionCreators = 
 {
-    getTestimonialsContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getTestimonialsContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        if (getState().getTestimonialsContent.content !== combinedDefaults.getTestimonialsContent.content) 
+        if (getState().getTestimonialsContent.content !== combinedDefaults.getTestimonialsContent.content && !isLanguageChanged) 
             return;
 
         dispatch({ type: REQUEST_TESTIMONIALS_CONTENT });
 
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
         axios(EnrichConfiguration(
         {
             method: "GET", 
-            url: GET_TESTIMONIALS_CONTENT,
+            url: `${GET_TESTIMONIALS_CONTENT}${queryParam}`,
             responseType: "json"
         }))
         .then(response =>

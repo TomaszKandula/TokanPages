@@ -4,6 +4,7 @@ import { shallow } from "enzyme";
 import NavigationView from "../navigationView";
 import { IItem } from "../../../Shared/Components/ListRender/Models/item";
 import { ANONYMOUS_NAME } from "../../../Shared/constants";
+import { ILanguage } from "../../../Shared/Services/languageService";
 
 describe("Test component: featuresView.", () => 
 {
@@ -19,8 +20,23 @@ describe("Test component: featuresView.", () =>
             enabled: true
         };
 
+        const languages: ILanguage[] = 
+        [
+            { 
+                id: "eng", 
+                name: "English", 
+                isDefault: true 
+            },
+            { 
+                id: "pol", 
+                name: "Polski", 
+                isDefault: false 
+            }
+        ];
+
         const tree = shallow(<NavigationView bind=
         {{
+            isLoading: false,
             drawerState: 
             { 
                 open: false 
@@ -37,7 +53,10 @@ describe("Test component: featuresView.", () =>
             { 
                 image: "", 
                 items: [items] 
-            }
+            },
+            languages: languages,
+            selectedLanguage: "eng",
+            languageHandler: jest.fn(),
         }}/>);
         expect(tree).toMatchSnapshot();
     });
