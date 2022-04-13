@@ -1,3 +1,22 @@
+# [0.46.0](https://github.com/TomaszKandula/TokanPages/compare/v0.45.0...v0.46.0) (2022-04-13)
+
+
+### Bug Fixes
+
+* add json properties for different objects assigned to dynamic type ([aabba6c](https://github.com/TomaszKandula/TokanPages/commit/aabba6c9fbe3184ac2f7e620ebbf29f8f3d8dba7))
+* use new property name for v4 of MUI ([a47d2f1](https://github.com/TomaszKandula/TokanPages/commit/a47d2f131c5f08165ffed9e2637631ad83513d41))
+* validate if items property is empty ([5ea0302](https://github.com/TomaszKandula/TokanPages/commit/5ea03028cbe4dd72324fd59a155a76b47ca30753))
+
+
+### Features
+
+* add language service ([9e66bbc](https://github.com/TomaszKandula/TokanPages/commit/9e66bbc9e4b5cfeaa3805052596a402320d05135))
+* change layout ans style of navigation bar for language selection ([d893f6b](https://github.com/TomaszKandula/TokanPages/commit/d893f6bd5f523af162621523f8016188c926cadf))
+* enrich redux actions with language selection ([4e5213a](https://github.com/TomaszKandula/TokanPages/commit/4e5213a2543995f1020a709bb19925893f1fb083))
+* replace Grid with Box component, make margin dependable on screen resolution ([31e6acc](https://github.com/TomaszKandula/TokanPages/commit/31e6acc7728db57f1e873fdd5eb18f6835cb9570))
+* set default language to 'ENG' ([d0b8adb](https://github.com/TomaszKandula/TokanPages/commit/d0b8adba435371f128f1c7d0c647803af699cc6a))
+* update logic in navigation component for language selection ([f2b6c00](https://github.com/TomaszKandula/TokanPages/commit/f2b6c0024a796b3a1851879cc24462a4ba26636f))
+
 # [0.45.0](https://github.com/TomaszKandula/TokanPages/compare/v0.44.0...v0.45.0) (2022-04-11)
 
 
