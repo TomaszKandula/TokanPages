@@ -7,37 +7,42 @@ exports[`Test component: newsletterView. Renders correctly '<NewsletterView />' 
   <WithStyles(ForwardRef(Container))
     maxWidth="lg"
   >
-    <div
-      data-aos="fade-up"
+    <Styled(MuiBox)
+      py={8}
+      textAlign="center"
     >
-      <Styled(MuiBox)
-        py={8}
-        textAlign="center"
+      <WithStyles(ForwardRef(Grid))
+        container={true}
+        spacing={2}
       >
         <WithStyles(ForwardRef(Grid))
-          container={true}
-          spacing={2}
+          item={true}
+          md={5}
+          xs={12}
         >
-          <WithStyles(ForwardRef(Grid))
-            item={true}
-            md={5}
-            xs={12}
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-caption-2"
+            data-aos="fade-down"
           >
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-caption-2"
-            >
-              Join the newsletter!
-            </WithStyles(ForwardRef(Typography))>
+            Join the newsletter!
+          </WithStyles(ForwardRef(Typography))>
+          <div
+            data-aos="zoom-in"
+          >
             <WithStyles(ForwardRef(Typography))
               className="makeStyles-text-3"
             >
               We will never share your email address.
             </WithStyles(ForwardRef(Typography))>
-          </WithStyles(ForwardRef(Grid))>
-          <WithStyles(ForwardRef(Grid))
-            item={true}
-            md={7}
-            xs={12}
+          </div>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          md={7}
+          xs={12}
+        >
+          <div
+            data-aos="fade-left"
           >
             <Styled(MuiBox)
               display="flex"
@@ -79,10 +84,10 @@ exports[`Test component: newsletterView. Renders correctly '<NewsletterView />' 
                 </WithStyles(ForwardRef(Grid))>
               </Styled(MuiBox)>
             </Styled(MuiBox)>
-          </WithStyles(ForwardRef(Grid))>
+          </div>
         </WithStyles(ForwardRef(Grid))>
-      </Styled(MuiBox)>
-    </div>
+      </WithStyles(ForwardRef(Grid))>
+    </Styled(MuiBox)>
   </WithStyles(ForwardRef(Container))>
 </section>
 `;
