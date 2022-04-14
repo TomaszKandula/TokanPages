@@ -19,6 +19,7 @@ import { ActionCreators as UnsubscribeContent } from "../../../Redux/Actions/Con
 import { ActionCreators as UpdateSubscriberContent } from "../../../Redux/Actions/Content/getUpdateSubscriberContentAction";
 import { ActionCreators as UpdatePasswordContent } from "../../../Redux/Actions/Content/getUpdatePasswordContentAction";
 import { ActionCreators as WrongPagePromptContent } from "../../../Redux/Actions/Content/getWrongPagePromptContentAction";
+import { ActionCreators as StaticContent } from "../../../Redux/Actions/Content/getStaticContentAction";
 
 export const Reload = (dispatch: Dispatch<any>) => 
 {
@@ -41,6 +42,9 @@ export const Reload = (dispatch: Dispatch<any>) =>
     dispatch(UpdateSubscriberContent.getUpdateSubscriberContent(true));
     dispatch(UpdatePasswordContent.getUpdatePasswordContent(true));
     dispatch(WrongPagePromptContent.getWrongPagePromptContent(true));
+    dispatch(StaticContent.getStoryContent(true));
+    dispatch(StaticContent.getTermsContent(true));
+    dispatch(StaticContent.getPolicyContent(true));
 }
 
 export default Reload;

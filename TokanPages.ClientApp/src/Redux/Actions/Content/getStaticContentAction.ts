@@ -6,6 +6,7 @@ import { POLICY_URL, STORY_URL, TERMS_URL } from "../../../Shared/constants";
 import { GetUserLanguage } from "../../../Shared/Services/languageService";
 import { RAISE_ERROR, TErrorActions } from "./../raiseErrorAction";
 import { ApiCall, EnrichConfiguration } from "../../../Api/Request";
+import { combinedDefaults } from "../../../Redux/combinedDefaults";
 
 export const REQUEST_STORY = "REQUEST_STORY";
 export const REQUEST_TERMS = "REQUEST_TERMS";
@@ -31,12 +32,9 @@ const DispatchCall = async (dispatch: (action: TKnownActions) => void, url: stri
 {
     dispatch({ type: request });
 
-    const language = GetUserLanguage();
-    const queryParam = language === "" ? "" : `&language=${language}`;
-
     let result = await ApiCall(EnrichConfiguration(
     {
-        url: `${url}${queryParam}`,
+        url: url,
         method: "GET",
         responseType: "json"
     }));
@@ -59,16 +57,34 @@ const DispatchCall = async (dispatch: (action: TKnownActions) => void, url: stri
 
 export const ActionCreators = 
 {
-    getStoryContent: ():  AppThunkAction<TKnownActions> => async (dispatch) => 
+    getStoryContent: (isLanguageChanged: boolean = false):  AppThunkAction<TKnownActions> => async (dispatch, getState) => 
     {
-        await DispatchCall(dispatch, STORY_URL, REQUEST_STORY, RECEIVE_STORY);
+        if (getState().getStaticContent.story !== combinedDefaults.getStaticContent.story && !isLanguageChanged) 
+            return;
+
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
+        await DispatchCall(dispatch, `${STORY_URL}${queryParam}`, REQUEST_STORY, RECEIVE_STORY);
     },
-    getTermsContent: ():  AppThunkAction<TKnownActions> => async (dispatch) => 
+    getTermsContent: (isLanguageChanged: boolean = false):  AppThunkAction<TKnownActions> => async (dispatch, getState) => 
     {
-        await DispatchCall(dispatch, TERMS_URL, REQUEST_TERMS, RECEIVE_TERMS);
+        if (getState().getStaticContent.terms !== combinedDefaults.getStaticContent.terms && !isLanguageChanged) 
+            return;
+
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
+        await DispatchCall(dispatch, `${TERMS_URL}${queryParam}`, REQUEST_TERMS, RECEIVE_TERMS);
     },
-    getPolicyContent: ():  AppThunkAction<TKnownActions> => async (dispatch) => 
+    getPolicyContent: (isLanguageChanged: boolean = false):  AppThunkAction<TKnownActions> => async (dispatch, getState) => 
     {
-        await DispatchCall(dispatch, POLICY_URL, REQUEST_POLICY, RECEIVE_POLICY);
+        if (getState().getStaticContent.policy !== combinedDefaults.getStaticContent.policy && !isLanguageChanged) 
+            return;
+
+        const language = GetUserLanguage();
+        const queryParam = language === "" ? "" : `&language=${language}`;
+
+        await DispatchCall(dispatch, `${POLICY_URL}${queryParam}`, REQUEST_POLICY, RECEIVE_POLICY);
     }
 }
