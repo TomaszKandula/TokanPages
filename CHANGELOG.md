@@ -1,3 +1,21 @@
+# [0.47.0](https://github.com/TomaszKandula/TokanPages/compare/v0.46.0...v0.47.0) (2022-04-14)
+
+
+### Bug Fixes
+
+* resolve reloading static content issue when language has changed ([04541d6](https://github.com/TomaszKandula/TokanPages/commit/04541d698f4045e54228c2185e0398dd516c7165))
+
+
+### Features
+
+* add component to the list ([218d2f1](https://github.com/TomaszKandula/TokanPages/commit/218d2f13e1a39795225e924401b922d3cc024244))
+* add new layout and style (template only) ([c1d6c4d](https://github.com/TomaszKandula/TokanPages/commit/c1d6c4d9813df0854b72f289edcc659511046195))
+* add new models ([3699a2b](https://github.com/TomaszKandula/TokanPages/commit/3699a2b4ab61317d83dda57e83ba5258805cdfbf))
+* add new redux actions for new component content ([43ac657](https://github.com/TomaszKandula/TokanPages/commit/43ac657594c1cf6c6064f55d2b006a91fe2b9ef1))
+* apply more animations to the components of the main layout ([39abe11](https://github.com/TomaszKandula/TokanPages/commit/39abe11b2861cec859bfec062f7bc81318fde7a5))
+* implement final layout and style for clients logos ([f909a3d](https://github.com/TomaszKandula/TokanPages/commit/f909a3d8addfa89c515d560a1f7c5b14aa04c328))
+* register new model interface ([5a71495](https://github.com/TomaszKandula/TokanPages/commit/5a71495a4ab4663121ebd227ecb3efad7ae0e543))
+
 # [0.46.0](https://github.com/TomaszKandula/TokanPages/compare/v0.45.0...v0.46.0) (2022-04-13)
 
 
