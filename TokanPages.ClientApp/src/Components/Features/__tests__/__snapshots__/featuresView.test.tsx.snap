@@ -7,14 +7,14 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
   <WithStyles(ForwardRef(Container))
     maxWidth="lg"
   >
-    <div
-      data-aos="fade-up"
+    <Styled(MuiBox)
+      py={8}
     >
       <Styled(MuiBox)
-        py={8}
+        mb={8}
       >
-        <Styled(MuiBox)
-          mb={8}
+        <div
+          data-aos="fade-down"
         >
           <WithStyles(ForwardRef(Typography))
             className="makeStyles-caption_text-3"
@@ -22,115 +22,123 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
           >
             TECHNOLOGIES
           </WithStyles(ForwardRef(Typography))>
-        </Styled(MuiBox)>
-        <WithStyles(ForwardRef(Grid))
-          container={true}
-          spacing={6}
-        >
-          <WithStyles(ForwardRef(Grid))
-            item={true}
-            sm={6}
-            xs={12}
-          >
-            <Styled(MuiBox)
-              alignItems="center"
-              display="flex"
-              mb={2}
-            >
-              <Memo(ForwardRef(CodeIcon))
-                className="makeStyles-icon-2"
-              />
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-feature_title-4"
-              >
-                Languages
-              </WithStyles(ForwardRef(Typography))>
-            </Styled(MuiBox)>
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-feature_text-5"
-            >
-              Today in my daily job, I use...
-            </WithStyles(ForwardRef(Typography))>
-          </WithStyles(ForwardRef(Grid))>
-          <WithStyles(ForwardRef(Grid))
-            item={true}
-            sm={6}
-            xs={12}
-          >
-            <Styled(MuiBox)
-              alignItems="center"
-              display="flex"
-              mb={2}
-            >
-              <Memo(ForwardRef(LibraryBooksIcon))
-                className="makeStyles-icon-2"
-              />
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-feature_title-4"
-              >
-                Frameworks/Libraries
-              </WithStyles(ForwardRef(Typography))>
-            </Styled(MuiBox)>
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-feature_text-5"
-            >
-              Back-End: NET Framework 4.5 (for one project)...
-            </WithStyles(ForwardRef(Typography))>
-          </WithStyles(ForwardRef(Grid))>
-          <WithStyles(ForwardRef(Grid))
-            item={true}
-            sm={6}
-            xs={12}
-          >
-            <Styled(MuiBox)
-              alignItems="center"
-              display="flex"
-              mb={2}
-            >
-              <Memo(ForwardRef(StorageIcon))
-                className="makeStyles-icon-2"
-              />
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-feature_title-4"
-              >
-                OR/M
-              </WithStyles(ForwardRef(Typography))>
-            </Styled(MuiBox)>
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-feature_text-5"
-            >
-              I have started with Entity Framework...
-            </WithStyles(ForwardRef(Typography))>
-          </WithStyles(ForwardRef(Grid))>
-          <WithStyles(ForwardRef(Grid))
-            item={true}
-            sm={6}
-            xs={12}
-          >
-            <Styled(MuiBox)
-              alignItems="center"
-              display="flex"
-              mb={2}
-            >
-              <Memo(ForwardRef(CloudIcon))
-                className="makeStyles-icon-2"
-                color="primary"
-              />
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-feature_title-4"
-              >
-                Cloud Services
-              </WithStyles(ForwardRef(Typography))>
-            </Styled(MuiBox)>
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-feature_text-5"
-            >
-              I have experience with...
-            </WithStyles(ForwardRef(Typography))>
-          </WithStyles(ForwardRef(Grid))>
-        </WithStyles(ForwardRef(Grid))>
+        </div>
       </Styled(MuiBox)>
-    </div>
+      <WithStyles(ForwardRef(Grid))
+        container={true}
+        spacing={6}
+      >
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          sm={6}
+          xs={12}
+        >
+          <Styled(MuiBox)
+            alignItems="center"
+            data-aos="zoom-in"
+            display="flex"
+            mb={2}
+          >
+            <Memo(ForwardRef(CodeIcon))
+              className="makeStyles-icon-2"
+            />
+            <WithStyles(ForwardRef(Typography))
+              className="makeStyles-feature_title-4"
+            >
+              Languages
+            </WithStyles(ForwardRef(Typography))>
+          </Styled(MuiBox)>
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-feature_text-5"
+            data-aos="fade-left"
+          >
+            Today in my daily job, I use...
+          </WithStyles(ForwardRef(Typography))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          sm={6}
+          xs={12}
+        >
+          <Styled(MuiBox)
+            alignItems="center"
+            data-aos="zoom-in"
+            display="flex"
+            mb={2}
+          >
+            <Memo(ForwardRef(LibraryBooksIcon))
+              className="makeStyles-icon-2"
+            />
+            <WithStyles(ForwardRef(Typography))
+              className="makeStyles-feature_title-4"
+            >
+              Frameworks/Libraries
+            </WithStyles(ForwardRef(Typography))>
+          </Styled(MuiBox)>
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-feature_text-5"
+            data-aos="fade-left"
+          >
+            Back-End: NET Framework 4.5 (for one project)...
+          </WithStyles(ForwardRef(Typography))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          sm={6}
+          xs={12}
+        >
+          <Styled(MuiBox)
+            alignItems="center"
+            data-aos="zoom-in"
+            display="flex"
+            mb={2}
+          >
+            <Memo(ForwardRef(StorageIcon))
+              className="makeStyles-icon-2"
+            />
+            <WithStyles(ForwardRef(Typography))
+              className="makeStyles-feature_title-4"
+            >
+              OR/M
+            </WithStyles(ForwardRef(Typography))>
+          </Styled(MuiBox)>
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-feature_text-5"
+            data-aos="fade-right"
+          >
+            I have started with Entity Framework...
+          </WithStyles(ForwardRef(Typography))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          item={true}
+          sm={6}
+          xs={12}
+        >
+          <Styled(MuiBox)
+            alignItems="center"
+            data-aos="zoom-in"
+            display="flex"
+            mb={2}
+          >
+            <Memo(ForwardRef(CloudIcon))
+              className="makeStyles-icon-2"
+              color="primary"
+            />
+            <WithStyles(ForwardRef(Typography))
+              className="makeStyles-feature_title-4"
+            >
+              Cloud Services
+            </WithStyles(ForwardRef(Typography))>
+          </Styled(MuiBox)>
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-feature_text-5"
+            data-aos="fade-right"
+          >
+            I have experience with...
+          </WithStyles(ForwardRef(Typography))>
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
+    </Styled(MuiBox)>
   </WithStyles(ForwardRef(Container))>
 </section>
 `;
