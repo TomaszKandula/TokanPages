@@ -10,33 +10,34 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
     <WithStyles(ForwardRef(Container))
       maxWidth="sm"
     >
-      <div
-        data-aos="fade-up"
+      <Styled(MuiBox)
+        pb={10}
+        pt={8}
       >
         <Styled(MuiBox)
-          pb={10}
-          pt={8}
+          data-aos="fade-down"
+          mb={6}
+          textAlign="center"
         >
-          <Styled(MuiBox)
-            mb={6}
-            textAlign="center"
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-caption-2"
+            gutterBottom={true}
           >
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-caption-2"
-              gutterBottom={true}
-            >
-              CONTACT ME
-            </WithStyles(ForwardRef(Typography))>
-          </Styled(MuiBox)>
-          <Styled(MuiBox)>
+            CONTACT ME
+          </WithStyles(ForwardRef(Typography))>
+        </Styled(MuiBox)>
+        <Styled(MuiBox)>
+          <WithStyles(ForwardRef(Grid))
+            container={true}
+            spacing={2}
+          >
             <WithStyles(ForwardRef(Grid))
-              container={true}
-              spacing={2}
+              item={true}
+              sm={6}
+              xs={12}
             >
-              <WithStyles(ForwardRef(Grid))
-                item={true}
-                sm={6}
-                xs={12}
+              <div
+                data-aos="fade-right"
               >
                 <WithStyles(ForwardRef(TextField))
                   autoComplete="fname"
@@ -49,11 +50,15 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   value="Ester"
                   variant="outlined"
                 />
-              </WithStyles(ForwardRef(Grid))>
-              <WithStyles(ForwardRef(Grid))
-                item={true}
-                sm={6}
-                xs={12}
+              </div>
+            </WithStyles(ForwardRef(Grid))>
+            <WithStyles(ForwardRef(Grid))
+              item={true}
+              sm={6}
+              xs={12}
+            >
+              <div
+                data-aos="fade-left"
               >
                 <WithStyles(ForwardRef(TextField))
                   autoComplete="lname"
@@ -66,10 +71,14 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   value="Exposito"
                   variant="outlined"
                 />
-              </WithStyles(ForwardRef(Grid))>
-              <WithStyles(ForwardRef(Grid))
-                item={true}
-                xs={12}
+              </div>
+            </WithStyles(ForwardRef(Grid))>
+            <WithStyles(ForwardRef(Grid))
+              item={true}
+              xs={12}
+            >
+              <div
+                data-aos="fade-right"
               >
                 <WithStyles(ForwardRef(TextField))
                   autoComplete="email"
@@ -82,10 +91,14 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   value="ester.exposito@gmail.com"
                   variant="outlined"
                 />
-              </WithStyles(ForwardRef(Grid))>
-              <WithStyles(ForwardRef(Grid))
-                item={true}
-                xs={12}
+              </div>
+            </WithStyles(ForwardRef(Grid))>
+            <WithStyles(ForwardRef(Grid))
+              item={true}
+              xs={12}
+            >
+              <div
+                data-aos="fade-left"
               >
                 <WithStyles(ForwardRef(TextField))
                   autoComplete="subject"
@@ -98,10 +111,14 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   value="Test subject"
                   variant="outlined"
                 />
-              </WithStyles(ForwardRef(Grid))>
-              <WithStyles(ForwardRef(Grid))
-                item={true}
-                xs={12}
+              </div>
+            </WithStyles(ForwardRef(Grid))>
+            <WithStyles(ForwardRef(Grid))
+              item={true}
+              xs={12}
+            >
+              <div
+                data-aos="fade-right"
               >
                 <WithStyles(ForwardRef(TextField))
                   autoComplete="message"
@@ -116,7 +133,11 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   value="Test message..."
                   variant="outlined"
                 />
-              </WithStyles(ForwardRef(Grid))>
+              </div>
+            </WithStyles(ForwardRef(Grid))>
+            <div
+              data-aos="zoom-in"
+            >
               <WithStyles(ForwardRef(Grid))
                 item={true}
                 xs={12}
@@ -133,15 +154,16 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   label="I agree!"
                 />
               </WithStyles(ForwardRef(Grid))>
-            </WithStyles(ForwardRef(Grid))>
-            <Styled(MuiBox)
-              my={2}
-            >
-              <ActiveButton />
-            </Styled(MuiBox)>
+            </div>
+          </WithStyles(ForwardRef(Grid))>
+          <Styled(MuiBox)
+            data-aos="fade-left"
+            my={2}
+          >
+            <ActiveButton />
           </Styled(MuiBox)>
         </Styled(MuiBox)>
-      </div>
+      </Styled(MuiBox)>
     </WithStyles(ForwardRef(Container))>
   </WithStyles(ForwardRef(Container))>
 </section>

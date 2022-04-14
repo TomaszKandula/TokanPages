@@ -7,30 +7,31 @@ exports[`Test articles group component: articleFeatView. Renders correctly '<Art
   <WithStyles(ForwardRef(Container))
     maxWidth="lg"
   >
-    <div
-      data-aos="fade-up"
+    <Styled(MuiBox)
+      pb={10}
+      pt={8}
     >
-      <Styled(MuiBox)
-        pb={10}
-        pt={8}
+      <WithStyles(ForwardRef(Container))
+        maxWidth="sm"
       >
-        <WithStyles(ForwardRef(Container))
-          maxWidth="sm"
+        <Styled(MuiBox)
+          data-aos="fade-down"
+          mb={5}
+          textAlign="center"
         >
-          <Styled(MuiBox)
-            mb={5}
-            textAlign="center"
+          <WithStyles(ForwardRef(Typography))
+            className="makeStyles-title-3"
+            gutterBottom={true}
           >
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-title-3"
-              gutterBottom={true}
-            >
-              ARTICLES
-            </WithStyles(ForwardRef(Typography))>
-          </Styled(MuiBox)>
-        </WithStyles(ForwardRef(Container))>
-        <WithStyles(ForwardRef(Container))
-          maxWidth="lg"
+            ARTICLES
+          </WithStyles(ForwardRef(Typography))>
+        </Styled(MuiBox)>
+      </WithStyles(ForwardRef(Container))>
+      <WithStyles(ForwardRef(Container))
+        maxWidth="lg"
+      >
+        <div
+          data-aos="fade-up"
         >
           <WithStyles(ForwardRef(Grid))
             container={true}
@@ -157,9 +158,9 @@ exports[`Test articles group component: articleFeatView. Renders correctly '<Art
               </WithStyles(ForwardRef(Grid))>
             </WithStyles(ForwardRef(Grid))>
           </WithStyles(ForwardRef(Grid))>
-        </WithStyles(ForwardRef(Container))>
-      </Styled(MuiBox)>
-    </div>
+        </div>
+      </WithStyles(ForwardRef(Container))>
+    </Styled(MuiBox)>
   </WithStyles(ForwardRef(Container))>
 </section>
 `;

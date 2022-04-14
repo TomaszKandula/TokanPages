@@ -5,6 +5,7 @@ import { ActionCreators as HeaderContent } from "../../../Redux/Actions/Content/
 import { ActionCreators as ActivateAccountContent } from "../../../Redux/Actions/Content/getActivateAccountContentAction";
 import { ActionCreators as ArticleFeatContent } from "../../../Redux/Actions/Content/getArticleFeatContentAction";
 import { ActionCreators as FooterContent } from "../../../Redux/Actions/Content/getFooterContentAction";
+import { ActionCreators as ClientsContent } from "../../../Redux/Actions/Content/getClientsContentAction";
 import { ActionCreators as FeaturedContent } from "../../../Redux/Actions/Content/getFeaturedContentAction";
 import { ActionCreators as FeaturesContent } from "../../../Redux/Actions/Content/getFeaturesContentAction";
 import { ActionCreators as NewsletterContent } from "../../../Redux/Actions/Content/getNewsletterContentAction";
@@ -19,12 +20,14 @@ import { ActionCreators as UnsubscribeContent } from "../../../Redux/Actions/Con
 import { ActionCreators as UpdateSubscriberContent } from "../../../Redux/Actions/Content/getUpdateSubscriberContentAction";
 import { ActionCreators as UpdatePasswordContent } from "../../../Redux/Actions/Content/getUpdatePasswordContentAction";
 import { ActionCreators as WrongPagePromptContent } from "../../../Redux/Actions/Content/getWrongPagePromptContentAction";
+import { ActionCreators as StaticContent } from "../../../Redux/Actions/Content/getStaticContentAction";
 
 export const Reload = (dispatch: Dispatch<any>) => 
 {
     dispatch(NavigationContent.getNavigationContent(true));
     dispatch(HeaderContent.getHeaderContent(true));
     dispatch(FooterContent.getFooterContent(true));
+    dispatch(ClientsContent.getClientsContent(true));
     dispatch(ActivateAccountContent.getActivateAccountContent(true));
     dispatch(ArticleFeatContent.getArticleFeaturesContent(true));
     dispatch(FeaturedContent.getFeaturedContent(true));
@@ -41,6 +44,9 @@ export const Reload = (dispatch: Dispatch<any>) =>
     dispatch(UpdateSubscriberContent.getUpdateSubscriberContent(true));
     dispatch(UpdatePasswordContent.getUpdatePasswordContent(true));
     dispatch(WrongPagePromptContent.getWrongPagePromptContent(true));
+    dispatch(StaticContent.getStoryContent(true));
+    dispatch(StaticContent.getTermsContent(true));
+    dispatch(StaticContent.getPolicyContent(true));
 }
 
 export default Reload;

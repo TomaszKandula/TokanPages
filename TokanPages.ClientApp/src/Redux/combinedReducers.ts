@@ -16,6 +16,7 @@ import GetStaticContentReducer from "./Reducers/Content/getStaticContentReducer"
 import GetArticleFeatContentReducer from "./Reducers/Content/getArticleFeatContentReducer";
 import GetContactFormContentReducer from "./Reducers/Content/getContactFormContentReducer";
 import GetCookiesPromptContentReducer from "./Reducers/Content/getCookiesPromptContentReducer";
+import GetClientsContentReducer from "./Reducers/Content/getClientsContentReducer";
 import GetFeaturedContentReducer from "./Reducers/Content/getFeaturedContentReducer";
 import GetFeaturesContentReducer from "./Reducers/Content/getFeaturesContentReducer";
 import GetFooterContentReducer from "./Reducers/Content/getFooterContentReducer";
@@ -54,6 +55,7 @@ export const combinedReducers =
     getArticleFeatContent: GetArticleFeatContentReducer,
     getContactFormContent: GetContactFormContentReducer,
     getCookiesPromptContent: GetCookiesPromptContentReducer,
+    getClientsContent: GetClientsContentReducer,
     getFeaturedContent: GetFeaturedContentReducer,
     getFeaturesContent: GetFeaturesContentReducer,
     getFooterContent: GetFooterContentReducer,

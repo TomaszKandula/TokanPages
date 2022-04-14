@@ -17,6 +17,7 @@ import { GetStaticContentDefault } from "./Defaults/Content/getStaticContentDefa
 import { GetArticleFeatContentDefault } from "./Defaults/Content/getArticleFeatContentDefault";
 import { GetContactFormContentDefault } from "./Defaults/Content/getContactFormContentDefault";
 import { GetCookiesPromptContentDefault } from "./Defaults/Content/getCookiesPromptContentDefault";
+import { GetClientsContentDefault } from "./Defaults/Content/getClientsContentDefault";
 import { GetFeaturedContentDefault } from "./Defaults/Content/getFeaturedContentDefault";
 import { GetFeaturesContentDefault } from "./Defaults/Content/getFeaturesContentDefault";
 import { GetFooterContentDefault } from "./Defaults/Content/getFooterContentDefault";
@@ -55,6 +56,7 @@ export const combinedDefaults: IApplicationState =
     getArticleFeatContent: GetArticleFeatContentDefault,
     getContactFormContent: GetContactFormContentDefault,
     getCookiesPromptContent: GetCookiesPromptContentDefault,
+    getClientsContent: GetClientsContentDefault,
     getFeaturedContent: GetFeaturedContentDefault,
     getFeaturesContent: GetFeaturesContentDefault,
     getFooterContent: GetFooterContentDefault,
@@ -70,5 +72,5 @@ export const combinedDefaults: IApplicationState =
     getTestimonialsContent: GetTestimonialsContentDefault,
     getUnsubscribeContent: GetUnsubscribeContentDefault,
     getActivateAccountContent: GetActivateAccountContentDefault,
-    getUpdateSubscriberContent: GetUpdateSubscriberContentDefault
+    getUpdateSubscriberContent: GetUpdateSubscriberContentDefault     
 };

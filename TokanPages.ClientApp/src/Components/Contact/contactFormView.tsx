@@ -58,58 +58,68 @@ const ContactFormView = (props: IBinding): JSX.Element =>
         <section className={classes.section}>
             <Container maxWidth="lg">
                 <Container maxWidth="sm">
-                    <div data-aos="fade-up">
-                        <Box pt={8} pb={10}>
-                            <Box mb={6} textAlign="center">
-                                <Typography gutterBottom={true} className={classes.caption}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption?.toUpperCase()}
-                                </Typography>
-                            </Box>
-                            <Box>
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12} sm={6}>
+                    <Box pt={8} pb={10}>
+                        <Box mb={6} textAlign="center" data-aos="fade-down">
+                            <Typography gutterBottom={true} className={classes.caption}>
+                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption?.toUpperCase()}
+                            </Typography>
+                        </Box>
+                        <Box>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={6}>
+                                    <div data-aos="fade-right">
                                         <TextField 
                                             onChange={props.bind?.formHandler} value={props.bind?.firstName} label={props.bind?.labelFirstName} 
                                             required fullWidth name="firstName" id="firstName" autoComplete="fname" variant="outlined"
                                         />
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <div data-aos="fade-left">
                                         <TextField 
                                             onChange={props.bind?.formHandler} value={props.bind?.lastName} label={props.bind?.labelLastName} 
                                             required fullWidth name="lastName" id="lastName" autoComplete="lname" variant="outlined" 
                                         />
-                                    </Grid>
-                                    <Grid item xs={12}>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <div data-aos="fade-right">
                                         <TextField 
                                             onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail} 
                                             required fullWidth name="email" id="email" autoComplete="email" variant="outlined" 
                                         />
-                                    </Grid>
-                                    <Grid item xs={12}>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <div data-aos="fade-left">
                                         <TextField 
                                             onChange={props.bind?.formHandler} value={props.bind?.subject} label={props.bind?.labelSubject} 
                                             required fullWidth name="subject" id="subject" autoComplete="subject" variant="outlined" 
                                         />
-                                    </Grid>
-                                    <Grid item xs={12}>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <div data-aos="fade-right">
                                         <TextField 
                                             onChange={props.bind?.formHandler} value={props.bind?.message} label={props.bind?.labelMessage} 
                                             required multiline minRows={6} fullWidth autoComplete="message" name="message" id="message" variant="outlined" 
                                         />
-                                    </Grid>
+                                    </div>
+                                </Grid>
+                                <div data-aos="zoom-in">
                                     <Grid item xs={12}>
                                         <FormControlLabel 
                                             control={<VioletCheckbox onChange={props.bind?.formHandler} checked={props.bind?.terms} name="terms" id="terms" />} 
                                             label={props.bind?.consent} 
                                         />
                                     </Grid>
-                                </Grid>
-                                <Box my={2}>
-                                    {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
-                                </Box>
+                                </div>
+                            </Grid>
+                            <Box my={2} data-aos="fade-left">
+                                {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
                             </Box>
                         </Box>
-                    </div>
+                    </Box>
                 </Container>
             </Container>
         </section>

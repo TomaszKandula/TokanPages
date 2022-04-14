@@ -17,15 +17,15 @@ const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
     return(
         <section className={classes.section}>
             <Container maxWidth="lg"> 
-                <div data-aos="fade-up">
-                    <Box pt={8} pb={10}>
-                        <Container maxWidth="sm">
-                            <Box textAlign="center" mb={5}>
-                                <Typography gutterBottom={true} className={classes.caption_text}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption?.toUpperCase()}
-                                </Typography>
-                            </Box>
-                        </Container>
+                <Box pt={8} pb={10}>
+                    <Container maxWidth="sm">
+                        <Box textAlign="center" mb={5} data-aos="fade-down">
+                            <Typography gutterBottom={true} className={classes.caption_text}>
+                                {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption?.toUpperCase()}
+                            </Typography>
+                        </Box>
+                    </Container>
+                    <div data-aos="fade-up">
                         <Carousel showArrows={true} infiniteLoop={true} showThumbs={false} showStatus={false} autoPlay={true} interval={6100}>
                             <Box className={classes.box_padding}>
                                 {props.isLoading 
@@ -70,8 +70,8 @@ const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
                                 </Typography>
                             </Box>
                         </Carousel>
-                    </Box>
-                </div>        
+                    </div>
+                </Box>
             </Container>
         </section>
     );
