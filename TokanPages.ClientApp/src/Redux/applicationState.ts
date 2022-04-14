@@ -17,6 +17,7 @@ import { IGetStaticContent } from "./States/Content/getStaticContentState";
 import { IGetArticleFeatContent } from "./States/Content/getArticleFeatContentState";
 import { IGetContactFormContent } from "./States/Content/getContactFormContentState";
 import { IGetCookiesPromptContent } from "./States/Content/getCookiesPromptContentState";
+import { IGetClientsContent } from "./States/Content/getClientsContentState";
 import { IGetFeaturedContent } from "./States/Content/getFeaturedContentState";
 import { IGetFeaturesContent } from "./States/Content/getFeaturesContentState";
 import { IGetFooterContent } from "./States/Content/getFooterContentState";
@@ -55,6 +56,7 @@ export interface IApplicationState
     getArticleFeatContent: IGetArticleFeatContent,
     getContactFormContent: IGetContactFormContent,
     getCookiesPromptContent: IGetCookiesPromptContent,
+    getClientsContent: IGetClientsContent,
     getFeaturedContent: IGetFeaturedContent,
     getFeaturesContent: IGetFeaturesContent,
     getFooterContent: IGetFooterContent,

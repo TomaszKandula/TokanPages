@@ -45,18 +45,20 @@ const NewsletterView = (props: IBinding): JSX.Element =>
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
-                <div data-aos="fade-up">
-                    <Box py={8} textAlign="center">
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} md={5}>
-                                <Typography className={classes.caption}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
-                                </Typography>
+                <Box py={8} textAlign="center">
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} md={5}>
+                            <Typography className={classes.caption} data-aos="fade-down">
+                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
+                            </Typography>
+                            <div data-aos="zoom-in">
                                 <Typography className={classes.text}>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.text}
                                 </Typography>
-                            </Grid>
-                            <Grid item xs={12} md={7}>
+                            </div>
+                        </Grid>
+                        <Grid item xs={12} md={7}>
+                            <div data-aos="fade-left">
                                 <Box display="flex" height="100%">
                                     <Box my="auto" width="100%">
                                         <Grid container spacing={2}>
@@ -72,10 +74,10 @@ const NewsletterView = (props: IBinding): JSX.Element =>
                                         </Grid>
                                     </Box>
                                 </Box>
-                            </Grid>
+                            </div>
                         </Grid>
-                    </Box>
-                </div>
+                    </Grid>
+                </Box>
             </Container>
         </section>
     );

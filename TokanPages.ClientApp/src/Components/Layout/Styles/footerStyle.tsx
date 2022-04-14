@@ -9,7 +9,11 @@ const footerStyle = makeStyles((theme) => (
         {
             textAlign: "center"
         },
-        background: CustomColours.colours.violet,
+        background: CustomColours.colours.violet
+    },
+    bottom_space:
+    {
+        height: "48px"
     },
     icon_box: 
     {
@@ -40,7 +44,7 @@ const footerStyle = makeStyles((theme) => (
     },
     version:
     {
-        color: CustomColours.colours.white,
+        color: CustomColours.colours.white
     }
 }));
 

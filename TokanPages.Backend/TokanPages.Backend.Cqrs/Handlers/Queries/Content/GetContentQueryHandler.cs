@@ -75,6 +75,7 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
             "articleFeatures" => _jsonSerializer.MapObjects<ArticleFeaturesDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
             "contactForm" => _jsonSerializer.MapObjects<ContactFormDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
             "cookiesPrompt" => _jsonSerializer.MapObjects<CookiesPromptDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "clients" => _jsonSerializer.MapObjects<ClientsContentDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
             "featured" => _jsonSerializer.MapObjects<FeaturedDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
             "features" => _jsonSerializer.MapObjects<FeaturesDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
             "footer" => _jsonSerializer.MapObjects<FooterDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
