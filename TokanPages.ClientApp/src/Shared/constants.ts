@@ -51,6 +51,7 @@ export const GET_FOOTER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetCon
 export const GET_ARTICLE_FEAT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=articleFeatures&Type=component`;
 export const GET_CONTACT_FORM_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=contactForm&Type=component`;
 export const GET_COOKIES_PROMPT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=cookiesPrompt&Type=component`;
+export const GET_CLIENTS_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=clients&Type=component`;
 export const GET_FEATURED_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=featured&Type=component`;
 export const GET_FEATURES_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=features&Type=component`;
 export const GET_NEWSLETTER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=newsletter&Type=component`;
