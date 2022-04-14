@@ -77,12 +77,11 @@ const FooterView = (props: IBinding): JSX.Element =>
     return (
         <footer className={classes.root}>
             <Container maxWidth="lg">
-                <div data-aos="zoom-in">
                     <Box pt={6} pb={props.bind?.boxPaddingBottom} display="flex" flexWrap="wrap" alignItems="center">
-                        <Typography gutterBottom={false} className={classes.copy}>
+                        <Typography gutterBottom={false} className={classes.copy} data-aos="fade-right">
                             {props.bind?.copyright} | {props.bind?.reserved} | <SetTermsLink /> | <SetPolicyLink />
                         </Typography>
-                        <Box ml="auto" className={classes.icon_box}>
+                        <Box ml="auto" className={classes.icon_box} data-aos="fade-left">
                             {props.bind?.icons?.map((item: IFooterContentIconDto, index: number) => (
                                 <IconButton 
                                     className={classes.icon}
@@ -96,8 +95,10 @@ const FooterView = (props: IBinding): JSX.Element =>
                             ))}
                         </Box>
                     </Box>
-                    <RenderVersionInfo />
-                </div>
+                    <div data-aos="zoom-in">
+                        <RenderVersionInfo />
+                    </div>
+                    <div className={classes.bottom_space}></div>
             </Container>
         </footer>
     );

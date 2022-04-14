@@ -20,20 +20,20 @@ const ArticleFeatView = (props: IGetArticleFeatContent): JSX.Element =>
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
-                <div data-aos="fade-up">
-                    <Box pt={8} pb={10}>
-                        <Container maxWidth="sm">
-                            <Box textAlign="center" mb={5}>
-                                <Typography gutterBottom={true} className={classes.title}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.title.toUpperCase()}
-                                </Typography>
-                            </Box>
-                        </Container>
-                        <Container maxWidth="lg">
+                <Box pt={8} pb={10}>
+                    <Container maxWidth="sm">
+                        <Box textAlign="center" mb={5} data-aos="fade-down">
+                            <Typography gutterBottom={true} className={classes.title}>
+                                {props.isLoading ? <Skeleton variant="text" /> : props.content?.title.toUpperCase()}
+                            </Typography>
+                        </Box>
+                    </Container>
+                    <Container maxWidth="lg">
+                        <div data-aos="fade-up">
                             <Grid container>
                                 <Grid item xs={12} lg={6} className={classes.content}>
                                     <Card className={classes.info} elevation={3}>
-                                        <CardContent className={classes.info}>
+                                        <CardContent className={classes.info} >
                                             <Box display="flex" flexDirection="column" height="100%" pt={2} px={2}>
                                                 <Typography className={classes.text1}>
                                                     {props.isLoading ? <Skeleton variant="text" /> : props.content?.text1}
@@ -87,9 +87,9 @@ const ArticleFeatView = (props: IGetArticleFeatContent): JSX.Element =>
                                     </Grid>
                                 </Grid>
                             </Grid>
-                        </Container>
-                    </Box>
-                </div>
+                        </div>
+                    </Container>
+                </Box>
             </Container>
         </section>
     );
