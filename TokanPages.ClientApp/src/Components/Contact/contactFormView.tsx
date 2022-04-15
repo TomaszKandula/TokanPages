@@ -116,7 +116,7 @@ const ContactFormView = (props: IBinding): JSX.Element =>
                                 </div>
                             </Grid>
                             <Box my={2} data-aos="fade-left">
-                                {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
+                                {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton />}
                             </Box>
                         </Box>
                     </Box>
