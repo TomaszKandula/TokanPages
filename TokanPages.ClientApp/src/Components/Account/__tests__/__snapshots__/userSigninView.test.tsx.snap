@@ -82,11 +82,10 @@ exports[`Test account group component: userSigninView. Renders correctly '<UserS
                 sm={6}
                 xs={12}
               >
-                <Link
-                  to="/signup"
-                >
-                  Don't have an account?
-                </Link>
+                <RedirectTo
+                  name="Don't have an account?"
+                  path="/signup"
+                />
               </WithStyles(ForwardRef(Grid))>
               <WithStyles(ForwardRef(Grid))
                 className="makeStyles-tertiaryAction-1"
@@ -94,11 +93,10 @@ exports[`Test account group component: userSigninView. Renders correctly '<UserS
                 sm={6}
                 xs={12}
               >
-                <Link
-                  to="/resetpassword"
-                >
-                  Forgot password?
-                </Link>
+                <RedirectTo
+                  name="Forgot password?"
+                  path="/resetpassword"
+                />
               </WithStyles(ForwardRef(Grid))>
             </WithStyles(ForwardRef(Grid))>
           </Styled(MuiBox)>
