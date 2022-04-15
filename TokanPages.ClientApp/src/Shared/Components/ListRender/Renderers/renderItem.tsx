@@ -12,7 +12,7 @@ export const RenderItem = (props: IItem): JSX.Element =>
 {
     const classes = RenderItemStyle();
     const link: string = props.link as string;
-    const isHref: boolean = link.includes("http://") && link.includes("https://");
+    const isHref: boolean = link.includes("http://") || link.includes("https://");
 
     const RenderItemWithHref = (): JSX.Element => 
     {
