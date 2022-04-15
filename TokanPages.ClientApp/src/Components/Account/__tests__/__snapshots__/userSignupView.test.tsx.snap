@@ -125,11 +125,10 @@ exports[`Test account group component: userSignupView. Renders correctly '<UserS
             <Styled(MuiBox)
               textAlign="right"
             >
-              <Link
-                to="/signin"
-              >
-                Already have an account? Sign in
-              </Link>
+              <RedirectTo
+                name="Already have an account? Sign in"
+                path="/signin"
+              />
             </Styled(MuiBox)>
           </Styled(MuiBox)>
         </WithStyles(ForwardRef(CardContent))>

@@ -17,7 +17,11 @@ import {
     SportsSoccer, 
     ViewList, 
     VpnKey,
-    Lock
+    Lock,
+    Code,
+    GitHub,
+    MenuBook,
+    Edit,
 } from "@material-ui/icons";
 
 interface IProperty
@@ -27,62 +31,30 @@ interface IProperty
 
 export const GetIcon = (props: IProperty): JSX.Element =>
 {
-    let renderIcon: JSX.Element;
     switch(props.iconName)
     {
-        case "Person":
-            renderIcon = <Person />;
-            break;
-        case "PersonAdd":
-            renderIcon = <PersonAdd />;
-            break;
-        case "Home":
-            renderIcon = <Home />;
-            break;
-        case "ViewList":
-            renderIcon = <ViewList />;
-            break;
-        case "Subject":
-            renderIcon = <Subject />;
-            break;
-        case "Build":
-            renderIcon = <Build />;
-            break;
-        case "Assignment":
-            renderIcon = <Assignment />;
-            break;
-        case "Star":
-            renderIcon = <Star />;
-            break;
-        case "PhotoCamera":
-            renderIcon = <PhotoCamera />;
-            break;
-        case "SportsSoccer":
-            renderIcon = <SportsSoccer />;
-            break;
-        case "MusicNote":
-            renderIcon = <MusicNote />;
-            break;
-        case "DirectionsBike":
-            renderIcon = <DirectionsBike />;
-            break;
-        case "ContactMail":
-            renderIcon = <ContactMail />;
-            break;
-        case "Gavel":
-            renderIcon = <Gavel />;
-            break;
-        case "Policy":
-            renderIcon = <Policy />;
-            break;
-        case "VpnKey":
-            renderIcon = <VpnKey />;
-            break;
-        case "Lock":
-            renderIcon = <Lock />;
-            break;
-        default: renderIcon = <Apple />;
-    }
+        case "Person": return <Person />;
+        case "PersonAdd": return <PersonAdd />;
+        case "Home": return <Home />;
+        case "ViewList": return <ViewList />;
+        case "Subject": return <Subject />;
+        case "Build": return <Build />;
+        case "Assignment": return <Assignment />;
+        case "Star": return <Star />;
+        case "PhotoCamera": return <PhotoCamera />;
+        case "SportsSoccer": return <SportsSoccer />;
+        case "MusicNote": return <MusicNote />;
+        case "DirectionsBike": return <DirectionsBike />;
+        case "ContactMail": return <ContactMail />;
+        case "Gavel": return <Gavel />;
+        case "Policy": return <Policy />;
+        case "VpnKey": return <VpnKey />;
+        case "Lock": return <Lock />; 
+        case "Code": return <Code />; 
+        case "GitHub": return <GitHub />; 
+        case "MenuBook": return <MenuBook />; 
+        case "Edit": return <Edit />; 
 
-    return(<>{renderIcon}</>);
+        default: return <Apple />;
+    }
 }

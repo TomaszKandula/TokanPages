@@ -17,6 +17,18 @@ import articleFeatStyle from "./Styles/articleFeatStyle";
 const ArticleFeatView = (props: IGetArticleFeatContent): JSX.Element =>
 {
     const classes = articleFeatStyle();
+
+    const ActiveButton = (): JSX.Element => 
+    {
+        return(
+            <Link to="/articles" className={classes.link}>
+                <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
+                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.button}
+                </Button>
+            </Link>
+        );
+    }
+
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
@@ -44,11 +56,7 @@ const ArticleFeatView = (props: IGetArticleFeatContent): JSX.Element =>
                                                     </Typography>
                                                 </Box>
                                                 <Box textAlign="right">
-                                                    <Link to="/articles" className={classes.link}>
-                                                        <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
-                                                            {props.isLoading ? <Skeleton variant="text" /> : props.content?.button}
-                                                        </Button>
-                                                    </Link>
+                                                    {props.isLoading ? <Skeleton variant="rect" width="100%" height="25px" /> : <ActiveButton />}
                                                 </Box>
                                             </Box>
                                         </CardContent>

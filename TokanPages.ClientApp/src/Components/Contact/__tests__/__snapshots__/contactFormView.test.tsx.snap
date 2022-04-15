@@ -135,12 +135,12 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                 />
               </div>
             </WithStyles(ForwardRef(Grid))>
-            <div
-              data-aos="zoom-in"
+            <WithStyles(ForwardRef(Grid))
+              item={true}
+              xs={12}
             >
-              <WithStyles(ForwardRef(Grid))
-                item={true}
-                xs={12}
+              <div
+                data-aos="zoom-in"
               >
                 <WithStyles(ForwardRef(FormControlLabel))
                   control={
@@ -153,8 +153,8 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   }
                   label="I agree!"
                 />
-              </WithStyles(ForwardRef(Grid))>
-            </div>
+              </div>
+            </WithStyles(ForwardRef(Grid))>
           </WithStyles(ForwardRef(Grid))>
           <Styled(MuiBox)
             data-aos="fade-left"

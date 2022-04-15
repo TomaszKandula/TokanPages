@@ -63,14 +63,7 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
           item={true}
           xs={true}
         >
-          <WithStyles(ForwardRef(IconButton))
-            aria-label="menu"
-            className="makeStyles-nav_icon-6"
-            color="inherit"
-            onClick={[MockFunction]}
-          >
-            <Memo(ForwardRef(MenuIcon)) />
-          </WithStyles(ForwardRef(IconButton))>
+          <RenderMenuIcon />
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Grid))
           className="makeStyles-app_link-7"
@@ -93,30 +86,7 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
           item={true}
           xs={true}
         >
-          <Styled(MuiBox)
-            className="makeStyles-languagesBox-8"
-          >
-            <LanguageSelection
-              styleMenu="makeStyles-languages_menu-10"
-              styleSelect="makeStyles-languages_selection-9"
-            />
-          </Styled(MuiBox)>
-          <div
-            className="makeStyles-user_avatar-12"
-          >
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-user_alias-13"
-            />
-            <WithStyles(ForwardRef(IconButton))
-              color="inherit"
-              onClick={[MockFunction]}
-            >
-              <WithStyles(ForwardRef(Avatar))
-                alt="Avatar"
-                src=""
-              />
-            </WithStyles(ForwardRef(IconButton))>
-          </div>
+          <RenderContent />
         </WithStyles(ForwardRef(Grid))>
       </WithStyles(ForwardRef(Grid))>
     </WithStyles(ForwardRef(Toolbar))>

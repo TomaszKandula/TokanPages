@@ -15,11 +15,9 @@ exports[`Test component: headerView. Renders correctly '<HeaderView />' when con
         xs={12}
       >
         <Styled(MuiBox)
-          className="makeStyles-image_box-6"
+          className="makeStyles-image_box-7"
         >
-          <div
-            data-aos="fade-right"
-          />
+          <RenderImage />
         </Styled(MuiBox)>
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
@@ -48,17 +46,7 @@ exports[`Test component: headerView. Renders correctly '<HeaderView />' when con
             <Styled(MuiBox)
               mt={4}
             >
-              <Link
-                className="makeStyles-action_link-3"
-                to="/mystory"
-              >
-                <WithStyles(ForwardRef(Button))
-                  className="makeStyles-action_button-2"
-                  variant="contained"
-                >
-                  Read the story
-                </WithStyles(ForwardRef(Button))>
-              </Link>
+              <ActiveButton />
             </Styled(MuiBox)>
           </div>
         </Styled(MuiBox)>
