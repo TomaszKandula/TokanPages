@@ -1,3 +1,24 @@
+# [0.48.0](https://github.com/TomaszKandula/TokanPages/compare/v0.47.0...v0.48.0) (2022-04-15)
+
+
+### Bug Fixes
+
+* correct logic operator to get proper condition ([5c97eeb](https://github.com/TomaszKandula/TokanPages/commit/5c97eeb7262f93cce123c035fd0fef4a27cb6570))
+
+
+### Features
+
+* add new icons, refactor code ([0045455](https://github.com/TomaszKandula/TokanPages/commit/004545590bf6eae8bb5767ecf887e1dd1fcfb136))
+* add offset to the scroll to top functionality to counter the navigation menu ([46db6f8](https://github.com/TomaszKandula/TokanPages/commit/46db6f8590d14989060cf54a970a872e6b3c1813))
+* add skeleton for active button ([dc48008](https://github.com/TomaszKandula/TokanPages/commit/dc480081587232e418ac1fe7ffcee728272f3987))
+* add skeletons to header component view ([b9e1d54](https://github.com/TomaszKandula/TokanPages/commit/b9e1d545c5ee7aafbc3adf55cbf83b527b6655b0))
+* add skeletons to text fields for contact view component ([38ea56f](https://github.com/TomaszKandula/TokanPages/commit/38ea56f4d17d4ddf5400c02b72011af8a274ed8f))
+* distinguish link to website component from href in the list item (navigation menu items) ([0c7dc97](https://github.com/TomaszKandula/TokanPages/commit/0c7dc97dacd0b479c298540fc5fe66371f262531))
+* hide navigation components while loading its content ([0935267](https://github.com/TomaszKandula/TokanPages/commit/0935267fb3d7741c49df143125e5a6a6ba2a4ef6))
+* improve view layouts with skeletons while loading content ([48481f1](https://github.com/TomaszKandula/TokanPages/commit/48481f1fce14ea66c7e2d09ada9590d58daf84b7))
+* increase top margin for header view ([bad9f64](https://github.com/TomaszKandula/TokanPages/commit/bad9f641e713a08503021cfe74919faa5c07c62e))
+* update website icon ([5278da4](https://github.com/TomaszKandula/TokanPages/commit/5278da4c23dbe44f023eb825c29a36f60c2ee2c0))
+
 # [0.47.0](https://github.com/TomaszKandula/TokanPages/compare/v0.46.0...v0.47.0) (2022-04-14)
 
 
