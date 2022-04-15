@@ -52,6 +52,11 @@ const headerStyle = makeStyles((theme) => (
         color: CustomColours.colours.gray2,
         fontWeight: 400
     },
+    image_skeleton:
+    {
+        height: "300px",
+        width: "300px"
+    },
     image_box:
     {
         position: "relative",
