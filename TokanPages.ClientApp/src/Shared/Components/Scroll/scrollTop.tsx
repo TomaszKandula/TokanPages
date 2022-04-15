@@ -20,8 +20,16 @@ const ScrollTop = (props: IScrollTop): JSX.Element =>
     const handleClick = (event: React.MouseEvent<HTMLDivElement>) => 
     {
         const ownerDocument = ((event.target as HTMLDivElement).ownerDocument || document);
-        const anchor = ownerDocument.querySelector("#back-to-top-anchor");
-        if (anchor) anchor.scrollIntoView({ behavior: "smooth"});
+        const anchor = ownerDocument.querySelector("#back-to-top-anchor") as Element;
+        const headerOffset: number = 85;
+        const elementPosition = anchor.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+ 
+        window.scrollTo(
+        {
+            top: offsetPosition,
+            behavior: "smooth"
+        });
     };
   
     return (

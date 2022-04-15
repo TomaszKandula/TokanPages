@@ -74,17 +74,7 @@ exports[`Test articles group component: articleFeatView. Renders correctly '<Art
                     <Styled(MuiBox)
                       textAlign="right"
                     >
-                      <Link
-                        className="makeStyles-link-8"
-                        to="/articles"
-                      >
-                        <WithStyles(ForwardRef(Button))
-                          className="makeStyles-button-9"
-                          endIcon={<Memo />}
-                        >
-                          View list of articles
-                        </WithStyles(ForwardRef(Button))>
-                      </Link>
+                      <ActiveButton />
                     </Styled(MuiBox)>
                   </Styled(MuiBox)>
                 </WithStyles(ForwardRef(CardContent))>

@@ -69,7 +69,7 @@ const NewsletterView = (props: IBinding): JSX.Element =>
                                                 />
                                             </Grid>
                                             <Grid item xs={12} sm={5}>
-                                                {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
+                                                {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton />}
                                             </Grid>
                                         </Grid>
                                     </Box>

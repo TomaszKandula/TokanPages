@@ -40,7 +40,7 @@ const NavigationView = (props: IBinding): JSX.Element =>
     const fullName = "</> tom kandula";
     const justLogo = "</>";
 
-    const LanguageSelection = (args: { styleControl?: string, styleSelect?: string, styleMenu?: string }): JSX.Element => 
+    const RenderLanguageSelection = (args: { styleControl?: string, styleSelect?: string, styleMenu?: string }): JSX.Element => 
     {
         return(
             <FormControl className={args.styleControl}>
@@ -55,6 +55,37 @@ const NavigationView = (props: IBinding): JSX.Element =>
         );
     }
 
+    const RenderMenuIcon = (): JSX.Element => 
+    {
+        return(
+            <IconButton color="inherit" aria-label="menu" 
+                onClick={props.bind?.openHandler} className={classes.nav_icon}>
+                <MenuIcon />
+            </IconButton>
+        );
+    }
+
+    const RenderContent = (): JSX.Element => 
+    {
+        return(
+            <>
+                <Box className={classes.languagesBox}>
+                    <RenderLanguageSelection 
+                        styleSelect={classes.languages_selection} 
+                        styleMenu={classes.languages_menu} />
+                </Box>
+                <div className={classes.user_avatar}>
+                    <Typography className={classes.user_alias}>
+                        {props.bind?.isAnonymous ? props.bind?.anonymousText : props.bind?.userAliasText}
+                    </Typography>
+                    <IconButton color="inherit" onClick={props.bind?.infoHandler} >
+                        <Avatar alt="Avatar" src={props.bind?.avatar} /> 
+                    </IconButton>
+                </div>
+            </>
+        );
+    }
+
     return (
         <HideOnScroll {...props}>
             <AppBar className={classes.app_bar}>
@@ -62,28 +93,14 @@ const NavigationView = (props: IBinding): JSX.Element =>
 
                     <Grid container item xs={12} spacing={3}>
                         <Grid item xs className={classes.nav_menu}>
-                            <IconButton color="inherit" aria-label="menu" onClick={props.bind?.openHandler} className={classes.nav_icon}>
-                                <MenuIcon />
-                            </IconButton>
+                            {props.bind?.isLoading ? null : <RenderMenuIcon />}
                         </Grid>
                         <Grid item xs className={classes.app_link}>
                             <Typography className={classes.app_full_logo}>{fullName}</Typography>
                             <Typography className={classes.app_just_logo}>{justLogo}</Typography>
                         </Grid>
                         <Grid item xs className={classes.content_right_side}>
-                            <Box className={classes.languagesBox}>
-                                {props.bind?.isLoading ? null : <LanguageSelection 
-                                    styleSelect={classes.languages_selection} 
-                                    styleMenu={classes.languages_menu} />}
-                            </Box>
-                            <div className={classes.user_avatar}>
-                                <Typography className={classes.user_alias}>
-                                    {props.bind?.isAnonymous ? props.bind?.anonymousText : props.bind?.userAliasText}
-                                </Typography>
-                                <IconButton color="inherit" onClick={props.bind?.infoHandler} >
-                                    <Avatar alt="Avatar" src={props.bind?.avatar} /> 
-                                </IconButton>
-                            </div>
+                            {props.bind?.isLoading ? null : <RenderContent />}
                         </Grid>
                     </Grid>
 

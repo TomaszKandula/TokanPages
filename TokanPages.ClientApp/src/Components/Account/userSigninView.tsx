@@ -47,6 +47,13 @@ const UserSigninView = (props: IBinding): JSX.Element =>
         );
     }
 
+    const RedirectTo = (args: { path: string, name: string }): JSX.Element => 
+    {
+        return(
+            <Link to={args.path}>{args.name}</Link>
+        );
+    }
+
     return (
         <section>
             <Container maxWidth="sm">
@@ -62,31 +69,27 @@ const UserSigninView = (props: IBinding): JSX.Element =>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        <TextField 
-                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail}
-                                            variant="outlined" name="email" id="email" autoComplete="email" 
-                                        />
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="45px" /> 
+                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail}
+                                            variant="outlined" name="email" id="email" autoComplete="email" />}
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField 
-                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.password} label={props.bind?.labelPassword}
-                                            variant="outlined" name="password" id="password" type="password" autoComplete="current-password" 
-                                        />
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="45px" /> 
+                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.password} label={props.bind?.labelPassword}
+                                            variant="outlined" name="password" id="password" type="password" autoComplete="current-password" />}
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
+                                    {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton />}
                                 </Box>
                                 <Grid container spacing={2} className={classes.actions}>
                                     <Grid item xs={12} sm={6}>
-                                        <Link to="/signup">
-                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.link1}
-                                        </Link>
+                                        {props.bind?.isLoading ? <Skeleton variant="text" /> : <RedirectTo path="/signup" name={props.bind?.link1} />}
                                     </Grid>
                                     <Grid item xs={12} sm={6} className={classes.tertiaryAction}>
-                                        <Link to="/resetpassword">
-                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.link2}
-                                        </Link>
+                                        {props.bind?.isLoading ? <Skeleton variant="text" /> : <RedirectTo path="/resetpassword" name={props.bind?.link2} />}
                                     </Grid>
                                 </Grid>
                             </Box>

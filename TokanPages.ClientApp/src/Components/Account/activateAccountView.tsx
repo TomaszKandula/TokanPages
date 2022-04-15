@@ -62,7 +62,7 @@ const ActivateAccountView = (props: IBinding): JSX.Element =>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.text2}
                                 </Typography>
                             </Box>
-                            {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
+                            {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton />}
                         </Box>
                         </CardContent>
                     </Card>
