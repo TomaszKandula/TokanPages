@@ -5,7 +5,7 @@ const headerStyle = makeStyles((theme) => (
 {
     top_margin:
     {
-        marginTop: "65px"
+        marginTop: "85px"
     },
     action_button: 
     {
@@ -51,6 +51,11 @@ const headerStyle = makeStyles((theme) => (
     {
         color: CustomColours.colours.gray2,
         fontWeight: 400
+    },
+    image_skeleton:
+    {
+        height: "300px",
+        width: "300px"
     },
     image_box:
     {
