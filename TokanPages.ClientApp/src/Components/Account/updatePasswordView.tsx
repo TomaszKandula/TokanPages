@@ -60,22 +60,20 @@ const UpdatePasswordView = (props: IBinding): JSX.Element =>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        <TextField 
-                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.newPassword} label={props.bind?.labelNewPassword}
-                                            variant="outlined" name="newPassword" id="newPassword" type="password" 
-                                            autoComplete="password" disabled={props.bind?.disableForm}
-                                        />
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="45px" /> 
+                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.newPassword} label={props.bind?.labelNewPassword}
+                                            variant="outlined" name="newPassword" id="newPassword" type="password" autoComplete="password" disabled={props.bind?.disableForm} />}
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <TextField 
-                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.verifyPassword} label={props.bind?.labelVerifyPassword}
-                                            variant="outlined" name="verifyPassword" id="verifyPassword"
-                                            type="password" autoComplete="password" disabled={props.bind?.disableForm}
-                                        />
+                                       {props.bind?.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="45px" /> 
+                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.verifyPassword} label={props.bind?.labelVerifyPassword}
+                                            variant="outlined" name="verifyPassword" id="verifyPassword" type="password" autoComplete="password" disabled={props.bind?.disableForm} />}
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
+                                    {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton />}
                                 </Box>
                             </Box>
                         </CardContent>   

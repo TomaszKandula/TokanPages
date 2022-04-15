@@ -34,7 +34,8 @@ const ResetPasswordView = (props: IBinding): JSX.Element =>
     const ActiveButton = (): JSX.Element => 
     {
         return(
-            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" className={classes.button} disabled={props.bind?.progress}>
+            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
+                className={classes.button} disabled={props.bind?.progress}>
                 {props.bind?.progress &&  <CircularProgress size={20} />}
                 {!props.bind?.progress && props.bind?.button}
             </Button>
@@ -56,14 +57,14 @@ const ResetPasswordView = (props: IBinding): JSX.Element =>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        <TextField 
-                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail}
-                                            variant="outlined" name="email" id="email" autoComplete="email" 
-                                        />
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="45px" /> 
+                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail}
+                                            variant="outlined" name="email" id="email" autoComplete="email" />}
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
+                                    {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton />}
                                 </Box>
                             </Box>
                         </CardContent>   
