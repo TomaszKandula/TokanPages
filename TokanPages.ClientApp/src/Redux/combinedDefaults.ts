@@ -10,6 +10,7 @@ import { SigninUserDefault } from "./Defaults/Users/signinUserDefault";
 import { SignupUserDefault } from "./Defaults/Users/signupUserDefault";
 import { ActivateAccountDefault } from "./Defaults/Users/activateAccountDefault";
 import { ResetUserPasswordDefault } from "./Defaults/Users/resetUserPasswordDefault";
+import { UpdateUserPasswordDefault } from "./Defaults/Users/updateUserPasswordDefault";
 import { SendMessageStateDefault } from "./Defaults/Mailer/sendMessageDefault";
 import { RaiseErrorDefault } from "./Defaults/raiseErrorDefault";
 import { RaiseDialogDefault } from "./Defaults/raiseDialogDefault";
@@ -50,7 +51,7 @@ export const combinedDefaults: IApplicationState =
     signinUser: SigninUserDefault,
     signupUser: SignupUserDefault,
     resetUserPassword: ResetUserPasswordDefault,
-    updateUserPassword: ResetUserPasswordDefault,
+    updateUserPassword: UpdateUserPasswordDefault,
     activateAccount: ActivateAccountDefault,
     getStaticContent: GetStaticContentDefault,
     getArticleFeatContent: GetArticleFeatContentDefault,
