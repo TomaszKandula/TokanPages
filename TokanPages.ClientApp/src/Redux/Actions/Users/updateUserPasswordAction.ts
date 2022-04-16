@@ -3,7 +3,6 @@ import { AppThunkAction } from "../../applicationState";
 import { IUpdateUserPasswordDto } from "../../../Api/Models";
 import { API_COMMAND_UPDATE_USER_PASSWORD, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
-import { TKnownActions as TUpdateActions } from "./updateUserDataAction";
 import { RaiseError } from "../../../Shared/helpers";
 import { TErrorActions } from "./../raiseErrorAction";
 import { EnrichConfiguration } from "../../../Api/Request";
@@ -14,7 +13,7 @@ export const UPDATE_USER_PASSWORD_RESPONSE = "UPDATE_USER_PASSWORD_RESPONSE";
 export interface IApiUpdateUserPassword { type: typeof UPDATE_USER_PASSWORD }
 export interface IApiUpdateUserPasswordClear { type: typeof UPDATE_USER_PASSWORD_CLEAR }
 export interface IApiUpdateUserPasswordResponse { type: typeof UPDATE_USER_PASSWORD_RESPONSE }
-export type TKnownActions = IApiUpdateUserPassword | IApiUpdateUserPasswordClear | IApiUpdateUserPasswordResponse | TErrorActions | TUpdateActions;
+export type TKnownActions = IApiUpdateUserPassword | IApiUpdateUserPasswordClear | IApiUpdateUserPasswordResponse | TErrorActions;
 
 export const ActionCreators = 
 {
