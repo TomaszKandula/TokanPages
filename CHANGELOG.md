@@ -1,3 +1,10 @@
+## [0.48.1](https://github.com/TomaszKandula/TokanPages/compare/v0.48.0...v0.48.1) (2022-04-16)
+
+
+### Bug Fixes
+
+* correct wrong reducer assignment, remove unnecessary action types ([a6f3592](https://github.com/TomaszKandula/TokanPages/commit/a6f3592e6e99472427cfcb824c50a7d5e07bc8ac))
+
 # [0.48.0](https://github.com/TomaszKandula/TokanPages/compare/v0.47.0...v0.48.0) (2022-04-15)
 
 
