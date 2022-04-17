@@ -5,27 +5,27 @@ exports[`Test articles group component: articleCardView. Renders correctly '<Art
   data-aos="fade-up"
 >
   <WithStyles(ForwardRef(Card))
-    className="makeStyles-root-1"
-    elevation={4}
+    className="makeStyles-card-1"
+    elevation={0}
   >
     <WithStyles(ForwardRef(CardMedia))
-      className="makeStyles-image-3"
+      className="makeStyles-card_image-3"
       image="/images/card.jpg"
     />
     <WithStyles(ForwardRef(CardContent))>
       <WithStyles(ForwardRef(Typography))
-        className="makeStyles-title-4"
+        className="makeStyles-card_title-4"
         gutterBottom={true}
       >
         Article title
       </WithStyles(ForwardRef(Typography))>
       <WithStyles(ForwardRef(Typography))
-        className="makeStyles-description-5"
+        className="makeStyles-card_description-5"
       >
         Article short description
       </WithStyles(ForwardRef(Typography))>
       <WithStyles(ForwardRef(CardActions))
-        className="makeStyles-action-6"
+        className="makeStyles-card_action-6"
       >
         <WithStyles(ForwardRef(Button))
           className="makeStyles-button-7"
