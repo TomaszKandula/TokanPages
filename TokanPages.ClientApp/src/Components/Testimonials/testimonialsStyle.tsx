@@ -1,16 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../Theme/customColours";
 
-const testimonialsStyle = makeStyles((theme) => (
+const testimonialsStyle = makeStyles(() => (
 {
     section:
     {
         backgroundColor: CustomColours.colours.white
-    },
-    image:
-    {
-        width: "150px !important",
-        borderRadius: "50%"
     },
     caption_text:
     {
@@ -18,54 +13,51 @@ const testimonialsStyle = makeStyles((theme) => (
         fontSize: "2.0rem",
         color: CustomColours.colours.darkViolet1
     },
-    title:
+    card:
     {
-        fontSize: "1.2rem",
-        fontWeight: 400,
+        minHeight: "340px",
+        borderRadius: "15px",
+        boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)"
+    },
+    card_image:
+    {
+        height: "140px",
+        width: "140px",
+        borderRadius: "50%",
+        top: 0,
+        left: "50%",
+        margin: 0,
+        transform: "translate(-50%, -33%)",
+        overflow: "hidden",
+        position: "absolute",
+        verticalAlign: "middle"
+    },
+    card_content:
+    {
+        marginTop: "70px"
+    },
+    card_title:
+    {
         textAlign: "center",
-        marginTop: "15px",
-        marginBottom: "15px"
+        fontSize: "1.5rem",
+        fontWeight: 700,
+        lineHeight: "2.2",
+        color: CustomColours.colours.black
     },
-    subtitle:
+    card_subheader:
     {
-        fontSize: "1.2rem",
-        fontWeight: 400,
         textAlign: "center",
+        fontSize: "1.0rem",
+        lineHeight: "2.0",
+        color: CustomColours.colours.violet
+    },
+    card_text:
+    {
+        textAlign: "left",
+        lineHeight: "1.8",
         marginTop: "15px",
-        marginBottom: "15px"
+        color: CustomColours.colours.gray1
     },
-    commendation:
-    {
-        fontSize: "1.2rem",
-        fontWeight: 400,
-        lineHeight: 2.0,
-        marginLeft: "25px",
-        marginRight: "25px",
-        color: CustomColours.colours.gray2
-    },
-    box_padding:
-    {
-        [theme.breakpoints.up("xl")]: 
-        {
-            paddingLeft: "125px",
-            paddingRight: "125px"
-        },
-        [theme.breakpoints.up("lg")]: 
-        {
-            paddingLeft: "125px",
-            paddingRight: "125px"
-        },
-        [theme.breakpoints.up("md")]: 
-        {
-            paddingLeft: "125px",
-            paddingRight: "125px"
-        },
-        [theme.breakpoints.up("sm")]: 
-        {
-            paddingLeft: "75px",
-            paddingRight: "75px"
-        }
-    }
 }));
 
 export default testimonialsStyle;
