@@ -8,82 +8,34 @@ exports[`Test articles group component: articleCardView. Renders correctly '<Art
     className="makeStyles-root-1"
     elevation={4}
   >
-    <WithStyles(ForwardRef(Grid))
-      className="makeStyles-large_screen-3"
-      container={true}
-      spacing={2}
-    >
-      <WithStyles(ForwardRef(Grid))
-        item={true}
-        xs={4}
+    <WithStyles(ForwardRef(CardMedia))
+      className="makeStyles-image-3"
+      image="/images/card.jpg"
+    />
+    <WithStyles(ForwardRef(CardContent))>
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-title-4"
+        gutterBottom={true}
       >
-        <img
-          alt=""
-          className="makeStyles-image-5"
-          src="/images/card.jpg"
-        />
-      </WithStyles(ForwardRef(Grid))>
-      <WithStyles(ForwardRef(Grid))
-        item={true}
-        xs={8}
+        Article title
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-description-5"
       >
-        <WithStyles(ForwardRef(CardContent))>
-          <WithStyles(ForwardRef(Typography))
-            className="makeStyles-title-6"
-            gutterBottom={true}
-          >
-            Article title
-          </WithStyles(ForwardRef(Typography))>
-          <WithStyles(ForwardRef(Typography))
-            className="makeStyles-description-7"
-          >
-            Article short description
-          </WithStyles(ForwardRef(Typography))>
-        </WithStyles(ForwardRef(CardContent))>
-        <WithStyles(ForwardRef(CardActions))>
-          <WithStyles(ForwardRef(Button))
-            className="makeStyles-button-8"
-            onClick={[MockFunction]}
-            size="small"
-          >
-            READ
-          </WithStyles(ForwardRef(Button))>
-        </WithStyles(ForwardRef(CardActions))>
-      </WithStyles(ForwardRef(Grid))>
-    </WithStyles(ForwardRef(Grid))>
-    <WithStyles(ForwardRef(Grid))
-      className="makeStyles-small_screen-4"
-      container={true}
-      spacing={2}
-    >
-      <WithStyles(ForwardRef(Grid))
-        item={true}
-        xs={12}
+        Article short description
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(CardActions))
+        className="makeStyles-action-6"
       >
-        <WithStyles(ForwardRef(CardContent))>
-          <WithStyles(ForwardRef(Typography))
-            className="makeStyles-title-6"
-            gutterBottom={true}
-          >
-            Article title
-          </WithStyles(ForwardRef(Typography))>
-          <WithStyles(ForwardRef(Typography))
-            className="makeStyles-description-7"
-          >
-            Article short description
-          </WithStyles(ForwardRef(Typography))>
-        </WithStyles(ForwardRef(CardContent))>
-        <WithStyles(ForwardRef(CardActions))>
-          <WithStyles(ForwardRef(Button))
-            className="makeStyles-button-8"
-            onClick={[MockFunction]}
-            size="small"
-          >
-            READ
-          </WithStyles(ForwardRef(Button))>
-        </WithStyles(ForwardRef(CardActions))>
-      </WithStyles(ForwardRef(Grid))>
-    </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Button))
+          className="makeStyles-button-7"
+          onClick={[MockFunction]}
+          size="small"
+        >
+          READ
+        </WithStyles(ForwardRef(Button))>
+      </WithStyles(ForwardRef(CardActions))>
+    </WithStyles(ForwardRef(CardContent))>
   </WithStyles(ForwardRef(Card))>
 </div>
 `;
