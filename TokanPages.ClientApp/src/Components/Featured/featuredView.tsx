@@ -18,62 +18,53 @@ const FeaturedView = (props: IGetFeaturedContent): JSX.Element =>
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
-                <Box pt={8} pb={10}>
-                    <Container maxWidth="sm">
-                        <Box textAlign="center" mb={5}>
-                            <Typography gutterBottom={true} className={classes.caption_text} data-aos="fade-down">
-                                {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption?.toUpperCase()}
-                            </Typography>
-                        </Box>
-                    </Container>
-                    <Container maxWidth="md">
-                        <Box textAlign="center">
-                            <Grid container spacing={4}>
-                                <Grid item xs={12} md={4} data-aos="fade-left">
-                                    <Card elevation={3}>
-                                        <CardActionArea href={props.content?.link1} target="_blank">
-                                            {props.isLoading 
-                                                ? <Skeleton variant="rect" height="256px" /> 
-                                                : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image1, classes.media)}
-                                            <CardHeader 
-                                                title={props.content?.title1} 
-                                                subheader={props.content?.subtitle1} 
-                                                titleTypographyProps={{gutterBottom: true}} 
-                                            />
-                                        </CardActionArea>
-                                    </Card>
-                                </Grid>
-                                <Grid item xs={12} md={4} data-aos="fade-up">
-                                    <Card elevation={3}>
-                                        <CardActionArea href={props.content?.link2} target="_blank">
-                                            {props.isLoading 
-                                                ? <Skeleton variant="rect" height="256px" /> 
-                                                : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image2, classes.media)}
-                                            <CardHeader 
-                                                title={props.content?.title2} 
-                                                subheader={props.content?.subtitle2} 
-                                                titleTypographyProps={{gutterBottom: true}} 
-                                            />
-                                        </CardActionArea>
-                                    </Card>
-                                </Grid>
-                                <Grid item xs={12} md={4} data-aos="fade-right">
-                                    <Card elevation={3}>
-                                        <CardActionArea href={props.content?.link3} target="_blank">
-                                            {props.isLoading 
-                                                ? <Skeleton variant="rect" height="256px" /> 
-                                                : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image3, classes.media)}
-                                            <CardHeader 
-                                                title={props.content?.title3} 
-                                                subheader={props.content?.subtitle3} 
-                                                titleTypographyProps={{gutterBottom: true}}
-                                            />
-                                        </CardActionArea>
-                                    </Card>
-                                </Grid>
-                            </Grid>
-                        </Box>
-                    </Container>
+                <Box pt={8} pb={5} textAlign="center">
+                    <Typography gutterBottom={true} className={classes.caption_text} data-aos="fade-down">
+                        {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption?.toUpperCase()}
+                    </Typography>
+                </Box>
+                <Box pb={15} textAlign="center">
+                    <Grid container spacing={6}>
+                        <Grid item xs={12} md={4} data-aos="fade-left">
+                            <Card elevation={0} className={classes.card}>
+                                <CardActionArea href={props.content?.link1} target="_blank">
+                                    {props.isLoading 
+                                        ? <Skeleton variant="rect" height="256px" /> 
+                                        : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image1, classes.media)}
+                                    <CardHeader 
+                                        title={props.content?.title1} 
+                                        subheader={props.content?.subtitle1} 
+                                        titleTypographyProps={{gutterBottom: true}} className={classes.card_header} />
+                                </CardActionArea>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={12} md={4} data-aos="fade-up">
+                            <Card elevation={0} className={classes.card}>
+                                <CardActionArea href={props.content?.link2} target="_blank">
+                                    {props.isLoading 
+                                        ? <Skeleton variant="rect" height="256px" /> 
+                                        : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image2, classes.media)}
+                                    <CardHeader 
+                                        title={props.content?.title2} 
+                                        subheader={props.content?.subtitle2} 
+                                        titleTypographyProps={{gutterBottom: true}} className={classes.card_header} />
+                                </CardActionArea>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={12} md={4} data-aos="fade-right">
+                            <Card elevation={0} className={classes.card}>
+                                <CardActionArea href={props.content?.link3} target="_blank">
+                                    {props.isLoading 
+                                        ? <Skeleton variant="rect" height="256px" /> 
+                                        : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image3, classes.media)}
+                                    <CardHeader 
+                                        title={props.content?.title3} 
+                                        subheader={props.content?.subtitle3} 
+                                        titleTypographyProps={{gutterBottom: true}} className={classes.card_header} />
+                                    </CardActionArea>
+                            </Card>
+                        </Grid>
+                    </Grid>
                 </Box>
             </Container>
         </section>
