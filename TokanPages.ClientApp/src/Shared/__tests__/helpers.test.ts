@@ -242,6 +242,20 @@ describe("Verify helper methods.", () =>
         expect(output).toBe(expectation);
     });
 
+    it("Given empty input value. When GetShortText. Should return empty string.", () => 
+    {
+        // Arrange
+        const text = "";
+        const expectation = "";
+        const limit = 10;
+
+        // Act
+        const output = helpers.GetShortText(text, limit);
+
+        // Assert
+        expect(output).toBe(expectation);
+    });
+
     it("Given valid JSON object. When GetErrorMessage. Should return translated error message.", () => 
     {
         // Arrange

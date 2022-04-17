@@ -113,6 +113,8 @@ const GetReadTime = (countWords: number, wordsPerMinute: number): string =>
 
 const GetShortText = (value: string, limit: number): string => 
 {
+    if (value === undefined || value === "") return "";
+    
     let result = value;
     let output: string[] = value.split(/\s+/);
 
