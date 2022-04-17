@@ -8,125 +8,120 @@ exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when
     maxWidth="lg"
   >
     <Styled(MuiBox)
-      pb={10}
+      pb={5}
       pt={8}
+      textAlign="center"
     >
-      <WithStyles(ForwardRef(Container))
-        maxWidth="sm"
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-caption_text-2"
+        data-aos="fade-down"
+        gutterBottom={true}
       >
-        <Styled(MuiBox)
-          mb={5}
-          textAlign="center"
-        >
-          <WithStyles(ForwardRef(Typography))
-            className="makeStyles-caption_text-2"
-            data-aos="fade-down"
-            gutterBottom={true}
-          >
-            FEATURED
-          </WithStyles(ForwardRef(Typography))>
-        </Styled(MuiBox)>
-      </WithStyles(ForwardRef(Container))>
-      <WithStyles(ForwardRef(Container))
-        maxWidth="md"
+        FEATURED
+      </WithStyles(ForwardRef(Typography))>
+    </Styled(MuiBox)>
+    <Styled(MuiBox)
+      pb={15}
+      textAlign="center"
+    >
+      <WithStyles(ForwardRef(Grid))
+        container={true}
+        spacing={6}
       >
-        <Styled(MuiBox)
-          textAlign="center"
+        <WithStyles(ForwardRef(Grid))
+          data-aos="fade-left"
+          item={true}
+          md={4}
+          xs={12}
         >
-          <WithStyles(ForwardRef(Grid))
-            container={true}
-            spacing={4}
+          <WithStyles(ForwardRef(Card))
+            className="makeStyles-card-3"
+            elevation={0}
           >
-            <WithStyles(ForwardRef(Grid))
-              data-aos="fade-left"
-              item={true}
-              md={4}
-              xs={12}
+            <WithStyles(ForwardRef(CardActionArea))
+              href="https://.../net-memory-management-64389b01f642"
+              target="_blank"
             >
-              <WithStyles(ForwardRef(Card))
-                elevation={3}
-              >
-                <WithStyles(ForwardRef(CardActionArea))
-                  href="https://.../net-memory-management-64389b01f642"
-                  target="_blank"
-                >
-                  <WithStyles(ForwardRef(CardMedia))
-                    className="makeStyles-media-3"
-                    image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/featured/article0.jpg"
-                  />
-                  <WithStyles(ForwardRef(CardHeader))
-                    subheader="The basics you should know, when writing an application..."
-                    title="Memory Management"
-                    titleTypographyProps={
-                      Object {
-                        "gutterBottom": true,
-                      }
-                    }
-                  />
-                </WithStyles(ForwardRef(CardActionArea))>
-              </WithStyles(ForwardRef(Card))>
-            </WithStyles(ForwardRef(Grid))>
-            <WithStyles(ForwardRef(Grid))
-              data-aos="fade-up"
-              item={true}
-              md={4}
-              xs={12}
+              <WithStyles(ForwardRef(CardMedia))
+                className="makeStyles-media-5"
+                image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/featured/article0.jpg"
+              />
+              <WithStyles(ForwardRef(CardHeader))
+                className="makeStyles-card_header-4"
+                subheader="The basics you should know, when writing an application..."
+                title="Memory Management"
+                titleTypographyProps={
+                  Object {
+                    "gutterBottom": true,
+                  }
+                }
+              />
+            </WithStyles(ForwardRef(CardActionArea))>
+          </WithStyles(ForwardRef(Card))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          data-aos="fade-up"
+          item={true}
+          md={4}
+          xs={12}
+        >
+          <WithStyles(ForwardRef(Card))
+            className="makeStyles-card-3"
+            elevation={0}
+          >
+            <WithStyles(ForwardRef(CardActionArea))
+              href="https://.../i-said-goodbye-to-stored-procedures-539d56350486"
+              target="_blank"
             >
-              <WithStyles(ForwardRef(Card))
-                elevation={3}
-              >
-                <WithStyles(ForwardRef(CardActionArea))
-                  href="https://.../i-said-goodbye-to-stored-procedures-539d56350486"
-                  target="_blank"
-                >
-                  <WithStyles(ForwardRef(CardMedia))
-                    className="makeStyles-media-3"
-                    image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/featured/article1.jpg"
-                  />
-                  <WithStyles(ForwardRef(CardHeader))
-                    subheader="I explain why I do not need them that much..."
-                    title="Stored Procedures"
-                    titleTypographyProps={
-                      Object {
-                        "gutterBottom": true,
-                      }
-                    }
-                  />
-                </WithStyles(ForwardRef(CardActionArea))>
-              </WithStyles(ForwardRef(Card))>
-            </WithStyles(ForwardRef(Grid))>
-            <WithStyles(ForwardRef(Grid))
-              data-aos="fade-right"
-              item={true}
-              md={4}
-              xs={12}
+              <WithStyles(ForwardRef(CardMedia))
+                className="makeStyles-media-5"
+                image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/featured/article1.jpg"
+              />
+              <WithStyles(ForwardRef(CardHeader))
+                className="makeStyles-card_header-4"
+                subheader="I explain why I do not need them that much..."
+                title="Stored Procedures"
+                titleTypographyProps={
+                  Object {
+                    "gutterBottom": true,
+                  }
+                }
+              />
+            </WithStyles(ForwardRef(CardActionArea))>
+          </WithStyles(ForwardRef(Card))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          data-aos="fade-right"
+          item={true}
+          md={4}
+          xs={12}
+        >
+          <WithStyles(ForwardRef(Card))
+            className="makeStyles-card-3"
+            elevation={0}
+          >
+            <WithStyles(ForwardRef(CardActionArea))
+              href="https://.../sql-injection-1bde8bb76ebc"
+              target="_blank"
             >
-              <WithStyles(ForwardRef(Card))
-                elevation={3}
-              >
-                <WithStyles(ForwardRef(CardActionArea))
-                  href="https://.../sql-injection-1bde8bb76ebc"
-                  target="_blank"
-                >
-                  <WithStyles(ForwardRef(CardMedia))
-                    className="makeStyles-media-3"
-                    image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/featured/article2.jpg"
-                  />
-                  <WithStyles(ForwardRef(CardHeader))
-                    subheader="This article will explore the issue in greater detail..."
-                    title="SQL Injection"
-                    titleTypographyProps={
-                      Object {
-                        "gutterBottom": true,
-                      }
-                    }
-                  />
-                </WithStyles(ForwardRef(CardActionArea))>
-              </WithStyles(ForwardRef(Card))>
-            </WithStyles(ForwardRef(Grid))>
-          </WithStyles(ForwardRef(Grid))>
-        </Styled(MuiBox)>
-      </WithStyles(ForwardRef(Container))>
+              <WithStyles(ForwardRef(CardMedia))
+                className="makeStyles-media-5"
+                image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/featured/article2.jpg"
+              />
+              <WithStyles(ForwardRef(CardHeader))
+                className="makeStyles-card_header-4"
+                subheader="This article will explore the issue in greater detail..."
+                title="SQL Injection"
+                titleTypographyProps={
+                  Object {
+                    "gutterBottom": true,
+                  }
+                }
+              />
+            </WithStyles(ForwardRef(CardActionArea))>
+          </WithStyles(ForwardRef(Card))>
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
     </Styled(MuiBox)>
   </WithStyles(ForwardRef(Container))>
 </section>
