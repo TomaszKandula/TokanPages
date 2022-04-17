@@ -5,38 +5,33 @@ const articleCardStyle = makeStyles((theme) => (
 {
     root: 
     {
-        marginTop: 25,
-        marginBottom: 25
+        marginTop: "25px",
+        marginBottom: "25px",
+        [theme.breakpoints.down(700)]:
+        {
+            display: "block"
+        },
+        [theme.breakpoints.up(700)]:
+        {
+            display: "flex"
+        },
     },
     link:
     {
         textDecoration: "none"
     },
-    large_screen:
+    image:
     {
         [theme.breakpoints.down(700)]:
         {
-            display: "none"
+            height: "180px",
+            width: "auto",
         },
         [theme.breakpoints.up(700)]:
         {
-            display: "flex"
+            height: "auto",
+            width: "180px",
         }
-    },
-    small_screen:
-    {
-        [theme.breakpoints.up(700)]:
-        {
-            display: "none"
-        }
-    },
-    image:
-    {
-        margin: "auto",
-        display: "block",
-        objectFit: "cover",
-        height: 180,
-        maxWidth: "100%"
     },
     title:
     {
@@ -48,15 +43,19 @@ const articleCardStyle = makeStyles((theme) => (
         fontSize: "1.0rem",
         color: CustomColours.colours.gray1
     },
+    action:
+    {
+        marginTop: "25px"
+    },
     button:
     {
         [theme.breakpoints.down(700)]:
         {
-            marginTop: "0px"
+            marginLeft: "auto"
         },
         [theme.breakpoints.up(700)]:
         {
-            marginTop: "18px"
+            marginLeft: "0px"
         },
         "&:hover": 
         {
