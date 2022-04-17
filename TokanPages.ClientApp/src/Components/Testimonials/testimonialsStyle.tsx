@@ -49,7 +49,7 @@ const testimonialsStyle = makeStyles(() => (
         textAlign: "center",
         fontSize: "1.0rem",
         lineHeight: "2.0",
-        color: CustomColours.colours.violet
+        color: CustomColours.colours.darkViolet1
     },
     card_text:
     {
