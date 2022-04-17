@@ -3,7 +3,7 @@ import { CustomColours } from "../../../Theme/customColours";
 
 const articleCardStyle = makeStyles((theme) => (
 {
-    root: 
+    card: 
     {
         marginTop: "25px",
         marginBottom: "25px",
@@ -15,12 +15,14 @@ const articleCardStyle = makeStyles((theme) => (
         {
             display: "flex"
         },
+        borderRadius: "15px",
+        boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)"
     },
-    link:
+    card_link:
     {
         textDecoration: "none"
     },
-    image:
+    card_image:
     {
         [theme.breakpoints.down(700)]:
         {
@@ -33,17 +35,17 @@ const articleCardStyle = makeStyles((theme) => (
             width: "180px",
         }
     },
-    title:
+    card_title:
     {
         fontSize: "1.5rem",
         color: CustomColours.colours.black
     },
-    description:
+    card_description:
     {
         fontSize: "1.0rem",
         color: CustomColours.colours.gray1
     },
-    action:
+    card_action:
     {
         marginTop: "25px"
     },

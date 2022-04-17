@@ -26,16 +26,16 @@ const ArticleCardView = (props: IBinding): JSX.Element =>
     const classes = articleCardStyle();
     return(
         <div data-aos="fade-up">
-            <Card className={classes.root} elevation={4}>
-                <CardMedia image={props.bind?.imageUrl} className={classes.image} />
+            <Card elevation={0} className={classes.card} >
+                <CardMedia image={props.bind?.imageUrl} className={classes.card_image} />
                 <CardContent>
-                    <Typography gutterBottom={true} className={classes.title}>
+                    <Typography gutterBottom={true} className={classes.card_title}>
                         {props.bind?.title}
                     </Typography>
-                    <Typography className={classes.description}>
+                    <Typography className={classes.card_description}>
                         {props.bind?.description}
                     </Typography>
-                    <CardActions className={classes.action}>
+                    <CardActions className={classes.card_action}>
                         <Button onClick={props.bind?.onClickEvent} size="small" className={classes.button}>{props.bind?.buttonText}</Button>
                     </CardActions>
                 </CardContent>
