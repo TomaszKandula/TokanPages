@@ -11,8 +11,6 @@ import { IGetTestimonialsContent } from "../../Redux/States/Content/getTestimoni
 import { TESTIMONIALS_PATH } from "../../Shared/constants";
 import { GetShortText } from "../../Shared/helpers";
 import testimonialsStyle from "./testimonialsStyle";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import "../../Theme/CustomCss/overrideCarousel.css";
 
 const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
 {
