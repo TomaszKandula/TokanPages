@@ -190,4 +190,4 @@ export const Languages =
     "xquery",
     "yaml",
     "zephir",
-  ];
+];
