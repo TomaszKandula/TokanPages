@@ -1,6 +1,6 @@
 import * as React from "react";
 import { IGetCookiesPromptContent } from "../../Redux/States/Content/getCookiesPromptContentState";
-import { SetCookie, GetCookie } from "../../Shared/cookies";
+import { SetCookie, GetCookie } from "../../Shared/Services/CookieServices";
 import Validate from "validate.js";
 import CookiesView from "./cookiesView";
 
