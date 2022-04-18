@@ -43,19 +43,23 @@ exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when
               target="_blank"
             >
               <WithStyles(ForwardRef(CardMedia))
-                className="makeStyles-media-5"
+                className="makeStyles-card_media-7"
                 image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/featured/article0.jpg"
               />
-              <WithStyles(ForwardRef(CardHeader))
-                className="makeStyles-card_header-4"
-                subheader="The basics you should know, when writing an application..."
-                title="Memory Management"
-                titleTypographyProps={
-                  Object {
-                    "gutterBottom": true,
-                  }
-                }
-              />
+              <WithStyles(ForwardRef(CardContent))
+                className="makeStyles-card_content-4"
+              >
+                <WithStyles(ForwardRef(Typography))
+                  className="makeStyles-card_title-5"
+                >
+                  Memory Management
+                </WithStyles(ForwardRef(Typography))>
+                <WithStyles(ForwardRef(Typography))
+                  className="makeStyles-card_subtitle-6"
+                >
+                  The basics you should know, when writing an application...
+                </WithStyles(ForwardRef(Typography))>
+              </WithStyles(ForwardRef(CardContent))>
             </WithStyles(ForwardRef(CardActionArea))>
           </WithStyles(ForwardRef(Card))>
         </WithStyles(ForwardRef(Grid))>
@@ -74,19 +78,23 @@ exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when
               target="_blank"
             >
               <WithStyles(ForwardRef(CardMedia))
-                className="makeStyles-media-5"
+                className="makeStyles-card_media-7"
                 image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/featured/article1.jpg"
               />
-              <WithStyles(ForwardRef(CardHeader))
-                className="makeStyles-card_header-4"
-                subheader="I explain why I do not need them that much..."
-                title="Stored Procedures"
-                titleTypographyProps={
-                  Object {
-                    "gutterBottom": true,
-                  }
-                }
-              />
+              <WithStyles(ForwardRef(CardContent))
+                className="makeStyles-card_content-4"
+              >
+                <WithStyles(ForwardRef(Typography))
+                  className="makeStyles-card_title-5"
+                >
+                  Stored Procedures
+                </WithStyles(ForwardRef(Typography))>
+                <WithStyles(ForwardRef(Typography))
+                  className="makeStyles-card_subtitle-6"
+                >
+                  I explain why I do not need them that much...
+                </WithStyles(ForwardRef(Typography))>
+              </WithStyles(ForwardRef(CardContent))>
             </WithStyles(ForwardRef(CardActionArea))>
           </WithStyles(ForwardRef(Card))>
         </WithStyles(ForwardRef(Grid))>
@@ -105,19 +113,23 @@ exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when
               target="_blank"
             >
               <WithStyles(ForwardRef(CardMedia))
-                className="makeStyles-media-5"
+                className="makeStyles-card_media-7"
                 image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/featured/article2.jpg"
               />
-              <WithStyles(ForwardRef(CardHeader))
-                className="makeStyles-card_header-4"
-                subheader="This article will explore the issue in greater detail..."
-                title="SQL Injection"
-                titleTypographyProps={
-                  Object {
-                    "gutterBottom": true,
-                  }
-                }
-              />
+              <WithStyles(ForwardRef(CardContent))
+                className="makeStyles-card_content-4"
+              >
+                <WithStyles(ForwardRef(Typography))
+                  className="makeStyles-card_title-5"
+                >
+                  SQL Injection
+                </WithStyles(ForwardRef(Typography))>
+                <WithStyles(ForwardRef(Typography))
+                  className="makeStyles-card_subtitle-6"
+                >
+                  This article will explore the issue in greater detail...
+                </WithStyles(ForwardRef(Typography))>
+              </WithStyles(ForwardRef(CardContent))>
             </WithStyles(ForwardRef(CardActionArea))>
           </WithStyles(ForwardRef(Card))>
         </WithStyles(ForwardRef(Grid))>

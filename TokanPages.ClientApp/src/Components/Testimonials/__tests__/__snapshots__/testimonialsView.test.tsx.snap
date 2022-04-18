@@ -40,25 +40,25 @@ exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView 
             elevation={0}
           >
             <WithStyles(ForwardRef(CardMedia))
-              className="makeStyles-card_image-4"
+              className="makeStyles-card_image-5"
               component="img"
               image=" "
             />
             <WithStyles(ForwardRef(CardContent))
-              className="makeStyles-card_content-5"
+              className="makeStyles-card_content-6"
             >
               <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_title-6"
+                className="makeStyles-card_title-7"
               >
                 Joanna
               </WithStyles(ForwardRef(Typography))>
               <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_subheader-7"
+                className="makeStyles-card_subheader-8"
               >
                 Senior Digital Tax Specialist
               </WithStyles(ForwardRef(Typography))>
               <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_text-8"
+                className="makeStyles-card_text-9"
               >
                 Joe is very motivated...
               </WithStyles(ForwardRef(Typography))>
@@ -66,6 +66,7 @@ exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView 
           </WithStyles(ForwardRef(Card))>
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Grid))
+          className="makeStyles-card_space-4"
           data-aos="fade-up"
           item={true}
           md={4}
@@ -76,25 +77,25 @@ exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView 
             elevation={3}
           >
             <WithStyles(ForwardRef(CardMedia))
-              className="makeStyles-card_image-4"
+              className="makeStyles-card_image-5"
               component="img"
               image=" "
             />
             <WithStyles(ForwardRef(CardContent))
-              className="makeStyles-card_content-5"
+              className="makeStyles-card_content-6"
             >
               <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_title-6"
+                className="makeStyles-card_title-7"
               >
                 Adama
               </WithStyles(ForwardRef(Typography))>
               <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_subheader-7"
+                className="makeStyles-card_subheader-8"
               >
                 Full-stack Developer chez DFDS POLSKA
               </WithStyles(ForwardRef(Typography))>
               <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_text-8"
+                className="makeStyles-card_text-9"
               >
                 Joe have done very good work...
               </WithStyles(ForwardRef(Typography))>
@@ -102,6 +103,7 @@ exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView 
           </WithStyles(ForwardRef(Card))>
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Grid))
+          className="makeStyles-card_space-4"
           data-aos="fade-right"
           item={true}
           md={4}
@@ -112,25 +114,25 @@ exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView 
             elevation={3}
           >
             <WithStyles(ForwardRef(CardMedia))
-              className="makeStyles-card_image-4"
+              className="makeStyles-card_image-5"
               component="img"
               image=" "
             />
             <WithStyles(ForwardRef(CardContent))
-              className="makeStyles-card_content-5"
+              className="makeStyles-card_content-6"
             >
               <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_title-6"
+                className="makeStyles-card_title-7"
               >
                 Scott
               </WithStyles(ForwardRef(Typography))>
               <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_subheader-7"
+                className="makeStyles-card_subheader-8"
               >
                 BPO
               </WithStyles(ForwardRef(Typography))>
               <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_text-8"
+                className="makeStyles-card_text-9"
               >
                 Joe is one of those rare talents...
               </WithStyles(ForwardRef(Typography))>
