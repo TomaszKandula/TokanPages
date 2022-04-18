@@ -1,3 +1,23 @@
+# [0.49.0](https://github.com/TomaszKandula/TokanPages/compare/v0.48.1...v0.49.0) (2022-04-18)
+
+
+### Bug Fixes
+
+* add missing skeletons, update style ([bfa17c6](https://github.com/TomaszKandula/TokanPages/commit/bfa17c66cff8ae30b1117b1476f57d6b3a1d54af))
+
+
+### Features
+
+* add helper method for shortening text with test ([e200cc7](https://github.com/TomaszKandula/TokanPages/commit/e200cc7b712f707487ef13dbaf98f034a9439633))
+* add margin top for small screen mode only ([a7161e9](https://github.com/TomaszKandula/TokanPages/commit/a7161e98250795b260bd95ae4d3538eae337bb99))
+* apply GetShortText method ([79602a5](https://github.com/TomaszKandula/TokanPages/commit/79602a565a7251bc819fdd57f25248bd1bc6294d))
+* change account components style with new shadow ([9feadc7](https://github.com/TomaszKandula/TokanPages/commit/9feadc7c063a087fcc8f10b7c27493c370b51abc))
+* change style for sections Articles and Featured ([dd93f1f](https://github.com/TomaszKandula/TokanPages/commit/dd93f1f2ac75ddef70c6734f4e490afa6e729ea3))
+* remove react carousel, update packages ([e68eb07](https://github.com/TomaszKandula/TokanPages/commit/e68eb0788602d929e1cfd5f2082d74021037b1f0))
+* replace react carousel with cards, update style ([780b4cb](https://github.com/TomaszKandula/TokanPages/commit/780b4cb9bc2f3a0f5c85504904181c5978e67fa5))
+* simplify layout with CardMedia component, update style ([0bce7b7](https://github.com/TomaszKandula/TokanPages/commit/0bce7b7fae5e00800712d20f5af69fe861f101b5))
+* update implementation and add new test ([a803ba9](https://github.com/TomaszKandula/TokanPages/commit/a803ba94bf768e38f5204a698c64ece8e9b4cf0e))
+
 ## [0.48.1](https://github.com/TomaszKandula/TokanPages/compare/v0.48.0...v0.48.1) (2022-04-16)
 
 
