@@ -4,8 +4,8 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardHeader from "@material-ui/core/CardHeader";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetFeaturedContent } from "../../Redux/States/Content/getFeaturedContentState";
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
@@ -30,11 +30,15 @@ const FeaturedView = (props: IGetFeaturedContent): JSX.Element =>
                                 <CardActionArea href={props.content?.link1} target="_blank">
                                     {props.isLoading 
                                         ? <Skeleton variant="rect" height="256px" /> 
-                                        : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image1, classes.media)}
-                                    <CardHeader 
-                                        title={props.content?.title1} 
-                                        subheader={props.content?.subtitle1} 
-                                        titleTypographyProps={{gutterBottom: true}} className={classes.card_header} />
+                                        : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image1, classes.card_media)}
+                                    <CardContent className={classes.card_content}>
+                                        <Typography className={classes.card_title}>
+                                            {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title1}
+                                        </Typography>
+                                        <Typography className={classes.card_subtitle}>
+                                            {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.subtitle1} 
+                                        </Typography>
+                                    </CardContent>
                                 </CardActionArea>
                             </Card>
                         </Grid>
@@ -43,11 +47,15 @@ const FeaturedView = (props: IGetFeaturedContent): JSX.Element =>
                                 <CardActionArea href={props.content?.link2} target="_blank">
                                     {props.isLoading 
                                         ? <Skeleton variant="rect" height="256px" /> 
-                                        : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image2, classes.media)}
-                                    <CardHeader 
-                                        title={props.content?.title2} 
-                                        subheader={props.content?.subtitle2} 
-                                        titleTypographyProps={{gutterBottom: true}} className={classes.card_header} />
+                                        : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image2, classes.card_media)}
+                                    <CardContent className={classes.card_content}>
+                                        <Typography className={classes.card_title}>
+                                            {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title2}
+                                        </Typography>
+                                        <Typography className={classes.card_subtitle}>
+                                            {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.subtitle2} 
+                                        </Typography>
+                                    </CardContent>
                                 </CardActionArea>
                             </Card>
                         </Grid>
@@ -56,12 +64,16 @@ const FeaturedView = (props: IGetFeaturedContent): JSX.Element =>
                                 <CardActionArea href={props.content?.link3} target="_blank">
                                     {props.isLoading 
                                         ? <Skeleton variant="rect" height="256px" /> 
-                                        : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image3, classes.media)}
-                                    <CardHeader 
-                                        title={props.content?.title3} 
-                                        subheader={props.content?.subtitle3} 
-                                        titleTypographyProps={{gutterBottom: true}} className={classes.card_header} />
-                                    </CardActionArea>
+                                        : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image3, classes.card_media)}
+                                    <CardContent className={classes.card_content}>
+                                        <Typography className={classes.card_title}>
+                                            {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title3}
+                                        </Typography>
+                                        <Typography className={classes.card_subtitle}>
+                                            {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.subtitle3} 
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
                             </Card>
                         </Grid>
                     </Grid>

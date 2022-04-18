@@ -34,48 +34,54 @@ const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
                     <Grid container spacing={6}>
                         <Grid item xs={12} md={4} data-aos="fade-left">
                             <Card elevation={0} className={classes.card}>
-                                <CardMedia image={imageUrl(props.content?.photo1)} component="img" className={classes.card_image} />
+                                {props.isLoading 
+                                ? <Skeleton variant="rect" className={classes.card_image} /> 
+                                : <CardMedia image={imageUrl(props.content?.photo1)} component="img" className={classes.card_image} />}
                                 <CardContent className={classes.card_content}>
                                     <Typography className={classes.card_title}>
-                                        {props.content?.name1}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.content?.name1}
                                     </Typography>
                                     <Typography className={classes.card_subheader}>
-                                        {props.content?.occupation1}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.content?.occupation1}
                                     </Typography>
                                     <Typography className={classes.card_text}>
-                                        {GetShortText(props.content?.text1, limit)}
+                                        {props.isLoading ? <Skeleton variant="text" /> : GetShortText(props.content?.text1, limit)}
                                     </Typography>
                                 </CardContent>
                             </Card>
                         </Grid>
                         <Grid item xs={12} md={4} data-aos="fade-up">
                             <Card elevation={3} className={classes.card}>
-                                <CardMedia image={imageUrl(props.content?.photo2)} component="img" className={classes.card_image} />
+                                {props.isLoading 
+                                ? <Skeleton variant="rect" className={classes.card_image} /> 
+                                : <CardMedia image={imageUrl(props.content?.photo2)} component="img" className={classes.card_image} />}
                                 <CardContent className={classes.card_content}>
                                 <Typography className={classes.card_title}>
-                                        {props.content?.name2}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.content?.name2}
                                     </Typography>
                                     <Typography className={classes.card_subheader}>
-                                        {props.content?.occupation2}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.content?.occupation2}
                                     </Typography>
                                     <Typography className={classes.card_text}>
-                                        {GetShortText(props.content?.text2, limit)}
+                                        {props.isLoading ? <Skeleton variant="text" /> : GetShortText(props.content?.text2, limit)}
                                     </Typography>
                                 </CardContent>
                             </Card>
                         </Grid>
                         <Grid item xs={12} md={4} data-aos="fade-right">
                             <Card elevation={3} className={classes.card}>
-                                <CardMedia image={imageUrl(props.content?.photo3)} component="img" className={classes.card_image} />
+                                {props.isLoading 
+                                ? <Skeleton variant="rect" className={classes.card_image} /> 
+                                : <CardMedia image={imageUrl(props.content?.photo3)} component="img" className={classes.card_image} />}
                                 <CardContent className={classes.card_content}>
                                 <Typography className={classes.card_title}>
-                                        {props.content?.name3}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.content?.name3}
                                     </Typography>
                                     <Typography className={classes.card_subheader}>
-                                        {props.content?.occupation3}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.content?.occupation3}
                                     </Typography>
                                     <Typography className={classes.card_text}>
-                                        {GetShortText(props.content?.text3, limit)}
+                                        {props.isLoading ? <Skeleton variant="text" /> : GetShortText(props.content?.text3, limit)}
                                     </Typography>
                                 </CardContent>
                             </Card>
