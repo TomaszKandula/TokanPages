@@ -44,8 +44,8 @@ const ActivateAccountView = (props: IBinding): JSX.Element =>
         <section className={classes.section}>
             <Container maxWidth="sm">
                 <Box py={15}>
-                    <Card elevation={4}>
-                        <CardContent className={classes.card}>
+                    <Card elevation={0} className={classes.card}>
+                        <CardContent className={classes.card_content}>
                         <Box textAlign="center" mb={3}>
                             <Box mt={2} mb={2}>
                                 <Typography gutterBottom={true} className={classes.caption}>

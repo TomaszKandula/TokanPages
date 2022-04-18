@@ -14,6 +14,12 @@ const featuresStyle = makeStyles((theme) => (
         color: CustomColours.colours.violet,
         marginRight: theme.spacing(1),
     },
+    skeleton_circle:
+    {
+        width: "42px", 
+        height: "42px",
+        margin: "0px 15px 0px 0px"
+    },
     caption_text:
     {
         textAlign: "center",

@@ -20,6 +20,11 @@ const userSignoutStyle = makeStyles(() => (
     },
     card:
     {
+        borderRadius: "15px",
+        boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)"
+    },
+    card_content:
+    {
         marginTop: 10,
         marginLeft: 15,
         marginRight: 15,

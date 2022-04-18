@@ -65,8 +65,8 @@ const UserSignupView = (props: IBinding): JSX.Element =>
         <section>
             <Container maxWidth="sm">
                 <Box pt={18} pb={10}>
-                    <Card elevation={4}>
-                        <CardContent className={classes.card}>
+                    <Card elevation={0} className={classes.card}>
+                        <CardContent className={classes.card_content}>
                             <Box mb={3} textAlign="center">
                             <AccountCircle className={classes.account} />
                                 <Typography className={classes.caption}>

@@ -29,9 +29,11 @@ const FeaturesView = (props: IGetFeaturesContent): JSX.Element =>
                     <Grid container spacing={6}>
                         <Grid item xs={12} sm={6}>
                             <Box mb={2} display="flex" alignItems="center" data-aos="zoom-in">
-                                <CodeIcon className={classes.icon} />
+                                {props.isLoading 
+                                    ? <Skeleton variant="circle" className={classes.skeleton_circle} /> 
+                                    : <CodeIcon className={classes.icon} />}
                                 <Typography className={classes.feature_title}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.title1}
+                                    {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title1}
                                 </Typography>
                             </Box>
                             <Typography className={classes.feature_text} data-aos="fade-left">
@@ -40,9 +42,11 @@ const FeaturesView = (props: IGetFeaturesContent): JSX.Element =>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Box mb={2} display="flex" alignItems="center" data-aos="zoom-in">
-                                <LibraryBooksIcon className={classes.icon} />
+                                {props.isLoading 
+                                    ? <Skeleton variant="circle" className={classes.skeleton_circle} /> 
+                                    : <LibraryBooksIcon className={classes.icon} />}
                                 <Typography className={classes.feature_title}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.title2}
+                                    {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title2}
                                 </Typography>
                             </Box>
                             <Typography className={classes.feature_text} data-aos="fade-left">
@@ -51,9 +55,11 @@ const FeaturesView = (props: IGetFeaturesContent): JSX.Element =>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Box mb={2} display="flex" alignItems="center" data-aos="zoom-in">
-                                <StorageIcon className={classes.icon} />
+                                {props.isLoading 
+                                    ? <Skeleton variant="circle" className={classes.skeleton_circle} /> 
+                                    : <StorageIcon className={classes.icon} />}
                                 <Typography className={classes.feature_title}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.title3}
+                                    {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title3}
                                 </Typography>
                             </Box>
                             <Typography className={classes.feature_text} data-aos="fade-right">
@@ -62,9 +68,11 @@ const FeaturesView = (props: IGetFeaturesContent): JSX.Element =>
                         </Grid>
                         <Grid item xs={12} sm={6}>         
                             <Box mb={2} display="flex" alignItems="center" data-aos="zoom-in">
-                                <CloudIcon color="primary" className={classes.icon} />
+                                {props.isLoading 
+                                    ? <Skeleton variant="circle" className={classes.skeleton_circle} /> 
+                                    : <CloudIcon color="primary" className={classes.icon} />}
                                 <Typography className={classes.feature_title}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.title4}
+                                    {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title4}
                                 </Typography>
                             </Box>
                             <Typography className={classes.feature_text} data-aos="fade-right">

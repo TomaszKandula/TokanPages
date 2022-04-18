@@ -228,6 +228,34 @@ describe("Verify helper methods.", () =>
         expect(helpers.GetReadTime(wordsNumber, wordsPerMinute)).toBe(expectation);
     });
 
+    it("Given long text and limit of 10 words. When GetShortText. Should return text with 10 words.", () => 
+    {
+        // Arrange
+        const text = "This is long text. It will be used to test the method that should make it shorter.";
+        const expectation = "This is long text. It will be used to test...";
+        const limit = 10;
+
+        // Act
+        const output = helpers.GetShortText(text, limit);
+
+        // Assert
+        expect(output).toBe(expectation);
+    });
+
+    it("Given empty input value. When GetShortText. Should return empty string.", () => 
+    {
+        // Arrange
+        const text = "";
+        const expectation = "";
+        const limit = 10;
+
+        // Act
+        const output = helpers.GetShortText(text, limit);
+
+        // Assert
+        expect(output).toBe(expectation);
+    });
+
     it("Given valid JSON object. When GetErrorMessage. Should return translated error message.", () => 
     {
         // Arrange

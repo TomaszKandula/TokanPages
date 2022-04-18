@@ -3,60 +3,61 @@ import { CustomColours } from "../../../Theme/customColours";
 
 const articleCardStyle = makeStyles((theme) => (
 {
-    root: 
+    card: 
     {
-        marginTop: 25,
-        marginBottom: 25
-    },
-    link:
-    {
-        textDecoration: "none"
-    },
-    large_screen:
-    {
+        marginTop: "25px",
+        marginBottom: "25px",
         [theme.breakpoints.down(700)]:
         {
-            display: "none"
+            display: "block"
         },
         [theme.breakpoints.up(700)]:
         {
             display: "flex"
-        }
+        },
+        borderRadius: "15px",
+        boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)"
     },
-    small_screen:
+    card_link:
     {
+        textDecoration: "none"
+    },
+    card_image:
+    {
+        [theme.breakpoints.down(700)]:
+        {
+            height: "180px",
+            width: "auto",
+        },
         [theme.breakpoints.up(700)]:
         {
-            display: "none"
+            height: "auto",
+            width: "180px",
         }
     },
-    image:
-    {
-        margin: "auto",
-        display: "block",
-        objectFit: "cover",
-        height: 180,
-        maxWidth: "100%"
-    },
-    title:
+    card_title:
     {
         fontSize: "1.5rem",
         color: CustomColours.colours.black
     },
-    description:
+    card_description:
     {
         fontSize: "1.0rem",
         color: CustomColours.colours.gray1
+    },
+    card_action:
+    {
+        marginTop: "25px"
     },
     button:
     {
         [theme.breakpoints.down(700)]:
         {
-            marginTop: "0px"
+            marginLeft: "auto"
         },
         [theme.breakpoints.up(700)]:
         {
-            marginTop: "18px"
+            marginLeft: "0px"
         },
         "&:hover": 
         {

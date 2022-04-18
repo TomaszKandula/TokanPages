@@ -17,7 +17,7 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
           data-aos="fade-down"
         >
           <WithStyles(ForwardRef(Typography))
-            className="makeStyles-caption_text-3"
+            className="makeStyles-caption_text-4"
             gutterBottom={true}
           >
             TECHNOLOGIES
@@ -43,13 +43,13 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
               className="makeStyles-icon-2"
             />
             <WithStyles(ForwardRef(Typography))
-              className="makeStyles-feature_title-4"
+              className="makeStyles-feature_title-5"
             >
               Languages
             </WithStyles(ForwardRef(Typography))>
           </Styled(MuiBox)>
           <WithStyles(ForwardRef(Typography))
-            className="makeStyles-feature_text-5"
+            className="makeStyles-feature_text-6"
             data-aos="fade-left"
           >
             Today in my daily job, I use...
@@ -70,13 +70,13 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
               className="makeStyles-icon-2"
             />
             <WithStyles(ForwardRef(Typography))
-              className="makeStyles-feature_title-4"
+              className="makeStyles-feature_title-5"
             >
               Frameworks/Libraries
             </WithStyles(ForwardRef(Typography))>
           </Styled(MuiBox)>
           <WithStyles(ForwardRef(Typography))
-            className="makeStyles-feature_text-5"
+            className="makeStyles-feature_text-6"
             data-aos="fade-left"
           >
             Back-End: NET Framework 4.5 (for one project)...
@@ -97,13 +97,13 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
               className="makeStyles-icon-2"
             />
             <WithStyles(ForwardRef(Typography))
-              className="makeStyles-feature_title-4"
+              className="makeStyles-feature_title-5"
             >
               OR/M
             </WithStyles(ForwardRef(Typography))>
           </Styled(MuiBox)>
           <WithStyles(ForwardRef(Typography))
-            className="makeStyles-feature_text-5"
+            className="makeStyles-feature_text-6"
             data-aos="fade-right"
           >
             I have started with Entity Framework...
@@ -125,13 +125,13 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
               color="primary"
             />
             <WithStyles(ForwardRef(Typography))
-              className="makeStyles-feature_title-4"
+              className="makeStyles-feature_title-5"
             >
               Cloud Services
             </WithStyles(ForwardRef(Typography))>
           </Styled(MuiBox)>
           <WithStyles(ForwardRef(Typography))
-            className="makeStyles-feature_text-5"
+            className="makeStyles-feature_text-6"
             data-aos="fade-right"
           >
             I have experience with...
