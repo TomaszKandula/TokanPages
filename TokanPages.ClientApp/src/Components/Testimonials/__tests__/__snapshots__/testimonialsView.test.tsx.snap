@@ -8,128 +8,138 @@ exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView 
     maxWidth="lg"
   >
     <Styled(MuiBox)
+      mb={5}
       pb={10}
       pt={8}
+      textAlign="center"
     >
-      <WithStyles(ForwardRef(Container))
-        maxWidth="sm"
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-caption_text-2"
+        data-aos="fade-down"
+        gutterBottom={true}
       >
-        <Styled(MuiBox)
-          data-aos="fade-down"
-          mb={5}
-          textAlign="center"
-        >
-          <WithStyles(ForwardRef(Typography))
-            className="makeStyles-caption_text-3"
-            gutterBottom={true}
-          >
-            TESTIMONIALS
-          </WithStyles(ForwardRef(Typography))>
-        </Styled(MuiBox)>
-      </WithStyles(ForwardRef(Container))>
-      <div
-        data-aos="fade-up"
+        TESTIMONIALS
+      </WithStyles(ForwardRef(Typography))>
+    </Styled(MuiBox)>
+    <Styled(MuiBox)
+      pb={15}
+      textAlign="center"
+    >
+      <WithStyles(ForwardRef(Grid))
+        container={true}
+        spacing={6}
       >
-        <Carousel
-          animationHandler="slide"
-          autoPlay={true}
-          axis="horizontal"
-          centerSlidePercentage={80}
-          infiniteLoop={true}
-          interval={6100}
-          labels={
-            Object {
-              "item": "slide item",
-              "leftArrow": "previous slide / item",
-              "rightArrow": "next slide / item",
-            }
-          }
-          onChange={[Function]}
-          onClickItem={[Function]}
-          onClickThumb={[Function]}
-          onSwipeEnd={[Function]}
-          onSwipeMove={[Function]}
-          onSwipeStart={[Function]}
-          preventMovementUntilSwipeScrollTolerance={false}
-          renderArrowNext={[Function]}
-          renderArrowPrev={[Function]}
-          renderIndicator={[Function]}
-          renderItem={[Function]}
-          renderThumbs={[Function]}
-          selectedItem={0}
-          showArrows={true}
-          showIndicators={true}
-          showStatus={false}
-          showThumbs={false}
-          statusFormatter={[Function]}
-          stopOnHover={true}
-          stopSwipingHandler={[Function]}
-          swipeAnimationHandler={[Function]}
-          swipeScrollTolerance={5}
-          swipeable={true}
-          transitionTime={350}
-          verticalSwipe="standard"
-          width="100%"
+        <WithStyles(ForwardRef(Grid))
+          data-aos="fade-left"
+          item={true}
+          md={4}
+          xs={12}
         >
-          <Styled(MuiBox)
-            className="makeStyles-box_padding-7"
+          <WithStyles(ForwardRef(Card))
+            className="makeStyles-card-3"
+            elevation={0}
           >
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-title-4"
+            <WithStyles(ForwardRef(CardMedia))
+              className="makeStyles-card_image-5"
+              component="img"
+              image=" "
+            />
+            <WithStyles(ForwardRef(CardContent))
+              className="makeStyles-card_content-6"
             >
-              Joanna
-            </WithStyles(ForwardRef(Typography))>
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-subtitle-5"
-            >
-              Senior Digital Tax Specialist
-            </WithStyles(ForwardRef(Typography))>
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-commendation-6"
-            >
-              Joe is very motivated...
-            </WithStyles(ForwardRef(Typography))>
-          </Styled(MuiBox)>
-          <Styled(MuiBox)
-            className="makeStyles-box_padding-7"
+              <WithStyles(ForwardRef(Typography))
+                className="makeStyles-card_title-7"
+              >
+                Joanna
+              </WithStyles(ForwardRef(Typography))>
+              <WithStyles(ForwardRef(Typography))
+                className="makeStyles-card_subheader-8"
+              >
+                Senior Digital Tax Specialist
+              </WithStyles(ForwardRef(Typography))>
+              <WithStyles(ForwardRef(Typography))
+                className="makeStyles-card_text-9"
+              >
+                Joe is very motivated...
+              </WithStyles(ForwardRef(Typography))>
+            </WithStyles(ForwardRef(CardContent))>
+          </WithStyles(ForwardRef(Card))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          className="makeStyles-card_space-4"
+          data-aos="fade-up"
+          item={true}
+          md={4}
+          xs={12}
+        >
+          <WithStyles(ForwardRef(Card))
+            className="makeStyles-card-3"
+            elevation={3}
           >
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-title-4"
+            <WithStyles(ForwardRef(CardMedia))
+              className="makeStyles-card_image-5"
+              component="img"
+              image=" "
+            />
+            <WithStyles(ForwardRef(CardContent))
+              className="makeStyles-card_content-6"
             >
-              Adama
-            </WithStyles(ForwardRef(Typography))>
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-subtitle-5"
-            >
-              Full-stack Developer chez DFDS POLSKA
-            </WithStyles(ForwardRef(Typography))>
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-commendation-6"
-            >
-              Joe have done very good work...
-            </WithStyles(ForwardRef(Typography))>
-          </Styled(MuiBox)>
-          <Styled(MuiBox)
-            className="makeStyles-box_padding-7"
+              <WithStyles(ForwardRef(Typography))
+                className="makeStyles-card_title-7"
+              >
+                Adama
+              </WithStyles(ForwardRef(Typography))>
+              <WithStyles(ForwardRef(Typography))
+                className="makeStyles-card_subheader-8"
+              >
+                Full-stack Developer chez DFDS POLSKA
+              </WithStyles(ForwardRef(Typography))>
+              <WithStyles(ForwardRef(Typography))
+                className="makeStyles-card_text-9"
+              >
+                Joe have done very good work...
+              </WithStyles(ForwardRef(Typography))>
+            </WithStyles(ForwardRef(CardContent))>
+          </WithStyles(ForwardRef(Card))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          className="makeStyles-card_space-4"
+          data-aos="fade-right"
+          item={true}
+          md={4}
+          xs={12}
+        >
+          <WithStyles(ForwardRef(Card))
+            className="makeStyles-card-3"
+            elevation={3}
           >
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-title-4"
+            <WithStyles(ForwardRef(CardMedia))
+              className="makeStyles-card_image-5"
+              component="img"
+              image=" "
+            />
+            <WithStyles(ForwardRef(CardContent))
+              className="makeStyles-card_content-6"
             >
-              Scott
-            </WithStyles(ForwardRef(Typography))>
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-subtitle-5"
-            >
-              BPO
-            </WithStyles(ForwardRef(Typography))>
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-commendation-6"
-            >
-              Joe is one of those rare talents...
-            </WithStyles(ForwardRef(Typography))>
-          </Styled(MuiBox)>
-        </Carousel>
-      </div>
+              <WithStyles(ForwardRef(Typography))
+                className="makeStyles-card_title-7"
+              >
+                Scott
+              </WithStyles(ForwardRef(Typography))>
+              <WithStyles(ForwardRef(Typography))
+                className="makeStyles-card_subheader-8"
+              >
+                BPO
+              </WithStyles(ForwardRef(Typography))>
+              <WithStyles(ForwardRef(Typography))
+                className="makeStyles-card_text-9"
+              >
+                Joe is one of those rare talents...
+              </WithStyles(ForwardRef(Typography))>
+            </WithStyles(ForwardRef(CardContent))>
+          </WithStyles(ForwardRef(Card))>
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
     </Styled(MuiBox)>
   </WithStyles(ForwardRef(Container))>
 </section>

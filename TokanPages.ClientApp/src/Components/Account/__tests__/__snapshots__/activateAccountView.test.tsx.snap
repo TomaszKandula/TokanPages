@@ -11,10 +11,11 @@ exports[`Test account group component: activateAccountView. Renders correctly '<
       py={15}
     >
       <WithStyles(ForwardRef(Card))
-        elevation={4}
+        className="makeStyles-card-5"
+        elevation={0}
       >
         <WithStyles(ForwardRef(CardContent))
-          className="makeStyles-card-5"
+          className="makeStyles-card_content-6"
         >
           <Styled(MuiBox)
             mb={3}

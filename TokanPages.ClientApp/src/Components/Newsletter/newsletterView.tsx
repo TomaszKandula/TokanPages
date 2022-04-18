@@ -63,10 +63,10 @@ const NewsletterView = (props: IBinding): JSX.Element =>
                                     <Box my="auto" width="100%">
                                         <Grid container spacing={2}>
                                             <Grid item xs={12} sm={7}>
-                                                <TextField 
-                                                    required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail}
-                                                    variant="outlined" size="small" name="email" id="email_newletter" autoComplete="email" 
-                                                />
+                                                {props.bind?.isLoading 
+                                                ? <Skeleton variant="rect" width="100%" height="45px" /> 
+                                                : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail}
+                                                    variant="outlined" size="small" name="email" id="email_newletter" autoComplete="email" />}
                                             </Grid>
                                             <Grid item xs={12} sm={5}>
                                                 {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton />}

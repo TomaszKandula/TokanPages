@@ -7,10 +7,22 @@ const articleFeatStyle = makeStyles((theme) => (
     {
         backgroundColor: CustomColours.colours.white
     },
-    info: 
+    card: 
     {
         height: "100%",
         minHeight: "128px",
+        borderRadius: "15px",
+        boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)"
+    },
+    card_content:
+    {
+        height: "100%",
+        minHeight: "128px",
+    },
+    card_image:
+    {
+        borderRadius: "15px",
+        boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)"
     },
     title:
     {

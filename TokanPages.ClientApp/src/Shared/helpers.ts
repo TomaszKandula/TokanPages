@@ -111,6 +111,25 @@ const GetReadTime = (countWords: number, wordsPerMinute: number): string =>
     return result.toFixed(2);
 }
 
+const GetShortText = (value: string, limit: number): string => 
+{
+    if (value === undefined || value === "") return "";
+    
+    let result = value;
+    let output: string[] = value.split(/\s+/);
+
+    if (output.length > limit)
+    {
+        let strings = output.slice(0, limit);
+        let lastWord = strings[strings.length - 1];
+
+        strings[strings.length - 1] = lastWord.replace(/[^0-9a-zA-Z ]/, "");
+        result = `${strings.join(" ")}...`;
+    }
+
+    return result;
+}
+
 const GetErrorMessage = (errorObject: any): string =>
 {
     console.error(errorObject);
@@ -186,6 +205,7 @@ export
     TextObjectToRawText,
     CountWords,
     GetReadTime,
+    GetShortText,
     GetErrorMessage,
     RaiseError,
     DelDataFromStorage,
