@@ -6,7 +6,6 @@ import { IGetReadTime } from "./interface";
 
 describe("Verify helper methods.", () => 
 {
- 
     it("Given number of words and words per minute. When GetReadTime. Should return read time.", () => 
     {
         // Arrange

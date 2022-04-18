@@ -1,7 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-
 import { IPropsToFields } from "./interface";
 import { PropsToFields } from "./propsToFields";
 
