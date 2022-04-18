@@ -8,25 +8,21 @@ exports[`Test articles group component: articleFeatView. Renders correctly '<Art
     maxWidth="lg"
   >
     <Styled(MuiBox)
-      pb={10}
+      pb={12}
       pt={8}
     >
-      <WithStyles(ForwardRef(Container))
-        maxWidth="sm"
+      <Styled(MuiBox)
+        data-aos="fade-down"
+        mb={6}
+        textAlign="center"
       >
-        <Styled(MuiBox)
-          data-aos="fade-down"
-          mb={5}
-          textAlign="center"
+        <WithStyles(ForwardRef(Typography))
+          className="makeStyles-title-5"
+          gutterBottom={true}
         >
-          <WithStyles(ForwardRef(Typography))
-            className="makeStyles-title-3"
-            gutterBottom={true}
-          >
-            ARTICLES
-          </WithStyles(ForwardRef(Typography))>
-        </Styled(MuiBox)>
-      </WithStyles(ForwardRef(Container))>
+          ARTICLES
+        </WithStyles(ForwardRef(Typography))>
+      </Styled(MuiBox)>
       <WithStyles(ForwardRef(Container))
         maxWidth="lg"
       >
@@ -37,17 +33,17 @@ exports[`Test articles group component: articleFeatView. Renders correctly '<Art
             container={true}
           >
             <WithStyles(ForwardRef(Grid))
-              className="makeStyles-content-7"
+              className="makeStyles-content-9"
               item={true}
               lg={6}
               xs={12}
             >
               <WithStyles(ForwardRef(Card))
-                className="makeStyles-info-2"
-                elevation={3}
+                className="makeStyles-card-2"
+                elevation={0}
               >
                 <WithStyles(ForwardRef(CardContent))
-                  className="makeStyles-info-2"
+                  className="makeStyles-card_content-3"
                 >
                   <Styled(MuiBox)
                     display="flex"
@@ -57,7 +53,7 @@ exports[`Test articles group component: articleFeatView. Renders correctly '<Art
                     px={2}
                   >
                     <WithStyles(ForwardRef(Typography))
-                      className="makeStyles-text1-4"
+                      className="makeStyles-text1-6"
                     >
                       .NET Core, Azure, databases and others.
                     </WithStyles(ForwardRef(Typography))>
@@ -66,7 +62,7 @@ exports[`Test articles group component: articleFeatView. Renders correctly '<Art
                       mt="auto"
                     >
                       <WithStyles(ForwardRef(Typography))
-                        className="makeStyles-text2-5"
+                        className="makeStyles-text2-7"
                       >
                         Let's dive into Microsoft technology...
                       </WithStyles(ForwardRef(Typography))>
@@ -95,10 +91,11 @@ exports[`Test articles group component: articleFeatView. Renders correctly '<Art
                   xs={12}
                 >
                   <WithStyles(ForwardRef(Card))
-                    elevation={4}
+                    className="makeStyles-card_image-4"
+                    elevation={0}
                   >
                     <WithStyles(ForwardRef(CardMedia))
-                      className="makeStyles-media-6"
+                      className="makeStyles-media-8"
                       image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/articles/image1.jpg"
                     />
                   </WithStyles(ForwardRef(Card))>
@@ -109,10 +106,11 @@ exports[`Test articles group component: articleFeatView. Renders correctly '<Art
                   xs={12}
                 >
                   <WithStyles(ForwardRef(Card))
-                    elevation={4}
+                    className="makeStyles-card_image-4"
+                    elevation={0}
                   >
                     <WithStyles(ForwardRef(CardMedia))
-                      className="makeStyles-media-6"
+                      className="makeStyles-media-8"
                       image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/articles/image2.jpg"
                     />
                   </WithStyles(ForwardRef(Card))>
@@ -123,10 +121,11 @@ exports[`Test articles group component: articleFeatView. Renders correctly '<Art
                   xs={12}
                 >
                   <WithStyles(ForwardRef(Card))
-                    elevation={4}
+                    className="makeStyles-card_image-4"
+                    elevation={0}
                   >
                     <WithStyles(ForwardRef(CardMedia))
-                      className="makeStyles-media-6"
+                      className="makeStyles-media-8"
                       image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/articles/image3.jpg"
                     />
                   </WithStyles(ForwardRef(Card))>
@@ -137,10 +136,11 @@ exports[`Test articles group component: articleFeatView. Renders correctly '<Art
                   xs={12}
                 >
                   <WithStyles(ForwardRef(Card))
-                    elevation={4}
+                    className="makeStyles-card_image-4"
+                    elevation={0}
                   >
                     <WithStyles(ForwardRef(CardMedia))
-                      className="makeStyles-media-6"
+                      className="makeStyles-media-8"
                       image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/articles/image4.jpg"
                     />
                   </WithStyles(ForwardRef(Card))>

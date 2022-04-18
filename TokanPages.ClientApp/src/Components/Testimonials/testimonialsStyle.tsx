@@ -7,65 +7,68 @@ const testimonialsStyle = makeStyles((theme) => (
     {
         backgroundColor: CustomColours.colours.white
     },
-    image:
-    {
-        width: "150px !important",
-        borderRadius: "50%"
-    },
     caption_text:
     {
         textAlign: "center",
         fontSize: "2.0rem",
         color: CustomColours.colours.darkViolet1
     },
-    title:
+    card:
     {
-        fontSize: "1.2rem",
-        fontWeight: 400,
-        textAlign: "center",
-        marginTop: "15px",
-        marginBottom: "15px"
+        minHeight: "340px",
+        borderRadius: "15px",
+        boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)"
     },
-    subtitle:
+    card_space:
     {
-        fontSize: "1.2rem",
-        fontWeight: 400,
-        textAlign: "center",
-        marginTop: "15px",
-        marginBottom: "15px"
-    },
-    commendation:
-    {
-        fontSize: "1.2rem",
-        fontWeight: 400,
-        lineHeight: 2.0,
-        marginLeft: "25px",
-        marginRight: "25px",
-        color: CustomColours.colours.gray2
-    },
-    box_padding:
-    {
-        [theme.breakpoints.up("xl")]: 
+        [theme.breakpoints.down("md")]:
         {
-            paddingLeft: "125px",
-            paddingRight: "125px"
+            marginTop: "45px"
         },
-        [theme.breakpoints.up("lg")]: 
+        [theme.breakpoints.up("md")]:
         {
-            paddingLeft: "125px",
-            paddingRight: "125px"
-        },
-        [theme.breakpoints.up("md")]: 
-        {
-            paddingLeft: "125px",
-            paddingRight: "125px"
-        },
-        [theme.breakpoints.up("sm")]: 
-        {
-            paddingLeft: "75px",
-            paddingRight: "75px"
+            marginTop: "0px"
         }
-    }
+    },
+    card_image:
+    {
+        height: "140px",
+        width: "140px",
+        borderRadius: "50%",
+        top: 0,
+        left: "50%",
+        margin: 0,
+        transform: "translate(-50%, -33%)",
+        overflow: "hidden",
+        position: "absolute",
+        verticalAlign: "middle"
+    },
+    card_content:
+    {
+        marginTop: "70px"
+    },
+    card_title:
+    {
+        textAlign: "center",
+        fontSize: "1.5rem",
+        fontWeight: 700,
+        lineHeight: "2.2",
+        color: CustomColours.colours.black
+    },
+    card_subheader:
+    {
+        textAlign: "center",
+        fontSize: "1.0rem",
+        lineHeight: "2.0",
+        color: CustomColours.colours.darkViolet1
+    },
+    card_text:
+    {
+        textAlign: "left",
+        lineHeight: "1.8",
+        marginTop: "15px",
+        color: CustomColours.colours.gray1
+    },
 }));
 
 export default testimonialsStyle;
