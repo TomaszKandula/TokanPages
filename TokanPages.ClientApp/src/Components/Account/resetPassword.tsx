@@ -7,7 +7,7 @@ import { ActionCreators } from "../../Redux/Actions/Users/resetUserPasswordActio
 import { IResetUserPasswordDto } from "../../Api/Models";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { IValidateResetForm, ValidateEmail } from "../../Shared/validate";
+import { IValidateResetForm, ValidateResetForm } from "../../Shared/Services/FormValidation";
 import { ProduceWarningText } from "../../Shared/textWrappers";
 import { OperationStatus } from "../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE, RESET_FORM, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_WARNING } from "../../Shared/constants";
@@ -75,7 +75,7 @@ const ResetPassword = (props: IGetResetPasswordContent): JSX.Element =>
 
     const buttonHandler = () =>
     {
-        let results = ValidateEmail(form.email);
+        let results = ValidateResetForm({ email: form.email });
 
         if (!Validate.isDefined(results))
         {

@@ -8,7 +8,7 @@ import { ActionCreators } from "../../Redux/Actions/Users/updateUserPasswordActi
 import { IUpdateUserPasswordDto } from "../../Api/Models";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { IValidateUpdateForm, ValidateUpdateForm } from "../../Shared/validate";
+import { IValidateUpdateForm, ValidateUpdateForm } from "../../Shared/Services/FormValidation";
 import { ProduceWarningText } from "../../Shared/textWrappers";
 import { OperationStatus } from "../../Shared/enums";
 import {RECEIVED_ERROR_MESSAGE, UPDATE_FORM, UPDATE_PASSWORD_SUCCESS, UPDATE_PASSWORD_WARNING } from "../../Shared/constants";

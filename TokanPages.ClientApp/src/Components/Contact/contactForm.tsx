@@ -6,7 +6,7 @@ import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogA
 import { IApplicationState } from "../../Redux/applicationState";
 import { IGetContactFormContent } from "../../Redux/States/Content/getContactFormContentState";
 import { OperationStatus } from "../../Shared/enums";
-import { IValidateContactForm, ValidateContactForm } from "../../Shared/validate";
+import { IValidateContactForm, ValidateContactForm } from "../../Shared/Services/FormValidation";
 import { ProduceWarningText } from "../../Shared/textWrappers";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";

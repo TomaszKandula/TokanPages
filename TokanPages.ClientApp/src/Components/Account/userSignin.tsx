@@ -8,7 +8,7 @@ import { ActionCreators } from "../../Redux/Actions/Users/signinUserAction";
 import { IAuthenticateUserDto } from "../../Api/Models";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { ProduceWarningText } from "../../Shared/textWrappers";
-import { IValidateSigninForm, ValidateSigninForm } from "../../Shared/validate";
+import { IValidateSigninForm, ValidateSigninForm } from "../../Shared/Services/FormValidation";
 import { OperationStatus } from "../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE, SIGNIN_FORM, SIGNIN_WARNING } from "../../Shared/constants";
 import UserSigninView from "./userSigninView";

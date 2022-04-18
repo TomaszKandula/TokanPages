@@ -5,9 +5,9 @@ import { IGetNewsletterContent } from "../../Redux/States/Content/getNewsletterC
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as SubscriberAction } from "../../Redux/Actions/Subscribers/addSubscriberAction";
 import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
-import { ValidateEmail } from "../../Shared/validate";
 import { OperationStatus } from "../../Shared/enums";
 import { ProduceWarningText } from "../../Shared/textWrappers";
+import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { NEWSLETTER, NEWSLETTER_SUCCESS, NEWSLETTER_WARNING, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
@@ -67,7 +67,7 @@ const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
     
     const buttonHandler = () =>
     {
-        let results = ValidateEmail(form.email);
+        let results = ValidateEmailForm({ email: form.email });
 
         if (!Validate.isDefined(results))
         {
