@@ -50,7 +50,7 @@ const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
                                 </CardContent>
                             </Card>
                         </Grid>
-                        <Grid item xs={12} md={4} data-aos="fade-up">
+                        <Grid item xs={12} md={4} data-aos="fade-up"  className={classes.card_space}>
                             <Card elevation={3} className={classes.card}>
                                 {props.isLoading 
                                 ? <Skeleton variant="rect" className={classes.card_image} /> 
@@ -68,7 +68,7 @@ const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
                                 </CardContent>
                             </Card>
                         </Grid>
-                        <Grid item xs={12} md={4} data-aos="fade-right">
+                        <Grid item xs={12} md={4} data-aos="fade-right"  className={classes.card_space}>
                             <Card elevation={3} className={classes.card}>
                                 {props.isLoading 
                                 ? <Skeleton variant="rect" className={classes.card_image} /> 

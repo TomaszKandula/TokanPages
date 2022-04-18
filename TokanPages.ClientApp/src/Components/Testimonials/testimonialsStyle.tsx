@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../Theme/customColours";
 
-const testimonialsStyle = makeStyles(() => (
+const testimonialsStyle = makeStyles((theme) => (
 {
     section:
     {
@@ -18,6 +18,17 @@ const testimonialsStyle = makeStyles(() => (
         minHeight: "340px",
         borderRadius: "15px",
         boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)"
+    },
+    card_space:
+    {
+        [theme.breakpoints.down("md")]:
+        {
+            marginTop: "45px"
+        },
+        [theme.breakpoints.up("md")]:
+        {
+            marginTop: "0px"
+        }
     },
     card_image:
     {
