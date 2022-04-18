@@ -1,11 +1,6 @@
 import { ConvertPropsToFields, HtmlRenderLines } from "./helpers";
 import { UNEXPECTED_STATUS } from "../Shared/constants";
 
-const ProduceSuccessText = (template: string = ""): string =>
-{
-    return template;
-}
-
 const ProduceWarningText = (object: any, template: string): string =>
 {
     return template.replace("{LIST}", HtmlRenderLines(ConvertPropsToFields(object), "li"));
@@ -23,7 +18,6 @@ const UnexpectedStatusCode = (statusCode: number): string =>
 
 export 
 {
-    ProduceSuccessText,
     ProduceWarningText,
     ProduceErrorText,
     UnexpectedStatusCode
