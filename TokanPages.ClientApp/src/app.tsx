@@ -11,6 +11,7 @@ import ContactPage from "./Pages/contactPage";
 import SigninPage from "./Pages/signinPage";
 import SignupPage from "./Pages/signupPage";
 import SignoutPage from "./Pages/signoutPage";
+import AccountPage from "./Pages/accountPage";
 import ResetPasswordPage from "./Pages/resetPasswordPage";
 import UpdatePasswordPage from "./Pages/updatePasswordPage";
 import UnsubscribePage from "./Pages/unsubscribePage";
@@ -51,6 +52,7 @@ const App = (): JSX.Element =>
                   <Route exact path="/signin"><SigninPage /></Route>
                   <Route exact path="/signup"><SignupPage /></Route>
                   <Route exact path="/signout"><SignoutPage /></Route>
+                  <Route exact path="/account"><AccountPage /></Route>
                   <Route exact path="/resetpassword"><ResetPasswordPage /></Route>
                   <Route exact path="/updatepassword"><UpdatePasswordPage /></Route>
                   <Route exact path="/unsubscribe"><UnsubscribePage /></Route>
