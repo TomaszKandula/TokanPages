@@ -1,8 +1,5 @@
-/**
- * @jest-environment jsdom
- */
-import { IValidateResetForm } from "./interface";
-import { ValidateResetForm } from "./validateResetForm";
+import "../../../../setupTests";
+import { IValidateResetForm, ValidateResetForm } from "../../FormValidation";
 
 describe("Verify validation methods.", () => 
 {

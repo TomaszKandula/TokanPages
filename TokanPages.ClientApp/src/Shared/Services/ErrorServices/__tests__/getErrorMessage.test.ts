@@ -1,10 +1,7 @@
-/**
- * @jest-environment jsdom
- */
+import "../../../../setupTests";
 import { VALIDATION_ERRORS } from "../../../../Shared/constants";
 import { IErrorDto } from "../../../../Api/Models";
-import { GetErrorMessage } from "./getErrorMessage";
-import { IGetErrorMessage } from "./interface";
+import { IGetErrorMessage, GetErrorMessage } from "../../ErrorServices";
 
 describe("Verify GetErrorMessage.", () => 
 {

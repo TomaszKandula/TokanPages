@@ -1,8 +1,5 @@
-/**
- * @jest-environment jsdom
- */
-import { IRenderHtmlLines } from "./interface";
-import { RenderHtmlLines } from "./RenderHtmlLines";
+import "../../../../setupTests";
+import { IRenderHtmlLines, RenderHtmlLines } from "../../Renderers";
 
 describe("Verify RenderHtmlLines.", () => 
 {

@@ -1,8 +1,8 @@
 /**
- * @jest-environment jsdom
- */
-import { ISetDataInStorage } from "./interface";
-import { SetDataInStorage } from "./setDataInStorage";
+* @jest-environment jsdom
+*/
+import "../../../../setupTests";
+import { ISetDataInStorage, SetDataInStorage } from "../../StorageServices";
 
 describe("Verify SetDataInStorage.", () => 
 {

@@ -1,8 +1,5 @@
-/**
- * @jest-environment jsdom
- */
-import { CountWords } from "./countWords";
-import { ICountWords } from "./interface";
+import "../../../../setupTests";
+import { ICountWords, CountWords } from "../../Utilities";
 
 describe("Verify CountWords.", () =>
 {
