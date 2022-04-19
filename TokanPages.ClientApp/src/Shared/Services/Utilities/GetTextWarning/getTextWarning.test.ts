@@ -15,7 +15,7 @@ describe("Verify helper methods.", () =>
             template: "<span>Following warning(s) received:</span><ul>{LIST}</ul><span>Please contact IT support.</span>"
         }
 
-        const expectation = "<span>Following warning(s) received:</span><ul><li></li>ValueA<li>ValueB</li></ul><span>Please contact IT support.</span>";
+        const expectation = "<span>Following warning(s) received:</span><ul><li>ValueA</li><li>ValueB</li></ul><span>Please contact IT support.</span>";
 
         // Act
         const result = GetTextWarning(input);
