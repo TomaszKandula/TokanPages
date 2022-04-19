@@ -11,6 +11,7 @@
 /build
 
 # misc
+__testrun.dev.sh
 .DS_Store
 .env.local
 .env.development.local
@@ -23,3 +24,4 @@ yarn-error.log*
 
 # sonar qube
 /.sonarqube
+/.scannerwork
