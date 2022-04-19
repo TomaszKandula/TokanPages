@@ -1,8 +1,8 @@
 /**
- * @jest-environment jsdom
- */
-import { GetCookie } from "../GetCookieService/getCookie";
-import { EraseCookie } from "./eraseCookie";
+* @jest-environment jsdom
+*/
+import "../../../../setupTests";
+import { GetCookie, EraseCookie } from "../../CookieServices";
 
  describe("Verify cookies module functionality.", () => 
  {

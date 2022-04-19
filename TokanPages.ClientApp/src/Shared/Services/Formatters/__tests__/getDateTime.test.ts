@@ -1,8 +1,5 @@
-/**
- * @jest-environment jsdom
- */
-import { GetDateTime } from "./getDateTime";
-import { IGetDateTime } from "./interface";
+import "../../../../setupTests";
+import { IGetDateTime, GetDateTime } from "../../Formatters";
 
 describe("Verify GetDateTime.", () => 
 {

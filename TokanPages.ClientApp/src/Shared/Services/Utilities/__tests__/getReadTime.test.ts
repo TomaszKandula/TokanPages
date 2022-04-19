@@ -1,8 +1,5 @@
-/**
- * @jest-environment jsdom
- */
-import { GetReadTime } from "./getReadTime";
-import { IGetReadTime } from "./interface";
+import "../../../../setupTests";
+import { IGetReadTime, GetReadTime } from "../../Utilities";
 
 describe("Verify GetReadTime.", () => 
 {

@@ -1,8 +1,5 @@
-/**
- * @jest-environment jsdom
- */
-import { GetShortText } from "./getShortText";
-import { IGetShortText } from "./interface";
+import "../../../../setupTests";
+import { IGetShortText, GetShortText } from "../../Utilities";
 
 describe("Verify GetShortText.", () => 
 {

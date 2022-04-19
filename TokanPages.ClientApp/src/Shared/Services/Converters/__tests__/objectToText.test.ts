@@ -1,9 +1,6 @@
-/**
- * @jest-environment jsdom
- */
+import "../../../../setupTests";
 import { ITextObject } from "Shared/Components/ContentRender/Models/textModel";
-import { IObjectToText } from "./interface";
-import { ObjectToText } from "./objectToText";
+import { IObjectToText, ObjectToText } from "../../Converters";
 
 describe("Verify ObjectToText.", () => 
 {
