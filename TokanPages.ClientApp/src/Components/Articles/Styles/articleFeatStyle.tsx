@@ -37,6 +37,7 @@ const articleFeatStyle = makeStyles((theme) => (
     text2:
     {
         fontSize: "1.0rem",
+        lineHeight: "1.8",
         color: CustomColours.colours.gray2
     },
     media: 

@@ -6,7 +6,7 @@ import { ArrowBack } from "@material-ui/icons";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Emoji from "react-emoji-render";
 import articleDetailStyle from "./Styles/articleDetailStyle";
-import { FormatDateTime } from "../../Shared/helpers";
+import { GetDateTime } from "../../Shared/Services/Formatters";
 
 interface IBinding 
 {
@@ -100,10 +100,10 @@ const ArticleDetailView = (props: IBinding): JSX.Element =>
                                 Read time: {props.bind?.articleReadTime} min.
                             </Typography>
                             <Typography component="p" variant="subtitle1">
-                                Published at: {FormatDateTime(props.bind?.articleCreatedAt, true)}
+                                Published at: {GetDateTime({ value: props.bind?.articleCreatedAt, hasTimeVisible: true })}
                             </Typography>
                             <Typography component="p" variant="subtitle2" color="textSecondary">
-                                Updated at: {FormatDateTime(props.bind?.articleUpdatedAt, true)}
+                                Updated at: {GetDateTime({ value: props.bind?.articleUpdatedAt, hasTimeVisible: true })}
                             </Typography>
                         </Box>
                     </div>

@@ -6,7 +6,7 @@ import { RenderTable } from "./Renderers/renderTable";
 import { RenderImage } from "./Renderers/renderImage";
 import { RenderVideo } from "./Renderers/renderVideo";
 import { RenderSeparator } from "./Renderers/renderSeparator";
-import { Languages } from "../../languageList";
+import { Languages } from "../../languages";
 
 export const RenderContent = (textObject: ITextObject | undefined): JSX.Element => 
 {

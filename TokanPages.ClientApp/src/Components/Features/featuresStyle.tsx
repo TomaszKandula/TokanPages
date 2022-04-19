@@ -34,6 +34,7 @@ const featuresStyle = makeStyles((theme) => (
     feature_text:
     {
         fontSize: "1.0rem",
+        lineHeight: "1.8",
         color: CustomColours.colours.gray2
     },
 }

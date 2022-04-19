@@ -1,4 +1,4 @@
-import * as CookieHelper from "../cookies";
+import * as CookieHelper from "../Services/CookieServices";
 
 const LanguageSelection = "userLanguage";
 

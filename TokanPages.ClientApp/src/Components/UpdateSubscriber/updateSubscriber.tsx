@@ -6,8 +6,8 @@ import { ActionCreators as SubscriberAction } from "../../Redux/Actions/Subscrib
 import { ActionCreators as RaiseDialogAction } from "../../Redux/Actions/raiseDialogAction";
 import { IGetUpdateSubscriberContent } from "../../Redux/States/Content/getUpdateSubscriberContentState";
 import { OperationStatus } from "../../Shared/enums";
-import { ValidateEmail } from "../../Shared/validate";
-import { ProduceWarningText } from "../../Shared/textWrappers";
+import { GetTextWarning } from "../../Shared/Services/Utilities";
+import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { NEWSLETTER_SUCCESS, NEWSLETTER_WARNING, RECEIVED_ERROR_MESSAGE, UPDATE_SUBSCRIBER } from "../../Shared/constants";
@@ -82,7 +82,7 @@ const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Eleme
         if (props.id == null) 
             return;
 
-        let validationResult = ValidateEmail(form.email);
+        let validationResult = ValidateEmailForm({ email: form.email });
 
         if (!Validate.isDefined(validationResult))
         {
@@ -91,7 +91,7 @@ const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Eleme
             return;
         }
 
-        showWarning(ProduceWarningText(validationResult, NEWSLETTER_WARNING));
+        showWarning(GetTextWarning({ object: validationResult, template: NEWSLETTER_WARNING }));
     };
 
     return (<UpdateSubscriberView bind=

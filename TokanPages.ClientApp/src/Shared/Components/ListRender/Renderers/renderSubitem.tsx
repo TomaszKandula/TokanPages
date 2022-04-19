@@ -39,8 +39,6 @@ export const RenderSubitem = (props: ISubitem): JSX.Element =>
 
     const RenderListItem = (): JSX.Element => 
     {
-        console.log(link);
-        console.log(isHref);
         return isHref ? <RenderItemWithHref /> : <RenderItemWithLink />;
     }
 

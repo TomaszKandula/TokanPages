@@ -11,7 +11,7 @@ import CheckIcon from "@material-ui/icons/Check";
 import Box from "@material-ui/core/Box";
 import { green } from '@material-ui/core/colors';
 import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
-import { FormatDateTime } from "../../../Shared/helpers";
+import { GetDateTime } from "../../../Shared/Services/Formatters";
 import { IAuthenticateUserResultDto } from "../../../Api/Models";
 import UserAvatar from "../UserAvatar/userAvatar";
 import ApplicationUserInfoStyle from "./applicationUserInfoStyle";
@@ -45,6 +45,12 @@ const Items = (props: { item: string, className: string }): JSX.Element =>
 const ApplicationUserInfoView = (props: IBinding): JSX.Element => 
 {
     const classes = ApplicationUserInfoStyle();
+    const registered = GetDateTime(
+    {
+        value: props.bind?.data.registered,
+        hasTimeVisible: true
+    });
+
     return (
         <Dialog fullWidth maxWidth="xs" open={props.bind?.state} onClose={props.bind?.closeHandler} 
             aria-labelledby="dialog-title" aria-describedby="dialog-description">
@@ -75,7 +81,7 @@ const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
                 </Box>
                 <Box pt={2}>
                     <Typography className={classes.item}>
-                        Registered: <Typography component="span" className={classes.value}>{FormatDateTime(props.bind?.data.registered, true)}</Typography>
+                        Registered: <Typography component="span" className={classes.value}>{registered}</Typography>
                     </Typography>
                 </Box>
                 <Box pt={2}>
