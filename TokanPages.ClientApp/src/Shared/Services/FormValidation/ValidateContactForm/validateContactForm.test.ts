@@ -1,7 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-
 import { IValidateContactForm } from "./interface";
 import { ValidateContactForm } from "./validateContactForm";
 

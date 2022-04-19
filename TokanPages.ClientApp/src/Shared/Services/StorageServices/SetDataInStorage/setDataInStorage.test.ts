@@ -4,7 +4,7 @@
 import { ISetDataInStorage } from "./interface";
 import { SetDataInStorage } from "./setDataInStorage";
 
-describe("Verify helper methods.", () => 
+describe("Verify SetDataInStorage.", () => 
 {
     // Prerequisities
     Storage.prototype.setItem = jest.fn((key: string, value: any) => 
@@ -12,7 +12,7 @@ describe("Verify helper methods.", () =>
         console.debug(`Called 'localStorage.setItem' with 'key' = ${key} and 'value' = ${value}.`);
     });
 
-    it("Given input Object. When SetDataInStorage. Should return true.", () => 
+    it("Given input Object. When invoke SetDataInStorage. Should return true.", () => 
     {  
         // Arrange
         const testObject = 
@@ -34,7 +34,7 @@ describe("Verify helper methods.", () =>
         expect(saveObject).toBe(true);
     });
 
-    it("Given input Object and empty Key. When SetDataInStorage. Should return false.", () => 
+    it("Given input Object and empty Key. When invoke SetDataInStorage. Should return false.", () => 
     {  
         // Arrange
         const testObject = 
@@ -56,7 +56,7 @@ describe("Verify helper methods.", () =>
         expect(saveObject).toBe(false);
     });
 
-    it("Given input Array. When SetDataInStorage. Should return true.", () => 
+    it("Given input Array. When invoke SetDataInStorage. Should return true.", () => 
     {  
         // Arrange
         const testArray = 

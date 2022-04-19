@@ -4,9 +4,9 @@
 import { IPropsToFields } from "./interface";
 import { PropsToFields } from "./propsToFields";
 
-describe("Verify helper methods.", () => 
+describe("Verify PropsToFields.", () => 
 {
-    it("Given object with properties. When ConvertPropsToFields. Should return an array of fields values.", () => 
+    it("Given object with properties. When invoke PropsToFields. Should return an array of fields values.", () => 
     {
         // Arrange
         const expectation: string[] = ["ValueA", "ValueB"];

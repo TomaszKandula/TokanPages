@@ -4,9 +4,9 @@
 import { GetShortText } from "./getShortText";
 import { IGetShortText } from "./interface";
 
-describe("Verify helper methods.", () => 
+describe("Verify GetShortText.", () => 
 {
-    it("Given long text and limit of 10 words. When GetShortText. Should return text with 10 words.", () => 
+    it("Given long text and limit of 10 words. When invoke GetShortText. Should return text with 10 words.", () => 
     {
         // Arrange
         const expectation = "This is long text. It will be used to test...";
@@ -23,7 +23,7 @@ describe("Verify helper methods.", () =>
         expect(output).toBe(expectation);
      });
  
-    it("Given empty input value. When GetShortText. Should return empty string.", () => 
+    it("Given empty input value. When invoke GetShortText. Should return empty string.", () => 
     {
         // Arrange
         const expectation = "";

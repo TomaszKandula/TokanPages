@@ -4,9 +4,9 @@
 import { IRaiseError } from "./interface";
 import { RaiseError } from "./raiseError";
 
-describe("Verify helper methods.", () => 
+describe("Verify RaiseError.", () => 
 {
-    it("Given error object with validation error. When RaiseError. Should execute dispatch and return error text.", () => 
+    it("Given error object with validation error. When invoke RaiseError. Should execute dispatch and return error text.", () => 
     {
         // Arrange
         function dispatch(args: { type: string; errorObject: string; }) 

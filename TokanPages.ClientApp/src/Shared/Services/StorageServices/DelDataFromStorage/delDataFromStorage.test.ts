@@ -1,11 +1,10 @@
 /**
  * @jest-environment jsdom
  */
-
 import { DelDataFromStorage } from "./delDataFromStorage";
 import { IDelDataFromStorage } from "./interface";
 
-describe("Verify helper methods.", () => 
+describe("Verify DelDataFromStorage.", () => 
 {
     // Prerequisities
     Storage.prototype.removeItem = jest.fn((key: string) => 
@@ -13,7 +12,7 @@ describe("Verify helper methods.", () =>
         console.debug(`Called 'localStorage.removeItem' with 'key' argument: ${key}.`);
     });
 
-    it("Given key. When DelDataFromStorage. Should return true.", () => 
+    it("Given key. When invoke DelDataFromStorage. Should return true.", () => 
     {  
         // Arrange
         const input: IDelDataFromStorage = 
@@ -28,7 +27,7 @@ describe("Verify helper methods.", () =>
         expect(result).toBe(true);
     });
 
-    it("Given no key. When DelDataFromStorage. Should return false.", () => 
+    it("Given no key. When invoke DelDataFromStorage. Should return false.", () => 
     {  
         // Arrange
         const input: IDelDataFromStorage = 

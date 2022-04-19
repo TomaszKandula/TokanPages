@@ -1,14 +1,13 @@
 /**
  * @jest-environment jsdom
  */
-
 import { ITextObject } from "Shared/Components/ContentRender/Models/textModel";
 import { IObjectToText } from "./interface";
 import { ObjectToText } from "./objectToText";
 
-describe("Verify helper methods.", () => 
+describe("Verify ObjectToText.", () => 
 {
-    it("Given valid JSON object with HTML type. When TextObjectToRawText. Should return string.", () => 
+    it("Given valid JSON object with HTML type. When invoke ObjectToText. Should return string.", () => 
     {
         // Arrange
         const jsonObject: string = `
@@ -40,7 +39,7 @@ describe("Verify helper methods.", () =>
         expect(result).toBe(expectation);
     });
 
-    it("Given valid JSON object without HTML type. When TextObjectToRawText. Should return empty string.", () => 
+    it("Given valid JSON object without HTML type. When invoke ObjectToText. Should return empty string.", () => 
     {
         // Arrange
         const jsonObject: string = `
@@ -70,7 +69,7 @@ describe("Verify helper methods.", () =>
         expect(result).toBe("");
     });
 
-    it("Given undefined input. When TextObjectToRawText. Should return undefined.", () => 
+    it("Given undefined input. When invoke ObjectToText. Should return undefined.", () => 
     {
         // Arrange
         const input: IObjectToText = 
@@ -85,7 +84,7 @@ describe("Verify helper methods.", () =>
         expect(result).toBe(undefined);
     });
 
-    it("Given empty JSON object. When TextObjectToRawText. Should return undefined.", () => 
+    it("Given empty JSON object. When invoke ObjectToText. Should return undefined.", () => 
     {
         // Arrange
         const jsonObject: string = `

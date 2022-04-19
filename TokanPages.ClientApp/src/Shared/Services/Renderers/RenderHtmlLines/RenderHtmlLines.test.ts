@@ -1,13 +1,12 @@
 /**
  * @jest-environment jsdom
  */
-
 import { IRenderHtmlLines } from "./interface";
 import { RenderHtmlLines } from "./RenderHtmlLines";
 
-describe("Verify helper methods.", () => 
+describe("Verify RenderHtmlLines.", () => 
 {
-    it("Given HTML tag and array of strings. When RenderHtmlLines. Should return multiple lines of HTML code.", () => 
+    it("Given HTML tag and array of strings. When invoke RenderHtmlLines. Should return multiple lines of HTML code.", () => 
     {    
         // Arrange
         const expectation: string = "<il>ValueA</il><il>ValueB</il>";

@@ -1,13 +1,12 @@
 /**
  * @jest-environment jsdom
  */
-
 import { GetDataFromStorage } from "./getDataFromStorage";
 import { IGetDataFromStorage } from "./interface";
 
-describe("Verify helper methods.", () => 
+describe("Verify GetDataFromStorage.", () => 
 { 
-    it("Given item under known key. When GetDataFromStorage. Should read data from local storage.", () => 
+    it("Given item under known key. When invoke GetDataFromStorage. Should read data from local storage.", () => 
     {
         // Arrange
         Storage.prototype.getItem = jest.fn((key: string) => 
@@ -30,7 +29,7 @@ describe("Verify helper methods.", () =>
         expect(result).toStrictEqual(expectedObject);
     });
 
-    it("Given item under unknown key. When GetDataFromStorage. Should return empty object.", () => 
+    it("Given item under unknown key. When invoke GetDataFromStorage. Should return empty object.", () => 
     {
         // Arrange
         Storage.prototype.getItem = jest.fn((key: string) => 
@@ -53,7 +52,7 @@ describe("Verify helper methods.", () =>
         expect(result).toStrictEqual(expectedObject);
     });
 
-    it("Given invalid item under known key. When GetDataFromStorage. Should return empty object.", () => 
+    it("Given invalid item under known key. When invoke GetDataFromStorage. Should return empty object.", () => 
     {
         // Arrange
         Storage.prototype.getItem = jest.fn((key: string) => 

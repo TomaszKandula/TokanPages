@@ -1,13 +1,12 @@
 /**
  * @jest-environment jsdom
  */
-
 import { GetDateTime } from "./getDateTime";
 import { IGetDateTime } from "./interface";
 
-describe("Verify helper methods.", () => 
+describe("Verify GetDateTime.", () => 
 {
-    it("Given 'n/a' value. When GetDateTime. Should return 'n/a'.", () =>
+    it("Given 'n/a' value. When invoke GetDateTime. Should return 'n/a'.", () =>
     {
         // Arrange
         const expectation: string = "n/a";
@@ -24,7 +23,7 @@ describe("Verify helper methods.", () =>
         expect(result).toBe(expectation);
     });
     
-    it("Given empty string. When GetDateTime. Should return 'n/a'.", () =>
+    it("Given empty string. When invoke GetDateTime. Should return 'n/a'.", () =>
     {
         // Arrange
         const expectation: string = "n/a";
@@ -41,7 +40,7 @@ describe("Verify helper methods.", () =>
         expect(result).toBe(expectation);
     });
 
-    it("Given whitespace. When GetDateTime. Should return 'n/a'.", () =>
+    it("Given whitespace. When invoke GetDateTime. Should return 'n/a'.", () =>
     {
         // Arrange
         const expectation: string = "n/a";
@@ -58,7 +57,7 @@ describe("Verify helper methods.", () =>
         expect(result).toBe(expectation);
     });
 
-    it("Given unformatted date and time. When GetDateTime. Should return formatted date time.", () =>
+    it("Given unformatted date and time. When invoke GetDateTime. Should return formatted date time.", () =>
     {
         // Arrange
         const expectation: string = "01/10/2020, 12:15 PM";
@@ -75,7 +74,7 @@ describe("Verify helper methods.", () =>
         expect(result).toBe(expectation);
     });
 
-    it("Given unformatted date and time. When GetDateTime wihtout time. Should return formatted date only.", () =>
+    it("Given unformatted date and time. When invoke GetDateTime wihtout time. Should return formatted date only.", () =>
     {
         // Arrange
         const expectation: string = "01/10/2020";

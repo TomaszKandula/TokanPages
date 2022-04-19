@@ -4,9 +4,9 @@
 import { GetTextWarning } from "./getTextWarning";
 import { IGetTextWarning } from "./interface";
 
-describe("Verify helper methods.", () => 
+describe("Verify GetTextWarning.", () => 
 {
-    it("Given warning object. When GetTextWarning. Should return HTML code.", () => 
+    it("Given warning object. When invoke GetTextWarning. Should return HTML code.", () => 
     {
         // Arrange
         const input: IGetTextWarning = 

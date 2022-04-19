@@ -1,7 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-
 import { IValidateResetForm } from "./interface";
 import { ValidateResetForm } from "./validateResetForm";
 

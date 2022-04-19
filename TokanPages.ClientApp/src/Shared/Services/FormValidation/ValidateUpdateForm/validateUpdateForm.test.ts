@@ -1,7 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-
 import { IValidateUpdateForm } from "./interface";
 import { ValidateUpdateForm } from "./validateUpdateForm";
 

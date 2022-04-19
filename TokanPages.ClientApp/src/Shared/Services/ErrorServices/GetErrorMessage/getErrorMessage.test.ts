@@ -6,9 +6,9 @@ import { IErrorDto } from "../../../../Api/Models";
 import { GetErrorMessage } from "./getErrorMessage";
 import { IGetErrorMessage } from "./interface";
 
-describe("Verify helper methods.", () => 
+describe("Verify GetErrorMessage.", () => 
 {
-    it("Given valid JSON object. When GetErrorMessage. Should return translated error message.", () => 
+    it("Given valid JSON object. When invoke GetErrorMessage. Should return translated error message.", () => 
     {
         // Arrange
         const jsonObject: string = `
@@ -39,7 +39,7 @@ describe("Verify helper methods.", () =>
         expect(result).toBe(expectation);
     });
 
-    it("Given valid JSON object with validation errors. When GetErrorMessage. Should return translated error message.", () => 
+    it("Given valid JSON object with validation errors. When invoke GetErrorMessage. Should return translated error message.", () => 
     {
         // Arrange
         const jsonObject: string = `

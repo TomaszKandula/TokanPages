@@ -1,7 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-
 import { IValidateEmailForm } from "./interface";
 import { ValidateEmailForm } from "./validateEmailForm";
 

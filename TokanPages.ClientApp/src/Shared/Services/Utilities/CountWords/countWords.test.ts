@@ -1,13 +1,12 @@
 /**
  * @jest-environment jsdom
  */
-
 import { CountWords } from "./countWords";
 import { ICountWords } from "./interface";
 
-describe("Verify helper methods.", () =>
+describe("Verify CountWords.", () =>
 {
-    it("Given text. When CountWords. Should return proper number of words in text.", () => 
+    it("Given text. When invoke CountWords. Should return proper number of words in text.", () => 
     {
         // Arrange
         const expectation: number = 10;
