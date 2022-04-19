@@ -73,7 +73,7 @@ describe("Verify helper methods.", () =>
             errorObject: textObject
         }
 
-        const expectation: string = "Cannot add invalid data, " + VALIDATION_ERRORS + ".";
+        const expectation: string = "Cannot add invalid data. " + VALIDATION_ERRORS + ".";
 
         // Act
         const result = GetErrorMessage(input);

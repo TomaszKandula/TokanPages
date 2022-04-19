@@ -18,5 +18,5 @@ export const RaiseError = (props: IRaiseError): string =>
     }
 
     props.dispatch({ type: RAISE_ERROR, errorObject: error });
-    return "";
+    return error;
 }
