@@ -9,7 +9,7 @@ import { IUpdateUserPasswordDto } from "../../Api/Models";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { IValidateUpdateForm, ValidateUpdateForm } from "../../Shared/Services/FormValidation";
-import { ProduceWarningText } from "../../Shared/textWrappers";
+import { GetTextWarning } from "../../Shared/Services/Utilities";
 import { OperationStatus } from "../../Shared/enums";
 import {RECEIVED_ERROR_MESSAGE, UPDATE_FORM, UPDATE_PASSWORD_SUCCESS, UPDATE_PASSWORD_WARNING } from "../../Shared/constants";
 import UpdatePasswordView from "./updatePasswordView";
@@ -104,7 +104,7 @@ const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
             return;
         }
 
-        showWarning(ProduceWarningText(results, UPDATE_PASSWORD_WARNING));
+        showWarning(GetTextWarning({ object: results, template: UPDATE_PASSWORD_WARNING }));
     };
 
     return (

@@ -8,7 +8,7 @@ import { IResetUserPasswordDto } from "../../Api/Models";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { IValidateResetForm, ValidateResetForm } from "../../Shared/Services/FormValidation";
-import { ProduceWarningText } from "../../Shared/textWrappers";
+import { GetTextWarning } from "../../Shared/Services/Utilities";
 import { OperationStatus } from "../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE, RESET_FORM, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_WARNING } from "../../Shared/constants";
 import ResetPasswordView from "./resetPasswordView";
@@ -83,7 +83,7 @@ const ResetPassword = (props: IGetResetPasswordContent): JSX.Element =>
             return;
         }
 
-        showWarning(ProduceWarningText(results, RESET_PASSWORD_WARNING));
+        showWarning(GetTextWarning({ object: results, template: RESET_PASSWORD_WARNING }));
     };
 
     return (

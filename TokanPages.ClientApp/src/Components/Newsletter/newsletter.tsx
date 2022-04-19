@@ -6,7 +6,7 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as SubscriberAction } from "../../Redux/Actions/Subscribers/addSubscriberAction";
 import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
 import { OperationStatus } from "../../Shared/enums";
-import { ProduceWarningText } from "../../Shared/textWrappers";
+import { GetTextWarning } from "../../Shared/Services/Utilities";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
@@ -75,7 +75,7 @@ const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
             return;
         }
 
-        showWarning(ProduceWarningText(results, NEWSLETTER_WARNING));
+        showWarning(GetTextWarning({ object: results, template: NEWSLETTER_WARNING }));
     };
 
     return (<NewsletterView bind=

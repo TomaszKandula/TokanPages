@@ -1,17 +1,18 @@
+import { ObjectToText } from "../../../Shared/Services/Converters";
+import { CountWords, GetReadTime } from "../../../Shared/Services/Utilities";
 import { ITextItem, ITextObject } from "../../../Shared/Components/ContentRender/Models/textModel";
-import { CountWords, GetReadTime, TextObjectToRawText } from "../../../Shared/helpers";
 import { WORDS_PER_MINUTE } from "../../../Shared/constants";
 
 export const ReadTime = (text: ITextItem[]): string =>
 {
-    let textObject: ITextObject = 
+    let object: ITextObject = 
     { 
         items: [{ id: "", type: "", value: "", prop: "", text: "" }]
     };
         
-    textObject.items = text;
-    const rawText = TextObjectToRawText(textObject);
-    const words = CountWords(rawText);
+    object.items = text;
+    const rawText = ObjectToText({ textObject: object });
+    const words = CountWords({ inputText: rawText });
 
-    return GetReadTime(words, WORDS_PER_MINUTE);
+    return GetReadTime({ countWords: words, wordsPerMinute: WORDS_PER_MINUTE });
 }

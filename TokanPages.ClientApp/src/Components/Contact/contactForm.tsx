@@ -7,7 +7,7 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { IGetContactFormContent } from "../../Redux/States/Content/getContactFormContentState";
 import { OperationStatus } from "../../Shared/enums";
 import { IValidateContactForm, ValidateContactForm } from "../../Shared/Services/FormValidation";
-import { ProduceWarningText } from "../../Shared/textWrappers";
+import { GetTextWarning } from "../../Shared/Services/Utilities";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { CONTACT_FORM, MESSAGE_OUT_SUCCESS, MESSAGE_OUT_WARNING, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
@@ -108,7 +108,7 @@ const ContactForm = (props: IGetContactFormContent): JSX.Element =>
             return;
         }
 
-        showWarning(ProduceWarningText(validationResult, MESSAGE_OUT_WARNING));
+        showWarning(GetTextWarning({ object: validationResult, template: MESSAGE_OUT_WARNING }));
     };
 
     return (<ContactFormView bind=

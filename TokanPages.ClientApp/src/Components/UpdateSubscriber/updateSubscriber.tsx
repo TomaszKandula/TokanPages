@@ -6,7 +6,7 @@ import { ActionCreators as SubscriberAction } from "../../Redux/Actions/Subscrib
 import { ActionCreators as RaiseDialogAction } from "../../Redux/Actions/raiseDialogAction";
 import { IGetUpdateSubscriberContent } from "../../Redux/States/Content/getUpdateSubscriberContentState";
 import { OperationStatus } from "../../Shared/enums";
-import { ProduceWarningText } from "../../Shared/textWrappers";
+import { GetTextWarning } from "../../Shared/Services/Utilities";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
@@ -91,7 +91,7 @@ const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Eleme
             return;
         }
 
-        showWarning(ProduceWarningText(validationResult, NEWSLETTER_WARNING));
+        showWarning(GetTextWarning({ object: validationResult, template: NEWSLETTER_WARNING }));
     };
 
     return (<UpdateSubscriberView bind=
