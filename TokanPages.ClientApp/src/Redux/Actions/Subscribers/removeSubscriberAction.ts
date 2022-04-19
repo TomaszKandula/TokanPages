@@ -2,8 +2,8 @@ import axios from "axios";
 import { AppThunkAction } from "../../applicationState";
 import { IRemoveSubscriberDto } from "../../../Api/Models";
 import { API_COMMAND_REMOVE_SUBSCRIBER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
-import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
-import { RaiseError } from "../../../Shared/helpers";
+import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
+import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { TErrorActions } from "./../raiseErrorAction";
 import { EnrichConfiguration } from "../../../Api/Request";
 
@@ -30,15 +30,15 @@ export const ActionCreators =
             if (response.status === 200)
             {
                 return response.data === null 
-                    ? RaiseError(dispatch, NULL_RESPONSE_ERROR) 
+                    ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR}) 
                     : dispatch({ type: REMOVE_SUBSCRIBER_RESPONSE });
             }
             
-            RaiseError(dispatch, UnexpectedStatusCode(response.status));
+            RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status }) });
         })
         .catch(error =>
         {
-            RaiseError(dispatch, error);
+            RaiseError({ dispatch: dispatch, errorObject: error });
         });
     }
 }

@@ -2,9 +2,9 @@ import axios from "axios";
 import { AppThunkAction } from "../../applicationState";
 import { IAuthenticateUserDto } from "../../../Api/Models";
 import { API_COMMAND_AUTHENTICATE, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
-import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
 import { UPDATE_USERDATA, TKnownActions as TUpdateActions } from "./updateUserDataAction";
-import { RaiseError } from "../../../Shared/helpers";
+import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
+import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { TErrorActions } from "./../raiseErrorAction";
 import { EnrichConfiguration } from "../../../Api/Request";
 
@@ -47,15 +47,15 @@ export const ActionCreators =
                 }
                 
                 return response.data === null 
-                    ? RaiseError(dispatch, NULL_RESPONSE_ERROR) 
+                    ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR }) 
                     : pushData();
             }
             
-            RaiseError(dispatch, UnexpectedStatusCode(response.status));
+            RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status}) });
         })
         .catch(error => 
         {
-            RaiseError(dispatch, error);
+            RaiseError({ dispatch: dispatch, errorObject: error });
         });
     }
 }

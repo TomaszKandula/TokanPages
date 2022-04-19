@@ -1,8 +1,8 @@
 import axios from "axios";
 import { AppThunkAction } from "../../applicationState";
 import { combinedDefaults } from "../../combinedDefaults";
-import { RaiseError } from "../../../Shared/helpers";
-import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
+import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
+import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { GET_SIGNUP_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { TErrorActions } from "./../raiseErrorAction";
 import { IUserSignupContentDto } from "../../../Api/Models";
@@ -38,15 +38,15 @@ export const ActionCreators =
             if (response.status === 200)
             {
                 return response.data === null 
-                    ? RaiseError(dispatch, NULL_RESPONSE_ERROR) 
+                    ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR }) 
                     : dispatch({ type: RECEIVE_USER_SIGNUP_CONTENT, payload: response.data });
             }
 
-            RaiseError(dispatch, UnexpectedStatusCode(response.status));
+            RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status }) });
         })
         .catch(error =>
         {
-            RaiseError(dispatch, error);
+            RaiseError({ dispatch: dispatch, errorObject: error });
         });
     }
 }

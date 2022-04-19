@@ -8,7 +8,7 @@ import {
     UPDATE_USERDATA
 } from "../../Actions/Users/updateUserDataAction";
 import { USER_DATA } from "../../../Shared/constants";
-import { DelDataFromStorage, SetDataInStorage } from "../../../Shared/helpers";
+import { DelDataFromStorage, SetDataInStorage } from "../../../Shared/Services/StorageServices";
 
 const UpdateUserDataReducer: Reducer<IUpdateUserData> = (state: IUpdateUserData | undefined, incomingAction: Action): IUpdateUserData => 
 {
@@ -24,11 +24,11 @@ const UpdateUserDataReducer: Reducer<IUpdateUserData> = (state: IUpdateUserData 
             };
 
         case CLEAR_USERDATA:
-            DelDataFromStorage(USER_DATA);
+            DelDataFromStorage({ key: USER_DATA });
             return combinedDefaults.updateUserData;
 
         case UPDATE_USERDATA:
-            SetDataInStorage(action.payload, USER_DATA);
+            SetDataInStorage({ key: USER_DATA, selection: action.payload }); 
             return { 
                 isShown: state.isShown,
                 userData: {

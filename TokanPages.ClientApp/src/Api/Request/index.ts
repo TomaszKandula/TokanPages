@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { USER_DATA } from "../../Shared/constants";
-import { GetDataFromStorage } from "../../Shared/helpers";
+import { GetDataFromStorage } from "../../Shared/Services/StorageServices";
 import { IAuthenticateUserResultDto } from "../Models";
 import Validate from "validate.js";
 
@@ -18,7 +18,7 @@ interface IHeaders
 
 export const GetAuthorizationHeaders = (): IHeaders | undefined => 
 {
-    const userData = GetDataFromStorage(USER_DATA) as IAuthenticateUserResultDto;
+    const userData = GetDataFromStorage({ key: USER_DATA }) as IAuthenticateUserResultDto;
     let headers = undefined;
 
     if (Validate.isObject(userData) && !Validate.isEmpty(userData.userToken))

@@ -3,8 +3,8 @@ import { AppThunkAction } from "../../applicationState";
 import { IArticleItem } from "../../../Shared/Components/ContentRender/Models/articleItemModel";
 import { API_QUERY_GET_ARTICLE, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { TErrorActions } from "./../raiseErrorAction";
-import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
-import { RaiseError } from "../../../Shared/helpers";
+import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
+import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const RESET_SELECTION = "RESET_SELECTION";
@@ -36,16 +36,15 @@ export const ActionCreators =
             if (response.status === 200)
             {
                 return response.data === null 
-                    ? RaiseError(dispatch, NULL_RESPONSE_ERROR) 
+                    ? RaiseError({ dispatch, errorObject: NULL_RESPONSE_ERROR }) 
                     : dispatch({ type: RECEIVE_ARTICLE, payload: response.data });
             }
 
-            RaiseError(dispatch, UnexpectedStatusCode(response.status));
-
+            RaiseError({ dispatch, errorObject: GetTextStatusCode({ statusCode: response.status }) });
         })
         .catch(error => 
         {
-            RaiseError(dispatch, error);
+            RaiseError({ dispatch: dispatch, errorObject: error });
         });
     }
 };
