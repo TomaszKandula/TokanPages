@@ -1,10 +1,11 @@
+# Use script file "__testrun.dev.sh" for local development. 
+# You can provide SonarQube keys to perform static analysis during development. 
 API_VERSION="1.0"
 APP_VERSION="0.0.1-local-dev"
 BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
 ALLOWED_ORIGINS="http://localnode:5000/;"
 APP_FRONTEND="http://localhost:3000"
 APP_BACKEND="http://localhost:5000"
-APP_SENTRY="https://d689c23e973449e696af516279e92ffe@o479380.ingest.sentry.io/5816109"
 SONAR_TOKEN=""
 SONAR_KEY=""
 SONAR_HOST=""

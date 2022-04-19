@@ -1,8 +1,5 @@
-/**
- * @jest-environment jsdom
- */
-import { IRaiseError } from "./interface";
-import { RaiseError } from "./raiseError";
+import "../../../../setupTests";
+import { IRaiseError, RaiseError } from "../../ErrorServices";
 
 describe("Verify RaiseError.", () => 
 {

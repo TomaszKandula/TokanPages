@@ -1,8 +1,5 @@
-/**
- * @jest-environment jsdom
- */
-import { GetTextWarning } from "./getTextWarning";
-import { IGetTextWarning } from "./interface";
+import "../../../../setupTests";
+import { IGetTextWarning, GetTextWarning } from "../../Utilities";
 
 describe("Verify GetTextWarning.", () => 
 {

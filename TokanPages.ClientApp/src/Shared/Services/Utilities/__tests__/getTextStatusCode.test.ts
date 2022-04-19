@@ -1,8 +1,5 @@
-/**
- * @jest-environment jsdom
- */
-import { GetTextStatusCode } from "./getTextStatusCode";
-import { IGetTextStatusCode } from "./interface";
+import "../../../../setupTests";
+import { IGetTextStatusCode, GetTextStatusCode } from "../../Utilities";
  
 describe("Verify GetTextStatusCode.", () => 
 {

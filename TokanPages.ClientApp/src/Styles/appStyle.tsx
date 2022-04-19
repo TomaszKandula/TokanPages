@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../src/Theme/customColours";
+import { CustomColours } from "../Theme/customColours";
 
-const styles = makeStyles(() => (
+const appStyle = makeStyles(() => (
 {
     button:
     {
@@ -15,4 +15,4 @@ const styles = makeStyles(() => (
     }
 }));
 
-export default styles;
+export default appStyle;

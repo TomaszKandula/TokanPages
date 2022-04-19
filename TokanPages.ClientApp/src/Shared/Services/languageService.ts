@@ -15,14 +15,15 @@ export const GetDefaultLanguageId = (): string =>
     if (result === "")
     {
         const languages = GetLanguages();
-        languages.forEach((item: ILanguage) => 
+
+        for (let item of languages)
         {
             if (item.isDefault)
             {
                 result = item.id;
-                return;
+                break;
             }
-        });
+        }
     }
 
     return result;

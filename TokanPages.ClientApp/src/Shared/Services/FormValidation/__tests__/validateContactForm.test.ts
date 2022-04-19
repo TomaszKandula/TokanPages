@@ -1,8 +1,5 @@
-/**
- * @jest-environment jsdom
- */
-import { IValidateContactForm } from "./interface";
-import { ValidateContactForm } from "./validateContactForm";
+import "../../../../setupTests";
+import { IValidateContactForm, ValidateContactForm } from "../../FormValidation";
 
 describe("Verify validation methods.", () => 
 {

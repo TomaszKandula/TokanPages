@@ -1,8 +1,5 @@
-/**
- * @jest-environment jsdom
- */
-import { IPropsToFields } from "./interface";
-import { PropsToFields } from "./propsToFields";
+import "../../../../setupTests";
+import { IPropsToFields, PropsToFields } from "../../Converters";
 
 describe("Verify PropsToFields.", () => 
 {
