@@ -1,3 +1,26 @@
+# [0.50.0](https://github.com/TomaszKandula/TokanPages/compare/v0.49.0...v0.50.0) (2022-04-19)
+
+
+### Bug Fixes
+
+* resolve implementation error ([a262a24](https://github.com/TomaszKandula/TokanPages/commit/a262a2408956e80b2fc4aae559ede16527383212))
+* resolve undefined error ([32e94ee](https://github.com/TomaszKandula/TokanPages/commit/32e94ee7561f88e048713a47da2fbe8d562d6998))
+
+
+### Features
+
+* add new cookie services with updated tests ([58a98d9](https://github.com/TomaszKandula/TokanPages/commit/58a98d939a7bab70b64a46448da94159f1f8ce20))
+* add new icons ([fdea18f](https://github.com/TomaszKandula/TokanPages/commit/fdea18f79a5d29dfefb492178b665a94992e57d5))
+* add validation forms with tests separately ([2661ac5](https://github.com/TomaszKandula/TokanPages/commit/2661ac5c6dadfcab0da669c5671ebc02e4110b34))
+* apply imports from shared utilities and error services ([f169daf](https://github.com/TomaszKandula/TokanPages/commit/f169daff78cab783c2b82196a6fe4bb730d2ab76))
+* apply new validation form imports ([cdfb707](https://github.com/TomaszKandula/TokanPages/commit/cdfb707d28d77b91f76244114d9bedaeb592409f))
+* improve implementation and align tests ([10be1c0](https://github.com/TomaszKandula/TokanPages/commit/10be1c04b1916132b596dfc8bb7831934828e67b))
+* increase line height ([a692feb](https://github.com/TomaszKandula/TokanPages/commit/a692febb507842f83f175fa63399665b84529cd4))
+* move text wrappers to shared utilities with tests ([84eaff9](https://github.com/TomaszKandula/TokanPages/commit/84eaff971e21e3d81be959011122927bc5cfd0e1))
+* split helpers into separate services (with tests) ([d825bcc](https://github.com/TomaszKandula/TokanPages/commit/d825bcc01b5db462f80054462798256876b09016))
+* update imports ([97f01b8](https://github.com/TomaszKandula/TokanPages/commit/97f01b8e293dddab9b09869e007931de124db0b1))
+* update imports after service relocation ([f682dab](https://github.com/TomaszKandula/TokanPages/commit/f682daba4952fe194d833ef15ce7a341a6d4ac09))
+
 # [0.49.0](https://github.com/TomaszKandula/TokanPages/compare/v0.48.1...v0.49.0) (2022-04-18)
 
 
