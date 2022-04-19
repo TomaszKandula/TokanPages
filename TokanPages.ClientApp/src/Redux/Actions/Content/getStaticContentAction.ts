@@ -1,7 +1,7 @@
 import { AppThunkAction } from "../../applicationState";
 import { ITextObject } from "../../../Shared/Components/ContentRender/Models/textModel";
-import { GetErrorMessage } from "../../../Shared/helpers";
-import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
+import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
+import { GetErrorMessage } from "../../../Shared/Services/ErrorServices";
 import { POLICY_URL, STORY_URL, TERMS_URL } from "../../../Shared/constants";
 import { GetUserLanguage } from "../../../Shared/Services/languageService";
 import { RAISE_ERROR, TErrorActions } from "./../raiseErrorAction";
@@ -41,7 +41,7 @@ const DispatchCall = async (dispatch: (action: TKnownActions) => void, url: stri
 
     if (result.error !== null)
     {
-        dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(result.error) });
+        dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage({ errorObject: result.error }) });
         return;
     }
 
@@ -51,7 +51,7 @@ const DispatchCall = async (dispatch: (action: TKnownActions) => void, url: stri
         return;
     }
 
-    const error = UnexpectedStatusCode(result.status as number);
+    const error = GetTextStatusCode({ statusCode: result.status as number });
     dispatch({ type: RAISE_ERROR, errorObject: error });
 }
 

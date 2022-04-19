@@ -1,7 +1,7 @@
 import { AppThunkAction } from "../../applicationState";
 import { RAISE_ERROR, TErrorActions } from "./../raiseErrorAction";
-import { UnexpectedStatusCode } from "../../../Shared/textWrappers";
-import { GetErrorMessage } from "../../../Shared/helpers";
+import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
+import { GetErrorMessage } from "../../../Shared/Services/ErrorServices";
 import { ApiCall, EnrichConfiguration } from "../../../Api/Request";
 import { 
     API_COMMAND_UPDATE_ARTICLE_CONTENT, 
@@ -36,7 +36,7 @@ const DispatchCall = async (dispatch: any, url: string, data: any) =>
 
     if (result.error !== null)
     {
-        dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(result.error) });
+        dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage({ errorObject: result.error }) });
         return;
     }
 
@@ -46,7 +46,7 @@ const DispatchCall = async (dispatch: any, url: string, data: any) =>
         return;
     }
 
-    const error = UnexpectedStatusCode(result.status as number);
+    const error = GetTextStatusCode({ statusCode: result.status as number });
     dispatch({ type: RAISE_ERROR, errorObject: error });
 }
 

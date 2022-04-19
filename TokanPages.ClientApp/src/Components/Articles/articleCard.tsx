@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ActionCreators } from "../../Redux/Actions/Articles/selectArticleAction";
-import { GetShortText } from "../../Shared/helpers";
+import { GetShortText } from "../../Shared/Services/Utilities";
 import { ARTICLE_PATH, IMAGE_URL } from "../../Shared/constants";
 import ArticleCardView from "./articleCardView";
 
@@ -31,8 +31,8 @@ const ArticleCard = (props: IArticleCard): JSX.Element =>
     return (<ArticleCardView bind=
     {{
         imageUrl: imageUrl,
-        title: GetShortText(props.title, 6),
-        description: GetShortText(props.description, 12),
+        title: GetShortText({ value: props.title, limit: 6 }),
+        description: GetShortText({ value: props.description, limit: 12 }),
         onClickEvent: onClickEvent,
         buttonText: content.button
     }}/>);

@@ -7,9 +7,9 @@ import { ActionCreators } from "../../Redux/Actions/Users/signupUserAction";
 import { IAddUserDto } from "../../Api/Models";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { ProduceWarningText } from "../../Shared/textWrappers";
+import { GetTextWarning } from "../../Shared/Services/Utilities";
+import { IValidateSignupForm, ValidateSignupForm } from "../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE, SIGNUP_FORM, SIGNUP_SUCCESS, SIGNUP_WARNING } from "../../Shared/constants";
-import { IValidateSignupForm, ValidateSignupForm } from "../../Shared/validate";
 import { OperationStatus } from "../../Shared/enums";
 import UserSignupView from "./userSignupView";
 import Validate from "validate.js";
@@ -108,7 +108,7 @@ const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
             return;
         }
 
-        showWarning(ProduceWarningText(validationResult, SIGNUP_WARNING));
+        showWarning(GetTextWarning({ object: validationResult, template: SIGNUP_WARNING }));
     };
 
     return (<UserSignupView bind=

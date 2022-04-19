@@ -7,8 +7,8 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/Users/signinUserAction";
 import { IAuthenticateUserDto } from "../../Api/Models";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { ProduceWarningText } from "../../Shared/textWrappers";
-import { IValidateSigninForm, ValidateSigninForm } from "../../Shared/validate";
+import { GetTextWarning } from "../../Shared/Services/Utilities";
+import { IValidateSigninForm, ValidateSigninForm } from "../../Shared/Services/FormValidation";
 import { OperationStatus } from "../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE, SIGNIN_FORM, SIGNIN_WARNING } from "../../Shared/constants";
 import UserSigninView from "./userSigninView";
@@ -83,7 +83,7 @@ const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
             return;
         }
 
-        showWarning(ProduceWarningText(validationResult, SIGNIN_WARNING));
+        showWarning(GetTextWarning({ object: validationResult, template: SIGNIN_WARNING }));
     };
 
     return(

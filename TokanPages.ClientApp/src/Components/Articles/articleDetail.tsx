@@ -6,7 +6,7 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as SelectArticleActions } from "../../Redux/Actions/Articles/selectArticleAction";
 import { ActionCreators as UpdateArticleAction } from "../../Redux/Actions/Articles/updateArticleAction";
 import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../Shared/constants";
-import { FormatDateTime } from "../../Shared/helpers";
+import { GetDateTime } from "../../Shared/Services/Formatters";
 import { ArticleContent } from "./Renderers/articleContent";
 import { AuthorName } from "./Renderers/authorName";
 import { LikesLeft } from "./Renderers/likesLeft";
@@ -132,10 +132,10 @@ const ArticleDetail = (props: IArticleDetail): JSX.Element =>
         popoverElement: popoverElement,
         authorFirstName: selection.article.author.firstName,
         authorLastName: selection.article.author.lastName,
-        authorRegistered: FormatDateTime(selection.article.author.registered, false),
+        authorRegistered: GetDateTime({ value: selection.article.author.registered, hasTimeVisible: false }),
         articleReadTime: ReadTime(selection.article.text),
-        articleCreatedAt: FormatDateTime(selection.article.createdAt, true),
-        articleUpdatedAt: FormatDateTime(selection.article.updatedAt, true),
+        articleCreatedAt: GetDateTime({ value: selection.article.createdAt, hasTimeVisible: true }),
+        articleUpdatedAt: GetDateTime({ value: selection.article.updatedAt, hasTimeVisible: true }),
         articleContent: ArticleContent(selection.article.id, selection.isLoading, selection.article.text),
         renderLikesLeft: LikesLeft(isAnonymous, likesLeft),
         thumbsHandler: thumbsHandler,

@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetTestimonialsContent } from "../../Redux/States/Content/getTestimonialsContentState";
 import { TESTIMONIALS_PATH } from "../../Shared/constants";
-import { GetShortText } from "../../Shared/helpers";
+import { GetShortText } from "../../Shared/Services/Utilities";
 import testimonialsStyle from "./testimonialsStyle";
 
 const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
@@ -45,7 +45,7 @@ const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
                                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.occupation1}
                                     </Typography>
                                     <Typography className={classes.card_text}>
-                                        {props.isLoading ? <Skeleton variant="text" /> : GetShortText(props.content?.text1, limit)}
+                                        {props.isLoading ? <Skeleton variant="text" /> : GetShortText({ value: props.content?.text1, limit: limit })}
                                     </Typography>
                                 </CardContent>
                             </Card>
@@ -63,7 +63,7 @@ const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
                                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.occupation2}
                                     </Typography>
                                     <Typography className={classes.card_text}>
-                                        {props.isLoading ? <Skeleton variant="text" /> : GetShortText(props.content?.text2, limit)}
+                                        {props.isLoading ? <Skeleton variant="text" /> : GetShortText({ value: props.content?.text2, limit: limit })}
                                     </Typography>
                                 </CardContent>
                             </Card>
@@ -81,7 +81,7 @@ const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
                                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.occupation3}
                                     </Typography>
                                     <Typography className={classes.card_text}>
-                                        {props.isLoading ? <Skeleton variant="text" /> : GetShortText(props.content?.text3, limit)}
+                                        {props.isLoading ? <Skeleton variant="text" /> : GetShortText({ value: props.content?.text3, limit: limit })}
                                     </Typography>
                                 </CardContent>
                             </Card>

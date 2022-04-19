@@ -5,7 +5,7 @@ import { ITextItem } from "../Models/textModel";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { RAISE_ERROR } from "../../../../Redux/Actions/raiseErrorAction";
-import { GetErrorMessage } from "../../../../Shared/helpers";
+import { GetErrorMessage } from "../../../../Shared/Services/ErrorServices";
 import { ApiCall } from "../../../../Api/Request";
 import renderGistStyle from "../Styles/renderGistStyle";
 import validate from "validate.js";
@@ -33,7 +33,7 @@ export const RenderGist = (props: ITextItem): JSX.Element =>
            
         if (result.error !== null)
         {
-            dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage(result.error) });
+            dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage({ errorObject: result.error }) });
         }
  
     }, [ dispatch, gistUrl ]);
