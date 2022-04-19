@@ -10,7 +10,8 @@ import {
     MusicNote, 
     Person, 
     PersonAdd, 
-    PhotoCamera, 
+    PhotoCamera,
+    PhotoAlbum, 
     Policy, 
     Star, 
     Subject,
@@ -22,6 +23,7 @@ import {
     GitHub,
     MenuBook,
     Edit,
+    VideoLibrary,
 } from "@material-ui/icons";
 
 interface IProperty
@@ -42,6 +44,7 @@ export const GetIcon = (props: IProperty): JSX.Element =>
         case "Assignment": return <Assignment />;
         case "Star": return <Star />;
         case "PhotoCamera": return <PhotoCamera />;
+        case "PhotoAlbum": return <PhotoAlbum />;
         case "SportsSoccer": return <SportsSoccer />;
         case "MusicNote": return <MusicNote />;
         case "DirectionsBike": return <DirectionsBike />;
@@ -53,7 +56,8 @@ export const GetIcon = (props: IProperty): JSX.Element =>
         case "Code": return <Code />; 
         case "GitHub": return <GitHub />; 
         case "MenuBook": return <MenuBook />; 
-        case "Edit": return <Edit />; 
+        case "Edit": return <Edit />;
+        case "VideoLibrary": return <VideoLibrary />;
 
         default: return <Apple />;
     }
