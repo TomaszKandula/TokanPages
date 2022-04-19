@@ -1,8 +1,5 @@
-/**
- * @jest-environment jsdom
- */
-import { GetTextError } from "./getTextError";
-import { IGetTextError } from "./interface";
+import "../../../../setupTests";
+import { IGetTextError, GetTextError } from "../../Utilities";
 
 describe("Verify GetTextError.", () => 
 {

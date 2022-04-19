@@ -1,8 +1,8 @@
 /**
- * @jest-environment jsdom
- */
-import { GetDataFromStorage } from "./getDataFromStorage";
-import { IGetDataFromStorage } from "./interface";
+* @jest-environment jsdom
+*/
+import "../../../../setupTests";
+import { IGetDataFromStorage, GetDataFromStorage } from "../../StorageServices";
 
 describe("Verify GetDataFromStorage.", () => 
 { 
