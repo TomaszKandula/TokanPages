@@ -13,6 +13,7 @@ import { IActivateAccount } from "./States/Users/activateAccountState";
 import { ISendMessage } from "./States/Mailer/sendMessageState";
 import { IRaiseError } from "./States/raiseErrorState";
 import { IRaiseDialog } from "./States/raiseDialogState";
+import { IGetAccountContent } from "./States/Content/getAccountContentState";
 import { IGetStaticContent } from "./States/Content/getStaticContentState";
 import { IGetArticleFeatContent } from "./States/Content/getArticleFeatContentState";
 import { IGetContactFormContent } from "./States/Content/getContactFormContentState";
@@ -52,6 +53,7 @@ export interface IApplicationState
     resetUserPassword: IResetUserPassword,
     updateUserPassword: IUpdateUserPassword,
     activateAccount: IActivateAccount,
+    getAccountContent: IGetAccountContent,
     getStaticContent: IGetStaticContent,
     getArticleFeatContent: IGetArticleFeatContent,
     getContactFormContent: IGetContactFormContent,

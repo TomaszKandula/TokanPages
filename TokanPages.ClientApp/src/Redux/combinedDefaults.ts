@@ -14,6 +14,7 @@ import { UpdateUserPasswordDefault } from "./Defaults/Users/updateUserPasswordDe
 import { SendMessageStateDefault } from "./Defaults/Mailer/sendMessageDefault";
 import { RaiseErrorDefault } from "./Defaults/raiseErrorDefault";
 import { RaiseDialogDefault } from "./Defaults/raiseDialogDefault";
+import { GetAccountContentDefault } from "./Defaults/Content/getAccountContentDefault";
 import { GetStaticContentDefault } from "./Defaults/Content/getStaticContentDefault";
 import { GetArticleFeatContentDefault } from "./Defaults/Content/getArticleFeatContentDefault";
 import { GetContactFormContentDefault } from "./Defaults/Content/getContactFormContentDefault";
@@ -53,6 +54,7 @@ export const combinedDefaults: IApplicationState =
     resetUserPassword: ResetUserPasswordDefault,
     updateUserPassword: UpdateUserPasswordDefault,
     activateAccount: ActivateAccountDefault,
+    getAccountContent: GetAccountContentDefault,
     getStaticContent: GetStaticContentDefault,
     getArticleFeatContent: GetArticleFeatContentDefault,
     getContactFormContent: GetContactFormContentDefault,
@@ -73,5 +75,5 @@ export const combinedDefaults: IApplicationState =
     getTestimonialsContent: GetTestimonialsContentDefault,
     getUnsubscribeContent: GetUnsubscribeContentDefault,
     getActivateAccountContent: GetActivateAccountContentDefault,
-    getUpdateSubscriberContent: GetUpdateSubscriberContentDefault     
+    getUpdateSubscriberContent: GetUpdateSubscriberContentDefault
 };
