@@ -6,16 +6,19 @@ import UserAccount from "../Components/Account/userAccount";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
+import { ActionCreators as AccountContent } from "../Redux/Actions/Content/getAccountContentAction";
 
 const AccountPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
+    const account = useSelector((state: IApplicationState) => state.getAccountContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
 
     React.useEffect(() => 
     {
         dispatch(NavigationContent.getNavigationContent());
+        dispatch(AccountContent.getAccountContent());
         dispatch(FooterContent.getFooterContent());
     }, 
     [ dispatch ]);
@@ -23,7 +26,7 @@ const AccountPage = (): JSX.Element =>
     return(
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
-            <UserAccount />
+            <UserAccount content={account?.content} isLoading={navigation?.isLoading} />
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>
     );
