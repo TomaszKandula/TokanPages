@@ -65,6 +65,7 @@ export const GET_UNSUBSCRIBE_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/G
 export const GET_ACTIVATE_ACCOUNT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=activateAccount&Type=component`;
 export const GET_UPDATE_SUBSCRIBER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=updateSubscriber&Type=component`;
 export const GET_WRONG_PAGE_PROMPT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=wrongPagePrompt&Type=component`;
+export const GET_ACCOUNT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=account&Type=component`;
 
 /* DOCUMENTS CONTENT */
 
