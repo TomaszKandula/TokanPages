@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Validate from "validate.js";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as SelectArticleActions } from "../../Redux/Actions/Articles/selectArticleAction";
 import { ActionCreators as UpdateArticleAction } from "../../Redux/Actions/Articles/updateArticleAction";
@@ -13,6 +12,7 @@ import { LikesLeft } from "./Renderers/likesLeft";
 import { ReadTime } from "./Renderers/readTime";
 import ArticleDetailView from "./articleDetailView";
 import UserAvatar from "../../Shared/Components/UserAvatar/userAvatar";
+import Validate from "validate.js";
 
 export interface IArticleDetail
 {
@@ -86,7 +86,8 @@ const ArticleDetail = (props: IArticleDetail): JSX.Element =>
         3000);
         
         return(() => { clearInterval(intervalId) });
-    }, [ userLikes, thumbClicked ]);
+    }, 
+    [ userLikes, thumbClicked ]);
 
     const thumbsHandler = () =>
     {
