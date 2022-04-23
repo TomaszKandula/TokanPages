@@ -7,7 +7,7 @@ import {
     REQUEST_NEWSLETTER_CONTENT
 } from "../../../Redux/Actions/Content/getNewsletterContentAction";
 
-const GetNewsletterContentReducer: Reducer<IGetNewsletterContent> = (state: IGetNewsletterContent | undefined, incomingAction: Action): IGetNewsletterContent => 
+export const GetNewsletterContentReducer: Reducer<IGetNewsletterContent> = (state: IGetNewsletterContent | undefined, incomingAction: Action): IGetNewsletterContent => 
 {
     if (state === undefined) return combinedDefaults.getNewsletterContent;
 
@@ -29,5 +29,3 @@ const GetNewsletterContentReducer: Reducer<IGetNewsletterContent> = (state: IGet
         default: return state;
     }
 }
-
-export default GetNewsletterContentReducer;

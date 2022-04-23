@@ -9,7 +9,7 @@ import {
     UPDATE_USER_PASSWORD_RESPONSE
 } from "../../Actions/Users/updateUserPasswordAction";
 
-const UpdateUserPasswordReducer: Reducer<IUpdateUserPassword> = (state: IUpdateUserPassword | undefined, incomingAction: Action): IUpdateUserPassword => 
+export const UpdateUserPasswordReducer: Reducer<IUpdateUserPassword> = (state: IUpdateUserPassword | undefined, incomingAction: Action): IUpdateUserPassword => 
 {
     if (state === undefined) return combinedDefaults.updateUserPassword;
 
@@ -36,5 +36,3 @@ const UpdateUserPasswordReducer: Reducer<IUpdateUserPassword> = (state: IUpdateU
         default: return state;
     }
 };
-
-export default UpdateUserPasswordReducer;

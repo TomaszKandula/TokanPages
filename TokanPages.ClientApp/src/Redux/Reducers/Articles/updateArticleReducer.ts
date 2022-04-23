@@ -9,7 +9,7 @@ import {
     UPDATE_ARTICLE_RESPONSE, 
 } from "../../Actions/Articles/updateArticleAction";
 
-const UpdateArticleReducer: Reducer<IUpdateArticle> = (state: IUpdateArticle | undefined, incomingAction: Action): IUpdateArticle => 
+export const UpdateArticleReducer: Reducer<IUpdateArticle> = (state: IUpdateArticle | undefined, incomingAction: Action): IUpdateArticle => 
 {
     if (state === undefined) return combinedDefaults.updateArticle;
 
@@ -34,5 +34,3 @@ const UpdateArticleReducer: Reducer<IUpdateArticle> = (state: IUpdateArticle | u
         default: return state;
     }
 };
-
-export default UpdateArticleReducer;

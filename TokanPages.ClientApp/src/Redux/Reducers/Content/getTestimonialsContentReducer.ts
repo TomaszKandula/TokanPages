@@ -7,7 +7,7 @@ import {
     REQUEST_TESTIMONIALS_CONTENT
 } from "../../../Redux/Actions/Content/getTestimonialsContentAction";
 
-const GetTestimonialsContentReducer: Reducer<IGetTestimonialsContent> = (state: IGetTestimonialsContent | undefined, incomingAction: Action): IGetTestimonialsContent => 
+export const GetTestimonialsContentReducer: Reducer<IGetTestimonialsContent> = (state: IGetTestimonialsContent | undefined, incomingAction: Action): IGetTestimonialsContent => 
 {
     if (state === undefined) return combinedDefaults.getTestimonialsContent;
 
@@ -29,5 +29,3 @@ const GetTestimonialsContentReducer: Reducer<IGetTestimonialsContent> = (state: 
         default: return state;
     }
 }
-
-export default GetTestimonialsContentReducer;

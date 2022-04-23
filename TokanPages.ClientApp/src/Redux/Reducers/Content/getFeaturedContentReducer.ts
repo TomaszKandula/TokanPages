@@ -7,7 +7,7 @@ import {
     REQUEST_FEATURED_CONTENT
 } from "../../Actions/Content/getFeaturedContentAction";
 
-const GetFeaturedContentReducer: Reducer<IGetFeaturedContent> = (state: IGetFeaturedContent | undefined, incomingAction: Action): IGetFeaturedContent => 
+export const GetFeaturedContentReducer: Reducer<IGetFeaturedContent> = (state: IGetFeaturedContent | undefined, incomingAction: Action): IGetFeaturedContent => 
 {
     if (state === undefined) return combinedDefaults.getFeaturedContent;
 
@@ -29,5 +29,3 @@ const GetFeaturedContentReducer: Reducer<IGetFeaturedContent> = (state: IGetFeat
         default: return state;
     }
 }
-
-export default GetFeaturedContentReducer;

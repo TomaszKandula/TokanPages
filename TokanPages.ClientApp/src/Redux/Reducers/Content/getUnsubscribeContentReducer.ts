@@ -7,7 +7,7 @@ import {
     REQUEST_UNSUBSCRIBE_CONTENT
 } from "../../../Redux/Actions/Content/getUnsubscribeContentAction";
 
-const GetUnsubscribeContentReducer: Reducer<IGetUnsubscribeContent> = (state: IGetUnsubscribeContent | undefined, incomingAction: Action): IGetUnsubscribeContent => 
+export const GetUnsubscribeContentReducer: Reducer<IGetUnsubscribeContent> = (state: IGetUnsubscribeContent | undefined, incomingAction: Action): IGetUnsubscribeContent => 
 {
     if (state === undefined) return combinedDefaults.getUnsubscribeContent;
 
@@ -29,5 +29,3 @@ const GetUnsubscribeContentReducer: Reducer<IGetUnsubscribeContent> = (state: IG
         default: return state;
     }
 }
-
-export default GetUnsubscribeContentReducer;

@@ -10,7 +10,7 @@ import {
 import { USER_DATA } from "../../../Shared/constants";
 import { DelDataFromStorage, SetDataInStorage } from "../../../Shared/Services/StorageServices";
 
-const UpdateUserDataReducer: Reducer<IStoreUserData> = (state: IStoreUserData | undefined, incomingAction: Action): IStoreUserData => 
+export const StoreUserDataReducer: Reducer<IStoreUserData> = (state: IStoreUserData | undefined, incomingAction: Action): IStoreUserData => 
 {
     if (state === undefined) return combinedDefaults.storeUserData;
 
@@ -48,5 +48,3 @@ const UpdateUserDataReducer: Reducer<IStoreUserData> = (state: IStoreUserData | 
         default: return state;
     }
 };
-
-export default UpdateUserDataReducer;

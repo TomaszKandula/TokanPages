@@ -4,7 +4,7 @@ import { combinedDefaults } from "../../Redux/combinedDefaults";
 import { CLEAR_DIALOG, RAISE_DIALOG, TDialogActions } from "../../Redux/Actions/raiseDialogAction";
 import { IconType } from "../../Shared/enums";
 
-const RaiseDialogReducer: Reducer<IRaiseDialog> = (state: IRaiseDialog | undefined, incomingAction: Action): IRaiseDialog =>
+export const RaiseDialogReducer: Reducer<IRaiseDialog> = (state: IRaiseDialog | undefined, incomingAction: Action): IRaiseDialog =>
 {
     if (state === undefined) return combinedDefaults.raiseDialog;
 
@@ -26,5 +26,3 @@ const RaiseDialogReducer: Reducer<IRaiseDialog> = (state: IRaiseDialog | undefin
         default: return state;
     }
 }
-
-export default RaiseDialogReducer;

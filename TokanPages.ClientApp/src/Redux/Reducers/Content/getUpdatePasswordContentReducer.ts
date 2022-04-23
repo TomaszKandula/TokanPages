@@ -7,7 +7,7 @@ import {
     REQUEST_UPDATE_PASSWORD_CONTENT
 } from "../../Actions/Content/getUpdatePasswordContentAction";
 
-const GetUpdatePasswordContentReducer: Reducer<IGetUpdatePasswordContent> = (state: IGetUpdatePasswordContent | undefined, incomingAction: Action): IGetUpdatePasswordContent => 
+export const GetUpdatePasswordContentReducer: Reducer<IGetUpdatePasswordContent> = (state: IGetUpdatePasswordContent | undefined, incomingAction: Action): IGetUpdatePasswordContent => 
 {
     if (state === undefined) return combinedDefaults.getUpdatePasswordContent;
 
@@ -29,5 +29,3 @@ const GetUpdatePasswordContentReducer: Reducer<IGetUpdatePasswordContent> = (sta
         default: return state;
     }
 }
-
-export default GetUpdatePasswordContentReducer;

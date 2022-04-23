@@ -2,6 +2,7 @@ import { IApplicationState } from "./applicationState";
 import { SelectArticleDefault } from "./Defaults/Articles/selectArticleDefault";
 import { ListArticlesDefault } from "./Defaults/Articles/listArticlesDefault";
 import { UpdateArticleDefault } from "./Defaults/Articles/updateArticleDefault";
+import { UpdateUserDefault } from "./Defaults/Users/updateUserDefault";
 import { AddSubscriberDefault } from "./Defaults/Subscribers/addSubscriberDefault";
 import { UpdateSubscriberDefault } from "./Defaults/Subscribers/updateSubscriberDefault";
 import { RemoveSubscriberDefault } from "./Defaults/Subscribers/removeSubscriberDefault";
@@ -36,7 +37,6 @@ import { GetTestimonialsContentDefault } from "./Defaults/Content/getTestimonial
 import { GetUnsubscribeContentDefault } from "./Defaults/Content/getUnsubscribeContentDefault";
 import { GetActivateAccountContentDefault } from "./Defaults/Content/getActivateAccountContentDefault";
 import { GetUpdateSubscriberContentDefault } from "./Defaults/Content/getUpdateSubscriberContentDefault";
-import { UpdateUserDefault } from "./Defaults/Users/updateUserDefault";
 
 export const combinedDefaults: IApplicationState = 
 {

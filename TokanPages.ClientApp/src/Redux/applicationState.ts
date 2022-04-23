@@ -10,6 +10,7 @@ import { ISignupUser } from "./States/Users/signupUserState";
 import { IResetUserPassword } from "./States/Users/resetUserPasswordState";
 import { IUpdateUserPassword } from "./States/Users/updateUserPasswordState";
 import { IActivateAccount } from "./States/Users/activateAccountState";
+import { IUpdateUser } from "./States/Users/updateUserState";
 import { ISendMessage } from "./States/Mailer/sendMessageState";
 import { IRaiseError } from "./States/raiseErrorState";
 import { IRaiseDialog } from "./States/raiseDialogState";
@@ -35,7 +36,6 @@ import { IGetTestimonialsContent } from "./States/Content/getTestimonialsContent
 import { IGetUnsubscribeContent } from "./States/Content/getUnsubscribeContentState";
 import { IGetActivateAccountContent } from "./States/Content/getActivateAccountContentState";
 import { IGetUpdateSubscriberContent } from "./States/Content/getUpdateSubscriberContentState";
-import { IUpdateUser } from "./States/Users/updateUserState";
 
 export interface IApplicationState 
 {

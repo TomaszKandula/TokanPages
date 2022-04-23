@@ -7,7 +7,7 @@ import {
     RECEIVE_CONTACT_FORM_CONTENT 
 } from "../../Actions/Content/getContactFormContentAction";
 
-const GetContactFormContentReducer: Reducer<IGetContactFormContent> = (state: IGetContactFormContent | undefined, incomingAction: Action): IGetContactFormContent => 
+export const GetContactFormContentReducer: Reducer<IGetContactFormContent> = (state: IGetContactFormContent | undefined, incomingAction: Action): IGetContactFormContent => 
 {
     if (state === undefined) return combinedDefaults.getContactFormContent;
 
@@ -29,5 +29,3 @@ const GetContactFormContentReducer: Reducer<IGetContactFormContent> = (state: IG
         default: return state;
     }
 }
-
-export default GetContactFormContentReducer;

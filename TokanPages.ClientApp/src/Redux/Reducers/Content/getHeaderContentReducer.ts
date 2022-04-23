@@ -7,7 +7,7 @@ import {
     REQUEST_HEADER_CONTENT
 } from "../../../Redux/Actions/Content/getHeaderContentAction";
 
-const GetHeaderContentReducer: Reducer<IGetHeaderContent> = (state: IGetHeaderContent | undefined, incomingAction: Action): IGetHeaderContent => 
+export const GetHeaderContentReducer: Reducer<IGetHeaderContent> = (state: IGetHeaderContent | undefined, incomingAction: Action): IGetHeaderContent => 
 {
     if (state === undefined) return combinedDefaults.getHeaderContent;
 
@@ -29,5 +29,3 @@ const GetHeaderContentReducer: Reducer<IGetHeaderContent> = (state: IGetHeaderCo
         default: return state;
     }
 }
-
-export default GetHeaderContentReducer;

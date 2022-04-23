@@ -7,7 +7,7 @@ import {
     RECEIVE_ACTIVATE_ACCOUNT_CONTENT
 } from "../../../Redux/Actions/Content/getActivateAccountContentAction";
 
-const GetActivateAccountContentReducer: Reducer<IGetActivateAccountContent> = (state: IGetActivateAccountContent | undefined, incomingAction: Action): IGetActivateAccountContent => 
+export const GetActivateAccountContentReducer: Reducer<IGetActivateAccountContent> = (state: IGetActivateAccountContent | undefined, incomingAction: Action): IGetActivateAccountContent => 
 {
     if (state === undefined) return combinedDefaults.getActivateAccountContent;
 
@@ -29,5 +29,3 @@ const GetActivateAccountContentReducer: Reducer<IGetActivateAccountContent> = (s
         default: return state;
     }
 }
-
-export default GetActivateAccountContentReducer;

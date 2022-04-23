@@ -9,7 +9,7 @@ import {
     API_SEND_MESSAGE_CLEAR
 } from "../../Actions/Mailer/sendMessageAction";
 
-const SendMessageReducer: Reducer<ISendMessage> = (state: ISendMessage | undefined, incomingAction: Action): ISendMessage => 
+export const SendMessageReducer: Reducer<ISendMessage> = (state: ISendMessage | undefined, incomingAction: Action): ISendMessage => 
 {
     if (state === undefined) return combinedDefaults.sendMessage;
 
@@ -34,5 +34,3 @@ const SendMessageReducer: Reducer<ISendMessage> = (state: ISendMessage | undefin
         default: return state;
     }
 };
-
-export default SendMessageReducer;
