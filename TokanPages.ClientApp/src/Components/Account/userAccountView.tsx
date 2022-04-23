@@ -80,124 +80,111 @@ const UserAccountView = (props: IBinding): JSX.Element =>
         );
     }
 
-    const AccessDenied = (): JSX.Element => 
-    {
-        return(
-            <CardContent className={classes.card_content}>
-                <Box pt={0} pb={0}>
-                    <Typography className={classes.caption}>
-                        {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccessDenied?.accessDeniedCaption}
-                    </Typography>
-                </Box>
-                <CustomDivider marginTop={2} marginBottom={1} />
-                <Box pt={3} pb={3}>
-                    <Typography component="span" className={classes.access_denied_prompt}>
-                        {props.bind?.isLoading ? <Skeleton variant="text" height="100px" /> : ReactHtmlParser(props.bind?.sectionAccessDenied?.accessDeniedPrompt)}
-                    </Typography>
-                </Box>
-                {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <HomeButton />}
-            </CardContent>
-        );
-    }
-
-    const DisplayBasicInformation = (): JSX.Element => 
-    {
-        return(
-            <CardContent className={classes.card_content}>
-                <Box pt={0} pb={0}>
-                    <Typography className={classes.caption}>
-                        {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.caption}
-                    </Typography>
-                </Box>
-                <CustomDivider marginTop={2} marginBottom={1} />
-                <Box pt={5} pb={1}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={3}>
-                            <Typography className={classes.label}>
-                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelUserId}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={9}>
-                            <Typography className={classes.user_id}>
-                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.userId}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={3}>
-                            <Typography className={classes.label}>
-                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelUserAlias}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={9}>
-                            <Typography className={classes.user_alias}>
-                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.userAlias}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={3}>
-                            <Typography className={classes.label}>
-                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelUserAvatar}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={9}>
-                            <Box className={classes.user_avatar_box}>
-                                <Typography component="span" className={classes.user_avatar}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.userAvatar}
-                                </Typography>
-                                {props.bind?.isLoading ? null : <UploadAvatarButton />}
-                            </Box>
-                        </Grid>
-                        <Grid item xs={12} sm={3}>
-                            <Typography className={classes.label}>
-                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelFirstName}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={9}>
-                            {props.bind?.isLoading 
-                            ? <Skeleton variant="rect" width="100%" height="40px" /> 
-                            : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.firstName}
-                                variant="outlined" name="firstName" id="firstName" autoComplete="fname" />}
-                        </Grid>
-                        <Grid item xs={12} sm={3}>
-                            <Typography className={classes.label}>
-                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelLastName}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={9}>
-                            {props.bind?.isLoading 
-                            ? <Skeleton variant="rect" width="100%" height="40px" />
-                            : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.lastName}
-                                variant="outlined" name="lastName" id="lastName" autoComplete="lname" />}
-                        </Grid>
-                        <Grid item xs={12} sm={3}>
-                            <Typography className={classes.label}>
-                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelShortBio}
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={9}>
-                            {props.bind?.isLoading 
-                            ? <Skeleton variant="rect" width="100%" height="40px" />
-                            : <TextField required fullWidth multiline onChange={props.bind?.formHandler} value={props.bind?.shortBio}
-                                minRows={6} variant="outlined" name="shortBio" id="shortBio" autoComplete="sbio" />}
-                        </Grid>
-                    </Grid>
-                    <CustomDivider marginTop={5} marginBottom={2} />
-                    <Grid className={classes.button_container_update}>
-                        <Box my={2}>
-                            {props.bind?.isLoading 
-                            ? <Skeleton variant="rect" width="150px" height="40px" /> 
-                            : <UpdateButton />}
-                        </Box>
-                    </Grid>
-                </Box>
-            </CardContent>
-        );        
-    }
-
     return(
         <section className={classes.section}>
             <Container maxWidth="md">
                 <Box py={15}>
                     <Card elevation={0} className={classes.card}>
-                        {props.bind?.isAnonymous ? <AccessDenied /> : <DisplayBasicInformation />}
+                        <CardContent className={classes.card_content} style={props.bind?.isAnonymous ? { display: "block" }: { display: "none" }}>
+                            <Box pt={0} pb={0}>
+                                <Typography className={classes.caption}>
+                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccessDenied?.accessDeniedCaption}
+                                </Typography>
+                            </Box>
+                            <CustomDivider marginTop={2} marginBottom={1} />
+                            <Box pt={3} pb={3}>
+                                <Typography component="span" className={classes.access_denied_prompt}>
+                                    {props.bind?.isLoading ? <Skeleton variant="text" height="100px" /> : ReactHtmlParser(props.bind?.sectionAccessDenied?.accessDeniedPrompt)}
+                                </Typography>
+                            </Box>
+                            {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <HomeButton />}
+                        </CardContent>
+                        <CardContent className={classes.card_content} style={props.bind?.isAnonymous ? { display: "none" }: { display: "block" }}>
+                            <Box pt={0} pb={0}>
+                                <Typography className={classes.caption}>
+                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.caption}
+                                </Typography>
+                            </Box>
+                            <CustomDivider marginTop={2} marginBottom={1} />
+                            <Box pt={5} pb={1}>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12} sm={3}>
+                                        <Typography className={classes.label}>
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelUserId}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={9}>
+                                        <Typography className={classes.user_id}>
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.userId}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={3}>
+                                        <Typography className={classes.label}>
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelUserAlias}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={9}>
+                                        <Typography className={classes.user_alias}>
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.userAlias}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={3}>
+                                        <Typography className={classes.label}>
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelUserAvatar}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={9}>
+                                        <Box className={classes.user_avatar_box}>
+                                            <Typography component="span" className={classes.user_avatar}>
+                                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.userAvatar}
+                                            </Typography>
+                                            {props.bind?.isLoading ? null : <UploadAvatarButton />}
+                                        </Box>
+                                    </Grid>
+                                    <Grid item xs={12} sm={3}>
+                                        <Typography className={classes.label}>
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelFirstName}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={9}>
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="40px" /> 
+                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.firstName}
+                                            variant="outlined" name="firstName" id="firstName" />}
+                                    </Grid>
+                                    <Grid item xs={12} sm={3}>
+                                        <Typography className={classes.label}>
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelLastName}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={9}>
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="40px" />
+                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.lastName}
+                                            variant="outlined" name="lastName" id="lastName" />}
+                                    </Grid>
+                                    <Grid item xs={12} sm={3}>
+                                        <Typography className={classes.label}>
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelShortBio}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={9}>
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="40px" />
+                                        : <TextField required fullWidth multiline onChange={props.bind?.formHandler} value={props.bind?.shortBio}
+                                            minRows={6} variant="outlined" name="shortBio" id="shortBio" />}
+                                    </Grid>
+                                </Grid>
+                                <CustomDivider marginTop={5} marginBottom={2} />
+                                <Grid className={classes.button_container_update}>
+                                    <Box my={2}>
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="rect" width="150px" height="40px" /> 
+                                        : <UpdateButton />}
+                                    </Box>
+                                </Grid>
+                            </Box>
+                        </CardContent>
                     </Card>
                 </Box>
             </Container>
