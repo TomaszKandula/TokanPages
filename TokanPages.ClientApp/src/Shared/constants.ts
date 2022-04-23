@@ -146,6 +146,7 @@ export const SIGNUP_FORM: string = "Signup Form";
 export const RESET_FORM: string = "Password Reset";
 export const UPDATE_FORM: string = "Update Password";
 export const CONTACT_FORM: string = "Contact Form";
+export const ACCOUNT_FORM: string = "Account Form";
 export const NEWSLETTER: string = "Newsletter";
 export const UPDATE_SUBSCRIBER: string = "Update Subscriber";
 export const REMOVE_SUBSCRIBER: string = "Remove Subscriber";
