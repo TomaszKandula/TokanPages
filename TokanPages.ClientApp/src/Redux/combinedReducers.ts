@@ -4,11 +4,11 @@ import UpdateArticleReducer from "./Reducers/Articles/updateArticleReducer";
 import AddSubscriberReducer from "./Reducers/Subscribers/addSubscriberReducer";
 import UpdateSubscriberReducer from "./Reducers/Subscribers/updateSubscriberReducer";
 import RemoveSubscriberReducer from "./Reducers/Subscribers/removeSubscriberReducer";
-import UpdateUserDataReducer from "./Reducers/Users/updateUserDataReducer";
+import StoreUserDataReducer from "./Reducers/Users/storeUserDataReducer";
 import SigninUserReducer from "./Reducers/Users/signinUserReducer";
 import SignupUserReducer from "./Reducers/Users/signupUserReducer";
 import ResetUserPasswordReducer from "./Reducers/Users/resetUserPasswordReducer";
-import updateUserPasswordReducer from "./Reducers/Users/updateUserPasswordReducer";
+import UpdateUserPasswordReducer from "./Reducers/Users/updateUserPasswordReducer";
 import ActivateAccountReducer from "./Reducers/Users/activateAccountReducer";
 import SendMessageReducer from "./Reducers/Mailer/sendMessageReducer";
 import RaiseErrorReducer from "./Reducers/raiseErrorReducer";
@@ -47,11 +47,11 @@ export const combinedReducers =
     addSubscriber: AddSubscriberReducer,
     updateSubscriber: UpdateSubscriberReducer,
     removeSubscriber: RemoveSubscriberReducer,
-    updateUserData: UpdateUserDataReducer,
+    storeUserData: StoreUserDataReducer,
     signinUser: SigninUserReducer,
     signupUser: SignupUserReducer,
     resetUserPassword: ResetUserPasswordReducer,
-    updateUserPassword: updateUserPasswordReducer,
+    updateUserPassword: UpdateUserPasswordReducer,
     activateAccount: ActivateAccountReducer,
     getAccountContent: GetAccountContentReducer, 
     getStaticContent: GetStaticContentReducer,

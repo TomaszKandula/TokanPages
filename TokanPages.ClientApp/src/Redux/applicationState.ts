@@ -4,7 +4,7 @@ import { IUpdateArticle } from "./States/Articles/updateArticleState";
 import { IAddSubscriber } from "./States/Subscribers/addSubscriberState";
 import { IUpdateSubscriber } from "./States/Subscribers/updateSubscriberState";
 import { IRemoveSubscriber } from "./States/Subscribers/removeSubscriberState";
-import { IUpdateUserData } from "./States/Users/updateUserDataState";
+import { IStoreUserData } from "./States/Users/storeUserDataState";
 import { ISigninUser } from "./States/Users/signinUserState";
 import { ISignupUser } from "./States/Users/signupUserState";
 import { IResetUserPassword } from "./States/Users/resetUserPasswordState";
@@ -47,7 +47,7 @@ export interface IApplicationState
     addSubscriber: IAddSubscriber,
     updateSubscriber: IUpdateSubscriber,
     removeSubscriber: IRemoveSubscriber,
-    updateUserData: IUpdateUserData,
+    storeUserData: IStoreUserData,
     signinUser: ISigninUser,
     signupUser: ISignupUser,
     resetUserPassword: IResetUserPassword,

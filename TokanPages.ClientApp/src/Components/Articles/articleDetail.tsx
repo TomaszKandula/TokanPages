@@ -23,7 +23,7 @@ const ArticleDetail = (props: IArticleDetail): JSX.Element =>
 {
     const dispatch = useDispatch();
     const selection = useSelector((state: IApplicationState) => state.selectArticle);
-    const user = useSelector((state: IApplicationState) => state.updateUserData);
+    const user = useSelector((state: IApplicationState) => state.storeUserData);
 
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
         dispatch(SelectArticleActions.selectArticle(props.id));

@@ -1,18 +1,18 @@
 import { Action, Reducer } from "redux";
 import { combinedDefaults } from "../../combinedDefaults";
-import { IUpdateUserData } from "../../../Redux/States/Users/updateUserDataState";
+import { IStoreUserData } from "../../States/Users/storeUserDataState";
 import { 
     TKnownActions,
     SHOW_USERDATA,
     CLEAR_USERDATA,
     UPDATE_USERDATA
-} from "../../Actions/Users/updateUserDataAction";
+} from "../../Actions/Users/storeUserDataAction";
 import { USER_DATA } from "../../../Shared/constants";
 import { DelDataFromStorage, SetDataInStorage } from "../../../Shared/Services/StorageServices";
 
-const UpdateUserDataReducer: Reducer<IUpdateUserData> = (state: IUpdateUserData | undefined, incomingAction: Action): IUpdateUserData => 
+const UpdateUserDataReducer: Reducer<IStoreUserData> = (state: IStoreUserData | undefined, incomingAction: Action): IStoreUserData => 
 {
-    if (state === undefined) return combinedDefaults.updateUserData;
+    if (state === undefined) return combinedDefaults.storeUserData;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 
@@ -25,7 +25,7 @@ const UpdateUserDataReducer: Reducer<IUpdateUserData> = (state: IUpdateUserData 
 
         case CLEAR_USERDATA:
             DelDataFromStorage({ key: USER_DATA });
-            return combinedDefaults.updateUserData;
+            return combinedDefaults.storeUserData;
 
         case UPDATE_USERDATA:
             SetDataInStorage({ key: USER_DATA, selection: action.payload }); 

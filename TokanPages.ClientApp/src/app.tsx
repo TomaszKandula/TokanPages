@@ -22,7 +22,7 @@ import ScrollTop from "./Shared/Components/Scroll/scrollTop";
 import ApplicationToast from "./Shared/Components/Toasts/applicationToast";
 import ApplicationDialogBox from "./Shared/Components/ApplicationDialogBox/applicationDialogBox";
 import ApplicationUserInfo from "./Shared/Components/ApplicationUserInfo/applicationUserInfo";
-import { UpdateUserData } from "./Shared/Services/updateUserDataService";
+import { StoreUserData } from "./Shared/Services/updateUserDataService";
 import styles from "./Styles/appStyle";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -37,7 +37,7 @@ const App = (): JSX.Element =>
         AOS.refresh();
     });
 
-    UpdateUserData();
+    StoreUserData();
 
     return (
         <>

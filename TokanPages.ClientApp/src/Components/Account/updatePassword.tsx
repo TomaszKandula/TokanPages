@@ -31,7 +31,7 @@ const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
     const queryParam = useQuery();
     const dispatch = useDispatch();
     
-    const userDataState = useSelector((state: IApplicationState) => state.updateUserData);
+    const userDataState = useSelector((state: IApplicationState) => state.storeUserData);
     const updateUserPasswordState = useSelector((state: IApplicationState) => state.updateUserPassword);
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
     

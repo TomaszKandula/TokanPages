@@ -5,7 +5,7 @@ import { UpdateArticleDefault } from "./Defaults/Articles/updateArticleDefault";
 import { AddSubscriberDefault } from "./Defaults/Subscribers/addSubscriberDefault";
 import { UpdateSubscriberDefault } from "./Defaults/Subscribers/updateSubscriberDefault";
 import { RemoveSubscriberDefault } from "./Defaults/Subscribers/removeSubscriberDefault";
-import { UpdateUserDataDefault } from "./Defaults/Users/updateUserDataDefault";
+import { StoreUserDataDefault } from "./Defaults/Users/storeUserDataDefault";
 import { SigninUserDefault } from "./Defaults/Users/signinUserDefault";
 import { SignupUserDefault } from "./Defaults/Users/signupUserDefault";
 import { ActivateAccountDefault } from "./Defaults/Users/activateAccountDefault";
@@ -48,7 +48,7 @@ export const combinedDefaults: IApplicationState =
     addSubscriber: AddSubscriberDefault,
     updateSubscriber: UpdateSubscriberDefault,
     removeSubscriber: RemoveSubscriberDefault,
-    updateUserData: UpdateUserDataDefault,
+    storeUserData: StoreUserDataDefault,
     signinUser: SigninUserDefault,
     signupUser: SignupUserDefault,
     resetUserPassword: ResetUserPasswordDefault,

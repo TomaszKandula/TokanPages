@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "Redux/applicationState";
 import Validate from "validate.js";
 import { IGetNavigationContent } from "../../Redux/States/Content/getNavigationContentState";
-import { ActionCreators } from "../../Redux/Actions/Users/updateUserDataAction";
+import { ActionCreators } from "../../Redux/Actions/Users/storeUserDataAction";
 import { GetLanguages, SetUserLanguage, GetDefaultLanguageId } from "../../Shared/Services/languageService";
 import NavigationView from "./navigationView";
 import Reload from "./Services/componentsContentService";
@@ -17,7 +17,7 @@ import {
 const Navigation = (props: IGetNavigationContent): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const user = useSelector((state: IApplicationState) => state.updateUserData);
+    const user = useSelector((state: IApplicationState) => state.storeUserData);
     const languages = GetLanguages();
     const defaultLanguage = GetDefaultLanguageId();
 
