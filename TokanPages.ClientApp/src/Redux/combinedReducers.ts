@@ -35,24 +35,29 @@ import GetTestimonialsContentReducer from "./Reducers/Content/getTestimonialsCon
 import GetUnsubscribeContentReducer from "./Reducers/Content/getUnsubscribeContentReducer";
 import GetActivateAccountContentReducer from "./Reducers/Content/getActivateAccountContentReducer";
 import GetUpdateSubscriberContentReducer from "./Reducers/Content/getUpdateSubscriberContentReducer";
+import { UpdateUserReducer } from "./Reducers/Users/updateUserReducer";
 
 export const combinedReducers = 
 {
     raiseError: RaiseErrorReducer,
     raiseDialog: RaiseDialogReducer,
+    
     selectArticle: SelectArticlesReducer,
     listArticles: ListArticlesReducer,
+    storeUserData: StoreUserDataReducer,
+    
     updateArticle: UpdateArticleReducer,
     sendMessage: SendMessageReducer,
     addSubscriber: AddSubscriberReducer,
     updateSubscriber: UpdateSubscriberReducer,
     removeSubscriber: RemoveSubscriberReducer,
-    storeUserData: StoreUserDataReducer,
     signinUser: SigninUserReducer,
     signupUser: SignupUserReducer,
     resetUserPassword: ResetUserPasswordReducer,
     updateUserPassword: UpdateUserPasswordReducer,
     activateAccount: ActivateAccountReducer,
+    updateUser: UpdateUserReducer,
+    
     getAccountContent: GetAccountContentReducer, 
     getStaticContent: GetStaticContentReducer,
     getArticleFeatContent: GetArticleFeatContentReducer,

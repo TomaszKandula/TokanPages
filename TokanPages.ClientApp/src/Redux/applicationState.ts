@@ -35,24 +35,29 @@ import { IGetTestimonialsContent } from "./States/Content/getTestimonialsContent
 import { IGetUnsubscribeContent } from "./States/Content/getUnsubscribeContentState";
 import { IGetActivateAccountContent } from "./States/Content/getActivateAccountContentState";
 import { IGetUpdateSubscriberContent } from "./States/Content/getUpdateSubscriberContentState";
+import { IUpdateUser } from "./States/Users/updateUserState";
 
 export interface IApplicationState 
 {
     raiseError: IRaiseError;
     raiseDialog: IRaiseDialog;
+
     selectArticle: IArticle;
     listArticles: IArticles;
+    storeUserData: IStoreUserData,
+    
     updateArticle: IUpdateArticle,
     sendMessage: ISendMessage,
     addSubscriber: IAddSubscriber,
     updateSubscriber: IUpdateSubscriber,
     removeSubscriber: IRemoveSubscriber,
-    storeUserData: IStoreUserData,
     signinUser: ISigninUser,
     signupUser: ISignupUser,
     resetUserPassword: IResetUserPassword,
     updateUserPassword: IUpdateUserPassword,
     activateAccount: IActivateAccount,
+    updateUser: IUpdateUser,
+
     getAccountContent: IGetAccountContent,
     getStaticContent: IGetStaticContent,
     getArticleFeatContent: IGetArticleFeatContent,

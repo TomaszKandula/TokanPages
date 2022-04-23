@@ -36,24 +36,29 @@ import { GetTestimonialsContentDefault } from "./Defaults/Content/getTestimonial
 import { GetUnsubscribeContentDefault } from "./Defaults/Content/getUnsubscribeContentDefault";
 import { GetActivateAccountContentDefault } from "./Defaults/Content/getActivateAccountContentDefault";
 import { GetUpdateSubscriberContentDefault } from "./Defaults/Content/getUpdateSubscriberContentDefault";
+import { UpdateUserDefault } from "./Defaults/Users/updateUserDefault";
 
 export const combinedDefaults: IApplicationState = 
 {
     raiseError: RaiseErrorDefault,
     raiseDialog: RaiseDialogDefault,
+
     selectArticle: SelectArticleDefault,
     listArticles: ListArticlesDefault,
+    storeUserData: StoreUserDataDefault,
+
     updateArticle: UpdateArticleDefault,
     sendMessage: SendMessageStateDefault,
     addSubscriber: AddSubscriberDefault,
     updateSubscriber: UpdateSubscriberDefault,
     removeSubscriber: RemoveSubscriberDefault,
-    storeUserData: StoreUserDataDefault,
     signinUser: SigninUserDefault,
     signupUser: SignupUserDefault,
     resetUserPassword: ResetUserPasswordDefault,
     updateUserPassword: UpdateUserPasswordDefault,
     activateAccount: ActivateAccountDefault,
+    updateUser: UpdateUserDefault,
+
     getAccountContent: GetAccountContentDefault,
     getStaticContent: GetStaticContentDefault,
     getArticleFeatContent: GetArticleFeatContentDefault,
