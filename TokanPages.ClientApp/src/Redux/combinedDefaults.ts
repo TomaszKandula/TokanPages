@@ -29,7 +29,7 @@ import { RaiseErrorDefault } from "./Defaults/raiseErrorDefault";
 import { RemoveSubscriberDefault } from "./Defaults/Subscribers/removeSubscriberDefault";
 import { ResetUserPasswordDefault } from "./Defaults/Users/resetUserPasswordDefault";
 import { SelectArticleDefault } from "./Defaults/Articles/selectArticleDefault";
-import { SendMessageStateDefault } from "./Defaults/Mailer/sendMessageDefault";
+import { SendMessageDefault } from "./Defaults/Mailer/sendMessageDefault";
 import { SigninUserDefault } from "./Defaults/Users/signinUserDefault";
 import { SignupUserDefault } from "./Defaults/Users/signupUserDefault";
 import { StoreUserDataDefault } from "./Defaults/Users/storeUserDataDefault";
@@ -47,7 +47,7 @@ export const combinedDefaults: IApplicationState =
     selectArticle: SelectArticleDefault,
     storeUserData: StoreUserDataDefault,
 
-    sendMessage: SendMessageStateDefault,
+    sendMessage: SendMessageDefault,
     updateArticle: UpdateArticleDefault,
     addSubscriber: AddSubscriberDefault,
     updateSubscriber: UpdateSubscriberDefault,
