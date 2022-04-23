@@ -29,15 +29,7 @@ export const ActionCreators =
         { 
             method: "POST", 
             url: API_COMMAND_UPDATE_USER, 
-            data: 
-            {  
-                id: payload.id,
-                userAlias: payload.userAlias,
-                isActivated: payload.isActivated,
-                firstName: payload.firstName,
-                lastName: payload.lastName,
-                emailAddress: payload.emailAddress
-            }
+            data: payload
         }))
         .then(response => 
         {
