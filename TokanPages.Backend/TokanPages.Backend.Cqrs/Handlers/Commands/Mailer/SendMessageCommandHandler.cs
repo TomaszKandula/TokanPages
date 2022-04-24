@@ -10,6 +10,7 @@ using Database;
 using Shared.Models;
 using Shared.Services;
 using Core.Extensions;
+using Services.UserService;
 using Services.EmailSenderService;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
@@ -17,29 +18,36 @@ using Core.Utilities.DateTimeService;
 public class SendMessageCommandHandler : Cqrs.RequestHandler<SendMessageCommand, Unit>
 {
     private readonly IEmailSenderService _emailSenderService;
-        
+
     private readonly IDateTimeService _dateTimeService;
 
     private readonly IApplicationSettings _applicationSettings;
-        
+
+    private readonly IUserService _userService;
+
     public SendMessageCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
         IEmailSenderService emailSenderService, IDateTimeService dateTimeService, 
-        IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+        IApplicationSettings applicationSettings, IUserService userService) : base(databaseContext, loggerService)
     {
         _emailSenderService = emailSenderService;
         _dateTimeService = dateTimeService;
         _applicationSettings = applicationSettings;
+        _userService = userService;
     }
 
     public override async Task<Unit> Handle(SendMessageCommand request, CancellationToken cancellationToken)
     {
+        var timezoneOffset = _userService.GetRequestUserTimezoneOffset();
+        var baseDateTime = _dateTimeService.Now.AddMinutes(-timezoneOffset);
+        var dateTime = baseDateTime.ToString(CultureInfo.InvariantCulture);
+
         var templateValues = new Dictionary<string, string>
         {
             { "{FIRST_NAME}", request.FirstName },
             { "{LAST_NAME}", request.LastName },
             { "{EMAIL_ADDRESS}", request.UserEmail },
             { "{USER_MSG}", request.Message },
-            { "{DATE_TIME}", _dateTimeService.Now.ToString(CultureInfo.InvariantCulture) }
+            { "{DATE_TIME}", dateTime }
         };
 
         var templateUrl = $"{_applicationSettings.AzureStorage.BaseUrl}{Constants.Emails.Templates.ContactForm}";
