@@ -2,19 +2,18 @@ namespace TokanPages.Tests.UnitTests.Validators.Users;
 
 using Xunit;
 using FluentAssertions;
-using System;
 using Backend.Shared.Resources;
 using Backend.Cqrs.Handlers.Commands.Users;
 
 public class ReAuthenticateUserCommandValidatorTest : TestBase
 {
     [Fact]
-    public void GivenUserId_WhenReAuthenticateUser_ShouldSucceed()
+    public void GivenRefreshToken_WhenReAuthenticateUser_ShouldSucceed()
     {
         // Arrange
         var reAuthenticateUserCommand = new ReAuthenticateUserCommand
         {
-            Id = Guid.NewGuid()
+            RefreshToken = DataUtilityService.GetRandomString()
         };
 
         // Act
@@ -31,7 +30,7 @@ public class ReAuthenticateUserCommandValidatorTest : TestBase
         // Arrange
         var reAuthenticateUserCommand = new ReAuthenticateUserCommand
         {
-            Id = Guid.Empty
+            RefreshToken = string.Empty
         };
 
         // Act

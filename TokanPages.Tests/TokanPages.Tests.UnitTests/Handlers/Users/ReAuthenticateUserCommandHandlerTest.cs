@@ -31,7 +31,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var expires = DateTimeService.Now.AddMinutes(300);
         var created = DateTimeService.Now.AddDays(-5);
             
-        var reAuthenticateUserCommand = new ReAuthenticateUserCommand { Id = userId };
+        var reAuthenticateUserCommand = new ReAuthenticateUserCommand { RefreshToken = DataUtilityService.GetRandomString() };
         var user = new Users
         {
             Id = userId,
@@ -126,6 +126,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
                 .SetRefreshTokenCookie(
                     It.IsAny<string>(), 
                     It.IsAny<int>(), 
+                    It.IsAny<int>(), 
                     It.IsAny<bool>(), 
                     It.IsAny<bool>(), 
                     It.IsAny<string>()));
@@ -205,7 +206,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var expires = DateTimeService.Now.AddMinutes(300);
         var created = DateTimeService.Now.AddDays(-5);
             
-        var reAuthenticateUserCommand = new ReAuthenticateUserCommand { Id = userId };
+        var reAuthenticateUserCommand = new ReAuthenticateUserCommand { RefreshToken = DataUtilityService.GetRandomString() };
         var user = new Users
         {
             Id = userId,
@@ -289,7 +290,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
     public async Task GivenMissingRefreshToken_WhenReAuthenticateUser_ShouldThrowError()
     {
         // Arrange
-        var reAuthenticateUserCommand = new ReAuthenticateUserCommand { Id = Guid.NewGuid() };
+        var reAuthenticateUserCommand = new ReAuthenticateUserCommand { RefreshToken = DataUtilityService.GetRandomString() };
         var databaseContext = GetTestDatabaseContext();
 
         var mockedLogger = new Mock<ILoggerService>();
