@@ -45,8 +45,9 @@ public class WebTokenUtility : IWebTokenUtility
     /// </summary>
     /// <param name="ipAddress">IP address of the machine that requests new refresh token.</param>
     /// <param name="expiresIn">Number of minutes to expire. Cannot be zero.</param>
+    /// <param name="timezoneOffset"></param>
     /// <returns>New randomized secure token.</returns>
-    public virtual RefreshToken GenerateRefreshToken(string ipAddress, int expiresIn)
+    public virtual RefreshToken GenerateRefreshToken(string ipAddress, int expiresIn, int timezoneOffset = 0)
     {
         if (expiresIn == 0)
             throw new ArgumentException($"Argument '{nameof(expiresIn)}' cannot be zero.");
@@ -54,10 +55,13 @@ public class WebTokenUtility : IWebTokenUtility
         var randomBytes = new byte[256];
         _numberGenerator.GetBytes(randomBytes);
 
+        var baseDateTime = DateTime.UtcNow.AddMinutes(-timezoneOffset);
+        var expires = baseDateTime.AddMinutes(Math.Abs(expiresIn));
+
         var refreshToken = new RefreshToken
         {
             Token = Convert.ToBase64String(randomBytes),
-            Expires = DateTime.UtcNow.AddMinutes(Math.Abs(expiresIn)),
+            Expires = expires,
             Created = DateTime.UtcNow,
             CreatedByIp = ipAddress
         };
