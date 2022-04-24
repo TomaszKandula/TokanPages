@@ -1,9 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
+import { ActionCreators as RaiseDialog } from "../../Redux/Actions/raiseDialogAction";
+import { ActionCreators as UpdateUser } from "../../Redux/Actions/Users/updateUserAction";
+import { ActionCreators as ReAuthenticateUser } from "../../Redux/Actions/Users/reAuthenticateUserAction";
 import { IApplicationState } from "../../Redux/applicationState";
 import { IGetAccountContent } from "../../Redux/States/Content/getAccountContentState";
-import { ActionCreators as UpdateUser } from "../../Redux/Actions/Users/updateUserAction";
 import { IValidateAccountForm, ValidateAccountForm } from "../../Shared/Services/FormValidation";
 import { ACCOUNT_FORM, RECEIVED_ERROR_MESSAGE, UPDATE_USER_SUCCESS, UPDATE_USER_WARNING } from "../../Shared/constants";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
@@ -17,39 +18,41 @@ import Validate from "validate.js";
 const UserAccount = (props: IGetAccountContent): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const userData = useSelector((state: IApplicationState) => state.storeUserData.userData);
+    const userDataState = useSelector((state: IApplicationState) => state.storeUserData.userData);
     const updateUserState = useSelector((state: IApplicationState) => state.updateUser);
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
-    const isAnonymous = Validate.isEmpty(userData.userId);
+    const isAnonymous = Validate.isEmpty(userDataState.userId);
 
     const formDefaultValues: IValidateAccountForm = 
     {
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        shortBio: userData.shortBio
+        firstName: userDataState.firstName,
+        lastName: userDataState.lastName,
+        shortBio: userDataState.shortBio
     }
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [progressUpdate, setProgressUpdate] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(ACCOUNT_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string)=> dispatch(DialogAction.raiseDialog(WarningMessage(ACCOUNT_FORM, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(RaiseDialog.raiseDialog(SuccessMessage(ACCOUNT_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string)=> dispatch(RaiseDialog.raiseDialog(WarningMessage(ACCOUNT_FORM, text))), [ dispatch ]);
     const postUpdateUser = React.useCallback((payload: IUpdateUserDto) => dispatch(UpdateUser.update(payload)), [ dispatch ]);
     const postUpdateUserClear = React.useCallback(() => dispatch(UpdateUser.clear()), [ dispatch ]);
+    const reAuthenticateUser = React.useCallback(() => dispatch(ReAuthenticateUser.reAuthenticate()), [ dispatch ]);
 
-    const clearForm = React.useCallback(() => 
+    const resetForm = React.useCallback(() => 
     {
         if (!progressUpdate) return;
-        setProgressUpdate(false);
+        reAuthenticateUser();
         postUpdateUserClear();
+        setProgressUpdate(false);
     }, 
-    [ progressUpdate, postUpdateUserClear ]);
+    [ progressUpdate, postUpdateUserClear, reAuthenticateUser ]);
 
     React.useEffect(() => 
     {
         if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
-            clearForm();
+            resetForm();
             return;
         }
 
@@ -58,7 +61,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
             case OperationStatus.notStarted:
                 if (progressUpdate) postUpdateUser(
                 {
-                    id: userData.userId,
+                    id: userDataState.userId,
                     isActivated: true,
                     firstName: form.firstName,
                     lastName: form.lastName,
@@ -67,7 +70,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
             break;
 
             case OperationStatus.hasFinished:
-                clearForm();
+                resetForm();
                 showSuccess(UPDATE_USER_SUCCESS);
             break;
         }
@@ -103,12 +106,12 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
         {{
             isLoading: props.isLoading,
             isAnonymous: isAnonymous,
-            userId: userData.userId,
-            userAlias: userData.aliasName,
+            userId: userDataState.userId,
+            userAlias: userDataState.aliasName,
             firstName: form.firstName,
             lastName: form.lastName,
             shortBio: form.shortBio,
-            userAvatar: userData.avatarName,
+            userAvatar: userDataState.avatarName,
             updateProgress: progressUpdate,
             uploadProgress: false,
             formHandler: formHandler,
