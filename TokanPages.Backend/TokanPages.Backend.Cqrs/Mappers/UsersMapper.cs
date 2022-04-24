@@ -15,7 +15,7 @@ public static class UsersMapper
 
     public static ReAuthenticateUserCommand MapToReAuthenticateUserCommand(ReAuthenticateUserDto model) => new()
     {
-        Id = model.Id
+        RefreshToken = model.RefreshToken
     };
 
     public static RevokeUserRefreshTokenCommand MapToRevokeUserRefreshTokenCommand(RevokeUserRefreshTokenDto model) => new()
@@ -52,11 +52,12 @@ public static class UsersMapper
     public static UpdateUserCommand MapToUpdateUserCommand(UpdateUserDto model) => new()
     {
         Id = model.Id,
-        UserAlias = model.UserAlias,
         IsActivated = model.IsActivated,
+        UserAlias = model.UserAlias,
         FirstName = model.FirstName,
         LastName = model.LastName,
         EmailAddress = model.EmailAddress,
+        ShortBio = model.ShortBio
     };
 
     public static RemoveUserCommand MapToRemoveUserCommand(RemoveUserDto model) => new()
