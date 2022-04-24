@@ -13,6 +13,7 @@ export const StoreUserDataDefault: IStoreUserData =
         shortBio: "",
         registered: "",
         userToken: "",
+        refreshToken: "",
         roles: [],
         permissions: []
     }
