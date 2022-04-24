@@ -11,33 +11,27 @@ interface IPromiseResult
     error: any | null;
 }
 
-interface IHeaders 
-{
-    Authorization: string;
-}
-
-export const GetAuthorizationHeaders = (): IHeaders | undefined => 
-{
-    const userData = GetDataFromStorage({ key: USER_DATA }) as IAuthenticateUserResultDto;
-    let headers = undefined;
-
-    if (Validate.isObject(userData) && !Validate.isEmpty(userData.userToken))
-    {
-        headers = 
-        {
-            Authorization: `Bearer ${userData.userToken}`
-        }
-    }
-
-    return headers;
-}
-
 export const EnrichConfiguration = (config: AxiosRequestConfig): AxiosRequestConfig => 
 {
-    const headers = GetAuthorizationHeaders();
-    return headers === undefined
-        ? {...config} 
-        : {...config, headers: headers};
+    const userData = GetDataFromStorage({ key: USER_DATA }) as IAuthenticateUserResultDto;
+    const hasAuthorization = Validate.isObject(userData) && !Validate.isEmpty(userData.userToken);
+    const timezoneOffset = new Date().getTimezoneOffset();
+
+    const withAuthorization: any = 
+    {
+        Authorization: `Bearer ${userData.userToken}`,
+        UserTimezoneOffset: timezoneOffset
+    }
+
+    const withoutAuthorization: any = 
+    {
+        UserTimezoneOffset: timezoneOffset
+    }
+
+    const withAuthorizationConfig = {...config, withCredentials: true, headers: withAuthorization};
+    const withoutAuthorizationConfig = {...config, withCredentials: false, headers: withoutAuthorization};
+
+    return hasAuthorization ? withAuthorizationConfig : withoutAuthorizationConfig;
 }
 
 export const ApiCall = async (configuration: AxiosRequestConfig): Promise<IPromiseResult> =>

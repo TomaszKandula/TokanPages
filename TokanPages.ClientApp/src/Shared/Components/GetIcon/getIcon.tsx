@@ -1,64 +1,37 @@
 import * as React from "react";
-import { 
-    Apple, 
-    Assignment, 
-    Build, 
-    ContactMail, 
-    DirectionsBike, 
-    Gavel, 
-    Home, 
-    MusicNote, 
-    Person, 
-    PersonAdd, 
-    PhotoCamera,
-    PhotoAlbum, 
-    Policy, 
-    Star, 
-    Subject,
-    SportsSoccer, 
-    ViewList, 
-    VpnKey,
-    Lock,
-    Code,
-    GitHub,
-    MenuBook,
-    Edit,
-    VideoLibrary,
-} from "@material-ui/icons";
+import Icon from "@material-ui/core/Icon";
+import GitHub from "@material-ui/icons/GitHub";
+import LinkedIn from "@material-ui/icons/LinkedIn";
 
 interface IProperty
 {
     iconName: string;
 }
 
+const GetNonMaterialIcon = (name: string): JSX.Element | undefined => 
+{
+    switch(name)
+    {
+        case "github": return <GitHub />;
+        case "linkedin": return <LinkedIn />;
+        default: return undefined;
+    }
+}
+
 export const GetIcon = (props: IProperty): JSX.Element =>
 {
-    switch(props.iconName)
+    let iconName = props.iconName !== "" ? props.iconName.toLowerCase() : "X"
+    
+    const DisplayIcon = (args: { name: string }): JSX.Element => 
     {
-        case "Person": return <Person />;
-        case "PersonAdd": return <PersonAdd />;
-        case "Home": return <Home />;
-        case "ViewList": return <ViewList />;
-        case "Subject": return <Subject />;
-        case "Build": return <Build />;
-        case "Assignment": return <Assignment />;
-        case "Star": return <Star />;
-        case "PhotoCamera": return <PhotoCamera />;
-        case "PhotoAlbum": return <PhotoAlbum />;
-        case "SportsSoccer": return <SportsSoccer />;
-        case "MusicNote": return <MusicNote />;
-        case "DirectionsBike": return <DirectionsBike />;
-        case "ContactMail": return <ContactMail />;
-        case "Gavel": return <Gavel />;
-        case "Policy": return <Policy />;
-        case "VpnKey": return <VpnKey />;
-        case "Lock": return <Lock />; 
-        case "Code": return <Code />; 
-        case "GitHub": return <GitHub />; 
-        case "MenuBook": return <MenuBook />; 
-        case "Edit": return <Edit />;
-        case "VideoLibrary": return <VideoLibrary />;
+        const nonMaterialIcon = GetNonMaterialIcon(args.name);
+        if (nonMaterialIcon !== undefined)
+        {
+            return(nonMaterialIcon);
+        }
 
-        default: return <Apple />;
+        return(<Icon>{args.name}</Icon>);
     }
+ 
+    return(<DisplayIcon name={iconName} />);
 }

@@ -17,10 +17,12 @@ import {
 } from "../../../Api/Models";
 
 export const UPDATE_ARTICLE = "UPDATE_ARTICLE";
+export const UPDATE_ARTICLE_CLEAR = "UPDATE_ARTICLE_CLEAR";
 export const UPDATE_ARTICLE_RESPONSE = "UPDATE_ARTICLE_RESPONSE";
 export interface IApiUpdateArticle { type: typeof UPDATE_ARTICLE }
-export interface IApiUpdateArticleResponse { type: typeof UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: boolean }
-export type TKnownActions = IApiUpdateArticle | IApiUpdateArticleResponse | TErrorActions;
+export interface IApiUpdateArticleClear { type: typeof UPDATE_ARTICLE_CLEAR }
+export interface IApiUpdateArticleResponse { type: typeof UPDATE_ARTICLE_RESPONSE }
+export type TKnownActions = IApiUpdateArticle | IApiUpdateArticleClear | IApiUpdateArticleResponse | TErrorActions;
 
 const DispatchCall = async (dispatch: any, url: string, data: any) =>
 {
@@ -42,7 +44,8 @@ const DispatchCall = async (dispatch: any, url: string, data: any) =>
 
     if (result.status === 200)
     {
-        dispatch({ type: UPDATE_ARTICLE_RESPONSE, hasUpdatedArticle: true });
+        dispatch({ type: UPDATE_ARTICLE_RESPONSE });
+        dispatch({ type: UPDATE_ARTICLE_CLEAR });
         return;
     }
 
@@ -52,6 +55,10 @@ const DispatchCall = async (dispatch: any, url: string, data: any) =>
 
 export const ActionCreators = 
 {
+    updateArticleClear: (): AppThunkAction<TKnownActions> => (dispatch) => 
+    {
+        dispatch({ type: UPDATE_ARTICLE_CLEAR });
+    },
     updateArticleContent: (payload: IUpdateArticleContentDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_CONTENT, 

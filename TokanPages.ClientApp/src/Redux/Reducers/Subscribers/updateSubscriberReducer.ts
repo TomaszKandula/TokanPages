@@ -8,7 +8,7 @@ import {
     UPDATE_SUBSCRIBER_RESPONSE, 
 } from "../../Actions/Subscribers/updateSubscriberAction";
 
-const UpdateSubscriberReducer: Reducer<IUpdateSubscriber> = (state: IUpdateSubscriber | undefined, incomingAction: Action): IUpdateSubscriber => 
+export const UpdateSubscriberReducer: Reducer<IUpdateSubscriber> = (state: IUpdateSubscriber | undefined, incomingAction: Action): IUpdateSubscriber => 
 {
     if (state === undefined) return combinedDefaults.updateSubscriber;
 
@@ -30,5 +30,3 @@ const UpdateSubscriberReducer: Reducer<IUpdateSubscriber> = (state: IUpdateSubsc
         default: return state;
     }
 };
-
-export default UpdateSubscriberReducer;

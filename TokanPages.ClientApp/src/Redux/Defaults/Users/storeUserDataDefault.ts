@@ -1,6 +1,6 @@
-import { IUpdateUserData } from "../../States/Users/updateUserDataState";
+import { IStoreUserData } from "../../States/Users/storeUserDataState";
 
-export const UpdateUserDataDefault: IUpdateUserData = 
+export const StoreUserDataDefault: IStoreUserData = 
 {
     isShown: false,
     userData: 
@@ -13,6 +13,7 @@ export const UpdateUserDataDefault: IUpdateUserData =
         shortBio: "",
         registered: "",
         userToken: "",
+        refreshToken: "",
         roles: [],
         permissions: []
     }

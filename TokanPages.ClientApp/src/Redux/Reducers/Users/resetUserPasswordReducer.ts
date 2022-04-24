@@ -9,7 +9,7 @@ import {
     RESET_USER_PASSWORD_RESPONSE
 } from "../../Actions/Users/resetUserPasswordAction";
 
-const ResetUserPasswordReducer: Reducer<IResetUserPassword> = (state: IResetUserPassword | undefined, incomingAction: Action): IResetUserPassword => 
+export const ResetUserPasswordReducer: Reducer<IResetUserPassword> = (state: IResetUserPassword | undefined, incomingAction: Action): IResetUserPassword => 
 {
     if (state === undefined) return combinedDefaults.resetUserPassword;
 
@@ -36,5 +36,3 @@ const ResetUserPasswordReducer: Reducer<IResetUserPassword> = (state: IResetUser
         default: return state;
     }
 };
-
-export default ResetUserPasswordReducer;

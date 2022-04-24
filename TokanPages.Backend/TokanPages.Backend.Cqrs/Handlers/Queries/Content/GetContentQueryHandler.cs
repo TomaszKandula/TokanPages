@@ -71,6 +71,7 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
         return componentName switch
         {
             // Components
+            "account" => _jsonSerializer.MapObjects<AccountDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
             "activateAccount" => _jsonSerializer.MapObjects<ActivateAccountDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
             "articleFeatures" => _jsonSerializer.MapObjects<ArticleFeaturesDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
             "contactForm" => _jsonSerializer.MapObjects<ContactFormDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),

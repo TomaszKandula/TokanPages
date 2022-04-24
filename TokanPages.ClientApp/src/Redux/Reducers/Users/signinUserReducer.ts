@@ -9,7 +9,7 @@ import {
     SIGNIN_USER_RESPONSE
 } from "../../Actions/Users/signinUserAction";
 
-const SiginUserReducer: Reducer<ISigninUser> = (state: ISigninUser | undefined, incomingAction: Action): ISigninUser => 
+export const SigninUserReducer: Reducer<ISigninUser> = (state: ISigninUser | undefined, incomingAction: Action): ISigninUser => 
 {
     if (state === undefined) return combinedDefaults.signinUser;
 
@@ -36,5 +36,3 @@ const SiginUserReducer: Reducer<ISigninUser> = (state: ISigninUser | undefined, 
         default: return state;
     }
 };
-
-export default SiginUserReducer;

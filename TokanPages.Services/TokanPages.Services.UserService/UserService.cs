@@ -22,6 +22,10 @@ public sealed class UserService : IUserService
 {
     private const string Localhost = "127.0.0.1";
 
+    private const string XForwardedFor = "X-Forwarded-For";
+
+    private const string UserTimezoneOffset = "UserTimezoneOffset";
+
     private const string NewRefreshTokenText = "Replaced by new token";
 
     private readonly IHttpContextAccessor _httpContextAccessor;
@@ -53,11 +57,21 @@ public sealed class UserService : IUserService
     public string GetRequestIpAddress() 
     {
         var remoteIpAddress = _httpContextAccessor.HttpContext?
-            .Request.Headers["X-Forwarded-For"].ToString();
+            .Request.Headers[XForwardedFor].ToString();
             
         return string.IsNullOrEmpty(remoteIpAddress) 
             ? Localhost 
             : remoteIpAddress.Split(':')[0];
+    }
+
+    public int GetRequestUserTimezoneOffset()
+    {
+        var offset = _httpContextAccessor.HttpContext?
+            .Request.Headers[UserTimezoneOffset].ToString();
+
+        return string.IsNullOrEmpty(offset) 
+            ? 0 
+            : int.Parse(offset);
     }
 
     public async Task LogHttpRequest(string handlerName)
@@ -82,25 +96,24 @@ public sealed class UserService : IUserService
         return _httpContextAccessor.HttpContext?.Request.Cookies[cookieName];
     }
 
-    public void SetRefreshTokenCookie(string refreshToken, int expiresIn, bool isHttpOnly = true, 
+    public void SetRefreshTokenCookie(string refreshToken, int expiresIn, int timezoneOffset = 0, bool isHttpOnly = true, 
         bool secure = true, string cookieName = Constants.CookieNames.RefreshToken)
     {
         if (string.IsNullOrEmpty(refreshToken))
             throw ArgumentNullException;
 
-        if (expiresIn == 0)
-            throw ArgumentZeroException;
+        var baseDateTime = _dateTimeService.RelativeNow.AddMinutes(-timezoneOffset);
+        var expires = baseDateTime.AddMinutes(Math.Abs(expiresIn));
 
-        var expires = _dateTimeService.RelativeNow.AddMinutes(Math.Abs(expiresIn));
         var cookieOptions = new CookieOptions
         {
             HttpOnly = isHttpOnly,
             Expires = expires,
-            Secure = secure
+            Secure = secure,
+            SameSite = SameSiteMode.Strict,
         };
-            
-        _httpContextAccessor.HttpContext?.Response.Cookies
-            .Append(cookieName, refreshToken, cookieOptions);
+
+        _httpContextAccessor.HttpContext?.Response.Cookies.Append(cookieName, refreshToken, cookieOptions);
     }
 
     public async Task<Guid?> GetUserId()
@@ -280,9 +293,6 @@ public sealed class UserService : IUserService
 
     private static BusinessException ArgumentNullException
         => new (nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION), ErrorCodes.ARGUMENT_NULL_EXCEPTION);
-
-    private static BusinessException ArgumentZeroException 
-        => new (nameof(ErrorCodes.ARGUMENT_ZERO_EXCEPTION), ErrorCodes.ARGUMENT_ZERO_EXCEPTION);
 
     private static AccessException AccessDeniedException 
         => new (nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);

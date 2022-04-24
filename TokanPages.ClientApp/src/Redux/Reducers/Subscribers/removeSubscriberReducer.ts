@@ -8,7 +8,7 @@ import {
     REMOVE_SUBSCRIBER_RESPONSE 
 } from "../../Actions/Subscribers/removeSubscriberAction";
 
-const RemoveSubscriberReducer: Reducer<IRemoveSubscriber> = (state: IRemoveSubscriber | undefined, incomingAction: Action): IRemoveSubscriber => 
+export const RemoveSubscriberReducer: Reducer<IRemoveSubscriber> = (state: IRemoveSubscriber | undefined, incomingAction: Action): IRemoveSubscriber => 
 {
     if (state === undefined) return combinedDefaults.removeSubscriber;
 
@@ -30,5 +30,3 @@ const RemoveSubscriberReducer: Reducer<IRemoveSubscriber> = (state: IRemoveSubsc
         default: return state;
     }
 };
-
-export default RemoveSubscriberReducer;

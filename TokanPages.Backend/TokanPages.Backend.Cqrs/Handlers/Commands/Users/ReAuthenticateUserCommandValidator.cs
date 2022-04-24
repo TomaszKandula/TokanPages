@@ -7,7 +7,7 @@ public class ReAuthenticateUserCommandValidator : AbstractValidator<ReAuthentica
 {
     public ReAuthenticateUserCommandValidator()
     {
-        RuleFor(command => command.Id)
+        RuleFor(command => command.RefreshToken)
             .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
             .WithMessage(ValidationCodes.REQUIRED);

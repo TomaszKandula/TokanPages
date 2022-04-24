@@ -9,7 +9,7 @@ import {
     ACTIVATE_ACCOUNT_RESPONSE
 } from "../../Actions/Users/activateAccountAction";
 
-const ActivateAccountReducer: Reducer<IActivateAccount> = (state: IActivateAccount | undefined, incomingAction: Action): IActivateAccount => 
+export const ActivateAccountReducer: Reducer<IActivateAccount> = (state: IActivateAccount | undefined, incomingAction: Action): IActivateAccount => 
 {
     if (state === undefined) return combinedDefaults.activateAccount;
 
@@ -36,5 +36,3 @@ const ActivateAccountReducer: Reducer<IActivateAccount> = (state: IActivateAccou
         default: return state;
     }
 };
-
-export default ActivateAccountReducer;

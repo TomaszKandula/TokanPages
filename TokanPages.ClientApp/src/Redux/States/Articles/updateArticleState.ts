@@ -1,5 +1,7 @@
+import { OperationStatus } from "../../../Shared/enums";
+
 export interface IUpdateArticle
 {
-    isUpdatingArticle: boolean;
-    hasUpdatedArticle: boolean;
+    operationStatus: OperationStatus;
+    attachedErrorObject: any;
 }

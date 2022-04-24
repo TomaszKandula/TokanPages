@@ -1,6 +1,6 @@
 import { IAuthenticateUserResultDto } from "../../../Api/Models";
 
-export interface IUpdateUserData
+export interface IStoreUserData
 {
     isShown: boolean;
     userData: IAuthenticateUserResultDto;

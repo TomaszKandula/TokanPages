@@ -18,6 +18,7 @@ public static class CorsPolicy
                     configuration.GetValue<string>("ApplicationPaths:DeploymentOrigin"),
                     configuration.GetValue<string>("ApplicationPaths:DevelopmentOrigin"))
                 .WithHeaders(
+                    "UserTimezoneOffset",
                     HeaderNames.Accept,
                     HeaderNames.ContentType,
                     HeaderNames.Authorization,

@@ -24,12 +24,15 @@ export const RenderList = (props: IBinding): JSX.Element =>
     let renderBuffer: JSX.Element[] = [];
     props.bind.items.forEach(item => 
     {
+        const isAnonymous = props.bind.isAnonymous && (item.link === "/account" || item.link === "/signout");
+        const isNotAnonymous = !props.bind.isAnonymous && (item.link === "/signin" || item.link === "/signup");
+
         switch(item.type)
         {
             case "item":
             {
-                if (props.bind.isAnonymous && (item.link === "/account" || item.link === "/signout")) return;
-                if (!props.bind.isAnonymous && (item.link === "/signin" || item.link === "/signup")) return;
+                if (isAnonymous) return;
+                if (isNotAnonymous) return;
             
                 renderBuffer.push(<RenderItem 
                     key={item.id}
@@ -45,6 +48,9 @@ export const RenderList = (props: IBinding): JSX.Element =>
             
             case "itemspan":
             {
+                if (isAnonymous) return;
+                if (isNotAnonymous) return;
+
                 renderBuffer.push(<RenderItemSpan 
                     key={item.id}
                     id={item.id} 
