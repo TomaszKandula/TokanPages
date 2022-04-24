@@ -27,11 +27,15 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var emailAddress = DataUtilityService.GetRandomEmail();
         var cryptedPassword = DataUtilityService.GetRandomString(60);
         var ipAddress = DataUtilityService.GetRandomIpAddress().ToString();
-        var generateUserRefreshToken = DataUtilityService.GetRandomString(255);
         var expires = DateTimeService.Now.AddMinutes(300);
         var created = DateTimeService.Now.AddDays(-5);
-            
-        var reAuthenticateUserCommand = new ReAuthenticateUserCommand { RefreshToken = DataUtilityService.GetRandomString() };
+        var refreshToken = DataUtilityService.GetRandomString(255);
+
+        var reAuthenticateUserCommand = new ReAuthenticateUserCommand
+        {
+            RefreshToken = refreshToken
+        };
+        
         var user = new Users
         {
             Id = userId,
@@ -49,7 +53,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var userRefreshToken = new UserRefreshTokens
         {
             UserId = user.Id,
-            Token = generateUserRefreshToken,
+            Token = refreshToken,
             Expires = expires,
             Created = created,
             CreatedByIp = ipAddress,
@@ -69,9 +73,9 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var mockedUserServiceProvider = new Mock<IUserService>();
 
         mockedUserServiceProvider
-            .Setup(service => service.GetRefreshTokenCookie(It.IsAny<string>()))
-            .Returns(generateUserRefreshToken);
-            
+            .Setup(service => service.GetUserId())
+            .ReturnsAsync(userId);
+
         mockedUserServiceProvider
             .Setup(service => service.GetRequestIpAddress())
             .Returns(ipAddress);
@@ -315,6 +319,6 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var result = await Assert.ThrowsAsync<AccessException>(() => 
             reAuthenticateUserCommandHandler.Handle(reAuthenticateUserCommand, CancellationToken.None));
 
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.MISSING_REFRESH_TOKEN));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_REFRESH_TOKEN));
     }
 }

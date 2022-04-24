@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.TestHost;
-using Backend.Shared;
 using Backend.Core.Extensions;
 using Backend.Shared.Dto.Users;
 using Backend.Shared.Resources;
@@ -103,7 +102,6 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
     public async Task GivenNoRefreshTokensSaved_WhenReAuthenticateUser_ShouldThrowError()
     {
         // Arrange
-        var cookieValue = DataUtilityService.GetRandomString(150, "", true);
         var request = $"{ApiBaseUrl}/ReAuthenticateUser/";
         var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
@@ -115,17 +113,17 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
+
         newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
-        newRequest.Headers.Add("Cookie", $"{Constants.CookieNames.RefreshToken}={cookieValue};");
 
         // Act
         var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.Forbidden);
+        await EnsureStatusCode(response, HttpStatusCode.BadRequest);
             
         // Assert
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
-        content.Should().Contain(ErrorCodes.INVALID_REFRESH_TOKEN);            
+        content.Should().Contain(ValidationCodes.REQUIRED);            
     }
 
     [Fact]

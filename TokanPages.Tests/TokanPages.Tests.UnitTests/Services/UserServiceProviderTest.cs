@@ -863,11 +863,13 @@ public class UserServiceProviderTest : TestBase
         result.Should().Be(ipAddress.ToString());
     }
 
-    [Fact]
-    public async Task WhenInvokeSetRefreshTokenCookie_ShouldSucceed()
+    [Theory]
+    [InlineData(-15)]
+    [InlineData(0)]
+    [InlineData(30)]
+    public async Task WhenInvokeSetRefreshTokenCookie_ShouldSucceed(int expiresIn)
     {
         // Arrange
-        const int expiresIn = 15;
         var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
         var users = GetUser(userId).ToList();
 
@@ -933,37 +935,6 @@ public class UserServiceProviderTest : TestBase
         // Act
         // Assert
         Assert.Throws<BusinessException>(() => userProvider.SetRefreshTokenCookie(refreshToken, expiresIn));
-    }
-
-    [Fact]
-    public async Task GivenExpirationInZeroMinutes_WhenInvokeSetRefreshTokenCookie_ShouldThrowError()
-    {
-        // Arrange
-        const int expiresIn = 0;
-        var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
-        var users = GetUser(userId).ToList();
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddRangeAsync(users);
-        await databaseContext.SaveChangesAsync();
-
-        var ipAddress = DataUtilityService.GetRandomIpAddress();
-        var httpContext = GetMockedHttpContext(userId, ipAddress);
-
-        var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
-        var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedApplicationSettings = MockApplicationSettings();
-            
-        var userProvider = new UserService(
-            httpContext.Object, 
-            databaseContext, 
-            mockedJwtUtilityService.Object, 
-            mockedDateTimeService.Object, 
-            mockedApplicationSettings.Object);
-
-        // Act
-        // Assert
-        Assert.Throws<BusinessException>(() => userProvider.SetRefreshTokenCookie(DataUtilityService.GetRandomString(), expiresIn));
     }
 
     [Fact]
