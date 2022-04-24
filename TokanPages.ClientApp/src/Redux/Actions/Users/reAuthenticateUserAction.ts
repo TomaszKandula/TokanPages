@@ -5,9 +5,9 @@ import { API_COMMAND_REAUTHENTICATE, NULL_RESPONSE_ERROR, USER_DATA } from "../.
 import { UPDATE_USERDATA, TKnownActions as TUpdateActions } from "./storeUserDataAction";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
+import { GetDataFromStorage } from "../../../Shared/Services/StorageServices";
 import { TErrorActions } from "./../raiseErrorAction";
 import { EnrichConfiguration } from "../../../Api/Request";
-import { GetDataFromStorage } from "Shared/Services/StorageServices";
 
 export const REAUTHENTICATE_USER = "REAUTHENTICATE_USER";
 export const REAUTHENTICATE_USER_CLEAR = "REAUTHENTICATE_USER_CLEAR";
