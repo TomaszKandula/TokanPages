@@ -25,6 +25,7 @@ import { GetWrongPagePromptContentReducer } from "./Reducers/Content/getWrongPag
 import { ListArticlesReducer } from "./Reducers/Articles/listArticlesReducer";
 import { RaiseDialogReducer } from "./Reducers/raiseDialogReducer";
 import { RaiseErrorReducer } from "./Reducers/raiseErrorReducer";
+import { ReAuthenticateUserReducer } from "./Reducers/Users/reAuthenticateUserReducer";
 import { RemoveSubscriberReducer } from "./Reducers/Subscribers/removeSubscriberReducer";
 import { ResetUserPasswordReducer } from "./Reducers/Users/resetUserPasswordReducer";
 import { SelectArticleReducer } from "./Reducers/Articles/selectArticleReducer";
@@ -52,6 +53,7 @@ export const combinedReducers =
     updateSubscriber: UpdateSubscriberReducer,
     removeSubscriber: RemoveSubscriberReducer,
     activateAccount: ActivateAccountReducer,
+    reAuthenticateUser: ReAuthenticateUserReducer,
     signinUser: SigninUserReducer,
     signupUser: SignupUserReducer,
     updateUser: UpdateUserReducer,
