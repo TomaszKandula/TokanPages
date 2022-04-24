@@ -1297,6 +1297,7 @@ public class UserServiceProviderTest : TestBase
             .Setup(service => service
                 .GenerateRefreshToken(
                     It.IsAny<string>(), 
+                    It.IsAny<int>(), 
                     It.IsAny<int>()))
             .Returns(refreshToken);
             
@@ -1411,6 +1412,7 @@ public class UserServiceProviderTest : TestBase
             .Setup(service => service
                 .GenerateRefreshToken(
                     It.IsAny<string>(), 
+                    It.IsAny<int>(), 
                     It.IsAny<int>()))
             .Returns(refreshToken);
             

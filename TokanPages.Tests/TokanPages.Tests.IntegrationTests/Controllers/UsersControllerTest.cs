@@ -109,7 +109,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
 
         var payLoad = new ReAuthenticateUserDto
         {
-            Id = Guid.NewGuid()
+            RefreshToken = string.Empty
         };
 
         var httpClient = _webApplicationFactory
