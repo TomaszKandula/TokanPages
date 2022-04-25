@@ -6,19 +6,19 @@ using System.Diagnostics.CodeAnalysis;
 [ExcludeFromCodeCoverage]
 public static class User2
 {
-    public const string EmailAddress = "tokan@dfds.com";
+    public const string EmailAddress = "victoria.justice@gmail.com";
 
-    public const string UserAlias = "tokan";
+    public const string UserAlias = "vijus";
         
-    public const string FirstName = "Tom";
+    public const string FirstName = "Victoria";
         
-    public const string LastName = "Tom";
+    public const string LastName = "Justice";
         
     public const bool IsActivated = true;
         
-    public const string AvatarName = "avatar-default-288.jpeg";
+    public const string AvatarName = "";
         
-    public const string ShortBio = "Software Developer";
+    public const string ShortBio = "American Software Developer";
 
     public const string CryptedPassword = "$2a$12$Bl4ebq6Qi8F4aY5w9wzs7echVwERkAyXxmAua3yUpvUX40DtpCKsK";
 

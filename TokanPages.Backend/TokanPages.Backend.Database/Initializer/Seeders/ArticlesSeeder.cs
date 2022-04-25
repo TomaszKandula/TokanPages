@@ -55,6 +55,17 @@ public static class ArticlesSeeder
                 CreatedAt = Article4.Created,
                 UpdatedAt = Article4.LastUpdated,
                 UserId = Article4.UserId
+            },
+            new ()
+            {
+                Id = Article5.Id,
+                Title = Article5.Title,
+                Description = Article5.Description,
+                IsPublished = Article5.IsPublished,
+                ReadCount = Article5.ReadCount,
+                CreatedAt = Article5.Created,
+                UpdatedAt = Article5.LastUpdated,
+                UserId = Article5.UserId
             }
         };
     }
