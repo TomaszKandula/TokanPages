@@ -11,13 +11,16 @@ public static class CorsPolicy
 {
     public static void ApplyCorsPolicy(this IApplicationBuilder builder, IConfiguration configuration)
     {
+        var deploymentOrigin = configuration.GetValue<string>("ApplicationPaths:DeploymentOrigin");
+        var developmentOrigin = configuration.GetValue<string>("ApplicationPaths:DevelopmentOrigin");
+        var origins = $"{deploymentOrigin};{developmentOrigin}".Split(";");
+
         builder.UseCors(policyBuilder =>
         {
             policyBuilder
-                .WithOrigins(
-                    configuration.GetValue<string>("ApplicationPaths:DeploymentOrigin"),
-                    configuration.GetValue<string>("ApplicationPaths:DevelopmentOrigin"))
+                .WithOrigins(origins)
                 .WithHeaders(
+                    "UserTimezoneOffset",
                     HeaderNames.Accept,
                     HeaderNames.ContentType,
                     HeaderNames.Authorization,

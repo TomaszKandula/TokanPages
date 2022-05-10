@@ -8,7 +8,7 @@ public static class User1
 {
     public const string EmailAddress = "ester.exposito@gmail.com";
 
-    public const string UserAlias = "ester";
+    public const string UserAlias = "esexp";
         
     public const string FirstName = "Ester";
         
@@ -16,9 +16,9 @@ public static class User1
         
     public const bool IsActivated = true;
         
-    public const string AvatarName = "admin-profile-256.jpg";
+    public const string AvatarName = "";
         
-    public const string ShortBio = "Happy developer";
+    public const string ShortBio = "Spanish Software Developer";
 
     public const string CryptedPassword = "$2a$12$Bl4ebq6Qi8F4aY5w9wzs7echVwERkAyXxmAua3yUpvUX40DtpCKsK";
 

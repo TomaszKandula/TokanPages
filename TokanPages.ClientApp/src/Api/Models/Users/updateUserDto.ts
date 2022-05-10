@@ -1,9 +1,10 @@
 export interface IUpdateUserDto
 {
     id: string;
-    userAlias: string;
     isActivated: boolean;
-    firstName: string;
-    lastName: string;
-    emailAddress: string;
+    userAlias?: string;
+    firstName?: string;
+    lastName?: string;
+    emailAddress?: string;
+    shortBio?: string;
 }

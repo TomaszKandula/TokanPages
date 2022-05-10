@@ -7,7 +7,7 @@ import {
     RECEIVE_USER_SIGNOUT_CONTENT 
 } from "../../Actions/Content/getUserSignoutContentAction";
 
-const GetUserSignoutContentReducer: Reducer<IGetUserSignoutContent> = (state: IGetUserSignoutContent | undefined, incomingAction: Action): IGetUserSignoutContent => 
+export const GetUserSignoutContentReducer: Reducer<IGetUserSignoutContent> = (state: IGetUserSignoutContent | undefined, incomingAction: Action): IGetUserSignoutContent => 
 {
     if (state === undefined) return combinedDefaults.getUserSignoutContent;
 
@@ -29,5 +29,3 @@ const GetUserSignoutContentReducer: Reducer<IGetUserSignoutContent> = (state: IG
         default: return state;
     }
 }
-
-export default GetUserSignoutContentReducer;

@@ -7,7 +7,7 @@ import {
     RECEIVE_USER_SIGNUP_CONTENT 
 } from "../../Actions/Content/getUserSignupContentAction";
 
-const GetUserSignupContentReducer: Reducer<IGetUserSignupContent> = (state: IGetUserSignupContent | undefined, incomingAction: Action): IGetUserSignupContent => 
+export const GetUserSignupContentReducer: Reducer<IGetUserSignupContent> = (state: IGetUserSignupContent | undefined, incomingAction: Action): IGetUserSignupContent => 
 {
     if (state === undefined) return combinedDefaults.getUserSignupContent;
 
@@ -29,5 +29,3 @@ const GetUserSignupContentReducer: Reducer<IGetUserSignupContent> = (state: IGet
         default: return state;
     }
 }
-
-export default GetUserSignupContentReducer;

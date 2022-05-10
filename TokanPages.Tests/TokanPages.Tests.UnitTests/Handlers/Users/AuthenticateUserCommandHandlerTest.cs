@@ -77,7 +77,10 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         mockedJwtUtilityService
             .Setup(service => service
-                .GenerateRefreshToken(It.IsAny<string>(), It.IsAny<int>()))
+                .GenerateRefreshToken(
+                    It.IsAny<string>(), 
+                    It.IsAny<int>(), 
+                    It.IsAny<int>()))
             .Returns(generatedRefreshToken);
             
         var mockedDateTimeService = new Mock<IDateTimeService>();
@@ -102,6 +105,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             .Setup(service => service
                 .SetRefreshTokenCookie(
                     It.IsAny<string>(), 
+                    It.IsAny<int>(), 
                     It.IsAny<int>(), 
                     It.IsAny<bool>(), 
                     It.IsAny<bool>(), 
@@ -351,7 +355,10 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         mockedJwtUtilityService
             .Setup(service => service
-                .GenerateRefreshToken(It.IsAny<string>(), It.IsAny<int>()))
+                .GenerateRefreshToken(
+                    It.IsAny<string>(), 
+                    It.IsAny<int>(), 
+                    It.IsAny<int>()))
             .Returns(generatedRefreshToken);
             
         var mockedDateTimeService = new Mock<IDateTimeService>();
@@ -376,6 +383,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             .Setup(service => service
                 .SetRefreshTokenCookie(
                     It.IsAny<string>(), 
+                    It.IsAny<int>(), 
                     It.IsAny<int>(), 
                     It.IsAny<bool>(), 
                     It.IsAny<bool>(), 

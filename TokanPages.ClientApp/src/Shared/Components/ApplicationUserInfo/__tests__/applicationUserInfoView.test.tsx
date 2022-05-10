@@ -18,6 +18,7 @@ describe("Test view component for application user info.", () =>
             shortBio: "Happy tester working remotely",
             registered: "2020-01-01 15:02:03",
             userToken: "fbb220c9-7593-472d-bb95-7b41c436e332",
+            refreshToken: "5f4d15e2-7593-4e20-b5f0-7b41c436e332",
             roles: 
             [
                 {

@@ -7,7 +7,7 @@ import {
     RECEIVE_CLIENTS_CONTENT
 } from "../../Actions/Content/getClientsContentAction";
 
-const GetClientsContentReducer: Reducer<IGetClientsContent> = (state: IGetClientsContent | undefined, incomingAction: Action): IGetClientsContent => 
+export const GetClientsContentReducer: Reducer<IGetClientsContent> = (state: IGetClientsContent | undefined, incomingAction: Action): IGetClientsContent => 
 {
     if (state === undefined) return combinedDefaults.getClientsContent;
 
@@ -29,5 +29,3 @@ const GetClientsContentReducer: Reducer<IGetClientsContent> = (state: IGetClient
         default: return state;
     }
 }
-
-export default GetClientsContentReducer;

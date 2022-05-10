@@ -6,6 +6,7 @@ using FluentAssertions;
 using System.Threading;
 using System.Threading.Tasks;
 using Backend.Domain.Entities;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Users;
 using Backend.Core.Utilities.DateTimeService;
@@ -47,7 +48,12 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
+        var mockedUserService = new Mock<IUserService>();
         var mockedApplicationSettings = MockApplicationSettings();
+
+        mockedUserService
+            .Setup(service => service.GetRequestUserTimezoneOffset())
+            .Returns(-120);
 
         mockedEmailSenderService
             .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
@@ -59,7 +65,8 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
             mockedLogger.Object,
             mockedEmailSenderService.Object,
             mockedDateTimeService.Object,
-            mockedApplicationSettings.Object);
+            mockedApplicationSettings.Object, 
+            mockedUserService.Object);
 
         await resetUserPasswordCommandHandler.Handle(resetUserPasswordCommand, CancellationToken.None);
 

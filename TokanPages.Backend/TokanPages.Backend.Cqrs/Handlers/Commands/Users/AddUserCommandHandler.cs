@@ -11,6 +11,7 @@ using Core.Exceptions;
 using Domain.Entities;
 using Shared.Services;
 using Shared.Resources;
+using Services.UserService;
 using Services.CipheringService;
 using Services.EmailSenderService;
 using Core.Utilities.LoggerService;
@@ -30,15 +31,18 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
+    private readonly IUserService _userService;
+
     public AddUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService,
         ICipheringService cipheringService, IEmailSenderService emailSenderService, IApplicationSettings applicationSettings, 
-        IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
+        IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService) : base(databaseContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _cipheringService = cipheringService;
         _emailSenderService = emailSenderService;
         _applicationSettings = applicationSettings;
         _azureBlobStorageFactory = azureBlobStorageFactory;
+        _userService = userService;
     }
 
     public override async Task<Guid> Handle(AddUserCommand request, CancellationToken cancellationToken)
@@ -54,8 +58,9 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         var getHashedPassword = _cipheringService.GetHashedPassword(request.Password, getNewSalt);
         LoggerService.LogInformation($"New hashed password has been generated. Requested by: {request.EmailAddress}.");
 
+        var expiresIn = _applicationSettings.ExpirationSettings.ActivationIdExpiresIn;
         var activationId = Guid.NewGuid();
-        var activationIdEnds = _dateTimeService.Now.AddMinutes(_applicationSettings.ExpirationSettings.ActivationIdExpiresIn);
+        var activationIdEnds = _dateTimeService.Now.AddMinutes(expiresIn);
 
         if (users != null && (users.ActivationIdEnds != null || users.ActivationIdEnds < _dateTimeService.Now))
         {
@@ -96,10 +101,14 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             ActivationIdEnds = activationIdEnds
         };
 
+        var timezoneOffset = _userService.GetRequestUserTimezoneOffset();
+        var baseDateTime = _dateTimeService.Now.AddMinutes(-timezoneOffset);
+        var expirationDate = baseDateTime.AddMinutes(expiresIn);
+
         await DatabaseContext.Users.AddAsync(newUser, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         await SetupDefaultPermissions(newUser.Id, cancellationToken);
-        await SendNotification(request.EmailAddress, activationId, activationIdEnds, cancellationToken);
+        await SendNotification(request.EmailAddress, activationId, expirationDate, cancellationToken);
 
         LoggerService.LogInformation($"Registering new user account, user id: {newUser.Id}.");
         return newUser.Id;

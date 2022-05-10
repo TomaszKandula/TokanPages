@@ -1,10 +1,10 @@
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Shared;
 using Database;
 using Domain.Entities;
 using Core.Exceptions;
@@ -32,24 +32,21 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
 
     public override async Task<ReAuthenticateUserCommandResult> Handle(ReAuthenticateUserCommand request, CancellationToken cancellationToken)
     {
-        var refreshTokenFromRequest = _userService.GetRefreshTokenCookie(Constants.CookieNames.RefreshToken);
-        if (string.IsNullOrEmpty(refreshTokenFromRequest))
-            throw MissingRefreshTokenException;
-
+        var userId = await _userService.GetUserId() ?? Guid.Empty;
         var userRefreshTokens = await DatabaseContext.UserRefreshTokens
             .AsNoTracking()
-            .Where(tokens => tokens.UserId == request.Id)
+            .Where(tokens => tokens.Token == request.RefreshToken)
             .ToListAsync(cancellationToken);
 
-        var savedRefreshToken = userRefreshTokens.SingleOrDefault(tokens => tokens.Token == refreshTokenFromRequest);
+        var savedRefreshToken = userRefreshTokens.SingleOrDefault(tokens => tokens.Token == request.RefreshToken);
         if (savedRefreshToken == null)
             throw InvalidTokenException;
-            
+
         var requesterIpAddress = _userService.GetRequestIpAddress();
 
         if (_userService.IsRefreshTokenRevoked(savedRefreshToken))
         {
-            var reason = $"Attempted reuse of revoked ancestor token: {refreshTokenFromRequest}";
+            var reason = $"Attempted reuse of revoked ancestor token: {request.RefreshToken}";
             await _userService.RevokeDescendantRefreshTokens(userRefreshTokens, savedRefreshToken, requesterIpAddress, 
                 reason, false, cancellationToken);
                 
@@ -60,21 +57,19 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         if (!_userService.IsRefreshTokenActive(savedRefreshToken))
             throw InvalidTokenException;
 
-        var newRefreshToken = await _userService.ReplaceRefreshToken(request.Id, savedRefreshToken, 
+        var newRefreshToken = await _userService.ReplaceRefreshToken(userId, savedRefreshToken, 
             requesterIpAddress, true, cancellationToken);
 
-        await _userService.DeleteOutdatedRefreshTokens(request.Id, false, cancellationToken);
+        await _userService.DeleteOutdatedRefreshTokens(userId, false, cancellationToken);
         await DatabaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
 
         var currentDateTime = _dateTimeService.Now;
-        var currentUser = await DatabaseContext.Users.SingleAsync(users => users.Id == request.Id, cancellationToken);
+        var currentUser = await DatabaseContext.Users.SingleAsync(users => users.Id == userId, cancellationToken);
         var ipAddress = _userService.GetRequestIpAddress();
         var tokenExpires = _dateTimeService.Now.AddMinutes(_applicationSettings.IdentityServer.WebTokenExpiresIn);
         var userToken = await _userService.GenerateUserToken(currentUser, tokenExpires, cancellationToken);
 
-        _userService.SetRefreshTokenCookie(newRefreshToken.Token, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
         currentUser.LastLogged = currentDateTime;
-
         var roles = await _userService.GetUserRoles(currentUser.Id);
         var permissions = await _userService.GetUserPermissions(currentUser.Id);
 
@@ -101,13 +96,11 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
             ShortBio = currentUser.ShortBio,
             Registered = currentUser.Registered,
             UserToken = userToken,
+            RefreshToken = newRefreshToken.Token,
             Roles = roles,
             Permissions = permissions
         };
     }
-
-    private static AccessException MissingRefreshTokenException 
-        => new (nameof(ErrorCodes.MISSING_REFRESH_TOKEN), ErrorCodes.MISSING_REFRESH_TOKEN);
 
     private static AccessException InvalidTokenException 
         => new (nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);

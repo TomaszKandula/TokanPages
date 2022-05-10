@@ -7,7 +7,7 @@ import {
     REQUEST_NAVIGATION_CONTENT
 } from "../../../Redux/Actions/Content/getNavigationContentAction";
 
-const GetNavigationContentReducer: Reducer<IGetNavigationContent> = (state: IGetNavigationContent | undefined, incomingAction: Action): IGetNavigationContent => 
+export const GetNavigationContentReducer: Reducer<IGetNavigationContent> = (state: IGetNavigationContent | undefined, incomingAction: Action): IGetNavigationContent => 
 {
     if (state === undefined) return combinedDefaults.getNavigationContent;
 
@@ -29,5 +29,3 @@ const GetNavigationContentReducer: Reducer<IGetNavigationContent> = (state: IGet
         default: return state;
     }
 }
-
-export default GetNavigationContentReducer;

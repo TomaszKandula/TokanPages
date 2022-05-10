@@ -10,6 +10,7 @@ using Database;
 using Core.Exceptions;
 using Shared.Services;
 using Shared.Resources;
+using Services.UserService;
 using Services.EmailSenderService;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
@@ -23,13 +24,16 @@ public class ResetUserPasswordCommandHandler : Cqrs.RequestHandler<ResetUserPass
 
     private readonly IApplicationSettings _applicationSettings;
 
+    private readonly IUserService _userService;
+
     public ResetUserPasswordCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IEmailSenderService emailSenderService, IDateTimeService dateTimeService, 
-        IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+        IEmailSenderService emailSenderService, IDateTimeService dateTimeService, IApplicationSettings applicationSettings, 
+        IUserService userService) : base(databaseContext, loggerService)
     {
         _emailSenderService = emailSenderService;
         _dateTimeService = dateTimeService;
         _applicationSettings = applicationSettings;
+        _userService = userService;
     }
 
     public override async Task<Unit> Handle(ResetUserPasswordCommand request, CancellationToken cancellationToken)
@@ -41,13 +45,19 @@ public class ResetUserPasswordCommandHandler : Cqrs.RequestHandler<ResetUserPass
         if (!users.Any())
             throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
+        var expiresIn = _applicationSettings.ExpirationSettings.ResetIdExpiresIn;
         var currentUser = users.First();
         var resetId = Guid.NewGuid();
-        var expirationDate = _dateTimeService.Now.AddMinutes(_applicationSettings.ExpirationSettings.ResetIdExpiresIn);
+
         currentUser.CryptedPassword = string.Empty;
         currentUser.ResetId = resetId;
-        currentUser.ResetIdEnds = expirationDate;
+        currentUser.ResetIdEnds = _dateTimeService.Now.AddMinutes(expiresIn);
         currentUser.LastUpdated = _dateTimeService.Now;
+
+        var timezoneOffset = _userService.GetRequestUserTimezoneOffset();
+        var baseDateTime = _dateTimeService.Now.AddMinutes(-timezoneOffset);
+        var expirationDate = baseDateTime.AddMinutes(expiresIn);
+
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         await SendNotification(request.EmailAddress, resetId, expirationDate, cancellationToken);
 
