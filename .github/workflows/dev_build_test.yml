@@ -49,6 +49,9 @@ jobs:
 
     steps:
 
+    - name: Checkout repository
+      uses: actions/checkout@v2.2.0
+
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: microsoft/variable-substitution@v1
       with:
