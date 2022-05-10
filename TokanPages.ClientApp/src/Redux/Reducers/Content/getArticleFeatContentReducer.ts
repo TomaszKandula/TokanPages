@@ -7,7 +7,7 @@ import {
     REQUEST_ARTICE_FEATURES
 } from "../../Actions/Content/getArticleFeatContentAction";
 
-const GetArticleFeatContentReducer: Reducer<IGetArticleFeatContent> = (state: IGetArticleFeatContent | undefined, incomingAction: Action): IGetArticleFeatContent => 
+export const GetArticleFeatContentReducer: Reducer<IGetArticleFeatContent> = (state: IGetArticleFeatContent | undefined, incomingAction: Action): IGetArticleFeatContent => 
 {
     if (state === undefined) return combinedDefaults.getArticleFeatContent;
 
@@ -29,5 +29,3 @@ const GetArticleFeatContentReducer: Reducer<IGetArticleFeatContent> = (state: IG
         default: return state;
     }
 }
-
-export default GetArticleFeatContentReducer;

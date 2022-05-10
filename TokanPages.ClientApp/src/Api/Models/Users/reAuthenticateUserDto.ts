@@ -1,4 +1,4 @@
 export interface IReAuthenticateUserDto
 {
-    id: string;
+    refreshToken: string;
 }

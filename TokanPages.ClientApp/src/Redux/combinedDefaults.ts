@@ -1,77 +1,89 @@
-import { IApplicationState } from "./applicationState";
-import { SelectArticleDefault } from "./Defaults/Articles/selectArticleDefault";
-import { ListArticlesDefault } from "./Defaults/Articles/listArticlesDefault";
-import { UpdateArticleDefault } from "./Defaults/Articles/updateArticleDefault";
-import { AddSubscriberDefault } from "./Defaults/Subscribers/addSubscriberDefault";
-import { UpdateSubscriberDefault } from "./Defaults/Subscribers/updateSubscriberDefault";
-import { RemoveSubscriberDefault } from "./Defaults/Subscribers/removeSubscriberDefault";
-import { UpdateUserDataDefault } from "./Defaults/Users/updateUserDataDefault";
-import { SigninUserDefault } from "./Defaults/Users/signinUserDefault";
-import { SignupUserDefault } from "./Defaults/Users/signupUserDefault";
 import { ActivateAccountDefault } from "./Defaults/Users/activateAccountDefault";
-import { ResetUserPasswordDefault } from "./Defaults/Users/resetUserPasswordDefault";
-import { UpdateUserPasswordDefault } from "./Defaults/Users/updateUserPasswordDefault";
-import { SendMessageStateDefault } from "./Defaults/Mailer/sendMessageDefault";
-import { RaiseErrorDefault } from "./Defaults/raiseErrorDefault";
-import { RaiseDialogDefault } from "./Defaults/raiseDialogDefault";
-import { GetStaticContentDefault } from "./Defaults/Content/getStaticContentDefault";
+import { AddSubscriberDefault } from "./Defaults/Subscribers/addSubscriberDefault";
+import { GetAccountContentDefault } from "./Defaults/Content/getAccountContentDefault";
+import { GetActivateAccountContentDefault } from "./Defaults/Content/getActivateAccountContentDefault";
 import { GetArticleFeatContentDefault } from "./Defaults/Content/getArticleFeatContentDefault";
+import { GetClientsContentDefault } from "./Defaults/Content/getClientsContentDefault";
 import { GetContactFormContentDefault } from "./Defaults/Content/getContactFormContentDefault";
 import { GetCookiesPromptContentDefault } from "./Defaults/Content/getCookiesPromptContentDefault";
-import { GetClientsContentDefault } from "./Defaults/Content/getClientsContentDefault";
 import { GetFeaturedContentDefault } from "./Defaults/Content/getFeaturedContentDefault";
 import { GetFeaturesContentDefault } from "./Defaults/Content/getFeaturesContentDefault";
 import { GetFooterContentDefault } from "./Defaults/Content/getFooterContentDefault";
 import { GetHeaderContentDefault } from "./Defaults/Content/getHeaderContentDefault";
 import { GetNavigationContentDefault } from "./Defaults/Content/getNavigationContentDefault";
 import { GetNewsletterContentDefault } from "./Defaults/Content/getNewsletterContentDefault";
-import { GetWrongPagePromptContentDefault } from "./Defaults/Content/getWrongPagePromptContentDefault";
 import { GetResetPasswordContentDefault } from "./Defaults/Content/getResetPasswordContentDefault";
+import { GetStaticContentDefault } from "./Defaults/Content/getStaticContentDefault";
+import { GetTestimonialsContentDefault } from "./Defaults/Content/getTestimonialsContentDefault";
+import { GetUnsubscribeContentDefault } from "./Defaults/Content/getUnsubscribeContentDefault";
 import { GetUpdatePasswordContentDefault } from "./Defaults/Content/getUpdatePasswordContentDefault";
+import { GetUpdateSubscriberContentDefault } from "./Defaults/Content/getUpdateSubscriberContentDefault";
 import { GetUserSigninContentDefault } from "./Defaults/Content/getUserSigninContentDefault";
 import { GetUserSignoutContentDefault } from "./Defaults/Content/getUserSignoutContentDefault";
 import { GetUserSignupContentDefault } from "./Defaults/Content/getUserSignupContentDefault";
-import { GetTestimonialsContentDefault } from "./Defaults/Content/getTestimonialsContentDefault";
-import { GetUnsubscribeContentDefault } from "./Defaults/Content/getUnsubscribeContentDefault";
-import { GetActivateAccountContentDefault } from "./Defaults/Content/getActivateAccountContentDefault";
-import { GetUpdateSubscriberContentDefault } from "./Defaults/Content/getUpdateSubscriberContentDefault";
+import { GetWrongPagePromptContentDefault } from "./Defaults/Content/getWrongPagePromptContentDefault";
+import { IApplicationState } from "./applicationState";
+import { ListArticlesDefault } from "./Defaults/Articles/listArticlesDefault";
+import { RaiseDialogDefault } from "./Defaults/raiseDialogDefault";
+import { RaiseErrorDefault } from "./Defaults/raiseErrorDefault";
+import { ReAuthenticateUserDefault } from "./Defaults/Users/reAuthenticateUserDefault";
+import { RemoveSubscriberDefault } from "./Defaults/Subscribers/removeSubscriberDefault";
+import { ResetUserPasswordDefault } from "./Defaults/Users/resetUserPasswordDefault";
+import { SelectArticleDefault } from "./Defaults/Articles/selectArticleDefault";
+import { SendMessageDefault } from "./Defaults/Mailer/sendMessageDefault";
+import { SigninUserDefault } from "./Defaults/Users/signinUserDefault";
+import { SignupUserDefault } from "./Defaults/Users/signupUserDefault";
+import { StoreUserDataDefault } from "./Defaults/Users/storeUserDataDefault";
+import { UpdateArticleDefault } from "./Defaults/Articles/updateArticleDefault";
+import { UpdateSubscriberDefault } from "./Defaults/Subscribers/updateSubscriberDefault";
+import { UpdateUserDefault } from "./Defaults/Users/updateUserDefault";
+import { UpdateUserPasswordDefault } from "./Defaults/Users/updateUserPasswordDefault";
 
 export const combinedDefaults: IApplicationState = 
 {
     raiseError: RaiseErrorDefault,
     raiseDialog: RaiseDialogDefault,
-    selectArticle: SelectArticleDefault,
+
     listArticles: ListArticlesDefault,
+    selectArticle: SelectArticleDefault,
+    storeUserData: StoreUserDataDefault,
+
+    sendMessage: SendMessageDefault,
     updateArticle: UpdateArticleDefault,
-    sendMessage: SendMessageStateDefault,
     addSubscriber: AddSubscriberDefault,
     updateSubscriber: UpdateSubscriberDefault,
     removeSubscriber: RemoveSubscriberDefault,
-    updateUserData: UpdateUserDataDefault,
+    activateAccount: ActivateAccountDefault,
+    reAuthenticateUser: ReAuthenticateUserDefault,
     signinUser: SigninUserDefault,
     signupUser: SignupUserDefault,
-    resetUserPassword: ResetUserPasswordDefault,
+    updateUser: UpdateUserDefault,
     updateUserPassword: UpdateUserPasswordDefault,
-    activateAccount: ActivateAccountDefault,
+    resetUserPassword: ResetUserPasswordDefault,
+
+    getNavigationContent: GetNavigationContentDefault,
+    getHeaderContent: GetHeaderContentDefault,
+    getFooterContent: GetFooterContentDefault,
     getStaticContent: GetStaticContentDefault,
+    getAccountContent: GetAccountContentDefault,
+    getActivateAccountContent: GetActivateAccountContentDefault,
+
+    getClientsContent: GetClientsContentDefault,
+    getFeaturesContent: GetFeaturesContentDefault,
     getArticleFeatContent: GetArticleFeatContentDefault,
+    getFeaturedContent: GetFeaturedContentDefault,
+    getTestimonialsContent: GetTestimonialsContentDefault,
+    getNewsletterContent: GetNewsletterContentDefault,
     getContactFormContent: GetContactFormContentDefault,
     getCookiesPromptContent: GetCookiesPromptContentDefault,
-    getClientsContent: GetClientsContentDefault,
-    getFeaturedContent: GetFeaturedContentDefault,
-    getFeaturesContent: GetFeaturesContentDefault,
-    getFooterContent: GetFooterContentDefault,
-    getHeaderContent: GetHeaderContentDefault,
-    getNavigationContent: GetNavigationContentDefault,
-    getNewsletterContent: GetNewsletterContentDefault,
     getWrongPagePromptContent: GetWrongPagePromptContentDefault,
-    getResetPasswordContent: GetResetPasswordContentDefault,
-    getUpdatePasswordContent: GetUpdatePasswordContentDefault,
+
     getUserSigninContent: GetUserSigninContentDefault,
-    getUserSignoutContent: GetUserSignoutContentDefault,
     getUserSignupContent: GetUserSignupContentDefault,
-    getTestimonialsContent: GetTestimonialsContentDefault,
+    getUserSignoutContent: GetUserSignoutContentDefault,
+    getUpdatePasswordContent: GetUpdatePasswordContentDefault,
+    getResetPasswordContent: GetResetPasswordContentDefault,
+
     getUnsubscribeContent: GetUnsubscribeContentDefault,
-    getActivateAccountContent: GetActivateAccountContentDefault,
-    getUpdateSubscriberContent: GetUpdateSubscriberContentDefault     
+    getUpdateSubscriberContent: GetUpdateSubscriberContentDefault
 };

@@ -9,7 +9,7 @@ import {
     ADD_SUBSCRIBER_CLEAR, 
 } from "../../Actions/Subscribers/addSubscriberAction";
 
-const AddSubscriberReducer: Reducer<IAddSubscriber> = (state: IAddSubscriber | undefined, incomingAction: Action): IAddSubscriber => 
+export const AddSubscriberReducer: Reducer<IAddSubscriber> = (state: IAddSubscriber | undefined, incomingAction: Action): IAddSubscriber => 
 {
     if (state === undefined) return combinedDefaults.addSubscriber;
 
@@ -34,5 +34,3 @@ const AddSubscriberReducer: Reducer<IAddSubscriber> = (state: IAddSubscriber | u
         default: return state;
     }
 };
-
-export default AddSubscriberReducer;

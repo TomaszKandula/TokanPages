@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Mailer;
 using Backend.Core.Utilities.DateTimeService;
@@ -35,19 +36,27 @@ public class SendMessageCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
+        var mockedUserService = new Mock<IUserService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
         var randomString = DataUtilityService.GetRandomString();
         mockedEmailSenderService
-            .Setup(sender => sender.GetEmailTemplate(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Setup(sender => sender.GetEmailTemplate(
+                It.IsAny<string>(), 
+                It.IsAny<CancellationToken>()))
             .ReturnsAsync(randomString);
+
+        mockedUserService
+            .Setup(service => service.GetRequestUserTimezoneOffset())
+            .Returns(-120);
 
         var sendMessageCommandHandler = new SendMessageCommandHandler(
             databaseContext,
             mockedLogger.Object,
             mockedEmailSenderService.Object,
             mockedDateTimeService.Object,
-            mockedApplicationSettings.Object);
+            mockedApplicationSettings.Object, 
+            mockedUserService.Object);
 
         // Act
         var result = await sendMessageCommandHandler.Handle(sendMessageCommand, CancellationToken.None);
@@ -75,10 +84,17 @@ public class SendMessageCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
+        var mockedUserService = new Mock<IUserService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
+        mockedUserService
+            .Setup(service => service.GetRequestUserTimezoneOffset())
+            .Returns(-120);
+
         mockedEmailSenderService
-            .Setup(sender => sender.GetEmailTemplate(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Setup(sender => sender.GetEmailTemplate(
+                It.IsAny<string>(), 
+                It.IsAny<CancellationToken>()))
             .ReturnsAsync(string.Empty);
 
         var sendMessageCommandHandler = new SendMessageCommandHandler(
@@ -86,7 +102,8 @@ public class SendMessageCommandHandlerTest : TestBase
             mockedLogger.Object,
             mockedEmailSenderService.Object,
             mockedDateTimeService.Object,
-            mockedApplicationSettings.Object);
+            mockedApplicationSettings.Object, 
+            mockedUserService.Object);
 
         // Act
         // Assert

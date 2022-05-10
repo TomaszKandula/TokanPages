@@ -9,7 +9,7 @@ import {
     SIGNUP_USER_RESPONSE
 } from "../../Actions/Users/signupUserAction";
 
-const SignupUserReducer: Reducer<ISignupUser> = (state: ISignupUser | undefined, incomingAction: Action): ISignupUser => 
+export const SignupUserReducer: Reducer<ISignupUser> = (state: ISignupUser | undefined, incomingAction: Action): ISignupUser => 
 {
     if (state === undefined) return combinedDefaults.signupUser;
 
@@ -36,5 +36,3 @@ const SignupUserReducer: Reducer<ISignupUser> = (state: ISignupUser | undefined,
         default: return state;
     }
 };
-
-export default SignupUserReducer;

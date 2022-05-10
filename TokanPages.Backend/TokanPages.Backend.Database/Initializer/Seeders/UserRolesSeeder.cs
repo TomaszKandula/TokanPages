@@ -22,7 +22,7 @@ public static class UserRolesSeeder
             },
             new ()
             {
-                Id = Guid.Parse("829c4857-7a80-42f9-97c9-62aff21127cf"),
+                Id = Guid.Parse("5ba6f15b-5a63-4968-8eeb-18da32cb0877"),
                 UserId = User1.Id,
                 RoleId = Role2.Id
             },

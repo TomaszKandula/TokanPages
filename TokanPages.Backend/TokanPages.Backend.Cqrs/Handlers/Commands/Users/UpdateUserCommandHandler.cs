@@ -40,11 +40,12 @@ public class UpdateUserCommandHandler : Cqrs.RequestHandler<UpdateUserCommand, U
 
         var currentUser = usersList.First();
 
-        currentUser.EmailAddress = request.EmailAddress ?? currentUser.EmailAddress;
+        currentUser.IsActivated = request.IsActivated;
         currentUser.UserAlias = request.UserAlias ?? currentUser.UserAlias;
         currentUser.FirstName = request.FirstName ?? currentUser.FirstName;
         currentUser.LastName = request.LastName ?? currentUser.LastName;
-        currentUser.IsActivated = request.IsActivated;
+        currentUser.EmailAddress = request.EmailAddress ?? currentUser.EmailAddress;
+        currentUser.ShortBio = request.ShortBio ?? currentUser.ShortBio;
         currentUser.LastUpdated = _dateTimeService.Now;
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);

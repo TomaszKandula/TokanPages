@@ -8,7 +8,7 @@ import {
     RESET_SELECTION, 
 } from "../../Actions/Articles/selectArticleAction";
 
-const SelectArticleReducer: Reducer<IArticle> = (state: IArticle | undefined, incomingAction: Action): IArticle => 
+export const SelectArticleReducer: Reducer<IArticle> = (state: IArticle | undefined, incomingAction: Action): IArticle => 
 {
     if (state === undefined) return combinedDefaults.selectArticle;
 
@@ -33,5 +33,3 @@ const SelectArticleReducer: Reducer<IArticle> = (state: IArticle | undefined, in
         default: return state;
     }
 };
-
-export default SelectArticleReducer;

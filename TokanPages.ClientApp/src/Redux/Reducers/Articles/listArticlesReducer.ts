@@ -7,7 +7,7 @@ import {
     REQUEST_ARTICLES, 
 } from "../../Actions/Articles/listArticlesAction";
 
-const ListArticlesReducer: Reducer<IArticles> = (state: IArticles | undefined, incomingAction: Action): IArticles => 
+export const ListArticlesReducer: Reducer<IArticles> = (state: IArticles | undefined, incomingAction: Action): IArticles => 
 {
     if (state === undefined) return combinedDefaults.listArticles;
 
@@ -29,5 +29,3 @@ const ListArticlesReducer: Reducer<IArticles> = (state: IArticles | undefined, i
         default: return state;
     }
 }
-
-export default ListArticlesReducer;

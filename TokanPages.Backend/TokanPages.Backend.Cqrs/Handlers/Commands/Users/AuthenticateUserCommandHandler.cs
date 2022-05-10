@@ -43,13 +43,13 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
         var users = await DatabaseContext.Users
             .Where(users => users.EmailAddress == request.EmailAddress)
             .ToListAsync(cancellationToken);
-            
+
         if (!users.Any())
         {
             LoggerService.LogError($"Cannot find user with given email address: '{request.EmailAddress}'.");
             throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
         }
-            
+
         var currentUser = users.First();
         var isPasswordValid = _cipheringService.VerifyPassword(request.Password, currentUser.CryptedPassword);
 
@@ -58,7 +58,7 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
             LoggerService.LogError($"Cannot positively verify given password supplied by user (Id: {currentUser.Id}).");
             throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
         }
-            
+
         if (!currentUser.IsActivated)
             throw new AccessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
@@ -66,11 +66,11 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
         var ipAddress = _userService.GetRequestIpAddress();
         var tokenExpires = _dateTimeService.Now.AddMinutes(_applicationSettings.IdentityServer.WebTokenExpiresIn);
         var userToken = await _userService.GenerateUserToken(currentUser, tokenExpires, cancellationToken);
-        var refreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
 
-        _userService.SetRefreshTokenCookie(refreshToken.Token, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
+        var expiresIn = _applicationSettings.IdentityServer.RefreshTokenExpiresIn;
+        var refreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, expiresIn);
+
         currentUser.LastLogged = currentDateTime;
-            
         var newUserToken = new UserTokens
         {
             UserId = currentUser.Id,
@@ -108,6 +108,7 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
             ShortBio = currentUser.ShortBio,
             Registered = currentUser.Registered,
             UserToken = userToken,
+            RefreshToken = refreshToken.Token,
             Roles = roles,
             Permissions = permissions
         };

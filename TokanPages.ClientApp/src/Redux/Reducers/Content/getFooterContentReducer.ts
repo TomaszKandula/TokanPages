@@ -7,7 +7,7 @@ import {
     REQUEST_FOOTER_CONTENT
 } from "../../Actions/Content/getFooterContentAction";
 
-const GetFooterContentReducer: Reducer<IGetFooterContent> = (state: IGetFooterContent | undefined, incomingAction: Action): IGetFooterContent => 
+export const GetFooterContentReducer: Reducer<IGetFooterContent> = (state: IGetFooterContent | undefined, incomingAction: Action): IGetFooterContent => 
 {
     if (state === undefined) return combinedDefaults.getFooterContent;
 
@@ -29,5 +29,3 @@ const GetFooterContentReducer: Reducer<IGetFooterContent> = (state: IGetFooterCo
         default: return state;
     }
 }
-
-export default GetFooterContentReducer;

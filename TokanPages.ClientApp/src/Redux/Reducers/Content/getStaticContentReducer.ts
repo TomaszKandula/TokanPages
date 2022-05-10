@@ -11,7 +11,7 @@ import {
     REQUEST_TERMS 
 } from "../../../Redux/Actions/Content/getStaticContentAction";
 
-const GetStaticContentReducer: Reducer<IGetStaticContent> = (state: IGetStaticContent | undefined, incomingAction: Action): IGetStaticContent => 
+export const GetStaticContentReducer: Reducer<IGetStaticContent> = (state: IGetStaticContent | undefined, incomingAction: Action): IGetStaticContent => 
 {
     if (state === undefined) return combinedDefaults.getStaticContent;
 
@@ -57,5 +57,3 @@ const GetStaticContentReducer: Reducer<IGetStaticContent> = (state: IGetStaticCo
         default: return state;
     }
 }
-
-export default GetStaticContentReducer;

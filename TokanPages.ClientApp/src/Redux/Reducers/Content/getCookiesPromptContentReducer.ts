@@ -7,7 +7,7 @@ import {
     RECEIVE_COOKIES_PROMPT_CONTENT 
 } from "../../Actions/Content/getCookiesPromptContentAction";
 
-const GetCookiesPromptContentReducer: Reducer<IGetCookiesPromptContent> = (state: IGetCookiesPromptContent | undefined, incomingAction: Action): IGetCookiesPromptContent => 
+export const GetCookiesPromptContentReducer: Reducer<IGetCookiesPromptContent> = (state: IGetCookiesPromptContent | undefined, incomingAction: Action): IGetCookiesPromptContent => 
 {
     if (state === undefined) return combinedDefaults.getCookiesPromptContent;
 
@@ -29,5 +29,3 @@ const GetCookiesPromptContentReducer: Reducer<IGetCookiesPromptContent> = (state
         default: return state;
     }
 }
-
-export default GetCookiesPromptContentReducer;

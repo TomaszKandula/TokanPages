@@ -7,7 +7,7 @@ import {
     REQUEST_RESET_PASSWORD_CONTENT
 } from "../../Actions/Content/getResetPasswordContentAction";
 
-const GetResetPasswordContentReducer: Reducer<IGetResetPasswordContent> = (state: IGetResetPasswordContent | undefined, incomingAction: Action): IGetResetPasswordContent => 
+export const GetResetPasswordContentReducer: Reducer<IGetResetPasswordContent> = (state: IGetResetPasswordContent | undefined, incomingAction: Action): IGetResetPasswordContent => 
 {
     if (state === undefined) return combinedDefaults.getResetPasswordContent;
 
@@ -29,5 +29,3 @@ const GetResetPasswordContentReducer: Reducer<IGetResetPasswordContent> = (state
         default: return state;
     }
 }
-
-export default GetResetPasswordContentReducer;

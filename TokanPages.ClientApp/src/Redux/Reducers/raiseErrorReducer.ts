@@ -5,7 +5,7 @@ import { CLEAR_ERROR, RAISE_ERROR, TErrorActions } from "../../Redux/Actions/rai
 import { DialogType } from "../../Shared/enums";
 import { NO_ERRORS, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 
-const RaiseErrorReducer: Reducer<IRaiseError> = (state: IRaiseError | undefined, incomingAction: Action): IRaiseError =>
+export const RaiseErrorReducer: Reducer<IRaiseError> = (state: IRaiseError | undefined, incomingAction: Action): IRaiseError =>
 {
     if (state === undefined) return combinedDefaults.raiseError;
 
@@ -27,5 +27,3 @@ const RaiseErrorReducer: Reducer<IRaiseError> = (state: IRaiseError | undefined,
         default: return state;
     }
 }
-
-export default RaiseErrorReducer;

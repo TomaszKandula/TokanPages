@@ -6,17 +6,12 @@ on:
     
 jobs:
 
-  dev-branch-check:
+  frontend-develop:
 
     runs-on: ubuntu-latest
 
-    env:
-      TARGET_DIRECTORY: $PWD/sonarqubecoverage
-      COVERAGE_REPORT: $PWD/*/*/TestResults/*/coverage.cobertura.xml
-      SONAR_REPORT: SonarQube.xml
-
     steps:
-    
+
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
       with:
@@ -42,6 +37,20 @@ jobs:
         -Dsonar.login=${{ secrets.SONARQUBE_TOKEN_FE }} \
         -Dsonar.projectKey=${{ secrets.SONARQUBE_PROJECT_KEY_FE }} \
         -Dsonar.host.url=${{ secrets.SONARQUBE_HOST }}
+
+  backend-develop:
+
+    runs-on: ubuntu-latest
+
+    env:
+      TARGET_DIRECTORY: $PWD/sonarqubecoverage
+      COVERAGE_REPORT: $PWD/*/*/TestResults/*/coverage.cobertura.xml
+      SONAR_REPORT: SonarQube.xml
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v2.2.0
 
     - name: Variable substitution appsettings file for Staging (NET Core)
       uses: microsoft/variable-substitution@v1
