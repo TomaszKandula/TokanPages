@@ -1,3 +1,39 @@
+# [0.51.0](https://github.com/TomaszKandula/TokanPages/compare/v0.50.0...v0.51.0) (2022-05-10)
+
+
+### Bug Fixes
+
+* add missing skeletons to user account view ([ac8f6b5](https://github.com/TomaszKandula/TokanPages/commit/ac8f6b5fedbb6834881733d6c4525ab5622552b7))
+* take into account user timezone offset when sending email notifications ([5c224d5](https://github.com/TomaszKandula/TokanPages/commit/5c224d50235890579b6a7fa618d4c0d75377df35))
+
+
+### Features
+
+* accept many origins (CORS) ([9afd1fa](https://github.com/TomaszKandula/TokanPages/commit/9afd1fadfcb1c37e588ee618adc3d766d402d0fe))
+* add account component content from store ([60df952](https://github.com/TomaszKandula/TokanPages/commit/60df952db47269aa10de66902fc064573f99e49d))
+* add account component get content action to redux store ([d2b1291](https://github.com/TomaszKandula/TokanPages/commit/d2b12914f1eae9193aab5934a14daf9fd6ea3ce8))
+* add account component models ([d4e5a9e](https://github.com/TomaszKandula/TokanPages/commit/d4e5a9e5c3bb825668b5b51dcefbf1f28e7309a0))
+* add custom header for dealing with user time zone ([48f0e3b](https://github.com/TomaszKandula/TokanPages/commit/48f0e3b6891e1233f7df8059c939f1dd8ab6d660))
+* add form caption ([10e5bc4](https://github.com/TomaszKandula/TokanPages/commit/10e5bc400dba71a639696b52b3cb184b6e792077))
+* add message template ([524b2ed](https://github.com/TomaszKandula/TokanPages/commit/524b2ede8b43cddbd895ed901e0b0d89d7481098))
+* add new method to retrieve user time zone, add timezone offset to the set cookie method ([86ab2b1](https://github.com/TomaszKandula/TokanPages/commit/86ab2b18c42030e6b12334cae06612cea43b3571))
+* add new redux action, reducer, state and default for update user action ([ed72ee3](https://github.com/TomaszKandula/TokanPages/commit/ed72ee39cced2bfe5bf5961b7595efeb3ec54205))
+* add new validation form with tests ([a4f4443](https://github.com/TomaszKandula/TokanPages/commit/a4f44437f7fec553c8012d276af84f55f5a20c49))
+* add re-authentication action to Redux ([c30093c](https://github.com/TomaszKandula/TokanPages/commit/c30093cf4c2ebc1b092f2f664a1a7ff7dc5768fa))
+* add refresh token to the authentication command result, remove token from cookie ([4500793](https://github.com/TomaszKandula/TokanPages/commit/4500793869edad37a6a75691f34dc6d176e68ab9))
+* add RefreshToken, update model for re-authentication ([a1ffb13](https://github.com/TomaszKandula/TokanPages/commit/a1ffb136b0fb59b2e01c2923d7ae222ea96fb3b5))
+* add short bio to the update user command action ([cd3d52c](https://github.com/TomaszKandula/TokanPages/commit/cd3d52c7ec883cfef1fd6557440d2ba4fea5ba70))
+* add time zone offset capability when generating refresh token ([7612bf6](https://github.com/TomaszKandula/TokanPages/commit/7612bf65a2c1dfd4f92c907f573652c55cb68281))
+* add user account (with no implementation) ([4487bd9](https://github.com/TomaszKandula/TokanPages/commit/4487bd9f8d910a3d204e23acd3b90759deeb5217))
+* allow to display non-material icons like GitHub (not in Google material library) ([d731300](https://github.com/TomaszKandula/TokanPages/commit/d7313005a762e9edb921fcaef808cdff983cc221))
+* apply new style and layout to user account page ([5d8b45f](https://github.com/TomaszKandula/TokanPages/commit/5d8b45fe3b6cd3d58a95f69d60a24ad3d4c58c7c))
+* implement logic for updating user basic information ([7f84b7c](https://github.com/TomaszKandula/TokanPages/commit/7f84b7cf3fd8df4531d9bc766ce2d19283a17ff6))
+* move refresh token from cookie to payload, update implementation ([ca8f7fb](https://github.com/TomaszKandula/TokanPages/commit/ca8f7fbfba34e5afad51b85edf9a304112c04dbf))
+* replace ID with RefreshToken ([ff31ae3](https://github.com/TomaszKandula/TokanPages/commit/ff31ae3af4d4f7c5e778e42d845e1141604c8bcd))
+* simplify code, add user timezone offset header to each request ([d7b22e1](https://github.com/TomaszKandula/TokanPages/commit/d7b22e1b3c9878ba35751915292049cc921288ad))
+* update mapper, replace/add properties ([6f55a89](https://github.com/TomaszKandula/TokanPages/commit/6f55a896b9806ec7fe8e848afe0d4c9b2c05a6e7))
+* update user account implementation ([f7210a0](https://github.com/TomaszKandula/TokanPages/commit/f7210a05163c7269059db9fa8fb452bd3ad9799d))
+
 # [0.50.0](https://github.com/TomaszKandula/TokanPages/compare/v0.49.0...v0.50.0) (2022-04-19)
 
 
