@@ -24,6 +24,7 @@ interface IProperties
     userAlias: string;
     firstName: string;
     lastName: string;
+    email: string;
     shortBio: string;
     userAvatar: string;
     formHandler: any;    

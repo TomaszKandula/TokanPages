@@ -27,7 +27,8 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
     {
         firstName: userDataState.firstName,
         lastName: userDataState.lastName,
-        shortBio: userDataState.shortBio
+        email: userDataState.email,
+        shortBio: userDataState.shortBio ?? ""
     }
 
     const [form, setForm] = React.useState(formDefaultValues);
@@ -65,6 +66,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
                     isActivated: true,
                     firstName: form.firstName,
                     lastName: form.lastName,
+                    emailAddress: form.email,
                     shortBio: form.shortBio
                 });
             break;
@@ -89,6 +91,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
         { 
             firstName: form.firstName,
             lastName: form.lastName, 
+            email: form.email,
             shortBio: form.shortBio
         });
 
@@ -110,6 +113,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
             userAlias: userDataState.aliasName,
             firstName: form.firstName,
             lastName: form.lastName,
+            email: form.email,
             shortBio: form.shortBio,
             userAvatar: userDataState.avatarName,
             updateProgress: progressUpdate,

@@ -93,6 +93,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
             AvatarName = currentUser.AvatarName,
             FirstName = currentUser.FirstName,
             LastName = currentUser.LastName,
+            Email = currentUser.EmailAddress,
             ShortBio = currentUser.ShortBio,
             Registered = currentUser.Registered,
             UserToken = userToken,
