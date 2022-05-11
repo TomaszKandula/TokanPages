@@ -21,6 +21,9 @@ public class SectionBasicInformation
     [JsonProperty("labelLastName")]
     public string LabelLastName { get; set; }
 
+    [JsonProperty("labelEmail")]
+    public string LabelEmail { get; set; }
+
     [JsonProperty("labelShortBio")]
     public string LabelShortBio { get; set; }
 
