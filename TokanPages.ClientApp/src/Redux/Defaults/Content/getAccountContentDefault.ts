@@ -18,6 +18,7 @@ export const GetAccountContentDefault: IGetAccountContent =
             labelUserAlias: "",
             labelFirstName: "",
             labelLastName: "",
+            labelEmail: "",
             labelShortBio: "",
             labelUserAvatar: "",
             updateButtonText: "",

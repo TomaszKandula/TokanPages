@@ -21,6 +21,7 @@ export interface ISectionBasicInformation
     labelUserAlias: string;
     labelFirstName: string;
     labelLastName: string;
+    labelEmail: string;
     labelShortBio: string;
     labelUserAvatar: string;
     updateButtonText: string;

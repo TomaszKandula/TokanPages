@@ -166,6 +166,17 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelEmail}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={9}>
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="40px" />
+                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email}
+                                            variant="outlined" name="email" id="email" />}
+                                    </Grid>
+                                    <Grid item xs={12} sm={3}>
+                                        <Typography className={classes.label}>
                                             {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelShortBio}
                                         </Typography>
                                     </Grid>
