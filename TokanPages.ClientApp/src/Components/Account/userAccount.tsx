@@ -32,6 +32,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
     }
 
     const [form, setForm] = React.useState(formDefaultValues);
+    const [isUserActivated, setIsUserActivated] = React.useState({ checked: true });
     const [progressUpdate, setProgressUpdate] = React.useState(false);
 
     const showSuccess = React.useCallback((text: string) => dispatch(RaiseDialog.raiseDialog(SuccessMessage(ACCOUNT_FORM, text))), [ dispatch ]);
@@ -63,7 +64,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
                 if (progressUpdate) postUpdateUser(
                 {
                     id: userDataState.userId,
-                    isActivated: true,
+                    isActivated: isUserActivated.checked,
                     firstName: form.firstName,
                     lastName: form.lastName,
                     emailAddress: form.email,
@@ -83,6 +84,11 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value }); 
+    };
+
+    const switchHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    {
+        setIsUserActivated({ ...isUserActivated, [event.target.name]: event.target.checked });
     };
 
     const updateButtonHandler = async () => 
@@ -118,7 +124,9 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
             userAvatar: userDataState.avatarName,
             updateProgress: progressUpdate,
             uploadProgress: false,
+            isUserActivated: isUserActivated.checked,
             formHandler: formHandler,
+            switchHandler: switchHandler,
             updateButtonHandler: updateButtonHandler,
             uploadAvatarButtonHandler: null,
             sectionAccessDenied: props.content?.sectionAccessDenied,

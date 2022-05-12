@@ -30,6 +30,12 @@ public class SectionBasicInformation
     [JsonProperty("labelUserAvatar")]
     public string LabelUserAvatar { get; set; }
 
+    [JsonProperty("labelIsActivated")]
+    public string LabelIsActivated { get; set; }
+
+    [JsonProperty("isActivatedText")]
+    public string IsActivatedText { get; set; }
+
     [JsonProperty("updateButtonText")]
     public string UpdateButtonText { get; set; }
 

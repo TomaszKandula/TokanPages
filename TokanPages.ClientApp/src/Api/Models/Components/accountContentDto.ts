@@ -24,6 +24,8 @@ export interface ISectionBasicInformation
     labelEmail: string;
     labelShortBio: string;
     labelUserAvatar: string;
+    labelIsActivated: string;
+    isActivatedText: string;
     updateButtonText: string;
     uploadAvatarButtonText: string;
 }

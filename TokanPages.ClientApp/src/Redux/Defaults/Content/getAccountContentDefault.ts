@@ -21,6 +21,8 @@ export const GetAccountContentDefault: IGetAccountContent =
             labelEmail: "",
             labelShortBio: "",
             labelUserAvatar: "",
+            labelIsActivated: "",
+            isActivatedText: "",
             updateButtonText: "",
             uploadAvatarButtonText: ""
         }

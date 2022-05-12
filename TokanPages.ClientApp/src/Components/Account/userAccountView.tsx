@@ -8,8 +8,9 @@ import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import userAccountStyle from "./Styles/userAccountStyle";
 import BackupIcon from "@material-ui/icons/Backup";
-import { Button, IconButton, CircularProgress, Divider, Grid, TextField, Typography } from "@material-ui/core";
+import { Button, IconButton, CircularProgress, Divider, Grid, TextField, Typography, FormControlLabel } from "@material-ui/core";
 import { ISectionAccessDenied, ISectionBasicInformation } from "../../Api/Models";
+import { CustomSwitchStyle } from "./Styles/customSwitchStyle";
 
 interface IBinding 
 {
@@ -27,7 +28,9 @@ interface IProperties
     email: string;
     shortBio: string;
     userAvatar: string;
-    formHandler: any;    
+    isUserActivated: boolean;
+    formHandler: any;
+    switchHandler: any;
     updateProgress: boolean;
     updateButtonHandler: any;
     uploadProgress: boolean;
@@ -185,6 +188,18 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <TextField required fullWidth multiline onChange={props.bind?.formHandler} value={props.bind?.shortBio}
                                             minRows={6} variant="outlined" name="shortBio" id="shortBio" />}
+                                    </Grid>
+                                    <Grid item xs={12} sm={3}>
+                                        <Typography className={classes.label}>
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelIsActivated}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={9}>
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="40px" />
+                                        : <FormControlLabel
+                                            control={<CustomSwitchStyle checked={props.bind?.isUserActivated} onChange={props.bind?.switchHandler} name="checked" />}
+                                            label={props.bind?.sectionBasicInformation?.isActivatedText} />}
                                     </Grid>
                                 </Grid>
                                 <CustomDivider marginTop={5} marginBottom={2} />
