@@ -1,12 +1,15 @@
 import * as React from "react";
+import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionCreators as RaiseDialog } from "../../Redux/Actions/raiseDialogAction";
 import { ActionCreators as UpdateUser } from "../../Redux/Actions/Users/updateUserAction";
+import { ActionCreators as DataAction } from "../../Redux/Actions/Users/storeUserDataAction";
+import { ActionCreators as UserAction } from "../../Redux/Actions/Users/signinUserAction";
 import { ActionCreators as ReAuthenticateUser } from "../../Redux/Actions/Users/reAuthenticateUserAction";
 import { IApplicationState } from "../../Redux/applicationState";
 import { IGetAccountContent } from "../../Redux/States/Content/getAccountContentState";
 import { IValidateAccountForm, ValidateAccountForm } from "../../Shared/Services/FormValidation";
-import { ACCOUNT_FORM, RECEIVED_ERROR_MESSAGE, UPDATE_USER_SUCCESS, UPDATE_USER_WARNING } from "../../Shared/constants";
+import { ACCOUNT_FORM, DEACTIVATE_USER, RECEIVED_ERROR_MESSAGE, UPDATE_USER_SUCCESS, UPDATE_USER_WARNING } from "../../Shared/constants";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { GetTextWarning } from "../../Shared/Services/Utilities";
@@ -18,6 +21,7 @@ import Validate from "validate.js";
 const UserAccount = (props: IGetAccountContent): JSX.Element => 
 {
     const dispatch = useDispatch();
+    const history = useHistory();
     const userDataState = useSelector((state: IApplicationState) => state.storeUserData.userData);
     const updateUserState = useSelector((state: IApplicationState) => state.updateUser);
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
@@ -40,15 +44,28 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
     const postUpdateUser = React.useCallback((payload: IUpdateUserDto) => dispatch(UpdateUser.update(payload)), [ dispatch ]);
     const postUpdateUserClear = React.useCallback(() => dispatch(UpdateUser.clear()), [ dispatch ]);
     const reAuthenticateUser = React.useCallback(() => dispatch(ReAuthenticateUser.reAuthenticate()), [ dispatch ]);
+    const clearUser = React.useCallback(() => dispatch(UserAction.clear()), [ dispatch ]);
+    const clearData = React.useCallback(() => dispatch(DataAction.clear()), [ dispatch ]);
 
     const resetForm = React.useCallback(() => 
     {
         if (!progressUpdate) return;
-        reAuthenticateUser();
+        
         postUpdateUserClear();
         setProgressUpdate(false);
+
+        if (!isUserActivated.checked)
+        {
+            clearUser();
+            clearData();
+            history.push("/");
+        }
+        else
+        {
+            reAuthenticateUser();
+        }
     }, 
-    [ progressUpdate, postUpdateUserClear, reAuthenticateUser ]);
+    [ progressUpdate, postUpdateUserClear, reAuthenticateUser, clearUser, clearData ]);
 
     React.useEffect(() => 
     {
@@ -74,7 +91,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
 
             case OperationStatus.hasFinished:
                 resetForm();
-                showSuccess(UPDATE_USER_SUCCESS);
+                showSuccess(isUserActivated.checked ? UPDATE_USER_SUCCESS : DEACTIVATE_USER);
             break;
         }
     }, 

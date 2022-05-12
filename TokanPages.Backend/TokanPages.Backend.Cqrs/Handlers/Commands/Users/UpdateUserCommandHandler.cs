@@ -32,6 +32,7 @@ public class UpdateUserCommandHandler : Cqrs.RequestHandler<UpdateUserCommand, U
 
         var emailCollection = await DatabaseContext.Users
             .AsNoTracking()
+            .Where(users => users.Id != request.Id)
             .Where(users => users.EmailAddress == request.EmailAddress)
             .ToListAsync(cancellationToken);
 
