@@ -9,7 +9,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import userAccountStyle from "./Styles/userAccountStyle";
 import BackupIcon from "@material-ui/icons/Backup";
 import { Button, IconButton, CircularProgress, Divider, Grid, TextField, Typography, FormControlLabel } from "@material-ui/core";
-import { ISectionAccessDenied, ISectionBasicInformation } from "../../Api/Models";
+import { ISectionAccessDenied, ISectionAccountInformation, ISectionAccountPassword, ISectionAccountRemoval } from "../../Api/Models";
 import { CustomSwitchStyle } from "./Styles/customSwitchStyle";
 
 interface IBinding 
@@ -36,7 +36,9 @@ interface IProperties
     uploadProgress: boolean;
     uploadAvatarButtonHandler: any;
     sectionAccessDenied: ISectionAccessDenied;
-    sectionBasicInformation: ISectionBasicInformation;
+    sectionAccountInformation: ISectionAccountInformation;
+    sectionAccountPassword: ISectionAccountPassword;
+    sectionAccountRemoval: ISectionAccountRemoval;
 }
 
 const UserAccountView = (props: IBinding): JSX.Element => 
@@ -49,7 +51,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
             <Button fullWidth onClick={props.bind?.updateButtonHandler} type="submit" variant="contained" 
                 disabled={props.bind?.updateProgress} className={classes.button_update}>
                 {props.bind?.updateProgress &&  <CircularProgress size={20} />}
-                {!props.bind?.updateProgress && props.bind?.sectionBasicInformation?.updateButtonText}
+                {!props.bind?.updateProgress && props.bind?.sectionAccountInformation?.updateButtonText}
             </Button>
         );
     }
@@ -87,7 +89,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
     return(
         <section className={classes.section}>
             <Container maxWidth="md">
-                <Box py={15}>
+                <Box pt={15}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content} style={props.bind?.isAnonymous ? { display: "block" }: { display: "none" }}>
                             <Box pt={0} pb={0}>
@@ -106,7 +108,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                         <CardContent className={classes.card_content} style={props.bind?.isAnonymous ? { display: "none" }: { display: "block" }}>
                             <Box pt={0} pb={0}>
                                 <Typography className={classes.caption}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.caption}
+                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountInformation?.caption}
                                 </Typography>
                             </Box>
                             <CustomDivider marginTop={2} marginBottom={1} />
@@ -114,7 +116,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
-                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelUserId}
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountInformation?.labelUserId}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
@@ -124,7 +126,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
-                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelUserAlias}
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountInformation?.labelUserAlias}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
@@ -134,7 +136,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
-                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelUserAvatar}
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountInformation?.labelUserAvatar}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
@@ -147,7 +149,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
-                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelFirstName}
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountInformation?.labelFirstName}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
@@ -158,7 +160,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
-                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelLastName}
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountInformation?.labelLastName}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
@@ -169,7 +171,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
-                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelEmail}
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountInformation?.labelEmail}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
@@ -180,7 +182,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
-                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelShortBio}
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountInformation?.labelShortBio}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
@@ -191,7 +193,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
-                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionBasicInformation?.labelIsActivated}
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountInformation?.labelIsActivated}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
@@ -199,7 +201,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <FormControlLabel
                                             control={<CustomSwitchStyle checked={props.bind?.isUserActivated} onChange={props.bind?.switchHandler} name="checked" />}
-                                            label={props.bind?.sectionBasicInformation?.isActivatedText} />}
+                                            label={props.bind?.sectionAccountInformation?.isActivatedText} />}
                                     </Grid>
                                 </Grid>
                                 <CustomDivider marginTop={5} marginBottom={2} />
@@ -212,6 +214,11 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                 </Grid>
                             </Box>
                         </CardContent>
+                    </Card>
+                </Box>
+                <Box pt={8} pb={15}>
+                    <Card elevation={0} className={classes.card}>
+                        Update Password...
                     </Card>
                 </Box>
             </Container>

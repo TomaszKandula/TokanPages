@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using System.Diagnostics.CodeAnalysis;
 
 [ExcludeFromCodeCoverage]
-public class SectionBasicInformation
+public class SectionAccountInformation
 {
     [JsonProperty("caption")]
     public string Caption { get; set; }

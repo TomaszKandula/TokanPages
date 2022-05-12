@@ -147,7 +147,9 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
             updateButtonHandler: updateButtonHandler,
             uploadAvatarButtonHandler: null,
             sectionAccessDenied: props.content?.sectionAccessDenied,
-            sectionBasicInformation: props.content?.sectionBasicInformation
+            sectionAccountInformation: props.content?.sectionAccountInformation,
+            sectionAccountPassword: props.content?.sectionAccountPassword,
+            sectionAccountRemoval: props.content?.sectionAccountRemoval
         }} />
     );
 }
