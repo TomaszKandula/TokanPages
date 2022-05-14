@@ -7,9 +7,12 @@ public class RemoveUserCommandValidator : AbstractValidator<RemoveUserCommand>
 {
     public RemoveUserCommandValidator() 
     {
-        RuleFor(command => command.Id)
-            .NotEmpty()
-            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-            .WithMessage(ValidationCodes.REQUIRED);
+        When(command => command.Id != null, () =>
+        {
+            RuleFor(command => command.Id)
+                .NotEmpty()
+                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+                .WithMessage(ValidationCodes.REQUIRED);
+        });
     }
 }
