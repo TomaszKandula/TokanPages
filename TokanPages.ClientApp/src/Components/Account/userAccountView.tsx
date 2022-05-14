@@ -21,6 +21,7 @@ interface IProperties
 {    
     isLoading: boolean;
     isAnonymous: boolean;
+
     userId: string;
     userAlias: string;
     firstName: string;
@@ -29,12 +30,22 @@ interface IProperties
     shortBio: string;
     userAvatar: string;
     isUserActivated: boolean;
-    formHandler: any;
-    switchHandler: any;
-    updateProgress: boolean;
-    updateButtonHandler: any;
-    uploadProgress: boolean;
-    uploadAvatarButtonHandler: any;
+
+    accountFormProgress: boolean;
+    accountFormHandler: any;
+    accountSwitchHandler: any;
+    accountButtonHandler: any;
+
+    avatarUploadProgress: boolean;
+    avatarButtonHandler: any;
+
+    oldPassword: string;
+    newPassword: string;
+    confirmPassword: string;
+    passwordFormProgress: boolean;
+    passwordFormHandler: any;
+    passwordButtonHandler: any;
+
     sectionAccessDenied: ISectionAccessDenied;
     sectionAccountInformation: ISectionAccountInformation;
     sectionAccountPassword: ISectionAccountPassword;
@@ -45,13 +56,24 @@ const UserAccountView = (props: IBinding): JSX.Element =>
 {
     const classes = userAccountStyle();
 
-    const UpdateButton = (): JSX.Element => 
+    const UpdateAccountButton = (): JSX.Element => 
     {
         return(
-            <Button fullWidth onClick={props.bind?.updateButtonHandler} type="submit" variant="contained" 
-                disabled={props.bind?.updateProgress} className={classes.button_update}>
-                {props.bind?.updateProgress &&  <CircularProgress size={20} />}
-                {!props.bind?.updateProgress && props.bind?.sectionAccountInformation?.updateButtonText}
+            <Button fullWidth onClick={props.bind?.accountButtonHandler} type="submit" variant="contained" 
+                disabled={props.bind?.accountFormProgress} className={classes.button_update}>
+                {props.bind?.accountFormProgress &&  <CircularProgress size={20} />}
+                {!props.bind?.accountFormProgress && props.bind?.sectionAccountInformation?.updateButtonText}
+            </Button>
+        );
+    }
+
+    const UpdatePasswordButton = (): JSX.Element => 
+    {
+        return(
+            <Button fullWidth onClick={props.bind?.passwordButtonHandler} type="submit" variant="contained" 
+                disabled={props.bind?.passwordFormProgress} className={classes.button_update}>
+                {props.bind?.passwordFormProgress &&  <CircularProgress size={20} />}
+                {!props.bind?.passwordFormProgress && props.bind?.sectionAccountPassword?.updateButtonText}
             </Button>
         );
     }
@@ -59,8 +81,8 @@ const UserAccountView = (props: IBinding): JSX.Element =>
     const UploadAvatarButton = (): JSX.Element => 
     {
         return(
-            <IconButton onClick={props.bind?.uploadAvatarButtonHandler} size="small"
-                disabled={props.bind?.uploadProgress} className={classes.button_upload}>
+            <IconButton onClick={props.bind?.avatarButtonHandler} size="small"
+                disabled={props.bind?.avatarUploadProgress} className={classes.button_upload}>
                 <BackupIcon />
             </IconButton>
         );
@@ -155,7 +177,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12} sm={9}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" /> 
-                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.firstName}
+                                        : <TextField required fullWidth onChange={props.bind?.accountFormHandler} value={props.bind?.firstName}
                                             variant="outlined" name="firstName" id="firstName" />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
@@ -166,7 +188,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12} sm={9}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
-                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.lastName}
+                                        : <TextField required fullWidth onChange={props.bind?.accountFormHandler} value={props.bind?.lastName}
                                             variant="outlined" name="lastName" id="lastName" />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
@@ -177,7 +199,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12} sm={9}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
-                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email}
+                                        : <TextField required fullWidth onChange={props.bind?.accountFormHandler} value={props.bind?.email}
                                             variant="outlined" name="email" id="email" />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
@@ -188,7 +210,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12} sm={9}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
-                                        : <TextField required fullWidth multiline onChange={props.bind?.formHandler} value={props.bind?.shortBio}
+                                        : <TextField required fullWidth multiline onChange={props.bind?.accountFormHandler} value={props.bind?.shortBio}
                                             minRows={6} variant="outlined" name="shortBio" id="shortBio" />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
@@ -200,7 +222,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <FormControlLabel
-                                            control={<CustomSwitchStyle checked={props.bind?.isUserActivated} onChange={props.bind?.switchHandler} name="checked" />}
+                                            control={<CustomSwitchStyle checked={props.bind?.isUserActivated} onChange={props.bind?.accountSwitchHandler} name="checked" />}
                                             label={props.bind?.sectionAccountInformation?.isActivatedText} />}
                                     </Grid>
                                 </Grid>
@@ -209,7 +231,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                     <Box my={2}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="150px" height="40px" /> 
-                                        : <UpdateButton />}
+                                        : <UpdateAccountButton />}
                                     </Box>
                                 </Grid>
                             </Box>
@@ -218,7 +240,59 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                 </Box>
                 <Box pt={8} pb={15}>
                     <Card elevation={0} className={classes.card}>
-                        Update Password...
+                        <CardContent className={classes.card_content} style={props.bind?.isAnonymous ? { display: "none" }: { display: "block" }}>
+                            <Box pt={0} pb={0}>
+                                <Typography className={classes.caption}>
+                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountPassword?.caption}
+                                </Typography>
+                            </Box>
+                            <CustomDivider marginTop={2} marginBottom={1} />
+                            <Box pt={5} pb={1}>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12} sm={3}>
+                                        <Typography className={classes.label}>
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountPassword?.labelOldPassword}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={9}>
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="40px" />
+                                        : <TextField required fullWidth onChange={props.bind?.passwordFormHandler} value={props.bind?.oldPassword}
+                                            variant="outlined" name="oldPassword" id="oldPassword" />}
+                                    </Grid>
+                                    <Grid item xs={12} sm={3}>
+                                        <Typography className={classes.label}>
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountPassword?.labelNewPassword}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={9}>
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="40px" />
+                                        : <TextField required fullWidth onChange={props.bind?.passwordFormHandler} value={props.bind?.newPassword}
+                                            variant="outlined" name="newPassword" id="newPassword" />}
+                                    </Grid>
+                                    <Grid item xs={12} sm={3}>
+                                        <Typography className={classes.label}>
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountPassword?.labelConfirmPassword}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={9}>
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="40px" />
+                                        : <TextField required fullWidth onChange={props.bind?.passwordFormHandler} value={props.bind?.confirmPassword}
+                                            variant="outlined" name="confirmPassword" id="confirmPassword" />}
+                                    </Grid>
+                                </Grid>
+                                <CustomDivider marginTop={5} marginBottom={2} />
+                                <Grid className={classes.button_container_update}>
+                                    <Box my={2}>
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="rect" width="150px" height="40px" /> 
+                                        : <UpdatePasswordButton />}
+                                    </Box>
+                                </Grid>
+                            </Box>
+                        </CardContent>
                     </Card>
                 </Box>
             </Container>
