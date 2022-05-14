@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Users;
 
@@ -35,8 +36,12 @@ public class RemoveUserCommandHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedUserService = new Mock<IUserService>();
         var removeUserCommand = new RemoveUserCommand { Id = users.Id };
-        var removeUserCommandHandler = new RemoveUserCommandHandler(databaseContext, mockedLogger.Object);
+        var removeUserCommandHandler = new RemoveUserCommandHandler(
+            databaseContext, 
+            mockedLogger.Object, 
+            mockedUserService.Object);
 
         // Act
         await removeUserCommandHandler.Handle(removeUserCommand, CancellationToken.None);
@@ -53,13 +58,17 @@ public class RemoveUserCommandHandlerTest : TestBase
         // Arrange
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedUserService = new Mock<IUserService>();
 
         var removeUserCommand = new RemoveUserCommand { Id = Guid.Parse("275c1659-ebe2-44ca-b912-b93b1861a9fb") };
-        var removeUserCommandHandler = new RemoveUserCommandHandler(databaseContext, mockedLogger.Object);
+        var removeUserCommandHandler = new RemoveUserCommandHandler(
+            databaseContext, 
+            mockedLogger.Object, 
+            mockedUserService.Object);
 
         // Act
         // Assert
-        await Assert.ThrowsAsync<BusinessException>(() 
+        await Assert.ThrowsAsync<AuthorizationException>(() 
             => removeUserCommandHandler.Handle(removeUserCommand, CancellationToken.None));
     }
 }

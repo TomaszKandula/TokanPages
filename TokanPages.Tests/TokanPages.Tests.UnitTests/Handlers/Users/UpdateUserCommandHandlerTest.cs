@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Users;
 using Backend.Core.Utilities.DateTimeService;
@@ -48,11 +49,13 @@ public class UpdateUserCommandHandlerTest : TestBase
 
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedUserService = new Mock<IUserService>();
         var updateUserCommandHandler = new UpdateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedDateTime.Object);
-            
+            mockedDateTime.Object, 
+            mockedUserService.Object);
+
         // Act
         await updateUserCommandHandler.Handle(updateUserCommand, CancellationToken.None);
 
@@ -75,10 +78,12 @@ public class UpdateUserCommandHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedUserService = new Mock<IUserService>();
         var updateUserCommandHandler = new UpdateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedDateTime.Object);
+            mockedDateTime.Object, 
+            mockedUserService.Object);
 
         var updateUserCommand = new UpdateUserCommand
         {
@@ -92,7 +97,7 @@ public class UpdateUserCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        await Assert.ThrowsAsync<BusinessException>(() 
+        await Assert.ThrowsAsync<AuthorizationException>(() 
             => updateUserCommandHandler.Handle(updateUserCommand, CancellationToken.None));
     }
 
@@ -145,10 +150,12 @@ public class UpdateUserCommandHandlerTest : TestBase
 
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedUserService = new Mock<IUserService>();
         var updateUserCommandHandler = new UpdateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedDateTime.Object);
+            mockedDateTime.Object, 
+            mockedUserService.Object);
 
         // Act
         // Assert
