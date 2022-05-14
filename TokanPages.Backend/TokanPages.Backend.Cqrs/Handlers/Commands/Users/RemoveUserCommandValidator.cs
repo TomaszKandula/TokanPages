@@ -1,5 +1,6 @@
 ﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
+using System;
 using FluentValidation;
 using Shared.Resources;
 
@@ -7,9 +8,13 @@ public class RemoveUserCommandValidator : AbstractValidator<RemoveUserCommand>
 {
     public RemoveUserCommandValidator() 
     {
-        RuleFor(command => command.Id)
-            .NotEmpty()
-            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-            .WithMessage(ValidationCodes.REQUIRED);
+        When(command => command.Id != null, () =>
+        {
+            RuleFor(command => command.Id)
+                .NotEmpty()
+                .NotEqual(Guid.Empty)
+                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+                .WithMessage(ValidationCodes.REQUIRED);
+        });
     }
 }

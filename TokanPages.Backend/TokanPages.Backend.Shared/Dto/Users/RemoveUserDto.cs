@@ -6,5 +6,5 @@ using System.Diagnostics.CodeAnalysis;
 [ExcludeFromCodeCoverage]
 public class RemoveUserDto
 {
-    public Guid Id { get; set; }
+    public Guid? Id { get; set; }
 }

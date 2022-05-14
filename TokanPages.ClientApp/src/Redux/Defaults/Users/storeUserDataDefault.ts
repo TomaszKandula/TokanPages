@@ -10,6 +10,7 @@ export const StoreUserDataDefault: IStoreUserData =
         avatarName: "",
         firstName: "",
         lastName: "",
+        email: "",
         shortBio: "",
         registered: "",
         userToken: "",

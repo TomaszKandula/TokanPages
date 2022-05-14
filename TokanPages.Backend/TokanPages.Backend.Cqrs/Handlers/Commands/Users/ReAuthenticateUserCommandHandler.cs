@@ -11,6 +11,7 @@ using Core.Exceptions;
 using Shared.Services;
 using Shared.Resources;
 using Services.UserService;
+using Services.UserService.Models;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
 
@@ -43,13 +44,19 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
             throw InvalidTokenException;
 
         var requesterIpAddress = _userService.GetRequestIpAddress();
-
         if (_userService.IsRefreshTokenRevoked(savedRefreshToken))
         {
             var reason = $"Attempted reuse of revoked ancestor token: {request.RefreshToken}";
-            await _userService.RevokeDescendantRefreshTokens(userRefreshTokens, savedRefreshToken, requesterIpAddress, 
-                reason, false, cancellationToken);
-                
+            var tokensInput = new RevokeRefreshTokensInput
+            {
+                UserRefreshTokens = userRefreshTokens, 
+                SavedUserRefreshTokens = savedRefreshToken, 
+                RequesterIpAddress = requesterIpAddress, 
+                Reason = reason, 
+                SaveImmediately = false
+            };
+
+            await _userService.RevokeDescendantRefreshTokens(tokensInput, cancellationToken);
             DatabaseContext.UserRefreshTokens.Update(savedRefreshToken);
             await DatabaseContext.SaveChangesAsync(cancellationToken);
         }
@@ -57,9 +64,15 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         if (!_userService.IsRefreshTokenActive(savedRefreshToken))
             throw InvalidTokenException;
 
-        var newRefreshToken = await _userService.ReplaceRefreshToken(userId, savedRefreshToken, 
-            requesterIpAddress, true, cancellationToken);
-
+        var tokenInput = new ReplaceRefreshTokenInput
+        {
+            UserId = userId, 
+            SavedUserRefreshTokens = savedRefreshToken, 
+            RequesterIpAddress = requesterIpAddress, 
+            SaveImmediately = true
+        };
+        
+        var newRefreshToken = await _userService.ReplaceRefreshToken(tokenInput, cancellationToken);
         await _userService.DeleteOutdatedRefreshTokens(userId, false, cancellationToken);
         await DatabaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
 
@@ -93,6 +106,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
             AvatarName = currentUser.AvatarName,
             FirstName = currentUser.FirstName,
             LastName = currentUser.LastName,
+            Email = currentUser.EmailAddress,
             ShortBio = currentUser.ShortBio,
             Registered = currentUser.Registered,
             UserToken = userToken,

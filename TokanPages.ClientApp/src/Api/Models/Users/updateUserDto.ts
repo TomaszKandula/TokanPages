@@ -1,6 +1,6 @@
 export interface IUpdateUserDto
 {
-    id: string;
+    id?: string;
     isActivated: boolean;
     userAlias?: string;
     firstName?: string;

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { IGetUpdatePasswordContent } from "../../Redux/States/Content/getUpdatePasswordContentState";
 import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
-import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/Users/updateUserPasswordAction";
+import { IApplicationState } from "../../Redux/applicationState";
 import { IUpdateUserPasswordDto } from "../../Api/Models";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
@@ -69,9 +69,9 @@ const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
             case OperationStatus.notStarted:
                 if (progress) updateAction(
                 {
-                    Id: userId,
-                    ResetId: resetId as string,
-                    NewPassword: form.newPassword
+                    id: userId,
+                    resetId: resetId as string,
+                    newPassword: form.newPassword
                 });
             break;
 

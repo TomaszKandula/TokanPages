@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 [ExcludeFromCodeCoverage]
 public class UpdateUserPasswordDto
 {
-    public Guid Id { get; set; }
+    public Guid? Id { get; set; }
 
     public Guid? ResetId { get; set; }
         

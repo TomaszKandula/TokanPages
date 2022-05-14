@@ -52,4 +52,10 @@ export type { IUnsubscribeContentDto } from "./Components/unsubscribeContentDto"
 export type { IActivateAccountContentDto } from "./Components/activateAccountContentDto";
 export type { IUpdateSubscriberContentDto } from "./Components/updateSubscriberContentDto";
 export type { IWrongPagePromptContentDto } from "./Components/wrongPagePromptContentDto";
-export type { IAccountContentDto, ISectionAccessDenied, ISectionBasicInformation } from "./Components/accountContentDto";
+export type { 
+    IAccountContentDto, 
+    ISectionAccessDenied, 
+    ISectionAccountInformation,
+    ISectionAccountPassword,
+    ISectionAccountRemoval
+} from "./Components/accountContentDto";

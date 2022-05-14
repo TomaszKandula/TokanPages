@@ -15,6 +15,7 @@ using Backend.Shared.Resources;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Users;
+using TokanPages.Services.UserService.Models;
 using Backend.Core.Utilities.DateTimeService;
 
 public class ReAuthenticateUserCommandHandlerTest : TestBase
@@ -100,13 +101,11 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             ReplacedByToken = null,
             ReasonRevoked = null
         };
+
         mockedUserServiceProvider
             .Setup(service => service
                 .ReplaceRefreshToken(
-                    It.IsAny<Guid>(), 
-                    It.IsAny<UserRefreshTokens>(), 
-                    It.IsAny<string>(), 
-                    It.IsAny<bool>(), 
+                    It.IsAny<ReplaceRefreshTokenInput>(), 
                     It.IsAny<CancellationToken>()))
             .ReturnsAsync(newRefreshToken);
 
@@ -125,16 +124,6 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
                 CancellationToken.None))
             .ReturnsAsync(newUserToken);
 
-        mockedUserServiceProvider
-            .Setup(service => service
-                .SetRefreshTokenCookie(
-                    It.IsAny<string>(), 
-                    It.IsAny<int>(), 
-                    It.IsAny<int>(), 
-                    It.IsAny<bool>(), 
-                    It.IsAny<bool>(), 
-                    It.IsAny<string>()));
-            
         var identityServer = new IdentityServer
         {
             Issuer = DataUtilityService.GetRandomString(),
@@ -248,10 +237,6 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var mockedUserServiceProvider = new Mock<IUserService>();
 
         mockedUserServiceProvider
-            .Setup(service => service.GetRefreshTokenCookie(It.IsAny<string>()))
-            .Returns(generateUserRefreshToken);
-            
-        mockedUserServiceProvider
             .Setup(service => service.GetRequestIpAddress())
             .Returns(ipAddress);
 
@@ -302,11 +287,6 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedApplicationSettings = MockApplicationSettings();
 
-        mockedUserServiceProvider
-            .Setup(service => service
-                .GetRefreshTokenCookie(It.IsAny<string>()))
-            .Returns(string.Empty);
-            
         // Act
         // Assert
         var reAuthenticateUserCommandHandler = new ReAuthenticateUserCommandHandler(

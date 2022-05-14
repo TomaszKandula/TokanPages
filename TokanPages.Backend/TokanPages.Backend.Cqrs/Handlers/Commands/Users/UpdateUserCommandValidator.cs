@@ -7,10 +7,13 @@ public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
 {
     public UpdateUserCommandValidator() 
     {
-        RuleFor(command => command.Id)
-            .NotEmpty()
-            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-            .WithMessage(ValidationCodes.REQUIRED);
+        When(command => command.Id != null, () =>
+        {
+            RuleFor(command => command.Id)
+                .NotEmpty()
+                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+                .WithMessage(ValidationCodes.REQUIRED);
+        });
 
         When(command => command.UserAlias != null, () =>
         {
