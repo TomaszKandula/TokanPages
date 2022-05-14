@@ -6,6 +6,7 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Core.Utilities.LoggerService;
@@ -100,26 +101,41 @@ public class UpdateUserCommandHandlerTest : TestBase
     {
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var user = new Users
+        var user = new List<Users>
         {
-            EmailAddress = testEmail,
-            UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
-            LastLogged = null,
-            CryptedPassword = DataUtilityService.GetRandomString()
+            new()
+            {
+                EmailAddress = testEmail,
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                IsActivated = true,
+                Registered = DateTimeService.Now,
+                LastUpdated = null,
+                LastLogged = null,
+                CryptedPassword = DataUtilityService.GetRandomString()
+            },
+            new()
+            {
+                EmailAddress = testEmail,
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                IsActivated = true,
+                Registered = DateTimeService.Now,
+                LastUpdated = null,
+                LastLogged = null,
+                CryptedPassword = DataUtilityService.GetRandomString()
+            },
         };
-            
+
         var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(user);
+        await databaseContext.Users.AddRangeAsync(user);
         await databaseContext.SaveChangesAsync();
 
         var updateUserCommand = new UpdateUserCommand
         {
-            Id = user.Id,
+            Id = user[0].Id,
             EmailAddress = testEmail,
             UserAlias = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),

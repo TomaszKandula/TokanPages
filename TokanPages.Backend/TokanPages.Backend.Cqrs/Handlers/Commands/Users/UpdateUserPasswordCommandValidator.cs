@@ -14,7 +14,15 @@ public class UpdateUserPasswordCommandValidator : AbstractValidator<UpdateUserPa
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
         });
-            
+
+        When(command => command.OldPassword != null, () =>
+        {
+            RuleFor(command => command.OldPassword)
+                .NotEmpty()
+                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+                .WithMessage(ValidationCodes.REQUIRED);
+        });
+
         RuleFor(command => command.NewPassword)
             .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))

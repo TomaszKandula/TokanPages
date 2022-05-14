@@ -58,12 +58,22 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
             throw new BusinessException(nameof(ErrorCodes.INVALID_RESET_ID), ErrorCodes.INVALID_RESET_ID);
 
         var currentUser = users.First();
+        if (request.OldPassword is not null)
+        {
+            var isPasswordValid = _cipheringService.VerifyPassword(request.OldPassword, currentUser.CryptedPassword);
+            if (!isPasswordValid)
+            {
+                LoggerService.LogError($"Cannot positively verify given password supplied by user (Id: {currentUser.Id}).");
+                throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
+            }
+        }
+
         if (resetId && _dateTimeService.Now > currentUser.ResetIdEnds)
             throw new BusinessException(nameof(ErrorCodes.EXPIRED_RESET_ID), ErrorCodes.EXPIRED_RESET_ID);
-            
+
         var getNewSalt = _cipheringService.GenerateSalt(Constants.CipherLogRounds);
         var getHashedPassword = _cipheringService.GetHashedPassword(request.NewPassword, getNewSalt);
-            
+
         currentUser.ResetId = null;
         currentUser.ResetIdEnds = null;
         currentUser.CryptedPassword = getHashedPassword;
