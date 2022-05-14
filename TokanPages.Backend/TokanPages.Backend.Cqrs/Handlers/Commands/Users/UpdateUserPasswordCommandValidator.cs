@@ -1,5 +1,6 @@
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
+using System;
 using FluentValidation;
 using Shared.Resources;
 
@@ -11,6 +12,7 @@ public class UpdateUserPasswordCommandValidator : AbstractValidator<UpdateUserPa
         {
             RuleFor(command => command.Id)
                 .NotEmpty()
+                .NotEqual(Guid.Empty)
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
         });
@@ -19,6 +21,7 @@ public class UpdateUserPasswordCommandValidator : AbstractValidator<UpdateUserPa
         {
             RuleFor(command => command.ResetId)
                 .NotEmpty()
+                .NotEqual(Guid.Empty)
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
         });
