@@ -6,7 +6,7 @@ using MediatR;
 
 public class UpdateUserCommand : IRequest<Unit>
 {
-    public Guid Id { get; set; }
+    public Guid? Id { get; set; }
 
     public bool IsActivated { get; set; }
 
