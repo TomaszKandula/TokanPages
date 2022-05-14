@@ -15,6 +15,7 @@ using Backend.Shared.Resources;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Users;
+using TokanPages.Services.UserService.Models;
 using Backend.Core.Utilities.DateTimeService;
 
 public class ReAuthenticateUserCommandHandlerTest : TestBase
@@ -100,13 +101,11 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             ReplacedByToken = null,
             ReasonRevoked = null
         };
+
         mockedUserServiceProvider
             .Setup(service => service
                 .ReplaceRefreshToken(
-                    It.IsAny<Guid>(), 
-                    It.IsAny<UserRefreshTokens>(), 
-                    It.IsAny<string>(), 
-                    It.IsAny<bool>(), 
+                    It.IsAny<ReplaceRefreshTokenInput>(), 
                     It.IsAny<CancellationToken>()))
             .ReturnsAsync(newRefreshToken);
 

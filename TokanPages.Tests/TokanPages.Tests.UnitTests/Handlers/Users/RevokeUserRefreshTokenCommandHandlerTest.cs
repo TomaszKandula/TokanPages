@@ -13,6 +13,7 @@ using TokanPages.Services.UserService;
 using TokanPages.Backend.Shared.Dto.Users;
 using Backend.Cqrs.Handlers.Commands.Users;
 using Backend.Core.Utilities.LoggerService;
+using TokanPages.Services.UserService.Models;
 using MediatR;
 
 public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
@@ -76,11 +77,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
         mockedUserService
             .Setup(provider => provider
                 .RevokeRefreshToken(
-                    It.IsAny<UserRefreshTokens>(),
-                    It.IsAny<string>(),
-                    It.IsAny<string>(),
-                    It.IsAny<string>(),
-                    It.IsAny<bool>(),
+                    It.IsAny<RevokeRefreshTokenInput>(),
                     It.IsAny<CancellationToken>()));
             
         var revokeUserRefreshTokenCommand = new RevokeUserRefreshTokenCommand { RefreshToken = token };
@@ -146,11 +143,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
         mockedUserService
             .Setup(service => service
                 .RevokeRefreshToken(
-                    It.IsAny<UserRefreshTokens>(),
-                    It.IsAny<string>(),
-                    It.IsAny<string>(),
-                    It.IsAny<string>(),
-                    It.IsAny<bool>(),
+                    It.IsAny<RevokeRefreshTokenInput>(),
                     It.IsAny<CancellationToken>()));
 
         var revokeUserRefreshTokenCommand = new RevokeUserRefreshTokenCommand { RefreshToken = token };

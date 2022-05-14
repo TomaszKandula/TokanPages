@@ -17,6 +17,7 @@ using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
 using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Models;
 using Backend.Core.Utilities.DateTimeService;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.WebTokenService.Models;
@@ -1216,9 +1217,17 @@ public class UserServiceProviderTest : TestBase
             mockedJwtUtilityService.Object, 
             DateTimeService, 
             mockedApplicationSettings.Object);
-            
+
+        var input = new ReplaceRefreshTokenInput
+        {
+            UserId = userId, 
+            SavedUserRefreshTokens = userRefreshTokens[0], 
+            RequesterIpAddress = ipAddress.ToString(), 
+            SaveImmediately = true
+        };
+
         // Act
-        var result = await userServiceProvider.ReplaceRefreshToken(userId, userRefreshTokens[0], ipAddress.ToString(), true);
+        var result = await userServiceProvider.ReplaceRefreshToken(input);
 
         // Assert
         result.UserId.Should().Be(userId);
@@ -1332,14 +1341,17 @@ public class UserServiceProviderTest : TestBase
             DateTimeService, 
             mockedApplicationSettings.Object);
 
+        var input = new RevokeRefreshTokensInput
+        {
+            UserRefreshTokens = userRefreshTokens, 
+            SavedUserRefreshTokens = userRefreshTokens[0], 
+            RequesterIpAddress = ipAddress.ToString(), 
+            Reason = reasonRevoked, 
+            SaveImmediately = true
+        };
+
         // Act
-        await userServiceProvider.RevokeDescendantRefreshTokens(
-            userRefreshTokens, 
-            userRefreshTokens[0], 
-            ipAddress.ToString(), 
-            reasonRevoked, 
-            true, 
-            CancellationToken.None);
+        await userServiceProvider.RevokeDescendantRefreshTokens(input, CancellationToken.None);
 
         // Assert
         var getRefreshTokens = databaseContext.UserRefreshTokens.ToList();
@@ -1403,8 +1415,17 @@ public class UserServiceProviderTest : TestBase
             DateTimeService, 
             mockedApplicationSettings.Object);
 
+        var input = new RevokeRefreshTokenInput
+        {
+            UserRefreshTokens = userRefreshToken, 
+            RequesterIpAddress = ipAddress.ToString(), 
+            Reason = reasonRevoked, 
+            ReplacedByToken = null, 
+            SaveImmediately = true
+        };
+
         // Act
-        await userServiceProvider.RevokeRefreshToken(userRefreshToken, ipAddress.ToString(), reasonRevoked, null, true, CancellationToken.None);
+        await userServiceProvider.RevokeRefreshToken(input, CancellationToken.None);
 
         // Assert
         var getRefreshTokens = databaseContext.UserRefreshTokens.ToList();
