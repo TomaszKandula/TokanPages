@@ -5,7 +5,6 @@ using System.Threading;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Backend.Shared;
 using Backend.Domain.Entities;
 using Backend.Shared.Dto.Users;
 
@@ -16,11 +15,6 @@ public interface IUserService
     public int GetRequestUserTimezoneOffset();
 
     Task LogHttpRequest(string handlerName);
-
-    string GetRefreshTokenCookie(string cookieName);
-
-    void SetRefreshTokenCookie(string refreshToken, int expiresIn, int timezoneOffset = 0, bool isHttpOnly = true, 
-        bool secure = true, string cookieName = Constants.CookieNames.RefreshToken);
 
     Task<Guid?> GetUserId();
 

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Backend.Shared;
 using WebTokenService;
 using Backend.Database;
 using Backend.Core.Exceptions;
@@ -86,34 +85,6 @@ public sealed class UserService : IUserService
 
         await _databaseContext.HttpRequests.AddAsync(httpRequest);
         await _databaseContext.SaveChangesAsync();
-    }
-
-    public string GetRefreshTokenCookie(string cookieName)
-    {
-        if (string.IsNullOrEmpty(cookieName))
-            throw ArgumentNullException;
-
-        return _httpContextAccessor.HttpContext?.Request.Cookies[cookieName];
-    }
-
-    public void SetRefreshTokenCookie(string refreshToken, int expiresIn, int timezoneOffset = 0, bool isHttpOnly = true, 
-        bool secure = true, string cookieName = Constants.CookieNames.RefreshToken)
-    {
-        if (string.IsNullOrEmpty(refreshToken))
-            throw ArgumentNullException;
-
-        var baseDateTime = _dateTimeService.RelativeNow.AddMinutes(-timezoneOffset);
-        var expires = baseDateTime.AddMinutes(Math.Abs(expiresIn));
-
-        var cookieOptions = new CookieOptions
-        {
-            HttpOnly = isHttpOnly,
-            Expires = expires,
-            Secure = secure,
-            SameSite = SameSiteMode.Strict,
-        };
-
-        _httpContextAccessor.HttpContext?.Response.Cookies.Append(cookieName, refreshToken, cookieOptions);
     }
 
     public async Task<Guid?> GetUserId()
@@ -393,6 +364,7 @@ public sealed class UserService : IUserService
             AvatarName = users.First().AvatarName,
             FirstName = users.First().FirstName,
             LastName = users.First().LastName,
+            Email = users.First().EmailAddress,
             ShortBio = users.First().ShortBio,
             Registered = users.First().Registered
         };
