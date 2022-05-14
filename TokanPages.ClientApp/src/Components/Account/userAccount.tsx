@@ -60,9 +60,9 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
     const postUpdatePassword = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(PasswordAction.update(payload)), [ dispatch ]);
     const postUpdatePasswordClear = React.useCallback(() => dispatch(PasswordAction.clear()), [ dispatch ]);
 
-    const reAuthenticateUser = React.useCallback(() => dispatch(ReAuthenticateUser.reAuthenticate()), [ dispatch ]);
-    const clearUser = React.useCallback(() => dispatch(UserAction.clear()), [ dispatch ]);
-    const clearData = React.useCallback(() => dispatch(DataAction.clear()), [ dispatch ]);
+    const reAuthenticate = React.useCallback(() => dispatch(ReAuthenticateUser.reAuthenticate()), [ dispatch ]);
+    const clearLoggedUser = React.useCallback(() => dispatch(UserAction.clear()), [ dispatch ]);
+    const clearLoggedData = React.useCallback(() => dispatch(DataAction.clear()), [ dispatch ]);
 
     const accountFormClear = React.useCallback(() => 
     {
@@ -73,16 +73,16 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
 
         if (!isUserActivated.checked)
         {
-            clearUser();
-            clearData();
+            clearLoggedUser();
+            clearLoggedData();
             history.push("/");
         }
         else
         {
-            reAuthenticateUser();
+            reAuthenticate();
         }
     }, 
-    [ accountFormProgress, postUpdateUserClear, reAuthenticateUser, clearUser, clearData ]);
+    [ accountFormProgress, postUpdateUserClear, reAuthenticate, clearLoggedUser, clearLoggedData ]);
 
     const passwordFormClear = React.useCallback(() => 
     {
@@ -210,7 +210,6 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
         {{
             isLoading: props.isLoading,
             isAnonymous: isAnonymous,
-            
             userId: userDataState.userId,
             userAlias: userDataState.aliasName,
             firstName: accountForm.firstName,
@@ -219,22 +218,18 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
             shortBio: accountForm.shortBio,
             userAvatar: userDataState.avatarName,
             isUserActivated: isUserActivated.checked,
-            
             accountFormProgress: accountFormProgress,           
             accountFormHandler: accountFormHandler,
             accountSwitchHandler: accountSwitchHandler,
             accountButtonHandler: accountButtonHandler,
-
             avatarUploadProgress: false,
             avatarButtonHandler: null,
-
             oldPassword: passwordForm.oldPassword,
             newPassword: passwordForm.newPassword,
             confirmPassword: passwordForm.confirmPassword,
             passwordFormProgress: passwordFormProgress,
             passwordFormHandler: passwordFormHandler,
             passwordButtonHandler: passwordButtonHandler,
-
             sectionAccessDenied: props.content?.sectionAccessDenied,
             sectionAccountInformation: props.content?.sectionAccountInformation,
             sectionAccountPassword: props.content?.sectionAccountPassword,

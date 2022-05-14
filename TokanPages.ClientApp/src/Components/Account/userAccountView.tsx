@@ -21,7 +21,6 @@ interface IProperties
 {    
     isLoading: boolean;
     isAnonymous: boolean;
-
     userId: string;
     userAlias: string;
     firstName: string;
@@ -30,22 +29,18 @@ interface IProperties
     shortBio: string;
     userAvatar: string;
     isUserActivated: boolean;
-
     accountFormProgress: boolean;
     accountFormHandler: any;
     accountSwitchHandler: any;
     accountButtonHandler: any;
-
     avatarUploadProgress: boolean;
     avatarButtonHandler: any;
-
     oldPassword: string;
     newPassword: string;
     confirmPassword: string;
     passwordFormProgress: boolean;
     passwordFormHandler: any;
     passwordButtonHandler: any;
-
     sectionAccessDenied: ISectionAccessDenied;
     sectionAccountInformation: ISectionAccountInformation;
     sectionAccountPassword: ISectionAccountPassword;
@@ -109,11 +104,12 @@ const UserAccountView = (props: IBinding): JSX.Element =>
     }
 
     return(
-        <section className={classes.section}>
+        <>
+        <section className={classes.section} style={props.bind?.isAnonymous ? { display: "block" }: { display: "none" }}>
             <Container maxWidth="md">
-                <Box pt={15}>
+                <Box pt={15} pb={8}>
                     <Card elevation={0} className={classes.card}>
-                        <CardContent className={classes.card_content} style={props.bind?.isAnonymous ? { display: "block" }: { display: "none" }}>
+                        <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
                                 <Typography className={classes.caption}>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccessDenied?.accessDeniedCaption}
@@ -127,7 +123,15 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                             </Box>
                             {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <HomeButton />}
                         </CardContent>
-                        <CardContent className={classes.card_content} style={props.bind?.isAnonymous ? { display: "none" }: { display: "block" }}>
+                    </Card>
+                </Box>
+            </Container>
+        </section>
+        <section className={classes.section} style={props.bind?.isAnonymous ? { display: "none" }: { display: "block" }}>
+            <Container maxWidth="md">
+                <Box pt={15}>
+                    <Card elevation={0} className={classes.card}>
+                        <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
                                 <Typography className={classes.caption}>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountInformation?.caption}
@@ -240,7 +244,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                 </Box>
                 <Box pt={8} pb={15}>
                     <Card elevation={0} className={classes.card}>
-                        <CardContent className={classes.card_content} style={props.bind?.isAnonymous ? { display: "none" }: { display: "block" }}>
+                        <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
                                 <Typography className={classes.caption}>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountPassword?.caption}
@@ -297,6 +301,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                 </Box>
             </Container>
         </section>
+        </>
     );
 }
 
