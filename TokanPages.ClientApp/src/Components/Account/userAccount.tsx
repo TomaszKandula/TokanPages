@@ -5,16 +5,17 @@ import { ActionCreators as RaiseDialog } from "../../Redux/Actions/raiseDialogAc
 import { ActionCreators as UpdateUser } from "../../Redux/Actions/Users/updateUserAction";
 import { ActionCreators as DataAction } from "../../Redux/Actions/Users/storeUserDataAction";
 import { ActionCreators as UserAction } from "../../Redux/Actions/Users/signinUserAction";
+import { ActionCreators as PasswordAction } from "../../Redux/Actions/Users/updateUserPasswordAction";
 import { ActionCreators as ReAuthenticateUser } from "../../Redux/Actions/Users/reAuthenticateUserAction";
 import { IApplicationState } from "../../Redux/applicationState";
 import { IGetAccountContent } from "../../Redux/States/Content/getAccountContentState";
 import { IValidateAccountForm, IValidatePasswordForm, ValidateAccountForm, ValidatePasswordForm } from "../../Shared/Services/FormValidation";
-import { ACCOUNT_FORM, DEACTIVATE_USER, RECEIVED_ERROR_MESSAGE, UPDATE_USER_SUCCESS, UPDATE_USER_WARNING } from "../../Shared/constants";
+import { ACCOUNT_FORM, DEACTIVATE_USER, RECEIVED_ERROR_MESSAGE, UPDATE_PASSWORD_SUCCESS, UPDATE_USER_SUCCESS, UPDATE_USER_WARNING } from "../../Shared/constants";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { GetTextWarning } from "../../Shared/Services/Utilities";
 import { OperationStatus } from "../../Shared/enums";
-import { IUpdateUserDto } from "../../Api/Models";
+import { IUpdateUserDto, IUpdateUserPasswordDto } from "../../Api/Models";
 import UserAccountView from "./userAccountView";
 import Validate from "validate.js";
 
@@ -24,6 +25,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
     const history = useHistory();
     
     const userDataState = useSelector((state: IApplicationState) => state.storeUserData.userData);
+    const updatePasswordState = useSelector((state: IApplicationState) => state.updateUserPassword);
     const updateUserState = useSelector((state: IApplicationState) => state.updateUser);
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
     const isAnonymous = Validate.isEmpty(userDataState.userId);
@@ -51,13 +53,18 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
 
     const showSuccess = React.useCallback((text: string) => dispatch(RaiseDialog.raiseDialog(SuccessMessage(ACCOUNT_FORM, text))), [ dispatch ]);
     const showWarning = React.useCallback((text: string)=> dispatch(RaiseDialog.raiseDialog(WarningMessage(ACCOUNT_FORM, text))), [ dispatch ]);
+
     const postUpdateUser = React.useCallback((payload: IUpdateUserDto) => dispatch(UpdateUser.update(payload)), [ dispatch ]);
     const postUpdateUserClear = React.useCallback(() => dispatch(UpdateUser.clear()), [ dispatch ]);
+
+    const postUpdatePassword = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(PasswordAction.update(payload)), [ dispatch ]);
+    const postUpdatePasswordClear = React.useCallback(() => dispatch(PasswordAction.clear()), [ dispatch ]);
+
     const reAuthenticateUser = React.useCallback(() => dispatch(ReAuthenticateUser.reAuthenticate()), [ dispatch ]);
     const clearUser = React.useCallback(() => dispatch(UserAction.clear()), [ dispatch ]);
     const clearData = React.useCallback(() => dispatch(DataAction.clear()), [ dispatch ]);
 
-    const accountResetForm = React.useCallback(() => 
+    const accountFormClear = React.useCallback(() => 
     {
         if (!accountFormProgress) return;
         
@@ -77,11 +84,21 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
     }, 
     [ accountFormProgress, postUpdateUserClear, reAuthenticateUser, clearUser, clearData ]);
 
+    const passwordFormClear = React.useCallback(() => 
+    {
+        if (!passwordFormProgress) return;
+
+        postUpdatePasswordClear();
+        setPasswordForm(passwordFormDefault);
+        setPasswordFormProgress(false);
+    }, 
+    [ passwordFormProgress, postUpdatePasswordClear ]);
+
     React.useEffect(() => 
     {
         if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
-            accountResetForm();
+            accountFormClear();
             return;
         }
 
@@ -100,7 +117,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
             break;
 
             case OperationStatus.hasFinished:
-                accountResetForm();
+                accountFormClear();
                 showSuccess(isUserActivated.checked ? UPDATE_USER_SUCCESS : DEACTIVATE_USER);
             break;
         }
@@ -110,9 +127,31 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
 
     React.useEffect(() => 
     {
-        // TODO: add password update action
+        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        {
+            passwordFormClear();
+            return;
+        }
+
+        switch(updatePasswordState?.operationStatus)
+        {
+            case OperationStatus.notStarted:
+                if (passwordFormProgress) postUpdatePassword(
+                {
+                    id: userDataState.userId,
+                    oldPassword: passwordForm.oldPassword,
+                    newPassword: passwordForm.newPassword
+                });
+            break;
+
+            case OperationStatus.hasFinished:
+                passwordFormClear();
+                showSuccess(UPDATE_PASSWORD_SUCCESS);
+            break;
+        }
     }, 
-    [  ]);
+    [ passwordFormProgress, raiseErrorState?.defaultErrorMessage, updatePasswordState?.operationStatus, 
+        OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const accountFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
