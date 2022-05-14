@@ -26,7 +26,11 @@ public interface IUserService
 
     Task<bool?> HasRoleAssigned(string userRoleName);
 
+    Task<bool> HasRoleAssigned(Guid roleId, Guid? userId);
+
     Task<bool?> HasPermissionAssigned(string userPermissionName);
+
+    Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId);
 
     Task<ClaimsIdentity> MakeClaimsIdentity(Users users, CancellationToken cancellationToken = default);
         

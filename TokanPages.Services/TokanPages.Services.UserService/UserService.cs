@@ -129,6 +129,19 @@ public sealed class UserService : IUserService
         return givenRoles.Any();
     }
 
+    public async Task<bool> HasRoleAssigned(Guid roleId, Guid? userId)
+    {
+        userId ??= UserIdFromClaim();
+            
+        var givenRoles = await _databaseContext.UserRoles
+            .AsNoTracking()
+            .Include(userRoles => userRoles.Role)
+            .Where(userRoles => userRoles.UserId == userId && userRoles.Role.Id == roleId)
+            .ToListAsync();
+
+        return givenRoles.Any();
+    }
+
     public async Task<bool?> HasPermissionAssigned(string userPermissionName)
     {
         if (string.IsNullOrEmpty(userPermissionName))
@@ -142,6 +155,19 @@ public sealed class UserService : IUserService
             .AsNoTracking()
             .Include(permissions => permissions.Permission)
             .Where(permissions => permissions.UserId == userId && permissions.Permission.Name == userPermissionName)
+            .ToListAsync();
+
+        return givenPermissions.Any();
+    }
+
+    public async Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId)
+    {
+        userId ??= UserIdFromClaim();
+
+        var givenPermissions = await _databaseContext.UserPermissions
+            .AsNoTracking()
+            .Include(userPermissions => userPermissions.Permission)
+            .Where(userPermissions => userPermissions.UserId == userId && userPermissions.Permission.Id == permissionId)
             .ToListAsync();
 
         return givenPermissions.Any();
