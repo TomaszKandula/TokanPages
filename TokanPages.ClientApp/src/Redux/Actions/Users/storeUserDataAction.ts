@@ -21,6 +21,6 @@ export const ActionCreators =
     },
     update: (userData: IAuthenticateUserResultDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
-        dispatch({ type: UPDATE_USERDATA, payload: userData});
+        dispatch({ type: UPDATE_USERDATA, payload: userData });
     }
 }

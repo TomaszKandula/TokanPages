@@ -105,6 +105,8 @@ export const SIGNUP_WARNING: string = "<span>We have received following warning(
 export const RESET_PASSWORD_SUCCESS: string = "<p>The password has been reset. Please check your email box and follow the instruction to setup new password.</p>";
 export const RESET_PASSWORD_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To reset user password registered and verified e-mail address must be provided.</span>";
 
+export const DEACTIVATE_USER: string = "<p>Your data has been preserved, and your account has been deactivated.</p><p>If you would like to activate it again, please send a request to IT Support.</p>";
+
 export const UPDATE_USER_SUCCESS: string = "<p>Congratulations!</p><p>Your data has been updated.</p>";
 export const UPDATE_USER_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To update your data you must provide values that complies to the requirements.</span>";
 
@@ -149,7 +151,7 @@ export const SIGNUP_FORM: string = "Signup Form";
 export const RESET_FORM: string = "Password Reset";
 export const UPDATE_FORM: string = "Update Password";
 export const CONTACT_FORM: string = "Contact Form";
-export const ACCOUNT_FORM: string = "Account Form";
+export const ACCOUNT_FORM: string = "Account Settings";
 export const NEWSLETTER: string = "Newsletter";
 export const UPDATE_SUBSCRIBER: string = "Update Subscriber";
 export const REMOVE_SUBSCRIBER: string = "Remove Subscriber";

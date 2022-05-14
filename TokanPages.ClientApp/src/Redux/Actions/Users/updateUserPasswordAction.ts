@@ -29,12 +29,7 @@ export const ActionCreators =
         { 
             method: "POST", 
             url: API_COMMAND_UPDATE_USER_PASSWORD, 
-            data: 
-            {  
-                userId: payload.Id,
-                newPassword: payload.NewPassword,
-                resetId: payload.ResetId
-            }
+            data: payload
         }))
         .then(response => 
         {

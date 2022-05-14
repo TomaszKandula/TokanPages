@@ -5,7 +5,7 @@ using System.Threading;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Backend.Shared;
+using Models;
 using Backend.Domain.Entities;
 using Backend.Shared.Dto.Users;
 
@@ -17,11 +17,6 @@ public interface IUserService
 
     Task LogHttpRequest(string handlerName);
 
-    string GetRefreshTokenCookie(string cookieName);
-
-    void SetRefreshTokenCookie(string refreshToken, int expiresIn, int timezoneOffset = 0, bool isHttpOnly = true, 
-        bool secure = true, string cookieName = Constants.CookieNames.RefreshToken);
-
     Task<Guid?> GetUserId();
 
     Task<GetUserDto> GetUser();
@@ -32,7 +27,11 @@ public interface IUserService
 
     Task<bool?> HasRoleAssigned(string userRoleName);
 
+    Task<bool> HasRoleAssigned(Guid roleId, Guid? userId);
+
     Task<bool?> HasPermissionAssigned(string userPermissionName);
+
+    Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId);
 
     Task<ClaimsIdentity> MakeClaimsIdentity(Users users, CancellationToken cancellationToken = default);
         
@@ -40,14 +39,11 @@ public interface IUserService
 
     Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default);
 
-    Task<UserRefreshTokens> ReplaceRefreshToken(Guid userId, UserRefreshTokens savedUserRefreshTokens, string requesterIpAddress, 
-        bool saveImmediately = false, CancellationToken cancellationToken = default);
+    Task<UserRefreshTokens> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default);
 
-    Task RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> userRefreshTokens, UserRefreshTokens savedUserRefreshTokens, 
-        string requesterIpAddress, string reason, bool saveImmediately = false, CancellationToken cancellationToken = default);
+    Task RevokeDescendantRefreshTokens(RevokeRefreshTokensInput input, CancellationToken cancellationToken = default);
 
-    Task RevokeRefreshToken(UserRefreshTokens userRefreshTokens, string requesterIpAddress, string reason = null,
-        string replacedByToken = null, bool saveImmediately = false, CancellationToken cancellationToken = default);
+    Task RevokeRefreshToken(RevokeRefreshTokenInput input, CancellationToken cancellationToken = default);
 
     bool IsRefreshTokenExpired(UserRefreshTokens userRefreshTokens);
 

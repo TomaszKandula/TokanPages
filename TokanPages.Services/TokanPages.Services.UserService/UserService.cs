@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Backend.Shared;
+using Models;
 using WebTokenService;
 using Backend.Database;
 using Backend.Core.Exceptions;
@@ -88,34 +88,6 @@ public sealed class UserService : IUserService
         await _databaseContext.SaveChangesAsync();
     }
 
-    public string GetRefreshTokenCookie(string cookieName)
-    {
-        if (string.IsNullOrEmpty(cookieName))
-            throw ArgumentNullException;
-
-        return _httpContextAccessor.HttpContext?.Request.Cookies[cookieName];
-    }
-
-    public void SetRefreshTokenCookie(string refreshToken, int expiresIn, int timezoneOffset = 0, bool isHttpOnly = true, 
-        bool secure = true, string cookieName = Constants.CookieNames.RefreshToken)
-    {
-        if (string.IsNullOrEmpty(refreshToken))
-            throw ArgumentNullException;
-
-        var baseDateTime = _dateTimeService.RelativeNow.AddMinutes(-timezoneOffset);
-        var expires = baseDateTime.AddMinutes(Math.Abs(expiresIn));
-
-        var cookieOptions = new CookieOptions
-        {
-            HttpOnly = isHttpOnly,
-            Expires = expires,
-            Secure = secure,
-            SameSite = SameSiteMode.Strict,
-        };
-
-        _httpContextAccessor.HttpContext?.Response.Cookies.Append(cookieName, refreshToken, cookieOptions);
-    }
-
     public async Task<Guid?> GetUserId()
     {
         await EnsureUserData();
@@ -158,6 +130,19 @@ public sealed class UserService : IUserService
         return givenRoles.Any();
     }
 
+    public async Task<bool> HasRoleAssigned(Guid roleId, Guid? userId)
+    {
+        userId ??= UserIdFromClaim();
+            
+        var givenRoles = await _databaseContext.UserRoles
+            .AsNoTracking()
+            .Include(userRoles => userRoles.Role)
+            .Where(userRoles => userRoles.UserId == userId && userRoles.Role.Id == roleId)
+            .ToListAsync();
+
+        return givenRoles.Any();
+    }
+
     public async Task<bool?> HasPermissionAssigned(string userPermissionName)
     {
         if (string.IsNullOrEmpty(userPermissionName))
@@ -171,6 +156,19 @@ public sealed class UserService : IUserService
             .AsNoTracking()
             .Include(permissions => permissions.Permission)
             .Where(permissions => permissions.UserId == userId && permissions.Permission.Name == userPermissionName)
+            .ToListAsync();
+
+        return givenPermissions.Any();
+    }
+
+    public async Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId)
+    {
+        userId ??= UserIdFromClaim();
+
+        var givenPermissions = await _databaseContext.UserPermissions
+            .AsNoTracking()
+            .Include(userPermissions => userPermissions.Permission)
+            .Where(userPermissions => userPermissions.UserId == userId && userPermissions.Permission.Id == permissionId)
             .ToListAsync();
 
         return givenPermissions.Any();
@@ -226,19 +224,27 @@ public sealed class UserService : IUserService
             
         if (saveImmediately && refreshTokens.Any())
             await _databaseContext.SaveChangesAsync(cancellationToken);
-    }        
-        
-    public async Task<UserRefreshTokens> ReplaceRefreshToken(Guid userId, UserRefreshTokens savedUserRefreshTokens, string requesterIpAddress, 
-        bool saveImmediately = false, CancellationToken cancellationToken = default)
+    }
+
+    public async Task<UserRefreshTokens> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default)
     {
-        var newRefreshToken = _webTokenUtility.GenerateRefreshToken(requesterIpAddress, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
-            
-        await RevokeRefreshToken(savedUserRefreshTokens, requesterIpAddress, NewRefreshTokenText, 
-            newRefreshToken.Token, saveImmediately, cancellationToken);
+        var newRefreshToken = _webTokenUtility.GenerateRefreshToken(input.RequesterIpAddress, 
+            _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
+
+        var tokenInput = new RevokeRefreshTokenInput
+        {
+            UserRefreshTokens = input.SavedUserRefreshTokens, 
+            RequesterIpAddress = input.RequesterIpAddress, 
+            Reason = NewRefreshTokenText, 
+            ReplacedByToken = newRefreshToken.Token, 
+            SaveImmediately = input.SaveImmediately
+        };
+
+        await RevokeRefreshToken(tokenInput, cancellationToken);
 
         return new UserRefreshTokens
         {
-            UserId = userId,
+            UserId = input.UserId,
             Token = newRefreshToken.Token,
             Expires = newRefreshToken.Expires,
             Created = newRefreshToken.Created,
@@ -249,36 +255,45 @@ public sealed class UserService : IUserService
             ReasonRevoked = null
         };
     }
-        
-    public async Task RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> userRefreshTokens,  UserRefreshTokens savedUserRefreshTokens, 
-        string requesterIpAddress, string reason, bool saveImmediately = false, CancellationToken cancellationToken = default)
+
+    public async Task RevokeDescendantRefreshTokens(RevokeRefreshTokensInput input, CancellationToken cancellationToken = default)
     {
-        if (string.IsNullOrEmpty(savedUserRefreshTokens.ReplacedByToken)) 
+        if (string.IsNullOrEmpty(input.SavedUserRefreshTokens.ReplacedByToken)) 
             return;
 
-        var userRefreshTokensList = userRefreshTokens.ToList();
-        var childToken = userRefreshTokensList.SingleOrDefault(tokens => tokens.Token == savedUserRefreshTokens.ReplacedByToken);
+        var userRefreshTokensList = input.UserRefreshTokens.ToList();
+        var childToken = userRefreshTokensList
+            .SingleOrDefault(tokens => tokens.Token == input.SavedUserRefreshTokens.ReplacedByToken);
+
         if (IsRefreshTokenActive(childToken))
         {
-            await RevokeRefreshToken(childToken, requesterIpAddress, reason, null, saveImmediately, cancellationToken);
+            var tokenInput = new RevokeRefreshTokenInput
+            {
+                UserRefreshTokens = childToken, 
+                RequesterIpAddress = input.RequesterIpAddress, 
+                Reason = input.Reason, 
+                ReplacedByToken = null, 
+                SaveImmediately = input.SaveImmediately,
+            };
+
+            await RevokeRefreshToken(tokenInput, cancellationToken);
         }
         else
         {
-            await RevokeDescendantRefreshTokens(userRefreshTokensList, savedUserRefreshTokens, requesterIpAddress, reason, saveImmediately, cancellationToken);
+            await RevokeDescendantRefreshTokens(input, cancellationToken);
         }
     }
 
-    public async Task RevokeRefreshToken(UserRefreshTokens userRefreshTokens, string requesterIpAddress, string reason = null, 
-        string replacedByToken = null, bool saveImmediately = false, CancellationToken cancellationToken = default)
+    public async Task RevokeRefreshToken(RevokeRefreshTokenInput input, CancellationToken cancellationToken = default)
     {
-        userRefreshTokens.Revoked = _dateTimeService.Now;
-        userRefreshTokens.RevokedByIp = requesterIpAddress;
-        userRefreshTokens.ReasonRevoked = reason;
-        userRefreshTokens.ReplacedByToken = replacedByToken;
+        input.UserRefreshTokens.Revoked = _dateTimeService.Now;
+        input.UserRefreshTokens.RevokedByIp = input.RequesterIpAddress;
+        input.UserRefreshTokens.ReasonRevoked = input.Reason;
+        input.UserRefreshTokens.ReplacedByToken = input.ReplacedByToken;
 
-        _databaseContext.UserRefreshTokens.Update(userRefreshTokens);
+        _databaseContext.UserRefreshTokens.Update(input.UserRefreshTokens);
 
-        if (saveImmediately)
+        if (input.SaveImmediately)
             await _databaseContext.SaveChangesAsync(cancellationToken);
     }
 
@@ -393,6 +408,7 @@ public sealed class UserService : IUserService
             AvatarName = users.First().AvatarName,
             FirstName = users.First().FirstName,
             LastName = users.First().LastName,
+            Email = users.First().EmailAddress,
             ShortBio = users.First().ShortBio,
             Registered = users.First().Registered
         };

@@ -8,9 +8,10 @@ using Database;
 using Core.Exceptions;
 using Shared.Resources;
 using Services.UserService;
+using Services.UserService.Models;
 using Core.Utilities.LoggerService;
 using MediatR;
-    
+
 public class RevokeUserRefreshTokenCommandHandler : Cqrs.RequestHandler<RevokeUserRefreshTokenCommand, Unit>
 {
     private readonly IUserService _userService;
@@ -23,17 +24,28 @@ public class RevokeUserRefreshTokenCommandHandler : Cqrs.RequestHandler<RevokeUs
 
     public override async Task<Unit> Handle(RevokeUserRefreshTokenCommand request, CancellationToken cancellationToken)
     {
+        var user = await _userService.GetUser();
         var refreshTokens = await DatabaseContext.UserRefreshTokens
+            .Where(tokens => tokens.UserId == user.UserId)
             .Where(tokens => tokens.Token == request.RefreshToken)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (refreshTokens == null)
-            throw new BusinessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
+            throw new AuthorizationException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
         var requestIpAddress = _userService.GetRequestIpAddress();
-        const string reason = "Revoked by Admin";
-            
-        await _userService.RevokeRefreshToken(refreshTokens, requestIpAddress, reason, null, true, cancellationToken);            
+        var reason = $"Revoked by {user.AliasName} (ID: {user.UserId})";
+
+        var input = new RevokeRefreshTokenInput
+        {
+            UserRefreshTokens = refreshTokens, 
+            RequesterIpAddress = requestIpAddress, 
+            Reason = reason, 
+            ReplacedByToken = null, 
+            SaveImmediately = true
+        };
+
+        await _userService.RevokeRefreshToken(input, cancellationToken);            
         return Unit.Value;
     }
 }

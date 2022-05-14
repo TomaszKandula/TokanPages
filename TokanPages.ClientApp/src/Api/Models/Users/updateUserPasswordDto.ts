@@ -1,6 +1,7 @@
 export interface IUpdateUserPasswordDto
 {
-    Id: string;
-    ResetId?: string;
-    NewPassword: string;
+    id?: string;
+    resetId?: string;
+    oldPassword?: string;
+    newPassword: string;
 }

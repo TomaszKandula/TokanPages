@@ -50,13 +50,13 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserService>();
+        var mockedUserService = new Mock<IUserService>();
         var mockedCipheringService = new Mock<ICipheringService>();
 
-        mockedUserProvider
+        mockedUserService
             .Setup(service => service.HasRoleAssigned(It.IsAny<string>()))
             .ReturnsAsync(true);
-            
+
         var mockedPassword = DataUtilityService.GetRandomString();
         mockedCipheringService
             .Setup(service => service.GetHashedPassword(
@@ -67,11 +67,11 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         mockedCipheringService
             .Setup(service => service.GenerateSalt(It.IsAny<int>()))
             .Returns(string.Empty);
-            
+
         var updateUserCommandHandler = new UpdateUserPasswordCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedUserProvider.Object,
+            mockedUserService.Object,
             mockedCipheringService.Object,
             mockedDateTimeService.Object
         );
@@ -81,7 +81,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
 
         // Assert
         var userEntity = await databaseContext.Users.FindAsync(users.Id);
-            
+
         userEntity.Should().NotBeNull();
         userEntity.CryptedPassword.Should().NotBeEmpty();
         userEntity.ResetId.Should().BeNull();
@@ -121,7 +121,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserService>();
+        var mockedUserService = new Mock<IUserService>();
         var mockedCipheringService = new Mock<ICipheringService>();
 
         var mockedPassword = DataUtilityService.GetRandomString();
@@ -134,18 +134,18 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         mockedCipheringService
             .Setup(service => service.GenerateSalt(It.IsAny<int>()))
             .Returns(string.Empty);
-            
+
         var updateUserCommandHandler = new UpdateUserPasswordCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedUserProvider.Object,
+            mockedUserService.Object,
             mockedCipheringService.Object,
             mockedDateTimeService.Object
         );
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() 
+        var result = await Assert.ThrowsAsync<AuthorizationException>(() 
             => updateUserCommandHandler.Handle(updateUserPasswordCommand, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_RESET_ID));
     }
@@ -183,7 +183,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserService>();
+        var mockedUserService = new Mock<IUserService>();
         var mockedCipheringService = new Mock<ICipheringService>();
 
         var mockedPassword = DataUtilityService.GetRandomString();
@@ -196,18 +196,18 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         mockedCipheringService
             .Setup(service => service.GenerateSalt(It.IsAny<int>()))
             .Returns(string.Empty);
-            
+
         var updateUserPasswordCommandHandler = new UpdateUserPasswordCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedUserProvider.Object,
+            mockedUserService.Object,
             mockedCipheringService.Object,
             mockedDateTimeService.Object
         );
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() 
+        var result = await Assert.ThrowsAsync<AuthorizationException>(() 
             => updateUserPasswordCommandHandler.Handle(updateUserPasswordCommand, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.USER_DOES_NOT_EXISTS));
     }
@@ -246,13 +246,13 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserService>();
+        var mockedUserService = new Mock<IUserService>();
         var mockedCipheringService = new Mock<ICipheringService>();
 
-        mockedUserProvider
+        mockedUserService
             .Setup(provider => provider.HasRoleAssigned(It.IsAny<string>()))
             .ReturnsAsync(false);
-            
+
         var mockedPassword = DataUtilityService.GetRandomString();
         mockedCipheringService
             .Setup(service => service.GetHashedPassword(
@@ -263,11 +263,11 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         mockedCipheringService
             .Setup(service => service.GenerateSalt(It.IsAny<int>()))
             .Returns(string.Empty);
-            
+
         var updateUserPasswordCommandHandler = new UpdateUserPasswordCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedUserProvider.Object,
+            mockedUserService.Object,
             mockedCipheringService.Object,
             mockedDateTimeService.Object
         );

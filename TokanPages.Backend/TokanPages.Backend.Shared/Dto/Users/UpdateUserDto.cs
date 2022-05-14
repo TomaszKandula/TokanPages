@@ -7,7 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 [ExcludeFromCodeCoverage]
 public class UpdateUserDto
 {
-    public Guid Id { get; set; }
+    public Guid? Id { get; set; }
 
     public bool IsActivated { get; set; }
 

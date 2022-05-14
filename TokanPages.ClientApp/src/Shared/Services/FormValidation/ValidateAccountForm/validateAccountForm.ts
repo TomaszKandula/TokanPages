@@ -23,6 +23,13 @@ export const ValidateAccountForm = (props: IValidateAccountForm): any =>
                 message: "must be at least 2 characters"
             }
         },
+        email: 
+        {
+            email: 
+            {
+                message: "does not look like a valid email"
+            }
+        },
         shortBio:
         {
             presence: true,
@@ -38,6 +45,7 @@ export const ValidateAccountForm = (props: IValidateAccountForm): any =>
     {
         firstName: props.firstName,
         lastName: props.lastName,
+        email: props.email,
         shortBio: props.shortBio
     }, 
     constraints);

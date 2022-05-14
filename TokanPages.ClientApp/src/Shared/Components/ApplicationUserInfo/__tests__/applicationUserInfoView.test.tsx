@@ -11,6 +11,7 @@ describe("Test view component for application user info.", () =>
         const testData: IAuthenticateUserResultDto = 
         {
             userId: "5f4d15e2-0d32-4e20-b5f0-5a736152e993",
+            email: "happy@tester.com",
             aliasName: "tester",
             avatarName: "tester-avatar-icon.png",
             firstName: "Tester",
