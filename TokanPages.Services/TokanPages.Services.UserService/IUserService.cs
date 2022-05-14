@@ -5,6 +5,7 @@ using System.Threading;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Models;
 using Backend.Domain.Entities;
 using Backend.Shared.Dto.Users;
 
@@ -38,14 +39,11 @@ public interface IUserService
 
     Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default);
 
-    Task<UserRefreshTokens> ReplaceRefreshToken(Guid userId, UserRefreshTokens savedUserRefreshTokens, string requesterIpAddress, 
-        bool saveImmediately = false, CancellationToken cancellationToken = default);
+    Task<UserRefreshTokens> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default);
 
-    Task RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> userRefreshTokens, UserRefreshTokens savedUserRefreshTokens, 
-        string requesterIpAddress, string reason, bool saveImmediately = false, CancellationToken cancellationToken = default);
+    Task RevokeDescendantRefreshTokens(RevokeRefreshTokensInput input, CancellationToken cancellationToken = default);
 
-    Task RevokeRefreshToken(UserRefreshTokens userRefreshTokens, string requesterIpAddress, string reason = null,
-        string replacedByToken = null, bool saveImmediately = false, CancellationToken cancellationToken = default);
+    Task RevokeRefreshToken(RevokeRefreshTokenInput input, CancellationToken cancellationToken = default);
 
     bool IsRefreshTokenExpired(UserRefreshTokens userRefreshTokens);
 

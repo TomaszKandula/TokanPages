@@ -8,6 +8,7 @@ using Database;
 using Core.Exceptions;
 using Shared.Resources;
 using Services.UserService;
+using Services.UserService.Models;
 using Core.Utilities.LoggerService;
 using MediatR;
 
@@ -35,7 +36,16 @@ public class RevokeUserRefreshTokenCommandHandler : Cqrs.RequestHandler<RevokeUs
         var requestIpAddress = _userService.GetRequestIpAddress();
         var reason = $"Revoked by {user.AliasName} (ID: {user.UserId})";
 
-        await _userService.RevokeRefreshToken(refreshTokens, requestIpAddress, reason, null, true, cancellationToken);            
+        var input = new RevokeRefreshTokenInput
+        {
+            UserRefreshTokens = refreshTokens, 
+            RequesterIpAddress = requestIpAddress, 
+            Reason = reason, 
+            ReplacedByToken = null, 
+            SaveImmediately = true
+        };
+
+        await _userService.RevokeRefreshToken(input, cancellationToken);            
         return Unit.Value;
     }
 }

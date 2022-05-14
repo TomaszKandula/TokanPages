@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Models;
 using WebTokenService;
 using Backend.Database;
 using Backend.Core.Exceptions;
@@ -223,19 +224,27 @@ public sealed class UserService : IUserService
             
         if (saveImmediately && refreshTokens.Any())
             await _databaseContext.SaveChangesAsync(cancellationToken);
-    }        
-        
-    public async Task<UserRefreshTokens> ReplaceRefreshToken(Guid userId, UserRefreshTokens savedUserRefreshTokens, string requesterIpAddress, 
-        bool saveImmediately = false, CancellationToken cancellationToken = default)
+    }
+
+    public async Task<UserRefreshTokens> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default)
     {
-        var newRefreshToken = _webTokenUtility.GenerateRefreshToken(requesterIpAddress, _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
-            
-        await RevokeRefreshToken(savedUserRefreshTokens, requesterIpAddress, NewRefreshTokenText, 
-            newRefreshToken.Token, saveImmediately, cancellationToken);
+        var newRefreshToken = _webTokenUtility.GenerateRefreshToken(input.RequesterIpAddress, 
+            _applicationSettings.IdentityServer.RefreshTokenExpiresIn);
+
+        var tokenInput = new RevokeRefreshTokenInput
+        {
+            UserRefreshTokens = input.SavedUserRefreshTokens, 
+            RequesterIpAddress = input.RequesterIpAddress, 
+            Reason = NewRefreshTokenText, 
+            ReplacedByToken = newRefreshToken.Token, 
+            SaveImmediately = input.SaveImmediately
+        };
+
+        await RevokeRefreshToken(tokenInput, cancellationToken);
 
         return new UserRefreshTokens
         {
-            UserId = userId,
+            UserId = input.UserId,
             Token = newRefreshToken.Token,
             Expires = newRefreshToken.Expires,
             Created = newRefreshToken.Created,
@@ -246,36 +255,45 @@ public sealed class UserService : IUserService
             ReasonRevoked = null
         };
     }
-        
-    public async Task RevokeDescendantRefreshTokens(IEnumerable<UserRefreshTokens> userRefreshTokens,  UserRefreshTokens savedUserRefreshTokens, 
-        string requesterIpAddress, string reason, bool saveImmediately = false, CancellationToken cancellationToken = default)
+
+    public async Task RevokeDescendantRefreshTokens(RevokeRefreshTokensInput input, CancellationToken cancellationToken = default)
     {
-        if (string.IsNullOrEmpty(savedUserRefreshTokens.ReplacedByToken)) 
+        if (string.IsNullOrEmpty(input.SavedUserRefreshTokens.ReplacedByToken)) 
             return;
 
-        var userRefreshTokensList = userRefreshTokens.ToList();
-        var childToken = userRefreshTokensList.SingleOrDefault(tokens => tokens.Token == savedUserRefreshTokens.ReplacedByToken);
+        var userRefreshTokensList = input.UserRefreshTokens.ToList();
+        var childToken = userRefreshTokensList
+            .SingleOrDefault(tokens => tokens.Token == input.SavedUserRefreshTokens.ReplacedByToken);
+
         if (IsRefreshTokenActive(childToken))
         {
-            await RevokeRefreshToken(childToken, requesterIpAddress, reason, null, saveImmediately, cancellationToken);
+            var tokenInput = new RevokeRefreshTokenInput
+            {
+                UserRefreshTokens = childToken, 
+                RequesterIpAddress = input.RequesterIpAddress, 
+                Reason = input.Reason, 
+                ReplacedByToken = null, 
+                SaveImmediately = input.SaveImmediately,
+            };
+
+            await RevokeRefreshToken(tokenInput, cancellationToken);
         }
         else
         {
-            await RevokeDescendantRefreshTokens(userRefreshTokensList, savedUserRefreshTokens, requesterIpAddress, reason, saveImmediately, cancellationToken);
+            await RevokeDescendantRefreshTokens(input, cancellationToken);
         }
     }
 
-    public async Task RevokeRefreshToken(UserRefreshTokens userRefreshTokens, string requesterIpAddress, string reason = null, 
-        string replacedByToken = null, bool saveImmediately = false, CancellationToken cancellationToken = default)
+    public async Task RevokeRefreshToken(RevokeRefreshTokenInput input, CancellationToken cancellationToken = default)
     {
-        userRefreshTokens.Revoked = _dateTimeService.Now;
-        userRefreshTokens.RevokedByIp = requesterIpAddress;
-        userRefreshTokens.ReasonRevoked = reason;
-        userRefreshTokens.ReplacedByToken = replacedByToken;
+        input.UserRefreshTokens.Revoked = _dateTimeService.Now;
+        input.UserRefreshTokens.RevokedByIp = input.RequesterIpAddress;
+        input.UserRefreshTokens.ReasonRevoked = input.Reason;
+        input.UserRefreshTokens.ReplacedByToken = input.ReplacedByToken;
 
-        _databaseContext.UserRefreshTokens.Update(userRefreshTokens);
+        _databaseContext.UserRefreshTokens.Update(input.UserRefreshTokens);
 
-        if (saveImmediately)
+        if (input.SaveImmediately)
             await _databaseContext.SaveChangesAsync(cancellationToken);
     }
 
