@@ -138,7 +138,6 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
             case OperationStatus.notStarted:
                 if (passwordFormProgress) postUpdatePassword(
                 {
-                    id: userDataState.userId,
                     oldPassword: passwordForm.oldPassword,
                     newPassword: passwordForm.newPassword
                 });
