@@ -1,5 +1,6 @@
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -36,16 +37,20 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
     public override async Task<Unit> Handle(UpdateUserPasswordCommand request, CancellationToken cancellationToken)
     {
         var resetId = request.ResetId != null;
+        var userId = request.Id ?? await _userService.GetUserId() ?? Guid.Empty;
+        if (userId == Guid.Empty)
+            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
+
         var users = await DatabaseContext.Users
             .WhereIfElse(!resetId, 
-                users => users.Id == request.Id, 
+                users => users.Id == userId, 
                 users => users.ResetId == request.ResetId) 
             .ToListAsync(cancellationToken);
 
         if (!resetId)
         {
             if (!users.Any())
-                throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
+                throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
             var hasRoleEverydayUser = await _userService.HasRoleAssigned($"{Roles.EverydayUser}") ?? false;
             var hasRoleGodOfAsgard = await _userService.HasRoleAssigned($"{Roles.GodOfAsgard}") ?? false;
@@ -55,7 +60,7 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
         }
 
         if (!users.Any())
-            throw new BusinessException(nameof(ErrorCodes.INVALID_RESET_ID), ErrorCodes.INVALID_RESET_ID);
+            throw new AuthorizationException(nameof(ErrorCodes.INVALID_RESET_ID), ErrorCodes.INVALID_RESET_ID);
 
         var currentUser = users.First();
         if (request.OldPassword is not null)
@@ -63,13 +68,13 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
             var isPasswordValid = _cipheringService.VerifyPassword(request.OldPassword, currentUser.CryptedPassword);
             if (!isPasswordValid)
             {
-                LoggerService.LogError($"Cannot positively verify given password supplied by user (Id: {currentUser.Id}).");
+                LoggerService.LogError($"Cannot positively verify given password supplied by user (Id: {userId}).");
                 throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
             }
         }
 
         if (resetId && _dateTimeService.Now > currentUser.ResetIdEnds)
-            throw new BusinessException(nameof(ErrorCodes.EXPIRED_RESET_ID), ErrorCodes.EXPIRED_RESET_ID);
+            throw new AuthorizationException(nameof(ErrorCodes.EXPIRED_RESET_ID), ErrorCodes.EXPIRED_RESET_ID);
 
         var getNewSalt = _cipheringService.GenerateSalt(Constants.CipherLogRounds);
         var getHashedPassword = _cipheringService.GetHashedPassword(request.NewPassword, getNewSalt);
@@ -80,7 +85,7 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
         currentUser.LastUpdated = _dateTimeService.Now;
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        LoggerService.LogInformation($"User password has been updated successfully (UserId: {currentUser.Id}).");
+        LoggerService.LogInformation($"User password has been updated successfully (UserId: {userId}).");
         return Unit.Value;
     }
 }

@@ -6,7 +6,7 @@ using MediatR;
 
 public class UpdateUserPasswordCommand : IRequest<Unit>
 {
-    public Guid Id { get; set; }
+    public Guid? Id { get; set; }
 
     public Guid? ResetId { get; set; }
 

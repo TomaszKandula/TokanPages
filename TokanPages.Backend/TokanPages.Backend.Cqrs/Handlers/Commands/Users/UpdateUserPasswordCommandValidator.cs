@@ -7,9 +7,17 @@ public class UpdateUserPasswordCommandValidator : AbstractValidator<UpdateUserPa
 {
     public UpdateUserPasswordCommandValidator()
     {
-        When(command => command.ResetId == null, () =>
+        When(command => command.Id != null, () =>
         {
             RuleFor(command => command.Id)
+                .NotEmpty()
+                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+                .WithMessage(ValidationCodes.REQUIRED);
+        });
+
+        When(command => command.ResetId != null, () =>
+        {
+            RuleFor(command => command.ResetId)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
