@@ -275,7 +275,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <TextField required fullWidth onChange={props.bind?.passwordFormHandler} value={props.bind?.oldPassword}
-                                            variant="outlined" name="oldPassword" id="oldPassword" />}
+                                            variant="outlined" name="oldPassword" id="oldPassword" type="password" />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
@@ -286,7 +286,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <TextField required fullWidth onChange={props.bind?.passwordFormHandler} value={props.bind?.newPassword}
-                                            variant="outlined" name="newPassword" id="newPassword" />}
+                                            variant="outlined" name="newPassword" id="newPassword" type="password" />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
@@ -297,7 +297,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <TextField required fullWidth onChange={props.bind?.passwordFormHandler} value={props.bind?.confirmPassword}
-                                            variant="outlined" name="confirmPassword" id="confirmPassword" />}
+                                            variant="outlined" name="confirmPassword" id="confirmPassword" type="password" />}
                                     </Grid>
                                 </Grid>
                                 <CustomDivider marginTop={5} marginBottom={2} />
