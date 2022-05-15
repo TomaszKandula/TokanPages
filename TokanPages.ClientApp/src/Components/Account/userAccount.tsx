@@ -6,16 +6,17 @@ import { ActionCreators as UpdateUser } from "../../Redux/Actions/Users/updateUs
 import { ActionCreators as DataAction } from "../../Redux/Actions/Users/storeUserDataAction";
 import { ActionCreators as UserAction } from "../../Redux/Actions/Users/signinUserAction";
 import { ActionCreators as PasswordAction } from "../../Redux/Actions/Users/updateUserPasswordAction";
+import { ActionCreators as RemoveAction } from "../../Redux/Actions/Users/removeAccountAction";
 import { ActionCreators as ReAuthenticateUser } from "../../Redux/Actions/Users/reAuthenticateUserAction";
 import { IApplicationState } from "../../Redux/applicationState";
 import { IGetAccountContent } from "../../Redux/States/Content/getAccountContentState";
 import { IValidateAccountForm, IValidatePasswordForm, ValidateAccountForm, ValidatePasswordForm } from "../../Shared/Services/FormValidation";
-import { ACCOUNT_FORM, DEACTIVATE_USER, RECEIVED_ERROR_MESSAGE, UPDATE_PASSWORD_SUCCESS, UPDATE_USER_SUCCESS, UPDATE_USER_WARNING } from "../../Shared/constants";
+import { ACCOUNT_FORM, DEACTIVATE_USER, RECEIVED_ERROR_MESSAGE, REMOVE_USER, UPDATE_PASSWORD_SUCCESS, UPDATE_USER_SUCCESS, UPDATE_USER_WARNING } from "../../Shared/constants";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { GetTextWarning } from "../../Shared/Services/Utilities";
 import { OperationStatus } from "../../Shared/enums";
-import { IUpdateUserDto, IUpdateUserPasswordDto } from "../../Api/Models";
+import { IRemoveUserDto, IUpdateUserDto, IUpdateUserPasswordDto } from "../../Api/Models";
 import UserAccountView from "./userAccountView";
 import Validate from "validate.js";
 
@@ -25,6 +26,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
     const history = useHistory();
     
     const userDataState = useSelector((state: IApplicationState) => state.storeUserData.userData);
+    const removeAccountState = useSelector((state: IApplicationState) => state.removeAccount);
     const updatePasswordState = useSelector((state: IApplicationState) => state.updateUserPassword);
     const updateUserState = useSelector((state: IApplicationState) => state.updateUser);
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
@@ -61,6 +63,9 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
     const postUpdatePassword = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(PasswordAction.update(payload)), [ dispatch ]);
     const postUpdatePasswordClear = React.useCallback(() => dispatch(PasswordAction.clear()), [ dispatch ]);
 
+    const postRemoveAccount = React.useCallback((payload: IRemoveUserDto) => dispatch(RemoveAction.removeAccount(payload)), [ dispatch ]);
+    const postRemoveAccountClear = React.useCallback(() => dispatch(RemoveAction.clear), [ dispatch ]);
+
     const reAuthenticate = React.useCallback(() => dispatch(ReAuthenticateUser.reAuthenticate()), [ dispatch ]);
     const clearLoggedUser = React.useCallback(() => dispatch(UserAction.clear()), [ dispatch ]);
     const clearLoggedData = React.useCallback(() => dispatch(DataAction.clear()), [ dispatch ]);
@@ -94,6 +99,18 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
         setPasswordFormProgress(false);
     }, 
     [ passwordFormProgress, postUpdatePasswordClear ]);
+
+    const removeAccountClear = React.useCallback(() => 
+    {
+        if (!deleteAccountProgress) return;
+
+        postRemoveAccountClear();
+        setDeleteAccountProgress(false);
+        clearLoggedUser();
+        clearLoggedData();
+        history.push("/");
+    }, 
+    [ deleteAccountProgress, postRemoveAccountClear, clearLoggedUser, clearLoggedData ]);
 
     React.useEffect(() => 
     {
@@ -153,6 +170,29 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
     [ passwordFormProgress, raiseErrorState?.defaultErrorMessage, updatePasswordState?.operationStatus, 
         OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
+    React.useEffect(() => 
+    {
+        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        {
+            setDeleteAccountProgress(false);
+            return;
+        }
+
+        switch(removeAccountState?.operationStatus)
+        {
+            case OperationStatus.notStarted:
+                if (deleteAccountProgress) postRemoveAccount({ });
+            break;
+
+            case OperationStatus.hasFinished:
+                removeAccountClear();
+                showSuccess(REMOVE_USER);
+            break;
+        }
+    }, 
+    [ deleteAccountProgress, raiseErrorState?.defaultErrorMessage, removeAccountState?.operationStatus, 
+        OperationStatus.notStarted, OperationStatus.hasFinished ]);
+
     const accountFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
         setAccountForm({ ...accountForm, [event.currentTarget.name]: event.currentTarget.value }); 
@@ -207,7 +247,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
 
     const deleteButtonHandler = () => 
     {
-        setDeleteAccountProgress(true);
+        if (!deleteAccountProgress) setDeleteAccountProgress(true);
     };
 
     return(
