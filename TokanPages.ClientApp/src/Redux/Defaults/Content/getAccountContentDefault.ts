@@ -36,6 +36,7 @@ export const GetAccountContentDefault: IGetAccountContent =
         },
         sectionAccountRemoval:
         {
+            caption: "",
             warningText: "",
             deleteButtonText: ""
         }

@@ -43,6 +43,7 @@ export interface ISectionAccountPassword
 
 export interface ISectionAccountRemoval
 {
+    caption: string;
     warningText: string;
     deleteButtonText: string;
 }

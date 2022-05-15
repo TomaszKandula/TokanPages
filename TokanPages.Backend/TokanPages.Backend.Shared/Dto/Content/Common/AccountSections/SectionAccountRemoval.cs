@@ -6,6 +6,9 @@ using System.Diagnostics.CodeAnalysis;
 [ExcludeFromCodeCoverage]
 public class SectionAccountRemoval
 {
+    [JsonProperty("caption")]
+    public string Caption { get; set; }
+
     [JsonProperty("warningText")]
     public string WarningText { get; set; }
 
