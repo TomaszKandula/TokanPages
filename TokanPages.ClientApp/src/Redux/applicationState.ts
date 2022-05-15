@@ -27,6 +27,7 @@ import { IGetWrongPagePromptContent } from "./States/Content/getWrongPagePromptC
 import { IRaiseDialog } from "./States/raiseDialogState";
 import { IRaiseError } from "./States/raiseErrorState";
 import { IReAuthenticateUser } from "./States/Users/reAuthenticateUserState";
+import { IRemoveAccount } from "./States/Users/removeAccountState";
 import { IRemoveSubscriber } from "./States/Subscribers/removeSubscriberState";
 import { IResetUserPassword } from "./States/Users/resetUserPasswordState";
 import { ISendMessage } from "./States/Mailer/sendMessageState";
@@ -52,6 +53,7 @@ export interface IApplicationState
     addSubscriber: IAddSubscriber,
     updateSubscriber: IUpdateSubscriber,
     removeSubscriber: IRemoveSubscriber,
+    removeAccount: IRemoveAccount,
     activateAccount: IActivateAccount,
     reAuthenticateUser: IReAuthenticateUser,
     signinUser: ISigninUser,

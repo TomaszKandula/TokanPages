@@ -5,5 +5,5 @@ using MediatR;
 
 public class RemoveUserCommand : IRequest<Unit>
 {
-    public Guid Id { get; set; }
+    public Guid? Id { get; set; }
 }

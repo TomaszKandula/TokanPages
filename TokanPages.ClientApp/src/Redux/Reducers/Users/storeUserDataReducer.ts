@@ -37,6 +37,7 @@ export const StoreUserDataReducer: Reducer<IStoreUserData> = (state: IStoreUserD
                     avatarName: action.payload.avatarName,
                     firstName: action.payload.firstName,
                     lastName: action.payload.lastName,
+                    email: action.payload.email,
                     shortBio: action.payload.shortBio,
                     registered: action.payload.registered,
                     userToken: state.userData.userToken,

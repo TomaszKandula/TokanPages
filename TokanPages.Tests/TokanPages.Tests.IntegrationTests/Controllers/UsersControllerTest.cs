@@ -290,7 +290,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             
         // Act
         var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
+        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
 
         // Assert
         var content = await response.Content.ReadAsStringAsync();
@@ -577,7 +577,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             
         // Act
         var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
+        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
 
         // Assert
         var content = await response.Content.ReadAsStringAsync();
@@ -613,7 +613,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             
         // Act
         var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
+        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
 
         // Assert
         var content = await response.Content.ReadAsStringAsync();

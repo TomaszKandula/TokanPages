@@ -9,7 +9,8 @@ describe("Verify validation methods.", () =>
         const form: IValidateAccountForm = 
         {
             firstName: "Ester",
-            lastName: "Exposito", 
+            lastName: "Exposito",
+            email: "ester.exposito@gmail.com",
             shortBio: "Spanish Software Developer"
         }
 
@@ -27,6 +28,7 @@ describe("Verify validation methods.", () =>
         {
             firstName: "E",
             lastName: "", 
+            email: " ",
             shortBio: "Spanish"
         }
 

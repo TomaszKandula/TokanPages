@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using System.Diagnostics.CodeAnalysis;
 
 [ExcludeFromCodeCoverage]
-public class SectionBasicInformation
+public class SectionAccountInformation
 {
     [JsonProperty("caption")]
     public string Caption { get; set; }
@@ -21,11 +21,20 @@ public class SectionBasicInformation
     [JsonProperty("labelLastName")]
     public string LabelLastName { get; set; }
 
+    [JsonProperty("labelEmail")]
+    public string LabelEmail { get; set; }
+
     [JsonProperty("labelShortBio")]
     public string LabelShortBio { get; set; }
 
     [JsonProperty("labelUserAvatar")]
     public string LabelUserAvatar { get; set; }
+
+    [JsonProperty("labelIsActivated")]
+    public string LabelIsActivated { get; set; }
+
+    [JsonProperty("isActivatedText")]
+    public string IsActivatedText { get; set; }
 
     [JsonProperty("updateButtonText")]
     public string UpdateButtonText { get; set; }

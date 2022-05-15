@@ -11,17 +11,34 @@ export const GetAccountContentDefault: IGetAccountContent =
             accessDeniedPrompt: "",
             homeButtonText: ""        
         },
-        sectionBasicInformation: 
+        sectionAccountInformation: 
         {
             caption: "",
             labelUserId: "",
             labelUserAlias: "",
             labelFirstName: "",
             labelLastName: "",
+            labelEmail: "",
             labelShortBio: "",
             labelUserAvatar: "",
+            labelIsActivated: "",
+            isActivatedText: "",
             updateButtonText: "",
             uploadAvatarButtonText: ""
+        },
+        sectionAccountPassword:
+        {
+            caption: "",
+            labelOldPassword: "",
+            labelNewPassword: "",
+            labelConfirmPassword: "",
+            updateButtonText: ""
+        },
+        sectionAccountRemoval:
+        {
+            caption: "",
+            warningText: "",
+            deleteButtonText: ""
         }
     }
 }

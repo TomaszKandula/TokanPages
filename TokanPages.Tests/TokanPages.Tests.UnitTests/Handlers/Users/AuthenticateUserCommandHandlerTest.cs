@@ -103,16 +103,6 @@ public class AuthenticateUserCommandHandlerTest : TestBase
 
         mockedUserServiceProvider
             .Setup(service => service
-                .SetRefreshTokenCookie(
-                    It.IsAny<string>(), 
-                    It.IsAny<int>(), 
-                    It.IsAny<int>(), 
-                    It.IsAny<bool>(), 
-                    It.IsAny<bool>(), 
-                    It.IsAny<string>()));
-
-        mockedUserServiceProvider
-            .Setup(service => service
                 .DeleteOutdatedRefreshTokens(
                     It.IsAny<Guid>(),
                     It.IsAny<bool>(),
@@ -378,16 +368,6 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         mockedUserServiceProvider
             .Setup(service => service.GetRequestIpAddress())
             .Returns(ipAddress);
-
-        mockedUserServiceProvider
-            .Setup(service => service
-                .SetRefreshTokenCookie(
-                    It.IsAny<string>(), 
-                    It.IsAny<int>(), 
-                    It.IsAny<int>(), 
-                    It.IsAny<bool>(), 
-                    It.IsAny<bool>(), 
-                    It.IsAny<string>()));
 
         mockedUserServiceProvider
             .Setup(service => service

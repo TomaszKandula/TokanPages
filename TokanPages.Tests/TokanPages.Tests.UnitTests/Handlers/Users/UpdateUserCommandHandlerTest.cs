@@ -6,8 +6,10 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Users;
 using Backend.Core.Utilities.DateTimeService;
@@ -47,11 +49,13 @@ public class UpdateUserCommandHandlerTest : TestBase
 
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedUserService = new Mock<IUserService>();
         var updateUserCommandHandler = new UpdateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedDateTime.Object);
-            
+            mockedDateTime.Object, 
+            mockedUserService.Object);
+
         // Act
         await updateUserCommandHandler.Handle(updateUserCommand, CancellationToken.None);
 
@@ -74,10 +78,12 @@ public class UpdateUserCommandHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedUserService = new Mock<IUserService>();
         var updateUserCommandHandler = new UpdateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedDateTime.Object);
+            mockedDateTime.Object, 
+            mockedUserService.Object);
 
         var updateUserCommand = new UpdateUserCommand
         {
@@ -91,7 +97,7 @@ public class UpdateUserCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        await Assert.ThrowsAsync<BusinessException>(() 
+        await Assert.ThrowsAsync<AuthorizationException>(() 
             => updateUserCommandHandler.Handle(updateUserCommand, CancellationToken.None));
     }
 
@@ -100,26 +106,41 @@ public class UpdateUserCommandHandlerTest : TestBase
     {
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var user = new Users
+        var user = new List<Users>
         {
-            EmailAddress = testEmail,
-            UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
-            LastLogged = null,
-            CryptedPassword = DataUtilityService.GetRandomString()
+            new()
+            {
+                EmailAddress = testEmail,
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                IsActivated = true,
+                Registered = DateTimeService.Now,
+                LastUpdated = null,
+                LastLogged = null,
+                CryptedPassword = DataUtilityService.GetRandomString()
+            },
+            new()
+            {
+                EmailAddress = testEmail,
+                UserAlias = DataUtilityService.GetRandomString(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                IsActivated = true,
+                Registered = DateTimeService.Now,
+                LastUpdated = null,
+                LastLogged = null,
+                CryptedPassword = DataUtilityService.GetRandomString()
+            },
         };
-            
+
         var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(user);
+        await databaseContext.Users.AddRangeAsync(user);
         await databaseContext.SaveChangesAsync();
 
         var updateUserCommand = new UpdateUserCommand
         {
-            Id = user.Id,
+            Id = user[0].Id,
             EmailAddress = testEmail,
             UserAlias = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
@@ -129,10 +150,12 @@ public class UpdateUserCommandHandlerTest : TestBase
 
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedUserService = new Mock<IUserService>();
         var updateUserCommandHandler = new UpdateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedDateTime.Object);
+            mockedDateTime.Object, 
+            mockedUserService.Object);
 
         // Act
         // Assert

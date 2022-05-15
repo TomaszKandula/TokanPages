@@ -1,5 +1,6 @@
 ﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,31 +8,40 @@ using Microsoft.EntityFrameworkCore;
 using Database;
 using Core.Exceptions;
 using Shared.Resources;
+using Services.UserService;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
 using MediatR;
 
 public class UpdateUserCommandHandler : Cqrs.RequestHandler<UpdateUserCommand, Unit>
 {
+    private readonly IUserService _userService;
+
     private readonly IDateTimeService _dateTimeService;
         
     public UpdateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService) : base(databaseContext, loggerService)
+        IDateTimeService dateTimeService, IUserService userService) : base(databaseContext, loggerService)
     {
         _dateTimeService = dateTimeService;
+        _userService = userService;
     }
 
     public override async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
+        var userId = request.Id ?? await _userService.GetUserId() ?? Guid.Empty;
+        if (userId == Guid.Empty)
+            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
+
         var usersList = await DatabaseContext.Users
-            .Where(users => users.Id == request.Id)
+            .Where(users => users.Id == userId)
             .ToListAsync(cancellationToken);
 
         if (!usersList.Any())
-            throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
+            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
         var emailCollection = await DatabaseContext.Users
             .AsNoTracking()
+            .Where(users => users.Id != userId)
             .Where(users => users.EmailAddress == request.EmailAddress)
             .ToListAsync(cancellationToken);
 

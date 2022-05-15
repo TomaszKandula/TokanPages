@@ -82,6 +82,21 @@ const userAccountStyle = makeStyles((theme) => (
         color: CustomColours.colours.white,
         background: CustomColours.colours.violet
     },
+    delete_update:
+    {
+        [theme.breakpoints.down("xs")]: 
+        {
+            width: "100%",
+        },
+        width: "150px",
+        "&:hover": 
+        {
+            color: CustomColours.colours.white,
+            background: CustomColours.colours.red,
+        },
+        color: CustomColours.colours.white,
+        background: CustomColours.colours.redDark
+    },
     button_container_update:
     {
         [theme.breakpoints.down("xs")]: 

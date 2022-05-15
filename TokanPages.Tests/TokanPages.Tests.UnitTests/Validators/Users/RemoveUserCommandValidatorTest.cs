@@ -26,6 +26,20 @@ public class RemoveUserCommandValidatorTest
     }
 
     [Fact]
+    public void GivenNullValue_WhenRemoveUser_ShouldFinishSuccessful()
+    {
+        // Arrange
+        var removeUserCommand = new RemoveUserCommand();
+
+        // Act
+        var validator = new RemoveUserCommandValidator();
+        var result = validator.Validate(removeUserCommand);
+
+        // Assert
+        result.Errors.Should().BeEmpty();
+    }
+
+    [Fact]
     public void GivenEmptyId_WhenRemoveUser_ShouldThrowError()
     {
         // Arrange
