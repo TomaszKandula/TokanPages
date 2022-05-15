@@ -1,3 +1,39 @@
+# [0.52.0](https://github.com/TomaszKandula/TokanPages/compare/v0.51.0...v0.52.0) (2022-05-15)
+
+
+### Features
+
+* add caption property ([d523d80](https://github.com/TomaszKandula/TokanPages/commit/d523d80d6214f32ce4c8bd5c1866a7da9dd2d513))
+* add email address to DTO models and handlers ([5176c50](https://github.com/TomaszKandula/TokanPages/commit/5176c5007dfc22a664105ce57b6953c7837b3798))
+* add email field with label ([f40c96b](https://github.com/TomaszKandula/TokanPages/commit/f40c96b273fef0f8096cf8e9e44094bb3cdafa45))
+* add label property for an email field ([4795c94](https://github.com/TomaszKandula/TokanPages/commit/4795c9453f7d5291d91e88db6f022e245b8bb3a1))
+* add new colours ([fe9a966](https://github.com/TomaszKandula/TokanPages/commit/fe9a9667935a7e41fb99ccd75fec3108e010a6f0))
+* add new user account sections, rename existing section ([8214c85](https://github.com/TomaszKandula/TokanPages/commit/8214c850e2f3f151504f45f51472dbe60d3b74bf))
+* add new validator for the update password form ([ecd800b](https://github.com/TomaszKandula/TokanPages/commit/ecd800b08d38a3f824926deffc281c62f5aa0b0f))
+* add old password verification (optional) ([dbab6c9](https://github.com/TomaszKandula/TokanPages/commit/dbab6c906ecefc91ac311ad505eb759e5875a643))
+* add password form to the account settings ([d6a9f8a](https://github.com/TomaszKandula/TokanPages/commit/d6a9f8a683c95ac2cb1466864268848d7253d58a))
+* add password type to password inputs ([a946539](https://github.com/TomaszKandula/TokanPages/commit/a94653989cc6d4fde2c17d73a794ddaab3161106))
+* add redux for removal action ([4f80014](https://github.com/TomaszKandula/TokanPages/commit/4f800148978ae6338b533f226643b096ee110562))
+* add removal section ([313bb40](https://github.com/TomaszKandula/TokanPages/commit/313bb402d3b8bf0aa8f0ba40f8a4104f6b025618))
+* add switch component, update content models ([1a40ca7](https://github.com/TomaszKandula/TokanPages/commit/1a40ca7f962f89a8811522d8930a0d61e156f3db))
+* alow user ID to be nullable for articles and albums tables ([fb07af2](https://github.com/TomaszKandula/TokanPages/commit/fb07af23afb5c5854770a77a8428194388746c10))
+* assign null value to the user ID ([3db8599](https://github.com/TomaszKandula/TokanPages/commit/3db859965299c61eab7b9ebf1457a8033b91cda5))
+* check given refresh token against user data ([efc0245](https://github.com/TomaszKandula/TokanPages/commit/efc0245ffd6694b751ceca79f38d1cf516fb9d00))
+* extend by adding old password property ([4537aa2](https://github.com/TomaszKandula/TokanPages/commit/4537aa292279b42011ccfa3933df87f9a88ec981))
+* implement account deactivation on update action from UI ([565df84](https://github.com/TomaszKandula/TokanPages/commit/565df849ba1ecb440a32366856aa72af9c7dfec0))
+* implement password update action ([b101365](https://github.com/TomaszKandula/TokanPages/commit/b10136557aca903849b84769dcc99efb6f3594b8))
+* implement removal action ([9fd96eb](https://github.com/TomaszKandula/TokanPages/commit/9fd96eb249bb0d7df8059c60f0a2467817afc3b1))
+* improve user removal implementation ([ecfb26c](https://github.com/TomaszKandula/TokanPages/commit/ecfb26cda5bf71c1b931a69af59af1684702dca6))
+* make ID an option ([63fe592](https://github.com/TomaszKandula/TokanPages/commit/63fe592e68932029b4d11bc692a09df29c8831f6))
+* make user ID optional in payload ([5903914](https://github.com/TomaszKandula/TokanPages/commit/5903914da7187d5aac3b617c9d822119e17d4319))
+* provide alternative implementation for roles/permissions assigned to the user ([67b548f](https://github.com/TomaszKandula/TokanPages/commit/67b548fe1456103c2b73db7bb06a3a12b7f5ecea))
+* refactor method arguments to model, update service and handlers ([7fb6c89](https://github.com/TomaszKandula/TokanPages/commit/7fb6c8952413dab2841725fe37b223ec12c2ffc8))
+* remove optional value ([9a5f0d5](https://github.com/TomaszKandula/TokanPages/commit/9a5f0d5b63d387ef5c60af08a2543897e2e386ff))
+* remove unused code ([6678fa3](https://github.com/TomaszKandula/TokanPages/commit/6678fa31acf5ad61bb8be7591aa480cedd99449b))
+* update DTO models, allow null value ([a564ed3](https://github.com/TomaszKandula/TokanPages/commit/a564ed3ee9951a2c1ea7d7bbb828c3ac83d982e4))
+* update tests after change in implementation ([27bd73e](https://github.com/TomaszKandula/TokanPages/commit/27bd73ecbd32a87b82e3c65ea51a168226456e7e))
+* update validators, require not to be empty guid ([415f8ea](https://github.com/TomaszKandula/TokanPages/commit/415f8eae1adce7882c5af2e33deaf5f8d3bf21b4))
+
 # [0.51.0](https://github.com/TomaszKandula/TokanPages/compare/v0.50.0...v0.51.0) (2022-05-10)
 
 
