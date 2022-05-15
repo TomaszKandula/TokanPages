@@ -41,6 +41,8 @@ interface IProperties
     passwordFormProgress: boolean;
     passwordFormHandler: any;
     passwordButtonHandler: any;
+    deleteButtonHandler: any;
+    deleteAccountProgress: boolean;
     sectionAccessDenied: ISectionAccessDenied;
     sectionAccountInformation: ISectionAccountInformation;
     sectionAccountPassword: ISectionAccountPassword;
@@ -69,6 +71,17 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                 disabled={props.bind?.passwordFormProgress} className={classes.button_update}>
                 {props.bind?.passwordFormProgress &&  <CircularProgress size={20} />}
                 {!props.bind?.passwordFormProgress && props.bind?.sectionAccountPassword?.updateButtonText}
+            </Button>
+        );
+    }
+
+    const DeleteAccountButton = (): JSX.Element => 
+    {
+        return(
+            <Button fullWidth onClick={props.bind?.deleteButtonHandler} type="submit" variant="contained" 
+                disabled={props.bind?.deleteAccountProgress} className={classes.delete_update}>
+                {props.bind?.deleteAccountProgress &&  <CircularProgress size={20} />}
+                {!props.bind?.deleteAccountProgress && props.bind?.sectionAccountRemoval?.deleteButtonText}
             </Button>
         );
     }
@@ -242,7 +255,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                         </CardContent>
                     </Card>
                 </Box>
-                <Box pt={8} pb={15}>
+                <Box pt={8}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
@@ -262,7 +275,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <TextField required fullWidth onChange={props.bind?.passwordFormHandler} value={props.bind?.oldPassword}
-                                            variant="outlined" name="oldPassword" id="oldPassword" />}
+                                            variant="outlined" name="oldPassword" id="oldPassword" type="password" />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
@@ -273,7 +286,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <TextField required fullWidth onChange={props.bind?.passwordFormHandler} value={props.bind?.newPassword}
-                                            variant="outlined" name="newPassword" id="newPassword" />}
+                                            variant="outlined" name="newPassword" id="newPassword" type="password" />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
@@ -284,7 +297,7 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <TextField required fullWidth onChange={props.bind?.passwordFormHandler} value={props.bind?.confirmPassword}
-                                            variant="outlined" name="confirmPassword" id="confirmPassword" />}
+                                            variant="outlined" name="confirmPassword" id="confirmPassword" type="password" />}
                                     </Grid>
                                 </Grid>
                                 <CustomDivider marginTop={5} marginBottom={2} />
@@ -293,6 +306,35 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="150px" height="40px" /> 
                                         : <UpdatePasswordButton />}
+                                    </Box>
+                                </Grid>
+                            </Box>
+                        </CardContent>
+                    </Card>
+                </Box>
+                <Box pt={8} pb={10}>
+                    <Card elevation={0} className={classes.card}>
+                        <CardContent className={classes.card_content}>
+                            <Box pt={0} pb={0}>
+                                <Typography className={classes.caption}>
+                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountRemoval?.caption}
+                                </Typography>
+                            </Box>
+                            <CustomDivider marginTop={2} marginBottom={1} />
+                            <Box pt={1} pb={1}>
+                                <Grid container spacing={2}>
+                                    <Grid item>
+                                        <Typography className={classes.label}>
+                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser(props.bind?.sectionAccountRemoval?.warningText)}
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                                <CustomDivider marginTop={2} marginBottom={2} />
+                                <Grid className={classes.button_container_update}>
+                                    <Box my={2}>
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="rect" width="150px" height="40px" /> 
+                                        : <DeleteAccountButton />}
                                     </Box>
                                 </Grid>
                             </Box>

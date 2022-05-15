@@ -26,6 +26,7 @@ import { ListArticlesReducer } from "./Reducers/Articles/listArticlesReducer";
 import { RaiseDialogReducer } from "./Reducers/raiseDialogReducer";
 import { RaiseErrorReducer } from "./Reducers/raiseErrorReducer";
 import { ReAuthenticateUserReducer } from "./Reducers/Users/reAuthenticateUserReducer";
+import { RemoveAccountReducer } from "./Reducers/Users/removeAccountReducer";
 import { RemoveSubscriberReducer } from "./Reducers/Subscribers/removeSubscriberReducer";
 import { ResetUserPasswordReducer } from "./Reducers/Users/resetUserPasswordReducer";
 import { SelectArticleReducer } from "./Reducers/Articles/selectArticleReducer";
@@ -52,6 +53,7 @@ export const combinedReducers =
     addSubscriber: AddSubscriberReducer,
     updateSubscriber: UpdateSubscriberReducer,
     removeSubscriber: RemoveSubscriberReducer,
+    removeAccount: RemoveAccountReducer,
     activateAccount: ActivateAccountReducer,
     reAuthenticateUser: ReAuthenticateUserReducer,
     signinUser: SigninUserReducer,
