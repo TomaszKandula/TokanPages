@@ -106,6 +106,7 @@ export const RESET_PASSWORD_SUCCESS: string = "<p>The password has been reset. P
 export const RESET_PASSWORD_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To reset user password registered and verified e-mail address must be provided.</span>";
 
 export const DEACTIVATE_USER: string = "<p>Your data has been preserved, and your account has been deactivated.</p><p>If you would like to activate it again, please send a request to IT Support.</p>";
+export const REMOVE_USER: string = "<p>Your account has been permanently deleted from the system along with related data.</p>";
 
 export const UPDATE_USER_SUCCESS: string = "<p>Congratulations!</p><p>Your data has been updated.</p>";
 export const UPDATE_USER_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To update your data you must provide values that complies to the requirements.</span>";

@@ -27,6 +27,7 @@ import { ListArticlesDefault } from "./Defaults/Articles/listArticlesDefault";
 import { RaiseDialogDefault } from "./Defaults/raiseDialogDefault";
 import { RaiseErrorDefault } from "./Defaults/raiseErrorDefault";
 import { ReAuthenticateUserDefault } from "./Defaults/Users/reAuthenticateUserDefault";
+import { RemoveAccountDefault } from "./Defaults/Users/removeAccountDefault";
 import { RemoveSubscriberDefault } from "./Defaults/Subscribers/removeSubscriberDefault";
 import { ResetUserPasswordDefault } from "./Defaults/Users/resetUserPasswordDefault";
 import { SelectArticleDefault } from "./Defaults/Articles/selectArticleDefault";
@@ -53,6 +54,7 @@ export const combinedDefaults: IApplicationState =
     addSubscriber: AddSubscriberDefault,
     updateSubscriber: UpdateSubscriberDefault,
     removeSubscriber: RemoveSubscriberDefault,
+    removeAccount: RemoveAccountDefault,
     activateAccount: ActivateAccountDefault,
     reAuthenticateUser: ReAuthenticateUserDefault,
     signinUser: SigninUserDefault,

@@ -84,7 +84,7 @@ public class RemoveUserCommandHandler : Cqrs.RequestHandler<RemoveUserCommand, U
             LoggerService.LogInformation($"Detaching articles from user (ID: {userId})");
             foreach (var article in articles)
             {
-                article.UserId = Guid.Empty;
+                article.UserId = null;
                 article.IsPublished = false;
             }
         }
@@ -98,7 +98,7 @@ public class RemoveUserCommandHandler : Cqrs.RequestHandler<RemoveUserCommand, U
             LoggerService.LogInformation($"Detaching albums from user (ID: {userId})");
             foreach (var album in albums)
             {
-                album.UserId = Guid.Empty;
+                album.UserId = null;
             }
         }
 

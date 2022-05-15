@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 [ExcludeFromCodeCoverage]
 public class Albums : Entity<Guid>
 {
-    public Guid UserId { get; set; }
+    public Guid? UserId { get; set; }
 
     public Users User { get; set; }
 

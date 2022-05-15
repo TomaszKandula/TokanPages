@@ -19,6 +19,8 @@ export const CustomColours =
         gray2: "#757575",
         gray3: "#616161",
         gray4: "#212121",
-        black: "#000000"
+        black: "#000000",
+        red: "#f44336",
+        redDark: "#e53935"
     }
 }
