@@ -50,6 +50,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
     const [accountFormProgress, setAccountFormProgress] = React.useState(false);
     const [passwordForm, setPasswordForm] = React.useState(passwordFormDefault);
     const [passwordFormProgress, setPasswordFormProgress] = React.useState(false);
+    const [deleteAccountProgress, setDeleteAccountProgress] = React.useState(false);
 
     const showSuccess = React.useCallback((text: string) => dispatch(RaiseDialog.raiseDialog(SuccessMessage(ACCOUNT_FORM, text))), [ dispatch ]);
     const showWarning = React.useCallback((text: string)=> dispatch(RaiseDialog.raiseDialog(WarningMessage(ACCOUNT_FORM, text))), [ dispatch ]);
@@ -204,6 +205,11 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
         showWarning(GetTextWarning({ object: validationResult, template: UPDATE_USER_WARNING }));
     };
 
+    const deleteButtonHandler = () => 
+    {
+        setDeleteAccountProgress(true);
+    };
+
     return(
         <UserAccountView bind=
         {{
@@ -229,6 +235,8 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
             passwordFormProgress: passwordFormProgress,
             passwordFormHandler: passwordFormHandler,
             passwordButtonHandler: passwordButtonHandler,
+            deleteButtonHandler: deleteButtonHandler,
+            deleteAccountProgress: deleteAccountProgress,
             sectionAccessDenied: props.content?.sectionAccessDenied,
             sectionAccountInformation: props.content?.sectionAccountInformation,
             sectionAccountPassword: props.content?.sectionAccountPassword,
