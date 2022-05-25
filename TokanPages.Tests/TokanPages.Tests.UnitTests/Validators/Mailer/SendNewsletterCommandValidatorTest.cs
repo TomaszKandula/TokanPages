@@ -4,8 +4,8 @@ using Xunit;
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
-using Backend.Shared.Models;
 using Backend.Shared.Resources;
+using Backend.Dto.Mailer.Models;
 using Backend.Cqrs.Handlers.Commands.Mailer;
 
 public class SendNewsletterCommandValidatorTest

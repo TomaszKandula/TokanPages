@@ -6,8 +6,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Models;
+using Backend.Dto.Users;
 using Backend.Domain.Entities;
-using Backend.Shared.Dto.Users;
 
 public interface IUserService
 {

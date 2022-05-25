@@ -1,7 +1,7 @@
 ﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
 
 using System.Collections.Generic;
-using Shared.Models;
+using Dto.Mailer.Models;
 using MediatR;
 
 public class SendNewsletterCommand : IRequest<Unit>

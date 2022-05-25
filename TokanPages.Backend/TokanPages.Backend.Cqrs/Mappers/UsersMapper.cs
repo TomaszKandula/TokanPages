@@ -1,7 +1,7 @@
 ﻿namespace TokanPages.Backend.Cqrs.Mappers;
 
 using System.Diagnostics.CodeAnalysis;
-using Shared.Dto.Users;
+using Dto.Users;
 using Handlers.Commands.Users;
 
 [ExcludeFromCodeCoverage]

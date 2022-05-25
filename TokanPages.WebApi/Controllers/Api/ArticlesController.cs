@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Backend.Domain.Enums;
 using Backend.Cqrs.Mappers;
-using Backend.Shared.Dto.Articles;
+using Backend.Dto.Articles;
 using Backend.Cqrs.Handlers.Queries.Articles;
 using Services.Caching.Articles;
 using Backend.Shared.Attributes;
