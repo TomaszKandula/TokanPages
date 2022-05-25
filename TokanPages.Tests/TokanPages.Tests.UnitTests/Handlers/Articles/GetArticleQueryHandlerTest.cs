@@ -16,10 +16,10 @@ using Backend.Shared.Resources;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.JsonSerializer;
+using TokanPages.Backend.Dto.Content.Common;
 using Backend.Cqrs.Handlers.Queries.Articles;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Factory;
-using TokanPages.Backend.Shared.Dto.Content.Common;
 using TokanPages.Services.AzureStorageService.Models;
 
 public class GetArticleQueryHandlerTest : TestBase

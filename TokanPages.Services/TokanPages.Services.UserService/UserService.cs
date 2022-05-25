@@ -11,11 +11,11 @@ using Microsoft.EntityFrameworkCore;
 using Models;
 using WebTokenService;
 using Backend.Database;
+using Backend.Dto.Users;
 using Backend.Core.Exceptions;
 using Backend.Domain.Entities;
 using Backend.Shared.Services;
 using Backend.Shared.Resources;
-using Backend.Shared.Dto.Users;
 using Backend.Core.Utilities.DateTimeService;
 
 public sealed class UserService : IUserService

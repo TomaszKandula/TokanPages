@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 using Database;
 using Core.Exceptions;
 using Shared.Resources;
-using Shared.Dto.Content;
+using Dto.Content;
 using Core.Utilities.LoggerService;
 using Core.Utilities.JsonSerializer;
 using Services.AzureStorageService.Factory;

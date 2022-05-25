@@ -9,9 +9,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.TestHost;
+using Backend.Dto.Subscribers;
 using Backend.Core.Extensions;
 using Backend.Shared.Resources;
-using Backend.Shared.Dto.Subscribers;
 using Backend.Database.Initializer.Data.Subscribers;
 using Factories;
 

@@ -1,7 +1,7 @@
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
 using System.Collections.Generic;
-using Shared.Dto.Users;
+using Dto.Users;
 
 public class AuthenticateUserCommandResult : GetUserDto
 {

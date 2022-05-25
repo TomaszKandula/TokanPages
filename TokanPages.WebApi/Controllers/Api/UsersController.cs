@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
+using Backend.Dto.Users;
 using Backend.Domain.Enums;
 using Backend.Cqrs.Mappers;
-using Backend.Shared.Dto.Users;
+using Services.Caching.Users;
 using Backend.Shared.Attributes;
 using Backend.Cqrs.Handlers.Queries.Users;
 using Backend.Cqrs.Handlers.Commands.Users;
-using Services.Caching.Users;
 using MediatR;
 
 [Authorize]

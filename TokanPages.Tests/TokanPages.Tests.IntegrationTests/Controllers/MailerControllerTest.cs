@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.TestHost;
-using Backend.Shared.Models;
+using Backend.Dto.Mailer;
 using Backend.Shared.Resources;
-using Backend.Shared.Dto.Mailer;
+using Backend.Dto.Mailer.Models;
 using Factories;
 
 public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>

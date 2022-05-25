@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
+using Backend.Dto.Mailer;
 using Backend.Domain.Enums;
 using Backend.Cqrs.Mappers;
 using Backend.Shared.Attributes;
-using Backend.Shared.Dto.Mailer;
 using MediatR;
 
 [Authorize]

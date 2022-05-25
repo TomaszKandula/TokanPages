@@ -8,10 +8,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Backend.Domain.Enums;
 using Backend.Cqrs.Mappers;
+using Backend.Dto.Subscribers;
 using Backend.Shared.Attributes;
-using Backend.Shared.Dto.Subscribers;
-using Backend.Cqrs.Handlers.Queries.Subscribers;
 using Services.Caching.Subscribers;
+using Backend.Cqrs.Handlers.Queries.Subscribers;
 using MediatR;
 
 [Authorize]
