@@ -6,7 +6,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Backend.Database;
 using Backend.Shared.Resources;
-    
+
+/// <summary>
+/// Health controller
+/// </summary>
 [ApiController]
 [AllowAnonymous]
 [ApiVersion("1.0")]
@@ -15,6 +18,10 @@ public class HealthController : ControllerBase
 {
     private readonly DatabaseContext _databaseContext;
 
+    /// <summary>
+    /// Health controller
+    /// </summary>
+    /// <param name="databaseContext">DatabaseContext instance</param>
     public HealthController(DatabaseContext databaseContext) => _databaseContext = databaseContext;
 
     /// <summary>

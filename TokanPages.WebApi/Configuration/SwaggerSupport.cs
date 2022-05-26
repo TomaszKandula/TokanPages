@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+/// <summary>
+/// Swagger support
+/// </summary>
 [ExcludeFromCodeCoverage]
 public static class SwaggerSupport
 {
@@ -22,6 +25,11 @@ public static class SwaggerSupport
 
     private const string AuthorizationScheme = "Bearer";
 
+    /// <summary>
+    /// Setup Swagger options (security and documentation)
+    /// </summary>
+    /// <param name="services">Service collection</param>
+    /// <param name="environment">Host environment instance</param>
     public static void SetupSwaggerOptions(this IServiceCollection services, IHostEnvironment environment)
     {
         if (environment.IsProduction())
@@ -69,6 +77,12 @@ public static class SwaggerSupport
         });
     }
 
+    /// <summary>
+    /// Configure Swagger UI
+    /// </summary>
+    /// <param name="builder">ApplicationBuilder instance</param>
+    /// <param name="configuration">Provided configuration</param>
+    /// <param name="environment">Host environment instance</param>
     public static void SetupSwaggerUi(this IApplicationBuilder builder, IConfiguration configuration, IHostEnvironment environment)
     {
         if (environment.IsProduction())

@@ -10,6 +10,9 @@ using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
 using Newtonsoft.Json;
 
+/// <summary>
+/// Redis distributed implementation
+/// </summary>
 [ExcludeFromCodeCoverage]
 public class RedisDistributedCache : IRedisDistributedCache
 {
@@ -17,12 +20,18 @@ public class RedisDistributedCache : IRedisDistributedCache
 
     private readonly IApplicationSettings _applicationSettings;
 
+    /// <summary>
+    /// Redis distributed implementation
+    /// </summary>
+    /// <param name="distributedCache">DistributedCache instance</param>
+    /// <param name="applicationSettings">ApplicationSettings instance</param>
     public RedisDistributedCache(IDistributedCache distributedCache, IApplicationSettings applicationSettings)
     {
         _distributedCache = distributedCache;
         _applicationSettings = applicationSettings;
     }
 
+    /// <inheritdoc />
     public TEntity GetObject<TEntity>(string key)
     {
         VerifyArguments(new[] { key });
@@ -33,6 +42,7 @@ public class RedisDistributedCache : IRedisDistributedCache
             : JsonConvert.DeserializeObject<TEntity>(cachedValue);
     }
 
+    /// <inheritdoc />
     public async Task<TEntity> GetObjectAsync<TEntity>(string key)
     {
         VerifyArguments(new[] { key });
@@ -43,6 +53,7 @@ public class RedisDistributedCache : IRedisDistributedCache
             : JsonConvert.DeserializeObject<TEntity>(cachedValue);
     }
 
+    /// <inheritdoc />
     public void SetObject<TEntity>(string key, TEntity value, int absoluteExpirationMinute = 0, int slidingExpirationSecond = 0)
     {
         VerifyArguments(new[] { key });
@@ -50,6 +61,7 @@ public class RedisDistributedCache : IRedisDistributedCache
         _distributedCache.SetString(key, serializedObject, SetDistributedCacheEntryOptions(absoluteExpirationMinute, slidingExpirationSecond));            
     }
 
+    /// <inheritdoc />
     public async Task SetObjectAsync<TEntity>(string key, TEntity value, int absoluteExpirationMinute = 0, int slidingExpirationSecond = 0)
     {
         VerifyArguments(new[] { key });
@@ -57,12 +69,14 @@ public class RedisDistributedCache : IRedisDistributedCache
         await _distributedCache.SetStringAsync(key, serializedObject, SetDistributedCacheEntryOptions(absoluteExpirationMinute, slidingExpirationSecond));
     }
 
+    /// <inheritdoc />
     public void Remove(string key)
     {
         VerifyArguments(new[] { key });
         _distributedCache.Remove(key);            
     }
 
+    /// <inheritdoc />
     public async Task RemoveAsync(string key)
     {
         VerifyArguments(new[] { key });

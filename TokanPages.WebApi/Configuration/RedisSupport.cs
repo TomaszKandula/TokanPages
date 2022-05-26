@@ -3,8 +3,16 @@ namespace TokanPages.WebApi.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+/// <summary>
+/// Configure Redis
+/// </summary>
 public static class RedisSupport
 {
+    /// <summary>
+    /// Configure Redis
+    /// </summary>
+    /// <param name="services">Service collection</param>
+    /// <param name="configuration">Provided configuration</param>
     public static void SetupRedisCache(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDistributedRedisCache(option =>

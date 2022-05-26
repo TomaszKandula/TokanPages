@@ -42,9 +42,18 @@ using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.WebTokenService.Validation;
 using TokanPages.Services.AzureStorageService.Factory;
 
+/// <summary>
+/// Register application dependencies
+/// </summary>
 [ExcludeFromCodeCoverage]
 public static class Dependencies
 {
+	/// <summary>
+	/// Register all services
+	/// </summary>
+	/// <param name="services">Service collections</param>
+	/// <param name="configuration">Provided configuration</param>
+	/// <param name="environment">Application host environment</param>
 	public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment = default)
 	{
 		services.CommonServices(configuration);
@@ -53,6 +62,11 @@ public static class Dependencies
 			SetupRetryPolicyWithPolly(services, configuration, environment);
 	}
 
+	/// <summary>
+	/// Register common services
+	/// </summary>
+	/// <param name="services">Service collections</param>
+	/// <param name="configuration">Provided configuration</param>
 	public static void CommonServices(this IServiceCollection services, IConfiguration configuration)
 	{
 		SetupAppSettings(services, configuration);
