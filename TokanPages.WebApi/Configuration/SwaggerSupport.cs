@@ -1,6 +1,7 @@
 namespace TokanPages.WebApi.Configuration;
 
 using System;
+using System.IO;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Hosting;
@@ -15,12 +16,19 @@ public static class SwaggerSupport
 
     private const string ApiName = "Tokan Pages API";
 
+    private const string XmlFileForWebApi = "TokanPages.WebApi.xml";
+
+    private const string XmlFileForDtoModels = "TokanPages.Backend.Dto.xml";
+
     private const string AuthorizationScheme = "Bearer";
 
     public static void SetupSwaggerOptions(this IServiceCollection services, IHostEnvironment environment)
     {
         if (environment.IsProduction())
             return;
+
+        var xmlFileForWebApi = Path.Combine(AppContext.BaseDirectory, XmlFileForWebApi);
+        var xmlFileForDtoModels = Path.Combine(AppContext.BaseDirectory, XmlFileForDtoModels);
 
         services.AddSwaggerGen(options =>
         {
@@ -29,6 +37,10 @@ public static class SwaggerSupport
                 Title = ApiName, 
                 Version = ApiVersion
             });
+
+            options.EnableAnnotations();
+            options.IncludeXmlComments(xmlFileForWebApi);
+            options.IncludeXmlComments(xmlFileForDtoModels);
 
             options.AddSecurityDefinition(AuthorizationScheme, new OpenApiSecurityScheme
             {
