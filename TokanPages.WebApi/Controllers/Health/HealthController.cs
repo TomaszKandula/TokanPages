@@ -25,12 +25,12 @@ public class HealthController : ControllerBase
     public HealthController(DatabaseContext databaseContext) => _databaseContext = databaseContext;
 
     /// <summary>
-    /// Checks the critical components of the application: SQL Server. Because the application depends on a
-    /// database, the health check endpoint connect to the component. If the application cannot connect to a
-    /// critical component, then the path return a HTTP error response code to indicate that the application is
-    /// unhealthy.
+    /// Checks the critical components of the application
     /// </summary>
     /// <remarks>
+    /// Because the application depends on a database, the health check endpoint connect to the component.
+    /// If the application cannot connect to a critical component, then the path return a HTTP error response code to indicate that the application is
+    /// unhealthy.
     /// Azure Health Check requires returned HTTP status code to be Internal Server Error (500) when tests fail;
     /// and OK (200) when all tests pass.
     /// </remarks>
