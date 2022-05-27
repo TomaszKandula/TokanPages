@@ -8,9 +8,16 @@ using System.Diagnostics.CodeAnalysis;
 using Polly.Extensions.Http;
 using Polly;
 
+/// <summary>
+/// HTTP Policy
+/// </summary>
 [ExcludeFromCodeCoverage]
 public static class HttpPolicyHandlers
 {
+    /// <summary>
+    /// Setup retry policy
+    /// </summary>
+    /// <returns>HttpResponseMessage</returns>
     public static IAsyncPolicy<HttpResponseMessage> SetupRetry()
     {
         const int retryCount = 3;

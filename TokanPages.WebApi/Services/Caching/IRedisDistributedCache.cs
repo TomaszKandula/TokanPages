@@ -2,6 +2,9 @@ namespace TokanPages.WebApi.Services.Caching;
 
 using System.Threading.Tasks;
 
+/// <summary>
+/// Redis distributed cache contract
+/// </summary>
 public interface IRedisDistributedCache
 {
     /// <summary>

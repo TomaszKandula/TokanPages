@@ -9,12 +9,19 @@ using Backend.Core.Models;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
 using Newtonsoft.Json;
-    
+
+/// <summary>
+/// Exceptions middleware
+/// </summary>
 [ExcludeFromCodeCoverage]
 public class Exceptions
 {
     private readonly RequestDelegate _requestDelegate;
 
+    /// <summary>
+    /// Exceptions middleware
+    /// </summary>
+    /// <param name="requestDelegate">RequestDelegate instance</param>
     public Exceptions(RequestDelegate requestDelegate) => _requestDelegate = requestDelegate;
 
     /// <summary>
@@ -27,7 +34,7 @@ public class Exceptions
     ///   <item>500 - Internal Server Error</item>
     /// </list>
     /// </summary>
-    /// <param name="httpContext">Current HTTP context.</param>
+    /// <param name="httpContext">Current HTTP context</param>
     public async Task InvokeAsync(HttpContext httpContext)
     {
         try

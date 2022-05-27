@@ -5,7 +5,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Backend.Core.Models;
 using MediatR;
-    
+
+/// <summary>
+/// Base controller with MediatR
+/// </summary>
 [ApiController]
 [AllowAnonymous]
 [Route("api/v{version:apiVersion}/[controller]/[action]")]
@@ -16,7 +19,14 @@ using MediatR;
 [ProducesResponseType(typeof(ApplicationError), StatusCodes.Status500InternalServerError)]
 public class ApiBaseController : ControllerBase
 {
+    /// <summary>
+    /// Mediator instance
+    /// </summary>
     protected readonly IMediator Mediator;
 
+    /// <summary>
+    /// Base controller
+    /// </summary>
+    /// <param name="mediator">Mediator instance</param>
     public ApiBaseController(IMediator mediator) => Mediator = mediator;
 }

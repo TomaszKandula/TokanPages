@@ -8,6 +8,9 @@ using System.Diagnostics.CodeAnalysis;
 using Backend.Cqrs.Handlers.Queries.Subscribers;
 using MediatR;
 
+/// <summary>
+/// Subscribers cache implementation
+/// </summary>
 [ExcludeFromCodeCoverage]
 public class SubscribersCache : ISubscribersCache
 {
@@ -15,12 +18,18 @@ public class SubscribersCache : ISubscribersCache
 
     private readonly IMediator _mediator;
 
+    /// <summary>
+    /// Subscribers cache implementation
+    /// </summary>
+    /// <param name="redisDistributedCache">Redis distributed cache instance</param>
+    /// <param name="mediator">Mediator instance</param>
     public SubscribersCache(IRedisDistributedCache redisDistributedCache, IMediator mediator)
     {
         _redisDistributedCache = redisDistributedCache;
         _mediator = mediator;
     }
 
+    /// <inheritdoc />
     public async Task<List<GetAllSubscribersQueryResult>> GetSubscribers(bool noCache = false)
     {
         const string key = "GetAllSubscribersQueryResult";
@@ -36,6 +45,7 @@ public class SubscribersCache : ISubscribersCache
         return value;
     }
 
+    /// <inheritdoc />
     public async Task<GetSubscriberQueryResult> GetSubscriber(Guid id, bool noCache = false)
     {
         var key = $"subscriber-{id:N}";

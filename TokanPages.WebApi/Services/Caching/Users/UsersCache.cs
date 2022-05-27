@@ -8,6 +8,9 @@ using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 using MediatR;
 
+/// <summary>
+/// Users cache implementation
+/// </summary>
 [ExcludeFromCodeCoverage]
 public class UsersCache : IUsersCache
 {
@@ -15,12 +18,18 @@ public class UsersCache : IUsersCache
 
     private readonly IMediator _mediator;
 
+    /// <summary>
+    /// Users cache implementation
+    /// </summary>
+    /// <param name="redisDistributedCache">Redis distributed cache instance</param>
+    /// <param name="mediator">Mediator instance</param>
     public UsersCache(IRedisDistributedCache redisDistributedCache, IMediator mediator)
     {
         _redisDistributedCache = redisDistributedCache;
         _mediator = mediator;
     }
 
+    /// <inheritdoc />
     public async Task<List<GetAllUsersQueryResult>> GetUsers(bool noCache = false)
     {
         const string key = "GetAllUsersQueryResult";
@@ -36,6 +45,7 @@ public class UsersCache : IUsersCache
         return value;
     }
 
+    /// <inheritdoc />
     public async Task<GetUserQueryResult> GetUser(Guid id, bool noCache = false)
     {
         var key = $"user-{id:N}";

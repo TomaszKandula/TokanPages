@@ -8,9 +8,19 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.DependencyInjection;
 
+/// <summary>
+/// Docker support
+/// </summary>
 [ExcludeFromCodeCoverage]
 public static class DockerSupport
 {
+    /// <summary>
+    /// Adds host IP addresses to known proxies
+    /// </summary>
+    /// <remarks>
+    /// Setup forwarded headers
+    /// </remarks>
+    /// <param name="services">Service collection</param>
     public static void SetupDockerInternalNetwork(this IServiceCollection services)
     {
         var hostName = Dns.GetHostName();

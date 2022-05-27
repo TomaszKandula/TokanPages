@@ -11,6 +11,9 @@ using Backend.Database.Initializer;
 using Serilog;
 using Serilog.Events;
 
+/// <summary>
+/// Program
+/// </summary>
 [ExcludeFromCodeCoverage]
 public static class Program
 {
@@ -23,6 +26,11 @@ public static class Program
     private const string LogTemplate 
         = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}";
 
+    /// <summary>
+    /// Main entry point
+    /// </summary>
+    /// <param name="args">Argument array</param>
+    /// <returns>Integer</returns>
     public static int Main(string[] args)
     {
         try
