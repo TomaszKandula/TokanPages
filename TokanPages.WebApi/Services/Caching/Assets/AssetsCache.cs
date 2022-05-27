@@ -8,19 +8,28 @@ using Backend.Cqrs.Handlers.Queries.Assets;
 using TokanPages.Services.HttpClientService.Models;
 using MediatR;
 
+/// <summary>
+/// Assets cache implementation
+/// </summary>
 [ExcludeFromCodeCoverage]
 public class AssetsCache : IAssetsCache
 {
     private readonly IRedisDistributedCache _redisDistributedCache;
 
     private readonly IMediator _mediator;
-    
+
+    /// <summary>
+    /// Asset cache implementation
+    /// </summary>
+    /// <param name="redisDistributedCache">Redis distributed cache instance</param>
+    /// <param name="mediator">Mediator instance</param>
     public AssetsCache(IRedisDistributedCache redisDistributedCache, IMediator mediator)
     {
         _redisDistributedCache = redisDistributedCache;
         _mediator = mediator;
     }
 
+    /// <inheritdoc />
     public async Task<IActionResult> GetAsset(string blobName, bool noCache = false)
     {
         if (noCache)
@@ -36,6 +45,7 @@ public class AssetsCache : IAssetsCache
         return result;
     }
 
+    /// <inheritdoc />
     public async Task<IActionResult> GetArticleAsset(string id, string assetName, bool noCache = false)
     {
         var key = $"{id}/{assetName}";
