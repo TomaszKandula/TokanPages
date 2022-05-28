@@ -43,7 +43,6 @@ public class GetArticleQueryHandlerTest : TestBase
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = UserAlias,
-            LastLogged = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -155,7 +154,6 @@ public class GetArticleQueryHandlerTest : TestBase
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            LastLogged = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 

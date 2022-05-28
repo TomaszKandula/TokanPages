@@ -128,7 +128,6 @@ public class AddUserCommandHandlerTest : TestBase
         result[0].EmailAddress.Should().Be(addUserCommand.EmailAddress);
         result[0].UserAlias.Should().Be(addUserCommand.UserAlias.ToLower());
         result[0].IsActivated.Should().BeFalse();
-        result[0].LastLogged.Should().BeNull();
         result[0].CryptedPassword.Should().HaveLength(mockedPassword.Length);
         result[0].ResetId.Should().BeNull();
         result[0].ResetIdEnds.Should().BeNull();
@@ -212,7 +211,6 @@ public class AddUserCommandHandlerTest : TestBase
         result[0].EmailAddress.Should().Be(testEmail);
         result[0].UserAlias.Should().Be(users.UserAlias);
         result[0].IsActivated.Should().BeFalse();
-        result[0].LastLogged.Should().BeNull();
         result[0].CryptedPassword.Should().HaveLength(mockedPassword.Length);
         result[0].ResetId.Should().BeNull();
         result[0].ResetIdEnds.Should().BeNull();

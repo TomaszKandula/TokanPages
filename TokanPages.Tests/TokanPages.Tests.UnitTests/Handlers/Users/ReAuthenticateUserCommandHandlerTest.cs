@@ -43,7 +43,6 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            LastLogged = null,
             CryptedPassword = cryptedPassword
         };
 
@@ -212,7 +211,6 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            LastLogged = null,
             CryptedPassword = cryptedPassword
         };
 

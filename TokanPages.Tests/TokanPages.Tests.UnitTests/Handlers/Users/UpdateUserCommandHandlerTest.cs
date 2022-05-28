@@ -25,7 +25,6 @@ public class UpdateUserCommandHandlerTest : TestBase
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            LastLogged = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -106,7 +105,6 @@ public class UpdateUserCommandHandlerTest : TestBase
                 EmailAddress = testEmail,
                 UserAlias = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                LastLogged = null,
                 CryptedPassword = DataUtilityService.GetRandomString()
             },
             new()
@@ -114,7 +112,6 @@ public class UpdateUserCommandHandlerTest : TestBase
                 EmailAddress = testEmail,
                 UserAlias = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                LastLogged = null,
                 CryptedPassword = DataUtilityService.GetRandomString()
             },
         };

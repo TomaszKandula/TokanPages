@@ -8,13 +8,11 @@ public static class User1
 {
     public static readonly Guid Id = Guid.Parse("08be222f-dfcd-42db-8509-fd78ef09b912");
 
-    public const string UserAlias = "esexp";
-
     public const bool IsActivated = true;
 
-    public const string EmailAddress = "ester.exposito@gmail.com";
+    public const string UserAlias = "esexp";
 
-    public static readonly DateTime? LastLogged = DateTime.Parse("2020-01-10 15:00:33");
+    public const string EmailAddress = "ester.exposito@gmail.com";
 
     public const string CryptedPassword = "$2a$12$Bl4ebq6Qi8F4aY5w9wzs7echVwERkAyXxmAua3yUpvUX40DtpCKsK";
 

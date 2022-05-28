@@ -9,17 +9,15 @@ using Contracts;
 [ExcludeFromCodeCoverage]
 public class Users : Entity<Guid>, IAuditable
 {
-    [Required]
-    [MaxLength(255)]
-    public string UserAlias { get; set; }
-
     public bool IsActivated { get; set; }
 
     [Required]
     [MaxLength(255)]
-    public string EmailAddress { get; set; }
+    public string UserAlias { get; set; }
 
-    public DateTime? LastLogged { get; set; }
+    [Required]
+    [MaxLength(255)]
+    public string EmailAddress { get; set; }
 
     [Required]
     [MaxLength(100)]

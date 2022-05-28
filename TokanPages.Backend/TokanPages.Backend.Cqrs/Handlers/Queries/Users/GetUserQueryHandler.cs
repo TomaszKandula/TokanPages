@@ -28,8 +28,7 @@ public class GetUserQueryHandler : RequestHandler<GetUserQuery, GetUserQueryResu
                 FirstName = userInfo.FirstName,
                 LastName = userInfo.LastName,
                 Registered = userInfo.CreatedAt,
-                LastUpdated = userInfo.ModifiedAt,
-                LastLogged = users.LastLogged
+                LastUpdated = userInfo.ModifiedAt
             })
             .AsNoTracking()
             .SingleOrDefaultAsync(cancellationToken);

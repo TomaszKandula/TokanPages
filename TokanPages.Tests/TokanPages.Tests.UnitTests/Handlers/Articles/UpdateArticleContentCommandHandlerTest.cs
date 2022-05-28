@@ -31,7 +31,6 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            LastLogged = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -115,7 +114,6 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            LastLogged = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -204,7 +202,6 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            LastLogged = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 

@@ -26,7 +26,6 @@ public class GetAllUsersQueryHandlerTest : TestBase
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                LastLogged = null,
                 CryptedPassword = DataUtilityService.GetRandomString()
             },
             new()
@@ -35,7 +34,6 @@ public class GetAllUsersQueryHandlerTest : TestBase
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                LastLogged = null,
                 CryptedPassword = DataUtilityService.GetRandomString()
             }
         };

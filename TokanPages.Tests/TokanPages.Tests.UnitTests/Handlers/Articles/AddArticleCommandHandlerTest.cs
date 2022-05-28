@@ -60,7 +60,6 @@ public class AddArticleCommandHandlerTest : TestBase
             UserAlias  = _dataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = _dataUtilityService.GetRandomEmail(),
-            LastLogged = _dataUtilityService.GetRandomDateTime(),
             CryptedPassword = _dataUtilityService.GetRandomString()
         };
 

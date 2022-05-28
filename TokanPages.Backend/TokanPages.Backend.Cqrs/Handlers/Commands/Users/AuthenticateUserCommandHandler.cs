@@ -70,7 +70,6 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
         var expiresIn = _applicationSettings.IdentityServer.RefreshTokenExpiresIn;
         var refreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, expiresIn);
 
-        currentUser.LastLogged = currentDateTime;
         var newUserToken = new UserTokens
         {
             UserId = currentUser.Id,

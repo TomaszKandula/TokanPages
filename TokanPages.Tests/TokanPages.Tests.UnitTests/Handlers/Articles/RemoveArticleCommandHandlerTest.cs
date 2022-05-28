@@ -27,7 +27,6 @@ public class RemoveArticleCommandHandlerTest : TestBase
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            LastLogged = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -76,7 +75,6 @@ public class RemoveArticleCommandHandlerTest : TestBase
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            LastLogged = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 

@@ -38,7 +38,6 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            LastLogged = null,
             CryptedPassword = cryptedPassword
         };
 
@@ -194,7 +193,6 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            LastLogged = null,
             CryptedPassword = cryptedPassword
         };
 
@@ -245,7 +243,6 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            LastLogged = null,
             CryptedPassword = cryptedPassword
         };
 
@@ -303,7 +300,6 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = false,
-            LastLogged = null,
             CryptedPassword = cryptedPassword
         };
 

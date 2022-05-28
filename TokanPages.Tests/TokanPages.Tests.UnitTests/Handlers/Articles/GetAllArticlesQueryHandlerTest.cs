@@ -29,7 +29,6 @@ public class GetAllArticlesQueryHandlerTest : TestBase
             UserAlias  = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
-            LastLogged = DataUtilityService.GetRandomDateTime(),
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 

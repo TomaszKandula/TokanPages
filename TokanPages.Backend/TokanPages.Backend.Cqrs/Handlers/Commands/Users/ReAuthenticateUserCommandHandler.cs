@@ -79,7 +79,6 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         var tokenExpires = _dateTimeService.Now.AddMinutes(_applicationSettings.IdentityServer.WebTokenExpiresIn);
         var userToken = await _userService.GenerateUserToken(currentUser, tokenExpires, cancellationToken);
 
-        currentUser.LastLogged = currentDateTime;
         var roles = await _userService.GetUserRoles(currentUser.Id, cancellationToken);
         var permissions = await _userService.GetUserPermissions(currentUser.Id, cancellationToken);
 
