@@ -88,31 +88,31 @@ public sealed class UserService : IUserService
         await _databaseContext.SaveChangesAsync();
     }
 
-    public async Task<Guid?> GetUserId()
+    public async Task<Guid?> GetUserId(CancellationToken cancellationToken = default)
     {
-        await EnsureUserData();
+        await EnsureUserData(cancellationToken);
         return _user?.UserId;
     }
 
-    public async Task<GetUserDto> GetUser()
+    public async Task<GetUserDto> GetUser(CancellationToken cancellationToken = default)
     {
-        await EnsureUserData();
+        await EnsureUserData(cancellationToken);
         return _user;
     }
 
-    public async Task<List<GetUserRoleDto>> GetUserRoles(Guid? userId)
+    public async Task<List<GetUserRoleDto>> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default)
     {
-        await EnsureUserRoles(userId);
+        await EnsureUserRoles(userId, cancellationToken);
         return _userRoles;
     }
 
-    public async Task<List<GetUserPermissionDto>> GetUserPermissions(Guid? userId)
+    public async Task<List<GetUserPermissionDto>> GetUserPermissions(Guid? userId, CancellationToken cancellationToken = default)
     {
-        await EnsureUserPermissions(userId);
+        await EnsureUserPermissions(userId, cancellationToken);
         return _userPermissions;
     }
 
-    public async Task<bool?> HasRoleAssigned(string userRoleName)
+    public async Task<bool?> HasRoleAssigned(string userRoleName, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrEmpty(userRoleName))
             throw ArgumentNullException;
@@ -125,12 +125,12 @@ public sealed class UserService : IUserService
             .AsNoTracking()
             .Include(roles => roles.Role)
             .Where(roles => roles.UserId == userId && roles.Role.Name == userRoleName)
-            .ToListAsync();
+            .ToListAsync(cancellationToken);
 
         return givenRoles.Any();
     }
 
-    public async Task<bool> HasRoleAssigned(Guid roleId, Guid? userId)
+    public async Task<bool> HasRoleAssigned(Guid roleId, Guid? userId, CancellationToken cancellationToken = default)
     {
         userId ??= UserIdFromClaim();
             
@@ -138,12 +138,12 @@ public sealed class UserService : IUserService
             .AsNoTracking()
             .Include(userRoles => userRoles.Role)
             .Where(userRoles => userRoles.UserId == userId && userRoles.Role.Id == roleId)
-            .ToListAsync();
+            .ToListAsync(cancellationToken);
 
         return givenRoles.Any();
     }
 
-    public async Task<bool?> HasPermissionAssigned(string userPermissionName)
+    public async Task<bool?> HasPermissionAssigned(string userPermissionName, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrEmpty(userPermissionName))
             throw ArgumentNullException;
@@ -156,12 +156,12 @@ public sealed class UserService : IUserService
             .AsNoTracking()
             .Include(permissions => permissions.Permission)
             .Where(permissions => permissions.UserId == userId && permissions.Permission.Name == userPermissionName)
-            .ToListAsync();
+            .ToListAsync(cancellationToken);
 
         return givenPermissions.Any();
     }
 
-    public async Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId)
+    public async Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId, CancellationToken cancellationToken = default)
     {
         userId ??= UserIdFromClaim();
 
@@ -169,7 +169,7 @@ public sealed class UserService : IUserService
             .AsNoTracking()
             .Include(userPermissions => userPermissions.Permission)
             .Where(userPermissions => userPermissions.UserId == userId && userPermissions.Permission.Id == permissionId)
-            .ToListAsync();
+            .ToListAsync(cancellationToken);
 
         return givenPermissions.Any();
     }
@@ -182,13 +182,18 @@ public sealed class UserService : IUserService
             .Include(roles => roles.Role)
             .Where(roles => roles.UserId == users.Id)
             .ToListAsync(cancellationToken);
-            
+
+        var userInfo = await _databaseContext.UserInfo
+            .AsNoTracking()
+            .Where(info => info.UserId == users.Id)
+            .SingleOrDefaultAsync(cancellationToken);
+
         var claimsIdentity = new ClaimsIdentity(new[]
         {
             new Claim(ClaimTypes.Name, users.UserAlias),
             new Claim(ClaimTypes.NameIdentifier, users.Id.ToString()),
-            new Claim(ClaimTypes.GivenName, users.FirstName),
-            new Claim(ClaimTypes.Surname, users.LastName),
+            new Claim(ClaimTypes.GivenName,  userInfo is null ? string.Empty : userInfo.FirstName),
+            new Claim(ClaimTypes.Surname, userInfo is null ? string.Empty : userInfo.LastName),
             new Claim(ClaimTypes.Email, users.EmailAddress)
         });
 
@@ -330,7 +335,7 @@ public sealed class UserService : IUserService
         return Guid.Parse(userIds.First().Value);
     }
 
-    private async Task EnsureUserRoles(Guid? userId)
+    private async Task EnsureUserRoles(Guid? userId, CancellationToken cancellationToken = default)
     {
         if (_userRoles != null)
             return;
@@ -340,7 +345,7 @@ public sealed class UserService : IUserService
             .AsNoTracking()
             .Include(roles => roles.Role)
             .Where(roles => roles.UserId == getUserId)
-            .ToListAsync();
+            .ToListAsync(cancellationToken);
 
         if (!userRoles.Any())
             throw AccessDeniedException;
@@ -356,7 +361,7 @@ public sealed class UserService : IUserService
         }
     }
 
-    private async Task EnsureUserPermissions(Guid? userId)
+    private async Task EnsureUserPermissions(Guid? userId, CancellationToken cancellationToken = default)
     {
         if (_userPermissions != null)
             return;
@@ -366,7 +371,7 @@ public sealed class UserService : IUserService
             .AsNoTracking()
             .Include(permissions => permissions.Permission)
             .Where(permissions => permissions.UserId == getUserId)
-            .ToListAsync();
+            .ToListAsync(cancellationToken);
 
         if (!userPermissions.Any())
             throw AccessDeniedException;
@@ -381,11 +386,11 @@ public sealed class UserService : IUserService
         }
     }
 
-    private async Task EnsureUserData()
+    private async Task EnsureUserData(CancellationToken cancellationToken = default)
     {
         if (_user != null) 
             return;
-            
+
         var userId = UserIdFromClaim();
         if (userId == null)
         {
@@ -393,24 +398,30 @@ public sealed class UserService : IUserService
             return;
         }
 
-        var users = await _databaseContext.Users
+        var user = await _databaseContext.Users
             .AsNoTracking()
-            .Where(users => users.Id == userId)
-            .ToListAsync();
+            .SingleOrDefaultAsync(users => users.Id == userId, cancellationToken);
 
-        if (!users.Any())
+        if (user is null)
+            throw AccessDeniedException;
+
+        var userInfo = await _databaseContext.UserInfo
+            .AsNoTracking()
+            .SingleOrDefaultAsync(info => info.UserId == user.Id, cancellationToken);
+
+        if (userInfo is null)
             throw AccessDeniedException;
 
         _user = new GetUserDto
         {
-            UserId = users.First().Id,
-            AliasName = users.First().UserAlias,
-            AvatarName = users.First().AvatarName,
-            FirstName = users.First().FirstName,
-            LastName = users.First().LastName,
-            Email = users.First().EmailAddress,
-            ShortBio = users.First().ShortBio,
-            Registered = users.First().Registered
+            UserId = user.Id,
+            AliasName = user.UserAlias,
+            AvatarName = userInfo.UserImageName,
+            FirstName = userInfo.FirstName,
+            LastName = userInfo.LastName,
+            Email = user.EmailAddress,
+            ShortBio = userInfo.UserAboutText,
+            Registered = userInfo.CreatedAt
         };
     }
 }
