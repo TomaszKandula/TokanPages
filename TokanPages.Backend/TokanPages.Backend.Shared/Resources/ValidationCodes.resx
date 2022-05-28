@@ -153,4 +153,7 @@
   <data name="NAME_TOO_LONG" xml:space="preserve">
     <value>The given name is too long</value>
   </data>
+  <data name="INVALID_FILESIZE" xml:space="preserve">
+    <value>The file is too large</value>
+  </data>
 </root>

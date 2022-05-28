@@ -116,5 +116,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("NAME_TOO_LONG", resourceCulture);
             }
         }
+        
+        public static string INVALID_FILESIZE {
+            get {
+                return ResourceManager.GetString("INVALID_FILESIZE", resourceCulture);
+            }
+        }
     }
 }
