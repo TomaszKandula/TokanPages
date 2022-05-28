@@ -22,11 +22,7 @@ public class RemoveUserCommandHandlerTest : TestBase
         { 
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTime.Now,
-            LastUpdated = null,
             LastLogged = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };

@@ -8,7 +8,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Backend.Shared;
 using Backend.Shared.Models;
 using Backend.Core.Exceptions;
 using Backend.Domain.Entities;
@@ -128,13 +127,8 @@ public class AddUserCommandHandlerTest : TestBase
         result.Should().HaveCount(1);
         result[0].EmailAddress.Should().Be(addUserCommand.EmailAddress);
         result[0].UserAlias.Should().Be(addUserCommand.UserAlias.ToLower());
-        result[0].FirstName.Should().Be(addUserCommand.FirstName);
-        result[0].LastName.Should().Be(addUserCommand.LastName);
         result[0].IsActivated.Should().BeFalse();
         result[0].LastLogged.Should().BeNull();
-        result[0].LastUpdated.Should().BeNull();
-        result[0].AvatarName.Should().Be(null);
-        result[0].ShortBio.Should().BeNull();
         result[0].CryptedPassword.Should().HaveLength(mockedPassword.Length);
         result[0].ResetId.Should().BeNull();
         result[0].ResetIdEnds.Should().BeNull();
@@ -161,10 +155,6 @@ public class AddUserCommandHandlerTest : TestBase
         { 
             EmailAddress = testEmail,
             UserAlias = DataUtilityService.GetRandomString().ToLower(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Registered = DateTime.Now,
-            AvatarName = Constants.Defaults.AvatarName,
             CryptedPassword = DataUtilityService.GetRandomString(),
             ActivationId = Guid.NewGuid(),
             ActivationIdEnds = oldActivationIdEnds
@@ -221,13 +211,8 @@ public class AddUserCommandHandlerTest : TestBase
         result.Should().HaveCount(1);
         result[0].EmailAddress.Should().Be(testEmail);
         result[0].UserAlias.Should().Be(users.UserAlias);
-        result[0].FirstName.Should().Be(users.FirstName);
-        result[0].LastName.Should().Be(users.LastName);
         result[0].IsActivated.Should().BeFalse();
         result[0].LastLogged.Should().BeNull();
-        result[0].LastUpdated.Should().BeNull();
-        result[0].AvatarName.Should().Be(users.AvatarName);
-        result[0].ShortBio.Should().BeNull();
         result[0].CryptedPassword.Should().HaveLength(mockedPassword.Length);
         result[0].ResetId.Should().BeNull();
         result[0].ResetIdEnds.Should().BeNull();
@@ -253,9 +238,6 @@ public class AddUserCommandHandlerTest : TestBase
         { 
             EmailAddress = testEmail,
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Registered = DateTime.Now,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 

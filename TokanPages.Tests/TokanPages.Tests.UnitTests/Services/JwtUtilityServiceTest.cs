@@ -8,7 +8,8 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Backend.Domain.Enums;
 using Backend.Database.Initializer.Data.Users;
-    
+using Backend.Database.Initializer.Data.UserInfo;
+
 public class JwtUtilityServiceTest : TestBase
 {
     [Fact]
@@ -33,8 +34,8 @@ public class JwtUtilityServiceTest : TestBase
             new Claim(ClaimTypes.Name, userAlias),
             new Claim(ClaimTypes.Role, nameof(Roles.EverydayUser)),
             new Claim(ClaimTypes.NameIdentifier, User1.Id.ToString()),
-            new Claim(ClaimTypes.GivenName, User1.FirstName),
-            new Claim(ClaimTypes.Surname, User1.LastName),
+            new Claim(ClaimTypes.GivenName, UserInfo1.FirstName),
+            new Claim(ClaimTypes.Surname, UserInfo1.LastName),
             new Claim(ClaimTypes.Email, User1.EmailAddress)
         });
             
@@ -54,8 +55,8 @@ public class JwtUtilityServiceTest : TestBase
         securityToken?.Claims.First(claim => claim.Type == claimTypesName).Value.Should().Be(userAlias);
         securityToken?.Claims.First(claim => claim.Type == claimTypesRole).Value.Should().Be(nameof(Roles.EverydayUser));
         securityToken?.Claims.First(claim => claim.Type == claimTypesNameIdentifier).Value.Should().Be(User1.Id.ToString());
-        securityToken?.Claims.First(claim => claim.Type == claimTypesGivenName).Value.Should().Be(User1.FirstName);
-        securityToken?.Claims.First(claim => claim.Type == claimTypesSurname).Value.Should().Be(User1.LastName);
+        securityToken?.Claims.First(claim => claim.Type == claimTypesGivenName).Value.Should().Be(UserInfo1.FirstName);
+        securityToken?.Claims.First(claim => claim.Type == claimTypesSurname).Value.Should().Be(UserInfo1.LastName);
         securityToken?.Claims.First(claim => claim.Type == claimTypesEmail).Value.Should().Be(User1.EmailAddress);
     }
 

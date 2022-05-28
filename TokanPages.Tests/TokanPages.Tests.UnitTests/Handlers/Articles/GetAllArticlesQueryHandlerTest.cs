@@ -28,14 +28,8 @@ public class GetAllArticlesQueryHandlerTest : TestBase
         {
             UserAlias  = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             EmailAddress = DataUtilityService.GetRandomEmail(),
-            Registered = DataUtilityService.GetRandomDateTime(),
             LastLogged = DataUtilityService.GetRandomDateTime(),
-            LastUpdated = DataUtilityService.GetRandomDateTime(),
-            AvatarName = DataUtilityService.GetRandomString(),
-            ShortBio = DataUtilityService.GetRandomString(),
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -44,7 +38,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
             
         var articles = new List<Articles>
         {
-            new ()
+            new()
             {
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
@@ -54,7 +48,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
                 UpdatedAt = null,
                 UserId = user.Id
             },
-            new ()
+            new()
             {
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),

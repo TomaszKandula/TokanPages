@@ -17,6 +17,7 @@ using Backend.Shared.Resources;
 using Backend.Cqrs.Handlers.Queries.Users;
 using Backend.Cqrs.Handlers.Commands.Users;
 using Backend.Database.Initializer.Data.Users;
+using Backend.Database.Initializer.Data.UserInfo;
 using Factories;
 
 public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
@@ -33,7 +34,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
     public async Task GivenValidCredentials_WhenAuthenticateUser_ShouldSucceed()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/AuthenticateUser/";
+        const string request = $"{ApiBaseUrl}/AuthenticateUser/";
         var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
 
         var payLoad = new AuthenticateUserDto
@@ -59,12 +60,12 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             
         var deserialized = JsonConvert.DeserializeObject<AuthenticateUserCommandResult>(content);
         deserialized?.UserId.ToString().IsGuid().Should().BeTrue();
-        deserialized?.FirstName.Should().Be(User1.FirstName);
-        deserialized?.LastName.Should().Be(User1.LastName);
+        deserialized?.FirstName.Should().Be(UserInfo1.FirstName);
+        deserialized?.LastName.Should().Be(UserInfo1.LastName);
         deserialized?.AliasName.Should().Be(User1.UserAlias);
-        deserialized?.ShortBio.Should().Be(User1.ShortBio);
-        deserialized?.AvatarName.Should().Be(User1.AvatarName);
-        deserialized?.Registered.Should().Be(User1.Registered);
+        deserialized?.ShortBio.Should().Be(UserInfo1.UserAboutText);
+        deserialized?.AvatarName.Should().Be(UserInfo1.UserImageName);
+        deserialized?.Registered.Should().Be(UserInfo1.CreatedAt);
         deserialized?.UserToken.Should().NotBeEmpty();
     }
 

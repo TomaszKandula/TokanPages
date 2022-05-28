@@ -28,14 +28,10 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         var users = new Users
         {
             Id = userId,
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
             LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -64,7 +60,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider
-            .Setup(provider => provider.GetUserId())
+            .Setup(provider => provider.GetUserId(It.IsAny<CancellationToken>()))
             .ReturnsAsync(users.Id);
 
         mockedAzureBlobStorage
@@ -116,14 +112,10 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         var users = new Users
         {
             Id = userId,
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
             LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -152,7 +144,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
             
         mockedUserProvider
-            .Setup(provider => provider.GetUserId())
+            .Setup(provider => provider.GetUserId(It.IsAny<CancellationToken>()))
             .ReturnsAsync(users.Id);
 
         mockedAzureBlobStorage
@@ -209,14 +201,10 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         var users = new Users
         {
             Id = userId,
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
             LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -244,7 +232,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider
-            .Setup(provider => provider.GetUserId())
+            .Setup(provider => provider.GetUserId(It.IsAny<CancellationToken>()))
             .ReturnsAsync((Guid?) null);
 
         mockedAzureBlobStorage

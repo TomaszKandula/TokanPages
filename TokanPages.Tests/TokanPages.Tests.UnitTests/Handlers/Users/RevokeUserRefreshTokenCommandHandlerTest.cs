@@ -29,10 +29,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -71,7 +68,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
         };
 
         mockedUserService
-            .Setup(service => service.GetUser())
+            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
             .ReturnsAsync(userDto);
 
         mockedUserService
@@ -105,10 +102,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -137,7 +131,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
         };
 
         mockedUserService
-            .Setup(service => service.GetUser())
+            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
             .ReturnsAsync(userDto);
 
         mockedUserService

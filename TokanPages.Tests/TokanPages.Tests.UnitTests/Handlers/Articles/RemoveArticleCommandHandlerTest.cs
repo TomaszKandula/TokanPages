@@ -24,14 +24,10 @@ public class RemoveArticleCommandHandlerTest : TestBase
 
         var users = new Users
         {
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
             LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -77,14 +73,10 @@ public class RemoveArticleCommandHandlerTest : TestBase
 
         var users = new Users
         {
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
             LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 

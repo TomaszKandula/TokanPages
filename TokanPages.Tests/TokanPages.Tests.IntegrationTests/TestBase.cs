@@ -14,6 +14,7 @@ using Services.WebTokenService;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Database.Initializer.Data.Users;
 using Backend.Core.Utilities.DataUtilityService;
+using Backend.Database.Initializer.Data.UserInfo;
 
 public class TestBase
 {
@@ -92,22 +93,22 @@ public class TestBase
         {
             case nameof(User1):
                 userId = User1.Id.ToString();
-                userFirstName = User1.FirstName;
-                userLastName = User1.LastName;
+                userFirstName = UserInfo1.FirstName;
+                userLastName = UserInfo1.LastName;
                 userEmailAddress = User1.EmailAddress;
                 break;
                 
             case nameof(User2):
                 userId = User2.Id.ToString();
-                userFirstName = User2.FirstName;
-                userLastName = User2.LastName;
+                userFirstName = UserInfo2.FirstName;
+                userLastName = UserInfo2.LastName;
                 userEmailAddress = User2.EmailAddress;
                 break;
 
             case nameof(User3):
                 userId = User3.Id.ToString();
-                userFirstName = User3.FirstName;
-                userLastName = User3.LastName;
+                userFirstName = UserInfo3.FirstName;
+                userLastName = UserInfo3.LastName;
                 userEmailAddress = User3.EmailAddress;
                 break;
         }

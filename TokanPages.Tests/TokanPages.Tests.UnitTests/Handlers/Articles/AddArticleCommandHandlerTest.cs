@@ -59,14 +59,8 @@ public class AddArticleCommandHandlerTest : TestBase
         {
             UserAlias  = _dataUtilityService.GetRandomString(),
             IsActivated = true,
-            FirstName = _dataUtilityService.GetRandomString(),
-            LastName = _dataUtilityService.GetRandomString(),
             EmailAddress = _dataUtilityService.GetRandomEmail(),
-            Registered = _dataUtilityService.GetRandomDateTime(),
             LastLogged = _dataUtilityService.GetRandomDateTime(),
-            LastUpdated = _dataUtilityService.GetRandomDateTime(),
-            AvatarName = _dataUtilityService.GetRandomString(),
-            ShortBio = _dataUtilityService.GetRandomString(),
             CryptedPassword = _dataUtilityService.GetRandomString()
         };
 
@@ -79,7 +73,7 @@ public class AddArticleCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider
-            .Setup(provider => provider.GetUserId())
+            .Setup(provider => provider.GetUserId(It.IsAny<CancellationToken>()))
             .ReturnsAsync(user.Id);
             
         var addArticleCommandHandler = new AddArticleCommandHandler(

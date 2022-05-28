@@ -42,7 +42,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider
-            .Setup(provider => provider.HasPermissionAssigned(It.IsAny<string>()))
+            .Setup(provider => provider.HasPermissionAssigned(It.IsAny<string>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(true);
 
         var updateArticleVisibilityCommand = new UpdateArticleVisibilityCommand
@@ -86,7 +86,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider
-            .Setup(provider => provider.HasPermissionAssigned(It.IsAny<string>()))
+            .Setup(provider => provider.HasPermissionAssigned(It.IsAny<string>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(false);
 
         var updateArticleVisibilityCommand = new UpdateArticleVisibilityCommand
@@ -127,7 +127,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider
-            .Setup(provider => provider.HasPermissionAssigned(It.IsAny<string>()))
+            .Setup(provider => provider.HasPermissionAssigned(It.IsAny<string>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(true);
 
         var updateArticleVisibilityCommand = new UpdateArticleVisibilityCommand
@@ -166,14 +166,10 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         return new Users
         {
             Id = userId,
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
             LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
     }

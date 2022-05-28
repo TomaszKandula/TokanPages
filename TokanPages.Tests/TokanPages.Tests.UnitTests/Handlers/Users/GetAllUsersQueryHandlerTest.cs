@@ -20,29 +20,21 @@ public class GetAllUsersQueryHandlerTest : TestBase
         // Arrange
         var users = new List<Users>
         {
-            new ()
+            new()
             {
                 Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
-                FirstName = DataUtilityService.GetRandomString(),
-                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                Registered = DateTime.Now,
-                LastUpdated = null,
                 LastLogged = null,
                 CryptedPassword = DataUtilityService.GetRandomString()
             },
-            new ()
+            new()
             {
                 Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
-                FirstName = DataUtilityService.GetRandomString(),
-                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                Registered = DateTime.Now,
-                LastUpdated = null,
                 LastLogged = null,
                 CryptedPassword = DataUtilityService.GetRandomString()
             }

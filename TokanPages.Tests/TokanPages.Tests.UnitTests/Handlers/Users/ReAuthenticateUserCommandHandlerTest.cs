@@ -42,13 +42,23 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             Id = userId,
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
             LastLogged = null,
             CryptedPassword = cryptedPassword
+        };
+
+        var userInfo = new UserInfo
+        {
+            UserId = user.Id,
+            FirstName = DataUtilityService.GetRandomString(),
+            LastName = DataUtilityService.GetRandomString(),
+            UserAboutText = DataUtilityService.GetRandomString(),
+            UserImageName = null,
+            UserVideoName = null,
+            CreatedBy = Guid.Empty,
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            ModifiedBy = null,
+            ModifiedAt = null
         };
 
         var userRefreshToken = new UserRefreshTokens
@@ -66,6 +76,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             
         var databaseContext = GetTestDatabaseContext();
         await databaseContext.Users.AddAsync(user);
+        await databaseContext.UserInfo.AddAsync(userInfo);
         await databaseContext.UserRefreshTokens.AddAsync(userRefreshToken);
         await databaseContext.SaveChangesAsync();
             
@@ -74,7 +85,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var mockedUserServiceProvider = new Mock<IUserService>();
 
         mockedUserServiceProvider
-            .Setup(service => service.GetUserId())
+            .Setup(service => service.GetUserId(It.IsAny<CancellationToken>()))
             .ReturnsAsync(userId);
 
         mockedUserServiceProvider
@@ -149,11 +160,6 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         // Assert
         result.UserId.Should().Be(user.Id);
         result.AliasName.Should().Be(user.UserAlias);
-        result.AvatarName.Should().Be(user.AvatarName);
-        result.FirstName.Should().Be(user.FirstName);
-        result.LastName.Should().Be(user.LastName);
-        result.ShortBio.Should().Be(user.ShortBio);
-        result.Registered.Should().Be(user.Registered);
         result.UserToken.Should().Be(newUserToken);
             
         var userTokens = await databaseContext.UserTokens
@@ -205,11 +211,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             Id = userId,
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
             LastLogged = null,
             CryptedPassword = cryptedPassword
         };
