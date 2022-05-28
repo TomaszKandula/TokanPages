@@ -65,7 +65,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         deserialized?.AliasName.Should().Be(User1.UserAlias);
         deserialized?.ShortBio.Should().Be(UserInfo1.UserAboutText);
         deserialized?.AvatarName.Should().Be(UserInfo1.UserImageName);
-        deserialized?.Registered.Should().Be(UserInfo1.CreatedAt);
+        deserialized?.Registered.Should().Be(User1.CreatedAt);
         deserialized?.UserToken.Should().NotBeEmpty();
     }
 
