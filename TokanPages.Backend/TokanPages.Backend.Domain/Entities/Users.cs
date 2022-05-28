@@ -16,27 +16,9 @@ public class Users : Entity<Guid>
 
     [Required]
     [MaxLength(255)]
-    public string FirstName { get; set; } //TODO: to be deleted
-
-    [Required]
-    [MaxLength(255)]
-    public string LastName { get; set; } //TODO: to be deleted
-
-    [Required]
-    [MaxLength(255)]
     public string EmailAddress { get; set; }
 
-    public DateTime Registered { get; set; } //TODO: to be deleted
-
     public DateTime? LastLogged { get; set; }
-
-    public DateTime? LastUpdated { get; set; } //TODO: to be deleted
-
-    [MaxLength(255)]
-    public string AvatarName { get; set; } //TODO: to be deleted
-
-    [MaxLength(255)]
-    public string ShortBio { get; set; } //TODO: to be deleted
 
     [Required]
     [MaxLength(100)]
