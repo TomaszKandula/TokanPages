@@ -7,10 +7,8 @@ using System.ComponentModel.DataAnnotations;
 using Contracts;
 
 [ExcludeFromCodeCoverage]
-public class Users : Entity<Guid>, IAuditable
+public class Users : Entity<Guid>, IAuditable, ISoftDelete
 {
-    public bool IsActivated { get; set; }
-
     [Required]
     [MaxLength(255)]
     public string UserAlias { get; set; }
@@ -38,6 +36,10 @@ public class Users : Entity<Guid>, IAuditable
     public Guid? ModifiedBy { get; set; }
 
     public DateTime? ModifiedAt { get; set; }
+
+    public bool IsActivated { get; set; }
+
+    public bool IsDeleted { get; set; }
 
     public ICollection<Articles> Articles { get; set; } = new HashSet<Articles>();
 
