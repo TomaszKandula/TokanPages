@@ -25,4 +25,12 @@ public static class User3
     public static readonly Guid? ActivationId = null;
 
     public static readonly DateTime? ActivationIdEnds = null;
+
+    public static readonly Guid CreatedBy = Guid.Empty;
+
+    public static readonly DateTime CreatedAt = DateTime.Parse("2020-02-11 15:15:15");
+
+    public static readonly Guid? ModifiedBy = null;
+
+    public static readonly DateTime? ModifiedAt = null;
 }

@@ -20,7 +20,11 @@ public static class UsersSeeder
                 UserAlias = User1.UserAlias,
                 LastLogged = User1.LastLogged,
                 CryptedPassword = User1.CryptedPassword,
-                ResetId = User1.ResetId
+                ResetId = User1.ResetId,
+                CreatedBy = User1.CreatedBy,
+                CreatedAt = User1.CreatedAt,
+                ModifiedBy = User1.ModifiedBy,
+                ModifiedAt = User1.ModifiedAt
             },
             new ()
             {
@@ -30,7 +34,11 @@ public static class UsersSeeder
                 UserAlias = User2.UserAlias,
                 LastLogged = User2.LastLogged,
                 CryptedPassword = User2.CryptedPassword,
-                ResetId = User2.ResetId
+                ResetId = User2.ResetId,
+                CreatedBy = User2.CreatedBy,
+                CreatedAt = User2.CreatedAt,
+                ModifiedBy = User2.ModifiedBy,
+                ModifiedAt = User2.ModifiedAt
             },
             new ()
             {
@@ -40,7 +48,11 @@ public static class UsersSeeder
                 UserAlias = User3.UserAlias,
                 LastLogged = User3.LastLogged,
                 CryptedPassword = User3.CryptedPassword,
-                ResetId = User3.ResetId
+                ResetId = User3.ResetId,
+                CreatedBy = User3.CreatedBy,
+                CreatedAt = User3.CreatedAt,
+                ModifiedBy = User3.ModifiedBy,
+                ModifiedAt = User3.ModifiedAt
             }
         };
     }
