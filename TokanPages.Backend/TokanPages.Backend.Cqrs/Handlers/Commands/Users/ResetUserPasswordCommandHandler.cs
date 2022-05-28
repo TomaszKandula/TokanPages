@@ -52,7 +52,7 @@ public class ResetUserPasswordCommandHandler : Cqrs.RequestHandler<ResetUserPass
         currentUser.CryptedPassword = string.Empty;
         currentUser.ResetId = resetId;
         currentUser.ResetIdEnds = _dateTimeService.Now.AddMinutes(expiresIn);
-        currentUser.LastUpdated = _dateTimeService.Now;
+        //currentUser.LastUpdated = _dateTimeService.Now;//TODO: use [Users].[ModifiedAt] and [Users].[ModifiedBy]
 
         var timezoneOffset = _userService.GetRequestUserTimezoneOffset();
         var baseDateTime = _dateTimeService.Now.AddMinutes(-timezoneOffset);

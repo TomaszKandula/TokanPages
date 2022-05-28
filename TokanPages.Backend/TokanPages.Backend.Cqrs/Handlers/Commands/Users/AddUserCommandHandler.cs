@@ -92,13 +92,19 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             Id = newUserId,
             EmailAddress = request.EmailAddress,
             UserAlias = request.UserAlias.ToLower(),
-            FirstName = request.FirstName,
-            LastName = request.LastName,
-            Registered = _dateTimeService.Now,
-            AvatarName = defaultAvatar != null ? defaultAvatarName : null,
             CryptedPassword = getHashedPassword,
             ActivationId = activationId,
             ActivationIdEnds = activationIdEnds
+        };
+
+        var newUserInfo = new UserInfo
+        {
+            UserId = newUserId,
+            FirstName = request.FirstName,
+            LastName = request.LastName,
+            UserImageName = defaultAvatar != null ? defaultAvatarName : null,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = newUserId,
         };
 
         var timezoneOffset = _userService.GetRequestUserTimezoneOffset();
@@ -106,6 +112,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         var expirationDate = baseDateTime.AddMinutes(expiresIn);
 
         await DatabaseContext.Users.AddAsync(newUser, cancellationToken);
+        await DatabaseContext.UserInfo.AddAsync(newUserInfo, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         await SetupDefaultPermissions(newUser.Id, cancellationToken);
         await SendNotification(request.EmailAddress, activationId, expirationDate, cancellationToken);

@@ -95,19 +95,23 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
         await DatabaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        var roles = await _userService.GetUserRoles(currentUser.Id);
-        var permissions = await _userService.GetUserPermissions(currentUser.Id);
+        var roles = await _userService.GetUserRoles(currentUser.Id, cancellationToken);
+        var permissions = await _userService.GetUserPermissions(currentUser.Id, cancellationToken);
+
+        var userInfo = await DatabaseContext.UserInfo
+            .Where(info => info.UserId == currentUser.Id)
+            .SingleOrDefaultAsync(cancellationToken);
 
         return new AuthenticateUserCommandResult
         {
             UserId = currentUser.Id,
             AliasName = currentUser.UserAlias,
-            AvatarName = currentUser.AvatarName,
-            FirstName = currentUser.FirstName,
-            LastName = currentUser.LastName,
+            AvatarName = userInfo.UserImageName,
+            FirstName = userInfo.FirstName,
+            LastName = userInfo.LastName,
             Email = currentUser.EmailAddress,
-            ShortBio = currentUser.ShortBio,
-            Registered = currentUser.Registered,
+            ShortBio = userInfo.UserAboutText,
+            Registered = userInfo.CreatedAt,//TODO: change to [Users].[CreatedAt] and [Users].[CreatedBy]
             UserToken = userToken,
             RefreshToken = refreshToken.Token,
             Roles = roles,

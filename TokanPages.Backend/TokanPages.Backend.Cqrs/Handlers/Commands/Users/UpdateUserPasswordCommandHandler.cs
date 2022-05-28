@@ -37,7 +37,7 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
     public override async Task<Unit> Handle(UpdateUserPasswordCommand request, CancellationToken cancellationToken)
     {
         var resetId = request.ResetId != null;
-        var userId = request.Id ?? await _userService.GetUserId() ?? Guid.Empty;
+        var userId = request.Id ?? await _userService.GetUserId(cancellationToken) ?? Guid.Empty;
         if (userId == Guid.Empty)
             throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
@@ -52,8 +52,8 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
             if (!users.Any())
                 throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-            var hasRoleEverydayUser = await _userService.HasRoleAssigned($"{Roles.EverydayUser}") ?? false;
-            var hasRoleGodOfAsgard = await _userService.HasRoleAssigned($"{Roles.GodOfAsgard}") ?? false;
+            var hasRoleEverydayUser = await _userService.HasRoleAssigned($"{Roles.EverydayUser}", cancellationToken) ?? false;
+            var hasRoleGodOfAsgard = await _userService.HasRoleAssigned($"{Roles.GodOfAsgard}", cancellationToken) ?? false;
 
             if (!hasRoleEverydayUser && !hasRoleGodOfAsgard)
                 throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
@@ -82,7 +82,7 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
         currentUser.ResetId = null;
         currentUser.ResetIdEnds = null;
         currentUser.CryptedPassword = getHashedPassword;
-        currentUser.LastUpdated = _dateTimeService.Now;
+        //currentUser.LastUpdated = _dateTimeService.Now;//TODO: change to [Users].[ModifiedAt]; use [Users].[ModifiedBy]
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
         LoggerService.LogInformation($"User password has been updated successfully (UserId: {userId}).");
