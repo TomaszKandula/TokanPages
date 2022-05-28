@@ -42,6 +42,8 @@ public class DatabaseContext : DbContext
 
     public virtual DbSet<UserRefreshTokens> UserRefreshTokens { get; set; }
 
+    public virtual DbSet<UserInfo> UserInfo { get; set; }
+
     public virtual DbSet<HttpRequests> HttpRequests { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
