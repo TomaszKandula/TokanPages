@@ -23,7 +23,9 @@ public class GetUserQueryHandlerTest : TestBase
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            CryptedPassword = DataUtilityService.GetRandomString()
+            CryptedPassword = DataUtilityService.GetRandomString(),
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            CreatedBy = Guid.Empty
         };
 
         var userInfo = new UserInfo
@@ -57,7 +59,7 @@ public class GetUserQueryHandlerTest : TestBase
         result.Email.Should().Be(users.EmailAddress);
         result.AliasName.Should().Be(users.UserAlias);
         result.IsActivated.Should().BeTrue();
-        //result.Registered.Should().Be(userInfo.CreatedAt);//TODO: use [Users].[CreatedAt]
+        result.Registered.Should().Be(users.CreatedAt);
         result.LastUpdated.Should().BeNull();
         result.LastLogged.Should().BeNull();
     }
