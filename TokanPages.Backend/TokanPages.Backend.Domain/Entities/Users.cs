@@ -4,9 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
+using Contracts;
 
 [ExcludeFromCodeCoverage]
-public class Users : Entity<Guid>
+public class Users : Entity<Guid>, IAuditable
 {
     [Required]
     [MaxLength(255)]
@@ -31,6 +32,14 @@ public class Users : Entity<Guid>
     public Guid? ActivationId { get; set; }
 
     public DateTime? ActivationIdEnds { get; set; }
+
+    public Guid CreatedBy { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    public Guid? ModifiedBy { get; set; }
+
+    public DateTime? ModifiedAt { get; set; }
 
     public ICollection<Articles> Articles { get; set; } = new HashSet<Articles>();
 
