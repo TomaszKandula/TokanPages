@@ -27,7 +27,7 @@ public class GetUserQueryHandler : RequestHandler<GetUserQuery, GetUserQueryResu
                 IsActivated = users.IsActivated,
                 FirstName = userInfo.FirstName,
                 LastName = userInfo.LastName,
-                Registered = userInfo.CreatedAt,
+                Registered = users.CreatedAt,
                 LastUpdated = userInfo.ModifiedAt
             })
             .AsNoTracking()

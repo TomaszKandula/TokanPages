@@ -110,7 +110,7 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
             LastName = userInfo.LastName,
             Email = currentUser.EmailAddress,
             ShortBio = userInfo.UserAboutText,
-            Registered = userInfo.CreatedAt,//TODO: change to [Users].[CreatedAt] and [Users].[CreatedBy]
+            Registered = currentUser.CreatedAt,
             UserToken = userToken,
             RefreshToken = refreshToken.Token,
             Roles = roles,

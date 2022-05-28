@@ -108,7 +108,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
             LastName = userInfo.LastName,
             Email = currentUser.EmailAddress,
             ShortBio = userInfo.UserAboutText,
-            Registered = userInfo.CreatedAt,//TODO: change to [Users].[CreatedAt] and [Users].[CreatedBy]
+            Registered = currentUser.CreatedAt,
             UserToken = userToken,
             RefreshToken = newRefreshToken.Token,
             Roles = roles,

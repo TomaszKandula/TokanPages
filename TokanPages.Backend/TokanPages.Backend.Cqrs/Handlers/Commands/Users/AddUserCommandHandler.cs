@@ -94,7 +94,11 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             UserAlias = request.UserAlias.ToLower(),
             CryptedPassword = getHashedPassword,
             ActivationId = activationId,
-            ActivationIdEnds = activationIdEnds
+            ActivationIdEnds = activationIdEnds,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = Guid.Empty,
+            ModifiedAt = null,
+            ModifiedBy = null
         };
 
         var newUserInfo = new UserInfo
@@ -105,6 +109,8 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             UserImageName = defaultAvatar != null ? defaultAvatarName : null,
             CreatedAt = _dateTimeService.Now,
             CreatedBy = newUserId,
+            ModifiedAt = null,
+            ModifiedBy = null
         };
 
         var timezoneOffset = _userService.GetRequestUserTimezoneOffset();

@@ -59,7 +59,8 @@ public class UpdateUserCommandHandler : Cqrs.RequestHandler<UpdateUserCommand, U
         currentUser.IsActivated = request.IsActivated;
         currentUser.UserAlias = request.UserAlias ?? currentUser.UserAlias;
         currentUser.EmailAddress = request.EmailAddress ?? currentUser.EmailAddress;
-        //TODO: use [Users].[ModifiedAt] and [Users].[ModifiedBy]
+        currentUser.ModifiedAt = _dateTimeService.Now;
+        currentUser.ModifiedBy = currentUser.Id;
         await DatabaseContext.SaveChangesAsync(cancellationToken);
     }
 

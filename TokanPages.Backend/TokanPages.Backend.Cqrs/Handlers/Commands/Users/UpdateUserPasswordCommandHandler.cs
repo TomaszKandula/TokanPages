@@ -82,7 +82,8 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
         currentUser.ResetId = null;
         currentUser.ResetIdEnds = null;
         currentUser.CryptedPassword = getHashedPassword;
-        //currentUser.LastUpdated = _dateTimeService.Now;//TODO: change to [Users].[ModifiedAt]; use [Users].[ModifiedBy]
+        currentUser.ModifiedAt = _dateTimeService.Now;
+        currentUser.ModifiedBy = userId;
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
         LoggerService.LogInformation($"User password has been updated successfully (UserId: {userId}).");
