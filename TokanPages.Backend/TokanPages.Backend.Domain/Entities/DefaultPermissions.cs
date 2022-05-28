@@ -7,10 +7,10 @@ using System.Diagnostics.CodeAnalysis;
 public class DefaultPermissions : Entity<Guid>
 {
     public Guid RoleId { get; set; }
-        
-    public Roles Role { get; set; } 
-        
+
     public Guid PermissionId { get; set; }
-        
-    public Permissions Permission { get; set; }
+
+    public Roles RoleNavigation { get; set; } 
+
+    public Permissions PermissionNavigation { get; set; }
 }

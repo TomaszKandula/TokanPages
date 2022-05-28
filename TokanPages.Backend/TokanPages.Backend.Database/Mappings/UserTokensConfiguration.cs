@@ -13,8 +13,8 @@ public class UserTokensConfiguration : IEntityTypeConfiguration<UserTokens>
         builder.Property(userTokens => userTokens.Id).ValueGeneratedOnAdd();
             
         builder
-            .HasOne(userTokens => userTokens.User)
-            .WithMany(users => users.UserTokens)
+            .HasOne(userTokens => userTokens.UserNavigation)
+            .WithMany(users => users.UserTokensNavigation)
             .HasForeignKey(userTokens => userTokens.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_UserTokens_Users");

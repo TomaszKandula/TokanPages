@@ -132,16 +132,16 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         var userRoleName = Domain.Enums.Roles.EverydayUser.ToString();
         var defaultPermissions = await DatabaseContext.DefaultPermissions
             .AsNoTracking()
-            .Include(permissions => permissions.Role)
-            .Include(permissions => permissions.Permission)
-            .Where(permissions => permissions.Role.Name == userRoleName)
+            .Include(permissions => permissions.RoleNavigation)
+            .Include(permissions => permissions.PermissionNavigation)
+            .Where(permissions => permissions.RoleNavigation.Name == userRoleName)
             .Select(permissions => new DefaultPermissions
             {
                 Id = permissions.Id,
                 RoleId = permissions.RoleId,
-                Role = permissions.Role,
+                RoleNavigation = permissions.RoleNavigation,
                 PermissionId = permissions.PermissionId,
-                Permission = permissions.Permission
+                PermissionNavigation = permissions.PermissionNavigation
             })
             .ToListAsync(cancellationToken);
 

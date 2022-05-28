@@ -61,14 +61,14 @@ public class AddUserCommandHandlerTest : TestBase
             new()
             {
                 Id = Guid.NewGuid(),
-                Role = roles,
-                Permission = permissions[0]
+                RoleNavigation = roles,
+                PermissionNavigation = permissions[0]
             },
             new()
             {
                 Id = Guid.NewGuid(),
-                Role = roles,
-                Permission = permissions[1]
+                RoleNavigation = roles,
+                PermissionNavigation = permissions[1]
             }
         };
 

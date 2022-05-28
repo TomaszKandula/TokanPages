@@ -18,7 +18,7 @@ public class ArticleCounts : Entity<Guid>
 
     public int ReadCount { get; set; }
 
-    public Articles Article { get; set; }
+    public Articles ArticleNavigation { get; set; }
 
-    public Users User { get; set; }
+    public Users UserNavigation { get; set; }
 }

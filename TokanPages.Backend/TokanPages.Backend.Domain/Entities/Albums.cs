@@ -9,13 +9,13 @@ public class Albums : Entity<Guid>
 {
     public Guid? UserId { get; set; }
 
-    public Users User { get; set; }
-
     public Guid PhotoId { get; set; }
-        
-    public Photos Photo { get; set; }
-        
+
     [Required]
     [MaxLength(255)]
     public string Title { get; set; }
+
+    public Users UserNavigation { get; set; }
+
+    public Photos PhotoNavigation { get; set; }
 }

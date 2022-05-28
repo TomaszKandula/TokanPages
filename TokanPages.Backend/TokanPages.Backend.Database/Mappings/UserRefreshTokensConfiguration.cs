@@ -13,8 +13,8 @@ public class UserRefreshTokensConfiguration : IEntityTypeConfiguration<UserRefre
         builder.Property(userRefreshTokens => userRefreshTokens.Id).ValueGeneratedOnAdd();
             
         builder
-            .HasOne(userRefreshTokens => userRefreshTokens.User)
-            .WithMany(users => users.UserRefreshTokens)
+            .HasOne(userRefreshTokens => userRefreshTokens.UserNavigation)
+            .WithMany(users => users.UserRefreshTokensNavigation)
             .HasForeignKey(userRefreshTokens => userRefreshTokens.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_UserRefreshTokens_Users");

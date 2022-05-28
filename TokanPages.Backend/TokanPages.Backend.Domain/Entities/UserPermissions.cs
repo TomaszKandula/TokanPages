@@ -7,10 +7,10 @@ using System.Diagnostics.CodeAnalysis;
 public class UserPermissions : Entity<Guid>
 {
     public Guid UserId { get; set; }
-        
-    public Users User { get; set; }
 
     public Guid PermissionId { get; set; }
-        
-    public Permissions Permission { get; set; }
+
+    public Users UserNavigation { get; set; }
+
+    public Permissions PermissionNavigation { get; set; }
 }
