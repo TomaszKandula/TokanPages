@@ -16,40 +16,40 @@ public class Users : Entity<Guid>
 
     [Required]
     [MaxLength(255)]
-    public string FirstName { get; set; }
+    public string FirstName { get; set; } //TODO: to be deleted
 
     [Required]
     [MaxLength(255)]
-    public string LastName { get; set; }
+    public string LastName { get; set; } //TODO: to be deleted
 
     [Required]
     [MaxLength(255)]
     public string EmailAddress { get; set; }
 
-    public DateTime Registered { get; set; }
+    public DateTime Registered { get; set; } //TODO: to be deleted
 
     public DateTime? LastLogged { get; set; }
 
-    public DateTime? LastUpdated { get; set; }
+    public DateTime? LastUpdated { get; set; } //TODO: to be deleted
 
     [MaxLength(255)]
-    public string AvatarName { get; set; }
+    public string AvatarName { get; set; } //TODO: to be deleted
 
     [MaxLength(255)]
-    public string ShortBio { get; set; }
+    public string ShortBio { get; set; } //TODO: to be deleted
 
     [Required]
     [MaxLength(100)]
     public string CryptedPassword { get; set; }
-        
+
     public Guid? ResetId { get; set; }
-        
+
     public DateTime? ResetIdEnds { get; set; }
 
     public Guid? ActivationId { get; set; }
-        
+
     public DateTime? ActivationIdEnds { get; set; }
-        
+
     public ICollection<Articles> Articles { get; set; } = new HashSet<Articles>();
 
     public ICollection<ArticleLikes> ArticleLikes { get; set; } = new HashSet<ArticleLikes>();
@@ -67,4 +67,6 @@ public class Users : Entity<Guid>
     public ICollection<UserTokens> UserTokens { get; set; } = new HashSet<UserTokens>();
 
     public ICollection<UserRefreshTokens> UserRefreshTokens { get; set; } = new HashSet<UserRefreshTokens>();
+
+    public ICollection<UserInfo> UserInfoNavigation { get; set; } = new HashSet<UserInfo>();
 }
