@@ -100,20 +100,26 @@ public sealed class UserService : IUserService
         return _user;
     }
 
-    public async Task<GetUserDto> GetActiveUser(CancellationToken cancellationToken = default)
+    public async Task<Users> GetActiveUser(Guid? userId, bool isTracking, CancellationToken cancellationToken = default)
     {
-        await EnsureUserData(cancellationToken);
+        var id = userId ?? UserIdFromClaim();
+        var entity = isTracking ? _databaseContext.Users.AsNoTracking() : _databaseContext.Users;
+        var user = await entity
+            .Where(users => users.IsActivated)
+            .Where(users => !users.IsDeleted)
+            .Where(users => users.Id == id)
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (_user == null)
+        if (user == null)
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
-        if (!_user.IsActivated)
+        if (!user.IsActivated)
             throw new AuthorizationException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
-        if (_user.IsDeleted)
+        if (user.IsDeleted)
             throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-        return _user;
+        return user;
     }
 
     public async Task<List<GetUserRoleDto>> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default)
@@ -431,8 +437,6 @@ public sealed class UserService : IUserService
         _user = new GetUserDto
         {
             UserId = user.Id,
-            IsActivated = user.IsActivated,
-            IsDeleted = user.IsDeleted,
             AliasName = user.UserAlias,
             Email = user.EmailAddress,
             Registered = user.CreatedAt,

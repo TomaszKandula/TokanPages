@@ -21,7 +21,7 @@ public interface IUserService
 
     Task<GetUserDto> GetUser(CancellationToken cancellationToken = default);
 
-    Task<GetUserDto> GetActiveUser(CancellationToken cancellationToken = default);
+    Task<Users> GetActiveUser(Guid? userId, bool isTracking, CancellationToken cancellationToken = default);
 
     Task<List<GetUserRoleDto>> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default);
 
