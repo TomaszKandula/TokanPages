@@ -403,14 +403,14 @@ public sealed class UserService : IUserService
             .SingleOrDefaultAsync(users => users.Id == userId, cancellationToken);
 
         if (user is null)
-            throw AccessDeniedException;
+        {
+            _user = null;
+            return;
+        }
 
         var userInfo = await _databaseContext.UserInfo
             .AsNoTracking()
-            .SingleOrDefaultAsync(info => info.UserId == user.Id, cancellationToken);
-
-        if (userInfo is null)
-            throw AccessDeniedException;
+            .SingleOrDefaultAsync(info => info.UserId == userId, cancellationToken);
 
         _user = new GetUserDto
         {
@@ -418,12 +418,12 @@ public sealed class UserService : IUserService
             IsActivated = user.IsActivated,
             IsDeleted = user.IsDeleted,
             AliasName = user.UserAlias,
-            AvatarName = userInfo.UserImageName,
-            FirstName = userInfo.FirstName,
-            LastName = userInfo.LastName,
             Email = user.EmailAddress,
-            ShortBio = userInfo.UserAboutText,
-            Registered = userInfo.CreatedAt
+            Registered = user.CreatedAt,
+            AvatarName = userInfo?.UserImageName,
+            FirstName = userInfo?.FirstName,
+            LastName = userInfo?.LastName,
+            ShortBio = userInfo?.UserAboutText
         };
     }
 }
