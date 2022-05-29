@@ -40,19 +40,19 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 
     public override async Task<AuthenticateUserCommandResult> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
     {
-        var users = await DatabaseContext.Users
+        var currentUser = await DatabaseContext.Users
+            .Where(users => users.IsActivated)
+            .Where(users => !users.IsDeleted)
             .Where(users => users.EmailAddress == request.EmailAddress)
-            .ToListAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (!users.Any())
+        if (currentUser is null)
         {
             LoggerService.LogError($"Cannot find user with given email address: '{request.EmailAddress}'.");
             throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
         }
 
-        var currentUser = users.First();
         var isPasswordValid = _cipheringService.VerifyPassword(request.Password, currentUser.CryptedPassword);
-
         if (!isPasswordValid)
         {
             LoggerService.LogError($"Cannot positively verify given password supplied by user (Id: {currentUser.Id}).");

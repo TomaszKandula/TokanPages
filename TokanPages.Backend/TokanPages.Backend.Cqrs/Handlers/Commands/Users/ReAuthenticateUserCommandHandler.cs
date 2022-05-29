@@ -34,6 +34,15 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
     public override async Task<ReAuthenticateUserCommandResult> Handle(ReAuthenticateUserCommand request, CancellationToken cancellationToken)
     {
         var userId = await _userService.GetUserId(cancellationToken) ?? Guid.Empty;
+        var currentUser = await DatabaseContext.Users
+            .Where(users => users.IsActivated)
+            .Where(users => !users.IsDeleted)
+            .Where(users => users.Id == userId)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (currentUser is null)
+            throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), $"{ErrorCodes.ACCESS_DENIED}");
+
         var userRefreshTokens = await DatabaseContext.UserRefreshTokens
             .AsNoTracking()
             .Where(tokens => tokens.Token == request.RefreshToken)
@@ -74,7 +83,6 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         await DatabaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
 
         var currentDateTime = _dateTimeService.Now;
-        var currentUser = await DatabaseContext.Users.SingleAsync(users => users.Id == userId, cancellationToken);
         var ipAddress = _userService.GetRequestIpAddress();
         var tokenExpires = _dateTimeService.Now.AddMinutes(_applicationSettings.IdentityServer.WebTokenExpiresIn);
         var userToken = await _userService.GenerateUserToken(currentUser, tokenExpires, cancellationToken);
