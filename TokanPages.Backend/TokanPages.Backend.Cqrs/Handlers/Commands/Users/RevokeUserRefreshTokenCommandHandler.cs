@@ -21,16 +21,9 @@ public class RevokeUserRefreshTokenCommandHandler : Cqrs.RequestHandler<RevokeUs
 
     public override async Task<Unit> Handle(RevokeUserRefreshTokenCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetUser(cancellationToken);
-
-        if (!user.IsActivated)
-            throw new AuthorizationException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
-
-        if (user.IsDeleted)
-            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
-
+        var user = await _userService.GetActiveUser(null, false, cancellationToken);
         var refreshTokens = await DatabaseContext.UserRefreshTokens
-            .Where(tokens => tokens.UserId == user.UserId)
+            .Where(tokens => tokens.UserId == user.Id)
             .Where(tokens => tokens.Token == request.RefreshToken)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -38,7 +31,7 @@ public class RevokeUserRefreshTokenCommandHandler : Cqrs.RequestHandler<RevokeUs
             throw new AuthorizationException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
         var requestIpAddress = _userService.GetRequestIpAddress();
-        var reason = $"Revoked by {user.AliasName} (ID: {user.UserId})";
+        var reason = $"Revoked by user ID: {user.Id}";
 
         var input = new RevokeRefreshTokenInput
         {

@@ -4,8 +4,6 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Database;
-using Core.Exceptions;
-using Shared.Resources;
 using Services.UserService;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
@@ -29,7 +27,7 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
 
     public override async Task<Guid> Handle(AddArticleCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(cancellationToken);
+        var user = await _userService.GetActiveUser(null, false, cancellationToken);
         var newArticle = new Domain.Entities.Articles
         {
             Title = request.Title,
@@ -38,7 +36,7 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
             ReadCount = 0,
             CreatedAt = _dateTimeService.Now,
             UpdatedAt = null,
-            UserId = user.UserId
+            UserId = user.Id
         };
 
         await DatabaseContext.Articles.AddAsync(newArticle, cancellationToken);

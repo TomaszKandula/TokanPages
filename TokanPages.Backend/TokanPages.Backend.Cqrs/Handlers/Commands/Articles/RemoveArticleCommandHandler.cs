@@ -20,9 +20,9 @@ public class RemoveArticleCommandHandler : Cqrs.RequestHandler<RemoveArticleComm
 
     public override async Task<Unit> Handle(RemoveArticleCommand request, CancellationToken cancellationToken) 
     {
-        var user = await _userService.GetActiveUser(cancellationToken);
+        var user = await _userService.GetActiveUser(null, false, cancellationToken);
         var article = await DatabaseContext.Articles
-            .Where(articles => articles.UserId == user.UserId)
+            .Where(articles => articles.UserId == user.Id)
             .Where(articles => articles.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -30,12 +30,12 @@ public class RemoveArticleCommandHandler : Cqrs.RequestHandler<RemoveArticleComm
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
         var articleLikes = await DatabaseContext.ArticleLikes
-            .Where(likes => likes.UserId == user.UserId)
+            .Where(likes => likes.UserId == user.Id)
             .Where(likes => likes.ArticleId == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
         var articleCounts = await DatabaseContext.ArticleCounts
-            .Where(counts => counts.UserId == user.UserId)
+            .Where(counts => counts.UserId == user.Id)
             .Where(counts => counts.ArticleId == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 

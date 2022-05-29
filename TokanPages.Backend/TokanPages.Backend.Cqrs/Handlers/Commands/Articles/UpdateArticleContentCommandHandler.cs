@@ -32,9 +32,9 @@ public class UpdateArticleContentCommandHandler : Cqrs.RequestHandler<UpdateArti
 
     public override async Task<Unit> Handle(UpdateArticleContentCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(cancellationToken);
+        var user = await _userService.GetActiveUser(null, false, cancellationToken);
         var article = await DatabaseContext.Articles
-            .Where(articles => articles.UserId == user.UserId)
+            .Where(articles => articles.UserId == user.Id)
             .Where(articles => articles.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 

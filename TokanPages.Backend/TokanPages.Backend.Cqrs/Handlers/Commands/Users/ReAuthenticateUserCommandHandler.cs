@@ -1,6 +1,5 @@
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
-using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -33,16 +32,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
 
     public override async Task<ReAuthenticateUserCommandResult> Handle(ReAuthenticateUserCommand request, CancellationToken cancellationToken)
     {
-        var userId = await _userService.GetUserId(cancellationToken) ?? Guid.Empty;
-        var currentUser = await DatabaseContext.Users
-            .Where(users => users.IsActivated)
-            .Where(users => !users.IsDeleted)
-            .Where(users => users.Id == userId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (currentUser is null)
-            throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), $"{ErrorCodes.ACCESS_DENIED}");
-
+        var user = await _userService.GetActiveUser(null, false, cancellationToken);
         var userRefreshTokens = await DatabaseContext.UserRefreshTokens
             .AsNoTracking()
             .Where(tokens => tokens.Token == request.RefreshToken)
@@ -72,27 +62,27 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         if (!_userService.IsRefreshTokenActive(savedRefreshToken)) throw InvalidTokenException;
         var tokenInput = new ReplaceRefreshTokenInput
         {
-            UserId = userId, 
+            UserId = user.Id, 
             SavedUserRefreshTokens = savedRefreshToken, 
             RequesterIpAddress = requesterIpAddress, 
             SaveImmediately = true
         };
         
         var newRefreshToken = await _userService.ReplaceRefreshToken(tokenInput, cancellationToken);
-        await _userService.DeleteOutdatedRefreshTokens(userId, false, cancellationToken);
+        await _userService.DeleteOutdatedRefreshTokens(user.Id, false, cancellationToken);
         await DatabaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
 
         var currentDateTime = _dateTimeService.Now;
         var ipAddress = _userService.GetRequestIpAddress();
         var tokenExpires = _dateTimeService.Now.AddMinutes(_applicationSettings.IdentityServer.WebTokenExpiresIn);
-        var userToken = await _userService.GenerateUserToken(currentUser, tokenExpires, cancellationToken);
+        var userToken = await _userService.GenerateUserToken(user, tokenExpires, cancellationToken);
 
-        var roles = await _userService.GetUserRoles(currentUser.Id, cancellationToken);
-        var permissions = await _userService.GetUserPermissions(currentUser.Id, cancellationToken);
+        var roles = await _userService.GetUserRoles(user.Id, cancellationToken);
+        var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken);
 
         var newUserToken = new UserTokens
         {
-            UserId = currentUser.Id,
+            UserId = user.Id,
             Token = userToken,
             Expires = tokenExpires,
             Created = currentDateTime,
@@ -104,19 +94,19 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
         var userInfo = await DatabaseContext.UserInfo
-            .Where(info => info.UserId == userId)
+            .Where(info => info.UserId == user.Id)
             .SingleOrDefaultAsync(cancellationToken);
         
         return new ReAuthenticateUserCommandResult
         {
-            UserId = currentUser.Id,
-            AliasName = currentUser.UserAlias,
+            UserId = user.Id,
+            AliasName = user.UserAlias,
             AvatarName = userInfo.UserImageName,
             FirstName = userInfo.FirstName,
             LastName = userInfo.LastName,
-            Email = currentUser.EmailAddress,
+            Email = user.EmailAddress,
             ShortBio = userInfo.UserAboutText,
-            Registered = currentUser.CreatedAt,
+            Registered = user.CreatedAt,
             UserToken = userToken,
             RefreshToken = newRefreshToken.Token,
             Roles = roles,
