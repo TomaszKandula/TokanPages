@@ -9,7 +9,7 @@ public class Albums : Entity<Guid>
 {
     public Guid? UserId { get; set; }
 
-    public Guid PhotoId { get; set; }
+    public Guid? UserPhotoId { get; set; }
 
     [Required]
     [MaxLength(255)]

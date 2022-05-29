@@ -22,7 +22,7 @@ public class AlbumsConfiguration : IEntityTypeConfiguration<Albums>
         builder
             .HasOne(albums => albums.UserPhotoNavigation)
             .WithMany(photos => photos.AlbumsNavigation)
-            .HasForeignKey(albums => albums.PhotoId)
+            .HasForeignKey(albums => albums.UserPhotoId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_Albums_UserPhotos");
     }
