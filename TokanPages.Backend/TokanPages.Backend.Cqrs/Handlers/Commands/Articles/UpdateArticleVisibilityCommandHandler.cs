@@ -17,29 +17,26 @@ public class UpdateArticleVisibilityCommandHandler : Cqrs.RequestHandler<UpdateA
     private readonly IUserService _userService;
         
     public UpdateArticleVisibilityCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService) : base(databaseContext, loggerService)
-    {
-        _userService = userService;
-    }
+        IUserService userService) : base(databaseContext, loggerService) => _userService = userService;
         
     public override async Task<Unit> Handle(UpdateArticleVisibilityCommand request, CancellationToken cancellationToken)
     {
         var canPublishArticles = await _userService
-            .HasPermissionAssigned(nameof(Permissions.CanPublishArticles)) ?? false;
-            
+            .HasPermissionAssigned(nameof(Permissions.CanPublishArticles), cancellationToken) ?? false;
+
         if (!canPublishArticles)
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
+        var userId = await _userService.GetUserId(cancellationToken);
         var articles = await DatabaseContext.Articles
+            .Where(articles => articles.UserId == userId)
             .Where(articles => articles.Id == request.Id)
-            .ToListAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (!articles.Any())
+        if (articles is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-        var currentArticle = articles.First();
-        currentArticle.IsPublished = request.IsPublished;
-
+        articles.IsPublished = request.IsPublished;
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }

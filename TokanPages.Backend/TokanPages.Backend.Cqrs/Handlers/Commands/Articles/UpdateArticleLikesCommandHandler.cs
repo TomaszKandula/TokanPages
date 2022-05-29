@@ -18,38 +18,35 @@ public class UpdateArticleLikesCommandHandler : Cqrs.RequestHandler<UpdateArticl
     private readonly IUserService _userService;
         
     public UpdateArticleLikesCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService) : base(databaseContext, loggerService)
-    {
-        _userService = userService;
-    }
+        IUserService userService) : base(databaseContext, loggerService) => _userService = userService;
 
     public override async Task<Unit> Handle(UpdateArticleLikesCommand request, CancellationToken cancellationToken)
     {
         var articles = await DatabaseContext.Articles
             .AsNoTracking()
             .Where(articles => articles.Id == request.Id)
-            .ToListAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (!articles.Any())
+        if (articles is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-        var userId = await _userService.GetUserId();
+        var userId = await _userService.GetUserId(cancellationToken);
         var isAnonymousUser = userId == null;
-            
+
         var articleLikes = await DatabaseContext.ArticleLikes
             .Where(likes => likes.ArticleId == request.Id)
             .WhereIfElse(isAnonymousUser,
                 likes => likes.IpAddress == _userService.GetRequestIpAddress(),
                 likes => likes.UserId == userId)
-            .ToListAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (!articleLikes.Any())
+        if (articleLikes is null)
         {
             await AddNewArticleLikes(isAnonymousUser, request, cancellationToken);
         }
         else
         {
-            UpdateCurrentArticleLikes(isAnonymousUser, articleLikes.First(), request.AddToLikes);
+            UpdateCurrentArticleLikes(isAnonymousUser, articleLikes, request.AddToLikes);
         }
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
@@ -62,14 +59,17 @@ public class UpdateArticleLikesCommandHandler : Cqrs.RequestHandler<UpdateArticl
             ? Constants.Likes.LikesLimitForAnonymous 
             : Constants.Likes.LikesLimitForUser;
 
+        var userId = await _userService.GetUserId(cancellationToken);
+        var ipAddress = _userService.GetRequestIpAddress();
+
         var entity = new Domain.Entities.ArticleLikes
         {
             ArticleId = request.Id,
-            UserId = await _userService.GetUserId(),
-            IpAddress = _userService.GetRequestIpAddress(),
+            UserId = userId,
+            IpAddress = ipAddress,
             LikeCount = request.AddToLikes > likesLimit ? likesLimit : request.AddToLikes
         };
-            
+
         await DatabaseContext.ArticleLikes.AddAsync(entity, cancellationToken);
     }
 
@@ -78,7 +78,7 @@ public class UpdateArticleLikesCommandHandler : Cqrs.RequestHandler<UpdateArticl
         var likesLimit = isAnonymousUser 
             ? Constants.Likes.LikesLimitForAnonymous 
             : Constants.Likes.LikesLimitForUser;
-            
+
         var sum = entity.LikeCount + likesToBeAdded;
         entity.LikeCount = sum > likesLimit ? likesLimit : sum;
     }
