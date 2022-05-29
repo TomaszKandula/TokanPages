@@ -41,15 +41,17 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
         if (userId == Guid.Empty)
             throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-        var users = await DatabaseContext.Users
+        var currentUser = await DatabaseContext.Users
+            .Where(users => users.IsActivated)
+            .Where(users => !users.IsDeleted)
             .WhereIfElse(!resetId, 
                 users => users.Id == userId, 
                 users => users.ResetId == request.ResetId) 
-            .ToListAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken);
 
         if (!resetId)
         {
-            if (!users.Any())
+            if (currentUser is null)
                 throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
             var hasRoleEverydayUser = await _userService.HasRoleAssigned($"{Roles.EverydayUser}", cancellationToken) ?? false;
@@ -59,10 +61,9 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
                 throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
         }
 
-        if (!users.Any())
+        if (currentUser is null)
             throw new AuthorizationException(nameof(ErrorCodes.INVALID_RESET_ID), ErrorCodes.INVALID_RESET_ID);
 
-        var currentUser = users.First();
         if (request.OldPassword is not null)
         {
             var isPasswordValid = _cipheringService.VerifyPassword(request.OldPassword, currentUser.CryptedPassword);

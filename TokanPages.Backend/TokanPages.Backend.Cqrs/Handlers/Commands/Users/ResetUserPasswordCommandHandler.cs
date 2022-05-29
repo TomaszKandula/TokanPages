@@ -38,15 +38,16 @@ public class ResetUserPasswordCommandHandler : Cqrs.RequestHandler<ResetUserPass
 
     public override async Task<Unit> Handle(ResetUserPasswordCommand request, CancellationToken cancellationToken)
     {
-        var users = await DatabaseContext.Users
+        var currentUser = await DatabaseContext.Users
+            .Where(users => users.IsActivated)
+            .Where(users => !users.IsDeleted)
             .Where(users => users.EmailAddress == request.EmailAddress)
-            .ToListAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (!users.Any())
+        if (currentUser is null)
             throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
         var expiresIn = _applicationSettings.ExpirationSettings.ResetIdExpiresIn;
-        var currentUser = users.First();
         var resetId = Guid.NewGuid();
 
         currentUser.CryptedPassword = string.Empty;

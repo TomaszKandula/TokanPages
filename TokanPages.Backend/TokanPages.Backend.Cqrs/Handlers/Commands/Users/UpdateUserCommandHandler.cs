@@ -34,6 +34,8 @@ public class UpdateUserCommandHandler : Cqrs.RequestHandler<UpdateUserCommand, U
             throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
         var currentUser = await DatabaseContext.Users
+            .Where(users => users.IsActivated)
+            .Where(users => !users.IsDeleted)
             .Where(users => users.Id == userId)
             .SingleOrDefaultAsync(cancellationToken);
 

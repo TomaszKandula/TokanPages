@@ -17,14 +17,18 @@ public class RevokeUserRefreshTokenCommandHandler : Cqrs.RequestHandler<RevokeUs
     private readonly IUserService _userService;
         
     public RevokeUserRefreshTokenCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService) : base(databaseContext, loggerService)
-    {
-        _userService = userService;
-    }
+        IUserService userService) : base(databaseContext, loggerService) => _userService = userService;
 
     public override async Task<Unit> Handle(RevokeUserRefreshTokenCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetUser();
+        var user = await _userService.GetUser(cancellationToken);
+
+        if (!user.IsActivated)
+            throw new AuthorizationException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
+
+        if (user.IsDeleted)
+            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
+
         var refreshTokens = await DatabaseContext.UserRefreshTokens
             .Where(tokens => tokens.UserId == user.UserId)
             .Where(tokens => tokens.Token == request.RefreshToken)
