@@ -15,6 +15,16 @@ public class GetUserDto
     public Guid UserId { get; set; }
 
     /// <summary>
+    /// IsActivated
+    /// </summary>
+    public bool IsActivated { get; set; }
+
+    /// <summary>
+    /// IsDeleted
+    /// </summary>
+    public bool IsDeleted { get; set; }
+
+    /// <summary>
     /// AliasName
     /// </summary>
     public string AliasName { get; set; }
