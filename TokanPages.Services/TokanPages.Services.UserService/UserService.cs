@@ -415,6 +415,8 @@ public sealed class UserService : IUserService
         _user = new GetUserDto
         {
             UserId = user.Id,
+            IsActivated = user.IsActivated,
+            IsDeleted = user.IsDeleted,
             AliasName = user.UserAlias,
             AvatarName = userInfo.UserImageName,
             FirstName = userInfo.FirstName,
