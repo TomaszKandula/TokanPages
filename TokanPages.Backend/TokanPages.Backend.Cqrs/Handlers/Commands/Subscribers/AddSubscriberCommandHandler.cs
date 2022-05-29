@@ -17,10 +17,7 @@ public class AddSubscriberCommandHandler : RequestHandler<AddSubscriberCommand, 
     private readonly IDateTimeService _dateTimeService;
         
     public AddSubscriberCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService) : base(databaseContext, loggerService)
-    {
-        _dateTimeService = dateTimeService;
-    }
+        IDateTimeService dateTimeService) : base(databaseContext, loggerService) => _dateTimeService = dateTimeService;
 
     public override async Task<Guid> Handle(AddSubscriberCommand request, CancellationToken cancellationToken) 
     {

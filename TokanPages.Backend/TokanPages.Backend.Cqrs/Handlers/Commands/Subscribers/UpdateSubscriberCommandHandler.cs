@@ -16,10 +16,7 @@ public class UpdateSubscriberCommandHandler : Cqrs.RequestHandler<UpdateSubscrib
     private readonly IDateTimeService _dateTimeService;
         
     public UpdateSubscriberCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService) : base(databaseContext, loggerService)
-    {
-        _dateTimeService = dateTimeService;
-    }
+        IDateTimeService dateTimeService) : base(databaseContext, loggerService) => _dateTimeService = dateTimeService;
 
     public override async Task<Unit> Handle(UpdateSubscriberCommand request, CancellationToken cancellationToken) 
     {
