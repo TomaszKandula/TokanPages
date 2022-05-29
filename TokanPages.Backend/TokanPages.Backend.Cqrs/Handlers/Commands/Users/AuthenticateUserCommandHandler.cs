@@ -41,8 +41,6 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
     public override async Task<AuthenticateUserCommandResult> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
     {
         var currentUser = await DatabaseContext.Users
-            .Where(users => users.IsActivated)
-            .Where(users => !users.IsDeleted)
             .Where(users => users.EmailAddress == request.EmailAddress)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -52,15 +50,18 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
             throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
         }
 
+        if (!currentUser.IsActivated)
+            throw new AccessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
+
+        if (currentUser.IsDeleted)
+            throw new AccessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
+        
         var isPasswordValid = _cipheringService.VerifyPassword(request.Password, currentUser.CryptedPassword);
         if (!isPasswordValid)
         {
             LoggerService.LogError($"Cannot positively verify given password supplied by user (Id: {currentUser.Id}).");
             throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
         }
-
-        if (!currentUser.IsActivated)
-            throw new AccessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
         var currentDateTime = _dateTimeService.Now;
         var ipAddress = _userService.GetRequestIpAddress();
