@@ -14,11 +14,11 @@ using Services.AzureStorageService.Factory;
 public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
 {
     private readonly IUserService _userService;
-        
+
     private readonly IDateTimeService _dateTimeService;
-        
+
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
-        
+
     public AddArticleCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService, 
         IDateTimeService dateTimeService, IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
     {
@@ -29,10 +29,7 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
 
     public override async Task<Guid> Handle(AddArticleCommand request, CancellationToken cancellationToken)
     {
-        var userId = await _userService.GetUserId();
-        if (userId == null)
-            throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
-
+        var user = await _userService.GetActiveUser(cancellationToken);
         var newArticle = new Domain.Entities.Articles
         {
             Title = request.Title,
@@ -41,7 +38,7 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
             ReadCount = 0,
             CreatedAt = _dateTimeService.Now,
             UpdatedAt = null,
-            UserId = (Guid) userId
+            UserId = user.UserId
         };
 
         await DatabaseContext.Articles.AddAsync(newArticle, cancellationToken);
@@ -53,7 +50,7 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
 
         await azureBlob.UploadContent(request.TextToUpload, textDestinationPath, cancellationToken);
         await azureBlob.UploadContent(request.ImageToUpload, imageDestinationPath, cancellationToken);
-            
-        return await Task.FromResult(newArticle.Id);
+
+        return newArticle.Id;
     }
 }

@@ -32,15 +32,13 @@ public class UpdateArticleContentCommandHandler : Cqrs.RequestHandler<UpdateArti
 
     public override async Task<Unit> Handle(UpdateArticleContentCommand request, CancellationToken cancellationToken)
     {
-        var userId = await _userService.GetUserId();
-        if (userId == null)
-            throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
-
-        var articles = await DatabaseContext.Articles
+        var user = await _userService.GetActiveUser(cancellationToken);
+        var article = await DatabaseContext.Articles
+            .Where(articles => articles.UserId == user.UserId)
             .Where(articles => articles.Id == request.Id)
-            .ToListAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (!articles.Any())
+        if (article is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
         var azureBlob = _azureBlobStorageFactory.Create();
@@ -56,13 +54,11 @@ public class UpdateArticleContentCommandHandler : Cqrs.RequestHandler<UpdateArti
             await azureBlob.UploadContent(request.ImageToUpload, imageDestinationPath, cancellationToken);
         }
 
-        var currentArticle = articles.First();
-
-        currentArticle.Title = request.Title ?? currentArticle.Title;
-        currentArticle.Description = request.Description ?? currentArticle.Description;
-        currentArticle.UpdatedAt = request.Title != null && request.Description != null
+        article.Title = request.Title ?? article.Title;
+        article.Description = request.Description ?? article.Description;
+        article.UpdatedAt = request.Title != null && request.Description != null
             ? _dateTimeService.Now
-            : currentArticle.UpdatedAt;
+            : article.UpdatedAt;
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
