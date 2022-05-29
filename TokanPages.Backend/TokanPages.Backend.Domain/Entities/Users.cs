@@ -47,10 +47,10 @@ public class Users : Entity<Guid>, IAuditable, ISoftDelete
 
     public ICollection<ArticleCounts> ArticleCountsNavigation { get; set; } = new HashSet<ArticleCounts>();
 
-    public ICollection<Photos> PhotosNavigation { get; set; } = new HashSet<Photos>();
-        
     public ICollection<Albums> AlbumsNavigation { get; set; } = new HashSet<Albums>();
-        
+
+    public ICollection<UserPhotos> UserPhotosNavigation { get; set; } = new HashSet<UserPhotos>();
+
     public ICollection<UserPermissions> UserPermissionsNavigation { get; set; } = new HashSet<UserPermissions>();
 
     public ICollection<UserRoles> UserRolesNavigation { get; set; } = new HashSet<UserRoles>();

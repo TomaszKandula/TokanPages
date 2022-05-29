@@ -29,5 +29,5 @@ public class PhotoGears : Entity<Guid>
 
     public int FilmIso { get; set; }
 
-    public ICollection<Photos> PhotosNavigation { get; set; } = new HashSet<Photos>();
+    public ICollection<UserPhotos> UserPhotosNavigation { get; set; } = new HashSet<UserPhotos>();
 }

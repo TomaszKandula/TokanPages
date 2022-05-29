@@ -12,5 +12,5 @@ public class PhotoCategories : Entity<Guid>
     [MaxLength(60)]
     public string CategoryName { get; set; }
 
-    public ICollection<Photos> PhotosNavigation { get; set; } = new HashSet<Photos>();
+    public ICollection<UserPhotos> UserPhotosNavigation { get; set; } = new HashSet<UserPhotos>();
 }

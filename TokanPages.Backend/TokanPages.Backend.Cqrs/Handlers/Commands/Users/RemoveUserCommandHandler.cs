@@ -27,9 +27,9 @@ public class RemoveUserCommandHandler : Cqrs.RequestHandler<RemoveUserCommand, U
         nameof(ArticleCounts)
     };    
 
-    private readonly IEnumerable<string> _removeFromEntities = new List<string>()
+    private readonly IEnumerable<string> _removeFromEntities = new List<string>
     {
-        nameof(Photos),
+        nameof(UserPhotos),
         nameof(UserInfo),
         nameof(UserTokens),
         nameof(UserRefreshTokens),

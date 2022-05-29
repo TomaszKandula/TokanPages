@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
 
 [ExcludeFromCodeCoverage]
-public class Photos : Entity<Guid>
+public class UserPhotos : Entity<Guid>
 {
     public Guid UserId { get; set; }
 

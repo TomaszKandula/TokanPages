@@ -17,5 +17,5 @@ public class Albums : Entity<Guid>
 
     public Users UserNavigation { get; set; }
 
-    public Photos PhotoNavigation { get; set; }
+    public UserPhotos UserPhotoNavigation { get; set; }
 }
