@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Backend.Core.Exceptions;
 using Backend.Domain.Entities;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Articles;
 
@@ -45,12 +46,17 @@ public class RemoveArticleCommandHandlerTest : TestBase
             UpdatedAt = null,
             UserId = users.Id
         };
-            
+
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
-            
+
         var mockedLogger = new Mock<ILoggerService>();
-        var removeArticleCommandHandler = new RemoveArticleCommandHandler(databaseContext, mockedLogger.Object);
+        var mockedUserService = new Mock<IUserService>();
+
+        var removeArticleCommandHandler = new RemoveArticleCommandHandler(
+            databaseContext, 
+            mockedLogger.Object, 
+            mockedUserService.Object);
 
         // Act 
         await removeArticleCommandHandler.Handle(removeArticleCommand, CancellationToken.None);
@@ -93,12 +99,17 @@ public class RemoveArticleCommandHandlerTest : TestBase
             UpdatedAt = null,
             UserId = users.Id
         };
-            
+
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
-        var removeArticleCommandHandler = new RemoveArticleCommandHandler(databaseContext, mockedLogger.Object);
+        var mockedUserService = new Mock<IUserService>();
+
+        var removeArticleCommandHandler = new RemoveArticleCommandHandler(
+            databaseContext, 
+            mockedLogger.Object, 
+            mockedUserService.Object);
 
         // Act
         // Assert
