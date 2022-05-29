@@ -89,7 +89,7 @@ public class UserServiceProviderTest : TestBase
     }
         
     [Fact]
-    public async Task GivenInvalidClaimsInHttpContext_WhenInvokeGetUserId_ShouldThrowError()
+    public async Task GivenInvalidClaimsInHttpContext_WhenInvokeGetUserId_ShouldReturnNull()
     {
         // Arrange
         var users = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
@@ -112,8 +112,8 @@ public class UserServiceProviderTest : TestBase
             mockedDateTimeService.Object, 
             mockedApplicationSettings.Object);
 
-        var result = await Assert.ThrowsAsync<AccessException>(() => userProvider.GetUserId());
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+        var result = await userProvider.GetUserId();
+        result.Should().BeNull();
     }
 
     [Fact]
@@ -151,11 +151,11 @@ public class UserServiceProviderTest : TestBase
         result.FirstName.Should().Be(userInfo[0].FirstName);
         result.LastName.Should().Be(userInfo[0].LastName);
         result.ShortBio.Should().Be(userInfo[0].UserAboutText);
-        result.Registered.Should().Be(userInfo[0].CreatedAt);
+        result.Registered.Should().Be(users[0].CreatedAt);
     }
         
     [Fact]
-    public async Task GivenInvalidClaimsInHttpContext_WhenInvokeGetUser_ShouldThrowError()
+    public async Task GivenInvalidClaimsInHttpContext_WhenInvokeGetUser_ShouldReturnNull()
     {
         // Arrange
         var users = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
@@ -178,8 +178,8 @@ public class UserServiceProviderTest : TestBase
             mockedDateTimeService.Object, 
             mockedApplicationSettings.Object);
  
-        var result = await Assert.ThrowsAsync<AccessException>(() => userProvider.GetUser());
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+        var result = await userProvider.GetUser();
+        result.Should().BeNull();
     }
 
     [Fact]
