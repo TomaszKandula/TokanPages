@@ -100,6 +100,22 @@ public sealed class UserService : IUserService
         return _user;
     }
 
+    public async Task<GetUserDto> GetActiveUser(CancellationToken cancellationToken = default)
+    {
+        await EnsureUserData(cancellationToken);
+
+        if (_user == null)
+            throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
+
+        if (!_user.IsActivated)
+            throw new AuthorizationException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
+
+        if (_user.IsDeleted)
+            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
+
+        return _user;
+    }
+
     public async Task<List<GetUserRoleDto>> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default)
     {
         await EnsureUserRoles(userId, cancellationToken);
