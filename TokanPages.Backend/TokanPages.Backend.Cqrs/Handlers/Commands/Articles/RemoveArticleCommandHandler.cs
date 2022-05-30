@@ -41,14 +41,14 @@ public class RemoveArticleCommandHandler : Cqrs.RequestHandler<RemoveArticleComm
 
         if (articleLikes is not null)
         {
-            LoggerService.LogInformation("Remove related article likes for given User ID and Article ID");
             DatabaseContext.ArticleLikes.Remove(articleLikes);
+            LoggerService.LogInformation($"Article likes has been removed for User (ID: {user.Id}) and Article (ID: {article.Id})");
         }
 
         if (articleCounts is not null)
         {
-            LoggerService.LogInformation("Remove related article counts for given User ID and Article ID");
             DatabaseContext.ArticleCounts.Remove(articleCounts);
+            LoggerService.LogInformation($"Article counts has been removed for User (ID: {user.Id}) and Article (ID: {article.Id})");
         }
 
         DatabaseContext.Articles.Remove(article);

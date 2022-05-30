@@ -18,18 +18,18 @@ public class UpdateArticleVisibilityCommandHandler : Cqrs.RequestHandler<UpdateA
         
     public UpdateArticleVisibilityCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
         IUserService userService) : base(databaseContext, loggerService) => _userService = userService;
-        
+
     public override async Task<Unit> Handle(UpdateArticleVisibilityCommand request, CancellationToken cancellationToken)
     {
+        var user = await _userService.GetActiveUser(null, false, cancellationToken);
         var canPublishArticles = await _userService
             .HasPermissionAssigned(nameof(Permissions.CanPublishArticles), cancellationToken) ?? false;
 
         if (!canPublishArticles)
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
-        var userId = await _userService.GetUserId(cancellationToken);
         var articles = await DatabaseContext.Articles
-            .Where(articles => articles.UserId == userId)
+            .Where(articles => articles.UserId == user.Id)
             .Where(articles => articles.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
