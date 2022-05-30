@@ -48,6 +48,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
     public override async Task<Guid> Handle(AddUserCommand request, CancellationToken cancellationToken)
     {
         var users = await DatabaseContext.Users
+            .Where(users => !users.IsDeleted)
             .Where(users => users.EmailAddress == request.EmailAddress)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -92,13 +93,25 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             Id = newUserId,
             EmailAddress = request.EmailAddress,
             UserAlias = request.UserAlias.ToLower(),
-            FirstName = request.FirstName,
-            LastName = request.LastName,
-            Registered = _dateTimeService.Now,
-            AvatarName = defaultAvatar != null ? defaultAvatarName : null,
             CryptedPassword = getHashedPassword,
             ActivationId = activationId,
-            ActivationIdEnds = activationIdEnds
+            ActivationIdEnds = activationIdEnds,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = Guid.Empty,
+            ModifiedAt = null,
+            ModifiedBy = null
+        };
+
+        var newUserInfo = new UserInfo
+        {
+            UserId = newUserId,
+            FirstName = request.FirstName,
+            LastName = request.LastName,
+            UserImageName = defaultAvatar != null ? defaultAvatarName : null,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = newUserId,
+            ModifiedAt = null,
+            ModifiedBy = null
         };
 
         var timezoneOffset = _userService.GetRequestUserTimezoneOffset();
@@ -106,6 +119,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         var expirationDate = baseDateTime.AddMinutes(expiresIn);
 
         await DatabaseContext.Users.AddAsync(newUser, cancellationToken);
+        await DatabaseContext.UserInfo.AddAsync(newUserInfo, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         await SetupDefaultPermissions(newUser.Id, cancellationToken);
         await SendNotification(request.EmailAddress, activationId, expirationDate, cancellationToken);
@@ -119,16 +133,16 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         var userRoleName = Domain.Enums.Roles.EverydayUser.ToString();
         var defaultPermissions = await DatabaseContext.DefaultPermissions
             .AsNoTracking()
-            .Include(permissions => permissions.Role)
-            .Include(permissions => permissions.Permission)
-            .Where(permissions => permissions.Role.Name == userRoleName)
+            .Include(permissions => permissions.RoleNavigation)
+            .Include(permissions => permissions.PermissionNavigation)
+            .Where(permissions => permissions.RoleNavigation.Name == userRoleName)
             .Select(permissions => new DefaultPermissions
             {
                 Id = permissions.Id,
                 RoleId = permissions.RoleId,
-                Role = permissions.Role,
+                RoleNavigation = permissions.RoleNavigation,
                 PermissionId = permissions.PermissionId,
-                Permission = permissions.Permission
+                PermissionNavigation = permissions.PermissionNavigation
             })
             .ToListAsync(cancellationToken);
 

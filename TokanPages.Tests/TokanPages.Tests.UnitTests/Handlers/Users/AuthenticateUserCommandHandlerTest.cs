@@ -37,17 +37,27 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             Id = Guid.NewGuid(),
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
-            LastLogged = null,
             CryptedPassword = cryptedPassword
         };
 
+        var userInfo = new UserInfo
+        {
+            UserId = user.Id,
+            FirstName = DataUtilityService.GetRandomString(),
+            LastName = DataUtilityService.GetRandomString(),
+            UserAboutText = DataUtilityService.GetRandomString(),
+            UserImageName = null,
+            UserVideoName = null,
+            CreatedBy = Guid.Empty,
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            ModifiedBy = null,
+            ModifiedAt = null
+        };
+        
         var databaseContext = GetTestDatabaseContext();
         await databaseContext.Users.AddAsync(user);
+        await databaseContext.UserInfo.AddAsync(userInfo);
         await databaseContext.SaveChangesAsync();
 
         var authenticateUserCommand = new AuthenticateUserCommand
@@ -119,8 +129,6 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         };
 
         var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
-            
-        // Act
         var authenticateUserCommandHandler = new AuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
@@ -130,16 +138,12 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             mockedUserServiceProvider.Object, 
             mockedApplicationSettings.Object);
             
+        // Act
         var result = await authenticateUserCommandHandler.Handle(authenticateUserCommand, CancellationToken.None);
 
         // Assert
         result.UserId.Should().Be(user.Id);
         result.AliasName.Should().Be(user.UserAlias);
-        result.AvatarName.Should().Be(user.AvatarName);
-        result.FirstName.Should().Be(user.FirstName);
-        result.LastName.Should().Be(user.LastName);
-        result.ShortBio.Should().Be(user.ShortBio);
-        result.Registered.Should().Be(user.Registered);
         result.UserToken.Should().NotBeNullOrEmpty();
         result.UserToken.Length.Should().BeGreaterThan(0);
 
@@ -188,12 +192,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             Id = Guid.NewGuid(),
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
-            LastLogged = null,
             CryptedPassword = cryptedPassword
         };
 
@@ -243,12 +242,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             Id = Guid.NewGuid(),
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
-            LastLogged = null,
             CryptedPassword = cryptedPassword
         };
 
@@ -305,12 +299,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             Id = Guid.NewGuid(),
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = false,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
-            LastLogged = null,
             CryptedPassword = cryptedPassword
         };
 

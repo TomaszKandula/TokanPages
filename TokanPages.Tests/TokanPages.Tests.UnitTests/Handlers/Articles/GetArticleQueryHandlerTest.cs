@@ -39,22 +39,30 @@ public class GetArticleQueryHandlerTest : TestBase
             
         var users = new Users
         {
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
+            Id = Guid.NewGuid(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = UserAlias,
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        await databaseContext.Users.AddAsync(users);
-        await databaseContext.SaveChangesAsync();
-
+        var userInfo = new UserInfo
+        {
+            UserId = users.Id,
+            FirstName = DataUtilityService.GetRandomString(),
+            LastName = DataUtilityService.GetRandomString(),
+            UserAboutText = DataUtilityService.GetRandomString(),
+            UserImageName = null,
+            UserVideoName = null,
+            CreatedBy = Guid.Empty,
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            ModifiedBy = null,
+            ModifiedAt = null
+        };
+        
         var articles = new Articles
         {
+            Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),
             Description = DataUtilityService.GetRandomString(),
             IsPublished = false,
@@ -63,9 +71,6 @@ public class GetArticleQueryHandlerTest : TestBase
             UpdatedAt = null,
             UserId = users.Id
         };
-
-        await databaseContext.Articles.AddAsync(articles);
-        await databaseContext.SaveChangesAsync();
 
         var likes = new List<ArticleLikes> 
         { 
@@ -85,6 +90,9 @@ public class GetArticleQueryHandlerTest : TestBase
             }
         };
 
+        await databaseContext.Users.AddAsync(users);
+        await databaseContext.UserInfo.AddAsync(userInfo);
+        await databaseContext.Articles.AddAsync(articles);
         await databaseContext.ArticleLikes.AddRangeAsync(likes);
         await databaseContext.SaveChangesAsync();
 
@@ -143,14 +151,9 @@ public class GetArticleQueryHandlerTest : TestBase
 
         var users = new Users
         {
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 

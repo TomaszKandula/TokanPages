@@ -26,10 +26,6 @@ public class ActivateUserCommandHandlerTest : TestBase
         { 
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString().ToLower(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Registered = DateTimeService.Now,
-            AvatarName = Constants.Defaults.AvatarName,
             CryptedPassword = DataUtilityService.GetRandomString(),
             ActivationId = activationId,
             ActivationIdEnds = DateTimeService.Now.AddMinutes(30)
@@ -67,10 +63,6 @@ public class ActivateUserCommandHandlerTest : TestBase
         { 
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString().ToLower(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Registered = DateTimeService.Now,
-            AvatarName = Constants.Defaults.AvatarName,
             CryptedPassword = DataUtilityService.GetRandomString(),
             ActivationId = Guid.NewGuid(),
             ActivationIdEnds = DateTimeService.Now.AddMinutes(30)
@@ -109,10 +101,6 @@ public class ActivateUserCommandHandlerTest : TestBase
         { 
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString().ToLower(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Registered = DateTimeService.Now,
-            AvatarName = Constants.Defaults.AvatarName,
             CryptedPassword = DataUtilityService.GetRandomString(),
             ActivationId = activationId,
             ActivationIdEnds = DateTimeService.Now.AddMinutes(-100)

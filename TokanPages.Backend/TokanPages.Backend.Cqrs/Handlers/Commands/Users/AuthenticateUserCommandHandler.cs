@@ -40,27 +40,28 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 
     public override async Task<AuthenticateUserCommandResult> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
     {
-        var users = await DatabaseContext.Users
+        var currentUser = await DatabaseContext.Users
             .Where(users => users.EmailAddress == request.EmailAddress)
-            .ToListAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (!users.Any())
+        if (currentUser is null)
         {
             LoggerService.LogError($"Cannot find user with given email address: '{request.EmailAddress}'.");
             throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
         }
 
-        var currentUser = users.First();
-        var isPasswordValid = _cipheringService.VerifyPassword(request.Password, currentUser.CryptedPassword);
+        if (!currentUser.IsActivated)
+            throw new AccessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
+        if (currentUser.IsDeleted)
+            throw new AccessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
+        
+        var isPasswordValid = _cipheringService.VerifyPassword(request.Password, currentUser.CryptedPassword);
         if (!isPasswordValid)
         {
             LoggerService.LogError($"Cannot positively verify given password supplied by user (Id: {currentUser.Id}).");
             throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
         }
-
-        if (!currentUser.IsActivated)
-            throw new AccessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
         var currentDateTime = _dateTimeService.Now;
         var ipAddress = _userService.GetRequestIpAddress();
@@ -70,7 +71,6 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
         var expiresIn = _applicationSettings.IdentityServer.RefreshTokenExpiresIn;
         var refreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, expiresIn);
 
-        currentUser.LastLogged = currentDateTime;
         var newUserToken = new UserTokens
         {
             UserId = currentUser.Id,
@@ -95,19 +95,23 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
         await DatabaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        var roles = await _userService.GetUserRoles(currentUser.Id);
-        var permissions = await _userService.GetUserPermissions(currentUser.Id);
+        var roles = await _userService.GetUserRoles(currentUser.Id, cancellationToken);
+        var permissions = await _userService.GetUserPermissions(currentUser.Id, cancellationToken);
+
+        var userInfo = await DatabaseContext.UserInfo
+            .Where(info => info.UserId == currentUser.Id)
+            .SingleOrDefaultAsync(cancellationToken);
 
         return new AuthenticateUserCommandResult
         {
             UserId = currentUser.Id,
             AliasName = currentUser.UserAlias,
-            AvatarName = currentUser.AvatarName,
-            FirstName = currentUser.FirstName,
-            LastName = currentUser.LastName,
+            AvatarName = userInfo.UserImageName,
+            FirstName = userInfo.FirstName,
+            LastName = userInfo.LastName,
             Email = currentUser.EmailAddress,
-            ShortBio = currentUser.ShortBio,
-            Registered = currentUser.Registered,
+            ShortBio = userInfo.UserAboutText,
+            Registered = currentUser.CreatedAt,
             UserToken = userToken,
             RefreshToken = refreshToken.Token,
             Roles = roles,

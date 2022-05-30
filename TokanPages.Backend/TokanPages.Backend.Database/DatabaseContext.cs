@@ -22,7 +22,7 @@ public class DatabaseContext : DbContext
 
     public virtual DbSet<Albums> Albums { get; set; }
 
-    public virtual DbSet<Photos> Photos { get; set; }
+    public virtual DbSet<UserPhotos> UserPhotos { get; set; }
 
     public virtual DbSet<PhotoGears> PhotoGears { get; set; }
 
@@ -41,6 +41,8 @@ public class DatabaseContext : DbContext
     public virtual DbSet<UserTokens> UserTokens { get; set; }
 
     public virtual DbSet<UserRefreshTokens> UserRefreshTokens { get; set; }
+
+    public virtual DbSet<UserInfo> UserInfo { get; set; }
 
     public virtual DbSet<HttpRequests> HttpRequests { get; set; }
 

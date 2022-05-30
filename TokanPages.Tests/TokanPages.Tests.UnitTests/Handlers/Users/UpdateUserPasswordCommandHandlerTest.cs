@@ -25,12 +25,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
-            LastLogged = null,
             CryptedPassword = string.Empty,
             ResetId = null,
             ResetIdEnds = null,
@@ -54,7 +49,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         var mockedCipheringService = new Mock<ICipheringService>();
 
         mockedUserService
-            .Setup(service => service.HasRoleAssigned(It.IsAny<string>()))
+            .Setup(service => service.HasRoleAssigned(It.IsAny<string>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(true);
 
         var mockedPassword = DataUtilityService.GetRandomString();
@@ -95,12 +90,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
-            LastLogged = null,
             CryptedPassword = string.Empty,
             ResetId = Guid.NewGuid(),
             ResetIdEnds = DateTime.Now.AddMinutes(30),
@@ -158,12 +148,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
-            LastLogged = null,
             CryptedPassword = string.Empty,
             ResetId = null,
             ResetIdEnds = null,
@@ -220,12 +205,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
-            LastLogged = null,
             CryptedPassword = DataUtilityService.GetRandomString(),
             ResetId = null,
             ResetIdEnds = null,
@@ -250,7 +230,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         var mockedCipheringService = new Mock<ICipheringService>();
 
         mockedUserService
-            .Setup(provider => provider.HasRoleAssigned(It.IsAny<string>()))
+            .Setup(provider => provider.HasRoleAssigned(It.IsAny<string>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(false);
 
         var mockedPassword = DataUtilityService.GetRandomString();

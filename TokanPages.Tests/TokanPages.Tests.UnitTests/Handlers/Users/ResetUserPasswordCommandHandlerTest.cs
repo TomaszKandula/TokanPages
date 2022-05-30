@@ -23,12 +23,7 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
-            LastLogged = null,
             CryptedPassword = DataUtilityService.GetRandomString(),
             ResetId = null,
             ResetIdEnds = null,
@@ -76,11 +71,7 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
         userEntity.Should().NotBeNull();
         userEntity.EmailAddress.Should().Be(user.EmailAddress);
         userEntity.UserAlias.Should().Be(user.UserAlias);
-        userEntity.FirstName.Should().Be(user.FirstName);
-        userEntity.LastName.Should().Be(user.LastName);
         userEntity.IsActivated.Should().BeTrue();
-        userEntity.LastUpdated.Should().NotBeNull();
-        userEntity.LastLogged.Should().BeNull();
         userEntity.CryptedPassword.Should().BeEmpty();
         userEntity.ResetId.Should().NotBeNull();
     }

@@ -12,7 +12,8 @@ using MediatR;
 
 public class RemoveSubscriberCommandHandler : Cqrs.RequestHandler<RemoveSubscriberCommand, Unit>
 {
-    public RemoveSubscriberCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
+    public RemoveSubscriberCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService) 
+        : base(databaseContext, loggerService) { }
 
     public override async Task<Unit> Handle(RemoveSubscriberCommand request, CancellationToken cancellationToken) 
     {

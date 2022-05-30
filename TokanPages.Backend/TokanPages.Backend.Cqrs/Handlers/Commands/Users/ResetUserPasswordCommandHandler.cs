@@ -38,22 +38,24 @@ public class ResetUserPasswordCommandHandler : Cqrs.RequestHandler<ResetUserPass
 
     public override async Task<Unit> Handle(ResetUserPasswordCommand request, CancellationToken cancellationToken)
     {
-        var users = await DatabaseContext.Users
+        var currentUser = await DatabaseContext.Users
+            .Where(users => users.IsActivated)
+            .Where(users => !users.IsDeleted)
             .Where(users => users.EmailAddress == request.EmailAddress)
-            .ToListAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (!users.Any())
+        if (currentUser is null)
             throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
         var expiresIn = _applicationSettings.ExpirationSettings.ResetIdExpiresIn;
-        var currentUser = users.First();
         var resetId = Guid.NewGuid();
 
         currentUser.CryptedPassword = string.Empty;
         currentUser.ResetId = resetId;
         currentUser.ResetIdEnds = _dateTimeService.Now.AddMinutes(expiresIn);
-        currentUser.LastUpdated = _dateTimeService.Now;
-
+        currentUser.ModifiedAt = _dateTimeService.Now;
+        currentUser.ModifiedBy = currentUser.Id;
+        
         var timezoneOffset = _userService.GetRequestUserTimezoneOffset();
         var baseDateTime = _dateTimeService.Now.AddMinutes(-timezoneOffset);
         var expirationDate = baseDateTime.AddMinutes(expiresIn);

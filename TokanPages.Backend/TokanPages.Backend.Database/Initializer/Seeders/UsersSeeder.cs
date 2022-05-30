@@ -18,15 +18,12 @@ public static class UsersSeeder
                 EmailAddress = User1.EmailAddress,
                 IsActivated = User1.IsActivated,
                 UserAlias = User1.UserAlias,
-                FirstName = User1.FirstName,
-                LastName = User1.LastName,
-                Registered = User1.Registered,
-                LastLogged = User1.LastLogged,
-                LastUpdated = User1.LastUpdated,
-                AvatarName = User1.AvatarName,
-                ShortBio = User1.ShortBio,
                 CryptedPassword = User1.CryptedPassword,
-                ResetId = User1.ResetId
+                ResetId = User1.ResetId,
+                CreatedBy = User1.CreatedBy,
+                CreatedAt = User1.CreatedAt,
+                ModifiedBy = User1.ModifiedBy,
+                ModifiedAt = User1.ModifiedAt
             },
             new ()
             {
@@ -34,15 +31,12 @@ public static class UsersSeeder
                 EmailAddress = User2.EmailAddress,
                 IsActivated = User2.IsActivated,
                 UserAlias = User2.UserAlias,
-                FirstName = User2.FirstName,
-                LastName = User2.LastName,
-                Registered = User2.Registered,
-                LastLogged = User2.LastLogged,
-                LastUpdated = User2.LastUpdated,
-                AvatarName = User2.AvatarName,
-                ShortBio = User2.ShortBio,
                 CryptedPassword = User2.CryptedPassword,
-                ResetId = User2.ResetId
+                ResetId = User2.ResetId,
+                CreatedBy = User2.CreatedBy,
+                CreatedAt = User2.CreatedAt,
+                ModifiedBy = User2.ModifiedBy,
+                ModifiedAt = User2.ModifiedAt
             },
             new ()
             {
@@ -50,15 +44,12 @@ public static class UsersSeeder
                 EmailAddress = User3.EmailAddress,
                 IsActivated = User3.IsActivated,
                 UserAlias = User3.UserAlias,
-                FirstName = User3.FirstName,
-                LastName = User3.LastName,
-                Registered = User3.Registered,
-                LastLogged = User3.LastLogged,
-                LastUpdated = User3.LastUpdated,
-                AvatarName = User3.AvatarName,
-                ShortBio = User3.ShortBio,
                 CryptedPassword = User3.CryptedPassword,
-                ResetId = User3.ResetId
+                ResetId = User3.ResetId,
+                CreatedBy = User3.CreatedBy,
+                CreatedAt = User3.CreatedAt,
+                ModifiedBy = User3.ModifiedBy,
+                ModifiedAt = User3.ModifiedAt
             }
         };
     }

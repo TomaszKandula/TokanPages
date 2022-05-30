@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Serilog;
 using Middleware;
 using Configuration;
@@ -43,6 +44,14 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddCors();
+        services.Configure<KestrelServerOptions>(options =>
+        {
+            // File size limit is controlled by the appropriate
+            // handler validator that takes maximum available
+            // file size from an Azure application setting.
+            // However, file size cannot be larger than 2GB.
+            options.Limits.MaxRequestBodySize = int.MaxValue;
+        });
         services.AddControllers().AddNewtonsoftJson(options =>
         {
             options.SerializerSettings.Converters.Add(new StringEnumConverter());

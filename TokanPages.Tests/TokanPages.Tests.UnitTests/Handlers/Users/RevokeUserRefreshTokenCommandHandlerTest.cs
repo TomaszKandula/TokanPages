@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
-using TokanPages.Backend.Dto.Users;
 using TokanPages.Services.UserService;
 using Backend.Cqrs.Handlers.Commands.Users;
 using Backend.Core.Utilities.LoggerService;
@@ -29,10 +28,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -55,40 +51,31 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
 
         var randomIpAddress = DataUtilityService.GetRandomIpAddress().ToString(); 
         mockedUserService
-            .Setup(provider => provider.GetRequestIpAddress())
+            .Setup(service => service.GetRequestIpAddress())
             .Returns(randomIpAddress);
 
-        var userDto = new GetUserDto
-        {
-            UserId = userId, 
-            AliasName = DataUtilityService.GetRandomString(),
-            AvatarName = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Email = DataUtilityService.GetRandomEmail(),
-            ShortBio = DataUtilityService.GetRandomString(),
-            Registered= DataUtilityService.GetRandomDateTime(),
-        };
+        mockedUserService
+            .Setup(service => service.GetActiveUser(
+                It.IsAny<Guid?>(), 
+                It.IsAny<bool>(),
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(user);
 
         mockedUserService
-            .Setup(service => service.GetUser())
-            .ReturnsAsync(userDto);
-
-        mockedUserService
-            .Setup(provider => provider
+            .Setup(service => service
                 .RevokeRefreshToken(
                     It.IsAny<RevokeRefreshTokenInput>(),
                     It.IsAny<CancellationToken>()));
             
-        var revokeUserRefreshTokenCommand = new RevokeUserRefreshTokenCommand { RefreshToken = token };
-        var revokeUserRefreshTokenCommandHandler = new RevokeUserRefreshTokenCommandHandler(
+        var command = new RevokeUserRefreshTokenCommand { RefreshToken = token };
+        var handler = new RevokeUserRefreshTokenCommandHandler(
             databaseContext,
             mockedLogger.Object,
             mockedUserService.Object
         );
 
         // Act
-        var result = await revokeUserRefreshTokenCommandHandler.Handle(revokeUserRefreshTokenCommand, CancellationToken.None);
+        var result = await handler.Handle(command, CancellationToken.None);
 
         // Assert
         result.Should().Be(Unit.Value);
@@ -105,10 +92,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -119,26 +103,12 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
-        var randomIpAddress = DataUtilityService.GetRandomIpAddress().ToString(); 
         mockedUserService
-            .Setup(service => service.GetRequestIpAddress())
-            .Returns(randomIpAddress);
-
-        var userDto = new GetUserDto
-        {
-            UserId = userId, 
-            AliasName = DataUtilityService.GetRandomString(),
-            AvatarName = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Email = DataUtilityService.GetRandomEmail(),
-            ShortBio = DataUtilityService.GetRandomString(),
-            Registered= DataUtilityService.GetRandomDateTime(),
-        };
-
-        mockedUserService
-            .Setup(service => service.GetUser())
-            .ReturnsAsync(userDto);
+            .Setup(service => service.GetActiveUser(
+                It.IsAny<Guid?>(), 
+                It.IsAny<bool>(),
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(user);
 
         mockedUserService
             .Setup(service => service
@@ -146,8 +116,8 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
                     It.IsAny<RevokeRefreshTokenInput>(),
                     It.IsAny<CancellationToken>()));
 
-        var revokeUserRefreshTokenCommand = new RevokeUserRefreshTokenCommand { RefreshToken = token };
-        var revokeUserRefreshTokenCommandHandler = new RevokeUserRefreshTokenCommandHandler(
+        var command = new RevokeUserRefreshTokenCommand { RefreshToken = token };
+        var handler = new RevokeUserRefreshTokenCommandHandler(
             databaseContext,
             mockedLogger.Object,
             mockedUserService.Object
@@ -156,7 +126,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
         // Act
         // Assert
         var result = await Assert.ThrowsAsync<AuthorizationException>(() 
-            => revokeUserRefreshTokenCommandHandler.Handle(revokeUserRefreshTokenCommand, CancellationToken.None));
+            => handler.Handle(command, CancellationToken.None));
 
         result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_REFRESH_TOKEN));
     }

@@ -6,31 +6,31 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Domain.Entities;
 
 [ExcludeFromCodeCoverage]
-public class PhotosConfiguration : IEntityTypeConfiguration<Photos>
+public class PhotosConfiguration : IEntityTypeConfiguration<UserPhotos>
 {
-    public void Configure(EntityTypeBuilder<Photos> builder)
+    public void Configure(EntityTypeBuilder<UserPhotos> builder)
     {
         builder.Property(photos => photos.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(photos => photos.User)
-            .WithMany(users => users.Photos)
+            .HasOne(photos => photos.UserNavigation)
+            .WithMany(users => users.UserPhotosNavigation)
             .HasForeignKey(photos => photos.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Photos_Users");
+            .HasConstraintName("FK_UserPhotos_Users");
             
         builder
-            .HasOne(photos => photos.PhotoGear)
-            .WithMany(photoGears => photoGears.Photos)
+            .HasOne(photos => photos.PhotoGearNavigation)
+            .WithMany(photoGears => photoGears.UserPhotosNavigation)
             .HasForeignKey(photos => photos.PhotoGearId)
             .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Photos_PhotoGears");
+            .HasConstraintName("FK_UserPhotos_PhotoGears");
             
         builder
-            .HasOne(photos => photos.PhotoCategory)
-            .WithMany(photoCategories => photoCategories.Photos)
+            .HasOne(photos => photos.PhotoCategoryNavigation)
+            .WithMany(photoCategories => photoCategories.UserPhotosNavigation)
             .HasForeignKey(photos => photos.PhotoCategoryId)
             .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Photos_PhotoCategories");
+            .HasConstraintName("FK_UserPhotos_PhotoCategories");
     }
 }

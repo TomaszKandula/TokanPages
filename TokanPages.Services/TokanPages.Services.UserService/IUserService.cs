@@ -17,21 +17,23 @@ public interface IUserService
 
     Task LogHttpRequest(string handlerName);
 
-    Task<Guid?> GetUserId();
+    Task<Guid?> GetUserId(CancellationToken cancellationToken = default);
 
-    Task<GetUserDto> GetUser();
+    Task<GetUserDto> GetUser(CancellationToken cancellationToken = default);
 
-    Task<List<GetUserRoleDto>> GetUserRoles(Guid? userId);
+    Task<Users> GetActiveUser(Guid? userId, bool isTracking, CancellationToken cancellationToken = default);
 
-    Task<List<GetUserPermissionDto>> GetUserPermissions(Guid? userId);
+    Task<List<GetUserRoleDto>> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default);
 
-    Task<bool?> HasRoleAssigned(string userRoleName);
+    Task<List<GetUserPermissionDto>> GetUserPermissions(Guid? userId, CancellationToken cancellationToken = default);
 
-    Task<bool> HasRoleAssigned(Guid roleId, Guid? userId);
+    Task<bool?> HasRoleAssigned(string userRoleName, CancellationToken cancellationToken = default);
 
-    Task<bool?> HasPermissionAssigned(string userPermissionName);
+    Task<bool> HasRoleAssigned(Guid roleId, Guid? userId, CancellationToken cancellationToken = default);
 
-    Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId);
+    Task<bool?> HasPermissionAssigned(string userPermissionName, CancellationToken cancellationToken = default);
+
+    Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId, CancellationToken cancellationToken = default);
 
     Task<ClaimsIdentity> MakeClaimsIdentity(Users users, CancellationToken cancellationToken = default);
         

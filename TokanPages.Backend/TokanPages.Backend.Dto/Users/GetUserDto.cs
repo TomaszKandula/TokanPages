@@ -1,4 +1,5 @@
-﻿namespace TokanPages.Backend.Dto.Users;
+﻿#nullable enable
+namespace TokanPages.Backend.Dto.Users;
 
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -17,32 +18,32 @@ public class GetUserDto
     /// <summary>
     /// AliasName
     /// </summary>
-    public string AliasName { get; set; }
+    public string? AliasName { get; set; }
 
     /// <summary>
     /// AvatarName
     /// </summary>
-    public string AvatarName { get; set; }
+    public string? AvatarName { get; set; }
 
     /// <summary>
     /// FirstName
     /// </summary>
-    public string FirstName { get; set; }
+    public string? FirstName { get; set; }
 
     /// <summary>
     /// LastName
     /// </summary>
-    public string LastName { get; set; }
+    public string? LastName { get; set; }
 
     /// <summary>
     /// Email
     /// </summary>
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     /// <summary>
     /// ShortBio
     /// </summary>
-    public string ShortBio { get; set; }
+    public string? ShortBio { get; set; }
 
     /// <summary>
     /// Registered

@@ -32,10 +32,12 @@ public class UserServiceProviderTest : TestBase
         // Arrange
         var loggedUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
         var users = GetUser(loggedUserId);
+        var userInfo = GetUserInfo(loggedUserId);
         var httpContext = GetMockedHttpContext(loggedUserId);
             
         var databaseContext = GetTestDatabaseContext();
         await databaseContext.Users.AddRangeAsync(users);
+        await databaseContext.UserInfo.AddRangeAsync(userInfo);
         await databaseContext.SaveChangesAsync();
 
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
@@ -87,7 +89,7 @@ public class UserServiceProviderTest : TestBase
     }
         
     [Fact]
-    public async Task GivenInvalidClaimsInHttpContext_WhenInvokeGetUserId_ShouldThrowError()
+    public async Task GivenInvalidClaimsInHttpContext_WhenInvokeGetUserId_ShouldReturnNull()
     {
         // Arrange
         var users = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
@@ -110,8 +112,8 @@ public class UserServiceProviderTest : TestBase
             mockedDateTimeService.Object, 
             mockedApplicationSettings.Object);
 
-        var result = await Assert.ThrowsAsync<AccessException>(userProvider.GetUserId);
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+        var result = await userProvider.GetUserId();
+        result.Should().BeNull();
     }
 
     [Fact]
@@ -120,10 +122,12 @@ public class UserServiceProviderTest : TestBase
         // Arrange
         var loggedUserId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9");
         var users = GetUser(loggedUserId).ToList();
+        var userInfo = GetUserInfo(loggedUserId).ToList();
         var httpContext = GetMockedHttpContext(loggedUserId);
             
         var databaseContext = GetTestDatabaseContext();
         await databaseContext.Users.AddRangeAsync(users);
+        await databaseContext.UserInfo.AddRangeAsync(userInfo);
         await databaseContext.SaveChangesAsync();
             
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
@@ -139,19 +143,19 @@ public class UserServiceProviderTest : TestBase
             mockedApplicationSettings.Object);
 
         var result = await userProvider.GetUser();
-            
+
         // Assert
         result.UserId.Should().Be(users[0].Id);
         result.AliasName.Should().Be(users[0].UserAlias);
-        result.AvatarName.Should().Be(users[0].AvatarName);
-        result.FirstName.Should().Be(users[0].FirstName);
-        result.LastName.Should().Be(users[0].LastName);
-        result.ShortBio.Should().Be(users[0].ShortBio);
-        result.Registered.Should().Be(users[0].Registered);
+        result.AvatarName.Should().Be(userInfo[0].UserImageName);
+        result.FirstName.Should().Be(userInfo[0].FirstName);
+        result.LastName.Should().Be(userInfo[0].LastName);
+        result.ShortBio.Should().Be(userInfo[0].UserAboutText);
+        result.Registered.Should().Be(users[0].CreatedAt);
     }
         
     [Fact]
-    public async Task GivenInvalidClaimsInHttpContext_WhenInvokeGetUser_ShouldThrowError()
+    public async Task GivenInvalidClaimsInHttpContext_WhenInvokeGetUser_ShouldReturnNull()
     {
         // Arrange
         var users = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"));
@@ -174,8 +178,8 @@ public class UserServiceProviderTest : TestBase
             mockedDateTimeService.Object, 
             mockedApplicationSettings.Object);
  
-        var result = await Assert.ThrowsAsync<AccessException>(userProvider.GetUser);
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
+        var result = await userProvider.GetUser();
+        result.Should().BeNull();
     }
 
     [Fact]
@@ -870,6 +874,7 @@ public class UserServiceProviderTest : TestBase
         // Arrange
         var userId = Guid.NewGuid();
         var users = GetUser(userId).ToList();
+        var userInfo = GetUserInfo(userId).ToList();
         var roles = GetRole().ToList();
         var userRoles = new UserRoles
         {
@@ -881,6 +886,7 @@ public class UserServiceProviderTest : TestBase
         await databaseContext.Users.AddRangeAsync(users);
         await databaseContext.Roles.AddRangeAsync(roles);
         await databaseContext.UserRoles.AddRangeAsync(userRoles);
+        await databaseContext.UserInfo.AddRangeAsync(userInfo);
         await databaseContext.SaveChangesAsync();
             
         var ipAddress = DataUtilityService.GetRandomIpAddress();
@@ -904,8 +910,8 @@ public class UserServiceProviderTest : TestBase
         result.Claims.First(claim => claim.Type == ClaimTypes.Name).Value.Should().Be(users[0].UserAlias);
         result.Claims.First(claim => claim.Type == ClaimTypes.Role).Value.Should().Be(roles[0].Name);
         result.Claims.First(claim => claim.Type == ClaimTypes.NameIdentifier).Value.Should().Be(users[0].Id.ToString());
-        result.Claims.First(claim => claim.Type == ClaimTypes.GivenName).Value.Should().Be(users[0].FirstName);
-        result.Claims.First(claim => claim.Type == ClaimTypes.Surname).Value.Should().Be(users[0].LastName);
+        result.Claims.First(claim => claim.Type == ClaimTypes.GivenName).Value.Should().Be(userInfo[0].FirstName);
+        result.Claims.First(claim => claim.Type == ClaimTypes.Surname).Value.Should().Be(userInfo[0].LastName);
         result.Claims.First(claim => claim.Type == ClaimTypes.Email).Value.Should().Be(users[0].EmailAddress);
     }
 
@@ -1371,10 +1377,7 @@ public class UserServiceProviderTest : TestBase
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -1434,7 +1437,7 @@ public class UserServiceProviderTest : TestBase
         getRefreshTokens[0].ReplacedByToken.Should().BeNull();
     }
 
-    private  IEnumerable<Users> GetUser(Guid userId)
+    private IEnumerable<Users> GetUser(Guid userId)
     {
         return new List<Users>
         {
@@ -1443,13 +1446,23 @@ public class UserServiceProviderTest : TestBase
                 Id = userId,
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
+                IsActivated = true,
+                CryptedPassword = DataUtilityService.GetRandomString()
+            }
+        };
+    }
+
+    private IEnumerable<UserInfo> GetUserInfo(Guid userId)
+    {
+        return new List<UserInfo>
+        {
+            new()
+            {
+                Id = Guid.NewGuid(),
+                UserId = userId,
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
-                IsActivated = true,
-                Registered = DataUtilityService.GetRandomDateTime(),
-                LastUpdated = null,
-                LastLogged = null,
-                CryptedPassword = DataUtilityService.GetRandomString()
+                CreatedAt = DataUtilityService.GetRandomDateTime(),
             }
         };
     }

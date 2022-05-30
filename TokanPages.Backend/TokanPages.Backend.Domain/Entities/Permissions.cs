@@ -11,7 +11,7 @@ public class Permissions : Entity<Guid>
     [MaxLength(100)]
     public string Name { get; set; }
 
-    public ICollection<DefaultPermissions> DefaultPermissions { get; set; } = new HashSet<DefaultPermissions>();
-        
-    public ICollection<UserPermissions> UserPermissions { get; set; } = new HashSet<UserPermissions>();
+    public ICollection<DefaultPermissions> DefaultPermissionsNavigation { get; set; } = new HashSet<DefaultPermissions>();
+
+    public ICollection<UserPermissions> UserPermissionsNavigation { get; set; } = new HashSet<UserPermissions>();
 }

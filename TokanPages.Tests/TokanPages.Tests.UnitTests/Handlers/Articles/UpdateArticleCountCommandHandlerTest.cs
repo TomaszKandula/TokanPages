@@ -25,14 +25,9 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var users = new Users
         {
             Id = userId,
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -62,7 +57,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserServiceProvider
-            .Setup(service => service.GetUserId())
+            .Setup(service => service.GetUserId(It.IsAny<CancellationToken>()))
             .ReturnsAsync(userId);
 
         mockedUserServiceProvider
@@ -101,14 +96,9 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var users = new Users
         {
             Id = userId,
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -148,7 +138,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserServiceProvider
-            .Setup(service => service.GetUserId())
+            .Setup(service => service.GetUserId(It.IsAny<CancellationToken>()))
             .ReturnsAsync(userId);
 
         mockedUserServiceProvider
@@ -187,14 +177,9 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var users = new Users
         {
             Id = userId,
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -224,7 +209,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserServiceProvider
-            .Setup(service => service.GetUserId())
+            .Setup(service => service.GetUserId(It.IsAny<CancellationToken>()))
             .ReturnsAsync((Guid?)null);
 
         mockedUserServiceProvider
@@ -260,14 +245,9 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         // Arrange
         var users = new Users
         {
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -294,7 +274,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserServiceProvider
-            .Setup(service => service.GetUserId())
+            .Setup(service => service.GetUserId(It.IsAny<CancellationToken>()))
             .ReturnsAsync((Guid?)null);
 
         mockedUserServiceProvider

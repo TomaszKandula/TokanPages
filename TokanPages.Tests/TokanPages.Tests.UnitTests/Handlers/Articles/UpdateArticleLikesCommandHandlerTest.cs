@@ -25,14 +25,9 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         // Arrange
         var users = new Users
         {
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -100,14 +95,9 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         // Arrange
         var users = new Users
         {
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -185,14 +175,9 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         // Arrange
         var users = new Users
         {
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -218,7 +203,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider
-            .Setup(provider => provider.GetUserId())
+            .Setup(provider => provider.GetUserId(It.IsAny<CancellationToken>()))
             .ReturnsAsync(users.Id);
 
         mockedUserProvider
@@ -262,14 +247,9 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         // Arrange
         var users = new Users
         {
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -306,7 +286,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider
-            .Setup(provider => provider.GetUserId())
+            .Setup(provider => provider.GetUserId(It.IsAny<CancellationToken>()))
             .ReturnsAsync(users.Id);
 
         mockedUserProvider

@@ -24,12 +24,7 @@ public class UpdateUserCommandHandlerTest : TestBase
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
-            LastLogged = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -65,10 +60,7 @@ public class UpdateUserCommandHandlerTest : TestBase
         userEntity.Should().NotBeNull();
         userEntity.EmailAddress.Should().Be(updateUserCommand.EmailAddress);
         userEntity.UserAlias.Should().Be(updateUserCommand.UserAlias);
-        userEntity.FirstName.Should().Be(updateUserCommand.FirstName);
-        userEntity.LastName.Should().Be(updateUserCommand.LastName);
         userEntity.IsActivated.Should().BeTrue();
-        userEntity.LastUpdated.Should().NotBeNull();
     }
 
     [Fact]
@@ -112,24 +104,14 @@ public class UpdateUserCommandHandlerTest : TestBase
             {
                 EmailAddress = testEmail,
                 UserAlias = DataUtilityService.GetRandomString(),
-                FirstName = DataUtilityService.GetRandomString(),
-                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                Registered = DateTimeService.Now,
-                LastUpdated = null,
-                LastLogged = null,
                 CryptedPassword = DataUtilityService.GetRandomString()
             },
             new()
             {
                 EmailAddress = testEmail,
                 UserAlias = DataUtilityService.GetRandomString(),
-                FirstName = DataUtilityService.GetRandomString(),
-                LastName = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                Registered = DateTimeService.Now,
-                LastUpdated = null,
-                LastLogged = null,
                 CryptedPassword = DataUtilityService.GetRandomString()
             },
         };

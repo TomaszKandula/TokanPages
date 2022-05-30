@@ -17,22 +17,34 @@ public class GetUserQueryHandlerTest : TestBase
     public async Task GivenCorrectId_WhenGetUser_ShouldReturnEntity() 
     {
         // Arrange
-        var testDate = DateTime.Now;
         var users = new Users 
         { 
+            Id = Guid.NewGuid(),
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
+            IsActivated = true,
+            CryptedPassword = DataUtilityService.GetRandomString(),
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            CreatedBy = Guid.Empty
+        };
+
+        var userInfo = new UserInfo
+        {
+            UserId = users.Id,
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
-            IsActivated = true,
-            Registered = testDate,
-            LastUpdated = null,
-            LastLogged = null,
-            CryptedPassword = DataUtilityService.GetRandomString()
+            UserAboutText = DataUtilityService.GetRandomString(),
+            UserImageName = null,
+            UserVideoName = null,
+            CreatedBy = Guid.Empty,
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            ModifiedBy = null,
+            ModifiedAt = null
         };
 
         var databaseContext = GetTestDatabaseContext();
         await databaseContext.Users.AddAsync(users);
+        await databaseContext.UserInfo.AddAsync(userInfo);
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
@@ -46,10 +58,8 @@ public class GetUserQueryHandlerTest : TestBase
         result.Should().NotBeNull();
         result.Email.Should().Be(users.EmailAddress);
         result.AliasName.Should().Be(users.UserAlias);
-        result.FirstName.Should().Be(users.FirstName);
-        result.LastName.Should().Be(users.LastName);
         result.IsActivated.Should().BeTrue();
-        result.Registered.Should().Be(testDate);
+        result.Registered.Should().Be(users.CreatedAt);
         result.LastUpdated.Should().BeNull();
         result.LastLogged.Should().BeNull();
     }
