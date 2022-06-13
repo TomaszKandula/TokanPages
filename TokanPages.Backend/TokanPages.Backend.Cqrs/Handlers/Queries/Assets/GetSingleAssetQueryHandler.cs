@@ -14,11 +14,8 @@ public class GetSingleAssetQueryHandler : RequestHandler<GetSingleAssetQuery, Fi
 {
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public GetSingleAssetQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
-    {
-        _azureBlobStorageFactory = azureBlobStorageFactory;
-    }
+    public GetSingleAssetQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory) 
+        : base(databaseContext, loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
 
     public override async Task<FileContentResult> Handle(GetSingleAssetQuery request, CancellationToken cancellationToken)
     {
