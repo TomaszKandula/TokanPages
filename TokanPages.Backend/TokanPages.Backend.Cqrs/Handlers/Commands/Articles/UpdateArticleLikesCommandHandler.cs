@@ -1,5 +1,6 @@
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -42,7 +43,7 @@ public class UpdateArticleLikesCommandHandler : Cqrs.RequestHandler<UpdateArticl
 
         if (articleLikes is null)
         {
-            await AddNewArticleLikes(isAnonymousUser, request, cancellationToken);
+            await AddNewArticleLikes(isAnonymousUser, user?.UserId, request, cancellationToken);
         }
         else
         {
@@ -53,20 +54,17 @@ public class UpdateArticleLikesCommandHandler : Cqrs.RequestHandler<UpdateArticl
         return Unit.Value;
     }
 
-    private async Task AddNewArticleLikes(bool isAnonymousUser, UpdateArticleLikesCommand request, CancellationToken cancellationToken)
+    private async Task AddNewArticleLikes(bool isAnonymousUser, Guid? userId, UpdateArticleLikesCommand request, CancellationToken cancellationToken)
     {
         var likesLimit = isAnonymousUser 
             ? Constants.Likes.LikesLimitForAnonymous 
             : Constants.Likes.LikesLimitForUser;
 
-        var user = await _userService.GetUser(cancellationToken);
-        var ipAddress = _userService.GetRequestIpAddress();
-
         var entity = new Domain.Entities.ArticleLikes
         {
             ArticleId = request.Id,
-            UserId = user.UserId,
-            IpAddress = ipAddress,
+            UserId = userId,
+            IpAddress = _userService.GetRequestIpAddress(),
             LikeCount = request.AddToLikes > likesLimit ? likesLimit : request.AddToLikes
         };
 
