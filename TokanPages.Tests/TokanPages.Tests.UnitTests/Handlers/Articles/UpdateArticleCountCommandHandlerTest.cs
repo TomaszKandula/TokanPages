@@ -235,7 +235,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
 
         var getUserDto = new GetUserDto
         {
-            UserId = user.Id,
+            UserId = userId,
             AliasName = DataUtilityService.GetRandomString(),
             AvatarName = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
@@ -253,27 +253,26 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
             .Setup(service => service.GetRequestIpAddress())
             .Returns(mockedIpAddress);
 
-        var updateArticleCountCommandHandler = new UpdateArticleCountCommandHandler(
+        var command = new UpdateArticleCountCommand { Id = articleId };
+        var handler = new UpdateArticleCountCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedUserServiceProvider.Object);
 
-        var updateArticleCommand = new UpdateArticleCountCommand { Id = articleId };
-
         // Act
-        await updateArticleCountCommandHandler.Handle(updateArticleCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
+        // Assert
         var articlesEntity = await databaseContext.Articles
-            .FindAsync(updateArticleCommand.Id);
+            .FindAsync(command.Id);
 
         var articleCounts = await databaseContext.ArticleCounts
             .Where(counts => counts.ArticleId == articleId)
             .ToListAsync();
 
-        // Assert
         articlesEntity.Should().NotBeNull();
         articlesEntity.ReadCount.Should().Be(expectedTotalReadCount);
-        articleCounts.Should().HaveCount(0);
+        articleCounts.Should().HaveCountGreaterThan(0);
     }
 
     [Fact]
