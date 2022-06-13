@@ -43,7 +43,7 @@ public class UserServiceProviderTest : TestBase
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
-            
+
         // Act
         var userProvider = new UserService(
             httpContext.Object, 
@@ -55,13 +55,14 @@ public class UserServiceProviderTest : TestBase
         var result = await userProvider.GetUser();
 
         // Assert
-        result.UserId.Should().Be(users[0].Id);
-        result.AliasName.Should().Be(users[0].UserAlias);
-        result.AvatarName.Should().Be(userInfo[0].UserImageName);
-        result.FirstName.Should().Be(userInfo[0].FirstName);
-        result.LastName.Should().Be(userInfo[0].LastName);
-        result.ShortBio.Should().Be(userInfo[0].UserAboutText);
-        result.Registered.Should().Be(users[0].CreatedAt);
+        result.Should().NotBeNull();
+        result?.UserId.Should().Be(users[0].Id);
+        result?.AliasName.Should().Be(users[0].UserAlias);
+        result?.AvatarName.Should().Be(userInfo[0].UserImageName);
+        result?.FirstName.Should().Be(userInfo[0].FirstName);
+        result?.LastName.Should().Be(userInfo[0].LastName);
+        result?.ShortBio.Should().Be(userInfo[0].UserAboutText);
+        result?.Registered.Should().Be(users[0].CreatedAt);
     }
         
     [Fact]
@@ -156,9 +157,10 @@ public class UserServiceProviderTest : TestBase
         var result = await userProvider.GetUserRoles(null);
 
         // Assert
+        result.Should().NotBeNull();
         result.Should().HaveCount(1);
-        result[0].Name.Should().Be(roles[0].Name);
-        result[0].Description.Should().Be(roles[0].Description);
+        result?[0].Name.Should().Be(roles[0].Name);
+        result?[0].Description.Should().Be(roles[0].Description);
     }
 
     [Fact]
@@ -280,9 +282,10 @@ public class UserServiceProviderTest : TestBase
         var result = await userProvider.GetUserPermissions(null);
 
         // Assert
+        result.Should().NotBeNull();
         result.Should().HaveCount(2);
-        result[0].Name.Should().Be(permissions[0].Name);
-        result[1].Name.Should().Be(permissions[1].Name);
+        result?[0].Name.Should().Be(permissions[0].Name);
+        result?[1].Name.Should().Be(permissions[1].Name);
     }
 
     [Fact]
@@ -454,10 +457,10 @@ public class UserServiceProviderTest : TestBase
     }
         
     [Fact]
-    public async Task GivenNoUserClaimsInHttpContext_WhenInvokeHasRoleAssigned_ShouldReturnNull()
+    public async Task GivenNoUserClaimsInHttpContext_WhenInvokeHasRoleAssigned_ShouldReturnFalse()
     {
         // Arrange
-        var users = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
+        var users = GetUser(Guid.NewGuid()).ToList();
         var roles = GetRole().ToList();
         var userRoles = new UserRoles
         {
@@ -487,14 +490,14 @@ public class UserServiceProviderTest : TestBase
 
         // Assert
         var result = await userProvider.HasRoleAssigned(nameof(Roles.EverydayUser));
-        result.Should().BeNull();
+        result.Should().BeFalse();
     }
         
     [Fact]
-    public async Task GivenValidClaimsInHttpContextAndNoRole_WhenInvokeHasRoleAssigned_ShouldThrowError()
+    public async Task GivenValidClaimsInHttpContextAndNoRole_WhenInvokeHasRoleAssigned_ShouldReturnFalse()
     {
         // Arrange
-        var users = GetUser(Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")).ToList();
+        var users = GetUser(Guid.NewGuid()).ToList();
         var roles = GetRole().ToList();
         var userRoles = new UserRoles
         {
@@ -509,13 +512,10 @@ public class UserServiceProviderTest : TestBase
         await databaseContext.SaveChangesAsync();
 
         var httpContext = GetMockedHttpContext(users[0].Id);
-            
+
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
-            
-        // Act
-        // Assert
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -523,8 +523,11 @@ public class UserServiceProviderTest : TestBase
             mockedDateTimeService.Object, 
             mockedApplicationSettings.Object);
 
-        var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.HasRoleAssigned(string.Empty));
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION));
+        // Act
+        var result = await userProvider.HasRoleAssigned(string.Empty);
+
+        // Assert
+        result.Should().BeFalse();
     }
 
     [Fact]
@@ -623,10 +626,10 @@ public class UserServiceProviderTest : TestBase
     }
         
     [Fact]
-    public async Task GivenNoUserClaimsInHttpContext_WhenInvokeHasPermissionAssigned_ShouldReturnNull()
+    public async Task GivenNoUserClaimsInHttpContext_WhenInvokeHasPermissionAssigned_ShouldReturnFalse()
     {
         // Arrange
-        var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
+        var userId = Guid.NewGuid(); 
         var users = GetUser(userId).ToList();
         var permissions = GetPermissions().ToList();
         var userPermissions = new List<UserPermissions>
@@ -665,14 +668,14 @@ public class UserServiceProviderTest : TestBase
 
         // Assert
         var result = await userProvider.HasPermissionAssigned(Permissions.CanSelectArticles.ToString());
-        result.Should().BeNull();
+        result.Should().BeFalse();
     }
 
     [Fact]
-    public async Task GivenValidClaimsInHttpContextAndNoPermission_WhenInvokeHasPermissionAssigned_ShouldThrowError()
+    public async Task GivenValidClaimsInHttpContextAndNoPermission_WhenInvokeHasPermissionAssigned_ShouldReturnFalse()
     {
         // Arrange
-        var userId = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"); 
+        var userId = Guid.NewGuid(); 
         var users = GetUser(userId).ToList();
         var permissions = GetPermissions().ToList();
         var userPermissions = new List<UserPermissions>
@@ -700,9 +703,6 @@ public class UserServiceProviderTest : TestBase
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedApplicationSettings = MockApplicationSettings();
-            
-        // Act
-        // Assert
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -710,8 +710,11 @@ public class UserServiceProviderTest : TestBase
             mockedDateTimeService.Object, 
             mockedApplicationSettings.Object);
 
-        var result = await Assert.ThrowsAsync<BusinessException>(() => userProvider.HasPermissionAssigned(string.Empty));
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION));
+        // Act
+        var result = await userProvider.HasPermissionAssigned(string.Empty);
+
+        // Assert
+        result.Should().BeFalse();
     }
 
     [Fact]
