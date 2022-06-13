@@ -1,4 +1,5 @@
-﻿namespace TokanPages.Services.UserService;
+﻿#nullable enable
+namespace TokanPages.Services.UserService;
 
 using System;
 using System.Threading;
@@ -17,13 +18,13 @@ public interface IUserService
 
     Task LogHttpRequest(string handlerName);
 
-    Task<GetUserDto> GetUser(CancellationToken cancellationToken = default);
+    Task<GetUserDto?> GetUser(CancellationToken cancellationToken = default);
 
     Task<Users> GetActiveUser(Guid? userId = default, bool isTracking = false, CancellationToken cancellationToken = default);
 
-    Task<List<GetUserRoleDto>> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default);
+    Task<List<GetUserRoleDto>?> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default);
 
-    Task<List<GetUserPermissionDto>> GetUserPermissions(Guid? userId, CancellationToken cancellationToken = default);
+    Task<List<GetUserPermissionDto>?> GetUserPermissions(Guid? userId, CancellationToken cancellationToken = default);
 
     Task<bool?> HasRoleAssigned(string userRoleName, Guid? userId = default, CancellationToken cancellationToken = default);
 

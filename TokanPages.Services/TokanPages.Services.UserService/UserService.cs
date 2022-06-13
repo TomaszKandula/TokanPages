@@ -1,4 +1,5 @@
-﻿namespace TokanPages.Services.UserService;
+﻿#nullable enable
+namespace TokanPages.Services.UserService;
 
 using System;
 using System.Linq;
@@ -38,11 +39,11 @@ public sealed class UserService : IUserService
 
     private readonly IApplicationSettings _applicationSettings;
 
-    private List<GetUserPermissionDto> _userPermissions;
+    private List<GetUserPermissionDto>? _userPermissions;
 
-    private List<GetUserRoleDto> _userRoles;
+    private List<GetUserRoleDto>? _userRoles;
 
-    private GetUserDto _user;
+    private GetUserDto? _user;
 
     public UserService(IHttpContextAccessor httpContextAccessor, DatabaseContext databaseContext, 
         IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IApplicationSettings applicationSettings)
@@ -88,7 +89,7 @@ public sealed class UserService : IUserService
         await _databaseContext.SaveChangesAsync();
     }
 
-    public async Task<GetUserDto> GetUser(CancellationToken cancellationToken = default)
+    public async Task<GetUserDto?> GetUser(CancellationToken cancellationToken = default)
     {
         await EnsureUserData(cancellationToken);
         return _user;
@@ -112,13 +113,13 @@ public sealed class UserService : IUserService
         return user;
     }
 
-    public async Task<List<GetUserRoleDto>> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default)
+    public async Task<List<GetUserRoleDto>?> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default)
     {
         await EnsureUserRoles(userId, cancellationToken);
         return _userRoles;
     }
 
-    public async Task<List<GetUserPermissionDto>> GetUserPermissions(Guid? userId, CancellationToken cancellationToken = default)
+    public async Task<List<GetUserPermissionDto>?> GetUserPermissions(Guid? userId, CancellationToken cancellationToken = default)
     {
         await EnsureUserPermissions(userId, cancellationToken);
         return _userPermissions;
@@ -271,6 +272,9 @@ public sealed class UserService : IUserService
         var userRefreshTokensList = input.UserRefreshTokens.ToList();
         var childToken = userRefreshTokensList
             .SingleOrDefault(tokens => tokens.Token == input.SavedUserRefreshTokens.ReplacedByToken);
+
+        if (childToken is null) 
+            return;
 
         if (IsRefreshTokenActive(childToken))
         {
