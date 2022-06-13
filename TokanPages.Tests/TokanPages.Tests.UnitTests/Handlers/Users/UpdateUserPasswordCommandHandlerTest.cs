@@ -49,7 +49,10 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         var mockedCipheringService = new Mock<ICipheringService>();
 
         mockedUserService
-            .Setup(service => service.HasRoleAssigned(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Setup(service => service.HasRoleAssigned(
+                It.IsAny<string>(),
+                It.IsAny<Guid?>(),
+                It.IsAny<CancellationToken>()))
             .ReturnsAsync(true);
 
         var mockedPassword = DataUtilityService.GetRandomString();
@@ -230,7 +233,10 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         var mockedCipheringService = new Mock<ICipheringService>();
 
         mockedUserService
-            .Setup(provider => provider.HasRoleAssigned(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Setup(provider => provider.HasRoleAssigned(
+                It.IsAny<string>(), 
+                It.IsAny<Guid?>(),
+                It.IsAny<CancellationToken>()))
             .ReturnsAsync(false);
 
         var mockedPassword = DataUtilityService.GetRandomString();

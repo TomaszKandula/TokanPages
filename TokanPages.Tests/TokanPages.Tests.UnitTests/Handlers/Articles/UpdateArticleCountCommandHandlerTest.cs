@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
+using TokanPages.Backend.Dto.Users;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Articles;
@@ -22,7 +23,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var users = new Users
+        var user = new Users
         {
             Id = userId,
             IsActivated = true,
@@ -32,7 +33,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         };
 
         var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
+        await databaseContext.Users.AddAsync(user);
         await databaseContext.SaveChangesAsync();
 
         var articleId = Guid.NewGuid();
@@ -56,9 +57,21 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
+        var getUserDto = new GetUserDto
+        {
+            UserId = user.Id,
+            AliasName = DataUtilityService.GetRandomString(),
+            AvatarName = DataUtilityService.GetRandomString(),
+            FirstName = DataUtilityService.GetRandomString(),
+            LastName = DataUtilityService.GetRandomString(),
+            Email = DataUtilityService.GetRandomEmail(),
+            ShortBio = DataUtilityService.GetRandomString(),
+            Registered = DataUtilityService.GetRandomDateTime()
+        };
+
         mockedUserServiceProvider
-            .Setup(service => service.GetUserId(It.IsAny<CancellationToken>()))
-            .ReturnsAsync(userId);
+            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
+            .ReturnsAsync(getUserDto);
 
         mockedUserServiceProvider
             .Setup(service => service.GetRequestIpAddress())
@@ -93,7 +106,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var users = new Users
+        var user = new Users
         {
             Id = userId,
             IsActivated = true,
@@ -103,7 +116,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         };
 
         var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
+        await databaseContext.Users.AddAsync(user);
         await databaseContext.SaveChangesAsync();
 
         var articleId = Guid.NewGuid();
@@ -137,9 +150,21 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
+        var getUserDto = new GetUserDto
+        {
+            UserId = user.Id,
+            AliasName = DataUtilityService.GetRandomString(),
+            AvatarName = DataUtilityService.GetRandomString(),
+            FirstName = DataUtilityService.GetRandomString(),
+            LastName = DataUtilityService.GetRandomString(),
+            Email = DataUtilityService.GetRandomEmail(),
+            ShortBio = DataUtilityService.GetRandomString(),
+            Registered = DataUtilityService.GetRandomDateTime()
+        };
+
         mockedUserServiceProvider
-            .Setup(service => service.GetUserId(It.IsAny<CancellationToken>()))
-            .ReturnsAsync(userId);
+            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
+            .ReturnsAsync(getUserDto);
 
         mockedUserServiceProvider
             .Setup(service => service.GetRequestIpAddress())
@@ -174,7 +199,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var users = new Users
+        var user = new Users
         {
             Id = userId,
             IsActivated = true,
@@ -184,7 +209,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         };
 
         var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
+        await databaseContext.Users.AddAsync(user);
         await databaseContext.SaveChangesAsync();
 
         var articleId = Guid.NewGuid();
@@ -208,9 +233,21 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
+        var getUserDto = new GetUserDto
+        {
+            UserId = user.Id,
+            AliasName = DataUtilityService.GetRandomString(),
+            AvatarName = DataUtilityService.GetRandomString(),
+            FirstName = DataUtilityService.GetRandomString(),
+            LastName = DataUtilityService.GetRandomString(),
+            Email = DataUtilityService.GetRandomEmail(),
+            ShortBio = DataUtilityService.GetRandomString(),
+            Registered = DataUtilityService.GetRandomDateTime()
+        };
+        
         mockedUserServiceProvider
-            .Setup(service => service.GetUserId(It.IsAny<CancellationToken>()))
-            .ReturnsAsync((Guid?)null);
+            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
+            .ReturnsAsync(getUserDto);
 
         mockedUserServiceProvider
             .Setup(service => service.GetRequestIpAddress())
@@ -243,7 +280,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     public async Task GivenExistingArticleAndIncorrectArticleId_WhenUpdateArticleCount_ShouldThrowError()
     {
         // Arrange
-        var users = new Users
+        var user = new Users
         {
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -252,7 +289,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         };
 
         var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
+        await databaseContext.Users.AddAsync(user);
         await databaseContext.SaveChangesAsync();
 
         var articles = new Articles
@@ -263,7 +300,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
             ReadCount = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = users.Id
+            UserId = user.Id
         };
 
         await databaseContext.Articles.AddAsync(articles);
@@ -273,9 +310,21 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
+        var getUserDto = new GetUserDto
+        {
+            UserId = user.Id,
+            AliasName = DataUtilityService.GetRandomString(),
+            AvatarName = DataUtilityService.GetRandomString(),
+            FirstName = DataUtilityService.GetRandomString(),
+            LastName = DataUtilityService.GetRandomString(),
+            Email = DataUtilityService.GetRandomEmail(),
+            ShortBio = DataUtilityService.GetRandomString(),
+            Registered = DataUtilityService.GetRandomDateTime()
+        };
+
         mockedUserServiceProvider
-            .Setup(service => service.GetUserId(It.IsAny<CancellationToken>()))
-            .ReturnsAsync((Guid?)null);
+            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
+            .ReturnsAsync(getUserDto);
 
         mockedUserServiceProvider
             .Setup(service => service.GetRequestIpAddress())
