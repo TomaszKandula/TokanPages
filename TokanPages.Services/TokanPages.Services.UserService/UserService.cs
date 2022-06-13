@@ -326,7 +326,7 @@ public sealed class UserService : IUserService
             .ToList();
             
         if (!userIds.Any())
-            throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
+            throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
             
         return Guid.Parse(userIds.First().Value);
     }
@@ -344,7 +344,7 @@ public sealed class UserService : IUserService
             .ToListAsync(cancellationToken);
 
         if (!userRoles.Any())
-            throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
+            throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
         _userRoles = new List<GetUserRoleDto>();
         foreach (var userRole in userRoles)
@@ -370,7 +370,7 @@ public sealed class UserService : IUserService
             .ToListAsync(cancellationToken);
 
         if (!userPermissions.Any())
-            throw new BusinessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
+            throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
         _userPermissions = new List<GetUserPermissionDto>();
         foreach (var userPermission in userPermissions)
