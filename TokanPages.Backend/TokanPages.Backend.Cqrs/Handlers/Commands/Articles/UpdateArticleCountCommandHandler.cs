@@ -17,28 +17,25 @@ public class UpdateArticleCountCommandHandler : Cqrs.RequestHandler<UpdateArticl
     private readonly IUserService _userService;
 
     public UpdateArticleCountCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService) : base(databaseContext, loggerService)
-    {
-        _userService = userService;
-    }
+        IUserService userService) : base(databaseContext, loggerService) => _userService = userService;
 
     public override async Task<Unit> Handle(UpdateArticleCountCommand request, CancellationToken cancellationToken)
     {
-        var articles = await DatabaseContext.Articles
+        var article = await DatabaseContext.Articles
             .Where(articles => articles.Id == request.Id)
-            .ToListAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (!articles.Any())
+        if (article is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-        var currentArticle = articles.First();
-        currentArticle.ReadCount += 1;
+        article.ReadCount += 1;
 
-        var userId = await _userService.GetUserId();
-        if (userId != null)
+        var user = await _userService.GetUser(cancellationToken);
+        if (user != null)
         {
             var readCounts = await DatabaseContext.ArticleCounts
-                .Where(counts => counts.UserId == userId && counts.ArticleId == request.Id)
+                .Where(counts => counts.UserId == user.UserId)
+                .Where(counts => counts.ArticleId == request.Id)
                 .SingleOrDefaultAsync(cancellationToken);
 
             if (readCounts != null)
@@ -50,8 +47,8 @@ public class UpdateArticleCountCommandHandler : Cqrs.RequestHandler<UpdateArticl
                 var ipAddress = _userService.GetRequestIpAddress();
                 var articleCount = new ArticleCounts
                 {
-                    UserId = currentArticle.UserId,
-                    ArticleId = currentArticle.Id,
+                    UserId = article.UserId,
+                    ArticleId = article.Id,
                     IpAddress = ipAddress,
                     ReadCount = 1
                 };
