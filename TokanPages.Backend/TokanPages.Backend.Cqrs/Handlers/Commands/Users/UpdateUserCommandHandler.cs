@@ -29,40 +29,29 @@ public class UpdateUserCommandHandler : Cqrs.RequestHandler<UpdateUserCommand, U
 
     public override async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
-        var userId = request.Id ?? await _userService.GetUserId(cancellationToken) ?? Guid.Empty;
-        if (userId == Guid.Empty)
-            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
+        var user = await _userService.GetActiveUser(request.Id, false, cancellationToken);
 
-        var currentUser = await DatabaseContext.Users
-            .Where(users => users.IsActivated)
-            .Where(users => !users.IsDeleted)
-            .Where(users => users.Id == userId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (currentUser is null)
-            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
-
-        var emailCollection = await DatabaseContext.Users
+        var emails = await DatabaseContext.Users
             .AsNoTracking()
-            .Where(users => users.Id != userId)
+            .Where(users => users.Id != user.Id)
             .Where(users => users.EmailAddress == request.EmailAddress)
             .ToListAsync(cancellationToken);
 
-        if (emailCollection.Count == 1)
+        if (emails.Any())
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-        await UpdateUser(currentUser, request, cancellationToken);
-        await UpdateUserInfo(userId, request, cancellationToken);
+        await UpdateUser(user, request, cancellationToken);
+        await UpdateUserInfo(user.Id, request, cancellationToken);
         return Unit.Value;
     }
 
-    private async Task UpdateUser(Users currentUser, UpdateUserCommand request, CancellationToken cancellationToken = default)
+    private async Task UpdateUser(Users user, UpdateUserCommand request, CancellationToken cancellationToken = default)
     {
-        currentUser.IsActivated = request.IsActivated;
-        currentUser.UserAlias = request.UserAlias ?? currentUser.UserAlias;
-        currentUser.EmailAddress = request.EmailAddress ?? currentUser.EmailAddress;
-        currentUser.ModifiedAt = _dateTimeService.Now;
-        currentUser.ModifiedBy = currentUser.Id;
+        user.IsActivated = request.IsActivated;
+        user.UserAlias = request.UserAlias ?? user.UserAlias;
+        user.EmailAddress = request.EmailAddress ?? user.EmailAddress;
+        user.ModifiedAt = _dateTimeService.Now;
+        user.ModifiedBy = user.Id;
         await DatabaseContext.SaveChangesAsync(cancellationToken);
     }
 
