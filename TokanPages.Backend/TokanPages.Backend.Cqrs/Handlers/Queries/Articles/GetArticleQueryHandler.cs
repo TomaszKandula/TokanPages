@@ -37,25 +37,27 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
 
     public override async Task<GetArticleQueryResult> Handle(GetArticleQuery request, CancellationToken cancellationToken)
     {
-        var userId = await _userService.GetUserId(cancellationToken);
-        var isAnonymousUser = userId == null;
+        var user = await _userService.GetUser(cancellationToken);
+        var isAnonymousUser = user == null;
 
         var textAsString = await GetArticleTextContent(request.Id, cancellationToken);
         var textAsObject = _jsonSerializer.Deserialize<List<Section>>(textAsString);
 
         var userLikes = await DatabaseContext.ArticleLikes
+            .AsNoTracking()
             .Where(likes => likes.ArticleId == request.Id)
             .WhereIfElse(isAnonymousUser,
                 likes => likes.IpAddress == _userService.GetRequestIpAddress(),
-                likes => likes.UserId == userId)
+                likes => likes.UserId == user.UserId)
             .Select(likes => likes.LikeCount)
             .SumAsync(cancellationToken);
 
         var totalLikes = await DatabaseContext.ArticleLikes
+            .AsNoTracking()
             .Where(likes => likes.ArticleId == request.Id)
             .Select(likes => likes.LikeCount)
             .SumAsync(cancellationToken);
-        
+
         var query = await (from articles in DatabaseContext.Articles
             join userInfo in DatabaseContext.UserInfo
             on articles.UserId equals userInfo.UserId
