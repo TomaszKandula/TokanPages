@@ -1,5 +1,6 @@
 namespace TokanPages.WebApi.Services.Caching;
 
+using System.Threading;
 using System.Threading.Tasks;
 
 /// <summary>
@@ -13,15 +14,16 @@ public interface IRedisDistributedCache
     /// <typeparam name="TEntity">Data type.</typeparam>
     /// <param name="key">Cache key.</param>
     /// <returns>Cached data.</returns>
-    TEntity GetObject<TEntity>(string key);
+    TEntity? GetObject<TEntity>(string key);
 
     /// <summary>
     /// Calls the data we want to cache.
     /// </summary>
     /// <typeparam name="TEntity">Data type.</typeparam>
     /// <param name="key">Cache key.</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>Cached data.</returns>
-    Task<TEntity> GetObjectAsync<TEntity>(string key);
+    Task<TEntity?> GetObjectAsync<TEntity>(string key, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Caches any type of data we want.
@@ -41,7 +43,8 @@ public interface IRedisDistributedCache
     /// <param name="value">Value to be set.</param>
     /// <param name="absoluteExpirationMinute">Duration.</param>
     /// <param name="slidingExpirationSecond">Elongation time.</param>
-    Task SetObjectAsync<TEntity>(string key, TEntity value, int absoluteExpirationMinute = 0, int slidingExpirationSecond = 0);
+    /// <param name="cancellationToken">Cancellation token</param>
+    Task SetObjectAsync<TEntity>(string key, TEntity value, int absoluteExpirationMinute = 0, int slidingExpirationSecond = 0, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Removes from cache.
@@ -53,5 +56,6 @@ public interface IRedisDistributedCache
     /// Removes from cache.
     /// </summary>
     /// <param name="key">Key.</param>
-    Task RemoveAsync(string key);
+    /// <param name="cancellationToken">Cancellation token</param>
+    Task RemoveAsync(string key, CancellationToken cancellationToken = default);
 }
