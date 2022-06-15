@@ -20,29 +20,27 @@ public class TestBase
 {
     private readonly Factories.DatabaseContextFactory _databaseContextFactory;
 
-    protected IDataUtilityService DataUtilityService { get; }
+    protected readonly IDataUtilityService DataUtilityService;
 
-    protected IDateTimeService DateTimeService { get; }
+    protected readonly IDateTimeService DateTimeService;
 
-    protected IWebTokenUtility WebTokenUtility { get; }
+    protected readonly IWebTokenUtility WebTokenUtility;
 
     protected TestBase()
     {
-        DataUtilityService = new DataUtilityService();
-        DateTimeService = new DateTimeService();
-        WebTokenUtility = new WebTokenUtility();
-
         var services = new ServiceCollection();
         services.AddSingleton<Factories.DatabaseContextFactory>();
-        services.AddScoped(context =>
-        {
-            var factory = context.GetService<Factories.DatabaseContextFactory>();
-            return factory?.CreateDatabaseContext(string.Empty);
-        });
+        services.AddScoped<IDataUtilityService, DataUtilityService>();
+        services.AddScoped<IWebTokenUtility, WebTokenUtility>();
+        services.AddScoped<IDateTimeService, DateTimeService>();
 
-        var serviceScope = services.BuildServiceProvider(true).CreateScope();
-        var serviceProvider = serviceScope.ServiceProvider;
-        _databaseContextFactory = serviceProvider.GetService<Factories.DatabaseContextFactory>();
+        using var scope = services.BuildServiceProvider(true).CreateScope();
+        var serviceProvider = scope.ServiceProvider;
+
+        _databaseContextFactory = serviceProvider.GetRequiredService<Factories.DatabaseContextFactory>();
+        DataUtilityService = serviceProvider.GetRequiredService<IDataUtilityService>();
+        WebTokenUtility = serviceProvider.GetRequiredService<IWebTokenUtility>();
+        DateTimeService = serviceProvider.GetRequiredService<IDateTimeService>();
     }
 
     private DatabaseContext GetTestDatabaseContext(string connection) =>  _databaseContextFactory.CreateDatabaseContext(connection);
