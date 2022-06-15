@@ -32,10 +32,10 @@ public class ArticlesCache : IArticlesCache
     /// <inheritdoc />
     public async Task<List<GetAllArticlesQueryResult>> GetArticles(bool isPublished = true, bool noCache = false)
     {
-        const string key = "GetAllArticlesQueryResult";
         if (noCache)
             return await _mediator.Send(new GetAllArticlesQuery { IsPublished = isPublished });
 
+        const string key = "articles/";
         var value = await _redisDistributedCache.GetObjectAsync<List<GetAllArticlesQueryResult>>(key);
         if (value is not null && value.Any()) return value;
 
@@ -48,10 +48,10 @@ public class ArticlesCache : IArticlesCache
     /// <inheritdoc />
     public async Task<GetArticleQueryResult> GetArticle(Guid id, bool noCache = false)
     {
-        var key = $"article-{id:N}";
         if (noCache)
             return await _mediator.Send(new GetArticleQuery { Id = id});
 
+        var key = $"article/{id}";
         var value = await _redisDistributedCache.GetObjectAsync<GetArticleQueryResult>(key);
         if (value is not null) return value;
 

@@ -32,10 +32,10 @@ public class SubscribersCache : ISubscribersCache
     /// <inheritdoc />
     public async Task<List<GetAllSubscribersQueryResult>> GetSubscribers(bool noCache = false)
     {
-        const string key = "GetAllSubscribersQueryResult";
         if (noCache)
             return await _mediator.Send(new GetAllSubscribersQuery());
 
+        const string key = "subscribers/";
         var value = await _redisDistributedCache.GetObjectAsync<List<GetAllSubscribersQueryResult>>(key);
         if (value is not null && value.Any()) return value;
 
@@ -48,10 +48,10 @@ public class SubscribersCache : ISubscribersCache
     /// <inheritdoc />
     public async Task<GetSubscriberQueryResult> GetSubscriber(Guid id, bool noCache = false)
     {
-        var key = $"subscriber-{id:N}";
         if (noCache)
             return await _mediator.Send(new GetSubscriberQuery { Id = id });
 
+        var key = $"subscriber/{id}";
         var value = await _redisDistributedCache.GetObjectAsync<GetSubscriberQueryResult>(key);
         if (value is not null) return value;
 

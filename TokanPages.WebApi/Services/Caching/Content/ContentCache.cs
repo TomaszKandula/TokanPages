@@ -29,10 +29,10 @@ public class ContentCache : IContentCache
     /// <inheritdoc />
     public async Task<GetContentQueryResult> GetContent(string type, string name, string language, bool noCache = false)
     {
-        var key = $"{type}/{name}/{language}";
         if (noCache)
             return await _mediator.Send(new GetContentQuery { Type = type, Name = name, Language = language });
 
+        var key = $"content/{type}/{name}/{language}";
         var value = await _redisDistributedCache.GetObjectAsync<GetContentQueryResult>(key);
         if (value is not null) return value;
 

@@ -35,12 +35,13 @@ public class AssetsCache : IAssetsCache
         if (noCache)
             return await _mediator.Send(new GetSingleAssetQuery { BlobName = blobName });
 
-        var cache = await _redisDistributedCache.GetObjectAsync<HttpContentResult>(blobName);
+        var key = $"asset/{blobName}/";
+        var cache = await _redisDistributedCache.GetObjectAsync<HttpContentResult>(key);
         if (cache is not null)
             return new FileContentResult(cache.Content!, cache.ContentType?.MediaType!);
 
         var result = await _mediator.Send(new GetSingleAssetQuery { BlobName = blobName });
-        await SaveToCache(result, blobName);
+        await SaveToCache(result, key);
 
         return result;
     }
@@ -48,11 +49,10 @@ public class AssetsCache : IAssetsCache
     /// <inheritdoc />
     public async Task<IActionResult> GetArticleAsset(string id, string assetName, bool noCache = false)
     {
-        var key = $"{id}/{assetName}";
-
         if (noCache)
             return await _mediator.Send(new GetArticleAssetQuery {  Id = id, AssetName = assetName });
 
+        var key = $"articleAsset/{id}/{assetName}";
         var cache = await _redisDistributedCache.GetObjectAsync<HttpContentResult>(key);
         if (cache is not null)
             return new FileContentResult(cache.Content!, cache.ContentType?.MediaType!);
