@@ -29,7 +29,7 @@ public class AddUserCommandHandlerTest : TestBase
     public async Task GivenFieldsAreProvided_WhenAddUser_ShouldAddEntity() 
     {
         // Arrange
-        var addUserCommand = new AddUserCommand 
+        var command = new AddUserCommand 
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
@@ -77,6 +77,7 @@ public class AddUserCommandHandlerTest : TestBase
         await databaseContext.Permissions.AddRangeAsync(permissions);
         await databaseContext.DefaultPermissions.AddRangeAsync(defaultPermissions);
 
+        const string mockedPassword = "MockedPassword";
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
@@ -92,13 +93,12 @@ public class AddUserCommandHandlerTest : TestBase
 
         mockedBlobStorage
             .Setup(storage => storage.OpenRead(It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync((StorageStreamContent)null);
+            .ReturnsAsync((StorageStreamContent)null!);
 
         mockedAzureStorage
             .Setup(factory => factory.Create())
             .Returns(mockedBlobStorage.Object);
 
-        const string mockedPassword = "MockedPassword";
         mockedCipher
             .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
             .Returns(mockedPassword);
@@ -107,7 +107,7 @@ public class AddUserCommandHandlerTest : TestBase
             .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
             .Returns(Task.CompletedTask);
 
-        var addUserCommandHandler = new AddUserCommandHandler(
+        var handler = new AddUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTime.Object, 
@@ -118,15 +118,15 @@ public class AddUserCommandHandlerTest : TestBase
             mockedUserService.Object);
 
         // Act
-        await addUserCommandHandler.Handle(addUserCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
         // Assert
         var result = databaseContext.Users.ToList();
 
         result.Should().NotBeNull();
         result.Should().HaveCount(1);
-        result[0].EmailAddress.Should().Be(addUserCommand.EmailAddress);
-        result[0].UserAlias.Should().Be(addUserCommand.UserAlias.ToLower());
+        result[0].EmailAddress.Should().Be(command.EmailAddress);
+        result[0].UserAlias.Should().Be(command.UserAlias.ToLower());
         result[0].IsActivated.Should().BeFalse();
         result[0].CryptedPassword.Should().HaveLength(mockedPassword.Length);
         result[0].ResetId.Should().BeNull();
@@ -140,7 +140,7 @@ public class AddUserCommandHandlerTest : TestBase
     {
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var addUserCommand = new AddUserCommand 
+        var command = new AddUserCommand 
         {
             EmailAddress = testEmail,
             UserAlias = DataUtilityService.GetRandomString(),
@@ -163,17 +163,16 @@ public class AddUserCommandHandlerTest : TestBase
         await databaseContext.Users.AddAsync(users);
         await databaseContext.SaveChangesAsync();
             
+        const string mockedPassword = "MockedPassword";
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedUserService = new Mock<IUserService>();
-
         var expirationSettings = new ExpirationSettings { ActivationIdExpiresIn = 30 };
         var mockedApplicationSettings = MockApplicationSettings(expirationSettings: expirationSettings);
 
-        const string mockedPassword = "MockedPassword";
         mockedCipher
             .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
             .Returns(mockedPassword);
@@ -190,7 +189,7 @@ public class AddUserCommandHandlerTest : TestBase
             .Setup(service => service.GetRequestUserTimezoneOffset())
             .Returns(-120);
 
-        var addUserCommandHandler = new AddUserCommandHandler(
+        var handler = new AddUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTime.Object, 
@@ -201,7 +200,7 @@ public class AddUserCommandHandlerTest : TestBase
             mockedUserService.Object);
 
         // Act
-        await addUserCommandHandler.Handle(addUserCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
         // Assert
         var result = databaseContext.Users.ToList();
@@ -224,7 +223,7 @@ public class AddUserCommandHandlerTest : TestBase
     {
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var addUserCommand = new AddUserCommand
+        var command = new AddUserCommand
         {
             EmailAddress = testEmail,
             UserAlias = DataUtilityService.GetRandomString(),
@@ -263,7 +262,7 @@ public class AddUserCommandHandlerTest : TestBase
             .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
             .Returns(Task.CompletedTask);
 
-        var addUserCommandHandler = new AddUserCommandHandler(
+        var handler = new AddUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTime.Object, 
@@ -275,7 +274,7 @@ public class AddUserCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() => addUserCommandHandler.Handle(addUserCommand, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS));
     }
 }

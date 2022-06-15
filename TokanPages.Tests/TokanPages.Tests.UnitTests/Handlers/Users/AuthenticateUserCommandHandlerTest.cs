@@ -31,7 +31,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var cryptedPassword = DataUtilityService.GetRandomString(60);
         var generatedUserToken = DataUtilityService.GetRandomString(255);
         var ipAddress = DataUtilityService.GetRandomIpAddress().ToString();
-            
+
         var user = new Users
         {
             Id = Guid.NewGuid(),
@@ -54,13 +54,13 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             ModifiedBy = null,
             ModifiedAt = null
         };
-        
+
         var databaseContext = GetTestDatabaseContext();
         await databaseContext.Users.AddAsync(user);
         await databaseContext.UserInfo.AddAsync(userInfo);
         await databaseContext.SaveChangesAsync();
 
-        var authenticateUserCommand = new AuthenticateUserCommand
+        var command = new AuthenticateUserCommand
         {
             EmailAddress = emailAddress,
             Password = plainTextPassword
@@ -73,7 +73,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             .Setup(service => service
                 .VerifyPassword(It.IsAny<string>(), It.IsAny<string>()))
             .Returns(true);
-            
+
         var refreshTokenExpires = DateTimeService.Now.AddDays(10);
         var refreshTokenCreated = DateTimeService.Now;
         var generatedRefreshToken = new RefreshToken
@@ -92,13 +92,13 @@ public class AuthenticateUserCommandHandlerTest : TestBase
                     It.IsAny<int>(), 
                     It.IsAny<int>()))
             .Returns(generatedRefreshToken);
-            
+
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var randomDateTime = DataUtilityService.GetRandomDateTime();
         mockedDateTimeService
             .SetupGet(service => service.Now)
             .Returns(randomDateTime);
-            
+
         var mockedUserServiceProvider = new Mock<IUserService>();
         mockedUserServiceProvider
             .Setup(service => service.GenerateUserToken(
@@ -106,7 +106,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
                 It.IsAny<DateTime>(), 
                 CancellationToken.None))
             .ReturnsAsync(generatedUserToken);
-            
+
         mockedUserServiceProvider
             .Setup(service => service.GetRequestIpAddress())
             .Returns(ipAddress);
@@ -117,7 +117,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
                     It.IsAny<Guid>(),
                     It.IsAny<bool>(),
                     It.IsAny<CancellationToken>()));
-            
+
         var identityServer = new IdentityServer
         {
             Issuer = DataUtilityService.GetRandomString(),
@@ -129,7 +129,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         };
 
         var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
-        var authenticateUserCommandHandler = new AuthenticateUserCommandHandler(
+        var handler = new AuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedCipheringService.Object, 
@@ -139,7 +139,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             mockedApplicationSettings.Object);
             
         // Act
-        var result = await authenticateUserCommandHandler.Handle(authenticateUserCommand, CancellationToken.None);
+        var result = await handler.Handle(command, CancellationToken.None);
 
         // Assert
         result.UserId.Should().Be(user.Id);
@@ -178,7 +178,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         userRefreshToken.ReplacedByToken.Should().BeNull();
         userRefreshToken.ReasonRevoked.Should().BeNull();
     }
-        
+
     [Fact]
     public async Task GivenInvalidEmailAddress_WhenAuthenticateUser_ShouldThrowError()
     {
@@ -200,7 +200,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         await databaseContext.Users.AddAsync(user);
         await databaseContext.SaveChangesAsync();
 
-        var authenticateUserCommand = new AuthenticateUserCommand
+        var command = new AuthenticateUserCommand
         {
             EmailAddress = emailAddress,
             Password = plainTextPassword
@@ -212,9 +212,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedApplicationSettings = MockApplicationSettings();
-
-        // Act
-        var authenticateUserCommandHandler = new AuthenticateUserCommandHandler(
+        var handler = new AuthenticateUserCommandHandler(
             databaseContext,
             mockedLogger.Object,
             mockedCipheringService.Object,
@@ -223,9 +221,9 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             mockedUserServiceProvider.Object,
             mockedApplicationSettings.Object);
 
+        // Act
         // Assert
-        var result = await Assert.ThrowsAsync<AccessException>(() 
-            => authenticateUserCommandHandler.Handle(authenticateUserCommand, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<AccessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_CREDENTIALS));
     }
         
@@ -250,7 +248,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         await databaseContext.Users.AddAsync(user);
         await databaseContext.SaveChangesAsync();
 
-        var authenticateUserCommand = new AuthenticateUserCommand
+        var command = new AuthenticateUserCommand
         {
             EmailAddress = emailAddress,
             Password = plainTextPassword
@@ -267,9 +265,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedApplicationSettings = MockApplicationSettings();
-
-        // Act
-        var authenticateUserCommandHandler = new AuthenticateUserCommandHandler(
+        var handler = new AuthenticateUserCommandHandler(
             databaseContext,
             mockedLogger.Object,
             mockedCipheringService.Object,
@@ -278,9 +274,9 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             mockedUserServiceProvider.Object,
             mockedApplicationSettings.Object);
 
+        // Act
         // Assert
-        var result = await Assert.ThrowsAsync<AccessException>(() 
-            => authenticateUserCommandHandler.Handle(authenticateUserCommand, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<AccessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_CREDENTIALS));
     }
         
@@ -307,7 +303,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         await databaseContext.Users.AddAsync(user);
         await databaseContext.SaveChangesAsync();
 
-        var authenticateUserCommand = new AuthenticateUserCommand
+        var command = new AuthenticateUserCommand
         {
             EmailAddress = emailAddress,
             Password = plainTextPassword
@@ -377,8 +373,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
 
         var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
             
-        // Act
-        var authenticateUserCommandHandler = new AuthenticateUserCommandHandler(
+        var handler = new AuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedCipheringService.Object, 
@@ -387,8 +382,9 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             mockedUserServiceProvider.Object, 
             mockedApplicationSettings.Object);
             
-        var result = await Assert.ThrowsAsync<AccessException>(() 
-            => authenticateUserCommandHandler.Handle(authenticateUserCommand, CancellationToken.None));
+        // Act
+        // Assert
+        var result = await Assert.ThrowsAsync<AccessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE));
     }
 }

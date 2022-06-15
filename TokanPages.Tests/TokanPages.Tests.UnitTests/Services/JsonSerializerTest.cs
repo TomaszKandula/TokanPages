@@ -9,16 +9,16 @@ using Backend.Core.Utilities.JsonSerializer;
 public class JsonSerializerTest : TestBase
 {
     private static string ValidJsonList => "[{\"Key1\":\"Value1\",\"Key2\":\"Value2\"},{\"Key1\":\"Value1\",\"Key2\":\"Value2\"}]";
-        
+
     private static string ValidJsonString => "{\"Key1\":\"Value1\",\"Key2\":\"Value2\"}";
 
     private static string InvalidJsonString => "{\"Key1\":\"Value1\"\"Key2\":\"Value2\"";
 
     private class TestClass
     {
-        public string Key1 { get; init; }
+        public string? Key1 { get; init; }
 
-        public string Key2 { get; init; }
+        public string? Key2 { get; init; }
     }
         
     [Fact]
@@ -69,9 +69,10 @@ public class JsonSerializerTest : TestBase
     public void GivenInvalidString_WhenInvokeDeserialize_ShouldThrowError()
     {
         // Arrange
+        var jsonSerializer = new JsonSerializer();
+
         // Act
         // Assert
-        var jsonSerializer = new JsonSerializer();
         Assert.Throws<Newtonsoft.Json.JsonReaderException>(() => jsonSerializer.Deserialize<TestClass>(InvalidJsonString));
     }
 
@@ -91,9 +92,10 @@ public class JsonSerializerTest : TestBase
     public void GivenInvalidJsonString_WhenParse_ShouldThrowError()
     {
         // Arrange
+        var jsonSerializer = new JsonSerializer();
+
         // Act
         // Assert
-        var jsonSerializer = new JsonSerializer();
         Assert.Throws<Newtonsoft.Json.JsonReaderException>(() => jsonSerializer.Parse(InvalidJsonString));
     }
 
