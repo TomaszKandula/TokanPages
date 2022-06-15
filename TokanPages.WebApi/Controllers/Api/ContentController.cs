@@ -33,6 +33,6 @@ public class ContentController : ApiBaseController
     /// <returns>Object</returns>
     [HttpGet]
     [ProducesResponseType(typeof(GetContentQueryResult), StatusCodes.Status200OK)]
-    public async Task<GetContentQueryResult> GetContent([FromQuery] string type, string name, string language, bool noCache = false)
+    public async Task<GetContentQueryResult> GetContent([FromQuery] string type, string name, string? language, bool noCache = false)
         => await _contentCache.GetContent(type, name, language, noCache);
 }
