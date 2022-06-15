@@ -17,7 +17,7 @@ using Serilog.Events;
 [ExcludeFromCodeCoverage]
 public static class Program
 {
-    private static readonly string EnvironmentValue 
+    private static readonly string? EnvironmentValue 
         = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
     private static readonly bool IsDevelopment 
@@ -89,10 +89,9 @@ public static class Program
 
     private static IWebHost MigrateDatabase(this IWebHost webHost)
     {
-        var serviceScopeFactory = (IServiceScopeFactory) webHost.Services.GetService(typeof(IServiceScopeFactory));
-        if (serviceScopeFactory == null) 
+        if (webHost.Services.GetService(typeof(IServiceScopeFactory)) is not IServiceScopeFactory serviceScopeFactory) 
             return webHost;
-            
+
         using var scope = serviceScopeFactory.CreateScope();
         var services = scope.ServiceProvider;
         var dbInitializer = services.GetRequiredService<IDbInitializer>();
