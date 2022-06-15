@@ -20,6 +20,22 @@ public class TestBase
 {
     private readonly Factories.DatabaseContextFactory _databaseContextFactory;
 
+    protected const string TestRootPath = "TokanPages.Tests/TokanPages.Tests.IntegrationTests";
+
+    protected const string BaseUriArticles = "/api/v1.0/articles";
+
+    protected const string BaseUriAssets = "/api/v1.0/assets";
+
+    protected const string BaseUriContent = "/api/v1.0/content";
+
+    protected const string BaseUriMailer = "/api/v1.0/mailer";
+
+    protected const string BaseUriHeath = "/api/v1.0/health";
+
+    protected const string BaseUriSubscribers = "/api/v1.0/subscribers";
+
+    protected const string BaseUriUsers = "/api/v1.0/users";
+
     protected readonly IDataUtilityService DataUtilityService;
 
     protected readonly IDateTimeService DateTimeService;
@@ -43,9 +59,7 @@ public class TestBase
         DateTimeService = serviceProvider.GetRequiredService<IDateTimeService>();
     }
 
-    private DatabaseContext GetTestDatabaseContext(string connection) =>  _databaseContextFactory.CreateDatabaseContext(connection);
-
-    protected async Task RegisterTestJwtInDatabase(string token, string connection)
+    protected async Task RegisterTestJwtInDatabase(string? token, string? connection)
     {
         var databaseContext = GetTestDatabaseContext(connection);
 
@@ -134,4 +148,9 @@ public class TestBase
         new Claim(ClaimTypes.Surname, DataUtilityService.GetRandomString()),
         new Claim(ClaimTypes.Email, DataUtilityService.GetRandomString())
     });
+
+    private DatabaseContext GetTestDatabaseContext(string? connection) 
+    {
+        return _databaseContextFactory.CreateDatabaseContext(connection);
+    }
 }
