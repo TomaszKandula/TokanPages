@@ -13,36 +13,38 @@ public class TestBase
 {
     private readonly DatabaseContextFactory _databaseContextFactory;
 
-    protected IDataUtilityService DataUtilityService { get; }
+    protected readonly IDataUtilityService DataUtilityService;
 
-    protected IWebTokenUtility WebTokenUtility { get; }
+    protected readonly IWebTokenUtility WebTokenUtility;
 
-    protected IDateTimeService DateTimeService { get; }
+    protected readonly IDateTimeService DateTimeService;
 
     protected TestBase()
     {
-        DataUtilityService = new DataUtilityService();
-        WebTokenUtility = new WebTokenUtility();
-        DateTimeService = new DateTimeService();
-
         var services = new ServiceCollection();
         services.AddSingleton<DatabaseContextFactory>();
-        services.AddScoped(context =>
-        {
-            var factory = context.GetService<DatabaseContextFactory>();
-            return factory?.CreateDatabaseContext();
-        });
+        services.AddScoped<IDataUtilityService, DataUtilityService>();
+        services.AddScoped<IWebTokenUtility, WebTokenUtility>();
+        services.AddScoped<IDateTimeService, DateTimeService>();
 
-        var serviceScope = services.BuildServiceProvider(true).CreateScope();
-        var serviceProvider = serviceScope.ServiceProvider;
-        _databaseContextFactory = serviceProvider.GetService<DatabaseContextFactory>();
+        using var scope = services.BuildServiceProvider(true).CreateScope();
+        var serviceProvider = scope.ServiceProvider;
+
+        _databaseContextFactory = serviceProvider.GetRequiredService<DatabaseContextFactory>();
+        DataUtilityService = serviceProvider.GetRequiredService<IDataUtilityService>();
+        WebTokenUtility = serviceProvider.GetRequiredService<IWebTokenUtility>();
+        DateTimeService = serviceProvider.GetRequiredService<IDateTimeService>();
     }
 
-    protected DatabaseContext GetTestDatabaseContext() =>  _databaseContextFactory.CreateDatabaseContext();
+    protected DatabaseContext GetTestDatabaseContext() => _databaseContextFactory.CreateDatabaseContext();
 
-    protected static Mock<IApplicationSettings> MockApplicationSettings(ApplicationPaths applicationPaths = default, 
-        IdentityServer identityServer = default, ExpirationSettings expirationSettings = default, 
-        EmailSender emailSender = default, AzureStorage azureStorage = default, SonarQube sonarQube = default)
+    protected static Mock<IApplicationSettings> MockApplicationSettings(
+        ApplicationPaths? applicationPaths = default, 
+        IdentityServer? identityServer = default, 
+        ExpirationSettings? expirationSettings = default, 
+        EmailSender? emailSender = default, 
+        AzureStorage? azureStorage = default, 
+        SonarQube? sonarQube = default)
     {
         var applicationSettings = new Mock<IApplicationSettings>();
 
