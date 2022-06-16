@@ -109,10 +109,8 @@ public class JsonSerializerTest : TestBase
         var jsonSerializer = new JsonSerializer();
 
         // Act
-        var parsed = jsonSerializer.Parse(string.Empty);
-
         // Assert
-        parsed.Should().BeNull();
+        Assert.Throws<ArgumentException>(() => jsonSerializer.Parse(string.Empty));
     }
 
     [Fact]
