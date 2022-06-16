@@ -32,12 +32,13 @@ public class AddUserCommandHandlerTest : TestBase
         var command = new AddUserCommand 
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
             Password = DataUtilityService.GetRandomString()
         };
 
+        var expectedUserAlias = $"{command.FirstName[..2]}{command.LastName[..3]}".ToLower();
+        
         var roles = new Roles
         {
             Name = Backend.Domain.Enums.Roles.EverydayUser.ToString(),
@@ -126,7 +127,7 @@ public class AddUserCommandHandlerTest : TestBase
         result.Should().NotBeNull();
         result.Should().HaveCount(1);
         result[0].EmailAddress.Should().Be(command.EmailAddress);
-        result[0].UserAlias.Should().Be(command.UserAlias.ToLower());
+        result[0].UserAlias.Should().Be(expectedUserAlias);
         result[0].IsActivated.Should().BeFalse();
         result[0].CryptedPassword.Should().HaveLength(mockedPassword.Length);
         result[0].ResetId.Should().BeNull();
@@ -143,17 +144,17 @@ public class AddUserCommandHandlerTest : TestBase
         var command = new AddUserCommand 
         {
             EmailAddress = testEmail,
-            UserAlias = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
             Password = DataUtilityService.GetRandomString()
         };
 
+        var userAlias = $"{command.FirstName[..2]}{command.LastName[..3]}".ToLower();
         var oldActivationIdEnds = DateTimeService.Now.AddMinutes(-30);
         var users = new Users
         { 
             EmailAddress = testEmail,
-            UserAlias = DataUtilityService.GetRandomString().ToLower(),
+            UserAlias = userAlias,
             CryptedPassword = DataUtilityService.GetRandomString(),
             ActivationId = Guid.NewGuid(),
             ActivationIdEnds = oldActivationIdEnds
@@ -226,7 +227,6 @@ public class AddUserCommandHandlerTest : TestBase
         var command = new AddUserCommand
         {
             EmailAddress = testEmail,
-            UserAlias = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
         };
