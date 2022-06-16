@@ -12,7 +12,7 @@ using Backend.Core.Exceptions;
 using TokanPages.Services.HttpClientService;
 using TokanPages.Services.HttpClientService.Models;
 
-public class CustomHttpClientTest : TestBase
+public class HttpClientServiceTest : TestBase
 {
     [Fact]
     public async Task GivenValidConfigurationWithoutPayload_WhenInvokeExecute_ShouldSucceed()
