@@ -56,7 +56,7 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
             throw new BusinessException(nameof(ErrorCodes.COMPONENT_CONTENT_EMPTY), ErrorCodes.COMPONENT_CONTENT_EMPTY);
 
         var jsonToken = _jsonSerializer.Parse(componentContent);
-        var token = jsonToken?.SelectToken(request.Name);
+        var token = jsonToken.SelectToken(request.Name);
 
         if (token == null)
             throw new BusinessException(nameof(ErrorCodes.COMPONENT_CONTENT_MISSING_TOKEN), ErrorCodes.COMPONENT_CONTENT_MISSING_TOKEN);
@@ -74,32 +74,32 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
         return componentName switch
         {
             // Components
-            "account" => _jsonSerializer.MapObjects<AccountDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "activateAccount" => _jsonSerializer.MapObjects<ActivateAccountDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "articleFeatures" => _jsonSerializer.MapObjects<ArticleFeaturesDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "contactForm" => _jsonSerializer.MapObjects<ContactFormDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "cookiesPrompt" => _jsonSerializer.MapObjects<CookiesPromptDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "clients" => _jsonSerializer.MapObjects<ClientsContentDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "featured" => _jsonSerializer.MapObjects<FeaturedDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "features" => _jsonSerializer.MapObjects<FeaturesDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "footer" => _jsonSerializer.MapObjects<FooterDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "header" => _jsonSerializer.MapObjects<HeaderDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "navigation" => _jsonSerializer.MapObjects<NavigationDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "newsletter" => _jsonSerializer.MapObjects<NewsletterDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "notFound" => _jsonSerializer.MapObjects<NotFoundDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "resetPassword" => _jsonSerializer.MapObjects<ResetPasswordDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "testimonials" => _jsonSerializer.MapObjects<TestimonialsDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "unsubscribe" => _jsonSerializer.MapObjects<UnsubscribeDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "updatePassword" => _jsonSerializer.MapObjects<UpdatePasswordDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "updateSubscriber" => _jsonSerializer.MapObjects<UpdateSubscriberDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "userSignin" => _jsonSerializer.MapObjects<UserSigninDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "userSignout" => _jsonSerializer.MapObjects<UserSignoutDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "userSignup" => _jsonSerializer.MapObjects<UserSignupDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "wrongPagePrompt" => _jsonSerializer.MapObjects<WrongPagePromptDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
+            "account" => _jsonSerializer.MapObjects<AccountDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "activateAccount" => _jsonSerializer.MapObjects<ActivateAccountDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "articleFeatures" => _jsonSerializer.MapObjects<ArticleFeaturesDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "contactForm" => _jsonSerializer.MapObjects<ContactFormDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "cookiesPrompt" => _jsonSerializer.MapObjects<CookiesPromptDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "clients" => _jsonSerializer.MapObjects<ClientsContentDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "featured" => _jsonSerializer.MapObjects<FeaturedDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "features" => _jsonSerializer.MapObjects<FeaturesDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "footer" => _jsonSerializer.MapObjects<FooterDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "header" => _jsonSerializer.MapObjects<HeaderDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "navigation" => _jsonSerializer.MapObjects<NavigationDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "newsletter" => _jsonSerializer.MapObjects<NewsletterDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "notFound" => _jsonSerializer.MapObjects<NotFoundDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "resetPassword" => _jsonSerializer.MapObjects<ResetPasswordDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "testimonials" => _jsonSerializer.MapObjects<TestimonialsDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "unsubscribe" => _jsonSerializer.MapObjects<UnsubscribeDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "updatePassword" => _jsonSerializer.MapObjects<UpdatePasswordDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "updateSubscriber" => _jsonSerializer.MapObjects<UpdateSubscriberDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "userSignin" => _jsonSerializer.MapObjects<UserSigninDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "userSignout" => _jsonSerializer.MapObjects<UserSignoutDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "userSignup" => _jsonSerializer.MapObjects<UserSignupDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "wrongPagePrompt" => _jsonSerializer.MapObjects<WrongPagePromptDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
             // Documents
-            "terms" => _jsonSerializer.MapObjects<DocumentDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "policy" => _jsonSerializer.MapObjects<DocumentDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
-            "myStory" => _jsonSerializer.MapObjects<DocumentDto>(token)!.SingleOrDefault(item => item.Language == selectedLanguage),
+            "terms" => _jsonSerializer.MapObjects<DocumentDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "policy" => _jsonSerializer.MapObjects<DocumentDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
+            "myStory" => _jsonSerializer.MapObjects<DocumentDto>(token).SingleOrDefault(item => item.Language == selectedLanguage),
             _ => throw new BusinessException(nameof(ErrorCodes.COMPONENT_NAME_UNKNOWN), ErrorCodes.COMPONENT_NAME_UNKNOWN)
         };
     }
