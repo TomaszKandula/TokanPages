@@ -74,14 +74,14 @@ public class GetArticleQueryHandlerTest : TestBase
 
         var likes = new List<ArticleLikes> 
         { 
-            new ()
+            new()
             {
                 ArticleId = articles.Id,
                 UserId = null,
                 LikeCount = 10,
                 IpAddress = IpAddressFirst
             },
-            new ()
+            new()
             {
                 ArticleId = articles.Id,
                 UserId = null,
@@ -115,8 +115,8 @@ public class GetArticleQueryHandlerTest : TestBase
             .Setup(provider => provider.GetRequestIpAddress())
             .Returns(IpAddressFirst);
 
-        var getArticleQuery = new GetArticleQuery { Id = articles.Id };
-        var getArticleQueryHandler = new GetArticleQueryHandler(
+        var query = new GetArticleQuery { Id = articles.Id };
+        var handler = new GetArticleQueryHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedUserProvider.Object, 
@@ -124,7 +124,7 @@ public class GetArticleQueryHandlerTest : TestBase
             mockedAzureStorage.Object);
 
         // Act
-        var result = await getArticleQueryHandler.Handle(getArticleQuery, CancellationToken.None);
+        var result = await handler.Handle(query, CancellationToken.None);
 
         // Assert
         result.Should().NotBeNull();
@@ -144,11 +144,7 @@ public class GetArticleQueryHandlerTest : TestBase
     public async Task GivenIncorrectId_WhenGetArticle_ShouldThrowError()
     {
         // Arrange
-        var getArticleQuery = new GetArticleQuery
-        {
-            Id = Guid.Parse("9bc64ac6-cb57-448e-81b7-32f9a8f2f27c")
-        };
-
+        var query = new GetArticleQuery { Id = Guid.NewGuid() };
         var users = new Users
         {
             IsActivated = true,
@@ -171,7 +167,7 @@ public class GetArticleQueryHandlerTest : TestBase
             UpdatedAt = null,
             UserId = users.Id
         };
-            
+
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
@@ -183,7 +179,7 @@ public class GetArticleQueryHandlerTest : TestBase
 
         mockedAzureBlob
             .Setup(storage => storage.OpenRead(It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync((StorageStreamContent)null);
+            .ReturnsAsync((StorageStreamContent)null!);
 
         mockedAzureStorage
             .Setup(factory => factory.Create())
@@ -193,7 +189,7 @@ public class GetArticleQueryHandlerTest : TestBase
             .Setup(provider => provider.GetRequestIpAddress())
             .Returns(IpAddressFirst);
 
-        var getArticleQueryHandler = new GetArticleQueryHandler(
+        var handler = new GetArticleQueryHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedUserProvider.Object, 
@@ -202,9 +198,7 @@ public class GetArticleQueryHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(()
-            => getArticleQueryHandler.Handle(getArticleQuery, CancellationToken.None));
-
+        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(query, CancellationToken.None));
         result.ErrorCode.Should().Contain(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS));
     }
 

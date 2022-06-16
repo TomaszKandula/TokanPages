@@ -125,9 +125,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<AuthorizationException>(() 
-            => handler.Handle(command, CancellationToken.None));
-
+        var result = await Assert.ThrowsAsync<AuthorizationException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_REFRESH_TOKEN));
     }
 }

@@ -32,11 +32,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var created = DateTimeService.Now.AddDays(-5);
         var refreshToken = DataUtilityService.GetRandomString(255);
 
-        var command = new ReAuthenticateUserCommand
-        {
-            RefreshToken = refreshToken
-        };
-        
+        var command = new ReAuthenticateUserCommand { RefreshToken = refreshToken };
         var user = new Users
         {
             Id = userId,
@@ -148,8 +144,6 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         };
 
         var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
-
-        // Act
         var handler = new ReAuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
@@ -157,6 +151,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             mockedUserService.Object, 
             mockedApplicationSettings.Object);
 
+        // Act
         var result = await handler.Handle(command, CancellationToken.None);
 
         // Assert
@@ -269,9 +264,6 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         };
             
         var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
-
-        // Act
-        // Assert
         var handler = new ReAuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
@@ -279,9 +271,9 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             mockedUserService.Object, 
             mockedApplicationSettings.Object);
 
-        var result = await Assert.ThrowsAsync<AccessException>(() => 
-            handler.Handle(command, CancellationToken.None));
-
+        // Act
+        // Assert
+        var result = await Assert.ThrowsAsync<AccessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_REFRESH_TOKEN));
     }
         
@@ -289,11 +281,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
     public async Task GivenMissingRefreshToken_WhenReAuthenticateUser_ShouldThrowError()
     {
         // Arrange
-        var command = new ReAuthenticateUserCommand
-        {
-            RefreshToken = DataUtilityService.GetRandomString()
-        };
-
+        var command = new ReAuthenticateUserCommand { RefreshToken = DataUtilityService.GetRandomString() };
         var user = new Users
         {
             Id = Guid.NewGuid(),
@@ -351,9 +339,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<AccessException>(() => 
-            handler.Handle(command, CancellationToken.None));
-
+        var result = await Assert.ThrowsAsync<AccessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_REFRESH_TOKEN));
     }
 }

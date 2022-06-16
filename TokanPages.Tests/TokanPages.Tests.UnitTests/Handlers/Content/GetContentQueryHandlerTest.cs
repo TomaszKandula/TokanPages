@@ -25,7 +25,7 @@ public class GetContentQueryHandlerTest : TestBase
     public async Task GivenValidComponentNameAndType_WhenGetContent_ShouldSucceed()
     {
         // Arrange
-        var getContentQuery = new GetContentQuery
+        var query = new GetContentQuery
         {
             Name = "activateAccount",
             Type = "component"
@@ -63,14 +63,14 @@ public class GetContentQueryHandlerTest : TestBase
             .Setup(serializer => serializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
             .Returns(testObject);
 
-        var getContentQueryHandler = new GetContentQueryHandler(
+        var handler = new GetContentQueryHandler(
             databaseContext,
             mockedLogger.Object,
             mockedJsonSerializer.Object,
             mockedAzureStorage.Object);
 
         // Act
-        var result = await getContentQueryHandler.Handle(getContentQuery, CancellationToken.None);
+        var result = await handler.Handle(query, CancellationToken.None);
 
         // Assert
         result.ContentName.Should().Be("activateAccount");
@@ -102,7 +102,7 @@ public class GetContentQueryHandlerTest : TestBase
     public async Task GivenValidComponentNameAndTypeAndNonExistingLanguage_WhenGetContent_ShouldReturnNoContent()
     {
         // Arrange
-        var getContentQuery = new GetContentQuery
+        var query = new GetContentQuery
         {
             Name = "activateAccount",
             Type = "component",
@@ -141,14 +141,14 @@ public class GetContentQueryHandlerTest : TestBase
             .Setup(serializer => serializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
             .Returns(testObject);
 
-        var getContentQueryHandler = new GetContentQueryHandler(
+        var handler = new GetContentQueryHandler(
             databaseContext,
             mockedLogger.Object,
             mockedJsonSerializer.Object,
             mockedAzureStorage.Object);
 
         // Act
-        var result = await getContentQueryHandler.Handle(getContentQuery, CancellationToken.None);
+        var result = await handler.Handle(query, CancellationToken.None);
 
         // Assert
         result.ContentName.Should().Be("activateAccount");
@@ -162,7 +162,7 @@ public class GetContentQueryHandlerTest : TestBase
     public async Task GivenInvalidComponentType_WhenGetContent_ShouldThrowError()
     {
         // Arrange
-        var getContentQuery = new GetContentQuery
+        var query = new GetContentQuery
         {
             Name = "activateAccount",
             Type = DataUtilityService.GetRandomString()
@@ -200,7 +200,7 @@ public class GetContentQueryHandlerTest : TestBase
             .Setup(serializer => serializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
             .Returns(testObject);
 
-        var getContentQueryHandler = new GetContentQueryHandler(
+        var handler = new GetContentQueryHandler(
             databaseContext,
             mockedLogger.Object,
             mockedJsonSerializer.Object,
@@ -208,7 +208,7 @@ public class GetContentQueryHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() => getContentQueryHandler.Handle(getContentQuery, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(query, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED));
     }
 
@@ -216,7 +216,7 @@ public class GetContentQueryHandlerTest : TestBase
     public async Task GivenEmptyContentFromRemoteService_WhenGetContent_ShouldThrowError()
     {
         // Arrange
-        var getContentQuery = new GetContentQuery
+        var query = new GetContentQuery
         {
             Name = "activateAccount",
             Type = "component"
@@ -230,7 +230,7 @@ public class GetContentQueryHandlerTest : TestBase
 
         mockedAzureBlob
             .Setup(storage => storage.OpenRead(It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync((StorageStreamContent)null);
+            .ReturnsAsync((StorageStreamContent)null!);
 
         mockedAzureStorage
             .Setup(factory => factory.Create())
@@ -248,7 +248,7 @@ public class GetContentQueryHandlerTest : TestBase
             .Setup(serializer => serializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
             .Returns(testObject);
 
-        var getContentQueryHandler = new GetContentQueryHandler(
+        var handler = new GetContentQueryHandler(
             databaseContext,
             mockedLogger.Object,
             mockedJsonSerializer.Object,
@@ -256,7 +256,7 @@ public class GetContentQueryHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() => getContentQueryHandler.Handle(getContentQuery, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(query, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.COMPONENT_NOT_FOUND));
     }
 
@@ -264,7 +264,7 @@ public class GetContentQueryHandlerTest : TestBase
     public async Task GivenInvalidRemoteComponent_WhenGetContent_ShouldThrowError()
     {
         // Arrange
-        var getContentQuery = new GetContentQuery
+        var query = new GetContentQuery
         {
             Name = "activateAccount",
             Type = "component"
@@ -302,7 +302,7 @@ public class GetContentQueryHandlerTest : TestBase
             .Setup(serializer => serializer.MapObjects<ActivateAccountDto>(It.IsAny<JToken>()))
             .Returns(testObject);
 
-        var getContentQueryHandler = new GetContentQueryHandler(
+        var handler = new GetContentQueryHandler(
             databaseContext,
             mockedLogger.Object,
             mockedJsonSerializer.Object,
@@ -310,7 +310,7 @@ public class GetContentQueryHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() => getContentQueryHandler.Handle(getContentQuery, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(query, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.COMPONENT_CONTENT_MISSING_TOKEN));
     }
 
@@ -349,12 +349,12 @@ public class GetContentQueryHandlerTest : TestBase
     private class ValidActivateAccountObject
     {
         [JsonProperty("activateAccount")]
-        public List<ActivateAccountDto> ActivateAccount { get; set; }
+        public List<ActivateAccountDto>? ActivateAccount { get; set; }
     }
 
     private class InvalidActivateAccountObject
     {
         [JsonProperty("AccountActivation")]
-        public List<ActivateAccountDto> ActivateAccount { get; set; }
+        public List<ActivateAccountDto>? ActivateAccount { get; set; }
     }
 }

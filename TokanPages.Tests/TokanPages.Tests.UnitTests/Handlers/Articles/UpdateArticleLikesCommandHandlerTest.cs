@@ -55,7 +55,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
 
         mockedUserService
             .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
-            .ReturnsAsync((GetUserDto)null);
+            .ReturnsAsync((GetUserDto)null!);
 
         mockedUserService
             .Setup(service => service.GetRequestIpAddress())
@@ -142,19 +142,19 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             .Setup(provider => provider.GetRequestIpAddress())
             .Returns(IpAddress);
 
-        var updateArticleLikesCommandHandler = new UpdateArticleLikesCommandHandler(
+        var handler = new UpdateArticleLikesCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
             mockedUserProvider.Object);
 
-        var updateArticleLikesCommand = new UpdateArticleLikesCommand
+        var command = new UpdateArticleLikesCommand
         {
             Id = articles.Id,
             AddToLikes = newLikes,
         };
 
         // Act
-        await updateArticleLikesCommandHandler.Handle(updateArticleLikesCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
         // Assert
         var articleLikesEntity = databaseContext.ArticleLikes
@@ -162,7 +162,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             .ToList();
             
         var articlesEntity = await databaseContext.Articles
-            .FindAsync(updateArticleLikesCommand.Id);
+            .FindAsync(command.Id);
 
         articlesEntity.Should().NotBeNull();
         articleLikesEntity.Should().HaveCount(1);

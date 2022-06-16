@@ -24,7 +24,7 @@ using TokanPages.Services.WebTokenService.Models;
 using Roles = Backend.Domain.Enums.Roles;
 using Permissions = Backend.Domain.Enums.Permissions;
 
-public class UserServiceProviderTest : TestBase
+public class UserServiceTest : TestBase
 {
     [Fact]
     public async Task GivenValidClaimsInHttpContext_WhenInvokeGetUser_ShouldReturnJsonObject()

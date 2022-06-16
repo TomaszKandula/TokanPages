@@ -127,7 +127,6 @@ public class UpdateUserCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        await Assert.ThrowsAsync<BusinessException>(() 
-            => handler.Handle(command, CancellationToken.None));
+        await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
     }
 }

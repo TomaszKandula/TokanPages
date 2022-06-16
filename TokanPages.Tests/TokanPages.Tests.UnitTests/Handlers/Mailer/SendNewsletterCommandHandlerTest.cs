@@ -20,7 +20,7 @@ public class SendNewsletterCommandHandlerTest : TestBase
     public async Task GivenSubscriberInfo_WhenSendNewsletter_ShouldFinishSuccessful()
     {
         // Arrange
-        var sendNewsletterCommand = new SendNewsletterCommand
+        var command = new SendNewsletterCommand
         {
             Message = DataUtilityService.GetRandomString(),
             Subject = DataUtilityService.GetRandomString(),
@@ -43,14 +43,14 @@ public class SendNewsletterCommandHandlerTest : TestBase
             .Setup(sender => sender.GetEmailTemplate(It.IsAny<string>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(randomString);
 
-        var sendNewsletterCommandHandler = new SendNewsletterCommandHandler(
+        var handler = new SendNewsletterCommandHandler(
             databaseContext,
             mockedLogger.Object, 
             mockedEmailSenderService.Object,
             mockedApplicationSettings.Object);
 
         // Act
-        var result = await sendNewsletterCommandHandler.Handle(sendNewsletterCommand, CancellationToken.None);
+        var result = await handler.Handle(command, CancellationToken.None);
 
         // Assert
         result.Should().Be(await Task.FromResult(Unit.Value));
@@ -60,7 +60,7 @@ public class SendNewsletterCommandHandlerTest : TestBase
     public async Task GivenEmptyEmailTemplate_WhenSendNewsletter_ShouldThrowError()
     {
         // Arrange
-        var sendNewsletterCommand = new SendNewsletterCommand
+        var command = new SendNewsletterCommand
         {
             Message = DataUtilityService.GetRandomString(),
             Subject = DataUtilityService.GetRandomString(),
@@ -82,7 +82,7 @@ public class SendNewsletterCommandHandlerTest : TestBase
             .Setup(sender => sender.GetEmailTemplate(It.IsAny<string>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(string.Empty);
 
-        var sendNewsletterCommandHandler = new SendNewsletterCommandHandler(
+        var handler = new SendNewsletterCommandHandler(
             databaseContext,
             mockedLogger.Object, 
             mockedEmailSenderService.Object,
@@ -90,8 +90,7 @@ public class SendNewsletterCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() 
-            => sendNewsletterCommandHandler.Handle(sendNewsletterCommand, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL));
     }
 }

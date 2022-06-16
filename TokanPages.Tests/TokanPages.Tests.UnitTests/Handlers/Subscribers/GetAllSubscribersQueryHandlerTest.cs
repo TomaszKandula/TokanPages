@@ -20,12 +20,12 @@ public class GetAllSubscribersQueryHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
 
-        var getAllSubscribersQuery = new GetAllSubscribersQuery();
-        var getAllSubscribersQueryHandler = new GetAllSubscribersQueryHandler(databaseContext, mockedLogger.Object);
+        var query = new GetAllSubscribersQuery();
+        var handler = new GetAllSubscribersQueryHandler(databaseContext, mockedLogger.Object);
 
         var subscribers = new List<TokanPages.Backend.Domain.Entities.Subscribers>
         {
-            new ()
+            new()
             {
                 Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
@@ -33,7 +33,7 @@ public class GetAllSubscribersQueryHandlerTest : TestBase
                 Registered = DateTime.Now,
                 LastUpdated = null
             },
-            new ()
+            new()
             {
                 Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
@@ -42,17 +42,15 @@ public class GetAllSubscribersQueryHandlerTest : TestBase
                 LastUpdated = null
             }
         };
-            
+
         await databaseContext.Subscribers.AddRangeAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
         // Act
-        var result = (await getAllSubscribersQueryHandler
-                .Handle(getAllSubscribersQuery, CancellationToken.None))
-            .ToList();
+        var result = await handler.Handle(query, CancellationToken.None);
 
         // Assert
-        result.Should().NotBeNull();
-        result.Should().HaveCount(2);
+        result.ToList().Should().NotBeNull();
+        result.ToList().Should().HaveCount(2);
     }
 }

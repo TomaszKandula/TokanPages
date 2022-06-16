@@ -21,8 +21,8 @@ public class GetAllArticlesQueryHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
 
-        var getAllArticlesQuery = new GetAllArticlesQuery { IsPublished = false };
-        var getAllArticlesQueryHandler = new GetAllArticlesQueryHandler(databaseContext, mockedLogger.Object);
+        var query = new GetAllArticlesQuery { IsPublished = false };
+        var handler = new GetAllArticlesQueryHandler(databaseContext, mockedLogger.Object);
             
         var user = new Users
         {
@@ -63,14 +63,12 @@ public class GetAllArticlesQueryHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
 
         // Act
-        var result = (await getAllArticlesQueryHandler
-                .Handle(getAllArticlesQuery, CancellationToken.None))
-            .ToList();
+        var result = await handler.Handle(query, CancellationToken.None);
 
         // Assert
-        result.Should().NotBeNull();
-        result.Should().HaveCount(2);
-        result[0].Id.Should().Be(articles[0].Id);
-        result[1].Id.Should().Be(articles[1].Id);
+        result.ToList().Should().NotBeNull();
+        result.ToList().Should().HaveCount(2);
+        result.ToList()[0].Id.Should().Be(articles[0].Id);
+        result.ToList()[1].Id.Should().Be(articles[1].Id);
     }
 }

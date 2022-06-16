@@ -31,11 +31,11 @@ public class GetSubscriberQueryHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
-        var getSubscriberQuery = new GetSubscriberQuery { Id = subscribers.Id };
-        var getSubscriberQueryHandler = new GetSubscriberQueryHandler(databaseContext, mockedLogger.Object);
+        var query = new GetSubscriberQuery { Id = subscribers.Id };
+        var handler = new GetSubscriberQueryHandler(databaseContext, mockedLogger.Object);
 
         // Act
-        var result = await getSubscriberQueryHandler.Handle(getSubscriberQuery, CancellationToken.None);
+        var result = await handler.Handle(query, CancellationToken.None);
 
         // Assert
         result.Should().NotBeNull();
@@ -64,15 +64,14 @@ public class GetSubscriberQueryHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
-        var getSubscriberQueryHandler = new GetSubscriberQueryHandler(databaseContext, mockedLogger.Object);
-        var getSubscriberQuery = new GetSubscriberQuery
+        var handler = new GetSubscriberQueryHandler(databaseContext, mockedLogger.Object);
+        var query = new GetSubscriberQuery
         {
             Id = Guid.Parse("b6bb37e0-bad3-419c-b61f-45318cb7b68c")
         };
 
         // Act
         // Assert
-        await Assert.ThrowsAsync<BusinessException>(() 
-            => getSubscriberQueryHandler.Handle(getSubscriberQuery, CancellationToken.None));
+        await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(query, CancellationToken.None));
     }
 }
