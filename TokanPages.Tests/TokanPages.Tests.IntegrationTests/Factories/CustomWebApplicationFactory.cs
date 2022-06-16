@@ -11,13 +11,13 @@ using JetBrains.Annotations;
 [UsedImplicitly]
 public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<TTestStartup> where TTestStartup : class
 {
-    public string? WebSecret { get; private set; }
+    public string WebSecret { get; private set; } = "";
 
-    public string? Issuer { get; private set; }
+    public string Issuer { get; private set; } = "";
 
-    public string? Audience { get; private set; }
+    public string Audience { get; private set; } = "";
 
-    public string? Connection { get; private set; }
+    public string Connection { get; private set; } = "";
 
     protected override IWebHostBuilder CreateWebHostBuilder()
     {
