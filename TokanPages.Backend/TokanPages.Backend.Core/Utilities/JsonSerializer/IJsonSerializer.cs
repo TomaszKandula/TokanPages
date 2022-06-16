@@ -8,11 +8,11 @@ public interface IJsonSerializer
 {
     string Serialize(object model, JsonSerializerSettings? serializerSettings = default);
 
-    T? Deserialize<T>(string json, JsonSerializerSettings? serializerSettings = default);
+    T Deserialize<T>(string json, JsonSerializerSettings? serializerSettings = default);
 
-    JToken? Parse(string json);
+    JToken Parse(string json);
 
-    IEnumerable<T>? MapObjects<T>(JToken component) where T : new();
+    IEnumerable<T> MapObjects<T>(JToken component) where T : new();
 
-    T? MapObject<T>(JToken component) where T : new();
+    T MapObject<T>(JToken component) where T : new();
 }
