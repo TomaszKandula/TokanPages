@@ -12,7 +12,7 @@ public sealed class ValidationError
         
     public string ErrorMessage { get; }
 
-    public ValidationError(string propertyName, string errorCode, string errorMessage = null)
+    public ValidationError(string propertyName, string errorCode, string errorMessage = "")
     {
         PropertyName = propertyName;
         ErrorCode = errorCode;
