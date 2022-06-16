@@ -37,8 +37,8 @@ public class StatusControllerTest : TestBase, IClassFixture<CustomWebApplication
         var deserialized = JsonConvert.DeserializeObject<ActionResult>(content);
         deserialized.Should().NotBeNull();
         deserialized?.IsSucceeded.Should().BeTrue();
-        deserialized?.ErrorCode.Should().BeNull();
-        deserialized?.ErrorDesc.Should().BeNull();
+        deserialized?.ErrorCode.Should().BeEmpty();
+        deserialized?.ErrorDesc.Should().BeEmpty();
     }
 
     [Fact]

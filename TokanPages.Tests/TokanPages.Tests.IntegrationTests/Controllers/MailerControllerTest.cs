@@ -84,7 +84,7 @@ public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplication
 
         var tokenExpires = DateTime.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
-            _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+            _webApplicationFactory.WebSecret!, _webApplicationFactory.Issuer!, _webApplicationFactory.Audience!);
 
         await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
 
@@ -129,7 +129,7 @@ public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplication
 
         var tokenExpires = DateTime.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
-            _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+            _webApplicationFactory.WebSecret!, _webApplicationFactory.Issuer!, _webApplicationFactory.Audience!);
 
         var payload = JsonConvert.SerializeObject(dto);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
