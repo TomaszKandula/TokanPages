@@ -11,10 +11,10 @@ public class GetUserRoleDto
     /// <summary>
     /// Name
     /// </summary>
-    public string Name { get; set; }
+    public string Name { get; set; } = "";
 
     /// <summary>
     /// Description
     /// </summary>
-    public string Description { get; set; }
+    public string Description { get; set; } = "";
 }

@@ -13,5 +13,5 @@ public class BaseClass
     /// Language
     /// </summary>
     [JsonProperty("language")]
-    public string Language { get; set; }
+    public string Language { get; set; } = "";
 }

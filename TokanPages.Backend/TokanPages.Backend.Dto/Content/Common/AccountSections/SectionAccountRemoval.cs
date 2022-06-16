@@ -13,17 +13,17 @@ public class SectionAccountRemoval
     /// Caption
     /// </summary>
     [JsonProperty("caption")]
-    public string Caption { get; set; }
+    public string Caption { get; set; } = "";
 
     /// <summary>
     /// WarningText
     /// </summary>
     [JsonProperty("warningText")]
-    public string WarningText { get; set; }
+    public string WarningText { get; set; } = "";
 
     /// <summary>
     /// DeleteButtonText
     /// </summary>
     [JsonProperty("deleteButtonText")]
-    public string DeleteButtonText { get; set; }
+    public string DeleteButtonText { get; set; } = "";
 }

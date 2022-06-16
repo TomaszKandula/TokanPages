@@ -13,71 +13,71 @@ public class SectionAccountInformation
     /// Caption
     /// </summary>
     [JsonProperty("caption")]
-    public string Caption { get; set; }
+    public string Caption { get; set; } = "";
 
     /// <summary>
     /// LabelUserId
     /// </summary>
     [JsonProperty("labelUserId")]
-    public string LabelUserId { get; set; }
+    public string LabelUserId { get; set; } = "";
 
     /// <summary>
     /// LabelUserAlias
     /// </summary>
     [JsonProperty("labelUserAlias")]
-    public string LabelUserAlias { get; set; }    
+    public string LabelUserAlias { get; set; } = ""; 
 
     /// <summary>
     /// LabelFirstName
     /// </summary>
     [JsonProperty("labelFirstName")]
-    public string LabelFirstName { get; set; }
+    public string LabelFirstName { get; set; } = "";
 
     /// <summary>
     /// LabelLastName
     /// </summary>
     [JsonProperty("labelLastName")]
-    public string LabelLastName { get; set; }
+    public string LabelLastName { get; set; } = "";
 
     /// <summary>
     /// LabelEmail
     /// </summary>
     [JsonProperty("labelEmail")]
-    public string LabelEmail { get; set; }
+    public string LabelEmail { get; set; } = "";
 
     /// <summary>
     /// LabelShortBio
     /// </summary>
     [JsonProperty("labelShortBio")]
-    public string LabelShortBio { get; set; }
+    public string LabelShortBio { get; set; } = "";
 
     /// <summary>
     /// LabelUserAvatar
     /// </summary>
     [JsonProperty("labelUserAvatar")]
-    public string LabelUserAvatar { get; set; }
+    public string LabelUserAvatar { get; set; } = "";
 
     /// <summary>
     /// LabelIsActivated
     /// </summary>
     [JsonProperty("labelIsActivated")]
-    public string LabelIsActivated { get; set; }
+    public string LabelIsActivated { get; set; } = "";
 
     /// <summary>
     /// IsActivatedText
     /// </summary>
     [JsonProperty("isActivatedText")]
-    public string IsActivatedText { get; set; }
+    public string IsActivatedText { get; set; } = "";
 
     /// <summary>
     /// UpdateButtonText
     /// </summary>
     [JsonProperty("updateButtonText")]
-    public string UpdateButtonText { get; set; }
+    public string UpdateButtonText { get; set; } = "";
 
     /// <summary>
     /// UploadAvatarButtonText
     /// </summary>
     [JsonProperty("uploadAvatarButtonText")]
-    public string UploadAvatarButtonText { get; set; }
+    public string UploadAvatarButtonText { get; set; } = "";
 }

@@ -11,5 +11,5 @@ public class GetUserPermissionDto
     /// <summary>
     /// Name
     /// </summary>
-    public string Name { get; set; }
+    public string Name { get; set; } = "";
 }

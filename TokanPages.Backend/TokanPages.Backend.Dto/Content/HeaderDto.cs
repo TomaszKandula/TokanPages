@@ -14,23 +14,23 @@ public class HeaderDto : BaseClass
     /// Photo
     /// </summary>
     [JsonProperty("photo")]
-    public string Photo { get; set; }
+    public string Photo { get; set; } = "";
 
     /// <summary>
     /// Caption
     /// </summary>
     [JsonProperty("caption")]
-    public string Caption { get; set; }
+    public string Caption { get; set; } = "";
 
     /// <summary>
     /// Description
     /// </summary>
     [JsonProperty("description")]
-    public string Description { get; set; }
+    public string Description { get; set; } = "";
 
     /// <summary>
     /// Action
     /// </summary>
     [JsonProperty("action")]
-    public string Action { get; set; }
+    public string Action { get; set; } = "";
 }

@@ -11,10 +11,10 @@ public class SubscriberInfo
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string Email { get; set; }
+    public string Email { get; set; } = "";
 
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string Id { get; set; }
+    public string Id { get; set; } = "";
 }

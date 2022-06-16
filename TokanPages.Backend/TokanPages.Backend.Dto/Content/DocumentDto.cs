@@ -16,5 +16,5 @@ public class DocumentDto : BaseClass
     /// Items
     /// </summary>
     [JsonProperty("items")]
-    public List<Section> Items { get; set; }
+    public List<Section> Items { get; set; } = new();
 }

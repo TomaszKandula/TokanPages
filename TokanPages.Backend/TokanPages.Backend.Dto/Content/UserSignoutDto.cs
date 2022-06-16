@@ -14,23 +14,23 @@ public class UserSignoutDto : BaseClass
     /// Caption
     /// </summary>
     [JsonProperty("caption")]
-    public string Caption { get; set; }
+    public string Caption { get; set; } = "";
 
     /// <summary>
     /// OnProcessing
     /// </summary>
     [JsonProperty("onProcessing")]
-    public string OnProcessing { get; set; }
+    public string OnProcessing { get; set; } = "";
 
     /// <summary>
     /// OnFinish
     /// </summary>
     [JsonProperty("onFinish")]
-    public string OnFinish { get; set; }
+    public string OnFinish { get; set; } = "";
 
     /// <summary>
     /// ButtonText
     /// </summary>
     [JsonProperty("buttonText")]
-    public string ButtonText { get; set; }
+    public string ButtonText { get; set; } = "";
 }

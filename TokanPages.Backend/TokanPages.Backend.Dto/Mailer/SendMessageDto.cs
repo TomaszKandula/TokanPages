@@ -12,35 +12,35 @@ public class SendMessageDto
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string FirstName { get; set; }
+    public string FirstName { get; set; } = "";
 
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string LastName { get; set; }
+    public string LastName { get; set; } = "";
         
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string UserEmail { get; set; }
+    public string UserEmail { get; set; } = "";
         
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string EmailFrom { get; set; }
+    public string EmailFrom { get; set; } = "";
+
+    /// <summary>
+    /// Mandatory
+    /// </summary>
+    public List<string> EmailTos { get; set; } = new();
         
     /// <summary>
     /// Mandatory
     /// </summary>
-    public List<string> EmailTos { get; set; }
+    public string Subject { get; set; } = "";
         
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string Subject { get; set; }
-        
-    /// <summary>
-    /// Mandatory
-    /// </summary>
-    public string Message { get; set; }
+    public string Message { get; set; } = "";
 }

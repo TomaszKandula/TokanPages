@@ -15,23 +15,23 @@ public class AccountDto : BaseClass
     /// SectionAccessDenied
     /// </summary>
     [JsonProperty("sectionAccessDenied")]
-    public SectionAccessDenied SectionAccessDenied { get; set; }
+    public SectionAccessDenied SectionAccessDenied { get; set; } = new();
 
     /// <summary>
     /// SectionAccountInformation
     /// </summary>
     [JsonProperty("sectionAccountInformation")]
-    public SectionAccountInformation SectionAccountInformation { get; set; }
+    public SectionAccountInformation SectionAccountInformation { get; set; } = new();
 
     /// <summary>
     /// SectionAccountPassword
     /// </summary>
     [JsonProperty("sectionAccountPassword")]
-    public SectionAccountPassword SectionAccountPassword { get; set; }
+    public SectionAccountPassword SectionAccountPassword { get; set; } = new();
 
     /// <summary>
     /// SectionAccountRemoval
     /// </summary>
     [JsonProperty("sectionAccountRemoval")]
-    public SectionAccountRemoval SectionAccountRemoval { get; set; }
+    public SectionAccountRemoval SectionAccountRemoval { get; set; } = new();
 }

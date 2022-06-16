@@ -14,19 +14,19 @@ public class CookiesPromptDto : BaseClass
     /// Caption
     /// </summary>
     [JsonProperty("caption")]
-    public string Caption { get; set; }
+    public string Caption { get; set; } = "";
 
     /// <summary>
     /// Text
     /// </summary>
     [JsonProperty("text")]
-    public string Text { get; set; }
+    public string Text { get; set; } = "";
 
     /// <summary>
     /// Button
     /// </summary>
     [JsonProperty("button")]
-    public string Button { get; set; }
+    public string Button { get; set; } = "";
 
     /// <summary>
     /// Days
