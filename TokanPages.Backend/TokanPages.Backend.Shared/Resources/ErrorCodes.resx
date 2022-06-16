@@ -132,9 +132,6 @@
   <data name="ERROR_UNEXPECTED" xml:space="preserve">
     <value>Unexpected error</value>
   </data>
-  <data name="INVALID_BASE64" xml:space="preserve">
-    <value>The string must be BASE64</value>
-  </data>
   <data name="SUBSCRIBER_DOES_NOT_EXISTS" xml:space="preserve">
     <value>Requested subscriber does not exists</value>
   </data>
@@ -147,26 +144,8 @@
   <data name="CANNOT_CONNECT_DATABASE" xml:space="preserve">
     <value>Cannot connect to the database</value>
   </data>
-  <data name="NOT_CONNECTED_TO_SMTP" xml:space="preserve">
-    <value>Client is not connected to the SMTP server</value>
-  </data>
-  <data name="NOT_AUTHENTICATED_WITH_SMTP" xml:space="preserve">
-    <value>Client is not authenticated with the SMTP server</value>
-  </data>
-  <data name="SMTP_CLIENT_ERROR" xml:space="preserve">
-    <value>SMTP client has thrown an error</value>
-  </data>
-  <data name="ARGUMENT_NULL_EXCEPTION" xml:space="preserve">
-    <value>Argument value cannot be null</value>
-  </data>
   <data name="INVALID_CREDENTIALS" xml:space="preserve">
     <value>The user email and/or given password is invalid.</value>
-  </data>
-  <data name="ARGUMENT_ZERO_EXCEPTION" xml:space="preserve">
-    <value>Argument value cannot equal zero.</value>
-  </data>
-  <data name="MISSING_REFRESH_TOKEN" xml:space="preserve">
-    <value>The refresh token is missing from the request.</value>
   </data>
   <data name="INVALID_REFRESH_TOKEN" xml:space="preserve">
     <value>Provided refresh token is invalid.</value>
@@ -209,12 +188,6 @@
   </data>
   <data name="REVOKED_USER_TOKEN" xml:space="preserve">
     <value>The token has been revoked and cannot be reused</value>
-  </data>
-  <data name="INVALID_ARGUMENT" xml:space="preserve">
-    <value>Argument value cannot be null or empty</value>
-  </data>
-  <data name="INVALID_API_VERSION" xml:space="preserve">
-    <value>Provided API version seems to be invalid</value>
   </data>
   <data name="ARGUMENT_EMPTY_OR_NULL" xml:space="preserve">
     <value>Argument cannot be null or empty</value>
