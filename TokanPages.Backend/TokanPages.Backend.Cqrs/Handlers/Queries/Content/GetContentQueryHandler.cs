@@ -40,20 +40,23 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
         
         var componentRequestUrl = $"content/{request.Type}s/{request.Name}.json";
         var azureBob = _azureBlobStorageFactory.Create();
-        
-        var streamContent = await azureBob.OpenRead(componentRequestUrl, cancellationToken);
-        if (streamContent is null)
+        var contentStream = await azureBob.OpenRead(componentRequestUrl, cancellationToken);
+
+        if (contentStream is null)
+            throw new BusinessException(nameof(ErrorCodes.COMPONENT_NOT_FOUND), ErrorCodes.COMPONENT_NOT_FOUND);
+
+        if (contentStream.Content is null)
             throw new BusinessException(nameof(ErrorCodes.COMPONENT_NOT_FOUND), ErrorCodes.COMPONENT_NOT_FOUND);
 
         var memoryStream = new MemoryStream();
-        await streamContent.Content.CopyToAsync(memoryStream, cancellationToken);
+        await contentStream.Content.CopyToAsync(memoryStream, cancellationToken);
         var componentContent = Encoding.Default.GetString(memoryStream.ToArray());
 
         if (string.IsNullOrEmpty(componentContent))
             throw new BusinessException(nameof(ErrorCodes.COMPONENT_CONTENT_EMPTY), ErrorCodes.COMPONENT_CONTENT_EMPTY);
 
         var jsonToken = _jsonSerializer.Parse(componentContent);
-        var token = jsonToken?.SelectToken(request.Name);
+        var token = jsonToken.SelectToken(request.Name);
 
         if (token == null)
             throw new BusinessException(nameof(ErrorCodes.COMPONENT_CONTENT_MISSING_TOKEN), ErrorCodes.COMPONENT_CONTENT_MISSING_TOKEN);
@@ -66,7 +69,7 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
         };
     }
 
-    private dynamic GetObjectByLanguage(JToken token, string componentName, string selectedLanguage)
+    private dynamic? GetObjectByLanguage(JToken token, string componentName, string selectedLanguage)
     {
         return componentName switch
         {

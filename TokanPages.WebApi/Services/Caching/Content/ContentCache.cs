@@ -27,7 +27,7 @@ public class ContentCache : IContentCache
     }
 
     /// <inheritdoc />
-    public async Task<GetContentQueryResult> GetContent(string type, string name, string? language, bool noCache = false)
+    public async Task<GetContentQueryResult> GetContent(string? language, string type = "", string name = "", bool noCache = false)
     {
         if (noCache)
             return await _mediator.Send(new GetContentQuery { Type = type, Name = name, Language = language });
