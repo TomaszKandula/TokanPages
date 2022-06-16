@@ -6,9 +6,9 @@ using MediatR;
 
 public class SendNewsletterCommand : IRequest<Unit>
 {
-    public List<SubscriberInfo>? SubscriberInfo { get; set; }
+    public List<SubscriberInfo> SubscriberInfo { get; set; } = new();
         
-    public string? Subject { get; set; }
+    public string Subject { get; set; } = "";
         
-    public string? Message { get; set; }
+    public string Message { get; set; } = "";
 }
