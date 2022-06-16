@@ -6,5 +6,5 @@ using Abstractions;
 [ExcludeFromCodeCoverage]
 public class BearerAuthentication : IAuthentication
 {
-    public string Token { get; set; }
+    public string Token { get; set; } = "";
 }
