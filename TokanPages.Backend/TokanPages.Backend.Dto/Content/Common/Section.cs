@@ -26,7 +26,7 @@ public class Section
     /// Value
     /// </summary>
     [JsonProperty("value")]
-    public dynamic Value { get; set; } = "";
+    public dynamic? Value { get; set; }
         
     /// <summary>
     /// Prop
