@@ -27,7 +27,7 @@ public static class UsersMapper
     {
         ActivationId = model.ActivationId
     };
-        
+
     public static ResetUserPasswordCommand MapToResetUserPasswordCommand(ResetUserPasswordDto model) => new()
     {
         EmailAddress = model.EmailAddress
@@ -39,11 +39,10 @@ public static class UsersMapper
         ResetId = model.ResetId,
         NewPassword = model.NewPassword
     };
-        
+
     public static AddUserCommand MapToAddUserCommand(AddUserDto model) => new() 
     { 
         EmailAddress = model.EmailAddress,
-        UserAlias = model.UserAlias,
         FirstName = model.FirstName,
         LastName = model.LastName,
         Password = model.Password
