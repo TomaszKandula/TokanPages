@@ -6,16 +6,16 @@ using Newtonsoft.Json.Linq;
 
 public class JsonSerializer : IJsonSerializer
 {
-    public virtual string Serialize(object model, JsonSerializerSettings serializerSettings = null)
+    public virtual string Serialize(object model, JsonSerializerSettings? serializerSettings = default)
         => JsonConvert.SerializeObject(model, serializerSettings);
 
-    public virtual T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null)
+    public virtual T? Deserialize<T>(string json, JsonSerializerSettings? serializerSettings = default)
         => string.IsNullOrEmpty(json) ? default : JsonConvert.DeserializeObject<T>(json, serializerSettings);
 
-    public virtual JToken Parse(string json)
+    public virtual JToken? Parse(string json)
         => string.IsNullOrEmpty(json) ? default : JToken.Parse(json);
 
-    public virtual IEnumerable<T> MapObjects<T>(JToken component) where T : new()
+    public virtual IEnumerable<T>? MapObjects<T>(JToken component) where T : new()
     {
         return component switch
         {
@@ -24,7 +24,7 @@ public class JsonSerializer : IJsonSerializer
         };
     }
 
-    public virtual T MapObject<T>(JToken component) where T : new()
+    public virtual T? MapObject<T>(JToken component) where T : new()
     {
         return component switch
         {
