@@ -1,5 +1,4 @@
-﻿#nullable enable
-namespace TokanPages.Services.UserService;
+﻿namespace TokanPages.Services.UserService;
 
 using System;
 using System.Threading;

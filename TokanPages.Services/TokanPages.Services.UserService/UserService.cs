@@ -1,5 +1,4 @@
-﻿#nullable enable
-namespace TokanPages.Services.UserService;
+﻿namespace TokanPages.Services.UserService;
 
 using System;
 using System.Linq;
@@ -266,12 +265,17 @@ public sealed class UserService : IUserService
 
     public async Task RevokeDescendantRefreshTokens(RevokeRefreshTokensInput input, CancellationToken cancellationToken = default)
     {
+        if (input.UserRefreshTokens is null) 
+            return;
+
+        if (input.SavedUserRefreshTokens is null) 
+            return;
+
         if (string.IsNullOrEmpty(input.SavedUserRefreshTokens.ReplacedByToken)) 
             return;
 
         var userRefreshTokensList = input.UserRefreshTokens.ToList();
-        var childToken = userRefreshTokensList
-            .SingleOrDefault(tokens => tokens.Token == input.SavedUserRefreshTokens.ReplacedByToken);
+        var childToken = userRefreshTokensList.SingleOrDefault(tokens => tokens.Token == input.SavedUserRefreshTokens.ReplacedByToken);
 
         if (childToken is null) 
             return;
@@ -297,6 +301,9 @@ public sealed class UserService : IUserService
 
     public async Task RevokeRefreshToken(RevokeRefreshTokenInput input, CancellationToken cancellationToken = default)
     {
+        if (input.UserRefreshTokens is null) 
+            return;
+
         input.UserRefreshTokens.Revoked = _dateTimeService.Now;
         input.UserRefreshTokens.RevokedByIp = input.RequesterIpAddress;
         input.UserRefreshTokens.ReasonRevoked = input.Reason;
@@ -308,14 +315,20 @@ public sealed class UserService : IUserService
             await _databaseContext.SaveChangesAsync(cancellationToken);
     }
 
-    public bool IsRefreshTokenExpired(UserRefreshTokens userRefreshTokens) 
-        => userRefreshTokens.Expires <= _dateTimeService.Now;
+    public bool IsRefreshTokenExpired(UserRefreshTokens userRefreshTokens)
+    {
+        return userRefreshTokens.Expires <= _dateTimeService.Now;
+    }
 
-    public bool IsRefreshTokenRevoked(UserRefreshTokens userRefreshTokens) 
-        => userRefreshTokens.Revoked != null;
+    public bool IsRefreshTokenRevoked(UserRefreshTokens userRefreshTokens)
+    {
+        return userRefreshTokens.Revoked != null;
+    }
 
-    public bool IsRefreshTokenActive(UserRefreshTokens userRefreshTokens) 
-        => !IsRefreshTokenRevoked(userRefreshTokens) && !IsRefreshTokenExpired(userRefreshTokens);
+    public bool IsRefreshTokenActive(UserRefreshTokens userRefreshTokens)
+    {
+        return!IsRefreshTokenRevoked(userRefreshTokens) && !IsRefreshTokenExpired(userRefreshTokens);
+    }
 
     private Guid? UserIdFromClaim()
     {
