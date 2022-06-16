@@ -30,7 +30,7 @@ public class AssetsCache : IAssetsCache
     }
 
     /// <inheritdoc />
-    public async Task<IActionResult> GetAsset(string blobName, bool noCache = false)
+    public async Task<IActionResult> GetAsset(string blobName = "", bool noCache = false)
     {
         if (noCache)
             return await _mediator.Send(new GetSingleAssetQuery { BlobName = blobName });
@@ -47,7 +47,7 @@ public class AssetsCache : IAssetsCache
     }
 
     /// <inheritdoc />
-    public async Task<IActionResult> GetArticleAsset(string id, string assetName, bool noCache = false)
+    public async Task<IActionResult> GetArticleAsset(string id = "", string assetName = "", bool noCache = false)
     {
         if (noCache)
             return await _mediator.Send(new GetArticleAssetQuery {  Id = id, AssetName = assetName });

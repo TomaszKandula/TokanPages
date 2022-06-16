@@ -21,13 +21,19 @@ public class GetSingleAssetQueryHandler : RequestHandler<GetSingleAssetQuery, Fi
     {
         var requestUrl = $"content/assets/{request.BlobName}";
         var azureBlob = _azureBlobStorageFactory.Create();
+        var contentStream = await azureBlob.OpenRead(requestUrl, cancellationToken);
 
-        var streamContent = await azureBlob.OpenRead(requestUrl, cancellationToken);
-        if (streamContent is null)
+        if (contentStream is null)
             throw new BusinessException(nameof(ErrorCodes.ASSET_NOT_FOUND), ErrorCodes.ASSET_NOT_FOUND);
-        
+
+        if (contentStream.Content is null)
+            throw new BusinessException(nameof(ErrorCodes.ASSET_NOT_FOUND), ErrorCodes.ASSET_NOT_FOUND);
+
+        if (contentStream.ContentType is null)
+            throw new BusinessException(nameof(ErrorCodes.ASSET_CONTENT_TYPE_MISSING), ErrorCodes.ASSET_CONTENT_TYPE_MISSING);
+
         var memoryStream = new MemoryStream();
-        await streamContent.Content.CopyToAsync(memoryStream, cancellationToken);
-        return new FileContentResult(memoryStream.ToArray(), streamContent.ContentType);
+        await contentStream.Content.CopyToAsync(memoryStream, cancellationToken);
+        return new FileContentResult(memoryStream.ToArray(), contentStream.ContentType);
     }
 }
