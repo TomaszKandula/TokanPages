@@ -1,4 +1,3 @@
-#nullable enable
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
 using System;

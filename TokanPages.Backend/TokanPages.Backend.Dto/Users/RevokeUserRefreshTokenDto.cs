@@ -11,5 +11,5 @@ public class RevokeUserRefreshTokenDto
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string RefreshToken { get; set; } = "";
+    public string? RefreshToken { get; set; }
 }

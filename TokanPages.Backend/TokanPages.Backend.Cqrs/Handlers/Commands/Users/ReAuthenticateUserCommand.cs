@@ -4,5 +4,5 @@ using MediatR;
 
 public class ReAuthenticateUserCommand : IRequest<ReAuthenticateUserCommandResult>
 {
-    public string RefreshToken { get; set; }
+    public string? RefreshToken { get; set; }
 }

@@ -7,7 +7,7 @@ public class UpdateSubscriberCommand : IRequest<Unit>
 {
     public Guid Id { get; set; }
         
-    public string Email { get; set; }
+    public string? Email { get; set; }
         
     public bool? IsActivated { get; set; }
         
