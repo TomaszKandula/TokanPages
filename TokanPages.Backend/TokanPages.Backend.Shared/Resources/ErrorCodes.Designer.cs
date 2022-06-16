@@ -212,5 +212,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("CANNOT_READ_FROM_AZURE_STORAGE", resourceCulture);
             }
         }
+        
+        public static string ASSET_CONTENT_TYPE_MISSING {
+            get {
+                return ResourceManager.GetString("ASSET_CONTENT_TYPE_MISSING", resourceCulture);
+            }
+        }
     }
 }

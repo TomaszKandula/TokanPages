@@ -201,4 +201,7 @@
   <data name="CANNOT_READ_FROM_AZURE_STORAGE" xml:space="preserve">
     <value>Cannot read from Azure Storage Blob</value>
   </data>
+  <data name="ASSET_CONTENT_TYPE_MISSING" xml:space="preserve">
+    <value>Cannot find asset content type in stream</value>
+  </data>
 </root>
