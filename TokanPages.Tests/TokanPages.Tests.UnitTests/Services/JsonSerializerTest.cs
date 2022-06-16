@@ -1,6 +1,7 @@
 namespace TokanPages.Tests.UnitTests.Services;
 
 using Xunit;
+using System;
 using System.Linq;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
@@ -31,8 +32,9 @@ public class JsonSerializerTest : TestBase
             Key2 = "Value2"
         };
             
-        // Act
         var jsonSerializer = new JsonSerializer();
+
+        // Act
         var result = jsonSerializer.Serialize(testObject);
 
         // Assert
@@ -43,8 +45,9 @@ public class JsonSerializerTest : TestBase
     public void GivenValidString_WhenInvokeDeserialize_ShouldSucceed()
     {
         // Arrange
-        // Act
         var jsonSerializer = new JsonSerializer();
+
+        // Act
         var result = jsonSerializer.Deserialize<TestClass>(ValidJsonString);
 
         // Assert
@@ -54,15 +57,14 @@ public class JsonSerializerTest : TestBase
     }
 
     [Fact]
-    public void GivenNullString_WhenInvokeDeserialize_ShouldReturnNull()
+    public void GivenEmptyString_WhenInvokeDeserialize_ShouldThrowError()
     {
         // Arrange
-        // Act
         var jsonSerializer = new JsonSerializer();
-        var result = jsonSerializer.Deserialize<TestClass>(null);
 
+        // Act
         // Assert
-        result.Should().BeNull();
+        Assert.Throws<ArgumentException>(() => jsonSerializer.Deserialize<TestClass>(string.Empty));
     }
 
     [Fact]
@@ -80,8 +82,9 @@ public class JsonSerializerTest : TestBase
     public void GivenValidJsonString_WhenParse_ShouldReturnJObject()
     {
         // Arrange
-        // Act
         var jsonSerializer = new JsonSerializer();
+
+        // Act
         var parsed = jsonSerializer.Parse(ValidJsonString);
 
         // Assert
@@ -103,8 +106,9 @@ public class JsonSerializerTest : TestBase
     public void GivenEmptyJsonString_WhenParse_ShouldReturnNull()
     {
         // Arrange
-        // Act
         var jsonSerializer = new JsonSerializer();
+
+        // Act
         var parsed = jsonSerializer.Parse(string.Empty);
 
         // Assert
