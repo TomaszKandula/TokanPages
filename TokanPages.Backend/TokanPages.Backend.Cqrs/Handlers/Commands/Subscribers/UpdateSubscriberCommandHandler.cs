@@ -35,7 +35,7 @@ public class UpdateSubscriberCommandHandler : Cqrs.RequestHandler<UpdateSubscrib
         if (emailCollection.Count == 1)
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-        subscriber.Email = request.Email;
+        subscriber.Email = request.Email ?? subscriber.Email;
         subscriber.Count = request.Count ?? subscriber.Count;
         subscriber.IsActivated = request.IsActivated ?? subscriber.IsActivated;
         subscriber.LastUpdated = _dateTimeService.Now;

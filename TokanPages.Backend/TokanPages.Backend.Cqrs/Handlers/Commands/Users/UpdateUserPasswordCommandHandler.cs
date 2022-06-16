@@ -75,7 +75,7 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
             throw new AuthorizationException(nameof(ErrorCodes.EXPIRED_RESET_ID), ErrorCodes.EXPIRED_RESET_ID);
 
         var getNewSalt = _cipheringService.GenerateSalt(Constants.CipherLogRounds);
-        var getHashedPassword = _cipheringService.GetHashedPassword(request.NewPassword, getNewSalt);
+        var getHashedPassword = _cipheringService.GetHashedPassword(request.NewPassword!, getNewSalt);
 
         user.ResetId = null;
         user.ResetIdEnds = null;

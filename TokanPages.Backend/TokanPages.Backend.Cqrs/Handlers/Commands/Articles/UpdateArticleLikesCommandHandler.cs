@@ -38,7 +38,7 @@ public class UpdateArticleLikesCommandHandler : Cqrs.RequestHandler<UpdateArticl
             .Where(likes => likes.ArticleId == request.Id)
             .WhereIfElse(isAnonymousUser,
                 likes => likes.IpAddress == _userService.GetRequestIpAddress(),
-                likes => likes.UserId == user.UserId)
+                likes => likes.UserId == user!.UserId)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (articleLikes is null)
