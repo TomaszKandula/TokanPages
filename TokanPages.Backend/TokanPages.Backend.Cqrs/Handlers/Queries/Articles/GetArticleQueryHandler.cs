@@ -48,7 +48,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
             .Where(likes => likes.ArticleId == request.Id)
             .WhereIfElse(isAnonymousUser,
                 likes => likes.IpAddress == _userService.GetRequestIpAddress(),
-                likes => likes.UserId == user.UserId)
+                likes => likes.UserId == user!.UserId)
             .Select(likes => likes.LikeCount)
             .SumAsync(cancellationToken);
 
@@ -98,12 +98,16 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
     private async Task<string> GetArticleTextContent(Guid articleId, CancellationToken cancellationToken)
     {
         var azureBlob = _azureBlobStorageFactory.Create();
-        var streamContent = await azureBlob.OpenRead($"content/articles/{articleId}/text.json", cancellationToken);
-        if (streamContent is null)
+        var contentStream = await azureBlob.OpenRead($"content/articles/{articleId}/text.json", cancellationToken);
+
+        if (contentStream is null)
+            throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+
+        if (contentStream.Content is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
         
         var memoryStream = new MemoryStream();
-        await streamContent.Content.CopyToAsync(memoryStream, cancellationToken);
+        await contentStream.Content.CopyToAsync(memoryStream, cancellationToken);
 
         return Encoding.Default.GetString(memoryStream.ToArray());
     }
