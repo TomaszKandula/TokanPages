@@ -34,9 +34,7 @@ public class GetArticleQueryHandlerTest : TestBase
     public async Task GivenCorrectId_WhenGetArticle_ShouldReturnEntity() 
     {
         // Arrange
-        var databaseContext = GetTestDatabaseContext();
         var testDate = DateTime.Now;
-            
         var users = new Users
         {
             Id = Guid.NewGuid(),
@@ -90,6 +88,7 @@ public class GetArticleQueryHandlerTest : TestBase
             }
         };
 
+        var databaseContext = GetTestDatabaseContext();
         await databaseContext.Users.AddAsync(users);
         await databaseContext.UserInfo.AddAsync(userInfo);
         await databaseContext.Articles.AddAsync(articles);
@@ -145,21 +144,18 @@ public class GetArticleQueryHandlerTest : TestBase
     public async Task GivenIncorrectId_WhenGetArticle_ShouldThrowError()
     {
         // Arrange
-        var query = new GetArticleQuery { Id = Guid.NewGuid() };
         var users = new Users
         {
+            Id = Guid.NewGuid(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
-        await databaseContext.SaveChangesAsync();
-
         var articles = new Articles
         {
+            Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),
             Description = DataUtilityService.GetRandomString(),
             IsPublished = false,
@@ -169,6 +165,8 @@ public class GetArticleQueryHandlerTest : TestBase
             UserId = users.Id
         };
 
+        var databaseContext = GetTestDatabaseContext();
+        await databaseContext.Users.AddAsync(users);
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
@@ -190,6 +188,7 @@ public class GetArticleQueryHandlerTest : TestBase
             .Setup(provider => provider.GetRequestIpAddress())
             .Returns(IpAddressFirst);
 
+        var query = new GetArticleQuery { Id = Guid.NewGuid() };
         var handler = new GetArticleQueryHandler(
             databaseContext, 
             mockedLogger.Object,
