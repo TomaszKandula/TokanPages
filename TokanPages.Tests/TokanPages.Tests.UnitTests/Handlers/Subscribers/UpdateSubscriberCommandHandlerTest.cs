@@ -8,6 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
+using TokanPages.Backend.Dto.Users;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Cqrs.Handlers.Commands.Subscribers;
@@ -31,6 +33,14 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         await databaseContext.Subscribers.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
+        var dateTimeService = new DateTimeService();
+        var mockedUserService = new Mock<IUserService>();
+        var mockedLogger = new Mock<ILoggerService>();
+
+        mockedUserService
+            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
+            .ReturnsAsync((GetUserDto)null!);
+        
         var command = new UpdateSubscriberCommand
         {
             Id = subscribers.Id,
@@ -39,24 +49,25 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Count = 10
         };
 
-        var mockedDateTime = new Mock<IDateTimeService>();
-        var mockedLogger = new Mock<ILoggerService>();
         var handler = new UpdateSubscriberCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
-            mockedDateTime.Object);
+            dateTimeService, 
+            mockedUserService.Object);
 
         // Act
         await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        var subscribersEntity = await databaseContext.Subscribers.FindAsync(command.Id);
+        var entity = await databaseContext.Subscribers.FindAsync(command.Id);
 
-        subscribersEntity.Should().NotBeNull();
-        subscribersEntity.IsActivated.Should().BeTrue();
-        subscribersEntity.Email.Should().Be(command.Email);
-        subscribersEntity.Count.Should().Be(command.Count);
-        subscribersEntity.LastUpdated.Should().NotBeNull();
+        entity.Should().NotBeNull();
+        entity.IsActivated.Should().BeTrue();
+        entity.Email.Should().Be(command.Email);
+        entity.Count.Should().Be(command.Count);
+        entity.LastUpdated.Should().NotBeNull();//TODO: to be removed
+        entity.ModifiedAt.Should().NotBeNull();
+        entity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
     }
 
     [Fact]
@@ -76,6 +87,10 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         await databaseContext.Subscribers.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
+        var dateTimeService = new DateTimeService();
+        var mockedUserService = new Mock<IUserService>();
+        var mockedLogger = new Mock<ILoggerService>();
+
         var command = new UpdateSubscriberCommand
         {
             Id = subscribers.Id,
@@ -84,24 +99,25 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Count = null
         };
 
-        var mockedDateTime = new Mock<IDateTimeService>();
-        var mockedLogger = new Mock<ILoggerService>();
         var handler = new UpdateSubscriberCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
-            mockedDateTime.Object);
-            
+            dateTimeService, 
+            mockedUserService.Object);
+
         // Act
         await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        var subscribersEntity = await databaseContext.Subscribers.FindAsync(command.Id);
+        var entity = await databaseContext.Subscribers.FindAsync(command.Id);
 
-        subscribersEntity.Should().NotBeNull();
-        subscribersEntity.IsActivated.Should().BeTrue();
-        subscribersEntity.Email.Should().Be(command.Email);
-        subscribersEntity.Count.Should().Be(subscribers.Count);
-        subscribersEntity.LastUpdated.Should().NotBeNull();
+        entity.Should().NotBeNull();
+        entity.IsActivated.Should().BeTrue();
+        entity.Email.Should().Be(command.Email);
+        entity.Count.Should().Be(subscribers.Count);
+        entity.LastUpdated.Should().NotBeNull();//TODO: to be removed
+        entity.ModifiedAt.Should().NotBeNull();
+        entity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
     }
 
     [Fact]
@@ -116,7 +132,6 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Count = 10
         };
 
-        var databaseContext = GetTestDatabaseContext();
         var subscribers = new Subscribers
         {
             Id = Guid.NewGuid(),
@@ -126,15 +141,20 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Registered = DateTime.Now,
             LastUpdated = null
         };
+
+        var databaseContext = GetTestDatabaseContext();
         await databaseContext.Subscribers.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
-        var mockedDateTime = new Mock<IDateTimeService>();
+        var dateTimeService = new DateTimeService();
+        var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
+
         var handler = new UpdateSubscriberCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedDateTime.Object);
+            dateTimeService, 
+            mockedUserService.Object);
 
         // Act
         // Assert
@@ -159,6 +179,10 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         await databaseContext.Subscribers.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
+        var dateTimeService = new DateTimeService();
+        var mockedUserService = new Mock<IUserService>();
+        var mockedLogger = new Mock<ILoggerService>();
+
         var command = new UpdateSubscriberCommand
         {
             Id = subscribers.Id,
@@ -167,12 +191,11 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Count = 10
         };
 
-        var mockedDateTime = new Mock<IDateTimeService>();
-        var mockedLogger = new Mock<ILoggerService>();
         var handler = new UpdateSubscriberCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedDateTime.Object);
+            dateTimeService, 
+            mockedUserService.Object);
 
         // Act
         // Assert
