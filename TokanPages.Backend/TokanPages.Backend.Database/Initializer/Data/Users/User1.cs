@@ -30,7 +30,7 @@ public static class User1
 
     public static readonly DateTime? ModifiedAt = null;
 
-    public const bool IsActivated = false;
+    public const bool IsActivated = true;
 
     public const bool IsDeleted = false;
 }
