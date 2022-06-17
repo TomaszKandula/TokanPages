@@ -47,8 +47,8 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
         var textDestinationPath = $"content\\articles\\{newArticle.Id}\\text.json";
         var imageDestinationPath = $"content\\articles\\{newArticle.Id}\\image.jpg";
 
-        await azureBlob.UploadContent(request.TextToUpload, textDestinationPath, cancellationToken);
-        await azureBlob.UploadContent(request.ImageToUpload, imageDestinationPath, cancellationToken);
+        await azureBlob.UploadContent(request.TextToUpload!, textDestinationPath, cancellationToken);
+        await azureBlob.UploadContent(request.ImageToUpload!, imageDestinationPath, cancellationToken);
 
         return newArticle.Id;
     }
