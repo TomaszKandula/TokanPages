@@ -4,5 +4,5 @@ using System.Collections.Generic;
 
 public class GetAssetsListQueryResult
 {
-    public IEnumerable<string> Assets { get; set; } 
+    public IEnumerable<string>? Assets { get; set; } 
 }
