@@ -11,13 +11,20 @@ using Core.Exceptions;
 using Shared.Resources;
 using Services.UserService;
 using Core.Utilities.LoggerService;
+using Core.Utilities.DateTimeService;
 
 public class UpdateArticleCountCommandHandler : Cqrs.RequestHandler<UpdateArticleCountCommand, Unit>
 {
     private readonly IUserService _userService;
 
+    private readonly IDateTimeService _dateTimeService;
+
     public UpdateArticleCountCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService) : base(databaseContext, loggerService) => _userService = userService;
+        IUserService userService, IDateTimeService dateTimeService) : base(databaseContext, loggerService)
+    {
+        _userService = userService;
+        _dateTimeService = dateTimeService;
+    }
 
     public override async Task<Unit> Handle(UpdateArticleCountCommand request, CancellationToken cancellationToken)
     {
@@ -30,30 +37,34 @@ public class UpdateArticleCountCommandHandler : Cqrs.RequestHandler<UpdateArticl
 
         article.ReadCount += 1;
 
-        var user = await _userService.GetUser(cancellationToken);
-        if (user != null)
-        {
-            var readCounts = await DatabaseContext.ArticleCounts
-                .Where(counts => counts.UserId == user.UserId)
-                .Where(counts => counts.ArticleId == request.Id)
-                .SingleOrDefaultAsync(cancellationToken);
+        var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
+        var articleCount = await DatabaseContext.ArticleCounts
+            .Where(counts => counts.UserId == user.Id)
+            .Where(counts => counts.ArticleId == request.Id)
+            .SingleOrDefaultAsync(cancellationToken);
 
-            if (readCounts != null)
+        if (articleCount is not null)
+        {
+            articleCount.ReadCount += 1;
+            articleCount.ModifiedAt = _dateTimeService.Now;
+            articleCount.ModifiedBy = user.Id;
+        }
+        else
+        {
+            var ipAddress = _userService.GetRequestIpAddress();
+            var newArticleCount = new ArticleCounts
             {
-                readCounts.ReadCount += 1;
-            }
-            else
-            {
-                var ipAddress = _userService.GetRequestIpAddress();
-                var articleCount = new ArticleCounts
-                {
-                    UserId = article.UserId,
-                    ArticleId = article.Id,
-                    IpAddress = ipAddress,
-                    ReadCount = 1
-                };
-                await DatabaseContext.ArticleCounts.AddAsync(articleCount, cancellationToken);
-            }
+                UserId = article.UserId,
+                ArticleId = article.Id,
+                IpAddress = ipAddress,
+                ReadCount = 1,
+                CreatedAt = _dateTimeService.Now,
+                CreatedBy = user.Id,
+                ModifiedAt = null,
+                ModifiedBy = null
+            };
+
+            await DatabaseContext.ArticleCounts.AddAsync(newArticleCount, cancellationToken);
         }
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
