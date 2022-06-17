@@ -26,6 +26,12 @@ public class GetArticleAssetQueryHandler : RequestHandler<GetArticleAssetQuery, 
         if (streamContent is null)
             throw new BusinessException(nameof(ErrorCodes.ASSET_NOT_FOUND), ErrorCodes.ASSET_NOT_FOUND);
 
+        if (streamContent.Content is null)
+            throw new BusinessException(nameof(ErrorCodes.ASSET_NOT_FOUND), ErrorCodes.ASSET_NOT_FOUND);
+
+        if (streamContent.ContentType is null)
+            throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+
         var memoryStream = new MemoryStream();
         await streamContent.Content.CopyToAsync(memoryStream, cancellationToken);
         return new FileContentResult(memoryStream.ToArray(), streamContent.ContentType);

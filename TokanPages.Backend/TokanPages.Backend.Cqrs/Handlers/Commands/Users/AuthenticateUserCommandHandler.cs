@@ -3,8 +3,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Database;
+using Dto.Users;
 using Domain.Entities;
 using Core.Exceptions;
 using Shared.Services;
@@ -27,9 +29,9 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 
     private readonly IApplicationSettings _applicationSettings;
         
-    public AuthenticateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, ICipheringService cipheringService, 
-        IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IUserService userService, 
-        IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+    public AuthenticateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+        ICipheringService cipheringService, IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, 
+        IUserService userService, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
         _cipheringService = cipheringService;
         _webTokenUtility = webTokenUtility;
@@ -54,7 +56,7 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
         if (!user.IsActivated)
             throw new AccessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
-        var isPasswordValid = _cipheringService.VerifyPassword(request.Password, user.CryptedPassword);
+        var isPasswordValid = _cipheringService.VerifyPassword(request.Password!, user.CryptedPassword);
         if (!isPasswordValid)
         {
             LoggerService.LogError($"Cannot positively verify given password supplied by user ({user.Id}) for email address: '{request.EmailAddress}'.");
@@ -93,8 +95,8 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
         await DatabaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        var roles = await _userService.GetUserRoles(user.Id, cancellationToken);
-        var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken);
+        var roles = await _userService.GetUserRoles(user.Id, cancellationToken) ?? new List<GetUserRoleDto>();
+        var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken) ?? new List<GetUserPermissionDto>();
 
         var userInfo = await DatabaseContext.UserInfo
             .Where(info => info.UserId == user.Id)
