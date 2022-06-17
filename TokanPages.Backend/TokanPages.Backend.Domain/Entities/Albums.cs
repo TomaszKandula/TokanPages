@@ -3,9 +3,10 @@ namespace TokanPages.Backend.Domain.Entities;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
+using Contracts;
 
 [ExcludeFromCodeCoverage]
-public class Albums : Entity<Guid>
+public class Albums : Entity<Guid>, IAuditable
 {
     public Guid? UserId { get; set; }
 
@@ -14,6 +15,14 @@ public class Albums : Entity<Guid>
     [Required]
     [MaxLength(255)]
     public string Title { get; set; }
+
+    public Guid CreatedBy { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    public Guid? ModifiedBy { get; set; }
+
+    public DateTime? ModifiedAt { get; set; }
 
     public Users UserNavigation { get; set; }
 

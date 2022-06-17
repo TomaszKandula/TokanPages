@@ -2,13 +2,22 @@ namespace TokanPages.Backend.Domain.Entities;
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+using Contracts;
 
 [ExcludeFromCodeCoverage]
-public class UserRoles : Entity<Guid>
+public class UserRoles : Entity<Guid>, IAuditable
 {
     public Guid UserId { get; set; }
 
     public Guid RoleId { get; set; }
+
+    public Guid CreatedBy { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    public Guid? ModifiedBy { get; set; }
+
+    public DateTime? ModifiedAt { get; set; }
 
     public Users UserNavigation { get; set; }
 
