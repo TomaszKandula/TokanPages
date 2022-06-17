@@ -47,7 +47,7 @@ public class WebTokenUtility : IWebTokenUtility
     /// <param name="expiresIn">Number of minutes to expire. Cannot be zero.</param>
     /// <param name="timezoneOffset"></param>
     /// <returns>New randomized secure token.</returns>
-    public virtual RefreshToken GenerateRefreshToken(string ipAddress, int expiresIn, int timezoneOffset = 0)
+    public virtual RefreshToken GenerateRefreshToken(string? ipAddress, int expiresIn, int timezoneOffset = 0)
     {
         if (expiresIn == 0)
             throw new ArgumentException($"Argument '{nameof(expiresIn)}' cannot be zero.");

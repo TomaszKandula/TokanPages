@@ -40,40 +40,38 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 
     public override async Task<AuthenticateUserCommandResult> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
     {
-        var currentUser = await DatabaseContext.Users
+        var user = await DatabaseContext.Users
+            .Where(users => !users.IsDeleted)
             .Where(users => users.EmailAddress == request.EmailAddress)
             .SingleOrDefaultAsync(cancellationToken);
 
-        if (currentUser is null)
+        if (user is null)
         {
-            LoggerService.LogError($"Cannot find user with given email address: '{request.EmailAddress}'.");
+            LoggerService.LogError($"Cannot find user with given email address: '{request.EmailAddress}', or it has been removed.");
             throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
         }
 
-        if (!currentUser.IsActivated)
+        if (!user.IsActivated)
             throw new AccessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
-        if (currentUser.IsDeleted)
-            throw new AccessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
-        
-        var isPasswordValid = _cipheringService.VerifyPassword(request.Password, currentUser.CryptedPassword);
+        var isPasswordValid = _cipheringService.VerifyPassword(request.Password, user.CryptedPassword);
         if (!isPasswordValid)
         {
-            LoggerService.LogError($"Cannot positively verify given password supplied by user (Id: {currentUser.Id}).");
+            LoggerService.LogError($"Cannot positively verify given password supplied by user ({user.Id}) for email address: '{request.EmailAddress}'.");
             throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
         }
 
         var currentDateTime = _dateTimeService.Now;
         var ipAddress = _userService.GetRequestIpAddress();
         var tokenExpires = _dateTimeService.Now.AddMinutes(_applicationSettings.IdentityServer.WebTokenExpiresIn);
-        var userToken = await _userService.GenerateUserToken(currentUser, tokenExpires, cancellationToken);
+        var userToken = await _userService.GenerateUserToken(user, tokenExpires, cancellationToken);
 
         var expiresIn = _applicationSettings.IdentityServer.RefreshTokenExpiresIn;
         var refreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, expiresIn);
 
         var newUserToken = new UserTokens
         {
-            UserId = currentUser.Id,
+            UserId = user.Id,
             Token = userToken,
             Expires = tokenExpires,
             Created = currentDateTime,
@@ -83,35 +81,35 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 
         var newRefreshToken = new UserRefreshTokens
         {
-            UserId = currentUser.Id,
+            UserId = user.Id,
             Token = refreshToken.Token,
             Expires = refreshToken.Expires,
             Created = refreshToken.Created,
             CreatedByIp = refreshToken.CreatedByIp
         };
 
-        await _userService.DeleteOutdatedRefreshTokens(currentUser.Id, false, cancellationToken);
+        await _userService.DeleteOutdatedRefreshTokens(user.Id, false, cancellationToken);
         await DatabaseContext.UserTokens.AddAsync(newUserToken, cancellationToken);
         await DatabaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        var roles = await _userService.GetUserRoles(currentUser.Id, cancellationToken);
-        var permissions = await _userService.GetUserPermissions(currentUser.Id, cancellationToken);
+        var roles = await _userService.GetUserRoles(user.Id, cancellationToken);
+        var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken);
 
         var userInfo = await DatabaseContext.UserInfo
-            .Where(info => info.UserId == currentUser.Id)
+            .Where(info => info.UserId == user.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
         return new AuthenticateUserCommandResult
         {
-            UserId = currentUser.Id,
-            AliasName = currentUser.UserAlias,
+            UserId = user.Id,
+            AliasName = user.UserAlias,
             AvatarName = userInfo.UserImageName,
             FirstName = userInfo.FirstName,
             LastName = userInfo.LastName,
-            Email = currentUser.EmailAddress,
+            Email = user.EmailAddress,
             ShortBio = userInfo.UserAboutText,
-            Registered = currentUser.CreatedAt,
+            Registered = user.CreatedAt,
             UserToken = userToken,
             RefreshToken = refreshToken.Token,
             Roles = roles,

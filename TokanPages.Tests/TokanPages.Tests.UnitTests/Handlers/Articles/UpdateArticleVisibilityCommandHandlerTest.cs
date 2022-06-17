@@ -88,6 +88,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         mockedUserService
             .Setup(service => service.HasPermissionAssigned(
                 It.IsAny<string>(), 
+                It.IsAny<Guid?>(),
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(true);
 
@@ -167,6 +168,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         mockedUserService
             .Setup(provider => provider.HasPermissionAssigned(
                 It.IsAny<string>(), 
+                It.IsAny<Guid?>(),
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(false);
 
@@ -183,9 +185,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<AccessException>(() => 
-            handler.Handle(command, CancellationToken.None));
-
+        var result = await Assert.ThrowsAsync<AccessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
     }
 
@@ -250,6 +250,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         mockedUserService
             .Setup(provider => provider.HasPermissionAssigned(
                 It.IsAny<string>(), 
+                It.IsAny<Guid?>(),
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(true);
 
@@ -266,9 +267,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() => 
-            handler.Handle(command, CancellationToken.None));
-
+        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS));
     }
 }

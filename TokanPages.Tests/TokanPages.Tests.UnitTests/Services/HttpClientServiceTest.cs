@@ -12,7 +12,7 @@ using Backend.Core.Exceptions;
 using TokanPages.Services.HttpClientService;
 using TokanPages.Services.HttpClientService.Models;
 
-public class CustomHttpClientTest : TestBase
+public class HttpClientServiceTest : TestBase
 {
     [Fact]
     public async Task GivenValidConfigurationWithoutPayload_WhenInvokeExecute_ShouldSucceed()
@@ -25,9 +25,9 @@ public class CustomHttpClientTest : TestBase
         };
 
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-            
-        // Act
         var customHttpClient = new HttpClientService(httpClient);
+
+        // Act
         var result = await customHttpClient.Execute(configuration, CancellationToken.None);
 
         // Assert
@@ -49,9 +49,9 @@ public class CustomHttpClientTest : TestBase
 
         var stringContent = DataUtilityService.GetRandomString();
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(stringContent));
-            
-        // Act
         var customHttpClient = new HttpClientService(httpClient);
+
+        // Act
         var result = await customHttpClient.Execute(configuration, CancellationToken.None);
 
         // Assert
@@ -72,9 +72,9 @@ public class CustomHttpClientTest : TestBase
         };
 
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-            
-        // Act
         var customHttpClient = new HttpClientService(httpClient);
+
+        // Act
         var result = await Assert.ThrowsAsync<BusinessException>(() => customHttpClient.Execute(configuration, CancellationToken.None));
 
         // Assert
@@ -92,9 +92,9 @@ public class CustomHttpClientTest : TestBase
         };
 
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
+        var customHttpClient = new HttpClientService(httpClient);
 
         // Act
-        var customHttpClient = new HttpClientService(httpClient);
         var result = await Assert.ThrowsAsync<BusinessException>(() => customHttpClient.Execute(configuration, CancellationToken.None));
 
         // Assert
@@ -104,7 +104,6 @@ public class CustomHttpClientTest : TestBase
     private static Mock<HttpMessageHandler> SetMockedHttpMessageHandler(HttpResponseMessage httpResponseMessage)
     {
         var mockedHttpMessageHandler = new Mock<HttpMessageHandler>();
-            
         mockedHttpMessageHandler
             .Protected()
             .Setup<Task<HttpResponseMessage>>(
@@ -123,6 +122,7 @@ public class CustomHttpClientTest : TestBase
             StatusCode = httpStatusCode,
             Content = httpContent
         };
+
         var mockedHttpMessageHandler = SetMockedHttpMessageHandler(httpResponseMessage);
         return new HttpClient(mockedHttpMessageHandler.Object);
     }

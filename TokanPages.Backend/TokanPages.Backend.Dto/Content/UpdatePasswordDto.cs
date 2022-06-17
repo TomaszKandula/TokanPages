@@ -14,23 +14,23 @@ public class UpdatePasswordDto : BaseClass
     /// Caption
     /// </summary>
     [JsonProperty("caption")]
-    public string Caption { get; set; }
+    public string Caption { get; set; } = "";
 
     /// <summary>
     /// Button
     /// </summary>
     [JsonProperty("button")]
-    public string Button { get; set; }
+    public string Button { get; set; } = "";
 
     /// <summary>
     /// LabelNewPassword
     /// </summary>
     [JsonProperty("labelNewPassword")]
-    public string LabelNewPassword { get; set; }
+    public string LabelNewPassword { get; set; } = "";
 
     /// <summary>
     /// LabelVerifyPassword
     /// </summary>
     [JsonProperty("labelVerifyPassword")]
-    public string LabelVerifyPassword { get; set; }
+    public string LabelVerifyPassword { get; set; } = "";
 }

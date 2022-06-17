@@ -13,12 +13,9 @@ using Core.Utilities.DateTimeService;
 public class ActivateUserCommandHandler : Cqrs.RequestHandler<ActivateUserCommand, Unit>
 {
     private readonly IDateTimeService _dateTimeService;
-       
+
     public ActivateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService) : base(databaseContext, loggerService)
-    {
-        _dateTimeService = dateTimeService;
-    }
+        IDateTimeService dateTimeService) : base(databaseContext, loggerService) => _dateTimeService = dateTimeService;
 
     public override async Task<Unit> Handle(ActivateUserCommand request, CancellationToken cancellationToken)
     {

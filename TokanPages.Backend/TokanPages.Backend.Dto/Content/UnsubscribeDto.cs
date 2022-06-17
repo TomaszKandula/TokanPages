@@ -15,11 +15,11 @@ public class UnsubscribeDto : BaseClass
     /// ContentPre
     /// </summary>
     [JsonProperty("contentPre")]
-    public ContentUnsubscribe ContentPre { get; set; }
+    public ContentUnsubscribe ContentPre { get; set; } = new();
 
     /// <summary>
     /// ContentPost
     /// </summary>
     [JsonProperty("contentPost")]
-    public ContentUnsubscribe ContentPost { get; set; }
+    public ContentUnsubscribe ContentPost { get; set; } = new();
 }

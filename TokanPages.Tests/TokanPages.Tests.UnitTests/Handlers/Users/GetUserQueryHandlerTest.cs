@@ -48,11 +48,11 @@ public class GetUserQueryHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
-        var getUserQuery = new GetUserQuery { Id = users.Id };
-        var getUserQueryHandler = new GetUserQueryHandler(databaseContext, mockedLogger.Object);
+        var query = new GetUserQuery { Id = users.Id };
+        var handler = new GetUserQueryHandler(databaseContext, mockedLogger.Object);
 
         // Act
-        var result = await getUserQueryHandler.Handle(getUserQuery, CancellationToken.None);
+        var result = await handler.Handle(query, CancellationToken.None);
 
         // Assert
         result.Should().NotBeNull();
@@ -71,12 +71,11 @@ public class GetUserQueryHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
 
-        var getUserQuery = new GetUserQuery { Id = Guid.Parse("8f4cef66-6f37-49bb-bbe7-db6c54336d76") };
-        var getUserQueryHandler = new GetUserQueryHandler(databaseContext, mockedLogger.Object);
+        var query = new GetUserQuery { Id = Guid.NewGuid() };
+        var handler = new GetUserQueryHandler(databaseContext, mockedLogger.Object);
 
         // Act
         // Assert
-        await Assert.ThrowsAsync<BusinessException>(() 
-            => getUserQueryHandler.Handle(getUserQuery, CancellationToken.None));
+        await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(query, CancellationToken.None));
     }
 }

@@ -16,12 +16,10 @@ public class CipheringServiceTest : TestBase
         var cipher = new CipheringService();
 
         // Act
-        var salt = cipher.GenerateSalt(cipherLogRounds);
-        var hashed = cipher.GetHashedPassword(plainTextPassword, salt);
+        var hashed = cipher.GetHashedPassword(plainTextPassword, cipher.GenerateSalt(cipherLogRounds));
 
         // Assert
         hashed.Should().NotBeNullOrEmpty();
-        var verify = cipher.VerifyPassword(plainTextPassword, hashed);
-        verify.Should().BeTrue();
+        cipher.VerifyPassword(plainTextPassword, hashed).Should().BeTrue();
     }
 }

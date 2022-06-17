@@ -14,47 +14,47 @@ public class UserSignupDto : BaseClass
     /// Caption
     /// </summary>
     [JsonProperty("caption")]
-    public string Caption { get; set; }
+    public string Caption { get; set; } = "";
 
     /// <summary>
     /// Button
     /// </summary>
     [JsonProperty("button")]
-    public string Button { get; set; }
+    public string Button { get; set; } = "";
 
     /// <summary>
     /// Link
     /// </summary>
     [JsonProperty("link")]
-    public string Link { get; set; }
+    public string Link { get; set; } = "";
 
     /// <summary>
     /// Consent
     /// </summary>
     [JsonProperty("consent")]
-    public string Consent { get; set; }
+    public string Consent { get; set; } = "";
 
     /// <summary>
     /// LabelFirstName
     /// </summary>
     [JsonProperty("labelFirstName")]
-    public string LabelFirstName { get; set; }
+    public string LabelFirstName { get; set; } = "";
 
     /// <summary>
     /// LabelLastName
     /// </summary>
     [JsonProperty("labelLastName")]
-    public string LabelLastName { get; set; }
+    public string LabelLastName { get; set; } = "";
 
     /// <summary>
     /// LabelEmail
     /// </summary>
     [JsonProperty("labelEmail")]
-    public string LabelEmail { get; set; }
+    public string LabelEmail { get; set; } = "";
 
     /// <summary>
     /// LabelPassword
     /// </summary>
     [JsonProperty("labelPassword")]
-    public string LabelPassword { get; set; }
+    public string LabelPassword { get; set; } = "";
 }

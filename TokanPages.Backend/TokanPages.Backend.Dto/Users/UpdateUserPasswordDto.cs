@@ -22,5 +22,5 @@ public class UpdateUserPasswordDto
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string NewPassword { get; set; }
+    public string? NewPassword { get; set; }
 }

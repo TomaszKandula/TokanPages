@@ -31,15 +31,17 @@ public class HttpClientService : IHttpClientService
 
         var requestUri = configuration.Url;
         if (configuration.QueryParameters != null && configuration.QueryParameters.Any())
-            requestUri = QueryHelpers.AddQueryString(configuration.Url, configuration.QueryParameters);
+            requestUri = QueryHelpers.AddQueryString(configuration.Url, configuration.QueryParameters!);
 
         using var request = new HttpRequestMessage(new HttpMethod(configuration.Method), requestUri);
 
         if (configuration.Headers != null)
+        {
             foreach (var (name, value) in configuration.Headers)
             {
                 request.Headers.TryAddWithoutValidation(name, value);
             }
+        }
 
         if (configuration.StringContent != null)
             request.Content = configuration.StringContent;

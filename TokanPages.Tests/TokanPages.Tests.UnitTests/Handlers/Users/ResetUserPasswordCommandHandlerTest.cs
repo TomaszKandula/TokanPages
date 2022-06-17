@@ -54,7 +54,6 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
             .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
             .Returns(Task.CompletedTask);
 
-        // Act
         var resetUserPasswordCommandHandler = new ResetUserPasswordCommandHandler(
             databaseContext, 
             mockedLogger.Object,
@@ -63,6 +62,7 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
             mockedApplicationSettings.Object, 
             mockedUserService.Object);
 
+        // Act
         await resetUserPasswordCommandHandler.Handle(resetUserPasswordCommand, CancellationToken.None);
 
         // Assert

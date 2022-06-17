@@ -1,6 +1,5 @@
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
-using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -37,11 +36,9 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
     public override async Task<Unit> Handle(UpdateUserPasswordCommand request, CancellationToken cancellationToken)
     {
         var resetId = request.ResetId != null;
-        var userId = request.Id ?? await _userService.GetUserId(cancellationToken) ?? Guid.Empty;
-        if (userId == Guid.Empty)
-            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
+        var userId = request.Id ?? (await _userService.GetActiveUser(cancellationToken: cancellationToken)).Id;
 
-        var currentUser = await DatabaseContext.Users
+        var user = await DatabaseContext.Users
             .Where(users => users.IsActivated)
             .Where(users => !users.IsDeleted)
             .WhereIfElse(!resetId, 
@@ -51,22 +48,22 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
 
         if (!resetId)
         {
-            if (currentUser is null)
+            if (user is null)
                 throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-            var hasRoleEverydayUser = await _userService.HasRoleAssigned($"{Roles.EverydayUser}", cancellationToken) ?? false;
-            var hasRoleGodOfAsgard = await _userService.HasRoleAssigned($"{Roles.GodOfAsgard}", cancellationToken) ?? false;
+            var hasRoleEverydayUser = await _userService.HasRoleAssigned($"{Roles.EverydayUser}", cancellationToken: cancellationToken) ?? false;
+            var hasRoleGodOfAsgard = await _userService.HasRoleAssigned($"{Roles.GodOfAsgard}", cancellationToken: cancellationToken) ?? false;
 
             if (!hasRoleEverydayUser && !hasRoleGodOfAsgard)
                 throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
         }
 
-        if (currentUser is null)
+        if (user is null)
             throw new AuthorizationException(nameof(ErrorCodes.INVALID_RESET_ID), ErrorCodes.INVALID_RESET_ID);
 
         if (request.OldPassword is not null)
         {
-            var isPasswordValid = _cipheringService.VerifyPassword(request.OldPassword, currentUser.CryptedPassword);
+            var isPasswordValid = _cipheringService.VerifyPassword(request.OldPassword, user.CryptedPassword);
             if (!isPasswordValid)
             {
                 LoggerService.LogError($"Cannot positively verify given password supplied by user (Id: {userId}).");
@@ -74,17 +71,17 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
             }
         }
 
-        if (resetId && _dateTimeService.Now > currentUser.ResetIdEnds)
+        if (resetId && _dateTimeService.Now > user.ResetIdEnds)
             throw new AuthorizationException(nameof(ErrorCodes.EXPIRED_RESET_ID), ErrorCodes.EXPIRED_RESET_ID);
 
         var getNewSalt = _cipheringService.GenerateSalt(Constants.CipherLogRounds);
-        var getHashedPassword = _cipheringService.GetHashedPassword(request.NewPassword, getNewSalt);
+        var getHashedPassword = _cipheringService.GetHashedPassword(request.NewPassword!, getNewSalt);
 
-        currentUser.ResetId = null;
-        currentUser.ResetIdEnds = null;
-        currentUser.CryptedPassword = getHashedPassword;
-        currentUser.ModifiedAt = _dateTimeService.Now;
-        currentUser.ModifiedBy = userId;
+        user.ResetId = null;
+        user.ResetIdEnds = null;
+        user.CryptedPassword = getHashedPassword;
+        user.ModifiedAt = _dateTimeService.Now;
+        user.ModifiedBy = userId;
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
         LoggerService.LogInformation($"User password has been updated successfully (UserId: {userId}).");

@@ -5,9 +5,9 @@ using System.Diagnostics.CodeAnalysis;
 [ExcludeFromCodeCoverage]
 public class AzureRedis
 {
-    public string InstanceName { get; set; }
+    public string InstanceName { get; set; } = "";
 
-    public string ConnectionString { get; set; }
+    public string ConnectionString { get; set; } = "";
 
     public int ExpirationMinute { get; set; }
 

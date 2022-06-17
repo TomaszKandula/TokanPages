@@ -15,14 +15,6 @@ public class AddUserCommandValidator : AbstractValidator<AddUserCommand>
             .WithErrorCode(nameof(ValidationCodes.EMAIL_TOO_LONG))
             .WithMessage(ValidationCodes.EMAIL_TOO_LONG);
 
-        RuleFor(command => command.UserAlias)
-            .NotEmpty()
-            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-            .WithMessage(ValidationCodes.REQUIRED)
-            .MaximumLength(255)
-            .WithErrorCode(nameof(ValidationCodes.USERALIAS_TOO_LONG))
-            .WithMessage(ValidationCodes.USERALIAS_TOO_LONG);
-
         RuleFor(command => command.FirstName)
             .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
@@ -38,5 +30,13 @@ public class AddUserCommandValidator : AbstractValidator<AddUserCommand>
             .MaximumLength(255)
             .WithErrorCode(nameof(ValidationCodes.LAST_NAME_TOO_LONG))
             .WithMessage(ValidationCodes.LAST_NAME_TOO_LONG);
+
+        RuleFor(command => command.Password)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED)
+            .MaximumLength(255)
+            .WithErrorCode(nameof(ValidationCodes.PASSWORD_TOO_LONG))
+            .WithMessage(ValidationCodes.PASSWORD_TOO_LONG);
     }
 }

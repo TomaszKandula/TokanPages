@@ -11,5 +11,5 @@ public class AddSubscriberDto
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string Email { get; set; }
+    public string? Email { get; set; }
 }

@@ -33,7 +33,7 @@ public class AssetsController : ApiBaseController
     /// <returns>File</returns>
     [HttpGet]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetAsset([FromQuery] string blobName, bool noCache = false)
+    public async Task<IActionResult> GetAsset([FromQuery] string blobName = "", bool noCache = false)
         => await _assetsCache.GetAsset(blobName, noCache);
 
     /// <summary>
@@ -55,6 +55,6 @@ public class AssetsController : ApiBaseController
     /// <returns>File</returns>
     [HttpGet]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetArticleAsset([FromQuery] string id, string assetName, bool noCache = false)
+    public async Task<IActionResult> GetArticleAsset([FromQuery] string id = "", string assetName = "", bool noCache = false)
         => await _assetsCache.GetArticleAsset(id, assetName, noCache);
 }

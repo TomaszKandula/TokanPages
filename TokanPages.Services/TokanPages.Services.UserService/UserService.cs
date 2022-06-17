@@ -38,11 +38,11 @@ public sealed class UserService : IUserService
 
     private readonly IApplicationSettings _applicationSettings;
 
-    private List<GetUserPermissionDto> _userPermissions;
+    private List<GetUserPermissionDto>? _userPermissions;
 
-    private List<GetUserRoleDto> _userRoles;
+    private List<GetUserRoleDto>? _userRoles;
 
-    private GetUserDto _user;
+    private GetUserDto? _user;
 
     public UserService(IHttpContextAccessor httpContextAccessor, DatabaseContext databaseContext, 
         IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IApplicationSettings applicationSettings)
@@ -88,61 +88,46 @@ public sealed class UserService : IUserService
         await _databaseContext.SaveChangesAsync();
     }
 
-    public async Task<Guid?> GetUserId(CancellationToken cancellationToken = default)
-    {
-        await EnsureUserData(cancellationToken);
-        return _user?.UserId;
-    }
-
-    public async Task<GetUserDto> GetUser(CancellationToken cancellationToken = default)
+    public async Task<GetUserDto?> GetUser(CancellationToken cancellationToken = default)
     {
         await EnsureUserData(cancellationToken);
         return _user;
     }
 
-    public async Task<Users> GetActiveUser(Guid? userId, bool isTracking, CancellationToken cancellationToken = default)
+    public async Task<Users> GetActiveUser(Guid? userId = default, bool isTracking = false, CancellationToken cancellationToken = default)
     {
         var id = userId ?? UserIdFromClaim();
-        var entity = isTracking ? _databaseContext.Users.AsNoTracking() : _databaseContext.Users;
+        var entity = isTracking ? _databaseContext.Users : _databaseContext.Users.AsNoTracking();
         var user = await entity
-            .Where(users => users.IsActivated)
             .Where(users => !users.IsDeleted)
             .Where(users => users.Id == id)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (user == null)
-            throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
+            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.ACCESS_DENIED);
 
         if (!user.IsActivated)
             throw new AuthorizationException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
-        if (user.IsDeleted)
-            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
-
         return user;
     }
 
-    public async Task<List<GetUserRoleDto>> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default)
+    public async Task<List<GetUserRoleDto>?> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default)
     {
         await EnsureUserRoles(userId, cancellationToken);
         return _userRoles;
     }
 
-    public async Task<List<GetUserPermissionDto>> GetUserPermissions(Guid? userId, CancellationToken cancellationToken = default)
+    public async Task<List<GetUserPermissionDto>?> GetUserPermissions(Guid? userId, CancellationToken cancellationToken = default)
     {
         await EnsureUserPermissions(userId, cancellationToken);
         return _userPermissions;
     }
 
-    public async Task<bool?> HasRoleAssigned(string userRoleName, CancellationToken cancellationToken = default)
+    public async Task<bool?> HasRoleAssigned(string userRoleName, Guid? userId = default, CancellationToken cancellationToken = default)
     {
-        if (string.IsNullOrEmpty(userRoleName))
-            throw ArgumentNullException;
-            
-        var userId = UserIdFromClaim();
-        if (userId == null)
-            return null;
-            
+        userId ??= UserIdFromClaim();
+
         var givenRoles = await _databaseContext.UserRoles
             .AsNoTracking()
             .Include(roles => roles.RoleNavigation)
@@ -152,7 +137,7 @@ public sealed class UserService : IUserService
         return givenRoles.Any();
     }
 
-    public async Task<bool> HasRoleAssigned(Guid roleId, Guid? userId, CancellationToken cancellationToken = default)
+    public async Task<bool> HasRoleAssigned(Guid roleId, Guid? userId = default, CancellationToken cancellationToken = default)
     {
         userId ??= UserIdFromClaim();
             
@@ -165,14 +150,9 @@ public sealed class UserService : IUserService
         return givenRoles.Any();
     }
 
-    public async Task<bool?> HasPermissionAssigned(string userPermissionName, CancellationToken cancellationToken = default)
+    public async Task<bool?> HasPermissionAssigned(string userPermissionName, Guid? userId = default, CancellationToken cancellationToken = default)
     {
-        if (string.IsNullOrEmpty(userPermissionName))
-            throw ArgumentNullException;
-            
-        var userId = UserIdFromClaim();
-        if (userId == null)
-            return null;
+        userId ??= UserIdFromClaim();
 
         var givenPermissions = await _databaseContext.UserPermissions
             .AsNoTracking()
@@ -183,7 +163,7 @@ public sealed class UserService : IUserService
         return givenPermissions.Any();
     }
 
-    public async Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId, CancellationToken cancellationToken = default)
+    public async Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId = default, CancellationToken cancellationToken = default)
     {
         userId ??= UserIdFromClaim();
 
@@ -285,12 +265,20 @@ public sealed class UserService : IUserService
 
     public async Task RevokeDescendantRefreshTokens(RevokeRefreshTokensInput input, CancellationToken cancellationToken = default)
     {
+        if (input.UserRefreshTokens is null) 
+            return;
+
+        if (input.SavedUserRefreshTokens is null) 
+            return;
+
         if (string.IsNullOrEmpty(input.SavedUserRefreshTokens.ReplacedByToken)) 
             return;
 
         var userRefreshTokensList = input.UserRefreshTokens.ToList();
-        var childToken = userRefreshTokensList
-            .SingleOrDefault(tokens => tokens.Token == input.SavedUserRefreshTokens.ReplacedByToken);
+        var childToken = userRefreshTokensList.SingleOrDefault(tokens => tokens.Token == input.SavedUserRefreshTokens.ReplacedByToken);
+
+        if (childToken is null) 
+            return;
 
         if (IsRefreshTokenActive(childToken))
         {
@@ -313,6 +301,9 @@ public sealed class UserService : IUserService
 
     public async Task RevokeRefreshToken(RevokeRefreshTokenInput input, CancellationToken cancellationToken = default)
     {
+        if (input.UserRefreshTokens is null) 
+            return;
+
         input.UserRefreshTokens.Revoked = _dateTimeService.Now;
         input.UserRefreshTokens.RevokedByIp = input.RequesterIpAddress;
         input.UserRefreshTokens.ReasonRevoked = input.Reason;
@@ -324,20 +315,20 @@ public sealed class UserService : IUserService
             await _databaseContext.SaveChangesAsync(cancellationToken);
     }
 
-    public bool IsRefreshTokenExpired(UserRefreshTokens userRefreshTokens) 
-        => userRefreshTokens.Expires <= _dateTimeService.Now;
+    public bool IsRefreshTokenExpired(UserRefreshTokens userRefreshTokens)
+    {
+        return userRefreshTokens.Expires <= _dateTimeService.Now;
+    }
 
-    public bool IsRefreshTokenRevoked(UserRefreshTokens userRefreshTokens) 
-        => userRefreshTokens.Revoked != null;
+    public bool IsRefreshTokenRevoked(UserRefreshTokens userRefreshTokens)
+    {
+        return userRefreshTokens.Revoked != null;
+    }
 
-    public bool IsRefreshTokenActive(UserRefreshTokens userRefreshTokens) 
-        => !IsRefreshTokenRevoked(userRefreshTokens) && !IsRefreshTokenExpired(userRefreshTokens);
-
-    private static BusinessException ArgumentNullException
-        => new (nameof(ErrorCodes.ARGUMENT_NULL_EXCEPTION), ErrorCodes.ARGUMENT_NULL_EXCEPTION);
-
-    private static AccessException AccessDeniedException 
-        => new (nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
+    public bool IsRefreshTokenActive(UserRefreshTokens userRefreshTokens)
+    {
+        return!IsRefreshTokenRevoked(userRefreshTokens) && !IsRefreshTokenExpired(userRefreshTokens);
+    }
 
     private Guid? UserIdFromClaim()
     {
@@ -352,7 +343,7 @@ public sealed class UserService : IUserService
             .ToList();
             
         if (!userIds.Any())
-            throw AccessDeniedException;
+            throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
             
         return Guid.Parse(userIds.First().Value);
     }
@@ -370,7 +361,7 @@ public sealed class UserService : IUserService
             .ToListAsync(cancellationToken);
 
         if (!userRoles.Any())
-            throw AccessDeniedException;
+            throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
         _userRoles = new List<GetUserRoleDto>();
         foreach (var userRole in userRoles)
@@ -396,7 +387,7 @@ public sealed class UserService : IUserService
             .ToListAsync(cancellationToken);
 
         if (!userPermissions.Any())
-            throw AccessDeniedException;
+            throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
         _userPermissions = new List<GetUserPermissionDto>();
         foreach (var userPermission in userPermissions)

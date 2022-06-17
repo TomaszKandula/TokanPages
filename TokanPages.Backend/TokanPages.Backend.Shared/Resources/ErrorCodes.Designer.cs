@@ -75,12 +75,6 @@ namespace TokanPages.Backend.Shared.Resources {
             }
         }
         
-        public static string INVALID_BASE64 {
-            get {
-                return ResourceManager.GetString("INVALID_BASE64", resourceCulture);
-            }
-        }
-        
         public static string SUBSCRIBER_DOES_NOT_EXISTS {
             get {
                 return ResourceManager.GetString("SUBSCRIBER_DOES_NOT_EXISTS", resourceCulture);
@@ -105,45 +99,9 @@ namespace TokanPages.Backend.Shared.Resources {
             }
         }
         
-        public static string NOT_CONNECTED_TO_SMTP {
-            get {
-                return ResourceManager.GetString("NOT_CONNECTED_TO_SMTP", resourceCulture);
-            }
-        }
-        
-        public static string NOT_AUTHENTICATED_WITH_SMTP {
-            get {
-                return ResourceManager.GetString("NOT_AUTHENTICATED_WITH_SMTP", resourceCulture);
-            }
-        }
-        
-        public static string SMTP_CLIENT_ERROR {
-            get {
-                return ResourceManager.GetString("SMTP_CLIENT_ERROR", resourceCulture);
-            }
-        }
-        
-        public static string ARGUMENT_NULL_EXCEPTION {
-            get {
-                return ResourceManager.GetString("ARGUMENT_NULL_EXCEPTION", resourceCulture);
-            }
-        }
-        
         public static string INVALID_CREDENTIALS {
             get {
                 return ResourceManager.GetString("INVALID_CREDENTIALS", resourceCulture);
-            }
-        }
-        
-        public static string ARGUMENT_ZERO_EXCEPTION {
-            get {
-                return ResourceManager.GetString("ARGUMENT_ZERO_EXCEPTION", resourceCulture);
-            }
-        }
-        
-        public static string MISSING_REFRESH_TOKEN {
-            get {
-                return ResourceManager.GetString("MISSING_REFRESH_TOKEN", resourceCulture);
             }
         }
         
@@ -231,18 +189,6 @@ namespace TokanPages.Backend.Shared.Resources {
             }
         }
         
-        public static string INVALID_ARGUMENT {
-            get {
-                return ResourceManager.GetString("INVALID_ARGUMENT", resourceCulture);
-            }
-        }
-        
-        public static string INVALID_API_VERSION {
-            get {
-                return ResourceManager.GetString("INVALID_API_VERSION", resourceCulture);
-            }
-        }
-        
         public static string ARGUMENT_EMPTY_OR_NULL {
             get {
                 return ResourceManager.GetString("ARGUMENT_EMPTY_OR_NULL", resourceCulture);
@@ -264,6 +210,12 @@ namespace TokanPages.Backend.Shared.Resources {
         public static string CANNOT_READ_FROM_AZURE_STORAGE {
             get {
                 return ResourceManager.GetString("CANNOT_READ_FROM_AZURE_STORAGE", resourceCulture);
+            }
+        }
+        
+        public static string ASSET_CONTENT_TYPE_MISSING {
+            get {
+                return ResourceManager.GetString("ASSET_CONTENT_TYPE_MISSING", resourceCulture);
             }
         }
     }

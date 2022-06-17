@@ -32,10 +32,10 @@ public class UsersCache : IUsersCache
     /// <inheritdoc />
     public async Task<List<GetAllUsersQueryResult>> GetUsers(bool noCache = false)
     {
-        const string key = "GetAllUsersQueryResult";
         if (noCache)
             return await _mediator.Send(new GetAllUsersQuery());
 
+        const string key = "users/";
         var value = await _redisDistributedCache.GetObjectAsync<List<GetAllUsersQueryResult>>(key);
         if (value is not null && value.Any()) return value;
 
@@ -48,10 +48,10 @@ public class UsersCache : IUsersCache
     /// <inheritdoc />
     public async Task<GetUserQueryResult> GetUser(Guid id, bool noCache = false)
     {
-        var key = $"user-{id:N}";
         if (noCache)
             return await _mediator.Send(new GetUserQuery { Id = id });
 
+        var key = $"user/{id}";
         var value = await _redisDistributedCache.GetObjectAsync<GetUserQueryResult>(key);
         if (value is not null) return value;
 

@@ -11,5 +11,5 @@ public class ResetUserPasswordDto
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string EmailAddress { get; set; }        
+    public string? EmailAddress { get; set; }     
 }

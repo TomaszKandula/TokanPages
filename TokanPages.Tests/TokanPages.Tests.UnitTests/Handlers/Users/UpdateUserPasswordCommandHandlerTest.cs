@@ -37,7 +37,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         await databaseContext.Users.AddAsync(users);
         await databaseContext.SaveChangesAsync();
 
-        var updateUserPasswordCommand = new UpdateUserPasswordCommand
+        var command = new UpdateUserPasswordCommand
         {
             Id = users.Id,
             NewPassword = DataUtilityService.GetRandomString()
@@ -49,7 +49,10 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         var mockedCipheringService = new Mock<ICipheringService>();
 
         mockedUserService
-            .Setup(service => service.HasRoleAssigned(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Setup(service => service.HasRoleAssigned(
+                It.IsAny<string>(),
+                It.IsAny<Guid?>(),
+                It.IsAny<CancellationToken>()))
             .ReturnsAsync(true);
 
         var mockedPassword = DataUtilityService.GetRandomString();
@@ -63,7 +66,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
             .Setup(service => service.GenerateSalt(It.IsAny<int>()))
             .Returns(string.Empty);
 
-        var updateUserCommandHandler = new UpdateUserPasswordCommandHandler(
+        var handler = new UpdateUserPasswordCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object,
@@ -72,7 +75,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         );
 
         // Act
-        await updateUserCommandHandler.Handle(updateUserPasswordCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
         // Assert
         var userEntity = await databaseContext.Users.FindAsync(users.Id);
@@ -102,7 +105,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         await databaseContext.Users.AddAsync(users);
         await databaseContext.SaveChangesAsync();
 
-        var updateUserPasswordCommand = new UpdateUserPasswordCommand
+        var command = new UpdateUserPasswordCommand
         {
             Id = users.Id,
             ResetId = Guid.NewGuid(),
@@ -125,7 +128,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
             .Setup(service => service.GenerateSalt(It.IsAny<int>()))
             .Returns(string.Empty);
 
-        var updateUserCommandHandler = new UpdateUserPasswordCommandHandler(
+        var handler = new UpdateUserPasswordCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object,
@@ -135,8 +138,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<AuthorizationException>(() 
-            => updateUserCommandHandler.Handle(updateUserPasswordCommand, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<AuthorizationException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_RESET_ID));
     }
 
@@ -160,7 +162,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         await databaseContext.Users.AddAsync(users);
         await databaseContext.SaveChangesAsync();
 
-        var updateUserPasswordCommand = new UpdateUserPasswordCommand
+        var command = new UpdateUserPasswordCommand
         {
             Id = Guid.NewGuid(),
             NewPassword = DataUtilityService.GetRandomString()
@@ -182,7 +184,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
             .Setup(service => service.GenerateSalt(It.IsAny<int>()))
             .Returns(string.Empty);
 
-        var updateUserPasswordCommandHandler = new UpdateUserPasswordCommandHandler(
+        var handler = new UpdateUserPasswordCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object,
@@ -192,8 +194,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<AuthorizationException>(() 
-            => updateUserPasswordCommandHandler.Handle(updateUserPasswordCommand, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<AuthorizationException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.USER_DOES_NOT_EXISTS));
     }
 
@@ -217,7 +218,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         await databaseContext.Users.AddAsync(users);
         await databaseContext.SaveChangesAsync();
 
-        var updateUserPasswordCommand = new UpdateUserPasswordCommand
+        var command = new UpdateUserPasswordCommand
         {
             Id = users.Id,
             ResetId = null,
@@ -230,7 +231,10 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         var mockedCipheringService = new Mock<ICipheringService>();
 
         mockedUserService
-            .Setup(provider => provider.HasRoleAssigned(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Setup(provider => provider.HasRoleAssigned(
+                It.IsAny<string>(), 
+                It.IsAny<Guid?>(),
+                It.IsAny<CancellationToken>()))
             .ReturnsAsync(false);
 
         var mockedPassword = DataUtilityService.GetRandomString();
@@ -244,7 +248,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
             .Setup(service => service.GenerateSalt(It.IsAny<int>()))
             .Returns(string.Empty);
 
-        var updateUserPasswordCommandHandler = new UpdateUserPasswordCommandHandler(
+        var handler = new UpdateUserPasswordCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object,
@@ -254,8 +258,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<AccessException>(() 
-            => updateUserPasswordCommandHandler.Handle(updateUserPasswordCommand, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<AccessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
     }
 }

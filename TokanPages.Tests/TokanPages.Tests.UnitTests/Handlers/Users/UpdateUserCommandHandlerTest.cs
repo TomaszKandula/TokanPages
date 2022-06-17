@@ -32,7 +32,7 @@ public class UpdateUserCommandHandlerTest : TestBase
         await databaseContext.Users.AddAsync(user);
         await databaseContext.SaveChangesAsync();
 
-        var updateUserCommand = new UpdateUserCommand
+        var command = new UpdateUserCommand
         {
             Id = user.Id,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -45,52 +45,30 @@ public class UpdateUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedUserService = new Mock<IUserService>();
-        var updateUserCommandHandler = new UpdateUserCommandHandler(
+
+        mockedUserService
+            .Setup(service => service.GetActiveUser(
+                It.IsAny<Guid?>(),
+                It.IsAny<bool>(),
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(user);
+
+        var handler = new UpdateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTime.Object, 
             mockedUserService.Object);
 
         // Act
-        await updateUserCommandHandler.Handle(updateUserCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        var userEntity = await databaseContext.Users.FindAsync(updateUserCommand.Id);
+        var userEntity = await databaseContext.Users.FindAsync(command.Id);
 
         userEntity.Should().NotBeNull();
-        userEntity.EmailAddress.Should().Be(updateUserCommand.EmailAddress);
-        userEntity.UserAlias.Should().Be(updateUserCommand.UserAlias);
+        userEntity.EmailAddress.Should().Be(command.EmailAddress);
+        userEntity.UserAlias.Should().Be(command.UserAlias);
         userEntity.IsActivated.Should().BeTrue();
-    }
-
-    [Fact]
-    public async Task GivenIncorrectId_WhenUpdateUser_ShouldThrowError()
-    {
-        // Arrange
-        var databaseContext = GetTestDatabaseContext();
-        var mockedDateTime = new Mock<IDateTimeService>();
-        var mockedLogger = new Mock<ILoggerService>();
-        var mockedUserService = new Mock<IUserService>();
-        var updateUserCommandHandler = new UpdateUserCommandHandler(
-            databaseContext, 
-            mockedLogger.Object,
-            mockedDateTime.Object, 
-            mockedUserService.Object);
-
-        var updateUserCommand = new UpdateUserCommand
-        {
-            Id = Guid.Parse("1edb4c7d-8cf0-4811-b721-af5caf74d7a8"),
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            IsActivated = true,
-        };
-
-        // Act
-        // Assert
-        await Assert.ThrowsAsync<AuthorizationException>(() 
-            => updateUserCommandHandler.Handle(updateUserCommand, CancellationToken.None));
     }
 
     [Fact]
@@ -120,7 +98,7 @@ public class UpdateUserCommandHandlerTest : TestBase
         await databaseContext.Users.AddRangeAsync(user);
         await databaseContext.SaveChangesAsync();
 
-        var updateUserCommand = new UpdateUserCommand
+        var command = new UpdateUserCommand
         {
             Id = user[0].Id,
             EmailAddress = testEmail,
@@ -133,7 +111,15 @@ public class UpdateUserCommandHandlerTest : TestBase
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedUserService = new Mock<IUserService>();
-        var updateUserCommandHandler = new UpdateUserCommandHandler(
+
+        mockedUserService
+            .Setup(service => service.GetActiveUser(
+                It.IsAny<Guid?>(),
+                It.IsAny<bool>(),
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(user[1]);
+
+        var handler = new UpdateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTime.Object, 
@@ -141,7 +127,6 @@ public class UpdateUserCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        await Assert.ThrowsAsync<BusinessException>(() 
-            => updateUserCommandHandler.Handle(updateUserCommand, CancellationToken.None));
+        await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
     }
 }

@@ -15,17 +15,17 @@ public class ActivateAccountDto : BaseClass
     /// OnProcessing
     /// </summary>
     [JsonProperty("onProcessing")]
-    public ContentActivation OnProcessing { get; set; }
+    public ContentActivation OnProcessing { get; set; } = new();
         
     /// <summary>
     /// OnSuccess
     /// </summary>
     [JsonProperty("onSuccess")]
-    public ContentActivation OnSuccess { get; set; }
+    public ContentActivation OnSuccess { get; set; } = new();
         
     /// <summary>
     /// OnError
     /// </summary>
     [JsonProperty("onError")]
-    public ContentActivation OnError { get; set; }
+    public ContentActivation OnError { get; set; } = new();
 }

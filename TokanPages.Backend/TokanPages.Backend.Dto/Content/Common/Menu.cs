@@ -14,11 +14,11 @@ public class Menu
     /// Image
     /// </summary>
     [JsonProperty("image")]
-    public string Image { get; set;  }
+    public string Image { get; set;  } = "";
 
     /// <summary>
     /// Items
     /// </summary>
     [JsonProperty("items")]
-    public List<Item> Items { get; set; }
+    public List<Item> Items { get; set; } = new();
 }

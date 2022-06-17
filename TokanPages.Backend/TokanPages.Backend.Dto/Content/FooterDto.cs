@@ -16,29 +16,29 @@ public class FooterDto : BaseClass
     /// Terms
     /// </summary>
     [JsonProperty("terms")]
-    public string Terms { get; set; }
+    public string Terms { get; set; } = "";
 
     /// <summary>
     /// Policy
     /// </summary>
     [JsonProperty("policy")]
-    public string Policy { get; set; }
+    public string Policy { get; set; } = "";
 
     /// <summary>
     /// Copyright
     /// </summary>
     [JsonProperty("copyright")]
-    public string Copyright { get; set; }
+    public string Copyright { get; set; } = "";
 
     /// <summary>
     /// Reserved
     /// </summary>
     [JsonProperty("reserved")]
-    public string Reserved { get; set; }
+    public string Reserved { get; set; } = "";
 
     /// <summary>
     /// Icons
     /// </summary>
     [JsonProperty("icons")]
-    public List<Icon> Icons { get; set; }
+    public List<Icon> Icons { get; set; } = new();
 }

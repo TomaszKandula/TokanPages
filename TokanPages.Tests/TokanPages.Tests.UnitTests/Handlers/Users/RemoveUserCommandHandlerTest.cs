@@ -9,7 +9,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Backend.Domain.Entities;
-using Backend.Core.Exceptions;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Users;
@@ -189,12 +188,20 @@ public class RemoveUserCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedUserService = new Mock<IUserService>();
+
+        mockedUserService
+            .Setup(service => service.GetActiveUser(
+                It.IsAny<Guid?>(),
+                It.IsAny<bool>(),
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(user);
+
         var command = new RemoveUserCommand { Id = userId };
         var handler = new RemoveUserCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
             mockedUserService.Object);
-        
+
         // Act
         await handler.Handle(command, CancellationToken.None);
 
@@ -222,25 +229,5 @@ public class RemoveUserCommandHandlerTest : TestBase
         userRoles.Should().HaveCount(0);
         userPermissions.Should().HaveCount(0);
         users.Should().BeNull();
-    }
-
-    [Fact]
-    public async Task GivenIncorrectId_WhenRemoveUser_ShouldThrowError()
-    {
-        // Arrange
-        var databaseContext = GetTestDatabaseContext();
-        var mockedLogger = new Mock<ILoggerService>();
-        var mockedUserService = new Mock<IUserService>();
-
-        var removeUserCommand = new RemoveUserCommand { Id = Guid.Parse("275c1659-ebe2-44ca-b912-b93b1861a9fb") };
-        var removeUserCommandHandler = new RemoveUserCommandHandler(
-            databaseContext, 
-            mockedLogger.Object, 
-            mockedUserService.Object);
-
-        // Act
-        // Assert
-        await Assert.ThrowsAsync<AuthorizationException>(() 
-            => removeUserCommandHandler.Handle(removeUserCommand, CancellationToken.None));
     }
 }

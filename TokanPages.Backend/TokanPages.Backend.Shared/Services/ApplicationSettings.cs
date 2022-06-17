@@ -20,8 +20,8 @@ public class ApplicationSettings : IApplicationSettings
 
     public SonarQube SonarQube { get; }
 
-    public ApplicationSettings(AzureStorage azureStorage, AzureRedis azureRedis, ApplicationPaths applicationPaths, IdentityServer identityServer, 
-        ExpirationSettings expirationSettings, EmailSender emailSender, SonarQube sonarQube)
+    public ApplicationSettings(AzureStorage azureStorage, AzureRedis azureRedis, ApplicationPaths applicationPaths, 
+        IdentityServer identityServer, ExpirationSettings expirationSettings, EmailSender emailSender, SonarQube sonarQube)
     {
         AzureStorage = azureStorage;
         AzureRedis = azureRedis;

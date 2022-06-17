@@ -20,23 +20,23 @@ public class Section
     /// Type
     /// </summary>
     [JsonProperty("type")]
-    public string Type { get; set; }
+    public string Type { get; set; } = "";
         
     /// <summary>
     /// Value
     /// </summary>
     [JsonProperty("value")]
-    public dynamic Value { get; set; }
+    public dynamic? Value { get; set; }
         
     /// <summary>
     /// Prop
     /// </summary>
     [JsonProperty("prop")]
-    public string Prop { get; set; }
+    public string Prop { get; set; } = "";
         
     /// <summary>
     /// Text
     /// </summary>
     [JsonProperty("text")]
-    public string Text { get; set; }
+    public string Text { get; set; } = "";
 }

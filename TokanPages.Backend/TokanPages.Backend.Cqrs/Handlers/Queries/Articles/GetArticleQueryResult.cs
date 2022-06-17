@@ -7,10 +7,10 @@ using Dto.Content.Common;
 public class GetArticleQueryResult : GetAllArticlesQueryResult
 {
     public int LikeCount { get; set; }
-        
+
     public int UserLikes { get; set; }
 
-    public GetUserDto Author { get; set; }
-        
-    public List<Section> Text { get; set; }
+    public GetUserDto? Author { get; set; }
+
+    public List<Section>? Text { get; set; }
 }

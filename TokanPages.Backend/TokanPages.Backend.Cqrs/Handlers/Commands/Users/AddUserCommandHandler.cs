@@ -56,7 +56,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
         var getNewSalt = _cipheringService.GenerateSalt(Constants.CipherLogRounds);
-        var getHashedPassword = _cipheringService.GetHashedPassword(request.Password, getNewSalt);
+        var getHashedPassword = _cipheringService.GetHashedPassword(request.Password!, getNewSalt);
         LoggerService.LogInformation($"New hashed password has been generated. Requested by: {request.EmailAddress}.");
 
         var expiresIn = _applicationSettings.ExpirationSettings.ActivationIdExpiresIn;
@@ -70,7 +70,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             users.ActivationIdEnds = activationIdEnds;
 
             await DatabaseContext.SaveChangesAsync(cancellationToken);
-            await SendNotification(request.EmailAddress, activationId, activationIdEnds, cancellationToken);
+            await SendNotification(request.EmailAddress!, activationId, activationIdEnds, cancellationToken);
 
             LoggerService.LogInformation($"Re-registering new user after ActivationId expired, user id: {users.Id}.");
             return users.Id;
@@ -86,13 +86,14 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
         var defaultAvatar = await azureBlob.OpenRead(sourceAvatarPath, cancellationToken);
         if (defaultAvatar is not null)
-            await azureBlob.UploadFile(defaultAvatar.Content, destinationAvatarPath, cancellationToken: cancellationToken);
+            await azureBlob.UploadFile(defaultAvatar.Content!, destinationAvatarPath, cancellationToken: cancellationToken);
 
+        var userAlias = $"{request.FirstName![..2]}{request.LastName![..3]}".ToLower();
         var newUser = new Users
         {
             Id = newUserId,
             EmailAddress = request.EmailAddress,
-            UserAlias = request.UserAlias.ToLower(),
+            UserAlias = userAlias,
             CryptedPassword = getHashedPassword,
             ActivationId = activationId,
             ActivationIdEnds = activationIdEnds,
@@ -122,7 +123,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         await DatabaseContext.UserInfo.AddAsync(newUserInfo, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         await SetupDefaultPermissions(newUser.Id, cancellationToken);
-        await SendNotification(request.EmailAddress, activationId, expirationDate, cancellationToken);
+        await SendNotification(request.EmailAddress!, activationId, expirationDate, cancellationToken);
 
         LoggerService.LogInformation($"Registering new user account, user id: {newUser.Id}.");
         return newUser.Id;

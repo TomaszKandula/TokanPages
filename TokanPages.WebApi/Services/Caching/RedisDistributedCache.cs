@@ -1,6 +1,7 @@
 namespace TokanPages.WebApi.Services.Caching;
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -32,25 +33,21 @@ public class RedisDistributedCache : IRedisDistributedCache
     }
 
     /// <inheritdoc />
-    public TEntity GetObject<TEntity>(string key)
+    public TEntity? GetObject<TEntity>(string key)
     {
         VerifyArguments(new[] { key });
 
         var cachedValue = _distributedCache.GetString(key);
-        return string.IsNullOrEmpty(cachedValue) 
-            ? default 
-            : JsonConvert.DeserializeObject<TEntity>(cachedValue);
+        return string.IsNullOrEmpty(cachedValue) ? default : JsonConvert.DeserializeObject<TEntity>(cachedValue);
     }
 
     /// <inheritdoc />
-    public async Task<TEntity> GetObjectAsync<TEntity>(string key)
+    public async Task<TEntity?> GetObjectAsync<TEntity>(string key, CancellationToken cancellationToken = default)
     {
         VerifyArguments(new[] { key });
 
-        var cachedValue = await _distributedCache.GetStringAsync(key);
-        return string.IsNullOrEmpty(cachedValue) 
-            ? default 
-            : JsonConvert.DeserializeObject<TEntity>(cachedValue);
+        var cachedValue = await _distributedCache.GetStringAsync(key, cancellationToken);
+        return string.IsNullOrEmpty(cachedValue) ? default : JsonConvert.DeserializeObject<TEntity>(cachedValue);
     }
 
     /// <inheritdoc />
@@ -58,15 +55,18 @@ public class RedisDistributedCache : IRedisDistributedCache
     {
         VerifyArguments(new[] { key });
         var serializedObject = JsonConvert.SerializeObject(value);
-        _distributedCache.SetString(key, serializedObject, SetDistributedCacheEntryOptions(absoluteExpirationMinute, slidingExpirationSecond));            
+        _distributedCache.SetString(key, serializedObject, 
+            SetDistributedCacheEntryOptions(absoluteExpirationMinute, slidingExpirationSecond));            
     }
 
     /// <inheritdoc />
-    public async Task SetObjectAsync<TEntity>(string key, TEntity value, int absoluteExpirationMinute = 0, int slidingExpirationSecond = 0)
+    public async Task SetObjectAsync<TEntity>(string key, TEntity value, int absoluteExpirationMinute = 0, 
+        int slidingExpirationSecond = 0, CancellationToken cancellationToken = default)
     {
         VerifyArguments(new[] { key });
         var serializedObject = JsonConvert.SerializeObject(value);
-        await _distributedCache.SetStringAsync(key, serializedObject, SetDistributedCacheEntryOptions(absoluteExpirationMinute, slidingExpirationSecond));
+        await _distributedCache.SetStringAsync(key, serializedObject, 
+            SetDistributedCacheEntryOptions(absoluteExpirationMinute, slidingExpirationSecond), cancellationToken);
     }
 
     /// <inheritdoc />
@@ -77,10 +77,10 @@ public class RedisDistributedCache : IRedisDistributedCache
     }
 
     /// <inheritdoc />
-    public async Task RemoveAsync(string key)
+    public async Task RemoveAsync(string key, CancellationToken cancellationToken = default)
     {
         VerifyArguments(new[] { key });
-        await _distributedCache.RemoveAsync(key);            
+        await _distributedCache.RemoveAsync(key, cancellationToken);            
     }
 
     private static void VerifyArguments(IEnumerable<string> arguments)

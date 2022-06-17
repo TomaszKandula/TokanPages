@@ -22,7 +22,7 @@ public class GetAllUsersQueryHandlerTest : TestBase
         {
             new()
             {
-                Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
+                Id = Guid.NewGuid(),
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
                 IsActivated = true,
@@ -30,7 +30,7 @@ public class GetAllUsersQueryHandlerTest : TestBase
             },
             new()
             {
-                Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
+                Id = Guid.NewGuid(),
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
                 IsActivated = true,
@@ -39,21 +39,19 @@ public class GetAllUsersQueryHandlerTest : TestBase
         };
 
         var databaseContext = GetTestDatabaseContext();
-        var mockedLogger = new Mock<ILoggerService>();
-
-        var getAllUsersQuery = new GetAllUsersQuery();
-        var getAllUsersQueryHandler = new GetAllUsersQueryHandler(databaseContext, mockedLogger.Object);
-
         await databaseContext.Users.AddRangeAsync(users);
         await databaseContext.SaveChangesAsync();
 
+        var mockedLogger = new Mock<ILoggerService>();
+
+        var query = new GetAllUsersQuery();
+        var handler = new GetAllUsersQueryHandler(databaseContext, mockedLogger.Object);
+
         // Act
-        var result = (await getAllUsersQueryHandler
-                .Handle(getAllUsersQuery, CancellationToken.None))
-            .ToList();
+        var result = await handler.Handle(query, CancellationToken.None);
 
         // Assert
-        result.Should().NotBeNull();
-        result.Should().HaveCount(2);
+        result.ToList().Should().NotBeNull();
+        result.ToList().Should().HaveCount(2);
     }
 }

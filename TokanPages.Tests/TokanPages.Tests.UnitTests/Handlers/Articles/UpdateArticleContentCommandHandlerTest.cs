@@ -179,9 +179,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() 
-            => handler.Handle(command, CancellationToken.None));
-
+        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS));
     }
 }

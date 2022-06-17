@@ -37,25 +37,27 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
 
     public override async Task<GetArticleQueryResult> Handle(GetArticleQuery request, CancellationToken cancellationToken)
     {
-        var userId = await _userService.GetUserId(cancellationToken);
-        var isAnonymousUser = userId == null;
+        var user = await _userService.GetUser(cancellationToken);
+        var isAnonymousUser = user == null;
 
         var textAsString = await GetArticleTextContent(request.Id, cancellationToken);
         var textAsObject = _jsonSerializer.Deserialize<List<Section>>(textAsString);
 
         var userLikes = await DatabaseContext.ArticleLikes
+            .AsNoTracking()
             .Where(likes => likes.ArticleId == request.Id)
             .WhereIfElse(isAnonymousUser,
                 likes => likes.IpAddress == _userService.GetRequestIpAddress(),
-                likes => likes.UserId == userId)
+                likes => likes.UserId == user!.UserId)
             .Select(likes => likes.LikeCount)
             .SumAsync(cancellationToken);
 
         var totalLikes = await DatabaseContext.ArticleLikes
+            .AsNoTracking()
             .Where(likes => likes.ArticleId == request.Id)
             .Select(likes => likes.LikeCount)
             .SumAsync(cancellationToken);
-        
+
         var query = await (from articles in DatabaseContext.Articles
             join userInfo in DatabaseContext.UserInfo
             on articles.UserId equals userInfo.UserId
@@ -96,12 +98,16 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
     private async Task<string> GetArticleTextContent(Guid articleId, CancellationToken cancellationToken)
     {
         var azureBlob = _azureBlobStorageFactory.Create();
-        var streamContent = await azureBlob.OpenRead($"content/articles/{articleId}/text.json", cancellationToken);
-        if (streamContent is null)
+        var contentStream = await azureBlob.OpenRead($"content/articles/{articleId}/text.json", cancellationToken);
+
+        if (contentStream is null)
+            throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+
+        if (contentStream.Content is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
         
         var memoryStream = new MemoryStream();
-        await streamContent.Content.CopyToAsync(memoryStream, cancellationToken);
+        await contentStream.Content.CopyToAsync(memoryStream, cancellationToken);
 
         return Encoding.Default.GetString(memoryStream.ToArray());
     }

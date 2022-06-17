@@ -48,25 +48,25 @@ public class Exceptions
         }
         catch (AuthorizationException authenticationException)
         {
-            var innerMessage = authenticationException.InnerException?.Message;
+            var innerMessage = authenticationException.InnerException?.Message ?? "";
             var applicationError = new ApplicationError(authenticationException.ErrorCode, authenticationException.Message, innerMessage);
             await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.Unauthorized).ConfigureAwait(false);
         }
         catch (AccessException authorizationException)
         {
-            var innerMessage = authorizationException.InnerException?.Message;
+            var innerMessage = authorizationException.InnerException?.Message ?? "";
             var applicationError = new ApplicationError(authorizationException.ErrorCode, authorizationException.Message, innerMessage);
             await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.Forbidden).ConfigureAwait(false);
         }
         catch (BusinessException businessException)
         {
-            var innerMessage = businessException.InnerException?.Message;
+            var innerMessage = businessException.InnerException?.Message ?? "";
             var applicationError = new ApplicationError(businessException.ErrorCode, businessException.Message, innerMessage);
             await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.UnprocessableEntity).ConfigureAwait(false);
         }
         catch (Exception exception)
         {
-            var innerMessage = exception.InnerException?.Message;
+            var innerMessage = exception.InnerException?.Message ?? "";
             var applicationError = new ApplicationError(nameof(ErrorCodes.ERROR_UNEXPECTED), exception.Message, innerMessage);
             await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.InternalServerError).ConfigureAwait(false);
         }

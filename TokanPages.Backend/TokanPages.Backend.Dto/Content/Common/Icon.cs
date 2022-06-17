@@ -13,11 +13,11 @@ public class Icon
     /// Name
     /// </summary>
     [JsonProperty("name")]
-    public string Name { get; set; }
+    public string Name { get; set; } = "";
 
     /// <summary>
     /// Link
     /// </summary>
     [JsonProperty("link")]
-    public string Link { get; set; }
+    public string Link { get; set; } = "";
 }

@@ -14,7 +14,7 @@ public interface IAssetsCache
     /// <param name="blobName">Full asset name</param>
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns></returns>
-    Task<IActionResult> GetAsset(string blobName, bool noCache = false);
+    Task<IActionResult> GetAsset(string blobName = "", bool noCache = false);
 
     /// <summary>
     /// Returns asset associated to the article
@@ -23,5 +23,5 @@ public interface IAssetsCache
     /// <param name="assetName">Full asset name</param>
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns></returns>
-    Task<IActionResult> GetArticleAsset(string id, string assetName, bool noCache = false);
+    Task<IActionResult> GetArticleAsset(string id = "", string assetName = "", bool noCache = false);
 }

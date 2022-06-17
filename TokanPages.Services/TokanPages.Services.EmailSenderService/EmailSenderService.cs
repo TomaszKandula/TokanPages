@@ -12,6 +12,7 @@ using Backend.Core.Extensions;
 using Backend.Shared.Services;
 using Backend.Shared.Resources;
 using HttpClientService.Models;
+using Newtonsoft.Json;
 
 public class EmailSenderService : IEmailSenderService
 {
@@ -95,17 +96,24 @@ public class EmailSenderService : IEmailSenderService
             ["X-Private-Key"] = _applicationSettings.EmailSender.PrivateKey
         };
 
+        var payload = JsonConvert.SerializeObject(content);
         var configuration = new Configuration 
         { 
             Url = _applicationSettings.EmailSender.BaseUrl, 
             Method = "POST", 
             Headers = headers,
-            StringContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(content), Encoding.Default, "application/json") 
+            StringContent = new StringContent(payload, Encoding.Default, "application/json") 
         };
 
         var result = await _httpClientService.Execute(configuration, cancellationToken);
+        var responseContent = result.Content != null ? Encoding.ASCII.GetString(result.Content) : string.Empty;
+
         if (result.StatusCode != HttpStatusCode.OK)
-            throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}");
+        {
+            var response = !string.IsNullOrEmpty(responseContent) ? responseContent : "n/a";
+            var message = $"{ErrorCodes.CANNOT_SEND_EMAIL}. Full response: {response}";
+            throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), message);
+        }
     }
 
     private static void VerifyArguments(IConfiguration configuration)

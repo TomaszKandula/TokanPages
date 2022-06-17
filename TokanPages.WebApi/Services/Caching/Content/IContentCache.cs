@@ -16,5 +16,5 @@ public interface IContentCache
     /// <param name="language">Content language (pol, eng, esp, etc.)</param>
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>Object</returns>
-    Task<GetContentQueryResult> GetContent(string type, string name, string language, bool noCache = false);
+    Task<GetContentQueryResult> GetContent(string? language, string type = "", string name = "", bool noCache = false);
 }

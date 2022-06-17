@@ -11,10 +11,10 @@ public class AuthenticateUserDto
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string EmailAddress { get; set; }
+    public string? EmailAddress { get; set; }
 
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string Password { get; set; }        
+    public string? Password { get; set; }
 }

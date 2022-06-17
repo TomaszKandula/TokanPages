@@ -18,7 +18,7 @@ public class AddSubscriberCommandHandlerTest : TestBase
     public async Task GivenProvidedEmail_WhenAddSubscriber_ShouldAddEntity() 
     {
         // Arrange
-        var addSubscriberCommand = new AddSubscriberCommand 
+        var command = new AddSubscriberCommand 
         { 
             Email = DataUtilityService.GetRandomEmail()
         };
@@ -32,19 +32,19 @@ public class AddSubscriberCommandHandlerTest : TestBase
             .Setup(dateTime => dateTime.Now)
             .Returns(DateTime.Parse(testDateTime));
             
-        var addSubscriberCommandHandler = new AddSubscriberCommandHandler(
+        var handler = new AddSubscriberCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTime.Object);
 
         // Act
-        await addSubscriberCommandHandler.Handle(addSubscriberCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
         // Assert
         var subscribersEntity = databaseContext.Subscribers.ToList();
 
         subscribersEntity.Should().HaveCount(1);
-        subscribersEntity[0].Email.Should().Be(addSubscriberCommand.Email);
+        subscribersEntity[0].Email.Should().Be(command.Email);
         subscribersEntity[0].Count.Should().Be(0);
         subscribersEntity[0].IsActivated.Should().BeTrue();
         subscribersEntity[0].Registered.Should().HaveDay(DateTime.Parse(testDateTime).Day);
@@ -74,15 +74,14 @@ public class AddSubscriberCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTime = new Mock<IDateTimeService>();
 
-        var addSubscriberCommand = new AddSubscriberCommand { Email = testEmail };
-        var addSubscriberCommandHandler = new AddSubscriberCommandHandler(
+        var command = new AddSubscriberCommand { Email = testEmail };
+        var handler = new AddSubscriberCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTime.Object);
 
         // Act
         // Assert
-        await Assert.ThrowsAsync<BusinessException>(() 
-            => addSubscriberCommandHandler.Handle(addSubscriberCommand, CancellationToken.None));
+        await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
     }
 }

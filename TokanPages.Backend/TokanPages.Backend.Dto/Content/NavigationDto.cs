@@ -15,11 +15,11 @@ public class NavigationDto : BaseClass
     /// Logo
     /// </summary>
     [JsonProperty("logo")]
-    public string Logo { get; set; }
+    public string Logo { get; set; } = "";
 
     /// <summary>
     /// Menu
     /// </summary>
     [JsonProperty("menu")]
-    public Menu Menu { get; set; }
+    public Menu Menu { get; set; } = new();
 }

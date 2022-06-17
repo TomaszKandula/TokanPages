@@ -11,20 +11,20 @@ public class AddArticleDto
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string Title { get; set; }
+    public string? Title { get; set; }
 
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string TextToUpload { get; set; }
+    public string? TextToUpload { get; set; }
 
     /// <summary>
     /// Mandatory
     /// </summary>
-    public string ImageToUpload { get; set; }
+    public string? ImageToUpload { get; set; }
 }

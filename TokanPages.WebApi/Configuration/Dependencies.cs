@@ -54,7 +54,7 @@ public static class Dependencies
 	/// <param name="services">Service collections</param>
 	/// <param name="configuration">Provided configuration</param>
 	/// <param name="environment">Application host environment</param>
-	public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment = default)
+	public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration, IHostEnvironment? environment = default)
 	{
 		services.CommonServices(configuration);
 		SetupDatabase(services, configuration);

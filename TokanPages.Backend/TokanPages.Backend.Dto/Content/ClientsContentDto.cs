@@ -15,11 +15,11 @@ public class ClientsContentDto : BaseClass
     /// Caption
     /// </summary>
     [JsonProperty("caption")]
-    public string Caption { get; set; }
+    public string Caption { get; set; } = "";
 
     /// <summary>
     /// Images
     /// </summary>
     [JsonProperty("images")]
-    public List<string> Images { get; set; }
+    public List<string> Images { get; set; } = new();
 }

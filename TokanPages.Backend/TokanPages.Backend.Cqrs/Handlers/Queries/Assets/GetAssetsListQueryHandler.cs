@@ -10,11 +10,8 @@ public class GetAssetsListQueryHandler : RequestHandler<GetAssetsListQuery, GetA
 {
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public GetAssetsListQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
-    {
-        _azureBlobStorageFactory = azureBlobStorageFactory;
-    }
+    public GetAssetsListQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory) 
+        : base(databaseContext, loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
 
     public override async Task<GetAssetsListQueryResult> Handle(GetAssetsListQuery request, CancellationToken cancellationToken)
     {

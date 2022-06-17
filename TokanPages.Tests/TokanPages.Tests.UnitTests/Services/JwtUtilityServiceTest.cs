@@ -22,7 +22,6 @@ public class JwtUtilityServiceTest : TestBase
         const string claimTypesGivenName = "given_name";
         const string claimTypesSurname = "family_name";
         const string claimTypesEmail = "email";
-
         const string webSecret = "0e723112-72e2-43fc-a348-ddb0147554f5";
         const string issuer = "www.jwt-issuer.com";
         const string audience = "www.some-api.com";
@@ -40,16 +39,16 @@ public class JwtUtilityServiceTest : TestBase
         });
             
         // Act
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, getValidClaims, webSecret, issuer, audience);
-            
+        var result = WebTokenUtility.GenerateJwt(tokenExpires, getValidClaims, webSecret, issuer, audience);
+
         // Assert
-        jwt.Should().NotBeNullOrEmpty();
+        result.Should().NotBeNullOrEmpty();
 
         var handler = new JwtSecurityTokenHandler();
-        var jsonToken = handler.ReadToken(jwt);
+        var jsonToken = handler.ReadToken(result);
         jsonToken.Should().NotBeNull();
         jsonToken.Issuer.Should().Be(issuer);
-            
+
         var securityToken = jsonToken as JwtSecurityToken;
         securityToken.Should().NotBeNull();
         securityToken?.Claims.First(claim => claim.Type == claimTypesName).Value.Should().Be(userAlias);
@@ -68,7 +67,7 @@ public class JwtUtilityServiceTest : TestBase
     {
         // Arrange
         const string ipAddress = "127.0.0.1";
-            
+
         // Act
         var result = WebTokenUtility.GenerateRefreshToken(ipAddress, expiresIn);
 
@@ -76,13 +75,13 @@ public class JwtUtilityServiceTest : TestBase
         result.Token.Should().HaveLength(344);
         result.CreatedByIp.Should().Be(ipAddress);
     }
-        
+
     [Fact]
     public void GivenZeroMinutesToExpire_WhenInvokeGenerateRefreshToken_ShouldThrowError()
     {
         // Arrange
         const string ipAddress = "127.0.0.1";
-            
+
         // Act
         // Assert
         Assert.Throws<ArgumentException>(() => WebTokenUtility.GenerateRefreshToken(ipAddress, 0));

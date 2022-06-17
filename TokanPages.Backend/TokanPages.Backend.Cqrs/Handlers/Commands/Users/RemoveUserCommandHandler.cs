@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Database;
 using Domain.Entities;
-using Core.Exceptions;
-using Shared.Resources;
 using Services.UserService;
 using Core.Utilities.LoggerService;
 using MediatR;
@@ -22,31 +20,21 @@ public class RemoveUserCommandHandler : Cqrs.RequestHandler<RemoveUserCommand, U
 
     public override async Task<Unit> Handle(RemoveUserCommand request, CancellationToken cancellationToken)
     {
-        var userId = request.Id ?? await _userService.GetUserId(cancellationToken) ?? Guid.Empty;
-        if (userId == Guid.Empty)
-            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
-
-        var currentUser = await DatabaseContext.Users
-            .Where(users => !users.IsDeleted)
-            .Where(users => users.Id == userId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (currentUser is null)
-            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
+        var user = await _userService.GetActiveUser(request.Id, true, cancellationToken);
 
         if (request.IsSoftDelete)
         {
-            LoggerService.LogInformation($"Removing user account (user ID: {userId}). You can undo this operation at any time.");
-            currentUser.IsDeleted = true;
+            LoggerService.LogInformation($"Removing user account (user ID: {user.Id}). You can undo this operation at any time.");
+            user.IsDeleted = true;
         }
         else
         {
-            LoggerService.LogInformation($"Removing permanently user account (user ID: {userId}). You cannot undo this operation.");
-            await PermanentRemoval(userId, cancellationToken);
+            LoggerService.LogInformation($"Removing permanently user account (user ID: {user.Id}). You cannot undo this operation.");
+            await PermanentRemoval(user.Id, cancellationToken);
         }
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
-        LoggerService.LogInformation($"User account (user ID: {userId}) has been removed");
+        LoggerService.LogInformation($"User account (user ID: {user.Id}) has been removed");
         return Unit.Value;
     }
 
