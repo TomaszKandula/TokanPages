@@ -25,8 +25,8 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
             Count = 50,
-            Registered = DateTime.Now,
-            LastUpdated = null
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            CreatedBy = Guid.Empty,
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -65,7 +65,6 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         entity.IsActivated.Should().BeTrue();
         entity.Email.Should().Be(command.Email);
         entity.Count.Should().Be(command.Count);
-        entity.LastUpdated.Should().NotBeNull();//TODO: to be removed
         entity.ModifiedAt.Should().NotBeNull();
         entity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
     }
@@ -79,8 +78,8 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
             Count = 50,
-            Registered = DateTime.Now,
-            LastUpdated = null
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            CreatedBy = Guid.Empty,
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -115,7 +114,6 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         entity.IsActivated.Should().BeTrue();
         entity.Email.Should().Be(command.Email);
         entity.Count.Should().Be(subscribers.Count);
-        entity.LastUpdated.Should().NotBeNull();//TODO: to be removed
         entity.ModifiedAt.Should().NotBeNull();
         entity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
     }
@@ -138,8 +136,8 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
             Count = 50,
-            Registered = DateTime.Now,
-            LastUpdated = null
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            CreatedBy = Guid.Empty,
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -171,8 +169,8 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Email = testEmail,
             IsActivated = true,
             Count = 50,
-            Registered = DateTime.Now,
-            LastUpdated = null
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            CreatedBy = Guid.Empty,
         };
 
         var databaseContext = GetTestDatabaseContext();

@@ -22,8 +22,8 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
             Count = 50,
-            Registered = DateTime.Now,
-            LastUpdated = null
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            CreatedBy = Guid.Empty
         };
 
         var databaseContext = GetTestDatabaseContext();
