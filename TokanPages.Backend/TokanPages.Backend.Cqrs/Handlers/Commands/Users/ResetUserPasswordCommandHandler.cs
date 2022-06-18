@@ -61,7 +61,7 @@ public class ResetUserPasswordCommandHandler : Cqrs.RequestHandler<ResetUserPass
         var expirationDate = baseDateTime.AddMinutes(expiresIn);
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
-        await SendNotification(request.EmailAddress, resetId, expirationDate, cancellationToken);
+        await SendNotification(request.EmailAddress!, resetId, expirationDate, cancellationToken);
 
         return Unit.Value;
     }

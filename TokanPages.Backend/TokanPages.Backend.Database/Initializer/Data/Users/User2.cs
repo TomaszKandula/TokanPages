@@ -8,8 +8,6 @@ public static class User2
 {
     public static readonly Guid Id = Guid.Parse("d6365db3-d464-4146-857b-d8476f46553c");
 
-    public const bool IsActivated = true;
-
     public const string UserAlias = "vijus";
 
     public const string EmailAddress = "victoria.justice@gmail.com";
@@ -31,4 +29,8 @@ public static class User2
     public static readonly Guid? ModifiedBy = null;
 
     public static readonly DateTime? ModifiedAt = null;
+
+    public const bool IsActivated = true;
+
+    public const bool IsDeleted = false;
 }

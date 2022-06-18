@@ -4,9 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
+using Contracts;
 
 [ExcludeFromCodeCoverage]
-public class PhotoGears : Entity<Guid>
+public class PhotoGears : Entity<Guid>, IAuditable
 {
     [MaxLength(100)]
     public string BodyVendor { get; set; }
@@ -28,6 +29,14 @@ public class PhotoGears : Entity<Guid>
     public decimal Aperture { get; set; }
 
     public int FilmIso { get; set; }
+
+    public Guid CreatedBy { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    public Guid? ModifiedBy { get; set; }
+
+    public DateTime? ModifiedAt { get; set; }
 
     public ICollection<UserPhotos> UserPhotosNavigation { get; set; } = new HashSet<UserPhotos>();
 }

@@ -4,9 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
+using Contracts;
 
 [ExcludeFromCodeCoverage]
-public class UserPhotos : Entity<Guid>
+public class UserPhotos : Entity<Guid>, IAuditable
 {
     public Guid UserId { get; set; }
 
@@ -28,6 +29,14 @@ public class UserPhotos : Entity<Guid>
 
     [Required]
     public string Description { get; set; }
+
+    public Guid CreatedBy { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    public Guid? ModifiedBy { get; set; }
+
+    public DateTime? ModifiedAt { get; set; }
 
     public Users UserNavigation { get; set; }
 

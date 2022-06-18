@@ -3,8 +3,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Database;
+using Dto.Users;
 using Domain.Entities;
 using Core.Exceptions;
 using Shared.Services;
@@ -77,8 +79,8 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         var tokenExpires = _dateTimeService.Now.AddMinutes(_applicationSettings.IdentityServer.WebTokenExpiresIn);
         var userToken = await _userService.GenerateUserToken(user, tokenExpires, cancellationToken);
 
-        var roles = await _userService.GetUserRoles(user.Id, cancellationToken);
-        var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken);
+        var roles = await _userService.GetUserRoles(user.Id, cancellationToken) ?? new List<GetUserRoleDto>();
+        var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken) ?? new List<GetUserPermissionDto>();
 
         var newUserToken = new UserTokens
         {

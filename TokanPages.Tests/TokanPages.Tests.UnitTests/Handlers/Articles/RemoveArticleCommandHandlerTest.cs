@@ -23,8 +23,6 @@ public class RemoveArticleCommandHandlerTest : TestBase
         // Arrange
         var articleId = Guid.NewGuid();
         var userId = Guid.NewGuid();
-        var command = new RemoveArticleCommand { Id = articleId };
-
         var users = new Users
         {
             Id = userId,
@@ -79,6 +77,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(users);
 
+        var command = new RemoveArticleCommand { Id = articleId };
         var handler = new RemoveArticleCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
@@ -102,7 +101,6 @@ public class RemoveArticleCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var command = new RemoveArticleCommand { Id = Guid.NewGuid() };
         var users = new Users
         {
             Id = userId,
@@ -139,6 +137,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(users);
 
+        var command = new RemoveArticleCommand { Id = Guid.NewGuid() };
         var handler = new RemoveArticleCommandHandler(
             databaseContext, 
             mockedLogger.Object, 

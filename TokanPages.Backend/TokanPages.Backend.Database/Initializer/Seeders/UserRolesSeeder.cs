@@ -1,11 +1,9 @@
 namespace TokanPages.Backend.Database.Initializer.Seeders;
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Data.UserRoles;
 using Domain.Entities;
-using Data.Roles;
-using Data.Users;
 
 [ExcludeFromCodeCoverage]
 public static class UserRolesSeeder
@@ -14,29 +12,45 @@ public static class UserRolesSeeder
     {
         return new List<UserRoles>
         {
-            new ()
+            new()
             {
-                Id = Guid.Parse("829c4857-7a80-42f9-97c9-62aff21127cf"),
-                UserId = User1.Id,
-                RoleId = Role1.Id
+                Id = UserRole1.Id,
+                UserId = UserRole1.UserId,
+                RoleId = UserRole1.RoleId,
+                CreatedAt = UserRole1.CreatedAt,
+                CreatedBy = UserRole1.CreatedBy,
+                ModifiedAt = UserRole1.ModifiedAt,
+                ModifiedBy = UserRole1.ModifiedBy
             },
-            new ()
+            new()
             {
-                Id = Guid.Parse("5ba6f15b-5a63-4968-8eeb-18da32cb0877"),
-                UserId = User1.Id,
-                RoleId = Role2.Id
+                Id = UserRole2.Id,
+                UserId = UserRole2.UserId,
+                RoleId = UserRole2.RoleId,
+                CreatedAt = UserRole2.CreatedAt,
+                CreatedBy = UserRole2.CreatedBy,
+                ModifiedAt = UserRole2.ModifiedAt,
+                ModifiedBy = UserRole2.ModifiedBy
             },
-            new ()
+            new()
             {
-                Id = Guid.Parse("6227f1a3-3dd4-4800-a31b-be6ee1d388ef"),
-                UserId = User2.Id,
-                RoleId = Role2.Id
+                Id = UserRole3.Id,
+                UserId = UserRole3.UserId,
+                RoleId = UserRole3.RoleId,
+                CreatedAt = UserRole3.CreatedAt,
+                CreatedBy = UserRole3.CreatedBy,
+                ModifiedAt = UserRole3.ModifiedAt,
+                ModifiedBy = UserRole3.ModifiedBy
             },
-            new ()
+            new()
             {
-                Id = Guid.Parse("bc9ad7c2-0ea0-425b-a63f-cdc8582c521c"),
-                UserId = User3.Id,
-                RoleId = Role2.Id
+                Id = UserRole4.Id,
+                UserId = UserRole4.UserId,
+                RoleId = UserRole4.RoleId,
+                CreatedAt = UserRole4.CreatedAt,
+                CreatedBy = UserRole4.CreatedBy,
+                ModifiedAt = UserRole4.ModifiedAt,
+                ModifiedBy = UserRole4.ModifiedBy
             }
         };
     }

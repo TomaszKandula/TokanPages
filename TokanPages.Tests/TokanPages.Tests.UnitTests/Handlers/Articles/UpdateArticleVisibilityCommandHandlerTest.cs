@@ -22,7 +22,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
     [Theory]
     [InlineData(false, true)]
     [InlineData(true, false)]
-    public async Task GivenCorrectPermissionAndExistingArticle_WhenInvokeArticleVisibility_ShouldFinishSuccess(bool isVisible, bool shouldBeVisible)
+    public async Task GivenCorrectPermissionAndExistingArticle_WhenInvokeArticleVisibility_ShouldSucceed(bool isVisible, bool shouldBeVisible)
     {
         // Arrange
         var userId = Guid.NewGuid();

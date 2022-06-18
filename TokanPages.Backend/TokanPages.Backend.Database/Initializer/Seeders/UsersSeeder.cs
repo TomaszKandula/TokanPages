@@ -12,44 +12,47 @@ public static class UsersSeeder
     {
         return new List<Users>
         {
-            new ()
+            new()
             {
                 Id = User1.Id,
-                EmailAddress = User1.EmailAddress,
-                IsActivated = User1.IsActivated,
                 UserAlias = User1.UserAlias,
+                EmailAddress = User1.EmailAddress,
                 CryptedPassword = User1.CryptedPassword,
                 ResetId = User1.ResetId,
                 CreatedBy = User1.CreatedBy,
                 CreatedAt = User1.CreatedAt,
                 ModifiedBy = User1.ModifiedBy,
-                ModifiedAt = User1.ModifiedAt
+                ModifiedAt = User1.ModifiedAt,
+                IsActivated = User1.IsActivated,
+                IsDeleted = User1.IsDeleted
             },
-            new ()
+            new()
             {
                 Id = User2.Id,
                 EmailAddress = User2.EmailAddress,
-                IsActivated = User2.IsActivated,
                 UserAlias = User2.UserAlias,
                 CryptedPassword = User2.CryptedPassword,
                 ResetId = User2.ResetId,
                 CreatedBy = User2.CreatedBy,
                 CreatedAt = User2.CreatedAt,
                 ModifiedBy = User2.ModifiedBy,
-                ModifiedAt = User2.ModifiedAt
+                ModifiedAt = User2.ModifiedAt,
+                IsActivated = User2.IsActivated,
+                IsDeleted = User2.IsDeleted
             },
-            new ()
+            new()
             {
                 Id = User3.Id,
                 EmailAddress = User3.EmailAddress,
-                IsActivated = User3.IsActivated,
                 UserAlias = User3.UserAlias,
                 CryptedPassword = User3.CryptedPassword,
                 ResetId = User3.ResetId,
                 CreatedBy = User3.CreatedBy,
                 CreatedAt = User3.CreatedAt,
                 ModifiedBy = User3.ModifiedBy,
-                ModifiedAt = User3.ModifiedAt
+                ModifiedAt = User3.ModifiedAt,
+                IsActivated = User3.IsActivated,
+                IsDeleted = User3.IsDeleted
             }
         };
     }
