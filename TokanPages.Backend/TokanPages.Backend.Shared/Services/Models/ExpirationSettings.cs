@@ -6,6 +6,8 @@ using System.Diagnostics.CodeAnalysis;
 public class ExpirationSettings
 {
     public int ResetIdExpiresIn { get; set; }
-        
+
     public int ActivationIdExpiresIn { get; set; }
+
+    public Likes Likes { get; set; } = new();
 }

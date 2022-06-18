@@ -16,4 +16,6 @@ public class ApplicationPaths
     public string DevelopmentOrigin { get; set; } = "";
 
     public string DeploymentOrigin { get; set; } = "";
+
+    public Templates Templates { get; set; } = new();
 }
