@@ -47,6 +47,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     public override async Task<Guid> Handle(AddUserCommand request, CancellationToken cancellationToken)
     {
+        var adminUser = await _userService.GetUser(cancellationToken);
         var users = await DatabaseContext.Users
             .Where(users => !users.IsDeleted)
             .Where(users => users.EmailAddress == request.EmailAddress)
@@ -98,7 +99,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             ActivationId = activationId,
             ActivationIdEnds = activationIdEnds,
             CreatedAt = _dateTimeService.Now,
-            CreatedBy = Guid.Empty,
+            CreatedBy = adminUser?.UserId ?? Guid.Empty,
             ModifiedAt = null,
             ModifiedBy = null
         };
@@ -110,7 +111,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             LastName = request.LastName,
             UserImageName = defaultAvatar != null ? defaultAvatarName : null,
             CreatedAt = _dateTimeService.Now,
-            CreatedBy = newUserId,
+            CreatedBy = adminUser?.UserId ?? Guid.Empty,
             ModifiedAt = null,
             ModifiedBy = null
         };
@@ -122,14 +123,16 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         await DatabaseContext.Users.AddAsync(newUser, cancellationToken);
         await DatabaseContext.UserInfo.AddAsync(newUserInfo, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
-        await SetupDefaultPermissions(newUser.Id, cancellationToken);
+        await SetupDefaultPermissions(newUser.Id, adminUser?.UserId, cancellationToken);
         await SendNotification(request.EmailAddress!, activationId, expirationDate, cancellationToken);
 
+        var info = adminUser is not null ? $"Admin (ID: {adminUser.UserId})" : $"System (ID: {Guid.Empty})";
         LoggerService.LogInformation($"Registering new user account, user id: {newUser.Id}.");
+        LoggerService.LogInformation($"Registered by the {info}");
         return newUser.Id;
     }
 
-    private async Task SetupDefaultPermissions(Guid userId, CancellationToken cancellationToken)
+    private async Task SetupDefaultPermissions(Guid userId, Guid? adminUserId, CancellationToken cancellationToken)
     {
         var userRoleName = Domain.Enums.Roles.EverydayUser.ToString();
         var defaultPermissions = await DatabaseContext.DefaultPermissions
@@ -158,13 +161,21 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         var newRole = new UserRoles
         {
             UserId = userId,
-            RoleId = everydayUserRoleId
+            RoleId = everydayUserRoleId,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = adminUserId ?? Guid.Empty,
+            ModifiedAt = null,
+            ModifiedBy = null
         };
 
         var newPermissions = userPermissions.Select(item => new UserPermissions
         {
             UserId = userId, 
-            PermissionId = item
+            PermissionId = item,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = adminUserId ?? Guid.Empty,
+            ModifiedAt = null,
+            ModifiedBy = null
         }).ToList();
 
         await DatabaseContext.UserRoles.AddAsync(newRole, cancellationToken);
