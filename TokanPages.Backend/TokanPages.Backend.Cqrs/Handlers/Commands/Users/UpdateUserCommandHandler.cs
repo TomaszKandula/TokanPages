@@ -29,7 +29,7 @@ public class UpdateUserCommandHandler : Cqrs.RequestHandler<UpdateUserCommand, U
 
     public override async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(request.Id, false, cancellationToken);
+        var user = await _userService.GetActiveUser(request.Id, true, cancellationToken);
 
         var emails = await DatabaseContext.Users
             .AsNoTracking()
