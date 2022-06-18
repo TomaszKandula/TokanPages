@@ -8,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 [Serializable]
 public class AuthorizationException : Exception
 {
-    public string ErrorCode { get; }
+    public string ErrorCode { get; } = "";
 
     protected AuthorizationException(SerializationInfo serializationInfo, 
         StreamingContext streamingContext) : base(serializationInfo, streamingContext) { }

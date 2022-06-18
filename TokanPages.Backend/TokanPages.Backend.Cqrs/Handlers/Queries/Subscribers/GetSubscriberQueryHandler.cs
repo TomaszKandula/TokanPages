@@ -15,7 +15,7 @@ public class GetSubscriberQueryHandler : RequestHandler<GetSubscriberQuery, GetS
 
     public override async Task<GetSubscriberQueryResult> Handle(GetSubscriberQuery request, CancellationToken cancellationToken) 
     {
-        var currentSubscriber = await DatabaseContext.Subscribers
+        var subscriber = await DatabaseContext.Subscribers
             .AsNoTracking()
             .Where(subscribers => subscribers.Id == request.Id)
             .Select(subscribers => new GetSubscriberQueryResult 
@@ -24,14 +24,14 @@ public class GetSubscriberQueryHandler : RequestHandler<GetSubscriberQuery, GetS
                 Email = subscribers.Email,
                 IsActivated = subscribers.IsActivated,
                 NewsletterCount = subscribers.Count,
-                Registered = subscribers.Registered,
-                LastUpdated = subscribers.LastUpdated
+                CreatedAt = subscribers.CreatedAt,
+                ModifiedAt = subscribers.ModifiedAt
             })
-            .ToListAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (!currentSubscriber.Any()) 
+        if (subscriber is null) 
             throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
 
-        return currentSubscriber.First();
+        return subscriber;
     }
 }

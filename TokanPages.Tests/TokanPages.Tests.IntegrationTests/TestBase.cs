@@ -14,39 +14,52 @@ using Services.WebTokenService;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Database.Initializer.Data.Users;
 using Backend.Core.Utilities.DataUtilityService;
+using Backend.Database.Initializer.Data.UserInfo;
 
 public class TestBase
 {
     private readonly Factories.DatabaseContextFactory _databaseContextFactory;
 
-    protected IDataUtilityService DataUtilityService { get; }
+    protected const string TestRootPath = "TokanPages.Tests/TokanPages.Tests.IntegrationTests";
 
-    protected IDateTimeService DateTimeService { get; }
+    protected const string BaseUriArticles = "/api/v1.0/articles";
 
-    protected IWebTokenUtility WebTokenUtility { get; }
+    protected const string BaseUriAssets = "/api/v1.0/assets";
+
+    protected const string BaseUriContent = "/api/v1.0/content";
+
+    protected const string BaseUriMailer = "/api/v1.0/mailer";
+
+    protected const string BaseUriHeath = "/api/v1.0/health";
+
+    protected const string BaseUriSubscribers = "/api/v1.0/subscribers";
+
+    protected const string BaseUriUsers = "/api/v1.0/users";
+
+    protected readonly IDataUtilityService DataUtilityService;
+
+    protected readonly IDateTimeService DateTimeService;
+
+    protected readonly IWebTokenUtility WebTokenUtility;
 
     protected TestBase()
     {
-        DataUtilityService = new DataUtilityService();
-        DateTimeService = new DateTimeService();
-        WebTokenUtility = new WebTokenUtility();
-
         var services = new ServiceCollection();
         services.AddSingleton<Factories.DatabaseContextFactory>();
-        services.AddScoped(context =>
-        {
-            var factory = context.GetService<Factories.DatabaseContextFactory>();
-            return factory?.CreateDatabaseContext(string.Empty);
-        });
+        services.AddScoped<IDataUtilityService, DataUtilityService>();
+        services.AddScoped<IWebTokenUtility, WebTokenUtility>();
+        services.AddScoped<IDateTimeService, DateTimeService>();
 
-        var serviceScope = services.BuildServiceProvider(true).CreateScope();
-        var serviceProvider = serviceScope.ServiceProvider;
-        _databaseContextFactory = serviceProvider.GetService<Factories.DatabaseContextFactory>();
+        using var scope = services.BuildServiceProvider(true).CreateScope();
+        var serviceProvider = scope.ServiceProvider;
+
+        _databaseContextFactory = serviceProvider.GetRequiredService<Factories.DatabaseContextFactory>();
+        DataUtilityService = serviceProvider.GetRequiredService<IDataUtilityService>();
+        WebTokenUtility = serviceProvider.GetRequiredService<IWebTokenUtility>();
+        DateTimeService = serviceProvider.GetRequiredService<IDateTimeService>();
     }
 
-    private DatabaseContext GetTestDatabaseContext(string connection) =>  _databaseContextFactory.CreateDatabaseContext(connection);
-
-    protected async Task RegisterTestJwtInDatabase(string token, string connection)
+    protected async Task RegisterTestJwtInDatabase(string? token, string? connection)
     {
         var databaseContext = GetTestDatabaseContext(connection);
 
@@ -92,22 +105,22 @@ public class TestBase
         {
             case nameof(User1):
                 userId = User1.Id.ToString();
-                userFirstName = User1.FirstName;
-                userLastName = User1.LastName;
+                userFirstName = UserInfo1.FirstName;
+                userLastName = UserInfo1.LastName;
                 userEmailAddress = User1.EmailAddress;
                 break;
                 
             case nameof(User2):
                 userId = User2.Id.ToString();
-                userFirstName = User2.FirstName;
-                userLastName = User2.LastName;
+                userFirstName = UserInfo2.FirstName;
+                userLastName = UserInfo2.LastName;
                 userEmailAddress = User2.EmailAddress;
                 break;
 
             case nameof(User3):
                 userId = User3.Id.ToString();
-                userFirstName = User3.FirstName;
-                userLastName = User3.LastName;
+                userFirstName = UserInfo3.FirstName;
+                userLastName = UserInfo3.LastName;
                 userEmailAddress = User3.EmailAddress;
                 break;
         }
@@ -135,4 +148,9 @@ public class TestBase
         new Claim(ClaimTypes.Surname, DataUtilityService.GetRandomString()),
         new Claim(ClaimTypes.Email, DataUtilityService.GetRandomString())
     });
+
+    private DatabaseContext GetTestDatabaseContext(string? connection) 
+    {
+        return _databaseContextFactory.CreateDatabaseContext(connection);
+    }
 }

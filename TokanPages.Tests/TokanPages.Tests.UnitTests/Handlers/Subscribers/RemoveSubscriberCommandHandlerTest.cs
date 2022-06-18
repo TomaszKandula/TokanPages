@@ -22,8 +22,8 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
             Count = 50,
-            Registered = DateTime.Now,
-            LastUpdated = null
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            CreatedBy = Guid.Empty
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -31,15 +31,15 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
-        var removeSubscriberCommand = new RemoveSubscriberCommand { Id = subscribers.Id };
-        var removeSubscriberCommandHandler = new RemoveSubscriberCommandHandler(databaseContext, mockedLogger.Object);
+        var command = new RemoveSubscriberCommand { Id = subscribers.Id };
+        var handler = new RemoveSubscriberCommandHandler(databaseContext, mockedLogger.Object);
 
         // Act
-        await removeSubscriberCommandHandler.Handle(removeSubscriberCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
         // Assert
         var assertDbContext = GetTestDatabaseContext();
-        var subscribersEntity = await assertDbContext.Subscribers.FindAsync(removeSubscriberCommand.Id);
+        var subscribersEntity = await assertDbContext.Subscribers.FindAsync(command.Id);
         subscribersEntity.Should().BeNull();
     }
 
@@ -47,18 +47,13 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
     public async Task GivenIncorrectId_WhenRemoveSubscriber_ShouldThrowError()
     {
         // Arrange
-        var removeSubscriberCommand = new RemoveSubscriberCommand
-        {
-            Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")
-        };
-
+        var command = new RemoveSubscriberCommand { Id = Guid.NewGuid() };
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var removeSubscriberCommandHandler = new RemoveSubscriberCommandHandler(databaseContext, mockedLogger.Object);
+        var handler = new RemoveSubscriberCommandHandler(databaseContext, mockedLogger.Object);
 
         // Act
         // Assert
-        await Assert.ThrowsAsync<BusinessException>(() 
-            => removeSubscriberCommandHandler.Handle(removeSubscriberCommand, CancellationToken.None));
+        await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
     }
 }

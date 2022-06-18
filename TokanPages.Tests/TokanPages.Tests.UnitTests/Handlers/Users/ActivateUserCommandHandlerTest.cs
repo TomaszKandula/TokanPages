@@ -6,7 +6,6 @@ using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.Shared;
 using Backend.Core.Exceptions;
 using Backend.Domain.Entities;
 using Backend.Shared.Resources;
@@ -26,10 +25,6 @@ public class ActivateUserCommandHandlerTest : TestBase
         { 
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString().ToLower(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Registered = DateTimeService.Now,
-            AvatarName = Constants.Defaults.AvatarName,
             CryptedPassword = DataUtilityService.GetRandomString(),
             ActivationId = activationId,
             ActivationIdEnds = DateTimeService.Now.AddMinutes(30)
@@ -46,14 +41,14 @@ public class ActivateUserCommandHandlerTest : TestBase
             .SetupGet(service => service.Now)
             .Returns(DateTimeService.Now);
             
-        var activateUserCommand = new ActivateUserCommand { ActivationId = activationId };
-        var activateUserCommandHandler = new ActivateUserCommandHandler(
+        var command = new ActivateUserCommand { ActivationId = activationId };
+        var handler = new ActivateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTimeService.Object);
 
         // Act
-        var result = await activateUserCommandHandler.Handle(activateUserCommand, CancellationToken.None);
+        var result = await handler.Handle(command, CancellationToken.None);
 
         // Assert
         result.Should().Be(Unit.Value);
@@ -67,10 +62,6 @@ public class ActivateUserCommandHandlerTest : TestBase
         { 
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString().ToLower(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Registered = DateTimeService.Now,
-            AvatarName = Constants.Defaults.AvatarName,
             CryptedPassword = DataUtilityService.GetRandomString(),
             ActivationId = Guid.NewGuid(),
             ActivationIdEnds = DateTimeService.Now.AddMinutes(30)
@@ -87,8 +78,8 @@ public class ActivateUserCommandHandlerTest : TestBase
             .SetupGet(service => service.Now)
             .Returns(DateTimeService.Now);
             
-        var activateUserCommand = new ActivateUserCommand { ActivationId = Guid.NewGuid() };
-        var activateUserCommandHandler = new ActivateUserCommandHandler(
+        var command = new ActivateUserCommand { ActivationId = Guid.NewGuid() };
+        var handler = new ActivateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTimeService.Object);
@@ -96,7 +87,7 @@ public class ActivateUserCommandHandlerTest : TestBase
         // Act
         // Assert
         var result = await Assert.ThrowsAsync<BusinessException>(() 
-            => activateUserCommandHandler.Handle(activateUserCommand, CancellationToken.None));
+            => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_ACTIVATION_ID));
     }
         
@@ -109,10 +100,6 @@ public class ActivateUserCommandHandlerTest : TestBase
         { 
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString().ToLower(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Registered = DateTimeService.Now,
-            AvatarName = Constants.Defaults.AvatarName,
             CryptedPassword = DataUtilityService.GetRandomString(),
             ActivationId = activationId,
             ActivationIdEnds = DateTimeService.Now.AddMinutes(-100)
@@ -129,8 +116,8 @@ public class ActivateUserCommandHandlerTest : TestBase
             .SetupGet(service => service.Now)
             .Returns(DateTimeService.Now);
             
-        var activateUserCommand = new ActivateUserCommand { ActivationId = activationId };
-        var activateUserCommandHandler = new ActivateUserCommandHandler(
+        var command = new ActivateUserCommand { ActivationId = activationId };
+        var handler = new ActivateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTimeService.Object);
@@ -138,7 +125,7 @@ public class ActivateUserCommandHandlerTest : TestBase
         // Act
         // Assert
         var result = await Assert.ThrowsAsync<BusinessException>(() 
-            => activateUserCommandHandler.Handle(activateUserCommand, CancellationToken.None));
+            => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.EXPIRED_ACTIVATION_ID));
     }
 }

@@ -8,10 +8,10 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Backend.Shared.Models;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
+using Backend.Shared.Services.Models;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Users;
@@ -32,23 +32,28 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var created = DateTimeService.Now.AddDays(-5);
         var refreshToken = DataUtilityService.GetRandomString(255);
 
-        var reAuthenticateUserCommand = new ReAuthenticateUserCommand
-        {
-            RefreshToken = refreshToken
-        };
-        
+        var command = new ReAuthenticateUserCommand { RefreshToken = refreshToken };
         var user = new Users
         {
             Id = userId,
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
+            IsActivated = true,
+            CryptedPassword = cryptedPassword
+        };
+
+        var userInfo = new UserInfo
+        {
+            UserId = user.Id,
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
-            IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
-            LastLogged = null,
-            CryptedPassword = cryptedPassword
+            UserAboutText = DataUtilityService.GetRandomString(),
+            UserImageName = null,
+            UserVideoName = null,
+            CreatedBy = Guid.Empty,
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            ModifiedBy = null,
+            ModifiedAt = null
         };
 
         var userRefreshToken = new UserRefreshTokens
@@ -63,32 +68,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             ReplacedByToken = null,
             ReasonRevoked = null
         };
-            
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(user);
-        await databaseContext.UserRefreshTokens.AddAsync(userRefreshToken);
-        await databaseContext.SaveChangesAsync();
-            
-        var mockedLogger = new Mock<ILoggerService>();
-        var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserServiceProvider = new Mock<IUserService>();
 
-        mockedUserServiceProvider
-            .Setup(service => service.GetUserId())
-            .ReturnsAsync(userId);
-
-        mockedUserServiceProvider
-            .Setup(service => service.GetRequestIpAddress())
-            .Returns(ipAddress);
-
-        mockedUserServiceProvider
-            .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshTokens>()))
-            .Returns(false);
-
-        mockedUserServiceProvider
-            .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
-            .Returns(true);
-            
         var newRefreshToken = new UserRefreshTokens
         {
             UserId = user.Id,
@@ -102,14 +82,43 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             ReasonRevoked = null
         };
 
-        mockedUserServiceProvider
+        var databaseContext = GetTestDatabaseContext();
+        await databaseContext.Users.AddAsync(user);
+        await databaseContext.UserInfo.AddAsync(userInfo);
+        await databaseContext.UserRefreshTokens.AddAsync(userRefreshToken);
+        await databaseContext.SaveChangesAsync();
+
+        var mockedLogger = new Mock<ILoggerService>();
+        var mockedDateTimeService = new Mock<IDateTimeService>();
+        var mockedUserService = new Mock<IUserService>();
+
+        mockedUserService
+            .Setup(service => service.GetActiveUser(
+                It.IsAny<Guid?>(), 
+                It.IsAny<bool>(),
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(user);
+
+        mockedUserService
+            .Setup(service => service.GetRequestIpAddress())
+            .Returns(ipAddress);
+
+        mockedUserService
+            .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshTokens>()))
+            .Returns(false);
+
+        mockedUserService
+            .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
+            .Returns(true);
+
+        mockedUserService
             .Setup(service => service
                 .ReplaceRefreshToken(
                     It.IsAny<ReplaceRefreshTokenInput>(), 
                     It.IsAny<CancellationToken>()))
             .ReturnsAsync(newRefreshToken);
 
-        mockedUserServiceProvider
+        mockedUserService
             .Setup(service => service
                 .DeleteOutdatedRefreshTokens(
                     It.IsAny<Guid>(), 
@@ -117,7 +126,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
                     It.IsAny<CancellationToken>()));
 
         var newUserToken = DataUtilityService.GetRandomString();
-        mockedUserServiceProvider
+        mockedUserService
             .Setup(service => service.GenerateUserToken(
                 It.IsAny<Users>(), 
                 It.IsAny<DateTime>(), 
@@ -133,29 +142,23 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             WebTokenExpiresIn = 90,
             RefreshTokenExpiresIn = 120
         };
-            
-        var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
 
-        // Act
-        var reAuthenticateUserCommandHandler = new ReAuthenticateUserCommandHandler(
+        var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
+        var handler = new ReAuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTimeService.Object, 
-            mockedUserServiceProvider.Object, 
+            mockedUserService.Object, 
             mockedApplicationSettings.Object);
 
-        var result = await reAuthenticateUserCommandHandler.Handle(reAuthenticateUserCommand, CancellationToken.None);
-            
+        // Act
+        var result = await handler.Handle(command, CancellationToken.None);
+
         // Assert
         result.UserId.Should().Be(user.Id);
         result.AliasName.Should().Be(user.UserAlias);
-        result.AvatarName.Should().Be(user.AvatarName);
-        result.FirstName.Should().Be(user.FirstName);
-        result.LastName.Should().Be(user.LastName);
-        result.ShortBio.Should().Be(user.ShortBio);
-        result.Registered.Should().Be(user.Registered);
         result.UserToken.Should().Be(newUserToken);
-            
+
         var userTokens = await databaseContext.UserTokens
             .Where(tokens => tokens.UserId == user.Id)
             .ToListAsync();
@@ -175,7 +178,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             .ToListAsync();
 
         userRefreshTokens.Should().HaveCount(2);
-            
+
         userRefreshTokens[1].UserId.Should().Be(user.Id);
         userRefreshTokens[1].Token.Should().Be(newRefreshToken.Token);
         userRefreshTokens[1].Expires.Should().Be(newRefreshToken.Expires);
@@ -199,18 +202,13 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var expires = DateTimeService.Now.AddMinutes(300);
         var created = DateTimeService.Now.AddDays(-5);
             
-        var reAuthenticateUserCommand = new ReAuthenticateUserCommand { RefreshToken = DataUtilityService.GetRandomString() };
+        var command = new ReAuthenticateUserCommand { RefreshToken = DataUtilityService.GetRandomString() };
         var user = new Users
         {
             Id = userId,
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            Registered = DateTimeService.Now,
-            LastUpdated = null,
-            LastLogged = null,
             CryptedPassword = cryptedPassword
         };
 
@@ -234,20 +232,27 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserServiceProvider = new Mock<IUserService>();
+        var mockedUserService = new Mock<IUserService>();
 
-        mockedUserServiceProvider
+        mockedUserService
+            .Setup(service => service.GetActiveUser(
+                null, 
+                false,
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(user);
+
+        mockedUserService
             .Setup(service => service.GetRequestIpAddress())
             .Returns(ipAddress);
 
-        mockedUserServiceProvider
+        mockedUserService
             .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshTokens>()))
             .Returns(false);
 
-        mockedUserServiceProvider
+        mockedUserService
             .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
             .Returns(false);
-            
+
         var identityServer = new IdentityServer
         {
             Issuer = DataUtilityService.GetRandomString(),
@@ -259,19 +264,16 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         };
             
         var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
-
-        // Act
-        // Assert
-        var reAuthenticateUserCommandHandler = new ReAuthenticateUserCommandHandler(
+        var handler = new ReAuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTimeService.Object, 
-            mockedUserServiceProvider.Object, 
+            mockedUserService.Object, 
             mockedApplicationSettings.Object);
 
-        var result = await Assert.ThrowsAsync<AccessException>(() => 
-            reAuthenticateUserCommandHandler.Handle(reAuthenticateUserCommand, CancellationToken.None));
-
+        // Act
+        // Assert
+        var result = await Assert.ThrowsAsync<AccessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_REFRESH_TOKEN));
     }
         
@@ -279,26 +281,65 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
     public async Task GivenMissingRefreshToken_WhenReAuthenticateUser_ShouldThrowError()
     {
         // Arrange
-        var reAuthenticateUserCommand = new ReAuthenticateUserCommand { RefreshToken = DataUtilityService.GetRandomString() };
+        var command = new ReAuthenticateUserCommand { RefreshToken = DataUtilityService.GetRandomString() };
+        var user = new Users
+        {
+            Id = Guid.NewGuid(),
+            EmailAddress = DataUtilityService.GetRandomEmail(),
+            UserAlias = DataUtilityService.GetRandomString(),
+            IsActivated = true,
+            CryptedPassword = DataUtilityService.GetRandomString()
+        };
+
         var databaseContext = GetTestDatabaseContext();
+        await databaseContext.Users.AddAsync(user);
+        await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedUserServiceProvider = new Mock<IUserService>();
-        var mockedApplicationSettings = MockApplicationSettings();
+        var mockedUserService = new Mock<IUserService>();
 
-        // Act
-        // Assert
-        var reAuthenticateUserCommandHandler = new ReAuthenticateUserCommandHandler(
+        mockedUserService
+            .Setup(service => service.GetActiveUser(
+                null, 
+                false,
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(user);
+
+        var ipAddress = DataUtilityService.GetRandomIpAddress().ToString();
+        mockedUserService
+            .Setup(service => service.GetRequestIpAddress())
+            .Returns(ipAddress);
+
+        mockedUserService
+            .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshTokens>()))
+            .Returns(false);
+
+        mockedUserService
+            .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
+            .Returns(false);
+
+        var identityServer = new IdentityServer
+        {
+            Issuer = DataUtilityService.GetRandomString(),
+            Audience = DataUtilityService.GetRandomString(),
+            WebSecret = DataUtilityService.GetRandomString(),
+            RequireHttps = false,
+            WebTokenExpiresIn = 90,
+            RefreshTokenExpiresIn = 120
+        };
+
+        var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
+        var handler = new ReAuthenticateUserCommandHandler(
             databaseContext,
             mockedLogger.Object,
             mockedDateTimeService.Object, 
-            mockedUserServiceProvider.Object, 
+            mockedUserService.Object, 
             mockedApplicationSettings.Object);
 
-        var result = await Assert.ThrowsAsync<AccessException>(() => 
-            reAuthenticateUserCommandHandler.Handle(reAuthenticateUserCommand, CancellationToken.None));
-
+        // Act
+        // Assert
+        var result = await Assert.ThrowsAsync<AccessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_REFRESH_TOKEN));
     }
 }

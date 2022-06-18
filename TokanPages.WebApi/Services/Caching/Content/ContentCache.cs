@@ -5,6 +5,9 @@ using System.Diagnostics.CodeAnalysis;
 using Backend.Cqrs.Handlers.Queries.Content;
 using MediatR;
 
+/// <summary>
+/// Content cache implementation
+/// </summary>
 [ExcludeFromCodeCoverage]
 public class ContentCache : IContentCache
 {
@@ -12,18 +15,24 @@ public class ContentCache : IContentCache
 
     private readonly IMediator _mediator;
 
+    /// <summary>
+    /// Content cache implementation
+    /// </summary>
+    /// <param name="redisDistributedCache">Redis distributed cache instance</param>
+    /// <param name="mediator">Mediator instance</param>
     public ContentCache(IRedisDistributedCache redisDistributedCache, IMediator mediator)
     {
         _redisDistributedCache = redisDistributedCache;
         _mediator = mediator;
     }
 
-    public async Task<GetContentQueryResult> GetContent(string type, string name, string language, bool noCache = false)
+    /// <inheritdoc />
+    public async Task<GetContentQueryResult> GetContent(string? language, string type = "", string name = "", bool noCache = false)
     {
-        var key = $"{type}/{name}/{language}";
         if (noCache)
             return await _mediator.Send(new GetContentQuery { Type = type, Name = name, Language = language });
 
+        var key = $"content/{type}/{name}/{language}";
         var value = await _redisDistributedCache.GetObjectAsync<GetContentQueryResult>(key);
         if (value is not null) return value;
 

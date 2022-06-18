@@ -14,9 +14,9 @@ public class AddUserCommandValidatorTest : TestBase
         var addUserCommand = new AddUserCommand 
         { 
             EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString()
+            LastName = DataUtilityService.GetRandomString(),
+            Password = DataUtilityService.GetRandomString()
         };
 
         // Act
@@ -34,9 +34,9 @@ public class AddUserCommandValidatorTest : TestBase
         var addUserCommand = new AddUserCommand
         {
             EmailAddress = string.Empty,
-            UserAlias = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString()
+            LastName = DataUtilityService.GetRandomString(),
+            Password = DataUtilityService.GetRandomString()
         };
 
         // Act
@@ -55,9 +55,9 @@ public class AddUserCommandValidatorTest : TestBase
         var addUserCommand = new AddUserCommand
         {
             EmailAddress = new string('T', 256),
-            UserAlias = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString()
+            LastName = DataUtilityService.GetRandomString(),
+            Password = DataUtilityService.GetRandomString()
         };
 
         // Act
@@ -70,57 +70,15 @@ public class AddUserCommandValidatorTest : TestBase
     }
 
     [Fact]
-    public void GivenEmptyUserAlias_WhenAddUser_ShouldThrowError()
-    {
-        // Arrange
-        var addUserCommand = new AddUserCommand
-        {
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = string.Empty,
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString()
-        };
-
-        // Act
-        var addUserCommandValidator = new AddUserCommandValidator();
-        var result = addUserCommandValidator.Validate(addUserCommand);
-
-        // Assert
-        result.Errors.Count.Should().Be(1);
-        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-    }
-
-    [Fact]
-    public void GivenTooLongUserAlias_WhenAddUser_ShouldThrowError()
-    {
-        // Arrange
-        var addUserCommand = new AddUserCommand
-        {
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(256),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString()
-        };
-
-        // Act
-        var addUserCommandValidator = new AddUserCommandValidator();
-        var result = addUserCommandValidator.Validate(addUserCommand);
-
-        // Assert
-        result.Errors.Count.Should().Be(1);
-        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.USERALIAS_TOO_LONG));
-    }
-
-    [Fact]
     public void GivenEmptyFirstName_WhenAddUser_ShouldThrowError()
     {
         // Arrange
         var addUserCommand = new AddUserCommand
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
             FirstName = string.Empty,
-            LastName = DataUtilityService.GetRandomString()
+            LastName = DataUtilityService.GetRandomString(),
+            Password = DataUtilityService.GetRandomString()
         };
 
         // Act
@@ -139,9 +97,9 @@ public class AddUserCommandValidatorTest : TestBase
         var addUserCommand = new AddUserCommand
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(256),
-            LastName = DataUtilityService.GetRandomString()
+            LastName = DataUtilityService.GetRandomString(),
+            Password = DataUtilityService.GetRandomString()
         };
 
         // Act
@@ -160,9 +118,9 @@ public class AddUserCommandValidatorTest : TestBase
         var addUserCommand = new AddUserCommand
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
-            LastName = string.Empty
+            LastName = string.Empty,
+            Password = DataUtilityService.GetRandomString()
         };
 
         // Act
@@ -181,9 +139,9 @@ public class AddUserCommandValidatorTest : TestBase
         var addUserCommand = new AddUserCommand
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(256)
+            LastName = DataUtilityService.GetRandomString(256),
+            Password = DataUtilityService.GetRandomString()
         };
 
         // Act

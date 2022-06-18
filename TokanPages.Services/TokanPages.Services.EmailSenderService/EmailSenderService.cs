@@ -3,15 +3,15 @@ namespace TokanPages.Services.EmailSenderService;
 using System.Net;
 using System.Text;
 using Models;
-using Backend.Shared;
 using Models.Interfaces;
 using HttpClientService;
-using Backend.Shared.Models;
+using Backend.Dto.Mailer;
 using Backend.Core.Exceptions;
 using Backend.Core.Extensions;
 using Backend.Shared.Services;
 using Backend.Shared.Resources;
 using HttpClientService.Models;
+using Newtonsoft.Json;
 
 public class EmailSenderService : IEmailSenderService
 {
@@ -42,33 +42,39 @@ public class EmailSenderService : IEmailSenderService
             ResetPasswordConfiguration resetConfiguration => resetConfiguration.EmailAddress,
             _ => ""
         };
-        
+
+        var baseUrl = _applicationSettings.AzureStorage.BaseUrl;
+        var registerForm = _applicationSettings.ApplicationPaths.Templates.RegisterForm;
+        var resetPassword = _applicationSettings.ApplicationPaths.Templates.ResetPassword;
         var templateUrl = configuration switch
         {
-            CreateUserConfiguration =>  $"{_applicationSettings.AzureStorage.BaseUrl}{Constants.Emails.Templates.RegisterForm}",
-            ResetPasswordConfiguration => $"{_applicationSettings.AzureStorage.BaseUrl}{Constants.Emails.Templates.ResetPassword}",
+            CreateUserConfiguration =>  $"{baseUrl}{registerForm}",
+            ResetPasswordConfiguration => $"{baseUrl}{resetPassword}",
             _ => ""
         };
 
+        var deploymentOrigin = _applicationSettings.ApplicationPaths.DeploymentOrigin;
+        var activationPath = _applicationSettings.ApplicationPaths.ActivationPath;
+        var passwordPath = _applicationSettings.ApplicationPaths.UpdatePasswordPath;
         var templateValues = configuration switch
         {
             CreateUserConfiguration createConfiguration => new Dictionary<string, string>
             {
-                { "{ACTIVATION_LINK}", $"{_applicationSettings.ApplicationPaths.DeploymentOrigin}{_applicationSettings.ApplicationPaths.ActivationPath}{createConfiguration.ActivationId}" },
+                { "{ACTIVATION_LINK}", $"{deploymentOrigin}{activationPath}{createConfiguration.ActivationId}" },
                 { "{EXPIRATION}", $"{createConfiguration.ActivationIdEnds}" }
             },
             ResetPasswordConfiguration resetConfiguration => new Dictionary<string, string>
             {
-                { "{RESET_LINK}", $"{_applicationSettings.ApplicationPaths.DeploymentOrigin}{_applicationSettings.ApplicationPaths.UpdatePasswordPath}{resetConfiguration.ResetId}" },
+                { "{RESET_LINK}", $"{deploymentOrigin}{passwordPath}{resetConfiguration.ResetId}" },
                 { "{EXPIRATION}", $"{resetConfiguration.ExpirationDate}" }
             },
             _ => new Dictionary<string, string>()
         };
-        
+
         var template = await GetEmailTemplate(templateUrl, cancellationToken);
-        var payload = new EmailSenderPayload
+        var payload = new SenderPayloadDto
         {
-            From = Constants.Emails.Addresses.Contact,
+            From = _applicationSettings.EmailSender.Addresses.Contact,
             To = new List<string> { emailAddress },
             Subject = subject,
             Body = template.MakeBody(templateValues)
@@ -95,17 +101,24 @@ public class EmailSenderService : IEmailSenderService
             ["X-Private-Key"] = _applicationSettings.EmailSender.PrivateKey
         };
 
+        var payload = JsonConvert.SerializeObject(content);
         var configuration = new Configuration 
         { 
             Url = _applicationSettings.EmailSender.BaseUrl, 
             Method = "POST", 
             Headers = headers,
-            StringContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(content), Encoding.Default, "application/json") 
+            StringContent = new StringContent(payload, Encoding.Default, "application/json") 
         };
 
         var result = await _httpClientService.Execute(configuration, cancellationToken);
+        var responseContent = result.Content != null ? Encoding.ASCII.GetString(result.Content) : string.Empty;
+
         if (result.StatusCode != HttpStatusCode.OK)
-            throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), $"{ErrorCodes.CANNOT_SEND_EMAIL}");
+        {
+            var response = !string.IsNullOrEmpty(responseContent) ? responseContent : "n/a";
+            var message = $"{ErrorCodes.CANNOT_SEND_EMAIL}. Full response: {response}";
+            throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), message);
+        }
     }
 
     private static void VerifyArguments(IConfiguration configuration)

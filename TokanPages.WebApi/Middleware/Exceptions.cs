@@ -9,12 +9,19 @@ using Backend.Core.Models;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
 using Newtonsoft.Json;
-    
+
+/// <summary>
+/// Exceptions middleware
+/// </summary>
 [ExcludeFromCodeCoverage]
 public class Exceptions
 {
     private readonly RequestDelegate _requestDelegate;
 
+    /// <summary>
+    /// Exceptions middleware
+    /// </summary>
+    /// <param name="requestDelegate">RequestDelegate instance</param>
     public Exceptions(RequestDelegate requestDelegate) => _requestDelegate = requestDelegate;
 
     /// <summary>
@@ -27,7 +34,7 @@ public class Exceptions
     ///   <item>500 - Internal Server Error</item>
     /// </list>
     /// </summary>
-    /// <param name="httpContext">Current HTTP context.</param>
+    /// <param name="httpContext">Current HTTP context</param>
     public async Task InvokeAsync(HttpContext httpContext)
     {
         try
@@ -41,25 +48,25 @@ public class Exceptions
         }
         catch (AuthorizationException authenticationException)
         {
-            var innerMessage = authenticationException.InnerException?.Message;
+            var innerMessage = authenticationException.InnerException?.Message ?? "";
             var applicationError = new ApplicationError(authenticationException.ErrorCode, authenticationException.Message, innerMessage);
             await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.Unauthorized).ConfigureAwait(false);
         }
         catch (AccessException authorizationException)
         {
-            var innerMessage = authorizationException.InnerException?.Message;
+            var innerMessage = authorizationException.InnerException?.Message ?? "";
             var applicationError = new ApplicationError(authorizationException.ErrorCode, authorizationException.Message, innerMessage);
             await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.Forbidden).ConfigureAwait(false);
         }
         catch (BusinessException businessException)
         {
-            var innerMessage = businessException.InnerException?.Message;
+            var innerMessage = businessException.InnerException?.Message ?? "";
             var applicationError = new ApplicationError(businessException.ErrorCode, businessException.Message, innerMessage);
             await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.UnprocessableEntity).ConfigureAwait(false);
         }
         catch (Exception exception)
         {
-            var innerMessage = exception.InnerException?.Message;
+            var innerMessage = exception.InnerException?.Message ?? "";
             var applicationError = new ApplicationError(nameof(ErrorCodes.ERROR_UNEXPECTED), exception.Message, innerMessage);
             await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.InternalServerError).ConfigureAwait(false);
         }

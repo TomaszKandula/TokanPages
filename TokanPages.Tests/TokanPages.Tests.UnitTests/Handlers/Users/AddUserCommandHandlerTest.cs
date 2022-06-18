@@ -8,11 +8,10 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Backend.Shared;
-using Backend.Shared.Models;
 using Backend.Core.Exceptions;
 using Backend.Domain.Entities;
 using Backend.Shared.Resources;
+using Backend.Shared.Services.Models;
 using TokanPages.Services.UserService;
 using Backend.Cqrs.Handlers.Commands.Users;
 using Backend.Core.Utilities.LoggerService;
@@ -30,15 +29,16 @@ public class AddUserCommandHandlerTest : TestBase
     public async Task GivenFieldsAreProvided_WhenAddUser_ShouldAddEntity() 
     {
         // Arrange
-        var addUserCommand = new AddUserCommand 
+        var command = new AddUserCommand 
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
             Password = DataUtilityService.GetRandomString()
         };
 
+        var expectedUserAlias = $"{command.FirstName[..2]}{command.LastName[..3]}".ToLower();
+        
         var roles = new Roles
         {
             Name = Backend.Domain.Enums.Roles.EverydayUser.ToString(),
@@ -62,14 +62,14 @@ public class AddUserCommandHandlerTest : TestBase
             new()
             {
                 Id = Guid.NewGuid(),
-                Role = roles,
-                Permission = permissions[0]
+                RoleNavigation = roles,
+                PermissionNavigation = permissions[0]
             },
             new()
             {
                 Id = Guid.NewGuid(),
-                Role = roles,
-                Permission = permissions[1]
+                RoleNavigation = roles,
+                PermissionNavigation = permissions[1]
             }
         };
 
@@ -78,6 +78,7 @@ public class AddUserCommandHandlerTest : TestBase
         await databaseContext.Permissions.AddRangeAsync(permissions);
         await databaseContext.DefaultPermissions.AddRangeAsync(defaultPermissions);
 
+        const string mockedPassword = "MockedPassword";
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
@@ -93,13 +94,12 @@ public class AddUserCommandHandlerTest : TestBase
 
         mockedBlobStorage
             .Setup(storage => storage.OpenRead(It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync((StorageStreamContent)null);
+            .ReturnsAsync((StorageStreamContent)null!);
 
         mockedAzureStorage
             .Setup(factory => factory.Create())
             .Returns(mockedBlobStorage.Object);
 
-        const string mockedPassword = "MockedPassword";
         mockedCipher
             .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
             .Returns(mockedPassword);
@@ -108,7 +108,7 @@ public class AddUserCommandHandlerTest : TestBase
             .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
             .Returns(Task.CompletedTask);
 
-        var addUserCommandHandler = new AddUserCommandHandler(
+        var handler = new AddUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTime.Object, 
@@ -119,22 +119,16 @@ public class AddUserCommandHandlerTest : TestBase
             mockedUserService.Object);
 
         // Act
-        await addUserCommandHandler.Handle(addUserCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
         // Assert
         var result = databaseContext.Users.ToList();
 
         result.Should().NotBeNull();
         result.Should().HaveCount(1);
-        result[0].EmailAddress.Should().Be(addUserCommand.EmailAddress);
-        result[0].UserAlias.Should().Be(addUserCommand.UserAlias.ToLower());
-        result[0].FirstName.Should().Be(addUserCommand.FirstName);
-        result[0].LastName.Should().Be(addUserCommand.LastName);
+        result[0].EmailAddress.Should().Be(command.EmailAddress);
+        result[0].UserAlias.Should().Be(expectedUserAlias);
         result[0].IsActivated.Should().BeFalse();
-        result[0].LastLogged.Should().BeNull();
-        result[0].LastUpdated.Should().BeNull();
-        result[0].AvatarName.Should().Be(null);
-        result[0].ShortBio.Should().BeNull();
         result[0].CryptedPassword.Should().HaveLength(mockedPassword.Length);
         result[0].ResetId.Should().BeNull();
         result[0].ResetIdEnds.Should().BeNull();
@@ -147,24 +141,20 @@ public class AddUserCommandHandlerTest : TestBase
     {
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var addUserCommand = new AddUserCommand 
+        var command = new AddUserCommand 
         {
             EmailAddress = testEmail,
-            UserAlias = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
             Password = DataUtilityService.GetRandomString()
         };
 
+        var userAlias = $"{command.FirstName[..2]}{command.LastName[..3]}".ToLower();
         var oldActivationIdEnds = DateTimeService.Now.AddMinutes(-30);
         var users = new Users
         { 
             EmailAddress = testEmail,
-            UserAlias = DataUtilityService.GetRandomString().ToLower(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Registered = DateTime.Now,
-            AvatarName = Constants.Defaults.AvatarName,
+            UserAlias = userAlias,
             CryptedPassword = DataUtilityService.GetRandomString(),
             ActivationId = Guid.NewGuid(),
             ActivationIdEnds = oldActivationIdEnds
@@ -174,17 +164,16 @@ public class AddUserCommandHandlerTest : TestBase
         await databaseContext.Users.AddAsync(users);
         await databaseContext.SaveChangesAsync();
             
+        const string mockedPassword = "MockedPassword";
         var mockedDateTime = new Mock<DateTimeService>();
         var mockedCipher = new Mock<ICipheringService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedUserService = new Mock<IUserService>();
+        var expirationSettings = new LimitSettings { ActivationIdExpiresIn = 30 };
+        var mockedApplicationSettings = MockApplicationSettings(limitSettings: expirationSettings);
 
-        var expirationSettings = new ExpirationSettings { ActivationIdExpiresIn = 30 };
-        var mockedApplicationSettings = MockApplicationSettings(expirationSettings: expirationSettings);
-
-        const string mockedPassword = "MockedPassword";
         mockedCipher
             .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
             .Returns(mockedPassword);
@@ -201,7 +190,7 @@ public class AddUserCommandHandlerTest : TestBase
             .Setup(service => service.GetRequestUserTimezoneOffset())
             .Returns(-120);
 
-        var addUserCommandHandler = new AddUserCommandHandler(
+        var handler = new AddUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTime.Object, 
@@ -212,7 +201,7 @@ public class AddUserCommandHandlerTest : TestBase
             mockedUserService.Object);
 
         // Act
-        await addUserCommandHandler.Handle(addUserCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
         // Assert
         var result = databaseContext.Users.ToList();
@@ -221,13 +210,7 @@ public class AddUserCommandHandlerTest : TestBase
         result.Should().HaveCount(1);
         result[0].EmailAddress.Should().Be(testEmail);
         result[0].UserAlias.Should().Be(users.UserAlias);
-        result[0].FirstName.Should().Be(users.FirstName);
-        result[0].LastName.Should().Be(users.LastName);
         result[0].IsActivated.Should().BeFalse();
-        result[0].LastLogged.Should().BeNull();
-        result[0].LastUpdated.Should().BeNull();
-        result[0].AvatarName.Should().Be(users.AvatarName);
-        result[0].ShortBio.Should().BeNull();
         result[0].CryptedPassword.Should().HaveLength(mockedPassword.Length);
         result[0].ResetId.Should().BeNull();
         result[0].ResetIdEnds.Should().BeNull();
@@ -241,10 +224,9 @@ public class AddUserCommandHandlerTest : TestBase
     {
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var addUserCommand = new AddUserCommand
+        var command = new AddUserCommand
         {
             EmailAddress = testEmail,
-            UserAlias = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
         };
@@ -253,9 +235,6 @@ public class AddUserCommandHandlerTest : TestBase
         { 
             EmailAddress = testEmail,
             UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Registered = DateTime.Now,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
@@ -283,7 +262,7 @@ public class AddUserCommandHandlerTest : TestBase
             .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
             .Returns(Task.CompletedTask);
 
-        var addUserCommandHandler = new AddUserCommandHandler(
+        var handler = new AddUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTime.Object, 
@@ -295,7 +274,7 @@ public class AddUserCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() => addUserCommandHandler.Handle(addUserCommand, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS));
     }
 }

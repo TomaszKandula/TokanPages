@@ -5,22 +5,19 @@ using Newtonsoft.Json;
 using FluentAssertions;
 using System;
 using System.Net;
+using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.TestHost;
+using Backend.Dto.Subscribers;
 using Backend.Core.Extensions;
 using Backend.Shared.Resources;
-using Backend.Shared.Dto.Subscribers;
 using Backend.Database.Initializer.Data.Subscribers;
 using Factories;
 
 public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
-    private const string ApiBaseUrl = "/api/v1.0/subscribers";
-
-    private const string TestRootPath = "TokanPages.Tests/TokanPages.Tests.IntegrationTests";
-
     private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
 
     public SubscribersControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
@@ -29,16 +26,16 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
     public async Task GivenNoJwt_WhenGetAllSubscribers_ShouldReturnUnauthorized()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/GetAllSubscribers/?noCache=true";
+        const string uri = $"{BaseUriSubscribers}/GetAllSubscribers/?noCache=true";
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         // Act
-        var response = await httpClient.GetAsync(request);
-        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
+        var response = await httpClient.GetAsync(uri);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
         var content = await response.Content.ReadAsStringAsync();
         content.Should().Contain(nameof(ErrorCodes.INVALID_USER_TOKEN));
     }
@@ -47,17 +44,17 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
     public async Task GivenCorrectIdAndNoJwt_WhenGetSubscriber_ShouldReturnUnauthorized() 
     {
         // Arrange
-        var testUserId = Subscriber1.Id;
-        var request = $"{ApiBaseUrl}/GetSubscriber/{testUserId}/?noCache=true";
+        var userId = Subscriber1.Id;
+        var uri = $"{BaseUriSubscribers}/GetSubscriber/{userId}/?noCache=true";
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         // Act
-        var response = await httpClient.GetAsync(request);
-        await EnsureStatusCode(response, HttpStatusCode.OK);
+        var response = await httpClient.GetAsync(uri);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.OK);
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
     }
@@ -66,23 +63,24 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
     public async Task GivenIncorrectId_WhenGetSubscriber_ShouldReturnJsonObjectWithError()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/GetSubscriber/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/?noCache=true";
-        var newRequest = new HttpRequestMessage(HttpMethod.Get, request);
-            
+        const string uri = $"{BaseUriSubscribers}/GetSubscriber/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/?noCache=true";
+        var request = new HttpRequestMessage(HttpMethod.Get, uri);
+
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
-            
-        newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
+            _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act
-        var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
+        var response = await httpClient.SendAsync(request);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
         content.Should().Contain(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
@@ -92,18 +90,19 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
     public async Task GivenAllFieldsAreCorrect_WhenAddSubscriber_ShouldReturnNewGuid() 
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/AddSubscriber/";
-        var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
-        var payLoad = new AddSubscriberDto { Email = DataUtilityService.GetRandomEmail() };
+        const string uri = $"{BaseUriSubscribers}/AddSubscriber/";
+        var request = new HttpRequestMessage(HttpMethod.Post, uri);
+        var dto = new AddSubscriberDto { Email = DataUtilityService.GetRandomEmail() };
 
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
-        newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
+        var payload = JsonConvert.SerializeObject(dto);
+        request.Content = new StringContent(payload, Encoding.Default, "application/json");
 
         // Act
-        var response = await httpClient.SendAsync(newRequest);
+        var response = await httpClient.SendAsync(request);
         await EnsureStatusCode(response, HttpStatusCode.OK);
 
         // Assert
@@ -116,10 +115,10 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
     public async Task GivenIncorrectIdAndNoJwt_WhenUpdateSubscriber_ShouldReturnUnprocessableEntity()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/UpdateSubscriber/";
-        var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
+        const string uri = $"{BaseUriSubscribers}/UpdateSubscriber/";
+        var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
-        var payLoad = new UpdateSubscriberDto
+        var dto = new UpdateSubscriberDto
         {
             Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2"),
             Email = DataUtilityService.GetRandomEmail(),
@@ -131,13 +130,14 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
-        newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
+        var payload = JsonConvert.SerializeObject(dto);
+        request.Content = new StringContent(payload, Encoding.Default, "application/json");
 
         // Act
-        var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
+        var response = await httpClient.SendAsync(request);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
         content.Should().Contain(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
@@ -147,25 +147,22 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
     public async Task GivenIncorrectIdAndNoJwt_WhenRemoveSubscriber_ShouldReturnUnprocessableEntity()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/RemoveSubscriber/";
-        var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
-
-        var payLoad = new RemoveSubscriberDto
-        {
-            Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2")
-        };
+        const string uri = $"{BaseUriSubscribers}/RemoveSubscriber/";
+        var request = new HttpRequestMessage(HttpMethod.Post, uri);
+        var dto = new RemoveSubscriberDto { Id = Guid.NewGuid() };
 
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
-        newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
+        var payload = JsonConvert.SerializeObject(dto);
+        request.Content = new StringContent(payload, Encoding.Default, "application/json");
 
         // Act
-        var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
+        var response = await httpClient.SendAsync(request);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
         content.Should().Contain(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);

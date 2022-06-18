@@ -5,5 +5,5 @@ using Microsoft.AspNetCore.Mvc;
 
 public class GetSingleAssetQuery : IRequest<FileContentResult>
 {
-    public string BlobName { get; set; }    
+    public string BlobName { get; set; } = "";
 }

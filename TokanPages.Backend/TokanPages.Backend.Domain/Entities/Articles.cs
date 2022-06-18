@@ -26,9 +26,9 @@ public class Articles : Entity<Guid>
 
     public Guid? UserId { get; set; }
 
-    public Users User { get; set; }
+    public Users UserNavigation { get; set; }
 
-    public ICollection<ArticleLikes> ArticleLikes { get; set; } = new HashSet<ArticleLikes>();
+    public ICollection<ArticleLikes> ArticleLikesNavigation { get; set; } = new HashSet<ArticleLikes>();
 
-    public ICollection<ArticleCounts> ArticleCounts { get; set; } = new HashSet<ArticleCounts>();
+    public ICollection<ArticleCounts> ArticleCountsNavigation { get; set; } = new HashSet<ArticleCounts>();
 }

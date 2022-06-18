@@ -12,17 +12,15 @@ using Database;
 using Core.Exceptions;
 using Core.Extensions;
 using Shared.Resources;
-using Shared.Dto.Users;
+using Dto.Users;
 using Services.UserService;
-using Shared.Dto.Content.Common;
+using Dto.Content.Common;
 using Core.Utilities.LoggerService;
 using Core.Utilities.JsonSerializer;
 using Services.AzureStorageService.Factory;
 
 public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticleQueryResult>
 {
-    private readonly DatabaseContext _databaseContext;
-
     private readonly IUserService _userService;
 
     private readonly IJsonSerializer _jsonSerializer;
@@ -32,7 +30,6 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
     public GetArticleQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService, 
         IJsonSerializer jsonSerializer, IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
     {
-        _databaseContext = databaseContext;
         _userService = userService;
         _jsonSerializer = jsonSerializer;
         _azureBlobStorageFactory = azureBlobStorageFactory;
@@ -40,27 +37,34 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
 
     public override async Task<GetArticleQueryResult> Handle(GetArticleQuery request, CancellationToken cancellationToken)
     {
-        var userId = await _userService.GetUserId();
-        var isAnonymousUser = userId == null;
+        var user = await _userService.GetUser(cancellationToken);
+        var isAnonymousUser = user == null;
 
         var textAsString = await GetArticleTextContent(request.Id, cancellationToken);
         var textAsObject = _jsonSerializer.Deserialize<List<Section>>(textAsString);
-        
-        var getArticleLikes = await _databaseContext.ArticleLikes
+
+        var userLikes = await DatabaseContext.ArticleLikes
+            .AsNoTracking()
             .Where(likes => likes.ArticleId == request.Id)
             .WhereIfElse(isAnonymousUser,
                 likes => likes.IpAddress == _userService.GetRequestIpAddress(),
-                likes => likes.UserId == userId)
+                likes => likes.UserId == user!.UserId)
             .Select(likes => likes.LikeCount)
-            .ToListAsync(cancellationToken);
+            .SumAsync(cancellationToken);
 
-        var articleLikes = !getArticleLikes.Any() ? 0 : getArticleLikes.FirstOrDefault();
-        var currentArticle = await _databaseContext.Articles
+        var totalLikes = await DatabaseContext.ArticleLikes
             .AsNoTracking()
-            .Include(articles => articles.ArticleLikes)
-            .Include(articles => articles.User)
-            .Where(articles => articles.Id == request.Id)
-            .Select(articles => new GetArticleQueryResult
+            .Where(likes => likes.ArticleId == request.Id)
+            .Select(likes => likes.LikeCount)
+            .SumAsync(cancellationToken);
+
+        var query = await (from articles in DatabaseContext.Articles
+            join userInfo in DatabaseContext.UserInfo
+            on articles.UserId equals userInfo.UserId
+            join users in DatabaseContext.Users
+            on articles.UserId equals users.Id
+            where articles.Id == request.Id
+            select new GetArticleQueryResult
             {
                 Id = articles.Id,
                 Title = articles.Title,
@@ -69,39 +73,41 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
                 CreatedAt = articles.CreatedAt,
                 UpdatedAt = articles.UpdatedAt,
                 ReadCount = articles.ReadCount,
-                LikeCount = articles.ArticleLikes
-                    .Where(likes => likes.ArticleId == request.Id)
-                    .Select(likes => likes.LikeCount)
-                    .Sum(),
-                UserLikes = articleLikes,
+                LikeCount = totalLikes,
+                UserLikes = userLikes,
                 Author = new GetUserDto
                 {
-                    AliasName = articles.User.UserAlias,
-                    AvatarName = articles.User.AvatarName,
-                    FirstName = articles.User.FirstName,
-                    LastName = articles.User.LastName,
-                    ShortBio = articles.User.ShortBio,
-                    Registered = articles.User.Registered
+                    AliasName = users.UserAlias,
+                    AvatarName = userInfo.UserImageName,
+                    FirstName = userInfo.FirstName,
+                    LastName = userInfo.LastName,
+                    ShortBio = userInfo.UserAboutText,
+                    Registered = userInfo.CreatedAt
                 },
                 Text = textAsObject
             })
-            .ToListAsync(cancellationToken);
+            .AsNoTracking()
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (!currentArticle.Any())
+        if (query is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-        return currentArticle.First();
+        return query;
     }
 
     private async Task<string> GetArticleTextContent(Guid articleId, CancellationToken cancellationToken)
     {
         var azureBlob = _azureBlobStorageFactory.Create();
-        var streamContent = await azureBlob.OpenRead($"content/articles/{articleId}/text.json", cancellationToken);
-        if (streamContent is null)
+        var contentStream = await azureBlob.OpenRead($"content/articles/{articleId}/text.json", cancellationToken);
+
+        if (contentStream is null)
+            throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+
+        if (contentStream.Content is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
         
         var memoryStream = new MemoryStream();
-        await streamContent.Content.CopyToAsync(memoryStream, cancellationToken);
+        await contentStream.Content.CopyToAsync(memoryStream, cancellationToken);
 
         return Encoding.Default.GetString(memoryStream.ToArray());
     }

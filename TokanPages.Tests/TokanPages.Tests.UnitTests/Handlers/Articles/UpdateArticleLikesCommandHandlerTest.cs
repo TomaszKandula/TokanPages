@@ -8,14 +8,17 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Backend.Domain.Entities;
+using TokanPages.Backend.Dto.Users;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
+using Backend.Core.Utilities.DateTimeService;
 using Backend.Cqrs.Handlers.Commands.Articles;
+using TokanPages.Backend.Shared.Services.Models;
 
 public class UpdateArticleLikesCommandHandlerTest : TestBase
 {
     private const string IpAddress = "255.255.255.255";
-        
+
     [Theory]
     [InlineData(10, 10)]
     [InlineData(50, 25)]
@@ -23,68 +26,72 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
     public async Task GivenNewLikesAddedAsAnonymousUser_WhenUpdateArticleLikes_ShouldAddLikes(int likes, int expectedLikes)
     {
         // Arrange
-        var users = new Users
+        var user = new Users
         {
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
+            Id = Guid.NewGuid(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
-        await databaseContext.SaveChangesAsync();
-
-        var articles = new Articles
+        var article = new Articles
         {
+            Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),
             Description = DataUtilityService.GetRandomString(),
             IsPublished = true,
             ReadCount = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = users.Id
+            UserId = user.Id
         };
 
-        await databaseContext.Articles.AddAsync(articles);
+        var databaseContext = GetTestDatabaseContext();
+        await databaseContext.Users.AddAsync(user);
+        await databaseContext.Articles.AddAsync(article);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserService>();
+        var dateTimeService = new DateTimeService();
+        var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
-        mockedUserProvider
-            .Setup(provider => provider.GetRequestIpAddress())
+        var likesLimit = new LimitSettings { Likes = new Likes { ForAnonymous = 25, ForUser = 50 } };
+        var mockedApplicationSettings = MockApplicationSettings(limitSettings: likesLimit);
+
+        mockedUserService
+            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
+            .ReturnsAsync((GetUserDto)null!);
+
+        mockedUserService
+            .Setup(service => service.GetRequestIpAddress())
             .Returns(IpAddress);
 
-        var updateArticleLikesCommandHandler = new UpdateArticleLikesCommandHandler(
-            databaseContext, 
-            mockedLogger.Object,
-            mockedUserProvider.Object);
-
-        var updateArticleLikesCommand = new UpdateArticleLikesCommand
+        var command = new UpdateArticleLikesCommand
         {
-            Id = articles.Id,
+            Id = article.Id,
             AddToLikes = likes,
         };
 
+        var handler = new UpdateArticleLikesCommandHandler(
+            databaseContext, 
+            mockedLogger.Object,
+            mockedUserService.Object, 
+            dateTimeService, 
+            mockedApplicationSettings.Object);
+
         // Act
-        await updateArticleLikesCommandHandler.Handle(updateArticleLikesCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
         // Assert
         var articleLikesEntity = databaseContext.ArticleLikes
-            .Where(articleLikes => articleLikes.ArticleId == articles.Id)
+            .Where(articleLikes => articleLikes.ArticleId == article.Id)
             .ToList();
 
         var articlesEntity = await databaseContext.Articles
-            .FindAsync(updateArticleLikesCommand.Id);
+            .FindAsync(command.Id);
 
         articlesEntity.Should().NotBeNull();
-
         articleLikesEntity.Should().HaveCount(1);
         articleLikesEntity[0].IpAddress.Should().Be(IpAddress);
         articleLikesEntity[0].UserId.Should().BeNull();
@@ -100,23 +107,16 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         // Arrange
         var users = new Users
         {
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
+            Id = Guid.NewGuid(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
-        await databaseContext.SaveChangesAsync();
-
         var articles = new Articles
         {
+            Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),
             Description = DataUtilityService.GetRandomString(),
             IsPublished = true,
@@ -125,49 +125,56 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             UpdatedAt = null,
             UserId = users.Id
         };
-            
-        await databaseContext.Articles.AddAsync(articles);
-        await databaseContext.SaveChangesAsync();
 
         var likes = new ArticleLikes 
         { 
+            Id = Guid.NewGuid(),
             ArticleId = articles.Id,
             UserId = null,
             IpAddress = IpAddress,
             LikeCount = existingLikes
         };
 
+        var databaseContext = GetTestDatabaseContext();
+        await databaseContext.Users.AddAsync(users);
+        await databaseContext.Articles.AddAsync(articles);
         await databaseContext.ArticleLikes.AddAsync(likes);
         await databaseContext.SaveChangesAsync();
 
+        var dateTimeService = new DateTimeService();
         var mockedUserProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
+
+        var likesLimit = new LimitSettings { Likes = new Likes { ForAnonymous = 25, ForUser = 50 } };
+        var mockedApplicationSettings = MockApplicationSettings(limitSettings: likesLimit);
 
         mockedUserProvider
             .Setup(provider => provider.GetRequestIpAddress())
             .Returns(IpAddress);
 
-        var updateArticleLikesCommandHandler = new UpdateArticleLikesCommandHandler(
-            databaseContext, 
-            mockedLogger.Object, 
-            mockedUserProvider.Object);
-
-        var updateArticleLikesCommand = new UpdateArticleLikesCommand
+        var command = new UpdateArticleLikesCommand
         {
             Id = articles.Id,
             AddToLikes = newLikes,
         };
 
+        var handler = new UpdateArticleLikesCommandHandler(
+            databaseContext, 
+            mockedLogger.Object, 
+            mockedUserProvider.Object, 
+            dateTimeService,
+            mockedApplicationSettings.Object);
+
         // Act
-        await updateArticleLikesCommandHandler.Handle(updateArticleLikesCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
         // Assert
         var articleLikesEntity = databaseContext.ArticleLikes
             .Where(articleLikes => articleLikes.ArticleId == articles.Id)
             .ToList();
-            
+
         var articlesEntity = await databaseContext.Articles
-            .FindAsync(updateArticleLikesCommand.Id);
+            .FindAsync(command.Id);
 
         articlesEntity.Should().NotBeNull();
         articleLikesEntity.Should().HaveCount(1);
@@ -183,69 +190,82 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
     public async Task GivenNewLikesAddedAsLoggedUser_WhenUpdateArticleLikes_ShouldAddLikes(int likes, int expectedLikes)
     {
         // Arrange
-        var users = new Users
+        var user = new Users
         {
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
+            Id = Guid.NewGuid(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
-        await databaseContext.SaveChangesAsync();
-
-        var articles = new Articles
+        var article = new Articles
         {
+            Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),
             Description = DataUtilityService.GetRandomString(),
             IsPublished = true,
             ReadCount = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = users.Id
+            UserId = user.Id
         };
 
-        await databaseContext.Articles.AddAsync(articles);
+        var databaseContext = GetTestDatabaseContext();
+        await databaseContext.Users.AddAsync(user);
+        await databaseContext.Articles.AddAsync(article);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserService>();
+        var getUserDto = new GetUserDto
+        {
+            UserId = user.Id,
+            AliasName = DataUtilityService.GetRandomString(),
+            AvatarName = DataUtilityService.GetRandomString(),
+            FirstName = DataUtilityService.GetRandomString(),
+            LastName = DataUtilityService.GetRandomString(),
+            Email = DataUtilityService.GetRandomEmail(),
+            ShortBio = DataUtilityService.GetRandomString(),
+            Registered = DataUtilityService.GetRandomDateTime()
+        };
+
+        var dateTimeService = new DateTimeService();
+        var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
-        mockedUserProvider
-            .Setup(provider => provider.GetUserId())
-            .ReturnsAsync(users.Id);
+        var likesLimit = new LimitSettings { Likes = new Likes { ForAnonymous = 25, ForUser = 50 } };
+        var mockedApplicationSettings = MockApplicationSettings(limitSettings: likesLimit);
 
-        mockedUserProvider
+        mockedUserService
+            .Setup(provider => provider.GetUser(It.IsAny<CancellationToken>()))
+            .ReturnsAsync(getUserDto);
+
+        mockedUserService
             .Setup(provider => provider.GetRequestIpAddress())
             .Returns(IpAddress);
 
-        var updateArticleLikesCommandHandler = new UpdateArticleLikesCommandHandler(
-            databaseContext, 
-            mockedLogger.Object,
-            mockedUserProvider.Object);
-
-        var updateArticleLikesCommand = new UpdateArticleLikesCommand
+        var command = new UpdateArticleLikesCommand
         {
-            Id = articles.Id,
+            Id = article.Id,
             AddToLikes = likes,
         };
 
+        var handler = new UpdateArticleLikesCommandHandler(
+            databaseContext, 
+            mockedLogger.Object,
+            mockedUserService.Object, 
+            dateTimeService,
+            mockedApplicationSettings.Object);
+
         // Act
-        await updateArticleLikesCommandHandler.Handle(updateArticleLikesCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
         // Assert
         var articleLikes = databaseContext.ArticleLikes
-            .Where(articleLikes => articleLikes.ArticleId == articles.Id)
+            .Where(articleLikes => articleLikes.ArticleId == article.Id)
             .ToList();
 
         var articlesEntity = await databaseContext.Articles
-            .FindAsync(updateArticleLikesCommand.Id);
+            .FindAsync(command.Id);
 
         articlesEntity.Should().NotBeNull();
         articleLikes.Should().HaveCount(1);
@@ -260,72 +280,84 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
     public async Task GivenExistingLikesUpdatedAsLoggedUser_WhenUpdateArticleLikes_ShouldModifyLikes(int existingLikes, int newLikes, int expectedLikes)
     {
         // Arrange
-        var users = new Users
+        var user = new Users
         {
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
+            Id = Guid.NewGuid(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
-        await databaseContext.SaveChangesAsync();
-
         var articles = new Articles
         {
+            Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),
             Description = DataUtilityService.GetRandomString(),
             IsPublished = true,
             ReadCount = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = users.Id
+            UserId = user.Id
         };
             
-        await databaseContext.Articles.AddAsync(articles);
-        await databaseContext.SaveChangesAsync();
-
         var likes = new ArticleLikes 
         { 
+            Id = Guid.NewGuid(),
             ArticleId = articles.Id,
-            UserId = users.Id,
+            UserId = user.Id,
             IpAddress = IpAddress,
             LikeCount = existingLikes
         };
 
+        var databaseContext = GetTestDatabaseContext();
+        await databaseContext.Users.AddAsync(user);
+        await databaseContext.Articles.AddAsync(articles);
         await databaseContext.ArticleLikes.AddAsync(likes);
         await databaseContext.SaveChangesAsync();
 
-        var mockedUserProvider = new Mock<IUserService>();
+        var getUserDto = new GetUserDto
+        {
+            UserId = user.Id,
+            AliasName = DataUtilityService.GetRandomString(),
+            AvatarName = DataUtilityService.GetRandomString(),
+            FirstName = DataUtilityService.GetRandomString(),
+            LastName = DataUtilityService.GetRandomString(),
+            Email = DataUtilityService.GetRandomEmail(),
+            ShortBio = DataUtilityService.GetRandomString(),
+            Registered = DataUtilityService.GetRandomDateTime()
+        };
+
+        var dateTimeService = new DateTimeService();
+        var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
-        mockedUserProvider
-            .Setup(provider => provider.GetUserId())
-            .ReturnsAsync(users.Id);
+        var likesLimit = new LimitSettings { Likes = new Likes { ForAnonymous = 25, ForUser = 50 } };
+        var mockedApplicationSettings = MockApplicationSettings(limitSettings: likesLimit);
 
-        mockedUserProvider
+        mockedUserService
+            .Setup(provider => provider.GetUser(It.IsAny<CancellationToken>()))
+            .ReturnsAsync(getUserDto);
+
+        mockedUserService
             .Setup(provider => provider.GetRequestIpAddress())
             .Returns(IpAddress);
 
-        var updateArticleLikesCommandHandler = new UpdateArticleLikesCommandHandler(
-            databaseContext, 
-            mockedLogger.Object,
-            mockedUserProvider.Object);
-
-        var updateArticleLikesCommand = new UpdateArticleLikesCommand
+        var command = new UpdateArticleLikesCommand
         {
             Id = articles.Id,
-            AddToLikes = newLikes,
+            AddToLikes = newLikes
         };
 
+        var handler = new UpdateArticleLikesCommandHandler(
+            databaseContext, 
+            mockedLogger.Object,
+            mockedUserService.Object, 
+            dateTimeService,
+            mockedApplicationSettings.Object);
+
         // Act
-        await updateArticleLikesCommandHandler.Handle(updateArticleLikesCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
         // Assert
         var articleLikes = databaseContext.ArticleLikes
@@ -333,7 +365,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             .ToList();
             
         var articlesEntity = await databaseContext.Articles
-            .FindAsync(updateArticleLikesCommand.Id);
+            .FindAsync(command.Id);
 
         articlesEntity.Should().NotBeNull();
         articleLikes.Should().HaveCount(1);

@@ -3,8 +3,10 @@ namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Database;
+using Dto.Users;
 using Domain.Entities;
 using Core.Exceptions;
 using Shared.Services;
@@ -27,9 +29,9 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 
     private readonly IApplicationSettings _applicationSettings;
         
-    public AuthenticateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, ICipheringService cipheringService, 
-        IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IUserService userService, 
-        IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+    public AuthenticateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+        ICipheringService cipheringService, IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, 
+        IUserService userService, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
         _cipheringService = cipheringService;
         _webTokenUtility = webTokenUtility;
@@ -40,40 +42,38 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 
     public override async Task<AuthenticateUserCommandResult> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
     {
-        var users = await DatabaseContext.Users
+        var user = await DatabaseContext.Users
+            .Where(users => !users.IsDeleted)
             .Where(users => users.EmailAddress == request.EmailAddress)
-            .ToListAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (!users.Any())
+        if (user is null)
         {
-            LoggerService.LogError($"Cannot find user with given email address: '{request.EmailAddress}'.");
+            LoggerService.LogError($"Cannot find user with given email address: '{request.EmailAddress}', or it has been removed.");
             throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
         }
 
-        var currentUser = users.First();
-        var isPasswordValid = _cipheringService.VerifyPassword(request.Password, currentUser.CryptedPassword);
+        if (!user.IsActivated)
+            throw new AccessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
+        var isPasswordValid = _cipheringService.VerifyPassword(request.Password!, user.CryptedPassword);
         if (!isPasswordValid)
         {
-            LoggerService.LogError($"Cannot positively verify given password supplied by user (Id: {currentUser.Id}).");
+            LoggerService.LogError($"Cannot positively verify given password supplied by user ({user.Id}) for email address: '{request.EmailAddress}'.");
             throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
         }
-
-        if (!currentUser.IsActivated)
-            throw new AccessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
         var currentDateTime = _dateTimeService.Now;
         var ipAddress = _userService.GetRequestIpAddress();
         var tokenExpires = _dateTimeService.Now.AddMinutes(_applicationSettings.IdentityServer.WebTokenExpiresIn);
-        var userToken = await _userService.GenerateUserToken(currentUser, tokenExpires, cancellationToken);
+        var userToken = await _userService.GenerateUserToken(user, tokenExpires, cancellationToken);
 
         var expiresIn = _applicationSettings.IdentityServer.RefreshTokenExpiresIn;
         var refreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, expiresIn);
 
-        currentUser.LastLogged = currentDateTime;
         var newUserToken = new UserTokens
         {
-            UserId = currentUser.Id,
+            UserId = user.Id,
             Token = userToken,
             Expires = tokenExpires,
             Created = currentDateTime,
@@ -83,31 +83,35 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 
         var newRefreshToken = new UserRefreshTokens
         {
-            UserId = currentUser.Id,
+            UserId = user.Id,
             Token = refreshToken.Token,
             Expires = refreshToken.Expires,
             Created = refreshToken.Created,
             CreatedByIp = refreshToken.CreatedByIp
         };
 
-        await _userService.DeleteOutdatedRefreshTokens(currentUser.Id, false, cancellationToken);
+        await _userService.DeleteOutdatedRefreshTokens(user.Id, false, cancellationToken);
         await DatabaseContext.UserTokens.AddAsync(newUserToken, cancellationToken);
         await DatabaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        var roles = await _userService.GetUserRoles(currentUser.Id);
-        var permissions = await _userService.GetUserPermissions(currentUser.Id);
+        var roles = await _userService.GetUserRoles(user.Id, cancellationToken) ?? new List<GetUserRoleDto>();
+        var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken) ?? new List<GetUserPermissionDto>();
+
+        var userInfo = await DatabaseContext.UserInfo
+            .Where(info => info.UserId == user.Id)
+            .SingleOrDefaultAsync(cancellationToken);
 
         return new AuthenticateUserCommandResult
         {
-            UserId = currentUser.Id,
-            AliasName = currentUser.UserAlias,
-            AvatarName = currentUser.AvatarName,
-            FirstName = currentUser.FirstName,
-            LastName = currentUser.LastName,
-            Email = currentUser.EmailAddress,
-            ShortBio = currentUser.ShortBio,
-            Registered = currentUser.Registered,
+            UserId = user.Id,
+            AliasName = user.UserAlias,
+            AvatarName = userInfo.UserImageName,
+            FirstName = userInfo.FirstName,
+            LastName = userInfo.LastName,
+            Email = user.EmailAddress,
+            ShortBio = userInfo.UserAboutText,
+            Registered = user.CreatedAt,
             UserToken = userToken,
             RefreshToken = refreshToken.Token,
             Roles = roles,

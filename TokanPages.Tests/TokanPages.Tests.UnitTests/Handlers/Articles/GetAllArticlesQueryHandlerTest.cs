@@ -18,33 +18,18 @@ public class GetAllArticlesQueryHandlerTest : TestBase
     public async Task WhenGetAllArticles_ShouldReturnCollection() 
     {
         // Arrange
-        var databaseContext = GetTestDatabaseContext();
-        var mockedLogger = new Mock<ILoggerService>();
-
-        var getAllArticlesQuery = new GetAllArticlesQuery { IsPublished = false };
-        var getAllArticlesQueryHandler = new GetAllArticlesQueryHandler(databaseContext, mockedLogger.Object);
-            
         var user = new Users
         {
+            Id = Guid.NewGuid(),
             UserAlias  = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
             EmailAddress = DataUtilityService.GetRandomEmail(),
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = DataUtilityService.GetRandomDateTime(),
-            LastUpdated = DataUtilityService.GetRandomDateTime(),
-            AvatarName = DataUtilityService.GetRandomString(),
-            ShortBio = DataUtilityService.GetRandomString(),
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        await databaseContext.Users.AddAsync(user);
-        await databaseContext.SaveChangesAsync();
-            
         var articles = new List<Articles>
         {
-            new ()
+            new()
             {
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
@@ -54,7 +39,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
                 UpdatedAt = null,
                 UserId = user.Id
             },
-            new ()
+            new()
             {
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
@@ -66,18 +51,23 @@ public class GetAllArticlesQueryHandlerTest : TestBase
             }
         };
 
+        var databaseContext = GetTestDatabaseContext();
+        await databaseContext.Users.AddAsync(user);
         await databaseContext.Articles.AddRangeAsync(articles);
         await databaseContext.SaveChangesAsync();
 
+        var mockedLogger = new Mock<ILoggerService>();
+
+        var query = new GetAllArticlesQuery { IsPublished = false };
+        var handler = new GetAllArticlesQueryHandler(databaseContext, mockedLogger.Object);
+
         // Act
-        var result = (await getAllArticlesQueryHandler
-                .Handle(getAllArticlesQuery, CancellationToken.None))
-            .ToList();
+        var result = await handler.Handle(query, CancellationToken.None);
 
         // Assert
-        result.Should().NotBeNull();
-        result.Should().HaveCount(2);
-        result[0].Id.Should().Be(articles[0].Id);
-        result[1].Id.Should().Be(articles[1].Id);
+        result.ToList().Should().NotBeNull();
+        result.ToList().Should().HaveCount(2);
+        result.ToList()[0].Id.Should().Be(articles[0].Id);
+        result.ToList()[1].Id.Should().Be(articles[1].Id);
     }
 }

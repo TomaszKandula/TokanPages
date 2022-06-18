@@ -8,6 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
+using TokanPages.Backend.Dto.Users;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Cqrs.Handlers.Commands.Subscribers;
@@ -23,15 +25,23 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
             Count = 50,
-            Registered = DateTime.Now,
-            LastUpdated = null
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            CreatedBy = Guid.Empty,
         };
 
         var databaseContext = GetTestDatabaseContext();
         await databaseContext.Subscribers.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
-        var updateSubscriberCommand = new UpdateSubscriberCommand
+        var dateTimeService = new DateTimeService();
+        var mockedUserService = new Mock<IUserService>();
+        var mockedLogger = new Mock<ILoggerService>();
+
+        mockedUserService
+            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
+            .ReturnsAsync((GetUserDto)null!);
+        
+        var command = new UpdateSubscriberCommand
         {
             Id = subscribers.Id,
             Email = DataUtilityService.GetRandomEmail(),
@@ -39,24 +49,24 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Count = 10
         };
 
-        var mockedDateTime = new Mock<IDateTimeService>();
-        var mockedLogger = new Mock<ILoggerService>();
-        var updateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(
+        var handler = new UpdateSubscriberCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
-            mockedDateTime.Object);
+            dateTimeService, 
+            mockedUserService.Object);
 
         // Act
-        await updateSubscriberCommandHandler.Handle(updateSubscriberCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        var subscribersEntity = await databaseContext.Subscribers.FindAsync(updateSubscriberCommand.Id);
+        var entity = await databaseContext.Subscribers.FindAsync(command.Id);
 
-        subscribersEntity.Should().NotBeNull();
-        subscribersEntity.IsActivated.Should().BeTrue();
-        subscribersEntity.Email.Should().Be(updateSubscriberCommand.Email);
-        subscribersEntity.Count.Should().Be(updateSubscriberCommand.Count);
-        subscribersEntity.LastUpdated.Should().NotBeNull();
+        entity.Should().NotBeNull();
+        entity.IsActivated.Should().BeTrue();
+        entity.Email.Should().Be(command.Email);
+        entity.Count.Should().Be(command.Count);
+        entity.ModifiedAt.Should().NotBeNull();
+        entity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
     }
 
     [Fact]
@@ -68,15 +78,19 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
             Count = 50,
-            Registered = DateTime.Now,
-            LastUpdated = null
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            CreatedBy = Guid.Empty,
         };
 
         var databaseContext = GetTestDatabaseContext();
         await databaseContext.Subscribers.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
-        var updateSubscriberCommand = new UpdateSubscriberCommand
+        var dateTimeService = new DateTimeService();
+        var mockedUserService = new Mock<IUserService>();
+        var mockedLogger = new Mock<ILoggerService>();
+
+        var command = new UpdateSubscriberCommand
         {
             Id = subscribers.Id,
             Email = DataUtilityService.GetRandomEmail(),
@@ -84,62 +98,65 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Count = null
         };
 
-        var mockedDateTime = new Mock<IDateTimeService>();
-        var mockedLogger = new Mock<ILoggerService>();
-        var updateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(
+        var handler = new UpdateSubscriberCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
-            mockedDateTime.Object);
-            
+            dateTimeService, 
+            mockedUserService.Object);
+
         // Act
-        await updateSubscriberCommandHandler.Handle(updateSubscriberCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        var subscribersEntity = await databaseContext.Subscribers.FindAsync(updateSubscriberCommand.Id);
+        var entity = await databaseContext.Subscribers.FindAsync(command.Id);
 
-        subscribersEntity.Should().NotBeNull();
-        subscribersEntity.IsActivated.Should().BeTrue();
-        subscribersEntity.Email.Should().Be(updateSubscriberCommand.Email);
-        subscribersEntity.Count.Should().Be(subscribers.Count);
-        subscribersEntity.LastUpdated.Should().NotBeNull();
+        entity.Should().NotBeNull();
+        entity.IsActivated.Should().BeTrue();
+        entity.Email.Should().Be(command.Email);
+        entity.Count.Should().Be(subscribers.Count);
+        entity.ModifiedAt.Should().NotBeNull();
+        entity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
     }
 
     [Fact]
     public async Task GivenIncorrectId_WhenUpdateSubscriber_ShouldThrowError()
     {
         // Arrange
-        var updateSubscriberCommand = new UpdateSubscriberCommand
+        var command = new UpdateSubscriberCommand
         {
-            Id = Guid.Parse("32fcefec-4c26-48bb-8717-31447cfda471"),
+            Id = Guid.NewGuid(),
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
             Count = 10
         };
 
-        var databaseContext = GetTestDatabaseContext();
         var subscribers = new Subscribers
         {
-            Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
+            Id = Guid.NewGuid(),
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
             Count = 50,
-            Registered = DateTime.Now,
-            LastUpdated = null
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            CreatedBy = Guid.Empty,
         };
+
+        var databaseContext = GetTestDatabaseContext();
         await databaseContext.Subscribers.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
-        var mockedDateTime = new Mock<IDateTimeService>();
+        var dateTimeService = new DateTimeService();
+        var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var updateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(
+
+        var handler = new UpdateSubscriberCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedDateTime.Object);
+            dateTimeService, 
+            mockedUserService.Object);
 
         // Act
         // Assert
-        await Assert.ThrowsAsync<BusinessException>(() 
-            => updateSubscriberCommandHandler.Handle(updateSubscriberCommand, CancellationToken.None));
+        await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
     }
 
     [Fact]
@@ -152,15 +169,19 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Email = testEmail,
             IsActivated = true,
             Count = 50,
-            Registered = DateTime.Now,
-            LastUpdated = null
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            CreatedBy = Guid.Empty,
         };
 
         var databaseContext = GetTestDatabaseContext();
         await databaseContext.Subscribers.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
-        var updateSubscriberCommand = new UpdateSubscriberCommand
+        var dateTimeService = new DateTimeService();
+        var mockedUserService = new Mock<IUserService>();
+        var mockedLogger = new Mock<ILoggerService>();
+
+        var command = new UpdateSubscriberCommand
         {
             Id = subscribers.Id,
             Email = testEmail,
@@ -168,16 +189,14 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Count = 10
         };
 
-        var mockedDateTime = new Mock<IDateTimeService>();
-        var mockedLogger = new Mock<ILoggerService>();
-        var updateSubscriberCommandHandler = new UpdateSubscriberCommandHandler(
+        var handler = new UpdateSubscriberCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedDateTime.Object);
+            dateTimeService, 
+            mockedUserService.Object);
 
         // Act
         // Assert
-        await Assert.ThrowsAsync<BusinessException>(() 
-            => updateSubscriberCommandHandler.Handle(updateSubscriberCommand, CancellationToken.None));
+        await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
     }
 }

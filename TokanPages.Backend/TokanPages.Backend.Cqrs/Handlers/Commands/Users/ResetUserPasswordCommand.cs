@@ -4,5 +4,5 @@ using MediatR;
     
 public class ResetUserPasswordCommand : IRequest<Unit>
 {
-    public string EmailAddress { get; set; }        
+    public string? EmailAddress { get; set; }        
 }

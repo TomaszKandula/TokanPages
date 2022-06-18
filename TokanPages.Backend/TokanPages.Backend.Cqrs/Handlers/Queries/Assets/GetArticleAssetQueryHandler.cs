@@ -14,11 +14,8 @@ public class GetArticleAssetQueryHandler : RequestHandler<GetArticleAssetQuery, 
 {
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
     
-    public GetArticleAssetQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
-    {
-        _azureBlobStorageFactory = azureBlobStorageFactory;
-    }
+    public GetArticleAssetQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory) 
+        : base(databaseContext, loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
 
     public override async Task<FileContentResult> Handle(GetArticleAssetQuery request, CancellationToken cancellationToken)
     {
@@ -28,6 +25,12 @@ public class GetArticleAssetQueryHandler : RequestHandler<GetArticleAssetQuery, 
         var streamContent = await azureBlob.OpenRead(requestUrl, cancellationToken);
         if (streamContent is null)
             throw new BusinessException(nameof(ErrorCodes.ASSET_NOT_FOUND), ErrorCodes.ASSET_NOT_FOUND);
+
+        if (streamContent.Content is null)
+            throw new BusinessException(nameof(ErrorCodes.ASSET_NOT_FOUND), ErrorCodes.ASSET_NOT_FOUND);
+
+        if (streamContent.ContentType is null)
+            throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
 
         var memoryStream = new MemoryStream();
         await streamContent.Content.CopyToAsync(memoryStream, cancellationToken);

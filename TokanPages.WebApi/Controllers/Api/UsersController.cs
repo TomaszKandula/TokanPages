@@ -6,83 +6,147 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
+using Backend.Dto.Users;
 using Backend.Domain.Enums;
 using Backend.Cqrs.Mappers;
-using Backend.Shared.Dto.Users;
+using Services.Caching.Users;
 using Backend.Shared.Attributes;
 using Backend.Cqrs.Handlers.Queries.Users;
 using Backend.Cqrs.Handlers.Commands.Users;
-using Services.Caching.Users;
 using MediatR;
 
+/// <summary>
+/// API endpoints definitions for users
+/// </summary>
 [Authorize]
 [ApiVersion("1.0")]
 public class UsersController : ApiBaseController
 {
     private readonly IUsersCache _usersCache;
 
+    /// <inheritdoc />
     public UsersController(IMediator mediator, IUsersCache usersCache) 
         : base(mediator) => _usersCache = usersCache;
 
+    /// <summary>
+    /// Returns visitor count
+    /// </summary>
+    /// <returns>Object</returns>
     [HttpGet]
     [ProducesResponseType(typeof(GetUserVisitCountQueryResult), StatusCodes.Status200OK)]
     public async Task<GetUserVisitCountQueryResult> GetVisitCount()
         => await Mediator.Send(new GetUserVisitCountQuery());
 
+    /// <summary>
+    /// Authenticates user
+    /// </summary>
+    /// <param name="payLoad">User data</param>
+    /// <returns>Object</returns>
     [HttpPost]
     [ProducesResponseType(typeof(AuthenticateUserCommandResult), StatusCodes.Status200OK)]
     public async Task<AuthenticateUserCommandResult> AuthenticateUser([FromBody] AuthenticateUserDto payLoad)
         => await Mediator.Send(UsersMapper.MapToAuthenticateUserCommand(payLoad));
 
+    /// <summary>
+    /// Re-authenticates user
+    /// </summary>
+    /// <param name="payLoad">User data</param>
+    /// <returns>Object</returns>
     [HttpPost]
     [ProducesResponseType(typeof(ReAuthenticateUserCommandResult), StatusCodes.Status200OK)]
     public async Task<ReAuthenticateUserCommandResult> ReAuthenticateUser([FromBody] ReAuthenticateUserDto payLoad)
         => await Mediator.Send(UsersMapper.MapToReAuthenticateUserCommand(payLoad));
 
+    /// <summary>
+    /// Revokes existing user refresh token
+    /// </summary>
+    /// <param name="payLoad">Refresh Token</param>
+    /// <returns>Object</returns>
     [HttpPost]
     [AuthorizeUser(Roles.GodOfAsgard)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RevokeUserRefreshToken([FromBody] RevokeUserRefreshTokenDto payLoad)
         => await Mediator.Send(UsersMapper.MapToRevokeUserRefreshTokenCommand(payLoad));
 
+    /// <summary>
+    /// Activates existing user account
+    /// </summary>
+    /// <param name="payLoad">User data</param>
+    /// <returns>MediatR unit value</returns>
     [HttpPost]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> ActivateUser([FromBody] ActivateUserDto payLoad)
         => await Mediator.Send(UsersMapper.MapToActivateUserCommand(payLoad));
 
+    /// <summary>
+    /// Resets existing user password
+    /// </summary>
+    /// <param name="payLoad">User data</param>
+    /// <returns>MediatR unit value</returns>
     [HttpPost]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> ResetUserPassword([FromBody] ResetUserPasswordDto payLoad) 
         => await Mediator.Send(UsersMapper.MapToResetUserPasswordCommand(payLoad));
 
+    /// <summary>
+    /// Updates existing user password
+    /// </summary>
+    /// <param name="payLoad">User data</param>
+    /// <returns>MediatR unit value</returns>
     [HttpPost]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> UpdateUserPassword([FromBody] UpdateUserPasswordDto payLoad) 
         => await Mediator.Send(UsersMapper.MapToUpdateUserPasswordCommand(payLoad));
 
+    /// <summary>
+    /// Returns all registered users
+    /// </summary>
+    /// <param name="noCache">Enable/disable REDIS cache</param>
+    /// <returns>Object</returns>
     [HttpGet]
     [AuthorizeUser(Roles.GodOfAsgard)]
     [ProducesResponseType(typeof(IEnumerable<GetAllUsersQueryResult>), StatusCodes.Status200OK)]
     public async Task<IEnumerable<GetAllUsersQueryResult>> GetAllUsers([FromQuery] bool noCache = false)
         => await _usersCache.GetUsers(noCache);
 
+    /// <summary>
+    /// Returns registered user
+    /// </summary>
+    /// <param name="id">User ID</param>
+    /// <param name="noCache">Enable/disable REDIS cache</param>
+    /// <returns>Object</returns>
     [HttpGet("{id:guid}")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(GetUserQueryResult), StatusCodes.Status200OK)]
     public async Task<GetUserQueryResult> GetUser([FromRoute] Guid id, [FromQuery] bool noCache = false)
         => await _usersCache.GetUser(id, noCache);
 
+    /// <summary>
+    /// Adds new user account
+    /// </summary>
+    /// <param name="payLoad">User data</param>
+    /// <returns>Guid</returns>
     [HttpPost]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
     public async Task<Guid> AddUser([FromBody] AddUserDto payLoad)
         => await Mediator.Send(UsersMapper.MapToAddUserCommand(payLoad));
 
+    /// <summary>
+    /// Updates existing user account
+    /// </summary>
+    /// <param name="payLoad">User data</param>
+    /// <returns>MediatR unit value</returns>
     [HttpPost]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> UpdateUser([FromBody] UpdateUserDto payLoad)
         => await Mediator.Send(UsersMapper.MapToUpdateUserCommand(payLoad));
 
+    /// <summary>
+    /// Removes existing user account
+    /// </summary>
+    /// <param name="payLoad">User data</param>
+    /// <returns>MediatR unit value</returns>
     [HttpPost]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]

@@ -47,18 +47,20 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     public override async Task<Guid> Handle(AddUserCommand request, CancellationToken cancellationToken)
     {
+        var adminUser = await _userService.GetUser(cancellationToken);
         var users = await DatabaseContext.Users
+            .Where(users => !users.IsDeleted)
             .Where(users => users.EmailAddress == request.EmailAddress)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (users != null && (users.ActivationIdEnds == null || users.ActivationIdEnds > _dateTimeService.Now))
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-        var getNewSalt = _cipheringService.GenerateSalt(Constants.CipherLogRounds);
-        var getHashedPassword = _cipheringService.GetHashedPassword(request.Password, getNewSalt);
+        var getNewSalt = _cipheringService.GenerateSalt(12);
+        var getHashedPassword = _cipheringService.GetHashedPassword(request.Password!, getNewSalt);
         LoggerService.LogInformation($"New hashed password has been generated. Requested by: {request.EmailAddress}.");
 
-        var expiresIn = _applicationSettings.ExpirationSettings.ActivationIdExpiresIn;
+        var expiresIn = _applicationSettings.LimitSettings.ActivationIdExpiresIn;
         var activationId = Guid.NewGuid();
         var activationIdEnds = _dateTimeService.Now.AddMinutes(expiresIn);
 
@@ -69,7 +71,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             users.ActivationIdEnds = activationIdEnds;
 
             await DatabaseContext.SaveChangesAsync(cancellationToken);
-            await SendNotification(request.EmailAddress, activationId, activationIdEnds, cancellationToken);
+            await SendNotification(request.EmailAddress!, activationId, activationIdEnds, cancellationToken);
 
             LoggerService.LogInformation($"Re-registering new user after ActivationId expired, user id: {users.Id}.");
             return users.Id;
@@ -85,20 +87,33 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
         var defaultAvatar = await azureBlob.OpenRead(sourceAvatarPath, cancellationToken);
         if (defaultAvatar is not null)
-            await azureBlob.UploadFile(defaultAvatar.Content, destinationAvatarPath, cancellationToken: cancellationToken);
+            await azureBlob.UploadFile(defaultAvatar.Content!, destinationAvatarPath, cancellationToken: cancellationToken);
 
+        var userAlias = $"{request.FirstName![..2]}{request.LastName![..3]}".ToLower();
         var newUser = new Users
         {
             Id = newUserId,
             EmailAddress = request.EmailAddress,
-            UserAlias = request.UserAlias.ToLower(),
-            FirstName = request.FirstName,
-            LastName = request.LastName,
-            Registered = _dateTimeService.Now,
-            AvatarName = defaultAvatar != null ? defaultAvatarName : null,
+            UserAlias = userAlias,
             CryptedPassword = getHashedPassword,
             ActivationId = activationId,
-            ActivationIdEnds = activationIdEnds
+            ActivationIdEnds = activationIdEnds,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = adminUser?.UserId ?? Guid.Empty,
+            ModifiedAt = null,
+            ModifiedBy = null
+        };
+
+        var newUserInfo = new UserInfo
+        {
+            UserId = newUserId,
+            FirstName = request.FirstName,
+            LastName = request.LastName,
+            UserImageName = defaultAvatar != null ? defaultAvatarName : null,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = adminUser?.UserId ?? Guid.Empty,
+            ModifiedAt = null,
+            ModifiedBy = null
         };
 
         var timezoneOffset = _userService.GetRequestUserTimezoneOffset();
@@ -106,29 +121,32 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         var expirationDate = baseDateTime.AddMinutes(expiresIn);
 
         await DatabaseContext.Users.AddAsync(newUser, cancellationToken);
+        await DatabaseContext.UserInfo.AddAsync(newUserInfo, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
-        await SetupDefaultPermissions(newUser.Id, cancellationToken);
-        await SendNotification(request.EmailAddress, activationId, expirationDate, cancellationToken);
+        await SetupDefaultPermissions(newUser.Id, adminUser?.UserId, cancellationToken);
+        await SendNotification(request.EmailAddress!, activationId, expirationDate, cancellationToken);
 
+        var info = adminUser is not null ? $"Admin (ID: {adminUser.UserId})" : $"System (ID: {Guid.Empty})";
         LoggerService.LogInformation($"Registering new user account, user id: {newUser.Id}.");
+        LoggerService.LogInformation($"Registered by the {info}");
         return newUser.Id;
     }
 
-    private async Task SetupDefaultPermissions(Guid userId, CancellationToken cancellationToken)
+    private async Task SetupDefaultPermissions(Guid userId, Guid? adminUserId, CancellationToken cancellationToken)
     {
         var userRoleName = Domain.Enums.Roles.EverydayUser.ToString();
         var defaultPermissions = await DatabaseContext.DefaultPermissions
             .AsNoTracking()
-            .Include(permissions => permissions.Role)
-            .Include(permissions => permissions.Permission)
-            .Where(permissions => permissions.Role.Name == userRoleName)
+            .Include(permissions => permissions.RoleNavigation)
+            .Include(permissions => permissions.PermissionNavigation)
+            .Where(permissions => permissions.RoleNavigation.Name == userRoleName)
             .Select(permissions => new DefaultPermissions
             {
                 Id = permissions.Id,
                 RoleId = permissions.RoleId,
-                Role = permissions.Role,
+                RoleNavigation = permissions.RoleNavigation,
                 PermissionId = permissions.PermissionId,
-                Permission = permissions.Permission
+                PermissionNavigation = permissions.PermissionNavigation
             })
             .ToListAsync(cancellationToken);
 
@@ -143,13 +161,21 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         var newRole = new UserRoles
         {
             UserId = userId,
-            RoleId = everydayUserRoleId
+            RoleId = everydayUserRoleId,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = adminUserId ?? Guid.Empty,
+            ModifiedAt = null,
+            ModifiedBy = null
         };
 
         var newPermissions = userPermissions.Select(item => new UserPermissions
         {
             UserId = userId, 
-            PermissionId = item
+            PermissionId = item,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = adminUserId ?? Guid.Empty,
+            ModifiedAt = null,
+            ModifiedBy = null
         }).ToList();
 
         await DatabaseContext.UserRoles.AddAsync(newRole, cancellationToken);

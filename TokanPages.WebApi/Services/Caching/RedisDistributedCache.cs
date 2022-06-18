@@ -1,6 +1,7 @@
 namespace TokanPages.WebApi.Services.Caching;
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -10,6 +11,9 @@ using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
 using Newtonsoft.Json;
 
+/// <summary>
+/// Redis distributed implementation
+/// </summary>
 [ExcludeFromCodeCoverage]
 public class RedisDistributedCache : IRedisDistributedCache
 {
@@ -17,56 +21,66 @@ public class RedisDistributedCache : IRedisDistributedCache
 
     private readonly IApplicationSettings _applicationSettings;
 
+    /// <summary>
+    /// Redis distributed implementation
+    /// </summary>
+    /// <param name="distributedCache">DistributedCache instance</param>
+    /// <param name="applicationSettings">ApplicationSettings instance</param>
     public RedisDistributedCache(IDistributedCache distributedCache, IApplicationSettings applicationSettings)
     {
         _distributedCache = distributedCache;
         _applicationSettings = applicationSettings;
     }
 
-    public TEntity GetObject<TEntity>(string key)
+    /// <inheritdoc />
+    public TEntity? GetObject<TEntity>(string key)
     {
         VerifyArguments(new[] { key });
 
         var cachedValue = _distributedCache.GetString(key);
-        return string.IsNullOrEmpty(cachedValue) 
-            ? default 
-            : JsonConvert.DeserializeObject<TEntity>(cachedValue);
+        return string.IsNullOrEmpty(cachedValue) ? default : JsonConvert.DeserializeObject<TEntity>(cachedValue);
     }
 
-    public async Task<TEntity> GetObjectAsync<TEntity>(string key)
+    /// <inheritdoc />
+    public async Task<TEntity?> GetObjectAsync<TEntity>(string key, CancellationToken cancellationToken = default)
     {
         VerifyArguments(new[] { key });
 
-        var cachedValue = await _distributedCache.GetStringAsync(key);
-        return string.IsNullOrEmpty(cachedValue) 
-            ? default 
-            : JsonConvert.DeserializeObject<TEntity>(cachedValue);
+        var cachedValue = await _distributedCache.GetStringAsync(key, cancellationToken);
+        return string.IsNullOrEmpty(cachedValue) ? default : JsonConvert.DeserializeObject<TEntity>(cachedValue);
     }
 
+    /// <inheritdoc />
     public void SetObject<TEntity>(string key, TEntity value, int absoluteExpirationMinute = 0, int slidingExpirationSecond = 0)
     {
         VerifyArguments(new[] { key });
         var serializedObject = JsonConvert.SerializeObject(value);
-        _distributedCache.SetString(key, serializedObject, SetDistributedCacheEntryOptions(absoluteExpirationMinute, slidingExpirationSecond));            
+        _distributedCache.SetString(key, serializedObject, 
+            SetDistributedCacheEntryOptions(absoluteExpirationMinute, slidingExpirationSecond));            
     }
 
-    public async Task SetObjectAsync<TEntity>(string key, TEntity value, int absoluteExpirationMinute = 0, int slidingExpirationSecond = 0)
+    /// <inheritdoc />
+    public async Task SetObjectAsync<TEntity>(string key, TEntity value, int absoluteExpirationMinute = 0, 
+        int slidingExpirationSecond = 0, CancellationToken cancellationToken = default)
     {
         VerifyArguments(new[] { key });
         var serializedObject = JsonConvert.SerializeObject(value);
-        await _distributedCache.SetStringAsync(key, serializedObject, SetDistributedCacheEntryOptions(absoluteExpirationMinute, slidingExpirationSecond));
+        await _distributedCache.SetStringAsync(key, serializedObject, 
+            SetDistributedCacheEntryOptions(absoluteExpirationMinute, slidingExpirationSecond), cancellationToken);
     }
 
+    /// <inheritdoc />
     public void Remove(string key)
     {
         VerifyArguments(new[] { key });
         _distributedCache.Remove(key);            
     }
 
-    public async Task RemoveAsync(string key)
+    /// <inheritdoc />
+    public async Task RemoveAsync(string key, CancellationToken cancellationToken = default)
     {
         VerifyArguments(new[] { key });
-        await _distributedCache.RemoveAsync(key);            
+        await _distributedCache.RemoveAsync(key, cancellationToken);            
     }
 
     private static void VerifyArguments(IEnumerable<string> arguments)

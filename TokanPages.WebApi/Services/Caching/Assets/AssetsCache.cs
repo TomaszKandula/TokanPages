@@ -8,41 +8,51 @@ using Backend.Cqrs.Handlers.Queries.Assets;
 using TokanPages.Services.HttpClientService.Models;
 using MediatR;
 
+/// <summary>
+/// Assets cache implementation
+/// </summary>
 [ExcludeFromCodeCoverage]
 public class AssetsCache : IAssetsCache
 {
     private readonly IRedisDistributedCache _redisDistributedCache;
 
     private readonly IMediator _mediator;
-    
+
+    /// <summary>
+    /// Asset cache implementation
+    /// </summary>
+    /// <param name="redisDistributedCache">Redis distributed cache instance</param>
+    /// <param name="mediator">Mediator instance</param>
     public AssetsCache(IRedisDistributedCache redisDistributedCache, IMediator mediator)
     {
         _redisDistributedCache = redisDistributedCache;
         _mediator = mediator;
     }
 
-    public async Task<IActionResult> GetAsset(string blobName, bool noCache = false)
+    /// <inheritdoc />
+    public async Task<IActionResult> GetAsset(string blobName = "", bool noCache = false)
     {
         if (noCache)
             return await _mediator.Send(new GetSingleAssetQuery { BlobName = blobName });
 
-        var cache = await _redisDistributedCache.GetObjectAsync<HttpContentResult>(blobName);
+        var key = $"asset/{blobName}/";
+        var cache = await _redisDistributedCache.GetObjectAsync<HttpContentResult>(key);
         if (cache is not null)
             return new FileContentResult(cache.Content!, cache.ContentType?.MediaType!);
 
         var result = await _mediator.Send(new GetSingleAssetQuery { BlobName = blobName });
-        await SaveToCache(result, blobName);
+        await SaveToCache(result, key);
 
         return result;
     }
 
-    public async Task<IActionResult> GetArticleAsset(string id, string assetName, bool noCache = false)
+    /// <inheritdoc />
+    public async Task<IActionResult> GetArticleAsset(string id = "", string assetName = "", bool noCache = false)
     {
-        var key = $"{id}/{assetName}";
-
         if (noCache)
             return await _mediator.Send(new GetArticleAssetQuery {  Id = id, AssetName = assetName });
 
+        var key = $"articleAsset/{id}/{assetName}";
         var cache = await _redisDistributedCache.GetObjectAsync<HttpContentResult>(key);
         if (cache is not null)
             return new FileContentResult(cache.Content!, cache.ContentType?.MediaType!);

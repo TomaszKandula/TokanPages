@@ -19,6 +19,9 @@ public class DbInitializer : IDbInitializer
         if (!_databaseContext.Users.Any())
             _databaseContext.Users.AddRange(UsersSeeder.SeedUsers());
 
+        if (!_databaseContext.UserInfo.Any())
+            _databaseContext.UserInfo.AddRange(UserInfoSeeder.SeedUserInfo());
+
         if (!_databaseContext.Articles.Any())
             _databaseContext.Articles.AddRange(ArticlesSeeder.SeedArticles());
 
