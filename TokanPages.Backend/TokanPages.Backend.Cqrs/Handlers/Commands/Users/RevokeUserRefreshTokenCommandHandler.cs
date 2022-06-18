@@ -15,7 +15,7 @@ using MediatR;
 public class RevokeUserRefreshTokenCommandHandler : Cqrs.RequestHandler<RevokeUserRefreshTokenCommand, Unit>
 {
     private readonly IUserService _userService;
-        
+
     public RevokeUserRefreshTokenCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
         IUserService userService) : base(databaseContext, loggerService) => _userService = userService;
 
