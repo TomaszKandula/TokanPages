@@ -31,7 +31,6 @@ public class UpdateArticleCountCommandHandler : Cqrs.RequestHandler<UpdateArticl
     public override async Task<Unit> Handle(UpdateArticleCountCommand request, CancellationToken cancellationToken)
     {
         var article = await DatabaseContext.Articles
-            .AsNoTracking()
             .Where(articles => articles.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
