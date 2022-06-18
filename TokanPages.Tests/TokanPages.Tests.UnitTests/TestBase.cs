@@ -3,8 +3,8 @@
 using Moq;
 using Microsoft.Extensions.DependencyInjection;
 using Backend.Database;
-using Backend.Shared.Models;
 using Backend.Shared.Services;
+using Backend.Shared.Services.Models;
 using TokanPages.Services.WebTokenService;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Core.Utilities.DataUtilityService;

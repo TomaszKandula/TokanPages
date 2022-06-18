@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Shared.Models;
+﻿namespace TokanPages.Backend.Shared.Services.Models;
 
 using System.Diagnostics.CodeAnalysis;
 
