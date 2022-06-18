@@ -47,7 +47,6 @@ public class UpdateSubscriberCommandHandler : Cqrs.RequestHandler<UpdateSubscrib
         subscriber.Email = request.Email ?? subscriber.Email;
         subscriber.Count = request.Count ?? subscriber.Count;
         subscriber.IsActivated = request.IsActivated ?? subscriber.IsActivated;
-        subscriber.LastUpdated = _dateTimeService.Now;//TODO: to bre replaced by [ModifiedAt]
         subscriber.ModifiedAt = _dateTimeService.Now;
         subscriber.ModifiedBy = user?.UserId ?? Guid.Empty;
 

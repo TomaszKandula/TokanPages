@@ -24,8 +24,8 @@ public class GetSubscriberQueryHandler : RequestHandler<GetSubscriberQuery, GetS
                 Email = subscribers.Email,
                 IsActivated = subscribers.IsActivated,
                 NewsletterCount = subscribers.Count,
-                Registered = subscribers.Registered,
-                LastUpdated = subscribers.LastUpdated
+                CreatedAt = subscribers.CreatedAt,
+                ModifiedAt = subscribers.ModifiedAt
             })
             .SingleOrDefaultAsync(cancellationToken);
 

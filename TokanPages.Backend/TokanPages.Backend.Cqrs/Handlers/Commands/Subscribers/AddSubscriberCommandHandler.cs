@@ -34,8 +34,6 @@ public class AddSubscriberCommandHandler : RequestHandler<AddSubscriberCommand, 
             Email = request.Email,
             Count = 0,
             IsActivated = true,
-            LastUpdated = null,  //TODO: to bre replaced by [ModifiedAt]
-            Registered = _dateTimeService.Now, //TODO: to be replaced by [CreatedAt]
             CreatedAt = _dateTimeService.Now,
             CreatedBy = Guid.Empty,
             ModifiedAt = null,
