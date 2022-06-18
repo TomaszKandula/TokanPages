@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Shared;
 using Database;
-using Shared.Models;
 using Shared.Services;
 using Core.Extensions;
+using Backend.Dto.Mailer;
 using Services.UserService;
 using Services.EmailSenderService;
 using Core.Utilities.LoggerService;
@@ -54,7 +54,7 @@ public class SendMessageCommandHandler : Cqrs.RequestHandler<SendMessageCommand,
         var template = await _emailSenderService.GetEmailTemplate(templateUrl, cancellationToken);
         LoggerService.LogInformation($"Getting email template from URL: {templateUrl}.");
 
-        var payload = new EmailSenderPayload
+        var payload = new SenderPayloadDto
         {
             From = Constants.Emails.Addresses.Contact,
             To = new List<string> { Constants.Emails.Addresses.Contact },

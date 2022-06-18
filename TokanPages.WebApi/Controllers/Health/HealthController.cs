@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Backend.Database;
+using Backend.Dto.Health;
 using Backend.Shared.Resources;
 
 /// <summary>
@@ -41,12 +42,12 @@ public class HealthController : ControllerBase
     {
         var canConnectToDatabase = await _databaseContext.Database.CanConnectAsync();
         if (!canConnectToDatabase)
-            return StatusCode(500, new Backend.Shared.Models.ActionResult
+            return StatusCode(500, new ActionResultDto
             {
                 ErrorCode = nameof(ErrorCodes.CANNOT_CONNECT_DATABASE),
                 ErrorDesc = ErrorCodes.CANNOT_CONNECT_DATABASE
             });
 
-        return StatusCode(200, new Backend.Shared.Models.ActionResult { IsSucceeded = true });
+        return StatusCode(200, new ActionResultDto { IsSucceeded = true });
     }
 }
