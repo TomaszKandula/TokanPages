@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Backend.Domain.Entities;
 using TokanPages.Backend.Dto.Users;
 using TokanPages.Services.UserService;
+using TokanPages.Backend.Shared.Services;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Cqrs.Handlers.Commands.Articles;
@@ -54,6 +55,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedApplicationSettings = new Mock<IApplicationSettings>();
 
         mockedUserService
             .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
@@ -73,7 +75,8 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object, 
-            dateTimeService);
+            dateTimeService, 
+            mockedApplicationSettings.Object);
 
         // Act
         await handler.Handle(command, CancellationToken.None);
@@ -139,6 +142,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var dateTimeService = new DateTimeService();
         var mockedUserProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedApplicationSettings = new Mock<IApplicationSettings>();
 
         mockedUserProvider
             .Setup(provider => provider.GetRequestIpAddress())
@@ -154,7 +158,8 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object, 
             mockedUserProvider.Object, 
-            dateTimeService);
+            dateTimeService,
+            mockedApplicationSettings.Object);
 
         // Act
         await handler.Handle(command, CancellationToken.None);
@@ -222,6 +227,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedApplicationSettings = new Mock<IApplicationSettings>();
 
         mockedUserService
             .Setup(provider => provider.GetUser(It.IsAny<CancellationToken>()))
@@ -241,7 +247,8 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object, 
-            dateTimeService);
+            dateTimeService,
+            mockedApplicationSettings.Object);
 
         // Act
         await handler.Handle(command, CancellationToken.None);
@@ -318,6 +325,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedApplicationSettings = new Mock<IApplicationSettings>();
 
         mockedUserService
             .Setup(provider => provider.GetUser(It.IsAny<CancellationToken>()))
@@ -337,7 +345,8 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object, 
-            dateTimeService);
+            dateTimeService,
+            mockedApplicationSettings.Object);
 
         // Act
         await handler.Handle(command, CancellationToken.None);
