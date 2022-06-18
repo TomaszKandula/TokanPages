@@ -14,10 +14,6 @@ public static class Subscriber1
 
     public const int Count = 0;
 
-    public static readonly DateTime Registered = DateTime.Parse("2020-01-10 12:15:15");//TODO: to be removed
-
-    public static readonly DateTime? LastUpdated = null;//TODO: to be removed
-
     public static readonly DateTime CreatedAt = DateTime.Parse("2020-10-03 11:01:05");
 
     public static readonly Guid CreatedBy = Guid.Empty;
