@@ -85,7 +85,7 @@ public static class Dependencies
 		services.AddSingleton(configuration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>());
 		services.AddSingleton(configuration.GetSection(nameof(SonarQube)).Get<SonarQube>());
 		services.AddSingleton(configuration.GetSection(nameof(IdentityServer)).Get<IdentityServer>());
-		services.AddSingleton(configuration.GetSection(nameof(ExpirationSettings)).Get<ExpirationSettings>());
+		services.AddSingleton(configuration.GetSection(nameof(LimitSettings)).Get<LimitSettings>());
 		services.AddSingleton<IApplicationSettings, ApplicationSettings>();
 	}
 

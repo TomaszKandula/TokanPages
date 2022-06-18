@@ -8,7 +8,7 @@ public interface IApplicationSettings
 
     IdentityServer IdentityServer { get; }
 
-    ExpirationSettings ExpirationSettings { get; }
+    LimitSettings LimitSettings { get; }
 
     EmailSender EmailSender { get; }
 

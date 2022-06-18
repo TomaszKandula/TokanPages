@@ -47,7 +47,7 @@ public class ResetUserPasswordCommandHandler : Cqrs.RequestHandler<ResetUserPass
         if (currentUser is null)
             throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-        var expiresIn = _applicationSettings.ExpirationSettings.ResetIdExpiresIn;
+        var expiresIn = _applicationSettings.LimitSettings.ResetIdExpiresIn;
         var resetId = Guid.NewGuid();
 
         currentUser.CryptedPassword = string.Empty;

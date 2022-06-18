@@ -3,7 +3,7 @@ namespace TokanPages.Backend.Shared.Services.Models;
 using System.Diagnostics.CodeAnalysis;
 
 [ExcludeFromCodeCoverage]
-public class ExpirationSettings
+public class LimitSettings
 {
     public int ResetIdExpiresIn { get; set; }
 

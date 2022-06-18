@@ -41,7 +41,7 @@ public class TestBase
     protected static Mock<IApplicationSettings> MockApplicationSettings(
         ApplicationPaths? applicationPaths = default, 
         IdentityServer? identityServer = default, 
-        ExpirationSettings? expirationSettings = default, 
+        LimitSettings? expirationSettings = default, 
         EmailSender? emailSender = default, 
         AzureStorage? azureStorage = default, 
         SonarQube? sonarQube = default)
@@ -58,9 +58,9 @@ public class TestBase
             .SetupGet(settings => settings.IdentityServer)
             .Returns(returnIdentityServer);
 
-        var returnExpirationSettings = expirationSettings ?? new ExpirationSettings();
+        var returnExpirationSettings = expirationSettings ?? new LimitSettings();
         applicationSettings
-            .SetupGet(settings => settings.ExpirationSettings)
+            .SetupGet(settings => settings.LimitSettings)
             .Returns(returnExpirationSettings);
 
         var returnEmailSender = emailSender ?? new EmailSender();

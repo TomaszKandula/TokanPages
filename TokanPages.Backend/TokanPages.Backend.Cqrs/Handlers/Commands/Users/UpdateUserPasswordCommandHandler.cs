@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Shared;
 using MediatR;
 using Database;
 using Domain.Enums;
@@ -74,7 +73,7 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
         if (resetId && _dateTimeService.Now > user.ResetIdEnds)
             throw new AuthorizationException(nameof(ErrorCodes.EXPIRED_RESET_ID), ErrorCodes.EXPIRED_RESET_ID);
 
-        var getNewSalt = _cipheringService.GenerateSalt(Constants.CipherLogRounds);
+        var getNewSalt = _cipheringService.GenerateSalt(12);
         var getHashedPassword = _cipheringService.GetHashedPassword(request.NewPassword!, getNewSalt);
 
         user.ResetId = null;

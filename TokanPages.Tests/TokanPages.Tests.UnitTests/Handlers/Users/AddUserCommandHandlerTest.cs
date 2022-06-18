@@ -171,7 +171,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedUserService = new Mock<IUserService>();
-        var expirationSettings = new ExpirationSettings { ActivationIdExpiresIn = 30 };
+        var expirationSettings = new LimitSettings { ActivationIdExpiresIn = 30 };
         var mockedApplicationSettings = MockApplicationSettings(expirationSettings: expirationSettings);
 
         mockedCipher
