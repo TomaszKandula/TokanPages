@@ -8,10 +8,10 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Backend.Shared.Models;
 using Backend.Core.Exceptions;
 using Backend.Domain.Entities;
 using Backend.Shared.Resources;
+using Backend.Shared.Services.Models;
 using TokanPages.Services.UserService;
 using Backend.Cqrs.Handlers.Commands.Users;
 using Backend.Core.Utilities.LoggerService;
@@ -171,8 +171,8 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedUserService = new Mock<IUserService>();
-        var expirationSettings = new ExpirationSettings { ActivationIdExpiresIn = 30 };
-        var mockedApplicationSettings = MockApplicationSettings(expirationSettings: expirationSettings);
+        var expirationSettings = new LimitSettings { ActivationIdExpiresIn = 30 };
+        var mockedApplicationSettings = MockApplicationSettings(limitSettings: expirationSettings);
 
         mockedCipher
             .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))

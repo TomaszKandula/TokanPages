@@ -18,9 +18,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Backend.Shared;
 using Backend.Database;
 using Backend.Domain.Enums;
-using Backend.Shared.Models;
 using Backend.Shared.Services;
 using Backend.Database.Initializer;
+using Backend.Shared.Services.Models;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.JsonSerializer;
 using Backend.Core.Utilities.DateTimeService;
@@ -85,7 +85,7 @@ public static class Dependencies
 		services.AddSingleton(configuration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>());
 		services.AddSingleton(configuration.GetSection(nameof(SonarQube)).Get<SonarQube>());
 		services.AddSingleton(configuration.GetSection(nameof(IdentityServer)).Get<IdentityServer>());
-		services.AddSingleton(configuration.GetSection(nameof(ExpirationSettings)).Get<ExpirationSettings>());
+		services.AddSingleton(configuration.GetSection(nameof(LimitSettings)).Get<LimitSettings>());
 		services.AddSingleton<IApplicationSettings, ApplicationSettings>();
 	}
 

@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Shared.Models;
+﻿namespace TokanPages.Backend.Shared.Services.Models;
 
 using System.Diagnostics.CodeAnalysis;
 
@@ -16,4 +16,6 @@ public class ApplicationPaths
     public string DevelopmentOrigin { get; set; } = "";
 
     public string DeploymentOrigin { get; set; } = "";
+
+    public Templates Templates { get; set; } = new();
 }

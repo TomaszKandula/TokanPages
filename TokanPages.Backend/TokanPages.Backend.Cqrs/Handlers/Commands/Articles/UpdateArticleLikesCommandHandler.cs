@@ -5,11 +5,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Shared;
 using Database;
 using Domain.Entities;
 using Core.Exceptions;
 using Core.Extensions;
+using Shared.Services;
 using Shared.Resources;
 using Services.UserService;
 using Core.Utilities.LoggerService;
@@ -22,11 +22,14 @@ public class UpdateArticleLikesCommandHandler : Cqrs.RequestHandler<UpdateArticl
 
     private readonly IDateTimeService _dateTimeService;
 
-    public UpdateArticleLikesCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService) : base(databaseContext, loggerService)
+    private readonly IApplicationSettings _applicationSettings;
+    
+    public UpdateArticleLikesCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService, 
+    IDateTimeService dateTimeService, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
+        _applicationSettings = applicationSettings;
     }
 
     public override async Task<Unit> Handle(UpdateArticleLikesCommand request, CancellationToken cancellationToken)
@@ -63,8 +66,8 @@ public class UpdateArticleLikesCommandHandler : Cqrs.RequestHandler<UpdateArticl
     private async Task AddLikes(Guid? userId, UpdateArticleLikesCommand request, CancellationToken cancellationToken)
     {
         var likesLimit = userId == null 
-            ? Constants.Likes.LikesLimitForAnonymous 
-            : Constants.Likes.LikesLimitForUser;
+            ? _applicationSettings.LimitSettings.Likes.ForAnonymous 
+            : _applicationSettings.LimitSettings.Likes.ForUser;
 
         var entity = new ArticleLikes
         {
@@ -84,8 +87,8 @@ public class UpdateArticleLikesCommandHandler : Cqrs.RequestHandler<UpdateArticl
     private void UpdateLikes(Guid? userId, ArticleLikes entity, int likesToBeAdded)
     {
         var likesLimit = userId == null 
-            ? Constants.Likes.LikesLimitForAnonymous 
-            : Constants.Likes.LikesLimitForUser;
+            ? _applicationSettings.LimitSettings.Likes.ForAnonymous 
+            : _applicationSettings.LimitSettings.Likes.ForUser;
 
         var sum = entity.LikeCount + likesToBeAdded;
         entity.LikeCount = sum > likesLimit ? likesLimit : sum;

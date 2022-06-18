@@ -4,7 +4,6 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Shared;
 using Database;
 using Shared.Services;
 using Core.Extensions;
@@ -44,13 +43,17 @@ public class SendNewsletterCommandHandler : Cqrs.RequestHandler<SendNewsletterCo
                 { "{UNSUBSCRIBE_LINK}", unsubscribeLink }
             };
 
-            var templateUrl = $"{_applicationSettings.AzureStorage.BaseUrl}{Constants.Emails.Templates.Newsletter}";
+            var baseUrl = _applicationSettings.AzureStorage.BaseUrl;
+            var newsletter = _applicationSettings.ApplicationPaths.Templates.Newsletter;
+
+            var templateUrl = $"{baseUrl}{newsletter}";
             var template = await _emailSenderService.GetEmailTemplate(templateUrl, cancellationToken);
             LoggerService.LogInformation($"Getting newsletter template from URL: {templateUrl}.");
-            
+
+            var contact = _applicationSettings.EmailSender.Addresses.Contact;
             var payload = new SenderPayloadDto
             {
-                From = Constants.Emails.Addresses.Contact,
+                From = contact,
                 To = new List<string> { subscriber.Email },
                 Subject = request.Subject,
                 Body = template.MakeBody(newValues)

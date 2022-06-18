@@ -13,6 +13,7 @@ using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Cqrs.Handlers.Commands.Articles;
+using TokanPages.Backend.Shared.Services.Models;
 
 public class UpdateArticleLikesCommandHandlerTest : TestBase
 {
@@ -55,6 +56,9 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
+        var likesLimit = new LimitSettings { Likes = new Likes { ForAnonymous = 25, ForUser = 50 } };
+        var mockedApplicationSettings = MockApplicationSettings(limitSettings: likesLimit);
+
         mockedUserService
             .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
             .ReturnsAsync((GetUserDto)null!);
@@ -73,7 +77,8 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object, 
-            dateTimeService);
+            dateTimeService, 
+            mockedApplicationSettings.Object);
 
         // Act
         await handler.Handle(command, CancellationToken.None);
@@ -140,6 +145,9 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var mockedUserProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
+        var likesLimit = new LimitSettings { Likes = new Likes { ForAnonymous = 25, ForUser = 50 } };
+        var mockedApplicationSettings = MockApplicationSettings(limitSettings: likesLimit);
+
         mockedUserProvider
             .Setup(provider => provider.GetRequestIpAddress())
             .Returns(IpAddress);
@@ -154,7 +162,8 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object, 
             mockedUserProvider.Object, 
-            dateTimeService);
+            dateTimeService,
+            mockedApplicationSettings.Object);
 
         // Act
         await handler.Handle(command, CancellationToken.None);
@@ -223,6 +232,9 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
+        var likesLimit = new LimitSettings { Likes = new Likes { ForAnonymous = 25, ForUser = 50 } };
+        var mockedApplicationSettings = MockApplicationSettings(limitSettings: likesLimit);
+
         mockedUserService
             .Setup(provider => provider.GetUser(It.IsAny<CancellationToken>()))
             .ReturnsAsync(getUserDto);
@@ -241,7 +253,8 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object, 
-            dateTimeService);
+            dateTimeService,
+            mockedApplicationSettings.Object);
 
         // Act
         await handler.Handle(command, CancellationToken.None);
@@ -319,6 +332,9 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
+        var likesLimit = new LimitSettings { Likes = new Likes { ForAnonymous = 25, ForUser = 50 } };
+        var mockedApplicationSettings = MockApplicationSettings(limitSettings: likesLimit);
+
         mockedUserService
             .Setup(provider => provider.GetUser(It.IsAny<CancellationToken>()))
             .ReturnsAsync(getUserDto);
@@ -337,7 +353,8 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object, 
-            dateTimeService);
+            dateTimeService,
+            mockedApplicationSettings.Object);
 
         // Act
         await handler.Handle(command, CancellationToken.None);

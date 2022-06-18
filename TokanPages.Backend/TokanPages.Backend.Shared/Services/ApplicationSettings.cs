@@ -10,7 +10,7 @@ public class ApplicationSettings : IApplicationSettings
 
     public IdentityServer IdentityServer { get; }
 
-    public ExpirationSettings ExpirationSettings { get; }
+    public LimitSettings LimitSettings { get; }
 
     public EmailSender EmailSender { get; }
 
@@ -21,13 +21,13 @@ public class ApplicationSettings : IApplicationSettings
     public SonarQube SonarQube { get; }
 
     public ApplicationSettings(AzureStorage azureStorage, AzureRedis azureRedis, ApplicationPaths applicationPaths, 
-        IdentityServer identityServer, ExpirationSettings expirationSettings, EmailSender emailSender, SonarQube sonarQube)
+        IdentityServer identityServer, LimitSettings limitSettings, EmailSender emailSender, SonarQube sonarQube)
     {
         AzureStorage = azureStorage;
         AzureRedis = azureRedis;
         ApplicationPaths = applicationPaths;
         IdentityServer = identityServer;
-        ExpirationSettings = expirationSettings;
+        LimitSettings = limitSettings;
         EmailSender = emailSender;
         SonarQube = sonarQube;
     }

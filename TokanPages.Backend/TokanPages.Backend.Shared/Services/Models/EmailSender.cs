@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Shared.Models;
+namespace TokanPages.Backend.Shared.Services.Models;
 
 using System.Diagnostics.CodeAnalysis;
 
@@ -8,4 +8,6 @@ public class EmailSender
     public string PrivateKey { get; set; } = "";
 
     public string BaseUrl { get; set; } = "";
+
+    public Addresses Addresses { get; set; } = new();
 }

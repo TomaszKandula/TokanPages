@@ -3,8 +3,8 @@
 using Moq;
 using Microsoft.Extensions.DependencyInjection;
 using Backend.Database;
-using Backend.Shared.Models;
 using Backend.Shared.Services;
+using Backend.Shared.Services.Models;
 using TokanPages.Services.WebTokenService;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Core.Utilities.DataUtilityService;
@@ -41,7 +41,7 @@ public class TestBase
     protected static Mock<IApplicationSettings> MockApplicationSettings(
         ApplicationPaths? applicationPaths = default, 
         IdentityServer? identityServer = default, 
-        ExpirationSettings? expirationSettings = default, 
+        LimitSettings? limitSettings = default, 
         EmailSender? emailSender = default, 
         AzureStorage? azureStorage = default, 
         SonarQube? sonarQube = default)
@@ -58,9 +58,9 @@ public class TestBase
             .SetupGet(settings => settings.IdentityServer)
             .Returns(returnIdentityServer);
 
-        var returnExpirationSettings = expirationSettings ?? new ExpirationSettings();
+        var returnExpirationSettings = limitSettings ?? new LimitSettings();
         applicationSettings
-            .SetupGet(settings => settings.ExpirationSettings)
+            .SetupGet(settings => settings.LimitSettings)
             .Returns(returnExpirationSettings);
 
         var returnEmailSender = emailSender ?? new EmailSender();

@@ -56,11 +56,11 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         if (users != null && (users.ActivationIdEnds == null || users.ActivationIdEnds > _dateTimeService.Now))
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-        var getNewSalt = _cipheringService.GenerateSalt(Constants.CipherLogRounds);
+        var getNewSalt = _cipheringService.GenerateSalt(12);
         var getHashedPassword = _cipheringService.GetHashedPassword(request.Password!, getNewSalt);
         LoggerService.LogInformation($"New hashed password has been generated. Requested by: {request.EmailAddress}.");
 
-        var expiresIn = _applicationSettings.ExpirationSettings.ActivationIdExpiresIn;
+        var expiresIn = _applicationSettings.LimitSettings.ActivationIdExpiresIn;
         var activationId = Guid.NewGuid();
         var activationIdEnds = _dateTimeService.Now.AddMinutes(expiresIn);
 
