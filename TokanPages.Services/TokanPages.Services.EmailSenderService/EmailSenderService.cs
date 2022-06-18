@@ -3,7 +3,6 @@ namespace TokanPages.Services.EmailSenderService;
 using System.Net;
 using System.Text;
 using Models;
-using Backend.Shared;
 using Models.Interfaces;
 using HttpClientService;
 using Backend.Dto.Mailer;
@@ -43,33 +42,39 @@ public class EmailSenderService : IEmailSenderService
             ResetPasswordConfiguration resetConfiguration => resetConfiguration.EmailAddress,
             _ => ""
         };
-        
+
+        var baseUrl = _applicationSettings.AzureStorage.BaseUrl;
+        var registerForm = _applicationSettings.ApplicationPaths.Templates.RegisterForm;
+        var resetPassword = _applicationSettings.ApplicationPaths.Templates.ResetPassword;
         var templateUrl = configuration switch
         {
-            CreateUserConfiguration =>  $"{_applicationSettings.AzureStorage.BaseUrl}{Constants.Emails.Templates.RegisterForm}",
-            ResetPasswordConfiguration => $"{_applicationSettings.AzureStorage.BaseUrl}{Constants.Emails.Templates.ResetPassword}",
+            CreateUserConfiguration =>  $"{baseUrl}{registerForm}",
+            ResetPasswordConfiguration => $"{baseUrl}{resetPassword}",
             _ => ""
         };
 
+        var deploymentOrigin = _applicationSettings.ApplicationPaths.DeploymentOrigin;
+        var activationPath = _applicationSettings.ApplicationPaths.ActivationPath;
+        var passwordPath = _applicationSettings.ApplicationPaths.UpdatePasswordPath;
         var templateValues = configuration switch
         {
             CreateUserConfiguration createConfiguration => new Dictionary<string, string>
             {
-                { "{ACTIVATION_LINK}", $"{_applicationSettings.ApplicationPaths.DeploymentOrigin}{_applicationSettings.ApplicationPaths.ActivationPath}{createConfiguration.ActivationId}" },
+                { "{ACTIVATION_LINK}", $"{deploymentOrigin}{activationPath}{createConfiguration.ActivationId}" },
                 { "{EXPIRATION}", $"{createConfiguration.ActivationIdEnds}" }
             },
             ResetPasswordConfiguration resetConfiguration => new Dictionary<string, string>
             {
-                { "{RESET_LINK}", $"{_applicationSettings.ApplicationPaths.DeploymentOrigin}{_applicationSettings.ApplicationPaths.UpdatePasswordPath}{resetConfiguration.ResetId}" },
+                { "{RESET_LINK}", $"{deploymentOrigin}{passwordPath}{resetConfiguration.ResetId}" },
                 { "{EXPIRATION}", $"{resetConfiguration.ExpirationDate}" }
             },
             _ => new Dictionary<string, string>()
         };
-        
+
         var template = await GetEmailTemplate(templateUrl, cancellationToken);
         var payload = new SenderPayloadDto
         {
-            From = Constants.Emails.Addresses.Contact,
+            From = _applicationSettings.EmailSender.Addresses.Contact,
             To = new List<string> { emailAddress },
             Subject = subject,
             Body = template.MakeBody(templateValues)
