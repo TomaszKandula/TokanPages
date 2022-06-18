@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 using Backend.Domain.Entities;
 using TokanPages.Backend.Dto.Users;
 using TokanPages.Services.UserService;
-using TokanPages.Backend.Shared.Services;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Cqrs.Handlers.Commands.Articles;
+using TokanPages.Backend.Shared.Services.Models;
 
 public class UpdateArticleLikesCommandHandlerTest : TestBase
 {
@@ -55,7 +55,9 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedApplicationSettings = new Mock<IApplicationSettings>();
+
+        var likesLimit = new LimitSettings { Likes = new Likes { ForAnonymous = 25, ForUser = 50 } };
+        var mockedApplicationSettings = MockApplicationSettings(limitSettings: likesLimit);
 
         mockedUserService
             .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
@@ -142,7 +144,9 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var dateTimeService = new DateTimeService();
         var mockedUserProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedApplicationSettings = new Mock<IApplicationSettings>();
+
+        var likesLimit = new LimitSettings { Likes = new Likes { ForAnonymous = 25, ForUser = 50 } };
+        var mockedApplicationSettings = MockApplicationSettings(limitSettings: likesLimit);
 
         mockedUserProvider
             .Setup(provider => provider.GetRequestIpAddress())
@@ -227,7 +231,9 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedApplicationSettings = new Mock<IApplicationSettings>();
+
+        var likesLimit = new LimitSettings { Likes = new Likes { ForAnonymous = 25, ForUser = 50 } };
+        var mockedApplicationSettings = MockApplicationSettings(limitSettings: likesLimit);
 
         mockedUserService
             .Setup(provider => provider.GetUser(It.IsAny<CancellationToken>()))
@@ -325,7 +331,9 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedApplicationSettings = new Mock<IApplicationSettings>();
+
+        var likesLimit = new LimitSettings { Likes = new Likes { ForAnonymous = 25, ForUser = 50 } };
+        var mockedApplicationSettings = MockApplicationSettings(limitSettings: likesLimit);
 
         mockedUserService
             .Setup(provider => provider.GetUser(It.IsAny<CancellationToken>()))

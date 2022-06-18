@@ -172,7 +172,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedUserService = new Mock<IUserService>();
         var expirationSettings = new LimitSettings { ActivationIdExpiresIn = 30 };
-        var mockedApplicationSettings = MockApplicationSettings(expirationSettings: expirationSettings);
+        var mockedApplicationSettings = MockApplicationSettings(limitSettings: expirationSettings);
 
         mockedCipher
             .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
