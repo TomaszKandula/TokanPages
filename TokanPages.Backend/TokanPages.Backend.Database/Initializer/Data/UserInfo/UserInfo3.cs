@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using Users;
 
 [ExcludeFromCodeCoverage]
-public class UserInfo3
+public static class UserInfo3
 {
     public static readonly Guid Id = Guid.Parse("50f28a8c-9c69-4838-bc33-7854b77bab29");
 
