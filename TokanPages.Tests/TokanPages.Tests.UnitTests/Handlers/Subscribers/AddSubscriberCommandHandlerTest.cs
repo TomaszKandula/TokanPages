@@ -52,8 +52,8 @@ public class AddSubscriberCommandHandlerTest : TestBase
             Email = testEmail,
             IsActivated = true,
             Count = 0,
-            Registered = DateTime.Now,
-            LastUpdated = null
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            CreatedBy = Guid.Empty
         };
 
         var databaseContext = GetTestDatabaseContext();

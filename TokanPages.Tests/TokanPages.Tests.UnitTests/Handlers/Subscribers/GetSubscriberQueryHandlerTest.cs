@@ -22,8 +22,8 @@ public class GetSubscriberQueryHandlerTest : TestBase
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
             Count = 10,
-            Registered = testDate,
-            LastUpdated = null
+            CreatedAt = testDate,
+            CreatedBy = Guid.Empty
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -42,8 +42,8 @@ public class GetSubscriberQueryHandlerTest : TestBase
         result.Email.Should().Be(subscribers.Email);
         result.IsActivated.Should().BeTrue();
         result.NewsletterCount.Should().Be(subscribers.Count);
-        result.Registered.Should().Be(testDate);
-        result.LastUpdated.Should().BeNull();
+        result.CreatedAt.Should().Be(testDate);
+        result.ModifiedAt.Should().BeNull();
     }
 
     [Fact]
@@ -55,8 +55,8 @@ public class GetSubscriberQueryHandlerTest : TestBase
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
             Count = 10,
-            Registered = DateTime.Now,
-            LastUpdated = null
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            CreatedBy = Guid.Empty
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -65,10 +65,7 @@ public class GetSubscriberQueryHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var handler = new GetSubscriberQueryHandler(databaseContext, mockedLogger.Object);
-        var query = new GetSubscriberQuery
-        {
-            Id = Guid.Parse("b6bb37e0-bad3-419c-b61f-45318cb7b68c")
-        };
+        var query = new GetSubscriberQuery { Id = Guid.NewGuid() };
 
         // Act
         // Assert

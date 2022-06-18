@@ -6,7 +6,7 @@ using Models;
 using Backend.Shared;
 using Models.Interfaces;
 using HttpClientService;
-using Backend.Shared.Models;
+using Backend.Dto.Mailer;
 using Backend.Core.Exceptions;
 using Backend.Core.Extensions;
 using Backend.Shared.Services;
@@ -67,7 +67,7 @@ public class EmailSenderService : IEmailSenderService
         };
         
         var template = await GetEmailTemplate(templateUrl, cancellationToken);
-        var payload = new EmailSenderPayload
+        var payload = new SenderPayloadDto
         {
             From = Constants.Emails.Addresses.Contact,
             To = new List<string> { emailAddress },

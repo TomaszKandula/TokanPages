@@ -30,16 +30,16 @@ public class GetAllSubscribersQueryHandlerTest : TestBase
                 Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 10,
-                Registered = DateTime.Now,
-                LastUpdated = null
+                CreatedAt = DataUtilityService.GetRandomDateTime(),
+                CreatedBy = Guid.Empty
             },
             new()
             {
                 Email = DataUtilityService.GetRandomEmail(),
                 IsActivated = true,
                 Count = 100,
-                Registered = DateTime.Now,
-                LastUpdated = null
+                CreatedAt = DataUtilityService.GetRandomDateTime(),
+                CreatedBy = Guid.Empty
             }
         };
 

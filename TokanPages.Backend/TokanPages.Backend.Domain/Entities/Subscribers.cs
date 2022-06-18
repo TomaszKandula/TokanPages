@@ -16,10 +16,6 @@ public class Subscribers : Entity<Guid>, IAuditable
 
     public int Count { get; set; }
 
-    public DateTime Registered { get; set; } //TODO: to be replaced by [CreatedAt]
-
-    public DateTime? LastUpdated { get; set; } //TODO: to bre replaced by [ModifiedAt]
-
     public Guid CreatedBy { get; set; }
 
     public DateTime CreatedAt { get; set; }

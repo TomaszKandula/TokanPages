@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
-using Backend.Shared.Models;
 using Factories;
+using Backend.Dto.Health;
 
 public class StatusControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
@@ -34,7 +34,7 @@ public class StatusControllerTest : TestBase, IClassFixture<CustomWebApplication
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
 
-        var deserialized = JsonConvert.DeserializeObject<ActionResult>(content);
+        var deserialized = JsonConvert.DeserializeObject<ActionResultDto>(content);
         deserialized.Should().NotBeNull();
         deserialized?.IsSucceeded.Should().BeTrue();
         deserialized?.ErrorCode.Should().BeEmpty();
@@ -69,7 +69,7 @@ public class StatusControllerTest : TestBase, IClassFixture<CustomWebApplication
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
 
-        var deserialized = JsonConvert.DeserializeObject<ActionResult>(content);
+        var deserialized = JsonConvert.DeserializeObject<ActionResultDto>(content);
         deserialized.Should().NotBeNull();
         deserialized?.IsSucceeded.Should().BeFalse();
         deserialized?.ErrorCode.Should().NotBeEmpty();
