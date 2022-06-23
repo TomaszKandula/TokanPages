@@ -12,7 +12,7 @@ export const ValidateContactForm = (props: IValidateContactForm): any =>
             {
                 minimum: 2,
                 maximum: 255,
-                message: "must be at least 2 and 255 characters"
+                message: "must be between 2 and 255 characters"
             }
         },
         lastName:
