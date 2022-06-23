@@ -307,7 +307,7 @@ public class SendMessageCommandValidatorTest : TestBase
             EmailFrom = DataUtilityService.GetRandomEmail(),
             EmailTos = new List<string> { DataUtilityService.GetRandomEmail(), DataUtilityService.GetRandomEmail() },
             Subject = DataUtilityService.GetRandomString(),
-            Message = DataUtilityService.GetRandomString(256)
+            Message = DataUtilityService.GetRandomString(10001)
         };
 
         // Act
