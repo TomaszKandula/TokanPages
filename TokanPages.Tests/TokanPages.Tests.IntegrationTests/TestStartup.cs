@@ -22,6 +22,7 @@ public class TestStartup
         services.AddCors();
         services.AddMvc().AddApplicationPart(typeof(Startup).Assembly);
         services.AddControllers();
+        services.AddResponseCaching();
         services.AddApiVersioning(options =>
         {
             options.ReportApiVersions = true;
@@ -39,6 +40,7 @@ public class TestStartup
         builder.UseForwardedHeaders();
         builder.UseHttpsRedirection();
         builder.ApplyCorsPolicy(_configuration);
+        builder.UseResponseCaching();
         builder.UseMiddleware<Exceptions>();
         builder.UseRouting();
         builder.UseAuthentication();
