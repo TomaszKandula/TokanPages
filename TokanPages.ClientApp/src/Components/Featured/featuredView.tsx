@@ -19,13 +19,13 @@ const FeaturedView = (props: IGetFeaturedContent): JSX.Element =>
         <section className={classes.section}>
             <Container maxWidth="lg">
                 <Box pt={8} pb={5} textAlign="center">
-                    <Typography gutterBottom={true} className={classes.caption_text} data-aos="fade-down">
+                    <Typography className={classes.caption_text} data-aos="fade-down">
                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption?.toUpperCase()}
                     </Typography>
                 </Box>
                 <Box pb={15} textAlign="center">
                     <Grid container spacing={6}>
-                        <Grid item xs={12} md={4} data-aos="fade-left">
+                        <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="350">
                             <Card elevation={0} className={classes.card}>
                                 <CardActionArea href={props.content?.link1} target="_blank">
                                     {props.isLoading 
@@ -42,7 +42,7 @@ const FeaturedView = (props: IGetFeaturedContent): JSX.Element =>
                                 </CardActionArea>
                             </Card>
                         </Grid>
-                        <Grid item xs={12} md={4} data-aos="fade-up">
+                        <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="150">
                             <Card elevation={0} className={classes.card}>
                                 <CardActionArea href={props.content?.link2} target="_blank">
                                     {props.isLoading 
@@ -59,7 +59,7 @@ const FeaturedView = (props: IGetFeaturedContent): JSX.Element =>
                                 </CardActionArea>
                             </Card>
                         </Grid>
-                        <Grid item xs={12} md={4} data-aos="fade-right">
+                        <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="550">
                             <Card elevation={0} className={classes.card}>
                                 <CardActionArea href={props.content?.link3} target="_blank">
                                     {props.isLoading 

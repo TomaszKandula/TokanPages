@@ -21,7 +21,7 @@ const FeaturesView = (props: IGetFeaturesContent): JSX.Element =>
                 <Box py={8}>
                     <Box mb={8}>
                         <div data-aos="fade-down">
-                            <Typography gutterBottom={true} className={classes.caption_text}>
+                            <Typography className={classes.caption_text}>
                                 {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption?.toUpperCase()}
                             </Typography>
                         </div>

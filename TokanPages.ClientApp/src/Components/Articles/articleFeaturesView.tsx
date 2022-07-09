@@ -34,7 +34,7 @@ const ArticleFeaturesView = (props: IGetArticleFeaturesContent): JSX.Element =>
             <Container maxWidth="lg">
                 <Box pt={8} pb={12}>
                     <Box textAlign="center" mb={6} data-aos="fade-down">
-                        <Typography gutterBottom={true} className={classes.title}>
+                        <Typography className={classes.title}>
                             {props.isLoading ? <Skeleton variant="text" /> : props.content?.title.toUpperCase()}
                         </Typography>
                     </Box>

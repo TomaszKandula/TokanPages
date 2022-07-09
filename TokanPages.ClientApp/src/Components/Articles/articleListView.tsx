@@ -3,10 +3,10 @@ import Container from "@material-ui/core/Container";
 import { Box, Divider, Grid, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
-import articleListStyle from "./Styles/articleListStyle";
 import { IArticleItem } from "../../Shared/Components/ContentRender/Models/articleItemModel";
-import ArticleCard from "./articleCard";
 import CenteredCircularLoader from "../../Shared/Components/ProgressBar/centeredCircularLoader";
+import ArticleCard from "./articleCard";
+import articleListStyle from "./Styles/articleListStyle";
 
 interface IBinding
 {
@@ -23,11 +23,11 @@ const ArticleListView = (props: IBinding): JSX.Element =>
 {
     const classes = articleListStyle();
 
-    const renderContent = (articles: IArticleItem[]) =>
+    const RenderContent = (args: { articles: IArticleItem[] }): JSX.Element =>
     {
         return(
             <>
-                {articles.map((item: IArticleItem) => ( 
+                {args.articles.map((item: IArticleItem) => ( 
                     <ArticleCard 
                         title={item.title}
                         description={item.description}
@@ -55,7 +55,7 @@ const ArticleListView = (props: IBinding): JSX.Element =>
                         <Grid item xs={12} sm={12}>
                             {props.bind?.isLoading 
                                 ? <CenteredCircularLoader /> 
-                                : renderContent(props.bind?.articles)}
+                                : <RenderContent articles={props.bind?.articles} />}
                         </Grid>
                     </Grid>
                 </Box>
