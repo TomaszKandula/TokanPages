@@ -19,7 +19,7 @@ export const ActionCreators =
 {
     getClientsContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        if (getState().getArticleFeatContent.content !== combinedDefaults.getArticleFeatContent.content && !isLanguageChanged) 
+        if (getState().getClientsContent.content !== combinedDefaults.getClientsContent.content && !isLanguageChanged) 
             return;
 
         dispatch({ type: REQUEST_CLIENTS_CONTENT });
