@@ -10,6 +10,7 @@ import { IGetHeaderContent } from "../../Redux/States/Content/getHeaderContentSt
 import { IMAGES_PATH } from "../../Shared/constants";
 import { renderImage } from "../../Shared/Components/CustomImage/customImage";
 import headerStyle from "./Styles/headerStyle";
+import Validate from "validate.js";
 
 const HeaderView = (props: IGetHeaderContent): JSX.Element => 
 {
@@ -17,9 +18,14 @@ const HeaderView = (props: IGetHeaderContent): JSX.Element =>
 
     const ActiveButton = (): JSX.Element => 
     {
+        if (Validate.isEmpty(props.content?.action?.href))
+        {
+            return (<Button variant="contained" className={classes.action_button}>{props.content?.action?.text}</Button>);
+        }
+
         return(
-            <Link to={props.content?.action.href} className={classes.action_link}>
-                <Button variant="contained" className={classes.action_button}>{props.content?.action.text}</Button>
+            <Link to={props.content?.action?.href} className={classes.action_link}>
+                <Button variant="contained" className={classes.action_button}>{props.content?.action?.text}</Button>
             </Link>
         );
     }

@@ -13,6 +13,7 @@ import { IGetArticleFeaturesContent } from "../../Redux/States/Content/getArticl
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
 import { ARTICLE_IMAGE_PATH } from "../../Shared/constants";
 import articleFeaturesStyle from "./Styles/articleFeaturesStyle";
+import Validate from "validate.js";
 
 const ArticleFeaturesView = (props: IGetArticleFeaturesContent): JSX.Element =>
 {
@@ -20,10 +21,19 @@ const ArticleFeaturesView = (props: IGetArticleFeaturesContent): JSX.Element =>
 
     const ActiveButton = (): JSX.Element => 
     {
-        return(
-            <Link to={props.content?.action.href} className={classes.link}>
+        if (Validate.isEmpty(props.content?.action?.href))
+        {
+            return (
                 <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
-                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.action.text}
+                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.action?.text}
+                </Button>
+            );
+        }
+
+        return(
+            <Link to={props.content?.action?.href} className={classes.link}>
+                <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
+                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.action?.text}
                 </Button>
             </Link>
         );

@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import { GetIcon } from "../../Shared/Components/GetIcon/getIcon";
 import { IIcon, ILink } from "../../Api/Models";
 import footerStyle from "./Styles/footerStyle";
+import Validate from "validate.js";
 
 interface IBinding
 {
@@ -29,16 +30,28 @@ const FooterView = (props: IBinding): JSX.Element =>
 {
     const SetTermsLink = (): JSX.Element => 
     { 
-        return (<Link to={props.bind?.terms.href} className={classes.links}>
-            {props.bind?.terms.text}
-        </Link>); 
+        if (Validate.isEmpty(props.bind?.terms?.href))
+        {
+            return(<>{props.bind?.terms?.text}</>);
+        }
+
+        return(
+            <Link to={props.bind?.terms?.href} className={classes.links}>
+                {props.bind?.terms?.text}
+            </Link>); 
     };
 
     const SetPolicyLink = (): JSX.Element => 
     { 
-        return (<Link to={props.bind?.policy.href} className={classes.links}>
-            {props.bind?.policy.text}
-        </Link>);
+        if (Validate.isEmpty(props.bind?.policy?.href))
+        {
+            return(<>{props.bind?.policy?.text}</>);
+        }
+
+        return (
+            <Link to={props.bind?.policy?.href} className={classes.links}>
+                {props.bind?.policy?.text}
+            </Link>);
     };
 
     const RenderIconButtons = (): JSX.Element =>
