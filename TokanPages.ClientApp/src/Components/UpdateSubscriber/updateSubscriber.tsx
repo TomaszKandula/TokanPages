@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Validate from "validate.js";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as SubscriberAction } from "../../Redux/Actions/Subscribers/updateSubscriberAction";
 import { ActionCreators as RaiseDialogAction } from "../../Redux/Actions/raiseDialogAction";
@@ -13,6 +12,7 @@ import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers
 import { NEWSLETTER_SUCCESS, NEWSLETTER_WARNING, RECEIVED_ERROR_MESSAGE, UPDATE_SUBSCRIBER } from "../../Shared/constants";
 import { IUpdateSubscriberDto } from "../../Api/Models";
 import UpdateSubscriberView from "./updateSubscriberView";
+import Validate from "validate.js";
 
 interface IGetUpdateSubscriberContentExtended extends IGetUpdateSubscriberContent
 {

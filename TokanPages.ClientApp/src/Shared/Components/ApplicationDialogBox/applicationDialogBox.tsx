@@ -4,8 +4,8 @@ import { IApplicationState } from "../../../Redux/applicationState";
 import { ActionCreators } from "../../../Redux/Actions/raiseDialogAction";
 import { IRaiseDialog } from "../../../Redux/States/raiseDialogState";
 import { IconType } from "../../enums";
-import Validate from "validate.js";
 import ApplicationDialogBoxView from "./applicationDialogBoxView";
+import Validate from "validate.js";
 
 interface IDialogState extends IRaiseDialog
 {
@@ -33,8 +33,8 @@ const ApplicationDialogBox = (): JSX.Element =>
             dispatch(ActionCreators.clearDialog());
             setDialogState(DialogState);
         }
-
-    }, [ dispatch, dialogState ]);
+    }, 
+    [ dispatch, dialogState ]);
     
     const raiseDialog = React.useCallback(() => 
     {
