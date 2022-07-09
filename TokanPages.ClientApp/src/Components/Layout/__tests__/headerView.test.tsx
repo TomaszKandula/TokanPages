@@ -12,7 +12,11 @@ describe("Test component: headerView.", () =>
             photo: "",
             caption: "Welcome to my web page",
             description: "I do programming for a living...",
-            action: "Read the story"
+            action: 
+            {
+                text: "Read the story",
+                href: "/action-link"
+            }
         }}/>);
         expect(tree).toMatchSnapshot();
     });
