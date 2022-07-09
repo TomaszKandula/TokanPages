@@ -16,13 +16,13 @@ public class FooterDto : BaseClass
     /// Terms
     /// </summary>
     [JsonProperty("terms")]
-    public string Terms { get; set; } = "";
+    public Link Terms { get; set; } = new();
 
     /// <summary>
     /// Policy
     /// </summary>
     [JsonProperty("policy")]
-    public string Policy { get; set; } = "";
+    public Link Policy { get; set; } = new();
 
     /// <summary>
     /// Copyright

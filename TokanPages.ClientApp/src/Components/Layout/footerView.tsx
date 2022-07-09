@@ -5,7 +5,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import { GetIcon } from "../../Shared/Components/GetIcon/getIcon";
-import { IFooterContentIconDto } from "../../Api/Models";
+import { IIcon, ILink } from "../../Api/Models";
 import footerStyle from "./Styles/footerStyle";
 
 interface IBinding
@@ -15,29 +15,29 @@ interface IBinding
 
 interface IProperties
 {
-    terms: string;
-    policy: string;
+    terms: ILink;
+    policy: ILink;
     versionInfo: string;
     hasVersionInfo: boolean;
     backgroundColor: string;
     copyright: string;
     reserved: string;
-    icons: IFooterContentIconDto[];
+    icons: IIcon[];
 }
 
 const FooterView = (props: IBinding): JSX.Element => 
 {
     const SetTermsLink = (): JSX.Element => 
     { 
-        return (<Link to="/terms" className={classes.links}>
-            {props.bind?.terms}
+        return (<Link to={props.bind?.terms.href} className={classes.links}>
+            {props.bind?.terms.text}
         </Link>); 
     };
 
     const SetPolicyLink = (): JSX.Element => 
     { 
-        return (<Link to="/policy" className={classes.links}>
-            {props.bind?.policy}
+        return (<Link to={props.bind?.policy.href} className={classes.links}>
+            {props.bind?.policy.text}
         </Link>);
     };
 
@@ -45,11 +45,11 @@ const FooterView = (props: IBinding): JSX.Element =>
     {
         const icons = 
         <Box ml="auto" className={classes.icon_box} data-aos="zoom-in">
-            {props.bind?.icons?.map((item: IFooterContentIconDto, index: number) => 
+            {props.bind?.icons?.map((item: IIcon, index: number) => 
             (<IconButton 
                 className={classes.icon}
                 aria-label={item.name} 
-                href={item.link} 
+                href={item.href} 
                 key={index}
                 color="default" 
                 target="_blank">
