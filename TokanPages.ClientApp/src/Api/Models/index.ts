@@ -35,7 +35,7 @@ export type { INavigationContentDto} from "./Components/navigationContentDto";
 export type { IHeaderContentDto } from "./Components/headerContentDto";
 export type { IFooterContentDto } from "./Components/footerContentDto";
 export type { IClientsContentDto } from "./Components/clientsContentDto";
-export type { IArticleFeatContentDto } from "./Components/articleFeatContentDto";
+export type { IArticleFeaturesContentDto } from "./Components/articleFeaturesContentDto";
 export type { IContactFormContentDto } from "./Components/contactFormContentDto";
 export type { ICookiesPromptContentDto } from "./Components/cookiesPromptContentDto";
 export type { IFeaturedContentDto } from "./Components/featuredContentDto";

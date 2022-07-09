@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 import { ActionCreators as NavigationContent } from "../../../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as HeaderContent } from "../../../Redux/Actions/Content/getHeaderContentAction";
 import { ActionCreators as ActivateAccountContent } from "../../../Redux/Actions/Content/getActivateAccountContentAction";
-import { ActionCreators as ArticleFeatContent } from "../../../Redux/Actions/Content/getArticleFeatContentAction";
+import { ActionCreators as ArticleFeaturesContent } from "../../../Redux/Actions/Content/getArticleFeaturesContentAction";
 import { ActionCreators as FooterContent } from "../../../Redux/Actions/Content/getFooterContentAction";
 import { ActionCreators as ClientsContent } from "../../../Redux/Actions/Content/getClientsContentAction";
 import { ActionCreators as FeaturedContent } from "../../../Redux/Actions/Content/getFeaturedContentAction";
@@ -29,7 +29,7 @@ export const Reload = (dispatch: Dispatch<any>) =>
     dispatch(FooterContent.getFooterContent(true));
     dispatch(ClientsContent.getClientsContent(true));
     dispatch(ActivateAccountContent.getActivateAccountContent(true));
-    dispatch(ArticleFeatContent.getArticleFeaturesContent(true));
+    dispatch(ArticleFeaturesContent.getArticleFeaturesContent(true));
     dispatch(FeaturedContent.getFeaturedContent(true));
     dispatch(FeaturesContent.getFeaturesContent(true));
     dispatch(NewsletterContent.getNewsletterContent(true));

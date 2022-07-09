@@ -9,21 +9,21 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IGetArticleFeatContent } from "../../Redux/States/Content/getArticleFeatContentState";
+import { IGetArticleFeaturesContent } from "../../Redux/States/Content/getArticleFeaturesContentState";
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
 import { ARTICLE_IMAGE_PATH } from "../../Shared/constants";
-import articleFeatStyle from "./Styles/articleFeatStyle";
+import articleFeaturesStyle from "./Styles/articleFeaturesStyle";
 
-const ArticleFeatView = (props: IGetArticleFeatContent): JSX.Element =>
+const ArticleFeaturesView = (props: IGetArticleFeaturesContent): JSX.Element =>
 {
-    const classes = articleFeatStyle();
+    const classes = articleFeaturesStyle();
 
     const ActiveButton = (): JSX.Element => 
     {
         return(
-            <Link to="/articles" className={classes.link}>
+            <Link to={props.content?.action.href} className={classes.link}>
                 <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
-                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.button}
+                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.action.text}
                 </Button>
             </Link>
         );
@@ -101,4 +101,4 @@ const ArticleFeatView = (props: IGetArticleFeatContent): JSX.Element =>
     );
 }
 
-export default ArticleFeatView;
+export default ArticleFeaturesView;
