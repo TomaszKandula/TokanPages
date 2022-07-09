@@ -12,4 +12,12 @@ public static class Role4
     public const string Name = nameof(Roles.PhotoPublisher);
 
     public const string Description = "User can add albums and photos";
+
+    public static readonly DateTime CreatedAt = DateTime.Parse("2020-11-01 21:11:01");
+
+    public static readonly Guid CreatedBy = Guid.Empty;
+
+    public static readonly DateTime? ModifiedAt = null;
+
+    public static readonly Guid? ModifiedBy = null;
 }

@@ -12,10 +12,6 @@ using Factories;
 
 public class ContentControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
-    private const string ApiBaseUrl = "/api/v1.0/content";
-
-    private const string TestRootPath = "TokanPages.Tests/TokanPages.Tests.IntegrationTests";
-
     private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
 
     public ContentControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
@@ -26,17 +22,17 @@ public class ContentControllerTest : TestBase, IClassFixture<CustomWebApplicatio
         // Arrange
         const string componentName = "activateAccount";
         const string componentType = "component";
-            
-        var request = $"{ApiBaseUrl}/GetContent/?Name={componentName}&Type={componentType}&noCache=true";
+        const string uri = $"{BaseUriContent}/GetContent/?Name={componentName}&Type={componentType}&noCache=true";
+
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         // Act
-        var response = await httpClient.GetAsync(request);
-        await EnsureStatusCode(response, HttpStatusCode.OK);
+        var response = await httpClient.GetAsync(uri);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.OK);
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
 
@@ -50,17 +46,17 @@ public class ContentControllerTest : TestBase, IClassFixture<CustomWebApplicatio
         // Arrange
         var componentName = DataUtilityService.GetRandomString(10, "", true);
         const string componentType = "component";
-            
-        var request = $"{ApiBaseUrl}/GetContent/?Name={componentName}&Type={componentType}&noCache=true";
+        var uri = $"{BaseUriContent}/GetContent/?Name={componentName}&Type={componentType}&noCache=true";
+
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         // Act
-        var response = await httpClient.GetAsync(request);
-        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
+        var response = await httpClient.GetAsync(uri);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
         content.Should().Contain(nameof(ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE));
@@ -72,17 +68,17 @@ public class ContentControllerTest : TestBase, IClassFixture<CustomWebApplicatio
         // Arrange
         const string componentName = "activateAccount";
         var componentType = DataUtilityService.GetRandomString(6, "", true);
-            
-        var request = $"{ApiBaseUrl}/GetContent/?Name={componentName}&Type={componentType}&noCache=true";
+        var uri = $"{BaseUriContent}/GetContent/?Name={componentName}&Type={componentType}&noCache=true";
+
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         // Act
-        var response = await httpClient.GetAsync(request);
-        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
+        var response = await httpClient.GetAsync(uri);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
         content.Should().Contain(nameof(ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED));

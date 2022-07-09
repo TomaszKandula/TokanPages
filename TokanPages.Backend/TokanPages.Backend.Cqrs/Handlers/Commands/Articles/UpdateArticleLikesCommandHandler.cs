@@ -1,26 +1,35 @@
 namespace TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
 
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Shared;
 using Database;
+using Domain.Entities;
 using Core.Exceptions;
 using Core.Extensions;
+using Shared.Services;
 using Shared.Resources;
 using Services.UserService;
 using Core.Utilities.LoggerService;
+using Core.Utilities.DateTimeService;
 using MediatR;
 
 public class UpdateArticleLikesCommandHandler : Cqrs.RequestHandler<UpdateArticleLikesCommand, Unit>
 {
     private readonly IUserService _userService;
-        
-    public UpdateArticleLikesCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService) : base(databaseContext, loggerService)
+
+    private readonly IDateTimeService _dateTimeService;
+
+    private readonly IApplicationSettings _applicationSettings;
+    
+    public UpdateArticleLikesCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService, 
+    IDateTimeService dateTimeService, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
     {
         _userService = userService;
+        _dateTimeService = dateTimeService;
+        _applicationSettings = applicationSettings;
     }
 
     public override async Task<Unit> Handle(UpdateArticleLikesCommand request, CancellationToken cancellationToken)
@@ -28,58 +37,64 @@ public class UpdateArticleLikesCommandHandler : Cqrs.RequestHandler<UpdateArticl
         var articles = await DatabaseContext.Articles
             .AsNoTracking()
             .Where(articles => articles.Id == request.Id)
-            .ToListAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (!articles.Any())
+        if (articles is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-        var userId = await _userService.GetUserId();
-        var isAnonymousUser = userId == null;
-            
+        var user = await _userService.GetUser(cancellationToken);
         var articleLikes = await DatabaseContext.ArticleLikes
             .Where(likes => likes.ArticleId == request.Id)
-            .WhereIfElse(isAnonymousUser,
+            .WhereIfElse(user == null,
                 likes => likes.IpAddress == _userService.GetRequestIpAddress(),
-                likes => likes.UserId == userId)
-            .ToListAsync(cancellationToken);
+                likes => likes.UserId == user!.UserId)
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (!articleLikes.Any())
+        if (articleLikes is null)
         {
-            await AddNewArticleLikes(isAnonymousUser, request, cancellationToken);
+            await AddLikes(user?.UserId, request, cancellationToken);
         }
         else
         {
-            UpdateCurrentArticleLikes(isAnonymousUser, articleLikes.First(), request.AddToLikes);
+            UpdateLikes(user?.UserId, articleLikes, request.AddToLikes);
         }
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
-        
-    private async Task AddNewArticleLikes(bool isAnonymousUser, UpdateArticleLikesCommand request, CancellationToken cancellationToken)
-    {
-        var likesLimit = isAnonymousUser 
-            ? Constants.Likes.LikesLimitForAnonymous 
-            : Constants.Likes.LikesLimitForUser;
 
-        var entity = new Domain.Entities.ArticleLikes
+    private async Task AddLikes(Guid? userId, UpdateArticleLikesCommand request, CancellationToken cancellationToken)
+    {
+        var likesLimit = userId == null 
+            ? _applicationSettings.LimitSettings.Likes.ForAnonymous 
+            : _applicationSettings.LimitSettings.Likes.ForUser;
+
+        var entity = new ArticleLikes
         {
             ArticleId = request.Id,
-            UserId = await _userService.GetUserId(),
+            UserId = userId,
             IpAddress = _userService.GetRequestIpAddress(),
-            LikeCount = request.AddToLikes > likesLimit ? likesLimit : request.AddToLikes
+            LikeCount = request.AddToLikes > likesLimit ? likesLimit : request.AddToLikes,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = userId ?? Guid.Empty,
+            ModifiedAt = null,
+            ModifiedBy = null
         };
-            
+
         await DatabaseContext.ArticleLikes.AddAsync(entity, cancellationToken);
     }
 
-    private static void UpdateCurrentArticleLikes(bool isAnonymousUser, Domain.Entities.ArticleLikes entity, int likesToBeAdded)
+    private void UpdateLikes(Guid? userId, ArticleLikes entity, int likesToBeAdded)
     {
-        var likesLimit = isAnonymousUser 
-            ? Constants.Likes.LikesLimitForAnonymous 
-            : Constants.Likes.LikesLimitForUser;
-            
+        var likesLimit = userId == null 
+            ? _applicationSettings.LimitSettings.Likes.ForAnonymous 
+            : _applicationSettings.LimitSettings.Likes.ForUser;
+
         var sum = entity.LikeCount + likesToBeAdded;
         entity.LikeCount = sum > likesLimit ? likesLimit : sum;
+        entity.ModifiedAt = _dateTimeService.Now;
+        entity.ModifiedBy = userId;
+
+        DatabaseContext.ArticleLikes.Update(entity);
     }
 }

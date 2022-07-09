@@ -6,9 +6,9 @@ using Newtonsoft.Json.Linq;
 
 public interface IJsonSerializer
 {
-    string Serialize(object model, JsonSerializerSettings serializerSettings = null);
+    string Serialize(object model, JsonSerializerSettings? serializerSettings = default);
 
-    T Deserialize<T>(string json, JsonSerializerSettings serializerSettings = null);
+    T Deserialize<T>(string json, JsonSerializerSettings? serializerSettings = default);
 
     JToken Parse(string json);
 

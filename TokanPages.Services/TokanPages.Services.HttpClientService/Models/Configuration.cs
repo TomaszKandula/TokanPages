@@ -1,4 +1,3 @@
-#nullable enable
 namespace TokanPages.Services.HttpClientService.Models;
 
 using System.Net.Http;

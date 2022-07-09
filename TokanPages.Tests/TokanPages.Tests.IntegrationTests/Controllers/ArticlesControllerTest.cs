@@ -5,25 +5,21 @@ using Newtonsoft.Json;
 using FluentAssertions;
 using System;
 using System.Net;
-using System.Linq;
+using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.TestHost;
+using Backend.Dto.Articles;
 using Backend.Core.Extensions;
 using Backend.Shared.Resources;
-using Backend.Shared.Dto.Articles;
 using Backend.Cqrs.Handlers.Queries.Articles;
 using Backend.Database.Initializer.Data.Articles;
 using Factories;
 
 public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
-    private const string ApiBaseUrl = "/api/v1.0/articles";
-
-    private const string TestRootPath = "TokanPages.Tests/TokanPages.Tests.IntegrationTests";
-
     private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
 
     public ArticlesControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
@@ -32,24 +28,20 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
     public async Task WhenGetAllArticles_ShouldReturnCollection()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/GetAllArticles/?IsPublished=false";
-
-        // Act
+        const string uri = $"{BaseUriArticles}/GetAllArticles/?IsPublished=false";
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
-        var response = await httpClient.GetAsync(request);
-        await EnsureStatusCode(response, HttpStatusCode.OK);
+        // Act
+        var response = await httpClient.GetAsync(uri);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.OK);
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
 
-        var deserialized = (JsonConvert
-                .DeserializeObject<IEnumerable<GetAllArticlesQueryResult>>(content) ?? Array.Empty<GetAllArticlesQueryResult>())
-            .ToList();
-            
+        var deserialized = JsonConvert.DeserializeObject<List<GetAllArticlesQueryResult>>(content);
         deserialized.Should().NotBeNullOrEmpty();
         deserialized.Should().HaveCountGreaterThan(0);
     }
@@ -58,17 +50,17 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
     public async Task GivenCorrectId_WhenGetArticle_ShouldReturnEntityAsJsonObject()
     {
         // Arrange
-        var testUserId = Article1.Id;
-        var request = $"{ApiBaseUrl}/GetArticle/{testUserId}/?noCache=true";
+        var userId = Article1.Id;
+        var uri = $"{BaseUriArticles}/GetArticle/{userId}/?noCache=true";
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         // Act
-        var response = await httpClient.GetAsync(request);
-        await EnsureStatusCode(response, HttpStatusCode.OK);
+        var response = await httpClient.GetAsync(uri);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.OK);
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
 
@@ -80,16 +72,16 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
     public async Task GivenIncorrectId_WhenGetArticle_ShouldReturnJsonObjectWithError()
     {
         // Arrange
+        var uri = $"{BaseUriArticles}/GetArticle/{Guid.NewGuid()}/?noCache=true";
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
-        var request = $"{ApiBaseUrl}/GetArticle/{Guid.NewGuid()}/?noCache=true";
 
         // Act
-        var response = await httpClient.GetAsync(request);
-        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
+        var response = await httpClient.GetAsync(uri);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
         content.Should().Contain(nameof(ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE));
@@ -99,10 +91,10 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
     public async Task GivenAllFieldsAreCorrectAsAnonymousUser_WhenAddArticle_ShouldReturnUnauthorized()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/AddArticle/";
-        var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
+        const string uri = $"{BaseUriArticles}/AddArticle/";
+        var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
-        var payLoad = new AddArticleDto
+        var dto = new AddArticleDto
         {
             Title = DataUtilityService.GetRandomString(),
             Description = DataUtilityService.GetRandomString(),
@@ -114,13 +106,14 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
-        newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
+        var payload = JsonConvert.SerializeObject(dto);
+        request.Content = new StringContent(payload, Encoding.Default, "application/json");
 
         // Act
-        var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
+        var response = await httpClient.SendAsync(request);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
         var result = await response.Content.ReadAsStringAsync();
         result.Should().Contain(nameof(ErrorCodes.INVALID_USER_TOKEN));
     }
@@ -129,10 +122,10 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
     public async Task GivenAllFieldsAreCorrectAsLoggedUser_WhenAddArticle_ShouldSucceed()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/AddArticle/";
-        var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
+        const string uri = $"{BaseUriArticles}/AddArticle/";
+        var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
-        var payLoad = new AddArticleDto
+        var dto = new AddArticleDto
         {
             Title = DataUtilityService.GetRandomString(),
             Description = DataUtilityService.GetRandomString(),
@@ -143,20 +136,22 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
+
         var tokenExpires = DateTime.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
             _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
 
         await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
-            
-        newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
-        newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
+
+        var payload = JsonConvert.SerializeObject(dto);
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
+        request.Content = new StringContent(payload, Encoding.Default, "application/json");
 
         // Act
-        var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.OK);
+        var response = await httpClient.SendAsync(request);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.OK);
         var result = await response.Content.ReadAsStringAsync();
         result.Should().NotBeNullOrEmpty();
     }
@@ -165,25 +160,22 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
     public async Task GivenIncorrectIdAndNoJwt_WhenRemoveSubscriber_ShouldReturnUnauthorized()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/RemoveArticle/";
-        var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
+        const string uri = $"{BaseUriArticles}/RemoveArticle/";
+        var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
-        var payLoad = new RemoveArticleDto
-        {
-            Id = Guid.Parse("5a4b2494-e04b-4297-9dd8-3327837ea4e2")
-        };
-
+        var dto = new RemoveArticleDto { Id = Guid.NewGuid() };
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
-        newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), System.Text.Encoding.Default, "application/json");
+        var payload = JsonConvert.SerializeObject(dto);
+        request.Content = new StringContent(payload, Encoding.Default, "application/json");
 
         // Act
-        var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
+        var response = await httpClient.SendAsync(request);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
         var result = await response.Content.ReadAsStringAsync();
         result.Should().Contain(nameof(ErrorCodes.INVALID_USER_TOKEN));
     }
@@ -192,10 +184,10 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
     public async Task GivenNoJwt_WhenUpdateArticleContent_ShouldReturnUnauthorized()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/UpdateArticleContent/";
-        var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
+        const string uri = $"{BaseUriArticles}/UpdateArticleContent/";
+        var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
-        var payLoad = new UpdateArticleContentDto
+        var dto = new UpdateArticleContentDto
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),
@@ -203,19 +195,19 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
             TextToUpload = DataUtilityService.GetRandomString(150),
             ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
         };
-            
+
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
-        newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), 
-            System.Text.Encoding.Default, "application/json");
+        var payload = JsonConvert.SerializeObject(dto);
+        request.Content = new StringContent(payload, Encoding.Default, "application/json");
 
         // Act
-        var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
+        var response = await httpClient.SendAsync(request);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
         var result = await response.Content.ReadAsStringAsync();
         result.Should().Contain(nameof(ErrorCodes.INVALID_USER_TOKEN));
     }
@@ -224,56 +216,52 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
     public async Task GivenInvalidArticleId_WhenUpdateArticleCount_ShouldReturnUnprocessableEntity()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/UpdateArticleCount/";
-        var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
+        const string uri = $"{BaseUriArticles}/UpdateArticleCount/";
+        var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
-        var payLoad = new UpdateArticleCountDto
-        {
-            Id = Guid.NewGuid()
-        };
-            
+        var dto = new UpdateArticleCountDto { Id = Guid.NewGuid() };
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
-        newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), 
-            System.Text.Encoding.Default, "application/json");
+        var payload = JsonConvert.SerializeObject(dto);
+        request.Content = new StringContent(payload, Encoding.Default, "application/json");
 
         // Act
-        var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
+        var response = await httpClient.SendAsync(request);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
         content.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
     }
 
     [Fact]
-    public async Task GivenInvalidArticleId_WhenUpdateArticleLikes_ShouldReturnUnprocessableEntityt()
+    public async Task GivenInvalidArticleId_WhenUpdateArticleLikes_ShouldReturnUnprocessableEntity()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/UpdateArticleLikes/";
-        var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
+        const string uri = $"{BaseUriArticles}/UpdateArticleLikes/";
+        var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
-        var payLoad = new UpdateArticleLikesDto
+        var dto = new UpdateArticleLikesDto
         {
             Id = Guid.NewGuid(),
             AddToLikes = 10
         };
-            
+
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
-        newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), 
-            System.Text.Encoding.Default, "application/json");
+        var payload = JsonConvert.SerializeObject(dto);
+        request.Content = new StringContent(payload, Encoding.Default, "application/json");
 
         // Act
-        var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
+        var response = await httpClient.SendAsync(request);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.UnprocessableEntity);
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
         content.Should().Contain(ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
@@ -283,8 +271,8 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
     public async Task GivenInvalidArticleIdAndValidJwt_WhenUpdateArticleVisibility_ShouldReturnForbidden()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/UpdateArticleVisibility/";
-        var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
+        const string uri = $"{BaseUriArticles}/UpdateArticleVisibility/";
+        var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
@@ -296,21 +284,21 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
 
         await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
 
-        var payLoad = new UpdateArticleVisibilityDto
+        var dto = new UpdateArticleVisibilityDto
         {
             Id = Guid.NewGuid(),
             IsPublished = true
         };
-            
-        newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
-        newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), 
-            System.Text.Encoding.Default, "application/json");
-            
+
+        var payload = JsonConvert.SerializeObject(dto);
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
+        request.Content = new StringContent(payload, Encoding.Default, "application/json");
+
         // Act
-        var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.Forbidden);
+        var response = await httpClient.SendAsync(request);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.Forbidden);
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
         content.Should().Contain(ErrorCodes.ACCESS_DENIED);
@@ -320,8 +308,8 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
     public async Task GivenInvalidArticleIdAndInvalidJwt_WhenUpdateArticleVisibility_ShouldReturnUnauthorized()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/UpdateArticleVisibility/";
-        var newRequest = new HttpRequestMessage(HttpMethod.Post, request);
+        const string uri = $"{BaseUriArticles}/UpdateArticleVisibility/";
+        var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
@@ -331,21 +319,21 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
             _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
 
-        var payLoad = new UpdateArticleVisibilityDto
+        var dto = new UpdateArticleVisibilityDto
         {
             Id = Guid.NewGuid(),
             IsPublished = true
         };
-            
-        newRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
-        newRequest.Content = new StringContent(JsonConvert.SerializeObject(payLoad), 
-            System.Text.Encoding.Default, "application/json");
-            
+
+        var payload = JsonConvert.SerializeObject(dto);
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
+        request.Content = new StringContent(payload, Encoding.Default, "application/json");
+
         // Act
-        var response = await httpClient.SendAsync(newRequest);
-        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
+        var response = await httpClient.SendAsync(request);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
         var result = await response.Content.ReadAsStringAsync();
         result.Should().Contain(nameof(ErrorCodes.INVALID_USER_TOKEN));
     }

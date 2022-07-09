@@ -3,13 +3,12 @@
 using Moq;
 using Xunit;
 using FluentAssertions;
+using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.Core.Exceptions;
 using Backend.Core.Extensions;
 using Backend.Domain.Entities;
-using Backend.Shared.Resources;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.DateTimeService;
@@ -44,10 +43,10 @@ public class AddArticleCommandHandlerTest : TestBase
     }
 
     [Fact]
-    public async Task GivenFieldsWithBase64ImageAsLoggedUser_WhenAddArticle_ShouldAddArticle() 
+    public async Task GivenLoggedUser_WhenAddArticle_ShouldAddArticle() 
     {
         // Arrange
-        var addArticleCommand = new AddArticleCommand
+        var command = new AddArticleCommand
         {
             Title = _dataUtilityService.GetRandomString(),
             Description = _dataUtilityService.GetRandomString(),
@@ -59,14 +58,7 @@ public class AddArticleCommandHandlerTest : TestBase
         {
             UserAlias  = _dataUtilityService.GetRandomString(),
             IsActivated = true,
-            FirstName = _dataUtilityService.GetRandomString(),
-            LastName = _dataUtilityService.GetRandomString(),
             EmailAddress = _dataUtilityService.GetRandomEmail(),
-            Registered = _dataUtilityService.GetRandomDateTime(),
-            LastLogged = _dataUtilityService.GetRandomDateTime(),
-            LastUpdated = _dataUtilityService.GetRandomDateTime(),
-            AvatarName = _dataUtilityService.GetRandomString(),
-            ShortBio = _dataUtilityService.GetRandomString(),
             CryptedPassword = _dataUtilityService.GetRandomString()
         };
 
@@ -75,88 +67,27 @@ public class AddArticleCommandHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
             
         var mockedDateTime = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserService>();
+        var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
-        mockedUserProvider
-            .Setup(provider => provider.GetUserId())
-            .ReturnsAsync(user.Id);
+        mockedUserService
+            .Setup(service => service.GetActiveUser(
+                It.IsAny<Guid?>(), 
+                It.IsAny<bool>(),
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(user);
             
-        var addArticleCommandHandler = new AddArticleCommandHandler(
+        var handler = new AddArticleCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedUserProvider.Object,
+            mockedUserService.Object,
             mockedDateTime.Object, 
             _mockedAzureBlobStorageFactory.Object);
 
         // Act
-        var result = await addArticleCommandHandler.Handle(addArticleCommand, CancellationToken.None);
+        var result = await handler.Handle(command, CancellationToken.None);
             
         // Assert
         result.ToString().IsGuid().Should().Be(true);
-    }
-        
-    [Fact]
-    public async Task GivenFieldsWithBase64ImageAsAnonymousUser_WhenAddArticle_ShouldThrowError() 
-    {
-        // Arrange
-        var addArticleCommand = new AddArticleCommand
-        {
-            Title = _dataUtilityService.GetRandomString(),
-            Description = _dataUtilityService.GetRandomString(),
-            TextToUpload = _dataUtilityService.GetRandomString(),
-            ImageToUpload = _dataUtilityService.GetRandomString().ToBase64Encode()
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        var mockedDateTime = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserService>();
-        var mockedLogger = new Mock<ILoggerService>();
-            
-        var addArticleCommandHandler = new AddArticleCommandHandler(
-            databaseContext, 
-            mockedLogger.Object,
-            mockedUserProvider.Object,
-            mockedDateTime.Object, 
-            _mockedAzureBlobStorageFactory.Object);
-
-        // Act
-        // Assert
-        var result = await Assert.ThrowsAsync<AccessException>(() 
-            => addArticleCommandHandler.Handle(addArticleCommand, CancellationToken.None));
-
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
-    }
-        
-    [Fact]
-    public async Task GivenFieldsWithNoBase64ImageAsAnonymousUser_WhenAddArticle_ShouldThrowError()
-    {
-        // Arrange
-        var addArticleCommand = new AddArticleCommand
-        {
-            Title = _dataUtilityService.GetRandomString(),
-            Description = _dataUtilityService.GetRandomString(),
-            TextToUpload = _dataUtilityService.GetRandomString(),
-            ImageToUpload = "úK¼Æ½t$bþÍs*L2ÕÊª"
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        var mockedDateTime = new Mock<IDateTimeService>();
-        var mockedUserProvider = new Mock<IUserService>();
-        var mockedLogger = new Mock<ILoggerService>();
-
-        var addArticleCommandHandler = new AddArticleCommandHandler(
-            databaseContext, 
-            mockedLogger.Object,
-            mockedUserProvider.Object,
-            mockedDateTime.Object, 
-            _mockedAzureBlobStorageFactory.Object);
-            
-        // Act
-        // Assert
-        var result = await Assert.ThrowsAsync<AccessException>(() 
-            => addArticleCommandHandler.Handle(addArticleCommand, CancellationToken.None));
-
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
     }
 }

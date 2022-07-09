@@ -15,12 +15,9 @@ using Core.Utilities.DateTimeService;
 public class AddSubscriberCommandHandler : RequestHandler<AddSubscriberCommand, Guid>
 {
     private readonly IDateTimeService _dateTimeService;
-        
+
     public AddSubscriberCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService) : base(databaseContext, loggerService)
-    {
-        _dateTimeService = dateTimeService;
-    }
+        IDateTimeService dateTimeService) : base(databaseContext, loggerService) => _dateTimeService = dateTimeService;
 
     public override async Task<Guid> Handle(AddSubscriberCommand request, CancellationToken cancellationToken) 
     {
@@ -37,8 +34,10 @@ public class AddSubscriberCommandHandler : RequestHandler<AddSubscriberCommand, 
             Email = request.Email,
             Count = 0,
             IsActivated = true,
-            LastUpdated = null,
-            Registered = _dateTimeService.Now
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = Guid.Empty,
+            ModifiedAt = null,
+            ModifiedBy = null
         };
 
         await DatabaseContext.Subscribers.AddAsync(newSubscriber, cancellationToken);

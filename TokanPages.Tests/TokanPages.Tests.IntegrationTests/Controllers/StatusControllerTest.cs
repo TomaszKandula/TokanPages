@@ -8,15 +8,11 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
-using Backend.Shared.Models;
 using Factories;
+using Backend.Dto.Health;
 
 public class StatusControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
-    private const string ApiBaseUrl = "/api/v1.0/health";
-
-    private const string TestRootPath = "TokanPages.Tests/TokanPages.Tests.IntegrationTests";
-
     private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
 
     public StatusControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
@@ -25,52 +21,55 @@ public class StatusControllerTest : TestBase, IClassFixture<CustomWebApplication
     public async Task GivenCorrectConfiguration_WhenRequestStatusCheck_ShouldReturnSuccessful()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/Status/";
+        const string uri = $"{BaseUriHeath}/Status/";
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
-        
+
         // Act
-        var response = await httpClient.GetAsync(request);
-        await EnsureStatusCode(response, HttpStatusCode.OK);
-        
+        var response = await httpClient.GetAsync(uri);
+
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.OK);
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
-            
-        var deserialized = JsonConvert.DeserializeObject<ActionResult>(content);
+
+        var deserialized = JsonConvert.DeserializeObject<ActionResultDto>(content);
         deserialized.Should().NotBeNull();
         deserialized?.IsSucceeded.Should().BeTrue();
-        deserialized?.ErrorCode.Should().BeNull();
-        deserialized?.ErrorDesc.Should().BeNull();
+        deserialized?.ErrorCode.Should().BeEmpty();
+        deserialized?.ErrorDesc.Should().BeEmpty();
     }
 
     [Fact]
     public async Task GivenInvalidDatabaseServer_WhenRequestStatusCheck_ShouldThrowError()
     {
         // Arrange
-        var request = $"{ApiBaseUrl}/Status/";
+        const string uri = $"{BaseUriHeath}/Status/";
         var webAppFactory = _webApplicationFactory.WithWebHostBuilder(builder =>
         {
             builder.UseSolutionRelativeContentRoot(TestRootPath);
             builder.ConfigureAppConfiguration((_, configurationBuilder) =>
             {
                 configurationBuilder.AddInMemoryCollection(
-                    new Dictionary<string, string> { ["ConnectionStrings:DbConnectTest"] = DataUtilityService.GetRandomString() });
+                    new Dictionary<string, string>
+                    {
+                        ["ConnectionStrings:DbConnectTest"] = DataUtilityService.GetRandomString()
+                    });
             });
         });
 
         var httpClient = webAppFactory.CreateClient();
-            
+
         // Act
-        var response = await httpClient.GetAsync(request);
-        await EnsureStatusCode(response, HttpStatusCode.InternalServerError);
+        var response = await httpClient.GetAsync(uri);
 
         // Assert
+        await EnsureStatusCode(response, HttpStatusCode.InternalServerError);
         var content = await response.Content.ReadAsStringAsync();
         content.Should().NotBeNullOrEmpty();
-            
-        var deserialized = JsonConvert.DeserializeObject<ActionResult>(content);
+
+        var deserialized = JsonConvert.DeserializeObject<ActionResultDto>(content);
         deserialized.Should().NotBeNull();
         deserialized?.IsSucceeded.Should().BeFalse();
         deserialized?.ErrorCode.Should().NotBeEmpty();

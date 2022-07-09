@@ -5,12 +5,12 @@ using Backend.Database;
 
 internal class DatabaseContextFactory
 {
-    public DatabaseContext CreateDatabaseContext(string connectionString)
+    public DatabaseContext CreateDatabaseContext(string? connectionString)
     {
         var databaseOptions = new DbContextOptionsBuilder<DatabaseContext>()
             .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
             .EnableSensitiveDataLogging()
-            .UseSqlServer(connectionString);
+            .UseSqlServer(connectionString ?? string.Empty);
 
         var databaseContext = new DatabaseContext(databaseOptions.Options);
         databaseContext.Database.OpenConnection();

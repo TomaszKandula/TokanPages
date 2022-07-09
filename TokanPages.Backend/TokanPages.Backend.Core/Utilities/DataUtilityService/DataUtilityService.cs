@@ -36,8 +36,9 @@ public class DataUtilityService : IDataUtilityService
     /// <returns>New randomized enumeration.</returns>
     public virtual T GetRandomEnum<T>()
     {
-        var values = Enum.GetValues(typeof(T)); 
-        return (T)values.GetValue(RandomNext(values.Length));
+        var values = Enum.GetValues(typeof(T));
+        var random = RandomNext(values.Length);
+        return (T)values.GetValue(random)!;
     }
 
     /// <summary>

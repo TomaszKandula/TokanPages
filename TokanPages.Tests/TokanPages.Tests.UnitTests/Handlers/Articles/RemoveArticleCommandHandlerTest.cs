@@ -4,10 +4,14 @@ using Moq;
 using Xunit;
 using FluentAssertions;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Backend.Core.Exceptions;
 using Backend.Domain.Entities;
+using Backend.Shared.Resources;
+using Microsoft.EntityFrameworkCore;
+using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Articles;
 
@@ -17,102 +21,131 @@ public class RemoveArticleCommandHandlerTest : TestBase
     public async Task GivenCorrectId_WhenRemoveArticle_ShouldRemoveEntity() 
     {
         // Arrange
-        var removeArticleCommand = new RemoveArticleCommand
-        {
-            Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9")
-        };
-
+        var articleId = Guid.NewGuid();
+        var userId = Guid.NewGuid();
         var users = new Users
         {
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
+            Id = userId,
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
-        await databaseContext.SaveChangesAsync();
-
         var articles = new Articles
         {
-            Id = Guid.Parse("2431eeba-866c-4e45-ad64-c409dd824df9"),
+            Id = articleId,
             Title = DataUtilityService.GetRandomString(),
             Description = DataUtilityService.GetRandomString(),
             IsPublished = false,
             ReadCount = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = users.Id
+            UserId = userId
         };
-            
+
+        var articleLikes = new ArticleLikes
+        {
+            ArticleId = articleId,
+            UserId = userId,
+            IpAddress = DataUtilityService.GetRandomIpAddress().ToString(),
+            LikeCount = DataUtilityService.GetRandomInteger()
+        };
+
+        var articleCounts = new ArticleCounts
+        {
+            ArticleId = articleId,
+            UserId = userId,
+            IpAddress = DataUtilityService.GetRandomIpAddress().ToString(),
+            ReadCount = DataUtilityService.GetRandomInteger()
+        };
+
+        var databaseContext = GetTestDatabaseContext();
+        await databaseContext.Users.AddAsync(users);
         await databaseContext.Articles.AddAsync(articles);
+        await databaseContext.ArticleLikes.AddAsync(articleLikes);
+        await databaseContext.ArticleCounts.AddAsync(articleCounts);        
         await databaseContext.SaveChangesAsync();
-            
+
         var mockedLogger = new Mock<ILoggerService>();
-        var removeArticleCommandHandler = new RemoveArticleCommandHandler(databaseContext, mockedLogger.Object);
+        var mockedUserService = new Mock<IUserService>();
+
+        mockedUserService
+            .Setup(service => service.GetActiveUser(
+                It.IsAny<Guid?>(), 
+                It.IsAny<bool>(), 
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(users);
+
+        var command = new RemoveArticleCommand { Id = articleId };
+        var handler = new RemoveArticleCommandHandler(
+            databaseContext, 
+            mockedLogger.Object, 
+            mockedUserService.Object);
 
         // Act 
-        await removeArticleCommandHandler.Handle(removeArticleCommand, CancellationToken.None);
+        await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        var assertDbContext = GetTestDatabaseContext();
-        var articlesEntity = await assertDbContext.Articles.FindAsync(removeArticleCommand.Id);
-        articlesEntity.Should().BeNull();
+        var articleCheck = await databaseContext.Articles.Where(x => x.Id == command.Id).ToListAsync();
+        var articleCountCheck = await databaseContext.ArticleCounts.Where(x => x.ArticleId == command.Id).ToListAsync();
+        var articleLikeCheck = await databaseContext.ArticleLikes.Where(x => x.ArticleId == command.Id).ToListAsync();
+
+        articleCheck.Should().BeEmpty();
+        articleCountCheck.Should().BeEmpty();
+        articleLikeCheck.Should().BeEmpty();
     }
 
     [Fact]
     public async Task GivenIncorrectId_WhenRemoveArticle_ShouldThrowError()
     {
         // Arrange
-        var removeArticleCommand = new RemoveArticleCommand
-        {
-            Id = Guid.Parse("84e85026-aca9-4709-b9b3-86f2d1300575")
-        };
-
+        var userId = Guid.NewGuid();
         var users = new Users
         {
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
+            Id = userId,
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime(),
-            LastLogged = null,
-            LastUpdated = null,
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
-        await databaseContext.SaveChangesAsync();
-
         var articles = new Articles
         {
-            Id = Guid.Parse("fbc54b0f-bbec-406f-b8a9-0a1c5ca1e841"),
+            Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),
             Description = DataUtilityService.GetRandomString(),
             IsPublished = false,
             ReadCount = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = users.Id
+            UserId = userId
         };
-            
+
+        var databaseContext = GetTestDatabaseContext();
+        await databaseContext.Users.AddAsync(users);
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
-        var removeArticleCommandHandler = new RemoveArticleCommandHandler(databaseContext, mockedLogger.Object);
+        var mockedUserService = new Mock<IUserService>();
+
+        mockedUserService
+            .Setup(service => service.GetActiveUser(
+                It.IsAny<Guid?>(), 
+                It.IsAny<bool>(), 
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(users);
+
+        var command = new RemoveArticleCommand { Id = Guid.NewGuid() };
+        var handler = new RemoveArticleCommandHandler(
+            databaseContext, 
+            mockedLogger.Object, 
+            mockedUserService.Object);
 
         // Act
         // Assert
-        await Assert.ThrowsAsync<BusinessException>(() 
-            => removeArticleCommandHandler.Handle(removeArticleCommand, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS));
     }
 }

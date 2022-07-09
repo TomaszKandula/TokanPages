@@ -56,7 +56,7 @@ public class SendMessageCommandValidator : AbstractValidator<SendMessageCommand>
             .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
             .WithMessage(ValidationCodes.REQUIRED)
-            .MaximumLength(255)
+            .MaximumLength(10000)
             .WithErrorCode(nameof(ValidationCodes.MESSAGE_TOO_LONG))
             .WithMessage(ValidationCodes.MESSAGE_TOO_LONG);
     }

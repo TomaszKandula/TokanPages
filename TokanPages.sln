@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.UserSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.EmailSenderService", "TokanPages.Services\TokanPages.Services.EmailSenderService\TokanPages.Services.EmailSenderService.csproj", "{2537C6F4-8115-4ECF-816B-0D00207163E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Dto", "TokanPages.Backend\TokanPages.Backend.Dto\TokanPages.Backend.Dto.csproj", "{831ECC1F-EC05-42E7-89BE-B7494A453C63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{2537C6F4-8115-4ECF-816B-0D00207163E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2537C6F4-8115-4ECF-816B-0D00207163E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2537C6F4-8115-4ECF-816B-0D00207163E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{831ECC1F-EC05-42E7-89BE-B7494A453C63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{831ECC1F-EC05-42E7-89BE-B7494A453C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{831ECC1F-EC05-42E7-89BE-B7494A453C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{831ECC1F-EC05-42E7-89BE-B7494A453C63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -127,6 +133,7 @@ Global
 		{A5B8C7EE-02B2-457A-980D-43A8959AC285} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 		{4E6E66DD-C624-466E-9DF1-64CD7E8A65C0} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 		{2537C6F4-8115-4ECF-816B-0D00207163E5} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
+		{831ECC1F-EC05-42E7-89BE-B7494A453C63} = {B6059425-BCF6-468D-BAF2-450E3E6D6C43}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4A63A58-F64E-4EB2-92DD-70486490D8CE}

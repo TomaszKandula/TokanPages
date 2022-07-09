@@ -11,13 +11,13 @@ using JetBrains.Annotations;
 [UsedImplicitly]
 public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<TTestStartup> where TTestStartup : class
 {
-    public string WebSecret { get; private set; }
+    public string WebSecret { get; private set; } = "";
 
-    public string Issuer { get; private set; }
+    public string Issuer { get; private set; } = "";
 
-    public string Audience { get; private set; }
+    public string Audience { get; private set; } = "";
 
-    public string Connection { get; private set; }
+    public string Connection { get; private set; } = "";
 
     protected override IWebHostBuilder CreateWebHostBuilder()
     {
@@ -26,7 +26,7 @@ public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<T
             {
                 var startupAssembly = typeof(TTestStartup).GetTypeInfo().Assembly;
                 var testConfig = new ConfigurationBuilder()
-                    .AddJsonFile("appsettings.Staging.json", optional: true, reloadOnChange: true)
+                    .AddJsonFile("appsettings.Staging.json", true, true)
                     .AddUserSecrets(startupAssembly, true)
                     .AddEnvironmentVariables()
                     .Build();

@@ -1,11 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test user avatar component. Should correctly render user avatar component view. 1`] = `
-<Fragment>
-  <WithStyles(ForwardRef(Avatar))
-    alt=""
-    className="makeStyles-avatarLarge-2"
-    src="test-avatar.png"
-  />
-</Fragment>
+<WithStyles(ForwardRef(Avatar))
+  alt="Avatar"
+  className="makeStyles-avatarLarge-2"
+  src="test-avatar.png"
+/>
 `;

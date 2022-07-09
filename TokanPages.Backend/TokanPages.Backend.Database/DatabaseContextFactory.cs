@@ -34,7 +34,7 @@ public class DatabaseContextFactory : IDesignTimeDbContextFactory<DatabaseContex
 
         var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
         optionsBuilder.UseSqlServer(connectionString);
-            
+
         return new DatabaseContext(optionsBuilder.Options);
     }
 }

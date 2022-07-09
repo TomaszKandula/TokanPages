@@ -13,7 +13,7 @@ public class DateTimeServiceTest
     private const int Hour = 9;
     private const int Minute = 30;
     private const int Second = 30;
-        
+
     [Fact]
     public void GivenDateTime_WhenInvokeGetStartOfDay_ShouldReturnSameDateAndTimeAtMidnight()
     {
@@ -28,7 +28,6 @@ public class DateTimeServiceTest
         result.Should().HaveYear(Year);
         result.Should().HaveMonth(Month);
         result.Should().HaveDay(Day);
-            
         result.Should().HaveHour(0);
         result.Should().HaveMinute(0);
         result.Should().HaveSecond(0);
@@ -48,7 +47,6 @@ public class DateTimeServiceTest
         result.Should().HaveYear(Year);
         result.Should().HaveMonth(Month);
         result.Should().HaveDay(Day);
-            
         result.Should().HaveHour(23);
         result.Should().HaveMinute(59);
         result.Should().HaveSecond(59);
@@ -68,7 +66,6 @@ public class DateTimeServiceTest
         result.Should().HaveYear(Year);
         result.Should().HaveMonth(Month);
         result.Should().HaveDay(1);
-            
         result.Should().HaveHour(0);
         result.Should().HaveMinute(0);
         result.Should().HaveSecond(0);
@@ -81,11 +78,8 @@ public class DateTimeServiceTest
         var dateTimeService = new DateTimeService();
 
         // Act
-        var todayStartOfDay = dateTimeService.TodayStartOfDay;
-        var todayEndOfDay = dateTimeService.TodayEndOfDay;
+        var difference = dateTimeService.TodayEndOfDay - dateTimeService.TodayStartOfDay;
 
-        var difference = todayEndOfDay - todayStartOfDay;
-            
         // Assert
         difference.Hours.Should().Be(23);
         difference.Minutes.Should().Be(59);

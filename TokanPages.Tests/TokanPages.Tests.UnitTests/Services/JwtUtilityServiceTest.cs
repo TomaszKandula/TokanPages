@@ -8,7 +8,8 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Backend.Domain.Enums;
 using Backend.Database.Initializer.Data.Users;
-    
+using Backend.Database.Initializer.Data.UserInfo;
+
 public class JwtUtilityServiceTest : TestBase
 {
     [Fact]
@@ -21,7 +22,6 @@ public class JwtUtilityServiceTest : TestBase
         const string claimTypesGivenName = "given_name";
         const string claimTypesSurname = "family_name";
         const string claimTypesEmail = "email";
-
         const string webSecret = "0e723112-72e2-43fc-a348-ddb0147554f5";
         const string issuer = "www.jwt-issuer.com";
         const string audience = "www.some-api.com";
@@ -33,29 +33,29 @@ public class JwtUtilityServiceTest : TestBase
             new Claim(ClaimTypes.Name, userAlias),
             new Claim(ClaimTypes.Role, nameof(Roles.EverydayUser)),
             new Claim(ClaimTypes.NameIdentifier, User1.Id.ToString()),
-            new Claim(ClaimTypes.GivenName, User1.FirstName),
-            new Claim(ClaimTypes.Surname, User1.LastName),
+            new Claim(ClaimTypes.GivenName, UserInfo1.FirstName),
+            new Claim(ClaimTypes.Surname, UserInfo1.LastName),
             new Claim(ClaimTypes.Email, User1.EmailAddress)
         });
             
         // Act
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, getValidClaims, webSecret, issuer, audience);
-            
+        var result = WebTokenUtility.GenerateJwt(tokenExpires, getValidClaims, webSecret, issuer, audience);
+
         // Assert
-        jwt.Should().NotBeNullOrEmpty();
+        result.Should().NotBeNullOrEmpty();
 
         var handler = new JwtSecurityTokenHandler();
-        var jsonToken = handler.ReadToken(jwt);
+        var jsonToken = handler.ReadToken(result);
         jsonToken.Should().NotBeNull();
         jsonToken.Issuer.Should().Be(issuer);
-            
+
         var securityToken = jsonToken as JwtSecurityToken;
         securityToken.Should().NotBeNull();
         securityToken?.Claims.First(claim => claim.Type == claimTypesName).Value.Should().Be(userAlias);
         securityToken?.Claims.First(claim => claim.Type == claimTypesRole).Value.Should().Be(nameof(Roles.EverydayUser));
         securityToken?.Claims.First(claim => claim.Type == claimTypesNameIdentifier).Value.Should().Be(User1.Id.ToString());
-        securityToken?.Claims.First(claim => claim.Type == claimTypesGivenName).Value.Should().Be(User1.FirstName);
-        securityToken?.Claims.First(claim => claim.Type == claimTypesSurname).Value.Should().Be(User1.LastName);
+        securityToken?.Claims.First(claim => claim.Type == claimTypesGivenName).Value.Should().Be(UserInfo1.FirstName);
+        securityToken?.Claims.First(claim => claim.Type == claimTypesSurname).Value.Should().Be(UserInfo1.LastName);
         securityToken?.Claims.First(claim => claim.Type == claimTypesEmail).Value.Should().Be(User1.EmailAddress);
     }
 
@@ -67,7 +67,7 @@ public class JwtUtilityServiceTest : TestBase
     {
         // Arrange
         const string ipAddress = "127.0.0.1";
-            
+
         // Act
         var result = WebTokenUtility.GenerateRefreshToken(ipAddress, expiresIn);
 
@@ -75,13 +75,13 @@ public class JwtUtilityServiceTest : TestBase
         result.Token.Should().HaveLength(344);
         result.CreatedByIp.Should().Be(ipAddress);
     }
-        
+
     [Fact]
     public void GivenZeroMinutesToExpire_WhenInvokeGenerateRefreshToken_ShouldThrowError()
     {
         // Arrange
         const string ipAddress = "127.0.0.1";
-            
+
         // Act
         // Assert
         Assert.Throws<ArgumentException>(() => WebTokenUtility.GenerateRefreshToken(ipAddress, 0));

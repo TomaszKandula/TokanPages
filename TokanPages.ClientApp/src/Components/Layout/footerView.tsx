@@ -4,11 +4,10 @@ import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import WarningIcon from '@material-ui/icons/Warning';
-import { IFooterContentIconDto } from "../../Api/Models";
+import { GetIcon } from "../../Shared/Components/GetIcon/getIcon";
+import { IIcon, ILink } from "../../Api/Models";
 import footerStyle from "./Styles/footerStyle";
+import Validate from "validate.js";
 
 interface IBinding
 {
@@ -17,88 +16,92 @@ interface IBinding
 
 interface IProperties
 {
-    terms: string;
-    policy: string;
+    terms: ILink;
+    policy: ILink;
     versionInfo: string;
     hasVersionInfo: boolean;
     backgroundColor: string;
-    boxPaddingBottom: number;
     copyright: string;
     reserved: string;
-    icons: IFooterContentIconDto[];
+    icons: IIcon[];
 }
 
 const FooterView = (props: IBinding): JSX.Element => 
 {
     const SetTermsLink = (): JSX.Element => 
     { 
-        return (
-            <Link to="/terms" className={classes.links}>
-                {props.bind?.terms}
-            </Link>
-        ); 
+        if (Validate.isEmpty(props.bind?.terms?.href))
+        {
+            return(<>{props.bind?.terms?.text}</>);
+        }
+
+        return(
+            <Link to={props.bind?.terms?.href} className={classes.links}>
+                {props.bind?.terms?.text}
+            </Link>); 
     };
 
     const SetPolicyLink = (): JSX.Element => 
     { 
-        return (
-            <Link to="/policy" className={classes.links}>
-                {props.bind?.policy}
-            </Link>
-        );
-    };
-
-    const RenderIcon = (iconName: string): JSX.Element => 
-    {
-        switch(iconName)
+        if (Validate.isEmpty(props.bind?.policy?.href))
         {
-            case "GitHubIcon": return <GitHubIcon />;
-            case "LinkedInIcon": return <LinkedInIcon />;
-            case "MediumIcon": return <div></div>;
-            default: return <WarningIcon />;
+            return(<>{props.bind?.policy?.text}</>);
         }
+
+        return (
+            <Link to={props.bind?.policy?.href} className={classes.links}>
+                {props.bind?.policy?.text}
+            </Link>);
     };
 
-    const RenderVersionInfo = (): JSX.Element =>
+    const RenderIconButtons = (): JSX.Element =>
+    {
+        const icons = 
+        <Box ml="auto" className={classes.icon_box} data-aos="zoom-in">
+            {props.bind?.icons?.map((item: IIcon, index: number) => 
+            (<IconButton 
+                className={classes.icon}
+                aria-label={item.name} 
+                href={item.href} 
+                key={index}
+                color="default" 
+                target="_blank">
+                <GetIcon iconName={item.name} />
+            </IconButton>))}
+        </Box>;
+
+        return icons;
+    }
+
+    const RenderCopyrightBar = (): JSX.Element => 
+    {
+        return (<Box pt={6} pb={1} className={classes.copyright_box}>
+            <Typography className={classes.copyright} data-aos="zoom-in">
+                {props.bind?.copyright} | {props.bind?.reserved} | <SetTermsLink /> | <SetPolicyLink />
+            </Typography>
+            <RenderIconButtons />
+        </Box>);
+    }
+
+    const RenderVersionInfo = (): JSX.Element | null =>
     {
         const applicationVersionInfo = 
-            <Box pt={1} pb={6} display="flex"  justifyContent="center" alignItems="center">
+            <Box display="flex"  justifyContent="center" alignItems="center" data-aos="zoom-in">
                 <Typography className={classes.version}>
                     {props.bind?.versionInfo}
                 </Typography>
             </Box>;
-        
-        return props.bind?.hasVersionInfo 
-            ? <div></div> 
-            : applicationVersionInfo
+
+        return props.bind?.hasVersionInfo ? null : applicationVersionInfo
     };
 
     const classes = footerStyle();
     return (
-        <footer className={classes.root}>
+        <footer className={classes.page_footer}>
             <Container maxWidth="lg">
-                    <Box pt={6} pb={props.bind?.boxPaddingBottom} display="flex" flexWrap="wrap" alignItems="center">
-                        <Typography gutterBottom={false} className={classes.copy} data-aos="fade-right">
-                            {props.bind?.copyright} | {props.bind?.reserved} | <SetTermsLink /> | <SetPolicyLink />
-                        </Typography>
-                        <Box ml="auto" className={classes.icon_box} data-aos="fade-left">
-                            {props.bind?.icons?.map((item: IFooterContentIconDto, index: number) => (
-                                <IconButton 
-                                    className={classes.icon}
-                                    key={index}
-                                    color="default" 
-                                    aria-label={item.name} 
-                                    href={item.link} 
-                                    target="_blank">
-                                    {RenderIcon(item.name)}
-                                </IconButton>
-                            ))}
-                        </Box>
-                    </Box>
-                    <div data-aos="zoom-in">
-                        <RenderVersionInfo />
-                    </div>
-                    <div className={classes.bottom_space}></div>
+                <RenderCopyrightBar />
+                <RenderVersionInfo />
+                <Box pb={15}></Box>
             </Container>
         </footer>
     );

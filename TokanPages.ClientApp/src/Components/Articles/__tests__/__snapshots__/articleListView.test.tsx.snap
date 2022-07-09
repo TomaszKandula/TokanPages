@@ -32,11 +32,39 @@ exports[`Test articles group component: articleListView. Renders correctly '<Art
           sm={12}
           xs={12}
         >
-          <ArticleCard
-            description="Some article"
-            id="8919332f-6654-4346-946f-5204cb7a3234"
-            key="8919332f-6654-4346-946f-5204cb7a3234"
-            title="Test article"
+          <RenderContent
+            articles={
+              Array [
+                Object {
+                  "author": Object {
+                    "aliasName": "Ester",
+                    "avatarName": "default.jpg",
+                    "firstName": "Ester",
+                    "lastName": "Exposito",
+                    "registered": "2020-01-05 14:15:30",
+                    "shortBio": "Happy developer",
+                  },
+                  "createdAt": "2020-09-21",
+                  "description": "Some article",
+                  "id": "8919332f-6654-4346-946f-5204cb7a3234",
+                  "isPublished": false,
+                  "likeCount": 0,
+                  "readCount": 0,
+                  "text": Array [
+                    Object {
+                      "id": "5b30be71-0e68-4be4-bd29-7f40fe130414",
+                      "prop": "",
+                      "text": "",
+                      "type": "html",
+                      "value": "<p>One line text</p>",
+                    },
+                  ],
+                  "title": "Test article",
+                  "updatedAt": "2020-12-05",
+                  "userLikes": 0,
+                },
+              ]
+            }
           />
         </WithStyles(ForwardRef(Grid))>
       </WithStyles(ForwardRef(Grid))>

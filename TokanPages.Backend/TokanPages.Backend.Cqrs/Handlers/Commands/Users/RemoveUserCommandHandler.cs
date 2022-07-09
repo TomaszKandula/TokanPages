@@ -6,8 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Database;
-using Core.Exceptions;
-using Shared.Resources;
+using Domain.Entities;
 using Services.UserService;
 using Core.Utilities.LoggerService;
 using MediatR;
@@ -15,64 +14,46 @@ using MediatR;
 public class RemoveUserCommandHandler : Cqrs.RequestHandler<RemoveUserCommand, Unit>
 {
     private readonly IUserService _userService;
-    
+
     public RemoveUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService) : base(databaseContext, loggerService)
-    {
-        _userService = userService;
-    }
+        IUserService userService) : base(databaseContext, loggerService) => _userService = userService;
 
     public override async Task<Unit> Handle(RemoveUserCommand request, CancellationToken cancellationToken)
     {
-        var userId = request.Id ?? await _userService.GetUserId() ?? Guid.Empty;
-        if (userId == Guid.Empty)
-            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
+        var user = await _userService.GetActiveUser(request.Id, true, cancellationToken);
 
-        var currentUser = await DatabaseContext.Users
-            .Where(users => users.Id == userId)
-            .ToListAsync(cancellationToken);
-
-        if (!currentUser.Any())
-            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
-
-        var userRefreshTokens = await DatabaseContext.UserRefreshTokens
-            .Where(tokens => tokens.UserId == userId)
-            .ToListAsync(cancellationToken);
-
-        if (userRefreshTokens.Any())
+        if (request.IsSoftDelete)
         {
-            LoggerService.LogInformation($"Removing user refresh tokens for user ID: {userId}");
-            DatabaseContext.RemoveRange(userRefreshTokens);
+            LoggerService.LogInformation($"Removing user account (user ID: {user.Id}). You can undo this operation at any time.");
+            user.IsDeleted = true;
+        }
+        else
+        {
+            LoggerService.LogInformation($"Removing permanently user account (user ID: {user.Id}). You cannot undo this operation.");
+            await PermanentRemoval(user.Id, cancellationToken);
         }
 
-        var userTokens = await DatabaseContext.UserTokens
-            .Where(tokens => tokens.UserId == userId)
+        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        LoggerService.LogInformation($"User account (user ID: {user.Id}) has been removed");
+        return Unit.Value;
+    }
+
+    private async Task PermanentRemoval(Guid userId, CancellationToken cancellationToken = default)
+    {
+        await DetachFromUser(userId, cancellationToken);
+        await RemoveFromUser(userId, cancellationToken);
+    }
+
+    private async Task DetachFromUser(Guid userId, CancellationToken cancellationToken = default)
+    {
+        var albums = await DatabaseContext.Albums
+            .Where(albums => albums.UserId == userId)
             .ToListAsync(cancellationToken);
 
-        if (userTokens.Any())
+        if (albums.Any())
         {
-            LoggerService.LogInformation($"Removing user tokens for user ID: {userId}");
-            DatabaseContext.RemoveRange(userTokens);
-        }
-
-        var userRoles = await DatabaseContext.UserRoles
-            .Where(roles => roles.UserId == userId)
-            .ToListAsync(cancellationToken);        
-        
-        if (userRoles.Any())
-        {
-            LoggerService.LogInformation($"Removing assigned user roles for user ID: {userId}");
-            DatabaseContext.RemoveRange(userRoles);
-        }
-
-        var userPermissions = await DatabaseContext.UserPermissions
-            .Where(permissions => permissions.UserId == userId)
-            .ToListAsync(cancellationToken);
-
-        if (userPermissions.Any())
-        {
-            LoggerService.LogInformation($"Removing assigned user permissions for user ID: {userId}");
-            DatabaseContext.RemoveRange(userPermissions);
+            foreach (var item in albums) { item.UserId = null; item.UserPhotoId = null; }
+            LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(Albums)}");
         }
 
         var articles = await DatabaseContext.Articles
@@ -81,32 +62,101 @@ public class RemoveUserCommandHandler : Cqrs.RequestHandler<RemoveUserCommand, U
 
         if (articles.Any())
         {
-            LoggerService.LogInformation($"Detaching articles from user (ID: {userId})");
-            foreach (var article in articles)
-            {
-                article.UserId = null;
-                article.IsPublished = false;
-            }
+            foreach (var item in articles) { item.UserId = null; }
+            LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(Articles)}");
         }
 
-        var albums = await DatabaseContext.Albums
-            .Where(albums => albums.UserId == userId)
+        var articleLikes = await DatabaseContext.ArticleLikes
+            .Where(articleLikes => articleLikes.UserId == userId)
             .ToListAsync(cancellationToken);
 
-        if (albums.Any())
+        if (articleLikes.Any())
         {
-            LoggerService.LogInformation($"Detaching albums from user (ID: {userId})");
-            foreach (var album in albums)
-            {
-                album.UserId = null;
-            }
+            foreach (var item in articleLikes) { item.UserId = null; }
+            LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(ArticleLikes)}");
         }
 
-        LoggerService.LogInformation($"Removing user account (user ID: {userId})");
-        DatabaseContext.Users.Remove(currentUser.First());
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        var articleCounts = await DatabaseContext.ArticleCounts
+            .Where(articleCounts => articleCounts.UserId == userId)
+            .ToListAsync(cancellationToken);
 
-        LoggerService.LogInformation($"User account (user ID: {userId}) has been removed");
-        return Unit.Value;
+        if (articleCounts.Any())
+        {
+            foreach (var item in articleCounts) { item.UserId = null; }
+            LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(ArticleCounts)}");
+        }
+    }
+
+    private async Task RemoveFromUser(Guid userId, CancellationToken cancellationToken = default)
+    {
+        var userPhotos = await DatabaseContext.UserPhotos
+            .Where(userPhotos => userPhotos.UserId == userId)
+            .ToListAsync(cancellationToken);
+
+        if (userPhotos.Any())
+        {
+            DatabaseContext.RemoveRange(userPhotos);
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserPhotos)}");
+        }
+
+        var userInfo = await DatabaseContext.UserInfo
+            .Where(userInfo => userInfo.UserId == userId)
+            .ToListAsync(cancellationToken);
+
+        if (userInfo.Any())
+        {
+            DatabaseContext.RemoveRange(userInfo);
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserInfo)}");
+        }
+
+        var userTokens = await DatabaseContext.UserTokens
+            .Where(userTokens => userTokens.UserId == userId)
+            .ToListAsync(cancellationToken);
+
+        if (userTokens.Any())
+        {
+            DatabaseContext.RemoveRange(userTokens);
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserTokens)}");
+        }
+
+        var userRefreshTokens = await DatabaseContext.UserRefreshTokens
+            .Where(userRefreshTokens => userRefreshTokens.UserId == userId)
+            .ToListAsync(cancellationToken);
+
+        if (userRefreshTokens.Any())
+        {
+            DatabaseContext.RemoveRange(userRefreshTokens);
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserRefreshTokens)}");
+        }
+
+        var userRoles = await DatabaseContext.UserRoles
+            .Where(userRoles => userRoles.UserId == userId)
+            .ToListAsync(cancellationToken);
+
+        if (userRoles.Any())
+        {
+            DatabaseContext.RemoveRange(userRoles);
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserRoles)}");
+        }
+
+        var userPermissions = await DatabaseContext.UserPermissions
+            .Where(userPermissions => userPermissions.UserId == userId)
+            .ToListAsync(cancellationToken);
+
+        if (userPermissions.Any())
+        {
+            DatabaseContext.RemoveRange(userPermissions);
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserPermissions)}");
+        }
+
+        var users = await DatabaseContext.Users
+            .Where(users => users.Id == userId)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (users is not null)
+        {
+            DatabaseContext.Remove(users);
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(Users)}");
+        }
     }
 }

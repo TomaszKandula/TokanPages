@@ -17,21 +17,15 @@ const UserAvatar = (props: IBinding): JSX.Element =>
 
     if (Validate.isEmpty(props.avatarName))
     {
-        return(
-            <Avatar 
-                className={className}>{props.userLetter}
-            </Avatar>
-        );
+        return(<Avatar className={className}>{props.userLetter}</Avatar>);
     }
 
     return(
-        <>
-            <Avatar 
-                className={className} 
-                src={props.avatarName} 
-                alt="" 
-            />
-        </>
+        <Avatar 
+            className={className} 
+            src={props.avatarName} 
+            alt="Avatar" >
+        </Avatar>
     );
 };
 

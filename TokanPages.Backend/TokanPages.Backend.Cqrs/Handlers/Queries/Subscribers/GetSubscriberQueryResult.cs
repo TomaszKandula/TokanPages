@@ -4,7 +4,7 @@ using System;
 
 public class GetSubscriberQueryResult : GetAllSubscribersQueryResult
 {
-    public DateTime Registered { get; set; }
+    public DateTime CreatedAt { get; set; }
 
-    public DateTime? LastUpdated { get; set; }
+    public DateTime? ModifiedAt { get; set; }
 }

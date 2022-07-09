@@ -8,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 [Serializable]
 public class AccessException : Exception
 {
-    public string ErrorCode { get; }
+    public string ErrorCode { get; } = "";
 
     protected AccessException(SerializationInfo serializationInfo, 
         StreamingContext streamingContext) : base(serializationInfo, streamingContext) { }

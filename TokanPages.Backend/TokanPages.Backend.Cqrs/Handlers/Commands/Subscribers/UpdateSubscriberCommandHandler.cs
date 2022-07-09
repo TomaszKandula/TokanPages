@@ -1,5 +1,6 @@
 ﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
 
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Database;
 using Core.Exceptions;
 using Shared.Resources;
+using Services.UserService;
 using Core.Utilities.LoggerService;
 using Core.Utilities.DateTimeService;
 using MediatR;
@@ -14,20 +16,23 @@ using MediatR;
 public class UpdateSubscriberCommandHandler : Cqrs.RequestHandler<UpdateSubscriberCommand, Unit>
 {
     private readonly IDateTimeService _dateTimeService;
-        
+
+    private readonly IUserService _userService;
+
     public UpdateSubscriberCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService) : base(databaseContext, loggerService)
+        IDateTimeService dateTimeService, IUserService userService) : base(databaseContext, loggerService)
     {
         _dateTimeService = dateTimeService;
+        _userService = userService;
     }
 
     public override async Task<Unit> Handle(UpdateSubscriberCommand request, CancellationToken cancellationToken) 
     {
-        var subscribersList = await DatabaseContext.Subscribers
+        var subscriber = await DatabaseContext.Subscribers
             .Where(subscribers => subscribers.Id == request.Id)
-            .ToListAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (!subscribersList.Any()) 
+        if (subscriber is null) 
             throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
 
         var emailCollection = await DatabaseContext.Subscribers
@@ -38,12 +43,12 @@ public class UpdateSubscriberCommandHandler : Cqrs.RequestHandler<UpdateSubscrib
         if (emailCollection.Count == 1)
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-        var currentSubscriber = subscribersList.First();
-
-        currentSubscriber.Email = request.Email;
-        currentSubscriber.Count = request.Count ?? currentSubscriber.Count;
-        currentSubscriber.IsActivated = request.IsActivated ?? currentSubscriber.IsActivated;
-        currentSubscriber.LastUpdated = _dateTimeService.Now;
+        var user = await _userService.GetUser(cancellationToken);
+        subscriber.Email = request.Email ?? subscriber.Email;
+        subscriber.Count = request.Count ?? subscriber.Count;
+        subscriber.IsActivated = request.IsActivated ?? subscriber.IsActivated;
+        subscriber.ModifiedAt = _dateTimeService.Now;
+        subscriber.ModifiedBy = user?.UserId ?? Guid.Empty;
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;

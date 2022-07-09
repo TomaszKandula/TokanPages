@@ -13,15 +13,15 @@ public class UserPermissionsConfiguration : IEntityTypeConfiguration<UserPermiss
         builder.Property(userPermissions => userPermissions.Id).ValueGeneratedOnAdd();
             
         builder
-            .HasOne(userPermissions => userPermissions.User)
-            .WithMany(users => users.UserPermissions)
+            .HasOne(userPermissions => userPermissions.UserNavigation)
+            .WithMany(users => users.UserPermissionsNavigation)
             .HasForeignKey(userPermissions => userPermissions.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_UserPermissions_Users");
             
         builder
-            .HasOne(userPermissions => userPermissions.Permission)
-            .WithMany(permissions => permissions.UserPermissions)
+            .HasOne(userPermissions => userPermissions.PermissionNavigation)
+            .WithMany(permissions => permissions.UserPermissionsNavigation)
             .HasForeignKey(userPermissions => userPermissions.PermissionId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_UserPermissions_Permissions");

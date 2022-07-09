@@ -2,7 +2,7 @@ import { ActivateAccountReducer } from "./Reducers/Users/activateAccountReducer"
 import { AddSubscriberReducer } from "./Reducers/Subscribers/addSubscriberReducer";
 import { GetAccountContentReducer } from "./Reducers/Content/getAccountContenReducer";
 import { GetActivateAccountContentReducer } from "./Reducers/Content/getActivateAccountContentReducer";
-import { GetArticleFeatContentReducer } from "./Reducers/Content/getArticleFeatContentReducer";
+import { GetArticleFeaturesContentReducer } from "./Reducers/Content/getArticleFeaturesContentReducer";
 import { GetClientsContentReducer } from "./Reducers/Content/getClientsContentReducer";
 import { GetContactFormContentReducer } from "./Reducers/Content/getContactFormContentReducer";
 import { GetCookiesPromptContentReducer } from "./Reducers/Content/getCookiesPromptContentReducer";
@@ -71,7 +71,7 @@ export const combinedReducers =
 
     getClientsContent: GetClientsContentReducer,
     getFeaturesContent: GetFeaturesContentReducer,
-    getArticleFeatContent: GetArticleFeatContentReducer,
+    getArticleFeaturesContent: GetArticleFeaturesContentReducer,
     getFeaturedContent: GetFeaturedContentReducer,
     getTestimonialsContent: GetTestimonialsContentReducer,
     getNewsletterContent: GetNewsletterContentReducer,

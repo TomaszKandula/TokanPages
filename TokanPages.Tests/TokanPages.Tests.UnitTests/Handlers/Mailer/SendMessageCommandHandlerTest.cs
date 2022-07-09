@@ -21,7 +21,7 @@ public class SendMessageCommandHandlerTest : TestBase
     public async Task GivenFilledUserForm_WhenSendMessage_ShouldFinishSuccessful()
     {
         // Arrange
-        var sendMessageCommand = new SendMessageCommand
+        var command = new SendMessageCommand
         {
             Subject = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
@@ -50,7 +50,7 @@ public class SendMessageCommandHandlerTest : TestBase
             .Setup(service => service.GetRequestUserTimezoneOffset())
             .Returns(-120);
 
-        var sendMessageCommandHandler = new SendMessageCommandHandler(
+        var handler = new SendMessageCommandHandler(
             databaseContext,
             mockedLogger.Object,
             mockedEmailSenderService.Object,
@@ -59,7 +59,7 @@ public class SendMessageCommandHandlerTest : TestBase
             mockedUserService.Object);
 
         // Act
-        var result = await sendMessageCommandHandler.Handle(sendMessageCommand, CancellationToken.None);
+        var result = await handler.Handle(command, CancellationToken.None);
 
         // Assert
         result.Should().Be(await Task.FromResult(Unit.Value));
@@ -69,7 +69,7 @@ public class SendMessageCommandHandlerTest : TestBase
     public async Task GivenEmptyEmailTemplate_WhenSendMessage_ShouldThrowError()
     {
         // Arrange
-        var sendMessageCommand = new SendMessageCommand
+        var command = new SendMessageCommand
         {
             Subject = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
@@ -97,7 +97,7 @@ public class SendMessageCommandHandlerTest : TestBase
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(string.Empty);
 
-        var sendMessageCommandHandler = new SendMessageCommandHandler(
+        var handler = new SendMessageCommandHandler(
             databaseContext,
             mockedLogger.Object,
             mockedEmailSenderService.Object,
@@ -107,8 +107,7 @@ public class SendMessageCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() 
-            => sendMessageCommandHandler.Handle(sendMessageCommand, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL));
     }
 }

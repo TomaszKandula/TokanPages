@@ -13,8 +13,8 @@ public class ArticlesConfiguration : IEntityTypeConfiguration<Articles>
         builder.Property(articles => articles.Id).ValueGeneratedOnAdd();
             
         builder
-            .HasOne(articles => articles.User)
-            .WithMany(users => users.Articles)
+            .HasOne(articles => articles.UserNavigation)
+            .WithMany(users => users.ArticlesNavigation)
             .HasForeignKey(articles => articles.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_Articles_Users");

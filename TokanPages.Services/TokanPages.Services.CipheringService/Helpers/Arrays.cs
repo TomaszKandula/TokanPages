@@ -2,9 +2,9 @@ namespace TokanPages.Services.CipheringService.Helpers;
 
 public static class Arrays
 {
-    public static uint[] ExpandedBlowfishKeyPrimary { get; set; }
+    public static uint[] ExpandedBlowfishKeyPrimary { get; set; } = Array.Empty<uint>();
 
-    public static uint[] ExpandedBlowfishKeySecondary { get; set; }
+    public static uint[] ExpandedBlowfishKeySecondary { get; set; } = Array.Empty<uint>();
 
     public static readonly uint[] CryptCipherText = 
     {

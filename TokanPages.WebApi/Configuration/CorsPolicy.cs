@@ -6,9 +6,17 @@ using Microsoft.Net.Http.Headers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 
+/// <summary>
+/// CORS policy configuration
+/// </summary>
 [ExcludeFromCodeCoverage]
 public static class CorsPolicy
 {
+    /// <summary>
+    /// Apply custom configuration
+    /// </summary>
+    /// <param name="builder">ApplicationBuilder instance</param>
+    /// <param name="configuration">Provided configuration</param>
     public static void ApplyCorsPolicy(this IApplicationBuilder builder, IConfiguration configuration)
     {
         var deploymentOrigin = configuration.GetValue<string>("ApplicationPaths:DeploymentOrigin");

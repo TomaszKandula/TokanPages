@@ -18,7 +18,6 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
         >
           <WithStyles(ForwardRef(Typography))
             className="makeStyles-caption_text-4"
-            gutterBottom={true}
           >
             TECHNOLOGIES
           </WithStyles(ForwardRef(Typography))>
@@ -35,7 +34,7 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
         >
           <Styled(MuiBox)
             alignItems="center"
-            data-aos="zoom-in"
+            data-aos="fade-up"
             display="flex"
             mb={2}
           >
@@ -50,7 +49,7 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
           </Styled(MuiBox)>
           <WithStyles(ForwardRef(Typography))
             className="makeStyles-feature_text-6"
-            data-aos="fade-left"
+            data-aos="fade-up"
           >
             Today in my daily job, I use...
           </WithStyles(ForwardRef(Typography))>
@@ -62,7 +61,7 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
         >
           <Styled(MuiBox)
             alignItems="center"
-            data-aos="zoom-in"
+            data-aos="fade-up"
             display="flex"
             mb={2}
           >
@@ -77,7 +76,7 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
           </Styled(MuiBox)>
           <WithStyles(ForwardRef(Typography))
             className="makeStyles-feature_text-6"
-            data-aos="fade-left"
+            data-aos="fade-up"
           >
             Back-End: NET Framework 4.5 (for one project)...
           </WithStyles(ForwardRef(Typography))>
@@ -89,7 +88,7 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
         >
           <Styled(MuiBox)
             alignItems="center"
-            data-aos="zoom-in"
+            data-aos="fade-up"
             display="flex"
             mb={2}
           >
@@ -104,7 +103,7 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
           </Styled(MuiBox)>
           <WithStyles(ForwardRef(Typography))
             className="makeStyles-feature_text-6"
-            data-aos="fade-right"
+            data-aos="fade-up"
           >
             I have started with Entity Framework...
           </WithStyles(ForwardRef(Typography))>
@@ -116,7 +115,7 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
         >
           <Styled(MuiBox)
             alignItems="center"
-            data-aos="zoom-in"
+            data-aos="fade-up"
             display="flex"
             mb={2}
           >
@@ -132,7 +131,7 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
           </Styled(MuiBox)>
           <WithStyles(ForwardRef(Typography))
             className="makeStyles-feature_text-6"
-            data-aos="fade-right"
+            data-aos="fade-up"
           >
             I have experience with...
           </WithStyles(ForwardRef(Typography))>

@@ -15,26 +15,27 @@ public class GetUserQueryHandler : RequestHandler<GetUserQuery, GetUserQueryResu
 
     public override async Task<GetUserQueryResult> Handle(GetUserQuery request, CancellationToken cancellationToken)
     {
-        var currentUser = await DatabaseContext.Users
-            .AsNoTracking()
-            .Where(users => users.Id == request.Id)
-            .Select(users => new GetUserQueryResult
+        var query = await (from users in DatabaseContext.Users
+            join userInfo in DatabaseContext.UserInfo
+            on users.Id equals userInfo.UserId
+            where users.Id == request.Id
+            select new GetUserQueryResult
             {
                 Id = users.Id,
                 Email = users.EmailAddress,
                 AliasName = users.UserAlias,
                 IsActivated = users.IsActivated,
-                FirstName = users.FirstName,
-                LastName = users.LastName,
-                Registered = users.Registered,
-                LastUpdated = users.LastUpdated,
-                LastLogged = users.LastLogged
+                FirstName = userInfo.FirstName,
+                LastName = userInfo.LastName,
+                Registered = users.CreatedAt,
+                LastUpdated = userInfo.ModifiedAt
             })
-            .ToListAsync(cancellationToken);
+            .AsNoTracking()
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (!currentUser.Any())
+        if (query is null)
             throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-        return currentUser.First();
+        return query;
     }
 }

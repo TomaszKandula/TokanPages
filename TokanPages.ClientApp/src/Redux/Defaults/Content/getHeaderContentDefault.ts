@@ -8,6 +8,10 @@ export const GetHeaderContentDefault: IGetHeaderContent =
         photo: "",
         caption: "",
         description: "",
-        action: ""
+        action: 
+        {
+            text: "",
+            href: ""
+        }
    }    
 }

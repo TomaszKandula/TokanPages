@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Serilog;
 using Middleware;
 using Configuration;
@@ -15,6 +16,9 @@ using Backend.Core.Exceptions;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
+/// <summary>
+/// Startup
+/// </summary>
 [ExcludeFromCodeCoverage]
 public class Startup
 {
@@ -22,20 +26,38 @@ public class Startup
 
     private readonly IHostEnvironment _environment;
 
+    /// <summary>
+    /// Startup
+    /// </summary>
+    /// <param name="configuration">Provided configuration</param>
+    /// <param name="environment">Application host environment</param>
     public Startup(IConfiguration configuration, IHostEnvironment environment)
     {
         _configuration = configuration;
         _environment = environment;
     }
 
+    /// <summary>
+    /// Services
+    /// </summary>
+    /// <param name="services">Service collection</param>
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddCors();
+        services.Configure<KestrelServerOptions>(options =>
+        {
+            // File size limit is controlled by the appropriate
+            // handler validator that takes maximum available
+            // file size from an Azure application setting.
+            // However, file size cannot be larger than 2GB.
+            options.Limits.MaxRequestBodySize = int.MaxValue;
+        });
         services.AddControllers().AddNewtonsoftJson(options =>
         {
             options.SerializerSettings.Converters.Add(new StringEnumConverter());
             options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         });
+        services.AddResponseCaching();
         services.AddApiVersioning(options =>
         {
             options.ReportApiVersions = true;
@@ -50,16 +72,20 @@ public class Startup
         services.SetupDockerInternalNetwork();
     }
 
+    /// <summary>
+    /// Configure
+    /// </summary>
+    /// <param name="builder">Application builder</param>
     public void Configure(IApplicationBuilder builder)
     {
         builder.UseSerilogRequestLogging();
 
         builder.UseForwardedHeaders();
         builder.UseHttpsRedirection();
-        builder.ApplyCorsPolicy(_configuration);
+        builder.UseResponseCaching();
 
+        builder.ApplyCorsPolicy(_configuration);
         builder.UseMiddleware<Exceptions>();
-        builder.UseMiddleware<CacheControl>();
 
         builder.UseResponseCompression();
         builder.UseRouting();

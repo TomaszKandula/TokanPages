@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Skeleton } from "@material-ui/lab";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -7,7 +8,6 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import cookiesStyle from "./cookiesStyle";
-import { Skeleton } from "@material-ui/lab";
 
 interface IBinding
 {
@@ -41,11 +41,11 @@ const CookiesView = (props: IBinding): JSX.Element =>
     const renderConsent = (): JSX.Element => 
     {
         return (		
-            <Box position="fixed" width="100%" bottom={0} p={2} zIndex="modal" className={props.bind?.modalClose ? classes.close : classes.open}>
+            <Box position="fixed" width="100%" bottom={0} p={3} zIndex="modal" className={props.bind?.modalClose ? classes.close : classes.open}>
                 <Container maxWidth="md">
-                    <Card elevation={8} className={classes.container}>
+                    <Card elevation={0} className={classes.container}>
                         <CardContent>
-                            <Typography gutterBottom={true} className={classes.caption}>
+                            <Typography className={classes.caption}>
                                 {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
                             </Typography>
                             <Typography className={classes.text}>

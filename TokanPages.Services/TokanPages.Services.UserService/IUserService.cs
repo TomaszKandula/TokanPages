@@ -6,8 +6,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Models;
+using Backend.Dto.Users;
 using Backend.Domain.Entities;
-using Backend.Shared.Dto.Users;
 
 public interface IUserService
 {
@@ -17,21 +17,21 @@ public interface IUserService
 
     Task LogHttpRequest(string handlerName);
 
-    Task<Guid?> GetUserId();
+    Task<GetUserDto?> GetUser(CancellationToken cancellationToken = default);
 
-    Task<GetUserDto> GetUser();
+    Task<Users> GetActiveUser(Guid? userId = default, bool isTracking = false, CancellationToken cancellationToken = default);
 
-    Task<List<GetUserRoleDto>> GetUserRoles(Guid? userId);
+    Task<List<GetUserRoleDto>?> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default);
 
-    Task<List<GetUserPermissionDto>> GetUserPermissions(Guid? userId);
+    Task<List<GetUserPermissionDto>?> GetUserPermissions(Guid? userId, CancellationToken cancellationToken = default);
 
-    Task<bool?> HasRoleAssigned(string userRoleName);
+    Task<bool?> HasRoleAssigned(string userRoleName, Guid? userId = default, CancellationToken cancellationToken = default);
 
-    Task<bool> HasRoleAssigned(Guid roleId, Guid? userId);
+    Task<bool> HasRoleAssigned(Guid roleId, Guid? userId = default, CancellationToken cancellationToken = default);
 
-    Task<bool?> HasPermissionAssigned(string userPermissionName);
+    Task<bool?> HasPermissionAssigned(string userPermissionName, Guid? userId = default, CancellationToken cancellationToken = default);
 
-    Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId);
+    Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId = default, CancellationToken cancellationToken = default);
 
     Task<ClaimsIdentity> MakeClaimsIdentity(Users users, CancellationToken cancellationToken = default);
         

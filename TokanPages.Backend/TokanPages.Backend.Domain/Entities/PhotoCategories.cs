@@ -4,13 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
+using Contracts;
 
 [ExcludeFromCodeCoverage]
-public class PhotoCategories : Entity<Guid>
+public class PhotoCategories : Entity<Guid>, IAuditable
 {
     [Required]
     [MaxLength(60)]
     public string CategoryName { get; set; }
-        
-    public ICollection<Photos> Photos { get; set; } = new HashSet<Photos>();
+
+    public Guid CreatedBy { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    public Guid? ModifiedBy { get; set; }
+
+    public DateTime? ModifiedAt { get; set; }
+
+    public ICollection<UserPhotos> UserPhotosNavigation { get; set; } = new HashSet<UserPhotos>();
 }

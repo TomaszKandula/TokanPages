@@ -26,13 +26,13 @@ const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
         <section className={classes.section}>
             <Container maxWidth="lg"> 
                 <Box pt={8} pb={10} textAlign="center" mb={5}>
-                    <Typography gutterBottom={true} className={classes.caption_text} data-aos="fade-down">
+                    <Typography className={classes.caption_text} data-aos="fade-down">
                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption?.toUpperCase()}
                     </Typography>
                 </Box>
                 <Box pb={15} textAlign="center">
                     <Grid container spacing={6}>
-                        <Grid item xs={12} md={4} data-aos="fade-left">
+                        <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="350">
                             <Card elevation={0} className={classes.card}>
                                 {props.isLoading 
                                 ? <Skeleton variant="rect" className={classes.card_image} /> 
@@ -50,7 +50,7 @@ const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
                                 </CardContent>
                             </Card>
                         </Grid>
-                        <Grid item xs={12} md={4} data-aos="fade-up"  className={classes.card_space}>
+                        <Grid item xs={12} md={4} className={classes.card_space} data-aos="fade-up" data-aos-delay="150">
                             <Card elevation={3} className={classes.card}>
                                 {props.isLoading 
                                 ? <Skeleton variant="rect" className={classes.card_image} /> 
@@ -68,7 +68,7 @@ const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
                                 </CardContent>
                             </Card>
                         </Grid>
-                        <Grid item xs={12} md={4} data-aos="fade-right"  className={classes.card_space}>
+                        <Grid item xs={12} md={4} className={classes.card_space} data-aos="fade-up" data-aos-delay="550">
                             <Card elevation={3} className={classes.card}>
                                 {props.isLoading 
                                 ? <Skeleton variant="rect" className={classes.card_image} /> 

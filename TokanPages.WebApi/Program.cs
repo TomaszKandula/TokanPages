@@ -11,10 +11,13 @@ using Backend.Database.Initializer;
 using Serilog;
 using Serilog.Events;
 
+/// <summary>
+/// Program
+/// </summary>
 [ExcludeFromCodeCoverage]
 public static class Program
 {
-    private static readonly string EnvironmentValue 
+    private static readonly string? EnvironmentValue 
         = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
     private static readonly bool IsDevelopment 
@@ -23,6 +26,11 @@ public static class Program
     private const string LogTemplate 
         = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}";
 
+    /// <summary>
+    /// Main entry point
+    /// </summary>
+    /// <param name="args">Argument array</param>
+    /// <returns>Integer</returns>
     public static int Main(string[] args)
     {
         try
@@ -81,10 +89,9 @@ public static class Program
 
     private static IWebHost MigrateDatabase(this IWebHost webHost)
     {
-        var serviceScopeFactory = (IServiceScopeFactory) webHost.Services.GetService(typeof(IServiceScopeFactory));
-        if (serviceScopeFactory == null) 
+        if (webHost.Services.GetService(typeof(IServiceScopeFactory)) is not IServiceScopeFactory serviceScopeFactory) 
             return webHost;
-            
+
         using var scope = serviceScopeFactory.CreateScope();
         var services = scope.ServiceProvider;
         var dbInitializer = services.GetRequiredService<IDbInitializer>();

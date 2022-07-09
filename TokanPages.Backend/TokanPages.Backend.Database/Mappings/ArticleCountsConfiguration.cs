@@ -13,15 +13,15 @@ public class ArticleCountsConfiguration : IEntityTypeConfiguration<ArticleCounts
         builder.Property(articleCounts => articleCounts.Id).ValueGeneratedOnAdd();
             
         builder
-            .HasOne(articleCounts => articleCounts.Article)
-            .WithMany(articles => articles.ArticleCounts)
+            .HasOne(articleCounts => articleCounts.ArticleNavigation)
+            .WithMany(articles => articles.ArticleCountsNavigation)
             .HasForeignKey(articleCounts => articleCounts.ArticleId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_ArticleCounts_Articles");
 
         builder
-            .HasOne(articleCounts => articleCounts.User)
-            .WithMany(users => users.ArticleCounts)
+            .HasOne(articleCounts => articleCounts.UserNavigation)
+            .WithMany(users => users.ArticleCountsNavigation)
             .HasForeignKey(articleCounts => articleCounts.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_ArticleCounts_Users");

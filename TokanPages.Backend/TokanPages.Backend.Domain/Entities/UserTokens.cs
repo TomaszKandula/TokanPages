@@ -12,10 +12,8 @@ public class UserTokens : Entity<Guid>
     [Required]
     public string Token { get; set; }
 
-    [Required]
     public DateTime Expires { get; set; }
 
-    [Required]
     public DateTime Created { get; set; }
 
     [Required]
@@ -34,5 +32,5 @@ public class UserTokens : Entity<Guid>
     [MaxLength(255)]
     public string ReasonRevoked { get; set; }
 
-    public Users User { get; set; }
+    public Users UserNavigation { get; set; }
 }

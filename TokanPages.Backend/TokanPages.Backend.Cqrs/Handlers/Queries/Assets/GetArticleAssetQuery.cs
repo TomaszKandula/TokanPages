@@ -5,7 +5,7 @@ using MediatR;
 
 public class GetArticleAssetQuery : IRequest<FileContentResult>
 {
-    public string Id { get; set; }
+    public string Id { get; set; } = "";
 
-    public string AssetName { get; set; }
+    public string AssetName { get; set; } = "";
 }

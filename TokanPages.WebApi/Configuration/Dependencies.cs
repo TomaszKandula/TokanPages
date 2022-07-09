@@ -18,9 +18,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Backend.Shared;
 using Backend.Database;
 using Backend.Domain.Enums;
-using Backend.Shared.Models;
 using Backend.Shared.Services;
 using Backend.Database.Initializer;
+using Backend.Shared.Services.Models;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.JsonSerializer;
 using Backend.Core.Utilities.DateTimeService;
@@ -29,7 +29,6 @@ using MediatR;
 using FluentValidation;
 using Services.Caching;
 using Services.Caching.Users;
-using Services.Caching.Assets;
 using Services.Caching.Content;
 using Services.Caching.Articles;
 using Services.Caching.Subscribers;
@@ -42,10 +41,19 @@ using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.WebTokenService.Validation;
 using TokanPages.Services.AzureStorageService.Factory;
 
+/// <summary>
+/// Register application dependencies
+/// </summary>
 [ExcludeFromCodeCoverage]
 public static class Dependencies
 {
-	public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment = default)
+	/// <summary>
+	/// Register all services
+	/// </summary>
+	/// <param name="services">Service collections</param>
+	/// <param name="configuration">Provided configuration</param>
+	/// <param name="environment">Application host environment</param>
+	public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration, IHostEnvironment? environment = default)
 	{
 		services.CommonServices(configuration);
 		SetupDatabase(services, configuration);
@@ -53,6 +61,11 @@ public static class Dependencies
 			SetupRetryPolicyWithPolly(services, configuration, environment);
 	}
 
+	/// <summary>
+	/// Register common services
+	/// </summary>
+	/// <param name="services">Service collections</param>
+	/// <param name="configuration">Provided configuration</param>
 	public static void CommonServices(this IServiceCollection services, IConfiguration configuration)
 	{
 		SetupAppSettings(services, configuration);
@@ -71,7 +84,7 @@ public static class Dependencies
 		services.AddSingleton(configuration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>());
 		services.AddSingleton(configuration.GetSection(nameof(SonarQube)).Get<SonarQube>());
 		services.AddSingleton(configuration.GetSection(nameof(IdentityServer)).Get<IdentityServer>());
-		services.AddSingleton(configuration.GetSection(nameof(ExpirationSettings)).Get<ExpirationSettings>());
+		services.AddSingleton(configuration.GetSection(nameof(LimitSettings)).Get<LimitSettings>());
 		services.AddSingleton<IApplicationSettings, ApplicationSettings>();
 	}
 
@@ -109,7 +122,6 @@ public static class Dependencies
 		services.AddScoped<IDataUtilityService, DataUtilityService>();
 
 		services.AddScoped<IArticlesCache, ArticlesCache>();
-		services.AddScoped<IAssetsCache, AssetsCache>();
 		services.AddScoped<IContentCache, ContentCache>();
 		services.AddScoped<ISubscribersCache, SubscribersCache>();
 		services.AddScoped<IUsersCache, UsersCache>();

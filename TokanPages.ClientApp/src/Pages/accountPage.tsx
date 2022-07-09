@@ -1,12 +1,12 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Navigation from "../Components/Layout/navigation";
-import Footer from "../Components/Layout/footer";
-import UserAccount from "../Components/Account/userAccount";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
 import { ActionCreators as AccountContent } from "../Redux/Actions/Content/getAccountContentAction";
+import Navigation from "../Components/Layout/navigation";
+import Footer from "../Components/Layout/footer";
+import UserAccount from "../Components/Account/userAccount";
 
 const AccountPage = (): JSX.Element => 
 {

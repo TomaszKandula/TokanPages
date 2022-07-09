@@ -11,7 +11,8 @@ export const ValidateContactForm = (props: IValidateContactForm): any =>
             length: 
             {
                 minimum: 2,
-                message: "must be at least 2 characters"
+                maximum: 255,
+                message: "must be between 2 and 255 characters"
             }
         },
         lastName:
@@ -20,7 +21,8 @@ export const ValidateContactForm = (props: IValidateContactForm): any =>
             length: 
             {
                 minimum: 2,
-                message: "must be at least 2 characters"
+                maximum: 255,
+                message: "must be between 2 and 255 characters"
             }
         },
         email: 
@@ -36,7 +38,8 @@ export const ValidateContactForm = (props: IValidateContactForm): any =>
             length: 
             {
                 minimum: 6,
-                message: "must be at least 6 characters"
+                maximum: 255,
+                message: "must be between 6 and 255 characters"
             }
         },
         message:
@@ -45,7 +48,8 @@ export const ValidateContactForm = (props: IValidateContactForm): any =>
             length: 
             {
                 minimum: 20,
-                message: "must be at least 20 characters"
+                maximum: 4096,
+                message: "must be between 20 and 10000 characters"
             }
         },
         terms:

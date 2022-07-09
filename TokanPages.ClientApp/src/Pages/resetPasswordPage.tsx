@@ -1,13 +1,13 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import Navigation from "../Components/Layout/navigation";
-import ResetPassword from "../Components/Account/resetPassword";
-import Footer from "../Components/Layout/footer";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
 import { ActionCreators as ResetFormContent } from "../Redux/Actions/Content/getResetPasswordContentAction";
+import Navigation from "../Components/Layout/navigation";
+import ResetPassword from "../Components/Account/resetPassword";
+import Footer from "../Components/Layout/footer";
 
 const ResetPasswordPage = (): JSX.Element => 
 {
