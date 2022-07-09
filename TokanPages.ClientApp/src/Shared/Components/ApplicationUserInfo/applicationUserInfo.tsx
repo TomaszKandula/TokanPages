@@ -5,7 +5,7 @@ import { IApplicationState } from "../../../Redux/applicationState";
 import { IAuthenticateUserResultDto } from "../../../Api/Models";
 import { AVATARS_PATH } from "../../../Shared/constants";
 import ApplicationUserInfoView from "./applicationUserInfoView";
-
+// TODO: add component content from the server
 const ApplicationUserInfo = (): JSX.Element => 
 {
     const dispatch = useDispatch();
