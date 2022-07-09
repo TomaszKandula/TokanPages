@@ -1,15 +1,15 @@
 import { Action, Reducer } from "redux";
 import { combinedDefaults } from "../../combinedDefaults";
-import { IGetArticleFeatContent } from "../../States/Content/getArticleFeatContentState";
+import { IGetArticleFeaturesContent } from "../../States/Content/getArticleFeaturesContentState";
 import { 
     TKnownActions,
     RECEIVE_ARTICE_FEATURES, 
     REQUEST_ARTICE_FEATURES
-} from "../../Actions/Content/getArticleFeatContentAction";
+} from "../../Actions/Content/getArticleFeaturesContentAction";
 
-export const GetArticleFeatContentReducer: Reducer<IGetArticleFeatContent> = (state: IGetArticleFeatContent | undefined, incomingAction: Action): IGetArticleFeatContent => 
+export const GetArticleFeaturesContentReducer: Reducer<IGetArticleFeaturesContent> = (state: IGetArticleFeaturesContent | undefined, incomingAction: Action): IGetArticleFeaturesContent => 
 {
-    if (state === undefined) return combinedDefaults.getArticleFeatContent;
+    if (state === undefined) return combinedDefaults.getArticleFeaturesContent;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

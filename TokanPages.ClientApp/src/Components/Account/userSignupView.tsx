@@ -56,9 +56,7 @@ const UserSignupView = (props: IBinding): JSX.Element =>
 
     const RedirectTo = (args: { path: string, name: string }): JSX.Element => 
     {
-        return(
-            <Link to={args.path}>{args.name}</Link>
-        );
+        return(<Link to={args.path}>{args.name}</Link>);
     }
 
     return (

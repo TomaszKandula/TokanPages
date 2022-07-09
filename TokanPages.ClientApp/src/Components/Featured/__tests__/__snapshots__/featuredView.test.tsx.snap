@@ -15,7 +15,6 @@ exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when
       <WithStyles(ForwardRef(Typography))
         className="makeStyles-caption_text-2"
         data-aos="fade-down"
-        gutterBottom={true}
       >
         FEATURED
       </WithStyles(ForwardRef(Typography))>
@@ -29,7 +28,8 @@ exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when
         spacing={6}
       >
         <WithStyles(ForwardRef(Grid))
-          data-aos="fade-left"
+          data-aos="fade-up"
+          data-aos-delay="350"
           item={true}
           md={4}
           xs={12}
@@ -65,6 +65,7 @@ exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Grid))
           data-aos="fade-up"
+          data-aos-delay="150"
           item={true}
           md={4}
           xs={12}
@@ -99,7 +100,8 @@ exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when
           </WithStyles(ForwardRef(Card))>
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Grid))
-          data-aos="fade-right"
+          data-aos="fade-up"
+          data-aos-delay="550"
           item={true}
           md={4}
           xs={12}

@@ -26,7 +26,6 @@ exports[`Test component: unsubscribeView. Renders correctly '<UnsubscribeView />
             >
               <WithStyles(ForwardRef(Typography))
                 className="makeStyles-caption-2"
-                gutterBottom={true}
               >
                 Cancel your subscribtion
               </WithStyles(ForwardRef(Typography))>

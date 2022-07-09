@@ -1,6 +1,7 @@
 namespace TokanPages.Backend.Dto.Content;
 
 using Base;
+using Common;
 using Newtonsoft.Json;
 using System.Diagnostics.CodeAnalysis;
 
@@ -32,5 +33,5 @@ public class HeaderDto : BaseClass
     /// Action
     /// </summary>
     [JsonProperty("action")]
-    public string Action { get; set; } = "";
+    public Link Action { get; set; } = new();
 }

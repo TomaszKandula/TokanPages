@@ -1,4 +1,3 @@
-#nullable enable
 namespace TokanPages.Backend.Dto.Content.Common;
 
 using Newtonsoft.Json;

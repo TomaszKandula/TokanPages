@@ -2,14 +2,14 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
-import Navigation from "../Components/Layout/navigation";
-import Footer from "../Components/Layout/footer";
-import ArticleList from "../Components/Articles/articleList";
-import ArticleDetail from "../Components/Articles/articleDetail";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
 import ProgressOnScroll from "../Shared/Components/Scroll/progressOnScroll";
+import Navigation from "../Components/Layout/navigation";
+import Footer from "../Components/Layout/footer";
+import ArticleList from "../Components/Articles/articleList";
+import ArticleDetail from "../Components/Articles/articleDetail";
 import { CustomColours } from "../Theme/customColours";
 
 const useQuery = () => 

@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../../Theme/customColours";
 
-const articleFeatStyle = makeStyles((theme) => (
+const articleFeaturesStyle = makeStyles((theme) => (
 {
     section:
     {
@@ -69,4 +69,4 @@ const articleFeatStyle = makeStyles((theme) => (
     }
 }));
 
-export default articleFeatStyle;
+export default articleFeaturesStyle;

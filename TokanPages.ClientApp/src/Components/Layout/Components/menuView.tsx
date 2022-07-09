@@ -20,7 +20,6 @@ interface IProperties
 const MenuView = (props: IBinding): JSX.Element =>
 {
     const classes = menuStyle();
-
     const logo = "</>";
 
     return (

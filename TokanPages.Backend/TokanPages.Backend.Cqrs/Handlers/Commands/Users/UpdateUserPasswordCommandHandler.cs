@@ -34,18 +34,23 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
 
     public override async Task<Unit> Handle(UpdateUserPasswordCommand request, CancellationToken cancellationToken)
     {
-        var resetId = request.ResetId != null;
-        var userId = request.Id ?? (await _userService.GetActiveUser(cancellationToken: cancellationToken)).Id;
+        var userId = request.Id;
+        if (request.Id == null && request.ResetId == null)
+        {
+            var activeUser = await _userService.GetActiveUser(cancellationToken: cancellationToken);
+            userId = activeUser.Id;
+        }
 
+        var hasResetId = request.ResetId != null;
         var user = await DatabaseContext.Users
             .Where(users => users.IsActivated)
             .Where(users => !users.IsDeleted)
-            .WhereIfElse(!resetId, 
+            .WhereIfElse(!hasResetId, 
                 users => users.Id == userId, 
                 users => users.ResetId == request.ResetId) 
             .SingleOrDefaultAsync(cancellationToken);
 
-        if (!resetId)
+        if (!hasResetId)
         {
             if (user is null)
                 throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
@@ -65,12 +70,12 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
             var isPasswordValid = _cipheringService.VerifyPassword(request.OldPassword, user.CryptedPassword);
             if (!isPasswordValid)
             {
-                LoggerService.LogError($"Cannot positively verify given password supplied by user (Id: {userId}).");
+                LoggerService.LogError($"Cannot positively verify given password supplied by user (Id: {user.Id}).");
                 throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
             }
         }
 
-        if (resetId && _dateTimeService.Now > user.ResetIdEnds)
+        if (hasResetId && _dateTimeService.Now > user.ResetIdEnds)
             throw new AuthorizationException(nameof(ErrorCodes.EXPIRED_RESET_ID), ErrorCodes.EXPIRED_RESET_ID);
 
         var getNewSalt = _cipheringService.GenerateSalt(12);
@@ -80,10 +85,10 @@ public class UpdateUserPasswordCommandHandler : Cqrs.RequestHandler<UpdateUserPa
         user.ResetIdEnds = null;
         user.CryptedPassword = getHashedPassword;
         user.ModifiedAt = _dateTimeService.Now;
-        user.ModifiedBy = userId;
+        user.ModifiedBy = user.Id;
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        LoggerService.LogInformation($"User password has been updated successfully (UserId: {userId}).");
+        LoggerService.LogInformation($"User password has been updated successfully (UserId: {user.Id}).");
         return Unit.Value;
     }
 }

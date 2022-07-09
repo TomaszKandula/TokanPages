@@ -37,7 +37,7 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
               xs={12}
             >
               <div
-                data-aos="fade-right"
+                data-aos="zoom-in"
               >
                 <WithStyles(ForwardRef(TextField))
                   autoComplete="fname"
@@ -58,7 +58,7 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
               xs={12}
             >
               <div
-                data-aos="fade-left"
+                data-aos="zoom-in"
               >
                 <WithStyles(ForwardRef(TextField))
                   autoComplete="lname"
@@ -78,7 +78,7 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
               xs={12}
             >
               <div
-                data-aos="fade-right"
+                data-aos="zoom-in"
               >
                 <WithStyles(ForwardRef(TextField))
                   autoComplete="email"
@@ -98,7 +98,7 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
               xs={12}
             >
               <div
-                data-aos="fade-left"
+                data-aos="zoom-in"
               >
                 <WithStyles(ForwardRef(TextField))
                   autoComplete="subject"
@@ -118,7 +118,7 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
               xs={12}
             >
               <div
-                data-aos="fade-right"
+                data-aos="zoom-in"
               >
                 <WithStyles(ForwardRef(TextField))
                   autoComplete="message"
@@ -157,7 +157,7 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
             </WithStyles(ForwardRef(Grid))>
           </WithStyles(ForwardRef(Grid))>
           <Styled(MuiBox)
-            data-aos="fade-left"
+            data-aos="fade-up"
             my={2}
           >
             <ActiveButton />

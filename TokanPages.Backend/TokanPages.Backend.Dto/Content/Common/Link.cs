@@ -4,16 +4,16 @@ using Newtonsoft.Json;
 using System.Diagnostics.CodeAnalysis;
 
 /// <summary>
-/// Icon
+/// Link
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class Icon
+public class Link
 {
     /// <summary>
-    /// Icon name
+    /// Link description
     /// </summary>
-    [JsonProperty("name")]
-    public string Name { get; set; } = "";
+    [JsonProperty("text")]
+    public string Text { get; set; } = "";
 
     /// <summary>
     /// Link

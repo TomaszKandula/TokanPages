@@ -5,8 +5,16 @@ export const GetFooterContentDefault: IGetFooterContent =
     isLoading: false,
     content: 
     {
-        terms: "",
-        policy: "",
+        terms: 
+        {
+            text: "",
+            href: ""
+        },
+        policy:
+        {
+            text: "",
+            href: ""
+        },
         copyright: "",
         reserved: "",
         icons: []

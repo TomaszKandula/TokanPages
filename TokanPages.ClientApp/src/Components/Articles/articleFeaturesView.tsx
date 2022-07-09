@@ -9,21 +9,31 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IGetArticleFeatContent } from "../../Redux/States/Content/getArticleFeatContentState";
+import { IGetArticleFeaturesContent } from "../../Redux/States/Content/getArticleFeaturesContentState";
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
 import { ARTICLE_IMAGE_PATH } from "../../Shared/constants";
-import articleFeatStyle from "./Styles/articleFeatStyle";
+import articleFeaturesStyle from "./Styles/articleFeaturesStyle";
+import Validate from "validate.js";
 
-const ArticleFeatView = (props: IGetArticleFeatContent): JSX.Element =>
+const ArticleFeaturesView = (props: IGetArticleFeaturesContent): JSX.Element =>
 {
-    const classes = articleFeatStyle();
+    const classes = articleFeaturesStyle();
 
     const ActiveButton = (): JSX.Element => 
     {
-        return(
-            <Link to="/articles" className={classes.link}>
+        if (Validate.isEmpty(props.content?.action?.href))
+        {
+            return (
                 <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
-                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.button}
+                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.action?.text}
+                </Button>
+            );
+        }
+
+        return(
+            <Link to={props.content?.action?.href} className={classes.link}>
+                <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
+                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.action?.text}
                 </Button>
             </Link>
         );
@@ -34,7 +44,7 @@ const ArticleFeatView = (props: IGetArticleFeatContent): JSX.Element =>
             <Container maxWidth="lg">
                 <Box pt={8} pb={12}>
                     <Box textAlign="center" mb={6} data-aos="fade-down">
-                        <Typography gutterBottom={true} className={classes.title}>
+                        <Typography className={classes.title}>
                             {props.isLoading ? <Skeleton variant="text" /> : props.content?.title.toUpperCase()}
                         </Typography>
                     </Box>
@@ -101,4 +111,4 @@ const ArticleFeatView = (props: IGetArticleFeatContent): JSX.Element =>
     );
 }
 
-export default ArticleFeatView;
+export default ArticleFeaturesView;

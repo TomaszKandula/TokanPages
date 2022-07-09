@@ -58,7 +58,7 @@ const NewsletterView = (props: IBinding): JSX.Element =>
                             </div>
                         </Grid>
                         <Grid item xs={12} md={7}>
-                            <div data-aos="fade-left">
+                            <div data-aos="zoom-in">
                                 <Box display="flex" height="100%">
                                     <Box my="auto" width="100%">
                                         <Grid container spacing={2}>

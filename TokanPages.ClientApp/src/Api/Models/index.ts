@@ -35,8 +35,7 @@ export type { INavigationContentDto} from "./Components/navigationContentDto";
 export type { IHeaderContentDto } from "./Components/headerContentDto";
 export type { IFooterContentDto } from "./Components/footerContentDto";
 export type { IClientsContentDto } from "./Components/clientsContentDto";
-export type { IFooterContentIconDto } from "./Components/footerContentIconDto";
-export type { IArticleFeatContentDto } from "./Components/articleFeatContentDto";
+export type { IArticleFeaturesContentDto } from "./Components/articleFeaturesContentDto";
 export type { IContactFormContentDto } from "./Components/contactFormContentDto";
 export type { ICookiesPromptContentDto } from "./Components/cookiesPromptContentDto";
 export type { IFeaturedContentDto } from "./Components/featuredContentDto";
@@ -59,3 +58,6 @@ export type {
     ISectionAccountPassword,
     ISectionAccountRemoval
 } from "./Components/accountContentDto";
+
+export type { IIcon } from "./Components/Common/icon";
+export type { ILink } from "./Components/Common/link";

@@ -42,7 +42,7 @@ exports[`Test component: newsletterView. Renders correctly '<NewsletterView />' 
           xs={12}
         >
           <div
-            data-aos="fade-left"
+            data-aos="zoom-in"
           >
             <Styled(MuiBox)
               display="flex"

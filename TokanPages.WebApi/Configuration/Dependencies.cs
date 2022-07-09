@@ -29,7 +29,6 @@ using MediatR;
 using FluentValidation;
 using Services.Caching;
 using Services.Caching.Users;
-using Services.Caching.Assets;
 using Services.Caching.Content;
 using Services.Caching.Articles;
 using Services.Caching.Subscribers;
@@ -123,7 +122,6 @@ public static class Dependencies
 		services.AddScoped<IDataUtilityService, DataUtilityService>();
 
 		services.AddScoped<IArticlesCache, ArticlesCache>();
-		services.AddScoped<IAssetsCache, AssetsCache>();
 		services.AddScoped<IContentCache, ContentCache>();
 		services.AddScoped<ISubscribersCache, SubscribersCache>();
 		services.AddScoped<IUsersCache, UsersCache>();

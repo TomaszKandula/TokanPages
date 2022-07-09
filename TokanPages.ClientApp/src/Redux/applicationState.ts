@@ -4,7 +4,7 @@ import { IArticle } from "./States/Articles/selectArticleState";
 import { IArticles } from "./States/Articles/listArticlesState";
 import { IGetAccountContent } from "./States/Content/getAccountContentState";
 import { IGetActivateAccountContent } from "./States/Content/getActivateAccountContentState";
-import { IGetArticleFeatContent } from "./States/Content/getArticleFeatContentState";
+import { IGetArticleFeaturesContent } from "./States/Content/getArticleFeaturesContentState";
 import { IGetClientsContent } from "./States/Content/getClientsContentState";
 import { IGetContactFormContent } from "./States/Content/getContactFormContentState";
 import { IGetCookiesPromptContent } from "./States/Content/getCookiesPromptContentState";
@@ -71,7 +71,7 @@ export interface IApplicationState
 
     getClientsContent: IGetClientsContent,
     getFeaturesContent: IGetFeaturesContent,
-    getArticleFeatContent: IGetArticleFeatContent,
+    getArticleFeaturesContent: IGetArticleFeaturesContent,
     getFeaturedContent: IGetFeaturedContent,
     getTestimonialsContent: IGetTestimonialsContent,
     getNewsletterContent: IGetNewsletterContent,

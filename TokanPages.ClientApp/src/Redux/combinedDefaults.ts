@@ -2,7 +2,7 @@ import { ActivateAccountDefault } from "./Defaults/Users/activateAccountDefault"
 import { AddSubscriberDefault } from "./Defaults/Subscribers/addSubscriberDefault";
 import { GetAccountContentDefault } from "./Defaults/Content/getAccountContentDefault";
 import { GetActivateAccountContentDefault } from "./Defaults/Content/getActivateAccountContentDefault";
-import { GetArticleFeatContentDefault } from "./Defaults/Content/getArticleFeatContentDefault";
+import { GetArticleFeatContentDefault } from "./Defaults/Content/getArticleFeaturesContentDefault";
 import { GetClientsContentDefault } from "./Defaults/Content/getClientsContentDefault";
 import { GetContactFormContentDefault } from "./Defaults/Content/getContactFormContentDefault";
 import { GetCookiesPromptContentDefault } from "./Defaults/Content/getCookiesPromptContentDefault";
@@ -72,7 +72,7 @@ export const combinedDefaults: IApplicationState =
 
     getClientsContent: GetClientsContentDefault,
     getFeaturesContent: GetFeaturesContentDefault,
-    getArticleFeatContent: GetArticleFeatContentDefault,
+    getArticleFeaturesContent: GetArticleFeatContentDefault,
     getFeaturedContent: GetFeaturedContentDefault,
     getTestimonialsContent: GetTestimonialsContentDefault,
     getNewsletterContent: GetNewsletterContentDefault,
