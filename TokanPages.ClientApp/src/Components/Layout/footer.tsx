@@ -11,9 +11,6 @@ interface IGetFooterContentExtended extends IGetFooterContent
 
 const Footer = (props: IGetFooterContentExtended): JSX.Element => 
 {
-    const padingBottomLarge: number = 6;
-    const paddingBottomSmall: number = 1;
-    
     const versionDateTime: string = process.env.REACT_APP_VERSION_DATE_TIME ?? "";
     const versionNumber: string = process.env.REACT_APP_VERSION_NUMBER ?? "";
     const versionInfo: string = `Version ${versionNumber} (${versionDateTime})`;
@@ -24,10 +21,6 @@ const Footer = (props: IGetFooterContentExtended): JSX.Element =>
         ? CustomColours.colours.lightGray1 
         : props.backgroundColor;
 
-    const boxPaddingBottom: number = hasVersionInfo 
-        ? padingBottomLarge 
-        : paddingBottomSmall;
-
     return (<FooterView bind=
     {{
         terms: props.content?.terms,
@@ -35,7 +28,6 @@ const Footer = (props: IGetFooterContentExtended): JSX.Element =>
         versionInfo: versionInfo,
         hasVersionInfo: hasVersionInfo,
         backgroundColor: backgroundColor,
-        boxPaddingBottom: boxPaddingBottom,
         copyright: props.content?.copyright,
         reserved: props.content?.reserved,
         icons: props.content?.icons

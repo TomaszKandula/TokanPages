@@ -50,7 +50,7 @@ const UnsubscribeView = (props: IBinding): JSX.Element =>
                         <CardContent className={classes.card}>
                         <Box textAlign="center" mb={3}>
                             <Box mt={2} mb={2}>
-                                <Typography gutterBottom={true} className={classes.caption}>
+                                <Typography className={classes.caption}>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : content.caption}
                                 </Typography>
                             </Box>

@@ -1,12 +1,14 @@
-export interface IArticleFeatContentDto
+import { ILink } from "./Common/link";
+
+export interface IArticleFeaturesContentDto
 {
     content: 
     {
         title: string;
-        desc: string;
+        description: string;
         text1: string;
         text2: string;
-        button: string;
+        action: ILink;
         image1: string;
         image2: string;
         image3: string;

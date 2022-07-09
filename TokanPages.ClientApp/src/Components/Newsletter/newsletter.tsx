@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Validate from "validate.js";
 import { IGetNewsletterContent } from "../../Redux/States/Content/getNewsletterContentState";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as SubscriberAction } from "../../Redux/Actions/Subscribers/addSubscriberAction";
@@ -13,6 +12,7 @@ import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers
 import { NEWSLETTER, NEWSLETTER_SUCCESS, NEWSLETTER_WARNING, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { IAddSubscriberDto } from "../../Api/Models";
 import NewsletterView from "./newsletterView";
+import Validate from "validate.js";
 
 const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
 {

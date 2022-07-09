@@ -20,7 +20,7 @@ const ToastState: IToastState =
     errorMessage: ""    
 }
 
-const TransitionLeft = (props: Omit<SlideProps, "direction">) => <Slide {...props} direction="left" />;
+const TransitionLeft = (props: Omit<SlideProps, "direction">): JSX.Element => <Slide {...props} direction="left" />;
 
 const ApplicationToast = (): JSX.Element => 
 {
@@ -40,7 +40,8 @@ const ApplicationToast = (): JSX.Element =>
             dispatch(ActionCreators.clearError());
             setToastState(ToastState);
         }
-    }, [ dispatch, toastState ]);
+    }, 
+    [ dispatch, toastState ]);
     
     const raiseError = React.useCallback(() => 
     {

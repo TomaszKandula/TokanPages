@@ -2,55 +2,15 @@
 
 exports[`Test component: footerView. Renders correctly '<FooterView />' when content is loaded. 1`] = `
 <footer
-  className="makeStyles-root-1"
+  className="makeStyles-page_footer-1"
 >
   <WithStyles(ForwardRef(Container))
     maxWidth="lg"
   >
+    <RenderCopyrightBar />
+    <RenderVersionInfo />
     <Styled(MuiBox)
-      alignItems="center"
-      display="flex"
-      flexWrap="wrap"
-      pb={0}
-      pt={6}
-    >
-      <WithStyles(ForwardRef(Typography))
-        className="makeStyles-copy-5"
-        data-aos="fade-right"
-        gutterBottom={false}
-      >
-        © 2020 - 2021 Tomasz Kandula
-         | 
-        All rights reserved
-         | 
-        <SetTermsLink />
-         | 
-        <SetPolicyLink />
-      </WithStyles(ForwardRef(Typography))>
-      <Styled(MuiBox)
-        className="makeStyles-icon_box-3"
-        data-aos="fade-left"
-        ml="auto"
-      >
-        <WithStyles(ForwardRef(IconButton))
-          aria-label="LinkedInIcon"
-          className="makeStyles-icon-4"
-          color="default"
-          href="https://www.linkedin.com/"
-          key="0"
-          target="_blank"
-        >
-          <Memo(ForwardRef(LinkedInIcon)) />
-        </WithStyles(ForwardRef(IconButton))>
-      </Styled(MuiBox)>
-    </Styled(MuiBox)>
-    <div
-      data-aos="zoom-in"
-    >
-      <RenderVersionInfo />
-    </div>
-    <div
-      className="makeStyles-bottom_space-2"
+      pb={15}
     />
   </WithStyles(ForwardRef(Container))>
 </footer>

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test articles group component: articleFeatView. Renders correctly '<ArticleFeatView />' when content is loaded. 1`] = `
+exports[`Test articles group component: articleFeaturesView. Renders correctly '<ArticleFeaturesView />' when content is loaded. 1`] = `
 <section
   className="makeStyles-section-1"
 >
@@ -18,7 +18,6 @@ exports[`Test articles group component: articleFeatView. Renders correctly '<Art
       >
         <WithStyles(ForwardRef(Typography))
           className="makeStyles-title-5"
-          gutterBottom={true}
         >
           ARTICLES
         </WithStyles(ForwardRef(Typography))>

@@ -57,6 +57,7 @@ public class Startup
             options.SerializerSettings.Converters.Add(new StringEnumConverter());
             options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         });
+        services.AddResponseCaching();
         services.AddApiVersioning(options =>
         {
             options.ReportApiVersions = true;
@@ -81,10 +82,10 @@ public class Startup
 
         builder.UseForwardedHeaders();
         builder.UseHttpsRedirection();
-        builder.ApplyCorsPolicy(_configuration);
+        builder.UseResponseCaching();
 
+        builder.ApplyCorsPolicy(_configuration);
         builder.UseMiddleware<Exceptions>();
-        builder.UseMiddleware<CacheControl>();
 
         builder.UseResponseCompression();
         builder.UseRouting();

@@ -1,14 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box } from "@material-ui/core";
-import Container from "@material-ui/core/Container";
-import Navigation from "../Components/Layout/navigation";
-import Footer from "../Components/Layout/footer";
-import ContactForm from "../Components/Contact/contactForm";
+import { Box, Container } from "@material-ui/core";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
 import { ActionCreators as ContactFormContent } from "../Redux/Actions/Content/getContactFormContentAction";
 import { IApplicationState } from "../Redux/applicationState";
+import Navigation from "../Components/Layout/navigation";
+import Footer from "../Components/Layout/footer";
+import ContactForm from "../Components/Contact/contactForm";
 
 const ContactPage = () => 
 {

@@ -36,7 +36,9 @@ const ArticleCardView = (props: IBinding): JSX.Element =>
                         {props.bind?.description}
                     </Typography>
                     <CardActions className={classes.card_action}>
-                        <Button onClick={props.bind?.onClickEvent} size="small" className={classes.button}>{props.bind?.buttonText}</Button>
+                        <Button onClick={props.bind?.onClickEvent} size="small" className={classes.button}>
+                            {props.bind?.buttonText}
+                        </Button>
                     </CardActions>
                 </CardContent>
             </Card>

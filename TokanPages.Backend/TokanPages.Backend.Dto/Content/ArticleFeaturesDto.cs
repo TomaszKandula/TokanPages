@@ -1,6 +1,7 @@
 namespace TokanPages.Backend.Dto.Content;
 
 using Base;
+using Common;
 using Newtonsoft.Json;
 using System.Diagnostics.CodeAnalysis;
 
@@ -17,10 +18,10 @@ public class ArticleFeaturesDto : BaseClass
     public string Title { get; set; } = "";
 
     /// <summary>
-    /// Desc
+    /// Description
     /// </summary>
-    [JsonProperty("desc")]
-    public string Desc { get; set; } = "";
+    [JsonProperty("description")]
+    public string Description { get; set; } = "";
 
     /// <summary>
     /// Text1
@@ -37,8 +38,8 @@ public class ArticleFeaturesDto : BaseClass
     /// <summary>
     /// Button
     /// </summary>
-    [JsonProperty("button")]
-    public string Button { get; set; } = "";
+    [JsonProperty("action")]
+    public Link Action { get; set; } = new();
 
     /// <summary>
     /// Image1

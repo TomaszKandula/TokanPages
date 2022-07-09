@@ -1,3 +1,5 @@
+import { ILink } from "./Common/link";
+
 export interface IHeaderContentDto
 {
     content: 
@@ -5,6 +7,6 @@ export interface IHeaderContentDto
         photo: string;
         caption: string;
         description: string;
-        action: string;
+        action: ILink;
     };
 }

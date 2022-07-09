@@ -16,7 +16,6 @@ exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView 
       <WithStyles(ForwardRef(Typography))
         className="makeStyles-caption_text-2"
         data-aos="fade-down"
-        gutterBottom={true}
       >
         TESTIMONIALS
       </WithStyles(ForwardRef(Typography))>
@@ -30,7 +29,8 @@ exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView 
         spacing={6}
       >
         <WithStyles(ForwardRef(Grid))
-          data-aos="fade-left"
+          data-aos="fade-up"
+          data-aos-delay="350"
           item={true}
           md={4}
           xs={12}
@@ -68,6 +68,7 @@ exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView 
         <WithStyles(ForwardRef(Grid))
           className="makeStyles-card_space-4"
           data-aos="fade-up"
+          data-aos-delay="150"
           item={true}
           md={4}
           xs={12}
@@ -104,7 +105,8 @@ exports[`Test component: testimonialsView. Renders correctly '<TestimonialsView 
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Grid))
           className="makeStyles-card_space-4"
-          data-aos="fade-right"
+          data-aos="fade-up"
+          data-aos-delay="550"
           item={true}
           md={4}
           xs={12}

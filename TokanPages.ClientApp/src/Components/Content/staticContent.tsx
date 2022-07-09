@@ -1,10 +1,14 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Validate from "validate.js";
-import { ITextObject } from "../../Shared/Components/ContentRender/Models/textModel";
 import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators, TRequestContent, REQUEST_POLICY, REQUEST_STORY, REQUEST_TERMS } from "../../Redux/Actions/Content/getStaticContentAction";
+import { ActionCreators } from "../../Redux/Actions/Content/getStaticContentAction";
+import { TRequestContent } from "../../Redux/Actions/Content/getStaticContentAction";
+import { REQUEST_POLICY } from "../../Redux/Actions/Content/getStaticContentAction";
+import { REQUEST_STORY } from "../../Redux/Actions/Content/getStaticContentAction";
+import { REQUEST_TERMS } from "../../Redux/Actions/Content/getStaticContentAction";
+import { ITextObject } from "../../Shared/Components/ContentRender/Models/textModel";
 import StaticContentView from "./staticContentView";
+import Validate from "validate.js";
 
 const StaticContent = (props: { content: TRequestContent }): JSX.Element => 
 {

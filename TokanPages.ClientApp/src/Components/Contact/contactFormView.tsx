@@ -8,8 +8,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
-import contactFormStyle from "./contactFormStyle";
 import VioletCheckbox from "../../Theme/customCheckboxes";
+import contactFormStyle from "./contactFormStyle";
 
 interface IBinding 
 {
@@ -67,7 +67,7 @@ const ContactFormView = (props: IBinding): JSX.Element =>
                         <Box>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
-                                    <div data-aos="fade-right">
+                                    <div data-aos="zoom-in">
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
                                         : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.firstName} label={props.bind?.labelFirstName} 
@@ -75,7 +75,7 @@ const ContactFormView = (props: IBinding): JSX.Element =>
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <div data-aos="fade-left">
+                                    <div data-aos="zoom-in">
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
                                         : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.lastName} label={props.bind?.labelLastName} 
@@ -83,7 +83,7 @@ const ContactFormView = (props: IBinding): JSX.Element =>
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <div data-aos="fade-right">
+                                    <div data-aos="zoom-in">
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
                                         : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail} 
@@ -91,7 +91,7 @@ const ContactFormView = (props: IBinding): JSX.Element =>
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <div data-aos="fade-left">
+                                <div data-aos="zoom-in">
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
                                         : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.subject} label={props.bind?.labelSubject} 
@@ -99,7 +99,7 @@ const ContactFormView = (props: IBinding): JSX.Element =>
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <div data-aos="fade-right">
+                                <div data-aos="zoom-in">
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
                                         : <TextField required multiline onChange={props.bind?.formHandler} value={props.bind?.message} label={props.bind?.labelMessage} 
@@ -115,7 +115,7 @@ const ContactFormView = (props: IBinding): JSX.Element =>
                                     </div>
                                 </Grid>
                             </Grid>
-                            <Box my={2} data-aos="fade-left">
+                            <Box my={2} data-aos="fade-up">
                                 {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton />}
                             </Box>
                         </Box>

@@ -92,7 +92,15 @@ export const AVATARS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/getAsset/?Blo
 export const MAIN_ICON = `${ICONS_PATH}main_logo.svg`;
 export const MEDIUM_ICON = `${ICONS_PATH}medium_icon.svg`;
 
-/* MESSAGES AND TEMPLATES */
+/* NUMBERS */
+
+export const LIKES_LIMIT_FOR_ANONYM: number = 25;
+export const LIKES_LIMIT_FOR_USER: number = 50;
+export const WORDS_PER_MINUTE: number = 265;
+
+
+// --------------------------- TODO: move out below code from constants --------------------------- //
+
 
 export const MESSAGE_OUT_SUCCESS: string = "<p>Congratulations!</p><p>The message has been sent successfully, we will try to respond as soon as possible.</p>";
 export const MESSAGE_OUT_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To send an email all fields must be filled along with acceptance of Terms of Use and Privacy Policy.</span>";
@@ -130,22 +138,15 @@ export const VALIDATION_ERRORS: string = "Validation errors have been found";
 
 export const NULL_RESPONSE_ERROR: string = "The response data has returned null. Possible parsing issue due to invalid JSON/XML format";
 
-/* OTHER */
-
-export const LIKES_LIMIT_FOR_ANONYM: number = 25;
-export const LIKES_LIMIT_FOR_USER: number = 50;
 export const LIKES_HINT_FOR_ANONYM: string = "You may give up to {LEFT_LIKES} thumbs up!";
 export const LIKES_HINT_FOR_USER: string = "You may give up to {LEFT_LIKES} thumbs up!";
 export const MAX_LIKES_REACHED: string = "You've reached max thumbs up :)";
-export const WORDS_PER_MINUTE: number = 265;
 export const RECEIVED_ERROR_MESSAGE: string = "RECEIVED_ERROR_MESSAGE";
 export const NO_ERRORS: string = "NO_ERRORS";
 export const ANONYMOUS_NAME: string = "Anonymous";
 export const DEFAULT_NAME: string = "Unknown";
 export const DEFAULT_AVATAR: string = "avatar-default-288.jpeg";
 export const USER_DATA: string = "userData";
-
-/* FORMS */
 
 export const SIGNIN_FORM: string = "Signin Form";
 export const SIGNUP_FORM: string = "Signup Form";

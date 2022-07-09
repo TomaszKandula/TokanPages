@@ -3,17 +3,13 @@ import { CustomColours } from "../../../Theme/customColours";
 
 const footerStyle = makeStyles((theme) => (
 {
-    root: 
+    page_footer: 
     {
         [theme.breakpoints.down("md")]: 
         {
             textAlign: "center"
         },
         background: CustomColours.colours.violet
-    },
-    bottom_space:
-    {
-        height: "48px"
     },
     icon_box: 
     {
@@ -27,7 +23,13 @@ const footerStyle = makeStyles((theme) => (
     {
         color: CustomColours.colours.white
     },
-    copy: 
+    copyright_box:
+    {
+        display: "flex", 
+        flexWrap: "wrap", 
+        alignItems: "center"
+    },
+    copyright: 
     {
         fontSize: "1.2rem",
         color: CustomColours.colours.white,
