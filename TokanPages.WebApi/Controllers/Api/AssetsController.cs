@@ -26,17 +26,6 @@ public class AssetsController : ApiBaseController
         : base(mediator) => _assetsCache = assetsCache;
 
     /// <summary>
-    /// Returns storage asset file
-    /// </summary>
-    /// <param name="blobName">Full asset name</param>
-    /// <param name="noCache">Enable/disable REDIS cache</param>
-    /// <returns>File</returns>
-    [HttpGet]
-    [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetAsset([FromQuery] string blobName = "", bool noCache = false)
-        => await _assetsCache.GetAsset(blobName, noCache);
-
-    /// <summary>
     /// Returns list of uploaded assets (files)
     /// </summary>
     /// <returns>Object</returns>
@@ -47,6 +36,18 @@ public class AssetsController : ApiBaseController
         => await Mediator.Send(new GetAssetsListQuery());
 
     /// <summary>
+    /// Returns storage asset file
+    /// </summary>
+    /// <param name="blobName">Full asset name</param>
+    /// <param name="noCache">Enable/disable REDIS cache</param>
+    /// <returns>File</returns>
+    [HttpGet]
+    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400)]
+    [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAsset([FromQuery] string blobName = "", bool noCache = false)
+        => await _assetsCache.GetAsset(blobName, noCache);
+
+    /// <summary>
     /// Returns article asset (file associated with an article)
     /// </summary>
     /// <param name="id">Article ID</param>
@@ -54,6 +55,7 @@ public class AssetsController : ApiBaseController
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>File</returns>
     [HttpGet]
+    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400)]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetArticleAsset([FromQuery] string id = "", string assetName = "", bool noCache = false)
         => await _assetsCache.GetArticleAsset(id, assetName, noCache);
