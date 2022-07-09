@@ -1,16 +1,5 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Navigation from "../Components/Layout/navigation";
-import HeaderView from "../Components/Layout/headerView";
-import ClientsView from "../Components/Clients/clientsView";
-import Footer from "../Components/Layout/footer";
-import FeaturesView from "../Components/Features/featuresView";
-import FeaturedView from "../Components/Featured/featuredView";
-import TestimonialsView from "../Components/Testimonials/testimonialsView";
-import Newsletter from "../Components/Newsletter/newsletter";
-import ContactForm from "../Components/Contact/contactForm";
-import Cookies from "../Components/Cookies/cookies";
-import ArticleFeaturesView from "../Components/Articles/articleFeaturesView";
 import { IApplicationState } from "../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
@@ -23,6 +12,17 @@ import { ActionCreators as TestimonialsContent } from "../Redux/Actions/Content/
 import { ActionCreators as NewsletterContent } from "../Redux/Actions/Content/getNewsletterContentAction";
 import { ActionCreators as ContactFormContent } from "../Redux/Actions/Content/getContactFormContentAction";
 import { ActionCreators as CookiesContent } from "../Redux/Actions/Content/getCookiesPromptContentAction";
+import Navigation from "../Components/Layout/navigation";
+import HeaderView from "../Components/Layout/headerView";
+import ClientsView from "../Components/Clients/clientsView";
+import Footer from "../Components/Layout/footer";
+import FeaturesView from "../Components/Features/featuresView";
+import FeaturedView from "../Components/Featured/featuredView";
+import TestimonialsView from "../Components/Testimonials/testimonialsView";
+import Newsletter from "../Components/Newsletter/newsletter";
+import ContactForm from "../Components/Contact/contactForm";
+import Cookies from "../Components/Cookies/cookies";
+import ArticleFeaturesView from "../Components/Articles/articleFeaturesView";
 import AOS from "aos";
 
 const MainPage = (): JSX.Element => 
