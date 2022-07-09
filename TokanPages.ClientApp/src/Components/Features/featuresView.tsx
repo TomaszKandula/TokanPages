@@ -28,7 +28,7 @@ const FeaturesView = (props: IGetFeaturesContent): JSX.Element =>
                     </Box>
                     <Grid container spacing={6}>
                         <Grid item xs={12} sm={6}>
-                            <Box mb={2} display="flex" alignItems="center" data-aos="zoom-in">
+                            <Box mb={2} display="flex" alignItems="center" data-aos="fade-up">
                                 {props.isLoading 
                                     ? <Skeleton variant="circle" className={classes.skeleton_circle} /> 
                                     : <CodeIcon className={classes.icon} />}
@@ -36,12 +36,12 @@ const FeaturesView = (props: IGetFeaturesContent): JSX.Element =>
                                     {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title1}
                                 </Typography>
                             </Box>
-                            <Typography className={classes.feature_text} data-aos="fade-left">
+                            <Typography className={classes.feature_text} data-aos="fade-up">
                                 {props.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser(props.content?.text1)}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <Box mb={2} display="flex" alignItems="center" data-aos="zoom-in">
+                            <Box mb={2} display="flex" alignItems="center" data-aos="fade-up">
                                 {props.isLoading 
                                     ? <Skeleton variant="circle" className={classes.skeleton_circle} /> 
                                     : <LibraryBooksIcon className={classes.icon} />}
@@ -49,12 +49,12 @@ const FeaturesView = (props: IGetFeaturesContent): JSX.Element =>
                                     {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title2}
                                 </Typography>
                             </Box>
-                            <Typography className={classes.feature_text} data-aos="fade-left">
+                            <Typography className={classes.feature_text} data-aos="fade-up">
                                 {props.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser(props.content?.text2)}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <Box mb={2} display="flex" alignItems="center" data-aos="zoom-in">
+                            <Box mb={2} display="flex" alignItems="center" data-aos="fade-up">
                                 {props.isLoading 
                                     ? <Skeleton variant="circle" className={classes.skeleton_circle} /> 
                                     : <StorageIcon className={classes.icon} />}
@@ -62,12 +62,12 @@ const FeaturesView = (props: IGetFeaturesContent): JSX.Element =>
                                     {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title3}
                                 </Typography>
                             </Box>
-                            <Typography className={classes.feature_text} data-aos="fade-right">
+                            <Typography className={classes.feature_text} data-aos="fade-up">
                                 {props.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser(props.content?.text3)}
                             </Typography>
                         </Grid>
-                        <Grid item xs={12} sm={6}>         
-                            <Box mb={2} display="flex" alignItems="center" data-aos="zoom-in">
+                        <Grid item xs={12} sm={6}>
+                            <Box mb={2} display="flex" alignItems="center" data-aos="fade-up">
                                 {props.isLoading 
                                     ? <Skeleton variant="circle" className={classes.skeleton_circle} /> 
                                     : <CloudIcon color="primary" className={classes.icon} />}
@@ -75,7 +75,7 @@ const FeaturesView = (props: IGetFeaturesContent): JSX.Element =>
                                     {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title4}
                                 </Typography>
                             </Box>
-                            <Typography className={classes.feature_text} data-aos="fade-right">
+                            <Typography className={classes.feature_text} data-aos="fade-up">
                                 {props.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser(props.content?.text4)}
                             </Typography>
                         </Grid>
