@@ -8,8 +8,8 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
 import { IGetHeaderContent } from "../../Redux/States/Content/getHeaderContentState";
 import { IMAGES_PATH } from "../../Shared/constants";
-import headerStyle from "./Styles/headerStyle";
 import { renderImage } from "../../Shared/Components/CustomImage/customImage";
+import headerStyle from "./Styles/headerStyle";
 
 const HeaderView = (props: IGetHeaderContent): JSX.Element => 
 {
@@ -18,18 +18,9 @@ const HeaderView = (props: IGetHeaderContent): JSX.Element =>
     const ActiveButton = (): JSX.Element => 
     {
         return(
-            <Link to="/mystory" className={classes.action_link}>
-                <Button variant="contained" className={classes.action_button}>{props.content?.action}</Button>
+            <Link to={props.content?.action.href} className={classes.action_link}>
+                <Button variant="contained" className={classes.action_button}>{props.content?.action.text}</Button>
             </Link>
-        );
-    }
-
-    const RenderImage = (): JSX.Element => 
-    {
-        return(
-            <div data-aos="fade-right">
-                {renderImage(IMAGES_PATH, props.content?.photo, classes.image)}
-            </div>
         );
     }
 
@@ -39,22 +30,22 @@ const HeaderView = (props: IGetHeaderContent): JSX.Element =>
                 <Grid container className={classes.top_margin}>
                     <Grid item xs={12} sm={6}>
                         <Box className={classes.image_box}>
-                            {props.isLoading ? <Skeleton variant="circle" className={classes.image_skeleton} /> : <RenderImage />}
+                            {props.isLoading 
+                            ? <Skeleton variant="circle" className={classes.image_skeleton} /> 
+                            : renderImage(IMAGES_PATH, props.content?.photo, classes.image)}
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Box className={classes.content_box}>
-                            <div data-aos="fade-left">
-                                <Typography variant="h3" gutterBottom={true}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption}
-                                </Typography>
-                                <Typography variant="h6" className={classes.content_description}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.description}
-                                </Typography>
-                                <Box mt={4}>
-                                    {props.isLoading ? <Skeleton variant="rect" height="48px" /> : <ActiveButton />}
-                                </Box>
-                            </div>
+                            <Typography variant="h3" gutterBottom={true}>
+                                {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption}
+                            </Typography>
+                            <Typography variant="h6" className={classes.content_description}>
+                                {props.isLoading ? <Skeleton variant="text" /> : props.content?.description}
+                            </Typography>
+                            <Box mt={4}>
+                                {props.isLoading ? <Skeleton variant="rect" height="48px" /> : <ActiveButton />}
+                            </Box>
                         </Box>
                     </Grid>
                 </Grid>
