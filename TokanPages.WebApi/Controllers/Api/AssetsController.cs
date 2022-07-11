@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Backend.Domain.Enums;
 using Backend.Shared.Attributes;
 using Backend.Cqrs.Handlers.Queries.Assets;
+using Attributes;
 using MediatR;
 
 /// <summary>
@@ -39,6 +40,7 @@ public class AssetsController : ApiBaseController
     /// <param name="blobName">Full asset name</param>
     /// <returns>File</returns>
     [HttpGet]
+    [ETagFilter]
     [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400, VaryByQueryKeys = new [] { "blobName" })]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAsset([FromQuery] string blobName = "")
@@ -51,6 +53,7 @@ public class AssetsController : ApiBaseController
     /// <param name="assetName">Full asset name</param>
     /// <returns>File</returns>
     [HttpGet]
+    [ETagFilter]
     [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400, VaryByQueryKeys = new [] { "id", "assetName" })]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetArticleAsset([FromQuery] string id = "", string assetName = "")
