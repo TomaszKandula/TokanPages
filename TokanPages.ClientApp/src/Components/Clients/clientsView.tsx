@@ -20,9 +20,11 @@ const ClientsView = (props: IGetClientsContent): JSX.Element =>
         if (!Validate.isEmpty(props.content?.caption))
         {
             return(
-                <Typography className={classes.caption}>
-                    {props.content?.caption?.toUpperCase()}                    
-                </Typography>
+                <Box mb={8}>
+                    <Typography className={classes.caption}>
+                        {props.content?.caption?.toUpperCase()}                    
+                    </Typography>
+                </Box>
             );
         }
 
@@ -45,9 +47,7 @@ const ClientsView = (props: IGetClientsContent): JSX.Element =>
             <div className={classes.divider}></div>
             <section className={classes.section}>
                 <Container maxWidth="lg">
-                    <Box mb={8}>
-                        {props.isLoading ? <Skeleton variant="text" /> : <RenderCaption />}
-                    </Box>
+                    {props.isLoading ? <Skeleton variant="text" /> : <RenderCaption />}
                     {props.isLoading ? <Skeleton variant="rect" height="48px" /> : <RenderImages />}
                 </Container>
             </section>
