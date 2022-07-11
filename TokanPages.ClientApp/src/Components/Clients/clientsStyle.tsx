@@ -9,6 +9,12 @@ const ClientsStyle = makeStyles((theme) => (
         height: "2px",
         backgroundColor: CustomColours.colours.lightGray1
     },
+    caption:
+    {
+        textAlign: "center",
+        fontSize: "2.0rem",
+        color: CustomColours.colours.darkViolet1
+    },
     section:
     {
         backgroundColor: CustomColours.colours.white,
