@@ -143,9 +143,6 @@ export const LIKES_HINT_FOR_USER: string = "You may give up to {LEFT_LIKES} thum
 export const MAX_LIKES_REACHED: string = "You've reached max thumbs up :)";
 export const RECEIVED_ERROR_MESSAGE: string = "RECEIVED_ERROR_MESSAGE";
 export const NO_ERRORS: string = "NO_ERRORS";
-export const ANONYMOUS_NAME: string = "Anonymous";
-export const DEFAULT_NAME: string = "Unknown";
-export const DEFAULT_AVATAR: string = "avatar-default-288.jpeg";
 export const USER_DATA: string = "userData";
 
 export const SIGNIN_FORM: string = "Signin Form";
