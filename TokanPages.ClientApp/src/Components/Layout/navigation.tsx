@@ -4,7 +4,7 @@ import { IApplicationState } from "Redux/applicationState";
 import { IGetNavigationContent } from "../../Redux/States/Content/getNavigationContentState";
 import { ActionCreators } from "../../Redux/Actions/Users/storeUserDataAction";
 import { GetLanguages, SetUserLanguage, GetDefaultLanguageId } from "../../Shared/Services/languageService";
-import Reload from "./Services/componentsContentService";
+import { GetAllPagesContent } from "../../Pages/Services";
 import NavigationView from "./navigationView";
 import Validate from "validate.js";
 
@@ -24,7 +24,7 @@ const Navigation = (props: IGetNavigationContent): JSX.Element =>
         const value = event.target.value as string;
         setLanguage(value);
         SetUserLanguage(value);
-        Reload(dispatch);
+        GetAllPagesContent(dispatch, true);
     };
 
     const toggleDrawer = (open: boolean) => (event: any) => 
