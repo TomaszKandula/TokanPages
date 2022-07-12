@@ -3,7 +3,6 @@ import React from "react";
 import { shallow } from "enzyme";
 import NavigationView from "../navigationView";
 import { IItem } from "../../../Shared/Components/ListRender/Models/item";
-import { ANONYMOUS_NAME } from "../../../Shared/constants";
 import { ILanguage } from "../../../Shared/Services/languageService";
 
 describe("Test component: featuresView.", () => 
@@ -46,8 +45,7 @@ describe("Test component: featuresView.", () =>
             infoHandler: jest.fn(),
             isAnonymous: false,
             logo: "",
-            avatar: "",
-            anonymousText: ANONYMOUS_NAME,
+            avatarName: "",
             userAliasText: "",
             menu: 
             { 
