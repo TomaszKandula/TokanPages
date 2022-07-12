@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { ActionCreators } from "../../../Redux/Actions/Users/storeUserDataAction";
 import { IApplicationState } from "../../../Redux/applicationState";
 import { IAuthenticateUserResultDto } from "../../../Api/Models";
-import { AVATARS_PATH } from "../../../Shared/constants";
 import ApplicationUserInfoView from "./applicationUserInfoView";
 // TODO: add component content from the server
 const ApplicationUserInfo = (): JSX.Element => 
@@ -19,7 +18,7 @@ const ApplicationUserInfo = (): JSX.Element =>
     const data: IAuthenticateUserResultDto = 
     {
         ...user?.userData,
-        avatarName: `${AVATARS_PATH}${user?.userData.avatarName}`
+        avatarName: user?.userData.avatarName
     }
 
     return (<ApplicationUserInfoView bind=
