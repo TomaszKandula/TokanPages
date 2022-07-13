@@ -1,3 +1,10 @@
+## [0.54.1](https://github.com/TomaszKandula/TokanPages/compare/v0.54.0...v0.54.1) (2022-07-13)
+
+
+### Bug Fixes
+
+* resolve missing get content for testimonials ([317d7e0](https://github.com/TomaszKandula/TokanPages/commit/317d7e042582eaa4600f2e0d1a78b928e5a5e77e))
+
 # [0.54.0](https://github.com/TomaszKandula/TokanPages/compare/v0.53.0...v0.54.0) (2022-07-13)
 
 
