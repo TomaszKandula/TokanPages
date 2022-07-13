@@ -26,14 +26,15 @@ export const GetMainPageContent = (dispatch: Dispatch<any>, isLanguageChanged: b
 {
     dispatch(NavigationContent.getNavigationContent(isLanguageChanged));
     dispatch(HeaderContent.getHeaderContent(isLanguageChanged));
-    dispatch(FooterContent.getFooterContent(isLanguageChanged));
     dispatch(ClientsContent.getClientsContent(isLanguageChanged));
     dispatch(ActivateAccountContent.getActivateAccountContent(isLanguageChanged));
+    dispatch(FeaturesContent.getFeaturesContent(isLanguageChanged));
     dispatch(ArticleFeaturesContent.getArticleFeaturesContent(isLanguageChanged));
     dispatch(FeaturedContent.getFeaturedContent(isLanguageChanged));
-    dispatch(FeaturesContent.getFeaturesContent(isLanguageChanged));
+    dispatch(TestimonialsContent.getTestimonialsContent(isLanguageChanged));
     dispatch(NewsletterContent.getNewsletterContent(isLanguageChanged));
     dispatch(ContactFormContent.getContactFormContent(isLanguageChanged));
+    dispatch(FooterContent.getFooterContent(isLanguageChanged));
     dispatch(CookiesContent.getCookiesPromptContent(isLanguageChanged));
 }
 
@@ -45,7 +46,6 @@ export const GetAllPagesContent = (dispatch: Dispatch<any>, isLanguageChanged: b
     dispatch(SigninFormContent.getUserSigninContent(isLanguageChanged));
     dispatch(SignoutContent.getUserSignoutContent(isLanguageChanged));
     dispatch(SignupFormContent.getUserSignupContent(isLanguageChanged));
-    dispatch(TestimonialsContent.getTestimonialsContent(isLanguageChanged));
     dispatch(UnsubscribeContent.getUnsubscribeContent(isLanguageChanged));
     dispatch(UpdateSubscriberContent.getUpdateSubscriberContent(isLanguageChanged));
     dispatch(UpdatePasswordContent.getUpdatePasswordContent(isLanguageChanged));
