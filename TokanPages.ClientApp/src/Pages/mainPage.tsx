@@ -1,17 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../Redux/applicationState";
-import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
-import { ActionCreators as HeaderContent } from "../Redux/Actions/Content/getHeaderContentAction";
-import { ActionCreators as ClientsContent } from "../Redux/Actions/Content/getClientsContentAction";
-import { ActionCreators as FeaturesContent } from "../Redux/Actions/Content/getFeaturesContentAction";
-import { ActionCreators as ArticleFeatures } from "../Redux/Actions/Content/getArticleFeaturesContentAction";
-import { ActionCreators as FeaturedContent } from "../Redux/Actions/Content/getFeaturedContentAction";
-import { ActionCreators as TestimonialsContent } from "../Redux/Actions/Content/getTestimonialsContentAction";
-import { ActionCreators as NewsletterContent } from "../Redux/Actions/Content/getNewsletterContentAction";
-import { ActionCreators as ContactFormContent } from "../Redux/Actions/Content/getContactFormContentAction";
-import { ActionCreators as CookiesContent } from "../Redux/Actions/Content/getCookiesPromptContentAction";
 import Navigation from "../Components/Layout/navigation";
 import HeaderView from "../Components/Layout/headerView";
 import ClientsView from "../Components/Clients/clientsView";
@@ -23,6 +12,7 @@ import Newsletter from "../Components/Newsletter/newsletter";
 import ContactForm from "../Components/Contact/contactForm";
 import Cookies from "../Components/Cookies/cookies";
 import ArticleFeaturesView from "../Components/Articles/articleFeaturesView";
+import { GetMainPageContent } from "./Services";
 import AOS from "aos";
 
 const MainPage = (): JSX.Element => 
@@ -41,22 +31,7 @@ const MainPage = (): JSX.Element =>
     const contactForm = useSelector((state: IApplicationState) => state.getContactFormContent);
     const cookiesPrompt = useSelector((state: IApplicationState) => state.getCookiesPromptContent);
     
-    React.useEffect(() => 
-    {
-        dispatch(NavigationContent.getNavigationContent());
-        dispatch(FooterContent.getFooterContent());
-        dispatch(HeaderContent.getHeaderContent());
-        dispatch(ClientsContent.getClientsContent());
-        dispatch(FeaturesContent.getFeaturesContent());
-        dispatch(ArticleFeatures.getArticleFeaturesContent());
-        dispatch(FeaturedContent.getFeaturedContent());
-        dispatch(TestimonialsContent.getTestimonialsContent());
-        dispatch(NewsletterContent.getNewsletterContent());
-        dispatch(ContactFormContent.getContactFormContent());
-        dispatch(CookiesContent.getCookiesPromptContent());
-    }, 
-    [ dispatch ]);
-
+    React.useEffect(() => { GetMainPageContent(dispatch) }, [ dispatch ]);
     React.useEffect(() => AOS.refresh());
 
     return (

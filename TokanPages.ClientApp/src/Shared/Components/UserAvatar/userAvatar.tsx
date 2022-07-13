@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Avatar } from "@material-ui/core";
 import userAvatarStyle from "./userAvatarStyle";
+import { AVATARS_PATH } from "../../../Shared/constants";
 import Validate from "validate.js";
 
 export interface IBinding
@@ -23,7 +24,7 @@ const UserAvatar = (props: IBinding): JSX.Element =>
     return(
         <Avatar 
             className={className} 
-            src={props.avatarName} 
+            src={`${AVATARS_PATH}${props.avatarName}`}
             alt="Avatar" >
         </Avatar>
     );

@@ -4,8 +4,7 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
 <HideOnScroll
   bind={
     Object {
-      "anonymousText": "Anonymous",
-      "avatar": "",
+      "avatarName": "",
       "closeHandler": [MockFunction],
       "drawerState": Object {
         "open": false,
