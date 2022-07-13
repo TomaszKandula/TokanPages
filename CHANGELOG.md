@@ -1,3 +1,17 @@
+# [0.54.0](https://github.com/TomaszKandula/TokanPages/compare/v0.53.0...v0.54.0) (2022-07-13)
+
+
+### Bug Fixes
+
+* resolve issue with null avatar image in navigation bar ([c7f4b92](https://github.com/TomaszKandula/TokanPages/commit/c7f4b9250ad923334867facef9c6783c625a4999))
+* resolve issue with null avatar in user info dialog box ([5d46681](https://github.com/TomaszKandula/TokanPages/commit/5d466810072ff2ab5206f8b21fe8ae561401bbc8))
+
+
+### Features
+
+* add caption and skeleton to 'Clients View' section ([6493c0c](https://github.com/TomaszKandula/TokanPages/commit/6493c0c847f2e7ca46f96ea834e837163e132f91))
+* add ETag filter to asset controller endpoints ([3e7522e](https://github.com/TomaszKandula/TokanPages/commit/3e7522e89497b1d1e707bf842043fe27c9057732))
+
 # [0.53.0](https://github.com/TomaszKandula/TokanPages/compare/v0.52.0...v0.53.0) (2022-07-09)
 
 
