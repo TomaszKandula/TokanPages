@@ -8,8 +8,10 @@ import { FormControl, Grid, MenuItem, Select, Typography, Box } from "@material-
 import HideOnScroll from "../../Shared/Components/Scroll/hideOnScroll";
 import { IItem } from "../../Shared/Components/ListRender/Models/item";
 import { ILanguage } from "../../Shared/Services/languageService";
+import { AVATARS_PATH } from "../../Shared/constants";
 import MenuView from "./Components/menuView";
 import navigationStyle from "./Styles/navigationStyle";
+import Validate from "validate.js";
 
 interface IBinding
 {
@@ -25,8 +27,7 @@ interface IProperties
     infoHandler: any;
     isAnonymous: boolean;
     logo: string;
-    avatar: string;
-    anonymousText: string;
+    avatarName: string;
     userAliasText: string;
     languages: ILanguage[];
     selectedLanguage: string;
@@ -65,6 +66,23 @@ const NavigationView = (props: IBinding): JSX.Element =>
         );
     }
 
+    const RenderAvatar = (): JSX.Element => 
+    {
+        if (props.bind?.isAnonymous)
+        {
+            return(<Avatar>A</Avatar>);
+        }
+
+        if (Validate.isEmpty(props.bind?.avatarName))
+        {
+            const userLetter = props.bind?.userAliasText?.charAt(0).toUpperCase();
+            return(<Avatar>{userLetter}</Avatar>);
+        }
+
+        const avatarName = `${AVATARS_PATH}${props.bind?.avatarName}`;
+        return(<Avatar alt="Avatar" src={avatarName} />);
+    }
+
     const RenderContent = (): JSX.Element => 
     {
         return(
@@ -75,11 +93,8 @@ const NavigationView = (props: IBinding): JSX.Element =>
                         styleMenu={classes.languages_menu} />
                 </Box>
                 <div className={classes.user_avatar}>
-                    <Typography className={classes.user_alias}>
-                        {props.bind?.isAnonymous ? props.bind?.anonymousText : props.bind?.userAliasText}
-                    </Typography>
                     <IconButton color="inherit" onClick={props.bind?.infoHandler} >
-                        <Avatar alt="Avatar" src={props.bind?.avatar} /> 
+                        <RenderAvatar /> 
                     </IconButton>
                 </div>
             </>

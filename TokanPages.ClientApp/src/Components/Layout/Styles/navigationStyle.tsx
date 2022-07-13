@@ -93,12 +93,6 @@ const navigationStyle = makeStyles((theme) => (
             display: "none"
         },
         display: "flex"
-    },
-    user_alias:
-    {
-        display: "none",
-        color: CustomColours.colours.gray1,
-        alignSelf: "center"
     }
 }));
 
