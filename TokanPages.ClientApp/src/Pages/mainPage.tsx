@@ -13,7 +13,6 @@ import ContactForm from "../Components/Contact/contactForm";
 import Cookies from "../Components/Cookies/cookies";
 import ArticleFeaturesView from "../Components/Articles/articleFeaturesView";
 import { GetMainPageContent } from "./Services";
-import AOS from "aos";
 
 const MainPage = (): JSX.Element => 
 {
@@ -32,7 +31,6 @@ const MainPage = (): JSX.Element =>
     const cookiesPrompt = useSelector((state: IApplicationState) => state.getCookiesPromptContent);
     
     React.useEffect(() => { GetMainPageContent(dispatch) }, [ dispatch ]);
-    React.useEffect(() => AOS.refresh());
 
     return (
         <>
