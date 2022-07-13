@@ -31,13 +31,14 @@ const App = (): JSX.Element =>
 {
     const classes = styles();
 
+    AOS.init();
+    StoreUserData();
+
     React.useEffect(() => 
     {
-        AOS.init();
-        AOS.refresh();
+        const intervalId = setInterval(() => AOS.refresh(), 900);
+        return(() => clearInterval(intervalId));
     });
-
-    StoreUserData();
 
     return (
         <>
