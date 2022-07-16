@@ -168,4 +168,13 @@
   <data name="INVALID_GUID_VALUE" xml:space="preserve">
     <value>The EMPTY guid value is not allowed</value>
   </data>
+  <data name="TOO_LONG_MEDIA_NAME" xml:space="preserve">
+    <value>The media name is too long</value>
+  </data>
+  <data name="TOO_LONG_MEDIA_TYPE" xml:space="preserve">
+    <value>The media type is too long</value>
+  </data>
+  <data name="NOT_SPECIFIED_MEDIA_TARGET" xml:space="preserve">
+    <value>The media target is not speciafied</value>
+  </data>
 </root>
