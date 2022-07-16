@@ -69,6 +69,8 @@ public class UpdateUserCommandHandler : Cqrs.RequestHandler<UpdateUserCommand, U
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 UserAboutText = request.ShortBio,
+                UserImageName = request.UserImageName,
+                UserVideoName = request.UserVideoName,
                 CreatedBy = userId,
                 CreatedAt = _dateTimeService.Now
             };
@@ -80,6 +82,8 @@ public class UpdateUserCommandHandler : Cqrs.RequestHandler<UpdateUserCommand, U
             userInfo.FirstName = request.FirstName ?? userInfo.FirstName;
             userInfo.LastName = request.LastName ?? userInfo.LastName;
             userInfo.UserAboutText = request.ShortBio ?? userInfo.UserAboutText;
+            userInfo.UserImageName = request.UserImageName ?? userInfo.UserImageName;
+            userInfo.UserVideoName = request.UserVideoName ?? userInfo.UserVideoName;
             userInfo.ModifiedBy = userId;
             userInfo.ModifiedAt = _dateTimeService.Now;
         }

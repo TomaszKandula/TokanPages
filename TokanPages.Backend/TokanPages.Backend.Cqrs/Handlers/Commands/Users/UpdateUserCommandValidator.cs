@@ -69,5 +69,27 @@ public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
                 .WithErrorCode(nameof(ValidationCodes.DESCRIPTION_TOO_LONG))
                 .WithMessage(ValidationCodes.DESCRIPTION_TOO_LONG);
         });
+
+        When(command => command.UserImageName != null, () =>
+        {
+            RuleFor(command => command.UserImageName)
+                .NotEmpty()
+                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+                .WithMessage(ValidationCodes.REQUIRED)
+                .MaximumLength(255)
+                .WithErrorCode(nameof(ValidationCodes.TOO_LONG_USER_IMAGE_NAME))
+                .WithMessage(ValidationCodes.TOO_LONG_USER_IMAGE_NAME);
+        });
+
+        When(command => command.UserVideoName != null, () =>
+        {
+            RuleFor(command => command.UserVideoName)
+                .NotEmpty()
+                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+                .WithMessage(ValidationCodes.REQUIRED)
+                .MaximumLength(255)
+                .WithErrorCode(nameof(ValidationCodes.TOO_LONG_USER_VIDEO_NAME))
+                .WithMessage(ValidationCodes.TOO_LONG_USER_VIDEO_NAME);
+        });
     }
 }

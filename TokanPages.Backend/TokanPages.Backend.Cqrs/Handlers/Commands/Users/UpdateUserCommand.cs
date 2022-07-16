@@ -1,5 +1,4 @@
-﻿#nullable enable
-namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
+﻿namespace TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 
 using System;
 using MediatR;
@@ -19,4 +18,8 @@ public class UpdateUserCommand : IRequest<Unit>
     public string? EmailAddress { get; set; }
 
     public string? ShortBio { get; set; }
+
+    public string? UserImageName { get; set; }
+
+    public string? UserVideoName { get; set; } 
 }

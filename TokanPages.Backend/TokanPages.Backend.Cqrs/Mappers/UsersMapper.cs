@@ -56,7 +56,9 @@ public static class UsersMapper
         FirstName = model.FirstName,
         LastName = model.LastName,
         EmailAddress = model.EmailAddress,
-        ShortBio = model.ShortBio
+        ShortBio = model.ShortBio,
+        UserImageName = model.UserImageName,
+        UserVideoName = model.UserVideoName
     };
 
     public static RemoveUserCommand MapToRemoveUserCommand(RemoveUserDto model) => new()
