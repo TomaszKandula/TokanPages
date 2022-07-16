@@ -11,7 +11,7 @@ public class UpdateArticleLikesCommandValidator : AbstractValidator<UpdateArticl
             .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
             .WithMessage(ValidationCodes.REQUIRED);
-            
+
         RuleFor(command => command.AddToLikes)
             .GreaterThan(-1)
             .WithErrorCode(nameof(ValidationCodes.LESS_THAN_ZERO))
