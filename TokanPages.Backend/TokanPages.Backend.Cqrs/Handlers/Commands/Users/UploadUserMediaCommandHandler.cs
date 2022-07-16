@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Database;
 using Domain.Enums;
-using Domain.Entities;
+using Shared.Resources;
 using Services.UserService;
 using Core.Utilities.LoggerService;
 using Services.AzureStorageService.Factory;
@@ -50,10 +50,7 @@ public class UploadUserMediaCommandHandler : RequestHandler<UploadUserMediaComma
             .SingleOrDefaultAsync(info => info.UserId == userId, cancellationToken);
 
         if (userInfo is null)
-        {
-            userInfo = new UserInfo { UserId = userId };
-            await DatabaseContext.UserInfo.AddAsync(userInfo, cancellationToken);
-        }
+            throw new Exception(nameof(ErrorCodes.ERROR_UNEXPECTED));
 
         switch (mediaTarget)
         {
