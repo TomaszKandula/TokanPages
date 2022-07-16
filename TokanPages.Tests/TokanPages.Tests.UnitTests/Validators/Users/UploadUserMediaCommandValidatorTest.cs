@@ -10,7 +10,7 @@ using Backend.Domain.Enums;
 using Backend.Shared.Services;
 using Backend.Shared.Services.Models;
 
-public class UpdateUserMediaCommandValidatorTest : TestBase
+public class UploadUserMediaCommandValidatorTest : TestBase
 {
     [Fact]
     public void GivenValidInputs_WhenUpdateUserMedia_ShouldSucceed()
