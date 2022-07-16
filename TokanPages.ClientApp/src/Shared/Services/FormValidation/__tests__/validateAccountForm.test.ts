@@ -11,7 +11,7 @@ describe("Verify validation methods.", () =>
             firstName: "Ester",
             lastName: "Exposito",
             email: "ester.exposito@gmail.com",
-            shortBio: "Spanish Software Developer"
+            userAboutText: "Spanish Software Developer"
         }
 
         // Act
@@ -29,7 +29,7 @@ describe("Verify validation methods.", () =>
             firstName: "E",
             lastName: "", 
             email: " ",
-            shortBio: "Spanish"
+            userAboutText: "Spanish"
         }
 
         // Act

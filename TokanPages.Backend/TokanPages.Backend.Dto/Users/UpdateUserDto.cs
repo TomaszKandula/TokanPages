@@ -42,7 +42,7 @@ public class UpdateUserDto
     /// <summary>
     /// Optional
     /// </summary>
-    public string? ShortBio { get; set; }
+    public string? UserAboutText { get; set; }
 
     /// <summary>
     /// Optional
