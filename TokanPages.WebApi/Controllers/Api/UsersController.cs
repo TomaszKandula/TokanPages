@@ -170,6 +170,7 @@ public class UsersController : ApiBaseController
     /// <param name="payload">Unique full blob name</param>
     /// <returns>MediatR unit value</returns>
     [HttpPost]
+    [AuthorizeUser(Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RemoveUserMedia([FromForm] RemoveUserMediaDto payload)
         => await Mediator.Send(UsersMapper.MapToRemoveUserMediaCommand(payload));
