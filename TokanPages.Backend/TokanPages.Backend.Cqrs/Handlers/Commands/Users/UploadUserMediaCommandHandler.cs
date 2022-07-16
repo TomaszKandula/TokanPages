@@ -71,5 +71,4 @@ public class UploadUserMediaCommandHandler : RequestHandler<UploadUserMediaComma
                 throw new ArgumentOutOfRangeException(nameof(mediaTarget), mediaTarget, null);
         }
     }
-    
 }
