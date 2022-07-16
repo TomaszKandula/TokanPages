@@ -26,7 +26,7 @@ interface IProperties
     firstName: string;
     lastName: string;
     email: string;
-    shortBio: string;
+    userAboutText: string;
     userAvatar: string;
     isUserActivated: boolean;
     accountFormProgress: boolean;
@@ -227,8 +227,8 @@ const UserAccountView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12} sm={9}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
-                                        : <TextField required fullWidth multiline onChange={props.bind?.accountFormHandler} value={props.bind?.shortBio}
-                                            minRows={6} variant="outlined" name="shortBio" id="shortBio" />}
+                                        : <TextField required fullWidth multiline onChange={props.bind?.accountFormHandler} value={props.bind?.userAboutText}
+                                            minRows={6} variant="outlined" name="userAboutText" id="userAboutText" />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>

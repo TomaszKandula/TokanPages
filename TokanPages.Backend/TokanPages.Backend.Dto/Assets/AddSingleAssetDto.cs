@@ -14,5 +14,5 @@ public class AddSingleAssetDto
     /// Mandatory
     /// </summary>
     [DataType(DataType.Upload)]
-    public IFormFile Data { get; set; }
+    public IFormFile? Data { get; set; }
 }

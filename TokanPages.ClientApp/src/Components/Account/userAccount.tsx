@@ -37,7 +37,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
         firstName: userDataState.firstName,
         lastName: userDataState.lastName,
         email: userDataState.email,
-        shortBio: userDataState.shortBio ?? ""
+        userAboutText: userDataState.shortBio ?? ""
     }
 
     const passwordFormDefault: IValidatePasswordForm = 
@@ -130,7 +130,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
                     firstName: accountForm.firstName,
                     lastName: accountForm.lastName,
                     emailAddress: accountForm.email,
-                    shortBio: accountForm.shortBio
+                    userAboutText: accountForm.userAboutText
                 });
             break;
 
@@ -215,7 +215,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
             firstName: accountForm.firstName,
             lastName: accountForm.lastName, 
             email: accountForm.email,
-            shortBio: accountForm.shortBio
+            userAboutText: accountForm.userAboutText
         });
 
         if (!Validate.isDefined(validationResult))
@@ -260,7 +260,7 @@ const UserAccount = (props: IGetAccountContent): JSX.Element =>
             firstName: accountForm.firstName,
             lastName: accountForm.lastName,
             email: accountForm.email,
-            shortBio: accountForm.shortBio,
+            userAboutText: accountForm.userAboutText,
             userAvatar: userDataState.avatarName,
             isUserActivated: isUserActivated.checked,
             accountFormProgress: accountFormProgress,           

@@ -56,7 +56,7 @@ public static class UsersMapper
         FirstName = model.FirstName,
         LastName = model.LastName,
         EmailAddress = model.EmailAddress,
-        ShortBio = model.ShortBio,
+        UserAboutText = model.UserAboutText,
         UserImageName = model.UserImageName,
         UserVideoName = model.UserVideoName
     };
