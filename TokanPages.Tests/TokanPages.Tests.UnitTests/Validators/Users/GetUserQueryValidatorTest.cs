@@ -12,11 +12,11 @@ public class GetUserQueryValidatorTest
     public void GivenValidId_WhenGetUser_ShouldSucceed()
     {
         // Arrange
-        var getUserQuery = new GetUserQuery { Id = Guid.NewGuid() };
+        var query = new GetUserQuery { Id = Guid.NewGuid() };
 
         // Act
         var validator = new GetUserQueryValidator();
-        var result = validator.Validate(getUserQuery);
+        var result = validator.Validate(query);
 
         // Assert
         result.Errors.Should().BeEmpty();
