@@ -128,5 +128,17 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("INVALID_FILE_SIZE", resourceCulture);
             }
         }
+        
+        public static string TOO_LONG_USER_IMAGE_NAME {
+            get {
+                return ResourceManager.GetString("TOO_LONG_USER_IMAGE_NAME", resourceCulture);
+            }
+        }
+        
+        public static string TOO_LONG_USER_VIDEO_NAME {
+            get {
+                return ResourceManager.GetString("TOO_LONG_USER_VIDEO_NAME", resourceCulture);
+            }
+        }
     }
 }

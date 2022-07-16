@@ -159,4 +159,10 @@
   <data name="INVALID_FILE_SIZE" xml:space="preserve">
     <value>File size is too large</value>
   </data>
+  <data name="TOO_LONG_USER_IMAGE_NAME" xml:space="preserve">
+    <value>The user image name is too long</value>
+  </data>
+  <data name="TOO_LONG_USER_VIDEO_NAME" xml:space="preserve">
+    <value>The user video name is too long</value>
+  </data>
 </root>
