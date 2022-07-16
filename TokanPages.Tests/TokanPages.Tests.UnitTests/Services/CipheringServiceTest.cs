@@ -6,9 +6,8 @@ using TokanPages.Services.CipheringService;
 
 public class CipheringServiceTest : TestBase
 {
-
     [Fact]
-    public void GivenPlainTextPassword_WhenInvokeGetHashedPassword_ShouldReturnHashedPassword()
+    public void GivenValidInputs_WhenInvokeGetHashedPassword_ShouldSucceed()
     {
         // Arrange
         const int cipherLogRounds = 12;
