@@ -3,9 +3,12 @@ namespace TokanPages.WebApi.Controllers.Api;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Backend.Dto.Assets;
+using Backend.Cqrs.Mappers;
 using Backend.Domain.Enums;
 using Backend.Shared.Attributes;
 using Backend.Cqrs.Handlers.Queries.Assets;
+using Backend.Cqrs.Handlers.Commands.Assets;
 using Attributes;
 using MediatR;
 
@@ -58,4 +61,18 @@ public class AssetsController : ApiBaseController
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetArticleAsset([FromQuery] string id = "", string assetName = "")
         => await Mediator.Send(new GetArticleAssetQuery { Id = id, AssetName = assetName });
+
+    /// <summary>
+    /// Allow to upload a single asset to an Azure Storage
+    /// </summary>
+    /// <remarks>
+    /// Requires: Roles.EverydayUser
+    /// </remarks>
+    /// <param name="payLoad">Binary data to be uploaded</param>
+    /// <returns>Full blob name of uploaded asset</returns>
+    [HttpPost]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(typeof(AddSingleAssetCommandResult), StatusCodes.Status200OK)]
+    public async Task<AddSingleAssetCommandResult> AddSingleAsset([FromForm] AddSingleAssetDto payLoad)
+        => await Mediator.Send(AssetsMapper.MapToAddSingleAssetCommand(payLoad));
 }

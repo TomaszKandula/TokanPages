@@ -117,9 +117,27 @@ namespace TokanPages.Backend.Shared.Resources {
             }
         }
         
-        public static string INVALID_FILESIZE {
+        public static string LENGTH_TOO_LONG_100 {
             get {
-                return ResourceManager.GetString("INVALID_FILESIZE", resourceCulture);
+                return ResourceManager.GetString("LENGTH_TOO_LONG_100", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_FILE_SIZE {
+            get {
+                return ResourceManager.GetString("INVALID_FILE_SIZE", resourceCulture);
+            }
+        }
+        
+        public static string TOO_LONG_USER_IMAGE_NAME {
+            get {
+                return ResourceManager.GetString("TOO_LONG_USER_IMAGE_NAME", resourceCulture);
+            }
+        }
+        
+        public static string TOO_LONG_USER_VIDEO_NAME {
+            get {
+                return ResourceManager.GetString("TOO_LONG_USER_VIDEO_NAME", resourceCulture);
             }
         }
     }
