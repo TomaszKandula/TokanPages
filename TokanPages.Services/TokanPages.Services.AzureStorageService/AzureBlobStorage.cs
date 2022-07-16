@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Models;
-using Backend.Shared;
+using Backend.Shared.Constants;
 using Backend.Core.Exceptions;
 using Backend.Core.Extensions;
 using Backend.Shared.Resources;
@@ -126,7 +126,7 @@ public class AzureBlobStorage : IAzureBlobStorage
         }
     }
 
-    public virtual async Task UploadFile(Stream sourceStream, string destinationPath, string contentType = Constants.ContentTypes.Stream, 
+    public virtual async Task UploadFile(Stream sourceStream, string destinationPath, string contentType = ContentTypes.Stream, 
         CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrEmpty(destinationPath))
