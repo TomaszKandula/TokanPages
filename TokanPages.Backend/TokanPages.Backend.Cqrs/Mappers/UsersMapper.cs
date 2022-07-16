@@ -75,4 +75,9 @@ public static class UsersMapper
         MediaType = model.Data.ContentType.ToMediaType(),
         Data = model.Data.GetByteArray()
     };
+
+    public static RemoveUserMediaCommand MapToRemoveUserMediaCommand(RemoveUserMediaDto model) => new()
+    {
+        UniqueBlobName = model.UniqueBlobName
+    };
 }
