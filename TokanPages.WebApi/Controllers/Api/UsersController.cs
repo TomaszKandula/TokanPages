@@ -152,4 +152,15 @@ public class UsersController : ApiBaseController
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RemoveUser([FromBody] RemoveUserDto payLoad)
         => await Mediator.Send(UsersMapper.MapToRemoveUserCommand(payLoad));
+
+    /// <summary>
+    /// Allows to upload media file (image/video)
+    /// </summary>
+    /// <param name="payload">File data</param>
+    /// <returns>Object with media name</returns>
+    [HttpPost]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(typeof(UploadUserMediaCommandResult), StatusCodes.Status200OK)]
+    public async Task<UploadUserMediaCommandResult> UploadUserMedia([FromForm] UploadUserMediaDto payload)
+        => await Mediator.Send(UsersMapper.MapToUploadUserMediaCommand(payload));
 }
