@@ -9,7 +9,7 @@ using Backend.Cqrs.Handlers.Commands.Users;
 public class UpdateUserCommandValidatorTest : TestBase
 {
     [Fact]
-    public void GivenAllFieldsAreCorrect_WhenUpdateUser_ShouldFinishSuccessful()
+    public void GivenValidInputs_WhenUpdateUser_ShouldSucceed()
     {
         // Arrange
         var updateUserCommand = new UpdateUserCommand
@@ -18,7 +18,10 @@ public class UpdateUserCommandValidatorTest : TestBase
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString()
+            LastName = DataUtilityService.GetRandomString(),
+            ShortBio = DataUtilityService.GetRandomString(),
+            UserImageName = DataUtilityService.GetRandomString(),
+            UserVideoName = DataUtilityService.GetRandomString()
         };
 
         // Act
@@ -30,104 +33,19 @@ public class UpdateUserCommandValidatorTest : TestBase
     }
 
     [Fact]
-    public void GivenEmptyEmailAddress_WhenUpdateUser_ShouldThrowError()
+    public void GivenEmptyInputs_WhenUpdateUser_ShouldThrowError()
     {
         // Arrange
         var updateUserCommand = new UpdateUserCommand
         {
-            Id = Guid.NewGuid(),
+            Id = Guid.Empty,
             EmailAddress = string.Empty,
-            UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString()
-        };
-
-        // Act
-        var updateUserCommandValidator = new UpdateUserCommandValidator();
-        var result = updateUserCommandValidator.Validate(updateUserCommand);
-
-        // Assert
-        result.Errors.Count.Should().Be(1);
-        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-    }
-
-    [Fact]
-    public void GivenTooLongEmailAddress_WhenUpdateUser_ShouldThrowError()
-    {
-        // Arrange
-        var updateUserCommand = new UpdateUserCommand
-        {
-            Id = Guid.NewGuid(),
-            EmailAddress = new string('T', 256),
-            UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString()
-        };
-
-        // Act
-        var updateUserCommandValidator = new UpdateUserCommandValidator();
-        var result = updateUserCommandValidator.Validate(updateUserCommand);
-
-        // Assert
-        result.Errors.Count.Should().Be(1);
-        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
-    }
-
-    [Fact]
-    public void GivenEmptyUserAlias_WhenUpdateUser_ShouldThrowError()
-    {
-        // Arrange
-        var updateUserCommand = new UpdateUserCommand
-        {
-            Id = Guid.NewGuid(),
-            EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = string.Empty,
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString()
-        };
-
-        // Act
-        var updateUserCommandValidator = new UpdateUserCommandValidator();
-        var result = updateUserCommandValidator.Validate(updateUserCommand);
-
-        // Assert
-        result.Errors.Count.Should().Be(1);
-        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-    }
-
-    [Fact]
-    public void GivenTooLongUserAlias_WhenUpdateUser_ShouldThrowError()
-    {
-        // Arrange
-        var updateUserCommand = new UpdateUserCommand
-        {
-            Id = Guid.NewGuid(),
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(256),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString()
-        };
-
-        // Act
-        var updateUserCommandValidator = new UpdateUserCommandValidator();
-        var result = updateUserCommandValidator.Validate(updateUserCommand);
-
-        // Assert
-        result.Errors.Count.Should().Be(1);
-        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.USERALIAS_TOO_LONG));
-    }
-
-    [Fact]
-    public void GivenEmptyFirstName_WhenUpdateUser_ShouldThrowError()
-    {
-        // Arrange
-        var updateUserCommand = new UpdateUserCommand
-        {
-            Id = Guid.NewGuid(),
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
             FirstName = string.Empty,
-            LastName = DataUtilityService.GetRandomString()
+            LastName = string.Empty,
+            ShortBio = string.Empty,
+            UserImageName = string.Empty,
+            UserVideoName = string.Empty,
         };
 
         // Act
@@ -135,21 +53,30 @@ public class UpdateUserCommandValidatorTest : TestBase
         var result = updateUserCommandValidator.Validate(updateUserCommand);
 
         // Assert
-        result.Errors.Count.Should().Be(1);
+        result.Errors.Count.Should().Be(7);
         result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+        result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+        result.Errors[2].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+        result.Errors[3].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+        result.Errors[4].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+        result.Errors[5].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+        result.Errors[6].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
     }
 
     [Fact]
-    public void GivenTooLongFirstName_WhenUpdateUser_ShouldThrowError()
+    public void GivenTooLongStrings_WhenUpdateUser_ShouldThrowError()
     {
         // Arrange
         var updateUserCommand = new UpdateUserCommand
         {
             Id = Guid.NewGuid(),
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(256),
-            LastName = DataUtilityService.GetRandomString()
+            UserAlias = DataUtilityService.GetRandomString(500),
+            FirstName = DataUtilityService.GetRandomString(500),
+            LastName = DataUtilityService.GetRandomString(500),
+            EmailAddress = DataUtilityService.GetRandomEmail(500),
+            ShortBio = DataUtilityService.GetRandomString(500),
+            UserImageName = DataUtilityService.GetRandomString(500),
+            UserVideoName = DataUtilityService.GetRandomString(500)
         };
 
         // Act
@@ -157,51 +84,13 @@ public class UpdateUserCommandValidatorTest : TestBase
         var result = updateUserCommandValidator.Validate(updateUserCommand);
 
         // Assert
-        result.Errors.Count.Should().Be(1);
-        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.FIRST_NAME_TOO_LONG));
-    }
-
-    [Fact]
-    public void GivenEmptyLastName_WhenUpdateUser_ShouldThrowError()
-    {
-        // Arrange
-        var updateUserCommand = new UpdateUserCommand
-        {
-            Id = Guid.NewGuid(),
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = string.Empty
-        };
-
-        // Act
-        var updateUserCommandValidator = new UpdateUserCommandValidator();
-        var result = updateUserCommandValidator.Validate(updateUserCommand);
-
-        // Assert
-        result.Errors.Count.Should().Be(1);
-        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-    }
-
-    [Fact]
-    public void GivenTooLongLastName_WhenUpdateUser_ShouldThrowError()
-    {
-        // Arrange
-        var updateUserCommand = new UpdateUserCommand
-        {
-            Id = Guid.NewGuid(),
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(256)
-        };
-
-        // Act
-        var updateUserCommandValidator = new UpdateUserCommandValidator();
-        var result = updateUserCommandValidator.Validate(updateUserCommand);
-
-        // Assert
-        result.Errors.Count.Should().Be(1);
-        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LAST_NAME_TOO_LONG));
+        result.Errors.Count.Should().Be(7);
+        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.USERALIAS_TOO_LONG));
+        result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.FIRST_NAME_TOO_LONG));
+        result.Errors[2].ErrorCode.Should().Be(nameof(ValidationCodes.LAST_NAME_TOO_LONG));
+        result.Errors[3].ErrorCode.Should().Be(nameof(ValidationCodes.EMAIL_TOO_LONG));
+        result.Errors[4].ErrorCode.Should().Be(nameof(ValidationCodes.DESCRIPTION_TOO_LONG));
+        result.Errors[5].ErrorCode.Should().Be(nameof(ValidationCodes.TOO_LONG_USER_IMAGE_NAME));
+        result.Errors[6].ErrorCode.Should().Be(nameof(ValidationCodes.TOO_LONG_USER_VIDEO_NAME));
     }
 }
