@@ -9,36 +9,36 @@ using Backend.Cqrs.Handlers.Commands.Articles;
 public class UpdateArticleVisibilityCommandValidatorTest
 {
     [Fact]
-    public void GivenValidGuidAndPublishFlag_WhenUpdateArticleVisibility_ShouldReturnSuccess()
+    public void GivenValidInputs_WhenUpdateArticleVisibility_ShouldSucceed()
     {
         // Arrange
-        var updateArticleVisibilityCommand = new UpdateArticleVisibilityCommand
+        var command = new UpdateArticleVisibilityCommand
         {
             Id = Guid.NewGuid(),
             IsPublished = true
         };
 
         // Act
-        var updateArticleVisibilityCommandValidator = new UpdateArticleVisibilityCommandValidator();
-        var result = updateArticleVisibilityCommandValidator.Validate(updateArticleVisibilityCommand);
+        var validator = new UpdateArticleVisibilityCommandValidator();
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Should().BeEmpty();
     }
         
     [Fact]
-    public void GivenEmptyGuidAndPublishFlag_WhenUpdateArticleVisibility_ShouldReturnSuccess()
+    public void GivenEmptyId_WhenUpdateArticleVisibility_ShouldThrowError()
     {
         // Arrange
-        var updateArticleVisibilityCommand = new UpdateArticleVisibilityCommand
+        var command = new UpdateArticleVisibilityCommand
         {
             Id = Guid.Empty,
             IsPublished = true
         };
 
         // Act
-        var updateArticleVisibilityCommandValidator = new UpdateArticleVisibilityCommandValidator();
-        var result = updateArticleVisibilityCommandValidator.Validate(updateArticleVisibilityCommand);
+        var validator = new UpdateArticleVisibilityCommandValidator();
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Count.Should().Be(1);

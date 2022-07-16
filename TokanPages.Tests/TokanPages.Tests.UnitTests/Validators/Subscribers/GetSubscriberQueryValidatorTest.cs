@@ -6,20 +6,17 @@ using System;
 using Backend.Shared.Resources;
 using Backend.Cqrs.Handlers.Queries.Subscribers;
 
-public class GetSubscriberQueryValidatorTest
+public class GetSubscriberQueryValidatorTest : TestBase
 {
     [Fact]
-    public void GivenCorrectId_WhenGetSubscriber_ShouldFinishSuccessful() 
+    public void GivenValidId_WhenGetSubscriber_ShouldSucceed() 
     {
         // Arrange
-        var getSubscriberQuery = new GetSubscriberQuery 
-        { 
-            Id = Guid.NewGuid()
-        };
+        var query = new GetSubscriberQuery { Id = Guid.NewGuid() };
 
         // Act
         var validator = new GetSubscriberQueryValidator();
-        var result = validator.Validate(getSubscriberQuery);
+        var result = validator.Validate(query);
 
         // Assert
         result.Errors.Should().BeEmpty();
@@ -29,14 +26,11 @@ public class GetSubscriberQueryValidatorTest
     public void GivenEmptyId_WhenGetSubscriber_ShouldThrowError()
     {
         // Arrange
-        var getSubscriberQuery = new GetSubscriberQuery
-        {
-            Id = Guid.Empty
-        };
+        var query = new GetSubscriberQuery { Id = Guid.Empty };
 
         // Act
         var validator = new GetSubscriberQueryValidator();
-        var result = validator.Validate(getSubscriberQuery);
+        var result = validator.Validate(query);
 
         // Assert
         result.Errors.Count.Should().Be(1);

@@ -12,7 +12,7 @@ public class UpdateUserCommandValidatorTest : TestBase
     public void GivenValidInputs_WhenUpdateUser_ShouldSucceed()
     {
         // Arrange
-        var updateUserCommand = new UpdateUserCommand
+        var command = new UpdateUserCommand
         {
             Id = Guid.NewGuid(),
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -25,8 +25,8 @@ public class UpdateUserCommandValidatorTest : TestBase
         };
 
         // Act
-        var updateUserCommandValidator = new UpdateUserCommandValidator();
-        var result = updateUserCommandValidator.Validate(updateUserCommand);
+        var validator = new UpdateUserCommandValidator();
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Should().BeEmpty();
@@ -36,7 +36,7 @@ public class UpdateUserCommandValidatorTest : TestBase
     public void GivenEmptyInputs_WhenUpdateUser_ShouldThrowError()
     {
         // Arrange
-        var updateUserCommand = new UpdateUserCommand
+        var command = new UpdateUserCommand
         {
             Id = Guid.Empty,
             EmailAddress = string.Empty,
@@ -49,8 +49,8 @@ public class UpdateUserCommandValidatorTest : TestBase
         };
 
         // Act
-        var updateUserCommandValidator = new UpdateUserCommandValidator();
-        var result = updateUserCommandValidator.Validate(updateUserCommand);
+        var validator = new UpdateUserCommandValidator();
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Count.Should().Be(7);
@@ -67,7 +67,7 @@ public class UpdateUserCommandValidatorTest : TestBase
     public void GivenTooLongStrings_WhenUpdateUser_ShouldThrowError()
     {
         // Arrange
-        var updateUserCommand = new UpdateUserCommand
+        var command = new UpdateUserCommand
         {
             Id = Guid.NewGuid(),
             UserAlias = DataUtilityService.GetRandomString(500),
@@ -80,8 +80,8 @@ public class UpdateUserCommandValidatorTest : TestBase
         };
 
         // Act
-        var updateUserCommandValidator = new UpdateUserCommandValidator();
-        var result = updateUserCommandValidator.Validate(updateUserCommand);
+        var validator = new UpdateUserCommandValidator();
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Count.Should().Be(7);
