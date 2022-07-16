@@ -8,34 +8,28 @@ using Backend.Cqrs.Handlers.Commands.Users;
 public class RevokeUserRefreshTokenCommandValidatorTest : TestBase
 {
     [Fact]
-    public void GivenRefreshToken_WhenRevokeUserRefreshToken_ShouldFinishSuccessful()
+    public void GivenValidInput_WhenRevokeUserRefreshToken_ShouldSucceed()
     {
         // Arrange
-        var revokeUserRefreshTokenCommand = new RevokeUserRefreshTokenCommand
-        {
-            RefreshToken = DataUtilityService.GetRandomString(100)
-        };
+        var command = new RevokeUserRefreshTokenCommand { RefreshToken = DataUtilityService.GetRandomString(100) };
 
         // Act
-        var revokeUserRefreshTokenCommandValidator = new RevokeUserRefreshTokenCommandValidator();
-        var result = revokeUserRefreshTokenCommandValidator.Validate(revokeUserRefreshTokenCommand);
+        var validator = new RevokeUserRefreshTokenCommandValidator();
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Should().BeEmpty();
     }
 
     [Fact]
-    public void GivenNoRefreshToken_WhenRevokeUserRefreshToken_ShouldThrowError()
+    public void GivenEmptyInput_WhenRevokeUserRefreshToken_ShouldThrowError()
     {
         // Arrange
-        var revokeUserRefreshTokenCommand = new RevokeUserRefreshTokenCommand
-        {
-            RefreshToken = string.Empty
-        };
+        var command = new RevokeUserRefreshTokenCommand { RefreshToken = string.Empty };
 
         // Act
-        var revokeUserRefreshTokenCommandValidator = new RevokeUserRefreshTokenCommandValidator();
-        var result = revokeUserRefreshTokenCommandValidator.Validate(revokeUserRefreshTokenCommand);
+        var validator = new RevokeUserRefreshTokenCommandValidator();
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Count.Should().Be(1);

@@ -8,74 +8,36 @@ using Backend.Cqrs.Handlers.Queries.Content;
 public class GetContentQueryValidatorTest : TestBase
 {
     [Fact]
-    public void GivenRequiredFields_WhenGetContent_ShouldFinishSuccessful()
+    public void GivenValidInputs_WhenGetContent_ShouldSucceed()
     {
         // Arrange
-        var getContentQuery = new GetContentQuery
+        var query = new GetContentQuery
         {
             Type = DataUtilityService.GetRandomString(),
             Name = DataUtilityService.GetRandomString()
         };
 
         // Act
-        var getContentQueryValidator = new GetContentQueryValidator();
-        var result = getContentQueryValidator.Validate(getContentQuery);
+        var validator = new GetContentQueryValidator();
+        var result = validator.Validate(query);
 
         // Assert
         result.Errors.Should().BeEmpty();
     }
 
     [Fact]
-    public void GivenMissingType_WhenGetContent_ShouldThrowError()
+    public void GivenEmptyInputs_WhenGetContent_ShouldThrowError()
     {
         // Arrange
-        var getContentQuery = new GetContentQuery
-        {
-            Type = string.Empty,
-            Name = DataUtilityService.GetRandomString()
-        };
-
-        // Act
-        var getContentQueryValidator = new GetContentQueryValidator();
-        var result = getContentQueryValidator.Validate(getContentQuery);
-
-        // Assert
-        result.Errors.Count.Should().Be(1);
-        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-    }
-
-    [Fact]
-    public void GivenMissingName_WhenGetContent_ShouldThrowError()
-    {
-        // Arrange
-        var getContentQuery = new GetContentQuery
-        {
-            Type = DataUtilityService.GetRandomString(),
-            Name = string.Empty
-        };
-
-        // Act
-        var getContentQueryValidator = new GetContentQueryValidator();
-        var result = getContentQueryValidator.Validate(getContentQuery);
-
-        // Assert
-        result.Errors.Count.Should().Be(1);
-        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-    }
-
-    [Fact]
-    public void GivenMissingNameAndType_WhenGetContent_ShouldThrowError()
-    {
-        // Arrange
-        var getContentQuery = new GetContentQuery
+        var query = new GetContentQuery
         {
             Type = string.Empty,
             Name = string.Empty
         };
 
         // Act
-        var getContentQueryValidator = new GetContentQueryValidator();
-        var result = getContentQueryValidator.Validate(getContentQuery);
+        var validator = new GetContentQueryValidator();
+        var result = validator.Validate(query);
 
         // Assert
         result.Errors.Count.Should().Be(2);

@@ -8,34 +8,28 @@ using Backend.Cqrs.Handlers.Commands.Users;
 public class ReAuthenticateUserCommandValidatorTest : TestBase
 {
     [Fact]
-    public void GivenRefreshToken_WhenReAuthenticateUser_ShouldSucceed()
+    public void GivenValidInput_WhenReAuthenticateUser_ShouldSucceed()
     {
         // Arrange
-        var reAuthenticateUserCommand = new ReAuthenticateUserCommand
-        {
-            RefreshToken = DataUtilityService.GetRandomString()
-        };
+        var command = new ReAuthenticateUserCommand { RefreshToken = DataUtilityService.GetRandomString() };
 
         // Act
-        var reAuthenticateUserCommandValidator = new ReAuthenticateUserCommandValidator();
-        var result = reAuthenticateUserCommandValidator.Validate(reAuthenticateUserCommand);
+        var validator = new ReAuthenticateUserCommandValidator();
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Should().BeEmpty();
     }
 
     [Fact]
-    public void GivenEmptyUserId_WhenReAuthenticateUser_ShouldThrowError()
+    public void GivenEmptyId_WhenReAuthenticateUser_ShouldThrowError()
     {
         // Arrange
-        var reAuthenticateUserCommand = new ReAuthenticateUserCommand
-        {
-            RefreshToken = string.Empty
-        };
+        var command = new ReAuthenticateUserCommand { RefreshToken = string.Empty };
 
         // Act
-        var reAuthenticateUserCommandValidator = new ReAuthenticateUserCommandValidator();
-        var result = reAuthenticateUserCommandValidator.Validate(reAuthenticateUserCommand);
+        var validator = new ReAuthenticateUserCommandValidator();
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Count.Should().Be(1);

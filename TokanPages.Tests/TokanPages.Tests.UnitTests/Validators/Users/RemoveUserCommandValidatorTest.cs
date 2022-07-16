@@ -9,31 +9,28 @@ using Backend.Cqrs.Handlers.Commands.Users;
 public class RemoveUserCommandValidatorTest
 {
     [Fact]
-    public void GivenCorrectId_WhenRemoveUser_ShouldFinishSuccessful()
+    public void GivenValidId_WhenRemoveUser_ShouldSucceed()
     {
         // Arrange
-        var removeUserCommand = new RemoveUserCommand
-        {
-            Id = Guid.NewGuid()
-        };
+        var command = new RemoveUserCommand { Id = Guid.NewGuid() };
 
         // Act
         var validator = new RemoveUserCommandValidator();
-        var result = validator.Validate(removeUserCommand);
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Should().BeEmpty();
     }
 
     [Fact]
-    public void GivenNullValue_WhenRemoveUser_ShouldFinishSuccessful()
+    public void GivenNullValue_WhenRemoveUser_ShouldSucceed()
     {
         // Arrange
-        var removeUserCommand = new RemoveUserCommand();
+        var command = new RemoveUserCommand { Id = null };
 
         // Act
         var validator = new RemoveUserCommandValidator();
-        var result = validator.Validate(removeUserCommand);
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Should().BeEmpty();
@@ -43,14 +40,11 @@ public class RemoveUserCommandValidatorTest
     public void GivenEmptyId_WhenRemoveUser_ShouldThrowError()
     {
         // Arrange
-        var removeUserCommand = new RemoveUserCommand
-        {
-            Id = Guid.Empty
-        };
+        var command = new RemoveUserCommand { Id = Guid.Empty };
 
         // Act
         var validator = new RemoveUserCommandValidator();
-        var result = validator.Validate(removeUserCommand);
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Count.Should().Be(1);
