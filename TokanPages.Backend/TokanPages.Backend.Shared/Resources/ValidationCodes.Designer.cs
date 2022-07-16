@@ -140,5 +140,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("TOO_LONG_USER_VIDEO_NAME", resourceCulture);
             }
         }
+        
+        public static string INVALID_GUID_VALUE {
+            get {
+                return ResourceManager.GetString("INVALID_GUID_VALUE", resourceCulture);
+            }
+        }
     }
 }
