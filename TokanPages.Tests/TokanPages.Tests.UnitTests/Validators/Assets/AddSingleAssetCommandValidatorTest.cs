@@ -77,11 +77,6 @@ public class AddSingleAssetCommandValidatorTest : TestBase
     private static Mock<IApplicationSettings> SetupMockedSettings()
     {
         var azureStorage = new AzureStorage { MaxFileSizeSingleAsset = 2048 };
-        var applicationSettings = new Mock<IApplicationSettings>();
-        applicationSettings
-            .Setup(settings => settings.AzureStorage)
-            .Returns(azureStorage);
-
-        return applicationSettings;
+        return MockApplicationSettings(azureStorage: azureStorage);
     }
 }
