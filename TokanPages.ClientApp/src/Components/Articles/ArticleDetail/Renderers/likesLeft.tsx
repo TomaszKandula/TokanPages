@@ -1,4 +1,4 @@
-import { LIKES_HINT_FOR_ANONYM, LIKES_HINT_FOR_USER, MAX_LIKES_REACHED } from "../../../Shared/constants";
+import { LIKES_HINT_FOR_ANONYM, LIKES_HINT_FOR_USER, MAX_LIKES_REACHED } from "../../../../Shared/constants";
 
 export const LikesLeft = (isAnonymous: boolean, likesLeft: number) =>
 {

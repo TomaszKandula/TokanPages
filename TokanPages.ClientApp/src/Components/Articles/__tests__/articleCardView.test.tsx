@@ -1,9 +1,9 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import ArticleCardView from "../articleCardView";
+import ArticleCardView from "../ArticleCard/view";
 
-describe("Test articles group component: articleCardView.", () => 
+describe("Test articles group component: ArticleCardView.", () => 
 {
     it("Renders correctly '<ArticleCardView />' when content is loaded.", () => 
     {

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test articles group component: articleDetailView. Renders correctly '<ArticleDetailView />' when content is loaded. 1`] = `
+exports[`Test articles group component: ArticleDetailView. Renders correctly '<ArticleDetailView />' when content is loaded. 1`] = `
 <section>
   <WithStyles(ForwardRef(Container))
     className="makeStyles-container-1"

@@ -1,25 +1,25 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators as SelectArticleActions } from "../../Redux/Actions/Articles/selectArticleAction";
-import { ActionCreators as UpdateArticleAction } from "../../Redux/Actions/Articles/updateArticleAction";
-import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../Shared/constants";
-import { GetDateTime } from "../../Shared/Services/Formatters";
+import { IApplicationState } from "../../../Redux/applicationState";
+import { ActionCreators as SelectArticleActions } from "../../../Redux/Actions/Articles/selectArticleAction";
+import { ActionCreators as UpdateArticleAction } from "../../../Redux/Actions/Articles/updateArticleAction";
+import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/constants";
+import { GetDateTime } from "../../../Shared/Services/Formatters";
 import { ArticleContent } from "./Renderers/articleContent";
 import { AuthorName } from "./Renderers/authorName";
 import { LikesLeft } from "./Renderers/likesLeft";
 import { ReadTime } from "./Renderers/readTime";
-import ArticleDetailView from "./articleDetailView";
-import UserAvatar from "../../Shared/Components/UserAvatar/userAvatar";
+import UserAvatar from "../../../Shared/Components/UserAvatar/userAvatar";
 import Validate from "validate.js";
+import ArticleDetailView from "./view";
 
 export interface IArticleDetail
 {
     id: string;
 }
 
-const ArticleDetail = (props: IArticleDetail): JSX.Element =>
+export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
 {
     const dispatch = useDispatch();
     const selection = useSelector((state: IApplicationState) => state.selectArticle);
@@ -145,5 +145,3 @@ const ArticleDetail = (props: IArticleDetail): JSX.Element =>
         authorShortBio: selection.article.author.shortBio
     }}/>);
 }
-
-export default ArticleDetail;

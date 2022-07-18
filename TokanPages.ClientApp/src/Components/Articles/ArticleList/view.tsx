@@ -3,10 +3,10 @@ import Container from "@material-ui/core/Container";
 import { Box, Divider, Grid, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
-import { IArticleItem } from "../../Shared/Components/ContentRender/Models/articleItemModel";
-import CenteredCircularLoader from "../../Shared/Components/ProgressBar/centeredCircularLoader";
-import ArticleCard from "./articleCard";
-import articleListStyle from "./Styles/articleListStyle";
+import { IArticleItem } from "../../../Shared/Components/ContentRender/Models/articleItemModel";
+import CenteredCircularLoader from "../../../Shared/Components/ProgressBar/centeredCircularLoader";
+import { ArticleCard } from "../../Articles";
+import articleListStyle from "./style";
 
 interface IBinding
 {
@@ -19,7 +19,7 @@ interface IProperties
     articles: IArticleItem[];
 }
 
-const ArticleListView = (props: IBinding): JSX.Element => 
+export const ArticleListView = (props: IBinding): JSX.Element => 
 {
     const classes = articleListStyle();
 
@@ -63,5 +63,3 @@ const ArticleListView = (props: IBinding): JSX.Element =>
         </section>
     );
 }
-
-export default ArticleListView;

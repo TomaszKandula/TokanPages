@@ -1,9 +1,9 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import ArticleDetailView from "../articleDetailView";
+import ArticleDetailView from "../ArticleDetail/view";
 
-describe("Test articles group component: articleDetailView.", () => 
+describe("Test articles group component: ArticleDetailView.", () => 
 {
     it("Renders correctly '<ArticleDetailView />' when content is loaded.", () => 
     {

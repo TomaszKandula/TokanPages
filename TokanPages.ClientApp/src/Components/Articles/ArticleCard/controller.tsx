@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { ActionCreators } from "../../Redux/Actions/Articles/selectArticleAction";
-import { GetShortText } from "../../Shared/Services/Utilities";
-import { ARTICLE_PATH, IMAGE_URL } from "../../Shared/constants";
-import ArticleCardView from "./articleCardView";
+import { ActionCreators } from "../../../Redux/Actions/Articles/selectArticleAction";
+import { GetShortText } from "../../../Shared/Services/Utilities";
+import { ARTICLE_PATH, IMAGE_URL } from "../../../Shared/constants";
+import ArticleCardView from "./view";
 
 export interface IArticleCard
 {
@@ -13,7 +13,7 @@ export interface IArticleCard
     id: string;
 }
 
-const ArticleCard = (props: IArticleCard): JSX.Element =>
+export const ArticleCard = (props: IArticleCard): JSX.Element =>
 {
     const content = { button: "Read" };
     const articleUrl = ARTICLE_PATH.replace("{ID}", props.id);
@@ -37,5 +37,3 @@ const ArticleCard = (props: IArticleCard): JSX.Element =>
         buttonText: content.button
     }}/>);
 }
-
-export default ArticleCard;

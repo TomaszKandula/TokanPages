@@ -4,9 +4,9 @@ import { shallow } from "enzyme";
 import { IAuthor } from "../../../Shared/Components/ContentRender/Models/authorModel";
 import { ITextItem } from "../../../Shared/Components/ContentRender/Models/textModel";
 import { IArticleItem } from "../../../Shared/Components/ContentRender/Models/articleItemModel";
-import ArticleListView from "../articleListView";
+import { ArticleListView } from "../ArticleList/view";
 
-describe("Test articles group component: articleListView.", () => 
+describe("Test articles group component: ArticleListView.", () => 
 {
     it("Renders correctly '<ArticleListView />' when content is loaded.", () => 
     {

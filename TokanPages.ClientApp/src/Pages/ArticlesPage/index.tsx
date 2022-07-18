@@ -8,8 +8,8 @@ import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/get
 import ProgressOnScroll from "../../Shared/Components/Scroll/progressOnScroll";
 import Navigation from "../../Components/Layout/navigation";
 import Footer from "../../Components/Layout/footer";
-import ArticleList from "../../Components/Articles/articleList";
-import ArticleDetail from "../../Components/Articles/articleDetail";
+import { ArticleList } from "../../Components/Articles";
+import { ArticleDetail } from "../../Components/Articles";
 import { CustomColours } from "../../Theme/customColours";
 
 const useQuery = () => 

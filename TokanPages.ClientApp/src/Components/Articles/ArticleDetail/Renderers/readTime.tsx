@@ -1,7 +1,7 @@
-import { ObjectToText } from "../../../Shared/Services/Converters";
-import { CountWords, GetReadTime } from "../../../Shared/Services/Utilities";
-import { ITextItem, ITextObject } from "../../../Shared/Components/ContentRender/Models/textModel";
-import { WORDS_PER_MINUTE } from "../../../Shared/constants";
+import { ObjectToText } from "../../../../Shared/Services/Converters";
+import { CountWords, GetReadTime } from "../../../../Shared/Services/Utilities";
+import { ITextItem, ITextObject } from "../../../../Shared/Components/ContentRender/Models/textModel";
+import { WORDS_PER_MINUTE } from "../../../../Shared/constants";
 
 export const ReadTime = (text: ITextItem[]): string =>
 {
