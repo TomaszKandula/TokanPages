@@ -1,13 +1,13 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import { IApplicationState } from "../Redux/applicationState";
-import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
-import { ActionCreators as SignupFormContent } from "../Redux/Actions/Content/getUserSignupContentAction";
-import Navigation from "../Components/Layout/navigation";
-import UserSignup from "../Components/Account/userSignup";
-import Footer from "../Components/Layout/footer";
+import { IApplicationState } from "../../Redux/applicationState";
+import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
+import { ActionCreators as SignupFormContent } from "../../Redux/Actions/Content/getUserSignupContentAction";
+import Navigation from "../../Components/Layout/navigation";
+import UserSignup from "../../Components/Account/userSignup";
+import Footer from "../../Components/Layout/footer";
 
 const SignupPage = (): JSX.Element =>
 {

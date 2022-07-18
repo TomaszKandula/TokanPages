@@ -4,7 +4,7 @@ import { IApplicationState } from "Redux/applicationState";
 import { IGetNavigationContent } from "../../Redux/States/Content/getNavigationContentState";
 import { ActionCreators } from "../../Redux/Actions/Users/storeUserDataAction";
 import { GetLanguages, SetUserLanguage, GetDefaultLanguageId } from "../../Shared/Services/languageService";
-import { GetAllPagesContent } from "../../Pages/Services";
+import { GetAllPagesContent } from "../../Redux/applicationDispatch";
 import NavigationView from "./navigationView";
 import Validate from "validate.js";
 

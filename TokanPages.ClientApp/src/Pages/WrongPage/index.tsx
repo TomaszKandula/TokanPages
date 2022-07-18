@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import { Box, Button, Container, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Skeleton } from "@material-ui/lab";
-import { IApplicationState } from "../Redux/applicationState";
-import { ActionCreators } from "../Redux/Actions/Content/getWrongPagePromptContentAction";
-import { CustomColours } from "../Theme/customColours";
+import { IApplicationState } from "../../Redux/applicationState";
+import { ActionCreators } from "../../Redux/Actions/Content/getWrongPagePromptContentAction";
+import { CustomColours } from "../../Theme/customColours";
 
 const useStyles = makeStyles(() => 
 ({

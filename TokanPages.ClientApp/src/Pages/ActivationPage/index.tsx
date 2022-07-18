@@ -2,13 +2,13 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Box, Typography, Container } from "@material-ui/core";
-import { IApplicationState } from "../Redux/applicationState";
-import { ActionCreators as ActivateAccountContent } from "../Redux/Actions/Content/getActivateAccountContentAction";
-import { ActionCreators as NavigationContent } from "../Redux/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../Redux/Actions/Content/getFooterContentAction";
-import ActivateAccount from "../Components/Account/activateAccount";
-import Navigation from "../Components/Layout/navigation";
-import Footer from "../Components/Layout/footer";
+import { IApplicationState } from "../../Redux/applicationState";
+import { ActionCreators as ActivateAccountContent } from "../../Redux/Actions/Content/getActivateAccountContentAction";
+import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
+import ActivateAccount from "../../Components/Account/activateAccount";
+import Navigation from "../../Components/Layout/navigation";
+import Footer from "../../Components/Layout/footer";
 
 const useQuery = () => 
 {

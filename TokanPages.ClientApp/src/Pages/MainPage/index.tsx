@@ -1,18 +1,18 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../Redux/applicationState";
-import Navigation from "../Components/Layout/navigation";
-import HeaderView from "../Components/Layout/headerView";
-import ClientsView from "../Components/Clients/clientsView";
-import Footer from "../Components/Layout/footer";
-import FeaturesView from "../Components/Features/featuresView";
-import FeaturedView from "../Components/Featured/featuredView";
-import TestimonialsView from "../Components/Testimonials/testimonialsView";
-import Newsletter from "../Components/Newsletter/newsletter";
-import ContactForm from "../Components/Contact/contactForm";
-import Cookies from "../Components/Cookies/cookies";
-import ArticleFeaturesView from "../Components/Articles/articleFeaturesView";
-import { GetMainPageContent } from "./Services";
+import { IApplicationState } from "../../Redux/applicationState";
+import Navigation from "../../Components/Layout/navigation";
+import HeaderView from "../../Components/Layout/headerView";
+import ClientsView from "../../Components/Clients/clientsView";
+import Footer from "../../Components/Layout/footer";
+import FeaturesView from "../../Components/Features/featuresView";
+import FeaturedView from "../../Components/Featured/featuredView";
+import TestimonialsView from "../../Components/Testimonials/testimonialsView";
+import Newsletter from "../../Components/Newsletter/newsletter";
+import ContactForm from "../../Components/Contact/contactForm";
+import Cookies from "../../Components/Cookies/cookies";
+import ArticleFeaturesView from "../../Components/Articles/articleFeaturesView";
+import { GetMainPageContent } from "../../Redux/applicationDispatch";
 
 const MainPage = (): JSX.Element => 
 {
