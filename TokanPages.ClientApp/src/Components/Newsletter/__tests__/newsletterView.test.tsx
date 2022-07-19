@@ -1,7 +1,7 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import NewsletterView from "../newsletterView";
+import { NewsletterView } from "../view";
 
 describe("Test component: newsletterView.", () => 
 {

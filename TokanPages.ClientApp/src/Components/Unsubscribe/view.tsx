@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IContent } from "../../Api/Models/Components/unsubscribeContentDto";
-import unsubscribeStyle from "./unsubscribeStyle";
+import unsubscribeStyle from "./style";
 
 interface IBinding 
 {
@@ -25,7 +25,7 @@ interface IProperties
     isRemoved: boolean;
 }
 
-const UnsubscribeView = (props: IBinding): JSX.Element =>
+export const UnsubscribeView = (props: IBinding): JSX.Element =>
 {
     const classes = unsubscribeStyle();
 
@@ -78,5 +78,3 @@ const UnsubscribeView = (props: IBinding): JSX.Element =>
         </section>
     );
 }
-
-export default UnsubscribeView;

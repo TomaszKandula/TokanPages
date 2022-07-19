@@ -7,7 +7,7 @@ import { ActionCreators as ContactFormContent } from "../../Redux/Actions/Conten
 import { IApplicationState } from "../../Redux/applicationState";
 import Navigation from "../../Components/Layout/navigation";
 import Footer from "../../Components/Layout/footer";
-import ContactForm from "../../Components/Contact/contactForm";
+import { ContactForm } from "../../Components/Contact";
 
 const ContactPage = () => 
 {

@@ -10,9 +10,9 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetTestimonialsContent } from "../../Redux/States/Content/getTestimonialsContentState";
 import { TESTIMONIALS_PATH } from "../../Shared/constants";
 import { GetShortText } from "../../Shared/Services/Utilities";
-import testimonialsStyle from "./testimonialsStyle";
+import testimonialsStyle from "./style";
 
-const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
+export const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
 {
     const classes = testimonialsStyle();
     const limit = 29;
@@ -92,5 +92,3 @@ const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
         </section>
     );
 }
-
-export default TestimonialsView;

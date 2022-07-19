@@ -1,7 +1,7 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import ContactFormView from "../contactFormView";
+import { ContactFormView } from "../view";
 
 describe("Test component: contactFormView.", () => 
 {

@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
-import newsletterStyle from "./newsletterStyle";
+import newsletterStyle from "./style";
 
 interface IBinding
 {
@@ -27,7 +27,7 @@ interface IProperties
     labelEmail: string;
 }
 
-const NewsletterView = (props: IBinding): JSX.Element =>
+export const NewsletterView = (props: IBinding): JSX.Element =>
 {
     const classes = newsletterStyle();
 
@@ -83,5 +83,3 @@ const NewsletterView = (props: IBinding): JSX.Element =>
     );
 
 }
-
-export default NewsletterView;

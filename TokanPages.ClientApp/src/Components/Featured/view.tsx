@@ -10,9 +10,9 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetFeaturedContent } from "../../Redux/States/Content/getFeaturedContentState";
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
 import { FEATURED_IMAGE_PATH } from "../../Shared/constants";
-import featuredStyle from "./featuredStyle";
+import featuredStyle from "./style";
 
-const FeaturedView = (props: IGetFeaturedContent): JSX.Element => 
+export const FeaturedView = (props: IGetFeaturedContent): JSX.Element => 
 {
     const classes = featuredStyle();
     return (
@@ -82,5 +82,3 @@ const FeaturedView = (props: IGetFeaturedContent): JSX.Element =>
         </section>
     );
 }
-
-export default FeaturedView;

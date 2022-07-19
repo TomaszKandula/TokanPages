@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import cookiesStyle from "./cookiesStyle";
+import cookiesStyle from "./style";
 
 interface IBinding
 {
@@ -25,7 +25,7 @@ interface IProperties
     buttonText: string;
 }
 
-const CookiesView = (props: IBinding): JSX.Element => 
+export const CookiesView = (props: IBinding): JSX.Element => 
 {
     const classes = cookiesStyle();
 
@@ -63,5 +63,3 @@ const CookiesView = (props: IBinding): JSX.Element =>
 
     return (<>{props.bind?.shouldShow ? renderConsent() : null}</>);
 }
-
-export default CookiesView;

@@ -2,15 +2,15 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Redux/applicationState";
 import Navigation from "../../Components/Layout/navigation";
-import HeaderView from "../../Components/Layout/headerView";
-import ClientsView from "../../Components/Clients/clientsView";
+import Header from "../../Components/Layout/headerView";
+import { Clients } from "../../Components/Clients";
 import Footer from "../../Components/Layout/footer";
-import FeaturesView from "../../Components/Features/featuresView";
-import FeaturedView from "../../Components/Featured/featuredView";
-import TestimonialsView from "../../Components/Testimonials/testimonialsView";
-import Newsletter from "../../Components/Newsletter/newsletter";
-import ContactForm from "../../Components/Contact/contactForm";
-import Cookies from "../../Components/Cookies/cookies";
+import { Features } from "../../Components/Features";
+import { Featured } from "../../Components/Featured";
+import { Testimonials } from "../../Components/Testimonials";
+import { Newsletter } from "../../Components/Newsletter";
+import { ContactForm } from "../../Components/Contact";
+import { Cookies } from "../../Components/Cookies";
 import { ArticleFeatures } from "../../Components/Articles";
 import { GetMainPageContent } from "../../Redux/applicationDispatch";
 
@@ -35,12 +35,12 @@ const MainPage = (): JSX.Element =>
     return (
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
-            <HeaderView content={header?.content} isLoading={header?.isLoading} />
-            <ClientsView content={clients?.content} isLoading={clients?.isLoading} />
-            <FeaturesView content={features?.content} isLoading={features?.isLoading} />
+            <Header content={header?.content} isLoading={header?.isLoading} />
+            <Clients content={clients?.content} isLoading={clients?.isLoading} />
+            <Features content={features?.content} isLoading={features?.isLoading} />
             <ArticleFeatures content={articles?.content} isLoading={articles?.isLoading} />
-            <FeaturedView content={featured?.content} isLoading={featured?.isLoading} />
-            <TestimonialsView content={testimonials?.content} isLoading={testimonials?.isLoading} />
+            <Featured content={featured?.content} isLoading={featured?.isLoading} />
+            <Testimonials content={testimonials?.content} isLoading={testimonials?.isLoading} />
             <Newsletter content={newsletter?.content} isLoading={newsletter?.isLoading} />
             <ContactForm content={contactForm?.content} isLoading={contactForm?.isLoading} />
             <Cookies content={cookiesPrompt?.content} isLoading={cookiesPrompt?.isLoading} />

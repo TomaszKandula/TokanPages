@@ -10,9 +10,9 @@ import CloudIcon from "@material-ui/icons/Cloud";
 import Skeleton from "@material-ui/lab/Skeleton";
 import ReactHtmlParser from "react-html-parser";
 import { IGetFeaturesContent } from "../../Redux/States/Content/getFeaturesContentState";
-import featuresStyle from "./featuresStyle";
+import featuresStyle from "./style";
 
-const FeaturesView = (props: IGetFeaturesContent): JSX.Element =>
+export const FeaturesView = (props: IGetFeaturesContent): JSX.Element =>
 {
     const classes = featuresStyle();
     return (
@@ -85,5 +85,3 @@ const FeaturesView = (props: IGetFeaturesContent): JSX.Element =>
         </section>
     );
 }
-
-export default FeaturesView;

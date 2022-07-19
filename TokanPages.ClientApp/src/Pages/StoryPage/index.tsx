@@ -6,7 +6,7 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
 import Navigation from "../../Components/Layout/navigation";
-import StaticContent from "../../Components/Content/staticContent";
+import { StaticContent } from "../../Components/Content/controller";
 import Footer from "../../Components/Layout/footer";
 
 const StoryPage = (): JSX.Element => 

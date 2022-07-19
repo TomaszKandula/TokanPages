@@ -8,7 +8,7 @@ import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/get
 import { ActionCreators as UnsubscribeContent } from "../../Redux/Actions/Content/getUnsubscribeContentAction";
 import Navigation from "../../Components/Layout/navigation";
 import Footer from "../../Components/Layout/footer";
-import Unsubscribe from "../../Components/Unsubscribe/unsubscribe";
+import { Unsubscribe } from "../../Components/Unsubscribe";
 
 const useQuery = () => 
 {

@@ -12,7 +12,7 @@ import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { CONTACT_FORM, MESSAGE_OUT_SUCCESS, MESSAGE_OUT_WARNING, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { ISendMessageDto } from "../../Api/Models";
-import ContactFormView from "./contactFormView";
+import { ContactFormView } from "./view";
 
 const formDefaultValues: IValidateContactForm =
 {
@@ -24,7 +24,7 @@ const formDefaultValues: IValidateContactForm =
     terms: false
 };
 
-const ContactForm = (props: IGetContactFormContent): JSX.Element =>
+export const ContactForm = (props: IGetContactFormContent): JSX.Element =>
 {
     const dispatch = useDispatch();
     const sendMessageState = useSelector((state: IApplicationState) => state.sendMessage);
@@ -134,5 +134,3 @@ const ContactForm = (props: IGetContactFormContent): JSX.Element =>
         labelMessage: props.content?.labelMessage
     }}/>);
 }
-
-export default ContactForm;

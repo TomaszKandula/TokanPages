@@ -3,10 +3,10 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { Box, Container, Typography } from "@material-ui/core";
 import { IGetClientsContent } from "../../Redux/States/Content/getClientsContentState";
 import { ICONS_PATH } from "../../Shared/constants";
-import ClientsStyle from "./clientsStyle";
+import ClientsStyle from "./style";
 import Validate from "validate.js";
 
-const ClientsView = (props: IGetClientsContent): JSX.Element => 
+export const ClientsView = (props: IGetClientsContent): JSX.Element => 
 {
     const classes = ClientsStyle();
 
@@ -54,5 +54,3 @@ const ClientsView = (props: IGetClientsContent): JSX.Element =>
         </>
     );
 }
-
-export default ClientsView;

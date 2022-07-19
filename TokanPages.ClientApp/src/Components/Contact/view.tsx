@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import VioletCheckbox from "../../Theme/customCheckboxes";
-import contactFormStyle from "./contactFormStyle";
+import contactFormStyle from "./style";
 
 interface IBinding 
 {
@@ -39,7 +39,7 @@ interface IProperties
     labelMessage: string;
 }
 
-const ContactFormView = (props: IBinding): JSX.Element =>
+export const ContactFormView = (props: IBinding): JSX.Element =>
 {
     const classes = contactFormStyle();
 
@@ -125,5 +125,3 @@ const ContactFormView = (props: IBinding): JSX.Element =>
         </section>
     );
 }
-
-export default ContactFormView;

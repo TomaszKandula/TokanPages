@@ -1,7 +1,7 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import FeaturesView from "../featuresView";
+import { FeaturesView } from "../view";
 
 describe("Test component: featuresView.", () => 
 {

@@ -11,10 +11,10 @@ import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { NEWSLETTER, NEWSLETTER_SUCCESS, NEWSLETTER_WARNING, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { IAddSubscriberDto } from "../../Api/Models";
-import NewsletterView from "./newsletterView";
+import { NewsletterView } from "./view";
 import Validate from "validate.js";
 
-const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
+export const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
 {
     const dispatch = useDispatch();
     const addSubscriberState = useSelector((state: IApplicationState) => state.addSubscriber);
@@ -91,5 +91,3 @@ const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
         labelEmail: props.content?.labelEmail
     }}/>);
 }
-
-export default Newsletter;

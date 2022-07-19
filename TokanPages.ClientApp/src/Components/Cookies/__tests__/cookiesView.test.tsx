@@ -1,7 +1,7 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import CookiesView from "../cookiesView";
+import { CookiesView } from "../view";
 
 describe("Test component: cookiesView.", () => 
 {

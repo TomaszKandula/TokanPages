@@ -6,7 +6,7 @@ import { Divider, IconButton } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import CenteredCircularLoader from "../../Shared/Components/ProgressBar/centeredCircularLoader";
 import { RenderContent } from "../../Shared/Components/ContentRender/renderContent";
-import staticContentStyle from "./staticContentStyle";
+import staticContentStyle from "./style";
 import { ITextObject } from "Shared/Components/ContentRender/Models/textModel";
 
 interface IBinding
@@ -20,7 +20,7 @@ interface IProperties
     isLoading: boolean;
 }
 
-const StaticContentView = (props: IBinding): JSX.Element => 
+export const StaticContentView = (props: IBinding): JSX.Element => 
 {
     const classes = staticContentStyle();
     return (
@@ -45,5 +45,3 @@ const StaticContentView = (props: IBinding): JSX.Element =>
         </section>
     );
 }
-
-export default StaticContentView;

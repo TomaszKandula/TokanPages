@@ -10,7 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Skeleton from "@material-ui/lab/Skeleton";
-import updateSubscriberStyle from "./updateSubscriberStyle";
+import updateSubscriberStyle from "./style";
 
 interface IBinding
 {
@@ -30,7 +30,7 @@ interface IProperties
     labelEmail: string;
 }
 
-const UpdateSubscriberView = (props: IBinding): JSX.Element =>
+export const UpdateSubscriberView = (props: IBinding): JSX.Element =>
 {
     const classes = updateSubscriberStyle();
 
@@ -77,5 +77,3 @@ const UpdateSubscriberView = (props: IBinding): JSX.Element =>
         </section>
     );
 }
-
-export default UpdateSubscriberView;

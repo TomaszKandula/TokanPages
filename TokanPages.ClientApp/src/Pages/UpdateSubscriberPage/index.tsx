@@ -8,7 +8,7 @@ import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/get
 import { ActionCreators as UpdateSubscriberContent } from "../../Redux/Actions/Content/getUpdateSubscriberContentAction";
 import Navigation from "../../Components/Layout/navigation";
 import Footer from "../../Components/Layout/footer";
-import UpdateSubscriber from "../../Components/UpdateSubscriber/updateSubscriber";
+import { UpdateSubscriber } from "../../Components/UpdateSubscriber";
 
 const useQuery = () => 
 {
