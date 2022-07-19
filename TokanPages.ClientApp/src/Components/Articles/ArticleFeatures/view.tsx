@@ -15,7 +15,7 @@ import { ARTICLE_IMAGE_PATH } from "../../../Shared/constants";
 import articleFeaturesStyle from "./style";
 import Validate from "validate.js";
 
-export const ArticleFeatures = (props: IGetArticleFeaturesContent): JSX.Element =>
+export const ArticleFeaturesView = (props: IGetArticleFeaturesContent): JSX.Element =>
 {
     const classes = articleFeaturesStyle();
 
