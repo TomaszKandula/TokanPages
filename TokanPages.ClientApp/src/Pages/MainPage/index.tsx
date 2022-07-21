@@ -11,7 +11,7 @@ import { Testimonials } from "../../Components/Testimonials";
 import { Newsletter } from "../../Components/Newsletter";
 import { ContactForm } from "../../Components/Contact";
 import { Cookies } from "../../Components/Cookies";
-import { ArticleFeatures } from "../../Components/Articles";
+import { ArticleFeatures } from "../../Components/ArticleFeatures";
 import { GetMainPageContent } from "../../Redux/applicationDispatch";
 
 const MainPage = (): JSX.Element => 

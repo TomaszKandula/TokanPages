@@ -9,9 +9,9 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IGetArticleFeaturesContent } from "../../../Redux/States/Content/getArticleFeaturesContentState";
-import { renderCardMedia } from "../../../Shared/Components/CustomCardMedia/customCardMedia";
-import { ARTICLE_IMAGE_PATH } from "../../../Shared/constants";
+import { IGetArticleFeaturesContent } from "../../Redux/States/Content/getArticleFeaturesContentState";
+import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
+import { ARTICLE_IMAGE_PATH } from "../../Shared/constants";
 import articleFeaturesStyle from "./articleFeaturesStyle";
 import Validate from "validate.js";
 
