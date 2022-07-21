@@ -1,4 +1,4 @@
-export { ArticleCard } from "./ArticleCard/controller";
-export { ArticleDetail } from "./ArticleDetail/controller";
-export { ArticleList } from "./ArticleList/controller";
-export { ArticleFeaturesView as ArticleFeatures } from "./ArticleFeatures/view";
+export { ArticleCard } from "./ArticleCard/articleCard";
+export { ArticleDetail } from "./ArticleDetail/articleDetail";
+export { ArticleList } from "./ArticleList/articleList";
+export { ArticleFeaturesView as ArticleFeatures } from "./ArticleFeatures/articleFeaturesView";

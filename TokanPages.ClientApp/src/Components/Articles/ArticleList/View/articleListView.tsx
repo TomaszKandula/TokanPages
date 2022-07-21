@@ -3,10 +3,10 @@ import Container from "@material-ui/core/Container";
 import { Box, Divider, Grid, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
-import { IArticleItem } from "../../../Shared/Components/ContentRender/Models/articleItemModel";
-import CenteredCircularLoader from "../../../Shared/Components/ProgressBar/centeredCircularLoader";
-import { ArticleCard } from "../../Articles";
-import articleListStyle from "./style";
+import { IArticleItem } from "../../../../Shared/Components/ContentRender/Models/articleItemModel";
+import CenteredCircularLoader from "../../../../Shared/Components/ProgressBar/centeredCircularLoader";
+import { ArticleCard } from "../../../Articles";
+import articleListStyle from "./articleListStyle";
 
 interface IBinding
 {

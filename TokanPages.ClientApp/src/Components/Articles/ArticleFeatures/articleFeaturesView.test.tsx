@@ -1,7 +1,7 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { ArticleFeaturesView } from "../ArticleFeatures/view";
+import { ArticleFeaturesView } from "./articleFeaturesView";
 
 describe("Test articles group component: ArticleFeaturesView.", () => 
 {

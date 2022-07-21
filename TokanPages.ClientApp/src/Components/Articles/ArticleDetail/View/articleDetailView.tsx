@@ -5,8 +5,8 @@ import { Divider, Grid, IconButton, Popover, Tooltip, Typography } from "@materi
 import { ArrowBack } from "@material-ui/icons";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Emoji from "react-emoji-render";
-import { GetDateTime } from "../../../Shared/Services/Formatters";
-import articleDetailStyle from "./style";
+import { GetDateTime } from "../../../../Shared/Services/Formatters";
+import articleDetailStyle from "./articleDetailStyle";
 
 interface IBinding 
 {

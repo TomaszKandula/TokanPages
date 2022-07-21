@@ -1,10 +1,10 @@
-import "../../../setupTests";
+import "../../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { IAuthor } from "../../../Shared/Components/ContentRender/Models/authorModel";
-import { ITextItem } from "../../../Shared/Components/ContentRender/Models/textModel";
-import { IArticleItem } from "../../../Shared/Components/ContentRender/Models/articleItemModel";
-import { ArticleListView } from "../ArticleList/view";
+import { IAuthor } from "../../../../Shared/Components/ContentRender/Models/authorModel";
+import { ITextItem } from "../../../../Shared/Components/ContentRender/Models/textModel";
+import { IArticleItem } from "../../../../Shared/Components/ContentRender/Models/articleItemModel";
+import { ArticleListView } from "../View/articleListView";
 
 describe("Test articles group component: ArticleListView.", () => 
 {
