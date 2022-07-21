@@ -11,7 +11,7 @@ import { Testimonials } from "../../Components/Testimonials";
 import { Newsletter } from "../../Components/Newsletter";
 import { ContactForm } from "../../Components/Contact";
 import { Cookies } from "../../Components/Cookies";
-import { ArticleFeatures } from "../../Components/ArticleFeatures";
+import { Features } from "../../Components/Features";
 import { GetMainPageContent } from "../../Redux/applicationDispatch";
 
 const MainPage = (): JSX.Element => 
@@ -38,7 +38,7 @@ const MainPage = (): JSX.Element =>
             <Header content={header?.content} isLoading={header?.isLoading} />
             <Clients content={clients?.content} isLoading={clients?.isLoading} />
             <Technologies content={features?.content} isLoading={features?.isLoading} />
-            <ArticleFeatures content={articles?.content} isLoading={articles?.isLoading} />
+            <Features content={articles?.content} isLoading={articles?.isLoading} />
             <Featured content={featured?.content} isLoading={featured?.isLoading} />
             <Testimonials content={testimonials?.content} isLoading={testimonials?.isLoading} />
             <Newsletter content={newsletter?.content} isLoading={newsletter?.isLoading} />

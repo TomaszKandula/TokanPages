@@ -1,13 +1,13 @@
 import "../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { ArticleFeaturesView } from "./articleFeaturesView";
+import { FeaturesView } from "./featuresView";
 
 describe("Test articles group component: ArticleFeaturesView.", () => 
 {
     it("Renders correctly '<ArticleFeaturesView />' when content is loaded.", () => 
     {
-        const tree = shallow(<ArticleFeaturesView isLoading={false} content=
+        const tree = shallow(<FeaturesView isLoading={false} content=
         {{            
             title: "Articles",
             description: "I write regularly...",

@@ -12,12 +12,12 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetArticleFeaturesContent } from "../../Redux/States/Content/getArticleFeaturesContentState";
 import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
 import { ARTICLE_IMAGE_PATH } from "../../Shared/constants";
-import articleFeaturesStyle from "./articleFeaturesStyle";
+import featuresStyle from "./featuresStyle";
 import Validate from "validate.js";
 
-export const ArticleFeaturesView = (props: IGetArticleFeaturesContent): JSX.Element =>
+export const FeaturesView = (props: IGetArticleFeaturesContent): JSX.Element =>
 {
-    const classes = articleFeaturesStyle();
+    const classes = featuresStyle();
 
     const ActiveButton = (): JSX.Element => 
     {
