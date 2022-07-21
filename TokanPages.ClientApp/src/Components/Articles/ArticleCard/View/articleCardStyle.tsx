@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../../../Theme/customColours";
 
-const articleCardStyle = makeStyles((theme) => (
+export const ArticleCardStyle = makeStyles((theme) => (
 {
     card: 
     {
@@ -68,5 +68,3 @@ const articleCardStyle = makeStyles((theme) => (
         background: CustomColours.colours.violet,
     }
 }));
-
-export default articleCardStyle;

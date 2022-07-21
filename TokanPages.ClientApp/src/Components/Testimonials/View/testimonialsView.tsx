@@ -10,11 +10,11 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetTestimonialsContent } from "../../../Redux/States/Content/getTestimonialsContentState";
 import { TESTIMONIALS_PATH } from "../../../Shared/constants";
 import { GetShortText } from "../../../Shared/Services/Utilities";
-import testimonialsStyle from "./testimonialsStyle";
+import { TestimonialsStyle } from "./testimonialsStyle";
 
 export const TestimonialsView = (props: IGetTestimonialsContent): JSX.Element =>
 {
-    const classes = testimonialsStyle();
+    const classes = TestimonialsStyle();
     const limit = 29;
     const imageUrl = (name: string) => 
     {

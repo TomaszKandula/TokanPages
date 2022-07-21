@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../../../Theme/customColours";
 
-const navigationStyle = makeStyles((theme) => (
+export const NavigationStyle = makeStyles((theme) => (
 {
     app_bar:
     {
@@ -95,5 +95,3 @@ const navigationStyle = makeStyles((theme) => (
         display: "flex"
     }
 }));
-
-export default navigationStyle;

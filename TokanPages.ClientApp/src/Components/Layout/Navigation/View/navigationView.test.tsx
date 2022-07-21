@@ -1,7 +1,7 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import NavigationView from "../../Navigation/View/navigationView";
+import { NavigationView } from "../../Navigation/View/navigationView";
 import { IItem } from "../../../../Shared/Components/ListRender/Models/item";
 import { ILanguage } from "../../../../Shared/Services/languageService";
 

@@ -5,7 +5,7 @@ import { IGetNavigationContent } from "../../../Redux/States/Content/getNavigati
 import { ActionCreators } from "../../../Redux/Actions/Users/storeUserDataAction";
 import { GetAllPagesContent } from "../../../Redux/applicationDispatch";
 import { GetLanguages, SetUserLanguage, GetDefaultLanguageId } from "../../../Shared/Services/languageService";
-import NavigationView from "./View/navigationView";
+import { NavigationView } from "./View/navigationView";
 import Validate from "validate.js";
 
 export const Navigation = (props: IGetNavigationContent): JSX.Element => 

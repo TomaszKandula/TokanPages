@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../../Theme/customColours";
 
-const featuredStyle = makeStyles(() => (
+export const FeaturedStyle = makeStyles(() => (
 {
     section:
     {
@@ -43,5 +43,3 @@ const featuredStyle = makeStyles(() => (
         height: "256px"
     },
 }));
-
-export default featuredStyle;

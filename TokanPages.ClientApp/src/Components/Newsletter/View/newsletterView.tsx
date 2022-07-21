@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
-import newsletterStyle from "./newsletterStyle";
+import { NewsletterStyle } from "./newsletterStyle";
 
 interface IBinding
 {
@@ -29,7 +29,7 @@ interface IProperties
 
 export const NewsletterView = (props: IBinding): JSX.Element =>
 {
-    const classes = newsletterStyle();
+    const classes = NewsletterStyle();
 
     const ActiveButton = (): JSX.Element => 
     {

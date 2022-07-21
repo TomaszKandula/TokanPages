@@ -7,7 +7,7 @@ import { ArrowBack } from "@material-ui/icons";
 import CenteredCircularLoader from "../../../Shared/Components/ProgressBar/centeredCircularLoader";
 import { RenderContent } from "../../../Shared/Components/ContentRender/renderContent";
 import { ITextObject } from "../../../Shared/Components/ContentRender/Models/textModel";
-import staticContentStyle from "./staticContentStyle";
+import { StaticContentStyle } from "./staticContentStyle";
 
 interface IBinding
 {
@@ -22,7 +22,7 @@ interface IProperties
 
 export const StaticContentView = (props: IBinding): JSX.Element => 
 {
-    const classes = staticContentStyle();
+    const classes = StaticContentStyle();
     return (
         <section>
             <Container className={classes.container}>

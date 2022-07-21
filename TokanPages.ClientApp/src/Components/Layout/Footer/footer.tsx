@@ -2,7 +2,7 @@ import * as React from "react";
 import { IGetFooterContent } from "../../../Redux/States/Content/getFooterContentState";
 import { CustomColours } from "../../../Theme/customColours";
 import validate from "validate.js";
-import FooterView from "./View/footerView";
+import { FooterView } from "./View/footerView";
 
 interface IGetFooterContentExtended extends IGetFooterContent
 {

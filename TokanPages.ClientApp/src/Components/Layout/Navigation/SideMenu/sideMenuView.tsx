@@ -2,7 +2,7 @@ import * as React from "react";
 import { Box, Drawer } from "@material-ui/core";
 import { RenderList } from "../../../../Shared/Components/ListRender/renderList";
 import { IItem } from "../../../../Shared/Components/ListRender/Models/item";
-import sideMenuStyle from "./sideMenuStyle";
+import { SideMenuStyle } from "./sideMenuStyle";
 
 interface IBinding
 {
@@ -17,9 +17,9 @@ interface IProperties
     menu: { image: string, items: IItem[] };
 }
 
-const SideMenuView = (props: IBinding): JSX.Element =>
+export const SideMenuView = (props: IBinding): JSX.Element =>
 {
-    const classes = sideMenuStyle();
+    const classes = SideMenuStyle();
     const logo = "</>";
 
     return (
@@ -37,5 +37,3 @@ const SideMenuView = (props: IBinding): JSX.Element =>
         </Drawer>
     );
 }
-
-export default SideMenuView;

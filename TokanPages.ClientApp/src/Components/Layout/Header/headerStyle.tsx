@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../../Theme/customColours";
 
-const headerStyle = makeStyles((theme) => (
+export const HeaderStyle = makeStyles((theme) => (
 {
     top_margin:
     {
@@ -74,5 +74,3 @@ const headerStyle = makeStyles((theme) => (
         maxWidth: "100%"
     }
 }));
-
-export default headerStyle;

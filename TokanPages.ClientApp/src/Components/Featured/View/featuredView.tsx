@@ -10,11 +10,11 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetFeaturedContent } from "../../../Redux/States/Content/getFeaturedContentState";
 import { renderCardMedia } from "../../../Shared/Components/CustomCardMedia/customCardMedia";
 import { FEATURED_IMAGE_PATH } from "../../../Shared/constants";
-import featuredStyle from "./featuredStyle";
+import { FeaturedStyle } from "./featuredStyle";
 
 export const FeaturedView = (props: IGetFeaturedContent): JSX.Element => 
 {
-    const classes = featuredStyle();
+    const classes = FeaturedStyle();
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">

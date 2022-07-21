@@ -12,7 +12,7 @@ import { LikesLeft } from "./Renderers/likesLeft";
 import { ReadTime } from "./Renderers/readTime";
 import UserAvatar from "../../../Shared/Components/UserAvatar/userAvatar";
 import Validate from "validate.js";
-import ArticleDetailView from "./View/articleDetailView";
+import { ArticleDetailView } from "./View/articleDetailView";
 
 export interface IArticleDetail
 {

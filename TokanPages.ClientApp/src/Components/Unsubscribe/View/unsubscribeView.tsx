@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IContent } from "../../../Api/Models/Components/unsubscribeContentDto";
-import unsubscribeStyle from "./unsubscribeStyle";
+import { UnsubscribeStyle } from "./unsubscribeStyle";
 
 interface IBinding 
 {
@@ -27,7 +27,7 @@ interface IProperties
 
 export const UnsubscribeView = (props: IBinding): JSX.Element =>
 {
-    const classes = unsubscribeStyle();
+    const classes = UnsubscribeStyle();
 
     const content: IContent = props.bind?.isRemoved ? props.bind?.contentPost : props.bind?.contentPre;
 

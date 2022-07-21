@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../../Theme/customColours";
 
-const newsletterStyle = makeStyles(() => (
+export const NewsletterStyle = makeStyles(() => (
 {
     section:
     {
@@ -27,5 +27,3 @@ const newsletterStyle = makeStyles(() => (
         background: CustomColours.colours.violet
     }
 }));
-
-export default newsletterStyle;

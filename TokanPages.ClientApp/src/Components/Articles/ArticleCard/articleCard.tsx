@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { ActionCreators } from "../../../Redux/Actions/Articles/selectArticleAction";
 import { GetShortText } from "../../../Shared/Services/Utilities";
 import { ARTICLE_PATH, IMAGE_URL } from "../../../Shared/constants";
-import ArticleCardView from "./View/articleCardView";
+import { ArticleCardView } from "./View/articleCardView";
 
 export interface IArticleCard
 {

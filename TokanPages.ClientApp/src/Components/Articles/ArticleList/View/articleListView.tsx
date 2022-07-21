@@ -6,7 +6,7 @@ import { ArrowBack } from "@material-ui/icons";
 import { IArticleItem } from "../../../../Shared/Components/ContentRender/Models/articleItemModel";
 import CenteredCircularLoader from "../../../../Shared/Components/ProgressBar/centeredCircularLoader";
 import { ArticleCard } from "../../../Articles";
-import articleListStyle from "./articleListStyle";
+import { ArticleListStyle } from "./articleListStyle";
 
 interface IBinding
 {
@@ -21,7 +21,7 @@ interface IProperties
 
 export const ArticleListView = (props: IBinding): JSX.Element => 
 {
-    const classes = articleListStyle();
+    const classes = ArticleListStyle();
 
     const RenderContent = (args: { articles: IArticleItem[] }): JSX.Element =>
     {

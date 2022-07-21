@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../../Theme/customColours";
 
-const contactFormStyle = makeStyles(() => (
+export const ContactFormStyle = makeStyles(() => (
 {
     section:
     {
@@ -24,5 +24,3 @@ const contactFormStyle = makeStyles(() => (
         background: CustomColours.colours.violet
     }
 }));
-
-export default contactFormStyle;

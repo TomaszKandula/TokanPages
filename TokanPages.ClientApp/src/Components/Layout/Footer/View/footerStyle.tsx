@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../../../Theme/customColours";
 
-const footerStyle = makeStyles((theme) => (
+export const FooterStyle = makeStyles((theme) => (
 {
     page_footer: 
     {
@@ -49,5 +49,3 @@ const footerStyle = makeStyles((theme) => (
         color: CustomColours.colours.white
     }
 }));
-
-export default footerStyle;

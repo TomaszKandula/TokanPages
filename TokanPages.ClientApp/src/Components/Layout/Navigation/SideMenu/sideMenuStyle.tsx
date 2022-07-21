@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../../../Theme/customColours";
 
-const sideMenuStyle = makeStyles(() => (
+export const SideMenuStyle = makeStyles(() => (
 {
     menu_background:
     {
@@ -28,5 +28,3 @@ const sideMenuStyle = makeStyles(() => (
         cursor: "default"
     }
 }));
-
-export default sideMenuStyle;

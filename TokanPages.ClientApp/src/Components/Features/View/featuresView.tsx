@@ -9,15 +9,15 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IGetArticleFeaturesContent } from "../../Redux/States/Content/getArticleFeaturesContentState";
-import { renderCardMedia } from "../../Shared/Components/CustomCardMedia/customCardMedia";
-import { ARTICLE_IMAGE_PATH } from "../../Shared/constants";
-import featuresStyle from "./featuresStyle";
+import { IGetArticleFeaturesContent } from "../../../Redux/States/Content/getArticleFeaturesContentState";
+import { renderCardMedia } from "../../../Shared/Components/CustomCardMedia/customCardMedia";
+import { ARTICLE_IMAGE_PATH } from "../../../Shared/constants";
+import { FeaturesStyle } from "./featuresStyle";
 import Validate from "validate.js";
 
 export const FeaturesView = (props: IGetArticleFeaturesContent): JSX.Element =>
 {
-    const classes = featuresStyle();
+    const classes = FeaturesStyle();
 
     const ActiveButton = (): JSX.Element => 
     {

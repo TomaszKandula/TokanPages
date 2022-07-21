@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-const staticContentStyle = makeStyles(() => (
+export const StaticContentStyle = makeStyles(() => (
 {
     container:
     {
@@ -12,5 +12,3 @@ const staticContentStyle = makeStyles(() => (
         marginBottom: "10px"
     }
 }));
-
-export default staticContentStyle;

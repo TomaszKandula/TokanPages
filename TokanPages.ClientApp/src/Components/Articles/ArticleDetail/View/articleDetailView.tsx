@@ -6,7 +6,7 @@ import { ArrowBack } from "@material-ui/icons";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Emoji from "react-emoji-render";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
-import articleDetailStyle from "./articleDetailStyle";
+import { ArticleDetailStyle } from "./articleDetailStyle";
 
 interface IBinding 
 {
@@ -38,9 +38,9 @@ interface IProperties
     authorShortBio: string;
 }
 
-const ArticleDetailView = (props: IBinding): JSX.Element =>
+export const ArticleDetailView = (props: IBinding): JSX.Element =>
 {
-    const classes = articleDetailStyle();
+    const classes = ArticleDetailStyle();
     return (
         <section>
             <Container className={classes.container}>
@@ -151,5 +151,3 @@ const ArticleDetailView = (props: IBinding): JSX.Element =>
         </section>
     );
 }
-
-export default ArticleDetailView;

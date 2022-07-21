@@ -10,11 +10,11 @@ import CloudIcon from "@material-ui/icons/Cloud";
 import Skeleton from "@material-ui/lab/Skeleton";
 import ReactHtmlParser from "react-html-parser";
 import { IGetFeaturesContent } from "../../../Redux/States/Content/getFeaturesContentState";
-import technologiesStyle from "./technologiesStyle";
+import { TechnologiesStyle } from "./technologiesStyle";
 
 export const TechnologiesView = (props: IGetFeaturesContent): JSX.Element =>
 {
-    const classes = technologiesStyle();
+    const classes = TechnologiesStyle();
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">

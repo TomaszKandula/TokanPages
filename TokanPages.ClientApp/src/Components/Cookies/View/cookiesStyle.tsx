@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import { CustomColours } from "../../../Theme/customColours";
 
-const cookiesStyle = makeStyles(() => (
+export const CookiesStyle = makeStyles(() => (
 {
     open:
     {
@@ -49,5 +49,3 @@ const cookiesStyle = makeStyles(() => (
         marginBottom: "10px"
     }
 }));
-
-export default cookiesStyle;

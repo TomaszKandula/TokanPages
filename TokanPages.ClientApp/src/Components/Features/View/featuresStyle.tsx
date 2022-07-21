@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../Theme/customColours";
+import { CustomColours } from "../../../Theme/customColours";
 
-const featuresStyle = makeStyles((theme) => (
+export const FeaturesStyle = makeStyles((theme) => (
 {
     section:
     {
@@ -68,5 +68,3 @@ const featuresStyle = makeStyles((theme) => (
         background: CustomColours.colours.violet,
     }
 }));
-
-export default featuresStyle;

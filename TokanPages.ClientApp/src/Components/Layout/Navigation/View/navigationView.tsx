@@ -10,7 +10,7 @@ import { IItem } from "../../../../Shared/Components/ListRender/Models/item";
 import { ILanguage } from "../../../../Shared/Services/languageService";
 import { AVATARS_PATH } from "../../../../Shared/constants";
 import SideMenuView from "./../SideMenu/sideMenuView";
-import navigationStyle from "./navigationStyle";
+import { NavigationStyle } from "./navigationStyle";
 import Validate from "validate.js";
 
 interface IBinding
@@ -35,9 +35,9 @@ interface IProperties
     menu: { image: string, items: IItem[] };
 }
 
-const NavigationView = (props: IBinding): JSX.Element => 
+export const NavigationView = (props: IBinding): JSX.Element => 
 {
-    const classes = navigationStyle();
+    const classes = NavigationStyle();
     const fullName = "</> tom kandula";
     const justLogo = "</>";
 
@@ -133,5 +133,3 @@ const NavigationView = (props: IBinding): JSX.Element =>
         </HideOnScroll>
     );
 }
-
-export default NavigationView;

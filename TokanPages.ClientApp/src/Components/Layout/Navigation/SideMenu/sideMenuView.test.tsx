@@ -1,7 +1,7 @@
 import "../../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import SideMenuView from "./sideMenuView";
+import { SideMenuView } from "./sideMenuView";
 import { IItem } from "../../../../Shared/Components/ListRender/Models/item";
 
 describe("Test component: menuView.", () => 

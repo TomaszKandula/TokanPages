@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import { GetIcon } from "../../../../Shared/Components/GetIcon/getIcon";
 import { IIcon, ILink } from "../../../../Api/Models";
-import footerStyle from "./footerStyle";
+import { FooterStyle } from "./footerStyle";
 import Validate from "validate.js";
 
 interface IBinding
@@ -26,7 +26,7 @@ interface IProperties
     icons: IIcon[];
 }
 
-const FooterView = (props: IBinding): JSX.Element => 
+export const FooterView = (props: IBinding): JSX.Element => 
 {
     const SetTermsLink = (): JSX.Element => 
     { 
@@ -95,7 +95,7 @@ const FooterView = (props: IBinding): JSX.Element =>
         return props.bind?.hasVersionInfo ? null : applicationVersionInfo
     };
 
-    const classes = footerStyle();
+    const classes = FooterStyle();
     return (
         <footer className={classes.page_footer}>
             <Container maxWidth="lg">
@@ -106,5 +106,3 @@ const FooterView = (props: IBinding): JSX.Element =>
         </footer>
     );
 }
-
-export default FooterView;

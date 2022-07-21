@@ -5,7 +5,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import articleCardStyle from "./articleCardStyle";
+import { ArticleCardStyle } from "./articleCardStyle";
 
 interface IBinding
 {
@@ -21,9 +21,9 @@ interface IProperties
     buttonText: string;
 }
 
-const ArticleCardView = (props: IBinding): JSX.Element =>
+export const ArticleCardView = (props: IBinding): JSX.Element =>
 {
-    const classes = articleCardStyle();
+    const classes = ArticleCardStyle();
     return(
         <div data-aos="fade-up">
             <Card elevation={0} className={classes.card} >
@@ -45,5 +45,3 @@ const ArticleCardView = (props: IBinding): JSX.Element =>
         </div>
     );
 }
-
-export default ArticleCardView;

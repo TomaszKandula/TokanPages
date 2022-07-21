@@ -1,7 +1,7 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import ArticleCardView from "./articleCardView";
+import { ArticleCardView } from "./articleCardView";
 
 describe("Test articles group component: ArticleCardView.", () => 
 {

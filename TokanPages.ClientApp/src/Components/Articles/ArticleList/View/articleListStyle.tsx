@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-const articleListStyle = makeStyles(() => (
+export const ArticleListStyle = makeStyles(() => (
 {
     container:
     {
@@ -12,5 +12,3 @@ const articleListStyle = makeStyles(() => (
         marginBottom: "10px"
     }
 }));
-
-export default articleListStyle;

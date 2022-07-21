@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../../Theme/customColours";
 
-const ClientsStyle = makeStyles((theme) => (
+export const ClientsStyle = makeStyles((theme) => (
 {
     divider:
     {
@@ -36,5 +36,3 @@ const ClientsStyle = makeStyles((theme) => (
     }
 }
 ));
-
-export default ClientsStyle;

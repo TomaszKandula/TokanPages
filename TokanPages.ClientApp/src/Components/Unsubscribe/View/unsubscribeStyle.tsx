@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { CustomColours } from "../../../Theme/customColours";
 
-const unsubscribeStyle = makeStyles(() => (
+export const UnsubscribeStyle = makeStyles(() => (
 {
     section:
     {
@@ -49,5 +49,3 @@ const unsubscribeStyle = makeStyles(() => (
         background: CustomColours.colours.violet,
     }
 }));
-
-export default unsubscribeStyle;
