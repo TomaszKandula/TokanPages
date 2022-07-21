@@ -1,1 +1,1 @@
-export { UpdateSubscriber } from "./controller";
+export { UpdateSubscriber } from "./updateSubscriber";

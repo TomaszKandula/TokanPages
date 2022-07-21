@@ -1,1 +1,1 @@
-export { ClientsView as Clients } from "./view";
+export { ClientsView as Clients } from "./View/clientsView";

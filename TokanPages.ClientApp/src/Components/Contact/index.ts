@@ -1,1 +1,1 @@
-export { ContactForm } from "./controller";
+export { ContactForm } from "./contactForm";

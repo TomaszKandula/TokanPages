@@ -1,1 +1,1 @@
-export { StaticContent } from "./controller";
+export { StaticContent } from "./staticContent";

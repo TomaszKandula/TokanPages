@@ -1,1 +1,1 @@
-export { Unsubscribe } from "./controller";
+export { Unsubscribe } from "./unsubscribe";

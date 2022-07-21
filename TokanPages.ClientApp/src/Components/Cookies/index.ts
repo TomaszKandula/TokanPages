@@ -1,1 +1,1 @@
-export { Cookies } from "./controller";
+export { Cookies } from "./cookies";

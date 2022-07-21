@@ -1,1 +1,1 @@
-export { Newsletter } from "./controller";
+export { Newsletter } from "./newsletterController";

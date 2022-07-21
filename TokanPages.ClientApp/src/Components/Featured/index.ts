@@ -1,1 +1,1 @@
-export { FeaturedView as Featured } from "./view";
+export { FeaturedView as Featured } from "./View/featuredView";
