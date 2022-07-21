@@ -5,7 +5,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
-import App from "../app";
+import App from "./app";
 
 it("renders without crashing", () => 
 {

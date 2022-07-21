@@ -23,7 +23,7 @@ import ApplicationToast from "./Shared/Components/Toasts/applicationToast";
 import ApplicationDialogBox from "./Shared/Components/ApplicationDialogBox/applicationDialogBox";
 import ApplicationUserInfo from "./Shared/Components/ApplicationUserInfo/applicationUserInfo";
 import { StoreUserData } from "./Shared/Services/updateUserDataService";
-import styles from "./Styles/appStyle";
+import styles from "./app.style";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
