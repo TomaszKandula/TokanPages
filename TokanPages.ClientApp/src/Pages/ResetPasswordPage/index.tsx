@@ -7,7 +7,7 @@ import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/get
 import { ActionCreators as ResetFormContent } from "../../Redux/Actions/Content/getResetPasswordContentAction";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
-import ResetPassword from "../../Components/Account/resetPassword";
+import { ResetPassword } from "../../Components/Account";
 
 const ResetPasswordPage = (): JSX.Element => 
 {

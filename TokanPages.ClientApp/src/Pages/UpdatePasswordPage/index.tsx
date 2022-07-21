@@ -7,7 +7,7 @@ import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/get
 import { ActionCreators as UpdateFormContent } from "../../Redux/Actions/Content/getUpdatePasswordContentAction";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
-import UpdatePassword from "../../Components/Account/updatePassword";
+import { UpdatePassword } from "../../Components/Account";
 
 const UpdatePasswordPage = (): JSX.Element => 
 {

@@ -6,7 +6,7 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as ActivateAccountContent } from "../../Redux/Actions/Content/getActivateAccountContentAction";
 import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
-import ActivateAccount from "../../Components/Account/activateAccount";
+import { ActivateAccount } from "../../Components/Account";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 

@@ -7,7 +7,7 @@ import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/get
 import { ActionCreators as SigninFormContent } from "../../Redux/Actions/Content/getUserSigninContentAction";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
-import UserSignin from "../../Components/Account/userSignin";
+import { UserSignin } from "../../Components/Account";
 
 const SigninPage = (): JSX.Element => 
 {  

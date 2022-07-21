@@ -7,7 +7,7 @@ import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/get
 import { ActionCreators as SignupFormContent } from "../../Redux/Actions/Content/getUserSignupContentAction";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
-import UserSignup from "../../Components/Account/userSignup";
+import { UserSignup } from "../../Components/Account";
 
 const SignupPage = (): JSX.Element =>
 {

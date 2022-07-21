@@ -6,7 +6,7 @@ import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/get
 import { ActionCreators as AccountContent } from "../../Redux/Actions/Content/getAccountContentAction";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
-import UserAccount from "../../Components/Account/userAccount";
+import { UserAccount } from "../../Components/Account";
 
 const AccountPage = (): JSX.Element => 
 {
