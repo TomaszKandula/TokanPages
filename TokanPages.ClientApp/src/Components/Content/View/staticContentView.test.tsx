@@ -1,8 +1,8 @@
-import "../../../../setupTests";
+import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { StaticContentView } from "../../View/staticContentView";
-import { ITextItem, ITextObject } from "../../../../Shared/Components/ContentRender/Models/textModel";
+import { StaticContentView } from "./staticContentView";
+import { ITextItem, ITextObject } from "../../../Shared/Components/ContentRender/Models/textModel";
 
 describe("Test component: staticContentView.", () => 
 {

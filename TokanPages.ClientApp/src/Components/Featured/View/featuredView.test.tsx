@@ -1,7 +1,7 @@
-import "../../../../setupTests";
+import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { FeaturedView } from "../featuredView";
+import { FeaturedView } from "./featuredView";
 
 describe("Test component: featuredView.", () => 
 {
