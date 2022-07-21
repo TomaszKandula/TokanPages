@@ -1,7 +1,7 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import HeaderView from "../headerView";
+import { HeaderView } from "./headerView";
 
 describe("Test component: headerView.", () => 
 {

@@ -1,14 +1,14 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "Redux/applicationState";
-import { IGetNavigationContent } from "../../Redux/States/Content/getNavigationContentState";
-import { ActionCreators } from "../../Redux/Actions/Users/storeUserDataAction";
-import { GetLanguages, SetUserLanguage, GetDefaultLanguageId } from "../../Shared/Services/languageService";
-import { GetAllPagesContent } from "../../Redux/applicationDispatch";
-import NavigationView from "./navigationView";
+import { IGetNavigationContent } from "../../../Redux/States/Content/getNavigationContentState";
+import { ActionCreators } from "../../../Redux/Actions/Users/storeUserDataAction";
+import { GetAllPagesContent } from "../../../Redux/applicationDispatch";
+import { GetLanguages, SetUserLanguage, GetDefaultLanguageId } from "../../../Shared/Services/languageService";
+import NavigationView from "./View/navigationView";
 import Validate from "validate.js";
 
-const Navigation = (props: IGetNavigationContent): JSX.Element => 
+export const Navigation = (props: IGetNavigationContent): JSX.Element => 
 {
     const dispatch = useDispatch();
     const user = useSelector((state: IApplicationState) => state.storeUserData);
@@ -56,5 +56,3 @@ const Navigation = (props: IGetNavigationContent): JSX.Element =>
         menu: props.content?.menu
     }}/>);
 }
-
-export default Navigation;

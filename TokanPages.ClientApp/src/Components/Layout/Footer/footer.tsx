@@ -1,15 +1,15 @@
 import * as React from "react";
-import { IGetFooterContent } from "../../Redux/States/Content/getFooterContentState";
-import { CustomColours } from "../../Theme/customColours";
+import { IGetFooterContent } from "../../../Redux/States/Content/getFooterContentState";
+import { CustomColours } from "../../../Theme/customColours";
 import validate from "validate.js";
-import FooterView from "./footerView";
+import FooterView from "./View/footerView";
 
 interface IGetFooterContentExtended extends IGetFooterContent
 {
     backgroundColor?: string;
 }
 
-const Footer = (props: IGetFooterContentExtended): JSX.Element => 
+export const Footer = (props: IGetFooterContentExtended): JSX.Element => 
 {
     const versionDateTime: string = process.env.REACT_APP_VERSION_DATE_TIME ?? "";
     const versionNumber: string = process.env.REACT_APP_VERSION_NUMBER ?? "";
@@ -33,5 +33,3 @@ const Footer = (props: IGetFooterContentExtended): JSX.Element =>
         icons: props.content?.icons
     }}/>);
 }
-
-export default Footer;

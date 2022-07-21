@@ -1,7 +1,7 @@
 import "../../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import MenuView from "../menuView";
+import SideMenuView from "./sideMenuView";
 import { IItem } from "../../../../Shared/Components/ListRender/Models/item";
 
 describe("Test component: menuView.", () => 
@@ -18,7 +18,7 @@ describe("Test component: menuView.", () =>
             enabled: true
         };
 
-        const tree = shallow(<MenuView bind=
+        const tree = shallow(<SideMenuView bind=
         {{
             drawerState: 
             { 

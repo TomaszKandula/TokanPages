@@ -6,13 +6,13 @@ import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
-import { IGetHeaderContent } from "../../Redux/States/Content/getHeaderContentState";
-import { IMAGES_PATH } from "../../Shared/constants";
-import { renderImage } from "../../Shared/Components/CustomImage/customImage";
-import headerStyle from "./Styles/headerStyle";
+import { IGetHeaderContent } from "../../../Redux/States/Content/getHeaderContentState";
+import { IMAGES_PATH } from "../../../Shared/constants";
+import { renderImage } from "../../../Shared/Components/CustomImage/customImage";
+import headerStyle from "./headerStyle";
 import Validate from "validate.js";
 
-const HeaderView = (props: IGetHeaderContent): JSX.Element => 
+export const HeaderView = (props: IGetHeaderContent): JSX.Element => 
 {
     const classes = headerStyle();
 
@@ -59,5 +59,3 @@ const HeaderView = (props: IGetHeaderContent): JSX.Element =>
         </section>
 	);
 }
-
-export default HeaderView;

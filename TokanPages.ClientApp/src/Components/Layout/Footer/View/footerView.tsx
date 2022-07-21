@@ -4,9 +4,9 @@ import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import { GetIcon } from "../../Shared/Components/GetIcon/getIcon";
-import { IIcon, ILink } from "../../Api/Models";
-import footerStyle from "./Styles/footerStyle";
+import { GetIcon } from "../../../../Shared/Components/GetIcon/getIcon";
+import { IIcon, ILink } from "../../../../Api/Models";
+import footerStyle from "./footerStyle";
 import Validate from "validate.js";
 
 interface IBinding

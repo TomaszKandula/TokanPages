@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Redux/applicationState";
-import Navigation from "../../Components/Layout/navigation";
-import Header from "../../Components/Layout/headerView";
+import { Navigation } from "../../Components/Layout";
+import { Header } from "../../Components/Layout";
 import { Clients } from "../../Components/Clients";
-import Footer from "../../Components/Layout/footer";
+import { Footer } from "../../Components/Layout";
 import { Technologies } from "../../Components/Technologies";
 import { Featured } from "../../Components/Featured";
 import { Testimonials } from "../../Components/Testimonials";

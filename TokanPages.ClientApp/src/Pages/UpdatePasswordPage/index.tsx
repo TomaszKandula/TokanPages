@@ -5,9 +5,9 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
 import { ActionCreators as UpdateFormContent } from "../../Redux/Actions/Content/getUpdatePasswordContentAction";
-import Navigation from "../../Components/Layout/navigation";
+import { Navigation } from "../../Components/Layout";
+import { Footer } from "../../Components/Layout";
 import UpdatePassword from "../../Components/Account/updatePassword";
-import Footer from "../../Components/Layout/footer";
 
 const UpdatePasswordPage = (): JSX.Element => 
 {

@@ -5,9 +5,9 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
 import { ActionCreators as SigninFormContent } from "../../Redux/Actions/Content/getUserSigninContentAction";
-import Navigation from "../../Components/Layout/navigation";
+import { Navigation } from "../../Components/Layout";
+import { Footer } from "../../Components/Layout";
 import UserSignin from "../../Components/Account/userSignin";
-import Footer from "../../Components/Layout/footer";
 
 const SigninPage = (): JSX.Element => 
 {  

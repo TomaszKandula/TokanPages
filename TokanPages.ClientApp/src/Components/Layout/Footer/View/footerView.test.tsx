@@ -1,8 +1,8 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import FooterView from "../footerView";
-import { IIcon } from "../../../Api/Models";
+import FooterView from "../View/footerView";
+import { IIcon } from "../../../../Api/Models";
 
 describe("Test component: footerView.", () => 
 {

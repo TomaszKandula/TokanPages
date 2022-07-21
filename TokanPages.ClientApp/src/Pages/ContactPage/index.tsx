@@ -5,8 +5,8 @@ import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content
 import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
 import { ActionCreators as ContactFormContent } from "../../Redux/Actions/Content/getContactFormContentAction";
 import { IApplicationState } from "../../Redux/applicationState";
-import Navigation from "../../Components/Layout/navigation";
-import Footer from "../../Components/Layout/footer";
+import { Navigation } from "../../Components/Layout";
+import { Footer } from "../../Components/Layout";
 import { ContactForm } from "../../Components/Contact";
 
 const ContactPage = () => 

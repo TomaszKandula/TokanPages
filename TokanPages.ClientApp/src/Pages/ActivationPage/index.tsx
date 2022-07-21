@@ -7,8 +7,8 @@ import { ActionCreators as ActivateAccountContent } from "../../Redux/Actions/Co
 import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
 import ActivateAccount from "../../Components/Account/activateAccount";
-import Navigation from "../../Components/Layout/navigation";
-import Footer from "../../Components/Layout/footer";
+import { Navigation } from "../../Components/Layout";
+import { Footer } from "../../Components/Layout";
 
 const useQuery = () => 
 {

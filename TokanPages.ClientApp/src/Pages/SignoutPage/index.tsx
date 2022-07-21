@@ -5,9 +5,9 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
 import { ActionCreators as SignoutContent } from "../../Redux/Actions/Content/getUserSignoutContentAction";
-import Navigation from "../../Components/Layout/navigation";
+import { Navigation } from "../../Components/Layout";
+import { Footer } from "../../Components/Layout";
 import UserSignout from "../../Components/Account/userSignout";
-import Footer from "../../Components/Layout/footer";
 
 const SignoutPage = (): JSX.Element => 
 {

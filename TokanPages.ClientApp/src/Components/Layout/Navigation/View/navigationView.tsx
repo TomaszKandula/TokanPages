@@ -5,12 +5,12 @@ import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import MenuIcon from '@material-ui/icons/Menu';
 import { FormControl, Grid, MenuItem, Select, Typography, Box } from "@material-ui/core";
-import HideOnScroll from "../../Shared/Components/Scroll/hideOnScroll";
-import { IItem } from "../../Shared/Components/ListRender/Models/item";
-import { ILanguage } from "../../Shared/Services/languageService";
-import { AVATARS_PATH } from "../../Shared/constants";
-import MenuView from "./Components/menuView";
-import navigationStyle from "./Styles/navigationStyle";
+import HideOnScroll from "../../../../Shared/Components/Scroll/hideOnScroll";
+import { IItem } from "../../../../Shared/Components/ListRender/Models/item";
+import { ILanguage } from "../../../../Shared/Services/languageService";
+import { AVATARS_PATH } from "../../../../Shared/constants";
+import SideMenuView from "./../SideMenu/sideMenuView";
+import navigationStyle from "./navigationStyle";
 import Validate from "validate.js";
 
 interface IBinding
@@ -121,7 +121,7 @@ const NavigationView = (props: IBinding): JSX.Element =>
 
                 </Toolbar>
 
-                <MenuView bind=
+                <SideMenuView bind=
                 {{
                     drawerState: props.bind.drawerState,
                     closeHandler: props.bind.closeHandler,
