@@ -5,7 +5,7 @@ import Navigation from "../../Components/Layout/navigation";
 import Header from "../../Components/Layout/headerView";
 import { Clients } from "../../Components/Clients";
 import Footer from "../../Components/Layout/footer";
-import { Features } from "../../Components/Features";
+import { Technologies } from "../../Components/Technologies";
 import { Featured } from "../../Components/Featured";
 import { Testimonials } from "../../Components/Testimonials";
 import { Newsletter } from "../../Components/Newsletter";
@@ -37,7 +37,7 @@ const MainPage = (): JSX.Element =>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Header content={header?.content} isLoading={header?.isLoading} />
             <Clients content={clients?.content} isLoading={clients?.isLoading} />
-            <Features content={features?.content} isLoading={features?.isLoading} />
+            <Technologies content={features?.content} isLoading={features?.isLoading} />
             <ArticleFeatures content={articles?.content} isLoading={articles?.isLoading} />
             <Featured content={featured?.content} isLoading={featured?.isLoading} />
             <Testimonials content={testimonials?.content} isLoading={testimonials?.isLoading} />

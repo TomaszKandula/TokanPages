@@ -1,13 +1,13 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { FeaturesView } from "./featuresView";
+import { TechnologiesView } from "./technologiesView";
 
 describe("Test component: featuresView.", () => 
 {
     it("Renders correctly '<FeaturesView />' when content is loaded.", () => 
     {
-        const tree = shallow(<FeaturesView isLoading={false} content=
+        const tree = shallow(<TechnologiesView isLoading={false} content=
         {{
             caption: "Technologies",
             header: "I work primarily with",
