@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { IRaiseError, RaiseError } from "../../ErrorServices";
+import { IRaiseError, RaiseError } from "..";
 
 describe("Verify RaiseError.", () => 
 {

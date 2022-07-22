@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { IPropsToFields, PropsToFields } from "../../Converters";
+import { IPropsToFields, PropsToFields } from "..";
 
 describe("Verify PropsToFields.", () => 
 {

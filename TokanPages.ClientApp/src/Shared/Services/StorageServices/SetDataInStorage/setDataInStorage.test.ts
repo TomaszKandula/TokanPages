@@ -2,7 +2,7 @@
 * @jest-environment jsdom
 */
 import "../../../../setupTests";
-import { ISetDataInStorage, SetDataInStorage } from "../../StorageServices";
+import { ISetDataInStorage, SetDataInStorage } from "..";
 
 describe("Verify SetDataInStorage.", () => 
 {

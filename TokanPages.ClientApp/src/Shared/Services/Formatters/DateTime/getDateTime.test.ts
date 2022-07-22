@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { IGetDateTime, GetDateTime } from "../../Formatters";
+import { IGetDateTime, GetDateTime } from "..";
 
 describe("Verify GetDateTime.", () => 
 {

@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { IValidateResetForm, ValidateResetForm } from "../../FormValidation";
+import { IValidateResetForm, ValidateResetForm } from "..";
 
 describe("Verify validation methods.", () => 
 {

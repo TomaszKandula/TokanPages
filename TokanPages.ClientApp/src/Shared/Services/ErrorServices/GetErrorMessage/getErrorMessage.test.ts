@@ -1,7 +1,7 @@
 import "../../../../setupTests";
-import { VALIDATION_ERRORS } from "../../../../Shared/constants";
+import { VALIDATION_ERRORS } from "../../../constants";
 import { IErrorDto } from "../../../../Api/Models";
-import { IGetErrorMessage, GetErrorMessage } from "../../ErrorServices";
+import { IGetErrorMessage, GetErrorMessage } from "..";
 
 describe("Verify GetErrorMessage.", () => 
 {

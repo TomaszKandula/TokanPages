@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { IRenderHtmlLines, RenderHtmlLines } from "../../Renderers";
+import { IRenderHtmlLines, RenderHtmlLines } from "..";
 
 describe("Verify RenderHtmlLines.", () => 
 {

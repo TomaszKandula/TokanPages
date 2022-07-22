@@ -2,7 +2,7 @@
 * @jest-environment jsdom
 */
 import "../../../../setupTests";
-import { IGetCookie, GetCookie } from "../../CookieServices";
+import { IGetCookie, GetCookie } from "..";
 
 describe("Verify cookies module functionality.", () => 
  {

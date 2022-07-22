@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { IValidateEmailForm, ValidateEmailForm } from "../../FormValidation";
+import { IValidateEmailForm, ValidateEmailForm } from "..";
 
 describe("Verify validation methods.", () => 
 {

@@ -2,7 +2,7 @@
 * @jest-environment jsdom
 */
 import "../../../../setupTests";
-import { IDelDataFromStorage, DelDataFromStorage } from "../../StorageServices";
+import { IDelDataFromStorage, DelDataFromStorage } from "..";
 
 describe("Verify DelDataFromStorage.", () => 
 {
