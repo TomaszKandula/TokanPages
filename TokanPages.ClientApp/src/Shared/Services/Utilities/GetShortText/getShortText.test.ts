@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { IGetShortText, GetShortText } from "../../Utilities";
+import { IGetShortText, GetShortText } from "..";
 
 describe("Verify GetShortText.", () => 
 {

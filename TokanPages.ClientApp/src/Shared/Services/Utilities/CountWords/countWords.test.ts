@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { ICountWords, CountWords } from "../../Utilities";
+import { ICountWords, CountWords } from "..";
 
 describe("Verify CountWords.", () =>
 {

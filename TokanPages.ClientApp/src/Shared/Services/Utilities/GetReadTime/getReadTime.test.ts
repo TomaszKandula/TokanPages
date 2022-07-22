@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { IGetReadTime, GetReadTime } from "../../Utilities";
+import { IGetReadTime, GetReadTime } from "..";
 
 describe("Verify GetReadTime.", () => 
 {

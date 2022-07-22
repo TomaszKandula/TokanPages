@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { IGetTextStatusCode, GetTextStatusCode } from "../../Utilities";
+import { IGetTextStatusCode, GetTextStatusCode } from "..";
  
 describe("Verify GetTextStatusCode.", () => 
 {

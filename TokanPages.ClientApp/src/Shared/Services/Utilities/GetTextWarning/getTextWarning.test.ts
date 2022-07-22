@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { IGetTextWarning, GetTextWarning } from "../../Utilities";
+import { IGetTextWarning, GetTextWarning } from "..";
 
 describe("Verify GetTextWarning.", () => 
 {

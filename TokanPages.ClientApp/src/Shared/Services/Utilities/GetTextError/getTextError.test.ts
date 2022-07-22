@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { IGetTextError, GetTextError } from "../../Utilities";
+import { IGetTextError, GetTextError } from "..";
 
 describe("Verify GetTextError.", () => 
 {
