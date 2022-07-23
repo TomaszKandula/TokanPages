@@ -5,7 +5,7 @@ import Container from "@material-ui/core/Container";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
-import ProgressOnScroll from "../../Shared/Components/Scroll/progressOnScroll";
+import { ProgressOnScroll } from "../../Shared/Components";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { ArticleList } from "../../Components/Articles";
