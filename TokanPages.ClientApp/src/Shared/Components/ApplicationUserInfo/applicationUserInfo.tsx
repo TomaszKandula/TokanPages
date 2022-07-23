@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { ActionCreators } from "../../../Redux/Actions/Users/storeUserDataAction";
 import { IApplicationState } from "../../../Redux/applicationState";
 import { IAuthenticateUserResultDto } from "../../../Api/Models";
-import ApplicationUserInfoView from "./applicationUserInfoView";
+import { ApplicationUserInfoView } from "./View/applicationUserInfoView";
+
 // TODO: add component content from the server
-const ApplicationUserInfo = (): JSX.Element => 
+export const ApplicationUserInfo = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     const user = useSelector((state: IApplicationState) => state.storeUserData);
@@ -28,5 +29,3 @@ const ApplicationUserInfo = (): JSX.Element =>
         closeHandler: onClickHandler
     }}/>);
 }
-
-export default ApplicationUserInfo;

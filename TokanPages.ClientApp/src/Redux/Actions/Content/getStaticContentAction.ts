@@ -1,5 +1,5 @@
 import { AppThunkAction } from "../../applicationState";
-import { ITextObject } from "../../../Shared/Components/ContentRender/Models/textModel";
+import { ITextObject } from "../../../Shared/Components/RenderContent/Models";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { GetErrorMessage } from "../../../Shared/Services/ErrorServices";
 import { POLICY_URL, STORY_URL, TERMS_URL } from "../../../Shared/constants";

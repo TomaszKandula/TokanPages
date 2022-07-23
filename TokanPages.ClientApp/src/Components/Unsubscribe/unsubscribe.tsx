@@ -7,14 +7,14 @@ import { OperationStatus } from "../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { IContent } from "../../Api/Models/Components/unsubscribeContentDto";
 import { IRemoveSubscriberDto } from "../../Api/Models";
-import UnsubscribeView from "./unsubscribeView";
+import { UnsubscribeView } from "./View/unsubscribeView";
 
 interface IGetUnsubscribeContentExtended extends IGetUnsubscribeContent
 {
     id: string;
 }
 
-const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element =>
+export const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element =>
 {
     const contentPre: IContent = 
     { 
@@ -94,5 +94,3 @@ const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element =>
         isRemoved: isRemoved
     }}/>);
 }
-
-export default Unsubscribe;

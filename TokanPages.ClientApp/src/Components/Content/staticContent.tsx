@@ -6,11 +6,11 @@ import { TRequestContent } from "../../Redux/Actions/Content/getStaticContentAct
 import { REQUEST_POLICY } from "../../Redux/Actions/Content/getStaticContentAction";
 import { REQUEST_STORY } from "../../Redux/Actions/Content/getStaticContentAction";
 import { REQUEST_TERMS } from "../../Redux/Actions/Content/getStaticContentAction";
-import { ITextObject } from "../../Shared/Components/ContentRender/Models/textModel";
-import StaticContentView from "./staticContentView";
+import { ITextObject } from "../../Shared/Components/RenderContent/Models";
+import { StaticContentView } from "./View/staticContentView";
 import Validate from "validate.js";
 
-const StaticContent = (props: { content: TRequestContent }): JSX.Element => 
+export const StaticContent = (props: { content: TRequestContent }): JSX.Element => 
 {
     const dispatch = useDispatch();
     const [ data, setData ] = React.useState<ITextObject>({ items: [] });
@@ -58,5 +58,3 @@ const StaticContent = (props: { content: TRequestContent }): JSX.Element =>
         isLoading: Validate.isEmpty(data?.items)
     }}/>);
 }
-
-export default StaticContent;

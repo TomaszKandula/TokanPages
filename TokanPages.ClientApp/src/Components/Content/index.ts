@@ -1,0 +1,1 @@
+export { StaticContent } from "./staticContent";

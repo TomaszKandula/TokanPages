@@ -2,28 +2,28 @@ import * as React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"; 
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import MainPage from "./Pages/mainPage";
-import StoryPage from "./Pages/storyPage"; 
-import ArticlesPage from "./Pages/articlesPage";
-import TermsPage from "./Pages/termsPage";
-import PolicyPage from "./Pages/policyPage";
-import ContactPage from "./Pages/contactPage";
-import SigninPage from "./Pages/signinPage";
-import SignupPage from "./Pages/signupPage";
-import SignoutPage from "./Pages/signoutPage";
-import AccountPage from "./Pages/accountPage";
-import ResetPasswordPage from "./Pages/resetPasswordPage";
-import UpdatePasswordPage from "./Pages/updatePasswordPage";
-import UnsubscribePage from "./Pages/unsubscribePage";
-import UpdateSubscriberPage from "./Pages/updateSubscriberPage";
-import ActivationPage from "./Pages/activationPage";
-import WrongPage from "./Pages/wrongPage";
-import ScrollTop from "./Shared/Components/Scroll/scrollTop";
-import ApplicationToast from "./Shared/Components/Toasts/applicationToast";
-import ApplicationDialogBox from "./Shared/Components/ApplicationDialogBox/applicationDialogBox";
-import ApplicationUserInfo from "./Shared/Components/ApplicationUserInfo/applicationUserInfo";
+import MainPage from "./Pages/MainPage";
+import StoryPage from "./Pages/StoryPage"; 
+import ArticlesPage from "./Pages/ArticlesPage";
+import TermsPage from "./Pages/TermsPage";
+import PolicyPage from "./Pages/PolicyPage";
+import ContactPage from "./Pages/ContactPage";
+import SigninPage from "./Pages/SigninPage";
+import SignupPage from "./Pages/SignupPage";
+import SignoutPage from "./Pages/SignoutPage";
+import AccountPage from "./Pages/AccountPage";
+import ResetPasswordPage from "./Pages/ResetPasswordPage";
+import UpdatePasswordPage from "./Pages/UpdatePasswordPage";
+import UnsubscribePage from "./Pages/UnsubscribePage";
+import UpdateSubscriberPage from "./Pages/UpdateSubscriberPage";
+import ActivationPage from "./Pages/ActivationPage";
+import WrongPage from "./Pages/WrongPage";
+import { ScrollToTop } from "./Shared/Components/Scroll";
+import { ApplicationToast } from "./Shared/Components";
+import { ApplicationDialogBox } from "./Shared/Components";
+import { ApplicationUserInfo } from "./Shared/Components";
 import { StoreUserData } from "./Shared/Services/updateUserDataService";
-import styles from "./Styles/appStyle";
+import styles from "./app.style";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -67,11 +67,11 @@ const App = (): JSX.Element =>
             <ApplicationToast />
             <ApplicationDialogBox />
             <ApplicationUserInfo />
-            <ScrollTop>
+            <ScrollToTop>
                 <Fab size="small" aria-label="scroll back to top" className={classes.button}>
                     <KeyboardArrowUpIcon/>
                 </Fab>
-            </ScrollTop>
+            </ScrollToTop>
         </>
     );
 }

@@ -5,7 +5,7 @@ import { IApplicationState } from "../../../Redux/applicationState";
 import { ActionCreators } from "../../../Redux/Actions/raiseErrorAction";
 import { RECEIVED_ERROR_MESSAGE } from "../../constants";
 import { DialogType } from "../../enums";
-import ApplicationToastView from "./applicationToastView";
+import { ApplicationToastView } from "./View/applicationToastView";
 import Validate from "validate.js";
 
 interface IToastState 
@@ -22,7 +22,7 @@ const ToastState: IToastState =
 
 const TransitionLeft = (props: Omit<SlideProps, "direction">): JSX.Element => <Slide {...props} direction="left" />;
 
-const ApplicationToast = (): JSX.Element => 
+export const ApplicationToast = (): JSX.Element => 
 {
     const vertical = "top";
     const horizontal = "right";
@@ -79,5 +79,3 @@ const ApplicationToast = (): JSX.Element =>
         toastMessage: toastState.errorMessage
     }}/>);
 }
-
-export default ApplicationToast;
