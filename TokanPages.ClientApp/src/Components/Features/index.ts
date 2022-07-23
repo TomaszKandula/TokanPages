@@ -1,1 +1,1 @@
-export { FeaturesView as Features } from "./featuresView";
+export { FeaturesView as Features } from "./View/featuresView";
