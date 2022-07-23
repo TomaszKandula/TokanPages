@@ -6,13 +6,13 @@ import { ActionCreators as SelectArticleActions } from "../../../Redux/Actions/A
 import { ActionCreators as UpdateArticleAction } from "../../../Redux/Actions/Articles/updateArticleAction";
 import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/constants";
 import { GetDateTime } from "../../../Shared/Services/Formatters";
-import { ArticleContent } from "./Renderers/articleContent";
-import { AuthorName } from "./Renderers/authorName";
-import { LikesLeft } from "./Renderers/likesLeft";
-import { ReadTime } from "./Renderers/readTime";
+import { ArticleContent } from "./Helpers/articleContent";
+import { AuthorName } from "./Helpers/authorName";
+import { LikesLeft } from "./Helpers/likesLeft";
+import { ReadTime } from "./Helpers/readTime";
 import { UserAvatar } from "../../../Shared/Components/UserAvatar";
-import Validate from "validate.js";
 import { ArticleDetailView } from "./View/articleDetailView";
+import Validate from "validate.js";
 
 export interface IArticleDetail
 {
