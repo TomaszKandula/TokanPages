@@ -1,6 +1,6 @@
 import axios from "axios";
 import { AppThunkAction } from "../../applicationState";
-import { IArticleItem } from "../../../Shared/Components/ContentRender/Models/articleItemModel";
+import { IArticleItem } from "../../../Shared/Components/ContentRender/Models";
 import { API_QUERY_GET_ARTICLES, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { TErrorActions } from "./../raiseErrorAction";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
