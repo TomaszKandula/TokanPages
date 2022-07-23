@@ -18,10 +18,10 @@ import UnsubscribePage from "./Pages/UnsubscribePage";
 import UpdateSubscriberPage from "./Pages/UpdateSubscriberPage";
 import ActivationPage from "./Pages/ActivationPage";
 import WrongPage from "./Pages/WrongPage";
-import ScrollTop from "./Shared/Components/Scroll/scrollTop";
-import ApplicationToast from "./Shared/Components/Toasts/applicationToast";
-import ApplicationDialogBox from "./Shared/Components/ApplicationDialogBox/applicationDialogBox";
-import ApplicationUserInfo from "./Shared/Components/ApplicationUserInfo/applicationUserInfo";
+import { ScrollToTop } from "./Shared/Components/Scroll";
+import { ApplicationToast } from "./Shared/Components";
+import { ApplicationDialogBox } from "./Shared/Components";
+import { ApplicationUserInfo } from "./Shared/Components";
 import { StoreUserData } from "./Shared/Services/updateUserDataService";
 import styles from "./app.style";
 import AOS from "aos";
@@ -67,11 +67,11 @@ const App = (): JSX.Element =>
             <ApplicationToast />
             <ApplicationDialogBox />
             <ApplicationUserInfo />
-            <ScrollTop>
+            <ScrollToTop>
                 <Fab size="small" aria-label="scroll back to top" className={classes.button}>
                     <KeyboardArrowUpIcon/>
                 </Fab>
-            </ScrollTop>
+            </ScrollToTop>
         </>
     );
 }
