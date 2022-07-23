@@ -6,7 +6,7 @@ import {
     TableRow
 } from "@material-ui/core";
 
-const CustomTableCell = withStyles(() => createStyles(
+export const CustomTableCell = withStyles(() => createStyles(
 {
     head: 
     {
@@ -22,7 +22,7 @@ const CustomTableCell = withStyles(() => createStyles(
 }),
 )(TableCell);
 
-const CustomTableRow = withStyles(() => createStyles(
+export const CustomTableRow = withStyles(() => createStyles(
 {
     root: 
     {
@@ -33,9 +33,3 @@ const CustomTableRow = withStyles(() => createStyles(
     },
 }),
 )(TableRow);
-
-export 
-{ 
-    CustomTableRow, 
-    CustomTableCell
-};

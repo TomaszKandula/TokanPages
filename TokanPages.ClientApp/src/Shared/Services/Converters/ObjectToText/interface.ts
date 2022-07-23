@@ -1,4 +1,4 @@
-import { ITextObject } from "../../../../Shared/Components/ContentRender/Models/textModel";
+import { ITextObject } from "../../../Components/ContentRender/Models/TextModel";
 
 export interface IObjectToText
 {

@@ -1,11 +1,11 @@
 import * as React from "react";
-import { ITextObject } from "./Models/textModel";
-import { RenderText } from "./Renderers/renderText";
-import { RenderGist } from "./Renderers/renderGist";
-import { RenderTable } from "./Renderers/renderTable";
-import { RenderImage } from "./Renderers/renderImage";
-import { RenderVideo } from "./Renderers/renderVideo";
-import { RenderSeparator } from "./Renderers/renderSeparator";
+import { ITextObject } from "./Models/TextModel";
+import { RenderText } from "./Renderers";
+import { RenderGist } from "./Renderers";
+import { RenderTable } from "./Renderers";
+import { RenderImage } from "./Renderers";
+import { RenderVideo } from "./Renderers";
+import { RenderSeparator } from "./Renderers";
 import { Languages } from "../../languages";
 
 export const RenderContent = (textObject: ITextObject | undefined): JSX.Element => 

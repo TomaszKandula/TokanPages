@@ -2,7 +2,7 @@ import React from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 import { SnackbarOrigin } from "@material-ui/core";
 import { Alert, Color } from "@material-ui/lab";
-import applicationToastViewStyle from "./applicationToastViewStyle";
+import { ApplicationToastViewStyle } from "./applicationToastViewStyle";
 
 interface IBinding
 {
@@ -21,9 +21,9 @@ interface IProperties
     toastMessage: string;
 }
 
-const ApplicationToastView = (props: IBinding): JSX.Element => 
+export const ApplicationToastView = (props: IBinding): JSX.Element => 
 {
-    const classes = applicationToastViewStyle();
+    const classes = ApplicationToastViewStyle();
     return (
         <div className={classes.root}>
             <Snackbar 
@@ -41,5 +41,3 @@ const ApplicationToastView = (props: IBinding): JSX.Element =>
         </div>
     );
 }
-
-export default ApplicationToastView;
