@@ -1,6 +1,6 @@
 export { ApplicationDialogBox } from "./ApplicationDialogBox/applicationDialogBox";
 export { ApplicationUserInfo } from "./ApplicationUserInfo/applicationUserInfo";
-export { RenderContent } from "./ContentRender/renderContent";
+export { RenderContent } from "./RenderContent/renderContent";
 export { RenderCardMedia } from "./CustomCardMedia/customCardMedia";
 export { RenderImage } from "./CustomImage/customImage";
 export { GetIcon } from "./GetIcon/getIcon";

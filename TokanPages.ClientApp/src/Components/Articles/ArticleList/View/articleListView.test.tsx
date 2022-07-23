@@ -1,9 +1,9 @@
 import "../../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { IAuthor } from "../../../../Shared/Components/ContentRender/Models";
-import { ITextItem } from "../../../../Shared/Components/ContentRender/Models";
-import { IArticleItem } from "../../../../Shared/Components/ContentRender/Models";
+import { IAuthor } from "../../../../Shared/Components/RenderContent/Models";
+import { ITextItem } from "../../../../Shared/Components/RenderContent/Models";
+import { IArticleItem } from "../../../../Shared/Components/RenderContent/Models";
 import { ArticleListView } from "../View/articleListView";
 
 describe("Test articles group component: ArticleListView.", () => 

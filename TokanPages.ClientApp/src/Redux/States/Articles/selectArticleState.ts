@@ -1,4 +1,4 @@
-import { IArticleItem } from "../../../Shared/Components/ContentRender/Models";
+import { IArticleItem } from "../../../Shared/Components/RenderContent/Models";
 
 export interface IArticle
 {

@@ -3,7 +3,7 @@ import Container from "@material-ui/core/Container";
 import { Box, Divider, Grid, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
-import { IArticleItem } from "../../../../Shared/Components/ContentRender/Models";
+import { IArticleItem } from "../../../../Shared/Components/RenderContent/Models";
 import { ProgressBar } from "../../../../Shared/Components";
 import { ArticleCard } from "../../../Articles";
 import { ArticleListStyle } from "./articleListStyle";

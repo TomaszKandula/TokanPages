@@ -6,7 +6,7 @@ import { Divider, IconButton } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import { ProgressBar } from "../../../Shared/Components/";
 import { RenderContent } from "../../../Shared/Components";
-import { ITextObject } from "../../../Shared/Components/ContentRender/Models";
+import { ITextObject } from "../../../Shared/Components/RenderContent/Models";
 import { StaticContentStyle } from "./staticContentStyle";
 
 interface IBinding

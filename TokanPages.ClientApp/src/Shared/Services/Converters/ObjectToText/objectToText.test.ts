@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { ITextObject } from "Shared/Components/ContentRender/Models";
+import { ITextObject } from "Shared/Components/RenderContent/Models";
 import { IObjectToText, ObjectToText } from "..";
 
 describe("Verify ObjectToText.", () => 
