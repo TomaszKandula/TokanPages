@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test component: menuView. Renders correctly '<MenuView />' when content is loaded. 1`] = `
+<WithStyles(ForwardRef(Drawer))
+  anchor="left"
+  onClose={[MockFunction]}
+  open={false}
+>
+  <div
+    className="makeStyles-drawer_container-2"
+  >
+    <Styled(MuiBox)
+      className="makeStyles-drawer_hero-3"
+    >
+      <div
+        className="makeStyles-drawer_logo-4"
+      >
+        &lt;/&gt;
+      </div>
+    </Styled(MuiBox)>
+    <RenderList
+      bind={
+        Object {
+          "isAnonymous": true,
+          "items": Array [
+            Object {
+              "enabled": true,
+              "icon": "VpnKey",
+              "id": "8c678e9e-699e-41c7-a93a-587c6a4f41e7",
+              "link": "/signin",
+              "type": "item",
+              "value": "Sign in",
+            },
+          ],
+        }
+      }
+    />
+  </div>
+</WithStyles(ForwardRef(Drawer))>
+`;

@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test view component for application diaog box. Renders correctly view component with passed props. 1`] = `
+<WithStyles(ForwardRef(Dialog))
+  aria-describedby="alert-dialog-description"
+  aria-labelledby="alert-dialog-title"
+  onClose={[MockFunction]}
+  open={true}
+>
+  <WithStyles(ForwardRef(DialogTitle))
+    className="makeStyles-title-5"
+    id="alert-dialog-title"
+  >
+    <div
+      className="makeStyles-icon_holder-1"
+    >
+      <RenderIcon />
+      Test title
+    </div>
+  </WithStyles(ForwardRef(DialogTitle))>
+  <WithStyles(ForwardRef(Divider)) />
+  <WithStyles(ForwardRef(DialogContent))>
+    <WithStyles(ForwardRef(Typography))
+      className="makeStyles-description-6"
+      id="alert-dialog-description"
+    >
+      Test message
+    </WithStyles(ForwardRef(Typography))>
+  </WithStyles(ForwardRef(DialogContent))>
+  <WithStyles(ForwardRef(Divider)) />
+  <WithStyles(ForwardRef(DialogActions))>
+    <WithStyles(ForwardRef(Button))
+      autoFocus={true}
+      className="makeStyles-button-7"
+      onClick={[MockFunction]}
+    >
+      OK
+    </WithStyles(ForwardRef(Button))>
+  </WithStyles(ForwardRef(DialogActions))>
+</WithStyles(ForwardRef(Dialog))>
+`;

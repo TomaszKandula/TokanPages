@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test account group component: userSignup. Renders correctly '<UserSignup />' when content is loaded. 1`] = `
+<UserSignupView
+  bind={
+    Object {
+      "button": "",
+      "buttonHandler": [Function],
+      "caption": "",
+      "consent": "",
+      "email": "",
+      "firstName": "",
+      "formHandler": [Function],
+      "isLoading": false,
+      "labelEmail": "",
+      "labelFirstName": "",
+      "labelLastName": "",
+      "labelPassword": "",
+      "lastName": "",
+      "link": "",
+      "password": "",
+      "progress": false,
+      "terms": false,
+    }
+  }
+/>
+`;

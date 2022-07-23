@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when content is loaded. 1`] = `
+<section
+  className="makeStyles-section-1"
+>
+  <WithStyles(ForwardRef(Container))
+    maxWidth="lg"
+  >
+    <Styled(MuiBox)
+      pb={5}
+      pt={8}
+      textAlign="center"
+    >
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-caption_text-2"
+        data-aos="fade-down"
+      >
+        FEATURED
+      </WithStyles(ForwardRef(Typography))>
+    </Styled(MuiBox)>
+    <Styled(MuiBox)
+      pb={15}
+      textAlign="center"
+    >
+      <WithStyles(ForwardRef(Grid))
+        container={true}
+        spacing={6}
+      >
+        <WithStyles(ForwardRef(Grid))
+          data-aos="fade-up"
+          data-aos-delay="350"
+          item={true}
+          md={4}
+          xs={12}
+        >
+          <WithStyles(ForwardRef(Card))
+            className="makeStyles-card-3"
+            elevation={0}
+          >
+            <WithStyles(ForwardRef(CardActionArea))
+              href="https://.../net-memory-management-64389b01f642"
+              target="_blank"
+            >
+              <WithStyles(ForwardRef(CardMedia))
+                className="makeStyles-card_media-7"
+                image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/featured/article0.jpg"
+              />
+              <WithStyles(ForwardRef(CardContent))
+                className="makeStyles-card_content-4"
+              >
+                <WithStyles(ForwardRef(Typography))
+                  className="makeStyles-card_title-5"
+                >
+                  Memory Management
+                </WithStyles(ForwardRef(Typography))>
+                <WithStyles(ForwardRef(Typography))
+                  className="makeStyles-card_subtitle-6"
+                >
+                  The basics you should know, when writing an application...
+                </WithStyles(ForwardRef(Typography))>
+              </WithStyles(ForwardRef(CardContent))>
+            </WithStyles(ForwardRef(CardActionArea))>
+          </WithStyles(ForwardRef(Card))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          data-aos="fade-up"
+          data-aos-delay="150"
+          item={true}
+          md={4}
+          xs={12}
+        >
+          <WithStyles(ForwardRef(Card))
+            className="makeStyles-card-3"
+            elevation={0}
+          >
+            <WithStyles(ForwardRef(CardActionArea))
+              href="https://.../i-said-goodbye-to-stored-procedures-539d56350486"
+              target="_blank"
+            >
+              <WithStyles(ForwardRef(CardMedia))
+                className="makeStyles-card_media-7"
+                image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/featured/article1.jpg"
+              />
+              <WithStyles(ForwardRef(CardContent))
+                className="makeStyles-card_content-4"
+              >
+                <WithStyles(ForwardRef(Typography))
+                  className="makeStyles-card_title-5"
+                >
+                  Stored Procedures
+                </WithStyles(ForwardRef(Typography))>
+                <WithStyles(ForwardRef(Typography))
+                  className="makeStyles-card_subtitle-6"
+                >
+                  I explain why I do not need them that much...
+                </WithStyles(ForwardRef(Typography))>
+              </WithStyles(ForwardRef(CardContent))>
+            </WithStyles(ForwardRef(CardActionArea))>
+          </WithStyles(ForwardRef(Card))>
+        </WithStyles(ForwardRef(Grid))>
+        <WithStyles(ForwardRef(Grid))
+          data-aos="fade-up"
+          data-aos-delay="550"
+          item={true}
+          md={4}
+          xs={12}
+        >
+          <WithStyles(ForwardRef(Card))
+            className="makeStyles-card-3"
+            elevation={0}
+          >
+            <WithStyles(ForwardRef(CardActionArea))
+              href="https://.../sql-injection-1bde8bb76ebc"
+              target="_blank"
+            >
+              <WithStyles(ForwardRef(CardMedia))
+                className="makeStyles-card_media-7"
+                image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/featured/article2.jpg"
+              />
+              <WithStyles(ForwardRef(CardContent))
+                className="makeStyles-card_content-4"
+              >
+                <WithStyles(ForwardRef(Typography))
+                  className="makeStyles-card_title-5"
+                >
+                  SQL Injection
+                </WithStyles(ForwardRef(Typography))>
+                <WithStyles(ForwardRef(Typography))
+                  className="makeStyles-card_subtitle-6"
+                >
+                  This article will explore the issue in greater detail...
+                </WithStyles(ForwardRef(Typography))>
+              </WithStyles(ForwardRef(CardContent))>
+            </WithStyles(ForwardRef(CardActionArea))>
+          </WithStyles(ForwardRef(Card))>
+        </WithStyles(ForwardRef(Grid))>
+      </WithStyles(ForwardRef(Grid))>
+    </Styled(MuiBox)>
+  </WithStyles(ForwardRef(Container))>
+</section>
+`;

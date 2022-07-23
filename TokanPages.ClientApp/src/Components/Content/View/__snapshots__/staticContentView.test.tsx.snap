@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test component: staticContentView. Renders correctly '<StaticContentView />' when content is loaded. 1`] = `
+<section>
+  <WithStyles(ForwardRef(Container))
+    className="makeStyles-container-1"
+  >
+    <Styled(MuiBox)
+      py={12}
+    >
+      <div
+        data-aos="fade-down"
+      >
+        <Link
+          to="/"
+        >
+          <WithStyles(ForwardRef(IconButton))>
+            <Memo(ForwardRef(ArrowBackIcon)) />
+          </WithStyles(ForwardRef(IconButton))>
+        </Link>
+        <WithStyles(ForwardRef(Divider))
+          className="makeStyles-divider-2"
+        />
+      </div>
+      <div
+        data-aos="fade-up"
+      >
+        <RenderContent
+          items={
+            Array [
+              Object {
+                "id": "5b30be71-0e68-4be4-bd29-7f40fe130414",
+                "prop": "",
+                "text": "",
+                "type": "html",
+                "value": "<p>One line text</p>",
+              },
+            ]
+          }
+        />
+      </div>
+    </Styled(MuiBox)>
+  </WithStyles(ForwardRef(Container))>
+</section>
+`;

@@ -1,4 +1,4 @@
-import "../../../setupTests";
+import "../../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
 import { NavigationView } from "../../Navigation/View/navigationView";

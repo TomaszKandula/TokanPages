@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test account group component: activateAccountView. Renders correctly '<ActivateAccountView />' when content is loaded. 1`] = `
+<section
+  className="makeStyles-section-1"
+>
+  <WithStyles(ForwardRef(Container))
+    maxWidth="sm"
+  >
+    <Styled(MuiBox)
+      py={15}
+    >
+      <WithStyles(ForwardRef(Card))
+        className="makeStyles-card-5"
+        elevation={0}
+      >
+        <WithStyles(ForwardRef(CardContent))
+          className="makeStyles-card_content-6"
+        >
+          <Styled(MuiBox)
+            mb={3}
+            textAlign="center"
+          >
+            <Styled(MuiBox)
+              mb={2}
+              mt={2}
+            >
+              <WithStyles(ForwardRef(Typography))
+                className="makeStyles-caption-2"
+                gutterBottom={true}
+              >
+                Account Activation
+              </WithStyles(ForwardRef(Typography))>
+            </Styled(MuiBox)>
+            <Styled(MuiBox)
+              mb={2}
+              mt={5}
+            >
+              <WithStyles(ForwardRef(Typography))
+                className="makeStyles-text1-3"
+              >
+                Your account has been successfully activated!
+              </WithStyles(ForwardRef(Typography))>
+            </Styled(MuiBox)>
+            <Styled(MuiBox)
+              mb={5}
+              mt={2}
+            >
+              <WithStyles(ForwardRef(Typography))
+                className="makeStyles-text2-4"
+              >
+                You can now sign in.
+              </WithStyles(ForwardRef(Typography))>
+            </Styled(MuiBox)>
+            <ActiveButton />
+          </Styled(MuiBox)>
+        </WithStyles(ForwardRef(CardContent))>
+      </WithStyles(ForwardRef(Card))>
+    </Styled(MuiBox)>
+  </WithStyles(ForwardRef(Container))>
+</section>
+`;
