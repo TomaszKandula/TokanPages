@@ -5,11 +5,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import MenuIcon from '@material-ui/icons/Menu';
 import { FormControl, Grid, MenuItem, Select, Typography, Box } from "@material-ui/core";
-import HideOnScroll from "../../../../Shared/Components/Scroll/hideOnScroll";
-import { IItem } from "../../../../Shared/Components/ListRender/Models/item";
+import { HideOnScroll } from "../../../../Shared/Components/Scroll";
+import { IItem } from "../../../../Shared/Components/ListRender/Models";
 import { ILanguage } from "../../../../Shared/Services/languageService";
 import { AVATARS_PATH } from "../../../../Shared/constants";
-import SideMenuView from "./../SideMenu/sideMenuView";
+import { SideMenuView } from "./../SideMenu/sideMenuView";
 import { NavigationStyle } from "./navigationStyle";
 import Validate from "validate.js";
 

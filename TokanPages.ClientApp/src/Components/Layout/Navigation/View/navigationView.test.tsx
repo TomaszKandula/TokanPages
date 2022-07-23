@@ -2,7 +2,7 @@ import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
 import { NavigationView } from "../../Navigation/View/navigationView";
-import { IItem } from "../../../../Shared/Components/ListRender/Models/item";
+import { IItem } from "../../../../Shared/Components/ListRender/Models";
 import { ILanguage } from "../../../../Shared/Services/languageService";
 
 describe("Test component: featuresView.", () => 

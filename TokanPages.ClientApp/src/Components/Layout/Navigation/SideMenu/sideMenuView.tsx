@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box, Drawer } from "@material-ui/core";
-import { RenderList } from "../../../../Shared/Components/ListRender/renderList";
-import { IItem } from "../../../../Shared/Components/ListRender/Models/item";
+import { RenderList } from "../../../../Shared/Components";
+import { IItem } from "../../../../Shared/Components/ListRender/Models";
 import { SideMenuStyle } from "./sideMenuStyle";
 
 interface IBinding

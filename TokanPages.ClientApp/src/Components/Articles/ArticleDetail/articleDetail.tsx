@@ -10,7 +10,7 @@ import { ArticleContent } from "./Renderers/articleContent";
 import { AuthorName } from "./Renderers/authorName";
 import { LikesLeft } from "./Renderers/likesLeft";
 import { ReadTime } from "./Renderers/readTime";
-import UserAvatar from "../../../Shared/Components/UserAvatar/userAvatar";
+import { UserAvatar } from "../../../Shared/Components/UserAvatar";
 import Validate from "validate.js";
 import { ArticleDetailView } from "./View/articleDetailView";
 

@@ -3,8 +3,8 @@ import Container from "@material-ui/core/Container";
 import { Box, Divider, Grid, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
-import { IArticleItem } from "../../../../Shared/Components/ContentRender/Models/articleItemModel";
-import CenteredCircularLoader from "../../../../Shared/Components/ProgressBar/centeredCircularLoader";
+import { IArticleItem } from "../../../../Shared/Components/ContentRender/Models";
+import { ProgressBar } from "../../../../Shared/Components";
 import { ArticleCard } from "../../../Articles";
 import { ArticleListStyle } from "./articleListStyle";
 
@@ -54,7 +54,7 @@ export const ArticleListView = (props: IBinding): JSX.Element =>
                     <Grid container justifyContent="center">
                         <Grid item xs={12} sm={12}>
                             {props.bind?.isLoading 
-                                ? <CenteredCircularLoader /> 
+                                ? <ProgressBar /> 
                                 : <RenderContent articles={props.bind?.articles} />}
                         </Grid>
                     </Grid>

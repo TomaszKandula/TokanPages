@@ -4,9 +4,9 @@ import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import { Divider, IconButton } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
-import CenteredCircularLoader from "../../../Shared/Components/ProgressBar/centeredCircularLoader";
-import { RenderContent } from "../../../Shared/Components/ContentRender/renderContent";
-import { ITextObject } from "../../../Shared/Components/ContentRender/Models/textModel";
+import { ProgressBar } from "../../../Shared/Components/";
+import { RenderContent } from "../../../Shared/Components";
+import { ITextObject } from "../../../Shared/Components/ContentRender/Models";
 import { StaticContentStyle } from "./staticContentStyle";
 
 interface IBinding
@@ -37,7 +37,7 @@ export const StaticContentView = (props: IBinding): JSX.Element =>
                     </div>                    
                     <div data-aos="fade-up">
                         {props.bind?.isLoading 
-                            ? <CenteredCircularLoader /> 
+                            ? <ProgressBar /> 
                             : <RenderContent items={props.bind?.data.items}/>}
                     </div>
                 </Box>

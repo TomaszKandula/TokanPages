@@ -10,7 +10,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetArticleFeaturesContent } from "../../../Redux/States/Content/getArticleFeaturesContentState";
-import { renderCardMedia } from "../../../Shared/Components/CustomCardMedia/customCardMedia";
+import { RenderCardMedia } from "../../../Shared/Components";
 import { ARTICLE_IMAGE_PATH } from "../../../Shared/constants";
 import { FeaturesStyle } from "./featuresStyle";
 import Validate from "validate.js";
@@ -76,28 +76,28 @@ export const FeaturesView = (props: IGetArticleFeaturesContent): JSX.Element =>
                                             <Card elevation={0} className={classes.card_image}>
                                                 {props.isLoading 
                                                     ? <Skeleton variant="rect" height="128px" /> 
-                                                    : renderCardMedia(ARTICLE_IMAGE_PATH, props.content?.image1, classes.media)}
+                                                    : RenderCardMedia(ARTICLE_IMAGE_PATH, props.content?.image1, classes.media)}
                                             </Card>
                                         </Grid>
                                         <Grid item xs={12} md={4}>
                                             <Card elevation={0} className={classes.card_image}>
                                                 {props.isLoading 
                                                     ? <Skeleton variant="rect" height="128px" /> 
-                                                    : renderCardMedia(ARTICLE_IMAGE_PATH, props.content?.image2, classes.media)}
+                                                    : RenderCardMedia(ARTICLE_IMAGE_PATH, props.content?.image2, classes.media)}
                                             </Card>
                                         </Grid>
                                         <Grid item xs={12} md={4}>
                                             <Card elevation={0} className={classes.card_image}>
                                                 {props.isLoading 
                                                     ? <Skeleton variant="rect" height="128px" /> 
-                                                    : renderCardMedia(ARTICLE_IMAGE_PATH, props.content?.image3, classes.media)}
+                                                    : RenderCardMedia(ARTICLE_IMAGE_PATH, props.content?.image3, classes.media)}
                                             </Card>
                                         </Grid> 
                                         <Grid item xs={12} md={8}>
                                             <Card elevation={0} className={classes.card_image}>
                                                 {props.isLoading 
                                                     ? <Skeleton variant="rect" height="128px" /> 
-                                                    : renderCardMedia(ARTICLE_IMAGE_PATH, props.content?.image4, classes.media)}
+                                                    : RenderCardMedia(ARTICLE_IMAGE_PATH, props.content?.image4, classes.media)}
                                             </Card>
                                         </Grid>
                                     </Grid>

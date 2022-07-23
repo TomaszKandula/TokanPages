@@ -2,7 +2,7 @@ import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
 import { StaticContentView } from "./staticContentView";
-import { ITextItem, ITextObject } from "../../../Shared/Components/ContentRender/Models/textModel";
+import { ITextItem, ITextObject } from "../../../Shared/Components/ContentRender/Models";
 
 describe("Test component: staticContentView.", () => 
 {

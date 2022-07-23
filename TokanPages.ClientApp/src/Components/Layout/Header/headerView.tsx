@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
 import { IGetHeaderContent } from "../../../Redux/States/Content/getHeaderContentState";
 import { IMAGES_PATH } from "../../../Shared/constants";
-import { renderImage } from "../../../Shared/Components/CustomImage/customImage";
+import { RenderImage } from "../../../Shared/Components";
 import { HeaderStyle } from "./headerStyle";
 import Validate from "validate.js";
 
@@ -38,7 +38,7 @@ export const HeaderView = (props: IGetHeaderContent): JSX.Element =>
                         <Box className={classes.image_box}>
                             {props.isLoading 
                             ? <Skeleton variant="circle" className={classes.image_skeleton} /> 
-                            : renderImage(IMAGES_PATH, props.content?.photo, classes.image)}
+                            : RenderImage(IMAGES_PATH, props.content?.photo, classes.image)}
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={6}>

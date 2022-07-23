@@ -1,4 +1,4 @@
-import { ITextObject } from "../../../Shared/Components/ContentRender/Models/textModel";
+import { ITextObject } from "../../../Shared/Components/ContentRender/Models";
 
 interface IStaticContentItem extends ITextObject
 {

@@ -8,7 +8,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IGetFeaturedContent } from "../../../Redux/States/Content/getFeaturedContentState";
-import { renderCardMedia } from "../../../Shared/Components/CustomCardMedia/customCardMedia";
+import { RenderCardMedia } from "../../../Shared/Components";
 import { FEATURED_IMAGE_PATH } from "../../../Shared/constants";
 import { FeaturedStyle } from "./featuredStyle";
 
@@ -30,7 +30,7 @@ export const FeaturedView = (props: IGetFeaturedContent): JSX.Element =>
                                 <CardActionArea href={props.content?.link1} target="_blank">
                                     {props.isLoading 
                                         ? <Skeleton variant="rect" height="256px" /> 
-                                        : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image1, classes.card_media)}
+                                        : RenderCardMedia(FEATURED_IMAGE_PATH, props.content?.image1, classes.card_media)}
                                     <CardContent className={classes.card_content}>
                                         <Typography className={classes.card_title}>
                                             {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title1}
@@ -47,7 +47,7 @@ export const FeaturedView = (props: IGetFeaturedContent): JSX.Element =>
                                 <CardActionArea href={props.content?.link2} target="_blank">
                                     {props.isLoading 
                                         ? <Skeleton variant="rect" height="256px" /> 
-                                        : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image2, classes.card_media)}
+                                        : RenderCardMedia(FEATURED_IMAGE_PATH, props.content?.image2, classes.card_media)}
                                     <CardContent className={classes.card_content}>
                                         <Typography className={classes.card_title}>
                                             {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title2}
@@ -64,7 +64,7 @@ export const FeaturedView = (props: IGetFeaturedContent): JSX.Element =>
                                 <CardActionArea href={props.content?.link3} target="_blank">
                                     {props.isLoading 
                                         ? <Skeleton variant="rect" height="256px" /> 
-                                        : renderCardMedia(FEATURED_IMAGE_PATH, props.content?.image3, classes.card_media)}
+                                        : RenderCardMedia(FEATURED_IMAGE_PATH, props.content?.image3, classes.card_media)}
                                     <CardContent className={classes.card_content}>
                                         <Typography className={classes.card_title}>
                                             {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title3}

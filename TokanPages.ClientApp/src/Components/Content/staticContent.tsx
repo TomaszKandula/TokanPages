@@ -6,7 +6,7 @@ import { TRequestContent } from "../../Redux/Actions/Content/getStaticContentAct
 import { REQUEST_POLICY } from "../../Redux/Actions/Content/getStaticContentAction";
 import { REQUEST_STORY } from "../../Redux/Actions/Content/getStaticContentAction";
 import { REQUEST_TERMS } from "../../Redux/Actions/Content/getStaticContentAction";
-import { ITextObject } from "../../Shared/Components/ContentRender/Models/textModel";
+import { ITextObject } from "../../Shared/Components/ContentRender/Models";
 import { StaticContentView } from "./View/staticContentView";
 import Validate from "validate.js";
 
