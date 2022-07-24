@@ -9,7 +9,7 @@ import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { UserSignup } from "../../Components/Account";
 
-const SignupPage = (): JSX.Element =>
+export const SignupPage = (): JSX.Element =>
 {
     const dispatch = useDispatch();
     
@@ -35,5 +35,3 @@ const SignupPage = (): JSX.Element =>
         </>
     );
 }
-
-export default SignupPage;

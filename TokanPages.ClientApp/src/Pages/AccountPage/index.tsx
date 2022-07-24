@@ -8,7 +8,7 @@ import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { UserAccount } from "../../Components/Account";
 
-const AccountPage = (): JSX.Element => 
+export const AccountPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
@@ -31,5 +31,3 @@ const AccountPage = (): JSX.Element =>
         </>
     );
 }
-
-export default AccountPage;

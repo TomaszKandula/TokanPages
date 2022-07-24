@@ -9,7 +9,7 @@ import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { ResetPassword } from "../../Components/Account";
 
-const ResetPasswordPage = (): JSX.Element => 
+export const ResetPasswordPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     
@@ -35,5 +35,3 @@ const ResetPasswordPage = (): JSX.Element =>
         </>
     );
 }
-
-export default ResetPasswordPage;

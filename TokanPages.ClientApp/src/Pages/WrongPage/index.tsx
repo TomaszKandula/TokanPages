@@ -2,38 +2,14 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Box, Button, Container, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import { Skeleton } from "@material-ui/lab";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators } from "../../Redux/Actions/Content/getWrongPagePromptContentAction";
-import { CustomColours } from "../../Theme/customColours";
+import { Style } from "./style";
 
-const useStyles = makeStyles(() => 
-({
-    link:
-    {
-        textDecoration: "none"
-    },
-    skeleton:
-    {
-        marginLeft: "auto",
-        marginRight: "auto"
-    },
-    button:
-    {
-        "&:hover": 
-        {
-            color: CustomColours.colours.white,
-            background: CustomColours.colours.darkViolet1,
-        },
-        color: CustomColours.colours.white,
-        background: CustomColours.colours.violet
-    }
-}));
-
-const WrongPage = (): JSX.Element =>
+export const WrongPage = (): JSX.Element =>
 {
-    const classes = useStyles();   
+    const classes = Style();   
     const dispatch = useDispatch();
 
     const ActionButton = (): JSX.Element => 
@@ -77,5 +53,3 @@ s                <Button variant="contained" className={classes.button}>
       </section> 
     );
 }
-
-export default WrongPage;

@@ -17,7 +17,7 @@ const useQuery = () =>
     return new URLSearchParams(useLocation().search);
 }
 
-const ArticlesPage = (): JSX.Element => 
+export const ArticlesPage = (): JSX.Element => 
 {
     const queryParam = useQuery();
     const dispatch = useDispatch();
@@ -44,5 +44,3 @@ const ArticlesPage = (): JSX.Element =>
         </>
     );
 }
-
-export default ArticlesPage;

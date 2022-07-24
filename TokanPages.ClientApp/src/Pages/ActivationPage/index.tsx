@@ -15,7 +15,7 @@ const useQuery = () =>
     return new URLSearchParams(useLocation().search);
 }
 
-const ActivationPage = (): JSX.Element => 
+export const ActivationPage = (): JSX.Element => 
 {
     const queryParam = useQuery();
     const dispatch = useDispatch();
@@ -58,5 +58,3 @@ const ActivationPage = (): JSX.Element =>
         </>
     );
 }
-
-export default ActivationPage;

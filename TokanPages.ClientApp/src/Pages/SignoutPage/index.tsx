@@ -9,7 +9,7 @@ import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { UserSignout } from "../../Components/Account";
 
-const SignoutPage = (): JSX.Element => 
+export const SignoutPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     
@@ -35,5 +35,3 @@ const SignoutPage = (): JSX.Element =>
         </>
     );
 }
-
-export default SignoutPage;

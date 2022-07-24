@@ -9,7 +9,7 @@ import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { StaticContent } from "../../Components/Content/staticContent";
 
-const PolicyPage = (): JSX.Element => 
+export const PolicyPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
 
@@ -33,5 +33,3 @@ const PolicyPage = (): JSX.Element =>
         </>
     );
 }
-
-export default PolicyPage;

@@ -9,7 +9,7 @@ import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { ContactForm } from "../../Components/Contact";
 
-const ContactPage = () => 
+export const ContactPage = () => 
 {
     const dispatch = useDispatch();
 
@@ -37,5 +37,3 @@ const ContactPage = () =>
         </>
     );
 }
-
-export default ContactPage;

@@ -14,7 +14,7 @@ import { Cookies } from "../../Components/Cookies";
 import { Features } from "../../Components/Features";
 import { GetMainPageContent } from "../../Redux/applicationDispatch";
 
-const MainPage = (): JSX.Element => 
+export const MainPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
 
@@ -48,5 +48,3 @@ const MainPage = (): JSX.Element =>
         </>
     );
 }
-
-export default MainPage;
