@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import { CustomColours } from "../../../../../Theme/customColours";
+import { Colours } from "../../../../../Theme";
 
 export const RenderVideoStyle = makeStyles(() => (
 {
@@ -15,7 +15,7 @@ export const RenderVideoStyle = makeStyles(() => (
     },
     text:
     {
-        color: CustomColours.colours.gray1,
+        color: Colours.colours.gray1,
         paddingTop: "1px",
         paddingBottom: "1px",
         paddingLeft: "10px",

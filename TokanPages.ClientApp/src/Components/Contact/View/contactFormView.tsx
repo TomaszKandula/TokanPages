@@ -8,7 +8,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
-import VioletCheckbox from "../../../Theme/customCheckboxes";
+import { VioletCheckbox } from "../../../Theme";
 import { ContactFormStyle } from "./contactFormStyle";
 
 interface IBinding 

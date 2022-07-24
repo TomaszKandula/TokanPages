@@ -15,7 +15,7 @@ const useQuery = () =>
     return new URLSearchParams(useLocation().search);
 }
 
-const UnsubscribePage = (): JSX.Element =>
+export const UnsubscribePage = (): JSX.Element =>
 {
     const queryParam = useQuery();
     const dispatch = useDispatch();
@@ -43,5 +43,3 @@ const UnsubscribePage = (): JSX.Element =>
         </>
     );
 }
-
-export default UnsubscribePage;

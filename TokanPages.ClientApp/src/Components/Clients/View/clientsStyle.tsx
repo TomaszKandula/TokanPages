@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../../Theme/customColours";
+import { Colours } from "../../../Theme";
 
 export const ClientsStyle = makeStyles((theme) => (
 {
@@ -7,17 +7,17 @@ export const ClientsStyle = makeStyles((theme) => (
     {
         marginTop: "42px",
         height: "2px",
-        backgroundColor: CustomColours.colours.lightGray1
+        backgroundColor: Colours.colours.lightGray1
     },
     caption:
     {
         textAlign: "center",
         fontSize: "2.0rem",
-        color: CustomColours.colours.darkViolet1
+        color: Colours.colours.darkViolet1
     },
     section:
     {
-        backgroundColor: CustomColours.colours.white,
+        backgroundColor: Colours.colours.white,
         marginTop: "42px",
         marginBottom: "42px"
     },
@@ -32,7 +32,7 @@ export const ClientsStyle = makeStyles((theme) => (
             paddingLeft: theme.spacing(2),
             paddingRight: theme.spacing(2)
         },
-        color: CustomColours.colours.gray1   
+        color: Colours.colours.gray1   
     }
 }
 ));

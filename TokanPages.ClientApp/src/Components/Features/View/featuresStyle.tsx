@@ -1,11 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../../Theme/customColours";
+import { Colours } from "../../../Theme";
 
 export const FeaturesStyle = makeStyles((theme) => (
 {
     section:
     {
-        backgroundColor: CustomColours.colours.white
+        backgroundColor: Colours.colours.white
     },
     card: 
     {
@@ -28,7 +28,7 @@ export const FeaturesStyle = makeStyles((theme) => (
     {
         textAlign: "center",
         fontSize: "2.0rem",
-        color: CustomColours.colours.darkViolet1
+        color: Colours.colours.darkViolet1
     },
     text1:
     {
@@ -38,7 +38,7 @@ export const FeaturesStyle = makeStyles((theme) => (
     {
         fontSize: "1.0rem",
         lineHeight: "1.8",
-        color: CustomColours.colours.gray2
+        color: Colours.colours.gray2
     },
     media: 
     {
@@ -61,10 +61,10 @@ export const FeaturesStyle = makeStyles((theme) => (
     {
         "&:hover": 
         {
-            color: CustomColours.colours.white,
-            background: CustomColours.colours.darkViolet1,
+            color: Colours.colours.white,
+            background: Colours.colours.darkViolet1,
         },
-        color: CustomColours.colours.white,
-        background: CustomColours.colours.violet,
+        color: Colours.colours.white,
+        background: Colours.colours.violet,
     }
 }));

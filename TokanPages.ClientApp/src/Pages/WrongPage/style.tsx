@@ -1,20 +1,16 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { Colours } from "../../../Theme";
+import { Colours } from "../../Theme";
 
-export const NewsletterStyle = makeStyles(() => (
-{
-    section:
+export const Style = makeStyles(() => 
+({
+    link:
     {
-        backgroundColor: Colours.colours.lightGray3
+        textDecoration: "none"
     },
-    caption:
+    skeleton:
     {
-        fontSize: "2.0rem"
-    },
-    text:
-    {
-        fontSize: "1.2rem",
-        color: Colours.colours.gray2
+        marginLeft: "auto",
+        marginRight: "auto"
     },
     button:
     {

@@ -1,17 +1,17 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../../Theme/customColours";
+import { Colours } from "../../../Theme";
 
 export const FeaturedStyle = makeStyles(() => (
 {
     section:
     {
-        backgroundColor: CustomColours.colours.lightGray3
+        backgroundColor: Colours.colours.lightGray3
     },
     caption_text:
     {
         textAlign: "center",
         fontSize: "2.0rem",
-        color: CustomColours.colours.darkViolet1
+        color: Colours.colours.darkViolet1
     },
     card:
     {
@@ -30,13 +30,13 @@ export const FeaturedStyle = makeStyles(() => (
     {
         fontSize: "1.5rem",
         fontWeight: 700,
-        color: CustomColours.colours.black
+        color: Colours.colours.black
     },
     card_subtitle:
     {
         fontSize: "1.0rem",
         fontWeight: 400,
-        color: CustomColours.colours.gray1
+        color: Colours.colours.gray1
     },
     card_media: 
     {

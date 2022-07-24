@@ -1,35 +1,35 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../../Theme/customColours";
+import { Colours } from "../../../Theme";
 
 export const UnsubscribeStyle = makeStyles(() => (
 {
     section:
     {
-        backgroundColor: CustomColours.colours.white
+        backgroundColor: Colours.colours.white
     },
     caption:
     {
         fontSize: "2.0rem",
         fontWeight: 400,
-        color: CustomColours.colours.black
+        color: Colours.colours.black
     },
     text1:
     {
         fontSize: "1.2rem",
         fontWeight: 500,
-        color: CustomColours.colours.gray1
+        color: Colours.colours.gray1
     },
     text2:
     {
         fontSize: "1.2rem",
         fontWeight: 400,
-        color: CustomColours.colours.gray1        
+        color: Colours.colours.gray1        
     },
     text3:
     {
         fontSize: "1.2rem",
         fontWeight: 400,
-        color: CustomColours.colours.gray1        
+        color: Colours.colours.gray1        
     },
     card:
     {
@@ -42,10 +42,10 @@ export const UnsubscribeStyle = makeStyles(() => (
     {
         "&:hover": 
         {
-            color: CustomColours.colours.white,
-            background: CustomColours.colours.darkViolet1,
+            color: Colours.colours.white,
+            background: Colours.colours.darkViolet1,
         },
-        color: CustomColours.colours.white,
-        background: CustomColours.colours.violet,
+        color: Colours.colours.white,
+        background: Colours.colours.violet,
     }
 }));

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { IGetFooterContent } from "../../../Redux/States/Content/getFooterContentState";
-import { CustomColours } from "../../../Theme/customColours";
+import { Colours } from "../../../Theme";
 import validate from "validate.js";
 import { FooterView } from "./View/footerView";
 
@@ -18,7 +18,7 @@ export const Footer = (props: IGetFooterContentExtended): JSX.Element =>
     const hasVersionInfo = validate.isEmpty(versionNumber) && validate.isEmpty(versionDateTime);
 
     const backgroundColor: string = !props.backgroundColor 
-        ? CustomColours.colours.lightGray1 
+        ? Colours.colours.lightGray1 
         : props.backgroundColor;
 
     return (<FooterView bind=

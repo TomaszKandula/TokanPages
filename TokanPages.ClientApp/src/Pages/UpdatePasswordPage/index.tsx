@@ -9,7 +9,7 @@ import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { UpdatePassword } from "../../Components/Account";
 
-const UpdatePasswordPage = (): JSX.Element => 
+export const UpdatePasswordPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     
@@ -35,5 +35,3 @@ const UpdatePasswordPage = (): JSX.Element =>
         </>
     );
 }
-
-export default UpdatePasswordPage;

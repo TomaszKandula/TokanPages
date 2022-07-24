@@ -1,10 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../../../../Theme/customColours";
+import { Colours } from "../../../../../Theme";
 
 export const RenderItemStyle = makeStyles(() => (
 {
     href:
     {
-        color: CustomColours.colours.black
+        color: Colours.colours.black
     }
 }));

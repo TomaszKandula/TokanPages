@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import { CustomColours } from "../../../../../Theme/customColours";
+import { Colours } from "../../../../../Theme";
 
 export const RenderTextStyle = makeStyles(() => (
 {
@@ -7,7 +7,7 @@ export const RenderTextStyle = makeStyles(() => (
     {
         fontSize: 19,
         textAlign: "left",
-        color: CustomColours.colours.gray3
+        color: Colours.colours.gray3
     },
     title:
     {

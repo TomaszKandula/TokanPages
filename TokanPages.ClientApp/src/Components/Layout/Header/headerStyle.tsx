@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../../Theme/customColours";
+import { Colours } from "../../../Theme";
 
 export const HeaderStyle = makeStyles((theme) => (
 {
@@ -11,11 +11,11 @@ export const HeaderStyle = makeStyles((theme) => (
     {
         "&:hover": 
         {
-            color: CustomColours.colours.lightViolet,
-            background: CustomColours.colours.darkViolet1,
+            color: Colours.colours.lightViolet,
+            background: Colours.colours.darkViolet1,
         },
-        color: CustomColours.colours.darkViolet1,
-        background: CustomColours.colours.lightViolet,
+        color: Colours.colours.darkViolet1,
+        background: Colours.colours.lightViolet,
         [theme.breakpoints.down("xs")]: 
         {
             width: "100%",
@@ -49,7 +49,7 @@ export const HeaderStyle = makeStyles((theme) => (
     },
     content_description:
     {
-        color: CustomColours.colours.gray2,
+        color: Colours.colours.gray2,
         fontWeight: 400
     },
     image_skeleton:

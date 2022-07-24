@@ -1,11 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../../../Theme/customColours";
+import { Colours } from "../../../../Theme";
 
 export const NavigationStyle = makeStyles((theme) => (
 {
     app_bar:
     {
-        background: CustomColours.colours.white
+        background: Colours.colours.white
     },
     tool_bar: 
     { 
@@ -21,7 +21,7 @@ export const NavigationStyle = makeStyles((theme) => (
         marginRight: "auto",
         fontSize: "1.5rem",
         fontWeight: 500,
-        color: CustomColours.colours.violet,
+        color: Colours.colours.violet,
         cursor: "default",
         alignSelf: "center"
     },
@@ -39,13 +39,13 @@ export const NavigationStyle = makeStyles((theme) => (
         marginRight: "auto",
         fontSize: "1.5rem",
         fontWeight: 500,
-        color: CustomColours.colours.violet,
+        color: Colours.colours.violet,
         cursor: "default",
         alignSelf: "center"
     },
     nav_menu: 
     {
-        color: CustomColours.colours.gray1,
+        color: Colours.colours.gray1,
         display: "flex",
         justifyContent: "flex-start"
     },
@@ -75,11 +75,11 @@ export const NavigationStyle = makeStyles((theme) => (
     },
     languages_selection:
     {
-        color: CustomColours.colours.gray1
+        color: Colours.colours.gray1
     },
     languages_menu:
     {
-        color: CustomColours.colours.violet
+        color: Colours.colours.violet
     },
     content_right_side:
     {

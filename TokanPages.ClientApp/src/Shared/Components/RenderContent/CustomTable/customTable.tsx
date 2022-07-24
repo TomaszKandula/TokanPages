@@ -1,4 +1,4 @@
-import { CustomColours } from "../../../../Theme/customColours";
+import { Colours } from "../../../../Theme";
 import { 
     createStyles, 
     withStyles, 
@@ -10,8 +10,8 @@ export const CustomTableCell = withStyles(() => createStyles(
 {
     head: 
     {
-        backgroundColor: CustomColours.colours.gray1,
-        color: CustomColours.colours.white,
+        backgroundColor: Colours.colours.gray1,
+        color: Colours.colours.white,
         fontSize: 18,
         fontWeight: "bold"
     },
@@ -28,7 +28,7 @@ export const CustomTableRow = withStyles(() => createStyles(
     {
         '&:nth-of-type(odd)': 
         {
-            backgroundColor: CustomColours.colours.lightGray2,
+            backgroundColor: Colours.colours.lightGray2,
         },
     },
 }),

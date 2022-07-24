@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "./Theme/customColours";
+import { Colours } from "./Theme";
 
 const appStyle = makeStyles(() => (
 {
@@ -7,11 +7,11 @@ const appStyle = makeStyles(() => (
     {
         "&:hover": 
         {
-            color: CustomColours.colours.lightViolet,
-            background: CustomColours.colours.darkViolet1,
+            color: Colours.colours.lightViolet,
+            background: Colours.colours.darkViolet1,
         },
-        color: CustomColours.colours.darkViolet1,
-        background: CustomColours.colours.lightViolet
+        color: Colours.colours.darkViolet1,
+        background: Colours.colours.lightViolet
     }
 }));
 

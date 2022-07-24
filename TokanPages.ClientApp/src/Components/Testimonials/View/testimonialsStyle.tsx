@@ -1,17 +1,17 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../../Theme/customColours";
+import { Colours } from "../../../Theme";
 
 export const TestimonialsStyle = makeStyles((theme) => (
 {
     section:
     {
-        backgroundColor: CustomColours.colours.white
+        backgroundColor: Colours.colours.white
     },
     caption_text:
     {
         textAlign: "center",
         fontSize: "2.0rem",
-        color: CustomColours.colours.darkViolet1
+        color: Colours.colours.darkViolet1
     },
     card:
     {
@@ -53,20 +53,20 @@ export const TestimonialsStyle = makeStyles((theme) => (
         fontSize: "1.5rem",
         fontWeight: 700,
         lineHeight: "2.2",
-        color: CustomColours.colours.black
+        color: Colours.colours.black
     },
     card_subheader:
     {
         textAlign: "center",
         fontSize: "1.0rem",
         lineHeight: "2.0",
-        color: CustomColours.colours.darkViolet1
+        color: Colours.colours.darkViolet1
     },
     card_text:
     {
         textAlign: "left",
         lineHeight: "1.8",
         marginTop: "15px",
-        color: CustomColours.colours.gray1
+        color: Colours.colours.gray1
     },
 }));

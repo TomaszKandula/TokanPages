@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import { CustomColours } from "../../../../../Theme/customColours";
+import { Colours } from "../../../../../Theme";
 
 export const RenderSeparatorStyle = makeStyles(() => (
 {
@@ -14,7 +14,7 @@ export const RenderSeparatorStyle = makeStyles(() => (
         width: "5px",
         height: "5px",
         borderRadius: "50%",
-        background: CustomColours.colours.gray1,
+        background: Colours.colours.gray1,
         display: "inline-block",
         margin: "0 10px"
     }

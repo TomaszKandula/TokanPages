@@ -10,14 +10,14 @@ import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { ArticleList } from "../../Components/Articles";
 import { ArticleDetail } from "../../Components/Articles";
-import { CustomColours } from "../../Theme/customColours";
+import { Colours } from "../../Theme";
 
 const useQuery = () => 
 {
     return new URLSearchParams(useLocation().search);
 }
 
-const ArticlesPage = (): JSX.Element => 
+export const ArticlesPage = (): JSX.Element => 
 {
     const queryParam = useQuery();
     const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const ArticlesPage = (): JSX.Element =>
     return (
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
-            {id ? <ProgressOnScroll height={10} bgcolor={CustomColours.application.navigation} duration={1} /> : null}
+            {id ? <ProgressOnScroll height={10} bgcolor={Colours.application.navigation} duration={1} /> : null}
             <Container>
                 {id ? <ArticleDetail id={id} /> : <ArticleList />}
             </Container>
@@ -44,5 +44,3 @@ const ArticlesPage = (): JSX.Element =>
         </>
     );
 }
-
-export default ArticlesPage;

@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../../../Theme/customColours";
+import { Colours } from "../../../../Theme";
 
 export const ArticleCardStyle = makeStyles((theme) => (
 {
@@ -38,12 +38,12 @@ export const ArticleCardStyle = makeStyles((theme) => (
     card_title:
     {
         fontSize: "1.5rem",
-        color: CustomColours.colours.black
+        color: Colours.colours.black
     },
     card_description:
     {
         fontSize: "1.0rem",
-        color: CustomColours.colours.gray1
+        color: Colours.colours.gray1
     },
     card_action:
     {
@@ -61,10 +61,10 @@ export const ArticleCardStyle = makeStyles((theme) => (
         },
         "&:hover": 
         {
-            color: CustomColours.colours.white,
-            background: CustomColours.colours.darkViolet1,
+            color: Colours.colours.white,
+            background: Colours.colours.darkViolet1,
         },
-        color: CustomColours.colours.white,
-        background: CustomColours.colours.violet,
+        color: Colours.colours.white,
+        background: Colours.colours.violet,
     }
 }));

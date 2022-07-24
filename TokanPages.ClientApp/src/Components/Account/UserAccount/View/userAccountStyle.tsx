@@ -1,15 +1,15 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../../../Theme/customColours";
+import { Colours } from "../../../../Theme";
 
 export const UserAccountStyle = makeStyles((theme) => (
 {
     section: 
     {
-        backgroundColor: CustomColours.colours.white
+        backgroundColor: Colours.colours.white
     },
     label:
     {
-        color: CustomColours.colours.gray1
+        color: Colours.colours.gray1
     },
     divider:
     {
@@ -20,7 +20,7 @@ export const UserAccountStyle = makeStyles((theme) => (
     {
         fontSize: "2.0rem",
         fontWeight: 400,
-        color: CustomColours.colours.black
+        color: Colours.colours.black
     },
     card:
     {
@@ -36,7 +36,7 @@ export const UserAccountStyle = makeStyles((theme) => (
     },
     access_denied_prompt:
     {
-        color: CustomColours.colours.gray1
+        color: Colours.colours.gray1
     },
     user_id:
     {
@@ -76,11 +76,11 @@ export const UserAccountStyle = makeStyles((theme) => (
         width: "150px",
         "&:hover": 
         {
-            color: CustomColours.colours.white,
-            background: CustomColours.colours.darkViolet1,
+            color: Colours.colours.white,
+            background: Colours.colours.darkViolet1,
         },
-        color: CustomColours.colours.white,
-        background: CustomColours.colours.violet
+        color: Colours.colours.white,
+        background: Colours.colours.violet
     },
     delete_update:
     {
@@ -91,11 +91,11 @@ export const UserAccountStyle = makeStyles((theme) => (
         width: "150px",
         "&:hover": 
         {
-            color: CustomColours.colours.white,
-            background: CustomColours.colours.red,
+            color: Colours.colours.white,
+            background: Colours.colours.red,
         },
-        color: CustomColours.colours.white,
-        background: CustomColours.colours.redDark
+        color: Colours.colours.white,
+        background: Colours.colours.redDark
     },
     button_container_update:
     {
@@ -115,11 +115,11 @@ export const UserAccountStyle = makeStyles((theme) => (
     {
         "&:hover": 
         {
-            color: CustomColours.colours.white,
-            background: CustomColours.colours.darkViolet1,
+            color: Colours.colours.white,
+            background: Colours.colours.darkViolet1,
         },
-        color: CustomColours.colours.white,
-        background: CustomColours.colours.violet
+        color: Colours.colours.white,
+        background: Colours.colours.violet
     },
     home_link:
     {
@@ -129,10 +129,10 @@ export const UserAccountStyle = makeStyles((theme) => (
     {
         "&:hover": 
         {
-            color: CustomColours.colours.white,
-            background: CustomColours.colours.darkViolet1,
+            color: Colours.colours.white,
+            background: Colours.colours.darkViolet1,
         },
-        color: CustomColours.colours.white,
-        background: CustomColours.colours.violet
+        color: Colours.colours.white,
+        background: Colours.colours.violet
     }
 }));
