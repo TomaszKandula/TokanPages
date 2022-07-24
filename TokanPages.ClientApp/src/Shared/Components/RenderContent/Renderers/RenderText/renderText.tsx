@@ -3,7 +3,7 @@ import { Box, Typography } from "@material-ui/core";
 import ReactHtmlParser from "react-html-parser";
 import { ITextItem } from "../../Models/TextModel";
 import { RenderTextStyle } from "./renderTextStyle";
-import "../../../../../Theme/CustomCss/customDropCap.css";
+import "../../../../../Theme/Css/customDropCap.css";
 
 export const RenderText = (props: ITextItem): JSX.Element =>
 {

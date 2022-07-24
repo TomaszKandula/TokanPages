@@ -1,10 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../../../Theme/customColours";
+import { Colours } from "../../../../Theme";
 
 export const ProgressBarStyle = makeStyles(() => (
 {
     main:
     {
-        color: CustomColours.colours.violet
+        color: Colours.colours.violet
     }
 }));

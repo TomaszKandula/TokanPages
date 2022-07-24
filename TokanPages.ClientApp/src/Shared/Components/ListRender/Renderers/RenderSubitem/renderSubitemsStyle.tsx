@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../../../../Theme/customColours";
+import { Colours } from "../../../../../Theme";
 
 export const RenderSubitemsStyle = makeStyles((theme) => (
 {
@@ -9,6 +9,6 @@ export const RenderSubitemsStyle = makeStyles((theme) => (
     },
     href:
     {
-        color: CustomColours.colours.black
+        color: Colours.colours.black
     }
 }));

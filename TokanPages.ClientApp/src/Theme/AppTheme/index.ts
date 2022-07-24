@@ -1,6 +1,6 @@
 import { createTheme } from "@material-ui/core/styles";
 
-const theme = createTheme(
+export const AppTheme = createTheme(
 {
     palette:
     {
@@ -18,5 +18,3 @@ const theme = createTheme(
         "fontWeightMedium": 500
     }
 });
-
-export default theme;

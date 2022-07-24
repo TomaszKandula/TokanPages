@@ -1,31 +1,31 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../../../Theme/customColours";
+import { Colours } from "../../../../Theme";
 
 export const ApplicationUserInfoStyle = makeStyles(() => (
 {
     fullname:
     {
         fontSize: "1.5rem",
-        color: CustomColours.colours.black
+        color: Colours.colours.black
     },
     item:
     {
         fontSize: "1.1rem",
-        color: CustomColours.colours.black
+        color: Colours.colours.black
     },
     value:
     {
         fontSize: "1.1rem",
-        color: CustomColours.colours.gray2
+        color: Colours.colours.gray2
     },
     button:
     {
         "&:hover": 
         {
-            color: CustomColours.colours.white,
-            background: CustomColours.colours.darkViolet1,
+            color: Colours.colours.white,
+            background: Colours.colours.darkViolet1,
         },
-        color: CustomColours.colours.white,
-        background: CustomColours.colours.violet,
+        color: Colours.colours.white,
+        background: Colours.colours.violet,
     }
 }));

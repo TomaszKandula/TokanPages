@@ -1,22 +1,22 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../../../Theme/customColours";
+import { Colours } from "../../../../Theme";
 
 export const UserSignoutStyle = makeStyles(() => (
 {
     account:
     {
         fontSize: 72,
-        color: CustomColours.colours.violet
+        color: Colours.colours.violet
     },
     caption:
     {
         fontSize: "1.8rem",
-        color: CustomColours.colours.gray1
+        color: Colours.colours.gray1
     },
     status:
     {
         fontSize: "1.0rem",
-        color: CustomColours.colours.gray1
+        color: Colours.colours.gray1
     },
     card:
     {
@@ -38,10 +38,10 @@ export const UserSignoutStyle = makeStyles(() => (
     {
         "&:hover": 
         {
-            color: CustomColours.colours.white,
-            background: CustomColours.colours.darkViolet1,
+            color: Colours.colours.white,
+            background: Colours.colours.darkViolet1,
         },
-        color: CustomColours.colours.white,
-        background: CustomColours.colours.violet,
+        color: Colours.colours.white,
+        background: Colours.colours.violet,
     }
 }));

@@ -10,7 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
-import VioletCheckbox from "../../../../Theme/customCheckboxes";
+import { VioletCheckbox } from "../../../../Theme";
 import { UserSignupStyle } from "./userSignupStyle";
 
 interface IBinding 

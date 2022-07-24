@@ -1,17 +1,17 @@
 import { makeStyles } from "@material-ui/core";
-import { CustomColours } from "../../../../Theme/customColours";
+import { Colours } from "../../../../Theme";
 
 export const UserAvatarStyle = makeStyles(() => (
 {
     avatarSmall:
     {
-        color: CustomColours.colours.white,
+        color: Colours.colours.white,
         width: "48px", 
         height: "48px"
     },
     avatarLarge:
     {
-        color: CustomColours.colours.white,
+        color: Colours.colours.white,
         width: "96px", 
         height: "96px"
     }

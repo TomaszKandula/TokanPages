@@ -1,4 +1,4 @@
-export const CustomColours =
+export const Colours =
 {
     application:
     {

@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { CustomColours } from "../../../../Theme/customColours";
+import { Colours } from "../../../../Theme";
 
 export const FooterStyle = makeStyles((theme) => (
 {
@@ -9,7 +9,7 @@ export const FooterStyle = makeStyles((theme) => (
         {
             textAlign: "center"
         },
-        background: CustomColours.colours.violet
+        background: Colours.colours.violet
     },
     icon_box: 
     {
@@ -21,7 +21,7 @@ export const FooterStyle = makeStyles((theme) => (
     },
     icon:
     {
-        color: CustomColours.colours.white
+        color: Colours.colours.white
     },
     copyright_box:
     {
@@ -32,7 +32,7 @@ export const FooterStyle = makeStyles((theme) => (
     copyright: 
     {
         fontSize: "1.2rem",
-        color: CustomColours.colours.white,
+        color: Colours.colours.white,
         [theme.breakpoints.down("md")]: 
         {
             width: "100%",
@@ -41,11 +41,11 @@ export const FooterStyle = makeStyles((theme) => (
     },
     links:
     {
-        color: CustomColours.colours.white,
+        color: Colours.colours.white,
         textDecoration: "none"
     },
     version:
     {
-        color: CustomColours.colours.white
+        color: Colours.colours.white
     }
 }));
