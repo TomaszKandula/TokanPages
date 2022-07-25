@@ -23,13 +23,13 @@ import { ApplicationToast } from "./Shared/Components";
 import { ApplicationDialogBox } from "./Shared/Components";
 import { ApplicationUserInfo } from "./Shared/Components";
 import { StoreUserData } from "./Shared/Services/updateUserDataService";
-import styles from "./app.style";
+import { AppStyle } from "./app.style";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const App = (): JSX.Element => 
 {
-    const classes = styles();
+    const classes = AppStyle();
 
     AOS.init();
     StoreUserData();
