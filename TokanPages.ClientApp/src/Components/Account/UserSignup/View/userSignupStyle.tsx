@@ -3,6 +3,10 @@ import { Colours } from "../../../../Theme";
 
 export const UserSignupStyle = makeStyles(() => (
 {
+    section:
+    {
+        backgroundColor: Colours.colours.white
+    },
     account:
     {
         fontSize: 72,

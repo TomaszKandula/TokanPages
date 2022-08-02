@@ -3,6 +3,10 @@ import { Colours } from "../../../../Theme";
 
 export const ArticleDetailStyle = makeStyles(() => (
 {
+    section:
+    {
+        backgroundColor: Colours.colours.white
+    },
     container:
     {
         maxWidth: "700px"

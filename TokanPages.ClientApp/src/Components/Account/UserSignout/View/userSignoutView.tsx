@@ -27,7 +27,7 @@ export const UserSignoutView = (props: IBinding): JSX.Element =>
 {
     const classes = UserSignoutStyle();
     return (
-        <section>
+        <section className={classes.section}>
             <Container maxWidth="sm">
                 <Box pt={18} pb={10}>             
                     <Card elevation={0} className={classes.card}>

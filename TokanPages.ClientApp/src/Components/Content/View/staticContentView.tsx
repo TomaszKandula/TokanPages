@@ -24,7 +24,7 @@ export const StaticContentView = (props: IBinding): JSX.Element =>
 {
     const classes = StaticContentStyle();
     return (
-        <section>
+        <section className={classes.section}>
             <Container className={classes.container}>
                 <Box py={12}>
                     <div data-aos="fade-down">
