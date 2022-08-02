@@ -2,6 +2,7 @@ export interface IActivateAccountContentDto
 {
     content: 
     {
+        language: string;
 		onProcessing:
 		{
         	type: string;

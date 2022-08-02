@@ -9,6 +9,7 @@ describe("Test component: headerView.", () =>
     {
         const tree = shallow(<HeaderView isLoading={false} content=
         {{
+            language: "eng",
             photo: "",
             caption: "Welcome to my web page",
             description: "I do programming for a living...",

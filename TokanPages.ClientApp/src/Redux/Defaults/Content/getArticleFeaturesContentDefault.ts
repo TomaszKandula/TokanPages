@@ -5,6 +5,7 @@ export const GetArticleFeatContentDefault: IGetArticleFeaturesContent =
     isLoading: false,
     content: 
     {
+        language: "",
         title: "",
         description: "",
         text1: "",

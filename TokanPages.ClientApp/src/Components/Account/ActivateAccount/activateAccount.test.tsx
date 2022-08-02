@@ -27,6 +27,7 @@ describe("Test account group component: activateAccount.", () =>
     const testId = "dba4043c-7428-4f72-ba13-fe782c7a88fa";
     const testContent = 
     {
+        language: "eng",
         onProcessing:
         {
             type: "Processing",

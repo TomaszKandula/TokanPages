@@ -5,6 +5,7 @@ export interface IFooterContentDto
 {
     content: 
     {
+        language: string;
         terms: ILink,
         policy: ILink,
         copyright: string,

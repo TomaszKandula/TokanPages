@@ -15,6 +15,7 @@ describe("Test account group component: resetPassword.", () =>
 {
     const testContent = 
     {
+        language: "eng",
         caption: "Reset Password",
         button: "Reset",
         labelEmail: "Email address"

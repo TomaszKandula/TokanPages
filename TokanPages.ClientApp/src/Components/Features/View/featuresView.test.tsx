@@ -9,6 +9,7 @@ describe("Test articles group component: ArticleFeaturesView.", () =>
     {
         const tree = shallow(<FeaturesView isLoading={false} content=
         {{            
+            language: "eng",
             title: "Articles",
             description: "I write regularly...",
             text1: ".NET Core, Azure, databases and others.",
