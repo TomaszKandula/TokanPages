@@ -5,6 +5,7 @@ export const GetAccountContentDefault: IGetAccountContent =
     isLoading: false,
     content: 
     {
+        language: "",
         sectionAccessDenied: 
         {
             accessDeniedCaption: "",

@@ -2,6 +2,7 @@ export interface IUserSigninContentDto
 {
     content: 
     {
+        language: string;
         caption: string;
         button: string;
         link1: string;

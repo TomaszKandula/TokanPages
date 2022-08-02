@@ -25,6 +25,7 @@ describe("Test account group component: updatePassword.", () =>
 {
     const testContent = 
     {
+        language: "eng",
         caption: "Update Password",
         button: "Submit",
         labelNewPassword: "New password",

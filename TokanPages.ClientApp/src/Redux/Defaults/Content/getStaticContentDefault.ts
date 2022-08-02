@@ -2,6 +2,7 @@ import { IGetStaticContent } from "../../../Redux/States/Content/getStaticConten
 
 export const GetStaticContentDefault: IGetStaticContent = 
 {
+    language: "",
     story:
     {
         isLoading: false,

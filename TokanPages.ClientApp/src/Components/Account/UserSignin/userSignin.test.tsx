@@ -16,6 +16,7 @@ describe("Test account group component: userSignin.", () =>
 {
     const testContent = 
     {
+        language: "eng",
         caption: "Sign in",
         button: "Sign in",
         link1: "Don't have an account?",

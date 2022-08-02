@@ -5,6 +5,7 @@ export const GetFooterContentDefault: IGetFooterContent =
     isLoading: false,
     content: 
     {
+        language: "",
         terms: 
         {
             text: "",

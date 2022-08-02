@@ -5,6 +5,7 @@ export const GetFeaturedContentDefault: IGetFeaturedContent =
     isLoading: false,
     content: 
     {
+        language: "",
         caption: "",
         text: "",
         title1: "",

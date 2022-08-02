@@ -5,8 +5,9 @@ export const GetResetPasswordContentDefault: IGetResetPasswordContent =
     isLoading: false,
     content: 
     {
+        language: "",
         caption: "",
         button: "",
         labelEmail: ""
-  }    
+    }    
 }

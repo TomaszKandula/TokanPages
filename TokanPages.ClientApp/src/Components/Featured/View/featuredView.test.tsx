@@ -9,6 +9,7 @@ describe("Test component: featuredView.", () =>
     {
         const tree = shallow(<FeaturedView isLoading={false} content=
         {{
+            language: "eng",
             caption: "Featured",
             text: "I picked three articles that I wrote...",
             title1: "Memory Management",

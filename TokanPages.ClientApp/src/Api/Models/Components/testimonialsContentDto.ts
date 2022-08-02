@@ -2,6 +2,7 @@ export interface ITestimonialsContentDto
 {
     content: 
     {
+        language: string;
         caption: string;
         subtitle: string;
         photo1: string;

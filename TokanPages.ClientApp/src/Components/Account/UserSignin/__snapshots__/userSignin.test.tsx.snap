@@ -9,6 +9,7 @@ exports[`Test account group component: userSignin. Renders correctly '<UserSigni
         "caption": "Sign in",
         "labelEmail": "Email address",
         "labelPassword": "Password",
+        "language": "eng",
         "link1": "Don't have an account?",
         "link2": "Forgot password?",
       }

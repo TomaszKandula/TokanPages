@@ -9,6 +9,7 @@ describe("Test component: testimonialsView.", () =>
     {
         const tree = shallow(<TestimonialsView isLoading={false} content=
         {{
+            language: "eng",
             caption: "Testimonials",
             subtitle: "You can read few commendations...",
             photo1: "",

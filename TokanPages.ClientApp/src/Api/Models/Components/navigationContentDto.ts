@@ -4,6 +4,7 @@ export interface INavigationContentDto
 {
     content: 
     {
+        language: string;
         logo: string;
         menu:
         {

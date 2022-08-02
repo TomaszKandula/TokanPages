@@ -7,6 +7,7 @@ interface IStaticContentItem extends ITextObject
 
 export interface IGetStaticContent
 {
+    language: string;
     story: IStaticContentItem,
     terms: IStaticContentItem,
     policy: IStaticContentItem
