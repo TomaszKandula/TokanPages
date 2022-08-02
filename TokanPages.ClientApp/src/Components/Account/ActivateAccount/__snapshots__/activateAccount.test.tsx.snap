@@ -5,6 +5,7 @@ exports[`Test account group component: activateAccount. Renders correctly '<Acti
   <ActivateAccount
     content={
       Object {
+        "language": "eng",
         "onError": Object {
           "button": "Retry",
           "caption": "Account Activation",
