@@ -3,6 +3,10 @@ import { Colours } from "../../../../Theme";
 
 export const UpdatePasswordStyle = makeStyles(() => (
 {
+    section:
+    {
+        backgroundColor: Colours.colours.white
+    },
     account:
     {
         fontSize: 72,

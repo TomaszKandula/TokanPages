@@ -40,7 +40,7 @@ export const ArticleListView = (props: IBinding): JSX.Element =>
     }
 
     return (
-        <section>
+        <section className={classes.section}>
             <Container className={classes.container}>
                 <Box pt={12} pb={8}>
                     <div data-aos="fade-down">

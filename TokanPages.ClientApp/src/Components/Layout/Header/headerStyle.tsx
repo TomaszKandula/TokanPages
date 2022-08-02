@@ -3,6 +3,10 @@ import { Colours } from "../../../Theme";
 
 export const HeaderStyle = makeStyles((theme) => (
 {
+    section:
+    {
+        backgroundColor: Colours.colours.white
+    },
     top_margin:
     {
         marginTop: "85px"

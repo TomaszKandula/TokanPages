@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test articles group component: ArticleListView. Renders correctly '<ArticleListView />' when content is loaded. 1`] = `
-<section>
+<section
+  className="makeStyles-section-1"
+>
   <WithStyles(ForwardRef(Container))
-    className="makeStyles-container-1"
+    className="makeStyles-container-2"
   >
     <Styled(MuiBox)
       pb={8}
@@ -20,7 +22,7 @@ exports[`Test articles group component: ArticleListView. Renders correctly '<Art
           </WithStyles(ForwardRef(IconButton))>
         </Link>
         <WithStyles(ForwardRef(Divider))
-          className="makeStyles-divider-2"
+          className="makeStyles-divider-3"
         />
       </div>
       <WithStyles(ForwardRef(Grid))

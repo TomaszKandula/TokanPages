@@ -60,7 +60,7 @@ export const UserSignupView = (props: IBinding): JSX.Element =>
     }
 
     return (
-        <section>
+        <section className={classes.section}>
             <Container maxWidth="sm">
                 <Box pt={18} pb={10}>
                     <Card elevation={0} className={classes.card}>

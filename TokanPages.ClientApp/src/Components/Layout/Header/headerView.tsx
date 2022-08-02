@@ -31,7 +31,7 @@ export const HeaderView = (props: IGetHeaderContent): JSX.Element =>
     }
 
     return (
-        <section>
+        <section className={classes.section}>
             <Container maxWidth="lg">
                 <Grid container className={classes.top_margin}>
                     <Grid item xs={12} sm={6}>

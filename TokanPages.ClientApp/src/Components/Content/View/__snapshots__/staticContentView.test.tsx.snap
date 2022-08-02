@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test component: staticContentView. Renders correctly '<StaticContentView />' when content is loaded. 1`] = `
-<section>
+<section
+  className="makeStyles-section-1"
+>
   <WithStyles(ForwardRef(Container))
-    className="makeStyles-container-1"
+    className="makeStyles-container-2"
   >
     <Styled(MuiBox)
       py={12}
@@ -19,7 +21,7 @@ exports[`Test component: staticContentView. Renders correctly '<StaticContentVie
           </WithStyles(ForwardRef(IconButton))>
         </Link>
         <WithStyles(ForwardRef(Divider))
-          className="makeStyles-divider-2"
+          className="makeStyles-divider-3"
         />
       </div>
       <div

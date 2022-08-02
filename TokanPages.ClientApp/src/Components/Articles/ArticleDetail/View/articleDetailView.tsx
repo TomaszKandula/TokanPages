@@ -42,7 +42,7 @@ export const ArticleDetailView = (props: IBinding): JSX.Element =>
 {
     const classes = ArticleDetailStyle();
     return (
-        <section>
+        <section className={classes.section}>
             <Container className={classes.container}>
                 <Box py={12}>
                     <div data-aos="fade-down">

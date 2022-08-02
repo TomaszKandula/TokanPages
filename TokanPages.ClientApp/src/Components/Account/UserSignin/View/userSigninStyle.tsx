@@ -3,6 +3,10 @@ import { Colours } from "../../../../Theme";
 
 export const UserSigninStyle = makeStyles((theme) => (
 {
+    section:
+    {
+        backgroundColor: Colours.colours.white
+    },
     tertiaryAction: 
     {
         [theme.breakpoints.up("sm")]: 
