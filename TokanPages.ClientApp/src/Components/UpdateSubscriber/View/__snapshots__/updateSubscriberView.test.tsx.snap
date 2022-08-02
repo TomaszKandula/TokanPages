@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test component: updateSubscriberView. Renders correctly '<UpdateSubscriberView />' when content is loaded. 1`] = `
-<section>
+<section
+  className="makeStyles-section-1"
+>
   <WithStyles(ForwardRef(Container))
     maxWidth="sm"
   >
@@ -13,17 +15,17 @@ exports[`Test component: updateSubscriberView. Renders correctly '<UpdateSubscri
         elevation={4}
       >
         <WithStyles(ForwardRef(CardContent))
-          className="makeStyles-card-3"
+          className="makeStyles-card-4"
         >
           <Styled(MuiBox)
             mb={3}
             textAlign="center"
           >
             <Memo(ForwardRef(AccountCircleIcon))
-              className="makeStyles-account-1"
+              className="makeStyles-account-2"
             />
             <WithStyles(ForwardRef(Typography))
-              className="makeStyles-caption-2"
+              className="makeStyles-caption-3"
             >
               Update subscription email
             </WithStyles(ForwardRef(Typography))>

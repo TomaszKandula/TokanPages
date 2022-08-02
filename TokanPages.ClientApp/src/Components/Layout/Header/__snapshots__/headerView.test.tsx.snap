@@ -1,12 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test component: headerView. Renders correctly '<HeaderView />' when content is loaded. 1`] = `
-<section>
+<section
+  className="makeStyles-section-1"
+>
   <WithStyles(ForwardRef(Container))
     maxWidth="lg"
   >
     <WithStyles(ForwardRef(Grid))
-      className="makeStyles-top_margin-1"
+      className="makeStyles-top_margin-2"
       container={true}
     >
       <WithStyles(ForwardRef(Grid))
@@ -15,7 +17,7 @@ exports[`Test component: headerView. Renders correctly '<HeaderView />' when con
         xs={12}
       >
         <Styled(MuiBox)
-          className="makeStyles-image_box-7"
+          className="makeStyles-image_box-8"
         />
       </WithStyles(ForwardRef(Grid))>
       <WithStyles(ForwardRef(Grid))
@@ -24,7 +26,7 @@ exports[`Test component: headerView. Renders correctly '<HeaderView />' when con
         xs={12}
       >
         <Styled(MuiBox)
-          className="makeStyles-content_box-4"
+          className="makeStyles-content_box-5"
         >
           <WithStyles(ForwardRef(Typography))
             gutterBottom={true}
@@ -33,7 +35,7 @@ exports[`Test component: headerView. Renders correctly '<HeaderView />' when con
             Welcome to my web page
           </WithStyles(ForwardRef(Typography))>
           <WithStyles(ForwardRef(Typography))
-            className="makeStyles-content_description-5"
+            className="makeStyles-content_description-6"
             variant="h6"
           >
             I do programming for a living...

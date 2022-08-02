@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test articles group component: ArticleDetailView. Renders correctly '<ArticleDetailView />' when content is loaded. 1`] = `
-<section>
+<section
+  className="makeStyles-section-1"
+>
   <WithStyles(ForwardRef(Container))
-    className="makeStyles-container-1"
+    className="makeStyles-container-2"
   >
     <Styled(MuiBox)
       py={12}
@@ -31,7 +33,7 @@ exports[`Test articles group component: ArticleDetailView. Renders correctly '<A
           >
             <WithStyles(ForwardRef(Typography))
               align="right"
-              className="makeStyles-readCount-4"
+              className="makeStyles-readCount-5"
               component="p"
               variant="subtitle1"
             >
@@ -41,7 +43,7 @@ exports[`Test articles group component: ArticleDetailView. Renders correctly '<A
           </WithStyles(ForwardRef(Grid))>
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Divider))
-          className="makeStyles-dividerTop-2"
+          className="makeStyles-dividerTop-3"
         />
         <WithStyles(ForwardRef(Grid))
           container={true}
@@ -66,7 +68,7 @@ exports[`Test articles group component: ArticleDetailView. Renders correctly '<A
           >
             <WithStyles(ForwardRef(Typography))
               align="left"
-              className="makeStyles-aliasName-5"
+              className="makeStyles-aliasName-6"
               component="div"
               variant="subtitle1"
             >
@@ -84,7 +86,7 @@ exports[`Test articles group component: ArticleDetailView. Renders correctly '<A
                   "vertical": "bottom",
                 }
               }
-              className="makeStyles-popover-10"
+              className="makeStyles-popover-11"
               disableRestoreFocus={true}
               id="mouse-over-popover"
               onClose={[MockFunction]}
@@ -179,7 +181,7 @@ exports[`Test articles group component: ArticleDetailView. Renders correctly '<A
               arrow={true}
               title={
                 <span
-                  className="makeStyles-likesTip-9"
+                  className="makeStyles-likesTip-10"
                 >
                   <Emoji
                     text="25"
@@ -188,7 +190,7 @@ exports[`Test articles group component: ArticleDetailView. Renders correctly '<A
               }
             >
               <Memo(ForwardRef(ThumbUpIcon))
-                className="makeStyles-thumbsMedium-8"
+                className="makeStyles-thumbsMedium-9"
                 onClick={[MockFunction]}
               />
             </WithStyles(ForwardRef(Tooltip))>
@@ -208,7 +210,7 @@ exports[`Test articles group component: ArticleDetailView. Renders correctly '<A
         </WithStyles(ForwardRef(Grid))>
       </Styled(MuiBox)>
       <WithStyles(ForwardRef(Divider))
-        className="makeStyles-dividerBottom-3"
+        className="makeStyles-dividerBottom-4"
       />
       <WithStyles(ForwardRef(Grid))
         container={true}
@@ -228,7 +230,7 @@ exports[`Test articles group component: ArticleDetailView. Renders correctly '<A
         >
           <WithStyles(ForwardRef(Typography))
             align="left"
-            className="makeStyles-aliasName-5"
+            className="makeStyles-aliasName-6"
             color="textSecondary"
             component="span"
             variant="h6"
@@ -240,7 +242,7 @@ exports[`Test articles group component: ArticleDetailView. Renders correctly '<A
           >
             <WithStyles(ForwardRef(Typography))
               align="left"
-              className="makeStyles-aliasName-5"
+              className="makeStyles-aliasName-6"
               component="span"
               variant="h6"
             >
@@ -249,7 +251,7 @@ exports[`Test articles group component: ArticleDetailView. Renders correctly '<A
           </Styled(MuiBox)>
           <WithStyles(ForwardRef(Typography))
             align="left"
-            className="makeStyles-aliasName-5"
+            className="makeStyles-aliasName-6"
             color="textSecondary"
             component="span"
             variant="subtitle1"

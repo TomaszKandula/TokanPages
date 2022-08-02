@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test account group component: userSigninView. Renders correctly '<UserSigninView />' when content is loaded. 1`] = `
-<section>
+<section
+  className="makeStyles-section-1"
+>
   <WithStyles(ForwardRef(Container))
     maxWidth="sm"
   >
@@ -10,21 +12,21 @@ exports[`Test account group component: userSigninView. Renders correctly '<UserS
       pt={18}
     >
       <WithStyles(ForwardRef(Card))
-        className="makeStyles-card-5"
+        className="makeStyles-card-6"
         elevation={0}
       >
         <WithStyles(ForwardRef(CardContent))
-          className="makeStyles-card_content-6"
+          className="makeStyles-card_content-7"
         >
           <Styled(MuiBox)
             mb={3}
             textAlign="center"
           >
             <Memo(ForwardRef(AccountCircleIcon))
-              className="makeStyles-account-3"
+              className="makeStyles-account-4"
             />
             <WithStyles(ForwardRef(Typography))
-              className="makeStyles-caption-4"
+              className="makeStyles-caption-5"
             >
               Sign in
             </WithStyles(ForwardRef(Typography))>
@@ -74,7 +76,7 @@ exports[`Test account group component: userSigninView. Renders correctly '<UserS
               <ActiveButton />
             </Styled(MuiBox)>
             <WithStyles(ForwardRef(Grid))
-              className="makeStyles-actions-2"
+              className="makeStyles-actions-3"
               container={true}
               spacing={2}
             >
@@ -89,7 +91,7 @@ exports[`Test account group component: userSigninView. Renders correctly '<UserS
                 />
               </WithStyles(ForwardRef(Grid))>
               <WithStyles(ForwardRef(Grid))
-                className="makeStyles-tertiaryAction-1"
+                className="makeStyles-tertiaryAction-2"
                 item={true}
                 sm={6}
                 xs={12}
