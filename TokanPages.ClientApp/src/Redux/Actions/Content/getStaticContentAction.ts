@@ -57,8 +57,10 @@ const DispatchCall = async (dispatch: (action: TKnownActions) => void, url: stri
 
 export const ActionCreators = 
 {
-    getStoryContent: (isLanguageChanged: boolean = false):  AppThunkAction<TKnownActions> => async (dispatch, getState) => 
+    getStoryContent: ():  AppThunkAction<TKnownActions> => async (dispatch, getState) => 
     {
+        const isLanguageChanged = getState().userLanguage.id !== getState().getStaticContent.language;
+
         if (getState().getStaticContent.story !== combinedDefaults.getStaticContent.story && !isLanguageChanged) 
             return;
 
@@ -67,8 +69,10 @@ export const ActionCreators =
 
         await DispatchCall(dispatch, `${STORY_URL}${queryParam}`, REQUEST_STORY, RECEIVE_STORY);
     },
-    getTermsContent: (isLanguageChanged: boolean = false):  AppThunkAction<TKnownActions> => async (dispatch, getState) => 
+    getTermsContent: ():  AppThunkAction<TKnownActions> => async (dispatch, getState) => 
     {
+        const isLanguageChanged = getState().userLanguage.id !== getState().getStaticContent.language;
+
         if (getState().getStaticContent.terms !== combinedDefaults.getStaticContent.terms && !isLanguageChanged) 
             return;
 
@@ -77,8 +81,10 @@ export const ActionCreators =
 
         await DispatchCall(dispatch, `${TERMS_URL}${queryParam}`, REQUEST_TERMS, RECEIVE_TERMS);
     },
-    getPolicyContent: (isLanguageChanged: boolean = false):  AppThunkAction<TKnownActions> => async (dispatch, getState) => 
+    getPolicyContent: ():  AppThunkAction<TKnownActions> => async (dispatch, getState) => 
     {
+        const isLanguageChanged = getState().userLanguage.id !== getState().getStaticContent.language;
+
         if (getState().getStaticContent.policy !== combinedDefaults.getStaticContent.policy && !isLanguageChanged) 
             return;
 
