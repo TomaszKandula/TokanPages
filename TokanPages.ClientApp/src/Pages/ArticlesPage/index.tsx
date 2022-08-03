@@ -23,6 +23,7 @@ export const ArticlesPage = (): JSX.Element =>
     const dispatch = useDispatch();
     const id = queryParam.get("id");
 
+    const language = useSelector((state: IApplicationState) => state.userLanguage);
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
 
@@ -31,7 +32,7 @@ export const ArticlesPage = (): JSX.Element =>
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
     }, 
-    [ dispatch ]);
+    [ dispatch, language.id ]);
 
     return (
         <>

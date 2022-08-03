@@ -13,6 +13,7 @@ export const TermsPage = (): JSX.Element =>
 {
     const dispatch = useDispatch();
     
+    const language = useSelector((state: IApplicationState) => state.userLanguage);
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
 
@@ -21,7 +22,7 @@ export const TermsPage = (): JSX.Element =>
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
     }, 
-    [ dispatch ]);
+    [ dispatch, language.id ]);
 
     return (
         <>

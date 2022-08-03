@@ -21,6 +21,7 @@ export const ActivationPage = (): JSX.Element =>
     const dispatch = useDispatch();
     const id = queryParam.get("id");
 
+    const language = useSelector((state: IApplicationState) => state.userLanguage);
     const activation = useSelector((state: IApplicationState) => state.getActivateAccountContent);
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
@@ -31,7 +32,7 @@ export const ActivationPage = (): JSX.Element =>
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
     }, 
-    [ dispatch ]);
+    [ dispatch, language.id ]);
 
     const ErrorMessage = () => 
     {
