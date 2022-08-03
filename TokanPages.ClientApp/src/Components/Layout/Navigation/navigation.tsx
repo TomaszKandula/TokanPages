@@ -2,8 +2,8 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "Redux/applicationState";
 import { IGetNavigationContent } from "../../../Redux/States/Content/getNavigationContentState";
-import { ActionCreators } from "../../../Redux/Actions/Users/storeUserDataAction";
-import { GetAllPagesContent } from "../../../Redux/applicationDispatch";
+import { ActionCreators as UserDataAction } from "../../../Redux/Actions/Users/storeUserDataAction";
+import { ActionCreators as UserLanguageAction } from "../../../Redux/Actions/userLanguageAction";
 import { GetLanguages, SetUserLanguage, GetDefaultLanguageId } from "../../../Shared/Services/languageService";
 import { NavigationView } from "./View/navigationView";
 import Validate from "validate.js";
@@ -24,7 +24,7 @@ export const Navigation = (props: IGetNavigationContent): JSX.Element =>
         const value = event.target.value as string;
         setLanguage(value);
         SetUserLanguage(value);
-        GetAllPagesContent(dispatch, true);
+        dispatch(UserLanguageAction.setAnotherLanguage(value));
     };
 
     const toggleDrawer = (open: boolean) => (event: any) => 
@@ -36,7 +36,7 @@ export const Navigation = (props: IGetNavigationContent): JSX.Element =>
     const onAvatarClick = () => 
     {
         if (isAnonymous) return;
-        dispatch(ActionCreators.show(true));
+        dispatch(UserDataAction.show(true));
     }
 
     return (<NavigationView bind=
