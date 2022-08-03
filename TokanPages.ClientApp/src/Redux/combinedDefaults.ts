@@ -39,11 +39,14 @@ import { UpdateArticleDefault } from "./Defaults/Articles/updateArticleDefault";
 import { UpdateSubscriberDefault } from "./Defaults/Subscribers/updateSubscriberDefault";
 import { UpdateUserDefault } from "./Defaults/Users/updateUserDefault";
 import { UpdateUserPasswordDefault } from "./Defaults/Users/updateUserPasswordDefault";
+import { UserLanguageDefault } from "./Defaults/userLanguageDefault";
 
 export const combinedDefaults: IApplicationState = 
 {
     raiseError: RaiseErrorDefault,
     raiseDialog: RaiseDialogDefault,
+
+    userLanguage: UserLanguageDefault,
 
     listArticles: ListArticlesDefault,
     selectArticle: SelectArticleDefault,

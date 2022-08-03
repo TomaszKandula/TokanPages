@@ -38,11 +38,14 @@ import { IUpdateArticle } from "./States/Articles/updateArticleState";
 import { IUpdateSubscriber } from "./States/Subscribers/updateSubscriberState";
 import { IUpdateUser } from "./States/Users/updateUserState";
 import { IUpdateUserPassword } from "./States/Users/updateUserPasswordState";
+import { IUserLanguage } from "./States/userLanguageState";
 
 export interface IApplicationState 
 {
     raiseError: IRaiseError;
     raiseDialog: IRaiseDialog;
+
+    userLanguage: IUserLanguage,
 
     listArticles: IArticles;
     selectArticle: IArticle;

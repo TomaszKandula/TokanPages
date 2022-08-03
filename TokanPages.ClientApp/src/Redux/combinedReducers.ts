@@ -38,11 +38,14 @@ import { UpdateArticleReducer } from "./Reducers/Articles/updateArticleReducer";
 import { UpdateSubscriberReducer } from "./Reducers/Subscribers/updateSubscriberReducer";
 import { UpdateUserPasswordReducer } from "./Reducers/Users/updateUserPasswordReducer";
 import { UpdateUserReducer } from "./Reducers/Users/updateUserReducer";
+import { UserLanguageReducer } from "./Reducers/userLanguageReducer";
 
 export const combinedReducers = 
 {
     raiseError: RaiseErrorReducer,
     raiseDialog: RaiseDialogReducer,
+
+    userLanguage: UserLanguageReducer,
 
     listArticles: ListArticlesReducer,
     selectArticle: SelectArticleReducer,
