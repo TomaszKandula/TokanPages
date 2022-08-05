@@ -24,7 +24,7 @@ export const SignoutPage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(SignoutContent.getUserSignoutContent());
     }, 
-    [ dispatch, language.id ]);
+    [ dispatch, language?.id ]);
 
     return (
         <>

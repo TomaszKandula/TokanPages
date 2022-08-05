@@ -59,7 +59,7 @@ export const MainPage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(CookiesContent.getCookiesPromptContent());    
     }, 
-    [ dispatch, language.id ]);
+    [ dispatch, language?.id ]);
 
     return (
         <>

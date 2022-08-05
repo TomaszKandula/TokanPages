@@ -29,7 +29,7 @@ s                <Button variant="contained" className={classes.button}>
     { 
         dispatch(ActionCreators.getWrongPagePromptContent()) 
     }, 
-    [ dispatch, language.id ]);
+    [ dispatch, language?.id ]);
 
     return (
         <section>

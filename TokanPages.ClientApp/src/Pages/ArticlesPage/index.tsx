@@ -32,7 +32,7 @@ export const ArticlesPage = (): JSX.Element =>
         dispatch(NavigationContent.getNavigationContent());
         dispatch(FooterContent.getFooterContent());
     }, 
-    [ dispatch, language.id ]);
+    [ dispatch, language?.id ]);
 
     return (
         <>

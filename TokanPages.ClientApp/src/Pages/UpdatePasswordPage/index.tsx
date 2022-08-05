@@ -24,7 +24,7 @@ export const UpdatePasswordPage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(UpdateFormContent.getUpdatePasswordContent());
     }, 
-    [ dispatch, language.id ]);
+    [ dispatch, language?.id ]);
     
     return (
         <>     

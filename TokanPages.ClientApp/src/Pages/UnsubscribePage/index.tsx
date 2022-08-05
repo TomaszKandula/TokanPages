@@ -32,7 +32,7 @@ export const UnsubscribePage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(UnsubscribeContent.getUnsubscribeContent());
     }, 
-    [ dispatch, language.id ]);
+    [ dispatch, language?.id ]);
     
     return(
         <>

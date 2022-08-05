@@ -24,7 +24,7 @@ export const TermsPage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(TermsContent.getTermsContent());
     }, 
-    [ dispatch, language.id ]);
+    [ dispatch, language?.id ]);
 
     return (
         <>

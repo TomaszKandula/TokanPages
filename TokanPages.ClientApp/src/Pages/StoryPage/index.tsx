@@ -24,7 +24,7 @@ export const StoryPage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(StoryContent.getStoryContent());
     }, 
-    [ dispatch, language.id ]);
+    [ dispatch, language?.id ]);
     
     return (
         <>

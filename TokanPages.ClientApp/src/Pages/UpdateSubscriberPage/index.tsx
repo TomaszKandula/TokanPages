@@ -32,7 +32,7 @@ export const UpdateSubscriberPage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(UpdateSubscriberContent.getUpdateSubscriberContent());
     }, 
-    [ dispatch, language.id ]);
+    [ dispatch, language?.id ]);
     
     return(
         <>

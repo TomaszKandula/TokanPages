@@ -22,7 +22,7 @@ export const AccountPage = (): JSX.Element =>
         dispatch(AccountContent.getAccountContent());
         dispatch(FooterContent.getFooterContent());
     }, 
-    [ dispatch, language.id ]);
+    [ dispatch, language?.id ]);
 
     return(
         <>

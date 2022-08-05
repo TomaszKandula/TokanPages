@@ -24,7 +24,7 @@ export const ResetPasswordPage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(ResetFormContent.getResetPasswordContent());
     }, 
-    [ dispatch, language.id ]);
+    [ dispatch, language?.id ]);
     
     return (
         <>     

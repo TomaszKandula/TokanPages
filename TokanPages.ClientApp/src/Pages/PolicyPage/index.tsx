@@ -24,7 +24,7 @@ export const PolicyPage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(PolicyContent.getPolicyContent());
     }, 
-    [ dispatch, language.id ]);
+    [ dispatch, language?.id ]);
 
     return (
         <>     

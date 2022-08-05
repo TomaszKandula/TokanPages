@@ -24,7 +24,7 @@ export const SignupPage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(SignupFormContent.getUserSignupContent());
     }, 
-    [ dispatch, language.id ]);
+    [ dispatch, language?.id ]);
 
     return (
         <>

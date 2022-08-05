@@ -24,7 +24,7 @@ export const ContactPage = () =>
         dispatch(FooterContent.getFooterContent());
         dispatch(ContactFormContent.getContactFormContent());
     }, 
-    [ dispatch, language.id ]);
+    [ dispatch, language?.id ]);
 
     return (
         <>

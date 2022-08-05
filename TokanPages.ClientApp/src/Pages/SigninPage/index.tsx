@@ -24,7 +24,7 @@ export const SigninPage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(SigninFormContent.getUserSigninContent());
     }, 
-    [ dispatch, language.id ]);
+    [ dispatch, language?.id ]);
     
     return (
         <>
