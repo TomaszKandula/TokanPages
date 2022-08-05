@@ -23,8 +23,13 @@ s                <Button variant="contained" className={classes.button}>
         );
     }
 
+    const language = useSelector((state: IApplicationState) => state.userLanguage);
     const wrongPagePrompt = useSelector((state: IApplicationState) => state.getWrongPagePromptContent);
-    React.useEffect(() => { dispatch(ActionCreators.getWrongPagePromptContent()) }, [ dispatch ]);
+    React.useEffect(() => 
+    { 
+        dispatch(ActionCreators.getWrongPagePromptContent()) 
+    }, 
+    [ dispatch, language?.id ]);
 
     return (
         <section>

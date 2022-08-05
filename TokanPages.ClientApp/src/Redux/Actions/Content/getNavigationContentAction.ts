@@ -17,8 +17,10 @@ export type TKnownActions = IRequestNavigationContent | IReceiveNavigationConten
 
 export const ActionCreators =
 {
-    getNavigationContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getNavigationContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
+        const isLanguageChanged = getState().userLanguage.id !== getState().getNavigationContent.content.language;
+
         if (getState().getNavigationContent.content !== combinedDefaults.getNavigationContent.content && !isLanguageChanged)
             return;
 

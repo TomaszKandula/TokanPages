@@ -21,6 +21,7 @@ export const UpdateSubscriberPage = (): JSX.Element =>
     const dispatch = useDispatch();
     const id = queryParam.get("id") as string; 
 
+    const language = useSelector((state: IApplicationState) => state.userLanguage);
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const updateSubscriber = useSelector((state: IApplicationState) => state.getUpdateSubscriberContent);
@@ -31,7 +32,7 @@ export const UpdateSubscriberPage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(UpdateSubscriberContent.getUpdateSubscriberContent());
     }, 
-    [ dispatch ]);
+    [ dispatch, language?.id ]);
     
     return(
         <>

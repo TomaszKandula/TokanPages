@@ -13,6 +13,7 @@ export const ResetPasswordPage = (): JSX.Element =>
 {
     const dispatch = useDispatch();
     
+    const language = useSelector((state: IApplicationState) => state.userLanguage);
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const resetForm = useSelector((state: IApplicationState) => state.getResetPasswordContent);
@@ -23,7 +24,7 @@ export const ResetPasswordPage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(ResetFormContent.getResetPasswordContent());
     }, 
-    [ dispatch ]);
+    [ dispatch, language?.id ]);
     
     return (
         <>     

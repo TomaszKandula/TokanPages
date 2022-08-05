@@ -13,7 +13,6 @@ import { GetHeaderContentReducer } from "./Reducers/Content/getHeaderContentRedu
 import { GetNavigationContentReducer } from "./Reducers/Content/getNavigationContentReducer";
 import { GetNewsletterContentReducer } from "./Reducers/Content/getNewsletterContentReducer";
 import { GetResetPasswordContentReducer } from "./Reducers/Content/getResetPasswordContentReducer";
-import { GetStaticContentReducer } from "./Reducers/Content/getStaticContentReducer";
 import { GetTestimonialsContentReducer } from "./Reducers/Content/getTestimonialsContentReducer";
 import { GetUnsubscribeContentReducer } from "./Reducers/Content/getUnsubscribeContentReducer";
 import { GetUpdatePasswordContentReducer } from "./Reducers/Content/getUpdatePasswordContentReducer";
@@ -38,11 +37,17 @@ import { UpdateArticleReducer } from "./Reducers/Articles/updateArticleReducer";
 import { UpdateSubscriberReducer } from "./Reducers/Subscribers/updateSubscriberReducer";
 import { UpdateUserPasswordReducer } from "./Reducers/Users/updateUserPasswordReducer";
 import { UpdateUserReducer } from "./Reducers/Users/updateUserReducer";
+import { UserLanguageReducer } from "./Reducers/userLanguageReducer";
+import { GetPolicyContentReducer } from "./Reducers/Content/getPolicyContentReducer";
+import { GetTermsContentReducer } from "./Reducers/Content/getTermsContentReducer";
+import { GetStoryContentReducer } from "./Reducers/Content/getStoryContentReducer";
 
 export const combinedReducers = 
 {
     raiseError: RaiseErrorReducer,
     raiseDialog: RaiseDialogReducer,
+
+    userLanguage: UserLanguageReducer,
 
     listArticles: ListArticlesReducer,
     selectArticle: SelectArticleReducer,
@@ -62,10 +67,14 @@ export const combinedReducers =
     updateUserPassword: UpdateUserPasswordReducer,
     resetUserPassword: ResetUserPasswordReducer,
 
+    getPolicyContent: GetPolicyContentReducer,
+    getTermsContent: GetTermsContentReducer,
+    getStoryContent: GetStoryContentReducer,
+
     getNavigationContent: GetNavigationContentReducer,
     getHeaderContent: GetHeaderContentReducer,
     getFooterContent: GetFooterContentReducer,
-    getStaticContent: GetStaticContentReducer,
+
     getAccountContent: GetAccountContentReducer, 
     getActivateAccountContent: GetActivateAccountContentReducer,
 

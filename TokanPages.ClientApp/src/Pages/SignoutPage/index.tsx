@@ -13,6 +13,7 @@ export const SignoutPage = (): JSX.Element =>
 {
     const dispatch = useDispatch();
     
+    const language = useSelector((state: IApplicationState) => state.userLanguage);
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const signoutView = useSelector((state: IApplicationState) => state.getUserSignoutContent);
@@ -23,7 +24,7 @@ export const SignoutPage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(SignoutContent.getUserSignoutContent());
     }, 
-    [ dispatch ]);
+    [ dispatch, language?.id ]);
 
     return (
         <>

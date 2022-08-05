@@ -13,6 +13,7 @@ export const UpdatePasswordPage = (): JSX.Element =>
 {
     const dispatch = useDispatch();
     
+    const language = useSelector((state: IApplicationState) => state.userLanguage);
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const updateForm = useSelector((state: IApplicationState) => state.getUpdatePasswordContent);
@@ -23,7 +24,7 @@ export const UpdatePasswordPage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(UpdateFormContent.getUpdatePasswordContent());
     }, 
-    [ dispatch ]);
+    [ dispatch, language?.id ]);
     
     return (
         <>     

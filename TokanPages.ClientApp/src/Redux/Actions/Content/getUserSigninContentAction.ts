@@ -17,8 +17,10 @@ export type TKnownActions = IRequestSigninFormContent | IReceiveSigninFormConten
 
 export const ActionCreators = 
 {
-    getUserSigninContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getUserSigninContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
+        const isLanguageChanged = getState().userLanguage.id !== getState().getUserSigninContent.content.language;
+
         if (getState().getUserSigninContent.content !== combinedDefaults.getUserSigninContent.content && !isLanguageChanged) 
             return;
         

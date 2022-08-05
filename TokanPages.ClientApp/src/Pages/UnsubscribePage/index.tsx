@@ -21,6 +21,7 @@ export const UnsubscribePage = (): JSX.Element =>
     const dispatch = useDispatch();
     const id = queryParam.get("id") as string;
     
+    const language = useSelector((state: IApplicationState) => state.userLanguage);
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const unsubscribe = useSelector((state: IApplicationState) => state.getUnsubscribeContent);
@@ -31,7 +32,7 @@ export const UnsubscribePage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(UnsubscribeContent.getUnsubscribeContent());
     }, 
-    [ dispatch ]);
+    [ dispatch, language?.id ]);
     
     return(
         <>

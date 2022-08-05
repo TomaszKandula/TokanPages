@@ -13,6 +13,7 @@ export const SignupPage = (): JSX.Element =>
 {
     const dispatch = useDispatch();
     
+    const language = useSelector((state: IApplicationState) => state.userLanguage);
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
     const signupForm = useSelector((state: IApplicationState) => state.getUserSignupContent);
@@ -23,7 +24,7 @@ export const SignupPage = (): JSX.Element =>
         dispatch(FooterContent.getFooterContent());
         dispatch(SignupFormContent.getUserSignupContent());
     }, 
-    [ dispatch ]);
+    [ dispatch, language?.id ]);
 
     return (
         <>

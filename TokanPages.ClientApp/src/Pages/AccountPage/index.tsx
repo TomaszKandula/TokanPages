@@ -11,6 +11,7 @@ import { UserAccount } from "../../Components/Account";
 export const AccountPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
+    const language = useSelector((state: IApplicationState) => state.userLanguage);
     const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
     const account = useSelector((state: IApplicationState) => state.getAccountContent);
     const footer = useSelector((state: IApplicationState) => state.getFooterContent);
@@ -21,7 +22,7 @@ export const AccountPage = (): JSX.Element =>
         dispatch(AccountContent.getAccountContent());
         dispatch(FooterContent.getFooterContent());
     }, 
-    [ dispatch ]);
+    [ dispatch, language?.id ]);
 
     return(
         <>

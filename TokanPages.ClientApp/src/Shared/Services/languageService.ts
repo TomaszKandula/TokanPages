@@ -2,9 +2,13 @@ import * as CookieHelper from "../Services/CookieServices";
 
 const LanguageSelection = "userLanguage";
 
-export interface ILanguage
+export interface ISelectedLanguage 
 {
     id: string;
+}
+
+export interface ILanguage extends ISelectedLanguage
+{
     name: string;
     isDefault: boolean
 }
