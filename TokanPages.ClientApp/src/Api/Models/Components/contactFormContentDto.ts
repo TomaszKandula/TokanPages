@@ -2,6 +2,7 @@ export interface IContactFormContentDto
 {
     content: 
     {
+        language: string;
         caption: string;
         text: string;
         button: string;

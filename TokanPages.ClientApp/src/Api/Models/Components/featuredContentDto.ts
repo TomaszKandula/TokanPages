@@ -2,6 +2,7 @@ export interface IFeaturedContentDto
 {
     content: 
     {
+        language: string;
         caption: string;
         text: string;
         title1: string;

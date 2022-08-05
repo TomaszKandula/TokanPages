@@ -5,6 +5,7 @@ export const GetTestimonialsContentDefault: IGetTestimonialsContent =
     isLoading: false,
     content: 
     {
+        language: "",
         caption: "",
         subtitle: "",
         photo1: "",

@@ -13,7 +13,6 @@ import { GetHeaderContentDefault } from "./Defaults/Content/getHeaderContentDefa
 import { GetNavigationContentDefault } from "./Defaults/Content/getNavigationContentDefault";
 import { GetNewsletterContentDefault } from "./Defaults/Content/getNewsletterContentDefault";
 import { GetResetPasswordContentDefault } from "./Defaults/Content/getResetPasswordContentDefault";
-import { GetStaticContentDefault } from "./Defaults/Content/getStaticContentDefault";
 import { GetTestimonialsContentDefault } from "./Defaults/Content/getTestimonialsContentDefault";
 import { GetUnsubscribeContentDefault } from "./Defaults/Content/getUnsubscribeContentDefault";
 import { GetUpdatePasswordContentDefault } from "./Defaults/Content/getUpdatePasswordContentDefault";
@@ -39,11 +38,17 @@ import { UpdateArticleDefault } from "./Defaults/Articles/updateArticleDefault";
 import { UpdateSubscriberDefault } from "./Defaults/Subscribers/updateSubscriberDefault";
 import { UpdateUserDefault } from "./Defaults/Users/updateUserDefault";
 import { UpdateUserPasswordDefault } from "./Defaults/Users/updateUserPasswordDefault";
+import { UserLanguageDefault } from "./Defaults/userLanguageDefault";
+import { GetPolicyContentDefault } from "./Defaults/Content/getPolicyContentDefault";
+import { GetTermsContentDefault } from "./Defaults/Content/getTermsContentDefault";
+import { GetStoryContentDefault } from "./Defaults/Content/getStoryContentDefault";
 
 export const combinedDefaults: IApplicationState = 
 {
     raiseError: RaiseErrorDefault,
     raiseDialog: RaiseDialogDefault,
+
+    userLanguage: UserLanguageDefault,
 
     listArticles: ListArticlesDefault,
     selectArticle: SelectArticleDefault,
@@ -63,10 +68,14 @@ export const combinedDefaults: IApplicationState =
     updateUserPassword: UpdateUserPasswordDefault,
     resetUserPassword: ResetUserPasswordDefault,
 
+    getPolicyContent: GetPolicyContentDefault,
+    getTermsContent: GetTermsContentDefault,
+    getStoryContent: GetStoryContentDefault,
+
     getNavigationContent: GetNavigationContentDefault,
     getHeaderContent: GetHeaderContentDefault,
     getFooterContent: GetFooterContentDefault,
-    getStaticContent: GetStaticContentDefault,
+
     getAccountContent: GetAccountContentDefault,
     getActivateAccountContent: GetActivateAccountContentDefault,
 

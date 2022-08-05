@@ -9,17 +9,14 @@ using Backend.Cqrs.Handlers.Commands.Users;
 public class ActivateUserCommandValidatorTest
 {
     [Fact]
-    public void GivenActivationId_WhenActivateUser_ShouldFinishSuccessful() 
+    public void GivenActivationId_WhenActivateUser_ShouldSucceed() 
     {
         // Arrange
-        var activateUserCommand = new ActivateUserCommand 
-        { 
-            ActivationId = Guid.NewGuid()
-        };
+        var command = new ActivateUserCommand { ActivationId = Guid.NewGuid() };
 
         // Act
-        var activateUserCommandValidator = new ActivateUserCommandValidator();
-        var result = activateUserCommandValidator.Validate(activateUserCommand);
+        var validator = new ActivateUserCommandValidator();
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Should().BeEmpty();
@@ -29,14 +26,11 @@ public class ActivateUserCommandValidatorTest
     public void GivenEmptyActivationId_WhenActivateUser_ShouldThrowError() 
     {
         // Arrange
-        var activateUserCommand = new ActivateUserCommand 
-        { 
-            ActivationId = Guid.Empty
-        };
+        var command = new ActivateUserCommand { ActivationId = Guid.Empty };
 
         // Act
-        var activateUserCommandValidator = new ActivateUserCommandValidator();
-        var result = activateUserCommandValidator.Validate(activateUserCommand);
+        var validator = new ActivateUserCommandValidator();
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Count.Should().Be(1);

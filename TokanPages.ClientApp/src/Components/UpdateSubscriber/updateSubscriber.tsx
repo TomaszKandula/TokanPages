@@ -11,7 +11,7 @@ import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { NEWSLETTER_SUCCESS, NEWSLETTER_WARNING, RECEIVED_ERROR_MESSAGE, UPDATE_SUBSCRIBER } from "../../Shared/constants";
 import { IUpdateSubscriberDto } from "../../Api/Models";
-import UpdateSubscriberView from "./updateSubscriberView";
+import { UpdateSubscriberView } from "./View/updateSubscriberView";
 import Validate from "validate.js";
 
 interface IGetUpdateSubscriberContentExtended extends IGetUpdateSubscriberContent
@@ -19,7 +19,7 @@ interface IGetUpdateSubscriberContentExtended extends IGetUpdateSubscriberConten
     id: string;
 }
 
-const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Element =>
+export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Element =>
 {
     const buttonDefaultState = props.id === null ? false : true;
     const dispatch = useDispatch();
@@ -107,5 +107,3 @@ const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Eleme
         labelEmail: props.content.labelEmail
     }}/>);
 }
-
-export default UpdateSubscriber;

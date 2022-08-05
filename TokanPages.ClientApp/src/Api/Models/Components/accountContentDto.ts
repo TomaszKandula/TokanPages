@@ -2,6 +2,7 @@ export interface IAccountContentDto
 {
     content:
     {
+        language: string;
         sectionAccessDenied: ISectionAccessDenied,
         sectionAccountInformation: ISectionAccountInformation,
         sectionAccountPassword: ISectionAccountPassword,

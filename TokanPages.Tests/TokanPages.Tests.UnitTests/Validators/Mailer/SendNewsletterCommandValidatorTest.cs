@@ -8,19 +8,19 @@ using Backend.Shared.Resources;
 using Backend.Dto.Mailer.Models;
 using Backend.Cqrs.Handlers.Commands.Mailer;
 
-public class SendNewsletterCommandValidatorTest
+public class SendNewsletterCommandValidatorTest : TestBase
 {
     [Fact]
-    public void GivenAllFieldsAreCorrect_WhenSendNewsletter_ShouldFinishSuccessful() 
+    public void GivenValidInputs_WhenSendNewsletter_ShouldSucceed() 
     {
         // Arrange
-        var sendNewsletterCommand = new SendNewsletterCommand
+        var command = new SendNewsletterCommand
         {
             Message = "Message",
             Subject = "Subject",
             SubscriberInfo = new List<SubscriberInfo> 
             { 
-                new () 
+                new() 
                 { 
                     Id = Guid.NewGuid().ToString(),
                     Email = "tokan@dfds.com"
@@ -30,44 +30,46 @@ public class SendNewsletterCommandValidatorTest
 
         // Act
         var validator = new SendNewsletterCommandValidator();
-        var result = validator.Validate(sendNewsletterCommand);
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Should().BeEmpty();
     }
 
     [Fact]
-    public void GivenSubscriberInfoIsEmpty_WhenSendNewsletter_ShouldThrowError()
+    public void GivenEmptyInputs_WhenSendNewsletter_ShouldThrowError()
     {
         // Arrange
-        var sendNewsletterCommand = new SendNewsletterCommand
+        var command = new SendNewsletterCommand
         {
-            Message = "Message",
-            Subject = "Subject",
+            Message = string.Empty,
+            Subject = string.Empty,
             SubscriberInfo = new List<SubscriberInfo>()
         };
 
         // Act
         var validator = new SendNewsletterCommandValidator();
-        var result = validator.Validate(sendNewsletterCommand);
+        var result = validator.Validate(command);
 
         // Assert
-        result.Errors.Count.Should().Be(1);
+        result.Errors.Count.Should().Be(3);
         result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+        result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+        result.Errors[2].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
     }
 
     [Fact]
-    public void GivenEmptySubject_WhenSendMessage_ShouldThrowError()
+    public void GivenTooLongStrings_WhenSendNewsletter_ShouldThrowError()
     {
         // Arrange
-        var sendNewsletterCommand = new SendNewsletterCommand
+        var command = new SendNewsletterCommand
         {
-            Message = "Message",
-            Subject = string.Empty,
-            SubscriberInfo = new List<SubscriberInfo>
-            {
-                new ()
-                {
+            Message = DataUtilityService.GetRandomString(500),
+            Subject = DataUtilityService.GetRandomString(500),
+            SubscriberInfo = new List<SubscriberInfo> 
+            { 
+                new() 
+                { 
                     Id = Guid.NewGuid().ToString(),
                     Email = "tokan@dfds.com"
                 }
@@ -76,91 +78,11 @@ public class SendNewsletterCommandValidatorTest
 
         // Act
         var validator = new SendNewsletterCommandValidator();
-        var result = validator.Validate(sendNewsletterCommand);
+        var result = validator.Validate(command);
 
         // Assert
-        result.Errors.Count.Should().Be(1);
-        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-    }
-
-    [Fact]
-    public void GivenTooLongSubject_WhenSendMessage_ShouldThrowError()
-    {
-        // Arrange
-        var sendNewsletterCommand = new SendNewsletterCommand
-        {
-            Message = "Message",
-            Subject = new string('T', 256),
-            SubscriberInfo = new List<SubscriberInfo>
-            {
-                new ()
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Email = "tokan@dfds.com"
-                }
-            }
-        };
-
-        // Act
-        var validator = new SendNewsletterCommandValidator();
-        var result = validator.Validate(sendNewsletterCommand);
-
-        // Assert
-        result.Errors.Count.Should().Be(1);
+        result.Errors.Count.Should().Be(2);
         result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.SUBJECT_TOO_LONG));
-    }
-
-    [Fact]
-    public void GivenEmptyMessage_WhenSendMessage_ShouldThrowError()
-    {
-        // Arrange
-        var sendNewsletterCommand = new SendNewsletterCommand
-        {
-            Message = string.Empty,
-            Subject = "Subject",
-            SubscriberInfo = new List<SubscriberInfo>
-            {
-                new ()
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Email = "tokan@dfds.com"
-                }
-            }
-        };
-
-        // Act
-        var validator = new SendNewsletterCommandValidator();
-        var result = validator.Validate(sendNewsletterCommand);
-
-        // Assert
-        result.Errors.Count.Should().Be(1);
-        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-    }
-
-    [Fact]
-    public void GivenTooLongMessage_WhenSendMessage_ShouldThrowError()
-    {
-        // Arrange
-        var sendNewsletterCommand = new SendNewsletterCommand
-        {
-            Message = new string('T', 256),
-            Subject = "Subject",
-            SubscriberInfo = new List<SubscriberInfo>
-            {
-                new ()
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Email = "tokan@dfds.com"
-                }
-            }
-        };
-
-        // Act
-        var validator = new SendNewsletterCommandValidator();
-        var result = validator.Validate(sendNewsletterCommand);
-
-        // Assert
-        result.Errors.Count.Should().Be(1);
-        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.MESSAGE_TOO_LONG));
+        result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.MESSAGE_TOO_LONG));
     }
 }

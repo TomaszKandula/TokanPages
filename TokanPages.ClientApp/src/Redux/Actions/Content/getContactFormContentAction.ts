@@ -17,8 +17,10 @@ export type TKnownActions = IRequestContactFormContent | IReceiveContactFormCont
 
 export const ActionCreators = 
 {
-    getContactFormContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getContactFormContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
+        const isLanguageChanged = getState().userLanguage.id !== getState().getContactFormContent.content.language;
+
         if (getState().getContactFormContent.content !== combinedDefaults.getContactFormContent.content && !isLanguageChanged) 
             return;
 

@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Models;
-using Backend.Shared;
+using Backend.Shared.Constants;
 
 public interface IAzureBlobStorage
 {
@@ -17,7 +17,7 @@ public interface IAzureBlobStorage
 
     Task<string> GetFileContentType(string sourceFilePath, CancellationToken cancellationToken = default);
 
-    Task UploadFile(Stream sourceStream, string destinationPath, string contentType = Constants.ContentTypes.Stream, CancellationToken cancellationToken = default);
+    Task UploadFile(Stream sourceStream, string destinationPath, string contentType = ContentTypes.Stream, CancellationToken cancellationToken = default);
 
     Task UploadContent(string content, string destinationPath, CancellationToken cancellationToken = default);
 

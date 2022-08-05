@@ -5,6 +5,7 @@ export const GetUnsubscribeContentDefault: IGetUnsubscribeContent =
     isLoading: false,
     content: 
     {
+        language: "",
         contentPre:
         {
             caption: "",

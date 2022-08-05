@@ -15,7 +15,6 @@ import { IGetHeaderContent } from "./States/Content/getHeaderContentState";
 import { IGetNavigationContent } from "./States/Content/getNavigationContentState";
 import { IGetNewsletterContent } from "./States/Content/getNewsletterContentState";
 import { IGetResetPasswordContent } from "./States/Content/getResetPasswordContentState";
-import { IGetStaticContent } from "./States/Content/getStaticContentState";
 import { IGetTestimonialsContent } from "./States/Content/getTestimonialsContentState";
 import { IGetUnsubscribeContent } from "./States/Content/getUnsubscribeContentState";
 import { IGetUpdatePasswordContent } from "./States/Content/getUpdatePasswordContentState";
@@ -38,11 +37,17 @@ import { IUpdateArticle } from "./States/Articles/updateArticleState";
 import { IUpdateSubscriber } from "./States/Subscribers/updateSubscriberState";
 import { IUpdateUser } from "./States/Users/updateUserState";
 import { IUpdateUserPassword } from "./States/Users/updateUserPasswordState";
+import { IUserLanguage } from "./States/userLanguageState";
+import { IGetPolicyContent } from "./States/Content/getPolicyContentState";
+import { IGetTermsContent } from "./States/Content/getTermsContentState";
+import { IGetStoryContent } from "./States/Content/getStoryContentState";
 
 export interface IApplicationState 
 {
     raiseError: IRaiseError;
     raiseDialog: IRaiseDialog;
+
+    userLanguage: IUserLanguage,
 
     listArticles: IArticles;
     selectArticle: IArticle;
@@ -62,10 +67,14 @@ export interface IApplicationState
     updateUserPassword: IUpdateUserPassword,
     resetUserPassword: IResetUserPassword,
 
+    getPolicyContent: IGetPolicyContent,
+    getTermsContent: IGetTermsContent,
+    getStoryContent: IGetStoryContent,
+
     getNavigationContent: IGetNavigationContent,
     getHeaderContent: IGetHeaderContent,
     getFooterContent: IGetFooterContent,
-    getStaticContent: IGetStaticContent,
+
     getAccountContent: IGetAccountContent,
     getActivateAccountContent: IGetActivateAccountContent,
 

@@ -8,34 +8,28 @@ using Backend.Cqrs.Handlers.Commands.Subscribers;
 public class AddSubscriberCommandValidatorTest : TestBase
 {
     [Fact]
-    public void GivenEmail_WhenAddSubscriber_ShouldFinishSuccessful() 
+    public void GivenEmail_WhenAddSubscriber_ShouldSucceed() 
     {
         // Arrange
-        var addSubscriberCommand = new AddSubscriberCommand 
-        { 
-            Email = DataUtilityService.GetRandomEmail()
-        };
+        var command = new AddSubscriberCommand { Email = DataUtilityService.GetRandomEmail() };
 
         // Act
         var validator = new AddSubscriberCommandValidator();
-        var result = validator.Validate(addSubscriberCommand);
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Should().BeEmpty();
     }
 
     [Fact]
-    public void GivenEmptyEmail_WhenAddSubscriber_ShouldFinishSuccessful()
+    public void GivenEmptyEmail_WhenAddSubscriber_ShouldThrowError()
     {
         // Arrange
-        var addSubscriberCommand = new AddSubscriberCommand
-        {
-            Email = string.Empty
-        };
+        var command = new AddSubscriberCommand { Email = string.Empty };
 
         // Act
         var validator = new AddSubscriberCommandValidator();
-        var result = validator.Validate(addSubscriberCommand);
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Count.Should().Be(1);

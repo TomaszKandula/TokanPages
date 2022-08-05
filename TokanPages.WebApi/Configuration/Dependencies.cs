@@ -15,10 +15,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Backend.Shared;
 using Backend.Database;
 using Backend.Domain.Enums;
 using Backend.Shared.Services;
+using Backend.Shared.Constants;
 using Backend.Database.Initializer;
 using Backend.Shared.Services.Models;
 using Backend.Core.Utilities.LoggerService;
@@ -236,7 +236,7 @@ public static class Dependencies
 			options.BaseAddress = new Uri(environment.IsDevelopment() 
 				? applicationPaths.DevelopmentOrigin 
 				: applicationPaths.DeploymentOrigin);
-			options.DefaultRequestHeaders.Add("Accept", Constants.ContentTypes.Json);
+			options.DefaultRequestHeaders.Add("Accept", ContentTypes.Json);
 			options.Timeout = TimeSpan.FromMinutes(5);
 			options.DefaultRequestHeaders.ConnectionClose = true;
 		}).AddPolicyHandler(HttpPolicyHandlers.SetupRetry());

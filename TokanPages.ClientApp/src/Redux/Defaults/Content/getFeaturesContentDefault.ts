@@ -5,6 +5,7 @@ export const GetFeaturesContentDefault: IGetFeaturesContent =
     isLoading: false,
     content: 
     {
+        language: "",
         caption: "",
         header: "",
         title1: "",

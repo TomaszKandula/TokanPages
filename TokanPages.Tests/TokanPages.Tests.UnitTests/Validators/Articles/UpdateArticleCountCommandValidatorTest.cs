@@ -9,17 +9,14 @@ using Backend.Cqrs.Handlers.Commands.Articles;
 public class UpdateArticleCountCommandValidatorTest
 {
     [Fact]
-    public void GivenValidGuid_WhenUpdateArticleCount_ShouldReturnSuccessful()
+    public void GivenValidGuid_WhenUpdateArticleCount_ShouldSucceed()
     {
         // Arrange
-        var updateArticleCountCommand = new UpdateArticleCountCommand
-        {
-            Id = Guid.NewGuid()
-        };
+        var command = new UpdateArticleCountCommand { Id = Guid.NewGuid() };
 
         // Act
-        var updateArticleCountCommandValidator = new UpdateArticleCountCommandValidator();
-        var result = updateArticleCountCommandValidator.Validate(updateArticleCountCommand);
+        var validator = new UpdateArticleCountCommandValidator();
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Should().BeEmpty();
@@ -29,18 +26,14 @@ public class UpdateArticleCountCommandValidatorTest
     public void GivenEmptyGuid_WhenUpdateArticleCount_ShouldThrowError()
     {
         // Arrange
-        var updateArticleCountCommand = new UpdateArticleCountCommand
-        {
-            Id = Guid.Empty
-        };
+        var command = new UpdateArticleCountCommand { Id = Guid.Empty };
 
         // Act
-        var updateArticleCountCommandValidator = new UpdateArticleCountCommandValidator();
-        var result = updateArticleCountCommandValidator.Validate(updateArticleCountCommand);
+        var validator = new UpdateArticleCountCommandValidator();
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Count.Should().Be(1);
         result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
     }
-        
 }

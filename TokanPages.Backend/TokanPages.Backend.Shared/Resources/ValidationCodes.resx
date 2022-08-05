@@ -153,7 +153,28 @@
   <data name="NAME_TOO_LONG" xml:space="preserve">
     <value>The given name is too long</value>
   </data>
-  <data name="INVALID_FILESIZE" xml:space="preserve">
-    <value>The file is too large</value>
+  <data name="LENGTH_TOO_LONG_100" xml:space="preserve">
+    <value>The length cannot be larger than 100 characters</value>
+  </data>
+  <data name="INVALID_FILE_SIZE" xml:space="preserve">
+    <value>File size is too large</value>
+  </data>
+  <data name="TOO_LONG_USER_IMAGE_NAME" xml:space="preserve">
+    <value>The user image name is too long</value>
+  </data>
+  <data name="TOO_LONG_USER_VIDEO_NAME" xml:space="preserve">
+    <value>The user video name is too long</value>
+  </data>
+  <data name="INVALID_GUID_VALUE" xml:space="preserve">
+    <value>The EMPTY guid value is not allowed</value>
+  </data>
+  <data name="TOO_LONG_MEDIA_NAME" xml:space="preserve">
+    <value>The media name is too long</value>
+  </data>
+  <data name="TOO_LONG_MEDIA_TYPE" xml:space="preserve">
+    <value>The media type is too long</value>
+  </data>
+  <data name="NOT_SPECIFIED_MEDIA_TARGET" xml:space="preserve">
+    <value>The media target is not speciafied</value>
   </data>
 </root>
