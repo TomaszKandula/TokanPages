@@ -40,6 +40,7 @@ import { IUpdateUserPassword } from "./States/Users/updateUserPasswordState";
 import { IUserLanguage } from "./States/userLanguageState";
 import { IGetPolicyContent } from "./States/Content/getPolicyContentState";
 import { IGetTermsContent } from "./States/Content/getTermsContentState";
+import { IGetStoryContent } from "./States/Content/getStoryContentState";
 
 export interface IApplicationState 
 {
@@ -68,6 +69,7 @@ export interface IApplicationState
 
     getPolicyContent: IGetPolicyContent,
     getTermsContent: IGetTermsContent,
+    getStoryContent: IGetStoryContent,
 
     getNavigationContent: IGetNavigationContent,
     getHeaderContent: IGetHeaderContent,

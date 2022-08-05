@@ -40,6 +40,7 @@ import { UpdateUserReducer } from "./Reducers/Users/updateUserReducer";
 import { UserLanguageReducer } from "./Reducers/userLanguageReducer";
 import { GetPolicyContentReducer } from "./Reducers/Content/getPolicyContentReducer";
 import { GetTermsContentReducer } from "./Reducers/Content/getTermsContentReducer";
+import { GetStoryContentReducer } from "./Reducers/Content/getStoryContentReducer";
 
 export const combinedReducers = 
 {
@@ -68,6 +69,7 @@ export const combinedReducers =
 
     getPolicyContent: GetPolicyContentReducer,
     getTermsContent: GetTermsContentReducer,
+    getStoryContent: GetStoryContentReducer,
 
     getNavigationContent: GetNavigationContentReducer,
     getHeaderContent: GetHeaderContentReducer,
