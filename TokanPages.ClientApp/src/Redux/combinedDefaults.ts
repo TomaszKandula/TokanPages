@@ -13,7 +13,6 @@ import { GetHeaderContentDefault } from "./Defaults/Content/getHeaderContentDefa
 import { GetNavigationContentDefault } from "./Defaults/Content/getNavigationContentDefault";
 import { GetNewsletterContentDefault } from "./Defaults/Content/getNewsletterContentDefault";
 import { GetResetPasswordContentDefault } from "./Defaults/Content/getResetPasswordContentDefault";
-
 import { GetTestimonialsContentDefault } from "./Defaults/Content/getTestimonialsContentDefault";
 import { GetUnsubscribeContentDefault } from "./Defaults/Content/getUnsubscribeContentDefault";
 import { GetUpdatePasswordContentDefault } from "./Defaults/Content/getUpdatePasswordContentDefault";
@@ -40,6 +39,7 @@ import { UpdateSubscriberDefault } from "./Defaults/Subscribers/updateSubscriber
 import { UpdateUserDefault } from "./Defaults/Users/updateUserDefault";
 import { UpdateUserPasswordDefault } from "./Defaults/Users/updateUserPasswordDefault";
 import { UserLanguageDefault } from "./Defaults/userLanguageDefault";
+import { GetPolicyContentDefault } from "./Defaults/Content/getPolicyContentDefault";
 
 export const combinedDefaults: IApplicationState = 
 {
@@ -65,6 +65,8 @@ export const combinedDefaults: IApplicationState =
     updateUser: UpdateUserDefault,
     updateUserPassword: UpdateUserPasswordDefault,
     resetUserPassword: ResetUserPasswordDefault,
+
+    getPolicyContent: GetPolicyContentDefault,
 
     getNavigationContent: GetNavigationContentDefault,
     getHeaderContent: GetHeaderContentDefault,

@@ -13,7 +13,6 @@ import { GetHeaderContentReducer } from "./Reducers/Content/getHeaderContentRedu
 import { GetNavigationContentReducer } from "./Reducers/Content/getNavigationContentReducer";
 import { GetNewsletterContentReducer } from "./Reducers/Content/getNewsletterContentReducer";
 import { GetResetPasswordContentReducer } from "./Reducers/Content/getResetPasswordContentReducer";
-
 import { GetTestimonialsContentReducer } from "./Reducers/Content/getTestimonialsContentReducer";
 import { GetUnsubscribeContentReducer } from "./Reducers/Content/getUnsubscribeContentReducer";
 import { GetUpdatePasswordContentReducer } from "./Reducers/Content/getUpdatePasswordContentReducer";
@@ -39,6 +38,7 @@ import { UpdateSubscriberReducer } from "./Reducers/Subscribers/updateSubscriber
 import { UpdateUserPasswordReducer } from "./Reducers/Users/updateUserPasswordReducer";
 import { UpdateUserReducer } from "./Reducers/Users/updateUserReducer";
 import { UserLanguageReducer } from "./Reducers/userLanguageReducer";
+import { GetPolicyContentReducer } from "./Reducers/Content/getPolicyContentReducer";
 
 export const combinedReducers = 
 {
@@ -64,6 +64,8 @@ export const combinedReducers =
     updateUser: UpdateUserReducer,
     updateUserPassword: UpdateUserPasswordReducer,
     resetUserPassword: ResetUserPasswordReducer,
+
+    getPolicyContent: GetPolicyContentReducer,
 
     getNavigationContent: GetNavigationContentReducer,
     getHeaderContent: GetHeaderContentReducer,

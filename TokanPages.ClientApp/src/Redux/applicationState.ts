@@ -15,7 +15,6 @@ import { IGetHeaderContent } from "./States/Content/getHeaderContentState";
 import { IGetNavigationContent } from "./States/Content/getNavigationContentState";
 import { IGetNewsletterContent } from "./States/Content/getNewsletterContentState";
 import { IGetResetPasswordContent } from "./States/Content/getResetPasswordContentState";
-
 import { IGetTestimonialsContent } from "./States/Content/getTestimonialsContentState";
 import { IGetUnsubscribeContent } from "./States/Content/getUnsubscribeContentState";
 import { IGetUpdatePasswordContent } from "./States/Content/getUpdatePasswordContentState";
@@ -39,6 +38,7 @@ import { IUpdateSubscriber } from "./States/Subscribers/updateSubscriberState";
 import { IUpdateUser } from "./States/Users/updateUserState";
 import { IUpdateUserPassword } from "./States/Users/updateUserPasswordState";
 import { IUserLanguage } from "./States/userLanguageState";
+import { IGetPolicyContent } from "./States/Content/getPolicyContentState";
 
 export interface IApplicationState 
 {
@@ -64,6 +64,8 @@ export interface IApplicationState
     updateUser: IUpdateUser,
     updateUserPassword: IUpdateUserPassword,
     resetUserPassword: IResetUserPassword,
+
+    getPolicyContent: IGetPolicyContent,
 
     getNavigationContent: IGetNavigationContent,
     getHeaderContent: IGetHeaderContent,
