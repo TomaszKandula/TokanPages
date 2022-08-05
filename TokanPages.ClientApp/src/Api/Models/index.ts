@@ -31,6 +31,8 @@ export type { IUserRoleDto } from "./Users/userRoleDto";
 export type { IErrorDto } from "./Error/errorDto";
 export type { IValidationErrorsDto } from "./Error/validationErrorsDto";
 
+export type { IDocumentContentDto } from "./Components/documentContentDto";
+
 export type { INavigationContentDto} from "./Components/navigationContentDto";
 export type { IHeaderContentDto } from "./Components/headerContentDto";
 export type { IFooterContentDto } from "./Components/footerContentDto";
@@ -61,3 +63,5 @@ export type {
 
 export type { IIcon } from "./Components/Common/icon";
 export type { ILink } from "./Components/Common/link";
+export type { IRowItem } from "./Components/Common/rowItem";
+export type { ITextItem } from "./Components/Common/textItem";
