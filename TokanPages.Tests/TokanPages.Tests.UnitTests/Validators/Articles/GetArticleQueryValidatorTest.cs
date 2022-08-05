@@ -9,30 +9,24 @@ using Backend.Cqrs.Handlers.Queries.Articles;
 public class GetArticleQueryValidatorTest
 {
     [Fact]
-    public void GivenCorrectId_WhenGetArticle_ShouldFinishSuccessful() 
+    public void GivenValidInput_WhenGetArticle_ShouldSucceed() 
     {
         // Arrange
-        var getArticleQuery = new GetArticleQuery 
-        { 
-            Id = Guid.NewGuid()
-        };
+        var query = new GetArticleQuery { Id = Guid.NewGuid() };
 
         // Act
         var validator = new GetArticleQueryValidator();
-        var result = validator.Validate(getArticleQuery);
+        var result = validator.Validate(query);
 
         // Assert
         result.Errors.Should().BeEmpty();
     }
 
     [Fact]
-    public void GivenIncorrectId_WhenGetArticle_ShouldThrowError()
+    public void GivenEmptyInput_WhenGetArticle_ShouldThrowError()
     {
         // Arrange
-        var getArticleQuery = new GetArticleQuery
-        {
-            Id = Guid.Empty
-        };
+        var getArticleQuery = new GetArticleQuery { Id = Guid.Empty };
 
         // Act
         var validator = new GetArticleQueryValidator();

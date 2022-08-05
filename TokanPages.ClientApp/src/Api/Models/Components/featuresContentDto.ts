@@ -2,6 +2,7 @@ export interface IFeaturesContentDto
 {
     content: 
     {
+        language: string;
         caption: string;
         header: string;
         title1: string;

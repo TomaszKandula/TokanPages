@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test account group component: userSignupView. Renders correctly '<UserSignupView />' when content is loaded. 1`] = `
+<section
+  className="makeStyles-section-1"
+>
+  <WithStyles(ForwardRef(Container))
+    maxWidth="sm"
+  >
+    <Styled(MuiBox)
+      pb={10}
+      pt={18}
+    >
+      <WithStyles(ForwardRef(Card))
+        className="makeStyles-card-4"
+        elevation={0}
+      >
+        <WithStyles(ForwardRef(CardContent))
+          className="makeStyles-card_content-5"
+        >
+          <Styled(MuiBox)
+            mb={3}
+            textAlign="center"
+          >
+            <Memo(ForwardRef(AccountCircleIcon))
+              className="makeStyles-account-2"
+            />
+            <WithStyles(ForwardRef(Typography))
+              className="makeStyles-caption-3"
+            >
+              Create a new account
+            </WithStyles(ForwardRef(Typography))>
+          </Styled(MuiBox)>
+          <Styled(MuiBox)>
+            <WithStyles(ForwardRef(Grid))
+              container={true}
+              spacing={2}
+            >
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                sm={6}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(TextField))
+                  autoComplete="fname"
+                  fullWidth={true}
+                  id="firstName"
+                  label="First name"
+                  name="firstName"
+                  onChange={[MockFunction]}
+                  required={true}
+                  value="Ester"
+                  variant="outlined"
+                />
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                sm={6}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(TextField))
+                  autoComplete="lname"
+                  fullWidth={true}
+                  id="lastName"
+                  label="Last name"
+                  name="lastName"
+                  onChange={[MockFunction]}
+                  required={true}
+                  value="Exposito"
+                  variant="outlined"
+                />
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(TextField))
+                  autoComplete="email"
+                  fullWidth={true}
+                  id="email"
+                  label="Email address"
+                  name="email"
+                  onChange={[MockFunction]}
+                  required={true}
+                  value="ester.exposito@gmail.com"
+                  variant="outlined"
+                />
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(TextField))
+                  autoComplete="current-password"
+                  fullWidth={true}
+                  id="password"
+                  label="Password"
+                  name="password"
+                  onChange={[MockFunction]}
+                  required={true}
+                  type="password"
+                  value="madrilena123"
+                  variant="outlined"
+                />
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(FormControlLabel))
+                  control={
+                    <WithStyles(Component)
+                      checked={false}
+                      id="terms"
+                      name="terms"
+                      onChange={[MockFunction]}
+                    />
+                  }
+                  label="I agree to the terms of use and privacy policy."
+                />
+              </WithStyles(ForwardRef(Grid))>
+            </WithStyles(ForwardRef(Grid))>
+            <Styled(MuiBox)
+              my={2}
+            >
+              <ActiveButton />
+            </Styled(MuiBox)>
+            <Styled(MuiBox)
+              textAlign="right"
+            >
+              <RedirectTo
+                name="Already have an account? Sign in"
+                path="/signin"
+              />
+            </Styled(MuiBox)>
+          </Styled(MuiBox)>
+        </WithStyles(ForwardRef(CardContent))>
+      </WithStyles(ForwardRef(Card))>
+    </Styled(MuiBox)>
+  </WithStyles(ForwardRef(Container))>
+</section>
+`;

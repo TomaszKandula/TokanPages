@@ -5,6 +5,7 @@ export const GetActivateAccountContentDefault: IGetActivateAccountContent =
     isLoading: false,
     content: 
     {
+        language: "",
 		onProcessing:
 		{
         	type: "Unset",

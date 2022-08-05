@@ -2,6 +2,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 using Dto.Users;
+using Core.Extensions;
 using Handlers.Commands.Users;
 
 [ExcludeFromCodeCoverage]
@@ -56,11 +57,27 @@ public static class UsersMapper
         FirstName = model.FirstName,
         LastName = model.LastName,
         EmailAddress = model.EmailAddress,
-        ShortBio = model.ShortBio
+        UserAboutText = model.UserAboutText,
+        UserImageName = model.UserImageName,
+        UserVideoName = model.UserVideoName
     };
 
     public static RemoveUserCommand MapToRemoveUserCommand(RemoveUserDto model) => new()
     {
         Id = model.Id
+    };
+
+    public static UploadUserMediaCommand MapToUploadUserMediaCommand(UploadUserMediaDto model) => new()
+    {
+        UserId = model.UserId,
+        MediaTarget = model.MediaTarget,
+        MediaName = model.Data!.FileName,
+        MediaType = model.Data.ContentType.ToMediaType(),
+        Data = model.Data.GetByteArray()
+    };
+
+    public static RemoveUserMediaCommand MapToRemoveUserMediaCommand(RemoveUserMediaDto model) => new()
+    {
+        UniqueBlobName = model.UniqueBlobName
     };
 }

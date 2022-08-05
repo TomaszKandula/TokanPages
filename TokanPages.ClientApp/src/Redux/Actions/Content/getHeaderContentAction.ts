@@ -17,8 +17,10 @@ export type TKnownActions = IRequestHeaderContent | IReceiveHeaderContent | TErr
 
 export const ActionCreators = 
 {
-    getHeaderContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getHeaderContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
+        const isLanguageChanged = getState().userLanguage.id !== getState().getHeaderContent.content.language;
+
         if (getState().getHeaderContent.content !== combinedDefaults.getHeaderContent.content && !isLanguageChanged) 
             return;
 

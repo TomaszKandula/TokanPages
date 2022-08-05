@@ -17,8 +17,10 @@ export type TKnownActions = IRequestActivateAccountContent | IReceiveActivateAcc
 
 export const ActionCreators = 
 {
-    getActivateAccountContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getActivateAccountContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
+        const isLanguageChanged = getState().userLanguage.id !== getState().getActivateAccountContent.content.language;
+
         if (getState().getActivateAccountContent.content !== combinedDefaults.getActivateAccountContent.content && !isLanguageChanged) 
             return;
 

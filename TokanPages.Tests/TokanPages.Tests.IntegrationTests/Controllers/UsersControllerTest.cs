@@ -404,7 +404,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
 
         var dto = new AddUserDto 
         { 
-            EmailAddress = DataUtilityService.GetRandomEmail(),//TODO: use tomasz.kandula@gmail.com
+            EmailAddress = DataUtilityService.GetRandomEmail(domain: "emailbox.nazwa.pl"),
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
             Password = DataUtilityService.GetRandomString()

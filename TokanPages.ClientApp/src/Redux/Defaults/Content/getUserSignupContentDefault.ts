@@ -5,6 +5,7 @@ export const GetUserSignupContentDefault: IGetUserSignupContent =
     isLoading: false,
     content: 
     {
+        language: "",
         caption: "",
         button: "",
         link: "",

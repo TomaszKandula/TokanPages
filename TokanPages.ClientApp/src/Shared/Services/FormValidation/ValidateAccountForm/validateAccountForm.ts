@@ -30,7 +30,7 @@ export const ValidateAccountForm = (props: IValidateAccountForm): any =>
                 message: "does not look like a valid email"
             }
         },
-        shortBio:
+        userAboutText:
         {
             presence: true,
             length: 
@@ -46,7 +46,7 @@ export const ValidateAccountForm = (props: IValidateAccountForm): any =>
         firstName: props.firstName,
         lastName: props.lastName,
         email: props.email,
-        shortBio: props.shortBio
+        userAboutText: props.userAboutText
     }, 
     constraints);
 }

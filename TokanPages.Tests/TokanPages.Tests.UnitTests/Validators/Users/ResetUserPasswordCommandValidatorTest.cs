@@ -8,34 +8,28 @@ using Backend.Cqrs.Handlers.Commands.Users;
 public class ResetUserPasswordCommandValidatorTest : TestBase
 {
     [Fact]
-    public void GivenEmailAddress_WhenResetUserPassword_ShouldFinishSuccessful()
+    public void GivenValidInput_WhenResetUserPassword_ShouldSucceed()
     {
         // Arrange
-        var resetUserPasswordCommand = new ResetUserPasswordCommand
-        {
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-        };
+        var command = new ResetUserPasswordCommand { EmailAddress = DataUtilityService.GetRandomEmail() };
 
         // Act
-        var resetUserPasswordCommandValidator = new ResetUserPasswordCommandValidator();
-        var result = resetUserPasswordCommandValidator.Validate(resetUserPasswordCommand);
+        var validator = new ResetUserPasswordCommandValidator();
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Should().BeEmpty();
     }
 
     [Fact]
-    public void GivenNoEmailAddress_WhenResetUserPassword_ShouldThrowError()
+    public void GivenEmptyInput_WhenResetUserPassword_ShouldThrowError()
     {
         // Arrange
-        var resetUserPasswordCommand = new ResetUserPasswordCommand
-        {
-            EmailAddress = string.Empty
-        };
+        var command = new ResetUserPasswordCommand { EmailAddress = string.Empty };
 
         // Act
-        var resetUserPasswordCommandValidator = new ResetUserPasswordCommandValidator();
-        var result = resetUserPasswordCommandValidator.Validate(resetUserPasswordCommand);
+        var validator = new ResetUserPasswordCommandValidator();
+        var result = validator.Validate(command);
 
         // Assert
         result.Errors.Count.Should().Be(1);

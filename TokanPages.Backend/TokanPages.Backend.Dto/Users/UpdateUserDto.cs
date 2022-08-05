@@ -1,5 +1,4 @@
-﻿#nullable enable
-namespace TokanPages.Backend.Dto.Users;
+﻿namespace TokanPages.Backend.Dto.Users;
 
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -43,5 +42,15 @@ public class UpdateUserDto
     /// <summary>
     /// Optional
     /// </summary>
-    public string? ShortBio { get; set; }
+    public string? UserAboutText { get; set; }
+
+    /// <summary>
+    /// Optional
+    /// </summary>
+    public string? UserImageName { get; set; }
+
+    /// <summary>
+    /// Optional
+    /// </summary>
+    public string? UserVideoName { get; set; }
 }

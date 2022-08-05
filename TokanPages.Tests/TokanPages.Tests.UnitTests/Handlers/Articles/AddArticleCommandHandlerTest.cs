@@ -14,18 +14,14 @@ using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.DateTimeService;
 using Backend.Cqrs.Handlers.Commands.Articles;
 using TokanPages.Services.AzureStorageService;
-using Backend.Core.Utilities.DataUtilityService;
 using TokanPages.Services.AzureStorageService.Factory;
 
 public class AddArticleCommandHandlerTest : TestBase
 {
     private readonly Mock<IAzureBlobStorageFactory> _mockedAzureBlobStorageFactory;
-        
-    private readonly DataUtilityService _dataUtilityService;
 
     public AddArticleCommandHandlerTest()
     {
-        _dataUtilityService = new DataUtilityService();
         _mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>();
         var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
 
@@ -48,18 +44,18 @@ public class AddArticleCommandHandlerTest : TestBase
         // Arrange
         var command = new AddArticleCommand
         {
-            Title = _dataUtilityService.GetRandomString(),
-            Description = _dataUtilityService.GetRandomString(),
-            TextToUpload = _dataUtilityService.GetRandomString(),
-            ImageToUpload = _dataUtilityService.GetRandomString().ToBase64Encode()
+            Title = DataUtilityService.GetRandomString(),
+            Description = DataUtilityService.GetRandomString(),
+            TextToUpload = DataUtilityService.GetRandomString(),
+            ImageToUpload = DataUtilityService.GetRandomString().ToBase64Encode()
         };
 
         var user = new Users
         {
-            UserAlias  = _dataUtilityService.GetRandomString(),
+            UserAlias  = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            EmailAddress = _dataUtilityService.GetRandomEmail(),
-            CryptedPassword = _dataUtilityService.GetRandomString()
+            EmailAddress = DataUtilityService.GetRandomEmail(),
+            CryptedPassword = DataUtilityService.GetRandomString()
         };
 
         var databaseContext = GetTestDatabaseContext();

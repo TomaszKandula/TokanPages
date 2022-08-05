@@ -2,42 +2,43 @@ import * as React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"; 
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import MainPage from "./Pages/mainPage";
-import StoryPage from "./Pages/storyPage"; 
-import ArticlesPage from "./Pages/articlesPage";
-import TermsPage from "./Pages/termsPage";
-import PolicyPage from "./Pages/policyPage";
-import ContactPage from "./Pages/contactPage";
-import SigninPage from "./Pages/signinPage";
-import SignupPage from "./Pages/signupPage";
-import SignoutPage from "./Pages/signoutPage";
-import AccountPage from "./Pages/accountPage";
-import ResetPasswordPage from "./Pages/resetPasswordPage";
-import UpdatePasswordPage from "./Pages/updatePasswordPage";
-import UnsubscribePage from "./Pages/unsubscribePage";
-import UpdateSubscriberPage from "./Pages/updateSubscriberPage";
-import ActivationPage from "./Pages/activationPage";
-import WrongPage from "./Pages/wrongPage";
-import ScrollTop from "./Shared/Components/Scroll/scrollTop";
-import ApplicationToast from "./Shared/Components/Toasts/applicationToast";
-import ApplicationDialogBox from "./Shared/Components/ApplicationDialogBox/applicationDialogBox";
-import ApplicationUserInfo from "./Shared/Components/ApplicationUserInfo/applicationUserInfo";
+import { MainPage } from "./Pages";
+import { StoryPage } from "./Pages"; 
+import { ArticlesPage } from "./Pages";
+import { TermsPage } from "./Pages";
+import { PolicyPage } from "./Pages";
+import { ContactPage } from "./Pages";
+import { SigninPage } from "./Pages";
+import { SignupPage } from "./Pages";
+import { SignoutPage } from "./Pages";
+import { AccountPage } from "./Pages";
+import { ResetPasswordPage } from "./Pages";
+import { UpdatePasswordPage } from "./Pages";
+import { UnsubscribePage } from "./Pages";
+import { UpdateSubscriberPage } from "./Pages";
+import { ActivationPage } from "./Pages";
+import { WrongPage } from "./Pages";
+import { ScrollToTop } from "./Shared/Components/Scroll";
+import { ApplicationToast } from "./Shared/Components";
+import { ApplicationDialogBox } from "./Shared/Components";
+import { ApplicationUserInfo } from "./Shared/Components";
 import { StoreUserData } from "./Shared/Services/updateUserDataService";
-import styles from "./Styles/appStyle";
+import { AppStyle } from "./app.style";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const App = (): JSX.Element => 
 {
-    const classes = styles();
+    const classes = AppStyle();
+
+    AOS.init();
+    StoreUserData();
 
     React.useEffect(() => 
     {
-        AOS.init();
-        AOS.refresh();
+        const intervalId = setInterval(() => AOS.refresh(), 900);
+        return(() => clearInterval(intervalId));
     });
-
-    StoreUserData();
 
     return (
         <>
@@ -66,11 +67,11 @@ const App = (): JSX.Element =>
             <ApplicationToast />
             <ApplicationDialogBox />
             <ApplicationUserInfo />
-            <ScrollTop>
+            <ScrollToTop>
                 <Fab size="small" aria-label="scroll back to top" className={classes.button}>
                     <KeyboardArrowUpIcon/>
                 </Fab>
-            </ScrollTop>
+            </ScrollToTop>
         </>
     );
 }

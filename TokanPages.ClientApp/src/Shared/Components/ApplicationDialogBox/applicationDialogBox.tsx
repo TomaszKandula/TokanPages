@@ -4,7 +4,7 @@ import { IApplicationState } from "../../../Redux/applicationState";
 import { ActionCreators } from "../../../Redux/Actions/raiseDialogAction";
 import { IRaiseDialog } from "../../../Redux/States/raiseDialogState";
 import { IconType } from "../../enums";
-import ApplicationDialogBoxView from "./applicationDialogBoxView";
+import { ApplicationDialogBoxView } from "./View/applicationDialogBoxView";
 import Validate from "validate.js";
 
 interface IDialogState extends IRaiseDialog
@@ -20,7 +20,7 @@ const DialogState: IDialogState =
     icon: IconType.info
 }
 
-const ApplicationDialogBox = (): JSX.Element => 
+export const ApplicationDialogBox = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     const [dialogState, setDialogState] = React.useState(DialogState);
@@ -68,5 +68,3 @@ const ApplicationDialogBox = (): JSX.Element =>
         closeHandler: onClickHandler
     }}/>);
 }
-
-export default ApplicationDialogBox;

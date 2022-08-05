@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
+using Attributes;
 using Backend.Dto.Users;
 using Backend.Domain.Enums;
 using Backend.Cqrs.Mappers;
@@ -152,4 +153,40 @@ public class UsersController : ApiBaseController
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RemoveUser([FromBody] RemoveUserDto payLoad)
         => await Mediator.Send(UsersMapper.MapToRemoveUserCommand(payLoad));
+
+    /// <summary>
+    /// Returns user media file by its name
+    /// </summary>
+    /// <param name="id">User ID</param>
+    /// <param name="blobName">Full blob name (case sensitive)</param>
+    /// <returns>File</returns>
+    [HttpGet("{id:guid}")]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ETagFilter]
+    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400, VaryByQueryKeys = new [] { "id", "blobName" })]
+    [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetUserMedia([FromRoute] Guid id, [FromQuery] string blobName)
+        => await Mediator.Send(new GetUserMediaQuery { Id = id, BlobName = blobName });
+
+    /// <summary>
+    /// Allows to upload media file (image/video)
+    /// </summary>
+    /// <param name="payload">File data</param>
+    /// <returns>Object with media name</returns>
+    [HttpPost]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(typeof(UploadUserMediaCommandResult), StatusCodes.Status200OK)]
+    public async Task<UploadUserMediaCommandResult> UploadUserMedia([FromForm] UploadUserMediaDto payload)
+        => await Mediator.Send(UsersMapper.MapToUploadUserMediaCommand(payload));
+
+    /// <summary>
+    /// Removes uploaded user media file (image/video)
+    /// </summary>
+    /// <param name="payload">Unique full blob name</param>
+    /// <returns>MediatR unit value</returns>
+    [HttpPost]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
+    public async Task<Unit> RemoveUserMedia([FromForm] RemoveUserMediaDto payload)
+        => await Mediator.Send(UsersMapper.MapToRemoveUserMediaCommand(payload));
 }

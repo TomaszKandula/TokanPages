@@ -17,8 +17,10 @@ export type TKnownActions = IRequestUnsubscribeContent | IReceiveUnsubscribeCont
 
 export const ActionCreators = 
 {
-    getUnsubscribeContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getUnsubscribeContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
+        const isLanguageChanged = getState().userLanguage.id !== getState().getUnsubscribeContent.content.language;
+
         if (getState().getUnsubscribeContent.content !== combinedDefaults.getUnsubscribeContent.content && !isLanguageChanged) 
             return;
         

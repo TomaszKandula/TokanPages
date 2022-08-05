@@ -15,7 +15,7 @@ using TokanPages.Services.HttpClientService.Models;
 public class HttpClientServiceTest : TestBase
 {
     [Fact]
-    public async Task GivenValidConfigurationWithoutPayload_WhenInvokeExecute_ShouldSucceed()
+    public async Task GivenValidConfigurationAndNoPayload_WhenInvokeExecute_ShouldSucceed()
     {
         // Arrange
         var configuration = new Configuration
@@ -38,7 +38,7 @@ public class HttpClientServiceTest : TestBase
     }
 
     [Fact]
-    public async Task GivenValidConfigurationWithPayload_WhenInvokeExecute_ShouldSucceed()
+    public async Task GivenValidConfigurationAndPayload_WhenInvokeExecute_ShouldSucceed()
     {
         // Arrange
         var configuration = new Configuration
@@ -62,7 +62,7 @@ public class HttpClientServiceTest : TestBase
     }
 
     [Fact]
-    public async Task GivenMissingUrlInConfiguration_WhenInvokeExecute_ShouldThrowError()
+    public async Task GivenMissingUrl_WhenInvokeExecute_ShouldThrowError()
     {
         // Arrange
         var configuration = new Configuration
@@ -82,7 +82,7 @@ public class HttpClientServiceTest : TestBase
     }
 
     [Fact]
-    public async Task GivenMissingMethodInConfiguration_WhenInvokeExecute_ShouldThrowError()
+    public async Task GivenMissingMethod_WhenInvokeExecute_ShouldThrowError()
     {
         // Arrange
         var configuration = new Configuration

@@ -17,8 +17,10 @@ export type TKnownActions = IRequestTestimonialsContent | IReceiveTestimonialsCo
 
 export const ActionCreators = 
 {
-    getTestimonialsContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getTestimonialsContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
+        const isLanguageChanged = getState().userLanguage.id !== getState().getTestimonialsContent.content.language;
+
         if (getState().getTestimonialsContent.content !== combinedDefaults.getTestimonialsContent.content && !isLanguageChanged) 
             return;
 

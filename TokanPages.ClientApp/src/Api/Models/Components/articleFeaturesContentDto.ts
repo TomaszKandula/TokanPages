@@ -4,6 +4,7 @@ export interface IArticleFeaturesContentDto
 {
     content: 
     {
+        language: string;
         title: string;
         description: string;
         text1: string;

@@ -9,13 +9,10 @@ using Backend.Cqrs.Handlers.Commands.Articles;
 public class RemoveArticleCommandValidatorTest
 {
     [Fact]
-    public void GivenCorrectId_WhenRemoveArticle_ShouldFinishSuccessfully() 
+    public void GivenValidInput_WhenRemoveArticle_ShouldSucceed() 
     {
         // Arrange
-        var removeArticleCommand = new RemoveArticleCommand
-        {
-            Id = Guid.NewGuid()
-        };
+        var removeArticleCommand = new RemoveArticleCommand { Id = Guid.NewGuid() };
 
         // Act
         var validator = new RemoveArticleCommandValidator();
@@ -26,13 +23,10 @@ public class RemoveArticleCommandValidatorTest
     }
 
     [Fact]
-    public void GivenIncorrectId_WhenRemoveArticle_ShouldThrowError()
+    public void GivenEmptyInput_WhenRemoveArticle_ShouldThrowError()
     {
         // Arrange
-        var removeArticleCommand = new RemoveArticleCommand
-        {
-            Id = Guid.Empty
-        };
+        var removeArticleCommand = new RemoveArticleCommand { Id = Guid.Empty };
 
         // Act
         var validator = new RemoveArticleCommandValidator();

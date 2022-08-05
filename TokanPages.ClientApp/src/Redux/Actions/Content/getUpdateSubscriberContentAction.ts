@@ -17,8 +17,10 @@ export type TKnownActions = IRequestUpdateSubscriberContent | IReceiveUpdateSubs
 
 export const ActionCreators = 
 {
-    getUpdateSubscriberContent: (isLanguageChanged: boolean = false): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    getUpdateSubscriberContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
+        const isLanguageChanged = getState().userLanguage.id !== getState().getUpdateSubscriberContent.content.language;
+
         if (getState().getUpdateSubscriberContent.content !== combinedDefaults.getUpdateSubscriberContent.content && !isLanguageChanged) 
             return;
         

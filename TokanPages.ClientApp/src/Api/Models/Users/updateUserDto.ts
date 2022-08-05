@@ -6,5 +6,7 @@ export interface IUpdateUserDto
     firstName?: string;
     lastName?: string;
     emailAddress?: string;
-    shortBio?: string;
+    userAboutText?: string;
+    userImageName?: string;
+    userVideoName?: string;
 }
