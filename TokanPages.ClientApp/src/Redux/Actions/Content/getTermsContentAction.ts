@@ -12,8 +12,8 @@ import { GetUserLanguage } from "../../../Shared/Services/languageService";
 export const REQUEST_TERMS_CONTENT = "REQUEST_TERMS_CONTENT";
 export const RECEIVE_TERMS_CONTENT = "RECEIVE_TERMS_CONTENT";
 export interface IRequestTermsContent { type: typeof REQUEST_TERMS_CONTENT }
-export interface IReceivetermsContent { type: typeof RECEIVE_TERMS_CONTENT, payload: IDocumentContentDto }
-export type TKnownActions = IRequestTermsContent | IReceivetermsContent | TErrorActions;
+export interface IReceiveTermsContent { type: typeof RECEIVE_TERMS_CONTENT, payload: IDocumentContentDto }
+export type TKnownActions = IRequestTermsContent | IReceiveTermsContent | TErrorActions;
 
 export const ActionCreators = 
 {
