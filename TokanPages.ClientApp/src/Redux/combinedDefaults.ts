@@ -13,7 +13,7 @@ import { GetHeaderContentDefault } from "./Defaults/Content/getHeaderContentDefa
 import { GetNavigationContentDefault } from "./Defaults/Content/getNavigationContentDefault";
 import { GetNewsletterContentDefault } from "./Defaults/Content/getNewsletterContentDefault";
 import { GetResetPasswordContentDefault } from "./Defaults/Content/getResetPasswordContentDefault";
-import { GetStaticContentDefault } from "./Defaults/Content/getStaticContentDefault";
+
 import { GetTestimonialsContentDefault } from "./Defaults/Content/getTestimonialsContentDefault";
 import { GetUnsubscribeContentDefault } from "./Defaults/Content/getUnsubscribeContentDefault";
 import { GetUpdatePasswordContentDefault } from "./Defaults/Content/getUpdatePasswordContentDefault";
@@ -69,7 +69,7 @@ export const combinedDefaults: IApplicationState =
     getNavigationContent: GetNavigationContentDefault,
     getHeaderContent: GetHeaderContentDefault,
     getFooterContent: GetFooterContentDefault,
-    getStaticContent: GetStaticContentDefault,
+
     getAccountContent: GetAccountContentDefault,
     getActivateAccountContent: GetActivateAccountContentDefault,
 

@@ -15,7 +15,7 @@ import { IGetHeaderContent } from "./States/Content/getHeaderContentState";
 import { IGetNavigationContent } from "./States/Content/getNavigationContentState";
 import { IGetNewsletterContent } from "./States/Content/getNewsletterContentState";
 import { IGetResetPasswordContent } from "./States/Content/getResetPasswordContentState";
-import { IGetStaticContent } from "./States/Content/getStaticContentState";
+
 import { IGetTestimonialsContent } from "./States/Content/getTestimonialsContentState";
 import { IGetUnsubscribeContent } from "./States/Content/getUnsubscribeContentState";
 import { IGetUpdatePasswordContent } from "./States/Content/getUpdatePasswordContentState";
@@ -68,7 +68,7 @@ export interface IApplicationState
     getNavigationContent: IGetNavigationContent,
     getHeaderContent: IGetHeaderContent,
     getFooterContent: IGetFooterContent,
-    getStaticContent: IGetStaticContent,
+
     getAccountContent: IGetAccountContent,
     getActivateAccountContent: IGetActivateAccountContent,
 

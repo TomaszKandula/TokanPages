@@ -1,13 +1,11 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import { REQUEST_STORY } from "../../Redux/Actions/Content/getStaticContentAction";
 import { IApplicationState } from "../../Redux/applicationState";
 import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
 import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
-import { StaticContent } from "../../Components/Content/staticContent";
 
 export const StoryPage = (): JSX.Element => 
 { 
@@ -28,7 +26,7 @@ export const StoryPage = (): JSX.Element =>
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <StaticContent content={REQUEST_STORY} />
+
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>

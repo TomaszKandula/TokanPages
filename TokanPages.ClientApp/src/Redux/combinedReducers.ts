@@ -13,7 +13,7 @@ import { GetHeaderContentReducer } from "./Reducers/Content/getHeaderContentRedu
 import { GetNavigationContentReducer } from "./Reducers/Content/getNavigationContentReducer";
 import { GetNewsletterContentReducer } from "./Reducers/Content/getNewsletterContentReducer";
 import { GetResetPasswordContentReducer } from "./Reducers/Content/getResetPasswordContentReducer";
-import { GetStaticContentReducer } from "./Reducers/Content/getStaticContentReducer";
+
 import { GetTestimonialsContentReducer } from "./Reducers/Content/getTestimonialsContentReducer";
 import { GetUnsubscribeContentReducer } from "./Reducers/Content/getUnsubscribeContentReducer";
 import { GetUpdatePasswordContentReducer } from "./Reducers/Content/getUpdatePasswordContentReducer";
@@ -68,7 +68,7 @@ export const combinedReducers =
     getNavigationContent: GetNavigationContentReducer,
     getHeaderContent: GetHeaderContentReducer,
     getFooterContent: GetFooterContentReducer,
-    getStaticContent: GetStaticContentReducer,
+
     getAccountContent: GetAccountContentReducer, 
     getActivateAccountContent: GetActivateAccountContentReducer,
 

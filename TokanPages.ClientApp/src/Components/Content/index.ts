@@ -1,1 +1,1 @@
-export { StaticContent } from "./staticContent";
+export { StaticContentView as DocumentContent } from "./View/staticContentView";
