@@ -4,25 +4,16 @@ import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import { Divider, IconButton } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
-import { ProgressBar } from "../../../Shared/Components/";
+import { ProgressBar } from "../../../Shared/Components";
 import { RenderContent } from "../../../Shared/Components";
-import { ITextObject } from "../../../Shared/Components/RenderContent/Models";
-import { StaticContentStyle } from "./staticContentStyle";
+import { DocumentStyle } from "./documentStyle";
+import { IGetPolicyContent } from "Redux/States/Content/getPolicyContentState";
+import { IGetTermsContent } from "Redux/States/Content/getTermsContentState";
+import { IGetStoryContent } from "Redux/States/Content/getStoryContentState";
 
-interface IBinding
+export const DocumentView = (props: IGetPolicyContent | IGetTermsContent | IGetStoryContent): JSX.Element => 
 {
-    bind: IProperties;
-}
-
-interface IProperties
-{
-    data: ITextObject;
-    isLoading: boolean;
-}
-
-export const StaticContentView = (props: IBinding): JSX.Element => 
-{
-    const classes = StaticContentStyle();
+    const classes = DocumentStyle();
     return (
         <section className={classes.section}>
             <Container className={classes.container}>
@@ -36,9 +27,9 @@ export const StaticContentView = (props: IBinding): JSX.Element =>
                         <Divider className={classes.divider} />
                     </div>                    
                     <div data-aos="fade-up">
-                        {props.bind?.isLoading 
+                        {props.isLoading 
                             ? <ProgressBar /> 
-                            : <RenderContent items={props.bind?.data.items}/>}
+                            : <RenderContent items={props.content?.items}/>}
                     </div>
                 </Box>
             </Container>

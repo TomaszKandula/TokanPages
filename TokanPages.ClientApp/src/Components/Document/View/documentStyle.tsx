@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import { Colours } from "../../../Theme";
 
-export const StaticContentStyle = makeStyles(() => (
+export const DocumentStyle = makeStyles(() => (
 {
     section:
     {
