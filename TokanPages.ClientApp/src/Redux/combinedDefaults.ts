@@ -40,6 +40,7 @@ import { UpdateUserDefault } from "./Defaults/Users/updateUserDefault";
 import { UpdateUserPasswordDefault } from "./Defaults/Users/updateUserPasswordDefault";
 import { UserLanguageDefault } from "./Defaults/userLanguageDefault";
 import { GetPolicyContentDefault } from "./Defaults/Content/getPolicyContentDefault";
+import { GetTermsContentDefault } from "./Defaults/Content/getTermsContentDefault";
 
 export const combinedDefaults: IApplicationState = 
 {
@@ -67,6 +68,7 @@ export const combinedDefaults: IApplicationState =
     resetUserPassword: ResetUserPasswordDefault,
 
     getPolicyContent: GetPolicyContentDefault,
+    getTermsContent: GetTermsContentDefault,
 
     getNavigationContent: GetNavigationContentDefault,
     getHeaderContent: GetHeaderContentDefault,
