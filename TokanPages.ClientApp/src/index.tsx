@@ -17,13 +17,12 @@ const store = configureStore(history);
 
 const ReactApp = (manifest: IGetContentManifestDto[]) => 
 {
-    console.log(manifest);
     ReactDOM.render(
         <Provider store={store}>
             <ConnectedRouter history={history}>
                 <ThemeProvider theme={AppTheme}>
                     <CssBaseline />
-                    <App />
+                    <App manifest={manifest} />
                 </ThemeProvider>
             </ConnectedRouter>
         </Provider>,
