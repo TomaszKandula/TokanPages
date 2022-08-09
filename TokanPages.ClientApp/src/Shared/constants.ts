@@ -1,11 +1,6 @@
 const API_VER = process.env.REACT_APP_API_VER;
-
-/* BASE URL */
-
 export const APP_FRONTEND = process.env.REACT_APP_FRONTEND;
 export const APP_BACKEND = process.env.REACT_APP_BACKEND;
-
-/* API | ARTICLES */
 
 export const API_QUERY_GET_ARTICLES = `${APP_BACKEND}/api/v${API_VER}/articles/GetAllArticles/`;
 export const API_QUERY_GET_ARTICLE = `${APP_BACKEND}/api/v${API_VER}/articles/GetArticle/{id}/`;
@@ -15,8 +10,6 @@ export const API_COMMAND_UPDATE_ARTICLE_COUNT = `${APP_BACKEND}/api/v${API_VER}/
 export const API_COMMAND_UPDATE_ARTICLE_LIKES = `${APP_BACKEND}/api/v${API_VER}/articles/UpdateArticleLikes/`;
 export const API_COMMAND_UPDATE_ARTICLE_VISIBILITY = `${APP_BACKEND}/api/v${API_VER}/articles/UpdateArticleVisibility/`;
 export const API_COMMAND_REMOVE_ARTICLE = `${APP_BACKEND}/api/v${API_VER}/articles/RemoveArticle/`;
-
-/* API | USERS */
 
 export const API_QUERY_GET_USERS = `${APP_BACKEND}/api/v${API_VER}/users/GetAllUsers/`;
 export const API_QUERY_GET_USER = `${APP_BACKEND}/api/v${API_VER}/users/GetUser/{id}/`;
@@ -29,21 +22,17 @@ export const API_COMMAND_REAUTHENTICATE = `${APP_BACKEND}/api/v${API_VER}/users/
 export const API_COMMAND_RESET_USER_PASSWORD = `${APP_BACKEND}/api/v${API_VER}/users/ResetUserPassword/`;
 export const API_COMMAND_UPDATE_USER_PASSWORD = `${APP_BACKEND}/api/v${API_VER}/users/UpdateUserPassword/`;
 
-/* API | SUBSCRIBERS */
-
 export const API_QUERY_GET_SUBSCRIBERS = `${APP_BACKEND}/api/v${API_VER}/subscribers/GetAllSubscribers/`;
 export const API_QUERY_GET_SUBSCRIBER = `${APP_BACKEND}/api/v${API_VER}/subscribers/GetSubscriber/{id}/`;
 export const API_COMMAND_ADD_SUBSCRIBER = `${APP_BACKEND}/api/v${API_VER}/subscribers/AddSubscriber/`;
 export const API_COMMAND_UPDATE_SUBSCRIBER = `${APP_BACKEND}/api/v${API_VER}/subscribers/UpdateSubscriber/`;
 export const API_COMMAND_REMOVE_SUBSCRIBER = `${APP_BACKEND}/api/v${API_VER}/subscribers/RemoveSubscriber/`;
 
-/* API | MAILER */
-
 export const API_COMMAND_VERIFY_EMAIL = `${APP_BACKEND}/api/v${API_VER}/mailer/VerifyEmailAddress/`;
 export const API_COMMAND_SEND_MESSAGE = `${APP_BACKEND}/api/v${API_VER}/mailer/SendMessage/`;
 export const API_COMMAND_SEND_NEWSLETTER = `${APP_BACKEND}/api/v${API_VER}/mailer/SendNewsletter/`;
 
-/* COMPONENTS CONTENT */
+export const API_QUERY_GET_CONTENT_MANIFEST = `${APP_BACKEND}/api/v${API_VER}/content/GetContentManifest/`;
 
 export const GET_NAVIGATION_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=navigation&Type=component`;
 export const GET_HEADER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=header&Type=component`;
@@ -67,17 +56,11 @@ export const GET_UPDATE_SUBSCRIBER_CONTENT = `${APP_BACKEND}/api/v${API_VER}/con
 export const GET_WRONG_PAGE_PROMPT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=wrongPagePrompt&Type=component`;
 export const GET_ACCOUNT_CONTENT = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=account&Type=component`;
 
-/* DOCUMENTS CONTENT */
-
 export const STORY_URL = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=myStory&Type=document`;
 export const TERMS_URL = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=terms&Type=document`;
 export const POLICY_URL = `${APP_BACKEND}/api/v${API_VER}/content/GetContent/?Name=policy&Type=document`;
 
-/* OTHER URL */
-
 export const IMAGE_URL = `${APP_BACKEND}/api/v${API_VER}/assets/getArticleAsset/?Id={ID}&assetName=image.jpg`;
-
-/* PATHS */
 
 export const ARTICLE_PATH = `/articles/?id={ID}`;
 export const IMAGES_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/getAsset/?BlobName=images/`;
@@ -87,12 +70,8 @@ export const TESTIMONIALS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/getAsset
 export const ICONS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/getAsset/?BlobName=images/icons/`;
 export const AVATARS_PATH = `${APP_BACKEND}/api/v${API_VER}/assets/getAsset/?BlobName=images/avatars/`;
 
-/* ICONS */
-
 export const MAIN_ICON = `${ICONS_PATH}main_logo.svg`;
 export const MEDIUM_ICON = `${ICONS_PATH}medium_icon.svg`;
-
-/* NUMBERS */
 
 export const LIKES_LIMIT_FOR_ANONYM: number = 25;
 export const LIKES_LIMIT_FOR_USER: number = 50;
