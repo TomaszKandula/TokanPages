@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import * as Loader from "loader";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import { createBrowserHistory } from "history";
@@ -7,20 +8,28 @@ import { ThemeProvider } from "@material-ui/core";
 import { AppTheme } from "./Theme";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import configureStore from "./Redux/configureStore";
+import { IGetContentManifestDto } from "./Api/Models";
 import App from "./app";
 
 const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href") as string;
 const history = createBrowserHistory({ basename: baseUrl });
 const store = configureStore(history);
 
-ReactDOM.render(
-    <Provider store={store}>
-        <ConnectedRouter history={history}>
-            <ThemeProvider theme={AppTheme}>
-                <CssBaseline />
-                <App />
-            </ThemeProvider>
-        </ConnectedRouter>
-    </Provider>,
-    document.getElementById("root")
-);
+const ReactApp = (manifest: IGetContentManifestDto[]) => 
+{
+    console.log(manifest);
+    ReactDOM.render(
+        <Provider store={store}>
+            <ConnectedRouter history={history}>
+                <ThemeProvider theme={AppTheme}>
+                    <CssBaseline />
+                    <App />
+                </ThemeProvider>
+            </ConnectedRouter>
+        </Provider>,
+        document.getElementById("root")
+    );    
+}
+
+Loader.Initialize(ReactApp);
+export { }
