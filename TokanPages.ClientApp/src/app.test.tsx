@@ -31,7 +31,7 @@ it("renders without crashing", () =>
     ReactDOM.render(
         <Provider store={store}>
             <MemoryRouter>
-                <App/>
+                <App manifest={[]} />
             </MemoryRouter>
         </Provider>, document.createElement("div")
     );
