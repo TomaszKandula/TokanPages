@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
-using TokanPages.Backend.Dto.Users;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Cqrs.Mappers;
 using TokanPages.Backend.Shared.Attributes;
@@ -13,6 +12,7 @@ using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 using MediatR;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.WebApi.Attributes;
+using TokanPages.WebApi.Dto.Users;
 
 namespace TokanPages.WebApi.Controllers.Api;
 

@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Cqrs.Mappers;
-using TokanPages.Backend.Dto.Articles;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 using TokanPages.Backend.Shared.Attributes;
 using MediatR;
 using TokanPages.Persistence.Caching.Abstractions;
+using TokanPages.WebApi.Dto.Articles;
 
 namespace TokanPages.WebApi.Controllers.Api;
 

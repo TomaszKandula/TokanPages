@@ -1,4 +1,6 @@
-﻿namespace TokanPages.Tests.UnitTests.Handlers.Articles;
+﻿using TokanPages.WebApi.Dto.Content.Common;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Articles;
 
 using Moq;
 using Xunit;
@@ -16,7 +18,6 @@ using Backend.Shared.Resources;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.JsonSerializer;
-using TokanPages.Backend.Dto.Content.Common;
 using Backend.Cqrs.Handlers.Queries.Articles;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Factory;

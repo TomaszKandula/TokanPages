@@ -1,3 +1,6 @@
+using TokanPages.WebApi.Dto.Mailer;
+using TokanPages.WebApi.Dto.Mailer.Models;
+
 namespace TokanPages.Tests.IntegrationTests.Controllers;
 
 using Xunit;
@@ -11,9 +14,7 @@ using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.TestHost;
-using Backend.Dto.Mailer;
 using Backend.Shared.Resources;
-using Backend.Dto.Mailer.Models;
 using Factories;
 
 public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>

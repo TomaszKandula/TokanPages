@@ -6,7 +6,6 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
-using Domain.Enums;
 
 /// <summary>
 /// Use it when you want to update existing user avatar

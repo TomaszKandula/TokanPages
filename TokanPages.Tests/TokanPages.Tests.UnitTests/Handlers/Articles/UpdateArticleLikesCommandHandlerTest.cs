@@ -1,3 +1,5 @@
+using TokanPages.WebApi.Dto.Users;
+
 namespace TokanPages.Tests.UnitTests.Handlers.Articles;
 
 using Moq;
@@ -8,7 +10,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Backend.Domain.Entities;
-using TokanPages.Backend.Dto.Users;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.DateTimeService;

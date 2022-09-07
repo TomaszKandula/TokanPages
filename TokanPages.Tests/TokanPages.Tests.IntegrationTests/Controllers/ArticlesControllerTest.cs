@@ -11,10 +11,10 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.TestHost;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
-using TokanPages.Backend.Dto.Articles;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database.Initializer.Data.Articles;
 using TokanPages.Tests.IntegrationTests.Factories;
+using TokanPages.WebApi.Dto.Articles;
 
 namespace TokanPages.Tests.IntegrationTests.Controllers;
 

@@ -9,10 +9,10 @@ using System.Net.Http.Headers;
 using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
 using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Dto.Subscribers;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database.Initializer.Data.Subscribers;
 using TokanPages.Tests.IntegrationTests.Factories;
+using TokanPages.WebApi.Dto.Subscribers;
 
 namespace TokanPages.Tests.IntegrationTests.Controllers;
 

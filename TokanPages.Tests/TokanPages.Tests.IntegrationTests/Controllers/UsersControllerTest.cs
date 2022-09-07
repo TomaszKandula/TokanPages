@@ -12,11 +12,11 @@ using Microsoft.AspNetCore.TestHost;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
-using TokanPages.Backend.Dto.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database.Initializer.Data.UserInfo;
 using TokanPages.Persistence.Database.Initializer.Data.Users;
 using TokanPages.Tests.IntegrationTests.Factories;
+using TokanPages.WebApi.Dto.Users;
 
 namespace TokanPages.Tests.IntegrationTests.Controllers;
 

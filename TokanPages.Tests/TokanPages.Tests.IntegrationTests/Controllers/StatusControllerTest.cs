@@ -1,3 +1,5 @@
+using TokanPages.WebApi.Dto.Health;
+
 namespace TokanPages.Tests.IntegrationTests.Controllers;
 
 using Xunit;
@@ -9,7 +11,6 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Factories;
-using Backend.Dto.Health;
 
 public class StatusControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
