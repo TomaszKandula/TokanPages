@@ -1,11 +1,11 @@
-namespace TokanPages.WebApi.Controllers.Api;
-
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using Backend.Cqrs.Handlers.Queries.Content;
-using Services.Caching.Content;
+using TokanPages.Backend.Cqrs.Handlers.Queries.Content;
 using MediatR;
+using TokanPages.Persistence.Caching.Abstractions;
+
+namespace TokanPages.WebApi.Controllers.Api;
 
 /// <summary>
 /// API endpoints definitions for content
