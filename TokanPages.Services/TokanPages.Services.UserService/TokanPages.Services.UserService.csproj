@@ -12,10 +12,10 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
-      <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
       <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Domain\TokanPages.Backend.Domain.csproj" />
       <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Dto\TokanPages.Backend.Dto.csproj" />
       <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
+      <ProjectReference Include="..\..\TokanPages.Persistence\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
       <ProjectReference Include="..\TokanPages.Services.AzureStorageService\TokanPages.Services.AzureStorageService.csproj" />
       <ProjectReference Include="..\TokanPages.Services.CipheringService\TokanPages.Services.CipheringService.csproj" />
       <ProjectReference Include="..\TokanPages.Services.HttpClientService\TokanPages.Services.HttpClientService.csproj" />

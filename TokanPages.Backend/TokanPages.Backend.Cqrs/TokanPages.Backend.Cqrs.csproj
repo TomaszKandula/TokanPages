@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\TokanPages.Persistence\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.AzureStorageService\TokanPages.Services.AzureStorageService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.CipheringService\TokanPages.Services.CipheringService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.EmailSenderService\TokanPages.Services.EmailSenderService.csproj" />
@@ -14,7 +15,6 @@
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.UserService\TokanPages.Services.UserService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.WebTokenService\TokanPages.Services.WebTokenService.csproj" />
     <ProjectReference Include="..\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
-    <ProjectReference Include="..\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
     <ProjectReference Include="..\TokanPages.Backend.Domain\TokanPages.Backend.Domain.csproj" />
     <ProjectReference Include="..\TokanPages.Backend.Dto\TokanPages.Backend.Dto.csproj" />
     <ProjectReference Include="..\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
