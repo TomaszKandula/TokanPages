@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Models;
 using WebTokenService;
 using Persistence.Database;
-using Backend.Dto.Users;
+using WebApi.Dto.Users;
 using Backend.Core.Exceptions;
 using Backend.Domain.Entities;
 using Backend.Shared.Services;

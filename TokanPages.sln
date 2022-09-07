@@ -41,7 +41,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.UserSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.EmailSenderService", "TokanPages.Services\TokanPages.Services.EmailSenderService\TokanPages.Services.EmailSenderService.csproj", "{2537C6F4-8115-4ECF-816B-0D00207163E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Dto", "TokanPages.WebApi.Dto\TokanPages.Backend.Dto.csproj", "{831ECC1F-EC05-42E7-89BE-B7494A453C63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.WebApi.Dto", "TokanPages.WebApi.Dto\TokanPages.WebApi.Dto.csproj", "{831ECC1F-EC05-42E7-89BE-B7494A453C63}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{49EAB969-487E-44FD-85B1-041D4836A8DC}"
 EndProject

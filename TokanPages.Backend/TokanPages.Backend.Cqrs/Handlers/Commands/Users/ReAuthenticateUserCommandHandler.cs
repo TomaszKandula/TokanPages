@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Database;
-using Dto.Users;
+using WebApi.Dto.Users;
 using Domain.Entities;
 using Core.Exceptions;
 using Shared.Services;

@@ -1,4 +1,6 @@
-namespace TokanPages.Backend.Dto.Users;
+using TokanPages.Backend.Domain.Enums;
+
+namespace TokanPages.WebApi.Dto.Users;
 
 using System;
 using System.Diagnostics.CodeAnalysis;

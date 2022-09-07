@@ -1,5 +1,5 @@
 ﻿#nullable enable
-namespace TokanPages.Backend.Dto.Users;
+namespace TokanPages.WebApi.Dto.Users;
 
 using System;
 using System.Diagnostics.CodeAnalysis;

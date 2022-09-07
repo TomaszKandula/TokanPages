@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Dto.Mailer;
+namespace TokanPages.WebApi.Dto.Mailer;
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;

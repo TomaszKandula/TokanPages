@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Dto.Health;
+﻿namespace TokanPages.WebApi.Dto.Health;
 
 using System.Diagnostics.CodeAnalysis;
 

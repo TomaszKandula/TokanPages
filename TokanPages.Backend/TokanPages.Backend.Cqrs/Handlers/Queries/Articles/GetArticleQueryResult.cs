@@ -1,8 +1,8 @@
 ﻿namespace TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 
 using System.Collections.Generic;
-using Dto.Users;
-using Dto.Content.Common;
+using WebApi.Dto.Users;
+using WebApi.Dto.Content.Common;
 
 public class GetArticleQueryResult : GetAllArticlesQueryResult
 {

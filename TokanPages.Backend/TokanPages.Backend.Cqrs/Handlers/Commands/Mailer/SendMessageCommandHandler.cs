@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using Persistence.Database;
 using Shared.Services;
 using Core.Extensions;
-using Backend.Dto.Mailer;
+using WebApi.Dto.Mailer;
 using Services.UserService;
 using Services.EmailSenderService;
 using Core.Utilities.LoggerService;

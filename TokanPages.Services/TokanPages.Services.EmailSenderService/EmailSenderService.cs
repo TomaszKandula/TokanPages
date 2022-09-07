@@ -5,7 +5,7 @@ using System.Text;
 using Models;
 using Models.Interfaces;
 using HttpClientService;
-using Backend.Dto.Mailer;
+using WebApi.Dto.Mailer;
 using Backend.Core.Exceptions;
 using Backend.Core.Extensions;
 using Backend.Shared.Services;

@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Dto.Users;
+namespace TokanPages.WebApi.Dto.Users;
 
 /// <summary>
 /// Use it when you want to remove user asset (image/video)

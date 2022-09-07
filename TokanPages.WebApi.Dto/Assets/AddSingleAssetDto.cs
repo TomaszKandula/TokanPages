@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Dto.Assets;
+namespace TokanPages.WebApi.Dto.Assets;
 
 using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;

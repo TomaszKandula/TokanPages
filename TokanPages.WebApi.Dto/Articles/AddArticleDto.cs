@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Dto.Articles;
+﻿namespace TokanPages.WebApi.Dto.Articles;
 
 using System.Diagnostics.CodeAnalysis;
 

@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Dto.Content.Base;
+namespace TokanPages.WebApi.Dto.Content.Base;
 
 using Newtonsoft.Json;
 using System.Diagnostics.CodeAnalysis;

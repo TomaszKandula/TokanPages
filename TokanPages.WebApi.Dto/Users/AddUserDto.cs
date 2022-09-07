@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Dto.Users;
+﻿namespace TokanPages.WebApi.Dto.Users;
 
 using System.Diagnostics.CodeAnalysis;
 

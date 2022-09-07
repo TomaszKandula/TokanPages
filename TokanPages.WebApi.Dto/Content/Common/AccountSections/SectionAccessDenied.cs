@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Dto.Content.Common.AccountSections;
+namespace TokanPages.WebApi.Dto.Content.Common.AccountSections;
 
 using Newtonsoft.Json;
 using System.Diagnostics.CodeAnalysis;

@@ -1,5 +1,5 @@
 #nullable enable
-namespace TokanPages.Backend.Dto.Content.Common;
+namespace TokanPages.WebApi.Dto.Content.Common;
 
 using Newtonsoft.Json;
 using System;
