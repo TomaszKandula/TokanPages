@@ -7,7 +7,7 @@ import { GET_SIGNUP_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/constan
 import { TErrorActions } from "./../raiseErrorAction";
 import { IUserSignupContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
-import { GetUserLanguage } from "../../../Shared/Services/languageService";
+import { GetUserLanguageFromStore } from "../../../Shared/Services/languageService";
 
 export const REQUEST_USER_SIGNUP_CONTENT = "REQUEST_USER_SIGNUP_CONTENT";
 export const RECEIVE_USER_SIGNUP_CONTENT = "RECEIVE_USER_SIGNUP_CONTENT";
@@ -26,7 +26,7 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_USER_SIGNUP_CONTENT });
 
-        const language = GetUserLanguage();
+        const language = GetUserLanguageFromStore();
         const queryParam = language === "" ? "" : `&language=${language}`;
 
         axios(EnrichConfiguration(

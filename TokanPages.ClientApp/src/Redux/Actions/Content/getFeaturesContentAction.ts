@@ -7,7 +7,7 @@ import { GET_FEATURES_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/const
 import { TErrorActions } from "./../raiseErrorAction";
 import { IFeaturesContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
-import { GetUserLanguage } from "../../../Shared/Services/languageService";
+import { GetUserLanguageFromStore } from "../../../Shared/Services/languageService";
 
 export const REQUEST_FEATURES_CONTENT = "REQUEST_FEATURES_CONTENT";
 export const RECEIVE_FEATURES_CONTENT = "RECEIVE_FEATURES_CONTENT";
@@ -26,7 +26,7 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_FEATURES_CONTENT });
 
-        const language = GetUserLanguage();
+        const language = GetUserLanguageFromStore();
         const queryParam = language === "" ? "" : `&language=${language}`;
 
         axios(EnrichConfiguration(
