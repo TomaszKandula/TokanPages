@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using WebTokenService;
-using Backend.Database;
+using Persistence.Database;
 using Backend.Dto.Users;
 using Backend.Core.Exceptions;
 using Backend.Domain.Entities;

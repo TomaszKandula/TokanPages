@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Core", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Cqrs", "TokanPages.Backend\TokanPages.Backend.Cqrs\TokanPages.Backend.Cqrs.csproj", "{6D45524F-F1FA-4A6C-B935-DA94F3B4776A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Database", "TokanPages.Persistence\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj", "{BCDCAD31-2BB6-4BE4-8875-FCE69A30D87D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Persistence.Database", "TokanPages.Persistence\TokanPages.Persistence.Database\TokanPages.Persistence.Database.csproj", "{BCDCAD31-2BB6-4BE4-8875-FCE69A30D87D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Domain", "TokanPages.Backend\TokanPages.Backend.Domain\TokanPages.Backend.Domain.csproj", "{F3846CBF-736F-44AC-B8AC-5638C3B02F7C}"
 EndProject

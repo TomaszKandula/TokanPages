@@ -3,7 +3,7 @@ namespace TokanPages.Backend.Cqrs.Handlers.Queries.Assets;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Utilities.LoggerService;
-using Database;
+using Persistence.Database;
 using Services.AzureStorageService.Factory;
 
 public class GetAssetsListQueryHandler : RequestHandler<GetAssetsListQuery, GetAssetsListQueryResult>

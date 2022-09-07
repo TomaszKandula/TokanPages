@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Database;
+using Persistence.Database;
 using Core.Exceptions;
 using Core.Extensions;
 using Shared.Resources;
