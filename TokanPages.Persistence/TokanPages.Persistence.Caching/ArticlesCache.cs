@@ -1,12 +1,10 @@
-namespace TokanPages.WebApi.Services.Caching.Articles;
-
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 using MediatR;
+using TokanPages.Persistence.Caching.Abstractions;
+using TokanPages.Services.RedisCacheService;
+
+namespace TokanPages.Persistence.Caching;
 
 /// <summary>
 /// Articles cache implementation

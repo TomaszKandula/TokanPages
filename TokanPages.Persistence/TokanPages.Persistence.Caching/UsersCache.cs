@@ -1,12 +1,10 @@
-namespace TokanPages.WebApi.Services.Caching.Users;
-
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
 using MediatR;
+using TokanPages.Persistence.Caching.Abstractions;
+using TokanPages.Services.RedisCacheService;
+
+namespace TokanPages.Persistence.Caching;
 
 /// <summary>
 /// Users cache implementation

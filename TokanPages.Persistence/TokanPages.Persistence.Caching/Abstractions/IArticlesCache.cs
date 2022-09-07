@@ -1,4 +1,4 @@
-namespace TokanPages.WebApi.Services.Caching.Articles;
+namespace TokanPages.Persistence.Caching.Abstractions;
 
 using System;
 using System.Threading.Tasks;

@@ -1,9 +1,10 @@
-namespace TokanPages.WebApi.Services.Caching.Content;
-
-using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
-using Backend.Cqrs.Handlers.Queries.Content;
+using TokanPages.Backend.Cqrs.Handlers.Queries.Content;
 using MediatR;
+using TokanPages.Persistence.Caching.Abstractions;
+using TokanPages.Services.RedisCacheService;
+
+namespace TokanPages.Persistence.Caching;
 
 /// <summary>
 /// Content cache implementation
