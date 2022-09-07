@@ -1,4 +1,4 @@
-namespace TokanPages.WebApi.Services.Caching;
+namespace TokanPages.Services.RedisCacheService;
 
 using System.Threading;
 using System.Threading.Tasks;
