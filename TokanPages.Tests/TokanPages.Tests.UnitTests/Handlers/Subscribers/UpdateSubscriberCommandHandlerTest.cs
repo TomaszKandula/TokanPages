@@ -1,4 +1,6 @@
-﻿namespace TokanPages.Tests.UnitTests.Handlers.Subscribers;
+﻿using TokanPages.WebApi.Dto.Users;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Subscribers;
 
 using Moq;
 using Xunit;
@@ -8,7 +10,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
-using TokanPages.Backend.Dto.Users;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.DateTimeService;

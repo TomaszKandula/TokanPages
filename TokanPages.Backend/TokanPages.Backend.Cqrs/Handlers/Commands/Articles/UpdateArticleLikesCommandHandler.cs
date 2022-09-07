@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Database;
+using Persistence.Database;
 using Domain.Entities;
 using Core.Exceptions;
 using Core.Extensions;

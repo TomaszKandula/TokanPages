@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Models;
-using Backend.Dto.Users;
+using WebApi.Dto.Users;
 using Backend.Domain.Entities;
 
 public interface IUserService

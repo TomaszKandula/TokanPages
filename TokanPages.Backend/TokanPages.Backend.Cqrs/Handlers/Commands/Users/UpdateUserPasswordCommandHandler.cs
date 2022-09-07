@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
-using Database;
+using Persistence.Database;
 using Domain.Enums;
 using Core.Exceptions;
 using Core.Extensions;

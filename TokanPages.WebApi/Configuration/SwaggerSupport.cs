@@ -21,7 +21,7 @@ public static class SwaggerSupport
 
     private const string XmlFileForWebApi = "TokanPages.WebApi.xml";
 
-    private const string XmlFileForDtoModels = "TokanPages.Backend.Dto.xml";
+    private const string XmlFileForDtoModels = "TokanPages.WebApi.Dto.xml";
 
     private const string AuthorizationScheme = "Bearer";
 

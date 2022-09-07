@@ -1,7 +1,7 @@
 ﻿namespace TokanPages.Backend.Cqrs.Mappers;
 
 using System.Diagnostics.CodeAnalysis;
-using Dto.Users;
+using WebApi.Dto.Users;
 using Core.Extensions;
 using Handlers.Commands.Users;
 

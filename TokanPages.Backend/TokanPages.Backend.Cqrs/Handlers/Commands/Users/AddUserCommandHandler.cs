@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Shared;
-using Database;
+using Persistence.Database;
 using Core.Exceptions;
 using Domain.Entities;
 using Shared.Services;

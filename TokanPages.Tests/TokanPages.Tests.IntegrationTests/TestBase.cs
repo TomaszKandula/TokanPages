@@ -1,5 +1,3 @@
-namespace TokanPages.Tests.IntegrationTests;
-
 using System;
 using System.Net;
 using System.Linq;
@@ -8,13 +6,15 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.DependencyInjection;
-using Backend.Database;
-using Backend.Domain.Entities;
-using Services.WebTokenService;
-using Backend.Core.Utilities.DateTimeService;
-using Backend.Database.Initializer.Data.Users;
-using Backend.Core.Utilities.DataUtilityService;
-using Backend.Database.Initializer.Data.UserInfo;
+using TokanPages.Backend.Core.Utilities.DataUtilityService;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Initializer.Data.UserInfo;
+using TokanPages.Persistence.Database.Initializer.Data.Users;
+using TokanPages.Services.WebTokenService;
+
+namespace TokanPages.Tests.IntegrationTests;
 
 public class TestBase
 {
