@@ -1,5 +1,5 @@
-namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content;
+using TokanPages.WebApi.Dto.Content;
 
-using Dto.Content;
+namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content;
 
 public class GetContentManifestQueryResult : GetContentManifestDto { }

@@ -1,15 +1,15 @@
-namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content;
-
 using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Database;
-using Core.Exceptions;
-using Shared.Resources;
-using Core.Utilities.LoggerService;
-using Core.Utilities.JsonSerializer;
-using Services.AzureStorageService.Factory;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.JsonSerializer;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.AzureStorageService.Factory;
+
+namespace TokanPages.Backend.Cqrs.Handlers.Queries.Content;
 
 public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQuery, GetContentManifestQueryResult>
 {
