@@ -1,5 +1,3 @@
-namespace TokanPages.Tests.IntegrationTests.Controllers;
-
 using Xunit;
 using FluentAssertions;
 using Newtonsoft.Json;
@@ -11,14 +9,16 @@ using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.TestHost;
-using Backend.Dto.Users;
-using Backend.Core.Extensions;
-using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Queries.Users;
-using Backend.Cqrs.Handlers.Commands.Users;
-using Backend.Database.Initializer.Data.Users;
-using Backend.Database.Initializer.Data.UserInfo;
-using Factories;
+using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
+using TokanPages.Backend.Cqrs.Handlers.Queries.Users;
+using TokanPages.Backend.Dto.Users;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database.Initializer.Data.UserInfo;
+using TokanPages.Persistence.Database.Initializer.Data.Users;
+using TokanPages.Tests.IntegrationTests.Factories;
+
+namespace TokanPages.Tests.IntegrationTests.Controllers;
 
 public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {

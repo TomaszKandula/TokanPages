@@ -1,12 +1,12 @@
-namespace TokanPages.WebApi.Controllers.Health;
-
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
-using Backend.Database;
-using Backend.Dto.Health;
-using Backend.Shared.Resources;
+using TokanPages.Backend.Dto.Health;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database;
+
+namespace TokanPages.WebApi.Controllers.Health;
 
 /// <summary>
 /// Health controller

@@ -1,8 +1,7 @@
-namespace TokanPages.Persistence.Database.Initializer.Data.Roles;
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Domain.Enums;
+
+namespace TokanPages.Persistence.Database.Initializer.Data.Roles;
 
 [ExcludeFromCodeCoverage]
 public static class Role4

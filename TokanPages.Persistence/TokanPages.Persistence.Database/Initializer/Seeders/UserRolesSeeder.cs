@@ -1,11 +1,9 @@
-using TokanPages.Backend.Domain.Entities;
-
-namespace TokanPages.Persistence.Database.Initializer.Seeders;
-
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Data.UserRoles;
-using Domain.Entities;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Persistence.Database.Initializer.Data.UserRoles;
+
+namespace TokanPages.Persistence.Database.Initializer.Seeders;
 
 [ExcludeFromCodeCoverage]
 public static class UserRolesSeeder

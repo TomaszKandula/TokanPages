@@ -1,11 +1,9 @@
-﻿using TokanPages.Backend.Domain.Entities;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Persistence.Database.Initializer.Data.Articles;
 
 namespace TokanPages.Persistence.Database.Initializer.Seeders;
-
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using Data.Articles;
-using Domain.Entities;
 
 [ExcludeFromCodeCoverage]
 public static class ArticlesSeeder

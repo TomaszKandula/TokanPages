@@ -1,11 +1,9 @@
-﻿using TokanPages.Backend.Domain.Entities;
-
-namespace TokanPages.Persistence.Database;
-
-using System.Reflection;
+﻿using System.Reflection;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
-using Domain.Entities;
+using TokanPages.Backend.Domain.Entities;
+
+namespace TokanPages.Persistence.Database;
 
 [ExcludeFromCodeCoverage]
 public class DatabaseContext : DbContext

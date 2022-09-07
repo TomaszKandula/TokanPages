@@ -1,11 +1,9 @@
-﻿using TokanPages.Backend.Domain.Entities;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Persistence.Database.Initializer.Data.Subscribers;
 
 namespace TokanPages.Persistence.Database.Initializer.Seeders;
-
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using Domain.Entities;
-using Data.Subscribers;
 
 [ExcludeFromCodeCoverage]
 public static class SubscribersSeeder

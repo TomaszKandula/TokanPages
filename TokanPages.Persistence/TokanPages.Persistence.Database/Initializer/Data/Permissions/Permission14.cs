@@ -1,8 +1,7 @@
-namespace TokanPages.Persistence.Database.Initializer.Data.Permissions;
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Domain.Enums;
+
+namespace TokanPages.Persistence.Database.Initializer.Data.Permissions;
 
 [ExcludeFromCodeCoverage]
 public static class Permission14
