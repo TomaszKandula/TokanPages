@@ -1,6 +1,4 @@
-﻿namespace TokanPages.WebApi.Configuration;
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Text;
 using System.Net.Http;
@@ -15,23 +13,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Backend.Database;
-using Backend.Domain.Enums;
-using Backend.Shared.Services;
-using Backend.Shared.Constants;
-using Backend.Database.Initializer;
-using Backend.Shared.Services.Models;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Core.Utilities.JsonSerializer;
-using Backend.Core.Utilities.DateTimeService;
-using Backend.Core.Utilities.DataUtilityService;
+using TokanPages.Backend.Domain.Enums;
+using TokanPages.Backend.Shared.Services;
+using TokanPages.Backend.Shared.Constants;
+using TokanPages.Backend.Shared.Services.Models;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Core.Utilities.JsonSerializer;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using MediatR;
 using FluentValidation;
-using Services.Caching;
-using Services.Caching.Users;
-using Services.Caching.Content;
-using Services.Caching.Articles;
-using Services.Caching.Subscribers;
 using TokanPages.Services.UserService;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.CipheringService;
@@ -40,6 +31,13 @@ using TokanPages.Services.HttpClientService;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.WebTokenService.Validation;
 using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Persistence.Caching;
+using TokanPages.Persistence.Caching.Abstractions;
+using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Initializer;
+using TokanPages.Services.RedisCacheService;
+
+namespace TokanPages.WebApi.Configuration;
 
 /// <summary>
 /// Register application dependencies

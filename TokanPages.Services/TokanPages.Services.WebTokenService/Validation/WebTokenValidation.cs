@@ -2,7 +2,7 @@ namespace TokanPages.Services.WebTokenService.Validation;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Backend.Database;
+using Persistence.Database;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
 

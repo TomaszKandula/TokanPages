@@ -1,3 +1,5 @@
+using TokanPages.WebApi.Dto.Mailer.Models;
+
 namespace TokanPages.Tests.UnitTests.Handlers.Mailer;
 
 using Moq;
@@ -9,7 +11,6 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
-using Backend.Dto.Mailer.Models;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Cqrs.Handlers.Commands.Mailer;
 using TokanPages.Services.EmailSenderService;

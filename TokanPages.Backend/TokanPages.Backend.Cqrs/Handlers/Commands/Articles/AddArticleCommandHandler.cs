@@ -3,7 +3,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Database;
+using Persistence.Database;
 using Domain.Entities;
 using Services.UserService;
 using Core.Utilities.LoggerService;

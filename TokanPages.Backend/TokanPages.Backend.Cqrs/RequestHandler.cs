@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
 using MediatR;
-using Database;
+using Persistence.Database;
 using Core.Utilities.LoggerService;
 
 [ExcludeFromCodeCoverage]

@@ -4,10 +4,10 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Database;
+using Persistence.Database;
 using Shared.Services;
 using Core.Extensions;
-using Backend.Dto.Mailer;
+using WebApi.Dto.Mailer;
 using Services.EmailSenderService;
 using Core.Utilities.LoggerService;
 

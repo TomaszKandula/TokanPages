@@ -1,10 +1,11 @@
-﻿namespace TokanPages.WebApi.Controllers.Api;
+﻿using TokanPages.WebApi.Dto.Mailer;
+
+namespace TokanPages.WebApi.Controllers.Api;
 
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
-using Backend.Dto.Mailer;
 using Backend.Domain.Enums;
 using Backend.Cqrs.Mappers;
 using Backend.Shared.Attributes;

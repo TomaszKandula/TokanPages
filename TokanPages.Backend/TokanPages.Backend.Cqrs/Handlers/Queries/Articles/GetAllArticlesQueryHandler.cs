@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Database;
+using Persistence.Database;
 using Core.Utilities.LoggerService;
 
 public class GetAllArticlesQueryHandler : RequestHandler<GetAllArticlesQuery, List<GetAllArticlesQueryResult>>

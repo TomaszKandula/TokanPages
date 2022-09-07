@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
-using Database;
+using Persistence.Database;
 using Core.Exceptions;
 using Shared.Resources;
 using Core.Utilities.LoggerService;

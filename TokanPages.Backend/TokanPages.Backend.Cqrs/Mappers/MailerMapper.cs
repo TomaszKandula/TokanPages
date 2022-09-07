@@ -2,7 +2,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 using Handlers.Commands.Mailer;
-using Dto.Mailer;
+using WebApi.Dto.Mailer;
 
 [ExcludeFromCodeCoverage]
 public static class MailerMapper
