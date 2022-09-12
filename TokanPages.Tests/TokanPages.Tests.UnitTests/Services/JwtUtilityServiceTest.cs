@@ -1,12 +1,12 @@
-using Xunit;
-using FluentAssertions;
 using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
+using FluentAssertions;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Persistence.Database.Initializer.Data.UserInfo;
 using TokanPages.Persistence.Database.Initializer.Data.Users;
+using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Services;
 

@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Application.Handlers.Commands.Mailer;
+using TokanPages.Backend.Application.Mailer.Commands;
 using TokanPages.WebApi.Dto.Mailer;
 
 namespace TokanPages.WebApi.Controllers.Mappers;

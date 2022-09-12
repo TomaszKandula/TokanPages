@@ -1,27 +1,26 @@
-﻿using TokanPages.WebApi.Dto.Content.Common;
-
-namespace TokanPages.Tests.UnitTests.Handlers.Articles;
-
-using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
+using FluentAssertions;
+using Moq;
 using Newtonsoft.Json;
-using Backend.Domain.Entities;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
-using TokanPages.Services.UserService;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Core.Utilities.JsonSerializer;
-using Backend.Application.Handlers.Queries.Articles;
+using TokanPages.Backend.Application.Articles.Queries;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.JsonSerializer;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Factory;
 using TokanPages.Services.AzureStorageService.Models;
+using TokanPages.Services.UserService;
+using TokanPages.WebApi.Dto.Content.Common;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Articles;
 
 public class GetArticleQueryHandlerTest : TestBase
 {
@@ -36,7 +35,7 @@ public class GetArticleQueryHandlerTest : TestBase
     {
         // Arrange
         var testDate = DateTime.Now;
-        var users = new Users
+        var users = new Backend.Domain.Entities.Users
         {
             Id = Guid.NewGuid(),
             IsActivated = true,
@@ -59,7 +58,7 @@ public class GetArticleQueryHandlerTest : TestBase
             ModifiedAt = null
         };
         
-        var articles = new Articles
+        var articles = new Backend.Domain.Entities.Articles
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),
@@ -145,7 +144,7 @@ public class GetArticleQueryHandlerTest : TestBase
     public async Task GivenIncorrectId_WhenGetArticle_ShouldThrowError()
     {
         // Arrange
-        var users = new Users
+        var users = new Backend.Domain.Entities.Users
         {
             Id = Guid.NewGuid(),
             IsActivated = true,
@@ -154,7 +153,7 @@ public class GetArticleQueryHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Articles
+        var articles = new Backend.Domain.Entities.Articles
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),

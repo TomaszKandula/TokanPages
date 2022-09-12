@@ -1,9 +1,6 @@
-namespace TokanPages.Persistence.Caching.Abstractions;
+using TokanPages.Backend.Application.Articles.Queries;
 
-using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Backend.Application.Handlers.Queries.Articles;
+namespace TokanPages.Persistence.Caching.Abstractions;
 
 /// <summary>
 /// Articles cache contract

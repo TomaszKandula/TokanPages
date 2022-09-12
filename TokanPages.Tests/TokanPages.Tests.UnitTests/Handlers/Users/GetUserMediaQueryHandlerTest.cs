@@ -1,20 +1,20 @@
-namespace TokanPages.Tests.UnitTests.Handlers.Users;
-
-using Moq;
-using Xunit;
 using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
-using TokanPages.Services.UserService;
-using Backend.Application.Handlers.Queries.Users;
-using Backend.Core.Utilities.LoggerService;
+using Moq;
+using TokanPages.Backend.Application.Users.Queries;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService;
-using TokanPages.Services.AzureStorageService.Models;
 using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.AzureStorageService.Models;
+using TokanPages.Services.UserService;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Users;
 
 public class GetUserMediaQueryHandlerTest : TestBase
 {

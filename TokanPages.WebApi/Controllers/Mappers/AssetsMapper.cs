@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Application.Assets.Commands;
 using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Application.Handlers.Commands.Assets;
 using TokanPages.WebApi.Dto.Assets;
 
 namespace TokanPages.WebApi.Controllers.Mappers;

@@ -1,20 +1,20 @@
-namespace TokanPages.WebApi;
-
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Serilog;
-using Middleware;
-using Configuration;
-using Backend.Core.Exceptions;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using Serilog;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.WebApi.Configuration;
+using TokanPages.WebApi.Middleware;
+
+namespace TokanPages.WebApi;
 
 /// <summary>
 /// Startup

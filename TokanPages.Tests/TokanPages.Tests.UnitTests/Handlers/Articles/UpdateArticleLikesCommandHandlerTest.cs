@@ -1,20 +1,19 @@
-using TokanPages.WebApi.Dto.Users;
-
-namespace TokanPages.Tests.UnitTests.Handlers.Articles;
-
-using Moq;
-using Xunit;
-using FluentAssertions;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.Domain.Entities;
-using TokanPages.Services.UserService;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Core.Utilities.DateTimeService;
-using Backend.Application.Handlers.Commands.Articles;
+using FluentAssertions;
+using Moq;
+using TokanPages.Backend.Application.Articles.Commands;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Services.Models;
+using TokanPages.Services.UserService;
+using TokanPages.WebApi.Dto.Users;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Articles;
 
 public class UpdateArticleLikesCommandHandlerTest : TestBase
 {
@@ -27,7 +26,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
     public async Task GivenNewLikesAddedAsAnonymousUser_WhenUpdateArticleLikes_ShouldAddLikes(int likes, int expectedLikes)
     {
         // Arrange
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             Id = Guid.NewGuid(),
             IsActivated = true,
@@ -36,7 +35,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var article = new Articles
+        var article = new Backend.Domain.Entities.Articles
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),
@@ -106,7 +105,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
     public async Task GivenExistingLikesUpdatedAsAnonymousUser_WhenUpdateArticleLikes_ShouldModifyLikes(int existingLikes, int newLikes, int expectedLikes)
     {
         // Arrange
-        var users = new Users
+        var users = new Backend.Domain.Entities.Users
         {
             Id = Guid.NewGuid(),
             IsActivated = true,
@@ -115,7 +114,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Articles
+        var articles = new Backend.Domain.Entities.Articles
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),
@@ -191,7 +190,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
     public async Task GivenNewLikesAddedAsLoggedUser_WhenUpdateArticleLikes_ShouldAddLikes(int likes, int expectedLikes)
     {
         // Arrange
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             Id = Guid.NewGuid(),
             IsActivated = true,
@@ -200,7 +199,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var article = new Articles
+        var article = new Backend.Domain.Entities.Articles
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),
@@ -281,7 +280,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
     public async Task GivenExistingLikesUpdatedAsLoggedUser_WhenUpdateArticleLikes_ShouldModifyLikes(int existingLikes, int newLikes, int expectedLikes)
     {
         // Arrange
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             Id = Guid.NewGuid(),
             IsActivated = true,
@@ -290,7 +289,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Articles
+        var articles = new Backend.Domain.Entities.Articles
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),

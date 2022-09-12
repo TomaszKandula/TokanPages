@@ -1,27 +1,27 @@
-﻿namespace TokanPages.Tests.UnitTests.Handlers.Users;
-
-using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using Backend.Core.Exceptions;
-using Backend.Domain.Entities;
-using Backend.Shared.Resources;
-using Backend.Shared.Services.Models;
-using TokanPages.Services.UserService;
-using Backend.Application.Handlers.Commands.Users;
-using Backend.Core.Utilities.LoggerService;
-using TokanPages.Services.CipheringService;
-using Backend.Core.Utilities.DateTimeService;
-using TokanPages.Services.EmailSenderService;
+using FluentAssertions;
+using Moq;
+using TokanPages.Backend.Application.Users.Commands;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services.Models;
 using TokanPages.Services.AzureStorageService;
-using TokanPages.Services.AzureStorageService.Models;
 using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.AzureStorageService.Models;
+using TokanPages.Services.CipheringService;
+using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.EmailSenderService.Models.Interfaces;
+using TokanPages.Services.UserService;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Users;
 
 public class AddUserCommandHandlerTest : TestBase
 {
@@ -151,7 +151,7 @@ public class AddUserCommandHandlerTest : TestBase
 
         var userAlias = $"{command.FirstName[..2]}{command.LastName[..3]}".ToLower();
         var oldActivationIdEnds = DateTimeService.Now.AddMinutes(-30);
-        var users = new Users
+        var users = new Backend.Domain.Entities.Users
         { 
             EmailAddress = testEmail,
             UserAlias = userAlias,
@@ -231,7 +231,7 @@ public class AddUserCommandHandlerTest : TestBase
             LastName = DataUtilityService.GetRandomString(),
         };
 
-        var users = new Users
+        var users = new Backend.Domain.Entities.Users
         { 
             EmailAddress = testEmail,
             UserAlias = DataUtilityService.GetRandomString(),

@@ -1,9 +1,9 @@
-namespace TokanPages.Tests.UnitTests.Validators.Users;
-
-using Xunit;
 using FluentAssertions;
-using Backend.Shared.Resources;
-using Backend.Application.Handlers.Commands.Users;
+using TokanPages.Backend.Application.Users.Commands;
+using TokanPages.Backend.Shared.Resources;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Validators.Users;
 
 public class ReAuthenticateUserCommandValidatorTest : TestBase
 {

@@ -1,10 +1,10 @@
-namespace TokanPages.WebApi.Configuration;
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Net.Http.Headers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Net.Http.Headers;
+
+namespace TokanPages.WebApi.Configuration;
 
 /// <summary>
 /// CORS policy configuration

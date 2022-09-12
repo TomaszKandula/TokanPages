@@ -1,19 +1,18 @@
-using TokanPages.WebApi.Dto.Mailer.Models;
-
-namespace TokanPages.Tests.UnitTests.Handlers.Mailer;
-
-using Moq;
-using Xunit;
-using MediatR;
-using FluentAssertions;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Application.Handlers.Commands.Mailer;
+using FluentAssertions;
+using MediatR;
+using Moq;
+using TokanPages.Backend.Application.Mailer.Commands;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.EmailSenderService;
+using TokanPages.WebApi.Dto.Mailer.Models;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Mailer;
 
 public class SendNewsletterCommandHandlerTest : TestBase
 {

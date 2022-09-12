@@ -1,9 +1,9 @@
-namespace TokanPages.Tests.UnitTests.Validators.Content;
-
-using Xunit;
 using FluentAssertions;
-using Backend.Shared.Resources;
-using Backend.Application.Handlers.Queries.Content;
+using TokanPages.Backend.Application.Content.Queries;
+using TokanPages.Backend.Shared.Resources;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Validators.Content;
 
 public class GetContentQueryValidatorTest : TestBase
 {

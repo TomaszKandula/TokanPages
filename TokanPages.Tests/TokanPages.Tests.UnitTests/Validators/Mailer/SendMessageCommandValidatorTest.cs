@@ -1,10 +1,10 @@
-﻿namespace TokanPages.Tests.UnitTests.Validators.Mailer;
-
-using Xunit;
+﻿using System.Collections.Generic;
 using FluentAssertions;
-using System.Collections.Generic;
-using Backend.Shared.Resources;
-using Backend.Application.Handlers.Commands.Mailer;
+using TokanPages.Backend.Application.Mailer.Commands;
+using TokanPages.Backend.Shared.Resources;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Validators.Mailer;
 
 public class SendMessageCommandValidatorTest : TestBase
 {

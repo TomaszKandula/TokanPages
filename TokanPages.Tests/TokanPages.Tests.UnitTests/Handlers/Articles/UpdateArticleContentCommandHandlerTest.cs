@@ -1,22 +1,21 @@
-﻿namespace TokanPages.Tests.UnitTests.Handlers.Articles;
-
-using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
+﻿using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.Domain.Entities;
-using Backend.Core.Exceptions;
-using Backend.Core.Extensions;
-using Backend.Shared.Resources;
-using TokanPages.Services.UserService;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Core.Utilities.DateTimeService;
-using Backend.Application.Handlers.Commands.Articles;
+using FluentAssertions;
+using Moq;
+using TokanPages.Backend.Application.Articles.Commands;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.UserService;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Articles;
 
 public class UpdateArticleContentCommandHandlerTest : TestBase
 {
@@ -35,7 +34,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
         };
 
-        var users = new Users
+        var users = new Backend.Domain.Entities.Users
         {
             Id = userId,
             IsActivated = true,
@@ -44,7 +43,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Articles
+        var articles = new Backend.Domain.Entities.Articles
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -119,7 +118,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
         };
 
-        var users = new Users
+        var users = new Backend.Domain.Entities.Users
         {
             Id = userId,
             IsActivated = true,
@@ -128,7 +127,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Articles
+        var articles = new Backend.Domain.Entities.Articles
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),

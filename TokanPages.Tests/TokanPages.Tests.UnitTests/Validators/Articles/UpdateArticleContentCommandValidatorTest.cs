@@ -1,10 +1,10 @@
-﻿namespace TokanPages.Tests.UnitTests.Validators.Articles;
-
-using Xunit;
+﻿using System;
 using FluentAssertions;
-using System;
-using Backend.Shared.Resources;
-using Backend.Application.Handlers.Commands.Articles;
+using TokanPages.Backend.Application.Articles.Commands;
+using TokanPages.Backend.Shared.Resources;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Validators.Articles;
 
 public class UpdateArticleContentCommandValidatorTest : TestBase
 {

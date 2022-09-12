@@ -1,7 +1,6 @@
-namespace TokanPages.Persistence.Caching.Abstractions;
+using TokanPages.Backend.Application.Content.Queries;
 
-using System.Threading.Tasks;
-using Backend.Application.Handlers.Queries.Content;
+namespace TokanPages.Persistence.Caching.Abstractions;
 
 /// <summary>
 /// Content cache contract

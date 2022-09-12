@@ -1,19 +1,19 @@
-namespace TokanPages.Tests.UnitTests.Handlers.Users;
-
-using Moq;
-using Xunit;
-using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.Domain.Entities;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
-using TokanPages.Services.UserService;
-using Backend.Application.Handlers.Commands.Users;
-using Backend.Core.Utilities.LoggerService;
-using TokanPages.Services.UserService.Models;
+using FluentAssertions;
 using MediatR;
+using Moq;
+using TokanPages.Backend.Application.Users.Commands;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Models;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Users;
 
 public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
 {
@@ -23,7 +23,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
         // Arrange
         var userId = Guid.NewGuid();
         var token = DataUtilityService.GetRandomString(100);
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -87,7 +87,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
         // Arrange
         var userId = Guid.NewGuid();
         var token = DataUtilityService.GetRandomString(100);
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),

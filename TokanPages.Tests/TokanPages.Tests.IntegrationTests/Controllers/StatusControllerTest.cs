@@ -1,16 +1,15 @@
-using TokanPages.WebApi.Dto.Health;
-
-namespace TokanPages.Tests.IntegrationTests.Controllers;
-
-using Xunit;
-using Newtonsoft.Json;
-using FluentAssertions;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using System.Collections.Generic;
+using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
-using Factories;
+using Newtonsoft.Json;
+using TokanPages.Tests.IntegrationTests.Factories;
+using TokanPages.WebApi.Dto.Health;
+using Xunit;
+
+namespace TokanPages.Tests.IntegrationTests.Controllers;
 
 public class StatusControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {

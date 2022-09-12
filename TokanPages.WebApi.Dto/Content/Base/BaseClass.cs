@@ -1,7 +1,7 @@
-namespace TokanPages.WebApi.Dto.Content.Base;
-
-using Newtonsoft.Json;
 using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
+
+namespace TokanPages.WebApi.Dto.Content.Base;
 
 /// <summary>
 /// Base class

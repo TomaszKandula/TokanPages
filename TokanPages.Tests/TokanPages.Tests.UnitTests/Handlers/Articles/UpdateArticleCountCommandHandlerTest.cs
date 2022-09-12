@@ -1,21 +1,20 @@
-using TokanPages.WebApi.Dto.Users;
-
-namespace TokanPages.Tests.UnitTests.Handlers.Articles;
-
-using Moq;
-using Xunit;
-using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using Backend.Domain.Entities;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
+using Moq;
+using TokanPages.Backend.Application.Articles.Commands;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Core.Utilities.DateTimeService;
-using Backend.Application.Handlers.Commands.Articles;
+using TokanPages.WebApi.Dto.Users;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Articles;
 
 public class UpdateArticleCountCommandHandlerTest : TestBase
 {
@@ -24,7 +23,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             Id = userId,
             IsActivated = true,
@@ -34,7 +33,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         };
 
         var articleId = Guid.NewGuid();
-        var articles = new Articles
+        var articles = new Backend.Domain.Entities.Articles
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -100,7 +99,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             Id = userId,
             IsActivated = true,
@@ -110,7 +109,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         };
 
         var articleId = Guid.NewGuid();
-        var article = new Articles
+        var article = new Backend.Domain.Entities.Articles
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -191,7 +190,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             Id = userId,
             IsActivated = true,
@@ -201,7 +200,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         };
 
         var articleId = Guid.NewGuid();
-        var article = new Articles
+        var article = new Backend.Domain.Entities.Articles
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -288,7 +287,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     public async Task GivenExistingArticleAndIncorrectArticleId_WhenUpdateArticleCount_ShouldThrowError()
     {
         // Arrange
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             Id = Guid.NewGuid(),
             IsActivated = true,
@@ -297,7 +296,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Articles
+        var articles = new Backend.Domain.Entities.Articles
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),

@@ -1,14 +1,14 @@
-namespace TokanPages.Tests.UnitTests.Validators.Users;
-
-using Moq;
-using Xunit;
-using FluentAssertions;
 using System;
-using Backend.Shared.Resources;
-using Backend.Application.Handlers.Commands.Users;
-using Backend.Domain.Enums;
-using Backend.Shared.Services;
-using Backend.Shared.Services.Models;
+using FluentAssertions;
+using Moq;
+using TokanPages.Backend.Application.Users.Commands;
+using TokanPages.Backend.Domain.Enums;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services;
+using TokanPages.Backend.Shared.Services.Models;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Validators.Users;
 
 public class UploadUserMediaCommandValidatorTest : TestBase
 {

@@ -1,16 +1,15 @@
-﻿namespace TokanPages.Tests.UnitTests.Handlers.Articles;
-
-using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using Backend.Domain.Entities;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Application.Handlers.Queries.Articles;
+using FluentAssertions;
+using Moq;
+using TokanPages.Backend.Application.Articles.Queries;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Articles;
 
 public class GetAllArticlesQueryHandlerTest : TestBase
 {
@@ -18,7 +17,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
     public async Task WhenGetAllArticles_ShouldReturnCollection() 
     {
         // Arrange
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             Id = Guid.NewGuid(),
             UserAlias  = DataUtilityService.GetRandomString(),
@@ -27,7 +26,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new List<Articles>
+        var articles = new List<Backend.Domain.Entities.Articles>
         {
             new()
             {

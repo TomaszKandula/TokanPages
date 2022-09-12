@@ -1,16 +1,16 @@
-namespace TokanPages.Tests.UnitTests.Services;
-
-using Xunit;
-using Moq;
-using Moq.Protected;
-using FluentAssertions;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.Core.Exceptions;
+using FluentAssertions;
+using Moq;
+using Moq.Protected;
+using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Services.HttpClientService;
 using TokanPages.Services.HttpClientService.Models;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Services;
 
 public class HttpClientServiceTest : TestBase
 {
