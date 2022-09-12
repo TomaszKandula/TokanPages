@@ -1,8 +1,8 @@
-﻿namespace TokanPages.Backend.Cqrs.Mappers;
+﻿using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
+using TokanPages.WebApi.Dto.Subscribers;
 
-using System.Diagnostics.CodeAnalysis;
-using WebApi.Dto.Subscribers;
-using Handlers.Commands.Subscribers;
+namespace TokanPages.WebApi.Controllers.Mappers;
 
 [ExcludeFromCodeCoverage]
 public static class SubscribersMapper

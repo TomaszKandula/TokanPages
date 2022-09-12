@@ -1,13 +1,13 @@
-namespace TokanPages.WebApi.Controllers.Api;
-
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Authorization;
-using Backend.Domain.Enums;
-using Backend.Shared.Attributes;
-using Backend.Cqrs.Handlers.Queries.Logger;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using TokanPages.Backend.Cqrs.Handlers.Queries.Logger;
+using TokanPages.Backend.Domain.Enums;
+using TokanPages.Backend.Shared.Attributes;
+
+namespace TokanPages.WebApi.Controllers.Api;
 
 /// <summary>
 /// API endpoints definitions for logger

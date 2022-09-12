@@ -1,9 +1,9 @@
-﻿namespace TokanPages.Backend.Cqrs.Mappers;
+﻿using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Cqrs.Handlers.Commands.Users;
+using TokanPages.WebApi.Dto.Users;
 
-using System.Diagnostics.CodeAnalysis;
-using WebApi.Dto.Users;
-using Core.Extensions;
-using Handlers.Commands.Users;
+namespace TokanPages.WebApi.Controllers.Mappers;
 
 [ExcludeFromCodeCoverage]
 public static class UsersMapper

@@ -1,8 +1,8 @@
-﻿namespace TokanPages.Backend.Cqrs.Mappers;
+﻿using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Cqrs.Handlers.Commands.Mailer;
+using TokanPages.WebApi.Dto.Mailer;
 
-using System.Diagnostics.CodeAnalysis;
-using Handlers.Commands.Mailer;
-using WebApi.Dto.Mailer;
+namespace TokanPages.WebApi.Controllers.Mappers;
 
 [ExcludeFromCodeCoverage]
 public static class MailerMapper

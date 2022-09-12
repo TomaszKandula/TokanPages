@@ -1,8 +1,8 @@
-﻿namespace TokanPages.Backend.Cqrs.Mappers;
+﻿using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Cqrs.Handlers.Commands.Articles;
+using TokanPages.WebApi.Dto.Articles;
 
-using System.Diagnostics.CodeAnalysis;
-using WebApi.Dto.Articles;
-using Handlers.Commands.Articles;
+namespace TokanPages.WebApi.Controllers.Mappers;
 
 [ExcludeFromCodeCoverage]
 public static class ArticlesMapper

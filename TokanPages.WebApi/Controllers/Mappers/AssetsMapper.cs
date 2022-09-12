@@ -1,9 +1,9 @@
-namespace TokanPages.Backend.Cqrs.Mappers;
-
 using System.Diagnostics.CodeAnalysis;
-using WebApi.Dto.Assets;
-using Core.Extensions;
-using Handlers.Commands.Assets;
+using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Cqrs.Handlers.Commands.Assets;
+using TokanPages.WebApi.Dto.Assets;
+
+namespace TokanPages.WebApi.Controllers.Mappers;
 
 [ExcludeFromCodeCoverage]
 public static class AssetsMapper
