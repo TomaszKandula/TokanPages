@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Application.Handlers.Queries.Content;
+namespace TokanPages.Backend.Application.Content.Queries;
 
 using FluentValidation;
 using Shared.Resources;

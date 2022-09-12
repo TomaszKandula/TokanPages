@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Application.Handlers.Commands.Subscribers;
+﻿namespace TokanPages.Backend.Application.Subscribers.Commands;
 
 using System;
 using MediatR;

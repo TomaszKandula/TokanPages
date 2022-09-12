@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Application.Handlers.Queries.Users;
+namespace TokanPages.Backend.Application.Users.Queries;
 
 using System;
 using Shared.Resources;

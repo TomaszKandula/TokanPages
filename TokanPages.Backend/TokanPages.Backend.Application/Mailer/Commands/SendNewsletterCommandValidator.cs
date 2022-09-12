@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Application.Handlers.Commands.Mailer;
+﻿namespace TokanPages.Backend.Application.Mailer.Commands;
 
 using FluentValidation;
 using Shared.Resources;

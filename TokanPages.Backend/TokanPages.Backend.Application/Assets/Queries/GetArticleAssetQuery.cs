@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Application.Handlers.Queries.Assets;
+namespace TokanPages.Backend.Application.Assets.Queries;
 
 using Microsoft.AspNetCore.Mvc;
 using MediatR;

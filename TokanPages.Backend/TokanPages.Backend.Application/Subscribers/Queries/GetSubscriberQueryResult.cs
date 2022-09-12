@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Application.Handlers.Queries.Subscribers;
+﻿namespace TokanPages.Backend.Application.Subscribers.Queries;
 
 using System;
 

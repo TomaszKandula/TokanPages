@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Application.Handlers.Queries.Articles;
+﻿namespace TokanPages.Backend.Application.Articles.Queries;
 
 using System;
 

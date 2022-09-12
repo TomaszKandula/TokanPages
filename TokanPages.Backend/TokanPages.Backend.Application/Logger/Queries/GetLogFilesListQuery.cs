@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Application.Handlers.Queries.Logger;
+namespace TokanPages.Backend.Application.Logger.Queries;
 
 using MediatR;
 

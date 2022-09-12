@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Application.Handlers.Commands.Articles;
+﻿namespace TokanPages.Backend.Application.Articles.Commands;
 
 using FluentValidation;
 using Shared.Resources;

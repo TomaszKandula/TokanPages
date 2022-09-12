@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Application.Handlers.Commands.Users;
+namespace TokanPages.Backend.Application.Users.Commands;
 
 using System.Collections.Generic;
 using WebApi.Dto.Users;

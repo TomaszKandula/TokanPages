@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Application.Handlers.Commands.Assets;
+namespace TokanPages.Backend.Application.Assets.Commands;
 
 using System;
 using System.IO;
