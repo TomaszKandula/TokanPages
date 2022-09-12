@@ -1,9 +1,9 @@
-namespace TokanPages.Persistence.Database.Initializer.Data.UserRoles;
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Roles;
-using Users;
+using TokanPages.Persistence.Database.Initializer.Data.Roles;
+using TokanPages.Persistence.Database.Initializer.Data.Users;
+
+namespace TokanPages.Persistence.Database.Initializer.Data.UserRoles;
 
 [ExcludeFromCodeCoverage]
 public static class UserRole3
