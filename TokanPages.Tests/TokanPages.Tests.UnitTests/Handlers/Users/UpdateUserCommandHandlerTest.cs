@@ -11,7 +11,7 @@ using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Users;
+using Backend.Application.Handlers.Commands.Users;
 using Backend.Core.Utilities.DateTimeService;
 
 public class UpdateUserCommandHandlerTest : TestBase

@@ -3,7 +3,7 @@ namespace TokanPages.Tests.UnitTests.Validators.Content;
 using Xunit;
 using FluentAssertions;
 using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Queries.Content;
+using Backend.Application.Handlers.Queries.Content;
 
 public class GetContentQueryValidatorTest : TestBase
 {

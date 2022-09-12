@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Subscribers;
+using Backend.Application.Handlers.Commands.Subscribers;
 
 public class RemoveSubscriberCommandHandlerTest : TestBase
 {

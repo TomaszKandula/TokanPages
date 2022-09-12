@@ -3,7 +3,7 @@ namespace TokanPages.Persistence.Caching.Abstractions;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Backend.Cqrs.Handlers.Queries.Users;
+using Backend.Application.Handlers.Queries.Users;
 
 /// <summary>
 /// Users cache contract

@@ -11,7 +11,7 @@ using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Mailer;
+using Backend.Application.Handlers.Commands.Mailer;
 using Backend.Core.Utilities.DateTimeService;
 using TokanPages.Services.EmailSenderService;
 

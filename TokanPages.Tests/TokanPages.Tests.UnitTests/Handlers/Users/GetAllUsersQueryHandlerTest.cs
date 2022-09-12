@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Backend.Domain.Entities;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Queries.Users;
+using Backend.Application.Handlers.Queries.Users;
 
 public class GetAllUsersQueryHandlerTest : TestBase
 {

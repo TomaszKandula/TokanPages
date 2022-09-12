@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Content;
+using TokanPages.Backend.Application.Handlers.Queries.Content;
 using MediatR;
 using TokanPages.Persistence.Caching.Abstractions;
 

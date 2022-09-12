@@ -3,7 +3,7 @@ namespace TokanPages.Tests.UnitTests.Validators.Users;
 using Xunit;
 using FluentAssertions;
 using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Commands.Users;
+using Backend.Application.Handlers.Commands.Users;
 
 public class RevokeUserRefreshTokenCommandValidatorTest : TestBase
 {

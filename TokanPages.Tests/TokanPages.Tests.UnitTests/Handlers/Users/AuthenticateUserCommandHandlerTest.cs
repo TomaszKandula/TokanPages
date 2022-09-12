@@ -15,7 +15,7 @@ using Backend.Shared.Services.Models;
 using TokanPages.Services.UserService;
 using TokanPages.Services.WebTokenService;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Users;
+using Backend.Application.Handlers.Commands.Users;
 using TokanPages.Services.CipheringService;
 using Backend.Core.Utilities.DateTimeService;
 using TokanPages.Services.WebTokenService.Models;

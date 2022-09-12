@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
-using Backend.Cqrs.Handlers.Queries.Users;
+using Backend.Application.Handlers.Queries.Users;
 using Backend.Core.Utilities.LoggerService;
 
 public class GetUserQueryHandlerTest : TestBase

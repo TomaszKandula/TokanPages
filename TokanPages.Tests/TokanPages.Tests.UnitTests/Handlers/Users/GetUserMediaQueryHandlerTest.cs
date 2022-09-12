@@ -10,7 +10,7 @@ using FluentAssertions;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
 using TokanPages.Services.UserService;
-using Backend.Cqrs.Handlers.Queries.Users;
+using Backend.Application.Handlers.Queries.Users;
 using Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Models;

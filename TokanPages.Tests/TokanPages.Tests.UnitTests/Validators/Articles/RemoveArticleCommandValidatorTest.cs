@@ -4,7 +4,7 @@ using Xunit;
 using FluentAssertions;
 using System;
 using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Commands.Articles;
+using Backend.Application.Handlers.Commands.Articles;
 
 public class RemoveArticleCommandValidatorTest
 {

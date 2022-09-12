@@ -4,7 +4,7 @@ using Xunit;
 using FluentAssertions;
 using System;
 using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Queries.Subscribers;
+using Backend.Application.Handlers.Queries.Subscribers;
 
 public class GetSubscriberQueryValidatorTest : TestBase
 {

@@ -3,7 +3,7 @@
 using Xunit;
 using FluentAssertions;
 using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Commands.Articles;
+using Backend.Application.Handlers.Commands.Articles;
 
 public class AddArticleCommandValidatorTest : TestBase
 {

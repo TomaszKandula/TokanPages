@@ -7,7 +7,7 @@ using FluentAssertions;
 using Backend.Shared.Services;
 using Backend.Shared.Resources;
 using Backend.Shared.Services.Models;
-using Backend.Cqrs.Handlers.Commands.Assets;
+using Backend.Application.Handlers.Commands.Assets;
 
 public class AddSingleAssetCommandValidatorTest : TestBase
 {

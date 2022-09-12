@@ -4,7 +4,7 @@ using Xunit;
 using FluentAssertions;
 using System;
 using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Commands.Users;
+using Backend.Application.Handlers.Commands.Users;
 
 public class ActivateUserCommandValidatorTest
 {

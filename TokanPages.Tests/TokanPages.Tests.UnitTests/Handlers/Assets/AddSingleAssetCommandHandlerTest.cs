@@ -7,7 +7,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Assets;
+using Backend.Application.Handlers.Commands.Assets;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Factory;
 

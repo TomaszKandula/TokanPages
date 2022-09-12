@@ -14,7 +14,7 @@ using Backend.Shared.Resources;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Utilities.DateTimeService;
-using Backend.Cqrs.Handlers.Commands.Articles;
+using Backend.Application.Handlers.Commands.Articles;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Factory;
 

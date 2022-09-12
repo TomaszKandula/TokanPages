@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Cqrs.Handlers.Commands.Subscribers;
+using TokanPages.Backend.Application.Handlers.Commands.Subscribers;
 using TokanPages.WebApi.Dto.Subscribers;
 
 namespace TokanPages.WebApi.Controllers.Mappers;

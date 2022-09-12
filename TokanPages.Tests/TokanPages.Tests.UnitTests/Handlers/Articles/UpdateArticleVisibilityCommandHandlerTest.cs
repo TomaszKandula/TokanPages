@@ -11,7 +11,7 @@ using Backend.Domain.Entities;
 using Backend.Shared.Resources;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Articles;
+using Backend.Application.Handlers.Commands.Articles;
 using UsersEntity = Backend.Domain.Entities.Users;
 using ArticlesEntity = Backend.Domain.Entities.Articles;
 using PermissionsEntity = Backend.Domain.Entities.Permissions;

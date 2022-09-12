@@ -5,7 +5,7 @@ using Xunit;
 using FluentAssertions;
 using System;
 using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Commands.Users;
+using Backend.Application.Handlers.Commands.Users;
 using Backend.Domain.Enums;
 using Backend.Shared.Services;
 using Backend.Shared.Services.Models;

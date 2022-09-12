@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Backend.Domain.Entities;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Users;
+using Backend.Application.Handlers.Commands.Users;
 using Backend.Core.Utilities.DateTimeService;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.EmailSenderService.Models.Interfaces;

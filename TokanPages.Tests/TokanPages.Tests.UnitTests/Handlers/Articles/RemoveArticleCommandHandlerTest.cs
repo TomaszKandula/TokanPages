@@ -13,7 +13,7 @@ using Backend.Shared.Resources;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Articles;
+using Backend.Application.Handlers.Commands.Articles;
 
 public class RemoveArticleCommandHandlerTest : TestBase
 {

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Backend.Domain.Entities;
 using TokanPages.Services.UserService;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Users;
+using Backend.Application.Handlers.Commands.Users;
 
 public class RemoveUserCommandHandlerTest : TestBase
 {

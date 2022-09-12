@@ -4,7 +4,7 @@ using Xunit;
 using System;
 using FluentAssertions;
 using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Queries.Users;
+using Backend.Application.Handlers.Queries.Users;
 
 public class GetUserMediaQueryValidatorTest : TestBase
 {

@@ -13,7 +13,7 @@ using Backend.Domain.Entities;
 using Backend.Shared.Resources;
 using Backend.Shared.Services.Models;
 using TokanPages.Services.UserService;
-using Backend.Cqrs.Handlers.Commands.Users;
+using Backend.Application.Handlers.Commands.Users;
 using Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.CipheringService;
 using Backend.Core.Utilities.DateTimeService;

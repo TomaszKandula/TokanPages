@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Mailer;
+using Backend.Application.Handlers.Commands.Mailer;
 using TokanPages.Services.EmailSenderService;
 
 public class SendNewsletterCommandHandlerTest : TestBase

@@ -10,7 +10,7 @@ using Backend.Domain.Entities;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
 using TokanPages.Services.UserService;
-using Backend.Cqrs.Handlers.Commands.Users;
+using Backend.Application.Handlers.Commands.Users;
 using Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.UserService.Models;
 using MediatR;

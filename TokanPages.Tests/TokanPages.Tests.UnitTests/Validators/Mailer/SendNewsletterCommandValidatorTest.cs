@@ -7,7 +7,7 @@ using FluentAssertions;
 using System;
 using System.Collections.Generic;
 using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Commands.Mailer;
+using Backend.Application.Handlers.Commands.Mailer;
 
 public class SendNewsletterCommandValidatorTest : TestBase
 {

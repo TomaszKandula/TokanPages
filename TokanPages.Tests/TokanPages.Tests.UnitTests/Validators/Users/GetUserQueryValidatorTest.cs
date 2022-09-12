@@ -4,7 +4,7 @@ using Xunit;
 using FluentAssertions;
 using System;
 using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Queries.Users;
+using Backend.Application.Handlers.Queries.Users;
 
 public class GetUserQueryValidatorTest
 {

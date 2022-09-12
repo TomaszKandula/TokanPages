@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Queries.Subscribers;
+using Backend.Application.Handlers.Queries.Subscribers;
 
 public class GetAllSubscribersQueryHandlerTest : TestBase
 {

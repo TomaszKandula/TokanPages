@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Backend.Domain.Entities;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Queries.Articles;
+using Backend.Application.Handlers.Queries.Articles;
 
 public class GetAllArticlesQueryHandlerTest : TestBase
 {

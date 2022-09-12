@@ -3,7 +3,7 @@
 using Xunit;
 using FluentAssertions;
 using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Commands.Subscribers;
+using Backend.Application.Handlers.Commands.Subscribers;
 
 public class AddSubscriberCommandValidatorTest : TestBase
 {

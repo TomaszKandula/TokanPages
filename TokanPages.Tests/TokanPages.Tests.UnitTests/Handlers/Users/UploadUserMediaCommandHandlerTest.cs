@@ -11,7 +11,7 @@ using Backend.Domain.Enums;
 using Backend.Domain.Entities;
 using Backend.Shared.Resources;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Users;
+using Backend.Application.Handlers.Commands.Users;
 using TokanPages.Services.UserService;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Factory;

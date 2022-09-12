@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Backend.Core.Utilities.LoggerService;
 using Backend.Core.Exceptions;
-using Backend.Cqrs.Handlers.Queries.Subscribers;
+using Backend.Application.Handlers.Queries.Subscribers;
 
 public class GetSubscriberQueryHandlerTest : TestBase
 {

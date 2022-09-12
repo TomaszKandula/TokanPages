@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
+using TokanPages.Backend.Application.Handlers.Queries.Subscribers;
 using MediatR;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.WebApi.Controllers.Mappers;

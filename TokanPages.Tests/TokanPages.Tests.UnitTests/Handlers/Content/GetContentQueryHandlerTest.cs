@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using Backend.Core.Exceptions;
 using Backend.Shared.Resources;
 using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Queries.Content;
+using Backend.Application.Handlers.Queries.Content;
 using Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Factory;
