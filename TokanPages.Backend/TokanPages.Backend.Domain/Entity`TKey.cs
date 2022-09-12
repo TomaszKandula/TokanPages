@@ -1,7 +1,7 @@
-﻿namespace TokanPages.Backend.Domain;
-
+﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
-using System.ComponentModel.DataAnnotations;
+
+namespace TokanPages.Backend.Domain;
 
 [ExcludeFromCodeCoverage]
 public abstract class Entity<TKey>
