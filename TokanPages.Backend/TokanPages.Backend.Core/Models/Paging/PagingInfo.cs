@@ -1,6 +1,6 @@
-namespace TokanPages.Backend.Core.Models.Paging;
-
 using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Backend.Core.Models.Paging;
 
 [ExcludeFromCodeCoverage]
 public class PagingInfo

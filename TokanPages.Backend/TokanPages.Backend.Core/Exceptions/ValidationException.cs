@@ -1,9 +1,9 @@
-﻿namespace TokanPages.Backend.Core.Exceptions;
-
-using System;
-using System.Runtime.Serialization;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 using FluentValidation.Results;
+
+namespace TokanPages.Backend.Core.Exceptions;
 
 [ExcludeFromCodeCoverage]
 [Serializable]

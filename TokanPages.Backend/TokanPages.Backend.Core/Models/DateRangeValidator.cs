@@ -1,7 +1,7 @@
-namespace TokanPages.Backend.Core.Models;
-
 using System;
 using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Backend.Core.Models;
 
 [ExcludeFromCodeCoverage]
 public class DateRangeValidator

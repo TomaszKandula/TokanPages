@@ -1,9 +1,9 @@
-namespace TokanPages.Backend.Core.Extensions;
-
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+
+namespace TokanPages.Backend.Core.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class EnumerableExtensions
