@@ -1,8 +1,7 @@
-﻿namespace TokanPages.WebApi.Dto.Mailer;
+﻿using System.Diagnostics.CodeAnalysis;
+using TokanPages.WebApi.Dto.Mailer.Models;
 
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using Models;
+namespace TokanPages.WebApi.Dto.Mailer;
 
 /// <summary>
 /// Use it when you want to send newsletter to many subscribers

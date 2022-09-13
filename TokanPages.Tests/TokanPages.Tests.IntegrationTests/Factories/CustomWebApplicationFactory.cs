@@ -1,12 +1,12 @@
-﻿namespace TokanPages.Tests.IntegrationTests.Factories;
-
-using System.Reflection;
+﻿using System.Reflection;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.TestHost;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
-using JetBrains.Annotations;
+
+namespace TokanPages.Tests.IntegrationTests.Factories;
 
 [UsedImplicitly]
 public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<TTestStartup> where TTestStartup : class

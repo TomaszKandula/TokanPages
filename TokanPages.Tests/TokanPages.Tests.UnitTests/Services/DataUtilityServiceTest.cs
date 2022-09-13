@@ -1,8 +1,8 @@
-namespace TokanPages.Tests.UnitTests.Services;
-
-using Xunit;
 using System;
 using FluentAssertions;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Services;
 
 public class DataUtilityServiceTest : TestBase
 {

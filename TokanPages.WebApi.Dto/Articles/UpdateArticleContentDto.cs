@@ -1,7 +1,6 @@
-﻿namespace TokanPages.WebApi.Dto.Articles;
+﻿using System.Diagnostics.CodeAnalysis;
 
-using System;
-using System.Diagnostics.CodeAnalysis;
+namespace TokanPages.WebApi.Dto.Articles;
 
 /// <summary>
 /// Use it when you want to update existing content

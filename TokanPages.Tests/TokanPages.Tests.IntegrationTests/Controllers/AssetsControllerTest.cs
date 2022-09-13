@@ -1,4 +1,3 @@
-using Xunit;
 using System;
 using System.Net;
 using System.Threading.Tasks;
@@ -7,6 +6,7 @@ using Microsoft.AspNetCore.TestHost;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database.Initializer.Data.Articles;
 using TokanPages.Tests.IntegrationTests.Factories;
+using Xunit;
 
 namespace TokanPages.Tests.IntegrationTests.Controllers;
 

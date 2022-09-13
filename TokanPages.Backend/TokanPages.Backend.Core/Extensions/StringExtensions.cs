@@ -1,14 +1,14 @@
-namespace TokanPages.Backend.Core.Extensions;
-
 using System;
-using System.Text;
-using System.Linq;
-using System.Globalization;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Exceptions;
-using Shared.Resources;
-using Shared.Constants;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Shared.Constants;
+using TokanPages.Backend.Shared.Resources;
+
+namespace TokanPages.Backend.Core.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class StringExtensions

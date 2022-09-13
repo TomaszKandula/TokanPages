@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Cqrs\TokanPages.Backend.Cqrs.csproj" />
+    <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Application\TokanPages.Backend.Application.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.AzureStorageService\TokanPages.Services.AzureStorageService.csproj" />
   </ItemGroup>
 

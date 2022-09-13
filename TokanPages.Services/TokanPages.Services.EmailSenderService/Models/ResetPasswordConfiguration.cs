@@ -1,7 +1,6 @@
-namespace TokanPages.Services.EmailSenderService.Models;
+using TokanPages.Services.EmailSenderService.Models.Interfaces;
 
-using System;
-using Interfaces;
+namespace TokanPages.Services.EmailSenderService.Models;
 
 public class ResetPasswordConfiguration : IConfiguration
 {

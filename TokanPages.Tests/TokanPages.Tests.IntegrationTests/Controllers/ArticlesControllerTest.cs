@@ -1,20 +1,20 @@
-using Xunit;
-using Newtonsoft.Json;
-using FluentAssertions;
 using System;
-using System.Net;
-using System.Text;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Net.Http.Headers;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
+using Newtonsoft.Json;
+using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database.Initializer.Data.Articles;
 using TokanPages.Tests.IntegrationTests.Factories;
 using TokanPages.WebApi.Dto.Articles;
+using Xunit;
 
 namespace TokanPages.Tests.IntegrationTests.Controllers;
 

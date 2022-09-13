@@ -1,9 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
+
 #nullable enable
 namespace TokanPages.WebApi.Dto.Content.Common;
-
-using Newtonsoft.Json;
-using System;
-using System.Diagnostics.CodeAnalysis;
 
 /// <summary>
 /// Subitem

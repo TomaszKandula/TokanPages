@@ -1,6 +1,6 @@
-﻿namespace TokanPages.WebApi.Dto.Subscribers;
+﻿using System.Diagnostics.CodeAnalysis;
 
-using System.Diagnostics.CodeAnalysis;
+namespace TokanPages.WebApi.Dto.Subscribers;
 
 /// <summary>
 /// Use it when you want to add newsletter subscriber

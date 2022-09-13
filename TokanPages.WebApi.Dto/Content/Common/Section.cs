@@ -1,8 +1,7 @@
-namespace TokanPages.WebApi.Dto.Content.Common;
-
-using Newtonsoft.Json;
-using System;
 using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
+
+namespace TokanPages.WebApi.Dto.Content.Common;
 
 /// <summary>
 /// Section

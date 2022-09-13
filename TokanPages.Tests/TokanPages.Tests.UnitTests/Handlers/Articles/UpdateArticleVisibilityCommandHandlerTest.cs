@@ -1,21 +1,17 @@
-namespace TokanPages.Tests.UnitTests.Handlers.Articles;
-
-using Moq;
-using Xunit;
-using FluentAssertions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.Core.Exceptions;
-using Backend.Domain.Entities;
-using Backend.Shared.Resources;
+using FluentAssertions;
+using Moq;
+using TokanPages.Backend.Application.Articles.Commands;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Articles;
-using UsersEntity = Backend.Domain.Entities.Users;
-using ArticlesEntity = Backend.Domain.Entities.Articles;
-using PermissionsEntity = Backend.Domain.Entities.Permissions;
-using AuthorizationPermissions = Backend.Domain.Enums.Permissions;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Articles;
 
 public class UpdateArticleVisibilityCommandHandlerTest : TestBase
 {
@@ -35,7 +31,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             IsPublished = shouldBeVisible
         };
 
-        var users = new Users
+        var users = new Backend.Domain.Entities.Users
         {
             Id = userId,
             IsActivated = true,
@@ -57,7 +53,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             PermissionId = permissionId
         };
 
-        var articles = new Articles
+        var articles = new Backend.Domain.Entities.Articles
         {
             Id = articlesId,
             UserId = userId,
@@ -115,7 +111,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         var articlesId = Guid.NewGuid();
         var permissionId = Guid.NewGuid();
 
-        var users = new Users
+        var users = new Backend.Domain.Entities.Users
         {
             Id = userId,
             IsActivated = true,
@@ -137,7 +133,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             PermissionId = permissionId
         };
 
-        var articles = new Articles
+        var articles = new Backend.Domain.Entities.Articles
         {
             Id = articlesId,
             UserId = userId,
@@ -197,7 +193,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         var articlesId = Guid.NewGuid();
         var permissionId = Guid.NewGuid();
 
-        var users = new Users
+        var users = new Backend.Domain.Entities.Users
         {
             Id = userId,
             IsActivated = true,
@@ -219,7 +215,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             PermissionId = permissionId
         };
 
-        var articles = new Articles
+        var articles = new Backend.Domain.Entities.Articles
         {
             Id = articlesId,
             UserId = userId,

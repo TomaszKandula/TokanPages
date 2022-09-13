@@ -1,7 +1,7 @@
-﻿namespace TokanPages.Persistence.Database.Initializer.Data.Subscribers;
-
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Persistence.Database.Initializer.Data.Subscribers;
 
 [ExcludeFromCodeCoverage]
 public static class Subscriber2

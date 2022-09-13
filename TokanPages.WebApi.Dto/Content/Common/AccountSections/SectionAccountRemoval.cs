@@ -1,7 +1,7 @@
-namespace TokanPages.WebApi.Dto.Content.Common.AccountSections;
-
-using Newtonsoft.Json;
 using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
+
+namespace TokanPages.WebApi.Dto.Content.Common.AccountSections;
 
 /// <summary>
 /// SectionAccountRemoval

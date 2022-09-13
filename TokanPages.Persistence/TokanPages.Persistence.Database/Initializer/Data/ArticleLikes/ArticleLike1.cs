@@ -1,9 +1,9 @@
-﻿namespace TokanPages.Persistence.Database.Initializer.Data.ArticleLikes;
-
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Articles;
-using Users;
+using TokanPages.Persistence.Database.Initializer.Data.Articles;
+using TokanPages.Persistence.Database.Initializer.Data.Users;
+
+namespace TokanPages.Persistence.Database.Initializer.Data.ArticleLikes;
 
 [ExcludeFromCodeCoverage]
 public static class ArticleLike1

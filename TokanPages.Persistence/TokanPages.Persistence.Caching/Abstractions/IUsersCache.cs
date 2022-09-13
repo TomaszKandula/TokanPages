@@ -1,9 +1,6 @@
-namespace TokanPages.Persistence.Caching.Abstractions;
+using TokanPages.Backend.Application.Users.Queries;
 
-using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Backend.Cqrs.Handlers.Queries.Users;
+namespace TokanPages.Persistence.Caching.Abstractions;
 
 /// <summary>
 /// Users cache contract

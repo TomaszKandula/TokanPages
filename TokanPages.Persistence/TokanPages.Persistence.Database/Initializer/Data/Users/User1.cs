@@ -1,7 +1,7 @@
-﻿namespace TokanPages.Persistence.Database.Initializer.Data.Users;
-
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Persistence.Database.Initializer.Data.Users;
 
 [ExcludeFromCodeCoverage]
 public static class User1

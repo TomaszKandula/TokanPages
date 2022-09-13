@@ -1,9 +1,9 @@
-namespace TokanPages.Backend.Core.Extensions;
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
-using Models;
+using TokanPages.Backend.Core.Models;
+
+namespace TokanPages.Backend.Core.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class DateValidationExtensions

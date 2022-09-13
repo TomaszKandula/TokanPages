@@ -1,8 +1,8 @@
-namespace TokanPages.Persistence.Database.Initializer.Data.UserInfo;
-
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Users;
+using TokanPages.Persistence.Database.Initializer.Data.Users;
+
+namespace TokanPages.Persistence.Database.Initializer.Data.UserInfo;
 
 [ExcludeFromCodeCoverage]
 public static class UserInfo3

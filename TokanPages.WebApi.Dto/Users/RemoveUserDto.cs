@@ -1,7 +1,6 @@
-﻿namespace TokanPages.WebApi.Dto.Users;
+﻿using System.Diagnostics.CodeAnalysis;
 
-using System;
-using System.Diagnostics.CodeAnalysis;
+namespace TokanPages.WebApi.Dto.Users;
 
 /// <summary>
 /// Use it when you want to remove existing user

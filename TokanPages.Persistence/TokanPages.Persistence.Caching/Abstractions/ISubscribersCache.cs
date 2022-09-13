@@ -1,9 +1,6 @@
-namespace TokanPages.Persistence.Caching.Abstractions;
+using TokanPages.Backend.Application.Subscribers.Queries;
 
-using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Subscribers;
+namespace TokanPages.Persistence.Caching.Abstractions;
 
 /// <summary>
 /// Subscribers cache contract

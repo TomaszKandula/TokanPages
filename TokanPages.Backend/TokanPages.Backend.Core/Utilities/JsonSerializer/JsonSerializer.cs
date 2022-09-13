@@ -1,11 +1,11 @@
-namespace TokanPages.Backend.Core.Utilities.JsonSerializer;
-
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Exceptions;
-using Shared.Resources;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Shared.Resources;
+
+namespace TokanPages.Backend.Core.Utilities.JsonSerializer;
 
 public class JsonSerializer : IJsonSerializer
 {

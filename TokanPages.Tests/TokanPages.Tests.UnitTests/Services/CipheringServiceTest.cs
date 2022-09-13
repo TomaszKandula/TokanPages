@@ -1,8 +1,8 @@
-namespace TokanPages.Tests.UnitTests.Services;
-
-using Xunit;
 using FluentAssertions;
 using TokanPages.Services.CipheringService;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Services;
 
 public class CipheringServiceTest : TestBase
 {

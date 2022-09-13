@@ -1,18 +1,18 @@
-namespace TokanPages.Services.AzureStorageService;
-
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
-using Models;
-using Backend.Shared.Constants;
-using Backend.Core.Exceptions;
-using Backend.Core.Extensions;
-using Backend.Shared.Resources;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Shared.Constants;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Services.AzureStorageService.Models;
+
+namespace TokanPages.Services.AzureStorageService;
 
 public class AzureBlobStorage : IAzureBlobStorage
 {

@@ -1,9 +1,9 @@
-namespace TokanPages.Persistence.Database.Initializer;
-
-using System.Linq;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Seeders;
+using TokanPages.Persistence.Database.Initializer.Seeders;
+
+namespace TokanPages.Persistence.Database.Initializer;
 
 [ExcludeFromCodeCoverage]
 public class DbInitializer : IDbInitializer

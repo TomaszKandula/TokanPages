@@ -1,10 +1,10 @@
-﻿namespace TokanPages.Persistence.Database;
-
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+
+namespace TokanPages.Persistence.Database;
 
 /// <summary>
 /// A factory for creating derived DbContext instances when performing

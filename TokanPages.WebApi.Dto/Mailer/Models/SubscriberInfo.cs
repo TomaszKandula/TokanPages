@@ -1,6 +1,6 @@
-﻿namespace TokanPages.WebApi.Dto.Mailer.Models;
+﻿using System.Diagnostics.CodeAnalysis;
 
-using System.Diagnostics.CodeAnalysis;
+namespace TokanPages.WebApi.Dto.Mailer.Models;
 
 /// <summary>
 /// Subscriber basic data

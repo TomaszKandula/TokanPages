@@ -1,19 +1,17 @@
-﻿using TokanPages.WebApi.Dto.Users;
-
-namespace TokanPages.Tests.UnitTests.Handlers.Subscribers;
-
-using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Backend.Domain.Entities;
-using Backend.Core.Exceptions;
+using FluentAssertions;
+using Moq;
+using TokanPages.Backend.Application.Subscribers.Commands;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.UserService;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Core.Utilities.DateTimeService;
-using Backend.Cqrs.Handlers.Commands.Subscribers;
+using TokanPages.Services.UserService.Models;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Subscribers;
 
 public class UpdateSubscriberCommandHandlerTest : TestBase
 {
@@ -21,7 +19,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
     public async Task GivenCorrectId_WhenUpdateSubscriber_ShouldUpdateEntity()
     {
         // Arrange
-        var subscribers = new Subscribers 
+        var subscribers = new Backend.Domain.Entities.Subscribers 
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
@@ -40,7 +38,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
 
         mockedUserService
             .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
-            .ReturnsAsync((GetUserDto)null!);
+            .ReturnsAsync((GetUserOutput)null!);
         
         var command = new UpdateSubscriberCommand
         {
@@ -74,7 +72,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
     public async Task GivenCorrectIdAndCountIsNullAndIsActivatedIsNull_WhenUpdateSubscriber_ShouldUpdateEntity()
     {
         // Arrange
-        var subscribers = new Subscribers
+        var subscribers = new Backend.Domain.Entities.Subscribers
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
@@ -131,7 +129,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Count = 10
         };
 
-        var subscribers = new Subscribers
+        var subscribers = new Backend.Domain.Entities.Subscribers
         {
             Id = Guid.NewGuid(),
             Email = DataUtilityService.GetRandomEmail(),
@@ -165,7 +163,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
     {
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var subscribers = new Subscribers
+        var subscribers = new Backend.Domain.Entities.Subscribers
         {
             Email = testEmail,
             IsActivated = true,

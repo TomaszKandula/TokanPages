@@ -1,11 +1,11 @@
-namespace TokanPages.Services.AzureStorageService;
-
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using Models;
-using Backend.Shared.Constants;
+using TokanPages.Backend.Shared.Constants;
+using TokanPages.Services.AzureStorageService.Models;
+
+namespace TokanPages.Services.AzureStorageService;
 
 public interface IAzureBlobStorage
 {

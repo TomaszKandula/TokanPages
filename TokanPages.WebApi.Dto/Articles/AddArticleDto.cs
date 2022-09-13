@@ -1,6 +1,6 @@
-﻿namespace TokanPages.WebApi.Dto.Articles;
+﻿using System.Diagnostics.CodeAnalysis;
 
-using System.Diagnostics.CodeAnalysis;
+namespace TokanPages.WebApi.Dto.Articles;
 
 /// <summary>
 /// Use it when you want to add article
