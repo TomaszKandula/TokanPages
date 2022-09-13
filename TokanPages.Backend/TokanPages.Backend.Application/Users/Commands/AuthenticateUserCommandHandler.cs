@@ -12,8 +12,8 @@ using TokanPages.Backend.Shared.Services;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.CipheringService;
 using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Models;
 using TokanPages.Services.WebTokenService;
-using TokanPages.WebApi.Dto.Users;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
@@ -95,8 +95,8 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
         await DatabaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        var roles = await _userService.GetUserRoles(user.Id, cancellationToken) ?? new List<GetUserRoleDto>();
-        var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken) ?? new List<GetUserPermissionDto>();
+        var roles = await _userService.GetUserRoles(user.Id, cancellationToken) ?? new List<GetUserRolesOutput>();
+        var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken) ?? new List<GetUserPermissionsOutput>();
 
         var userInfo = await DatabaseContext.UserInfo
             .Where(info => info.UserId == user.Id)

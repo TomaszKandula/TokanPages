@@ -12,7 +12,6 @@ using TokanPages.Backend.Shared.Services;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService;
 using TokanPages.Services.UserService.Models;
-using TokanPages.WebApi.Dto.Users;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
@@ -79,8 +78,8 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         var tokenExpires = _dateTimeService.Now.AddMinutes(_applicationSettings.IdentityServer.WebTokenExpiresIn);
         var userToken = await _userService.GenerateUserToken(user, tokenExpires, cancellationToken);
 
-        var roles = await _userService.GetUserRoles(user.Id, cancellationToken) ?? new List<GetUserRoleDto>();
-        var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken) ?? new List<GetUserPermissionDto>();
+        var roles = await _userService.GetUserRoles(user.Id, cancellationToken) ?? new List<GetUserRolesOutput>();
+        var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken) ?? new List<GetUserPermissionsOutput>();
 
         var newUserToken = new UserTokens
         {
