@@ -1,21 +1,20 @@
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using FluentAssertions;
+using Microsoft.AspNetCore.TestHost;
+using Newtonsoft.Json;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Tests.IntegrationTests.Factories;
 using TokanPages.WebApi.Dto.Mailer;
 using TokanPages.WebApi.Dto.Mailer.Models;
+using Xunit;
 
 namespace TokanPages.Tests.IntegrationTests.Controllers;
-
-using Xunit;
-using Newtonsoft.Json;
-using FluentAssertions;
-using System;
-using System.Net;
-using System.Text;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Net.Http.Headers;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.TestHost;
-using Backend.Shared.Resources;
-using Factories;
 
 public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {

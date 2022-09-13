@@ -1,22 +1,16 @@
-﻿namespace TokanPages.Services.UserService;
-
-using System;
-using System.Linq;
-using System.Threading;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Models;
-using WebTokenService;
-using Persistence.Database;
-using WebApi.Dto.Users;
-using Backend.Core.Exceptions;
-using Backend.Domain.Entities;
-using Backend.Shared.Services;
-using Backend.Shared.Resources;
-using Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.UserService.Models;
+using TokanPages.Services.WebTokenService;
+
+namespace TokanPages.Services.UserService;
 
 public sealed class UserService : IUserService
 {
@@ -38,11 +32,11 @@ public sealed class UserService : IUserService
 
     private readonly IApplicationSettings _applicationSettings;
 
-    private List<GetUserPermissionDto>? _userPermissions;
+    private List<GetUserPermissionsOutput>? _userPermissions;
 
-    private List<GetUserRoleDto>? _userRoles;
+    private List<GetUserRolesOutput>? _userRoles;
 
-    private GetUserDto? _user;
+    private GetUserOutput? _user;
 
     public UserService(IHttpContextAccessor httpContextAccessor, DatabaseContext databaseContext, 
         IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IApplicationSettings applicationSettings)
@@ -88,7 +82,7 @@ public sealed class UserService : IUserService
         await _databaseContext.SaveChangesAsync();
     }
 
-    public async Task<GetUserDto?> GetUser(CancellationToken cancellationToken = default)
+    public async Task<GetUserOutput?> GetUser(CancellationToken cancellationToken = default)
     {
         await EnsureUserData(cancellationToken);
         return _user;
@@ -112,13 +106,13 @@ public sealed class UserService : IUserService
         return user;
     }
 
-    public async Task<List<GetUserRoleDto>?> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default)
+    public async Task<List<GetUserRolesOutput>?> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default)
     {
         await EnsureUserRoles(userId, cancellationToken);
         return _userRoles;
     }
 
-    public async Task<List<GetUserPermissionDto>?> GetUserPermissions(Guid? userId, CancellationToken cancellationToken = default)
+    public async Task<List<GetUserPermissionsOutput>?> GetUserPermissions(Guid? userId, CancellationToken cancellationToken = default)
     {
         await EnsureUserPermissions(userId, cancellationToken);
         return _userPermissions;
@@ -363,10 +357,10 @@ public sealed class UserService : IUserService
         if (!userRoles.Any())
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
-        _userRoles = new List<GetUserRoleDto>();
+        _userRoles = new List<GetUserRolesOutput>();
         foreach (var userRole in userRoles)
         {
-            _userRoles.Add(new GetUserRoleDto
+            _userRoles.Add(new GetUserRolesOutput
             {
                 Name = userRole.RoleNavigation.Name,
                 Description = userRole.RoleNavigation.Description
@@ -389,10 +383,10 @@ public sealed class UserService : IUserService
         if (!userPermissions.Any())
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
-        _userPermissions = new List<GetUserPermissionDto>();
+        _userPermissions = new List<GetUserPermissionsOutput>();
         foreach (var userPermission in userPermissions)
         {
-            _userPermissions.Add(new GetUserPermissionDto
+            _userPermissions.Add(new GetUserPermissionsOutput
             {
                 Name = userPermission.PermissionNavigation.Name
             });
@@ -425,7 +419,7 @@ public sealed class UserService : IUserService
             .AsNoTracking()
             .SingleOrDefaultAsync(info => info.UserId == userId, cancellationToken);
 
-        _user = new GetUserDto
+        _user = new GetUserOutput
         {
             UserId = user.Id,
             AliasName = user.UserAlias,

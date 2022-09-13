@@ -1,22 +1,22 @@
-namespace TokanPages.Tests.UnitTests.Handlers.Users;
-
-using Moq;
-using Xunit;
-using FluentAssertions;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using Backend.Domain.Entities;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
-using Backend.Shared.Services.Models;
+using Moq;
+using TokanPages.Backend.Application.Users.Commands;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services.Models;
 using TokanPages.Services.UserService;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Users;
 using TokanPages.Services.UserService.Models;
-using Backend.Core.Utilities.DateTimeService;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Users;
 
 public class ReAuthenticateUserCommandHandlerTest : TestBase
 {
@@ -33,7 +33,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var refreshToken = DataUtilityService.GetRandomString(255);
 
         var command = new ReAuthenticateUserCommand { RefreshToken = refreshToken };
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             Id = userId,
             EmailAddress = emailAddress,
@@ -128,7 +128,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var newUserToken = DataUtilityService.GetRandomString();
         mockedUserService
             .Setup(service => service.GenerateUserToken(
-                It.IsAny<Users>(), 
+                It.IsAny<Backend.Domain.Entities.Users>(), 
                 It.IsAny<DateTime>(), 
                 CancellationToken.None))
             .ReturnsAsync(newUserToken);
@@ -203,7 +203,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var created = DateTimeService.Now.AddDays(-5);
             
         var command = new ReAuthenticateUserCommand { RefreshToken = DataUtilityService.GetRandomString() };
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             Id = userId,
             EmailAddress = emailAddress,
@@ -282,7 +282,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
     {
         // Arrange
         var command = new ReAuthenticateUserCommand { RefreshToken = DataUtilityService.GetRandomString() };
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             Id = Guid.NewGuid(),
             EmailAddress = DataUtilityService.GetRandomEmail(),

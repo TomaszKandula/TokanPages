@@ -1,10 +1,10 @@
-namespace TokanPages.Services.WebTokenService.Validation;
-
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Persistence.Database;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database;
+
+namespace TokanPages.Services.WebTokenService.Validation;
 
 public class WebTokenValidation : IWebTokenValidation
 {

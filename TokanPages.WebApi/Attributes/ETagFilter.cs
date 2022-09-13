@@ -1,12 +1,12 @@
-namespace TokanPages.WebApi.Attributes;
-
 using System;
-using System.Text;
 using System.Collections;
-using Newtonsoft.Json;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Configuration;
+using Newtonsoft.Json;
+using TokanPages.WebApi.Configuration;
+
+namespace TokanPages.WebApi.Attributes;
 
 /// <summary>
 /// ETag filter implementation

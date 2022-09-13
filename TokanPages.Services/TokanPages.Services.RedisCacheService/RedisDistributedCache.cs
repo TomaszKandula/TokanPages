@@ -1,15 +1,11 @@
-namespace TokanPages.Services.RedisCacheService;
-
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Caching.Distributed;
-using Backend.Shared.Services;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
 using Newtonsoft.Json;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services;
+
+namespace TokanPages.Services.RedisCacheService;
 
 /// <summary>
 /// Redis distributed implementation

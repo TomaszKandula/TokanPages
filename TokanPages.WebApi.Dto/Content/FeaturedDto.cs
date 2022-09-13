@@ -1,11 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
+using TokanPages.WebApi.Dto.Content.Base;
+
 namespace TokanPages.WebApi.Dto.Content;
 
-using Base;
-using Newtonsoft.Json;
-using System.Diagnostics.CodeAnalysis;
-
 /// <summary>
-/// 
+/// FeaturedDto 
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class FeaturedDto : BaseClass

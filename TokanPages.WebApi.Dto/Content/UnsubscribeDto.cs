@@ -1,9 +1,9 @@
-namespace TokanPages.WebApi.Dto.Content;
-
-using Base;
-using Common;
-using Newtonsoft.Json;
 using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
+using TokanPages.WebApi.Dto.Content.Base;
+using TokanPages.WebApi.Dto.Content.Common;
+
+namespace TokanPages.WebApi.Dto.Content;
 
 /// <summary>
 /// UnsubscribeDto

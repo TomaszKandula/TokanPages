@@ -1,7 +1,6 @@
-namespace TokanPages.Services.WebTokenService.Models;
-
-using System;
 using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Services.WebTokenService.Models;
 
 [ExcludeFromCodeCoverage]
 public class RefreshToken

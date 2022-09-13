@@ -1,14 +1,14 @@
-namespace TokanPages.Tests.IntegrationTests.Controllers;
-
-using Xunit;
-using Newtonsoft.Json;
-using FluentAssertions;
 using System.Net;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
-using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Queries.Content;
-using Factories;
+using Newtonsoft.Json;
+using TokanPages.Backend.Application.Content.Queries;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Tests.IntegrationTests.Factories;
+using Xunit;
+
+namespace TokanPages.Tests.IntegrationTests.Controllers;
 
 public class ContentControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {

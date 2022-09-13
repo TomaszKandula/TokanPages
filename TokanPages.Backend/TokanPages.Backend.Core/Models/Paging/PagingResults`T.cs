@@ -1,7 +1,7 @@
-namespace TokanPages.Backend.Core.Models.Paging;
-
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Backend.Core.Models.Paging;
 
 [ExcludeFromCodeCoverage]
 public class PagingResults<T> where T : class

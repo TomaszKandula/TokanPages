@@ -1,10 +1,8 @@
-﻿namespace TokanPages.Services.BehaviourService;
-
-using System.Threading;
-using System.Threading.Tasks;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
 using MediatR;
+
+namespace TokanPages.Services.BehaviourService;
 
 [ExcludeFromCodeCoverage]
 public class FluentValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>

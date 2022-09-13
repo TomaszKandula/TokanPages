@@ -1,7 +1,7 @@
-namespace TokanPages.Persistence.Database.Initializer.Data.DefaultPermission;
-
 using System;
 using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Persistence.Database.Initializer.Data.DefaultPermission;
 
 [ExcludeFromCodeCoverage]
 public static class DefaultPermission5

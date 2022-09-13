@@ -1,13 +1,13 @@
-namespace TokanPages.WebApi.Configuration;
-
 using System;
-using System.IO;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.OpenApi.Models;
-using Microsoft.Extensions.Hosting;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+
+namespace TokanPages.WebApi.Configuration;
 
 /// <summary>
 /// Swagger support

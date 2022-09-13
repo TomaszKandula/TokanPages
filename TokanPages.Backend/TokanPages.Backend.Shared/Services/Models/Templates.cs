@@ -1,6 +1,6 @@
-namespace TokanPages.Backend.Shared.Services.Models;
-
 using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Backend.Shared.Services.Models;
 
 [ExcludeFromCodeCoverage]
 public class Templates

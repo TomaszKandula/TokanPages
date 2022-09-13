@@ -1,7 +1,7 @@
-﻿namespace TokanPages.Backend.Core.Models;
-
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using FluentValidation.Results;
+
+namespace TokanPages.Backend.Core.Models;
 
 [ExcludeFromCodeCoverage]
 public sealed class ValidationError

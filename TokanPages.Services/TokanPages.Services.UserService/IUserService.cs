@@ -1,13 +1,8 @@
-﻿namespace TokanPages.Services.UserService;
+﻿using System.Security.Claims;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Services.UserService.Models;
 
-using System;
-using System.Threading;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Models;
-using WebApi.Dto.Users;
-using Backend.Domain.Entities;
+namespace TokanPages.Services.UserService;
 
 public interface IUserService
 {
@@ -17,13 +12,13 @@ public interface IUserService
 
     Task LogHttpRequest(string handlerName);
 
-    Task<GetUserDto?> GetUser(CancellationToken cancellationToken = default);
+    Task<GetUserOutput?> GetUser(CancellationToken cancellationToken = default);
 
     Task<Users> GetActiveUser(Guid? userId = default, bool isTracking = false, CancellationToken cancellationToken = default);
 
-    Task<List<GetUserRoleDto>?> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default);
+    Task<List<GetUserRolesOutput>?> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default);
 
-    Task<List<GetUserPermissionDto>?> GetUserPermissions(Guid? userId, CancellationToken cancellationToken = default);
+    Task<List<GetUserPermissionsOutput>?> GetUserPermissions(Guid? userId, CancellationToken cancellationToken = default);
 
     Task<bool?> HasRoleAssigned(string userRoleName, Guid? userId = default, CancellationToken cancellationToken = default);
 

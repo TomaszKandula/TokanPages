@@ -1,6 +1,6 @@
-﻿namespace TokanPages.WebApi.Dto.Health;
+﻿using System.Diagnostics.CodeAnalysis;
 
-using System.Diagnostics.CodeAnalysis;
+namespace TokanPages.WebApi.Dto.Health;
 
 /// <summary>
 /// Returns result object from heath check

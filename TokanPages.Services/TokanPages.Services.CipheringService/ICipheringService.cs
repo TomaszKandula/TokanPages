@@ -1,6 +1,6 @@
-namespace TokanPages.Services.CipheringService;
+using TokanPages.Services.CipheringService.Helpers;
 
-using Helpers;
+namespace TokanPages.Services.CipheringService;
 
 public interface ICipheringService
 {

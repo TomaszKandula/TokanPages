@@ -1,7 +1,6 @@
-﻿namespace TokanPages.WebApi.Dto.Mailer;
+﻿using System.Diagnostics.CodeAnalysis;
 
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+namespace TokanPages.WebApi.Dto.Mailer;
 
 /// <summary>
 /// Use it when you want to send email message

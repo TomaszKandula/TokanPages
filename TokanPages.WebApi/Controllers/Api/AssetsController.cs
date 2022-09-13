@@ -1,17 +1,16 @@
+using System.Threading.Tasks;
+using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using TokanPages.Backend.Application.Assets.Commands;
+using TokanPages.Backend.Application.Assets.Queries;
+using TokanPages.Backend.Domain.Enums;
+using TokanPages.Backend.Shared.Attributes;
+using TokanPages.WebApi.Attributes;
+using TokanPages.WebApi.Controllers.Mappers;
 using TokanPages.WebApi.Dto.Assets;
 
 namespace TokanPages.WebApi.Controllers.Api;
-
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using Backend.Cqrs.Mappers;
-using Backend.Domain.Enums;
-using Backend.Shared.Attributes;
-using Backend.Cqrs.Handlers.Queries.Assets;
-using Backend.Cqrs.Handlers.Commands.Assets;
-using Attributes;
-using MediatR;
 
 /// <summary>
 /// API endpoints definitions for assets

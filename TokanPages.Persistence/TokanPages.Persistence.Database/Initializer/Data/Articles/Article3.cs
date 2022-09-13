@@ -1,8 +1,8 @@
-﻿namespace TokanPages.Persistence.Database.Initializer.Data.Articles;
-
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Users;
+using TokanPages.Persistence.Database.Initializer.Data.Users;
+
+namespace TokanPages.Persistence.Database.Initializer.Data.Articles;
 
 [ExcludeFromCodeCoverage]
 public static class Article3

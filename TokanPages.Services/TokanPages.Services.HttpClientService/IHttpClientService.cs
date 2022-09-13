@@ -1,8 +1,6 @@
-namespace TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
 
-using System.Threading;
-using System.Threading.Tasks;
-using Models;
+namespace TokanPages.Services.HttpClientService;
 
 public interface IHttpClientService
 {

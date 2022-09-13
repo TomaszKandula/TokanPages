@@ -1,9 +1,9 @@
-namespace TokanPages.Persistence.Database.Initializer.Data.PhotoCategories;
-
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Persistence.Database.Initializer.Data.PhotoCategories;
 
 [ExcludeFromCodeCoverage]
 public static class PhotoCategories

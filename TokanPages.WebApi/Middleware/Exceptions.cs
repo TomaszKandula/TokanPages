@@ -1,14 +1,14 @@
-namespace TokanPages.WebApi.Middleware;
-
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Threading.Tasks;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
-using Backend.Core.Models;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
 using Newtonsoft.Json;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Models;
+using TokanPages.Backend.Shared.Resources;
+
+namespace TokanPages.WebApi.Middleware;
 
 /// <summary>
 /// Exceptions middleware

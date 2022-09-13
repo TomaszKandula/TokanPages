@@ -1,15 +1,13 @@
-namespace TokanPages.Services.BehaviourService;
-
-using System.Threading;
-using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Authorization;
-using Backend.Shared.Attributes;
-using WebTokenService.Validation;
-using Backend.Core.Utilities.LoggerService;
-using MediatR;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Attributes;
+using TokanPages.Services.WebTokenService.Validation;
+
+namespace TokanPages.Services.BehaviourService;
 
 [ExcludeFromCodeCoverage]
 public class TokenCheckBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>

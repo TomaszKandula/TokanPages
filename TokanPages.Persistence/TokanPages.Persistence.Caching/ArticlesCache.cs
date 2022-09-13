@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Cqrs.Handlers.Queries.Articles;
 using MediatR;
+using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Services.RedisCacheService;
 

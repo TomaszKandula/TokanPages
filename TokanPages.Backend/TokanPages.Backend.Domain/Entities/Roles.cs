@@ -1,10 +1,10 @@
-namespace TokanPages.Backend.Domain.Entities;
-
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
-using Contracts;
+using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Contracts;
+
+namespace TokanPages.Backend.Domain.Entities;
 
 [ExcludeFromCodeCoverage]
 public class Roles : Entity<Guid>, IAuditable

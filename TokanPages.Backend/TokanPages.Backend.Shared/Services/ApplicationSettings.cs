@@ -1,7 +1,7 @@
-namespace TokanPages.Backend.Shared.Services;
-
-using Models;
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Shared.Services.Models;
+
+namespace TokanPages.Backend.Shared.Services;
 
 [ExcludeFromCodeCoverage]
 public class ApplicationSettings : IApplicationSettings
