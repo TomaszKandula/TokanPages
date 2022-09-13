@@ -28,6 +28,22 @@ public class ContentCache : IContentCache
     }
 
     /// <inheritdoc />
+    public async Task<GetContentManifestQueryResult> GetContentManifest(bool noCache = false)
+    {
+        if (noCache)
+            return await _mediator.Send(new GetContentManifestQuery());
+
+        const string key = "content/component/manifest";
+        var value = await _redisDistributedCache.GetObjectAsync<GetContentManifestQueryResult>(key);
+        if (value is not null) return value;
+
+        value = await _mediator.Send(new GetContentManifestQuery());
+        await _redisDistributedCache.SetObjectAsync(key, value);
+
+        return value;
+    }
+
+    /// <inheritdoc />
     public async Task<GetContentQueryResult> GetContent(string? language, string type = "", string name = "", bool noCache = false)
     {
         if (noCache)

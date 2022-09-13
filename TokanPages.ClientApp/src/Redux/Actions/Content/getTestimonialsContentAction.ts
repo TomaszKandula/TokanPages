@@ -7,7 +7,7 @@ import { GET_TESTIMONIALS_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/c
 import { TErrorActions } from "./../raiseErrorAction";
 import { ITestimonialsContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
-import { GetUserLanguage } from "../../../Shared/Services/languageService";
+import { GetUserLanguageFromStore } from "../../../Shared/Services/languageService";
 
 export const REQUEST_TESTIMONIALS_CONTENT = "REQUEST_TESTIMONIALS_CONTENT";
 export const RECEIVE_TESTIMONIALS_CONTENT = "RECEIVE_TESTIMONIALS_CONTENT";
@@ -26,7 +26,7 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_TESTIMONIALS_CONTENT });
 
-        const language = GetUserLanguage();
+        const language = GetUserLanguageFromStore();
         const queryParam = language === "" ? "" : `&language=${language}`;
 
         axios(EnrichConfiguration(

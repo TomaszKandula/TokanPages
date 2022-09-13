@@ -7,7 +7,7 @@ import { GET_UPDATE_SUBSCRIBER_CONTENT, NULL_RESPONSE_ERROR } from "../../../Sha
 import { TErrorActions } from "./../raiseErrorAction";
 import { IUpdateSubscriberContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
-import { GetUserLanguage } from "../../../Shared/Services/languageService";
+import { GetUserLanguageFromStore } from "../../../Shared/Services/languageService";
 
 export const REQUEST_UPDATE_SUBSCRIBER_CONTENT = "REQUEST_UPDATE_SUBSCRIBER_CONTENT";
 export const RECEIVE_UPDATE_SUBSCRIBER_CONTENT = "RECEIVE_UPDATE_SUBSCRIBER_CONTENT";
@@ -26,7 +26,7 @@ export const ActionCreators =
         
         dispatch({ type: REQUEST_UPDATE_SUBSCRIBER_CONTENT });
 
-        const language = GetUserLanguage();
+        const language = GetUserLanguageFromStore();
         const queryParam = language === "" ? "" : `&language=${language}`;
 
         axios(EnrichConfiguration(

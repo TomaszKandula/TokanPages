@@ -24,6 +24,16 @@ public class ContentController : ApiBaseController
         : base(mediator) => _contentCache = contentCache;
 
     /// <summary>
+    /// Returns component content manifest
+    /// </summary>
+    /// <param name="noCache">Enable/disable REDIS cache</param>
+    /// <returns>Object</returns>
+    [HttpGet]
+    [ProducesResponseType(typeof(GetContentManifestQueryResult), StatusCodes.Status200OK)]
+    public async Task<GetContentManifestQueryResult> GetContentManifest([FromQuery] bool noCache = false) 
+        => await _contentCache.GetContentManifest(noCache);
+
+    /// <summary>
     /// Returns component/document content
     /// </summary>
     /// <param name="type">Content type (component, document)</param>

@@ -8,6 +8,13 @@ namespace TokanPages.Persistence.Caching.Abstractions;
 public interface IContentCache
 {
     /// <summary>
+    /// Returns current component content manifest
+    /// </summary>
+    /// <param name="noCache">Enable/disable REDIS cache</param>
+    /// <returns>Object</returns>
+    Task<GetContentManifestQueryResult> GetContentManifest(bool noCache = false);
+
+    /// <summary>
     /// Returns content
     /// </summary>
     /// <param name="type">Content type (document or component)</param>
