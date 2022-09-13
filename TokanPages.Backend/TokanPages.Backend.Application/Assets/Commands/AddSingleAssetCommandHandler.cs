@@ -1,12 +1,12 @@
-namespace TokanPages.Backend.Application.Assets.Commands;
-
 using System;
 using System.IO;
-using Persistence.Database;
 using System.Threading;
 using System.Threading.Tasks;
-using Core.Utilities.LoggerService;
-using Services.AzureStorageService.Factory;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.AzureStorageService.Factory;
+
+namespace TokanPages.Backend.Application.Assets.Commands;
 
 public class AddSingleAssetCommandHandler : RequestHandler<AddSingleAssetCommand, AddSingleAssetCommandResult>
 {

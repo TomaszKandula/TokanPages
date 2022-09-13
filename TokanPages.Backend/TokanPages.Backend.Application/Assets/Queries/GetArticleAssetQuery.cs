@@ -1,7 +1,7 @@
-namespace TokanPages.Backend.Application.Assets.Queries;
-
-using Microsoft.AspNetCore.Mvc;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
+
+namespace TokanPages.Backend.Application.Assets.Queries;
 
 public class GetArticleAssetQuery : IRequest<FileContentResult>
 {

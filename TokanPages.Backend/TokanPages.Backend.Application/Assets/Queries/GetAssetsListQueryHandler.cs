@@ -1,10 +1,10 @@
-namespace TokanPages.Backend.Application.Assets.Queries;
-
 using System.Threading;
 using System.Threading.Tasks;
-using Core.Utilities.LoggerService;
-using Persistence.Database;
-using Services.AzureStorageService.Factory;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.AzureStorageService.Factory;
+
+namespace TokanPages.Backend.Application.Assets.Queries;
 
 public class GetAssetsListQueryHandler : RequestHandler<GetAssetsListQuery, GetAssetsListQueryResult>
 {

@@ -1,7 +1,7 @@
-namespace TokanPages.Backend.Application.Assets.Commands;
-
 using System;
 using MediatR;
+
+namespace TokanPages.Backend.Application.Assets.Commands;
 
 public class AddSingleAssetCommand : IRequest<AddSingleAssetCommandResult>
 {

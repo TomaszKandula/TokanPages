@@ -1,7 +1,7 @@
-namespace TokanPages.Backend.Application.Assets.Queries;
-
 using FluentValidation;
-using Shared.Resources;
+using TokanPages.Backend.Shared.Resources;
+
+namespace TokanPages.Backend.Application.Assets.Queries;
 
 public class GetArticleAssetQueryValidator : AbstractValidator<GetArticleAssetQuery>
 {

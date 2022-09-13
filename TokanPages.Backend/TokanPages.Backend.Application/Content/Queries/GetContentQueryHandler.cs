@@ -1,18 +1,18 @@
-namespace TokanPages.Backend.Application.Content.Queries;
-
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
-using Persistence.Database;
-using Core.Exceptions;
-using Shared.Resources;
-using WebApi.Dto.Content;
-using Core.Utilities.LoggerService;
-using Core.Utilities.JsonSerializer;
-using Services.AzureStorageService.Factory;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.JsonSerializer;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.WebApi.Dto.Content;
+
+namespace TokanPages.Backend.Application.Content.Queries;
 
 public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContentQueryResult>
 {

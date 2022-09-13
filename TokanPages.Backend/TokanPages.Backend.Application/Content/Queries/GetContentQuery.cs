@@ -1,6 +1,6 @@
-namespace TokanPages.Backend.Application.Content.Queries;
-
 using MediatR;
+
+namespace TokanPages.Backend.Application.Content.Queries;
 
 public class GetContentQuery : IRequest<GetContentQueryResult>
 {

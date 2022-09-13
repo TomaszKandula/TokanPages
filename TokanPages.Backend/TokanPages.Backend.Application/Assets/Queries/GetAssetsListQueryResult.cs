@@ -1,6 +1,6 @@
-namespace TokanPages.Backend.Application.Assets.Queries;
-
 using System.Collections.Generic;
+
+namespace TokanPages.Backend.Application.Assets.Queries;
 
 public class GetAssetsListQueryResult
 {

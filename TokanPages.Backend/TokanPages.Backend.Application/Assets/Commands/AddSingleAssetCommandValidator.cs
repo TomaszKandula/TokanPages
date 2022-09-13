@@ -1,8 +1,8 @@
-namespace TokanPages.Backend.Application.Assets.Commands;
-
-using Shared.Services;
-using Shared.Resources;
 using FluentValidation;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services;
+
+namespace TokanPages.Backend.Application.Assets.Commands;
 
 public class AddSingleAssetCommandValidator : AbstractValidator<AddSingleAssetCommand>
 {

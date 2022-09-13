@@ -1,14 +1,14 @@
-namespace TokanPages.Backend.Application.Assets.Queries;
-
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Persistence.Database;
-using Core.Exceptions;
-using Shared.Resources;
-using Core.Utilities.LoggerService;
-using Services.AzureStorageService.Factory;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.AzureStorageService.Factory;
+
+namespace TokanPages.Backend.Application.Assets.Queries;
 
 public class GetArticleAssetQueryHandler : RequestHandler<GetArticleAssetQuery, FileContentResult>
 {
