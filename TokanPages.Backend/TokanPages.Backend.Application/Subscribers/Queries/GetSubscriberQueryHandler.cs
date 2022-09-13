@@ -1,13 +1,12 @@
-namespace TokanPages.Backend.Application.Subscribers.Queries;
-
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Persistence.Database;
-using Core.Exceptions;
-using Shared.Resources;
-using Core.Utilities.LoggerService;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Persistence.Database;
+
+namespace TokanPages.Backend.Application.Subscribers.Queries;
 
 public class GetSubscriberQueryHandler : RequestHandler<GetSubscriberQuery, GetSubscriberQueryResult>
 {

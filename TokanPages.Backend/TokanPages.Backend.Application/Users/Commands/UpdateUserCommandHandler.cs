@@ -1,20 +1,20 @@
-﻿namespace TokanPages.Backend.Application.Users.Commands;
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Persistence.Database;
-using Core.Exceptions;
-using Shared.Resources;
-using Services.UserService;
-using Core.Utilities.LoggerService;
-using Core.Utilities.DateTimeService;
-using Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.UserService;
 
-public class UpdateUserCommandHandler : Application.RequestHandler<UpdateUserCommand, Unit>
+namespace TokanPages.Backend.Application.Users.Commands;
+
+public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Unit>
 {
     private readonly IUserService _userService;
 
@@ -45,7 +45,7 @@ public class UpdateUserCommandHandler : Application.RequestHandler<UpdateUserCom
         return Unit.Value;
     }
 
-    private async Task UpdateUser(Users user, UpdateUserCommand request, CancellationToken cancellationToken = default)
+    private async Task UpdateUser(Domain.Entities.Users user, UpdateUserCommand request, CancellationToken cancellationToken = default)
     {
         user.IsActivated = request.IsActivated;
         user.UserAlias = request.UserAlias ?? user.UserAlias;

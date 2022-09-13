@@ -1,18 +1,18 @@
-namespace TokanPages.Backend.Application.Users.Commands;
-
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Persistence.Database;
-using Core.Exceptions;
-using Shared.Resources;
-using Services.UserService;
-using Services.UserService.Models;
-using Core.Utilities.LoggerService;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Models;
 
-public class RevokeUserRefreshTokenCommandHandler : Application.RequestHandler<RevokeUserRefreshTokenCommand, Unit>
+namespace TokanPages.Backend.Application.Users.Commands;
+
+public class RevokeUserRefreshTokenCommandHandler : RequestHandler<RevokeUserRefreshTokenCommand, Unit>
 {
     private readonly IUserService _userService;
 

@@ -1,16 +1,15 @@
-namespace TokanPages.Backend.Application.Users.Commands;
-
 using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Persistence.Database;
-using Domain.Enums;
-using Shared.Resources;
-using Services.UserService;
-using Core.Utilities.LoggerService;
-using Services.AzureStorageService.Factory;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Enums;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.UserService;
+
+namespace TokanPages.Backend.Application.Users.Commands;
 
 public class UploadUserMediaCommandHandler : RequestHandler<UploadUserMediaCommand, UploadUserMediaCommandResult>
 {

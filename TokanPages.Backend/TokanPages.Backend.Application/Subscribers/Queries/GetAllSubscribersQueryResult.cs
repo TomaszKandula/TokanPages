@@ -1,6 +1,6 @@
-﻿namespace TokanPages.Backend.Application.Subscribers.Queries;
+﻿using System;
 
-using System;
+namespace TokanPages.Backend.Application.Subscribers.Queries;
 
 public class GetAllSubscribersQueryResult
 {

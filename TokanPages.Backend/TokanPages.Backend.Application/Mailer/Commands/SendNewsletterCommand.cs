@@ -1,8 +1,8 @@
-﻿namespace TokanPages.Backend.Application.Mailer.Commands;
-
-using System.Collections.Generic;
-using WebApi.Dto.Mailer.Models;
+﻿using System.Collections.Generic;
 using MediatR;
+using TokanPages.WebApi.Dto.Mailer.Models;
+
+namespace TokanPages.Backend.Application.Mailer.Commands;
 
 public class SendNewsletterCommand : IRequest<Unit>
 {

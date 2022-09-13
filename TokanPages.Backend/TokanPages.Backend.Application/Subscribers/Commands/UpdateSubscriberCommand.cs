@@ -1,7 +1,7 @@
-﻿namespace TokanPages.Backend.Application.Subscribers.Commands;
-
-using System;
+﻿using System;
 using MediatR;
+
+namespace TokanPages.Backend.Application.Subscribers.Commands;
 
 public class UpdateSubscriberCommand : IRequest<Unit>
 {

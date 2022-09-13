@@ -1,7 +1,7 @@
-﻿namespace TokanPages.Backend.Application.Mailer.Commands;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MediatR;
+
+namespace TokanPages.Backend.Application.Mailer.Commands;
 
 public class SendMessageCommand : IRequest<Unit>
 {

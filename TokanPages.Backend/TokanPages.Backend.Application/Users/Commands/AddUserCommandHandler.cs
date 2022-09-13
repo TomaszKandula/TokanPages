@@ -1,23 +1,22 @@
-﻿namespace TokanPages.Backend.Application.Users.Commands;
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Shared;
-using Persistence.Database;
-using Core.Exceptions;
-using Domain.Entities;
-using Shared.Services;
-using Shared.Resources;
-using Services.UserService;
-using Services.CipheringService;
-using Services.EmailSenderService;
-using Core.Utilities.LoggerService;
-using Core.Utilities.DateTimeService;
-using Services.EmailSenderService.Models;
-using Services.AzureStorageService.Factory;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.CipheringService;
+using TokanPages.Services.EmailSenderService;
+using TokanPages.Services.EmailSenderService.Models;
+using TokanPages.Services.UserService;
+
+namespace TokanPages.Backend.Application.Users.Commands;
 
 public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 {
@@ -90,7 +89,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             await azureBlob.UploadFile(defaultAvatar.Content!, destinationAvatarPath, cancellationToken: cancellationToken);
 
         var userAlias = $"{request.FirstName![..2]}{request.LastName![..3]}".ToLower();
-        var newUser = new Users
+        var newUser = new Domain.Entities.Users
         {
             Id = newUserId,
             EmailAddress = request.EmailAddress,

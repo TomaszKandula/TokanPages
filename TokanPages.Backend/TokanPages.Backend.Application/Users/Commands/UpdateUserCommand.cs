@@ -1,7 +1,7 @@
-﻿namespace TokanPages.Backend.Application.Users.Commands;
-
-using System;
+﻿using System;
 using MediatR;
+
+namespace TokanPages.Backend.Application.Users.Commands;
 
 public class UpdateUserCommand : IRequest<Unit>
 {

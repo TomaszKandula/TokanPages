@@ -1,16 +1,16 @@
-namespace TokanPages.Backend.Application.Users.Commands;
-
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using MediatR;
-using Persistence.Database;
-using Core.Exceptions;
-using Shared.Resources;
-using Core.Utilities.LoggerService;
-using Core.Utilities.DateTimeService;
-    
-public class ActivateUserCommandHandler : Application.RequestHandler<ActivateUserCommand, Unit>
+using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database;
+
+namespace TokanPages.Backend.Application.Users.Commands;
+
+public class ActivateUserCommandHandler : RequestHandler<ActivateUserCommand, Unit>
 {
     private readonly IDateTimeService _dateTimeService;
 

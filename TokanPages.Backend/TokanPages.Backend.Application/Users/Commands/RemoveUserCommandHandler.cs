@@ -1,17 +1,17 @@
-﻿namespace TokanPages.Backend.Application.Users.Commands;
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Persistence.Database;
-using Domain.Entities;
-using Services.UserService;
-using Core.Utilities.LoggerService;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.UserService;
 
-public class RemoveUserCommandHandler : Application.RequestHandler<RemoveUserCommand, Unit>
+namespace TokanPages.Backend.Application.Users.Commands;
+
+public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
 {
     private readonly IUserService _userService;
 

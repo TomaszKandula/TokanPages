@@ -1,22 +1,22 @@
-namespace TokanPages.Backend.Application.Users.Commands;
-
-using MediatR;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Persistence.Database;
-using Core.Exceptions;
-using Shared.Services;
-using Shared.Resources;
-using Services.UserService;
-using Services.EmailSenderService;
-using Core.Utilities.LoggerService;
-using Core.Utilities.DateTimeService;
-using Services.EmailSenderService.Models;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.EmailSenderService;
+using TokanPages.Services.EmailSenderService.Models;
+using TokanPages.Services.UserService;
 
-public class ResetUserPasswordCommandHandler : Application.RequestHandler<ResetUserPasswordCommand, Unit>
+namespace TokanPages.Backend.Application.Users.Commands;
+
+public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordCommand, Unit>
 {
     private readonly IEmailSenderService _emailSenderService;
 

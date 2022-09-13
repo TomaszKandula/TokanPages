@@ -1,21 +1,21 @@
-namespace TokanPages.Backend.Application.Users.Commands;
-
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using MediatR;
-using Persistence.Database;
-using Domain.Enums;
-using Core.Exceptions;
-using Core.Extensions;
-using Shared.Resources;
-using Services.UserService;
-using Services.CipheringService;
-using Core.Utilities.LoggerService;
-using Core.Utilities.DateTimeService;
+using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Enums;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.CipheringService;
+using TokanPages.Services.UserService;
 
-public class UpdateUserPasswordCommandHandler : Application.RequestHandler<UpdateUserPasswordCommand, Unit>
+namespace TokanPages.Backend.Application.Users.Commands;
+
+public class UpdateUserPasswordCommandHandler : RequestHandler<UpdateUserPasswordCommand, Unit>
 {
     private readonly IUserService _userService;
 

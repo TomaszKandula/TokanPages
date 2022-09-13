@@ -1,11 +1,11 @@
-namespace TokanPages.Backend.Application.Users.Queries;
-
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Persistence.Database;
-using Core.Utilities.LoggerService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Persistence.Database;
+
+namespace TokanPages.Backend.Application.Users.Queries;
 
 public class GetUserVisitCountQueryHandler : RequestHandler<GetUserVisitCountQuery, GetUserVisitCountQueryResult>
 {

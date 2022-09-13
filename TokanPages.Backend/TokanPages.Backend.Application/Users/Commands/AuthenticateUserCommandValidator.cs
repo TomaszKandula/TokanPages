@@ -1,7 +1,7 @@
-namespace TokanPages.Backend.Application.Users.Commands;
-
 using FluentValidation;
-using Shared.Resources;
+using TokanPages.Backend.Shared.Resources;
+
+namespace TokanPages.Backend.Application.Users.Commands;
 
 public class AuthenticateUserCommandValidator : AbstractValidator<AuthenticateUserCommand>
 {

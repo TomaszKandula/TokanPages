@@ -1,16 +1,16 @@
-﻿namespace TokanPages.Backend.Application.Subscribers.Commands;
-
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Persistence.Database;
-using Core.Exceptions;
-using Shared.Resources;
-using Core.Utilities.LoggerService;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database;
 
-public class RemoveSubscriberCommandHandler : Application.RequestHandler<RemoveSubscriberCommand, Unit>
+namespace TokanPages.Backend.Application.Subscribers.Commands;
+
+public class RemoveSubscriberCommandHandler : RequestHandler<RemoveSubscriberCommand, Unit>
 {
     public RemoveSubscriberCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService) 
         : base(databaseContext, loggerService) { }

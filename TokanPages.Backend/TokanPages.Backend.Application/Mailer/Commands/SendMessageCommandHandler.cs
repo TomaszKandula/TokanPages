@@ -1,20 +1,20 @@
-﻿namespace TokanPages.Backend.Application.Mailer.Commands;
-
-using MediatR;
-using System.Threading;
+﻿using System.Collections.Generic;
 using System.Globalization;
+using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using Persistence.Database;
-using Shared.Services;
-using Core.Extensions;
-using WebApi.Dto.Mailer;
-using Services.UserService;
-using Services.EmailSenderService;
-using Core.Utilities.LoggerService;
-using Core.Utilities.DateTimeService;
+using MediatR;
+using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Services;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.EmailSenderService;
+using TokanPages.Services.UserService;
+using TokanPages.WebApi.Dto.Mailer;
 
-public class SendMessageCommandHandler : Application.RequestHandler<SendMessageCommand, Unit>
+namespace TokanPages.Backend.Application.Mailer.Commands;
+
+public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit>
 {
     private readonly IEmailSenderService _emailSenderService;
 

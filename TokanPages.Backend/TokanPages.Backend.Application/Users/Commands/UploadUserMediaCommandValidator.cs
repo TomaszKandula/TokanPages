@@ -1,10 +1,10 @@
-namespace TokanPages.Backend.Application.Users.Commands;
-
 using System;
-using Domain.Enums;
-using Shared.Services;
-using Shared.Resources;
 using FluentValidation;
+using TokanPages.Backend.Domain.Enums;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services;
+
+namespace TokanPages.Backend.Application.Users.Commands;
 
 public class UploadUserMediaCommandValidator : AbstractValidator<UploadUserMediaCommand>
 {

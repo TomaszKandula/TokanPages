@@ -1,7 +1,7 @@
-namespace TokanPages.Backend.Application.Logger.Queries;
-
-using Microsoft.AspNetCore.Mvc;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
+
+namespace TokanPages.Backend.Application.Logger.Queries;
 
 public class GetLogFileContentQuery : IRequest<FileContentResult>
 {

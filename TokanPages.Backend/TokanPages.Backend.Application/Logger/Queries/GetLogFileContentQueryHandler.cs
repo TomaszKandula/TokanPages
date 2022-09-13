@@ -1,14 +1,14 @@
-namespace TokanPages.Backend.Application.Logger.Queries;
-
 using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Persistence.Database;
-using Core.Exceptions;
-using Shared.Resources;
-using Core.Utilities.LoggerService;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database;
+
+namespace TokanPages.Backend.Application.Logger.Queries;
 
 public class GetLogFileContentQueryHandler : RequestHandler<GetLogFileContentQuery, FileContentResult>
 {

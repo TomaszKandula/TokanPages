@@ -1,16 +1,16 @@
-namespace TokanPages.Backend.Application.Users.Commands;
-
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Persistence.Database;
-using Services.UserService;
-using Core.Utilities.LoggerService;
-using Services.AzureStorageService.Factory;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.UserService;
 
-public class RemoveUserMediaCommandHandler : Application.RequestHandler<RemoveUserMediaCommand, Unit>
+namespace TokanPages.Backend.Application.Users.Commands;
+
+public class RemoveUserMediaCommandHandler : RequestHandler<RemoveUserMediaCommand, Unit>
 {
     private readonly IUserService _userService;
 

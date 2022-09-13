@@ -1,7 +1,7 @@
-namespace TokanPages.Backend.Application.Users.Commands;
-
 using System;
 using MediatR;
+
+namespace TokanPages.Backend.Application.Users.Commands;
 
 public class UpdateUserPasswordCommand : IRequest<Unit>
 {

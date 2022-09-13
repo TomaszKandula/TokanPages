@@ -1,8 +1,8 @@
-namespace TokanPages.Backend.Application.Users.Queries;
-
 using System;
-using Shared.Resources;
 using FluentValidation;
+using TokanPages.Backend.Shared.Resources;
+
+namespace TokanPages.Backend.Application.Users.Queries;
 
 public class GetUserMediaQueryValidator : AbstractValidator<GetUserMediaQuery>
 {

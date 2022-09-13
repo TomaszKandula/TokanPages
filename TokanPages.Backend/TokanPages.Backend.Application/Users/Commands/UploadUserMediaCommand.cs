@@ -1,8 +1,8 @@
-namespace TokanPages.Backend.Application.Users.Commands;
-
 using System;
-using Domain.Enums;
 using MediatR;
+using TokanPages.Backend.Domain.Enums;
+
+namespace TokanPages.Backend.Application.Users.Commands;
 
 public class UploadUserMediaCommand : IRequest<UploadUserMediaCommandResult>
 {

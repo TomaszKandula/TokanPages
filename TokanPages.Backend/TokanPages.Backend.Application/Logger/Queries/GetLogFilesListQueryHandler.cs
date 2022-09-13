@@ -1,13 +1,13 @@
-namespace TokanPages.Backend.Application.Logger.Queries;
-
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using Persistence.Database;
-using Core.Utilities.LoggerService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Persistence.Database;
+
+namespace TokanPages.Backend.Application.Logger.Queries;
 
 public class GetLogFilesListQueryHandler : RequestHandler<GetLogFilesListQuery, GetLogFilesListQueryResult>
 {

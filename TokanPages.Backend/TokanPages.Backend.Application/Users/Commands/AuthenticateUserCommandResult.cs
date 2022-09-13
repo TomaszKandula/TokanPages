@@ -1,7 +1,7 @@
-namespace TokanPages.Backend.Application.Users.Commands;
-
 using System.Collections.Generic;
-using WebApi.Dto.Users;
+using TokanPages.WebApi.Dto.Users;
+
+namespace TokanPages.Backend.Application.Users.Commands;
 
 public class AuthenticateUserCommandResult : GetUserDto
 {

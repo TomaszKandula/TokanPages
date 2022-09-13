@@ -1,16 +1,15 @@
-﻿namespace TokanPages.Backend.Application.Subscribers.Commands;
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Persistence.Database;
-using Domain.Entities;
-using Core.Exceptions;
-using Shared.Resources;
-using Core.Utilities.LoggerService;
-using Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database;
+
+namespace TokanPages.Backend.Application.Subscribers.Commands;
 
 public class AddSubscriberCommandHandler : RequestHandler<AddSubscriberCommand, Guid>
 {
@@ -29,7 +28,7 @@ public class AddSubscriberCommandHandler : RequestHandler<AddSubscriberCommand, 
         if (emailCollection.Count == 1)
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-        var newSubscriber = new Subscribers
+        var newSubscriber = new Domain.Entities.Subscribers
         {
             Email = request.Email,
             Count = 0,

@@ -1,7 +1,7 @@
-namespace TokanPages.Backend.Application.Logger.Queries;
-
 using FluentValidation;
-using Shared.Resources;
+using TokanPages.Backend.Shared.Resources;
+
+namespace TokanPages.Backend.Application.Logger.Queries;
 
 public class GetLogFileContentQueryValidator : AbstractValidator<GetLogFileContentQuery>
 {

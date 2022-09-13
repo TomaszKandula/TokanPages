@@ -1,8 +1,8 @@
-﻿namespace TokanPages.Backend.Application.Users.Commands;
-
-using System;
+﻿using System;
 using FluentValidation;
-using Shared.Resources;
+using TokanPages.Backend.Shared.Resources;
+
+namespace TokanPages.Backend.Application.Users.Commands;
 
 public class RemoveUserCommandValidator : AbstractValidator<RemoveUserCommand>
 {

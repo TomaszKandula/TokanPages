@@ -1,7 +1,7 @@
-﻿namespace TokanPages.Backend.Application.Subscribers.Commands;
+﻿using FluentValidation;
+using TokanPages.Backend.Shared.Resources;
 
-using FluentValidation;
-using Shared.Resources;
+namespace TokanPages.Backend.Application.Subscribers.Commands;
 
 public class UpdateSubscriberCommandValidator : AbstractValidator<UpdateSubscriberCommand>
 {
