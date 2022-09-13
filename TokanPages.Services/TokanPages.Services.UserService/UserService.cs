@@ -1,22 +1,17 @@
-﻿namespace TokanPages.Services.UserService;
-
-using System;
-using System.Linq;
-using System.Threading;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Models;
-using WebTokenService;
-using Persistence.Database;
-using WebApi.Dto.Users;
-using Backend.Core.Exceptions;
-using Backend.Domain.Entities;
-using Backend.Shared.Services;
-using Backend.Shared.Resources;
-using Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.UserService.Models;
+using TokanPages.Services.WebTokenService;
+using TokanPages.WebApi.Dto.Users;
+
+namespace TokanPages.Services.UserService;
 
 public sealed class UserService : IUserService
 {

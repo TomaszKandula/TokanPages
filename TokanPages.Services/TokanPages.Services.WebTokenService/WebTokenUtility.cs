@@ -1,12 +1,11 @@
-namespace TokanPages.Services.WebTokenService;
-
-using System;
-using System.Text;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using Models;
+using TokanPages.Services.WebTokenService.Models;
+
+namespace TokanPages.Services.WebTokenService;
 
 public class WebTokenUtility : IWebTokenUtility
 {

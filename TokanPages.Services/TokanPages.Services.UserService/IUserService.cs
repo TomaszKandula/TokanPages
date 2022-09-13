@@ -1,13 +1,9 @@
-﻿namespace TokanPages.Services.UserService;
+﻿using System.Security.Claims;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Services.UserService.Models;
+using TokanPages.WebApi.Dto.Users;
 
-using System;
-using System.Threading;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Models;
-using WebApi.Dto.Users;
-using Backend.Domain.Entities;
+namespace TokanPages.Services.UserService;
 
 public interface IUserService
 {

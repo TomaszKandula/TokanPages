@@ -1,6 +1,6 @@
-namespace TokanPages.Services.UserService.Models;
+using TokanPages.Backend.Domain.Entities;
 
-using Backend.Domain.Entities;
+namespace TokanPages.Services.UserService.Models;
 
 public class RevokeRefreshTokensInput
 {

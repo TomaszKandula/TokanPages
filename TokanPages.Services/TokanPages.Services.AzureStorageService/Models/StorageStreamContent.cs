@@ -1,7 +1,7 @@
-namespace TokanPages.Services.AzureStorageService.Models;
-
-using System.IO;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
+
+namespace TokanPages.Services.AzureStorageService.Models;
 
 [ExcludeFromCodeCoverage]
 public class StorageStreamContent

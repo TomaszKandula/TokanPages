@@ -1,8 +1,5 @@
 namespace TokanPages.Services.RedisCacheService;
 
-using System.Threading;
-using System.Threading.Tasks;
-
 /// <summary>
 /// Redis distributed cache contract
 /// </summary>

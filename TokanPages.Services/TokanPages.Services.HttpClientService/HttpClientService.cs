@@ -1,17 +1,12 @@
-namespace TokanPages.Services.HttpClientService;
-
-using System;
-using System.Linq;
 using System.Text;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.WebUtilities;
-using Models;
-using Abstractions;
-using Authentication;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Services.HttpClientService.Abstractions;
+using TokanPages.Services.HttpClientService.Authentication;
+using TokanPages.Services.HttpClientService.Models;
+
+namespace TokanPages.Services.HttpClientService;
 
 public class HttpClientService : IHttpClientService
 {
