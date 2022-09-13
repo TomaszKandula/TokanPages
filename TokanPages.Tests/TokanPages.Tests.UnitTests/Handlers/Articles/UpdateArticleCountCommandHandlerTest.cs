@@ -11,7 +11,7 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService;
-using TokanPages.WebApi.Dto.Users;
+using TokanPages.Services.UserService.Models;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Articles;
@@ -60,7 +60,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         mockedUserService
             .Setup(service => service.GetUser(
                 It.IsAny<CancellationToken>()))
-            .ReturnsAsync((GetUserDto)null!);
+            .ReturnsAsync((GetUserOutput)null!);
 
         mockedUserService
             .Setup(service => service.GetRequestIpAddress())
@@ -151,7 +151,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         mockedUserService
             .Setup(service => service.GetUser(
                 It.IsAny<CancellationToken>()))
-            .ReturnsAsync((GetUserDto)null!);
+            .ReturnsAsync((GetUserOutput)null!);
 
         mockedUserService
             .Setup(service => service.GetRequestIpAddress())
@@ -234,7 +234,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
-        var getUserDto = new GetUserDto
+        var getUserDto = new GetUserOutput
         {
             UserId = userId,
             AliasName = DataUtilityService.GetRandomString(),

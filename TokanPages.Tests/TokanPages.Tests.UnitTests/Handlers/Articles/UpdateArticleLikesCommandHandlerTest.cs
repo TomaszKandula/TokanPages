@@ -10,7 +10,7 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Services.Models;
 using TokanPages.Services.UserService;
-using TokanPages.WebApi.Dto.Users;
+using TokanPages.Services.UserService.Models;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Articles;
@@ -61,7 +61,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
 
         mockedUserService
             .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
-            .ReturnsAsync((GetUserDto)null!);
+            .ReturnsAsync((GetUserOutput)null!);
 
         mockedUserService
             .Setup(service => service.GetRequestIpAddress())
@@ -216,7 +216,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(article);
         await databaseContext.SaveChangesAsync();
 
-        var getUserDto = new GetUserDto
+        var getUserDto = new GetUserOutput
         {
             UserId = user.Id,
             AliasName = DataUtilityService.GetRandomString(),
@@ -316,7 +316,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         await databaseContext.ArticleLikes.AddAsync(likes);
         await databaseContext.SaveChangesAsync();
 
-        var getUserDto = new GetUserDto
+        var getUserDto = new GetUserOutput
         {
             UserId = user.Id,
             AliasName = DataUtilityService.GetRandomString(),

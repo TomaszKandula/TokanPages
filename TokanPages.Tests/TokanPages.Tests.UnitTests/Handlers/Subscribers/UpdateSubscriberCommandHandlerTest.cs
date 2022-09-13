@@ -8,7 +8,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.UserService;
-using TokanPages.WebApi.Dto.Users;
+using TokanPages.Services.UserService.Models;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Subscribers;
@@ -38,7 +38,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
 
         mockedUserService
             .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
-            .ReturnsAsync((GetUserDto)null!);
+            .ReturnsAsync((GetUserOutput)null!);
         
         var command = new UpdateSubscriberCommand
         {
