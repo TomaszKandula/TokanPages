@@ -1,7 +1,7 @@
-namespace TokanPages.Backend.Application.Articles.Commands;
-
 using FluentValidation;
-using Shared.Resources;
+using TokanPages.Backend.Shared.Resources;
+
+namespace TokanPages.Backend.Application.Articles.Commands;
 
 public class UpdateArticleCountCommandValidator : AbstractValidator<UpdateArticleCountCommand>
 {

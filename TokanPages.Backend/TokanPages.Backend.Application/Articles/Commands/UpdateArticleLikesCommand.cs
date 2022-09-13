@@ -1,7 +1,7 @@
-namespace TokanPages.Backend.Application.Articles.Commands;
-
 using System;
 using MediatR;
+
+namespace TokanPages.Backend.Application.Articles.Commands;
 
 public class UpdateArticleLikesCommand : IRequest<Unit>
 {

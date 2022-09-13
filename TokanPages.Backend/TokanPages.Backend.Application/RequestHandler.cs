@@ -1,11 +1,11 @@
-﻿namespace TokanPages.Backend.Application;
-
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Diagnostics.CodeAnalysis;
 using MediatR;
-using Persistence.Database;
-using Core.Utilities.LoggerService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Persistence.Database;
+
+namespace TokanPages.Backend.Application;
 
 [ExcludeFromCodeCoverage]
 public abstract class RequestHandler<TRequest, TResult> : IRequestHandler<TRequest, TResult> where TRequest : IRequest<TResult>

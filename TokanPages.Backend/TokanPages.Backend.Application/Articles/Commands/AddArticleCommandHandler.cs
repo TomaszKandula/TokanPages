@@ -1,14 +1,13 @@
-﻿namespace TokanPages.Backend.Application.Articles.Commands;
-
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Persistence.Database;
-using Domain.Entities;
-using Services.UserService;
-using Core.Utilities.LoggerService;
-using Core.Utilities.DateTimeService;
-using Services.AzureStorageService.Factory;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.UserService;
+
+namespace TokanPages.Backend.Application.Articles.Commands;
 
 public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
 {
@@ -29,7 +28,7 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
     public override async Task<Guid> Handle(AddArticleCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(null, false, cancellationToken);
-        var newArticle = new Articles
+        var newArticle = new Domain.Entities.Articles
         {
             Title = request.Title,
             Description = request.Description,

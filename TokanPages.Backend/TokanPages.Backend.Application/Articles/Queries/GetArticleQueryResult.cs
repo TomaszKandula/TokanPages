@@ -1,8 +1,8 @@
-﻿namespace TokanPages.Backend.Application.Articles.Queries;
+﻿using System.Collections.Generic;
+using TokanPages.WebApi.Dto.Content.Common;
+using TokanPages.WebApi.Dto.Users;
 
-using System.Collections.Generic;
-using WebApi.Dto.Users;
-using WebApi.Dto.Content.Common;
+namespace TokanPages.Backend.Application.Articles.Queries;
 
 public class GetArticleQueryResult : GetAllArticlesQueryResult
 {

@@ -1,18 +1,18 @@
-namespace TokanPages.Backend.Application.Articles.Commands;
-
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Persistence.Database;
-using Domain.Enums;
-using Core.Exceptions;
-using Shared.Resources;
-using Services.UserService;
-using Core.Utilities.LoggerService;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Enums;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.UserService;
 
-public class UpdateArticleVisibilityCommandHandler : Application.RequestHandler<UpdateArticleVisibilityCommand, Unit>
+namespace TokanPages.Backend.Application.Articles.Commands;
+
+public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticleVisibilityCommand, Unit>
 {
     private readonly IUserService _userService;
         

@@ -1,19 +1,19 @@
-﻿namespace TokanPages.Backend.Application.Articles.Commands;
-
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Persistence.Database;
-using Core.Exceptions;
-using Shared.Resources;
-using Services.UserService;
-using Core.Utilities.LoggerService;
-using Core.Utilities.DateTimeService;
-using Services.AzureStorageService.Factory;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.UserService;
 
-public class UpdateArticleContentCommandHandler : Application.RequestHandler<UpdateArticleContentCommand, Unit>
+namespace TokanPages.Backend.Application.Articles.Commands;
+
+public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleContentCommand, Unit>
 {
     private readonly IUserService _userService;
         

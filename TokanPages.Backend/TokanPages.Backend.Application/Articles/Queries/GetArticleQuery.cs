@@ -1,7 +1,7 @@
-﻿namespace TokanPages.Backend.Application.Articles.Queries;
-
-using System;
+﻿using System;
 using MediatR;
+
+namespace TokanPages.Backend.Application.Articles.Queries;
 
 public class GetArticleQuery : IRequest<GetArticleQueryResult>
 {

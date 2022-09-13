@@ -1,21 +1,20 @@
-namespace TokanPages.Backend.Application.Articles.Commands;
-
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Persistence.Database;
-using Domain.Entities;
-using Core.Exceptions;
-using Core.Extensions;
-using Shared.Resources;
-using Services.UserService;
-using Core.Utilities.LoggerService;
-using Core.Utilities.DateTimeService;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Persistence.Database;
+using TokanPages.Services.UserService;
 
-public class UpdateArticleCountCommandHandler : Application.RequestHandler<UpdateArticleCountCommand, Unit>
+namespace TokanPages.Backend.Application.Articles.Commands;
+
+public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCountCommand, Unit>
 {
     private readonly IUserService _userService;
 

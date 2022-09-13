@@ -1,6 +1,6 @@
-﻿namespace TokanPages.Backend.Application.Articles.Queries;
+﻿using System;
 
-using System;
+namespace TokanPages.Backend.Application.Articles.Queries;
 
 public class GetAllArticlesQueryResult
 {
