@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 
 namespace TokanPages.Backend.Application.Subscribers.Queries;
