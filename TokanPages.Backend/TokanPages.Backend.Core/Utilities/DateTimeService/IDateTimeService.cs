@@ -1,5 +1,3 @@
-using System;
-
 namespace TokanPages.Backend.Core.Utilities.DateTimeService;
 
 public interface IDateTimeService

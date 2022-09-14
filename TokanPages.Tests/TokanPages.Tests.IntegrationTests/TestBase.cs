@@ -1,10 +1,6 @@
-using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using TokanPages.Backend.Core.Utilities.DateTimeService;

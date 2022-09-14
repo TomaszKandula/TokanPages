@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MediatR;
+﻿using MediatR;
 
 namespace TokanPages.Backend.Application.Users.Queries;
 

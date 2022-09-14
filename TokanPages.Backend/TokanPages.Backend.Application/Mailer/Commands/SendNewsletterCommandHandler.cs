@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Services;

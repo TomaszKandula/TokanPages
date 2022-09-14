@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using TokanPages.Persistence.Database.Initializer.Data.Articles;
 
 namespace TokanPages.Persistence.Database.Initializer.Data.ArticleLikes;

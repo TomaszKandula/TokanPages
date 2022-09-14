@@ -1,7 +1,3 @@
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Application.Articles.Commands;

@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Net;
-using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;

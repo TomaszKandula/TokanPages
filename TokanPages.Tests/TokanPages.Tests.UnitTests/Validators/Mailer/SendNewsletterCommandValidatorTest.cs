@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using FluentAssertions;
+﻿using FluentAssertions;
 using TokanPages.Backend.Application.Mailer.Commands;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.WebApi.Dto.Mailer.Models;

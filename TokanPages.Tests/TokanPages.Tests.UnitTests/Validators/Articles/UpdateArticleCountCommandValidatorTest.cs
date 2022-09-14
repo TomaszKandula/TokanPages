@@ -1,4 +1,3 @@
-using System;
 using FluentAssertions;
 using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Shared.Resources;

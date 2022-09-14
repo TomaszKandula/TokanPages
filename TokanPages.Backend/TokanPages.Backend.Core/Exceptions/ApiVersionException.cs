@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
-using TokanPages.Backend.Core.Models;
+using TokanPages.Backend.Core.Errors;
 
 namespace TokanPages.Backend.Core.Exceptions;
 

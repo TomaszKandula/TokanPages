@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TokanPages.Backend.Domain.Contracts;
+﻿namespace TokanPages.Backend.Domain.Contracts;
 
 public interface IAuditable
 {

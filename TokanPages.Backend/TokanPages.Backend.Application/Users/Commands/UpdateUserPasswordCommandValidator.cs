@@ -1,4 +1,3 @@
-using System;
 using FluentValidation;
 using TokanPages.Backend.Shared.Resources;
 

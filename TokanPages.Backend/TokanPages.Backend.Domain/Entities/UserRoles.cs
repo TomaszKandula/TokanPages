@@ -1,4 +1,3 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
 

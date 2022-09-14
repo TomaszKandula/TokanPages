@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
 using FluentValidation.Results;
 
-namespace TokanPages.Backend.Core.Models;
+namespace TokanPages.Backend.Core.Errors;
 
 [ExcludeFromCodeCoverage]
 public sealed class ApplicationError

@@ -1,6 +1,3 @@
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace TokanPages.WebApi.Configuration;
 
 /// <summary>

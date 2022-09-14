@@ -1,5 +1,4 @@
-﻿using System;
-using FluentValidation;
+﻿using FluentValidation;
 using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Application.Users.Commands;

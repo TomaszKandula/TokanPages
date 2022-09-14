@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Application.Users.Queries;
 using TokanPages.Backend.Core.Exceptions;

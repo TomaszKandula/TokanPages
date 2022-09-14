@@ -1,6 +1,4 @@
-using System;
 using System.Net;
-using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
 using TokanPages.Backend.Shared.Resources;
