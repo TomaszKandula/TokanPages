@@ -1,5 +1,3 @@
-using System.Threading;
-using System.Threading.Tasks;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureStorageService.Factory;

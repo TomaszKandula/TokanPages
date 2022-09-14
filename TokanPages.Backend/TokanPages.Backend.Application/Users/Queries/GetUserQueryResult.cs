@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TokanPages.Backend.Application.Users.Queries;
+﻿namespace TokanPages.Backend.Application.Users.Queries;
 
 public class GetUserQueryResult : GetAllUsersQueryResult
 {

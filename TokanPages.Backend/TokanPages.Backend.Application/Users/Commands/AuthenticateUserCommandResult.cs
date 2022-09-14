@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using TokanPages.Services.UserService.Models;
 
 namespace TokanPages.Backend.Application.Users.Commands;

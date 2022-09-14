@@ -1,4 +1,3 @@
-using System;
 using MediatR;
 
 namespace TokanPages.Backend.Application.Articles.Commands;

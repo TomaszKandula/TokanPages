@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TokanPages.WebApi.Dto.Content.Common;
+﻿using TokanPages.WebApi.Dto.Content.Common;
 using TokanPages.WebApi.Dto.Users;
 
 namespace TokanPages.Backend.Application.Articles.Queries;

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MediatR;
+﻿using MediatR;
 using TokanPages.WebApi.Dto.Mailer.Models;
 
 namespace TokanPages.Backend.Application.Mailer.Commands;

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace TokanPages.Backend.Application.Logger.Queries;
 
 public class GetLogFilesListQueryResult
