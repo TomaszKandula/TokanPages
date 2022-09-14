@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Backend.Core.Utilities.LoggerService;

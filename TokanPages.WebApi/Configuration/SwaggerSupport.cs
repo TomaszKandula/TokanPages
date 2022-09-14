@@ -1,10 +1,4 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
 namespace TokanPages.WebApi.Configuration;

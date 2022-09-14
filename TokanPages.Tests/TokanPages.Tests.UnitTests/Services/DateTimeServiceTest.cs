@@ -1,4 +1,3 @@
-using System;
 using FluentAssertions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using Xunit;

@@ -1,4 +1,3 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace TokanPages.Backend.Core.Extensions.Models;

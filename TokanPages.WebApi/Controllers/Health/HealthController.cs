@@ -1,6 +1,4 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;

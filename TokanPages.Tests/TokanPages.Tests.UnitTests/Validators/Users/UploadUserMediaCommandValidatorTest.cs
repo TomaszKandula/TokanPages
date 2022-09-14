@@ -1,4 +1,3 @@
-using System;
 using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;

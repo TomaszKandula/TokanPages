@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Persistence.Database.Initializer.Seeders;
 
