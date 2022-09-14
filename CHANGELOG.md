@@ -1,3 +1,30 @@
+# [0.56.0](https://github.com/TomaszKandula/TokanPages/compare/v0.55.0...v0.56.0) (2022-09-14)
+
+
+### Bug Fixes
+
+* add missing assemblies ([80fec67](https://github.com/TomaszKandula/TokanPages/commit/80fec67b150e2e500dc22643f0b765db6dad5d33))
+* add missing assembly ([ae7fc37](https://github.com/TomaszKandula/TokanPages/commit/ae7fc371754375ae8bd99c39613dfdee12c0cc48))
+* resolve merge conflicts ([1762574](https://github.com/TomaszKandula/TokanPages/commit/17625745750e14e9fe712797e9e8068b315d415a))
+
+
+### Features
+
+* add cache for get action ([19b2e6e](https://github.com/TomaszKandula/TokanPages/commit/19b2e6ee35bcb39b02ac1d72f308a4b4bfeaca65))
+* add cache for handlers ([d47c3a2](https://github.com/TomaszKandula/TokanPages/commit/d47c3a234bc747da45e33f824a45dcff9e08b32d))
+* add content manifest and language content item ([52dbbde](https://github.com/TomaszKandula/TokanPages/commit/52dbbde0de25dfc995563965deb4a1a343aa65ba))
+* add cqrs for getting component content manifest ([d247f6d](https://github.com/TomaszKandula/TokanPages/commit/d247f6d62007598b539713521e693cad29a6c4ca))
+* add DTO models ([afd4a9f](https://github.com/TomaszKandula/TokanPages/commit/afd4a9f422104fc296e824f72c8f7adc1d8cf542))
+* add loader to react app (get content before app is rendered) ([07c9099](https://github.com/TomaszKandula/TokanPages/commit/07c9099c821d0a3a44c58fb232f97bca78cf495b))
+* add new API endpoint ([05bdf5c](https://github.com/TomaszKandula/TokanPages/commit/05bdf5ca81cc19901a0e8e2bb13b4b4f7824eb2d))
+* add new DTO models ([6a9bf9f](https://github.com/TomaszKandula/TokanPages/commit/6a9bf9f8bac548df7f396298a78fb8bef20c4026))
+* add new endpoint ([9ed4248](https://github.com/TomaszKandula/TokanPages/commit/9ed4248d3dce10533453267c8539d7ef74e1ae32))
+* add new projects ([f2ceae5](https://github.com/TomaszKandula/TokanPages/commit/f2ceae5ccfa66db9268f5613e4b67dbe31b7f70f))
+* add redis cache implementation ([2124136](https://github.com/TomaszKandula/TokanPages/commit/21241369b1f2f92a74936565d61ed5878d9aa4bf))
+* pass manifest to the app ([13f9b1c](https://github.com/TomaszKandula/TokanPages/commit/13f9b1cce3b0390b44eb43e56c9f0cb700ae5b4c))
+* update controllers ([1679df9](https://github.com/TomaszKandula/TokanPages/commit/1679df9f5ad46d7b754c6e0306a0ab6f6ba2319a))
+* update dependencies ([77f0cd8](https://github.com/TomaszKandula/TokanPages/commit/77f0cd8d6fc11a5112e6b97ac00dbeecf5b26a9f))
+
 # [0.55.0](https://github.com/TomaszKandula/TokanPages/compare/v0.54.1...v0.55.0) (2022-08-05)
 
 
