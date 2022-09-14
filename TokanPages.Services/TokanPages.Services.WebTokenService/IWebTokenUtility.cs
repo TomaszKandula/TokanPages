@@ -1,8 +1,7 @@
-namespace TokanPages.Services.WebTokenService;
-
-using System;
 using System.Security.Claims;
-using Models;
+using TokanPages.Services.WebTokenService.Models;
+
+namespace TokanPages.Services.WebTokenService;
 
 public interface IWebTokenUtility
 {

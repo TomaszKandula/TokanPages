@@ -1,7 +1,7 @@
-namespace TokanPages.Tests.IntegrationTests.Factories;
-
 using Microsoft.EntityFrameworkCore;
-using Backend.Database;
+using TokanPages.Persistence.Database;
+
+namespace TokanPages.Tests.IntegrationTests.Factories;
 
 internal class DatabaseContextFactory
 {

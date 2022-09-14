@@ -1,18 +1,15 @@
-namespace TokanPages.Tests.UnitTests.Handlers.Users;
-
-using Moq;
-using Xunit;
-using MediatR;
 using FluentAssertions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Backend.Domain.Entities;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Users;
-using TokanPages.Services.UserService;
+using MediatR;
+using Moq;
+using TokanPages.Backend.Application.Users.Commands;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.UserService;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Users;
 
 public class RemoveUserMediaCommandHandlerTest : TestBase
 {
@@ -24,7 +21,7 @@ public class RemoveUserMediaCommandHandlerTest : TestBase
         var blobName = DataUtilityService.GetRandomString();
         var command = new RemoveUserMediaCommand { UniqueBlobName = blobName };
 
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             Id = userId,
             UserAlias = DataUtilityService.GetRandomString(5),

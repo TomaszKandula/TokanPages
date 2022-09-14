@@ -1,20 +1,16 @@
-namespace TokanPages.Tests.UnitTests.Handlers.Users;
-
-using Moq;
-using Xunit;
 using FluentAssertions;
-using System;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using Backend.Domain.Enums;
-using Backend.Domain.Entities;
-using Backend.Shared.Resources;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Users;
-using TokanPages.Services.UserService;
+using Moq;
+using TokanPages.Backend.Application.Users.Commands;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Enums;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.UserService;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Users;
 
 public class UploadUserMediaCommandHandlerTest : TestBase
 {
@@ -32,7 +28,7 @@ public class UploadUserMediaCommandHandlerTest : TestBase
             Data = new byte[1024]
         };
 
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             Id = userId,
             UserAlias = DataUtilityService.GetRandomString(5),
@@ -119,7 +115,7 @@ public class UploadUserMediaCommandHandlerTest : TestBase
             Data = new byte[1024]
         };
 
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             Id = userId,
             UserAlias = DataUtilityService.GetRandomString(5),

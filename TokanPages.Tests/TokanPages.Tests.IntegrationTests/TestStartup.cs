@@ -1,15 +1,15 @@
-namespace TokanPages.Tests.IntegrationTests;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebApi;
-using Backend.Database;
-using WebApi.Middleware;
-using WebApi.Configuration;
-using Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Persistence.Database;
+using TokanPages.WebApi;
+using TokanPages.WebApi.Configuration;
+using TokanPages.WebApi.Middleware;
+
+namespace TokanPages.Tests.IntegrationTests;
 
 public class TestStartup
 {

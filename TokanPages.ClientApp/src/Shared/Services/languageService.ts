@@ -15,7 +15,7 @@ export interface ILanguage extends ISelectedLanguage
 
 export const GetDefaultLanguageId = (): string => 
 {
-    let result = GetUserLanguage();
+    let result = GetUserLanguageFromStore();
     if (result === "")
     {
         const languages = GetLanguages();
@@ -59,12 +59,12 @@ export const GetLanguages = (): ILanguage[] =>
     ];
 }
 
-export const GetUserLanguage = (): string => 
+export const GetUserLanguageFromStore = (): string => 
 {
     return CookieHelper.GetCookie({ cookieName: LanguageSelection });
 }
 
-export const SetUserLanguage = (value: string): void => 
+export const SetUserLanguageInStore = (value: string): void => 
 {
     CookieHelper.SetCookie({ 
         cookieName: LanguageSelection, 

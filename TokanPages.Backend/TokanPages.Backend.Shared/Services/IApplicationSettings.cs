@@ -1,6 +1,6 @@
-namespace TokanPages.Backend.Shared.Services;
+using TokanPages.Backend.Shared.Services.Models;
 
-using Models;
+namespace TokanPages.Backend.Shared.Services;
 
 public interface IApplicationSettings
 {

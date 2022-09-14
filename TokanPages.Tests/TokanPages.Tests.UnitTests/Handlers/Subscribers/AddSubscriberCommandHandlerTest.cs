@@ -1,16 +1,12 @@
-﻿namespace TokanPages.Tests.UnitTests.Handlers.Subscribers;
-
+﻿using FluentAssertions;
 using Moq;
+using TokanPages.Backend.Application.Subscribers.Commands;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
 using Xunit;
-using FluentAssertions;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Backend.Core.Exceptions;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Core.Utilities.DateTimeService;
-using Backend.Cqrs.Handlers.Commands.Subscribers;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Subscribers;
 
 public class AddSubscriberCommandHandlerTest : TestBase
 {

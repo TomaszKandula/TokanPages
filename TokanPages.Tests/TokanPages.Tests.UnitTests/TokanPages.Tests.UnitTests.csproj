@@ -6,6 +6,7 @@
     <LangVersion>10</LangVersion>
     <IsPackable>false</IsPackable>
     <IsPublishable>false</IsPublishable>
+    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
@@ -28,8 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Cqrs\TokanPages.Backend.Cqrs.csproj" />
-    <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
+    <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Application\TokanPages.Backend.Application.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.AzureStorageService\TokanPages.Services.AzureStorageService.csproj" />
   </ItemGroup>
 

@@ -1,7 +1,7 @@
-namespace TokanPages.Services.HttpClientService.Models;
-
-using System.Net;
 using System.Diagnostics.CodeAnalysis;
+using System.Net;
+
+namespace TokanPages.Services.HttpClientService.Models;
 
 [ExcludeFromCodeCoverage]
 public class ExecutionResult : HttpContentResult

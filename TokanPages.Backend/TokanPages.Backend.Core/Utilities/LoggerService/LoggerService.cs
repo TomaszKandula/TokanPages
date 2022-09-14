@@ -1,8 +1,8 @@
-﻿namespace TokanPages.Backend.Core.Utilities.LoggerService;
-
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Serilog;
+
+namespace TokanPages.Backend.Core.Utilities.LoggerService;
 
 /// <summary>
 /// Logger service that allows to store messages from application.

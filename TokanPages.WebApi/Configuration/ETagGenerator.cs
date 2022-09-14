@@ -1,9 +1,8 @@
-namespace TokanPages.WebApi.Configuration;
-
-using System;
-using System.Text;
-using System.Security.Cryptography;
 using System.Diagnostics.CodeAnalysis;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace TokanPages.WebApi.Configuration;
 
 /// <summary>
 /// Docker Support

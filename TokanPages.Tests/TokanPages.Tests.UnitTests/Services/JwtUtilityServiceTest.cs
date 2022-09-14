@@ -1,14 +1,12 @@
-namespace TokanPages.Tests.UnitTests.Services;
-
-using Xunit;
-using FluentAssertions;
-using System;
-using System.Linq;
-using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
-using Backend.Domain.Enums;
-using Backend.Database.Initializer.Data.Users;
-using Backend.Database.Initializer.Data.UserInfo;
+using System.Security.Claims;
+using FluentAssertions;
+using TokanPages.Backend.Domain.Enums;
+using TokanPages.Persistence.Database.Initializer.Data.UserInfo;
+using TokanPages.Persistence.Database.Initializer.Data.Users;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Services;
 
 public class JwtUtilityServiceTest : TestBase
 {

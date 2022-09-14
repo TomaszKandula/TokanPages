@@ -1,16 +1,10 @@
-﻿namespace TokanPages.Tests.UnitTests.Handlers.Users;
-
+﻿using FluentAssertions;
 using Moq;
+using TokanPages.Backend.Application.Users.Queries;
+using TokanPages.Backend.Core.Utilities.LoggerService;
 using Xunit;
-using FluentAssertions;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Backend.Domain.Entities;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Queries.Users;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Users;
 
 public class GetAllUsersQueryHandlerTest : TestBase
 {
@@ -18,7 +12,7 @@ public class GetAllUsersQueryHandlerTest : TestBase
     public async Task WhenGetAllArticles_ShouldReturnCollection()
     {
         // Arrange
-        var users = new List<Users>
+        var users = new List<Backend.Domain.Entities.Users>
         {
             new()
             {

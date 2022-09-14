@@ -1,10 +1,10 @@
-namespace TokanPages.Backend.Core.Exceptions;
-
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
-using Models;
+using TokanPages.Backend.Core.Errors;
+
+namespace TokanPages.Backend.Core.Exceptions;
 
 [ExcludeFromCodeCoverage]
 public class ApiVersionException : IErrorResponseProvider

@@ -1,9 +1,7 @@
-namespace TokanPages.Backend.Core.Extensions;
-
-using System;
-using System.Linq;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Backend.Core.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class EnumExtensions

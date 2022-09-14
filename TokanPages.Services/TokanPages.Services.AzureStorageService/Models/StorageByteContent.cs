@@ -1,7 +1,6 @@
-namespace TokanPages.Services.AzureStorageService.Models;
-
-using System;
 using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Services.AzureStorageService.Models;
 
 [ExcludeFromCodeCoverage]
 public class StorageByteContent

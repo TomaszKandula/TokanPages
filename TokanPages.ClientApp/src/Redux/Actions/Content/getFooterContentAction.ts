@@ -7,7 +7,7 @@ import { GET_FOOTER_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/constan
 import { TErrorActions } from "./../raiseErrorAction";
 import { IFooterContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
-import { GetUserLanguage } from "../../../Shared/Services/languageService";
+import { GetUserLanguageFromStore } from "../../../Shared/Services/languageService";
 
 export const REQUEST_FOOTER_CONTENT = "REQUEST_FOOTER_CONTENT";
 export const RECEIVE_FOOTER_CONTENT = "RECEIVE_FOOTER_CONTENT";
@@ -26,7 +26,7 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_FOOTER_CONTENT });
 
-        const language = GetUserLanguage();
+        const language = GetUserLanguageFromStore();
         const queryParam = language === "" ? "" : `&language=${language}`;
 
         axios(EnrichConfiguration(

@@ -1,17 +1,14 @@
-namespace TokanPages.Tests.UnitTests.Handlers.Users;
-
-using Moq;
-using Xunit;
 using FluentAssertions;
-using System.Threading;
-using System.Threading.Tasks;
-using Backend.Domain.Entities;
-using TokanPages.Services.UserService;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Users;
-using Backend.Core.Utilities.DateTimeService;
+using Moq;
+using TokanPages.Backend.Application.Users.Commands;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.EmailSenderService.Models.Interfaces;
+using TokanPages.Services.UserService;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Users;
 
 public class ResetUserPasswordCommandHandlerTest : TestBase
 {
@@ -19,7 +16,7 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
     public async Task GivenValidEmailAddress_WhenResetUserPassword_ShouldFinishSuccessful()
     {
         // Arrange
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),

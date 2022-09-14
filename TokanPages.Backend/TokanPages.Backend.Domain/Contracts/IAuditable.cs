@@ -1,7 +1,5 @@
 ﻿namespace TokanPages.Backend.Domain.Contracts;
 
-using System;
-
 public interface IAuditable
 {
 	Guid CreatedBy { get; set; }

@@ -1,18 +1,14 @@
-﻿namespace TokanPages.WebApi.Controllers.Api;
-
-using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Backend.Domain.Enums;
-using Backend.Cqrs.Mappers;
-using Backend.Dto.Articles;
-using Backend.Cqrs.Handlers.Queries.Articles;
-using Services.Caching.Articles;
-using Backend.Shared.Attributes;
+using TokanPages.Backend.Domain.Enums;
+using TokanPages.Backend.Shared.Attributes;
 using MediatR;
+using TokanPages.Backend.Application.Articles.Queries;
+using TokanPages.Persistence.Caching.Abstractions;
+using TokanPages.WebApi.Controllers.Mappers;
+using TokanPages.WebApi.Dto.Articles;
+
+namespace TokanPages.WebApi.Controllers.Api;
 
 /// <summary>
 /// API endpoints definitions for articles

@@ -1,13 +1,13 @@
-﻿namespace TokanPages.Tests.UnitTests;
-
-using Moq;
+﻿using Moq;
 using Microsoft.Extensions.DependencyInjection;
-using Backend.Database;
-using Backend.Shared.Services;
-using Backend.Shared.Services.Models;
+using TokanPages.Backend.Core.Utilities.DataUtilityService;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Shared.Services;
+using TokanPages.Backend.Shared.Services.Models;
+using TokanPages.Persistence.Database;
 using TokanPages.Services.WebTokenService;
-using Backend.Core.Utilities.DateTimeService;
-using Backend.Core.Utilities.DataUtilityService;
+
+namespace TokanPages.Tests.UnitTests;
 
 public class TestBase
 {

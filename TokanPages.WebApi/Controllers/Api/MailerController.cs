@@ -1,14 +1,12 @@
-﻿namespace TokanPages.WebApi.Controllers.Api;
-
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Backend.Dto.Mailer;
-using Backend.Domain.Enums;
-using Backend.Cqrs.Mappers;
-using Backend.Shared.Attributes;
-using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using TokanPages.Backend.Domain.Enums;
+using TokanPages.Backend.Shared.Attributes;
+using TokanPages.WebApi.Controllers.Mappers;
+using TokanPages.WebApi.Dto.Mailer;
+
+namespace TokanPages.WebApi.Controllers.Api;
 
 /// <summary>
 /// API endpoints definitions for mailer

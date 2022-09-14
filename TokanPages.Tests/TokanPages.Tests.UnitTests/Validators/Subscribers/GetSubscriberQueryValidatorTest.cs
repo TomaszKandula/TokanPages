@@ -1,10 +1,9 @@
-﻿namespace TokanPages.Tests.UnitTests.Validators.Subscribers;
-
+﻿using FluentAssertions;
+using TokanPages.Backend.Application.Subscribers.Queries;
+using TokanPages.Backend.Shared.Resources;
 using Xunit;
-using FluentAssertions;
-using System;
-using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Queries.Subscribers;
+
+namespace TokanPages.Tests.UnitTests.Validators.Subscribers;
 
 public class GetSubscriberQueryValidatorTest : TestBase
 {

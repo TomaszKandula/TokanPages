@@ -1,15 +1,12 @@
-namespace TokanPages.Tests.UnitTests.Handlers.Assets;
-
-using Moq;
-using Xunit;
 using FluentAssertions;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Assets;
+using Moq;
+using TokanPages.Backend.Application.Assets.Commands;
+using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Factory;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Assets;
 
 public class AddSingleAssetCommandHandlerTest : TestBase
 {

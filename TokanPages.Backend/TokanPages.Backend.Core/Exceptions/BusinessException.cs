@@ -1,8 +1,7 @@
-﻿namespace TokanPages.Backend.Core.Exceptions;
-
-using System;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
-using System.Diagnostics.CodeAnalysis;
+
+namespace TokanPages.Backend.Core.Exceptions;
 
 [ExcludeFromCodeCoverage]
 [Serializable]

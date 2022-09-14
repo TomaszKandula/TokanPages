@@ -1,10 +1,9 @@
-namespace TokanPages.Tests.UnitTests.Validators.Users;
-
-using Xunit;
-using System;
 using FluentAssertions;
-using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Queries.Users;
+using TokanPages.Backend.Application.Users.Queries;
+using TokanPages.Backend.Shared.Resources;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Validators.Users;
 
 public class GetUserMediaQueryValidatorTest : TestBase
 {

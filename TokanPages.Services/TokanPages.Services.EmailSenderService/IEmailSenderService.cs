@@ -1,6 +1,6 @@
-namespace TokanPages.Services.EmailSenderService;
+using TokanPages.Services.EmailSenderService.Models.Interfaces;
 
-using Models.Interfaces;
+namespace TokanPages.Services.EmailSenderService;
 
 public interface IEmailSenderService
 {

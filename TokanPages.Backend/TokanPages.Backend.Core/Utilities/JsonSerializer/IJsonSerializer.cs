@@ -1,8 +1,7 @@
-namespace TokanPages.Backend.Core.Utilities.JsonSerializer;
-
-using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+
+namespace TokanPages.Backend.Core.Utilities.JsonSerializer;
 
 public interface IJsonSerializer
 {

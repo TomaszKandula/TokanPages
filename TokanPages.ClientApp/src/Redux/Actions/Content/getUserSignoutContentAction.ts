@@ -7,7 +7,7 @@ import { GET_SIGNOUT_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/consta
 import { TErrorActions } from "./../raiseErrorAction";
 import { IUserSignoutContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
-import { GetUserLanguage } from "../../../Shared/Services/languageService";
+import { GetUserLanguageFromStore } from "../../../Shared/Services/languageService";
 
 export const REQUEST_USER_SIGNOUT_CONTENT = "REQUEST_USER_SIGNOUT_CONTENT";
 export const RECEIVE_USER_SIGNOUT_CONTENT = "RECEIVE_USER_SIGNOUT_CONTENT";
@@ -26,7 +26,7 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_USER_SIGNOUT_CONTENT });
 
-        const language = GetUserLanguage();
+        const language = GetUserLanguageFromStore();
         const queryParam = language === "" ? "" : `&language=${language}`;
 
         axios(EnrichConfiguration(

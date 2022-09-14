@@ -6,6 +6,7 @@
     <LangVersion>10</LangVersion>
     <IsPackable>false</IsPackable>
     <IsPublishable>false</IsPublishable>
+    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
   
@@ -33,7 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
     <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
     <ProjectReference Include="..\..\TokanPages.WebApi\TokanPages.WebApi.csproj" />
   </ItemGroup>

@@ -1,8 +1,7 @@
-namespace TokanPages.Backend.Domain.Entities;
-
-using System;
 using System.Diagnostics.CodeAnalysis;
-using Contracts;
+using TokanPages.Backend.Domain.Contracts;
+
+namespace TokanPages.Backend.Domain.Entities;
 
 [ExcludeFromCodeCoverage]
 public class UserPermissions : Entity<Guid>, IAuditable

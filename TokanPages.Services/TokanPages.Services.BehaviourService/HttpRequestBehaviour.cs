@@ -1,10 +1,8 @@
-namespace TokanPages.Services.BehaviourService;
-
-using System.Threading;
-using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
-using UserService;
 using MediatR;
+using TokanPages.Services.UserService;
+
+namespace TokanPages.Services.BehaviourService;
 
 [ExcludeFromCodeCoverage]
 public class HttpRequestBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>

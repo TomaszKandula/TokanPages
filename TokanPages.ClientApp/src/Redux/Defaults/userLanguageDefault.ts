@@ -1,7 +1,7 @@
 import { IUserLanguage } from "../../Redux/States/userLanguageState";
-import { GetUserLanguage } from "../../Shared/Services/languageService";
+import { GetUserLanguageFromStore } from "../../Shared/Services/languageService";
 
-const preservedId = GetUserLanguage();
+const preservedId = GetUserLanguageFromStore();
 const languageId = preservedId === "" ? "eng" : preservedId;
 
 export const UserLanguageDefault: IUserLanguage = 

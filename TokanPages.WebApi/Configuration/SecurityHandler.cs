@@ -1,9 +1,9 @@
-namespace TokanPages.WebApi.Configuration;
-
-using System.Security.Claims;
 using System.Diagnostics.CodeAnalysis;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+
+namespace TokanPages.WebApi.Configuration;
 
 /// <summary>
 /// Token security handler
