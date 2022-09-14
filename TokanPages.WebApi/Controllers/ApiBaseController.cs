@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TokanPages.Backend.Core.Models;
+using TokanPages.Backend.Core.Errors;
 
 namespace TokanPages.WebApi.Controllers;
 

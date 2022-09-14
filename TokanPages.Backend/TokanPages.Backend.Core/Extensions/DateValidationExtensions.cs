@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
-using TokanPages.Backend.Core.Models;
+using TokanPages.Backend.Core.Extensions.Models;
 
 namespace TokanPages.Backend.Core.Extensions;
 

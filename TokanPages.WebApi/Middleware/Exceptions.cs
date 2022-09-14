@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Models;
+using TokanPages.Backend.Core.Errors;
 using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.WebApi.Middleware;

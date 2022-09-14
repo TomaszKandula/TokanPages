@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Backend.Core.Models;
+namespace TokanPages.Backend.Core.Extensions.Models;
 
 [ExcludeFromCodeCoverage]
 public class DateRangeModel
