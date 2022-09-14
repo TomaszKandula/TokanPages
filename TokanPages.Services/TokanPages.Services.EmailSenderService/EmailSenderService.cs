@@ -1,17 +1,17 @@
-namespace TokanPages.Services.EmailSenderService;
-
 using System.Net;
 using System.Text;
-using Models;
-using Models.Interfaces;
-using HttpClientService;
-using Backend.Dto.Mailer;
-using Backend.Core.Exceptions;
-using Backend.Core.Extensions;
-using Backend.Shared.Services;
-using Backend.Shared.Resources;
-using HttpClientService.Models;
 using Newtonsoft.Json;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services;
+using TokanPages.Services.EmailSenderService.Models;
+using TokanPages.Services.EmailSenderService.Models.Interfaces;
+using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Models;
+using TokanPages.WebApi.Dto.Mailer;
+
+namespace TokanPages.Services.EmailSenderService;
 
 public class EmailSenderService : IEmailSenderService
 {

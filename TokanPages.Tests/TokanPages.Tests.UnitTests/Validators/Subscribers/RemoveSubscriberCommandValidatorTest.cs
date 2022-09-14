@@ -1,10 +1,9 @@
-﻿namespace TokanPages.Tests.UnitTests.Validators.Subscribers;
-
+﻿using FluentAssertions;
+using TokanPages.Backend.Application.Subscribers.Commands;
+using TokanPages.Backend.Shared.Resources;
 using Xunit;
-using FluentAssertions;
-using System;
-using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Commands.Subscribers;
+
+namespace TokanPages.Tests.UnitTests.Validators.Subscribers;
 
 public class RemoveSubscriberCommandValidatorTest : TestBase
 {

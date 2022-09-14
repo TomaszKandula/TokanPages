@@ -1,10 +1,7 @@
-namespace TokanPages.Backend.Core.Utilities.DataUtilityService;
-
-using System;
-using System.IO;
 using System.Net;
-using System.Linq;
 using System.Security.Cryptography;
+
+namespace TokanPages.Backend.Core.Utilities.DataUtilityService;
 
 public class DataUtilityService : IDataUtilityService
 {

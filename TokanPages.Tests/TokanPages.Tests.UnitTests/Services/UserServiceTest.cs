@@ -1,28 +1,23 @@
-namespace TokanPages.Tests.UnitTests.Services;
-
-using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
 using System.Net;
-using System.Linq;
-using System.Threading;
 using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
-using Backend.Domain.Entities;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
-using Backend.Shared.Services.Models;
+using Moq;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services.Models;
 using TokanPages.Services.UserService;
 using TokanPages.Services.UserService.Models;
-using Backend.Core.Utilities.DateTimeService;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.WebTokenService.Models;
-using Roles = Backend.Domain.Enums.Roles;
-using Permissions = Backend.Domain.Enums.Permissions;
+using Roles = TokanPages.Backend.Domain.Enums.Roles;
+using Permissions = TokanPages.Backend.Domain.Enums.Permissions;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Services;
 
 public class UserServiceTest : TestBase
 {

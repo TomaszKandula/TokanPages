@@ -1,12 +1,9 @@
-namespace TokanPages.WebApi.Configuration;
-
-using System;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
-using Polly.Extensions.Http;
+using System.Net;
 using Polly;
+using Polly.Extensions.Http;
+
+namespace TokanPages.WebApi.Configuration;
 
 /// <summary>
 /// HTTP Policy

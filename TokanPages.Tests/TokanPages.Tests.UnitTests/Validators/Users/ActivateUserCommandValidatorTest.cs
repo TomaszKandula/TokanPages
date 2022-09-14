@@ -1,10 +1,9 @@
-namespace TokanPages.Tests.UnitTests.Validators.Users;
-
-using Xunit;
 using FluentAssertions;
-using System;
-using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Commands.Users;
+using TokanPages.Backend.Application.Users.Commands;
+using TokanPages.Backend.Shared.Resources;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Validators.Users;
 
 public class ActivateUserCommandValidatorTest
 {

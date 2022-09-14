@@ -1,17 +1,13 @@
-﻿namespace TokanPages.Tests.UnitTests.Handlers.Users;
-
-using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using Backend.Domain.Entities;
+using Moq;
+using TokanPages.Backend.Application.Users.Commands;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
 using TokanPages.Services.UserService;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Users;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Users;
 
 public class RemoveUserCommandHandlerTest : TestBase
 {
@@ -20,7 +16,7 @@ public class RemoveUserCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var user = new Users 
+        var user = new Backend.Domain.Entities.Users 
         { 
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -138,7 +134,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             Title = DataUtilityService.GetRandomString()
         };
 
-        var article = new Articles
+        var article = new Backend.Domain.Entities.Articles
         {
             Id = Guid.NewGuid(),
             UserId = userId,

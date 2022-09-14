@@ -1,10 +1,9 @@
-﻿namespace TokanPages.Tests.UnitTests.Validators.Users;
-
+﻿using FluentAssertions;
+using TokanPages.Backend.Application.Users.Queries;
+using TokanPages.Backend.Shared.Resources;
 using Xunit;
-using FluentAssertions;
-using System;
-using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Queries.Users;
+
+namespace TokanPages.Tests.UnitTests.Validators.Users;
 
 public class GetUserQueryValidatorTest
 {

@@ -1,18 +1,13 @@
-﻿namespace TokanPages.Tests.UnitTests.Handlers.Users;
-
+﻿using FluentAssertions;
 using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Backend.Domain.Entities;
-using Backend.Core.Exceptions;
+using TokanPages.Backend.Application.Users.Commands;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.UserService;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Users;
-using Backend.Core.Utilities.DateTimeService;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Users;
 
 public class UpdateUserCommandHandlerTest : TestBase
 {
@@ -20,7 +15,7 @@ public class UpdateUserCommandHandlerTest : TestBase
     public async Task GivenCorrectId_WhenUpdateUser_ShouldUpdateEntity()
     {
         // Arrange
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
@@ -76,7 +71,7 @@ public class UpdateUserCommandHandlerTest : TestBase
     {
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var user = new List<Users>
+        var user = new List<Backend.Domain.Entities.Users>
         {
             new()
             {

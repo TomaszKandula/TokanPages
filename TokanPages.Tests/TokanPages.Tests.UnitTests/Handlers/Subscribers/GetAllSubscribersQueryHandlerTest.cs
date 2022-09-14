@@ -1,15 +1,10 @@
-﻿namespace TokanPages.Tests.UnitTests.Handlers.Subscribers;
-
+﻿using FluentAssertions;
 using Moq;
+using TokanPages.Backend.Application.Subscribers.Queries;
+using TokanPages.Backend.Core.Utilities.LoggerService;
 using Xunit;
-using FluentAssertions;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Queries.Subscribers;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Subscribers;
 
 public class GetAllSubscribersQueryHandlerTest : TestBase
 {

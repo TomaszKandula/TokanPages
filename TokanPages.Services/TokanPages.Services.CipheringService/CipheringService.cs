@@ -1,10 +1,9 @@
-namespace TokanPages.Services.CipheringService;
-
-using System;
-using System.Text;
 using System.Globalization;
 using System.Security.Cryptography;
-using Helpers;
+using System.Text;
+using TokanPages.Services.CipheringService.Helpers;
+
+namespace TokanPages.Services.CipheringService;
 
 public sealed class CipheringService : ICipheringService
 {

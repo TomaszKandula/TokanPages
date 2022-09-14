@@ -1,20 +1,17 @@
-namespace TokanPages.Tests.IntegrationTests.Controllers;
-
-using Xunit;
-using Newtonsoft.Json;
-using FluentAssertions;
-using System;
 using System.Net;
-using System.Text;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Net.Http.Headers;
+using System.Text;
+using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
-using Backend.Dto.Subscribers;
-using Backend.Core.Extensions;
-using Backend.Shared.Resources;
-using Backend.Database.Initializer.Data.Subscribers;
-using Factories;
+using Newtonsoft.Json;
+using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database.Initializer.Data.Subscribers;
+using TokanPages.Tests.IntegrationTests.Factories;
+using TokanPages.WebApi.Dto.Subscribers;
+using Xunit;
+
+namespace TokanPages.Tests.IntegrationTests.Controllers;
 
 public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {

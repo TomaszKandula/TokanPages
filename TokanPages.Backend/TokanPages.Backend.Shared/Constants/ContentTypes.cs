@@ -1,6 +1,6 @@
-﻿namespace TokanPages.Backend.Shared.Constants;
+﻿using System.Diagnostics.CodeAnalysis;
 
-using System.Diagnostics.CodeAnalysis;
+namespace TokanPages.Backend.Shared.Constants;
 
 /// <summary>
 /// Selected list of common MIME content types.

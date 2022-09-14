@@ -4,7 +4,7 @@ import { IApplicationState } from "Redux/applicationState";
 import { IGetNavigationContent } from "../../../Redux/States/Content/getNavigationContentState";
 import { ActionCreators as UserDataAction } from "../../../Redux/Actions/Users/storeUserDataAction";
 import { ActionCreators as UserLanguageAction } from "../../../Redux/Actions/userLanguageAction";
-import { GetLanguages, SetUserLanguage, GetDefaultLanguageId } from "../../../Shared/Services/languageService";
+import { GetLanguages, SetUserLanguageInStore, GetDefaultLanguageId } from "../../../Shared/Services/languageService";
 import { NavigationView } from "./View/navigationView";
 import Validate from "validate.js";
 
@@ -23,7 +23,7 @@ export const Navigation = (props: IGetNavigationContent): JSX.Element =>
     {
         const value = event.target.value as string;
         setLanguage(value);
-        SetUserLanguage(value);
+        SetUserLanguageInStore(value);
         dispatch(UserLanguageAction.setAnotherLanguage(value));
     };
 

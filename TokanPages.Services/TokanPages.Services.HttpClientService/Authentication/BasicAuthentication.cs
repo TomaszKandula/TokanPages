@@ -1,7 +1,7 @@
-namespace TokanPages.Services.HttpClientService.Authentication;
-
 using System.Diagnostics.CodeAnalysis;
-using Abstractions;
+using TokanPages.Services.HttpClientService.Abstractions;
+
+namespace TokanPages.Services.HttpClientService.Authentication;
 
 [ExcludeFromCodeCoverage]
 public class BasicAuthentication : IAuthentication

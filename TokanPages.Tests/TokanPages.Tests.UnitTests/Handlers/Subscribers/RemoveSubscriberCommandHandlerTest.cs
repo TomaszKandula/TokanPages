@@ -1,15 +1,11 @@
-﻿namespace TokanPages.Tests.UnitTests.Handlers.Subscribers;
-
+﻿using FluentAssertions;
 using Moq;
+using TokanPages.Backend.Application.Subscribers.Commands;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
 using Xunit;
-using FluentAssertions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Backend.Domain.Entities;
-using Backend.Core.Exceptions;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Subscribers;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Subscribers;
 
 public class RemoveSubscriberCommandHandlerTest : TestBase
 {
@@ -17,7 +13,7 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
     public async Task GivenCorrectId_WhenRemoveSubscriber_ShouldRemoveEntity() 
     {
         // Arrange
-        var subscribers = new Subscribers 
+        var subscribers = new Backend.Domain.Entities.Subscribers 
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,

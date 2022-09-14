@@ -1,11 +1,9 @@
-namespace TokanPages.Tests.UnitTests.Services;
-
-using Xunit;
-using System;
-using System.Linq;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
-using Backend.Core.Utilities.JsonSerializer;
+using TokanPages.Backend.Core.Utilities.JsonSerializer;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Services;
 
 public class JsonSerializerTest : TestBase
 {

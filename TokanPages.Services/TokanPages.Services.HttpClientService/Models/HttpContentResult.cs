@@ -1,6 +1,6 @@
-namespace TokanPages.Services.HttpClientService.Models;
-
 using System.Net.Http.Headers;
+
+namespace TokanPages.Services.HttpClientService.Models;
 
 public class HttpContentResult
 {

@@ -1,11 +1,9 @@
-namespace TokanPages.WebApi.Controllers.Api;
-
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using Backend.Cqrs.Handlers.Queries.Content;
-using Services.Caching.Content;
 using MediatR;
+using TokanPages.Backend.Application.Content.Queries;
+using TokanPages.Persistence.Caching.Abstractions;
+
+namespace TokanPages.WebApi.Controllers.Api;
 
 /// <summary>
 /// API endpoints definitions for content
@@ -22,6 +20,16 @@ public class ContentController : ApiBaseController
     /// <param name="contentCache"></param>
     public ContentController(IMediator mediator, IContentCache contentCache) 
         : base(mediator) => _contentCache = contentCache;
+
+    /// <summary>
+    /// Returns component content manifest
+    /// </summary>
+    /// <param name="noCache">Enable/disable REDIS cache</param>
+    /// <returns>Object</returns>
+    [HttpGet]
+    [ProducesResponseType(typeof(GetContentManifestQueryResult), StatusCodes.Status200OK)]
+    public async Task<GetContentManifestQueryResult> GetContentManifest([FromQuery] bool noCache = false) 
+        => await _contentCache.GetContentManifest(noCache);
 
     /// <summary>
     /// Returns component/document content

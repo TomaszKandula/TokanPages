@@ -7,7 +7,7 @@ import { GET_FEATURED_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/const
 import { TErrorActions } from "./../raiseErrorAction";
 import { IFeaturedContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
-import { GetUserLanguage } from "../../../Shared/Services/languageService";
+import { GetUserLanguageFromStore } from "../../../Shared/Services/languageService";
 
 export const REQUEST_FEATURED_CONTENT = "REQUEST_FEATURED_CONTENT";
 export const RECEIVE_FEATURED_CONTENT = "RECEIVE_FEATURED_CONTENT";
@@ -26,7 +26,7 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_FEATURED_CONTENT });
 
-        const language = GetUserLanguage();
+        const language = GetUserLanguageFromStore();
         const queryParam = language === "" ? "" : `&language=${language}`;
 
         axios(EnrichConfiguration(

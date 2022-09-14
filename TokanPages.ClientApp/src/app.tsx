@@ -18,6 +18,7 @@ import { UnsubscribePage } from "./Pages";
 import { UpdateSubscriberPage } from "./Pages";
 import { ActivationPage } from "./Pages";
 import { WrongPage } from "./Pages";
+import { IGetContentManifestDto } from "./Api/Models";
 import { ScrollToTop } from "./Shared/Components/Scroll";
 import { ApplicationToast } from "./Shared/Components";
 import { ApplicationDialogBox } from "./Shared/Components";
@@ -27,11 +28,17 @@ import { AppStyle } from "./app.style";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const App = (): JSX.Element => 
+interface IApp 
+{
+    manifest: IGetContentManifestDto[];
+}
+
+const App = (props: IApp): JSX.Element => 
 {
     const classes = AppStyle();
 
     AOS.init();
+    console.log(props.manifest);
     StoreUserData();
 
     React.useEffect(() => 

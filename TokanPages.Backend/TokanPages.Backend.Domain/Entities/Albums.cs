@@ -1,9 +1,8 @@
-namespace TokanPages.Backend.Domain.Entities;
-
-using System;
-using System.Diagnostics.CodeAnalysis;
 using System.ComponentModel.DataAnnotations;
-using Contracts;
+using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Contracts;
+
+namespace TokanPages.Backend.Domain.Entities;
 
 [ExcludeFromCodeCoverage]
 public class Albums : Entity<Guid>, IAuditable

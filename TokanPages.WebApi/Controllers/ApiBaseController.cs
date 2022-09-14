@@ -1,10 +1,9 @@
-﻿namespace TokanPages.WebApi.Controllers;
-
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Backend.Core.Models;
-using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using TokanPages.Backend.Core.Errors;
+
+namespace TokanPages.WebApi.Controllers;
 
 /// <summary>
 /// Base controller with MediatR

@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40</UserSecretsId>
     <LangVersion>10</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
@@ -28,13 +29,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
-    <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Cqrs\TokanPages.Backend.Cqrs.csproj" />
-    <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Database\TokanPages.Backend.Database.csproj" />
+    <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Application\TokanPages.Backend.Application.csproj" />
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
+    <ProjectReference Include="..\TokanPages.Persistence\TokanPages.Persistence.Caching\TokanPages.Persistence.Caching.csproj" />
     <ProjectReference Include="..\TokanPages.Services\TokanPages.Services.AzureStorageService\TokanPages.Services.AzureStorageService.csproj" />
     <ProjectReference Include="..\TokanPages.Services\TokanPages.Services.BehaviourService\TokanPages.Services.BehaviourService.csproj" />
     <ProjectReference Include="..\TokanPages.Services\TokanPages.Services.CipheringService\TokanPages.Services.CipheringService.csproj" />
     <ProjectReference Include="..\TokanPages.Services\TokanPages.Services.HttpClientService\TokanPages.Services.HttpClientService.csproj" />
+    <ProjectReference Include="..\TokanPages.Services\TokanPages.Services.RedisCacheService\TokanPages.Services.RedisCacheService.csproj" />
     <ProjectReference Include="..\TokanPages.Services\TokanPages.Services.WebTokenService\TokanPages.Services.WebTokenService.csproj" />
   </ItemGroup>
 

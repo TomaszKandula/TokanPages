@@ -1,13 +1,7 @@
-namespace TokanPages.WebApi.Configuration;
-
-using System;
-using System.IO;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.OpenApi.Models;
-using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+
+namespace TokanPages.WebApi.Configuration;
 
 /// <summary>
 /// Swagger support
@@ -21,7 +15,7 @@ public static class SwaggerSupport
 
     private const string XmlFileForWebApi = "TokanPages.WebApi.xml";
 
-    private const string XmlFileForDtoModels = "TokanPages.Backend.Dto.xml";
+    private const string XmlFileForDtoModels = "TokanPages.WebApi.Dto.xml";
 
     private const string AuthorizationScheme = "Bearer";
 

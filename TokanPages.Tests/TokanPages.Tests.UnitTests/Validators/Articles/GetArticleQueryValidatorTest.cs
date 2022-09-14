@@ -1,10 +1,9 @@
-﻿namespace TokanPages.Tests.UnitTests.Validators.Articles;
-
+﻿using FluentAssertions;
+using TokanPages.Backend.Application.Articles.Queries;
+using TokanPages.Backend.Shared.Resources;
 using Xunit;
-using FluentAssertions;
-using System;
-using Backend.Shared.Resources;
-using Backend.Cqrs.Handlers.Queries.Articles;
+
+namespace TokanPages.Tests.UnitTests.Validators.Articles;
 
 public class GetArticleQueryValidatorTest
 {

@@ -1,14 +1,12 @@
-namespace TokanPages.Tests.IntegrationTests.Controllers;
-
-using Xunit;
-using FluentAssertions;
-using System;
 using System.Net;
-using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
-using Backend.Shared.Resources;
-using Backend.Database.Initializer.Data.Articles;
-using Factories;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database.Initializer.Data.Articles;
+using TokanPages.Tests.IntegrationTests.Factories;
+using Xunit;
+
+namespace TokanPages.Tests.IntegrationTests.Controllers;
 
 public class AssetsControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {

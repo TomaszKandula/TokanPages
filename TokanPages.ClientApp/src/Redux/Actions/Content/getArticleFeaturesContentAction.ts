@@ -7,7 +7,7 @@ import { GET_ARTICLE_FEAT_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/c
 import { TErrorActions } from "../raiseErrorAction";
 import { IArticleFeaturesContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
-import { GetUserLanguage } from "../../../Shared/Services/languageService";
+import { GetUserLanguageFromStore } from "../../../Shared/Services/languageService";
 
 export const REQUEST_ARTICE_FEATURES = "REQUEST_ARTICE_FEATURES";
 export const RECEIVE_ARTICE_FEATURES = "RECEIVE_ARTICE_FEATURES";
@@ -26,7 +26,7 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_ARTICE_FEATURES });
 
-        const language = GetUserLanguage();
+        const language = GetUserLanguageFromStore();
         const queryParam = language === "" ? "" : `&language=${language}`;
 
         axios(EnrichConfiguration(

@@ -1,23 +1,20 @@
-namespace TokanPages.Tests.UnitTests.Handlers.Content;
-
-using Moq;
-using Xunit;
 using FluentAssertions;
+using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Backend.Dto.Content;
-using Backend.Core.Exceptions;
-using Backend.Shared.Resources;
-using Backend.Dto.Content.Common;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Queries.Content;
-using Backend.Core.Utilities.JsonSerializer;
+using TokanPages.Backend.Application.Content.Queries;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.JsonSerializer;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Factory;
 using TokanPages.Services.AzureStorageService.Models;
+using TokanPages.WebApi.Dto.Content;
+using TokanPages.WebApi.Dto.Content.Common;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Content;
 
 public class GetContentQueryHandlerTest : TestBase
 {

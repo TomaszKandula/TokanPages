@@ -1,8 +1,7 @@
-namespace TokanPages.Backend.Core.Extensions;
-
-using System;
-using Microsoft.AspNetCore.Http;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Http;
+
+namespace TokanPages.Backend.Core.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class FormFileExtensions

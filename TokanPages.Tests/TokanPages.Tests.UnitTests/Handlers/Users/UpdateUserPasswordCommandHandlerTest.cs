@@ -1,19 +1,15 @@
-namespace TokanPages.Tests.UnitTests.Handlers.Users;
-
-using Moq;
-using Xunit;
 using FluentAssertions;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Backend.Core.Exceptions;
-using Backend.Domain.Entities;
-using Backend.Shared.Resources;
-using TokanPages.Services.UserService;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Users;
+using Moq;
+using TokanPages.Backend.Application.Users.Commands;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.CipheringService;
-using Backend.Core.Utilities.DateTimeService;
+using TokanPages.Services.UserService;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Users;
 
 public class UpdateUserPasswordCommandHandlerTest : TestBase
 {
@@ -21,7 +17,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
     public async Task GivenValidUserDataAndNewPasswordAsLoggedUser_WhenUpdateUserPassword_ShouldFinishSuccessful()
     {
         // Arrange
-        var users = new Users
+        var users = new Backend.Domain.Entities.Users
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
@@ -89,7 +85,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
     public async Task GivenInvalidResetId_WhenUpdateUserPassword_ShouldThrowError()
     {
         // Arrange
-        var users = new Users
+        var users = new Backend.Domain.Entities.Users
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
@@ -146,7 +142,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
     public async Task GivenInvalidUserId_WhenUpdateUserPassword_ShouldThrowError()
     {
         // Arrange
-        var users = new Users
+        var users = new Backend.Domain.Entities.Users
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
@@ -202,7 +198,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
     public async Task GivenNoResetIdAsNotLoggedUser_WhenUpdateUserPassword_ShouldThrowError()
     {
         // Arrange
-        var users = new Users
+        var users = new Backend.Domain.Entities.Users
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),

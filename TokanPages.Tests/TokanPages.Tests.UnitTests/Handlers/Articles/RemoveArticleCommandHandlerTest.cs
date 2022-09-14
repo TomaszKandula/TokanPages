@@ -1,19 +1,15 @@
-﻿namespace TokanPages.Tests.UnitTests.Handlers.Articles;
-
-using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Backend.Core.Exceptions;
-using Backend.Domain.Entities;
-using Backend.Shared.Resources;
+﻿using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using Moq;
+using TokanPages.Backend.Application.Articles.Commands;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Cqrs.Handlers.Commands.Articles;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Articles;
 
 public class RemoveArticleCommandHandlerTest : TestBase
 {
@@ -23,7 +19,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
         // Arrange
         var articleId = Guid.NewGuid();
         var userId = Guid.NewGuid();
-        var users = new Users
+        var users = new Backend.Domain.Entities.Users
         {
             Id = userId,
             IsActivated = true,
@@ -32,7 +28,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Articles
+        var articles = new Backend.Domain.Entities.Articles
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -101,7 +97,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var users = new Users
+        var users = new Backend.Domain.Entities.Users
         {
             Id = userId,
             IsActivated = true,
@@ -110,7 +106,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Articles
+        var articles = new Backend.Domain.Entities.Articles
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),

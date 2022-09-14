@@ -1,20 +1,15 @@
-﻿namespace TokanPages.Tests.UnitTests.Handlers.Articles;
-
+﻿using FluentAssertions;
 using Moq;
-using Xunit;
-using FluentAssertions;
-using System;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using Backend.Core.Extensions;
-using Backend.Domain.Entities;
-using TokanPages.Services.UserService;
-using Backend.Core.Utilities.LoggerService;
-using Backend.Core.Utilities.DateTimeService;
-using Backend.Cqrs.Handlers.Commands.Articles;
+using TokanPages.Backend.Application.Articles.Commands;
+using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.UserService;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Handlers.Articles;
 
 public class AddArticleCommandHandlerTest : TestBase
 {
@@ -50,7 +45,7 @@ public class AddArticleCommandHandlerTest : TestBase
             ImageToUpload = DataUtilityService.GetRandomString().ToBase64Encode()
         };
 
-        var user = new Users
+        var user = new Backend.Domain.Entities.Users
         {
             UserAlias  = DataUtilityService.GetRandomString(),
             IsActivated = true,

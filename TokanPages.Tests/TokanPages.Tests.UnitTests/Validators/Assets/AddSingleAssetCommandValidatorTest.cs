@@ -1,13 +1,12 @@
-namespace TokanPages.Tests.UnitTests.Validators.Assets;
-
-using Moq;
-using Xunit;
-using System;
 using FluentAssertions;
-using Backend.Shared.Services;
-using Backend.Shared.Resources;
-using Backend.Shared.Services.Models;
-using Backend.Cqrs.Handlers.Commands.Assets;
+using Moq;
+using TokanPages.Backend.Application.Assets.Commands;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services;
+using TokanPages.Backend.Shared.Services.Models;
+using Xunit;
+
+namespace TokanPages.Tests.UnitTests.Validators.Assets;
 
 public class AddSingleAssetCommandValidatorTest : TestBase
 {
