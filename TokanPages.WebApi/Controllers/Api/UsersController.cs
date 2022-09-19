@@ -6,7 +6,6 @@ using MediatR;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Application.Users.Queries;
 using TokanPages.Persistence.Caching.Abstractions;
-using TokanPages.WebApi.Attributes;
 using TokanPages.WebApi.Controllers.Mappers;
 using TokanPages.WebApi.Dto.Users;
 

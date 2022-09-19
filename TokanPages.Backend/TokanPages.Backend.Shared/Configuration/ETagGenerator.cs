@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace TokanPages.WebApi.Configuration;
+namespace TokanPages.Backend.Shared.Configuration;
 
 /// <summary>
 /// Docker Support
