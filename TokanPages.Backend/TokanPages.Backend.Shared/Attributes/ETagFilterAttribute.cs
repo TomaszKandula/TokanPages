@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -10,6 +11,8 @@ namespace TokanPages.Backend.Shared.Attributes;
 /// <summary>
 /// ETag filter implementation
 /// </summary>
+[ExcludeFromCodeCoverage]
+[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
 public class ETagFilterAttribute : Attribute, IActionFilter
 {
     private readonly int[] _statusCodes;
@@ -30,6 +33,7 @@ public class ETagFilterAttribute : Attribute, IActionFilter
     /// <param name="context"></param>
     public void OnActionExecuting(ActionExecutingContext context)
     {
+        // Leave it empty
     }
 
     /// <summary>
