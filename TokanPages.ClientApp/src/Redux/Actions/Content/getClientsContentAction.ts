@@ -7,7 +7,6 @@ import { GET_CLIENTS_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/consta
 import { TErrorActions } from "../raiseErrorAction";
 import { IClientsContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
-import { GetUserLanguageFromStore } from "../../../Shared/Services/languageService";
 
 export const REQUEST_CLIENTS_CONTENT = "REQUEST_CLIENTS_CONTENT";
 export const RECEIVE_CLIENTS_CONTENT = "RECEIVE_CLIENTS_CONTENT";
@@ -26,8 +25,8 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_CLIENTS_CONTENT });
 
-        const language = GetUserLanguageFromStore();
-        const queryParam = language === "" ? "" : `&language=${language}`;
+        const id = getState().userLanguage.id;
+        const queryParam = id === "" ? "" : `&language=${id}`;
 
         axios(EnrichConfiguration(
         {

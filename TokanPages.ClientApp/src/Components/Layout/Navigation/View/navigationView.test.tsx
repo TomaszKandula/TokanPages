@@ -3,7 +3,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { NavigationView } from "../../Navigation/View/navigationView";
 import { IItem } from "../../../../Shared/Components/ListRender/Models";
-import { ILanguage } from "../../../../Shared/Services/languageService";
+import { IUserLanguage } from "Redux/States/userLanguageState";
 
 describe("Test component: featuresView.", () => 
 {
@@ -19,19 +19,23 @@ describe("Test component: featuresView.", () =>
             enabled: true
         };
 
-        const languages: ILanguage[] = 
-        [
-            { 
-                id: "eng", 
-                name: "English", 
-                isDefault: true 
-            },
-            { 
-                id: "pol", 
-                name: "Polski", 
-                isDefault: false 
-            }
-        ];
+        const languages: IUserLanguage = 
+        {
+            id: "eng",
+            languages: 
+            [
+                {
+                    id: "eng", 
+                    name: "English", 
+                    isDefault: true
+                },
+                {
+                    id: "pol", 
+                    name: "Polski", 
+                    isDefault: false
+                }
+            ]
+        }
 
         const tree = shallow(<NavigationView bind=
         {{
@@ -53,7 +57,7 @@ describe("Test component: featuresView.", () =>
                 items: [items] 
             },
             languages: languages,
-            selectedLanguage: "eng",
+            languageId: "eng",
             languageHandler: jest.fn(),
         }}/>);
         expect(tree).toMatchSnapshot();

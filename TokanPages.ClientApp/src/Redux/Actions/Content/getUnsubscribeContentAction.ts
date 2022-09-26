@@ -7,7 +7,6 @@ import { GET_UNSUBSCRIBE_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/co
 import { TErrorActions } from "./../raiseErrorAction";
 import { IUnsubscribeContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
-import { GetUserLanguageFromStore } from "../../../Shared/Services/languageService";
 
 export const REQUEST_UNSUBSCRIBE_CONTENT = "REQUEST_UNSUBSCRIBE_CONTENT";
 export const RECEIVE_UNSUBSCRIBE_CONTENT = "RECEIVE_UNSUBSCRIBE_CONTENT";
@@ -26,8 +25,8 @@ export const ActionCreators =
         
         dispatch({ type: REQUEST_UNSUBSCRIBE_CONTENT });
 
-        const language = GetUserLanguageFromStore();
-        const queryParam = language === "" ? "" : `&language=${language}`;
+        const id = getState().userLanguage.id;
+        const queryParam = id === "" ? "" : `&language=${id}`;
 
         axios(EnrichConfiguration(
         {

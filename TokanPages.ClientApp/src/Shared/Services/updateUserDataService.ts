@@ -6,7 +6,7 @@ import { IApplicationState } from "../../Redux/applicationState";
 import { IAuthenticateUserResultDto } from "../../Api/Models";
 import Validate from "validate.js";
 
-export const StoreUserData = (): void => 
+export const UpdateUserData = (): void => 
 {
     const dispatch = useDispatch();    
     const selector = useSelector((state: IApplicationState) => state.storeUserData);

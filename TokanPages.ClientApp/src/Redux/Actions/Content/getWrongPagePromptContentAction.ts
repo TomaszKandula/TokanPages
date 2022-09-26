@@ -7,7 +7,6 @@ import { GET_WRONG_PAGE_PROMPT_CONTENT, NULL_RESPONSE_ERROR } from "../../../Sha
 import { TErrorActions } from "./../raiseErrorAction";
 import { IWrongPagePromptContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
-import { GetUserLanguageFromStore } from "../../../Shared/Services/languageService";
 
 export const REQUEST_WRONG_PAGE_CONTENT = "REQUEST_WRONG_PAGE_CONTENT";
 export const RECEIVE_WRONG_PAGE_CONTENT = "RECEIVE_WRONG_PAGE_CONTENT";
@@ -26,8 +25,8 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_WRONG_PAGE_CONTENT });
 
-        const language = GetUserLanguageFromStore();
-        const queryParam = language === "" ? "" : `&language=${language}`;
+        const id = getState().userLanguage.id;
+        const queryParam = id === "" ? "" : `&language=${id}`;
 
         axios(EnrichConfiguration( 
         {

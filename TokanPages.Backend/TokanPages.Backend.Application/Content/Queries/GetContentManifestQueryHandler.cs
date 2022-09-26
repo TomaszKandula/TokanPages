@@ -21,7 +21,7 @@ public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQ
         _jsonSerializer = jsonSerializer;
     }
 
-    public override async Task<GetContentManifestQueryResult> Handle(GetContentManifestQuery _, CancellationToken cancellationToken)
+    public override async Task<GetContentManifestQueryResult> Handle(GetContentManifestQuery request, CancellationToken cancellationToken)
     {
         const string requestUrl = "content/components/__manifest.json";
         var azureBlob = _azureBlobStorageFactory.Create();
