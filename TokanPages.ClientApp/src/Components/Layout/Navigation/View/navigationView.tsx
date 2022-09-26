@@ -5,9 +5,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import MenuIcon from '@material-ui/icons/Menu';
 import { FormControl, Grid, MenuItem, Select, Typography, Box } from "@material-ui/core";
+import { ILanguageItem } from "../../../../Api/Models/";
+import { IUserLanguage } from "../../../../Redux/States/userLanguageState";
 import { HideOnScroll } from "../../../../Shared/Components/Scroll";
 import { IItem } from "../../../../Shared/Components/ListRender/Models";
-import { ILanguage } from "../../../../Shared/Services/languageService";
 import { AVATARS_PATH } from "../../../../Shared/constants";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
 import { NavigationStyle } from "./navigationStyle";
@@ -29,8 +30,8 @@ interface IProperties
     logo: string;
     avatarName: string;
     userAliasText: string;
-    languages: ILanguage[];
-    selectedLanguage: string;
+    languages: IUserLanguage;
+    languageId: string;
     languageHandler: any;
     menu: { image: string, items: IItem[] };
 }
@@ -45,8 +46,8 @@ export const NavigationView = (props: IBinding): JSX.Element =>
     {
         return(
             <FormControl className={args.styleControl}>
-                <Select value={props.bind?.selectedLanguage} onChange={props.bind?.languageHandler} disableUnderline className={args.styleSelect}>
-                    {props.bind?.languages.map((item: ILanguage, index: number) => (
+                <Select value={props.bind?.languageId} onChange={props.bind?.languageHandler} disableUnderline className={args.styleSelect}>
+                    {props.bind?.languages.languages.map((item: ILanguageItem, index: number) => (
                         <MenuItem value={item.id} key={index} className={args.styleMenu}>
                             {item.name}
                         </MenuItem>
