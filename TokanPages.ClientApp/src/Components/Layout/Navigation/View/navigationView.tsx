@@ -47,7 +47,7 @@ export const NavigationView = (props: IBinding): JSX.Element =>
         return(
             <FormControl className={args.styleControl}>
                 <Select value={props.bind?.languageId} onChange={props.bind?.languageHandler} disableUnderline className={args.styleSelect}>
-                    {props.bind?.languages.languages.map((item: ILanguageItem, index: number) => (
+                    {props.bind?.languages?.languages.map((item: ILanguageItem, index: number) => (
                         <MenuItem value={item.id} key={index} className={args.styleMenu}>
                             {item.name}
                         </MenuItem>

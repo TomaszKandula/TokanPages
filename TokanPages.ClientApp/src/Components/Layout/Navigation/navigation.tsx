@@ -48,7 +48,7 @@ export const Navigation = (props: IGetNavigationContent): JSX.Element =>
         logo: props.content?.logo,
         avatarName: user?.userData?.avatarName,
         languages: languages,
-        languageId: languages.id,
+        languageId: languages?.id,
         languageHandler: languageHandler,
         menu: props.content?.menu
     }}/>);
