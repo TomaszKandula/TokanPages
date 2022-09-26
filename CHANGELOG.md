@@ -1,3 +1,20 @@
+# [0.57.0](https://github.com/TomaszKandula/TokanPages/compare/v0.56.0...v0.57.0) (2022-09-26)
+
+
+### Bug Fixes
+
+* remove array ([048ca70](https://github.com/TomaszKandula/TokanPages/commit/048ca70c2e911a838e3d776a8ec88cb741137db2))
+
+
+### Features
+
+* add user language uploading ([f6fd20a](https://github.com/TomaszKandula/TokanPages/commit/f6fd20a9bb121e716e821b14075835420e4e9e5f))
+* change controller and view implementation ([63bbce1](https://github.com/TomaszKandula/TokanPages/commit/63bbce1a784ee1395ea0ef7a138ec1945f8d0f26))
+* change implementation of redux for user language capability ([824ee22](https://github.com/TomaszKandula/TokanPages/commit/824ee22ed2601f01e3000b5b18b1a203c4267c50))
+* change services implementation ([8491e00](https://github.com/TomaszKandula/TokanPages/commit/8491e00a3bbed090fa6de05af7191a134069d5ad))
+* update model path ([4afb799](https://github.com/TomaszKandula/TokanPages/commit/4afb7999a6824f5f20625426a759985057070e5a))
+* upgrade actions for user language capability ([0d4eef2](https://github.com/TomaszKandula/TokanPages/commit/0d4eef2449e1ce242cc41948c52d78542360a9af))
+
 # [0.56.0](https://github.com/TomaszKandula/TokanPages/compare/v0.55.0...v0.56.0) (2022-09-14)
 
 
