@@ -7,7 +7,6 @@ import { GET_HEADER_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/constan
 import { TErrorActions } from "./../raiseErrorAction";
 import { IHeaderContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
-import { GetUserLanguageFromStore } from "../../../Shared/Services/languageService";
 
 export const REQUEST_HEADER_CONTENT = "REQUEST_HEADER_CONTENT";
 export const RECEIVE_HEADER_CONTENT = "RECEIVE_HEADER_CONTENT";
@@ -26,8 +25,8 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_HEADER_CONTENT });
 
-        const language = GetUserLanguageFromStore();
-        const queryParam = language === "" ? "" : `&language=${language}`;
+        const id = getState().userLanguage.id;
+        const queryParam = id === "" ? "" : `&language=${id}`;
 
         axios(EnrichConfiguration(
         {

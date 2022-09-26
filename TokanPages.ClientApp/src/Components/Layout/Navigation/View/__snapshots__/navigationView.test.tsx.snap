@@ -13,18 +13,22 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
       "isAnonymous": false,
       "isLoading": false,
       "languageHandler": [MockFunction],
-      "languages": Array [
-        Object {
-          "id": "eng",
-          "isDefault": true,
-          "name": "English",
-        },
-        Object {
-          "id": "pol",
-          "isDefault": false,
-          "name": "Polski",
-        },
-      ],
+      "languageId": "eng",
+      "languages": Object {
+        "id": "eng",
+        "languages": Array [
+          Object {
+            "id": "eng",
+            "isDefault": true,
+            "name": "English",
+          },
+          Object {
+            "id": "pol",
+            "isDefault": false,
+            "name": "Polski",
+          },
+        ],
+      },
       "logo": "",
       "menu": Object {
         "image": "",
@@ -40,7 +44,6 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
         ],
       },
       "openHandler": [MockFunction],
-      "selectedLanguage": "eng",
       "userAliasText": "",
     }
   }

@@ -7,7 +7,6 @@ import { GET_NAVIGATION_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/con
 import { TErrorActions } from "./../raiseErrorAction";
 import { INavigationContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
-import { GetUserLanguageFromStore } from "../../../Shared/Services/languageService";
 
 export const REQUEST_NAVIGATION_CONTENT = "REQUEST_NAVIGATION_CONTENT";
 export const RECEIVE_NAVIGATION_CONTENT = "RECEIVE_NAVIGATION_CONTENT";
@@ -26,8 +25,8 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_NAVIGATION_CONTENT });
 
-        const language = GetUserLanguageFromStore();
-        const queryParam = language === "" ? "" : `&language=${language}`;
+        const id = getState().userLanguage.id;
+        const queryParam = id === "" ? "" : `&language=${id}`;
 
         axios(EnrichConfiguration(
         {

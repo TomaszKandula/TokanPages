@@ -7,7 +7,6 @@ import { GET_UPDATE_PASSWORD_CONTENT, NULL_RESPONSE_ERROR } from "../../../Share
 import { TErrorActions } from "../raiseErrorAction";
 import { IUpdatePasswordContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
-import { GetUserLanguageFromStore } from "../../../Shared/Services/languageService";
 
 export const REQUEST_UPDATE_PASSWORD_CONTENT = "REQUEST_UPDATE_PASSWORD_CONTENT";
 export const RECEIVE_UPDATE_PASSWORD_CONTENT = "RECEIVE_UPDATE_PASSWORD_CONTENT";
@@ -26,8 +25,8 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_UPDATE_PASSWORD_CONTENT });
 
-        const language = GetUserLanguageFromStore();
-        const queryParam = language === "" ? "" : `&language=${language}`;
+        const id = getState().userLanguage.id;
+        const queryParam = id === "" ? "" : `&language=${id}`;
 
         axios(EnrichConfiguration(
         {

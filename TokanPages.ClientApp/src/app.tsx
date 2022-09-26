@@ -23,14 +23,15 @@ import { ScrollToTop } from "./Shared/Components/Scroll";
 import { ApplicationToast } from "./Shared/Components";
 import { ApplicationDialogBox } from "./Shared/Components";
 import { ApplicationUserInfo } from "./Shared/Components";
-import { StoreUserData } from "./Shared/Services/updateUserDataService";
+import { UpdateUserData } from "./Shared/Services/updateUserDataService";
+import { UpdateUserLanguage } from "./Shared/Services/updateUserLanguageService";
 import { AppStyle } from "./app.style";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 interface IApp 
 {
-    manifest: IGetContentManifestDto[];
+    manifest: IGetContentManifestDto;
 }
 
 const App = (props: IApp): JSX.Element => 
@@ -38,8 +39,8 @@ const App = (props: IApp): JSX.Element =>
     const classes = AppStyle();
 
     AOS.init();
-    console.log(props.manifest);
-    StoreUserData();
+    UpdateUserData();
+    UpdateUserLanguage(props.manifest);
 
     React.useEffect(() => 
     {

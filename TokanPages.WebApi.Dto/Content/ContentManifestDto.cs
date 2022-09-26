@@ -5,10 +5,10 @@ using TokanPages.WebApi.Dto.Content.Common;
 namespace TokanPages.WebApi.Dto.Content;
 
 /// <summary>
-/// FooterDto
+/// ContentManifestDto
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class GetContentManifestDto
+public class ContentManifestDto
 {
     /// <summary>
     /// Manifest version
