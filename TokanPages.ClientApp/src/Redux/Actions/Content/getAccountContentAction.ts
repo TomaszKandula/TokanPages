@@ -7,7 +7,6 @@ import { GET_ACCOUNT_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/consta
 import { TErrorActions } from "../raiseErrorAction";
 import { IAccountContentDto } from "../../../Api/Models";
 import { EnrichConfiguration } from "../../../Api/Request";
-import { GetUserLanguageFromStore } from "../../../Shared/Services/languageService";
 
 export const REQUEST_ACCOUNT_CONTENT = "REQUEST_ACCOUNT_CONTENT";
 export const RECEIVE_ACCOUNT_CONTENT = "RECEIVE_ACCOUNT_CONTENT";
@@ -26,8 +25,8 @@ export const ActionCreators =
 
         dispatch({ type: REQUEST_ACCOUNT_CONTENT });
 
-        const language = GetUserLanguageFromStore();
-        const queryParam = language === "" ? "" : `&language=${language}`;
+        const id = getState().userLanguage.id;
+        const queryParam = id === "" ? "" : `&language=${id}`;
 
         axios(EnrichConfiguration(
         {

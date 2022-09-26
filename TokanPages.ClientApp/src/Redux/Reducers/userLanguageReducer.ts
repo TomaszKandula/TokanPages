@@ -1,7 +1,7 @@
 import { Action, Reducer } from "redux";
 import { IUserLanguage } from "../../Redux/States/userLanguageState";
 import { combinedDefaults } from "../../Redux/combinedDefaults";
-import { SET_ANOTHER_LANGUAGE, SET_DEFAULT_LANGUAGE, TKnownActions } from "../../Redux/Actions/userLanguageAction";
+import { SET_LANGUAGE, SET_DEFAULT_LANGUAGE, TKnownActions } from "../../Redux/Actions/userLanguageAction";
 
 export const UserLanguageReducer: Reducer<IUserLanguage> = (state: IUserLanguage | undefined, incomingAction: Action): IUserLanguage =>
 {
@@ -12,11 +12,13 @@ export const UserLanguageReducer: Reducer<IUserLanguage> = (state: IUserLanguage
     {
         case SET_DEFAULT_LANGUAGE:
             return {
-                id: state.id
+                id: state.id,
+                languages: state.languages
             }
-        case SET_ANOTHER_LANGUAGE:
+        case SET_LANGUAGE:
             return { 
-                id: action.languageId
+                id: action.language.id,
+                languages: action.language.languages
             }
         default: return state;
     }

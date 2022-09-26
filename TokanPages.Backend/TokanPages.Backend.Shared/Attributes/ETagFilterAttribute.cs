@@ -1,16 +1,19 @@
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
-using TokanPages.WebApi.Configuration;
+using TokanPages.Backend.Shared.Configuration;
 
-namespace TokanPages.WebApi.Attributes;
+namespace TokanPages.Backend.Shared.Attributes;
 
 /// <summary>
 /// ETag filter implementation
 /// </summary>
-public class ETagFilter : Attribute, IActionFilter
+[ExcludeFromCodeCoverage]
+[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
+public class ETagFilterAttribute : Attribute, IActionFilter
 {
     private readonly int[] _statusCodes;
 
@@ -18,7 +21,7 @@ public class ETagFilter : Attribute, IActionFilter
     /// ETag filter for endpoint returning an asset like image
     /// </summary>
     /// <param name="statusCodes">Status codes, the default value is 200 (OK)</param>
-    public ETagFilter(params int[] statusCodes)
+    public ETagFilterAttribute(params int[] statusCodes)
     {
         _statusCodes = statusCodes;
         if (statusCodes.Length == 0) _statusCodes = new[] { 200 };
@@ -30,6 +33,7 @@ public class ETagFilter : Attribute, IActionFilter
     /// <param name="context"></param>
     public void OnActionExecuting(ActionExecutingContext context)
     {
+        // Leave it empty
     }
 
     /// <summary>

@@ -4,7 +4,6 @@ using TokanPages.Backend.Application.Assets.Commands;
 using TokanPages.Backend.Application.Assets.Queries;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
-using TokanPages.WebApi.Attributes;
 using TokanPages.WebApi.Controllers.Mappers;
 using TokanPages.WebApi.Dto.Assets;
 

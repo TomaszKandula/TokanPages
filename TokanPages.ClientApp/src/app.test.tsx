@@ -5,6 +5,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
+import { IGetContentManifestDto } from "./Api/Models";
 import App from "./app";
 
 it("renders without crashing", () => 
@@ -27,11 +28,18 @@ it("renders without crashing", () =>
     });
     
     const store = storeFake({ }) as any;
+    const dto: IGetContentManifestDto = 
+    {
+        version: "",
+        created: "",
+        updated: "",
+        languages: []
+    }
 
     ReactDOM.render(
         <Provider store={store}>
             <MemoryRouter>
-                <App manifest={[]} />
+                <App manifest={dto} />
             </MemoryRouter>
         </Provider>, document.createElement("div")
     );

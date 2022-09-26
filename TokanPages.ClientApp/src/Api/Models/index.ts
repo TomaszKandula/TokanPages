@@ -67,3 +67,4 @@ export type { IRowItem } from "./Components/Common/rowItem";
 export type { ITextItem } from "./Components/Common/textItem";
 
 export type { IGetContentManifestDto } from "./Content/getContentManifestDto";
+export type { ILanguageItem } from "./Content/Items/languageItemDto";
