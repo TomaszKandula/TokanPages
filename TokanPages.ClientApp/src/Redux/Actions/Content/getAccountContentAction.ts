@@ -1,12 +1,9 @@
-import axios from "axios";
 import { AppThunkAction } from "../../applicationState";
 import { combinedDefaults } from "../../combinedDefaults";
-import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
-import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { GET_ACCOUNT_CONTENT, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
+import { GET_ACCOUNT_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { IAccountContentDto } from "../../../Api/Models";
-import { EnrichConfiguration } from "../../../Api/Request";
+import { GetContent } from "./Services/getContentService";
 
 export const REQUEST_ACCOUNT_CONTENT = "REQUEST_ACCOUNT_CONTENT";
 export const RECEIVE_ACCOUNT_CONTENT = "RECEIVE_ACCOUNT_CONTENT";
@@ -21,33 +18,17 @@ export const ActionCreators =
         const isLanguageChanged = getState().userLanguage.id !== getState().getAccountContent.content.language;
 
         if (getState().getAccountContent.content !== combinedDefaults.getAccountContent.content && !isLanguageChanged) 
+        {
             return;
+        }
 
-        dispatch({ type: REQUEST_ACCOUNT_CONTENT });
-
-        const id = getState().userLanguage.id;
-        const queryParam = id === "" ? "" : `&language=${id}`;
-
-        axios(EnrichConfiguration(
-        {
-            method: "GET", 
-            url: `${GET_ACCOUNT_CONTENT}${queryParam}`,
-            responseType: "json"
-        }))
-        .then(response =>
-        {
-            if (response.status === 200)
-            {
-                return response.data === null 
-                    ? RaiseError({ dispatch, errorObject: NULL_RESPONSE_ERROR }) 
-                    : dispatch({ type: RECEIVE_ACCOUNT_CONTENT, payload: response.data });
-            }
-
-            RaiseError({ dispatch, errorObject: GetTextStatusCode({ statusCode: response.status }) });
-        })
-        .catch(error =>
-        {
-            RaiseError({ dispatch: dispatch, errorObject: error });
+        GetContent(
+        { 
+            dispatch: dispatch, 
+            state: getState, 
+            request: REQUEST_ACCOUNT_CONTENT, 
+            receive: RECEIVE_ACCOUNT_CONTENT, 
+            url: GET_ACCOUNT_CONTENT 
         });
     }
 }
