@@ -5,6 +5,7 @@ import { IGetNavigationContent } from "../../../Redux/States/Content/getNavigati
 import { ActionCreators as UserDataAction } from "../../../Redux/Actions/Users/storeUserDataAction";
 import { ActionCreators as UserLanguageAction } from "../../../Redux/Actions/userLanguageAction";
 import { SetDataInStorage } from "../../../Shared/Services/StorageServices";
+import { SELECTED_LANGUAGE } from "../../../Shared/constants";
 import { NavigationView } from "./View/navigationView";
 import Validate from "validate.js";
 
@@ -20,7 +21,7 @@ export const Navigation = (props: IGetNavigationContent): JSX.Element =>
     const languageHandler = (event: React.ChangeEvent<{ value: unknown }>) => 
     {
         const value = event.target.value as string;
-        SetDataInStorage({ selection: value, key: "SELECTED_LANGUAGE" });
+        SetDataInStorage({ selection: value, key: SELECTED_LANGUAGE });
         dispatch(UserLanguageAction.setLanguage({ id: value, languages: languages.languages }));
     };
 
