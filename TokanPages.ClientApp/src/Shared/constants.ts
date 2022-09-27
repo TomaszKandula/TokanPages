@@ -77,6 +77,11 @@ export const LIKES_LIMIT_FOR_ANONYM: number = 25;
 export const LIKES_LIMIT_FOR_USER: number = 50;
 export const WORDS_PER_MINUTE: number = 265;
 
+export const SELECTED_LANGUAGE: string = "SELECTED_LANGUAGE";
+export const RECEIVED_ERROR_MESSAGE: string = "RECEIVED_ERROR_MESSAGE";
+export const NO_ERRORS: string = "NO_ERRORS";
+export const USER_DATA: string = "USER_DATA";
+
 
 // --------------------------- TODO: move out below code from constants --------------------------- //
 
@@ -120,9 +125,6 @@ export const NULL_RESPONSE_ERROR: string = "The response data has returned null.
 export const LIKES_HINT_FOR_ANONYM: string = "You may give up to {LEFT_LIKES} thumbs up!";
 export const LIKES_HINT_FOR_USER: string = "You may give up to {LEFT_LIKES} thumbs up!";
 export const MAX_LIKES_REACHED: string = "You've reached max thumbs up :)";
-export const RECEIVED_ERROR_MESSAGE: string = "RECEIVED_ERROR_MESSAGE";
-export const NO_ERRORS: string = "NO_ERRORS";
-export const USER_DATA: string = "userData";
 
 export const SIGNIN_FORM: string = "Signin Form";
 export const SIGNUP_FORM: string = "Signup Form";
