@@ -28,7 +28,7 @@ it("renders without crashing", () =>
     });
     
     const store = storeFake({ }) as any;
-    const dto: IGetContentManifestDto = 
+    const manifest: IGetContentManifestDto = 
     {
         version: "0.1",
         created: "2022-09-09",
@@ -51,7 +51,7 @@ it("renders without crashing", () =>
     ReactDOM.render(
         <Provider store={store}>
             <MemoryRouter>
-                <App manifest={dto} />
+                <App manifest={manifest} />
             </MemoryRouter>
         </Provider>, document.createElement("div")
     );
