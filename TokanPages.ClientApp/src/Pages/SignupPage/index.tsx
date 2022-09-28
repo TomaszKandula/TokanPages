@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import { IApplicationState } from "../../Store/applicationState";
-import { ActionCreators as NavigationContent } from "../../Store/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../../Store/Actions/Content/getFooterContentAction";
-import { ActionCreators as SignupFormContent } from "../../Store/Actions/Content/getUserSignupContentAction";
+import { IApplicationState } from "../../Store/Configuration";
+import { GetNavigationContentAction } from "../../Store/Actions";
+import { GetFooterContentAction } from "../../Store/Actions";
+import { GetUserSignupContentAction } from "../../Store/Actions";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { UserSignup } from "../../Components/Account";
@@ -20,9 +20,9 @@ export const SignupPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(NavigationContent.getNavigationContent());
-        dispatch(FooterContent.getFooterContent());
-        dispatch(SignupFormContent.getUserSignupContent());
+        dispatch(GetNavigationContentAction.getNavigationContent());
+        dispatch(GetFooterContentAction.getFooterContent());
+        dispatch(GetUserSignupContentAction.getUserSignupContent());
     }, 
     [ dispatch, language?.id ]);
 

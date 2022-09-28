@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Container } from "@material-ui/core";
-import { ActionCreators as NavigationContent } from "../../Store/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../../Store/Actions/Content/getFooterContentAction";
-import { ActionCreators as ContactFormContent } from "../../Store/Actions/Content/getContactFormContentAction";
-import { IApplicationState } from "../../Store/applicationState";
+import { IApplicationState } from "../../Store/Configuration";
+import { GetNavigationContentAction } from "../../Store/Actions";
+import { GetFooterContentAction } from "../../Store/Actions";
+import { GetContactFormContentAction } from "../../Store/Actions";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { ContactForm } from "../../Components/Contact";
@@ -20,9 +20,9 @@ export const ContactPage = () =>
 
     React.useEffect(() => 
     {
-        dispatch(NavigationContent.getNavigationContent());
-        dispatch(FooterContent.getFooterContent());
-        dispatch(ContactFormContent.getContactFormContent());
+        dispatch(GetNavigationContentAction.getNavigationContent());
+        dispatch(GetFooterContentAction.getFooterContent());
+        dispatch(GetContactFormContentAction.getContactFormContent());
     }, 
     [ dispatch, language?.id ]);
 

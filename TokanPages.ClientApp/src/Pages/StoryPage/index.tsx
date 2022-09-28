@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import { IApplicationState } from "../../Store/applicationState";
-import { ActionCreators as NavigationContent } from "../../Store/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../../Store/Actions/Content/getFooterContentAction";
-import { ActionCreators as StoryContent } from "../../Store/Actions/Content/getStoryContentAction";
+import { IApplicationState } from "../../Store/Configuration";
+import { GetNavigationContentAction } from "../../Store/Actions";
+import { GetFooterContentAction } from "../../Store/Actions";
+import { GetStoryContentAction } from "../../Store/Actions";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { DocumentContent } from "../../Components/Document";
@@ -20,9 +20,9 @@ export const StoryPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(NavigationContent.getNavigationContent());
-        dispatch(FooterContent.getFooterContent());
-        dispatch(StoryContent.getStoryContent());
+        dispatch(GetNavigationContentAction.getNavigationContent());
+        dispatch(GetFooterContentAction.getFooterContent());
+        dispatch(GetStoryContentAction.getStoryContent());
     }, 
     [ dispatch, language?.id ]);
     

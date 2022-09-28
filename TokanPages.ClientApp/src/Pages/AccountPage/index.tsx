@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../Store/applicationState";
-import { ActionCreators as NavigationContent } from "../../Store/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../../Store/Actions/Content/getFooterContentAction";
-import { ActionCreators as AccountContent } from "../../Store/Actions/Content/getAccountContentAction";
+import { IApplicationState } from "../../Store/Configuration";
+import { GetNavigationContentAction } from "../../Store/Actions";
+import { GetFooterContentAction } from "../../Store/Actions";
+import { GetAccountContentAction } from "../../Store/Actions";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { UserAccount } from "../../Components/Account";
@@ -18,9 +18,9 @@ export const AccountPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(NavigationContent.getNavigationContent());
-        dispatch(AccountContent.getAccountContent());
-        dispatch(FooterContent.getFooterContent());
+        dispatch(GetNavigationContentAction.getNavigationContent());
+        dispatch(GetAccountContentAction.getAccountContent());
+        dispatch(GetFooterContentAction.getFooterContent());
     }, 
     [ dispatch, language?.id ]);
 

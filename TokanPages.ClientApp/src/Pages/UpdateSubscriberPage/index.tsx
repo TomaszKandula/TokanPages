@@ -2,10 +2,10 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
-import { IApplicationState } from "../../Store/applicationState";
-import { ActionCreators as NavigationContent } from "../../Store/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../../Store/Actions/Content/getFooterContentAction";
-import { ActionCreators as UpdateSubscriberContent } from "../../Store/Actions/Content/getUpdateSubscriberContentAction";
+import { IApplicationState } from "../../Store/Configuration";
+import { GetNavigationContentAction } from "../../Store/Actions";
+import { GetFooterContentAction } from "../../Store/Actions";
+import { GetUpdateSubscriberContentAction } from "../../Store/Actions";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { UpdateSubscriber } from "../../Components/UpdateSubscriber";
@@ -28,9 +28,9 @@ export const UpdateSubscriberPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(NavigationContent.getNavigationContent());
-        dispatch(FooterContent.getFooterContent());
-        dispatch(UpdateSubscriberContent.getUpdateSubscriberContent());
+        dispatch(GetNavigationContentAction.getNavigationContent());
+        dispatch(GetFooterContentAction.getFooterContent());
+        dispatch(GetUpdateSubscriberContentAction.getUpdateSubscriberContent());
     }, 
     [ dispatch, language?.id ]);
     

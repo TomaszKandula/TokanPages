@@ -2,9 +2,9 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
-import { IApplicationState } from "../../Store/applicationState";
-import { ActionCreators as NavigationContent } from "../../Store/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../../Store/Actions/Content/getFooterContentAction";
+import { IApplicationState } from "../../Store/Configuration";
+import { GetNavigationContentAction } from "../../Store/Actions";
+import { GetFooterContentAction } from "../../Store/Actions";
 import { ProgressOnScroll } from "../../Shared/Components";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
@@ -29,8 +29,8 @@ export const ArticlesPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(NavigationContent.getNavigationContent());
-        dispatch(FooterContent.getFooterContent());
+        dispatch(GetNavigationContentAction.getNavigationContent());
+        dispatch(GetFooterContentAction.getFooterContent());
     }, 
     [ dispatch, language?.id ]);
 
