@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IGetUserSignupContent } from "../../../Redux/States/Content/getUserSignupContentState";
-import { ActionCreators as DialogAction } from "../../../Redux/Actions/raiseDialogAction";
-import { IApplicationState } from "../../../Redux/applicationState";
-import { ActionCreators } from "../../../Redux/Actions/Users/signupUserAction";
+import { IGetUserSignupContent } from "../../../Store/States/Content/getUserSignupContentState";
+import { ActionCreators as DialogAction } from "../../../Store/Actions/raiseDialogAction";
+import { IApplicationState } from "../../../Store/applicationState";
+import { ActionCreators } from "../../../Store/Actions/Users/signupUserAction";
 import { IAddUserDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";

@@ -5,7 +5,7 @@ import * as Router from "react-router";
 import * as Dom from "react-router-dom";
 import { shallow } from "enzyme";
 import { ActivateAccount } from "./activateAccount";
-import { combinedDefaults } from "../../../Redux/combinedDefaults";
+import { combinedDefaults } from "../../../Store/combinedDefaults";
 
 jest.mock("react-router", () => 
 ({

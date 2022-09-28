@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ActionCreators } from "../../../Redux/Actions/Articles/listArticlesAction";
-import { IApplicationState } from "../../../Redux/applicationState";
+import { ActionCreators } from "../../../Store/Actions/Articles/listArticlesAction";
+import { IApplicationState } from "../../../Store/applicationState";
 import { ArticleListView } from "./View/articleListView";
 
 export const ArticleList = (): JSX.Element => 

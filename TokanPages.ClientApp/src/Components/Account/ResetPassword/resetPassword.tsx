@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IGetResetPasswordContent } from "../../../Redux/States/Content/getResetPasswordContentState";
-import { ActionCreators as DialogAction } from "../../../Redux/Actions/raiseDialogAction";
-import { IApplicationState } from "../../../Redux/applicationState";
-import { ActionCreators } from "../../../Redux/Actions/Users/resetUserPasswordAction";
+import { IGetResetPasswordContent } from "../../../Store/States/Content/getResetPasswordContentState";
+import { ActionCreators as DialogAction } from "../../../Store/Actions/raiseDialogAction";
+import { IApplicationState } from "../../../Store/applicationState";
+import { ActionCreators } from "../../../Store/Actions/Users/resetUserPasswordAction";
 import { IResetUserPasswordDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";

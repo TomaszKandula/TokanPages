@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IGetNewsletterContent } from "../../Redux/States/Content/getNewsletterContentState";
-import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators as SubscriberAction } from "../../Redux/Actions/Subscribers/addSubscriberAction";
-import { ActionCreators as DialogAction } from "../../Redux/Actions/raiseDialogAction";
+import { IGetNewsletterContent } from "../../Store/States/Content/getNewsletterContentState";
+import { IApplicationState } from "../../Store/applicationState";
+import { ActionCreators as SubscriberAction } from "../../Store/Actions/Subscribers/addSubscriberAction";
+import { ActionCreators as DialogAction } from "../../Store/Actions/raiseDialogAction";
 import { OperationStatus } from "../../Shared/enums";
 import { GetTextWarning } from "../../Shared/Services/Utilities";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";

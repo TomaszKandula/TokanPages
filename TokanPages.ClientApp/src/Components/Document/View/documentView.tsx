@@ -7,9 +7,9 @@ import { ArrowBack } from "@material-ui/icons";
 import { ProgressBar } from "../../../Shared/Components";
 import { RenderContent } from "../../../Shared/Components";
 import { DocumentStyle } from "./documentStyle";
-import { IGetPolicyContent } from "Redux/States/Content/getPolicyContentState";
-import { IGetTermsContent } from "Redux/States/Content/getTermsContentState";
-import { IGetStoryContent } from "Redux/States/Content/getStoryContentState";
+import { IGetPolicyContent } from "Store/States/Content/getPolicyContentState";
+import { IGetTermsContent } from "Store/States/Content/getTermsContentState";
+import { IGetStoryContent } from "Store/States/Content/getStoryContentState";
 
 export const DocumentView = (props: IGetPolicyContent | IGetTermsContent | IGetStoryContent): JSX.Element => 
 {

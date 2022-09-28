@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { IApplicationState } from "../../../Redux/applicationState";
-import { ActionCreators as SelectArticleActions } from "../../../Redux/Actions/Articles/selectArticleAction";
-import { ActionCreators as UpdateArticleAction } from "../../../Redux/Actions/Articles/updateArticleAction";
+import { IApplicationState } from "../../../Store/applicationState";
+import { ActionCreators as SelectArticleActions } from "../../../Store/Actions/Articles/selectArticleAction";
+import { ActionCreators as UpdateArticleAction } from "../../../Store/Actions/Articles/updateArticleAction";
 import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/constants";
 import { GetDateTime } from "../../../Shared/Services/Formatters";
 import { ArticleContent } from "./Helpers/articleContent";

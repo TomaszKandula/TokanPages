@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Box, Button, Container, Typography } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
-import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators } from "../../Redux/Actions/Content/getWrongPagePromptContentAction";
+import { IApplicationState } from "../../Store/applicationState";
+import { ActionCreators } from "../../Store/Actions/Content/getWrongPagePromptContentAction";
 import { Style } from "./style";
 
 export const WrongPage = (): JSX.Element =>

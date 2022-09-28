@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "Redux/applicationState";
-import { IGetNavigationContent } from "../../../Redux/States/Content/getNavigationContentState";
-import { ActionCreators as UserDataAction } from "../../../Redux/Actions/Users/storeUserDataAction";
-import { ActionCreators as UserLanguageAction } from "../../../Redux/Actions/userLanguageAction";
+import { IApplicationState } from "Store/applicationState";
+import { IGetNavigationContent } from "../../../Store/States/Content/getNavigationContentState";
+import { ActionCreators as UserDataAction } from "../../../Store/Actions/Users/storeUserDataAction";
+import { ActionCreators as UserLanguageAction } from "../../../Store/Actions/userLanguageAction";
 import { SetDataInStorage } from "../../../Shared/Services/StorageServices";
 import { SELECTED_LANGUAGE } from "../../../Shared/constants";
 import { NavigationView } from "./View/navigationView";

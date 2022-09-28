@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../../Redux/applicationState";
-import { ActionCreators } from "../../../Redux/Actions/raiseDialogAction";
-import { IRaiseDialog } from "../../../Redux/States/raiseDialogState";
+import { IApplicationState } from "../../../Store/applicationState";
+import { ActionCreators } from "../../../Store/Actions/raiseDialogAction";
+import { IRaiseDialog } from "../../../Store/States/raiseDialogState";
 import { IconType } from "../../enums";
 import { ApplicationDialogBoxView } from "./View/applicationDialogBoxView";
 import Validate from "validate.js";

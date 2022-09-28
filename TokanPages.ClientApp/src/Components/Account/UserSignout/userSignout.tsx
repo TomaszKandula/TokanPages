@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { combinedDefaults } from "../../../Redux/combinedDefaults";
-import { ActionCreators as DataAction } from "../../../Redux/Actions/Users/storeUserDataAction";
-import { ActionCreators as UserAction } from "../../../Redux/Actions/Users/signinUserAction";
-import { IApplicationState } from "../../../Redux/applicationState";
-import { IGetUserSignoutContent } from "../../../Redux/States/Content/getUserSignoutContentState";
+import { combinedDefaults } from "../../../Store/combinedDefaults";
+import { ActionCreators as DataAction } from "../../../Store/Actions/Users/storeUserDataAction";
+import { ActionCreators as UserAction } from "../../../Store/Actions/Users/signinUserAction";
+import { IApplicationState } from "../../../Store/applicationState";
+import { IGetUserSignoutContent } from "../../../Store/States/Content/getUserSignoutContentState";
 import { USER_DATA } from "../../../Shared/constants";
 import { UserSignoutView } from "./View/userSignoutView";
 

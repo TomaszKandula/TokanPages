@@ -7,7 +7,7 @@ import { createBrowserHistory } from "history";
 import { ThemeProvider } from "@material-ui/core";
 import { AppTheme } from "./Theme";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import configureStore from "./Redux/configureStore";
+import configureStore from "./Store/configureStore";
 import { IGetContentManifestDto } from "./Api/Models";
 import App from "./app";
 

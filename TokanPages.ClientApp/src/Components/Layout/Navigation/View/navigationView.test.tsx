@@ -3,7 +3,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { NavigationView } from "../../Navigation/View/navigationView";
 import { IItem } from "../../../../Shared/Components/ListRender/Models";
-import { IUserLanguage } from "Redux/States/userLanguageState";
+import { IUserLanguage } from "Store/States/userLanguageState";
 
 describe("Test component: featuresView.", () => 
 {

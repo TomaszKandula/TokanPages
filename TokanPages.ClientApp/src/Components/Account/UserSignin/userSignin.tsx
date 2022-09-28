@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { IGetUserSigninContent } from "../../../Redux/States/Content/getUserSigninContentState";
-import { ActionCreators as DialogAction } from "../../../Redux/Actions/raiseDialogAction";
-import { IApplicationState } from "../../../Redux/applicationState";
-import { ActionCreators } from "../../../Redux/Actions/Users/signinUserAction";
+import { IGetUserSigninContent } from "../../../Store/States/Content/getUserSigninContentState";
+import { ActionCreators as DialogAction } from "../../../Store/Actions/raiseDialogAction";
+import { IApplicationState } from "../../../Store/applicationState";
+import { ActionCreators } from "../../../Store/Actions/Users/signinUserAction";
 import { IAuthenticateUserDto } from "../../../Api/Models";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { GetTextWarning } from "../../../Shared/Services/Utilities";

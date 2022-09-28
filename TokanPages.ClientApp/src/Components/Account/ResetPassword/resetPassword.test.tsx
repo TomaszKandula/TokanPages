@@ -4,7 +4,7 @@ import * as Redux from "react-redux";
 import * as Router from "react-router";
 import { shallow } from "enzyme";
 import { ResetPassword } from "./resetPassword";
-import { combinedDefaults } from "../../../Redux/combinedDefaults";
+import { combinedDefaults } from "../../../Store/combinedDefaults";
 
 jest.mock("react-router", () => 
 ({

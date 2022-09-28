@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
-import { ActionCreators as SigninFormContent } from "../../Redux/Actions/Content/getUserSigninContentAction";
+import { IApplicationState } from "../../Store/applicationState";
+import { ActionCreators as NavigationContent } from "../../Store/Actions/Content/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../../Store/Actions/Content/getFooterContentAction";
+import { ActionCreators as SigninFormContent } from "../../Store/Actions/Content/getUserSigninContentAction";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { UserSignin } from "../../Components/Account";

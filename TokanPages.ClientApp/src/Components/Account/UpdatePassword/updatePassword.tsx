@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { IGetUpdatePasswordContent } from "../../../Redux/States/Content/getUpdatePasswordContentState";
-import { ActionCreators as DialogAction } from "../../../Redux/Actions/raiseDialogAction";
-import { ActionCreators } from "../../../Redux/Actions/Users/updateUserPasswordAction";
-import { IApplicationState } from "../../../Redux/applicationState";
+import { IGetUpdatePasswordContent } from "../../../Store/States/Content/getUpdatePasswordContentState";
+import { ActionCreators as DialogAction } from "../../../Store/Actions/raiseDialogAction";
+import { ActionCreators } from "../../../Store/Actions/Users/updateUserPasswordAction";
+import { IApplicationState } from "../../../Store/applicationState";
 import { IUpdateUserPasswordDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";

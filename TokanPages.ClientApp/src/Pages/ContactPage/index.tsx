@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Container } from "@material-ui/core";
-import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
-import { ActionCreators as ContactFormContent } from "../../Redux/Actions/Content/getContactFormContentAction";
-import { IApplicationState } from "../../Redux/applicationState";
+import { ActionCreators as NavigationContent } from "../../Store/Actions/Content/getNavigationContentAction";
+import { ActionCreators as FooterContent } from "../../Store/Actions/Content/getFooterContentAction";
+import { ActionCreators as ContactFormContent } from "../../Store/Actions/Content/getContactFormContentAction";
+import { IApplicationState } from "../../Store/applicationState";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { ContactForm } from "../../Components/Contact";

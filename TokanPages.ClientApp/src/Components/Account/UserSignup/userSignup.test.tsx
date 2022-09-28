@@ -2,7 +2,7 @@ import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
 import { UserSignup } from "./userSignup";
-import { combinedDefaults } from "../../../Redux/combinedDefaults";
+import { combinedDefaults } from "../../../Store/combinedDefaults";
 
 describe("Test account group component: userSignup.", () => 
 {

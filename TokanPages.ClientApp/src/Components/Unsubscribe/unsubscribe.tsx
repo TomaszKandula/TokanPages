@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators as SubscriberAction } from "../../Redux/Actions/Subscribers/removeSubscriberAction";
-import { IGetUnsubscribeContent } from "../../Redux/States/Content/getUnsubscribeContentState";
+import { IApplicationState } from "../../Store/applicationState";
+import { ActionCreators as SubscriberAction } from "../../Store/Actions/Subscribers/removeSubscriberAction";
+import { IGetUnsubscribeContent } from "../../Store/States/Content/getUnsubscribeContentState";
 import { OperationStatus } from "../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { IContent } from "../../Api/Models/Components/unsubscribeContentDto";

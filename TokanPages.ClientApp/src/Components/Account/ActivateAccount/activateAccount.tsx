@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { ActionCreators } from "../../../Redux/Actions/Users/activateAccountAction";
-import { IApplicationState } from "../../../Redux/applicationState";
-import { IGetActivateAccountContent } from "../../../Redux/States/Content/getActivateAccountContentState";
+import { ActionCreators } from "../../../Store/Actions/Users/activateAccountAction";
+import { IApplicationState } from "../../../Store/applicationState";
+import { IGetActivateAccountContent } from "../../../Store/States/Content/getActivateAccountContentState";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { OperationStatus } from "../../../Shared/enums";
 import { IActivateUserDto } from "../../../Api/Models";

@@ -1,9 +1,9 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { IGetPolicyContent } from "../../../Redux/States/Content/getPolicyContentState";
-import { IGetTermsContent } from "../../../Redux/States/Content/getTermsContentState";
-import { IGetStoryContent } from "../../../Redux/States/Content/getStoryContentState";
+import { IGetPolicyContent } from "../../../Store/States/Content/getPolicyContentState";
+import { IGetTermsContent } from "../../../Store/States/Content/getTermsContentState";
+import { IGetStoryContent } from "../../../Store/States/Content/getStoryContentState";
 import { ITextItem } from "../../../Api/Models";
 import { DocumentView } from "./documentView";
 

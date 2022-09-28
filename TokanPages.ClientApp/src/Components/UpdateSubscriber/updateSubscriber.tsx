@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators as SubscriberAction } from "../../Redux/Actions/Subscribers/updateSubscriberAction";
-import { ActionCreators as RaiseDialogAction } from "../../Redux/Actions/raiseDialogAction";
-import { IGetUpdateSubscriberContent } from "../../Redux/States/Content/getUpdateSubscriberContentState";
+import { IApplicationState } from "../../Store/applicationState";
+import { ActionCreators as SubscriberAction } from "../../Store/Actions/Subscribers/updateSubscriberAction";
+import { ActionCreators as RaiseDialogAction } from "../../Store/Actions/raiseDialogAction";
+import { IGetUpdateSubscriberContent } from "../../Store/States/Content/getUpdateSubscriberContentState";
 import { OperationStatus } from "../../Shared/enums";
 import { GetTextWarning } from "../../Shared/Services/Utilities";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
