@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../Store/applicationState";
-import { ActionCreators as SubscriberAction } from "../../Store/Actions/Subscribers/removeSubscriberAction";
-import { IGetUnsubscribeContent } from "../../Store/States/Content/getUnsubscribeContentState";
+import { IApplicationState } from "../../Store/Configuration";
+import { SubscriberRemoveAction } from "../../Store/Actions";
+import { IGetUnsubscribeContent } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { IContent } from "../../Api/Models/Components/unsubscribeContentDto";
@@ -42,7 +42,7 @@ export const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element 
     const [buttonState, setButtonState] = React.useState(true);
     const [progress, setProgress] = React.useState(false);
 
-    const removeSubscriber = React.useCallback((payload: IRemoveSubscriberDto) => dispatch(SubscriberAction.removeSubscriber(payload)), [ dispatch ]);
+    const removeSubscriber = React.useCallback((payload: IRemoveSubscriberDto) => dispatch(SubscriberRemoveAction.removeSubscriber(payload)), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 
     {

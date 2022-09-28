@@ -4,7 +4,7 @@ import * as Redux from "react-redux";
 import * as Router from "react-router";
 import { shallow } from "enzyme";
 import { UserSignin } from "./userSignin";
-import { combinedDefaults } from "../../../Store/combinedDefaults";
+import { CombinedDefaults } from "../../../Store/Configuration";
 
 jest.mock("react-router", () => 
 ({
@@ -39,7 +39,7 @@ describe("Test account group component: userSignin.", () =>
     it("Renders correctly '<UserSignin />' when content is loaded.", () => 
     {
         useDispatchMock.mockReturnValue(jest.fn());
-        useSelectorMock.mockReturnValue(combinedDefaults);
+        useSelectorMock.mockReturnValue(CombinedDefaults);
     
         expect(useDispatchMock).toBeCalledTimes(1);
         expect(wrapper).toMatchSnapshot();

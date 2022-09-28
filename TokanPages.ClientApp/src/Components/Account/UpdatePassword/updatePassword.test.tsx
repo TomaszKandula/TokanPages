@@ -5,7 +5,7 @@ import * as Router from "react-router";
 import * as Dom from "react-router-dom";
 import { shallow } from "enzyme";
 import { UpdatePassword } from "./updatePassword";
-import { combinedDefaults } from "../../../Store/combinedDefaults";
+import { CombinedDefaults } from "../../../Store/Configuration";
 
 jest.mock("react-router", () => 
 ({
@@ -46,7 +46,7 @@ describe("Test account group component: updatePassword.", () =>
     it("Renders correctly '<UpdatePassword />' when content is loaded.", () => 
     {
         useDispatchMock.mockReturnValue(jest.fn());
-        useSelectorMock.mockReturnValue(combinedDefaults);
+        useSelectorMock.mockReturnValue(CombinedDefaults);
     
         expect(useDispatchMock).toBeCalledTimes(1);
         expect(wrapper).toMatchSnapshot();

@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Validate from "validate.js";
-import { ActionCreators as MessageAction } from "../../Store/Actions/Mailer/sendMessageAction";
-import { ActionCreators as DialogAction } from "../../Store/Actions/raiseDialogAction";
-import { IApplicationState } from "../../Store/applicationState";
-import { IGetContactFormContent } from "../../Store/States/Content/getContactFormContentState";
+import { IApplicationState } from "../../Store/Configuration";
+import { SendMessageAction } from "../../Store/Actions";
+import { DialogAction } from "../../Store/Actions";
+import { IGetContactFormContent } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { IValidateContactForm, ValidateContactForm } from "../../Shared/Services/FormValidation";
 import { GetTextWarning } from "../../Shared/Services/Utilities";
@@ -35,8 +35,8 @@ export const ContactForm = (props: IGetContactFormContent): JSX.Element =>
 
     const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(CONTACT_FORM, text))), [ dispatch ]);
     const showWarning = React.useCallback((text: string)=> dispatch(DialogAction.raiseDialog(WarningMessage(CONTACT_FORM, text))), [ dispatch ]);
-    const sendMessage = React.useCallback((payload: ISendMessageDto) => dispatch(MessageAction.sendMessage(payload)), [ dispatch ]);
-    const sendMessageClear = React.useCallback(() => dispatch(MessageAction.sendMessageClear()), [ dispatch ]);
+    const sendMessage = React.useCallback((payload: ISendMessageDto) => dispatch(SendMessageAction.sendMessage(payload)), [ dispatch ]);
+    const sendMessageClear = React.useCallback(() => dispatch(SendMessageAction.sendMessageClear()), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 
     {

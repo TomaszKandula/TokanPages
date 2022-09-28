@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../Store/applicationState";
-import { ActionCreators as SubscriberAction } from "../../Store/Actions/Subscribers/updateSubscriberAction";
-import { ActionCreators as RaiseDialogAction } from "../../Store/Actions/raiseDialogAction";
-import { IGetUpdateSubscriberContent } from "../../Store/States/Content/getUpdateSubscriberContentState";
+import { IApplicationState } from "../../Store/Configuration";
+import { SubscriberUpdateAction } from "../../Store/Actions";
+import { DialogAction } from "../../Store/Actions";
+import { IGetUpdateSubscriberContent } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { GetTextWarning } from "../../Shared/Services/Utilities";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
@@ -30,9 +30,9 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
     const [buttonState, setButtonState] = React.useState(buttonDefaultState);
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(RaiseDialogAction.raiseDialog(SuccessMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string)=> dispatch(RaiseDialogAction.raiseDialog(WarningMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
-    const updateSubscriber = React.useCallback((payload: IUpdateSubscriberDto) => dispatch(SubscriberAction.updateSubscriber(payload)), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string)=> dispatch(DialogAction.raiseDialog(WarningMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
+    const updateSubscriber = React.useCallback((payload: IUpdateSubscriberDto) => dispatch(SubscriberUpdateAction.updateSubscriber(payload)), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 
     { 

@@ -1,17 +1,15 @@
 import * as React from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { ActionCreators as RaiseDialog } from "../../../Store/Actions/raiseDialogAction";
-import { ActionCreators as UpdateUser } from "../../../Store/Actions/Users/updateUserAction";
-import { ActionCreators as DataAction } from "../../../Store/Actions/Users/storeUserDataAction";
-import { ActionCreators as UserAction } from "../../../Store/Actions/Users/signinUserAction";
-import { ActionCreators as PasswordAction } from "../../../Store/Actions/Users/updateUserPasswordAction";
-import { ActionCreators as RemoveAction } from "../../../Store/Actions/Users/removeAccountAction";
-import { ActionCreators as ReAuthenticateUser } from "../../../Store/Actions/Users/reAuthenticateUserAction";
-import { IApplicationState } from "../../../Store/applicationState";
-import { IGetAccountContent } from "../../../Store/States/Content/getAccountContentState";
-import { IValidateAccountForm, IValidatePasswordForm, ValidateAccountForm, ValidatePasswordForm } from "../../../Shared/Services/FormValidation";
-import { ACCOUNT_FORM, DEACTIVATE_USER, RECEIVED_ERROR_MESSAGE, REMOVE_USER, UPDATE_PASSWORD_SUCCESS, UPDATE_USER_SUCCESS, UPDATE_USER_WARNING } from "../../../Shared/constants";
+import { IApplicationState } from "../../../Store/Configuration";
+import { IGetAccountContent } from "../../../Store/States";
+import { DialogAction } from "../../../Store/Actions";
+import { UserUpdateAction } from "../../../Store/Actions";
+import { UserDataAction } from "../../../Store/Actions";
+import { UserSigninAction } from "../../../Store/Actions";
+import { UserUpdatePasswordAction } from "../../../Store/Actions";
+import { UserRemoveAction } from "../../../Store/Actions";
+import { UserReAuthenticateAction } from "../../../Store/Actions";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { GetTextWarning } from "../../../Shared/Services/Utilities";
@@ -19,6 +17,23 @@ import { OperationStatus } from "../../../Shared/enums";
 import { IRemoveUserDto, IUpdateUserDto, IUpdateUserPasswordDto } from "../../../Api/Models";
 import { UserAccountView } from "./View/userAccountView";
 import Validate from "validate.js";
+
+import { 
+    IValidateAccountForm, 
+    IValidatePasswordForm, 
+    ValidateAccountForm, 
+    ValidatePasswordForm 
+} from "../../../Shared/Services/FormValidation";
+
+import { 
+    ACCOUNT_FORM, 
+    DEACTIVATE_USER, 
+    RECEIVED_ERROR_MESSAGE, 
+    REMOVE_USER, 
+    UPDATE_PASSWORD_SUCCESS, 
+    UPDATE_USER_SUCCESS, 
+    UPDATE_USER_WARNING 
+} from "../../../Shared/constants";
 
 export const UserAccount = (props: IGetAccountContent): JSX.Element => 
 {
@@ -54,21 +69,21 @@ export const UserAccount = (props: IGetAccountContent): JSX.Element =>
     const [passwordFormProgress, setPasswordFormProgress] = React.useState(false);
     const [deleteAccountProgress, setDeleteAccountProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(RaiseDialog.raiseDialog(SuccessMessage(ACCOUNT_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string)=> dispatch(RaiseDialog.raiseDialog(WarningMessage(ACCOUNT_FORM, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(ACCOUNT_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string)=> dispatch(DialogAction.raiseDialog(WarningMessage(ACCOUNT_FORM, text))), [ dispatch ]);
 
-    const postUpdateUser = React.useCallback((payload: IUpdateUserDto) => dispatch(UpdateUser.update(payload)), [ dispatch ]);
-    const postUpdateUserClear = React.useCallback(() => dispatch(UpdateUser.clear()), [ dispatch ]);
+    const postUpdateUser = React.useCallback((payload: IUpdateUserDto) => dispatch(UserUpdateAction.update(payload)), [ dispatch ]);
+    const postUpdateUserClear = React.useCallback(() => dispatch(UserUpdateAction.clear()), [ dispatch ]);
 
-    const postUpdatePassword = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(PasswordAction.update(payload)), [ dispatch ]);
-    const postUpdatePasswordClear = React.useCallback(() => dispatch(PasswordAction.clear()), [ dispatch ]);
+    const postUpdatePassword = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(UserUpdatePasswordAction.update(payload)), [ dispatch ]);
+    const postUpdatePasswordClear = React.useCallback(() => dispatch(UserUpdatePasswordAction.clear()), [ dispatch ]);
 
-    const postRemoveAccount = React.useCallback((payload: IRemoveUserDto) => dispatch(RemoveAction.removeAccount(payload)), [ dispatch ]);
-    const postRemoveAccountClear = React.useCallback(() => dispatch(RemoveAction.clear), [ dispatch ]);
+    const postRemoveAccount = React.useCallback((payload: IRemoveUserDto) => dispatch(UserRemoveAction.removeAccount(payload)), [ dispatch ]);
+    const postRemoveAccountClear = React.useCallback(() => dispatch(UserRemoveAction.clear), [ dispatch ]);
 
-    const reAuthenticate = React.useCallback(() => dispatch(ReAuthenticateUser.reAuthenticate()), [ dispatch ]);
-    const clearLoggedUser = React.useCallback(() => dispatch(UserAction.clear()), [ dispatch ]);
-    const clearLoggedData = React.useCallback(() => dispatch(DataAction.clear()), [ dispatch ]);
+    const reAuthenticate = React.useCallback(() => dispatch(UserReAuthenticateAction.reAuthenticate()), [ dispatch ]);
+    const clearLoggedUser = React.useCallback(() => dispatch(UserSigninAction.clear()), [ dispatch ]);
+    const clearLoggedData = React.useCallback(() => dispatch(UserDataAction.clear()), [ dispatch ]);
 
     const accountFormClear = React.useCallback(() => 
     {
