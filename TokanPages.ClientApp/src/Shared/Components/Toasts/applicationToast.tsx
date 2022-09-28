@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Slide, SlideProps } from "@material-ui/core";
-import { IApplicationState } from "../../../Store/applicationState";
+import { IApplicationState } from "../../../Store/Configuration";
 import { ActionCreators } from "../../../Store/Actions/raiseErrorAction";
 import { RECEIVED_ERROR_MESSAGE } from "../../constants";
 import { DialogType } from "../../enums";

@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../../Store/applicationState";
-import { ActionCreators } from "../../../Store/Actions/raiseDialogAction";
-import { IRaiseDialog } from "../../../Store/States/raiseDialogState";
+import { IApplicationState } from "../../../Store/Configuration";
+import { DialogAction } from "../../../Store/Actions";
+import { IRaiseDialog } from "../../../Store/States";
 import { IconType } from "../../enums";
 import { ApplicationDialogBoxView } from "./View/applicationDialogBoxView";
 import Validate from "validate.js";
@@ -30,7 +30,7 @@ export const ApplicationDialogBox = (): JSX.Element =>
     { 
         if (!dialogState.state && !Validate.isEmpty(dialogState.message))
         {
-            dispatch(ActionCreators.clearDialog());
+            dispatch(DialogAction.clearDialog());
             setDialogState(DialogState);
         }
     }, 
