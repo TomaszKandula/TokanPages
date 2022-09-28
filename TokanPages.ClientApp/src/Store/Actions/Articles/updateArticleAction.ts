@@ -1,4 +1,4 @@
-import { AppThunkAction } from "../../applicationState";
+import { AppThunkAction } from "../../Configuration";
 import { RAISE_ERROR, TErrorActions } from "../raiseErrorAction";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { GetErrorMessage } from "../../../Shared/Services/ErrorServices";

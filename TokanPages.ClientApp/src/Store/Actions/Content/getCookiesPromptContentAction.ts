@@ -1,5 +1,4 @@
-import { AppThunkAction } from "../../applicationState";
-import { combinedDefaults } from "../../combinedDefaults";
+import { AppThunkAction, CombinedDefaults } from "../../Configuration";
 import { GET_COOKIES_PROMPT_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { ICookiesPromptContentDto } from "../../../Api/Models";
@@ -17,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getCookiesPromptContent.content.language;
 
-        if (getState().getCookiesPromptContent.content !== combinedDefaults.getCookiesPromptContent.content && !isLanguageChanged) 
+        if (getState().getCookiesPromptContent.content !== CombinedDefaults.getCookiesPromptContent.content && !isLanguageChanged) 
         {
             return;
         }

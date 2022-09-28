@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "../../combinedDefaults";
+import { CombinedDefaults } from "../../Configuration";
 import { IGetFeaturedContent } from "../../States/Content/getFeaturedContentState";
 import { 
     TKnownActions,
@@ -9,7 +9,7 @@ import {
 
 export const GetFeaturedContentReducer: Reducer<IGetFeaturedContent> = (state: IGetFeaturedContent | undefined, incomingAction: Action): IGetFeaturedContent => 
 {
-    if (state === undefined) return combinedDefaults.getFeaturedContent;
+    if (state === undefined) return CombinedDefaults.getFeaturedContent;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

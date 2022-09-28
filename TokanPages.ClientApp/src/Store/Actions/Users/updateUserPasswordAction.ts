@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AppThunkAction } from "../../applicationState";
+import { AppThunkAction } from "../../Configuration";
 import { IUpdateUserPasswordDto } from "../../../Api/Models";
 import { API_COMMAND_UPDATE_USER_PASSWORD, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";

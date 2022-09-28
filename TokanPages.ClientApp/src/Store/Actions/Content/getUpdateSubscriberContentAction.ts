@@ -1,5 +1,4 @@
-import { AppThunkAction } from "../../applicationState";
-import { combinedDefaults } from "../../combinedDefaults";
+import { AppThunkAction, CombinedDefaults } from "../../Configuration";
 import { GET_UPDATE_SUBSCRIBER_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { IUpdateSubscriberContentDto } from "../../../Api/Models";
@@ -17,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getUpdateSubscriberContent.content.language;
 
-        if (getState().getUpdateSubscriberContent.content !== combinedDefaults.getUpdateSubscriberContent.content && !isLanguageChanged) 
+        if (getState().getUpdateSubscriberContent.content !== CombinedDefaults.getUpdateSubscriberContent.content && !isLanguageChanged) 
         {
             return;
         }

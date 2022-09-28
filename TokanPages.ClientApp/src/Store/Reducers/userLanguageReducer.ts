@@ -1,11 +1,11 @@
 import { Action, Reducer } from "redux";
 import { IUserLanguage } from "../States/userLanguageState";
-import { combinedDefaults } from "../combinedDefaults";
+import { CombinedDefaults } from "../Configuration";
 import { SET_LANGUAGE, SET_DEFAULT_LANGUAGE, TKnownActions } from "../Actions/userLanguageAction";
 
 export const UserLanguageReducer: Reducer<IUserLanguage> = (state: IUserLanguage | undefined, incomingAction: Action): IUserLanguage =>
 {
-    if (state === undefined) return combinedDefaults.userLanguage;
+    if (state === undefined) return CombinedDefaults.userLanguage;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "../../combinedDefaults";
+import { CombinedDefaults } from "../../Configuration";
 import { IGetStoryContent } from "../../States/Content/getStoryContentState";
 import { 
     TKnownActions,
@@ -9,7 +9,7 @@ import {
 
 export const GetStoryContentReducer: Reducer<IGetStoryContent> = (state: IGetStoryContent | undefined, incomingAction: Action): IGetStoryContent => 
 {
-    if (state === undefined) return combinedDefaults.getStoryContent;
+    if (state === undefined) return CombinedDefaults.getStoryContent;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

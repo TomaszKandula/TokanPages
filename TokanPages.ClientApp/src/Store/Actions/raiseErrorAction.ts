@@ -1,5 +1,5 @@
 import { DialogType } from "Shared/enums";
-import { AppThunkAction } from "../applicationState";
+import { AppThunkAction } from "../Configuration";
 
 export const CLEAR_ERROR = "CLEAR_ERROR";
 export const RAISE_ERROR = "RAISE_ERROR";

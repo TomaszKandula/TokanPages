@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AppThunkAction } from "../../applicationState";
+import { AppThunkAction } from "../../Configuration";
 import { IAuthenticateUserResultDto, IReAuthenticateUserDto } from "../../../Api/Models";
 import { API_COMMAND_REAUTHENTICATE, NULL_RESPONSE_ERROR, USER_DATA } from "../../../Shared/constants";
 import { UPDATE_USERDATA, TKnownActions as TUpdateActions } from "./storeUserDataAction";

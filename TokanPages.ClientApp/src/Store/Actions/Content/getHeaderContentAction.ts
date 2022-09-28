@@ -1,5 +1,4 @@
-import { AppThunkAction } from "../../applicationState";
-import { combinedDefaults } from "../../combinedDefaults";
+import { AppThunkAction, CombinedDefaults } from "../../Configuration";
 import { GET_HEADER_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { IHeaderContentDto } from "../../../Api/Models";
@@ -17,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getHeaderContent.content.language;
 
-        if (getState().getHeaderContent.content !== combinedDefaults.getHeaderContent.content && !isLanguageChanged) 
+        if (getState().getHeaderContent.content !== CombinedDefaults.getHeaderContent.content && !isLanguageChanged) 
         {
             return;
         }

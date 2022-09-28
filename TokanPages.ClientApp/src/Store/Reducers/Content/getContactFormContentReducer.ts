@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "../../combinedDefaults";
+import { CombinedDefaults } from "../../Configuration";
 import { IGetContactFormContent } from "../../States/Content/getContactFormContentState";
 import { 
     TKnownActions, 
@@ -9,7 +9,7 @@ import {
 
 export const GetContactFormContentReducer: Reducer<IGetContactFormContent> = (state: IGetContactFormContent | undefined, incomingAction: Action): IGetContactFormContent => 
 {
-    if (state === undefined) return combinedDefaults.getContactFormContent;
+    if (state === undefined) return CombinedDefaults.getContactFormContent;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

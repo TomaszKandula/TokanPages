@@ -1,5 +1,5 @@
 import { IAuthenticateUserResultDto } from "../../../Api/Models";
-import { AppThunkAction } from "../../applicationState";
+import { AppThunkAction } from "../../Configuration";
 
 export const SHOW_USERDATA = "SHOW_USERDATA";
 export const CLEAR_USERDATA = "CLEAR_USERDATA";

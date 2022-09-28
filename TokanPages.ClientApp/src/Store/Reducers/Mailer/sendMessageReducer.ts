@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "../../combinedDefaults";
+import { CombinedDefaults } from "../../Configuration";
 import { ISendMessage } from "../../States/Mailer/sendMessageState";
 import { OperationStatus } from "../../../Shared/enums";
 import { 
@@ -11,13 +11,13 @@ import {
 
 export const SendMessageReducer: Reducer<ISendMessage> = (state: ISendMessage | undefined, incomingAction: Action): ISendMessage => 
 {
-    if (state === undefined) return combinedDefaults.sendMessage;
+    if (state === undefined) return CombinedDefaults.sendMessage;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
         case API_SEND_MESSAGE_CLEAR:
-            return combinedDefaults.sendMessage;
+            return CombinedDefaults.sendMessage;
             
         case API_SEND_MESSAGE:
             return { 

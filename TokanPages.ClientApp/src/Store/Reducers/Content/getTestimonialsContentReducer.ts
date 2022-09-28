@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "../../combinedDefaults";
+import { CombinedDefaults } from "../../Configuration";
 import { IGetTestimonialsContent } from "../../States/Content/getTestimonialsContentState";
 import { 
     TKnownActions,
@@ -9,7 +9,7 @@ import {
 
 export const GetTestimonialsContentReducer: Reducer<IGetTestimonialsContent> = (state: IGetTestimonialsContent | undefined, incomingAction: Action): IGetTestimonialsContent => 
 {
-    if (state === undefined) return combinedDefaults.getTestimonialsContent;
+    if (state === undefined) return CombinedDefaults.getTestimonialsContent;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

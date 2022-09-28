@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "../../combinedDefaults";
+import { CombinedDefaults } from "../../Configuration";
 import { IGetCookiesPromptContent } from "../../States/Content/getCookiesPromptContentState";
 import { 
     TKnownActions, 
@@ -9,7 +9,7 @@ import {
 
 export const GetCookiesPromptContentReducer: Reducer<IGetCookiesPromptContent> = (state: IGetCookiesPromptContent | undefined, incomingAction: Action): IGetCookiesPromptContent => 
 {
-    if (state === undefined) return combinedDefaults.getCookiesPromptContent;
+    if (state === undefined) return CombinedDefaults.getCookiesPromptContent;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

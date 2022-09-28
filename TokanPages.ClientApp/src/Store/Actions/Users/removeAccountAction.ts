@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AppThunkAction } from "../../applicationState";
+import { AppThunkAction } from "../../Configuration";
 import { IRemoveUserDto } from "../../../Api/Models";
 import { API_COMMAND_REMOVE_USER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";

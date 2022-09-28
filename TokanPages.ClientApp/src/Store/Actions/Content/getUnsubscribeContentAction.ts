@@ -1,5 +1,4 @@
-import { AppThunkAction } from "../../applicationState";
-import { combinedDefaults } from "../../combinedDefaults";
+import { AppThunkAction, CombinedDefaults } from "../../Configuration";
 import { GET_UNSUBSCRIBE_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { IUnsubscribeContentDto } from "../../../Api/Models";
@@ -17,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getUnsubscribeContent.content.language;
 
-        if (getState().getUnsubscribeContent.content !== combinedDefaults.getUnsubscribeContent.content && !isLanguageChanged) 
+        if (getState().getUnsubscribeContent.content !== CombinedDefaults.getUnsubscribeContent.content && !isLanguageChanged) 
         {
             return;
         }

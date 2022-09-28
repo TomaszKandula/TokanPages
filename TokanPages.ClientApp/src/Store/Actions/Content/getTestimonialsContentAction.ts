@@ -1,5 +1,4 @@
-import { AppThunkAction } from "../../applicationState";
-import { combinedDefaults } from "../../combinedDefaults";
+import { AppThunkAction, CombinedDefaults } from "../../Configuration";
 import { GET_TESTIMONIALS_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { ITestimonialsContentDto } from "../../../Api/Models";
@@ -17,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getTestimonialsContent.content.language;
 
-        if (getState().getTestimonialsContent.content !== combinedDefaults.getTestimonialsContent.content && !isLanguageChanged) 
+        if (getState().getTestimonialsContent.content !== CombinedDefaults.getTestimonialsContent.content && !isLanguageChanged) 
         {
             return;
         }

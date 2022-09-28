@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "../../combinedDefaults";
+import { CombinedDefaults } from "../../Configuration";
 import { IGetUserSignupContent } from "../../States/Content/getUserSignupContentState";
 import { 
     TKnownActions, 
@@ -9,7 +9,7 @@ import {
 
 export const GetUserSignupContentReducer: Reducer<IGetUserSignupContent> = (state: IGetUserSignupContent | undefined, incomingAction: Action): IGetUserSignupContent => 
 {
-    if (state === undefined) return combinedDefaults.getUserSignupContent;
+    if (state === undefined) return CombinedDefaults.getUserSignupContent;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

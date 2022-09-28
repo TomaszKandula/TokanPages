@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "../../combinedDefaults";
+import { CombinedDefaults } from "../../Configuration";
 import { IReAuthenticateUser } from "../../States/Users/reAuthenticateUserState";
 import { OperationStatus } from "../../../Shared/enums";
 import { 
@@ -11,7 +11,7 @@ import {
 
 export const ReAuthenticateUserReducer: Reducer<IReAuthenticateUser> = (state: IReAuthenticateUser | undefined, incomingAction: Action): IReAuthenticateUser => 
 {
-    if (state === undefined) return combinedDefaults.signinUser;
+    if (state === undefined) return CombinedDefaults.signinUser;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 

@@ -1,5 +1,4 @@
-import { AppThunkAction } from "../../applicationState";
-import { combinedDefaults } from "../../combinedDefaults";
+import { AppThunkAction, CombinedDefaults } from "../../Configuration";
 import { GET_ACTIVATE_ACCOUNT_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { IActivateAccountContentDto } from "../../../Api/Models";
@@ -17,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getActivateAccountContent.content.language;
 
-        if (getState().getActivateAccountContent.content !== combinedDefaults.getActivateAccountContent.content && !isLanguageChanged) 
+        if (getState().getActivateAccountContent.content !== CombinedDefaults.getActivateAccountContent.content && !isLanguageChanged) 
         {
             return;
         }

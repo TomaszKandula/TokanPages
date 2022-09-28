@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "../../combinedDefaults";
+import { CombinedDefaults } from "../../Configuration";
 import { IGetPolicyContent } from "../../States/Content/getPolicyContentState";
 import { 
     TKnownActions,
@@ -9,7 +9,7 @@ import {
 
 export const GetPolicyContentReducer: Reducer<IGetPolicyContent> = (state: IGetPolicyContent | undefined, incomingAction: Action): IGetPolicyContent => 
 {
-    if (state === undefined) return combinedDefaults.getPolicyContent;
+    if (state === undefined) return CombinedDefaults.getPolicyContent;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "../../combinedDefaults";
+import { CombinedDefaults } from "../../Configuration";
 import { IArticles } from "../../States/Articles/listArticlesState";
 import { 
     TKnownActions, 
@@ -9,7 +9,7 @@ import {
 
 export const ListArticlesReducer: Reducer<IArticles> = (state: IArticles | undefined, incomingAction: Action): IArticles => 
 {
-    if (state === undefined) return combinedDefaults.listArticles;
+    if (state === undefined) return CombinedDefaults.listArticles;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

@@ -1,5 +1,4 @@
-import { AppThunkAction } from "../../applicationState";
-import { combinedDefaults } from "../../combinedDefaults";
+import { AppThunkAction, CombinedDefaults } from "../../Configuration";
 import { GET_CONTACT_FORM_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { IContactFormContentDto } from "../../../Api/Models";
@@ -17,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getContactFormContent.content.language;
 
-        if (getState().getContactFormContent.content !== combinedDefaults.getContactFormContent.content && !isLanguageChanged) 
+        if (getState().getContactFormContent.content !== CombinedDefaults.getContactFormContent.content && !isLanguageChanged) 
         {
             return;
         }

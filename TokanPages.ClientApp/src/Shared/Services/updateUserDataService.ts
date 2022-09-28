@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { USER_DATA } from "../../Shared/constants";
 import { GetDataFromStorage } from "./StorageServices";
 import { ActionCreators } from "../../Store/Actions/Users/storeUserDataAction";
-import { IApplicationState } from "../../Store/applicationState";
+import { IApplicationState } from "../../Store/Configuration";
 import { IAuthenticateUserResultDto } from "../../Api/Models";
 import Validate from "validate.js";
 

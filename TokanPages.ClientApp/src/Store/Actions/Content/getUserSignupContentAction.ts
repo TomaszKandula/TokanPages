@@ -1,5 +1,4 @@
-import { AppThunkAction } from "../../applicationState";
-import { combinedDefaults } from "../../combinedDefaults";
+import { AppThunkAction, CombinedDefaults } from "../../Configuration";
 import { GET_SIGNUP_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { IUserSignupContentDto } from "../../../Api/Models";
@@ -17,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getUserSignupContent.content.language;
 
-        if (getState().getUserSignupContent.content !== combinedDefaults.getUserSignupContent.content && !isLanguageChanged) 
+        if (getState().getUserSignupContent.content !== CombinedDefaults.getUserSignupContent.content && !isLanguageChanged) 
         {
             return;
         }

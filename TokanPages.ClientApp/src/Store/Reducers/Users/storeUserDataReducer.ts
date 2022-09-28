@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "../../combinedDefaults";
+import { CombinedDefaults } from "../../Configuration";
 import { IStoreUserData } from "../../States/Users/storeUserDataState";
 import { 
     TKnownActions,
@@ -12,7 +12,7 @@ import { DelDataFromStorage, SetDataInStorage } from "../../../Shared/Services/S
 
 export const StoreUserDataReducer: Reducer<IStoreUserData> = (state: IStoreUserData | undefined, incomingAction: Action): IStoreUserData => 
 {
-    if (state === undefined) return combinedDefaults.storeUserData;
+    if (state === undefined) return CombinedDefaults.storeUserData;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 
@@ -25,7 +25,7 @@ export const StoreUserDataReducer: Reducer<IStoreUserData> = (state: IStoreUserD
 
         case CLEAR_USERDATA:
             DelDataFromStorage({ key: USER_DATA });
-            return combinedDefaults.storeUserData;
+            return CombinedDefaults.storeUserData;
 
         case UPDATE_USERDATA:
             SetDataInStorage({ key: USER_DATA, selection: action.payload }); 

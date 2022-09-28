@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { combinedDefaults } from "../../combinedDefaults";
+import { CombinedDefaults } from "../../Configuration";
 import { IGetWrongPagePromptContent } from "../../States/Content/getWrongPagePromptContentState";
 import { 
     TKnownActions, 
@@ -9,7 +9,7 @@ import {
 
 export const GetWrongPagePromptContentReducer: Reducer<IGetWrongPagePromptContent> = (state: IGetWrongPagePromptContent | undefined, incomingAction: Action): IGetWrongPagePromptContent => 
 {
-    if (state === undefined) return combinedDefaults.getWrongPagePromptContent;
+    if (state === undefined) return CombinedDefaults.getWrongPagePromptContent;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)
