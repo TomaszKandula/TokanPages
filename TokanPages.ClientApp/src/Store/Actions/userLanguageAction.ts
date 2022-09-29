@@ -1,5 +1,5 @@
 import { AppThunkAction } from "../Configuration";
-import { IUserLanguage } from "../States/userLanguageState";
+import { IUserLanguage } from "../States";
 
 export const SET_DEFAULT_LANGUAGE = "SET_DEFAULT_LANGUAGE";
 export const SET_LANGUAGE = "SET_LANGUAGE";

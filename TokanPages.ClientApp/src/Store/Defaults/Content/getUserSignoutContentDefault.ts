@@ -1,4 +1,4 @@
-import { IGetUserSignoutContent } from "../../States/Content/getUserSignoutContentState";
+import { IGetUserSignoutContent } from "../../States";
 
 export const GetUserSignoutContentDefault: IGetUserSignoutContent = 
 {

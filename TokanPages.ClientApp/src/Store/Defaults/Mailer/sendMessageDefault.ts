@@ -1,4 +1,4 @@
-import { ISendMessage } from "../../States/Mailer/sendMessageState";
+import { ISendMessage } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
 export const SendMessageDefault: ISendMessage = 

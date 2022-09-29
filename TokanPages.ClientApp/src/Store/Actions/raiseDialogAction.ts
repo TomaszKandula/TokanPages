@@ -1,5 +1,5 @@
 import { AppThunkAction } from "../Configuration";
-import { IRaiseDialog } from "../States/raiseDialogState";
+import { IRaiseDialog } from "../States";
 
 export const CLEAR_DIALOG = "CLEAR_DIALOG";
 export const RAISE_DIALOG = "RAISE_DIALOG";

@@ -1,13 +1,15 @@
 import { Action, Reducer } from "redux";
 import { CombinedDefaults } from "../../Configuration";
-import { IGetCookiesPromptContent } from "../../States/Content/getCookiesPromptContentState";
+import { IGetCookiesPromptContent } from "../../States";
 import { 
     TKnownActions, 
     REQUEST_COOKIES_PROMPT_CONTENT, 
     RECEIVE_COOKIES_PROMPT_CONTENT 
 } from "../../Actions/Content/getCookiesPromptContentAction";
 
-export const GetCookiesPromptContentReducer: Reducer<IGetCookiesPromptContent> = (state: IGetCookiesPromptContent | undefined, incomingAction: Action): IGetCookiesPromptContent => 
+export const GetCookiesPromptContentReducer: 
+    Reducer<IGetCookiesPromptContent> = (state: IGetCookiesPromptContent | undefined, incomingAction: Action): 
+    IGetCookiesPromptContent => 
 {
     if (state === undefined) return CombinedDefaults.getCookiesPromptContent;
 

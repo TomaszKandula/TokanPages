@@ -1,4 +1,4 @@
-import { IGetStoryContent } from "../../States/Content/getStoryContentState";
+import { IGetStoryContent } from "../../States";
 
 export const GetStoryContentDefault: IGetStoryContent = 
 {

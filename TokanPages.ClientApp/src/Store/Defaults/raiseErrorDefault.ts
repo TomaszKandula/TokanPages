@@ -1,4 +1,4 @@
-import { IRaiseError } from "../States/raiseErrorState";
+import { IRaiseError } from "../States";
 import { DialogType } from "../../Shared/enums";
 import { NO_ERRORS } from "../../Shared/constants";
 

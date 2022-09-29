@@ -1,4 +1,4 @@
-import { IActivateAccount } from "../../States/Users/activateAccountState";
+import { IActivateAccount } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
 export const ActivateAccountDefault: IActivateAccount = 

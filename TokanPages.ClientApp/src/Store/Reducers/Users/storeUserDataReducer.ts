@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { CombinedDefaults } from "../../Configuration";
-import { IStoreUserData } from "../../States/Users/storeUserDataState";
+import { IStoreUserData } from "../../States";
 import { 
     TKnownActions,
     SHOW_USERDATA,
@@ -10,7 +10,9 @@ import {
 import { USER_DATA } from "../../../Shared/constants";
 import { DelDataFromStorage, SetDataInStorage } from "../../../Shared/Services/StorageServices";
 
-export const StoreUserDataReducer: Reducer<IStoreUserData> = (state: IStoreUserData | undefined, incomingAction: Action): IStoreUserData => 
+export const StoreUserDataReducer: 
+    Reducer<IStoreUserData> = (state: IStoreUserData | undefined, incomingAction: Action): 
+    IStoreUserData => 
 {
     if (state === undefined) return CombinedDefaults.storeUserData;
 

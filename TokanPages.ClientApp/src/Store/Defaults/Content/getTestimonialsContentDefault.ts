@@ -1,4 +1,4 @@
-import { IGetTestimonialsContent } from "../../States/Content/getTestimonialsContentState";
+import { IGetTestimonialsContent } from "../../States";
 
 export const GetTestimonialsContentDefault: IGetTestimonialsContent = 
 {

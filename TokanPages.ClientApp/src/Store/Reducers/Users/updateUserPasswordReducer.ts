@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { CombinedDefaults } from "../../Configuration";
-import { IUpdateUserPassword } from "../../States/Users/updateUserPasswordState";
+import { IUpdateUserPassword } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 import { 
     TKnownActions,
@@ -9,7 +9,9 @@ import {
     UPDATE_USER_PASSWORD_RESPONSE
 } from "../../Actions/Users/updateUserPasswordAction";
 
-export const UpdateUserPasswordReducer: Reducer<IUpdateUserPassword> = (state: IUpdateUserPassword | undefined, incomingAction: Action): IUpdateUserPassword => 
+export const UpdateUserPasswordReducer: 
+    Reducer<IUpdateUserPassword> = (state: IUpdateUserPassword | undefined, incomingAction: Action): 
+    IUpdateUserPassword => 
 {
     if (state === undefined) return CombinedDefaults.updateUserPassword;
 

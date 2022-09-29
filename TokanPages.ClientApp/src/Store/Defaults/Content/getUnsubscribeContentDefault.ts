@@ -1,4 +1,4 @@
-import { IGetUnsubscribeContent } from "../../States/Content/getUnsubscribeContentState";
+import { IGetUnsubscribeContent } from "../../States";
 
 export const GetUnsubscribeContentDefault: IGetUnsubscribeContent = 
 {

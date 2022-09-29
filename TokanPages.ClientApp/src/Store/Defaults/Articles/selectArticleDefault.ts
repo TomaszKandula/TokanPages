@@ -1,4 +1,4 @@
-import { IArticle } from "../../States/Articles/selectArticleState";
+import { IArticle } from "../../States";
 
 export const SelectArticleDefault: IArticle = 
 {

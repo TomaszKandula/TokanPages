@@ -1,13 +1,15 @@
 import { Action, Reducer } from "redux";
 import { CombinedDefaults } from "../../Configuration";
-import { IGetTestimonialsContent } from "../../States/Content/getTestimonialsContentState";
+import { IGetTestimonialsContent } from "../../States";
 import { 
     TKnownActions,
     RECEIVE_TESTIMONIALS_CONTENT, 
     REQUEST_TESTIMONIALS_CONTENT
 } from "../../Actions/Content/getTestimonialsContentAction";
 
-export const GetTestimonialsContentReducer: Reducer<IGetTestimonialsContent> = (state: IGetTestimonialsContent | undefined, incomingAction: Action): IGetTestimonialsContent => 
+export const GetTestimonialsContentReducer: 
+    Reducer<IGetTestimonialsContent> = (state: IGetTestimonialsContent | undefined, incomingAction: Action): 
+    IGetTestimonialsContent => 
 {
     if (state === undefined) return CombinedDefaults.getTestimonialsContent;
 

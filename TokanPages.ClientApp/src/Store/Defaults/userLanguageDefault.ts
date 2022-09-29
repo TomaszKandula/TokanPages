@@ -1,4 +1,4 @@
-import { IUserLanguage } from "../States/userLanguageState";
+import { IUserLanguage } from "../States";
 
 export const UserLanguageDefault: IUserLanguage = 
 {

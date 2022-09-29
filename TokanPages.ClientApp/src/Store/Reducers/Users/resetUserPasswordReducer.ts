@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { CombinedDefaults } from "../../Configuration";
-import { IResetUserPassword } from "../../States/Users/resetUserPasswordState";
+import { IResetUserPassword } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 import { 
     TKnownActions,
@@ -9,7 +9,9 @@ import {
     RESET_USER_PASSWORD_RESPONSE
 } from "../../Actions/Users/resetUserPasswordAction";
 
-export const ResetUserPasswordReducer: Reducer<IResetUserPassword> = (state: IResetUserPassword | undefined, incomingAction: Action): IResetUserPassword => 
+export const ResetUserPasswordReducer: 
+    Reducer<IResetUserPassword> = (state: IResetUserPassword | undefined, incomingAction: Action): 
+    IResetUserPassword => 
 {
     if (state === undefined) return CombinedDefaults.resetUserPassword;
 

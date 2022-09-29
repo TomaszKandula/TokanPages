@@ -1,13 +1,15 @@
 import { Action, Reducer } from "redux";
 import { CombinedDefaults } from "../../Configuration";
-import { IGetStoryContent } from "../../States/Content/getStoryContentState";
+import { IGetStoryContent } from "../../States";
 import { 
     TKnownActions,
     RECEIVE_STORY_CONTENT, 
     REQUEST_STORY_CONTENT
 } from "../../Actions/Content/getStoryContentAction";
 
-export const GetStoryContentReducer: Reducer<IGetStoryContent> = (state: IGetStoryContent | undefined, incomingAction: Action): IGetStoryContent => 
+export const GetStoryContentReducer: 
+    Reducer<IGetStoryContent> = (state: IGetStoryContent | undefined, incomingAction: Action): 
+    IGetStoryContent => 
 {
     if (state === undefined) return CombinedDefaults.getStoryContent;
 

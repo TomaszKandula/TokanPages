@@ -1,13 +1,15 @@
 import { Action, Reducer } from "redux";
 import { CombinedDefaults } from "../../Configuration";
-import { IGetHeaderContent } from "../../States/Content/getHeaderContentState";
+import { IGetHeaderContent } from "../../States";
 import { 
     TKnownActions,
     RECEIVE_HEADER_CONTENT, 
     REQUEST_HEADER_CONTENT
 } from "../../Actions/Content/getHeaderContentAction";
 
-export const GetHeaderContentReducer: Reducer<IGetHeaderContent> = (state: IGetHeaderContent | undefined, incomingAction: Action): IGetHeaderContent => 
+export const GetHeaderContentReducer: 
+    Reducer<IGetHeaderContent> = (state: IGetHeaderContent | undefined, incomingAction: Action): 
+    IGetHeaderContent => 
 {
     if (state === undefined) return CombinedDefaults.getHeaderContent;
 
