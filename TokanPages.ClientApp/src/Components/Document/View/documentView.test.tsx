@@ -1,13 +1,11 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { IGetPolicyContent } from "../../../Store/States/Content/getPolicyContentState";
-import { IGetTermsContent } from "../../../Store/States/Content/getTermsContentState";
-import { IGetStoryContent } from "../../../Store/States/Content/getStoryContentState";
+import { IGetPolicyContent, IGetTermsContent, IGetStoryContent } from "../../../Store/States";
 import { ITextItem } from "../../../Api/Models";
 import { DocumentView } from "./documentView";
 
-describe("Test component: staticContentView.", () => 
+describe("Test component: documentView.", () => 
 {
     it("Renders correctly '<DocumentView />' when policy content is loaded.", () => 
     {
