@@ -5,7 +5,7 @@ import { SubscriberRemoveAction } from "../../Store/Actions";
 import { IGetUnsubscribeContent } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
-import { IContent } from "../../Api/Models/Components/unsubscribeContentDto";
+import { IContent } from "../../Api/Models";
 import { IRemoveSubscriberDto } from "../../Api/Models";
 import { UnsubscribeView } from "./View/unsubscribeView";
 
