@@ -1,4 +1,4 @@
-import { IRaiseDialog } from "../../../../Redux/States/raiseDialogState";
+import { IRaiseDialog } from "../../../../Store/States/raiseDialogState";
 import { IconType } from "../../../../Shared/enums";
 
 const WarningMessage = (title: string, text: string): IRaiseDialog =>

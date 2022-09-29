@@ -1,13 +1,11 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { IGetPolicyContent } from "../../../Redux/States/Content/getPolicyContentState";
-import { IGetTermsContent } from "../../../Redux/States/Content/getTermsContentState";
-import { IGetStoryContent } from "../../../Redux/States/Content/getStoryContentState";
+import { IGetPolicyContent, IGetTermsContent, IGetStoryContent } from "../../../Store/States";
 import { ITextItem } from "../../../Api/Models";
 import { DocumentView } from "./documentView";
 
-describe("Test component: staticContentView.", () => 
+describe("Test component: documentView.", () => 
 {
     it("Renders correctly '<DocumentView />' when policy content is loaded.", () => 
     {

@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
-import { ActionCreators as ResetFormContent } from "../../Redux/Actions/Content/getResetPasswordContentAction";
+import { IApplicationState } from "../../Store/Configuration";
+import { GetNavigationContentAction } from "../../Store/Actions";
+import { GetFooterContentAction } from "../../Store/Actions";
+import { GetResetPasswordContentAction } from "../../Store/Actions";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { ResetPassword } from "../../Components/Account";
@@ -20,9 +20,9 @@ export const ResetPasswordPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(NavigationContent.getNavigationContent());
-        dispatch(FooterContent.getFooterContent());
-        dispatch(ResetFormContent.getResetPasswordContent());
+        dispatch(GetNavigationContentAction.getNavigationContent());
+        dispatch(GetFooterContentAction.getFooterContent());
+        dispatch(GetResetPasswordContentAction.getResetPasswordContent());
     }, 
     [ dispatch, language?.id ]);
     

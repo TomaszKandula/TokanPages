@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { ActionCreators } from "../../../Redux/Actions/Users/activateAccountAction";
-import { IApplicationState } from "../../../Redux/applicationState";
-import { IGetActivateAccountContent } from "../../../Redux/States/Content/getActivateAccountContentState";
+import { IApplicationState } from "../../../Store/Configuration";
+import { UserActivateAction } from "../../../Store/Actions";
+import { IGetActivateAccountContent } from "../../../Store/States/Content/getActivateAccountContentState";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { OperationStatus } from "../../../Shared/enums";
 import { IActivateUserDto } from "../../../Api/Models";
@@ -48,7 +48,7 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
 
     const activateAccountState = useSelector((state: IApplicationState) => state.activateAccount);
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
-    const activateAccount = React.useCallback((payload: IActivateUserDto) => dispatch(ActionCreators.activateAccount(payload)), [ dispatch ]);
+    const activateAccount = React.useCallback((payload: IActivateUserDto) => dispatch(UserActivateAction.activateAccount(payload)), [ dispatch ]);
 
     const [content, setContent] = React.useState(onProcessing);
     const [buttonDisabled, setButtonDisabled] = React.useState(true);
@@ -105,7 +105,7 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
             setRequested(false);
             setProgress(true);
             setButtonDisabled(true);
-            dispatch(ActionCreators.clear())
+            dispatch(UserActivateAction.clear())
         }
         
         if (content.type === "Success")

@@ -7,7 +7,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IGetFeaturedContent } from "../../../Redux/States/Content/getFeaturedContentState";
+import { IGetFeaturedContent } from "../../../Store/States/Content/getFeaturedContentState";
 import { RenderCardMedia } from "../../../Shared/Components";
 import { FEATURED_IMAGE_PATH } from "../../../Shared/constants";
 import { FeaturedStyle } from "./featuredStyle";

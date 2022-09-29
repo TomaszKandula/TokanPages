@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ActionCreators } from "../../../Redux/Actions/Articles/listArticlesAction";
-import { IApplicationState } from "../../../Redux/applicationState";
+import { IApplicationState } from "../../../Store/Configuration";
+import { ArticlesAction } from "../../../Store/Actions";
 import { ArticleListView } from "./View/articleListView";
 
 export const ArticleList = (): JSX.Element => 
@@ -11,7 +11,7 @@ export const ArticleList = (): JSX.Element =>
     
     React.useEffect(() => 
     { 
-        dispatch(ActionCreators.requestArticles())
+        dispatch(ArticlesAction.requestArticles())
     }, 
     [ dispatch ]);
 

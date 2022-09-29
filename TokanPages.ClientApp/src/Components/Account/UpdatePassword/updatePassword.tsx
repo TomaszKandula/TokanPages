@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { IGetUpdatePasswordContent } from "../../../Redux/States/Content/getUpdatePasswordContentState";
-import { ActionCreators as DialogAction } from "../../../Redux/Actions/raiseDialogAction";
-import { ActionCreators } from "../../../Redux/Actions/Users/updateUserPasswordAction";
-import { IApplicationState } from "../../../Redux/applicationState";
+import { IApplicationState } from "../../../Store/Configuration";
+import { IGetUpdatePasswordContent } from "../../../Store/States";
+import { DialogAction } from "../../../Store/Actions";
+import { UserUpdatePasswordAction } from "../../../Store/Actions";
 import { IUpdateUserPasswordDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
@@ -45,8 +45,8 @@ export const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
     const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
-    const updateAction = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(ActionCreators.update(payload)), [ dispatch ]);
-    const clearAction = React.useCallback(() => dispatch(ActionCreators.clear()), [ dispatch ]);
+    const updateAction = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(UserUpdatePasswordAction.update(payload)), [ dispatch ]);
+    const clearAction = React.useCallback(() => dispatch(UserUpdatePasswordAction.clear()), [ dispatch ]);
     
     const clearForm = React.useCallback(() => 
     {

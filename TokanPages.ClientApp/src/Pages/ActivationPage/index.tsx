@@ -2,10 +2,10 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Box, Typography, Container } from "@material-ui/core";
-import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators as ActivateAccountContent } from "../../Redux/Actions/Content/getActivateAccountContentAction";
-import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
+import { IApplicationState } from "../../Store/Configuration";
+import { GetActivateAccountContentAction } from "../../Store/Actions";
+import { GetNavigationContentAction } from "../../Store/Actions";
+import { GetFooterContentAction } from "../../Store/Actions";
 import { ActivateAccount } from "../../Components/Account";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
@@ -28,9 +28,9 @@ export const ActivationPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(ActivateAccountContent.getActivateAccountContent());
-        dispatch(NavigationContent.getNavigationContent());
-        dispatch(FooterContent.getFooterContent());
+        dispatch(GetActivateAccountContentAction.getActivateAccountContent());
+        dispatch(GetNavigationContentAction.getNavigationContent());
+        dispatch(GetFooterContentAction.getFooterContent());
     }, 
     [ dispatch, language?.id ]);
 

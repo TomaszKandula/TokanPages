@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Slide, SlideProps } from "@material-ui/core";
-import { IApplicationState } from "../../../Redux/applicationState";
-import { ActionCreators } from "../../../Redux/Actions/raiseErrorAction";
+import { IApplicationState } from "../../../Store/Configuration";
+import { ActionCreators } from "../../../Store/Actions/raiseErrorAction";
 import { RECEIVED_ERROR_MESSAGE } from "../../constants";
 import { DialogType } from "../../enums";
 import { ApplicationToastView } from "./View/applicationToastView";

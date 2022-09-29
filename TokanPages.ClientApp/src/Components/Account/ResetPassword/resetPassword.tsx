@@ -1,18 +1,24 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IGetResetPasswordContent } from "../../../Redux/States/Content/getResetPasswordContentState";
-import { ActionCreators as DialogAction } from "../../../Redux/Actions/raiseDialogAction";
-import { IApplicationState } from "../../../Redux/applicationState";
-import { ActionCreators } from "../../../Redux/Actions/Users/resetUserPasswordAction";
+import { IApplicationState } from "../../../Store/Configuration";
+import { IGetResetPasswordContent } from "../../../Store/States";
+import { DialogAction } from "../../../Store/Actions";
+import { UserResetPasswordAction } from "../../../Store/Actions";
 import { IResetUserPasswordDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { IValidateResetForm, ValidateResetForm } from "../../../Shared/Services/FormValidation";
 import { GetTextWarning } from "../../../Shared/Services/Utilities";
 import { OperationStatus } from "../../../Shared/enums";
-import { RECEIVED_ERROR_MESSAGE, RESET_FORM, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_WARNING } from "../../../Shared/constants";
 import { ResetPasswordView } from "./View/resetPasswordView";
 import Validate from "validate.js";
+
+import { 
+    RECEIVED_ERROR_MESSAGE, 
+    RESET_FORM, 
+    RESET_PASSWORD_SUCCESS, 
+    RESET_PASSWORD_WARNING 
+} from "../../../Shared/constants";
 
 const formDefaultValues: IValidateResetForm =
 {
@@ -31,8 +37,8 @@ export const ResetPassword = (props: IGetResetPasswordContent): JSX.Element =>
     const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
-    const resetAction = React.useCallback((payload: IResetUserPasswordDto) => dispatch(ActionCreators.reset(payload)), [ dispatch ]);
-    const clearAction = React.useCallback(() => dispatch(ActionCreators.clear()), [ dispatch ]);
+    const resetAction = React.useCallback((payload: IResetUserPasswordDto) => dispatch(UserResetPasswordAction.reset(payload)), [ dispatch ]);
+    const clearAction = React.useCallback(() => dispatch(UserResetPasswordAction.clear()), [ dispatch ]);
     const clearForm = React.useCallback(() => 
     {
         if (!progress) return;

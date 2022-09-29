@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { IApplicationState } from "../../../Redux/applicationState";
-import { ActionCreators as SelectArticleActions } from "../../../Redux/Actions/Articles/selectArticleAction";
-import { ActionCreators as UpdateArticleAction } from "../../../Redux/Actions/Articles/updateArticleAction";
+import { IApplicationState } from "../../../Store/Configuration";
+import { ArticleAction } from "../../../Store/Actions";
+import { UpdateAction } from "../../../Store/Actions";
 import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/constants";
 import { GetDateTime } from "../../../Shared/Services/Formatters";
 import { ArticleContent } from "./Helpers/articleContent";
@@ -26,7 +26,7 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
     const user = useSelector((state: IApplicationState) => state.storeUserData);
 
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
-        dispatch(SelectArticleActions.selectArticle(props.id));
+        dispatch(ArticleAction.selectArticle(props.id));
 
     const [popoverElement, setPopover] = React.useState<HTMLElement | null>(null);
     const [totalThumbs, setTotalThumbs] = React.useState(0);
@@ -42,7 +42,7 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
 
     const updateUserLikes = React.useCallback(() => 
     {
-        dispatch(UpdateArticleAction.updateArticleLikes(
+        dispatch(UpdateAction.updateArticleLikes(
         { 
             id: props.id, 
             addToLikes: userLikes, 
@@ -67,7 +67,7 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
     React.useEffect(() => 
     {
         if (selection.isLoading) return; 
-        dispatch(UpdateArticleAction.updateArticleCount(
+        dispatch(UpdateAction.updateArticleCount(
         {
             id: props.id
         }));
@@ -106,7 +106,7 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
 
     const backButtonHandler = () =>
     {
-        dispatch(SelectArticleActions.resetSelection());
+        dispatch(ArticleAction.resetSelection());
         history.push("/articles");
     };
 

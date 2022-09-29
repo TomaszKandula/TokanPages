@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
-import { ActionCreators as UpdateFormContent } from "../../Redux/Actions/Content/getUpdatePasswordContentAction";
+import { IApplicationState } from "../../Store/Configuration";
+import { GetNavigationContentAction } from "../../Store/Actions";
+import { GetFooterContentAction } from "../../Store/Actions";
+import { GetUpdatePasswordContentAction } from "../../Store/Actions";
 import { Navigation } from "../../Components/Layout";
 import { Footer } from "../../Components/Layout";
 import { UpdatePassword } from "../../Components/Account";
@@ -20,9 +20,9 @@ export const UpdatePasswordPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(NavigationContent.getNavigationContent());
-        dispatch(FooterContent.getFooterContent());
-        dispatch(UpdateFormContent.getUpdatePasswordContent());
+        dispatch(GetNavigationContentAction.getNavigationContent());
+        dispatch(GetFooterContentAction.getFooterContent());
+        dispatch(GetUpdatePasswordContentAction.getUpdatePasswordContent());
     }, 
     [ dispatch, language?.id ]);
     

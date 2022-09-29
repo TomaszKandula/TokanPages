@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ActionCreators } from "../../../Redux/Actions/Users/storeUserDataAction";
-import { IApplicationState } from "../../../Redux/applicationState";
+import { ActionCreators } from "../../../Store/Actions/Users/storeUserDataAction";
+import { IApplicationState } from "../../../Store/Configuration";
 import { IAuthenticateUserResultDto } from "../../../Api/Models";
 import { ApplicationUserInfoView } from "./View/applicationUserInfoView";
 
