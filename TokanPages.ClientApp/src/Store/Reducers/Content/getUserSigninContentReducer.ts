@@ -1,13 +1,15 @@
 import { Action, Reducer } from "redux";
 import { CombinedDefaults } from "../../Configuration";
-import { IGetUserSigninContent } from "../../States/Content/getUserSigninContentState";
+import { IGetUserSigninContent } from "../../States";
 import { 
     TKnownActions, 
     REQUEST_USER_SIGNIN_CONTENT, 
     RECEIVE_USER_SIGNIN_CONTENT 
 } from "../../Actions/Content/getUserSigninContentAction";
 
-export const GetUserSigninContentReducer: Reducer<IGetUserSigninContent> = (state: IGetUserSigninContent | undefined, incomingAction: Action): IGetUserSigninContent => 
+export const GetUserSigninContentReducer: 
+    Reducer<IGetUserSigninContent> = (state: IGetUserSigninContent | undefined, incomingAction: Action): 
+    IGetUserSigninContent => 
 {
     if (state === undefined) return CombinedDefaults.getUserSigninContent;
 

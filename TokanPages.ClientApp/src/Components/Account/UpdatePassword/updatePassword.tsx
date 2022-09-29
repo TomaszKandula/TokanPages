@@ -3,17 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IGetUpdatePasswordContent } from "../../../Store/States";
-import { DialogAction } from "../../../Store/Actions";
-import { UserUpdatePasswordAction } from "../../../Store/Actions";
+import { DialogAction, UserUpdatePasswordAction } from "../../../Store/Actions";
 import { IUpdateUserPasswordDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { IValidateUpdateForm, ValidateUpdateForm } from "../../../Shared/Services/FormValidation";
 import { GetTextWarning } from "../../../Shared/Services/Utilities";
 import { OperationStatus } from "../../../Shared/enums";
-import {RECEIVED_ERROR_MESSAGE, UPDATE_FORM, UPDATE_PASSWORD_SUCCESS, UPDATE_PASSWORD_WARNING } from "../../../Shared/constants";
 import { UpdatePasswordView } from "./View/updatePasswordView";
 import Validate from "validate.js";
+
+import {
+    RECEIVED_ERROR_MESSAGE, 
+    UPDATE_FORM, 
+    UPDATE_PASSWORD_SUCCESS, 
+    UPDATE_PASSWORD_WARNING 
+} from "../../../Shared/constants";
 
 const useQuery = () => 
 {

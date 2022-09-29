@@ -1,4 +1,4 @@
-import { ISigninUser } from "../../States/Users/signinUserState";
+import { ISigninUser } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
 export const SigninUserDefault: ISigninUser = 

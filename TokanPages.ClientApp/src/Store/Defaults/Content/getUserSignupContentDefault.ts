@@ -1,4 +1,4 @@
-import { IGetUserSignupContent } from "../../States/Content/getUserSignupContentState";
+import { IGetUserSignupContent } from "../../States";
 
 export const GetUserSignupContentDefault: IGetUserSignupContent = 
 {

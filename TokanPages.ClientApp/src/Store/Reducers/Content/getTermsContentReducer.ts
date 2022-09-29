@@ -1,13 +1,15 @@
 import { Action, Reducer } from "redux";
 import { CombinedDefaults } from "../../Configuration";
-import { IGetTermsContent } from "../../States/Content/getTermsContentState";
+import { IGetTermsContent } from "../../States";
 import { 
     TKnownActions,
     RECEIVE_TERMS_CONTENT, 
     REQUEST_TERMS_CONTENT
 } from "../../Actions/Content/getTermsContentAction";
 
-export const GetTermsContentReducer: Reducer<IGetTermsContent> = (state: IGetTermsContent | undefined, incomingAction: Action): IGetTermsContent => 
+export const GetTermsContentReducer: 
+    Reducer<IGetTermsContent> = (state: IGetTermsContent | undefined, incomingAction: Action): 
+    IGetTermsContent => 
 {
     if (state === undefined) return CombinedDefaults.getTermsContent;
 

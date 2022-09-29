@@ -2,12 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Container } from "@material-ui/core";
 import { IApplicationState } from "../../Store/Configuration";
-import { GetNavigationContentAction } from "../../Store/Actions";
-import { GetFooterContentAction } from "../../Store/Actions";
-import { GetContactFormContentAction } from "../../Store/Actions";
-import { Navigation } from "../../Components/Layout";
-import { Footer } from "../../Components/Layout";
+import { Navigation, Footer } from "../../Components/Layout";
 import { ContactForm } from "../../Components/Contact";
+
+import { 
+    GetNavigationContentAction, 
+    GetFooterContentAction, 
+    GetContactFormContentAction 
+} from "../../Store/Actions";
 
 export const ContactPage = () => 
 {

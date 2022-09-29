@@ -1,4 +1,4 @@
-import { IGetResetPasswordContent } from "../../States/Content/getResetPasswordContentState";
+import { IGetResetPasswordContent } from "../../States";
 
 export const GetResetPasswordContentDefault: IGetResetPasswordContent = 
 {

@@ -1,4 +1,4 @@
-import { IGetFooterContent } from "../../States/Content/getFooterContentState";
+import { IGetFooterContent } from "../../States";
 
 export const GetFooterContentDefault: IGetFooterContent = 
 {

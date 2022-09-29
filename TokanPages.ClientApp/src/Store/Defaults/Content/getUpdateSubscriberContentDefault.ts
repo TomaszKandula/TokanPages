@@ -1,4 +1,4 @@
-import { IGetUpdateSubscriberContent } from "../../States/Content/getUpdateSubscriberContentState";
+import { IGetUpdateSubscriberContent } from "../../States";
 
 export const GetUpdateSubscriberContentDefault: IGetUpdateSubscriberContent = 
 {

@@ -1,4 +1,4 @@
-import { IGetActivateAccountContent } from "../../States/Content/getActivateAccountContentState";
+import { IGetActivateAccountContent } from "../../States";
 
 export const GetActivateAccountContentDefault: IGetActivateAccountContent = 
 {

@@ -1,5 +1,5 @@
 import { OperationStatus } from "../../../Shared/enums";
-import { IUpdateSubscriber } from "../../States/Subscribers/updateSubscriberState";
+import { IUpdateSubscriber } from "../../States";
 
 export const UpdateSubscriberDefault: IUpdateSubscriber = 
 {

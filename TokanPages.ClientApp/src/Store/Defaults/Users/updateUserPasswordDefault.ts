@@ -1,4 +1,4 @@
-import { IUpdateUserPassword } from "../../States/Users/updateUserPasswordState";
+import { IUpdateUserPassword } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
 export const UpdateUserPasswordDefault: IUpdateUserPassword = 

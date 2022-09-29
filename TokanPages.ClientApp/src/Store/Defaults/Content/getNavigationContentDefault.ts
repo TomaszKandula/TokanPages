@@ -1,4 +1,4 @@
-import { IGetNavigationContent } from "../../States/Content/getNavigationContentState";
+import { IGetNavigationContent } from "../../States";
 
 export const GetNavigationContentDefault: IGetNavigationContent = 
 {

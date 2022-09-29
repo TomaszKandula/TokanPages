@@ -7,7 +7,9 @@ import {
     REQUEST_FEATURES_CONTENT
 } from "../../Actions/Content/getFeaturesContentAction";
 
-export const GetFeaturesContentReducer: Reducer<IGetFeaturesContent> = (state: IGetFeaturesContent | undefined, incomingAction: Action): IGetFeaturesContent => 
+export const GetFeaturesContentReducer: 
+    Reducer<IGetFeaturesContent> = (state: IGetFeaturesContent | undefined, incomingAction: Action): 
+    IGetFeaturesContent => 
 {
     if (state === undefined) return CombinedDefaults.getFeaturesContent;
 

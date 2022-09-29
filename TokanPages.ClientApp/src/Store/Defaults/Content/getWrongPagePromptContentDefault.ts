@@ -1,4 +1,4 @@
-import { IGetWrongPagePromptContent } from "../../States/Content/getWrongPagePromptContentState";
+import { IGetWrongPagePromptContent } from "../../States";
 
 export const GetWrongPagePromptContentDefault: IGetWrongPagePromptContent = 
 {

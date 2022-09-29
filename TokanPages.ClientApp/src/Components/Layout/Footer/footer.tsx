@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IGetFooterContent } from "../../../Store/States/Content/getFooterContentState";
+import { IGetFooterContent } from "../../../Store/States";
 import { Colours } from "../../../Theme";
 import validate from "validate.js";
 import { FooterView } from "./View/footerView";

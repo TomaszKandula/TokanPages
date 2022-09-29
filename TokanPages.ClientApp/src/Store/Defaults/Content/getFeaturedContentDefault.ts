@@ -1,4 +1,4 @@
-import { IGetFeaturedContent } from "../../States/Content/getFeaturedContentState";
+import { IGetFeaturedContent } from "../../States";
 
 export const GetFeaturedContentDefault: IGetFeaturedContent = 
 {

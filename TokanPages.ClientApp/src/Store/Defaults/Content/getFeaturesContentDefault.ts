@@ -1,4 +1,4 @@
-import { IGetFeaturesContent } from "../../States/Content/getFeaturesContentState";
+import { IGetFeaturesContent } from "../../States";
 
 export const GetFeaturesContentDefault: IGetFeaturesContent = 
 {

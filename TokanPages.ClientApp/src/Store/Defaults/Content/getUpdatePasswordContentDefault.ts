@@ -1,4 +1,4 @@
-import { IGetUpdatePasswordContent } from "../../States/Content/getUpdatePasswordContentState";
+import { IGetUpdatePasswordContent } from "../../States";
 
 export const GetUpdatePasswordContentDefault: IGetUpdatePasswordContent = 
 {

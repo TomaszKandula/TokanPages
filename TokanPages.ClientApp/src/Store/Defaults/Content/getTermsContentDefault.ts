@@ -1,4 +1,4 @@
-import { IGetTermsContent } from "../../States/Content/getTermsContentState";
+import { IGetTermsContent } from "../../States";
 
 export const GetTermsContentDefault: IGetTermsContent = 
 {

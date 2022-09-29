@@ -1,4 +1,4 @@
-import { IGetNewsletterContent } from "../../States/Content/getNewsletterContentState";
+import { IGetNewsletterContent } from "../../States";
 
 export const GetNewsletterContentDefault: IGetNewsletterContent = 
 {

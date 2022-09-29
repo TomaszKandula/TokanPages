@@ -1,4 +1,4 @@
-import { IReAuthenticateUser } from "../../States/Users/reAuthenticateUserState";
+import { IReAuthenticateUser } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
 export const ReAuthenticateUserDefault: IReAuthenticateUser = 

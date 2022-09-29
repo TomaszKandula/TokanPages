@@ -9,7 +9,7 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IGetArticleFeaturesContent } from "../../../Store/States/Content/getArticleFeaturesContentState";
+import { IGetArticleFeaturesContent } from "../../../Store/States";
 import { RenderCardMedia } from "../../../Shared/Components";
 import { ARTICLE_IMAGE_PATH } from "../../../Shared/constants";
 import { FeaturesStyle } from "./featuresStyle";

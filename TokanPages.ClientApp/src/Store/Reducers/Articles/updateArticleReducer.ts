@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { CombinedDefaults } from "../../Configuration";
-import { IUpdateArticle } from "../../States/Articles/updateArticleState";
+import { IUpdateArticle } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 import { 
     TKnownActions, 
@@ -9,7 +9,9 @@ import {
     UPDATE_ARTICLE_RESPONSE, 
 } from "../../Actions/Articles/updateArticleAction";
 
-export const UpdateArticleReducer: Reducer<IUpdateArticle> = (state: IUpdateArticle | undefined, incomingAction: Action): IUpdateArticle => 
+export const UpdateArticleReducer: 
+    Reducer<IUpdateArticle> = (state: IUpdateArticle | undefined, incomingAction: Action): 
+    IUpdateArticle => 
 {
     if (state === undefined) return CombinedDefaults.updateArticle;
 

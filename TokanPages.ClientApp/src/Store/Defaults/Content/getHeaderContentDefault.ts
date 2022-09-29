@@ -1,4 +1,4 @@
-import { IGetHeaderContent } from "../../States/Content/getHeaderContentState";
+import { IGetHeaderContent } from "../../States";
 
 export const GetHeaderContentDefault: IGetHeaderContent = 
 {

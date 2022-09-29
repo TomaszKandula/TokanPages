@@ -1,4 +1,4 @@
-import { IGetClientsContent } from "../../States/Content/getClientsContentState";
+import { IGetClientsContent } from "../../States";
 
 export const GetClientsContentDefault: IGetClientsContent =
 {

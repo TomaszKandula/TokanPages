@@ -1,4 +1,4 @@
-import { IAddSubscriber } from "../../States/Subscribers/addSubscriberState";
+import { IAddSubscriber } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
 export const AddSubscriberDefault: IAddSubscriber = 

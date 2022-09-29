@@ -2,12 +2,14 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
 import { IApplicationState } from "../../Store/Configuration";
-import { GetNavigationContentAction } from "../../Store/Actions";
-import { GetFooterContentAction } from "../../Store/Actions";
-import { GetUserSigninContentAction } from "../../Store/Actions";
-import { Navigation } from "../../Components/Layout";
-import { Footer } from "../../Components/Layout";
+import { Navigation, Footer } from "../../Components/Layout";
 import { UserSignin } from "../../Components/Account";
+
+import { 
+    GetNavigationContentAction, 
+    GetFooterContentAction, 
+    GetUserSigninContentAction 
+} from "../../Store/Actions";
 
 export const SigninPage = (): JSX.Element => 
 {  

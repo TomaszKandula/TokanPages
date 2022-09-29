@@ -2,7 +2,7 @@ import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
 import { UnsubscribeView } from "./unsubscribeView";
-import { IContent } from "../../../Api/Models/Components/unsubscribeContentDto";
+import { IContent } from "../../../Api/Models";
 
 describe("Test component: unsubscribeView.", () => 
 {

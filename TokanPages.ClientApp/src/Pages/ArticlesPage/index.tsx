@@ -3,13 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import { IApplicationState } from "../../Store/Configuration";
-import { GetNavigationContentAction } from "../../Store/Actions";
-import { GetFooterContentAction } from "../../Store/Actions";
+import { GetNavigationContentAction, GetFooterContentAction } from "../../Store/Actions";
 import { ProgressOnScroll } from "../../Shared/Components";
-import { Navigation } from "../../Components/Layout";
-import { Footer } from "../../Components/Layout";
-import { ArticleList } from "../../Components/Articles";
-import { ArticleDetail } from "../../Components/Articles";
+import { Navigation, Footer } from "../../Components/Layout";
+import { ArticleList, ArticleDetail } from "../../Components/Articles";
 import { Colours } from "../../Theme";
 
 const useQuery = () => 

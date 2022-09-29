@@ -7,7 +7,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IGetTestimonialsContent } from "../../../Store/States/Content/getTestimonialsContentState";
+import { IGetTestimonialsContent } from "../../../Store/States";
 import { TESTIMONIALS_PATH } from "../../../Shared/constants";
 import { GetShortText } from "../../../Shared/Services/Utilities";
 import { TestimonialsStyle } from "./testimonialsStyle";

@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { CombinedDefaults } from "../../Configuration";
-import { IArticles } from "../../States/Articles/listArticlesState";
+import { IArticles } from "../../States";
 import { 
     TKnownActions, 
     RECEIVE_ARTICLES, 

@@ -1,4 +1,4 @@
-import { IRaiseDialog } from "../States/raiseDialogState";
+import { IRaiseDialog } from "../States";
 import { IconType } from "../../Shared/enums";
 
 export const RaiseDialogDefault: IRaiseDialog = 

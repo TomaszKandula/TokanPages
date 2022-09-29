@@ -1,13 +1,15 @@
 import { Action, Reducer } from "redux";
 import { CombinedDefaults } from "../../Configuration";
-import { IGetUnsubscribeContent } from "../../States/Content/getUnsubscribeContentState";
+import { IGetUnsubscribeContent } from "../../States";
 import { 
     TKnownActions,
     RECEIVE_UNSUBSCRIBE_CONTENT, 
     REQUEST_UNSUBSCRIBE_CONTENT
 } from "../../Actions/Content/getUnsubscribeContentAction";
 
-export const GetUnsubscribeContentReducer: Reducer<IGetUnsubscribeContent> = (state: IGetUnsubscribeContent | undefined, incomingAction: Action): IGetUnsubscribeContent => 
+export const GetUnsubscribeContentReducer: 
+    Reducer<IGetUnsubscribeContent> = (state: IGetUnsubscribeContent | undefined, incomingAction: Action): 
+    IGetUnsubscribeContent => 
 {
     if (state === undefined) return CombinedDefaults.getUnsubscribeContent;
 

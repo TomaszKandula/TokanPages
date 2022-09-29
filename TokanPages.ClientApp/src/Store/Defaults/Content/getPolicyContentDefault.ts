@@ -1,4 +1,4 @@
-import { IGetPolicyContent } from "../../States/Content/getPolicyContentState";
+import { IGetPolicyContent } from "../../States";
 
 export const GetPolicyContentDefault: IGetPolicyContent = 
 {

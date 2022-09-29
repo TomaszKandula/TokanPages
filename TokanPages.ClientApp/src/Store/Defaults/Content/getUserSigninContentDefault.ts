@@ -1,4 +1,4 @@
-import { IGetUserSigninContent } from "../../States/Content/getUserSigninContentState";
+import { IGetUserSigninContent } from "../../States";
 
 export const GetUserSigninContentDefault: IGetUserSigninContent = 
 {

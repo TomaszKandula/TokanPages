@@ -1,10 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Store/Configuration";
-import { Navigation } from "../../Components/Layout";
-import { Header } from "../../Components/Layout";
 import { Clients } from "../../Components/Clients";
-import { Footer } from "../../Components/Layout";
 import { Technologies } from "../../Components/Technologies";
 import { Featured } from "../../Components/Featured";
 import { Testimonials } from "../../Components/Testimonials";
@@ -12,6 +9,13 @@ import { Newsletter } from "../../Components/Newsletter";
 import { ContactForm } from "../../Components/Contact";
 import { Cookies } from "../../Components/Cookies";
 import { Features } from "../../Components/Features";
+
+import { 
+    Navigation, 
+    Header, 
+    Footer 
+} from "../../Components/Layout";
+
 import { 
     GetNavigationContentAction,
     GetHeaderContentAction,

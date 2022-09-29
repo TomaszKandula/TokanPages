@@ -1,9 +1,8 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "Store/Configuration";
+import { IApplicationState } from "../../../Store/Configuration";
 import { IGetNavigationContent } from "../../../Store/States";
-import { UserDataAction } from "../../../Store/Actions";
-import { LanguageAction } from "../../../Store/Actions";
+import { UserDataAction, LanguageAction } from "../../../Store/Actions";
 import { SetDataInStorage } from "../../../Shared/Services/StorageServices";
 import { SELECTED_LANGUAGE } from "../../../Shared/constants";
 import { NavigationView } from "./View/navigationView";

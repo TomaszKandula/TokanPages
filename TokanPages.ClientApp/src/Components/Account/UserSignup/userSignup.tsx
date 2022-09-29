@@ -2,17 +2,22 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IGetUserSignupContent } from "../../../Store/States";
-import { DialogAction } from "../../../Store/Actions";
-import { UserSignupAction } from "../../../Store/Actions";
+import { DialogAction, UserSignupAction } from "../../../Store/Actions";
 import { IAddUserDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { GetTextWarning } from "../../../Shared/Services/Utilities";
 import { IValidateSignupForm, ValidateSignupForm } from "../../../Shared/Services/FormValidation";
-import { RECEIVED_ERROR_MESSAGE, SIGNUP_FORM, SIGNUP_SUCCESS, SIGNUP_WARNING } from "../../../Shared/constants";
 import { OperationStatus } from "../../../Shared/enums";
 import { UserSignupView } from "./View/userSignupView";
 import Validate from "validate.js";
+
+import {
+    RECEIVED_ERROR_MESSAGE, 
+    SIGNUP_FORM, 
+    SIGNUP_SUCCESS, 
+    SIGNUP_WARNING 
+} from "../../../Shared/constants";
 
 const formDefaultValues: IValidateSignupForm =
 {

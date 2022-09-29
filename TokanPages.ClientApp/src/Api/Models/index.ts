@@ -65,6 +65,7 @@ export type { IIcon } from "./Components/Common/icon";
 export type { ILink } from "./Components/Common/link";
 export type { IRowItem } from "./Components/Common/rowItem";
 export type { ITextItem } from "./Components/Common/textItem";
+export type { IContent } from "./Components/Common/content";
 
 export type { IGetContentManifestDto } from "./Content/getContentManifestDto";
 export type { ILanguageItem } from "./Content/Items/languageItemDto";

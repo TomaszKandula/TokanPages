@@ -1,13 +1,15 @@
 import { Action, Reducer } from "redux";
 import { CombinedDefaults } from "../../Configuration";
-import { IGetActivateAccountContent } from "../../States/Content/getActivateAccountContentState";
+import { IGetActivateAccountContent } from "../../States";
 import { 
     TKnownActions,
     REQUEST_ACTIVATE_ACCOUNT_CONTENT, 
     RECEIVE_ACTIVATE_ACCOUNT_CONTENT
 } from "../../Actions/Content/getActivateAccountContentAction";
 
-export const GetActivateAccountContentReducer: Reducer<IGetActivateAccountContent> = (state: IGetActivateAccountContent | undefined, incomingAction: Action): IGetActivateAccountContent => 
+export const GetActivateAccountContentReducer: 
+    Reducer<IGetActivateAccountContent> = (state: IGetActivateAccountContent | undefined, incomingAction: Action): 
+    IGetActivateAccountContent => 
 {
     if (state === undefined) return CombinedDefaults.getActivateAccountContent;
 

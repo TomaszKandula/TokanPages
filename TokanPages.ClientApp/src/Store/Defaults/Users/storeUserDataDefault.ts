@@ -1,4 +1,4 @@
-import { IStoreUserData } from "../../States/Users/storeUserDataState";
+import { IStoreUserData } from "../../States";
 
 export const StoreUserDataDefault: IStoreUserData = 
 {

@@ -2,17 +2,22 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Validate from "validate.js";
 import { IApplicationState } from "../../Store/Configuration";
-import { SendMessageAction } from "../../Store/Actions";
-import { DialogAction } from "../../Store/Actions";
+import { DialogAction, SendMessageAction } from "../../Store/Actions";
 import { IGetContactFormContent } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { IValidateContactForm, ValidateContactForm } from "../../Shared/Services/FormValidation";
 import { GetTextWarning } from "../../Shared/Services/Utilities";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { CONTACT_FORM, MESSAGE_OUT_SUCCESS, MESSAGE_OUT_WARNING, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { ISendMessageDto } from "../../Api/Models";
 import { ContactFormView } from "./View/contactFormView";
+
+import { 
+    CONTACT_FORM, 
+    MESSAGE_OUT_SUCCESS, 
+    MESSAGE_OUT_WARNING, 
+    RECEIVED_ERROR_MESSAGE 
+} from "../../Shared/constants";
 
 const formDefaultValues: IValidateContactForm =
 {

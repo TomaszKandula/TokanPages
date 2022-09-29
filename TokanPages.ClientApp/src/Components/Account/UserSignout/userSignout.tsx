@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState, CombinedDefaults } from "../../../Store/Configuration";
 import { UserDataAction, UserSigninAction } from "../../../Store/Actions";
-import { IGetUserSignoutContent } from "../../../Store/States/Content/getUserSignoutContentState";
+import { IGetUserSignoutContent } from "../../../Store/States";
 import { USER_DATA } from "../../../Shared/constants";
 import { UserSignoutView } from "./View/userSignoutView";
 

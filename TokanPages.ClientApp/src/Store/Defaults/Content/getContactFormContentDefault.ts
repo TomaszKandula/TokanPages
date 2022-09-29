@@ -1,4 +1,4 @@
-import { IGetContactFormContent } from "../../States/Content/getContactFormContentState";
+import { IGetContactFormContent } from "../../States";
 
 export const GetContactFormContentDefault: IGetContactFormContent = 
 {
