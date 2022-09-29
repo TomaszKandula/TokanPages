@@ -3,13 +3,17 @@ import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IGetAccountContent } from "../../../Store/States";
-import { DialogAction } from "../../../Store/Actions";
-import { UserUpdateAction } from "../../../Store/Actions";
-import { UserDataAction } from "../../../Store/Actions";
-import { UserSigninAction } from "../../../Store/Actions";
-import { UserUpdatePasswordAction } from "../../../Store/Actions";
-import { UserRemoveAction } from "../../../Store/Actions";
-import { UserReAuthenticateAction } from "../../../Store/Actions";
+
+import { 
+    DialogAction, 
+    UserUpdateAction, 
+    UserDataAction, 
+    UserSigninAction, 
+    UserUpdatePasswordAction, 
+    UserRemoveAction, 
+    UserReAuthenticateAction 
+} from "../../../Store/Actions";
+
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { GetTextWarning } from "../../../Shared/Services/Utilities";

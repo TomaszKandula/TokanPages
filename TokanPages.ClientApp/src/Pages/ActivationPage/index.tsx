@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Box, Typography, Container } from "@material-ui/core";
 import { IApplicationState } from "../../Store/Configuration";
-import { GetActivateAccountContentAction } from "../../Store/Actions";
-import { GetNavigationContentAction } from "../../Store/Actions";
-import { GetFooterContentAction } from "../../Store/Actions";
 import { ActivateAccount } from "../../Components/Account";
-import { Navigation } from "../../Components/Layout";
-import { Footer } from "../../Components/Layout";
+import { Navigation, Footer } from "../../Components/Layout";
+
+import { 
+    GetActivateAccountContentAction, 
+    GetNavigationContentAction, 
+    GetFooterContentAction 
+} from "../../Store/Actions";
 
 const useQuery = () => 
 {

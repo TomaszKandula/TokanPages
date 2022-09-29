@@ -7,10 +7,26 @@ import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import BackupIcon from "@material-ui/icons/Backup";
-import { Button, IconButton, CircularProgress, Divider, Grid, TextField, Typography, FormControlLabel } from "@material-ui/core";
-import { ISectionAccessDenied, ISectionAccountInformation, ISectionAccountPassword, ISectionAccountRemoval } from "../../../../Api/Models";
 import { CustomSwitchStyle } from "./customSwitchStyle";
 import { UserAccountStyle } from "./userAccountStyle";
+
+import { 
+    Button, 
+    IconButton, 
+    CircularProgress, 
+    Divider, 
+    Grid, 
+    TextField, 
+    Typography, 
+    FormControlLabel 
+} from "@material-ui/core";
+
+import { 
+    ISectionAccessDenied, 
+    ISectionAccountInformation, 
+    ISectionAccountPassword, 
+    ISectionAccountRemoval 
+} from "../../../../Api/Models";
 
 interface IBinding 
 {

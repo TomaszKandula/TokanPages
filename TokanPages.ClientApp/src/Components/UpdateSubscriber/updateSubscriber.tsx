@@ -1,18 +1,23 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Store/Configuration";
-import { SubscriberUpdateAction } from "../../Store/Actions";
-import { DialogAction } from "../../Store/Actions";
+import { DialogAction, SubscriberUpdateAction } from "../../Store/Actions";
 import { IGetUpdateSubscriberContent } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { GetTextWarning } from "../../Shared/Services/Utilities";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
 import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { NEWSLETTER_SUCCESS, NEWSLETTER_WARNING, RECEIVED_ERROR_MESSAGE, UPDATE_SUBSCRIBER } from "../../Shared/constants";
 import { IUpdateSubscriberDto } from "../../Api/Models";
 import { UpdateSubscriberView } from "./View/updateSubscriberView";
 import Validate from "validate.js";
+
+import { 
+    NEWSLETTER_SUCCESS, 
+    NEWSLETTER_WARNING, 
+    RECEIVED_ERROR_MESSAGE, 
+    UPDATE_SUBSCRIBER 
+} from "../../Shared/constants";
 
 interface IGetUpdateSubscriberContentExtended extends IGetUpdateSubscriberContent
 {

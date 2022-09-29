@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
-import { IGetHeaderContent } from "../../../Store/States/Content/getHeaderContentState";
+import { IGetHeaderContent } from "../../../Store/States";
 import { IMAGES_PATH } from "../../../Shared/constants";
 import { RenderImage } from "../../../Shared/Components";
 import { HeaderStyle } from "./headerStyle";
