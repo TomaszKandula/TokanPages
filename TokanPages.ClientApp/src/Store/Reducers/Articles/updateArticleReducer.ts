@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { CombinedDefaults } from "../../Configuration";
+import { ApplicationDefaults } from "../../Configuration";
 import { IUpdateArticle } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 import { 
@@ -13,13 +13,13 @@ export const UpdateArticleReducer:
     Reducer<IUpdateArticle> = (state: IUpdateArticle | undefined, incomingAction: Action): 
     IUpdateArticle => 
 {
-    if (state === undefined) return CombinedDefaults.updateArticle;
+    if (state === undefined) return ApplicationDefaults.updateArticle;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
         case UPDATE_ARTICLE_CLEAR:
-            return CombinedDefaults.updateArticle;
+            return ApplicationDefaults.updateArticle;
         
         case UPDATE_ARTICLE:
             return { 

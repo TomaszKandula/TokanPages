@@ -1,4 +1,4 @@
-import { AppThunkAction, CombinedDefaults } from "../../Configuration";
+import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_CLIENTS_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { IClientsContentDto } from "../../../Api/Models";
@@ -16,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getClientsContent.content.language;
 
-        if (getState().getClientsContent.content !== CombinedDefaults.getClientsContent.content && !isLanguageChanged) 
+        if (getState().getClientsContent.content !== ApplicationDefaults.getClientsContent.content && !isLanguageChanged) 
         {
             return;
         }

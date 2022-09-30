@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { CombinedDefaults } from "../../Configuration";
+import { ApplicationDefaults } from "../../Configuration";
 import { IArticle } from "../../States";
 import { 
     TKnownActions, 
@@ -12,13 +12,13 @@ export const SelectArticleReducer:
     Reducer<IArticle> = (state: IArticle | undefined, incomingAction: Action): 
     IArticle => 
 {
-    if (state === undefined) return CombinedDefaults.selectArticle;
+    if (state === undefined) return ApplicationDefaults.selectArticle;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
         case RESET_SELECTION:
-            return CombinedDefaults.selectArticle;
+            return ApplicationDefaults.selectArticle;
 
         case REQUEST_ARTICLE:
             return { 

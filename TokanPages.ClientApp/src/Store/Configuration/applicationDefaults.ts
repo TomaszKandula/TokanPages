@@ -45,7 +45,7 @@ import {
     GetStoryContentDefault
 } from "../Defaults";
 
-export const CombinedDefaults: IApplicationState = 
+export const ApplicationDefaults: IApplicationState = 
 {
     raiseError: RaiseErrorDefault,
     raiseDialog: RaiseDialogDefault,

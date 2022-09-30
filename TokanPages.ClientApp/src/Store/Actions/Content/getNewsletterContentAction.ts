@@ -1,4 +1,4 @@
-import { AppThunkAction, CombinedDefaults } from "../../Configuration";
+import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_NEWSLETTER_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { INewsletterContentDto } from "../../../Api/Models";
@@ -16,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getNewsletterContent.content.language;
 
-        if (getState().getNewsletterContent.content !== CombinedDefaults.getNewsletterContent.content && !isLanguageChanged) 
+        if (getState().getNewsletterContent.content !== ApplicationDefaults.getNewsletterContent.content && !isLanguageChanged) 
         {
             return;
         }

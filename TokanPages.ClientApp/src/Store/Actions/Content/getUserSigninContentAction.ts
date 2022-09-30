@@ -1,4 +1,4 @@
-import { AppThunkAction, CombinedDefaults } from "../../Configuration";
+import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_SIGNIN_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { IUserSigninContentDto } from "../../../Api/Models";
@@ -16,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getUserSigninContent.content.language;
 
-        if (getState().getUserSigninContent.content !== CombinedDefaults.getUserSigninContent.content && !isLanguageChanged) 
+        if (getState().getUserSigninContent.content !== ApplicationDefaults.getUserSigninContent.content && !isLanguageChanged) 
         {
             return;
         }

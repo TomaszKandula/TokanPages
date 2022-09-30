@@ -1,4 +1,4 @@
-import { AppThunkAction, CombinedDefaults } from "../../Configuration";
+import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_NAVIGATION_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { INavigationContentDto } from "../../../Api/Models";
@@ -16,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getNavigationContent.content.language;
 
-        if (getState().getNavigationContent.content !== CombinedDefaults.getNavigationContent.content && !isLanguageChanged)
+        if (getState().getNavigationContent.content !== ApplicationDefaults.getNavigationContent.content && !isLanguageChanged)
         {
             return;
         }

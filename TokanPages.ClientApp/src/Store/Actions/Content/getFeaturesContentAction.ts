@@ -1,4 +1,4 @@
-import { AppThunkAction, CombinedDefaults } from "../../Configuration";
+import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_FEATURES_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { IFeaturesContentDto } from "../../../Api/Models";
@@ -16,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getFeaturesContent.content.language;
 
-        if (getState().getFeaturesContent.content !== CombinedDefaults.getFeaturesContent.content && !isLanguageChanged) 
+        if (getState().getFeaturesContent.content !== ApplicationDefaults.getFeaturesContent.content && !isLanguageChanged) 
         {
             return;
         }

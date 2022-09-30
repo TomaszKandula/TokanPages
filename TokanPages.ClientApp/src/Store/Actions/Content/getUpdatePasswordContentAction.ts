@@ -1,4 +1,4 @@
-import { AppThunkAction, CombinedDefaults } from "../../Configuration";
+import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_UPDATE_PASSWORD_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { IUpdatePasswordContentDto } from "../../../Api/Models";
@@ -16,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getUpdatePasswordContent.content.language;
 
-        if (getState().getUpdatePasswordContent.content !== CombinedDefaults.getUpdatePasswordContent.content && !isLanguageChanged) 
+        if (getState().getUpdatePasswordContent.content !== ApplicationDefaults.getUpdatePasswordContent.content && !isLanguageChanged) 
         {
             return;
         }

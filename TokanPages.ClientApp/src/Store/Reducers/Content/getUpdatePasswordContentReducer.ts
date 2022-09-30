@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { CombinedDefaults } from "../../Configuration";
+import { ApplicationDefaults } from "../../Configuration";
 import { IGetUpdatePasswordContent } from "../../States";
 import { 
     TKnownActions,
@@ -11,7 +11,7 @@ export const GetUpdatePasswordContentReducer:
     Reducer<IGetUpdatePasswordContent> = (state: IGetUpdatePasswordContent | undefined, incomingAction: Action): 
     IGetUpdatePasswordContent => 
 {
-    if (state === undefined) return CombinedDefaults.getUpdatePasswordContent;
+    if (state === undefined) return ApplicationDefaults.getUpdatePasswordContent;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

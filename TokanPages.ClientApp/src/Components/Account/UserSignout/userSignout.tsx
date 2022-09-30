@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState, CombinedDefaults } from "../../../Store/Configuration";
+import { IApplicationState, ApplicationDefaults } from "../../../Store/Configuration";
 import { UserDataAction, UserSigninAction } from "../../../Store/Actions";
 import { IGetUserSignoutContent } from "../../../Store/States";
 import { USER_DATA } from "../../../Shared/constants";
@@ -23,7 +23,7 @@ export const UserSignout = (props: IGetUserSignoutContent): JSX.Element =>
     React.useEffect(() => 
     {
         const isUserTokenRemoved = (): boolean => localStorage.getItem(USER_DATA) === null; 
-        const isUserDataEmpty = (): boolean => data.userData === CombinedDefaults.storeUserData.userData;
+        const isUserDataEmpty = (): boolean => data.userData === ApplicationDefaults.storeUserData.userData;
 
         if (isUserTokenRemoved() && isUserDataEmpty() && progress) 
         {

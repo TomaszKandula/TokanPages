@@ -1,4 +1,4 @@
-import { AppThunkAction, CombinedDefaults } from "../../Configuration";
+import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_RESET_PASSWORD_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { IResetPasswordContentDto } from "../../../Api/Models";
@@ -16,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getResetPasswordContent.content.language;
 
-        if (getState().getResetPasswordContent.content !== CombinedDefaults.getResetPasswordContent.content && !isLanguageChanged) 
+        if (getState().getResetPasswordContent.content !== ApplicationDefaults.getResetPasswordContent.content && !isLanguageChanged) 
         {
             return;
         }

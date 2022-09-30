@@ -2,14 +2,14 @@
 import thunk from "redux-thunk";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import { History } from "history";
-import { CombinedReducers } from "./combinedReducers";
-import { CombinedDefaults } from "./combinedDefaults";
+import { ApplicationReducers } from "./applicationReducers";
+import { ApplicationDefaults } from "./applicationDefaults";
 import { IApplicationState } from "./applicationState";
 
 export const ConfigureStore = (history: History, initialState?: IApplicationState): any =>
 {
     const initialAppState = initialState === undefined 
-        ? CombinedDefaults 
+        ? ApplicationDefaults 
         : initialState;
     
     const middleware = 
@@ -20,7 +20,7 @@ export const ConfigureStore = (history: History, initialState?: IApplicationStat
 
     const rootReducer = combineReducers(
     {
-        ...CombinedReducers,
+        ...ApplicationReducers,
         router: connectRouter(history)
     });
 

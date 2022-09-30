@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { CombinedDefaults } from "../../Configuration";
+import { ApplicationDefaults } from "../../Configuration";
 import { IGetNavigationContent } from "../../States";
 import { 
     TKnownActions,
@@ -11,7 +11,7 @@ export const GetNavigationContentReducer:
     Reducer<IGetNavigationContent> = (state: IGetNavigationContent | undefined, incomingAction: Action): 
     IGetNavigationContent => 
 {
-    if (state === undefined) return CombinedDefaults.getNavigationContent;
+    if (state === undefined) return ApplicationDefaults.getNavigationContent;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

@@ -1,4 +1,4 @@
-import { AppThunkAction, CombinedDefaults } from "../../Configuration";
+import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { STORY_URL } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { IDocumentContentDto } from "../../../Api/Models";
@@ -16,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getStoryContent.content.language;
 
-        if (getState().getStoryContent.content !== CombinedDefaults.getStoryContent.content && !isLanguageChanged) 
+        if (getState().getStoryContent.content !== ApplicationDefaults.getStoryContent.content && !isLanguageChanged) 
         {
             return;
         }

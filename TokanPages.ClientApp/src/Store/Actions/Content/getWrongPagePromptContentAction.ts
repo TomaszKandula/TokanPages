@@ -1,4 +1,4 @@
-import { AppThunkAction, CombinedDefaults } from "../../Configuration";
+import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_WRONG_PAGE_PROMPT_CONTENT } from "../../../Shared/constants";
 import { TErrorActions } from "../raiseErrorAction";
 import { IWrongPagePromptContentDto } from "../../../Api/Models";
@@ -16,7 +16,7 @@ export const ActionCreators =
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getWrongPagePromptContent.content.language;
 
-        if (getState().getWrongPagePromptContent.content !== CombinedDefaults.getWrongPagePromptContent.content && !isLanguageChanged)
+        if (getState().getWrongPagePromptContent.content !== ApplicationDefaults.getWrongPagePromptContent.content && !isLanguageChanged)
         {
             return;
         }

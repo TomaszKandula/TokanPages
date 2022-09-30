@@ -44,7 +44,7 @@ import {
     GetStoryContentReducer
 } from "../Reducers";
 
-export const CombinedReducers = 
+export const ApplicationReducers = 
 {
     raiseError: RaiseErrorReducer,
     raiseDialog: RaiseDialogReducer,

@@ -1,4 +1,4 @@
 export type { IApplicationState, AppThunkAction } from "./applicationState";
-export { CombinedDefaults } from "./combinedDefaults";
-export { CombinedReducers } from "./combinedReducers";
+export { ApplicationDefaults } from "./applicationDefaults";
+export { ApplicationReducers } from "./applicationReducers";
 export { ConfigureStore } from "./configureStore"; 

@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { CombinedDefaults } from "../../Configuration";
+import { ApplicationDefaults } from "../../Configuration";
 import { IGetHeaderContent } from "../../States";
 import { 
     TKnownActions,
@@ -11,7 +11,7 @@ export const GetHeaderContentReducer:
     Reducer<IGetHeaderContent> = (state: IGetHeaderContent | undefined, incomingAction: Action): 
     IGetHeaderContent => 
 {
-    if (state === undefined) return CombinedDefaults.getHeaderContent;
+    if (state === undefined) return ApplicationDefaults.getHeaderContent;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

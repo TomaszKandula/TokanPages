@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { CombinedDefaults } from "../../Configuration";
+import { ApplicationDefaults } from "../../Configuration";
 import { IGetFooterContent } from "../../States";
 import { 
     TKnownActions,
@@ -11,7 +11,7 @@ export const GetFooterContentReducer:
     Reducer<IGetFooterContent> = (state: IGetFooterContent | undefined, incomingAction: Action): 
     IGetFooterContent => 
 {
-    if (state === undefined) return CombinedDefaults.getFooterContent;
+    if (state === undefined) return ApplicationDefaults.getFooterContent;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

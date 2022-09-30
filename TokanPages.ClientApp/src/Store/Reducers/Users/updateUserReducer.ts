@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { CombinedDefaults } from "../../Configuration";
+import { ApplicationDefaults } from "../../Configuration";
 import { IUpdateUser } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 import { 
@@ -13,7 +13,7 @@ export const UpdateUserReducer:
     Reducer<IUpdateUser> = (state: IUpdateUser | undefined, incomingAction: Action): 
     IUpdateUser => 
 {
-    if (state === undefined) return CombinedDefaults.updateUser;
+    if (state === undefined) return ApplicationDefaults.updateUser;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 
