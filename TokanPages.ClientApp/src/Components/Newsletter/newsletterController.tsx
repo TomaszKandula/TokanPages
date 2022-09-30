@@ -25,8 +25,8 @@ export const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
 
     const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(NEWSLETTER, text))), [ dispatch ]);
     const showWarning = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(WarningMessage(NEWSLETTER, text))), [ dispatch ]);
-    const addSubscriber = React.useCallback((payload: IAddSubscriberDto) => dispatch(SubscriberAddAction.addSubscriber(payload)), [ dispatch ]);
-    const addSubscriberClear = React.useCallback(() => dispatch(SubscriberAddAction.addSubscriberClear()), [ dispatch ]);
+    const addSubscriber = React.useCallback((payload: IAddSubscriberDto) => dispatch(SubscriberAddAction.add(payload)), [ dispatch ]);
+    const addSubscriberClear = React.useCallback(() => dispatch(SubscriberAddAction.clear()), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 
     {

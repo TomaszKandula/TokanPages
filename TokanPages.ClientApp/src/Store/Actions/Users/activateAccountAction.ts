@@ -22,7 +22,7 @@ export const ActionCreators =
     {
         dispatch({ type: ACTIVATE_ACCOUNT_CLEAR });
     },
-    activateAccount: (payload: IActivateUserDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    activate: (payload: IActivateUserDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: ACTIVATE_ACCOUNT });
 

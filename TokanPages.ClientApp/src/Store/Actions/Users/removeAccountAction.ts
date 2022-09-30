@@ -21,7 +21,7 @@ export const ActionCreators =
     {
         dispatch({ type: REMOVE_ACCOUNT_CLEAR });
     },
-    removeAccount: (payload: IRemoveUserDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    remove: (payload: IRemoveUserDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: REMOVE_ACCOUNT });
 

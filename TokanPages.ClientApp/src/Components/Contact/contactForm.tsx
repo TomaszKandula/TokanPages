@@ -40,8 +40,8 @@ export const ContactForm = (props: IGetContactFormContent): JSX.Element =>
 
     const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(CONTACT_FORM, text))), [ dispatch ]);
     const showWarning = React.useCallback((text: string)=> dispatch(DialogAction.raiseDialog(WarningMessage(CONTACT_FORM, text))), [ dispatch ]);
-    const sendMessage = React.useCallback((payload: ISendMessageDto) => dispatch(SendMessageAction.sendMessage(payload)), [ dispatch ]);
-    const sendMessageClear = React.useCallback(() => dispatch(SendMessageAction.sendMessageClear()), [ dispatch ]);
+    const sendMessage = React.useCallback((payload: ISendMessageDto) => dispatch(SendMessageAction.send(payload)), [ dispatch ]);
+    const sendMessageClear = React.useCallback(() => dispatch(SendMessageAction.clear()), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 
     {

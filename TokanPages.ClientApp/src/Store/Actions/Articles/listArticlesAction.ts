@@ -15,7 +15,7 @@ export type TKnownActions = IRequestArticlesAction | IReceiveArticlesAction | TE
 
 export const ActionCreators = 
 {
-    requestArticles: (): AppThunkAction<TKnownActions> => (dispatch) =>
+    get: (): AppThunkAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: REQUEST_ARTICLES });
 

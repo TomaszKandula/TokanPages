@@ -17,11 +17,11 @@ export type TKnownActions = IApiSendMessage | IApiSendMessageClear | IApiSendMes
 
 export const ActionCreators = 
 {
-    sendMessageClear: (): AppThunkAction<TKnownActions> => (dispatch) => 
+    clear: (): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: API_SEND_MESSAGE_CLEAR });
     },
-    sendMessage: (payload: ISendMessageDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    send: (payload: ISendMessageDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: API_SEND_MESSAGE });
 

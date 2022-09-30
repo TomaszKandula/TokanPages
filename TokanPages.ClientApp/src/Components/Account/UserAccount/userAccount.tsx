@@ -82,7 +82,7 @@ export const UserAccount = (props: IGetAccountContent): JSX.Element =>
     const postUpdatePassword = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(UserUpdatePasswordAction.update(payload)), [ dispatch ]);
     const postUpdatePasswordClear = React.useCallback(() => dispatch(UserUpdatePasswordAction.clear()), [ dispatch ]);
 
-    const postRemoveAccount = React.useCallback((payload: IRemoveUserDto) => dispatch(UserRemoveAction.removeAccount(payload)), [ dispatch ]);
+    const postRemoveAccount = React.useCallback((payload: IRemoveUserDto) => dispatch(UserRemoveAction.remove(payload)), [ dispatch ]);
     const postRemoveAccountClear = React.useCallback(() => dispatch(UserRemoveAction.clear), [ dispatch ]);
 
     const reAuthenticate = React.useCallback(() => dispatch(UserReAuthenticateAction.reAuthenticate()), [ dispatch ]);

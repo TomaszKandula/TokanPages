@@ -24,7 +24,7 @@ export const ArticleCard = (props: IArticleCard): JSX.Element =>
 
     const onClickEvent = () => 
     {
-        dispatch(ArticleAction.selectArticle(props.id));
+        dispatch(ArticleAction.select(props.id));
         history.push(articleUrl);
     };
 

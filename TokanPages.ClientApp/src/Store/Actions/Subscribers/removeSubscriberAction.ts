@@ -15,7 +15,7 @@ export type TKnownActions = IApiRemoveSubscriber | IApiRemoveSubscriberResponse 
 
 export const ActionCreators = 
 {
-    removeSubscriber: (payload: IRemoveSubscriberDto):  AppThunkAction<TKnownActions> => (dispatch) => 
+    remove: (payload: IRemoveSubscriberDto):  AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: REMOVE_SUBSCRIBER });
 

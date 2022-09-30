@@ -11,7 +11,7 @@ export const ArticleList = (): JSX.Element =>
     
     React.useEffect(() => 
     { 
-        dispatch(ArticlesAction.requestArticles())
+        dispatch(ArticlesAction.get())
     }, 
     [ dispatch ]);
 

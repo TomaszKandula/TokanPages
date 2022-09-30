@@ -55,11 +55,11 @@ const DispatchCall = async (dispatch: any, url: string, data: any) =>
 
 export const ActionCreators = 
 {
-    updateArticleClear: (): AppThunkAction<TKnownActions> => (dispatch) => 
+    clear: (): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: UPDATE_ARTICLE_CLEAR });
     },
-    updateArticleContent: (payload: IUpdateArticleContentDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    updateContent: (payload: IUpdateArticleContentDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_CONTENT, 
         {  
@@ -70,14 +70,14 @@ export const ActionCreators =
             imageToUpload: payload.imageToUpload
         });
     },
-    updateArticleCount: (payload: IUpdateArticleCountDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    updateCount: (payload: IUpdateArticleCountDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_COUNT, 
         {  
             id: payload.id
         });
     },
-    updateArticleLikes: (payload: IUpdateArticleLikesDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    updateLikes: (payload: IUpdateArticleLikesDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_LIKES, 
         {  
@@ -85,7 +85,7 @@ export const ActionCreators =
             addToLikes: payload.addToLikes
         });
     },
-    updateArticleVisibility: (payload: IUpdateArticleVisibilityDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    updateVisibility: (payload: IUpdateArticleVisibilityDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_VISIBILITY, 
         {  

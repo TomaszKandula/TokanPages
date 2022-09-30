@@ -17,11 +17,11 @@ export type TKnownActions = IResetSelection | IRequestArticleAction | IReceiveAr
 
 export const ActionCreators = 
 {
-    resetSelection: (): AppThunkAction<TKnownActions> => (dispatch) =>
+    reset: (): AppThunkAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: RESET_SELECTION });
-    },   
-    selectArticle: (id: string): AppThunkAction<TKnownActions> => (dispatch) =>
+    },
+    select: (id: string): AppThunkAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: REQUEST_ARTICLE });
 

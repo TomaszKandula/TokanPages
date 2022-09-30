@@ -25,7 +25,7 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
     const user = useSelector((state: IApplicationState) => state.storeUserData);
 
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
-        dispatch(ArticleAction.selectArticle(props.id));
+        dispatch(ArticleAction.select(props.id));
 
     const [popoverElement, setPopover] = React.useState<HTMLElement | null>(null);
     const [totalThumbs, setTotalThumbs] = React.useState(0);
@@ -41,7 +41,7 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
 
     const updateUserLikes = React.useCallback(() => 
     {
-        dispatch(UpdateAction.updateArticleLikes(
+        dispatch(UpdateAction.updateLikes(
         { 
             id: props.id, 
             addToLikes: userLikes, 
@@ -66,7 +66,7 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
     React.useEffect(() => 
     {
         if (selection.isLoading) return; 
-        dispatch(UpdateAction.updateArticleCount(
+        dispatch(UpdateAction.updateCount(
         {
             id: props.id
         }));
@@ -105,7 +105,7 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
 
     const backButtonHandler = () =>
     {
-        dispatch(ArticleAction.resetSelection());
+        dispatch(ArticleAction.reset());
         history.push("/articles");
     };
 

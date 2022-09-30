@@ -48,7 +48,7 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
 
     const activateAccountState = useSelector((state: IApplicationState) => state.activateAccount);
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
-    const activateAccount = React.useCallback((payload: IActivateUserDto) => dispatch(UserActivateAction.activateAccount(payload)), [ dispatch ]);
+    const activateAccount = React.useCallback((payload: IActivateUserDto) => dispatch(UserActivateAction.activate(payload)), [ dispatch ]);
 
     const [content, setContent] = React.useState(onProcessing);
     const [buttonDisabled, setButtonDisabled] = React.useState(true);

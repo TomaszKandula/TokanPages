@@ -42,7 +42,7 @@ export const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element 
     const [buttonState, setButtonState] = React.useState(true);
     const [progress, setProgress] = React.useState(false);
 
-    const removeSubscriber = React.useCallback((payload: IRemoveSubscriberDto) => dispatch(SubscriberRemoveAction.removeSubscriber(payload)), [ dispatch ]);
+    const removeSubscriber = React.useCallback((payload: IRemoveSubscriberDto) => dispatch(SubscriberRemoveAction.remove(payload)), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 
     {

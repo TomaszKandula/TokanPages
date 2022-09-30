@@ -15,7 +15,7 @@ export type TKnownActions = IApiUpdateSubscriber | IApiUpdateSubscriberResponse 
 
 export const ActionCreators = 
 {
-    updateSubscriber: (payload: IUpdateSubscriberDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    update: (payload: IUpdateSubscriberDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: UPDATE_SUBSCRIBER });
 

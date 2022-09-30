@@ -17,11 +17,11 @@ export type TKnownActions = IApiAddSubscriber | IApiAddSubscriberClear | IApiAdd
 
 export const ActionCreators = 
 {
-    addSubscriberClear: (): AppThunkAction<TKnownActions> => (dispatch) => 
+    clear: (): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: ADD_SUBSCRIBER_CLEAR });
     },    
-    addSubscriber: (payload: IAddSubscriberDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    add: (payload: IAddSubscriberDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: ADD_SUBSCRIBER });
 
