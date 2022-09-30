@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Slide, SlideProps } from "@material-ui/core";
 import { IApplicationState } from "../../../Store/Configuration";
-import { ErrorAction } from "../../../Store/Actions";
+import { ApplicationError } from "../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../constants";
 import { DialogType } from "../../enums";
 import { ApplicationToastView } from "./View/applicationToastView";
@@ -37,7 +37,7 @@ export const ApplicationToast = (): JSX.Element =>
     { 
         if (!toastState.isOpen && !Validate.isEmpty(toastState.errorMessage))
         {
-            dispatch(ErrorAction.clearError());
+            dispatch(ApplicationError.clearError());
             setToastState(ToastState);
         }
     }, 

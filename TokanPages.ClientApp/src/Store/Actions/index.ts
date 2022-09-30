@@ -1,6 +1,6 @@
-export { ActionCreators as DialogAction } from "./raiseDialogAction";
-export { ActionCreators as ErrorAction } from "./raiseErrorAction";
-export { ActionCreators as LanguageAction } from "./userLanguageAction";
+export { ActionCreators as ApplicationDialog } from "./raiseDialogAction";
+export { ActionCreators as ApplicationError } from "./raiseErrorAction";
+export { ActionCreators as ApplicationLanguage } from "./userLanguageAction";
 
 export { ActionCreators as ArticlesAction } from "./Articles/listArticlesAction";
 export { ActionCreators as ArticleAction } from "./Articles/selectArticleAction";

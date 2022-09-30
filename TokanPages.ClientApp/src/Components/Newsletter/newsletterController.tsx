@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Store/Configuration";
 import { IGetNewsletterContent } from "../../Store/States";
 import { SubscriberAddAction } from "../../Store/Actions";
-import { DialogAction } from "../../Store/Actions";
+import { ApplicationDialog } from "../../Store/Actions";
 import { OperationStatus } from "../../Shared/enums";
 import { GetTextWarning } from "../../Shared/Services/Utilities";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
@@ -23,8 +23,8 @@ export const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
     const [form, setForm] = React.useState({email: ""});
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(NEWSLETTER, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(WarningMessage(NEWSLETTER, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raiseDialog(SuccessMessage(NEWSLETTER, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialog.raiseDialog(WarningMessage(NEWSLETTER, text))), [ dispatch ]);
     const addSubscriber = React.useCallback((payload: IAddSubscriberDto) => dispatch(SubscriberAddAction.add(payload)), [ dispatch ]);
     const addSubscriberClear = React.useCallback(() => dispatch(SubscriberAddAction.clear()), [ dispatch ]);
 

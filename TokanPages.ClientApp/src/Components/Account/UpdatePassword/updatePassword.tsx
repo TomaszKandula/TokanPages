@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IGetUpdatePasswordContent } from "../../../Store/States";
-import { DialogAction, UserUpdatePasswordAction } from "../../../Store/Actions";
+import { ApplicationDialog, UserUpdatePasswordAction } from "../../../Store/Actions";
 import { IUpdateUserPasswordDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
@@ -44,8 +44,8 @@ export const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
     const userId = userDataState?.userData.userId;
     const disableForm = Validate.isEmpty(resetId) && Validate.isEmpty(userId);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(UPDATE_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(WarningMessage(UPDATE_FORM, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raiseDialog(SuccessMessage(UPDATE_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialog.raiseDialog(WarningMessage(UPDATE_FORM, text))), [ dispatch ]);
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);

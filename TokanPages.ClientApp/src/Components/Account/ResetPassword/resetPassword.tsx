@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IGetResetPasswordContent } from "../../../Store/States";
-import { DialogAction, UserResetPasswordAction } from "../../../Store/Actions";
+import { ApplicationDialog, UserResetPasswordAction } from "../../../Store/Actions";
 import { IResetUserPasswordDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
@@ -30,8 +30,8 @@ export const ResetPassword = (props: IGetResetPasswordContent): JSX.Element =>
     const resetUserPasswordState = useSelector((state: IApplicationState) => state.resetUserPassword);
     const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
     
-    const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(RESET_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(WarningMessage(RESET_FORM, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raiseDialog(SuccessMessage(RESET_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialog.raiseDialog(WarningMessage(RESET_FORM, text))), [ dispatch ]);
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { LanguageAction } from "../../Store/Actions";
+import { ApplicationLanguage } from "../../Store/Actions";
 import { IGetContentManifestDto, ILanguageItem } from "../../Api/Models";
 import { SELECTED_LANGUAGE } from "../../Shared/constants";
 import { GetDataFromStorage } from "./StorageServices";
@@ -50,5 +50,5 @@ export const UpdateUserLanguage = (manifest: IGetContentManifestDto): void =>
     const languageId = IsLanguageIdValid(preservedId, languages) ? preservedId : defaultId;
 
     const dispatch = useDispatch();    
-    dispatch(LanguageAction.setLanguage({ id: languageId, languages: languages }));
+    dispatch(ApplicationLanguage.setLanguage({ id: languageId, languages: languages }));
 }

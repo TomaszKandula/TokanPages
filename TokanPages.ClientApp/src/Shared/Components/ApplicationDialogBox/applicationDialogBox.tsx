@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
-import { DialogAction } from "../../../Store/Actions";
+import { ApplicationDialog } from "../../../Store/Actions";
 import { IRaiseDialog } from "../../../Store/States";
 import { IconType } from "../../enums";
 import { ApplicationDialogBoxView } from "./View/applicationDialogBoxView";
@@ -30,7 +30,7 @@ export const ApplicationDialogBox = (): JSX.Element =>
     { 
         if (!dialogState.state && !Validate.isEmpty(dialogState.message))
         {
-            dispatch(DialogAction.clearDialog());
+            dispatch(ApplicationDialog.clearDialog());
             setDialogState(DialogState);
         }
     }, 
