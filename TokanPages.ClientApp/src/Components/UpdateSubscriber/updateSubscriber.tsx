@@ -35,8 +35,8 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
     const [buttonState, setButtonState] = React.useState(buttonDefaultState);
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raiseDialog(SuccessMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialog.raiseDialog(WarningMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(SuccessMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialog.raise(WarningMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
     const updateSubscriber = React.useCallback((payload: IUpdateSubscriberDto) => dispatch(SubscriberUpdateAction.update(payload)), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 

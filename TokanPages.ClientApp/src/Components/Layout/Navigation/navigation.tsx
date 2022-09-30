@@ -21,7 +21,7 @@ export const Navigation = (props: IGetNavigationContent): JSX.Element =>
     {
         const value = event.target.value as string;
         SetDataInStorage({ selection: value, key: SELECTED_LANGUAGE });
-        dispatch(ApplicationLanguage.setLanguage({ id: value, languages: languages.languages }));
+        dispatch(ApplicationLanguage.set({ id: value, languages: languages.languages }));
     };
 
     const toggleDrawer = (open: boolean) => (event: any) => 

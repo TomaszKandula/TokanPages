@@ -11,11 +11,11 @@ export type TKnownActions = ISetDefaultLanguage | ISetLanguage;
 
 export const ActionCreators = 
 {
-    setDefaultLanguage: (): AppThunkAction<TKnownActions> => (dispatch) => 
+    revert: (): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: SET_DEFAULT_LANGUAGE });
     },
-    setLanguage: (language: IUserLanguage): AppThunkAction<TKnownActions> => (dispatch) => 
+    set: (language: IUserLanguage): AppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: SET_LANGUAGE, language: language });
     }

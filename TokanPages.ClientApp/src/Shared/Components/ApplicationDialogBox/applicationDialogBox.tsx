@@ -30,7 +30,7 @@ export const ApplicationDialogBox = (): JSX.Element =>
     { 
         if (!dialogState.state && !Validate.isEmpty(dialogState.message))
         {
-            dispatch(ApplicationDialog.clearDialog());
+            dispatch(ApplicationDialog.clear());
             setDialogState(DialogState);
         }
     }, 

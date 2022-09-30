@@ -11,11 +11,11 @@ export type TDialogActions = IClearDialogBox | IRaiseDialogBox;
 
 export const ActionCreators = 
 {
-    clearDialog: (): AppThunkAction<TDialogActions> => (dispatch) => 
+    clear: (): AppThunkAction<TDialogActions> => (dispatch) => 
     {
         dispatch({ type: CLEAR_DIALOG });
     },
-    raiseDialog: (dialog: IRaiseDialog): AppThunkAction<TDialogActions> => (dispatch) => 
+    raise: (dialog: IRaiseDialog): AppThunkAction<TDialogActions> => (dispatch) => 
     {
         dispatch({ type: RAISE_DIALOG, dialog: dialog });
     }

@@ -38,8 +38,8 @@ export const ContactForm = (props: IGetContactFormContent): JSX.Element =>
     const [form, setForm] = React.useState(formDefaultValues);   
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raiseDialog(SuccessMessage(CONTACT_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialog.raiseDialog(WarningMessage(CONTACT_FORM, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(SuccessMessage(CONTACT_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialog.raise(WarningMessage(CONTACT_FORM, text))), [ dispatch ]);
     const sendMessage = React.useCallback((payload: ISendMessageDto) => dispatch(SendMessageAction.send(payload)), [ dispatch ]);
     const sendMessageClear = React.useCallback(() => dispatch(SendMessageAction.clear()), [ dispatch ]);
 

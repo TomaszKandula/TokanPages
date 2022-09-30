@@ -37,7 +37,7 @@ export const ApplicationToast = (): JSX.Element =>
     { 
         if (!toastState.isOpen && !Validate.isEmpty(toastState.errorMessage))
         {
-            dispatch(ApplicationError.clearError());
+            dispatch(ApplicationError.clear());
             setToastState(ToastState);
         }
     }, 

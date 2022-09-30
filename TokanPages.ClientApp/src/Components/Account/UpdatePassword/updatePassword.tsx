@@ -44,8 +44,8 @@ export const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
     const userId = userDataState?.userData.userId;
     const disableForm = Validate.isEmpty(resetId) && Validate.isEmpty(userId);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raiseDialog(SuccessMessage(UPDATE_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialog.raiseDialog(WarningMessage(UPDATE_FORM, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(SuccessMessage(UPDATE_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(WarningMessage(UPDATE_FORM, text))), [ dispatch ]);
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);

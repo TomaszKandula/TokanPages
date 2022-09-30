@@ -37,8 +37,8 @@ export const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
     const [form, setForm] = React.useState(formDefaultValues);   
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raiseDialog(SuccessMessage(SIGNUP_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialog.raiseDialog(WarningMessage(SIGNUP_FORM, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(SuccessMessage(SIGNUP_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(WarningMessage(SIGNUP_FORM, text))), [ dispatch ]);
     const signupUser = React.useCallback((payload: IAddUserDto) => dispatch(UserSignupAction.signup(payload)), [ dispatch ]);
     const clearUser = React.useCallback(() => dispatch(UserSignupAction.clear()), [ dispatch ]);
 

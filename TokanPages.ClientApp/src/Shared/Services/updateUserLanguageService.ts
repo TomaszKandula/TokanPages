@@ -50,5 +50,5 @@ export const UpdateUserLanguage = (manifest: IGetContentManifestDto): void =>
     const languageId = IsLanguageIdValid(preservedId, languages) ? preservedId : defaultId;
 
     const dispatch = useDispatch();    
-    dispatch(ApplicationLanguage.setLanguage({ id: languageId, languages: languages }));
+    dispatch(ApplicationLanguage.set({ id: languageId, languages: languages }));
 }

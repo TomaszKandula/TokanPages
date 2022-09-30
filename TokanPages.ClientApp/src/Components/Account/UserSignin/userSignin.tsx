@@ -29,7 +29,7 @@ export const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
     const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
-    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialog.raiseDialog(WarningMessage(SIGNIN_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(WarningMessage(SIGNIN_FORM, text))), [ dispatch ]);
     const signinUser = React.useCallback((payload: IAuthenticateUserDto) => dispatch(UserSigninAction.signin(payload)), [ dispatch ]);
     const clearUser = React.useCallback(() => dispatch(UserSigninAction.clear()), [ dispatch ]);
     const clearForm = React.useCallback(() => 

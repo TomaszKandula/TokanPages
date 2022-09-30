@@ -73,8 +73,8 @@ export const UserAccount = (props: IGetAccountContent): JSX.Element =>
     const [passwordFormProgress, setPasswordFormProgress] = React.useState(false);
     const [deleteAccountProgress, setDeleteAccountProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raiseDialog(SuccessMessage(ACCOUNT_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialog.raiseDialog(WarningMessage(ACCOUNT_FORM, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(SuccessMessage(ACCOUNT_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialog.raise(WarningMessage(ACCOUNT_FORM, text))), [ dispatch ]);
 
     const postUpdateUser = React.useCallback((payload: IUpdateUserDto) => dispatch(UserUpdateAction.update(payload)), [ dispatch ]);
     const postUpdateUserClear = React.useCallback(() => dispatch(UserUpdateAction.clear()), [ dispatch ]);
