@@ -12,7 +12,7 @@ export type TKnownActions = IRequestUpdatePasswordContent | IReceiveUpdatePasswo
 
 export const ActionCreators = 
 {
-    getUpdatePasswordContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getUpdatePasswordContent.content.language;
 

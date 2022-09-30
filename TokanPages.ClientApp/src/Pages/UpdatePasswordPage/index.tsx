@@ -22,9 +22,9 @@ export const UpdatePasswordPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.getNavigationContent());
-        dispatch(GetFooterContentAction.getFooterContent());
-        dispatch(GetUpdatePasswordContentAction.getUpdatePasswordContent());
+        dispatch(GetNavigationContentAction.get());
+        dispatch(GetFooterContentAction.get());
+        dispatch(GetUpdatePasswordContentAction.get());
     }, 
     [ dispatch, language?.id ]);
     

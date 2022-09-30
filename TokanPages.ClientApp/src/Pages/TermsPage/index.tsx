@@ -22,9 +22,9 @@ export const TermsPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.getNavigationContent());
-        dispatch(GetFooterContentAction.getFooterContent());
-        dispatch(GetTermsContentAction.getTermsContent());
+        dispatch(GetNavigationContentAction.get());
+        dispatch(GetFooterContentAction.get());
+        dispatch(GetTermsContentAction.get());
     }, 
     [ dispatch, language?.id ]);
 

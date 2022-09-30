@@ -30,9 +30,9 @@ export const UnsubscribePage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.getNavigationContent());
-        dispatch(GetFooterContentAction.getFooterContent());
-        dispatch(GetUnsubscribeContentAction.getUnsubscribeContent());
+        dispatch(GetNavigationContentAction.get());
+        dispatch(GetFooterContentAction.get());
+        dispatch(GetUnsubscribeContentAction.get());
     }, 
     [ dispatch, language?.id ]);
     

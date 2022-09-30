@@ -22,9 +22,9 @@ export const SigninPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.getNavigationContent());
-        dispatch(GetFooterContentAction.getFooterContent());
-        dispatch(GetUserSigninContentAction.getUserSigninContent());
+        dispatch(GetNavigationContentAction.get());
+        dispatch(GetFooterContentAction.get());
+        dispatch(GetUserSigninContentAction.get());
     }, 
     [ dispatch, language?.id ]);
     

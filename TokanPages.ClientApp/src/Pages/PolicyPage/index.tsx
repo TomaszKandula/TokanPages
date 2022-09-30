@@ -22,9 +22,9 @@ export const PolicyPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.getNavigationContent());
-        dispatch(GetFooterContentAction.getFooterContent());
-        dispatch(GetPolicyContentAction.getPolicyContent());
+        dispatch(GetNavigationContentAction.get());
+        dispatch(GetFooterContentAction.get());
+        dispatch(GetPolicyContentAction.get());
     }, 
     [ dispatch, language?.id ]);
 

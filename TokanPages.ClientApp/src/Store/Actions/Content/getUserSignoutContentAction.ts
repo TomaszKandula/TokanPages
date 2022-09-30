@@ -12,7 +12,7 @@ export type TKnownActions = IRequestSignoutFormContent | IReceiveSignoutFormCont
 
 export const ActionCreators = 
 {
-    getUserSignoutContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getUserSignoutContent.content.language;
 

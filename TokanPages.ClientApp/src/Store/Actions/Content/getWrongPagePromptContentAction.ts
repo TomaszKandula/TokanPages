@@ -12,7 +12,7 @@ export type TKnownActions = IRequestWrongPageContent | IReceiveWrongPageContent 
 
 export const ActionCreators = 
 {
-    getWrongPagePromptContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getWrongPagePromptContent.content.language;
 

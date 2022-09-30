@@ -30,9 +30,9 @@ export const ActivationPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetActivateAccountContentAction.getActivateAccountContent());
-        dispatch(GetNavigationContentAction.getNavigationContent());
-        dispatch(GetFooterContentAction.getFooterContent());
+        dispatch(GetActivateAccountContentAction.get());
+        dispatch(GetNavigationContentAction.get());
+        dispatch(GetFooterContentAction.get());
     }, 
     [ dispatch, language?.id ]);
 

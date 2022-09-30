@@ -30,9 +30,9 @@ export const UpdateSubscriberPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.getNavigationContent());
-        dispatch(GetFooterContentAction.getFooterContent());
-        dispatch(GetUpdateSubscriberContentAction.getUpdateSubscriberContent());
+        dispatch(GetNavigationContentAction.get());
+        dispatch(GetFooterContentAction.get());
+        dispatch(GetUpdateSubscriberContentAction.get());
     }, 
     [ dispatch, language?.id ]);
     

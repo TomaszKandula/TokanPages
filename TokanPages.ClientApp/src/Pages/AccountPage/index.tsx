@@ -20,9 +20,9 @@ export const AccountPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.getNavigationContent());
-        dispatch(GetAccountContentAction.getAccountContent());
-        dispatch(GetFooterContentAction.getFooterContent());
+        dispatch(GetNavigationContentAction.get());
+        dispatch(GetAccountContentAction.get());
+        dispatch(GetFooterContentAction.get());
     }, 
     [ dispatch, language?.id ]);
 

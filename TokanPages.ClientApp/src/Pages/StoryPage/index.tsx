@@ -22,9 +22,9 @@ export const StoryPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.getNavigationContent());
-        dispatch(GetFooterContentAction.getFooterContent());
-        dispatch(GetStoryContentAction.getStoryContent());
+        dispatch(GetNavigationContentAction.get());
+        dispatch(GetFooterContentAction.get());
+        dispatch(GetStoryContentAction.get());
     }, 
     [ dispatch, language?.id ]);
     

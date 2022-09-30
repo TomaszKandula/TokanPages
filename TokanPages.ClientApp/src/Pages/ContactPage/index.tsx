@@ -22,9 +22,9 @@ export const ContactPage = () =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.getNavigationContent());
-        dispatch(GetFooterContentAction.getFooterContent());
-        dispatch(GetContactFormContentAction.getContactFormContent());
+        dispatch(GetNavigationContentAction.get());
+        dispatch(GetFooterContentAction.get());
+        dispatch(GetContactFormContentAction.get());
     }, 
     [ dispatch, language?.id ]);
 

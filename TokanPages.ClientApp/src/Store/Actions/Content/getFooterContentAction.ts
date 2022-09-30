@@ -12,7 +12,7 @@ export type TKnownActions = IRequestFooterContent | IReceiveFooterContent | TErr
 
 export const ActionCreators = 
 {
-    getFooterContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getFooterContent.content.language;
 

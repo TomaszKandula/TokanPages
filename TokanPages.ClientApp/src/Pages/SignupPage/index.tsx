@@ -22,9 +22,9 @@ export const SignupPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.getNavigationContent());
-        dispatch(GetFooterContentAction.getFooterContent());
-        dispatch(GetUserSignupContentAction.getUserSignupContent());
+        dispatch(GetNavigationContentAction.get());
+        dispatch(GetFooterContentAction.get());
+        dispatch(GetUserSignupContentAction.get());
     }, 
     [ dispatch, language?.id ]);
 

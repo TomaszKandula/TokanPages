@@ -12,7 +12,7 @@ export type TKnownActions = IRequestCookiesPromptContent | IReceiveCookiesPrompt
 
 export const ActionCreators = 
 {
-    getCookiesPromptContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getCookiesPromptContent.content.language;
 

@@ -22,9 +22,9 @@ export const SignoutPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.getNavigationContent());
-        dispatch(GetFooterContentAction.getFooterContent());
-        dispatch(GetUserSignoutContentAction.getUserSignoutContent());
+        dispatch(GetNavigationContentAction.get());
+        dispatch(GetFooterContentAction.get());
+        dispatch(GetUserSignoutContentAction.get());
     }, 
     [ dispatch, language?.id ]);
 

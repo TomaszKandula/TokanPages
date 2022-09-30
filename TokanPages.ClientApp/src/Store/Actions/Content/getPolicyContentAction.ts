@@ -12,7 +12,7 @@ export type TKnownActions = IRequestPolicyContent | IReceivePolicyContent | TErr
 
 export const ActionCreators = 
 {
-    getPolicyContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getPolicyContent.content.language;
 

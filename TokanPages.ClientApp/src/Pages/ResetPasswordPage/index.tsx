@@ -22,9 +22,9 @@ export const ResetPasswordPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.getNavigationContent());
-        dispatch(GetFooterContentAction.getFooterContent());
-        dispatch(GetResetPasswordContentAction.getResetPasswordContent());
+        dispatch(GetNavigationContentAction.get());
+        dispatch(GetFooterContentAction.get());
+        dispatch(GetResetPasswordContentAction.get());
     }, 
     [ dispatch, language?.id ]);
     

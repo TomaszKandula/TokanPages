@@ -12,7 +12,7 @@ export type TKnownActions = IRequestResetPasswordContent | IReceiveResetPassword
 
 export const ActionCreators = 
 {
-    getResetPasswordContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getResetPasswordContent.content.language;
 

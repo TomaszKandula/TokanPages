@@ -12,7 +12,7 @@ export type TKnownActions = IRequestTermsContent | IReceiveTermsContent | TError
 
 export const ActionCreators = 
 {
-    getTermsContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getTermsContent.content.language;
 

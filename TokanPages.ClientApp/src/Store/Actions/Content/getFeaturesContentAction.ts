@@ -12,7 +12,7 @@ export type TKnownActions = IRequestFeaturesContent | IReceiveFeaturesContent | 
 
 export const ActionCreators = 
 {
-    getFeaturesContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getFeaturesContent.content.language;
 

@@ -27,7 +27,7 @@ export const WrongPage = (): JSX.Element =>
     const wrongPagePrompt = useSelector((state: IApplicationState) => state.getWrongPagePromptContent);
     React.useEffect(() => 
     { 
-        dispatch(GetWrongPagePromptContentAction.getWrongPagePromptContent()) 
+        dispatch(GetWrongPagePromptContentAction.get()) 
     }, 
     [ dispatch, language?.id ]);
 

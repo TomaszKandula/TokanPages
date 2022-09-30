@@ -12,7 +12,7 @@ export type TKnownActions = IRequestNewsletterContent | IReceiveNewsletterConten
 
 export const ActionCreators = 
 {
-    getNewsletterContent: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().userLanguage.id !== getState().getNewsletterContent.content.language;
 

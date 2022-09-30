@@ -51,18 +51,18 @@ export const MainPage = (): JSX.Element =>
 
     React.useEffect(() => 
     { 
-        dispatch(GetNavigationContentAction.getNavigationContent());
-        dispatch(GetHeaderContentAction.getHeaderContent());
-        dispatch(GetActivateAccountContentAction.getActivateAccountContent());
-        dispatch(GetArticleFeaturesContentAction.getArticleFeaturesContent());
-        dispatch(GetFooterContentAction.getFooterContent());
-        dispatch(GetClientsContentAction.getClientsContent());
-        dispatch(GetFeaturedContentAction.getFeaturedContent());
-        dispatch(GetFeaturesContentAction.getFeaturesContent());
-        dispatch(GetNewsletterContentAction.getNewsletterContent());
-        dispatch(GetContactFormContentAction.getContactFormContent());
-        dispatch(GetCookiesPromptContentAction.getCookiesPromptContent());    
-        dispatch(GetTestimonialsContentAction.getTestimonialsContent());
+        dispatch(GetNavigationContentAction.get());
+        dispatch(GetHeaderContentAction.get());
+        dispatch(GetActivateAccountContentAction.get());
+        dispatch(GetArticleFeaturesContentAction.get());
+        dispatch(GetFooterContentAction.get());
+        dispatch(GetClientsContentAction.get());
+        dispatch(GetFeaturedContentAction.get());
+        dispatch(GetFeaturesContentAction.get());
+        dispatch(GetNewsletterContentAction.get());
+        dispatch(GetContactFormContentAction.get());
+        dispatch(GetCookiesPromptContentAction.get());    
+        dispatch(GetTestimonialsContentAction.get());
     }, 
     [ dispatch, language?.id ]);
 
