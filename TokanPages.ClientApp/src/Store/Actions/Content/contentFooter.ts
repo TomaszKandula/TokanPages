@@ -1,4 +1,4 @@
-import { IAppThunkAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
 import { GET_FOOTER_CONTENT } from "../../../Shared/constants";
 import { IFooterContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -11,7 +11,7 @@ export type TKnownActions = IRequestFooterContent | IReceiveFooterContent;
 
 export const ContentFooterAction = 
 {
-    get: (): IAppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentFooter.content.language;
 

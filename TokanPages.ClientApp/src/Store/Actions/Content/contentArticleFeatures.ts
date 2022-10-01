@@ -1,4 +1,4 @@
-import { IAppThunkAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
 import { GET_ARTICLE_FEAT_CONTENT } from "../../../Shared/constants";
 import { IArticleFeaturesContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -11,7 +11,7 @@ export type TKnownActions = IRequestArticleFeatures | IReceiveArticleFeatures;
 
 export const ContentArticleFeaturesAction = 
 {
-    get: (): IAppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentArticleFeatures.content.language;
 

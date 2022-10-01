@@ -1,4 +1,4 @@
-import { IAppThunkAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
 import { GET_UPDATE_PASSWORD_CONTENT } from "../../../Shared/constants";
 import { IUpdatePasswordContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -11,7 +11,7 @@ export type TKnownActions = IRequestUpdatePasswordContent | IReceiveUpdatePasswo
 
 export const ContentUpdatePasswordAction = 
 {
-    get: (): IAppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentUpdatePassword.content.language;
 

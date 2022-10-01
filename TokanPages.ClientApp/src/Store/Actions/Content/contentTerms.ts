@@ -1,4 +1,4 @@
-import { IAppThunkAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
 import { TERMS_URL } from "../../../Shared/constants";
 import { IDocumentContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -11,7 +11,7 @@ export type TKnownActions = IRequestTermsContent | IReceiveTermsContent;
 
 export const ContentTermsAction = 
 {
-    get: (): IAppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentTerms.content.language;
 

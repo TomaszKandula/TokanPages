@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IAppThunkAction } from "../../Configuration";
+import { IApplicationAction } from "../../Configuration";
 import { IAuthenticateUserResultDto, IReAuthenticateUserDto } from "../../../Api/Models";
 import { API_COMMAND_REAUTHENTICATE, NULL_RESPONSE_ERROR, USER_DATA } from "../../../Shared/constants";
 import { UPDATE_USERDATA, TKnownActions as TUpdateActions } from "./userDataStore";
@@ -18,11 +18,11 @@ export type TKnownActions = IReAuthenticateUser | IReAuthenticateUserClear | IRe
 
 export const UserReAuthenticateAction = 
 {
-    clear: (): IAppThunkAction<TKnownActions> => (dispatch) =>
+    clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: REAUTHENTICATE_USER_CLEAR });
     },
-    reAuthenticate: (): IAppThunkAction<TKnownActions> => (dispatch) => 
+    reAuthenticate: (): IApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: REAUTHENTICATE_USER });
 

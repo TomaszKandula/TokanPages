@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IAppThunkAction } from "../../Configuration";
+import { IApplicationAction } from "../../Configuration";
 import { IAuthenticateUserDto } from "../../../Api/Models";
 import { API_COMMAND_AUTHENTICATE, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { UPDATE_USERDATA, TKnownActions as TUpdateActions } from "./userDataStore";
@@ -17,11 +17,11 @@ export type TKnownActions = ISigninUser | ISigninUserClear | ISigninUserResponse
 
 export const UserSigninAction = 
 {
-    clear: (): IAppThunkAction<TKnownActions> => (dispatch) =>
+    clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: SIGNIN_USER_CLEAR });
     },
-    signin: (payload: IAuthenticateUserDto): IAppThunkAction<TKnownActions> => (dispatch) => 
+    signin: (payload: IAuthenticateUserDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: SIGNIN_USER });
 

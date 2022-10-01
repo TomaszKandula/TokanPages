@@ -1,6 +1,6 @@
 import { IApplicationState } from "./applicationState";
 
-export interface IAppThunkAction<TAction> 
+export interface IApplicationAction<TAction> 
 {
     (dispatch: (action: TAction) => void, getState: () => IApplicationState): void;
 }
