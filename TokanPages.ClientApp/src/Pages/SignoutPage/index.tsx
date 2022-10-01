@@ -6,9 +6,9 @@ import { Navigation, Footer } from "../../Components/Layout";
 import { UserSignout } from "../../Components/Account";
 
 import { 
-    GetNavigationContentAction, 
-    GetFooterContentAction, 
-    GetUserSignoutContentAction 
+    ContentNavigationAction, 
+    ContentFooterAction, 
+    ContentUserSignoutAction 
 } from "../../Store/Actions";
 
 export const SignoutPage = (): JSX.Element => 
@@ -22,9 +22,9 @@ export const SignoutPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.get());
-        dispatch(GetFooterContentAction.get());
-        dispatch(GetUserSignoutContentAction.get());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentFooterAction.get());
+        dispatch(ContentUserSignoutAction.get());
     }, 
     [ dispatch, language?.id ]);
 

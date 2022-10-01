@@ -7,9 +7,9 @@ import { ActivateAccount } from "../../Components/Account";
 import { Navigation, Footer } from "../../Components/Layout";
 
 import { 
-    GetActivateAccountContentAction, 
-    GetNavigationContentAction, 
-    GetFooterContentAction 
+    ContentActivateAccountAction, 
+    ContentNavigationAction, 
+    ContentFooterAction 
 } from "../../Store/Actions";
 
 const useQuery = () => 
@@ -30,9 +30,9 @@ export const ActivationPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetActivateAccountContentAction.get());
-        dispatch(GetNavigationContentAction.get());
-        dispatch(GetFooterContentAction.get());
+        dispatch(ContentActivateAccountAction.get());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentFooterAction.get());
     }, 
     [ dispatch, language?.id ]);
 

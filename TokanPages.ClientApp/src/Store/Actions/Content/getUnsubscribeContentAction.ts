@@ -9,7 +9,7 @@ export interface IRequestUnsubscribeContent { type: typeof REQUEST_UNSUBSCRIBE_C
 export interface IReceiveUnsubscribeContent { type: typeof RECEIVE_UNSUBSCRIBE_CONTENT, payload: IUnsubscribeContentDto }
 export type TKnownActions = IRequestUnsubscribeContent | IReceiveUnsubscribeContent;
 
-export const ActionCreators = 
+export const ContentUnsubscribeAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

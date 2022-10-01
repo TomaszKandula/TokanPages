@@ -15,7 +15,7 @@ export interface IResetUserPasswordClear { type: typeof RESET_USER_PASSWORD_CLEA
 export interface IResetUserPasswordResponse { type: typeof RESET_USER_PASSWORD_RESPONSE }
 export type TKnownActions = IResetUserPassword | IResetUserPasswordClear | IResetUserPasswordResponse | TUpdateActions;
 
-export const ActionCreators = 
+export const UserPasswordResetAction = 
 {
     clear: (): AppThunkAction<TKnownActions> => (dispatch) =>
     {

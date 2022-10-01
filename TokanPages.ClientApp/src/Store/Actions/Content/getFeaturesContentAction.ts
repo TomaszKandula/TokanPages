@@ -9,7 +9,7 @@ export interface IRequestFeaturesContent { type: typeof REQUEST_FEATURES_CONTENT
 export interface IReceiveFeaturesContent { type: typeof RECEIVE_FEATURES_CONTENT, payload: IFeaturesContentDto }
 export type TKnownActions = IRequestFeaturesContent | IReceiveFeaturesContent;
 
-export const ActionCreators = 
+export const ContentFeaturesAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

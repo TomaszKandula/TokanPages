@@ -6,9 +6,9 @@ import { Navigation, Footer } from "../../Components/Layout";
 import { DocumentContent } from "../../Components/Document";
 
 import { 
-    GetNavigationContentAction, 
-    GetFooterContentAction, 
-    GetPolicyContentAction 
+    ContentNavigationAction, 
+    ContentFooterAction, 
+    ContentPolicyAction 
 } from "../../Store/Actions";
 
 export const PolicyPage = (): JSX.Element => 
@@ -22,9 +22,9 @@ export const PolicyPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.get());
-        dispatch(GetFooterContentAction.get());
-        dispatch(GetPolicyContentAction.get());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentFooterAction.get());
+        dispatch(ContentPolicyAction.get());
     }, 
     [ dispatch, language?.id ]);
 

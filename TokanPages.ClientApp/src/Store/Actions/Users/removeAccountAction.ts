@@ -14,7 +14,7 @@ export interface IRemoveAccountClear { type: typeof REMOVE_ACCOUNT_CLEAR }
 export interface IRemoveAccountResponse { type: typeof REMOVE_ACCOUNT_RESPONSE }
 export type TKnownActions = IRemoveAccount | IRemoveAccountClear | IRemoveAccountResponse;
 
-export const ActionCreators = 
+export const UserRemoveAction = 
 {
     clear: (): AppThunkAction<TKnownActions> => (dispatch) =>
     {

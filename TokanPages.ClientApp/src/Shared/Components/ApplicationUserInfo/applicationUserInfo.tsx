@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
-import { UserDataAction } from "../../../Store/Actions";
+import { UserDataStoreAction } from "../../../Store/Actions";
 import { IAuthenticateUserResultDto } from "../../../Api/Models";
 import { ApplicationUserInfoView } from "./View/applicationUserInfoView";
 
@@ -13,7 +13,7 @@ export const ApplicationUserInfo = (): JSX.Element =>
 
     const onClickHandler = () => 
     {
-        dispatch(UserDataAction.show(false));
+        dispatch(UserDataStoreAction.show(false));
     }
 
     const data: IAuthenticateUserResultDto = 

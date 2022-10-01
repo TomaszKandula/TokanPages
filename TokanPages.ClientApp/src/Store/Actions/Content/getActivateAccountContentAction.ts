@@ -9,7 +9,7 @@ export interface IRequestActivateAccountContent { type: typeof REQUEST_ACTIVATE_
 export interface IReceiveActivateAccountContent { type: typeof RECEIVE_ACTIVATE_ACCOUNT_CONTENT, payload: IActivateAccountContentDto }
 export type TKnownActions = IRequestActivateAccountContent | IReceiveActivateAccountContent;
 
-export const ActionCreators = 
+export const ContentActivateAccountAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

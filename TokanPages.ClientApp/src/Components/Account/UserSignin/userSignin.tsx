@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IContentUserSignin } from "../../../Store/States";
-import { ApplicationDialog, UserSigninAction } from "../../../Store/Actions";
+import { ApplicationDialogAction, UserSigninAction } from "../../../Store/Actions";
 import { IAuthenticateUserDto } from "../../../Api/Models";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { GetTextWarning } from "../../../Shared/Services/Utilities";
@@ -29,7 +29,7 @@ export const UserSignin = (props: IContentUserSignin): JSX.Element =>
     const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
-    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(WarningMessage(SIGNIN_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(SIGNIN_FORM, text))), [ dispatch ]);
     const signin = React.useCallback((payload: IAuthenticateUserDto) => dispatch(UserSigninAction.signin(payload)), [ dispatch ]);
     const clear = React.useCallback(() => dispatch(UserSigninAction.clear()), [ dispatch ]);
 

@@ -9,7 +9,7 @@ export interface IRequestSignoutFormContent { type: typeof REQUEST_USER_SIGNOUT_
 export interface IReceiveSignoutFormContent { type: typeof RECEIVE_USER_SIGNOUT_CONTENT, payload: IUserSignoutContentDto }
 export type TKnownActions = IRequestSignoutFormContent | IReceiveSignoutFormContent;
 
-export const ActionCreators = 
+export const ContentUserSignoutAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

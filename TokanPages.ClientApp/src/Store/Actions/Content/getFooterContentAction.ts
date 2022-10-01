@@ -9,7 +9,7 @@ export interface IRequestFooterContent { type: typeof REQUEST_FOOTER_CONTENT }
 export interface IReceiveFooterContent { type: typeof RECEIVE_FOOTER_CONTENT, payload: IFooterContentDto }
 export type TKnownActions = IRequestFooterContent | IReceiveFooterContent;
 
-export const ActionCreators = 
+export const ContentFooterAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

@@ -15,7 +15,7 @@ export interface ISigninUserClear { type: typeof SIGNIN_USER_CLEAR }
 export interface ISigninUserResponse { type: typeof SIGNIN_USER_RESPONSE }
 export type TKnownActions = ISigninUser | ISigninUserClear | ISigninUserResponse | TUpdateActions;
 
-export const ActionCreators = 
+export const UserSigninAction = 
 {
     clear: (): AppThunkAction<TKnownActions> => (dispatch) =>
     {

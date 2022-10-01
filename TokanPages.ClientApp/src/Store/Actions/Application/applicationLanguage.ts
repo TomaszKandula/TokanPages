@@ -9,7 +9,7 @@ export interface ISetLanguage { type: typeof SET_LANGUAGE, language: IApplicatio
 
 export type TKnownActions = ISetDefaultLanguage | ISetLanguage;
 
-export const ActionCreators = 
+export const ApplicationLanguageAction = 
 {
     revert: (): AppThunkAction<TKnownActions> => (dispatch) => 
     {

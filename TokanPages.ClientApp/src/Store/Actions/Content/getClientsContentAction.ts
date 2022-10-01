@@ -9,7 +9,7 @@ export interface IRequestClientsContent { type: typeof REQUEST_CLIENTS_CONTENT }
 export interface IReceiveClientsContent { type: typeof RECEIVE_CLIENTS_CONTENT, payload: IClientsContentDto }
 export type TKnownActions = IRequestClientsContent | IReceiveClientsContent;
 
-export const ActionCreators = 
+export const ContentClientsAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

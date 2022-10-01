@@ -9,7 +9,7 @@ export interface IRequestTermsContent { type: typeof REQUEST_TERMS_CONTENT }
 export interface IReceiveTermsContent { type: typeof RECEIVE_TERMS_CONTENT, payload: IDocumentContentDto }
 export type TKnownActions = IRequestTermsContent | IReceiveTermsContent;
 
-export const ActionCreators = 
+export const ContentTermsAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IContentNavigation } from "../../../Store/States";
-import { UserDataAction, ApplicationLanguage } from "../../../Store/Actions";
+import { UserDataStoreAction, ApplicationLanguageAction } from "../../../Store/Actions";
 import { SetDataInStorage } from "../../../Shared/Services/StorageServices";
 import { SELECTED_LANGUAGE } from "../../../Shared/constants";
 import { NavigationView } from "./View/navigationView";
@@ -21,7 +21,7 @@ export const Navigation = (props: IContentNavigation): JSX.Element =>
     {
         const value = event.target.value as string;
         SetDataInStorage({ selection: value, key: SELECTED_LANGUAGE });
-        dispatch(ApplicationLanguage.set({ id: value, languages: languages.languages }));
+        dispatch(ApplicationLanguageAction.set({ id: value, languages: languages.languages }));
     };
 
     const toggleDrawer = (open: boolean) => (event: any) => 
@@ -33,7 +33,7 @@ export const Navigation = (props: IContentNavigation): JSX.Element =>
     const onAvatarClick = () => 
     {
         if (isAnonymous) return;
-        dispatch(UserDataAction.show(true));
+        dispatch(UserDataStoreAction.show(true));
     }
 
     return (<NavigationView bind=

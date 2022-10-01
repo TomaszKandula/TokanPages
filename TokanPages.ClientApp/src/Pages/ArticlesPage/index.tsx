@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import { IApplicationState } from "../../Store/Configuration";
-import { GetNavigationContentAction, GetFooterContentAction } from "../../Store/Actions";
+import { ContentNavigationAction, ContentFooterAction } from "../../Store/Actions";
 import { ProgressOnScroll } from "../../Shared/Components";
 import { Navigation, Footer } from "../../Components/Layout";
 import { ArticleList, ArticleDetail } from "../../Components/Articles";
@@ -26,8 +26,8 @@ export const ArticlesPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.get());
-        dispatch(GetFooterContentAction.get());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentFooterAction.get());
     }, 
     [ dispatch, language?.id ]);
 

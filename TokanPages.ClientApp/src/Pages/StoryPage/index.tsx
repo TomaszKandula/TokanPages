@@ -6,9 +6,9 @@ import { Navigation, Footer } from "../../Components/Layout";
 import { DocumentContent } from "../../Components/Document";
 
 import { 
-    GetNavigationContentAction, 
-    GetFooterContentAction, 
-    GetStoryContentAction 
+    ContentNavigationAction, 
+    ContentFooterAction, 
+    ContentStoryAction 
 } from "../../Store/Actions";
 
 export const StoryPage = (): JSX.Element => 
@@ -22,9 +22,9 @@ export const StoryPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.get());
-        dispatch(GetFooterContentAction.get());
-        dispatch(GetStoryContentAction.get());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentFooterAction.get());
+        dispatch(ContentStoryAction.get());
     }, 
     [ dispatch, language?.id ]);
     

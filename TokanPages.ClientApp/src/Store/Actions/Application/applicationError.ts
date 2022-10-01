@@ -9,7 +9,7 @@ export interface IRaiseError { type: typeof RAISE_ERROR, errorObject: any, dialo
 
 export type TErrorActions = IClearError | IRaiseError;
 
-export const ActionCreators = 
+export const ApplicationErrorAction = 
 {
     clear: (): AppThunkAction<TErrorActions> => (dispatch) => 
     {

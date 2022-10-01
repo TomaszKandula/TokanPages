@@ -6,9 +6,9 @@ import { Navigation, Footer } from "../../Components/Layout";
 import { UpdatePassword } from "../../Components/Account";
 
 import { 
-    GetNavigationContentAction, 
-    GetFooterContentAction, 
-    GetUpdatePasswordContentAction 
+    ContentNavigationAction, 
+    ContentFooterAction, 
+    ContentUpdatePasswordAction 
 } from "../../Store/Actions";
 
 export const UpdatePasswordPage = (): JSX.Element => 
@@ -22,9 +22,9 @@ export const UpdatePasswordPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.get());
-        dispatch(GetFooterContentAction.get());
-        dispatch(GetUpdatePasswordContentAction.get());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentFooterAction.get());
+        dispatch(ContentUpdatePasswordAction.get());
     }, 
     [ dispatch, language?.id ]);
     

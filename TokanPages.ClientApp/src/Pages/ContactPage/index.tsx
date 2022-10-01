@@ -6,9 +6,9 @@ import { Navigation, Footer } from "../../Components/Layout";
 import { ContactForm } from "../../Components/Contact";
 
 import { 
-    GetNavigationContentAction, 
-    GetFooterContentAction, 
-    GetContactFormContentAction 
+    ContentNavigationAction, 
+    ContentFooterAction, 
+    ContentContactFormAction 
 } from "../../Store/Actions";
 
 export const ContactPage = () => 
@@ -22,9 +22,9 @@ export const ContactPage = () =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.get());
-        dispatch(GetFooterContentAction.get());
-        dispatch(GetContactFormContentAction.get());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentFooterAction.get());
+        dispatch(ContentContactFormAction.get());
     }, 
     [ dispatch, language?.id ]);
 

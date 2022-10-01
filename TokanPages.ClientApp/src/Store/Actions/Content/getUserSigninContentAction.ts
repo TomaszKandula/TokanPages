@@ -9,7 +9,7 @@ export interface IRequestSigninFormContent { type: typeof REQUEST_USER_SIGNIN_CO
 export interface IReceiveSigninFormContent { type: typeof RECEIVE_USER_SIGNIN_CONTENT, payload: IUserSigninContentDto }
 export type TKnownActions = IRequestSigninFormContent | IReceiveSigninFormContent;
 
-export const ActionCreators = 
+export const ContentUserSigninAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

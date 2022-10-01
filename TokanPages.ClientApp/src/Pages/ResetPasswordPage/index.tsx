@@ -6,9 +6,9 @@ import { Navigation, Footer } from "../../Components/Layout";
 import { ResetPassword } from "../../Components/Account";
 
 import { 
-    GetNavigationContentAction, 
-    GetFooterContentAction, 
-    GetResetPasswordContentAction 
+    ContentNavigationAction, 
+    ContentFooterAction, 
+    ContentResetPasswordAction 
 } from "../../Store/Actions";
 
 export const ResetPasswordPage = (): JSX.Element => 
@@ -22,9 +22,9 @@ export const ResetPasswordPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.get());
-        dispatch(GetFooterContentAction.get());
-        dispatch(GetResetPasswordContentAction.get());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentFooterAction.get());
+        dispatch(ContentResetPasswordAction.get());
     }, 
     [ dispatch, language?.id ]);
     

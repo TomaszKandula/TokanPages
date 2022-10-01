@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Box, Button, Container, Typography } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import { IApplicationState } from "../../Store/Configuration";
-import { GetWrongPagePromptContentAction } from "../../Store/Actions";
+import { ContentWrongPagePromptAction } from "../../Store/Actions";
 import { Style } from "./style";
 
 export const WrongPage = (): JSX.Element =>
@@ -27,7 +27,7 @@ export const WrongPage = (): JSX.Element =>
     const wrongPagePrompt = useSelector((state: IApplicationState) => state.contentWrongPagePrompt);
     React.useEffect(() => 
     { 
-        dispatch(GetWrongPagePromptContentAction.get()) 
+        dispatch(ContentWrongPagePromptAction.get()) 
     }, 
     [ dispatch, language?.id ]);
 

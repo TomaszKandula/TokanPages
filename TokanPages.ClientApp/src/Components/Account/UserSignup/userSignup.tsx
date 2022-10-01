@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IContentUserSignup } from "../../../Store/States";
-import { ApplicationDialog, UserSignupAction } from "../../../Store/Actions";
+import { ApplicationDialogAction, UserSignupAction } from "../../../Store/Actions";
 import { IAddUserDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
@@ -37,8 +37,8 @@ export const UserSignup = (props: IContentUserSignup): JSX.Element =>
     const [form, setForm] = React.useState(formDefaultValues);   
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(SuccessMessage(SIGNUP_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(WarningMessage(SIGNUP_FORM, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(SIGNUP_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(SIGNUP_FORM, text))), [ dispatch ]);
     const signup = React.useCallback((payload: IAddUserDto) => dispatch(UserSignupAction.signup(payload)), [ dispatch ]);
     const clear = React.useCallback(() => dispatch(UserSignupAction.clear()), [ dispatch ]);
 

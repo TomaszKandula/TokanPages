@@ -9,7 +9,7 @@ export interface IRequestUpdateSubscriberContent { type: typeof REQUEST_UPDATE_S
 export interface IReceiveUpdateSubscriberContent { type: typeof RECEIVE_UPDATE_SUBSCRIBER_CONTENT, payload: IUpdateSubscriberContentDto }
 export type TKnownActions = IRequestUpdateSubscriberContent | IReceiveUpdateSubscriberContent;
 
-export const ActionCreators = 
+export const ContentUpdateSubscriberAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

@@ -12,7 +12,7 @@ export interface IUpdateSubscriber { type: typeof UPDATE_SUBSCRIBER }
 export interface IUpdateSubscriberResponse { type: typeof UPDATE_SUBSCRIBER_RESPONSE }
 export type TKnownActions = IUpdateSubscriber | IUpdateSubscriberResponse;
 
-export const ActionCreators = 
+export const SubscriberUpdateAction = 
 {
     update: (payload: IUpdateSubscriberDto): AppThunkAction<TKnownActions> => (dispatch) => 
     {

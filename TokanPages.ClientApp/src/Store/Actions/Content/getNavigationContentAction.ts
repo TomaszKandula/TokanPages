@@ -9,7 +9,7 @@ export interface IRequestNavigationContent { type: typeof REQUEST_NAVIGATION_CON
 export interface IReceiveNavigationContent { type: typeof RECEIVE_NAVIGATION_CONTENT, payload: INavigationContentDto }
 export type TKnownActions = IRequestNavigationContent | IReceiveNavigationContent;
 
-export const ActionCreators =
+export const ContentNavigationAction =
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

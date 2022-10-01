@@ -9,7 +9,7 @@ export interface IRequestWrongPageContent { type: typeof REQUEST_WRONG_PAGE_CONT
 export interface IReceiveWrongPageContent { type: typeof RECEIVE_WRONG_PAGE_CONTENT, payload: IWrongPagePromptContentDto }
 export type TKnownActions = IRequestWrongPageContent | IReceiveWrongPageContent;
 
-export const ActionCreators = 
+export const ContentWrongPagePromptAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

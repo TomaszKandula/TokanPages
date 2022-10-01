@@ -9,7 +9,7 @@ export interface IRaiseDialogBox { type: typeof RAISE_DIALOG, dialog: IApplicati
 
 export type TDialogActions = IClearDialogBox | IRaiseDialogBox;
 
-export const ActionCreators = 
+export const ApplicationDialogAction = 
 {
     clear: (): AppThunkAction<TDialogActions> => (dispatch) => 
     {

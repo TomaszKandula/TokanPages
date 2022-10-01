@@ -6,9 +6,9 @@ import { Navigation, Footer } from "../../Components/Layout";
 import { UserSignup } from "../../Components/Account";
 
 import { 
-    GetNavigationContentAction, 
-    GetFooterContentAction, 
-    GetUserSignupContentAction 
+    ContentNavigationAction, 
+    ContentFooterAction, 
+    ContentUserSignupAction 
 } from "../../Store/Actions";
 
 export const SignupPage = (): JSX.Element =>
@@ -22,9 +22,9 @@ export const SignupPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.get());
-        dispatch(GetFooterContentAction.get());
-        dispatch(GetUserSignupContentAction.get());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentFooterAction.get());
+        dispatch(ContentUserSignupAction.get());
     }, 
     [ dispatch, language?.id ]);
 

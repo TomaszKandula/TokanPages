@@ -12,7 +12,7 @@ export interface IRemoveSubscriber { type: typeof REMOVE_SUBSCRIBER }
 export interface IRemoveSubscriberResponse { type: typeof REMOVE_SUBSCRIBER_RESPONSE }
 export type TKnownActions = IRemoveSubscriber | IRemoveSubscriberResponse;
 
-export const ActionCreators = 
+export const SubscriberRemoveAction = 
 {
     remove: (payload: IRemoveSubscriberDto):  AppThunkAction<TKnownActions> => (dispatch) => 
     {

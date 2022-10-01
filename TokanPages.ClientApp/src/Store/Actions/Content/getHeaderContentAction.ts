@@ -9,7 +9,7 @@ export interface IRequestHeaderContent { type: typeof REQUEST_HEADER_CONTENT }
 export interface IReceiveHeaderContent { type: typeof RECEIVE_HEADER_CONTENT, payload: IHeaderContentDto }
 export type TKnownActions = IRequestHeaderContent | IReceiveHeaderContent;
 
-export const ActionCreators = 
+export const ContentHeaderAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

@@ -6,9 +6,9 @@ import { Navigation, Footer } from "../../Components/Layout";
 import { DocumentContent } from "../../Components/Document";
 
 import { 
-    GetNavigationContentAction,
-    GetFooterContentAction,
-    GetTermsContentAction
+    ContentNavigationAction,
+    ContentFooterAction,
+    ContentTermsAction
 } from "../../Store/Actions";
 
 export const TermsPage = (): JSX.Element => 
@@ -22,9 +22,9 @@ export const TermsPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.get());
-        dispatch(GetFooterContentAction.get());
-        dispatch(GetTermsContentAction.get());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentFooterAction.get());
+        dispatch(ContentTermsAction.get());
     }, 
     [ dispatch, language?.id ]);
 

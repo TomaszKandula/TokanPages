@@ -9,7 +9,7 @@ export interface IRequestTestimonialsContent { type: typeof REQUEST_TESTIMONIALS
 export interface IReceiveTestimonialsContent { type: typeof RECEIVE_TESTIMONIALS_CONTENT, payload: ITestimonialsContentDto }
 export type TKnownActions = IRequestTestimonialsContent | IReceiveTestimonialsContent;
 
-export const ActionCreators = 
+export const ContentTestimonialsAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

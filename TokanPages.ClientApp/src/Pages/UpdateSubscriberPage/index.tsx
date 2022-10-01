@@ -7,9 +7,9 @@ import { Navigation, Footer } from "../../Components/Layout";
 import { UpdateSubscriber } from "../../Components/UpdateSubscriber";
 
 import { 
-    GetNavigationContentAction, 
-    GetFooterContentAction, 
-    GetUpdateSubscriberContentAction 
+    ContentNavigationAction, 
+    ContentFooterAction, 
+    ContentUpdateSubscriberAction 
 } from "../../Store/Actions";
 
 const useQuery = () => 
@@ -30,9 +30,9 @@ export const UpdateSubscriberPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.get());
-        dispatch(GetFooterContentAction.get());
-        dispatch(GetUpdateSubscriberContentAction.get());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentFooterAction.get());
+        dispatch(ContentUpdateSubscriberAction.get());
     }, 
     [ dispatch, language?.id ]);
     

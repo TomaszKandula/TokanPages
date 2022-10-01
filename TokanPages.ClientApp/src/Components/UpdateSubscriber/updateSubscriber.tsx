@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Store/Configuration";
-import { ApplicationDialog, SubscriberUpdateAction } from "../../Store/Actions";
+import { ApplicationDialogAction, SubscriberUpdateAction } from "../../Store/Actions";
 import { IContentUpdateSubscriber } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { GetTextWarning } from "../../Shared/Services/Utilities";
@@ -35,8 +35,8 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
     const [buttonState, setButtonState] = React.useState(buttonDefaultState);
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(SuccessMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialog.raise(WarningMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialogAction.raise(WarningMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
     const subscriber = React.useCallback((payload: IUpdateSubscriberDto) => dispatch(SubscriberUpdateAction.update(payload)), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 

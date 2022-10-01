@@ -17,18 +17,18 @@ import {
 } from "../../Components/Layout";
 
 import { 
-    GetNavigationContentAction,
-    GetHeaderContentAction,
-    GetActivateAccountContentAction,
-    GetArticleFeaturesContentAction,
-    GetFooterContentAction,
-    GetClientsContentAction,
-    GetFeaturedContentAction,
-    GetFeaturesContentAction,
-    GetNewsletterContentAction,
-    GetContactFormContentAction,
-    GetCookiesPromptContentAction,
-    GetTestimonialsContentAction    
+    ContentNavigationAction,
+    ContentHeaderAction,
+    ContentActivateAccountAction,
+    ContentArticleFeaturesAction,
+    ContentFooterAction,
+    ContentClientsAction,
+    ContentFeaturedAction,
+    ContentFeaturesAction,
+    ContentNewsletterAction,
+    ContentContactFormAction,
+    ContentCookiesPromptAction,
+    ContentTestimonialsAction    
 } from "../../Store/Actions";
 
 export const MainPage = (): JSX.Element => 
@@ -51,18 +51,18 @@ export const MainPage = (): JSX.Element =>
 
     React.useEffect(() => 
     { 
-        dispatch(GetNavigationContentAction.get());
-        dispatch(GetHeaderContentAction.get());
-        dispatch(GetActivateAccountContentAction.get());
-        dispatch(GetArticleFeaturesContentAction.get());
-        dispatch(GetFooterContentAction.get());
-        dispatch(GetClientsContentAction.get());
-        dispatch(GetFeaturedContentAction.get());
-        dispatch(GetFeaturesContentAction.get());
-        dispatch(GetNewsletterContentAction.get());
-        dispatch(GetContactFormContentAction.get());
-        dispatch(GetCookiesPromptContentAction.get());    
-        dispatch(GetTestimonialsContentAction.get());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentHeaderAction.get());
+        dispatch(ContentActivateAccountAction.get());
+        dispatch(ContentArticleFeaturesAction.get());
+        dispatch(ContentFooterAction.get());
+        dispatch(ContentClientsAction.get());
+        dispatch(ContentFeaturedAction.get());
+        dispatch(ContentFeaturesAction.get());
+        dispatch(ContentNewsletterAction.get());
+        dispatch(ContentContactFormAction.get());
+        dispatch(ContentCookiesPromptAction.get());    
+        dispatch(ContentTestimonialsAction.get());
     }, 
     [ dispatch, language?.id ]);
 

@@ -9,7 +9,7 @@ export interface IRequestNewsletterContent { type: typeof REQUEST_NEWSLETTER_CON
 export interface IReceiveNewsletterContent { type: typeof RECEIVE_NEWSLETTER_CONTENT, payload: INewsletterContentDto }
 export type TKnownActions = IRequestNewsletterContent | IReceiveNewsletterContent;
 
-export const ActionCreators = 
+export const ContentNewsletterAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

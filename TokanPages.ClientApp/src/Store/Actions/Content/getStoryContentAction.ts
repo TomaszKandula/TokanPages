@@ -9,7 +9,7 @@ export interface IRequestStoryContent { type: typeof REQUEST_STORY_CONTENT }
 export interface IReceiveStoryContent { type: typeof RECEIVE_STORY_CONTENT, payload: IDocumentContentDto }
 export type TKnownActions = IRequestStoryContent | IReceiveStoryContent;
 
-export const ActionCreators = 
+export const ContentStoryAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

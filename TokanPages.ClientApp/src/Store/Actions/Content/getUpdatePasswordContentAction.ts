@@ -9,7 +9,7 @@ export interface IRequestUpdatePasswordContent { type: typeof REQUEST_UPDATE_PAS
 export interface IReceiveUpdatePasswordContent { type: typeof RECEIVE_UPDATE_PASSWORD_CONTENT, payload: IUpdatePasswordContentDto }
 export type TKnownActions = IRequestUpdatePasswordContent | IReceiveUpdatePasswordContent;
 
-export const ActionCreators = 
+export const ContentUpdatePasswordAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

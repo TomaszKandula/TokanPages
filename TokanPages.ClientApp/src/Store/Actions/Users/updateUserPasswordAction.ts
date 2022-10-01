@@ -14,7 +14,7 @@ export interface IUpdateUserPasswordClear { type: typeof UPDATE_USER_PASSWORD_CL
 export interface IUpdateUserPasswordResponse { type: typeof UPDATE_USER_PASSWORD_RESPONSE }
 export type TKnownActions = IUpdateUserPassword | IUpdateUserPasswordClear | IUpdateUserPasswordResponse;
 
-export const ActionCreators = 
+export const UserPasswordUpdateAction = 
 {
     clear: (): AppThunkAction<TKnownActions> => (dispatch) =>
     {

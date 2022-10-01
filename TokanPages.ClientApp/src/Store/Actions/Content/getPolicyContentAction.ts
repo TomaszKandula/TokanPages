@@ -9,7 +9,7 @@ export interface IRequestPolicyContent { type: typeof REQUEST_POLICY_CONTENT }
 export interface IReceivePolicyContent { type: typeof RECEIVE_POLICY_CONTENT, payload: IDocumentContentDto }
 export type TKnownActions = IRequestPolicyContent | IReceivePolicyContent;
 
-export const ActionCreators = 
+export const ContentPolicyAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

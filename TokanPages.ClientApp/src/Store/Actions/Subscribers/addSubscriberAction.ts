@@ -14,7 +14,7 @@ export interface IAddSubscriberClear { type: typeof ADD_SUBSCRIBER_CLEAR }
 export interface IAddSubscriberResponse { type: typeof ADD_SUBSCRIBER_RESPONSE }
 export type TKnownActions = IAddSubscriber | IAddSubscriberClear | IAddSubscriberResponse;
 
-export const ActionCreators = 
+export const SubscriberAddAction = 
 {
     clear: (): AppThunkAction<TKnownActions> => (dispatch) => 
     {

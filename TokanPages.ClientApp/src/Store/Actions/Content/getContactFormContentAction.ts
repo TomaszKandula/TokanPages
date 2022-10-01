@@ -9,7 +9,7 @@ export interface IRequestContactFormContent { type: typeof REQUEST_CONTACT_FORM_
 export interface IReceiveContactFormContent { type: typeof RECEIVE_CONTACT_FORM_CONTENT, payload: IContactFormContentDto }
 export type TKnownActions = IRequestContactFormContent | IReceiveContactFormContent;
 
-export const ActionCreators = 
+export const ContentContactFormAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

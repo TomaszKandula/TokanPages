@@ -14,7 +14,7 @@ export interface IUpdateUserClear { type: typeof UPDATE_USER_CLEAR }
 export interface IUpdateUserResponse { type: typeof UPDATE_USER_RESPONSE }
 export type TKnownActions = IUpdateUser | IUpdateUserClear | IUpdateUserResponse;
 
-export const ActionCreators = 
+export const UserUpdateAction = 
 {
     clear: (): AppThunkAction<TKnownActions> => (dispatch) =>
     {

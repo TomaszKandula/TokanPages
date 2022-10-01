@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IContentUpdatePassword } from "../../../Store/States";
-import { ApplicationDialog, UserUpdatePasswordAction } from "../../../Store/Actions";
+import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../Store/Actions";
 import { IUpdateUserPasswordDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
@@ -44,14 +44,14 @@ export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
     const userId = data?.userData.userId;
     const disableForm = Validate.isEmpty(resetId) && Validate.isEmpty(userId);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(SuccessMessage(UPDATE_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(WarningMessage(UPDATE_FORM, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(UPDATE_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(UPDATE_FORM, text))), [ dispatch ]);
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
-    const update = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(UserUpdatePasswordAction.update(payload)), [ dispatch ]);
-    const clear = React.useCallback(() => dispatch(UserUpdatePasswordAction.clear()), [ dispatch ]);
+    const update = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(UserPasswordUpdateAction.update(payload)), [ dispatch ]);
+    const clear = React.useCallback(() => dispatch(UserPasswordUpdateAction.clear()), [ dispatch ]);
     
     const clearForm = React.useCallback(() => 
     {

@@ -9,7 +9,7 @@ export interface IRequestCookiesPromptContent { type: typeof REQUEST_COOKIES_PRO
 export interface IReceiveCookiesPromptContent { type: typeof RECEIVE_COOKIES_PROMPT_CONTENT, payload: ICookiesPromptContentDto }
 export type TKnownActions = IRequestCookiesPromptContent | IReceiveCookiesPromptContent;
 
-export const ActionCreators = 
+export const ContentCookiesPromptAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

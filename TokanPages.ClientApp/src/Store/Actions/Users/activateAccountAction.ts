@@ -14,7 +14,7 @@ export interface IActivateAccountClear { type: typeof ACTIVATE_ACCOUNT_CLEAR }
 export interface IActivateAccountResponse { type: typeof ACTIVATE_ACCOUNT_RESPONSE }
 export type TKnownActions = IActivateAccount | IActivateAccountClear | IActivateAccountResponse;
 
-export const ActionCreators = 
+export const UserActivateAction = 
 {
     clear: (): AppThunkAction<TKnownActions> => (dispatch) =>
     {

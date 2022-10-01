@@ -9,7 +9,7 @@ export interface IClearUserData { type: typeof CLEAR_USERDATA }
 export interface IUpdateUserData { type: typeof UPDATE_USERDATA, payload: IAuthenticateUserResultDto }
 export type TKnownActions = IShowUserData | IClearUserData | IUpdateUserData;
 
-export const ActionCreators = 
+export const UserDataStoreAction = 
 {
     show: (isShown: boolean): AppThunkAction<TKnownActions> => (dispatch) => 
     {

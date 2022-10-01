@@ -7,9 +7,9 @@ import { Navigation, Footer } from "../../Components/Layout";
 import { Unsubscribe } from "../../Components/Unsubscribe";
 
 import { 
-    GetNavigationContentAction, 
-    GetFooterContentAction, 
-    GetUnsubscribeContentAction
+    ContentNavigationAction, 
+    ContentFooterAction, 
+    ContentUnsubscribeAction
 } from "../../Store/Actions";
 
 const useQuery = () => 
@@ -30,9 +30,9 @@ export const UnsubscribePage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.get());
-        dispatch(GetFooterContentAction.get());
-        dispatch(GetUnsubscribeContentAction.get());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentFooterAction.get());
+        dispatch(ContentUnsubscribeAction.get());
     }, 
     [ dispatch, language?.id ]);
     

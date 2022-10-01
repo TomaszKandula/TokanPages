@@ -14,7 +14,7 @@ export interface IRequestArticleAction { type: typeof REQUEST_ARTICLE; }
 export interface IReceiveArticleAction { type: typeof RECEIVE_ARTICLE; payload: IArticleItem; }
 export type TKnownActions = IResetSelection | IRequestArticleAction | IReceiveArticleAction;
 
-export const ActionCreators = 
+export const ArticleSelectionAction = 
 {
     reset: (): AppThunkAction<TKnownActions> => (dispatch) =>
     {

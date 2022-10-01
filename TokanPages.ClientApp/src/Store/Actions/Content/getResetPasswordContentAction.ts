@@ -9,7 +9,7 @@ export interface IRequestResetPasswordContent { type: typeof REQUEST_RESET_PASSW
 export interface IReceiveResetPasswordContent { type: typeof RECEIVE_RESET_PASSWORD_CONTENT, payload: IResetPasswordContentDto }
 export type TKnownActions = IRequestResetPasswordContent | IReceiveResetPasswordContent;
 
-export const ActionCreators = 
+export const ContentResetPasswordAction = 
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {

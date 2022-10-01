@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState, ApplicationDefaults } from "../../../Store/Configuration";
-import { UserDataAction, UserSigninAction } from "../../../Store/Actions";
+import { UserDataStoreAction, UserSigninAction } from "../../../Store/Actions";
 import { IContentUserSignout } from "../../../Store/States";
 import { USER_DATA } from "../../../Shared/constants";
 import { UserSignoutView } from "./View/userSignoutView";
@@ -16,7 +16,7 @@ export const UserSignout = (props: IContentUserSignout): JSX.Element =>
     {
         if (!progress) return;
         dispatch(UserSigninAction.clear());
-        dispatch(UserDataAction.clear());
+        dispatch(UserDataStoreAction.clear());
     }, 
     [ progress, dispatch ]);
     

@@ -16,7 +16,7 @@ export interface IReAuthenticateUserClear { type: typeof REAUTHENTICATE_USER_CLE
 export interface IReAuthenticateUserResponse { type: typeof REAUTHENTICATE_USER_RESPONSE }
 export type TKnownActions = IReAuthenticateUser | IReAuthenticateUserClear | IReAuthenticateUserResponse | TUpdateActions;
 
-export const ActionCreators = 
+export const UserReAuthenticateAction = 
 {
     clear: (): AppThunkAction<TKnownActions> => (dispatch) =>
     {

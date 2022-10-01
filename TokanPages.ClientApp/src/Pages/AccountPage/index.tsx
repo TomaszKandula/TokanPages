@@ -5,9 +5,9 @@ import { Navigation, Footer } from "../../Components/Layout";
 import { UserAccount } from "../../Components/Account";
 
 import { 
-    GetNavigationContentAction, 
-    GetFooterContentAction,
-    GetAccountContentAction 
+    ContentNavigationAction, 
+    ContentFooterAction,
+    ContentAccountAction 
 } from "../../Store/Actions";
 
 export const AccountPage = (): JSX.Element => 
@@ -20,9 +20,9 @@ export const AccountPage = (): JSX.Element =>
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.get());
-        dispatch(GetAccountContentAction.get());
-        dispatch(GetFooterContentAction.get());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentAccountAction.get());
+        dispatch(ContentFooterAction.get());
     }, 
     [ dispatch, language?.id ]);
 

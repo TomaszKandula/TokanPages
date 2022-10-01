@@ -5,11 +5,11 @@ import { IApplicationState } from "../../../Store/Configuration";
 import { IContentAccount } from "../../../Store/States";
 
 import { 
-    ApplicationDialog, 
+    ApplicationDialogAction, 
     UserUpdateAction, 
-    UserDataAction, 
+    UserDataStoreAction, 
     UserSigninAction, 
-    UserUpdatePasswordAction, 
+    UserPasswordUpdateAction, 
     UserRemoveAction, 
     UserReAuthenticateAction 
 } from "../../../Store/Actions";
@@ -73,21 +73,21 @@ export const UserAccount = (props: IContentAccount): JSX.Element =>
     const [passwordFormProgress, setPasswordFormProgress] = React.useState(false);
     const [deleteAccountProgress, setDeleteAccountProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(SuccessMessage(ACCOUNT_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialog.raise(WarningMessage(ACCOUNT_FORM, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(ACCOUNT_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialogAction.raise(WarningMessage(ACCOUNT_FORM, text))), [ dispatch ]);
 
     const updateUser = React.useCallback((payload: IUpdateUserDto) => dispatch(UserUpdateAction.update(payload)), [ dispatch ]);
     const updateUserClear = React.useCallback(() => dispatch(UserUpdateAction.clear()), [ dispatch ]);
 
-    const updatePassword = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(UserUpdatePasswordAction.update(payload)), [ dispatch ]);
-    const updatePasswordClear = React.useCallback(() => dispatch(UserUpdatePasswordAction.clear()), [ dispatch ]);
+    const updatePassword = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(UserPasswordUpdateAction.update(payload)), [ dispatch ]);
+    const updatePasswordClear = React.useCallback(() => dispatch(UserPasswordUpdateAction.clear()), [ dispatch ]);
 
     const removeUser = React.useCallback((payload: IRemoveUserDto) => dispatch(UserRemoveAction.remove(payload)), [ dispatch ]);
     const removeUserClear = React.useCallback(() => dispatch(UserRemoveAction.clear), [ dispatch ]);
 
     const reAuthenticate = React.useCallback(() => dispatch(UserReAuthenticateAction.reAuthenticate()), [ dispatch ]);
     const clearUser = React.useCallback(() => dispatch(UserSigninAction.clear()), [ dispatch ]);
-    const clearData = React.useCallback(() => dispatch(UserDataAction.clear()), [ dispatch ]);
+    const clearData = React.useCallback(() => dispatch(UserDataStoreAction.clear()), [ dispatch ]);
 
     const accountFormClear = React.useCallback(() => 
     {

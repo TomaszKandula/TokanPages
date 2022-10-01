@@ -53,7 +53,7 @@ const DispatchCall = async (dispatch: any, url: string, data: any) =>
     dispatch({ type: RAISE_ERROR, errorObject: error });
 }
 
-export const ActionCreators = 
+export const ArticleUpdateAction = 
 {
     clear: (): AppThunkAction<TKnownActions> => (dispatch) => 
     {

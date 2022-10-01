@@ -15,7 +15,7 @@ export interface IApiSendMessageClear { type: typeof API_SEND_MESSAGE_CLEAR }
 export interface IApiSendMessageResponse { type: typeof API_SEND_MESSAGE_RESPONSE }
 export type TKnownActions = IApiSendMessage | IApiSendMessageClear | IApiSendMessageResponse |TErrorActions;
 
-export const ActionCreators = 
+export const ApplicationMessageAction = 
 {
     clear: (): AppThunkAction<TKnownActions> => (dispatch) => 
     {
