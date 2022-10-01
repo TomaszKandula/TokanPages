@@ -4,16 +4,15 @@ import { IAddSubscriberDto } from "../../../Api/Models";
 import { API_COMMAND_ADD_SUBSCRIBER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const ADD_SUBSCRIBER = "ADD_SUBSCRIBER";
 export const ADD_SUBSCRIBER_CLEAR = "ADD_SUBSCRIBER_CLEAR";
 export const ADD_SUBSCRIBER_RESPONSE = "ADD_SUBSCRIBER_RESPONSE";
-export interface IApiAddSubscriber { type: typeof ADD_SUBSCRIBER }
-export interface IApiAddSubscriberClear { type: typeof ADD_SUBSCRIBER_CLEAR }
-export interface IApiAddSubscriberResponse { type: typeof ADD_SUBSCRIBER_RESPONSE }
-export type TKnownActions = IApiAddSubscriber | IApiAddSubscriberClear | IApiAddSubscriberResponse | TErrorActions;
+export interface IAddSubscriber { type: typeof ADD_SUBSCRIBER }
+export interface IAddSubscriberClear { type: typeof ADD_SUBSCRIBER_CLEAR }
+export interface IAddSubscriberResponse { type: typeof ADD_SUBSCRIBER_RESPONSE }
+export type TKnownActions = IAddSubscriber | IAddSubscriberClear | IAddSubscriberResponse;
 
 export const ActionCreators = 
 {

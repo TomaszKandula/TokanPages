@@ -1,6 +1,5 @@
 import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_HEADER_CONTENT } from "../../../Shared/constants";
-import { TErrorActions } from "../applicationError";
 import { IHeaderContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
 
@@ -8,7 +7,7 @@ export const REQUEST_HEADER_CONTENT = "REQUEST_HEADER_CONTENT";
 export const RECEIVE_HEADER_CONTENT = "RECEIVE_HEADER_CONTENT";
 export interface IRequestHeaderContent { type: typeof REQUEST_HEADER_CONTENT }
 export interface IReceiveHeaderContent { type: typeof RECEIVE_HEADER_CONTENT, payload: IHeaderContentDto }
-export type TKnownActions = IRequestHeaderContent | IReceiveHeaderContent | TErrorActions;
+export type TKnownActions = IRequestHeaderContent | IReceiveHeaderContent;
 
 export const ActionCreators = 
 {

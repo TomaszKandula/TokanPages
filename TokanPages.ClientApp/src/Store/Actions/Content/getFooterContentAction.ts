@@ -1,6 +1,5 @@
 import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_FOOTER_CONTENT } from "../../../Shared/constants";
-import { TErrorActions } from "../applicationError";
 import { IFooterContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
 
@@ -8,7 +7,7 @@ export const REQUEST_FOOTER_CONTENT = "REQUEST_FOOTER_CONTENT";
 export const RECEIVE_FOOTER_CONTENT = "RECEIVE_FOOTER_CONTENT";
 export interface IRequestFooterContent { type: typeof REQUEST_FOOTER_CONTENT }
 export interface IReceiveFooterContent { type: typeof RECEIVE_FOOTER_CONTENT, payload: IFooterContentDto }
-export type TKnownActions = IRequestFooterContent | IReceiveFooterContent | TErrorActions;
+export type TKnownActions = IRequestFooterContent | IReceiveFooterContent;
 
 export const ActionCreators = 
 {

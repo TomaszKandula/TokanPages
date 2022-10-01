@@ -1,6 +1,5 @@
 import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_UNSUBSCRIBE_CONTENT } from "../../../Shared/constants";
-import { TErrorActions } from "../applicationError";
 import { IUnsubscribeContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
 
@@ -8,7 +7,7 @@ export const REQUEST_UNSUBSCRIBE_CONTENT = "REQUEST_UNSUBSCRIBE_CONTENT";
 export const RECEIVE_UNSUBSCRIBE_CONTENT = "RECEIVE_UNSUBSCRIBE_CONTENT";
 export interface IRequestUnsubscribeContent { type: typeof REQUEST_UNSUBSCRIBE_CONTENT }
 export interface IReceiveUnsubscribeContent { type: typeof RECEIVE_UNSUBSCRIBE_CONTENT, payload: IUnsubscribeContentDto }
-export type TKnownActions = IRequestUnsubscribeContent | IReceiveUnsubscribeContent | TErrorActions;
+export type TKnownActions = IRequestUnsubscribeContent | IReceiveUnsubscribeContent;
 
 export const ActionCreators = 
 {

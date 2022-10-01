@@ -4,16 +4,15 @@ import { IUpdateUserDto } from "../../../Api/Models";
 import { API_COMMAND_UPDATE_USER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const UPDATE_USER = "UPDATE_USER";
 export const UPDATE_USER_CLEAR = "UPDATE_USER_CLEAR";
 export const UPDATE_USER_RESPONSE = "UPDATE_USER_RESPONSE";
-export interface IApiUpdateUser { type: typeof UPDATE_USER }
-export interface IApiUpdateUserClear { type: typeof UPDATE_USER_CLEAR }
-export interface IApiUpdateUserResponse { type: typeof UPDATE_USER_RESPONSE }
-export type TKnownActions = IApiUpdateUser | IApiUpdateUserClear | IApiUpdateUserResponse | TErrorActions;
+export interface IUpdateUser { type: typeof UPDATE_USER }
+export interface IUpdateUserClear { type: typeof UPDATE_USER_CLEAR }
+export interface IUpdateUserResponse { type: typeof UPDATE_USER_RESPONSE }
+export type TKnownActions = IUpdateUser | IUpdateUserClear | IUpdateUserResponse;
 
 export const ActionCreators = 
 {

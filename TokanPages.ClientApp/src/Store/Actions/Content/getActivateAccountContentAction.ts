@@ -1,6 +1,5 @@
 import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_ACTIVATE_ACCOUNT_CONTENT } from "../../../Shared/constants";
-import { TErrorActions } from "../applicationError";
 import { IActivateAccountContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
 
@@ -8,7 +7,7 @@ export const REQUEST_ACTIVATE_ACCOUNT_CONTENT = "REQUEST_ACTIVATE_ACCOUNT_CONTEN
 export const RECEIVE_ACTIVATE_ACCOUNT_CONTENT = "RECEIVE_ACTIVATE_ACCOUNT_CONTENT";
 export interface IRequestActivateAccountContent { type: typeof REQUEST_ACTIVATE_ACCOUNT_CONTENT }
 export interface IReceiveActivateAccountContent { type: typeof RECEIVE_ACTIVATE_ACCOUNT_CONTENT, payload: IActivateAccountContentDto }
-export type TKnownActions = IRequestActivateAccountContent | IReceiveActivateAccountContent | TErrorActions;
+export type TKnownActions = IRequestActivateAccountContent | IReceiveActivateAccountContent;
 
 export const ActionCreators = 
 {

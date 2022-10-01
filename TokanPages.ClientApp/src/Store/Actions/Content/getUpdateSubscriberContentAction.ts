@@ -1,6 +1,5 @@
 import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_UPDATE_SUBSCRIBER_CONTENT } from "../../../Shared/constants";
-import { TErrorActions } from "../applicationError";
 import { IUpdateSubscriberContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
 
@@ -8,7 +7,7 @@ export const REQUEST_UPDATE_SUBSCRIBER_CONTENT = "REQUEST_UPDATE_SUBSCRIBER_CONT
 export const RECEIVE_UPDATE_SUBSCRIBER_CONTENT = "RECEIVE_UPDATE_SUBSCRIBER_CONTENT";
 export interface IRequestUpdateSubscriberContent { type: typeof REQUEST_UPDATE_SUBSCRIBER_CONTENT }
 export interface IReceiveUpdateSubscriberContent { type: typeof RECEIVE_UPDATE_SUBSCRIBER_CONTENT, payload: IUpdateSubscriberContentDto }
-export type TKnownActions = IRequestUpdateSubscriberContent | IReceiveUpdateSubscriberContent | TErrorActions;
+export type TKnownActions = IRequestUpdateSubscriberContent | IReceiveUpdateSubscriberContent;
 
 export const ActionCreators = 
 {

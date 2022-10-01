@@ -1,6 +1,5 @@
 import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_FEATURES_CONTENT } from "../../../Shared/constants";
-import { TErrorActions } from "../applicationError";
 import { IFeaturesContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
 
@@ -8,7 +7,7 @@ export const REQUEST_FEATURES_CONTENT = "REQUEST_FEATURES_CONTENT";
 export const RECEIVE_FEATURES_CONTENT = "RECEIVE_FEATURES_CONTENT";
 export interface IRequestFeaturesContent { type: typeof REQUEST_FEATURES_CONTENT }
 export interface IReceiveFeaturesContent { type: typeof RECEIVE_FEATURES_CONTENT, payload: IFeaturesContentDto }
-export type TKnownActions = IRequestFeaturesContent | IReceiveFeaturesContent | TErrorActions;
+export type TKnownActions = IRequestFeaturesContent | IReceiveFeaturesContent;
 
 export const ActionCreators = 
 {

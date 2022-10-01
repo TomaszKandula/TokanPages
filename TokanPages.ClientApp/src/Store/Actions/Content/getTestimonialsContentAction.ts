@@ -1,6 +1,5 @@
 import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_TESTIMONIALS_CONTENT } from "../../../Shared/constants";
-import { TErrorActions } from "../applicationError";
 import { ITestimonialsContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
 
@@ -8,7 +7,7 @@ export const REQUEST_TESTIMONIALS_CONTENT = "REQUEST_TESTIMONIALS_CONTENT";
 export const RECEIVE_TESTIMONIALS_CONTENT = "RECEIVE_TESTIMONIALS_CONTENT";
 export interface IRequestTestimonialsContent { type: typeof REQUEST_TESTIMONIALS_CONTENT }
 export interface IReceiveTestimonialsContent { type: typeof RECEIVE_TESTIMONIALS_CONTENT, payload: ITestimonialsContentDto }
-export type TKnownActions = IRequestTestimonialsContent | IReceiveTestimonialsContent | TErrorActions;
+export type TKnownActions = IRequestTestimonialsContent | IReceiveTestimonialsContent;
 
 export const ActionCreators = 
 {

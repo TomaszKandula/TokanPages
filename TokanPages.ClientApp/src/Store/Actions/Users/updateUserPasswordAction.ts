@@ -4,16 +4,15 @@ import { IUpdateUserPasswordDto } from "../../../Api/Models";
 import { API_COMMAND_UPDATE_USER_PASSWORD, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const UPDATE_USER_PASSWORD = "UPDATE_USER_PASSWORD";
 export const UPDATE_USER_PASSWORD_CLEAR = "UPDATE_USER_PASSWORD_CLEAR";
 export const UPDATE_USER_PASSWORD_RESPONSE = "UPDATE_USER_PASSWORD_RESPONSE";
-export interface IApiUpdateUserPassword { type: typeof UPDATE_USER_PASSWORD }
-export interface IApiUpdateUserPasswordClear { type: typeof UPDATE_USER_PASSWORD_CLEAR }
-export interface IApiUpdateUserPasswordResponse { type: typeof UPDATE_USER_PASSWORD_RESPONSE }
-export type TKnownActions = IApiUpdateUserPassword | IApiUpdateUserPasswordClear | IApiUpdateUserPasswordResponse | TErrorActions;
+export interface IUpdateUserPassword { type: typeof UPDATE_USER_PASSWORD }
+export interface IUpdateUserPasswordClear { type: typeof UPDATE_USER_PASSWORD_CLEAR }
+export interface IUpdateUserPasswordResponse { type: typeof UPDATE_USER_PASSWORD_RESPONSE }
+export type TKnownActions = IUpdateUserPassword | IUpdateUserPasswordClear | IUpdateUserPasswordResponse;
 
 export const ActionCreators = 
 {

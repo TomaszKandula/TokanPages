@@ -6,16 +6,15 @@ import { UPDATE_USERDATA, TKnownActions as TUpdateActions } from "./storeUserDat
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { GetDataFromStorage } from "../../../Shared/Services/StorageServices";
-import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const REAUTHENTICATE_USER = "REAUTHENTICATE_USER";
 export const REAUTHENTICATE_USER_CLEAR = "REAUTHENTICATE_USER_CLEAR";
 export const REAUTHENTICATE_USER_RESPONSE = "REAUTHENTICATE_USER_RESPONSE";
-export interface IApiReAuthenticateUser { type: typeof REAUTHENTICATE_USER }
-export interface IApiReAuthenticateUserClear { type: typeof REAUTHENTICATE_USER_CLEAR }
-export interface IApiReAuthenticateUserResponse { type: typeof REAUTHENTICATE_USER_RESPONSE }
-export type TKnownActions = IApiReAuthenticateUser | IApiReAuthenticateUserClear | IApiReAuthenticateUserResponse | TErrorActions | TUpdateActions;
+export interface IReAuthenticateUser { type: typeof REAUTHENTICATE_USER }
+export interface IReAuthenticateUserClear { type: typeof REAUTHENTICATE_USER_CLEAR }
+export interface IReAuthenticateUserResponse { type: typeof REAUTHENTICATE_USER_RESPONSE }
+export type TKnownActions = IReAuthenticateUser | IReAuthenticateUserClear | IReAuthenticateUserResponse | TUpdateActions;
 
 export const ActionCreators = 
 {

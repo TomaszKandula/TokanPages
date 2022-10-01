@@ -1,5 +1,5 @@
 import { AppThunkAction } from "../../Configuration";
-import { RAISE_ERROR, TErrorActions } from "../Application/applicationError";
+import { RAISE_ERROR } from "../Application/applicationError";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { GetErrorMessage } from "../../../Shared/Services/ErrorServices";
 import { ApiCall, EnrichConfiguration } from "../../../Api/Request";
@@ -19,10 +19,10 @@ import {
 export const UPDATE_ARTICLE = "UPDATE_ARTICLE";
 export const UPDATE_ARTICLE_CLEAR = "UPDATE_ARTICLE_CLEAR";
 export const UPDATE_ARTICLE_RESPONSE = "UPDATE_ARTICLE_RESPONSE";
-export interface IApiUpdateArticle { type: typeof UPDATE_ARTICLE }
-export interface IApiUpdateArticleClear { type: typeof UPDATE_ARTICLE_CLEAR }
-export interface IApiUpdateArticleResponse { type: typeof UPDATE_ARTICLE_RESPONSE }
-export type TKnownActions = IApiUpdateArticle | IApiUpdateArticleClear | IApiUpdateArticleResponse | TErrorActions;
+export interface IUpdateArticle { type: typeof UPDATE_ARTICLE }
+export interface IUpdateArticleClear { type: typeof UPDATE_ARTICLE_CLEAR }
+export interface IUpdateArticleResponse { type: typeof UPDATE_ARTICLE_RESPONSE }
+export type TKnownActions = IUpdateArticle | IUpdateArticleClear | IUpdateArticleResponse;
 
 const DispatchCall = async (dispatch: any, url: string, data: any) =>
 {

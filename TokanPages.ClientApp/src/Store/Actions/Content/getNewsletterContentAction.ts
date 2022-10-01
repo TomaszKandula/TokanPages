@@ -1,6 +1,5 @@
 import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_NEWSLETTER_CONTENT } from "../../../Shared/constants";
-import { TErrorActions } from "../applicationError";
 import { INewsletterContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
 
@@ -8,7 +7,7 @@ export const REQUEST_NEWSLETTER_CONTENT = "REQUEST_NEWSLETTER_CONTENT";
 export const RECEIVE_NEWSLETTER_CONTENT = "RECEIVE_NEWSLETTER_CONTENT";
 export interface IRequestNewsletterContent { type: typeof REQUEST_NEWSLETTER_CONTENT }
 export interface IReceiveNewsletterContent { type: typeof RECEIVE_NEWSLETTER_CONTENT, payload: INewsletterContentDto }
-export type TKnownActions = IRequestNewsletterContent | IReceiveNewsletterContent | TErrorActions;
+export type TKnownActions = IRequestNewsletterContent | IReceiveNewsletterContent;
 
 export const ActionCreators = 
 {

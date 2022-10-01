@@ -1,6 +1,5 @@
 import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_CONTACT_FORM_CONTENT } from "../../../Shared/constants";
-import { TErrorActions } from "../applicationError";
 import { IContactFormContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
 
@@ -8,7 +7,7 @@ export const REQUEST_CONTACT_FORM_CONTENT = "REQUEST_CONTACT_FORM_CONTENT";
 export const RECEIVE_CONTACT_FORM_CONTENT = "RECEIVE_CONTACT_FORM_CONTENT";
 export interface IRequestContactFormContent { type: typeof REQUEST_CONTACT_FORM_CONTENT }
 export interface IReceiveContactFormContent { type: typeof RECEIVE_CONTACT_FORM_CONTENT, payload: IContactFormContentDto }
-export type TKnownActions = IRequestContactFormContent | IReceiveContactFormContent | TErrorActions;
+export type TKnownActions = IRequestContactFormContent | IReceiveContactFormContent;
 
 export const ActionCreators = 
 {

@@ -5,16 +5,15 @@ import { API_COMMAND_RESET_USER_PASSWORD, NULL_RESPONSE_ERROR } from "../../../S
 import { TKnownActions as TUpdateActions } from "./storeUserDataAction";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const RESET_USER_PASSWORD = "RESET_USER_PASSWORD";
 export const RESET_USER_PASSWORD_CLEAR = "RESET_USER_PASSWORD_CLEAR";
 export const RESET_USER_PASSWORD_RESPONSE = "RESET_USER_PASSWORD_RESPONSE";
-export interface IApiResetUserPassword { type: typeof RESET_USER_PASSWORD }
-export interface IApiResetUserPasswordClear { type: typeof RESET_USER_PASSWORD_CLEAR }
-export interface IApiResetUserPasswordResponse { type: typeof RESET_USER_PASSWORD_RESPONSE }
-export type TKnownActions = IApiResetUserPassword | IApiResetUserPasswordClear | IApiResetUserPasswordResponse | TErrorActions | TUpdateActions;
+export interface IResetUserPassword { type: typeof RESET_USER_PASSWORD }
+export interface IResetUserPasswordClear { type: typeof RESET_USER_PASSWORD_CLEAR }
+export interface IResetUserPasswordResponse { type: typeof RESET_USER_PASSWORD_RESPONSE }
+export type TKnownActions = IResetUserPassword | IResetUserPasswordClear | IResetUserPasswordResponse | TUpdateActions;
 
 export const ActionCreators = 
 {

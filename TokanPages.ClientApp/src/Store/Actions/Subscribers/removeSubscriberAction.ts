@@ -4,14 +4,13 @@ import { IRemoveSubscriberDto } from "../../../Api/Models";
 import { API_COMMAND_REMOVE_SUBSCRIBER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const REMOVE_SUBSCRIBER = "REMOVE_SUBSCRIBER";
 export const REMOVE_SUBSCRIBER_RESPONSE = "REMOVE_SUBSCRIBER_RESPONSE";
-export interface IApiRemoveSubscriber { type: typeof REMOVE_SUBSCRIBER }
-export interface IApiRemoveSubscriberResponse { type: typeof REMOVE_SUBSCRIBER_RESPONSE }
-export type TKnownActions = IApiRemoveSubscriber | IApiRemoveSubscriberResponse | TErrorActions;
+export interface IRemoveSubscriber { type: typeof REMOVE_SUBSCRIBER }
+export interface IRemoveSubscriberResponse { type: typeof REMOVE_SUBSCRIBER_RESPONSE }
+export type TKnownActions = IRemoveSubscriber | IRemoveSubscriberResponse;
 
 export const ActionCreators = 
 {

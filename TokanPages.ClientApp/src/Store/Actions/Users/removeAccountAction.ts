@@ -4,16 +4,15 @@ import { IRemoveUserDto } from "../../../Api/Models";
 import { API_COMMAND_REMOVE_USER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const REMOVE_ACCOUNT = "REMOVE_ACCOUNT";
 export const REMOVE_ACCOUNT_CLEAR = "REMOVE_ACCOUNT_CLEAR";
 export const REMOVE_ACCOUNT_RESPONSE = "REMOVE_ACCOUNT_RESPONSE";
-export interface IApiRemoveAccount { type: typeof REMOVE_ACCOUNT }
-export interface IApiRemoveAccountClear { type: typeof REMOVE_ACCOUNT_CLEAR }
-export interface IApiRemoveAccountResponse { type: typeof REMOVE_ACCOUNT_RESPONSE }
-export type TKnownActions = IApiRemoveAccount | IApiRemoveAccountClear | IApiRemoveAccountResponse | TErrorActions;
+export interface IRemoveAccount { type: typeof REMOVE_ACCOUNT }
+export interface IRemoveAccountClear { type: typeof REMOVE_ACCOUNT_CLEAR }
+export interface IRemoveAccountResponse { type: typeof REMOVE_ACCOUNT_RESPONSE }
+export type TKnownActions = IRemoveAccount | IRemoveAccountClear | IRemoveAccountResponse;
 
 export const ActionCreators = 
 {

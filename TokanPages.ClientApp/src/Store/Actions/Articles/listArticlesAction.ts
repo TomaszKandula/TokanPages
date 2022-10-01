@@ -2,7 +2,6 @@ import axios from "axios";
 import { AppThunkAction } from "../../Configuration";
 import { IArticleItem } from "../../../Shared/Components/RenderContent/Models";
 import { API_QUERY_GET_ARTICLES, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
-import { TErrorActions } from "../applicationError";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { EnrichConfiguration } from "../../../Api/Request";
@@ -11,7 +10,7 @@ export const REQUEST_ARTICLES = "REQUEST_ARTICLES";
 export const RECEIVE_ARTICLES = "RECEIVE_ARTICLES";
 export interface IRequestArticlesAction { type: typeof REQUEST_ARTICLES; }
 export interface IReceiveArticlesAction { type: typeof RECEIVE_ARTICLES; payload: IArticleItem[]; }
-export type TKnownActions = IRequestArticlesAction | IReceiveArticlesAction | TErrorActions;
+export type TKnownActions = IRequestArticlesAction | IReceiveArticlesAction;
 
 export const ActionCreators = 
 {

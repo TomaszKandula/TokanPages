@@ -1,6 +1,5 @@
 import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_SIGNOUT_CONTENT } from "../../../Shared/constants";
-import { TErrorActions } from "../applicationError";
 import { IUserSignoutContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
 
@@ -8,7 +7,7 @@ export const REQUEST_USER_SIGNOUT_CONTENT = "REQUEST_USER_SIGNOUT_CONTENT";
 export const RECEIVE_USER_SIGNOUT_CONTENT = "RECEIVE_USER_SIGNOUT_CONTENT";
 export interface IRequestSignoutFormContent { type: typeof REQUEST_USER_SIGNOUT_CONTENT }
 export interface IReceiveSignoutFormContent { type: typeof RECEIVE_USER_SIGNOUT_CONTENT, payload: IUserSignoutContentDto }
-export type TKnownActions = IRequestSignoutFormContent | IReceiveSignoutFormContent | TErrorActions;
+export type TKnownActions = IRequestSignoutFormContent | IReceiveSignoutFormContent;
 
 export const ActionCreators = 
 {

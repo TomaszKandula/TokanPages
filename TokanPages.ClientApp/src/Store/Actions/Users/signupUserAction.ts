@@ -4,16 +4,15 @@ import { IAddUserDto } from "../../../Api/Models";
 import { API_COMMAND_ADD_USER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const SIGNUP_USER = "SIGNUP_USER";
 export const SIGNUP_USER_CLEAR = "SIGNUP_USER_CLEAR";
 export const SIGNUP_USER_RESPONSE = "SIGNUP_USER_RESPONSE";
-export interface IApiSignupUser { type: typeof SIGNUP_USER }
-export interface IApiSignupUserClear { type: typeof SIGNUP_USER_CLEAR }
-export interface IApiSignupUserResponse { type: typeof SIGNUP_USER_RESPONSE }
-export type TKnownActions = IApiSignupUser | IApiSignupUserClear | IApiSignupUserResponse | TErrorActions;
+export interface ISignupUser { type: typeof SIGNUP_USER }
+export interface ISignupUserClear { type: typeof SIGNUP_USER_CLEAR }
+export interface ISignupUserResponse { type: typeof SIGNUP_USER_RESPONSE }
+export type TKnownActions = ISignupUser | ISignupUserClear | ISignupUserResponse;
 
 export const ActionCreators = 
 {

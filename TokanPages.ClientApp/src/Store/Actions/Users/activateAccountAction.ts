@@ -2,19 +2,17 @@ import axios from "axios";
 import { AppThunkAction } from "../../Configuration";
 import { IActivateUserDto } from "../../../Api/Models";
 import { API_COMMAND_ACTIVATE_USER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
-import { TKnownActions as TUpdateActions } from "./storeUserDataAction";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const ACTIVATE_ACCOUNT = "ACTIVATE_ACCOUNT";
 export const ACTIVATE_ACCOUNT_CLEAR = "ACTIVATE_ACCOUNT_CLEAR";
 export const ACTIVATE_ACCOUNT_RESPONSE = "ACTIVATE_ACCOUNT_RESPONSE";
-export interface IApiActivateAccount { type: typeof ACTIVATE_ACCOUNT }
-export interface IApiActivateAccountClear { type: typeof ACTIVATE_ACCOUNT_CLEAR }
-export interface IApiActivateAccountResponse { type: typeof ACTIVATE_ACCOUNT_RESPONSE }
-export type TKnownActions = IApiActivateAccount | IApiActivateAccountClear | IApiActivateAccountResponse | TErrorActions | TUpdateActions;
+export interface IActivateAccount { type: typeof ACTIVATE_ACCOUNT }
+export interface IActivateAccountClear { type: typeof ACTIVATE_ACCOUNT_CLEAR }
+export interface IActivateAccountResponse { type: typeof ACTIVATE_ACCOUNT_RESPONSE }
+export type TKnownActions = IActivateAccount | IActivateAccountClear | IActivateAccountResponse;
 
 export const ActionCreators = 
 {

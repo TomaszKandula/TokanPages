@@ -4,14 +4,13 @@ import { IUpdateSubscriberDto } from "../../../Api/Models";
 import { API_COMMAND_UPDATE_SUBSCRIBER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const UPDATE_SUBSCRIBER = "UPDATE_SUBSCRIBER";
 export const UPDATE_SUBSCRIBER_RESPONSE = "UPDATE_SUBSCRIBER_RESPONSE";
-export interface IApiUpdateSubscriber { type: typeof UPDATE_SUBSCRIBER }
-export interface IApiUpdateSubscriberResponse { type: typeof UPDATE_SUBSCRIBER_RESPONSE }
-export type TKnownActions = IApiUpdateSubscriber | IApiUpdateSubscriberResponse | TErrorActions;
+export interface IUpdateSubscriber { type: typeof UPDATE_SUBSCRIBER }
+export interface IUpdateSubscriberResponse { type: typeof UPDATE_SUBSCRIBER_RESPONSE }
+export type TKnownActions = IUpdateSubscriber | IUpdateSubscriberResponse;
 
 export const ActionCreators = 
 {

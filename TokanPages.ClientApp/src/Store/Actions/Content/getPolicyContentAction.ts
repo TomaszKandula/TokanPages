@@ -1,6 +1,5 @@
 import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { POLICY_URL } from "../../../Shared/constants";
-import { TErrorActions } from "../applicationError";
 import { IDocumentContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
 
@@ -8,7 +7,7 @@ export const REQUEST_POLICY_CONTENT = "REQUEST_POLICY_CONTENT";
 export const RECEIVE_POLICY_CONTENT = "RECEIVE_POLICY_CONTENT";
 export interface IRequestPolicyContent { type: typeof REQUEST_POLICY_CONTENT }
 export interface IReceivePolicyContent { type: typeof RECEIVE_POLICY_CONTENT, payload: IDocumentContentDto }
-export type TKnownActions = IRequestPolicyContent | IReceivePolicyContent | TErrorActions;
+export type TKnownActions = IRequestPolicyContent | IReceivePolicyContent;
 
 export const ActionCreators = 
 {

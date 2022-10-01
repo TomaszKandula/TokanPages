@@ -5,16 +5,15 @@ import { API_COMMAND_AUTHENTICATE, NULL_RESPONSE_ERROR } from "../../../Shared/c
 import { UPDATE_USERDATA, TKnownActions as TUpdateActions } from "./storeUserDataAction";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const SIGNIN_USER = "SIGNIN_USER";
 export const SIGNIN_USER_CLEAR = "SIGNIN_USER_CLEAR";
 export const SIGNIN_USER_RESPONSE = "SIGNIN_USER_RESPONSE";
-export interface IApiSigninUser { type: typeof SIGNIN_USER }
-export interface IApiSigninUserClear { type: typeof SIGNIN_USER_CLEAR }
-export interface IApiSigninUserResponse { type: typeof SIGNIN_USER_RESPONSE }
-export type TKnownActions = IApiSigninUser | IApiSigninUserClear | IApiSigninUserResponse | TErrorActions | TUpdateActions;
+export interface ISigninUser { type: typeof SIGNIN_USER }
+export interface ISigninUserClear { type: typeof SIGNIN_USER_CLEAR }
+export interface ISigninUserResponse { type: typeof SIGNIN_USER_RESPONSE }
+export type TKnownActions = ISigninUser | ISigninUserClear | ISigninUserResponse | TUpdateActions;
 
 export const ActionCreators = 
 {
