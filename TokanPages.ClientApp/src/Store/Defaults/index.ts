@@ -1,7 +1,7 @@
 export { ApplicationDialog } from "./Application/applicationDialog";
 export { ApplicationError } from "./Application/applicationError";
 export { ApplicationLanguage } from "./Application/applicationLanguage";
-export { ApplicationMessage } from "./Mailer/applicationMessage";
+export { ApplicationMessage } from "./Application/applicationMessage";
 
 export { ListArticlesDefault } from "./Articles/listArticlesDefault";
 export { SelectArticleDefault } from "./Articles/selectArticleDefault";

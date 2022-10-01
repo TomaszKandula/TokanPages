@@ -4,7 +4,7 @@ import { ISendMessageDto } from "../../../Api/Models";
 import { API_COMMAND_SEND_MESSAGE, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { TErrorActions } from "../Application/applicationError";
+import { TErrorActions } from "./applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const API_SEND_MESSAGE = "API_SEND_MESSAGE";

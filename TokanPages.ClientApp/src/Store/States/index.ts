@@ -1,7 +1,7 @@
 export type { IApplicationDialog } from "./Application/applicationDialog";
 export type { IApplicationError } from "./Application/applicationError";
 export type { IApplicationLanguage } from "./Application/applicationLanguage";
-export type { IApplicationMessage } from "./Mailer/applicationMessage";
+export type { IApplicationMessage } from "./Application/applicationMessage";
 
 export type { IArticles } from "./Articles/listArticlesState";
 export type { IArticle } from "./Articles/selectArticleState";

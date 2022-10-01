@@ -1,7 +1,7 @@
 export { ActionCreators as ApplicationDialog } from "./Application/applicationDialog";
 export { ActionCreators as ApplicationError } from "./Application/applicationError";
 export { ActionCreators as ApplicationLanguage } from "./Application/applicationLanguage";
-export { ActionCreators as ApplicationMessage } from "./Mailer/applicationMessage";
+export { ActionCreators as ApplicationMessage } from "./Application/applicationMessage";
 
 export { ActionCreators as ArticlesAction } from "./Articles/listArticlesAction";
 export { ActionCreators as ArticleAction } from "./Articles/selectArticleAction";

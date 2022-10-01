@@ -7,7 +7,7 @@ import {
     API_SEND_MESSAGE, 
     API_SEND_MESSAGE_RESPONSE, 
     API_SEND_MESSAGE_CLEAR
-} from "../../Actions/Mailer/applicationMessage";
+} from "../../Actions/Application/applicationMessage";
 
 export const ApplicationMessage: 
     Reducer<IApplicationMessage> = (state: IApplicationMessage | undefined, incomingAction: Action): 
