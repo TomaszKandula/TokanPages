@@ -5,7 +5,7 @@ import {
     TKnownActions, 
     REQUEST_CONTACT_FORM_CONTENT, 
     RECEIVE_CONTACT_FORM_CONTENT 
-} from "../../Actions/Content/getContactFormContentAction";
+} from "../../Actions/Content/contentContactForm";
 
 export const ContentContactForm: 
     Reducer<IContentContactForm> = (state: IContentContactForm | undefined, incomingAction: Action): 

@@ -5,7 +5,7 @@ import {
     TKnownActions,
     RECEIVE_FEATURED_CONTENT, 
     REQUEST_FEATURED_CONTENT
-} from "../../Actions/Content/getFeaturedContentAction";
+} from "../../Actions/Content/contentFeatured";
 
 export const ContentFeatured: 
     Reducer<IContentFeatured> = (state: IContentFeatured | undefined, incomingAction: Action): 

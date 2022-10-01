@@ -5,7 +5,7 @@ import {
     TKnownActions,
     RECEIVE_STORY_CONTENT, 
     REQUEST_STORY_CONTENT
-} from "../../Actions/Content/getStoryContentAction";
+} from "../../Actions/Content/contentStory";
 
 export const ContentStory: 
     Reducer<IContentStory> = (state: IContentStory | undefined, incomingAction: Action): 

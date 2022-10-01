@@ -5,7 +5,7 @@ import {
     TKnownActions,
     RECEIVE_NEWSLETTER_CONTENT, 
     REQUEST_NEWSLETTER_CONTENT
-} from "../../Actions/Content/getNewsletterContentAction";
+} from "../../Actions/Content/contentNewsletter";
 
 export const ContentNewsletter: 
     Reducer<IContentNewsletter> = (state: IContentNewsletter | undefined, incomingAction: Action): 

@@ -5,7 +5,7 @@ import {
     TKnownActions,
     RECEIVE_UPDATE_SUBSCRIBER_CONTENT, 
     REQUEST_UPDATE_SUBSCRIBER_CONTENT
-} from "../../Actions/Content/getUpdateSubscriberContentAction";
+} from "../../Actions/Content/contentUpdateSubscriber";
 
 export const ContentUpdateSubscriber: 
     Reducer<IContentUpdateSubscriber> = (state: IContentUpdateSubscriber | undefined, incomingAction: Action): 

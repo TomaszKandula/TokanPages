@@ -5,7 +5,7 @@ import {
     TKnownActions, 
     RECEIVE_ARTICLES, 
     REQUEST_ARTICLES, 
-} from "../../Actions/Articles/listArticlesAction";
+} from "../../Actions/Articles/articleListing";
 
 export const ArticleListing: Reducer<IArticleListing> = (state: IArticleListing | undefined, incomingAction: Action): IArticleListing => 
 {

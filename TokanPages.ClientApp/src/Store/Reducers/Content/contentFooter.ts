@@ -5,7 +5,7 @@ import {
     TKnownActions,
     RECEIVE_FOOTER_CONTENT, 
     REQUEST_FOOTER_CONTENT
-} from "../../Actions/Content/getFooterContentAction";
+} from "../../Actions/Content/contentFooter";
 
 export const ContentFooter: 
     Reducer<IContentFooter> = (state: IContentFooter | undefined, incomingAction: Action): 

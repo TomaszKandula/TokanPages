@@ -5,7 +5,7 @@ import {
     TKnownActions,
     RECEIVE_POLICY_CONTENT, 
     REQUEST_POLICY_CONTENT
-} from "../../Actions/Content/getPolicyContentAction";
+} from "../../Actions/Content/contentPolicy";
 
 export const ContentPolicy: 
     Reducer<IContentPolicy> = (state: IContentPolicy | undefined, incomingAction: Action): 

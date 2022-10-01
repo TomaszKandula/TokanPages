@@ -7,7 +7,7 @@ import {
     SIGNIN_USER,
     SIGNIN_USER_CLEAR,
     SIGNIN_USER_RESPONSE
-} from "../../Actions/Users/signinUserAction";
+} from "../../Actions/Users/userSignin";
 
 export const UserSignin: 
     Reducer<IUserSignin> = (state: IUserSignin | undefined, incomingAction: Action): 

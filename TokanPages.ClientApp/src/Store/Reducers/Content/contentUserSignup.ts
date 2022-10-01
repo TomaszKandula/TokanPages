@@ -5,7 +5,7 @@ import {
     TKnownActions, 
     REQUEST_USER_SIGNUP_CONTENT, 
     RECEIVE_USER_SIGNUP_CONTENT 
-} from "../../Actions/Content/getUserSignupContentAction";
+} from "../../Actions/Content/contentUserSignup";
 
 export const ContentUserSignup: 
     Reducer<IContentUserSignup> = (state: IContentUserSignup | undefined, incomingAction: Action): 

@@ -6,7 +6,7 @@ import {
     SHOW_USERDATA,
     CLEAR_USERDATA,
     UPDATE_USERDATA
-} from "../../Actions/Users/storeUserDataAction";
+} from "../../Actions/Users/userDataStore";
 import { USER_DATA } from "../../../Shared/constants";
 import { DelDataFromStorage, SetDataInStorage } from "../../../Shared/Services/StorageServices";
 

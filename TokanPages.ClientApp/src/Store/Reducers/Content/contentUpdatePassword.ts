@@ -5,7 +5,7 @@ import {
     TKnownActions,
     RECEIVE_UPDATE_PASSWORD_CONTENT, 
     REQUEST_UPDATE_PASSWORD_CONTENT
-} from "../../Actions/Content/getUpdatePasswordContentAction";
+} from "../../Actions/Content/contentUpdatePassword";
 
 export const ContentUpdatePassword: 
     Reducer<IContentUpdatePassword> = (state: IContentUpdatePassword | undefined, incomingAction: Action): 

@@ -5,7 +5,7 @@ import {
     TKnownActions,
     RECEIVE_TERMS_CONTENT, 
     REQUEST_TERMS_CONTENT
-} from "../../Actions/Content/getTermsContentAction";
+} from "../../Actions/Content/contentTerms";
 
 export const ContentTerms: 
     Reducer<IContentTerms> = (state: IContentTerms | undefined, incomingAction: Action): 

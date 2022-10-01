@@ -7,7 +7,7 @@ import {
     ACTIVATE_ACCOUNT,
     ACTIVATE_ACCOUNT_CLEAR,
     ACTIVATE_ACCOUNT_RESPONSE
-} from "../../Actions/Users/activateAccountAction";
+} from "../../Actions/Users/userActivate";
 
 export const UserActivate: 
     Reducer<IUserActivate> = (state: IUserActivate | undefined, incomingAction: Action): 

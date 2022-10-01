@@ -7,7 +7,7 @@ import {
     RESET_USER_PASSWORD,
     RESET_USER_PASSWORD_CLEAR,
     RESET_USER_PASSWORD_RESPONSE
-} from "../../Actions/Users/resetUserPasswordAction";
+} from "../../Actions/Users/userPasswordReset";
 
 export const UserPasswordReset: 
     Reducer<IUserPasswordReset> = (state: IUserPasswordReset | undefined, incomingAction: Action): 

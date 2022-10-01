@@ -7,7 +7,7 @@ import {
     REAUTHENTICATE_USER,
     REAUTHENTICATE_USER_CLEAR,
     REAUTHENTICATE_USER_RESPONSE
-} from "../../Actions/Users/reAuthenticateUserAction";
+} from "../../Actions/Users/userReAuthenticate";
 
 export const UserReAuthenticate: 
     Reducer<IUserReAuthenticate> = (state: IUserReAuthenticate | undefined, incomingAction: Action): 

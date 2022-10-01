@@ -5,7 +5,7 @@ import {
     TKnownActions,
     REQUEST_CLIENTS_CONTENT, 
     RECEIVE_CLIENTS_CONTENT
-} from "../../Actions/Content/getClientsContentAction";
+} from "../../Actions/Content/contentClients";
 
 export const ContentClients: 
     Reducer<IContentClients> = (state: IContentClients | undefined, incomingAction: Action): 

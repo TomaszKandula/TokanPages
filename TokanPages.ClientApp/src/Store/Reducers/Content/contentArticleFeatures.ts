@@ -5,7 +5,7 @@ import {
     TKnownActions,
     RECEIVE_ARTICE_FEATURES, 
     REQUEST_ARTICE_FEATURES
-} from "../../Actions/Content/getArticleFeaturesContentAction";
+} from "../../Actions/Content/contentArticleFeatures";
 
 export const ContentArticleFeatures: 
     Reducer<IContentArticleFeatures> = (state: IContentArticleFeatures | undefined, incomingAction: Action): 

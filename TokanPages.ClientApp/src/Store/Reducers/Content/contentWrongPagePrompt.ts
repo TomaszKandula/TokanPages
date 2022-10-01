@@ -5,7 +5,7 @@ import {
     TKnownActions, 
     REQUEST_WRONG_PAGE_CONTENT, 
     RECEIVE_WRONG_PAGE_CONTENT 
-} from "../../Actions/Content/getWrongPagePromptContentAction";
+} from "../../Actions/Content/contentWrongPagePrompt";
 
 export const ContentWrongPagePrompt: 
     Reducer<IContentWrongPagePrompt> = (state: IContentWrongPagePrompt | undefined, incomingAction: Action): 

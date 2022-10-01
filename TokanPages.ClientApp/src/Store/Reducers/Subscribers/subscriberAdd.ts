@@ -7,7 +7,7 @@ import {
     ADD_SUBSCRIBER, 
     ADD_SUBSCRIBER_RESPONSE, 
     ADD_SUBSCRIBER_CLEAR, 
-} from "../../Actions/Subscribers/addSubscriberAction";
+} from "../../Actions/Subscribers/subscriberAdd";
 
 export const SubscriberAdd: 
     Reducer<ISubscriberAdd> = (state: ISubscriberAdd | undefined, incomingAction: Action): 

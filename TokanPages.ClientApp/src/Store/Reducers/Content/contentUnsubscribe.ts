@@ -5,7 +5,7 @@ import {
     TKnownActions,
     RECEIVE_UNSUBSCRIBE_CONTENT, 
     REQUEST_UNSUBSCRIBE_CONTENT
-} from "../../Actions/Content/getUnsubscribeContentAction";
+} from "../../Actions/Content/contentUnsubscribe";
 
 export const ContentUnsubscribe: 
     Reducer<IContentUnsubscribe> = (state: IContentUnsubscribe | undefined, incomingAction: Action): 

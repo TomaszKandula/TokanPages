@@ -5,7 +5,7 @@ import {
     TKnownActions,
     RECEIVE_HEADER_CONTENT, 
     REQUEST_HEADER_CONTENT
-} from "../../Actions/Content/getHeaderContentAction";
+} from "../../Actions/Content/contentHeader";
 
 export const ContentHeader: 
     Reducer<IContentHeader> = (state: IContentHeader | undefined, incomingAction: Action): 

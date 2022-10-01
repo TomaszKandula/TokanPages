@@ -5,7 +5,7 @@ import {
     TKnownActions, 
     REQUEST_COOKIES_PROMPT_CONTENT, 
     RECEIVE_COOKIES_PROMPT_CONTENT 
-} from "../../Actions/Content/getCookiesPromptContentAction";
+} from "../../Actions/Content/contentCookiesPrompt";
 
 export const ContentCookiesPrompt: 
     Reducer<IContentCookiesPrompt> = (state: IContentCookiesPrompt | undefined, incomingAction: Action): 

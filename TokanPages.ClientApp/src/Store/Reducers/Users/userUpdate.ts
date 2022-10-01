@@ -7,7 +7,7 @@ import {
     UPDATE_USER,
     UPDATE_USER_CLEAR,
     UPDATE_USER_RESPONSE
-} from "../../Actions/Users/updateUserAction";
+} from "../../Actions/Users/userUpdate";
 
 export const UserUpdate: 
     Reducer<IUserUpdate> = (state: IUserUpdate | undefined, incomingAction: Action): 

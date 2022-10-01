@@ -5,7 +5,7 @@ import {
     TKnownActions, 
     REQUEST_USER_SIGNOUT_CONTENT, 
     RECEIVE_USER_SIGNOUT_CONTENT 
-} from "../../Actions/Content/getUserSignoutContentAction";
+} from "../../Actions/Content/contentUserSignout";
 
 export const ContentUserSignout: 
     Reducer<IContentUserSignout> = (state: IContentUserSignout | undefined, incomingAction: Action): 

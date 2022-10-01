@@ -6,7 +6,7 @@ import {
     REQUEST_ARTICLE, 
     RECEIVE_ARTICLE, 
     RESET_SELECTION, 
-} from "../../Actions/Articles/selectArticleAction";
+} from "../../Actions/Articles/articleSelection";
 
 export const ArticleSelection: 
     Reducer<IArticleSelection> = (state: IArticleSelection | undefined, incomingAction: Action): 

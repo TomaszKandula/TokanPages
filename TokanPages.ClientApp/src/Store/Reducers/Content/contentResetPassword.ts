@@ -5,7 +5,7 @@ import {
     TKnownActions,
     RECEIVE_RESET_PASSWORD_CONTENT, 
     REQUEST_RESET_PASSWORD_CONTENT
-} from "../../Actions/Content/getResetPasswordContentAction";
+} from "../../Actions/Content/contentResetPassword";
 
 export const ContentResetPassword: 
     Reducer<IContentResetPassword> = (state: IContentResetPassword | undefined, incomingAction: Action): 

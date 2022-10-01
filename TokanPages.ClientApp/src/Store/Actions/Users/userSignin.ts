@@ -2,7 +2,7 @@ import axios from "axios";
 import { AppThunkAction } from "../../Configuration";
 import { IAuthenticateUserDto } from "../../../Api/Models";
 import { API_COMMAND_AUTHENTICATE, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
-import { UPDATE_USERDATA, TKnownActions as TUpdateActions } from "./storeUserDataAction";
+import { UPDATE_USERDATA, TKnownActions as TUpdateActions } from "./userDataStore";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { EnrichConfiguration } from "../../../Api/Request";

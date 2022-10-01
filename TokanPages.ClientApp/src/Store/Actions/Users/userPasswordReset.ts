@@ -2,7 +2,7 @@ import axios from "axios";
 import { AppThunkAction } from "../../Configuration";
 import { IResetUserPasswordDto } from "../../../Api/Models";
 import { API_COMMAND_RESET_USER_PASSWORD, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
-import { TKnownActions as TUpdateActions } from "./storeUserDataAction";
+import { TKnownActions as TUpdateActions } from "./userDataStore";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { EnrichConfiguration } from "../../../Api/Request";

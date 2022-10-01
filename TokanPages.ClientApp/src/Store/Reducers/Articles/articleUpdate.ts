@@ -7,7 +7,7 @@ import {
     UPDATE_ARTICLE, 
     UPDATE_ARTICLE_CLEAR,
     UPDATE_ARTICLE_RESPONSE, 
-} from "../../Actions/Articles/updateArticleAction";
+} from "../../Actions/Articles/articleUpdate";
 
 export const ArticleUpdate: 
     Reducer<IArticleUpdate> = (state: IArticleUpdate | undefined, incomingAction: Action): 

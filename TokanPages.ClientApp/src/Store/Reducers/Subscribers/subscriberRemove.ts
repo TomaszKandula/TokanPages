@@ -6,7 +6,7 @@ import {
     TKnownActions, 
     REMOVE_SUBSCRIBER, 
     REMOVE_SUBSCRIBER_RESPONSE 
-} from "../../Actions/Subscribers/removeSubscriberAction";
+} from "../../Actions/Subscribers/subscriberRemove";
 
 export const SubscriberRemove: 
     Reducer<ISubscriberRemove> = (state: ISubscriberRemove | undefined, incomingAction: Action): 

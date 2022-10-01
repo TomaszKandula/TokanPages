@@ -5,7 +5,7 @@ import {
     TKnownActions,
     RECEIVE_NAVIGATION_CONTENT, 
     REQUEST_NAVIGATION_CONTENT
-} from "../../Actions/Content/getNavigationContentAction";
+} from "../../Actions/Content/contentNavigation";
 
 export const ContentNavigation: 
     Reducer<IContentNavigation> = (state: IContentNavigation | undefined, incomingAction: Action): 

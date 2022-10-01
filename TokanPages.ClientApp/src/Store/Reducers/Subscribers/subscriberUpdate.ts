@@ -6,7 +6,7 @@ import {
     TKnownActions, 
     UPDATE_SUBSCRIBER, 
     UPDATE_SUBSCRIBER_RESPONSE, 
-} from "../../Actions/Subscribers/updateSubscriberAction";
+} from "../../Actions/Subscribers/subscriberUpdate";
 
 export const SubscriberUpdate: 
     Reducer<ISubscriberUpdate> = (state: ISubscriberUpdate | undefined, incomingAction: Action): 

@@ -5,7 +5,7 @@ import {
     TKnownActions,
     RECEIVE_TESTIMONIALS_CONTENT, 
     REQUEST_TESTIMONIALS_CONTENT
-} from "../../Actions/Content/getTestimonialsContentAction";
+} from "../../Actions/Content/contentTestimonials";
 
 export const ContentTestimonials: 
     Reducer<IContentTestimonials> = (state: IContentTestimonials | undefined, incomingAction: Action): 
