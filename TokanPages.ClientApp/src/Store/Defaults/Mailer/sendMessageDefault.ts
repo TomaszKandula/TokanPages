@@ -1,7 +1,7 @@
-import { ISendMessage } from "../../States";
+import { IApplicationMessage } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-export const SendMessageDefault: ISendMessage = 
+export const ApplicationMessage: IApplicationMessage = 
 {
     operationStatus: OperationStatus.notStarted,
     attachedErrorObject: { }

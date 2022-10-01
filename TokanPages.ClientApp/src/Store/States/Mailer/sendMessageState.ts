@@ -1,6 +1,6 @@
 import { OperationStatus } from "../../../Shared/enums";
 
-export interface ISendMessage
+export interface IApplicationMessage
 {
     operationStatus: OperationStatus;
     attachedErrorObject: any;

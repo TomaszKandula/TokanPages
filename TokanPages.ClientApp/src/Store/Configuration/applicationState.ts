@@ -30,7 +30,7 @@ import {
     IRemoveAccount,
     IRemoveSubscriber,
     IResetUserPassword,
-    ISendMessage,
+    IApplicationMessage,
     ISigninUser,
     ISignupUser,
     IStoreUserData,
@@ -49,7 +49,7 @@ export interface IApplicationState
     applicationDialog: IApplicationDialog;
     applicationError: IApplicationError;
     applicationLanguage: IApplicationLanguage;
-    applicationMessage: ISendMessage;
+    applicationMessage: IApplicationMessage;
     articleListing: IArticles;
     articleSelection: IArticle;
     articleUpdated: IUpdateArticle;

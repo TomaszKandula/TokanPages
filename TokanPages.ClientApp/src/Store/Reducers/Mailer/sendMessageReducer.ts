@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { ISendMessage } from "../../States";
+import { IApplicationMessage } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 import { 
     TKnownActions, 
@@ -9,9 +9,9 @@ import {
     API_SEND_MESSAGE_CLEAR
 } from "../../Actions/Mailer/sendMessageAction";
 
-export const SendMessageReducer: 
-    Reducer<ISendMessage> = (state: ISendMessage | undefined, incomingAction: Action): 
-    ISendMessage => 
+export const ApplicationMessage: 
+    Reducer<IApplicationMessage> = (state: IApplicationMessage | undefined, incomingAction: Action): 
+    IApplicationMessage => 
 {
     if (state === undefined) return ApplicationDefaults.applicationMessage;
 

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Validate from "validate.js";
 import { IApplicationState } from "../../Store/Configuration";
-import { ApplicationDialog, SendMessageAction } from "../../Store/Actions";
+import { ApplicationDialog, ApplicationMessage } from "../../Store/Actions";
 import { IGetContactFormContent } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { IValidateContactForm, ValidateContactForm } from "../../Shared/Services/FormValidation";
@@ -40,8 +40,8 @@ export const ContactForm = (props: IGetContactFormContent): JSX.Element =>
 
     const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(SuccessMessage(CONTACT_FORM, text))), [ dispatch ]);
     const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialog.raise(WarningMessage(CONTACT_FORM, text))), [ dispatch ]);
-    const message = React.useCallback((payload: ISendMessageDto) => dispatch(SendMessageAction.send(payload)), [ dispatch ]);
-    const clear = React.useCallback(() => dispatch(SendMessageAction.clear()), [ dispatch ]);
+    const message = React.useCallback((payload: ISendMessageDto) => dispatch(ApplicationMessage.send(payload)), [ dispatch ]);
+    const clear = React.useCallback(() => dispatch(ApplicationMessage.clear()), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 
     {

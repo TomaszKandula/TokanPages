@@ -1,6 +1,7 @@
 export { ApplicationDialog } from "./Application/applicationDialog";
 export { ApplicationError } from "./Application/applicationError";
 export { ApplicationLanguage } from "./Application/applicationLanguage";
+export { ApplicationMessage } from "./Mailer/sendMessageDefault";
 
 export { ListArticlesDefault } from "./Articles/listArticlesDefault";
 export { SelectArticleDefault } from "./Articles/selectArticleDefault";
@@ -30,8 +31,6 @@ export { GetUserSigninContentDefault } from "./Content/getUserSigninContentDefau
 export { GetUserSignoutContentDefault } from "./Content/getUserSignoutContentDefault";
 export { GetUserSignupContentDefault } from "./Content/getUserSignupContentDefault";
 export { GetWrongPagePromptContentDefault } from "./Content/getWrongPagePromptContentDefault";
-
-export { SendMessageDefault } from "./Mailer/sendMessageDefault";
 
 export { AddSubscriberDefault } from "./Subscribers/addSubscriberDefault";
 export { RemoveSubscriberDefault } from "./Subscribers/removeSubscriberDefault";

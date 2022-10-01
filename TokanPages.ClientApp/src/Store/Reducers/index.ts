@@ -1,6 +1,7 @@
 export { ApplicationDialog } from "./Application/applicationDialog";
 export { ApplicationError } from "./Application/applicationError";
 export { ApplicationLanguage } from "./Application/applicationLanguage";
+export { ApplicationMessage } from "./Mailer/sendMessageReducer";
 
 export { ListArticlesReducer } from "./Articles/listArticlesReducer";
 export { SelectArticleReducer } from "./Articles/selectArticleReducer";
@@ -30,8 +31,6 @@ export { GetUserSigninContentReducer } from "./Content/getUserSigninContentReduc
 export { GetUserSignoutContentReducer } from "./Content/getUserSignoutContentReducer";
 export { GetUserSignupContentReducer } from "./Content/getUserSignupContentReducer";
 export { GetWrongPagePromptContentReducer } from "./Content/getWrongPagePromptContentReducer";
-
-export { SendMessageReducer } from "./Mailer/sendMessageReducer";
 
 export { AddSubscriberReducer } from "./Subscribers/addSubscriberReducer";
 export { RemoveSubscriberReducer } from "./Subscribers/removeSubscriberReducer";

@@ -1,6 +1,7 @@
 export { ActionCreators as ApplicationDialog } from "./Application/applicationDialog";
 export { ActionCreators as ApplicationError } from "./Application/applicationError";
 export { ActionCreators as ApplicationLanguage } from "./Application/applicationLanguage";
+export { ActionCreators as ApplicationMessage } from "./Mailer/sendMessageAction";
 
 export { ActionCreators as ArticlesAction } from "./Articles/listArticlesAction";
 export { ActionCreators as ArticleAction } from "./Articles/selectArticleAction";
@@ -30,8 +31,6 @@ export { ActionCreators as GetUserSigninContentAction } from "./Content/getUserS
 export { ActionCreators as GetUserSignoutContentAction } from "./Content/getUserSignoutContentAction";
 export { ActionCreators as GetUserSignupContentAction } from "./Content/getUserSignupContentAction";
 export { ActionCreators as GetWrongPagePromptContentAction } from "./Content/getWrongPagePromptContentAction";
-
-export { ActionCreators as SendMessageAction } from "./Mailer/sendMessageAction";
 
 export { ActionCreators as SubscriberAddAction } from "./Subscribers/addSubscriberAction";
 export { ActionCreators as SubscriberRemoveAction } from "./Subscribers/removeSubscriberAction";
