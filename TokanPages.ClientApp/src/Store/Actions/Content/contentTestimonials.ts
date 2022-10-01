@@ -1,4 +1,4 @@
-import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
+import { IAppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_TESTIMONIALS_CONTENT } from "../../../Shared/constants";
 import { ITestimonialsContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -11,7 +11,7 @@ export type TKnownActions = IRequestTestimonialsContent | IReceiveTestimonialsCo
 
 export const ContentTestimonialsAction = 
 {
-    get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): IAppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentTestimonials.content.language;
 

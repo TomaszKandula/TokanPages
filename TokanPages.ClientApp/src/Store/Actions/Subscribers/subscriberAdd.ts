@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AppThunkAction } from "../../Configuration";
+import { IAppThunkAction } from "../../Configuration";
 import { IAddSubscriberDto } from "../../../Api/Models";
 import { API_COMMAND_ADD_SUBSCRIBER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
@@ -16,11 +16,11 @@ export type TKnownActions = IAddSubscriber | IAddSubscriberClear | IAddSubscribe
 
 export const SubscriberAddAction = 
 {
-    clear: (): AppThunkAction<TKnownActions> => (dispatch) => 
+    clear: (): IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: ADD_SUBSCRIBER_CLEAR });
     },    
-    add: (payload: IAddSubscriberDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    add: (payload: IAddSubscriberDto): IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: ADD_SUBSCRIBER });
 

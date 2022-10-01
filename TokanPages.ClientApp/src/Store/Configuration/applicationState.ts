@@ -90,8 +90,3 @@ export interface IApplicationState
     userSignup: IUserSignup;
     userUpdate: IUserUpdate;
 }
-
-export interface AppThunkAction<TAction> 
-{
-    (dispatch: (action: TAction) => void, getState: () => IApplicationState): void;
-}

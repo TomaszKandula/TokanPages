@@ -1,4 +1,4 @@
-import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
+import { IAppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { POLICY_URL } from "../../../Shared/constants";
 import { IDocumentContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -11,7 +11,7 @@ export type TKnownActions = IRequestPolicyContent | IReceivePolicyContent;
 
 export const ContentPolicyAction = 
 {
-    get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): IAppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentPolicy.content.language;
 

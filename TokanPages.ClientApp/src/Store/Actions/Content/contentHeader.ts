@@ -1,4 +1,4 @@
-import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
+import { IAppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_HEADER_CONTENT } from "../../../Shared/constants";
 import { IHeaderContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -11,7 +11,7 @@ export type TKnownActions = IRequestHeaderContent | IReceiveHeaderContent;
 
 export const ContentHeaderAction = 
 {
-    get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): IAppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentHeader.content.language;
 

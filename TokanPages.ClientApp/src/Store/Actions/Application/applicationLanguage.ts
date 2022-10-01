@@ -1,4 +1,4 @@
-import { AppThunkAction } from "../../Configuration";
+import { IAppThunkAction } from "../../Configuration";
 import { IApplicationLanguage } from "../../States";
 
 export const SET_DEFAULT_LANGUAGE = "SET_DEFAULT_LANGUAGE";
@@ -11,11 +11,11 @@ export type TKnownActions = ISetDefaultLanguage | ISetLanguage;
 
 export const ApplicationLanguageAction = 
 {
-    revert: (): AppThunkAction<TKnownActions> => (dispatch) => 
+    revert: (): IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: SET_DEFAULT_LANGUAGE });
     },
-    set: (language: IApplicationLanguage): AppThunkAction<TKnownActions> => (dispatch) => 
+    set: (language: IApplicationLanguage): IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: SET_LANGUAGE, language: language });
     }

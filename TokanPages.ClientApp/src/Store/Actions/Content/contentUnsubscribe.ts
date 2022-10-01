@@ -1,4 +1,4 @@
-import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
+import { IAppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_UNSUBSCRIBE_CONTENT } from "../../../Shared/constants";
 import { IUnsubscribeContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -11,7 +11,7 @@ export type TKnownActions = IRequestUnsubscribeContent | IReceiveUnsubscribeCont
 
 export const ContentUnsubscribeAction = 
 {
-    get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): IAppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentUnsubscribe.content.language;
 

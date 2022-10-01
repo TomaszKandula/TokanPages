@@ -1,5 +1,5 @@
 import { IAuthenticateUserResultDto } from "../../../Api/Models";
-import { AppThunkAction } from "../../Configuration";
+import { IAppThunkAction } from "../../Configuration";
 
 export const SHOW_USERDATA = "SHOW_USERDATA";
 export const CLEAR_USERDATA = "CLEAR_USERDATA";
@@ -11,15 +11,15 @@ export type TKnownActions = IShowUserData | IClearUserData | IUpdateUserData;
 
 export const UserDataStoreAction = 
 {
-    show: (isShown: boolean): AppThunkAction<TKnownActions> => (dispatch) => 
+    show: (isShown: boolean): IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: SHOW_USERDATA, payload: isShown });
     },
-    clear: (): AppThunkAction<TKnownActions> => (dispatch) => 
+    clear: (): IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: CLEAR_USERDATA });
     },
-    update: (userData: IAuthenticateUserResultDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    update: (userData: IAuthenticateUserResultDto): IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: UPDATE_USERDATA, payload: userData });
     }

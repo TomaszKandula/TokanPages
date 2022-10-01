@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AppThunkAction } from "../../Configuration";
+import { IAppThunkAction } from "../../Configuration";
 import { IResetUserPasswordDto } from "../../../Api/Models";
 import { API_COMMAND_RESET_USER_PASSWORD, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { TKnownActions as TUpdateActions } from "./userDataStore";
@@ -17,11 +17,11 @@ export type TKnownActions = IResetUserPassword | IResetUserPasswordClear | IRese
 
 export const UserPasswordResetAction = 
 {
-    clear: (): AppThunkAction<TKnownActions> => (dispatch) =>
+    clear: (): IAppThunkAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: RESET_USER_PASSWORD_CLEAR });
     },
-    reset: (payload: IResetUserPasswordDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    reset: (payload: IResetUserPasswordDto): IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: RESET_USER_PASSWORD });
 

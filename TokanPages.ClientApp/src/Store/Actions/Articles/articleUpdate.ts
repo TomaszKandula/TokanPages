@@ -1,4 +1,4 @@
-import { AppThunkAction } from "../../Configuration";
+import { IAppThunkAction } from "../../Configuration";
 import { RAISE_ERROR } from "../Application/applicationError";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { GetErrorMessage } from "../../../Shared/Services/ErrorServices";
@@ -55,11 +55,11 @@ const DispatchCall = async (dispatch: any, url: string, data: any) =>
 
 export const ArticleUpdateAction = 
 {
-    clear: (): AppThunkAction<TKnownActions> => (dispatch) => 
+    clear: (): IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: UPDATE_ARTICLE_CLEAR });
     },
-    updateContent: (payload: IUpdateArticleContentDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    updateContent: (payload: IUpdateArticleContentDto): IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_CONTENT, 
         {  
@@ -70,14 +70,14 @@ export const ArticleUpdateAction =
             imageToUpload: payload.imageToUpload
         });
     },
-    updateCount: (payload: IUpdateArticleCountDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    updateCount: (payload: IUpdateArticleCountDto): IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_COUNT, 
         {  
             id: payload.id
         });
     },
-    updateLikes: (payload: IUpdateArticleLikesDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    updateLikes: (payload: IUpdateArticleLikesDto): IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_LIKES, 
         {  
@@ -85,7 +85,7 @@ export const ArticleUpdateAction =
             addToLikes: payload.addToLikes
         });
     },
-    updateVisibility: (payload: IUpdateArticleVisibilityDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    updateVisibility: (payload: IUpdateArticleVisibilityDto): IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_VISIBILITY, 
         {  

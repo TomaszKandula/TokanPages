@@ -1,4 +1,4 @@
-import { AppThunkAction } from "../../Configuration";
+import { IAppThunkAction } from "../../Configuration";
 import { IApplicationDialog } from "../../States";
 
 export const CLEAR_DIALOG = "CLEAR_DIALOG";
@@ -11,11 +11,11 @@ export type TDialogActions = IClearDialogBox | IRaiseDialogBox;
 
 export const ApplicationDialogAction = 
 {
-    clear: (): AppThunkAction<TDialogActions> => (dispatch) => 
+    clear: (): IAppThunkAction<TDialogActions> => (dispatch) => 
     {
         dispatch({ type: CLEAR_DIALOG });
     },
-    raise: (dialog: IApplicationDialog): AppThunkAction<TDialogActions> => (dispatch) => 
+    raise: (dialog: IApplicationDialog): IAppThunkAction<TDialogActions> => (dispatch) => 
     {
         dispatch({ type: RAISE_DIALOG, dialog: dialog });
     }

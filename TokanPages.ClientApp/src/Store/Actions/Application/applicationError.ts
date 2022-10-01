@@ -1,5 +1,5 @@
 import { DialogType } from "../../../Shared/enums";
-import { AppThunkAction } from "../../Configuration";
+import { IAppThunkAction } from "../../Configuration";
 
 export const CLEAR_ERROR = "CLEAR_ERROR";
 export const RAISE_ERROR = "RAISE_ERROR";
@@ -11,11 +11,11 @@ export type TErrorActions = IClearError | IRaiseError;
 
 export const ApplicationErrorAction = 
 {
-    clear: (): AppThunkAction<TErrorActions> => (dispatch) => 
+    clear: (): IAppThunkAction<TErrorActions> => (dispatch) => 
     {
         dispatch({ type: CLEAR_ERROR });
     },
-    raise: (errorMessage: any, dialogType?: DialogType): AppThunkAction<TErrorActions> => (dispatch) => 
+    raise: (errorMessage: any, dialogType?: DialogType): IAppThunkAction<TErrorActions> => (dispatch) => 
     {
         dispatch({ type: RAISE_ERROR, errorObject: errorMessage, dialogType: dialogType });
     }

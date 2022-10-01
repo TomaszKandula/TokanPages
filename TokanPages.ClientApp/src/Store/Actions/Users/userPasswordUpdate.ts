@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AppThunkAction } from "../../Configuration";
+import { IAppThunkAction } from "../../Configuration";
 import { IUpdateUserPasswordDto } from "../../../Api/Models";
 import { API_COMMAND_UPDATE_USER_PASSWORD, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
@@ -16,11 +16,11 @@ export type TKnownActions = IUpdateUserPassword | IUpdateUserPasswordClear | IUp
 
 export const UserPasswordUpdateAction = 
 {
-    clear: (): AppThunkAction<TKnownActions> => (dispatch) =>
+    clear: (): IAppThunkAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: UPDATE_USER_PASSWORD_CLEAR });
     },
-    update: (payload: IUpdateUserPasswordDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    update: (payload: IUpdateUserPasswordDto): IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: UPDATE_USER_PASSWORD });
 

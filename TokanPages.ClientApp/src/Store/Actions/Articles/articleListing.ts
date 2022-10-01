@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AppThunkAction } from "../../Configuration";
+import { IAppThunkAction } from "../../Configuration";
 import { IArticleItem } from "../../../Shared/Components/RenderContent/Models";
 import { API_QUERY_GET_ARTICLES, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
@@ -14,7 +14,7 @@ export type TKnownActions = IRequestArticlesAction | IReceiveArticlesAction;
 
 export const ArticleListingAction = 
 {
-    get: (): AppThunkAction<TKnownActions> => (dispatch) =>
+    get: (): IAppThunkAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: REQUEST_ARTICLES });
 

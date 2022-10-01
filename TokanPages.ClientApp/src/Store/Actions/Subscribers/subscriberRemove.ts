@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AppThunkAction } from "../../Configuration";
+import { IAppThunkAction } from "../../Configuration";
 import { IRemoveSubscriberDto } from "../../../Api/Models";
 import { API_COMMAND_REMOVE_SUBSCRIBER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
@@ -14,7 +14,7 @@ export type TKnownActions = IRemoveSubscriber | IRemoveSubscriberResponse;
 
 export const SubscriberRemoveAction = 
 {
-    remove: (payload: IRemoveSubscriberDto):  AppThunkAction<TKnownActions> => (dispatch) => 
+    remove: (payload: IRemoveSubscriberDto):  IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: REMOVE_SUBSCRIBER });
 

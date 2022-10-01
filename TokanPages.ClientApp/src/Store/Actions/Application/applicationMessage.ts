@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AppThunkAction } from "../../Configuration";
+import { IAppThunkAction } from "../../Configuration";
 import { ISendMessageDto } from "../../../Api/Models";
 import { API_COMMAND_SEND_MESSAGE, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
@@ -17,11 +17,11 @@ export type TKnownActions = IApiSendMessage | IApiSendMessageClear | IApiSendMes
 
 export const ApplicationMessageAction = 
 {
-    clear: (): AppThunkAction<TKnownActions> => (dispatch) => 
+    clear: (): IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: API_SEND_MESSAGE_CLEAR });
     },
-    send: (payload: ISendMessageDto): AppThunkAction<TKnownActions> => (dispatch) => 
+    send: (payload: ISendMessageDto): IAppThunkAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: API_SEND_MESSAGE });
 
