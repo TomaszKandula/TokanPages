@@ -53,7 +53,6 @@ export const ApplicationReducers =
     articleListing: ArticleListing,
     articleSelection: ArticleSelection,
     articleUpdate: ArticleUpdate,
-
     contentAccount: ContentAccount,
     contentActivateAccount: ContentActivateAccount,
     contentArticleFeatures: ContentArticleFeatures,
@@ -78,7 +77,6 @@ export const ApplicationReducers =
     contentUserSignout: ContentUserSignout,
     contentUserSignup: ContentUserSignup,
     contentWrongPagePrompt: ContentWrongPagePrompt,
-
     subscriberAdd: SubscriberAdd,
     subscriberRemove: SubscriberRemove,
     subscriberUpdate: SubscriberUpdate,
