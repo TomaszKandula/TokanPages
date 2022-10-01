@@ -5,7 +5,7 @@ import * as Router from "react-router";
 import * as Dom from "react-router-dom";
 import { shallow } from "enzyme";
 import { ActivateAccount } from "./activateAccount";
-import { ApplicationDefaults } from "../../../Store/Configuration";
+import { ApplicationDefault } from "../../../Store/Configuration";
 
 jest.mock("react-router", () => 
 ({
@@ -68,7 +68,7 @@ describe("Test account group component: activateAccount.", () =>
     it("Renders correctly '<ActivateAccount />' when content is loaded.", () => 
     {
         useDispatchMock.mockReturnValue(jest.fn());
-        useSelectorMock.mockReturnValue(ApplicationDefaults);
+        useSelectorMock.mockReturnValue(ApplicationDefault);
     
         expect(useDispatchMock).toBeCalledTimes(1);
         expect(wrapper).toMatchSnapshot();

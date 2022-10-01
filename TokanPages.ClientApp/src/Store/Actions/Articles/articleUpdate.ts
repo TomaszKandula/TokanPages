@@ -1,4 +1,4 @@
-import { IAppThunkAction } from "../../Configuration";
+import { IApplicationAction } from "../../Configuration";
 import { RAISE_ERROR } from "../Application/applicationError";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { GetErrorMessage } from "../../../Shared/Services/ErrorServices";
@@ -55,11 +55,11 @@ const DispatchCall = async (dispatch: any, url: string, data: any) =>
 
 export const ArticleUpdateAction = 
 {
-    clear: (): IAppThunkAction<TKnownActions> => (dispatch) => 
+    clear: (): IApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: UPDATE_ARTICLE_CLEAR });
     },
-    updateContent: (payload: IUpdateArticleContentDto): IAppThunkAction<TKnownActions> => (dispatch) => 
+    updateContent: (payload: IUpdateArticleContentDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_CONTENT, 
         {  
@@ -70,14 +70,14 @@ export const ArticleUpdateAction =
             imageToUpload: payload.imageToUpload
         });
     },
-    updateCount: (payload: IUpdateArticleCountDto): IAppThunkAction<TKnownActions> => (dispatch) => 
+    updateCount: (payload: IUpdateArticleCountDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_COUNT, 
         {  
             id: payload.id
         });
     },
-    updateLikes: (payload: IUpdateArticleLikesDto): IAppThunkAction<TKnownActions> => (dispatch) => 
+    updateLikes: (payload: IUpdateArticleLikesDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_LIKES, 
         {  
@@ -85,7 +85,7 @@ export const ArticleUpdateAction =
             addToLikes: payload.addToLikes
         });
     },
-    updateVisibility: (payload: IUpdateArticleVisibilityDto): IAppThunkAction<TKnownActions> => (dispatch) => 
+    updateVisibility: (payload: IUpdateArticleVisibilityDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_VISIBILITY, 
         {  

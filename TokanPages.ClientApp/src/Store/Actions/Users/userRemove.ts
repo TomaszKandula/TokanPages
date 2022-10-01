@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IAppThunkAction } from "../../Configuration";
+import { IApplicationAction } from "../../Configuration";
 import { IRemoveUserDto } from "../../../Api/Models";
 import { API_COMMAND_REMOVE_USER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
@@ -16,11 +16,11 @@ export type TKnownActions = IRemoveAccount | IRemoveAccountClear | IRemoveAccoun
 
 export const UserRemoveAction = 
 {
-    clear: (): IAppThunkAction<TKnownActions> => (dispatch) =>
+    clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: REMOVE_ACCOUNT_CLEAR });
     },
-    remove: (payload: IRemoveUserDto): IAppThunkAction<TKnownActions> => (dispatch) => 
+    remove: (payload: IRemoveUserDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: REMOVE_ACCOUNT });
 

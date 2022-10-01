@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { ApplicationDefaults } from "../../Configuration";
+import { ApplicationDefault } from "../../Configuration";
 import { IContentNavigation } from "../../States";
 import { 
     TKnownActions,
@@ -11,7 +11,7 @@ export const ContentNavigation:
     Reducer<IContentNavigation> = (state: IContentNavigation | undefined, incomingAction: Action): 
     IContentNavigation => 
 {
-    if (state === undefined) return ApplicationDefaults.contentNavigation;
+    if (state === undefined) return ApplicationDefault.contentNavigation;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { ApplicationDefaults } from "../../Configuration";
+import { ApplicationDefault } from "../../Configuration";
 import { IContentNewsletter } from "../../States";
 import { 
     TKnownActions,
@@ -11,7 +11,7 @@ export const ContentNewsletter:
     Reducer<IContentNewsletter> = (state: IContentNewsletter | undefined, incomingAction: Action): 
     IContentNewsletter => 
 {
-    if (state === undefined) return ApplicationDefaults.contentNewsletter;
+    if (state === undefined) return ApplicationDefault.contentNewsletter;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

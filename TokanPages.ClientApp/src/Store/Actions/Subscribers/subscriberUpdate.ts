@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IAppThunkAction } from "../../Configuration";
+import { IApplicationAction } from "../../Configuration";
 import { IUpdateSubscriberDto } from "../../../Api/Models";
 import { API_COMMAND_UPDATE_SUBSCRIBER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
@@ -14,7 +14,7 @@ export type TKnownActions = IUpdateSubscriber | IUpdateSubscriberResponse;
 
 export const SubscriberUpdateAction = 
 {
-    update: (payload: IUpdateSubscriberDto): IAppThunkAction<TKnownActions> => (dispatch) => 
+    update: (payload: IUpdateSubscriberDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: UPDATE_SUBSCRIBER });
 

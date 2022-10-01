@@ -1,7 +1,7 @@
-import { IAppThunkAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_HEADER_CONTENT } from "../../../Shared/constants";
 import { IHeaderContentDto } from "../../../Api/Models";
-import { GetContent } from "./Services/getContentService";
+import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST_HEADER_CONTENT = "REQUEST_HEADER_CONTENT";
 export const RECEIVE_HEADER_CONTENT = "RECEIVE_HEADER_CONTENT";
@@ -11,16 +11,19 @@ export type TKnownActions = IRequestHeaderContent | IReceiveHeaderContent;
 
 export const ContentHeaderAction = 
 {
-    get: (): IAppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
-        const isLanguageChanged = getState().applicationLanguage.id !== getState().contentHeader.content.language;
+        const content = getState().contentHeader.content;
+        const languageId = getState().applicationLanguage.id;
+        const isContentChanged = content !== ApplicationDefault.contentHeader.content;
+        const isLanguageChanged = languageId !== content.language;
 
-        if (getState().contentHeader.content !== ApplicationDefaults.contentHeader.content && !isLanguageChanged) 
+        if (isContentChanged && !isLanguageChanged) 
         {
             return;
         }
 
-        GetContent(
+        GetContentService(
         { 
             dispatch: dispatch, 
             state: getState, 

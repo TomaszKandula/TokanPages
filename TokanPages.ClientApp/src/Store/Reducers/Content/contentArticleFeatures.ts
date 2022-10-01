@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { ApplicationDefaults } from "../../Configuration";
+import { ApplicationDefault } from "../../Configuration";
 import { IContentArticleFeatures } from "../../States";
 import { 
     TKnownActions,
@@ -11,7 +11,7 @@ export const ContentArticleFeatures:
     Reducer<IContentArticleFeatures> = (state: IContentArticleFeatures | undefined, incomingAction: Action): 
     IContentArticleFeatures => 
 {
-    if (state === undefined) return ApplicationDefaults.contentArticleFeatures;
+    if (state === undefined) return ApplicationDefault.contentArticleFeatures;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)
