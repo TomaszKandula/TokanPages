@@ -1,3 +1,24 @@
+# [0.58.0](https://github.com/TomaszKandula/TokanPages/compare/v0.57.0...v0.58.0) (2022-10-01)
+
+
+### Bug Fixes
+
+* correct import path ([55291a7](https://github.com/TomaszKandula/TokanPages/commit/55291a7e315d83d7657432def67efd7f35c87ca5))
+* remove array ([8c26d05](https://github.com/TomaszKandula/TokanPages/commit/8c26d051ceea47e6a862d8116abbb5b2fd509cb6))
+
+
+### Features
+
+* add 'get content service' for redux actions ([5411926](https://github.com/TomaszKandula/TokanPages/commit/541192644415d175030b449fb10cfed5e83ac2bf))
+* add environment name to REDIS caching keys ([2144bb3](https://github.com/TomaszKandula/TokanPages/commit/2144bb39d85b03726d094c747abeb163daa756fd))
+* add index for export from store ([4c7c61c](https://github.com/TomaszKandula/TokanPages/commit/4c7c61c94c200b5947ee2b0a82b833ebc6d86788))
+* implement GetContent for all actions to retrieve component content from the server ([aec7823](https://github.com/TomaszKandula/TokanPages/commit/aec78239f36dd19906ad3e827ac2fd09249027f6))
+* simplify imports ([0874acd](https://github.com/TomaszKandula/TokanPages/commit/0874acdc73a39776300ca10bec75e0fb44f8e264))
+* simplify imports (pages) ([b899a0b](https://github.com/TomaszKandula/TokanPages/commit/b899a0b1ff1c9cd431384ec3370c7ce23c272478))
+* update components for new store imports ([a004b23](https://github.com/TomaszKandula/TokanPages/commit/a004b233c09d4d0d3f04a05ed3a5f2bd1a377300))
+* update import path ([277be21](https://github.com/TomaszKandula/TokanPages/commit/277be2131c043fca05acbc60b60774516862d1e7))
+* update import paths for redux store ([710240f](https://github.com/TomaszKandula/TokanPages/commit/710240f1bc51bee897b9ad07c5c02f11fff96151))
+
 # [0.57.0](https://github.com/TomaszKandula/TokanPages/compare/v0.56.0...v0.57.0) (2022-09-26)
 
 
