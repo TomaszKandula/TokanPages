@@ -9,7 +9,7 @@ import {
     UPDATE_ARTICLE_RESPONSE, 
 } from "../../Actions/Articles/updateArticleAction";
 
-export const UpdateArticleReducer: 
+export const ArticleUpdate: 
     Reducer<IArticleUpdate> = (state: IArticleUpdate | undefined, incomingAction: Action): 
     IArticleUpdate => 
 {

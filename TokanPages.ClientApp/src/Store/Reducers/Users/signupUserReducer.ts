@@ -9,7 +9,7 @@ import {
     SIGNUP_USER_RESPONSE
 } from "../../Actions/Users/signupUserAction";
 
-export const SignupUserReducer: Reducer<IUserSignup> = (state: IUserSignup | undefined, incomingAction: Action): IUserSignup => 
+export const UserSignup: Reducer<IUserSignup> = (state: IUserSignup | undefined, incomingAction: Action): IUserSignup => 
 {
     if (state === undefined) return ApplicationDefaults.userSignup;
 

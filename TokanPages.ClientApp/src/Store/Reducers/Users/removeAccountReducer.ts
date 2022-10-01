@@ -9,7 +9,7 @@ import {
     REMOVE_ACCOUNT_RESPONSE
 } from "../../Actions/Users/removeAccountAction";
 
-export const RemoveAccountReducer: 
+export const UserRemove: 
     Reducer<IUserRemove> = (state: IUserRemove | undefined, incomingAction: Action): 
     IUserRemove => 
 {

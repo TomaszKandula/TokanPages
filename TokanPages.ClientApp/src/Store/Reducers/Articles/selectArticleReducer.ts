@@ -8,7 +8,7 @@ import {
     RESET_SELECTION, 
 } from "../../Actions/Articles/selectArticleAction";
 
-export const SelectArticleReducer: 
+export const ArticleSelection: 
     Reducer<IArticleSelection> = (state: IArticleSelection | undefined, incomingAction: Action): 
     IArticleSelection => 
 {

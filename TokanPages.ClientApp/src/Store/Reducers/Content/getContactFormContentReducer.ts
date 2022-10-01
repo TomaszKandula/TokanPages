@@ -7,7 +7,7 @@ import {
     RECEIVE_CONTACT_FORM_CONTENT 
 } from "../../Actions/Content/getContactFormContentAction";
 
-export const GetContactFormContentReducer: 
+export const ContentContactForm: 
     Reducer<IContentContactForm> = (state: IContentContactForm | undefined, incomingAction: Action): 
     IContentContactForm => 
 {

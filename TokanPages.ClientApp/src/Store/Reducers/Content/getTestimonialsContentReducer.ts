@@ -7,7 +7,7 @@ import {
     REQUEST_TESTIMONIALS_CONTENT
 } from "../../Actions/Content/getTestimonialsContentAction";
 
-export const GetTestimonialsContentReducer: 
+export const ContentTestimonials: 
     Reducer<IContentTestimonials> = (state: IContentTestimonials | undefined, incomingAction: Action): 
     IContentTestimonials => 
 {

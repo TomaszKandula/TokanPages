@@ -7,7 +7,7 @@ import {
     RECEIVE_ACTIVATE_ACCOUNT_CONTENT
 } from "../../Actions/Content/getActivateAccountContentAction";
 
-export const GetActivateAccountContentReducer: 
+export const ContentActivateAccount: 
     Reducer<IContentActivateAccount> = (state: IContentActivateAccount | undefined, incomingAction: Action): 
     IContentActivateAccount => 
 {

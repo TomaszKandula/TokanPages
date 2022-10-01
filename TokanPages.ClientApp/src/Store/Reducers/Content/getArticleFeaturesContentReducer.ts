@@ -7,7 +7,7 @@ import {
     REQUEST_ARTICE_FEATURES
 } from "../../Actions/Content/getArticleFeaturesContentAction";
 
-export const GetArticleFeaturesContentReducer: 
+export const ContentArticleFeatures: 
     Reducer<IContentArticleFeatures> = (state: IContentArticleFeatures | undefined, incomingAction: Action): 
     IContentArticleFeatures => 
 {

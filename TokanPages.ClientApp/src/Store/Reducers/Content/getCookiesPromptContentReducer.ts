@@ -7,7 +7,7 @@ import {
     RECEIVE_COOKIES_PROMPT_CONTENT 
 } from "../../Actions/Content/getCookiesPromptContentAction";
 
-export const GetCookiesPromptContentReducer: 
+export const ContentCookiesPrompt: 
     Reducer<IContentCookiesPrompt> = (state: IContentCookiesPrompt | undefined, incomingAction: Action): 
     IContentCookiesPrompt => 
 {

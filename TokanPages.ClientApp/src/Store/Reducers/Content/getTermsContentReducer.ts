@@ -7,7 +7,7 @@ import {
     REQUEST_TERMS_CONTENT
 } from "../../Actions/Content/getTermsContentAction";
 
-export const GetTermsContentReducer: 
+export const ContentTerms: 
     Reducer<IContentTerms> = (state: IContentTerms | undefined, incomingAction: Action): 
     IContentTerms => 
 {

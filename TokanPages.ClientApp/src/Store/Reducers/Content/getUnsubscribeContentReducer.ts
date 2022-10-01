@@ -7,7 +7,7 @@ import {
     REQUEST_UNSUBSCRIBE_CONTENT
 } from "../../Actions/Content/getUnsubscribeContentAction";
 
-export const GetUnsubscribeContentReducer: 
+export const ContentUnsubscribe: 
     Reducer<IContentUnsubscribe> = (state: IContentUnsubscribe | undefined, incomingAction: Action): 
     IContentUnsubscribe => 
 {

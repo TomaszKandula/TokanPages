@@ -7,7 +7,7 @@ import {
     RECEIVE_USER_SIGNOUT_CONTENT 
 } from "../../Actions/Content/getUserSignoutContentAction";
 
-export const GetUserSignoutContentReducer: 
+export const ContentUserSignout: 
     Reducer<IContentUserSignout> = (state: IContentUserSignout | undefined, incomingAction: Action): 
     IContentUserSignout => 
 {

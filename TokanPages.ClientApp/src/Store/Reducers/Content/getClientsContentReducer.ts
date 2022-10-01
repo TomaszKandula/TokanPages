@@ -7,7 +7,7 @@ import {
     RECEIVE_CLIENTS_CONTENT
 } from "../../Actions/Content/getClientsContentAction";
 
-export const GetClientsContentReducer: 
+export const ContentClients: 
     Reducer<IContentClients> = (state: IContentClients | undefined, incomingAction: Action): 
     IContentClients => 
 {

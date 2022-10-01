@@ -8,7 +8,7 @@ import {
     UPDATE_SUBSCRIBER_RESPONSE, 
 } from "../../Actions/Subscribers/updateSubscriberAction";
 
-export const UpdateSubscriberReducer: 
+export const SubscriberUpdate: 
     Reducer<ISubscriberUpdate> = (state: ISubscriberUpdate | undefined, incomingAction: Action): 
     ISubscriberUpdate => 
 {

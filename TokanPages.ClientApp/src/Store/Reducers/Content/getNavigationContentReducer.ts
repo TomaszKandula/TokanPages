@@ -7,7 +7,7 @@ import {
     REQUEST_NAVIGATION_CONTENT
 } from "../../Actions/Content/getNavigationContentAction";
 
-export const GetNavigationContentReducer: 
+export const ContentNavigation: 
     Reducer<IContentNavigation> = (state: IContentNavigation | undefined, incomingAction: Action): 
     IContentNavigation => 
 {

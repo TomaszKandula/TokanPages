@@ -7,7 +7,7 @@ import {
     REQUEST_UPDATE_SUBSCRIBER_CONTENT
 } from "../../Actions/Content/getUpdateSubscriberContentAction";
 
-export const GetUpdateSubscriberContentReducer: 
+export const ContentUpdateSubscriber: 
     Reducer<IContentUpdateSubscriber> = (state: IContentUpdateSubscriber | undefined, incomingAction: Action): 
     IContentUpdateSubscriber => 
 {

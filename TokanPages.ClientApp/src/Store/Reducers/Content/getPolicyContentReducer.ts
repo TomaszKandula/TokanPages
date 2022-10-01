@@ -7,7 +7,7 @@ import {
     REQUEST_POLICY_CONTENT
 } from "../../Actions/Content/getPolicyContentAction";
 
-export const GetPolicyContentReducer: 
+export const ContentPolicy: 
     Reducer<IContentPolicy> = (state: IContentPolicy | undefined, incomingAction: Action): 
     IContentPolicy => 
 {

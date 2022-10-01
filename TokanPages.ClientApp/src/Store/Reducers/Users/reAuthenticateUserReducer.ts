@@ -9,7 +9,7 @@ import {
     REAUTHENTICATE_USER_RESPONSE
 } from "../../Actions/Users/reAuthenticateUserAction";
 
-export const ReAuthenticateUserReducer: 
+export const UserReAuthenticate: 
     Reducer<IUserReAuthenticate> = (state: IUserReAuthenticate | undefined, incomingAction: Action): 
     IUserReAuthenticate => 
 {

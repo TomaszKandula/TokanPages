@@ -7,7 +7,7 @@ import {
     REQUEST_STORY_CONTENT
 } from "../../Actions/Content/getStoryContentAction";
 
-export const GetStoryContentReducer: 
+export const ContentStory: 
     Reducer<IContentStory> = (state: IContentStory | undefined, incomingAction: Action): 
     IContentStory => 
 {

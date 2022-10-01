@@ -7,7 +7,7 @@ import {
     REQUEST_RESET_PASSWORD_CONTENT
 } from "../../Actions/Content/getResetPasswordContentAction";
 
-export const GetResetPasswordContentReducer: 
+export const ContentResetPassword: 
     Reducer<IContentResetPassword> = (state: IContentResetPassword | undefined, incomingAction: Action): 
     IContentResetPassword => 
 {

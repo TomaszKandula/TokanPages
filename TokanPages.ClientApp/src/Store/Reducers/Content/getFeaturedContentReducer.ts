@@ -7,7 +7,7 @@ import {
     REQUEST_FEATURED_CONTENT
 } from "../../Actions/Content/getFeaturedContentAction";
 
-export const GetFeaturedContentReducer: 
+export const ContentFeatured: 
     Reducer<IContentFeatured> = (state: IContentFeatured | undefined, incomingAction: Action): 
     IContentFeatured => 
 {

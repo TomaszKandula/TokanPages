@@ -9,7 +9,7 @@ import {
     UPDATE_USER_RESPONSE
 } from "../../Actions/Users/updateUserAction";
 
-export const UpdateUserReducer: 
+export const UserUpdate: 
     Reducer<IUserUpdate> = (state: IUserUpdate | undefined, incomingAction: Action): 
     IUserUpdate => 
 {

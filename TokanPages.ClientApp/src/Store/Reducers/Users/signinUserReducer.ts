@@ -9,7 +9,7 @@ import {
     SIGNIN_USER_RESPONSE
 } from "../../Actions/Users/signinUserAction";
 
-export const SigninUserReducer: 
+export const UserSignin: 
     Reducer<IUserSignin> = (state: IUserSignin | undefined, incomingAction: Action): 
     IUserSignin => 
 {

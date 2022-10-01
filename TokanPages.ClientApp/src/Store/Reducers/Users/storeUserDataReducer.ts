@@ -10,7 +10,7 @@ import {
 import { USER_DATA } from "../../../Shared/constants";
 import { DelDataFromStorage, SetDataInStorage } from "../../../Shared/Services/StorageServices";
 
-export const StoreUserDataReducer: 
+export const UserDataStore: 
     Reducer<IUserDataStore> = (state: IUserDataStore | undefined, incomingAction: Action): 
     IUserDataStore => 
 {

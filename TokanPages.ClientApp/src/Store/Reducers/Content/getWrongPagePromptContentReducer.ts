@@ -7,7 +7,7 @@ import {
     RECEIVE_WRONG_PAGE_CONTENT 
 } from "../../Actions/Content/getWrongPagePromptContentAction";
 
-export const GetWrongPagePromptContentReducer: 
+export const ContentWrongPagePrompt: 
     Reducer<IContentWrongPagePrompt> = (state: IContentWrongPagePrompt | undefined, incomingAction: Action): 
     IContentWrongPagePrompt => 
 {

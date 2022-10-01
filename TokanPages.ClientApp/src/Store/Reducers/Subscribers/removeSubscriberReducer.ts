@@ -8,7 +8,7 @@ import {
     REMOVE_SUBSCRIBER_RESPONSE 
 } from "../../Actions/Subscribers/removeSubscriberAction";
 
-export const RemoveSubscriberReducer: 
+export const SubscriberRemove: 
     Reducer<ISubscriberRemove> = (state: ISubscriberRemove | undefined, incomingAction: Action): 
     ISubscriberRemove => 
 {

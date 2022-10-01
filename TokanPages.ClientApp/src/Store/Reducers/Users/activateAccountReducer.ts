@@ -9,7 +9,7 @@ import {
     ACTIVATE_ACCOUNT_RESPONSE
 } from "../../Actions/Users/activateAccountAction";
 
-export const ActivateAccountReducer: 
+export const UserActivate: 
     Reducer<IUserActivate> = (state: IUserActivate | undefined, incomingAction: Action): 
     IUserActivate => 
 {

@@ -7,7 +7,7 @@ import {
     RECEIVE_USER_SIGNUP_CONTENT 
 } from "../../Actions/Content/getUserSignupContentAction";
 
-export const GetUserSignupContentReducer: 
+export const ContentUserSignup: 
     Reducer<IContentUserSignup> = (state: IContentUserSignup | undefined, incomingAction: Action): 
     IContentUserSignup => 
 {

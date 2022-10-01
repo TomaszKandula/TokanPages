@@ -9,7 +9,7 @@ import {
     ADD_SUBSCRIBER_CLEAR, 
 } from "../../Actions/Subscribers/addSubscriberAction";
 
-export const AddSubscriberReducer: 
+export const SubscriberAdd: 
     Reducer<ISubscriberAdd> = (state: ISubscriberAdd | undefined, incomingAction: Action): 
     ISubscriberAdd => 
 {

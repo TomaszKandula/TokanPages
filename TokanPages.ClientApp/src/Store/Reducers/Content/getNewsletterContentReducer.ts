@@ -7,7 +7,7 @@ import {
     REQUEST_NEWSLETTER_CONTENT
 } from "../../Actions/Content/getNewsletterContentAction";
 
-export const GetNewsletterContentReducer: 
+export const ContentNewsletter: 
     Reducer<IContentNewsletter> = (state: IContentNewsletter | undefined, incomingAction: Action): 
     IContentNewsletter => 
 {

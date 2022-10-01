@@ -9,7 +9,7 @@ import {
     UPDATE_USER_PASSWORD_RESPONSE
 } from "../../Actions/Users/updateUserPasswordAction";
 
-export const UpdateUserPasswordReducer: 
+export const UserPasswordUpdate: 
     Reducer<IUserPasswordUpdate> = (state: IUserPasswordUpdate | undefined, incomingAction: Action): 
     IUserPasswordUpdate => 
 {

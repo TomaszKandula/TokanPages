@@ -7,7 +7,7 @@ import {
     REQUEST_ARTICLES, 
 } from "../../Actions/Articles/listArticlesAction";
 
-export const ListArticlesReducer: Reducer<IArticleListing> = (state: IArticleListing | undefined, incomingAction: Action): IArticleListing => 
+export const ArticleListing: Reducer<IArticleListing> = (state: IArticleListing | undefined, incomingAction: Action): IArticleListing => 
 {
     if (state === undefined) return ApplicationDefaults.articleListing;
 

@@ -7,7 +7,7 @@ import {
     REQUEST_FOOTER_CONTENT
 } from "../../Actions/Content/getFooterContentAction";
 
-export const GetFooterContentReducer: 
+export const ContentFooter: 
     Reducer<IContentFooter> = (state: IContentFooter | undefined, incomingAction: Action): 
     IContentFooter => 
 {

@@ -7,7 +7,7 @@ import {
     REQUEST_HEADER_CONTENT
 } from "../../Actions/Content/getHeaderContentAction";
 
-export const GetHeaderContentReducer: 
+export const ContentHeader: 
     Reducer<IContentHeader> = (state: IContentHeader | undefined, incomingAction: Action): 
     IContentHeader => 
 {

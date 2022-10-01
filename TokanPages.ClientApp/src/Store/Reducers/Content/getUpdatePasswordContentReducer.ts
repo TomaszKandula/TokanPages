@@ -7,7 +7,7 @@ import {
     REQUEST_UPDATE_PASSWORD_CONTENT
 } from "../../Actions/Content/getUpdatePasswordContentAction";
 
-export const GetUpdatePasswordContentReducer: 
+export const ContentUpdatePassword: 
     Reducer<IContentUpdatePassword> = (state: IContentUpdatePassword | undefined, incomingAction: Action): 
     IContentUpdatePassword => 
 {
