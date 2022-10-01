@@ -2,8 +2,8 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Validate from "validate.js";
 import { IApplicationState } from "../../Store/Configuration";
-import { DialogAction, SendMessageAction } from "../../Store/Actions";
-import { IGetContactFormContent } from "../../Store/States";
+import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
+import { IContentContactForm } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { IValidateContactForm, ValidateContactForm } from "../../Shared/Services/FormValidation";
 import { GetTextWarning } from "../../Shared/Services/Utilities";
@@ -29,40 +29,40 @@ const formDefaultValues: IValidateContactForm =
     terms: false
 };
 
-export const ContactForm = (props: IGetContactFormContent): JSX.Element =>
+export const ContactForm = (props: IContentContactForm): JSX.Element =>
 {
     const dispatch = useDispatch();
-    const sendMessageState = useSelector((state: IApplicationState) => state.sendMessage);
-    const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
+    const state = useSelector((state: IApplicationState) => state.applicationMessage);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
 
     const [form, setForm] = React.useState(formDefaultValues);   
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(CONTACT_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string)=> dispatch(DialogAction.raiseDialog(WarningMessage(CONTACT_FORM, text))), [ dispatch ]);
-    const sendMessage = React.useCallback((payload: ISendMessageDto) => dispatch(SendMessageAction.sendMessage(payload)), [ dispatch ]);
-    const sendMessageClear = React.useCallback(() => dispatch(SendMessageAction.sendMessageClear()), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(CONTACT_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialogAction.raise(WarningMessage(CONTACT_FORM, text))), [ dispatch ]);
+    const message = React.useCallback((payload: ISendMessageDto) => dispatch(ApplicationMessageAction.send(payload)), [ dispatch ]);
+    const clear = React.useCallback(() => dispatch(ApplicationMessageAction.clear()), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 
     {
         if (!progress) return;
         setProgress(false);
-        sendMessageClear();
+        clear();
     }, 
-    [ progress, sendMessageClear ]);
+    [ progress, clear ]);
 
     React.useEffect(() => 
     {
-        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clearForm();
             return;
         }
 
-        switch(sendMessageState?.operationStatus)
+        switch(state?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (progress) sendMessage(
+                if (progress) message(
                 {
                     firstName: form.firstName,
                     lastName: form.lastName,
@@ -81,7 +81,7 @@ export const ContactForm = (props: IGetContactFormContent): JSX.Element =>
             break;
         }
     }, 
-    [ progress, raiseErrorState?.defaultErrorMessage, sendMessageState?.operationStatus, 
+    [ progress, error?.defaultErrorMessage, state?.operationStatus, 
         OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 

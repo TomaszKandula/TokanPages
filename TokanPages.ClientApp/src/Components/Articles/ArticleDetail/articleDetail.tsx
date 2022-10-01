@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { IApplicationState } from "../../../Store/Configuration";
-import { ArticleAction, UpdateAction } from "../../../Store/Actions";
+import { ArticleSelectionAction, ArticleUpdateAction } from "../../../Store/Actions";
 import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/constants";
 import { GetDateTime } from "../../../Shared/Services/Formatters";
 import { ArticleContent } from "./Helpers/articleContent";
@@ -21,11 +21,11 @@ export interface IArticleDetail
 export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
 {
     const dispatch = useDispatch();
-    const selection = useSelector((state: IApplicationState) => state.selectArticle);
-    const user = useSelector((state: IApplicationState) => state.storeUserData);
+    const selection = useSelector((state: IApplicationState) => state.articleSelection);
+    const user = useSelector((state: IApplicationState) => state.userDataStore);
 
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
-        dispatch(ArticleAction.selectArticle(props.id));
+        dispatch(ArticleSelectionAction.select(props.id));
 
     const [popoverElement, setPopover] = React.useState<HTMLElement | null>(null);
     const [totalThumbs, setTotalThumbs] = React.useState(0);
@@ -41,7 +41,7 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
 
     const updateUserLikes = React.useCallback(() => 
     {
-        dispatch(UpdateAction.updateArticleLikes(
+        dispatch(ArticleUpdateAction.updateLikes(
         { 
             id: props.id, 
             addToLikes: userLikes, 
@@ -66,7 +66,7 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
     React.useEffect(() => 
     {
         if (selection.isLoading) return; 
-        dispatch(UpdateAction.updateArticleCount(
+        dispatch(ArticleUpdateAction.updateCount(
         {
             id: props.id
         }));
@@ -105,7 +105,7 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
 
     const backButtonHandler = () =>
     {
-        dispatch(ArticleAction.resetSelection());
+        dispatch(ArticleSelectionAction.reset());
         history.push("/articles");
     };
 

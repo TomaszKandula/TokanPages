@@ -1,7 +1,7 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { IGetPolicyContent, IGetTermsContent, IGetStoryContent } from "../../../Store/States";
+import { IContentPolicy, IContentTerms, IContentStory } from "../../../Store/States";
 import { ITextItem } from "../../../Api/Models";
 import { DocumentView } from "./documentView";
 
@@ -18,7 +18,7 @@ describe("Test component: documentView.", () =>
             text: ""
         };
 
-        const policyContent: IGetPolicyContent = 
+        const policyContent: IContentPolicy = 
         {
             isLoading: false,
             content: 
@@ -46,7 +46,7 @@ describe("Test component: documentView.", () =>
             text: ""
         };
 
-        const termsContent: IGetTermsContent = 
+        const termsContent: IContentTerms = 
         {
             isLoading: false,
             content: 
@@ -74,7 +74,7 @@ describe("Test component: documentView.", () =>
             text: ""
         };
 
-        const storyContent: IGetStoryContent = 
+        const storyContent: IContentStory = 
         {
             isLoading: false,
             content: 

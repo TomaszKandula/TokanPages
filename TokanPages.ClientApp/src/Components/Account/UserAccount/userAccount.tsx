@@ -2,14 +2,14 @@ import * as React from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
-import { IGetAccountContent } from "../../../Store/States";
+import { IContentAccount } from "../../../Store/States";
 
 import { 
-    DialogAction, 
+    ApplicationDialogAction, 
     UserUpdateAction, 
-    UserDataAction, 
+    UserDataStoreAction, 
     UserSigninAction, 
-    UserUpdatePasswordAction, 
+    UserPasswordUpdateAction, 
     UserRemoveAction, 
     UserReAuthenticateAction 
 } from "../../../Store/Actions";
@@ -39,24 +39,24 @@ import {
     UPDATE_USER_WARNING 
 } from "../../../Shared/constants";
 
-export const UserAccount = (props: IGetAccountContent): JSX.Element => 
+export const UserAccount = (props: IContentAccount): JSX.Element => 
 {
     const dispatch = useDispatch();
     const history = useHistory();
     
-    const userDataState = useSelector((state: IApplicationState) => state.storeUserData.userData);
-    const removeAccountState = useSelector((state: IApplicationState) => state.removeAccount);
-    const updatePasswordState = useSelector((state: IApplicationState) => state.updateUserPassword);
-    const updateUserState = useSelector((state: IApplicationState) => state.updateUser);
-    const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
-    const isAnonymous = Validate.isEmpty(userDataState.userId);
+    const data = useSelector((state: IApplicationState) => state.userDataStore.userData);
+    const remove = useSelector((state: IApplicationState) => state.userRemove);
+    const password = useSelector((state: IApplicationState) => state.userPasswordUpdate);
+    const user = useSelector((state: IApplicationState) => state.userUpdate);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const isAnonymous = Validate.isEmpty(data.userId);
 
     const accountFormDefault: IValidateAccountForm = 
     {
-        firstName: userDataState.firstName,
-        lastName: userDataState.lastName,
-        email: userDataState.email,
-        userAboutText: userDataState.shortBio ?? ""
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        userAboutText: data.shortBio ?? ""
     }
 
     const passwordFormDefault: IValidatePasswordForm = 
@@ -73,33 +73,33 @@ export const UserAccount = (props: IGetAccountContent): JSX.Element =>
     const [passwordFormProgress, setPasswordFormProgress] = React.useState(false);
     const [deleteAccountProgress, setDeleteAccountProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(ACCOUNT_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string)=> dispatch(DialogAction.raiseDialog(WarningMessage(ACCOUNT_FORM, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(ACCOUNT_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialogAction.raise(WarningMessage(ACCOUNT_FORM, text))), [ dispatch ]);
 
-    const postUpdateUser = React.useCallback((payload: IUpdateUserDto) => dispatch(UserUpdateAction.update(payload)), [ dispatch ]);
-    const postUpdateUserClear = React.useCallback(() => dispatch(UserUpdateAction.clear()), [ dispatch ]);
+    const updateUser = React.useCallback((payload: IUpdateUserDto) => dispatch(UserUpdateAction.update(payload)), [ dispatch ]);
+    const updateUserClear = React.useCallback(() => dispatch(UserUpdateAction.clear()), [ dispatch ]);
 
-    const postUpdatePassword = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(UserUpdatePasswordAction.update(payload)), [ dispatch ]);
-    const postUpdatePasswordClear = React.useCallback(() => dispatch(UserUpdatePasswordAction.clear()), [ dispatch ]);
+    const updatePassword = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(UserPasswordUpdateAction.update(payload)), [ dispatch ]);
+    const updatePasswordClear = React.useCallback(() => dispatch(UserPasswordUpdateAction.clear()), [ dispatch ]);
 
-    const postRemoveAccount = React.useCallback((payload: IRemoveUserDto) => dispatch(UserRemoveAction.removeAccount(payload)), [ dispatch ]);
-    const postRemoveAccountClear = React.useCallback(() => dispatch(UserRemoveAction.clear), [ dispatch ]);
+    const removeUser = React.useCallback((payload: IRemoveUserDto) => dispatch(UserRemoveAction.remove(payload)), [ dispatch ]);
+    const removeUserClear = React.useCallback(() => dispatch(UserRemoveAction.clear), [ dispatch ]);
 
     const reAuthenticate = React.useCallback(() => dispatch(UserReAuthenticateAction.reAuthenticate()), [ dispatch ]);
-    const clearLoggedUser = React.useCallback(() => dispatch(UserSigninAction.clear()), [ dispatch ]);
-    const clearLoggedData = React.useCallback(() => dispatch(UserDataAction.clear()), [ dispatch ]);
+    const clearUser = React.useCallback(() => dispatch(UserSigninAction.clear()), [ dispatch ]);
+    const clearData = React.useCallback(() => dispatch(UserDataStoreAction.clear()), [ dispatch ]);
 
     const accountFormClear = React.useCallback(() => 
     {
         if (!accountFormProgress) return;
         
-        postUpdateUserClear();
+        updateUserClear();
         setAccountFormProgress(false);
 
         if (!isUserActivated.checked)
         {
-            clearLoggedUser();
-            clearLoggedData();
+            clearUser();
+            clearData();
             history.push("/");
         }
         else
@@ -107,44 +107,44 @@ export const UserAccount = (props: IGetAccountContent): JSX.Element =>
             reAuthenticate();
         }
     }, 
-    [ accountFormProgress, postUpdateUserClear, reAuthenticate, clearLoggedUser, clearLoggedData ]);
+    [ accountFormProgress, updateUserClear, reAuthenticate, clearUser, clearData ]);
 
     const passwordFormClear = React.useCallback(() => 
     {
         if (!passwordFormProgress) return;
 
-        postUpdatePasswordClear();
+        updatePasswordClear();
         setPasswordForm(passwordFormDefault);
         setPasswordFormProgress(false);
     }, 
-    [ passwordFormProgress, postUpdatePasswordClear ]);
+    [ passwordFormProgress, updatePasswordClear ]);
 
     const removeAccountClear = React.useCallback(() => 
     {
         if (!deleteAccountProgress) return;
 
-        postRemoveAccountClear();
+        removeUserClear();
         setDeleteAccountProgress(false);
-        clearLoggedUser();
-        clearLoggedData();
+        clearUser();
+        clearData();
         history.push("/");
     }, 
-    [ deleteAccountProgress, postRemoveAccountClear, clearLoggedUser, clearLoggedData ]);
+    [ deleteAccountProgress, removeUserClear, clearUser, clearData ]);
 
     React.useEffect(() => 
     {
-        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             accountFormClear();
             return;
         }
 
-        switch(updateUserState?.operationStatus)
+        switch(user?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (accountFormProgress) postUpdateUser(
+                if (accountFormProgress) updateUser(
                 {
-                    id: userDataState.userId,
+                    id: data.userId,
                     isActivated: isUserActivated.checked,
                     firstName: accountForm.firstName,
                     lastName: accountForm.lastName,
@@ -159,21 +159,21 @@ export const UserAccount = (props: IGetAccountContent): JSX.Element =>
             break;
         }
     }, 
-    [ accountFormProgress, raiseErrorState?.defaultErrorMessage, updateUserState?.operationStatus, 
+    [ accountFormProgress, error?.defaultErrorMessage, user?.operationStatus, 
         OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     React.useEffect(() => 
     {
-        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             passwordFormClear();
             return;
         }
 
-        switch(updatePasswordState?.operationStatus)
+        switch(password?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (passwordFormProgress) postUpdatePassword(
+                if (passwordFormProgress) updatePassword(
                 {
                     oldPassword: passwordForm.oldPassword,
                     newPassword: passwordForm.newPassword
@@ -186,21 +186,21 @@ export const UserAccount = (props: IGetAccountContent): JSX.Element =>
             break;
         }
     }, 
-    [ passwordFormProgress, raiseErrorState?.defaultErrorMessage, updatePasswordState?.operationStatus, 
+    [ passwordFormProgress, error?.defaultErrorMessage, password?.operationStatus, 
         OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     React.useEffect(() => 
     {
-        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             setDeleteAccountProgress(false);
             return;
         }
 
-        switch(removeAccountState?.operationStatus)
+        switch(remove?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (deleteAccountProgress) postRemoveAccount({ });
+                if (deleteAccountProgress) removeUser({ });
             break;
 
             case OperationStatus.hasFinished:
@@ -209,7 +209,7 @@ export const UserAccount = (props: IGetAccountContent): JSX.Element =>
             break;
         }
     }, 
-    [ deleteAccountProgress, raiseErrorState?.defaultErrorMessage, removeAccountState?.operationStatus, 
+    [ deleteAccountProgress, error?.defaultErrorMessage, remove?.operationStatus, 
         OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const accountFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
@@ -274,13 +274,13 @@ export const UserAccount = (props: IGetAccountContent): JSX.Element =>
         {{
             isLoading: props.isLoading,
             isAnonymous: isAnonymous,
-            userId: userDataState.userId,
-            userAlias: userDataState.aliasName,
+            userId: data.userId,
+            userAlias: data.aliasName,
             firstName: accountForm.firstName,
             lastName: accountForm.lastName,
             email: accountForm.email,
             userAboutText: accountForm.userAboutText,
-            userAvatar: userDataState.avatarName,
+            userAvatar: data.avatarName,
             isUserActivated: isUserActivated.checked,
             accountFormProgress: accountFormProgress,           
             accountFormHandler: accountFormHandler,

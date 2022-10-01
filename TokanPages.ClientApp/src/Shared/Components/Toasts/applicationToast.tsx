@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Slide, SlideProps } from "@material-ui/core";
 import { IApplicationState } from "../../../Store/Configuration";
-import { ErrorAction } from "../../../Store/Actions";
+import { ApplicationErrorAction } from "../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../constants";
 import { DialogType } from "../../enums";
 import { ApplicationToastView } from "./View/applicationToastView";
@@ -22,6 +22,7 @@ const ToastState: IToastState =
 
 const TransitionLeft = (props: Omit<SlideProps, "direction">): JSX.Element => <Slide {...props} direction="left" />;
 
+// TODO: remove component state
 export const ApplicationToast = (): JSX.Element => 
 {
     const vertical = "top";
@@ -31,13 +32,13 @@ export const ApplicationToast = (): JSX.Element =>
 
     const dispatch = useDispatch();
     const [toastState, setToastState] = React.useState(ToastState);   
-    const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
     
     const clearError = React.useCallback(() => 
     { 
         if (!toastState.isOpen && !Validate.isEmpty(toastState.errorMessage))
         {
-            dispatch(ErrorAction.clearError());
+            dispatch(ApplicationErrorAction.clear());
             setToastState(ToastState);
         }
     }, 
@@ -45,17 +46,17 @@ export const ApplicationToast = (): JSX.Element =>
     
     const raiseError = React.useCallback(() => 
     {
-        if (raiseErrorState?.dialogType !== DialogType.toast) return;
-        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.dialogType !== DialogType.toast) return;
+        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             setToastState(
             { 
                 isOpen: true,
-                errorMessage: raiseErrorState?.attachedErrorObject 
+                errorMessage: error?.attachedErrorObject 
             });
         }
     }, 
-    [ raiseErrorState ]);
+    [ error ]);
 
     React.useEffect(() => raiseError(), [ raiseError ]);
     React.useEffect(() => clearError(), [ clearError ]);

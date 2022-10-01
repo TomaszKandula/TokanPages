@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { ArticleAction } from "../../../Store/Actions";
+import { ArticleSelectionAction } from "../../../Store/Actions";
 import { GetShortText } from "../../../Shared/Services/Utilities";
 import { ARTICLE_PATH, IMAGE_URL } from "../../../Shared/constants";
 import { ArticleCardView } from "./View/articleCardView";
@@ -24,7 +24,7 @@ export const ArticleCard = (props: IArticleCard): JSX.Element =>
 
     const onClickEvent = () => 
     {
-        dispatch(ArticleAction.selectArticle(props.id));
+        dispatch(ArticleSelectionAction.select(props.id));
         history.push(articleUrl);
     };
 

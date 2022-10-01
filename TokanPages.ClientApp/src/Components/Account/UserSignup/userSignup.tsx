@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
-import { IGetUserSignupContent } from "../../../Store/States";
-import { DialogAction, UserSignupAction } from "../../../Store/Actions";
+import { IContentUserSignup } from "../../../Store/States";
+import { ApplicationDialogAction, UserSignupAction } from "../../../Store/Actions";
 import { IAddUserDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
@@ -28,43 +28,43 @@ const formDefaultValues: IValidateSignupForm =
     terms: false
 };
 
-export const UserSignup = (props: IGetUserSignupContent): JSX.Element => 
+export const UserSignup = (props: IContentUserSignup): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const signupUserState = useSelector((state: IApplicationState) => state.signupUser);
-    const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
+    const state = useSelector((state: IApplicationState) => state.userSignup);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
 
     const [form, setForm] = React.useState(formDefaultValues);   
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(SIGNUP_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(WarningMessage(SIGNUP_FORM, text))), [ dispatch ]);
-    const signupUser = React.useCallback((payload: IAddUserDto) => dispatch(UserSignupAction.signup(payload)), [ dispatch ]);
-    const clearUser = React.useCallback(() => dispatch(UserSignupAction.clear()), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(SIGNUP_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(SIGNUP_FORM, text))), [ dispatch ]);
+    const signup = React.useCallback((payload: IAddUserDto) => dispatch(UserSignupAction.signup(payload)), [ dispatch ]);
+    const clear = React.useCallback(() => dispatch(UserSignupAction.clear()), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 
     {
         if (!progress) return;
         setProgress(false);
-        clearUser();
+        clear();
     }, 
-    [ progress, clearUser ]);
+    [ progress, clear ]);
 
     React.useEffect(() => 
     {
-        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clearForm();
             return;
         }
 
-        switch(signupUserState?.operationStatus)
+        switch(state?.operationStatus)
         {
             case OperationStatus.notStarted:
                 if (progress)
                 {
                     const userAlias: string = `${form.firstName.substring(0, 2)}${form.lastName.substring(0, 3)}`;
-                    signupUser(
+                    signup(
                     {
                         userAlias: userAlias,
                         firstName: form.firstName,
@@ -82,7 +82,7 @@ export const UserSignup = (props: IGetUserSignupContent): JSX.Element =>
             break;
         }
     }, 
-    [ progress, raiseErrorState?.defaultErrorMessage, signupUserState?.operationStatus, 
+    [ progress, error?.defaultErrorMessage, state?.operationStatus, 
         OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 

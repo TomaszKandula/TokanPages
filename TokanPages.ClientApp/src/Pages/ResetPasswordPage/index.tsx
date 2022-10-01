@@ -6,25 +6,25 @@ import { Navigation, Footer } from "../../Components/Layout";
 import { ResetPassword } from "../../Components/Account";
 
 import { 
-    GetNavigationContentAction, 
-    GetFooterContentAction, 
-    GetResetPasswordContentAction 
+    ContentNavigationAction, 
+    ContentFooterAction, 
+    ContentResetPasswordAction 
 } from "../../Store/Actions";
 
 export const ResetPasswordPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
-    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
-    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const resetForm = useSelector((state: IApplicationState) => state.getResetPasswordContent);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: IApplicationState) => state.contentFooter);
+    const reset = useSelector((state: IApplicationState) => state.contentResetPassword);
 
     React.useEffect(() => 
     {
-        dispatch(GetNavigationContentAction.getNavigationContent());
-        dispatch(GetFooterContentAction.getFooterContent());
-        dispatch(GetResetPasswordContentAction.getResetPasswordContent());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentFooterAction.get());
+        dispatch(ContentResetPasswordAction.get());
     }, 
     [ dispatch, language?.id ]);
     
@@ -32,7 +32,7 @@ export const ResetPasswordPage = (): JSX.Element =>
         <>     
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <ResetPassword content={resetForm?.content} isLoading={resetForm?.isLoading} />
+                <ResetPassword content={reset?.content} isLoading={reset?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>

@@ -3,7 +3,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { NavigationView } from "../../Navigation/View/navigationView";
 import { IItem } from "../../../../Shared/Components/ListRender/Models";
-import { IUserLanguage } from "../../../../Store/States";
+import { IApplicationLanguage } from "../../../../Store/States";
 
 describe("Test component: featuresView.", () => 
 {
@@ -19,7 +19,7 @@ describe("Test component: featuresView.", () =>
             enabled: true
         };
 
-        const languages: IUserLanguage = 
+        const languages: IApplicationLanguage = 
         {
             id: "eng",
             languages: 

@@ -17,52 +17,52 @@ import {
 } from "../../Components/Layout";
 
 import { 
-    GetNavigationContentAction,
-    GetHeaderContentAction,
-    GetActivateAccountContentAction,
-    GetArticleFeaturesContentAction,
-    GetFooterContentAction,
-    GetClientsContentAction,
-    GetFeaturedContentAction,
-    GetFeaturesContentAction,
-    GetNewsletterContentAction,
-    GetContactFormContentAction,
-    GetCookiesPromptContentAction,
-    GetTestimonialsContentAction    
+    ContentNavigationAction,
+    ContentHeaderAction,
+    ContentActivateAccountAction,
+    ContentArticleFeaturesAction,
+    ContentFooterAction,
+    ContentClientsAction,
+    ContentFeaturedAction,
+    ContentFeaturesAction,
+    ContentNewsletterAction,
+    ContentContactFormAction,
+    ContentCookiesPromptAction,
+    ContentTestimonialsAction    
 } from "../../Store/Actions";
 
 export const MainPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
 
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
 
-    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
-    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const header = useSelector((state: IApplicationState) => state.getHeaderContent);
-    const clients = useSelector((state: IApplicationState) => state.getClientsContent);
-    const features = useSelector((state: IApplicationState) => state.getFeaturesContent);
-    const articles = useSelector((state: IApplicationState) => state.getArticleFeaturesContent);
-    const featured = useSelector((state: IApplicationState) => state.getFeaturedContent);
-    const testimonials = useSelector((state: IApplicationState) => state.getTestimonialsContent);
-    const newsletter = useSelector((state: IApplicationState) => state.getNewsletterContent);
-    const contactForm = useSelector((state: IApplicationState) => state.getContactFormContent);
-    const cookiesPrompt = useSelector((state: IApplicationState) => state.getCookiesPromptContent);
+    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: IApplicationState) => state.contentFooter);
+    const header = useSelector((state: IApplicationState) => state.contentHeader);
+    const clients = useSelector((state: IApplicationState) => state.contentClients);
+    const features = useSelector((state: IApplicationState) => state.contentFeatures);
+    const articles = useSelector((state: IApplicationState) => state.contentArticleFeatures);
+    const featured = useSelector((state: IApplicationState) => state.contentFeatured);
+    const testimonials = useSelector((state: IApplicationState) => state.contentTestimonials);
+    const newsletter = useSelector((state: IApplicationState) => state.contentNewsletter);
+    const contactForm = useSelector((state: IApplicationState) => state.contentContactForm);
+    const cookiesPrompt = useSelector((state: IApplicationState) => state.contentCookiesPrompt);
 
     React.useEffect(() => 
     { 
-        dispatch(GetNavigationContentAction.getNavigationContent());
-        dispatch(GetHeaderContentAction.getHeaderContent());
-        dispatch(GetActivateAccountContentAction.getActivateAccountContent());
-        dispatch(GetArticleFeaturesContentAction.getArticleFeaturesContent());
-        dispatch(GetFooterContentAction.getFooterContent());
-        dispatch(GetClientsContentAction.getClientsContent());
-        dispatch(GetFeaturedContentAction.getFeaturedContent());
-        dispatch(GetFeaturesContentAction.getFeaturesContent());
-        dispatch(GetNewsletterContentAction.getNewsletterContent());
-        dispatch(GetContactFormContentAction.getContactFormContent());
-        dispatch(GetCookiesPromptContentAction.getCookiesPromptContent());    
-        dispatch(GetTestimonialsContentAction.getTestimonialsContent());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentHeaderAction.get());
+        dispatch(ContentActivateAccountAction.get());
+        dispatch(ContentArticleFeaturesAction.get());
+        dispatch(ContentFooterAction.get());
+        dispatch(ContentClientsAction.get());
+        dispatch(ContentFeaturedAction.get());
+        dispatch(ContentFeaturesAction.get());
+        dispatch(ContentNewsletterAction.get());
+        dispatch(ContentContactFormAction.get());
+        dispatch(ContentCookiesPromptAction.get());    
+        dispatch(ContentTestimonialsAction.get());
     }, 
     [ dispatch, language?.id ]);
 
