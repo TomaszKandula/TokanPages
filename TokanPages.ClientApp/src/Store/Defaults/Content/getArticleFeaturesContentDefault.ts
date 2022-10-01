@@ -1,6 +1,6 @@
 import { IContentArticleFeatures } from "../../States";
 
-export const GetArticleFeatContentDefault: IContentArticleFeatures = 
+export const ContentArticleFeatures: IContentArticleFeatures = 
 {
     isLoading: false,
     content: 

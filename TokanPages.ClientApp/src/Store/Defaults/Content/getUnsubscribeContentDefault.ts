@@ -1,6 +1,6 @@
 import { IContentUnsubscribe } from "../../States";
 
-export const GetUnsubscribeContentDefault: IContentUnsubscribe = 
+export const ContentUnsubscribe: IContentUnsubscribe = 
 {
     isLoading: false,
     content: 

@@ -1,6 +1,6 @@
 import { IContentUpdatePassword } from "../../States";
 
-export const GetUpdatePasswordContentDefault: IContentUpdatePassword = 
+export const ContentUpdatePassword: IContentUpdatePassword = 
 {
     isLoading: false,
     content: 

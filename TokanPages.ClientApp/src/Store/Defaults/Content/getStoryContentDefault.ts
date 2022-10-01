@@ -1,6 +1,6 @@
 import { IContentStory } from "../../States";
 
-export const GetStoryContentDefault: IContentStory = 
+export const ContentStory: IContentStory = 
 {
     isLoading: false,
     content: 

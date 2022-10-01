@@ -1,6 +1,6 @@
 import { IContentNewsletter } from "../../States";
 
-export const GetNewsletterContentDefault: IContentNewsletter = 
+export const ContentNewsletter: IContentNewsletter = 
 {
     isLoading: false,
     content: 

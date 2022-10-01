@@ -1,6 +1,6 @@
 import { IUserDataStore } from "../../States";
 
-export const StoreUserDataDefault: IUserDataStore = 
+export const UserDataStore: IUserDataStore = 
 {
     isShown: false,
     userData: 

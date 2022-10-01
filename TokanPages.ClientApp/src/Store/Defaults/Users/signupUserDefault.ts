@@ -1,7 +1,7 @@
 import { IUserSignup } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-export const SignupUserDefault: IUserSignup = 
+export const UserSignup: IUserSignup = 
 {
     operationStatus: OperationStatus.notStarted,
     attachedErrorObject: { }

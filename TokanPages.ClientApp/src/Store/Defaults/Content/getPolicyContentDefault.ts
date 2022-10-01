@@ -1,6 +1,6 @@
 import { IContentPolicy } from "../../States";
 
-export const GetPolicyContentDefault: IContentPolicy = 
+export const ContentPolicy: IContentPolicy = 
 {
     isLoading: false,
     content: 

@@ -1,7 +1,7 @@
 import { IUserReAuthenticate } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-export const ReAuthenticateUserDefault: IUserReAuthenticate = 
+export const UserReAuthenticate: IUserReAuthenticate = 
 {
     operationStatus: OperationStatus.notStarted,
     attachedErrorObject: { }

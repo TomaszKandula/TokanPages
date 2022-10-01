@@ -1,6 +1,6 @@
 import { IContentFeatures } from "../../States";
 
-export const GetFeaturesContentDefault: IContentFeatures = 
+export const ContentFeatures: IContentFeatures = 
 {
     isLoading: false,
     content: 

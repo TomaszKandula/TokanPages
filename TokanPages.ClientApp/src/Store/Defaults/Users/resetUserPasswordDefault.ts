@@ -1,7 +1,7 @@
 import { IUserPasswordReset } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-export const ResetUserPasswordDefault: IUserPasswordReset = 
+export const UserPasswordReset: IUserPasswordReset = 
 {
     operationStatus: OperationStatus.notStarted,
     attachedErrorObject: { }

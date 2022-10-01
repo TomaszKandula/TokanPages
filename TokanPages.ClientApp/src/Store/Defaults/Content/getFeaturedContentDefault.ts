@@ -1,6 +1,6 @@
 import { IContentFeatured } from "../../States";
 
-export const GetFeaturedContentDefault: IContentFeatured = 
+export const ContentFeatured: IContentFeatured = 
 {
     isLoading: false,
     content: 

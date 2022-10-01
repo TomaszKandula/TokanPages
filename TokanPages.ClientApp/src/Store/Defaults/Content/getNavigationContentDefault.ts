@@ -1,6 +1,6 @@
 import { IContentNavigation } from "../../States";
 
-export const GetNavigationContentDefault: IContentNavigation = 
+export const ContentNavigation: IContentNavigation = 
 {
     isLoading: false,
     content: 

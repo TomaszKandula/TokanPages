@@ -1,6 +1,6 @@
 import { IContentUpdateSubscriber } from "../../States";
 
-export const GetUpdateSubscriberContentDefault: IContentUpdateSubscriber = 
+export const ContentUpdateSubscriber: IContentUpdateSubscriber = 
 {
     isLoading: false,
     content: 

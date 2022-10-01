@@ -1,6 +1,6 @@
 import { IArticleSelection } from "../../States";
 
-export const SelectArticleDefault: IArticleSelection = 
+export const ArticleSelection: IArticleSelection = 
 {
     isLoading: false,
     article:
