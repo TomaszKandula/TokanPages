@@ -1,5 +1,5 @@
 import { AppThunkAction } from "../../Configuration";
-import { RAISE_ERROR, TErrorActions } from "../applicationError";
+import { RAISE_ERROR, TErrorActions } from "../Application/applicationError";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { GetErrorMessage } from "../../../Shared/Services/ErrorServices";
 import { ApiCall, EnrichConfiguration } from "../../../Api/Request";

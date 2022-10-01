@@ -1,6 +1,6 @@
-export { ActionCreators as ApplicationDialog } from "./applicationDialog";
-export { ActionCreators as ApplicationError } from "./applicationError";
-export { ActionCreators as ApplicationLanguage } from "./applicationLanguage";
+export { ActionCreators as ApplicationDialog } from "./Application/applicationDialog";
+export { ActionCreators as ApplicationError } from "./Application/applicationError";
+export { ActionCreators as ApplicationLanguage } from "./Application/applicationLanguage";
 
 export { ActionCreators as ArticlesAction } from "./Articles/listArticlesAction";
 export { ActionCreators as ArticleAction } from "./Articles/selectArticleAction";

@@ -23,8 +23,8 @@ import {
     GetUserSignupContentReducer,
     GetWrongPagePromptContentReducer,
     ListArticlesReducer,
-    RaiseDialogReducer,
-    RaiseErrorReducer,
+    ApplicationDialog,
+    ApplicationError,
     ReAuthenticateUserReducer,
     RemoveAccountReducer,
     RemoveSubscriberReducer,
@@ -38,7 +38,7 @@ import {
     UpdateSubscriberReducer,
     UpdateUserPasswordReducer,
     UpdateUserReducer,
-    UserLanguageReducer,
+    ApplicationLanguage,
     GetPolicyContentReducer,
     GetTermsContentReducer,
     GetStoryContentReducer
@@ -46,9 +46,9 @@ import {
 
 export const ApplicationReducers = 
 {
-    applicationDialog: RaiseDialogReducer,
-    applicationError: RaiseErrorReducer,
-    applicationLanguage: UserLanguageReducer,
+    applicationDialog: ApplicationDialog,
+    applicationError: ApplicationError,
+    applicationLanguage: ApplicationLanguage,
     applicationMessage: SendMessageReducer,
     articleListing: ListArticlesReducer,
     articleSelection: SelectArticleReducer,

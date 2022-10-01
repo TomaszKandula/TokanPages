@@ -1,4 +1,4 @@
-import { DialogType } from "../../Shared/enums";
+import { DialogType } from "../../../Shared/enums";
 
 export interface IApplicationError 
 {

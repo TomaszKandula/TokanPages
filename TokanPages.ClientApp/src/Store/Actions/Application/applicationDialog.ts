@@ -1,5 +1,5 @@
-import { AppThunkAction } from "../Configuration";
-import { IApplicationDialog } from "../States";
+import { AppThunkAction } from "../../Configuration";
+import { IApplicationDialog } from "../../States";
 
 export const CLEAR_DIALOG = "CLEAR_DIALOG";
 export const RAISE_DIALOG = "RAISE_DIALOG";

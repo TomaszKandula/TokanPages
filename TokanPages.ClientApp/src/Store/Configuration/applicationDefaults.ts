@@ -24,8 +24,8 @@ import {
     GetUserSignupContentDefault,
     GetWrongPagePromptContentDefault,
     ListArticlesDefault,
-    RaiseDialogDefault,
-    RaiseErrorDefault,
+    ApplicationDialog,
+    ApplicationError,
     ReAuthenticateUserDefault,
     RemoveAccountDefault,
     RemoveSubscriberDefault,
@@ -39,7 +39,7 @@ import {
     UpdateSubscriberDefault,
     UpdateUserDefault,
     UpdateUserPasswordDefault,
-    UserLanguageDefault,
+    ApplicationLanguage,
     GetPolicyContentDefault,
     GetTermsContentDefault,
     GetStoryContentDefault
@@ -47,9 +47,9 @@ import {
 
 export const ApplicationDefaults: IApplicationState = 
 {
-    applicationDialog: RaiseDialogDefault,
-    applicationError: RaiseErrorDefault,
-    applicationLanguage: UserLanguageDefault,
+    applicationDialog: ApplicationDialog,
+    applicationError: ApplicationError,
+    applicationLanguage: ApplicationLanguage,
     applicationMessage: SendMessageDefault,
     articleListing: ListArticlesDefault,
     articleSelection: SelectArticleDefault,

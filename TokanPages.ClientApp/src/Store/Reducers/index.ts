@@ -1,6 +1,6 @@
-export { ApplicationDialog as RaiseDialogReducer } from "./applicationDialog";
-export { ApplicationError as RaiseErrorReducer } from "./applicationError";
-export { ApplicationLanguage as UserLanguageReducer } from "./applicationLanguage";
+export { ApplicationDialog } from "./Application/applicationDialog";
+export { ApplicationError } from "./Application/applicationError";
+export { ApplicationLanguage } from "./Application/applicationLanguage";
 
 export { ListArticlesReducer } from "./Articles/listArticlesReducer";
 export { SelectArticleReducer } from "./Articles/selectArticleReducer";

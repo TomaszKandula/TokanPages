@@ -1,4 +1,4 @@
-import { ILanguageItem } from "../../Api/Models";
+import { ILanguageItem } from "../../../Api/Models";
 
 export interface IApplicationLanguage
 { 

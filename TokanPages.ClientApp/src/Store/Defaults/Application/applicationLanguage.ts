@@ -1,4 +1,4 @@
-import { IApplicationLanguage } from "../States";
+import { IApplicationLanguage } from "../../States";
 
 export const ApplicationLanguage: IApplicationLanguage = 
 {

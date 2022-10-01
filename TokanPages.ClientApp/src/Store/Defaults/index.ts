@@ -1,6 +1,6 @@
-export { ApplicationDialog as RaiseDialogDefault } from "./applicationDialog";
-export { ApplicationError as RaiseErrorDefault } from "./applicationError";
-export { ApplicationLanguage as UserLanguageDefault } from "./applicationLanguage";
+export { ApplicationDialog } from "./Application/applicationDialog";
+export { ApplicationError } from "./Application/applicationError";
+export { ApplicationLanguage } from "./Application/applicationLanguage";
 
 export { ListArticlesDefault } from "./Articles/listArticlesDefault";
 export { SelectArticleDefault } from "./Articles/selectArticleDefault";

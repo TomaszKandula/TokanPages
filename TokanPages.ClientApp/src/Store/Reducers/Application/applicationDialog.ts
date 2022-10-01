@@ -1,8 +1,8 @@
 import { Action, Reducer } from "redux";
-import { IApplicationDialog } from "../States";
-import { ApplicationDefaults } from "../Configuration";
-import { CLEAR_DIALOG, RAISE_DIALOG, TDialogActions } from "../Actions/applicationDialog";
-import { IconType } from "../../Shared/enums";
+import { IApplicationDialog } from "../../States";
+import { ApplicationDefaults } from "../../Configuration";
+import { CLEAR_DIALOG, RAISE_DIALOG, TDialogActions } from "../../Actions/Application/applicationDialog";
+import { IconType } from "../../../Shared/enums";
 
 export const ApplicationDialog: 
     Reducer<IApplicationDialog> = (state: IApplicationDialog | undefined, incomingAction: Action): 

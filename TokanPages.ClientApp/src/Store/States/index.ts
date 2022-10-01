@@ -1,6 +1,6 @@
-export type { IApplicationDialog } from "./applicationDialog";
-export type { IApplicationError } from "./applicationError";
-export type { IApplicationLanguage } from "./applicationLanguage";
+export type { IApplicationDialog } from "./Application/applicationDialog";
+export type { IApplicationError } from "./Application/applicationError";
+export type { IApplicationLanguage } from "./Application/applicationLanguage";
 
 export type { IArticles } from "./Articles/listArticlesState";
 export type { IArticle } from "./Articles/selectArticleState";

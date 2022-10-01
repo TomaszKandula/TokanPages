@@ -1,4 +1,4 @@
-import { IconType } from "../../Shared/enums";
+import { IconType } from "../../../Shared/enums";
 
 export interface IApplicationDialog 
 {
