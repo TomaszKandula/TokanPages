@@ -1,7 +1,7 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_SIGNOUT_CONTENT } from "../../../Shared/constants";
 import { IUserSignoutContentDto } from "../../../Api/Models";
-import { GetContent } from "./Services/getContentService";
+import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST_USER_SIGNOUT_CONTENT = "REQUEST_USER_SIGNOUT_CONTENT";
 export const RECEIVE_USER_SIGNOUT_CONTENT = "RECEIVE_USER_SIGNOUT_CONTENT";
@@ -13,14 +13,17 @@ export const ContentUserSignoutAction =
 {
     get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
-        const isLanguageChanged = getState().applicationLanguage.id !== getState().contentUserSignout.content.language;
+        const content = getState().contentUserSignout.content;
+        const languageId = getState().applicationLanguage.id;
+        const isContentChanged = content !== ApplicationDefault.contentUserSignout.content;
+        const isLanguageChanged = languageId !== content.language;
 
-        if (getState().contentUserSignout.content !== ApplicationDefault.contentUserSignout.content && !isLanguageChanged) 
+        if (isContentChanged && !isLanguageChanged) 
         {
             return;
         }
 
-        GetContent(
+        GetContentService(
         { 
             dispatch: dispatch, 
             state: getState, 

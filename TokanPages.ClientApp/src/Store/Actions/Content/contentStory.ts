@@ -1,7 +1,7 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { STORY_URL } from "../../../Shared/constants";
 import { IDocumentContentDto } from "../../../Api/Models";
-import { GetContent } from "./Services/getContentService";
+import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST_STORY_CONTENT = "REQUEST_STORY_CONTENT";
 export const RECEIVE_STORY_CONTENT = "RECEIVE_STORY_CONTENT";
@@ -13,14 +13,17 @@ export const ContentStoryAction =
 {
     get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
-        const isLanguageChanged = getState().applicationLanguage.id !== getState().contentStory.content.language;
+        const content = getState().contentStory.content;
+        const languageId = getState().applicationLanguage.id;
+        const isContentChanged = content !== ApplicationDefault.contentStory.content;
+        const isLanguageChanged = languageId !== content.language;
 
-        if (getState().contentStory.content !== ApplicationDefault.contentStory.content && !isLanguageChanged) 
+        if (isContentChanged && !isLanguageChanged) 
         {
             return;
         }
 
-        GetContent(
+        GetContentService(
         { 
             dispatch: dispatch, 
             state: getState, 

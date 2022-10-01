@@ -1,7 +1,7 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_ARTICLE_FEAT_CONTENT } from "../../../Shared/constants";
 import { IArticleFeaturesContentDto } from "../../../Api/Models";
-import { GetContent } from "./Services/getContentService";
+import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST_ARTICE_FEATURES = "REQUEST_ARTICE_FEATURES";
 export const RECEIVE_ARTICE_FEATURES = "RECEIVE_ARTICE_FEATURES";
@@ -13,14 +13,17 @@ export const ContentArticleFeaturesAction =
 {
     get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
-        const isLanguageChanged = getState().applicationLanguage.id !== getState().contentArticleFeatures.content.language;
+        const content = getState().contentArticleFeatures.content;
+        const languageId = getState().applicationLanguage.id;
+        const isContentChanged = content !== ApplicationDefault.contentArticleFeatures.content;
+        const isLanguageChanged = languageId !== content.language;
 
-        if (getState().contentArticleFeatures.content !== ApplicationDefault.contentArticleFeatures.content && !isLanguageChanged) 
+        if (isContentChanged && !isLanguageChanged) 
         {
             return;
         }
 
-        GetContent(
+        GetContentService(
         { 
             dispatch: dispatch, 
             state: getState, 

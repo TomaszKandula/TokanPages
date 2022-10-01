@@ -1,7 +1,7 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_COOKIES_PROMPT_CONTENT } from "../../../Shared/constants";
 import { ICookiesPromptContentDto } from "../../../Api/Models";
-import { GetContent } from "./Services/getContentService";
+import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST_COOKIES_PROMPT_CONTENT = "REQUEST_COOKIES_PROMPT_CONTENT";
 export const RECEIVE_COOKIES_PROMPT_CONTENT = "RECEIVE_COOKIES_PROMPT_CONTENT";
@@ -13,14 +13,17 @@ export const ContentCookiesPromptAction =
 {
     get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
-        const isLanguageChanged = getState().applicationLanguage.id !== getState().contentCookiesPrompt.content.language;
+        const content = getState().contentCookiesPrompt.content
+        const languageId = getState().applicationLanguage.id;
+        const isContentChanged = content !== ApplicationDefault.contentCookiesPrompt.content;
+        const isLanguageChanged = languageId !== content.language;
 
-        if (getState().contentCookiesPrompt.content !== ApplicationDefault.contentCookiesPrompt.content && !isLanguageChanged) 
+        if (isContentChanged && !isLanguageChanged) 
         {
             return;
         }
 
-        GetContent(
+        GetContentService(
         { 
             dispatch: dispatch, 
             state: getState, 

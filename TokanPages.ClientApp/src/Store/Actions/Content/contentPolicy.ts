@@ -1,7 +1,7 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { POLICY_URL } from "../../../Shared/constants";
 import { IDocumentContentDto } from "../../../Api/Models";
-import { GetContent } from "./Services/getContentService";
+import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST_POLICY_CONTENT = "REQUEST_POLICY_CONTENT";
 export const RECEIVE_POLICY_CONTENT = "RECEIVE_POLICY_CONTENT";
@@ -13,14 +13,17 @@ export const ContentPolicyAction =
 {
     get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
-        const isLanguageChanged = getState().applicationLanguage.id !== getState().contentPolicy.content.language;
+        const content = getState().contentPolicy.content;
+        const languageId = getState().applicationLanguage.id;
+        const isContentChanged = content !== ApplicationDefault.contentPolicy.content;
+        const isLanguageChanged = languageId !== content.language;
 
-        if (getState().contentPolicy.content !== ApplicationDefault.contentPolicy.content && !isLanguageChanged) 
+        if (isContentChanged && !isLanguageChanged) 
         {
             return;
         }
 
-        GetContent(
+        GetContentService(
         { 
             dispatch: dispatch, 
             state: getState, 

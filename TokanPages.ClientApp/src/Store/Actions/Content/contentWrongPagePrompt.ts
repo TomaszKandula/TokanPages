@@ -1,7 +1,7 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_WRONG_PAGE_PROMPT_CONTENT } from "../../../Shared/constants";
 import { IWrongPagePromptContentDto } from "../../../Api/Models";
-import { GetContent } from "./Services/getContentService";
+import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST_WRONG_PAGE_CONTENT = "REQUEST_WRONG_PAGE_CONTENT";
 export const RECEIVE_WRONG_PAGE_CONTENT = "RECEIVE_WRONG_PAGE_CONTENT";
@@ -13,14 +13,17 @@ export const ContentWrongPagePromptAction =
 {
     get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
-        const isLanguageChanged = getState().applicationLanguage.id !== getState().contentWrongPagePrompt.content.language;
+        const content = getState().contentWrongPagePrompt.content;
+        const languageId = getState().applicationLanguage.id;
+        const isContentChanged = content !== ApplicationDefault.contentWrongPagePrompt.content;
+        const isLanguageChanged = languageId !== content.language;
 
-        if (getState().contentWrongPagePrompt.content !== ApplicationDefault.contentWrongPagePrompt.content && !isLanguageChanged)
+        if (isContentChanged && !isLanguageChanged)
         {
             return;
         }
 
-        GetContent(
+        GetContentService(
         { 
             dispatch: dispatch, 
             state: getState, 
