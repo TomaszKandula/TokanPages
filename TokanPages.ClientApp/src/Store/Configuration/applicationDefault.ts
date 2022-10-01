@@ -45,7 +45,7 @@ import {
     ContentStory
 } from "../Defaults";
 
-export const ApplicationDefaults: IApplicationState = 
+export const ApplicationDefault: IApplicationState = 
 {
     applicationDialog: ApplicationDialog,
     applicationError: ApplicationError,

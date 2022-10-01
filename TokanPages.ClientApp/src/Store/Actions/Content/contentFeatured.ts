@@ -1,7 +1,7 @@
-import { IAppThunkAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_FEATURED_CONTENT } from "../../../Shared/constants";
 import { IFeaturedContentDto } from "../../../Api/Models";
-import { GetContent } from "./Services/getContentService";
+import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST_FEATURED_CONTENT = "REQUEST_FEATURED_CONTENT";
 export const RECEIVE_FEATURED_CONTENT = "RECEIVE_FEATURED_CONTENT";
@@ -11,16 +11,19 @@ export type TKnownActions = IRequestFeaturedContent | IReceiveFeaturedContent;
 
 export const ContentFeaturedAction = 
 {
-    get: (): IAppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
-        const isLanguageChanged = getState().applicationLanguage.id !== getState().contentFeatured.content.language;
+        const content = getState().contentFeatured.content;
+        const languageId = getState().applicationLanguage.id;
+        const isContentChanged = content !== ApplicationDefault.contentFeatured.content;
+        const isLanguageChanged = languageId !== content.language;
 
-        if (getState().contentFeatured.content !== ApplicationDefaults.contentFeatured.content && !isLanguageChanged) 
+        if (isContentChanged && !isLanguageChanged) 
         {
             return;
         }
 
-        GetContent(
+        GetContentService(
         { 
             dispatch: dispatch, 
             state: getState, 

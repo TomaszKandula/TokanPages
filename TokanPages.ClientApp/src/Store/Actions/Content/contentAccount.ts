@@ -1,7 +1,7 @@
-import { IAppThunkAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_ACCOUNT_CONTENT } from "../../../Shared/constants";
 import { IAccountContentDto } from "../../../Api/Models";
-import { GetContent } from "./Services/getContentService";
+import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST_ACCOUNT_CONTENT = "REQUEST_ACCOUNT_CONTENT";
 export const RECEIVE_ACCOUNT_CONTENT = "RECEIVE_ACCOUNT_CONTENT";
@@ -11,16 +11,19 @@ export type TKnownActions = IRequestAccountContent | IReceiveAccountContent;
 
 export const ContentAccountAction = 
 {
-    get: (): IAppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
-        const isLanguageChanged = getState().applicationLanguage.id !== getState().contentAccount.content.language;
+        const content = getState().contentAccount.content;
+        const languageId = getState().applicationLanguage.id;
+        const isContentChanged = content !== ApplicationDefault.contentAccount.content;
+        const isLanguageChanged = languageId !== content.language;
 
-        if (getState().contentAccount.content !== ApplicationDefaults.contentAccount.content && !isLanguageChanged) 
+        if (isContentChanged && !isLanguageChanged) 
         {
             return;
         }
 
-        GetContent(
+        GetContentService(
         { 
             dispatch: dispatch, 
             state: getState, 

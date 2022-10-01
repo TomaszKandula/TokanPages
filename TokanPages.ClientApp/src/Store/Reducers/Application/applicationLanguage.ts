@@ -1,13 +1,13 @@
 import { Action, Reducer } from "redux";
 import { IApplicationLanguage } from "../../States";
-import { ApplicationDefaults } from "../../Configuration";
+import { ApplicationDefault } from "../../Configuration";
 import { SET_LANGUAGE, SET_DEFAULT_LANGUAGE, TKnownActions } from "../../Actions/Application/applicationLanguage";
 
 export const ApplicationLanguage: 
     Reducer<IApplicationLanguage> = (state: IApplicationLanguage | undefined, incomingAction: Action): 
     IApplicationLanguage =>
 {
-    if (state === undefined) return ApplicationDefaults.applicationLanguage;
+    if (state === undefined) return ApplicationDefault.applicationLanguage;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)
