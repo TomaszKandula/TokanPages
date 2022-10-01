@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { IContentFeatures } from "../../States/Content/getFeaturesContentState";
+import { IContentFeatures } from "../../States";
 import { 
     TKnownActions,
     RECEIVE_FEATURES_CONTENT, 
