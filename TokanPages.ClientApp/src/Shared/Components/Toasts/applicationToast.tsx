@@ -22,6 +22,7 @@ const ToastState: IToastState =
 
 const TransitionLeft = (props: Omit<SlideProps, "direction">): JSX.Element => <Slide {...props} direction="left" />;
 
+// TODO: remove component state
 export const ApplicationToast = (): JSX.Element => 
 {
     const vertical = "top";

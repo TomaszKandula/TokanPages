@@ -20,6 +20,7 @@ const DialogState: IDialogState =
     icon: IconType.info
 }
 
+// TODO: refactor, remove component state
 export const ApplicationDialogBox = (): JSX.Element => 
 {
     const dispatch = useDispatch();
