@@ -23,10 +23,10 @@ export const UpdateSubscriberPage = (): JSX.Element =>
     const dispatch = useDispatch();
     const id = queryParam.get("id") as string; 
 
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
-    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
-    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const updateSubscriber = useSelector((state: IApplicationState) => state.getUpdateSubscriberContent);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: IApplicationState) => state.contentFooter);
+    const subscriber = useSelector((state: IApplicationState) => state.contentUpdateSubscriber);
 
     React.useEffect(() => 
     {
@@ -40,7 +40,7 @@ export const UpdateSubscriberPage = (): JSX.Element =>
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <UpdateSubscriber id={id} content={updateSubscriber?.content} isLoading={updateSubscriber?.isLoading} />
+                <UpdateSubscriber id={id} content={subscriber?.content} isLoading={subscriber?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>

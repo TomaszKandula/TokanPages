@@ -15,10 +15,10 @@ export const SigninPage = (): JSX.Element =>
 {  
     const dispatch = useDispatch();
     
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
-    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
-    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const signinForm = useSelector((state: IApplicationState) => state.getUserSigninContent);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: IApplicationState) => state.contentFooter);
+    const form = useSelector((state: IApplicationState) => state.contentUserSignin);
 
     React.useEffect(() => 
     {
@@ -32,7 +32,7 @@ export const SigninPage = (): JSX.Element =>
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <UserSignin content={signinForm?.content} isLoading={signinForm?.isLoading} />
+                <UserSignin content={form?.content} isLoading={form?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>

@@ -23,10 +23,10 @@ export const ActivationPage = (): JSX.Element =>
     const dispatch = useDispatch();
     const id = queryParam.get("id");
 
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
-    const activation = useSelector((state: IApplicationState) => state.getActivateAccountContent);
-    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
-    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const activation = useSelector((state: IApplicationState) => state.contentActivateAccount);
+    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: IApplicationState) => state.contentFooter);
 
     React.useEffect(() => 
     {

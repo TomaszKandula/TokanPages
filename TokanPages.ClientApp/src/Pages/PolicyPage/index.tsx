@@ -15,10 +15,10 @@ export const PolicyPage = (): JSX.Element =>
 {
     const dispatch = useDispatch();
 
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
-    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
-    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const policy = useSelector((state: IApplicationState) => state.getPolicyContent);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: IApplicationState) => state.contentFooter);
+    const policy = useSelector((state: IApplicationState) => state.contentPolicy);
 
     React.useEffect(() => 
     {

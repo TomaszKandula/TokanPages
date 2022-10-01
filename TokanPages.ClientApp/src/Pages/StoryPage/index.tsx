@@ -15,10 +15,10 @@ export const StoryPage = (): JSX.Element =>
 { 
     const dispatch = useDispatch();
     
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
-    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
-    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const story = useSelector((state: IApplicationState) => state.getStoryContent);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: IApplicationState) => state.contentFooter);
+    const story = useSelector((state: IApplicationState) => state.contentStory);
 
     React.useEffect(() => 
     {

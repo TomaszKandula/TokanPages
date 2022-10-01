@@ -35,19 +35,19 @@ export const MainPage = (): JSX.Element =>
 {
     const dispatch = useDispatch();
 
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
 
-    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
-    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const header = useSelector((state: IApplicationState) => state.getHeaderContent);
-    const clients = useSelector((state: IApplicationState) => state.getClientsContent);
-    const features = useSelector((state: IApplicationState) => state.getFeaturesContent);
-    const articles = useSelector((state: IApplicationState) => state.getArticleFeaturesContent);
-    const featured = useSelector((state: IApplicationState) => state.getFeaturedContent);
-    const testimonials = useSelector((state: IApplicationState) => state.getTestimonialsContent);
-    const newsletter = useSelector((state: IApplicationState) => state.getNewsletterContent);
-    const contactForm = useSelector((state: IApplicationState) => state.getContactFormContent);
-    const cookiesPrompt = useSelector((state: IApplicationState) => state.getCookiesPromptContent);
+    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: IApplicationState) => state.contentFooter);
+    const header = useSelector((state: IApplicationState) => state.contentHeader);
+    const clients = useSelector((state: IApplicationState) => state.contentClients);
+    const features = useSelector((state: IApplicationState) => state.contentFeatures);
+    const articles = useSelector((state: IApplicationState) => state.contentArticleFeatures);
+    const featured = useSelector((state: IApplicationState) => state.contentFeatured);
+    const testimonials = useSelector((state: IApplicationState) => state.contentTestimonials);
+    const newsletter = useSelector((state: IApplicationState) => state.contentNewsletter);
+    const contactForm = useSelector((state: IApplicationState) => state.contentContactForm);
+    const cookiesPrompt = useSelector((state: IApplicationState) => state.contentCookiesPrompt);
 
     React.useEffect(() => 
     { 

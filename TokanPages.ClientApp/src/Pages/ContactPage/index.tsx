@@ -15,10 +15,10 @@ export const ContactPage = () =>
 {
     const dispatch = useDispatch();
 
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
-    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
-    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const contactForm = useSelector((state: IApplicationState) => state.getContactFormContent);
+    const form = useSelector((state: IApplicationState) => state.contentContactForm);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: IApplicationState) => state.contentFooter);
 
     React.useEffect(() => 
     {
@@ -33,7 +33,7 @@ export const ContactPage = () =>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
                 <Box mt={8} >
-                    <ContactForm content={contactForm?.content} isLoading={contactForm?.isLoading} />
+                    <ContactForm content={form?.content} isLoading={form?.isLoading} />
                 </Box>
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />

@@ -15,10 +15,10 @@ export const SignoutPage = (): JSX.Element =>
 {
     const dispatch = useDispatch();
     
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
-    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
-    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const signoutView = useSelector((state: IApplicationState) => state.getUserSignoutContent);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: IApplicationState) => state.contentFooter);
+    const signout = useSelector((state: IApplicationState) => state.contentUserSignout);
 
     React.useEffect(() => 
     {
@@ -32,7 +32,7 @@ export const SignoutPage = (): JSX.Element =>
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <UserSignout content={signoutView?.content} isLoading={signoutView?.isLoading} />
+                <UserSignout content={signout?.content} isLoading={signout?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>

@@ -15,10 +15,10 @@ export const TermsPage = (): JSX.Element =>
 {
     const dispatch = useDispatch();
     
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
-    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
-    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const terms = useSelector((state: IApplicationState) => state.getTermsContent);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: IApplicationState) => state.contentFooter);
+    const terms = useSelector((state: IApplicationState) => state.contentTerms);
 
     React.useEffect(() => 
     {

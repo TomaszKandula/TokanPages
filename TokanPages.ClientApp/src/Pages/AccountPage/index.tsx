@@ -13,10 +13,10 @@ import {
 export const AccountPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
-    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
-    const account = useSelector((state: IApplicationState) => state.getAccountContent);
-    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
+    const account = useSelector((state: IApplicationState) => state.contentAccount);
+    const footer = useSelector((state: IApplicationState) => state.contentFooter);
 
     React.useEffect(() => 
     {
