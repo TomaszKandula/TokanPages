@@ -5,7 +5,7 @@ import { EnrichConfiguration } from "../../../../Api/Request";
 import { NULL_RESPONSE_ERROR } from "../../../../Shared/constants";
 import Validate from "validate.js";
 
-interface IGetContentAction 
+interface IContentActionInput 
 {
     dispatch: any; 
     state: any; 
@@ -14,7 +14,7 @@ interface IGetContentAction
     url: string;
 }
 
-export const GetContent = (props: IGetContentAction) => 
+export const GetContentService = (props: IContentActionInput) => 
 {
     props.dispatch({ type: props.request });
 
