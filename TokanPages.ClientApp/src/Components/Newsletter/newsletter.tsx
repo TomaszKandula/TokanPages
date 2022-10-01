@@ -17,37 +17,37 @@ import Validate from "validate.js";
 export const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
 {
     const dispatch = useDispatch();
-    const addSubscriberState = useSelector((state: IApplicationState) => state.addSubscriber);
-    const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
+    const state = useSelector((state: IApplicationState) => state.subscriberAdd);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
 
     const [form, setForm] = React.useState({email: ""});
     const [progress, setProgress] = React.useState(false);
 
     const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(SuccessMessage(NEWSLETTER, text))), [ dispatch ]);
     const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(WarningMessage(NEWSLETTER, text))), [ dispatch ]);
-    const addSubscriber = React.useCallback((payload: IAddSubscriberDto) => dispatch(SubscriberAddAction.add(payload)), [ dispatch ]);
-    const addSubscriberClear = React.useCallback(() => dispatch(SubscriberAddAction.clear()), [ dispatch ]);
+    const subscriber = React.useCallback((payload: IAddSubscriberDto) => dispatch(SubscriberAddAction.add(payload)), [ dispatch ]);
+    const clear = React.useCallback(() => dispatch(SubscriberAddAction.clear()), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 
     {
         if (!progress) return;
         setProgress(false);
-        addSubscriberClear();
+        clear();
     }, 
-    [ progress, addSubscriberClear ]);
+    [ progress, clear ]);
 
     React.useEffect(() => 
     {
-        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clearForm();
             return;
         }
 
-        switch(addSubscriberState?.operationStatus)
+        switch(state?.operationStatus)
         {
             case OperationStatus.notStarted: 
-                if (progress) addSubscriber({ email: form.email });
+                if (progress) subscriber({ email: form.email });
             break;
         
             case OperationStatus.hasFinished: 
@@ -57,7 +57,7 @@ export const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
             break;
         }
     }, 
-    [ progress, raiseErrorState?.defaultErrorMessage, addSubscriberState?.operationStatus, 
+    [ progress, error?.defaultErrorMessage, state?.operationStatus, 
         OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
