@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { ApplicationDefaults } from "../../Configuration";
+import { ApplicationDefault } from "../../Configuration";
 import { IContentResetPassword } from "../../States";
 import { 
     TKnownActions,
@@ -11,7 +11,7 @@ export const ContentResetPassword:
     Reducer<IContentResetPassword> = (state: IContentResetPassword | undefined, incomingAction: Action): 
     IContentResetPassword => 
 {
-    if (state === undefined) return ApplicationDefaults.contentResetPassword;
+    if (state === undefined) return ApplicationDefault.contentResetPassword;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

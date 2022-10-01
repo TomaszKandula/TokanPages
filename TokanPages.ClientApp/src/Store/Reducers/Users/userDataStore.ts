@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { ApplicationDefaults } from "../../Configuration";
+import { ApplicationDefault } from "../../Configuration";
 import { IUserDataStore } from "../../States";
 import { 
     TKnownActions,
@@ -14,7 +14,7 @@ export const UserDataStore:
     Reducer<IUserDataStore> = (state: IUserDataStore | undefined, incomingAction: Action): 
     IUserDataStore => 
 {
-    if (state === undefined) return ApplicationDefaults.userDataStore;
+    if (state === undefined) return ApplicationDefault.userDataStore;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 
@@ -27,7 +27,7 @@ export const UserDataStore:
 
         case CLEAR_USERDATA:
             DelDataFromStorage({ key: USER_DATA });
-            return ApplicationDefaults.userDataStore;
+            return ApplicationDefault.userDataStore;
 
         case UPDATE_USERDATA:
             SetDataInStorage({ key: USER_DATA, selection: action.payload }); 

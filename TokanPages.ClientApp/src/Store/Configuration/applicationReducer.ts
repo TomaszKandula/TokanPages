@@ -44,7 +44,7 @@ import {
     ContentStory
 } from "../Reducers";
 
-export const ApplicationReducers = 
+export const ApplicationReducer = 
 {
     applicationDialog: ApplicationDialog,
     applicationError: ApplicationError,

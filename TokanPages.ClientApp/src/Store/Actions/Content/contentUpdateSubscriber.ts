@@ -1,7 +1,7 @@
-import { IAppThunkAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_UPDATE_SUBSCRIBER_CONTENT } from "../../../Shared/constants";
 import { IUpdateSubscriberContentDto } from "../../../Api/Models";
-import { GetContent } from "./Services/getContentService";
+import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST_UPDATE_SUBSCRIBER_CONTENT = "REQUEST_UPDATE_SUBSCRIBER_CONTENT";
 export const RECEIVE_UPDATE_SUBSCRIBER_CONTENT = "RECEIVE_UPDATE_SUBSCRIBER_CONTENT";
@@ -11,16 +11,19 @@ export type TKnownActions = IRequestUpdateSubscriberContent | IReceiveUpdateSubs
 
 export const ContentUpdateSubscriberAction = 
 {
-    get: (): IAppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
-        const isLanguageChanged = getState().applicationLanguage.id !== getState().contentUpdateSubscriber.content.language;
+        const content = getState().contentUpdateSubscriber.content;
+        const languageId = getState().applicationLanguage.id;
+        const isContentChanged = content !== ApplicationDefault.contentUpdateSubscriber.content;
+        const isLanguageChanged = languageId !== content.language;
 
-        if (getState().contentUpdateSubscriber.content !== ApplicationDefaults.contentUpdateSubscriber.content && !isLanguageChanged) 
+        if (isContentChanged && !isLanguageChanged) 
         {
             return;
         }
 
-        GetContent(
+        GetContentService(
         { 
             dispatch: dispatch, 
             state: getState, 

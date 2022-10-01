@@ -1,7 +1,7 @@
-import { IAppThunkAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_SIGNIN_CONTENT } from "../../../Shared/constants";
 import { IUserSigninContentDto } from "../../../Api/Models";
-import { GetContent } from "./Services/getContentService";
+import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST_USER_SIGNIN_CONTENT = "REQUEST_USER_SIGNIN_CONTENT";
 export const RECEIVE_USER_SIGNIN_CONTENT = "RECEIVE_USER_SIGNIN_CONTENT";
@@ -11,16 +11,19 @@ export type TKnownActions = IRequestSigninFormContent | IReceiveSigninFormConten
 
 export const ContentUserSigninAction = 
 {
-    get: (): IAppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
-        const isLanguageChanged = getState().applicationLanguage.id !== getState().contentUserSignin.content.language;
+        const content = getState().contentUserSignin.content;
+        const languageId = getState().applicationLanguage.id;
+        const isContentChanged = content !== ApplicationDefault.contentUserSignin.content;
+        const isLanguageChanged = languageId !== content.language;
 
-        if (getState().contentUserSignin.content !== ApplicationDefaults.contentUserSignin.content && !isLanguageChanged) 
+        if (isContentChanged && !isLanguageChanged) 
         {
             return;
         }
 
-        GetContent(
+        GetContentService(
         { 
             dispatch: dispatch, 
             state: getState, 

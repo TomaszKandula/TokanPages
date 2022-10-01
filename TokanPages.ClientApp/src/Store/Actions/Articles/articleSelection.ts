@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IAppThunkAction } from "../../Configuration";
+import { IApplicationAction } from "../../Configuration";
 import { IArticleItem } from "../../../Shared/Components/RenderContent/Models";
 import { API_QUERY_GET_ARTICLE, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
@@ -16,11 +16,11 @@ export type TKnownActions = IResetSelection | IRequestArticleAction | IReceiveAr
 
 export const ArticleSelectionAction = 
 {
-    reset: (): IAppThunkAction<TKnownActions> => (dispatch) =>
+    reset: (): IApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: RESET_SELECTION });
     },
-    select: (id: string): IAppThunkAction<TKnownActions> => (dispatch) =>
+    select: (id: string): IApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: REQUEST_ARTICLE });
 

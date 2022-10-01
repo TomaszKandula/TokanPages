@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IAppThunkAction } from "../../Configuration";
+import { IApplicationAction } from "../../Configuration";
 import { IActivateUserDto } from "../../../Api/Models";
 import { API_COMMAND_ACTIVATE_USER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
@@ -16,11 +16,11 @@ export type TKnownActions = IActivateAccount | IActivateAccountClear | IActivate
 
 export const UserActivateAction = 
 {
-    clear: (): IAppThunkAction<TKnownActions> => (dispatch) =>
+    clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: ACTIVATE_ACCOUNT_CLEAR });
     },
-    activate: (payload: IActivateUserDto): IAppThunkAction<TKnownActions> => (dispatch) => 
+    activate: (payload: IActivateUserDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: ACTIVATE_ACCOUNT });
 

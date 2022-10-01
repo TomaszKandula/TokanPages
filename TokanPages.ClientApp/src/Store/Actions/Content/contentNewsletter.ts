@@ -1,7 +1,7 @@
-import { IAppThunkAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_NEWSLETTER_CONTENT } from "../../../Shared/constants";
 import { INewsletterContentDto } from "../../../Api/Models";
-import { GetContent } from "./Services/getContentService";
+import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST_NEWSLETTER_CONTENT = "REQUEST_NEWSLETTER_CONTENT";
 export const RECEIVE_NEWSLETTER_CONTENT = "RECEIVE_NEWSLETTER_CONTENT";
@@ -11,16 +11,19 @@ export type TKnownActions = IRequestNewsletterContent | IReceiveNewsletterConten
 
 export const ContentNewsletterAction = 
 {
-    get: (): IAppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
-        const isLanguageChanged = getState().applicationLanguage.id !== getState().contentNewsletter.content.language;
+        const content = getState().contentNewsletter.content;
+        const languageId = getState().applicationLanguage.id;
+        const isContentChanged = content !== ApplicationDefault.contentNewsletter.content;
+        const isLanguageChanged = languageId !== content.language;
 
-        if (getState().contentNewsletter.content !== ApplicationDefaults.contentNewsletter.content && !isLanguageChanged) 
+        if (isContentChanged && !isLanguageChanged) 
         {
             return;
         }
 
-        GetContent(
+        GetContentService(
         { 
             dispatch: dispatch, 
             state: getState, 

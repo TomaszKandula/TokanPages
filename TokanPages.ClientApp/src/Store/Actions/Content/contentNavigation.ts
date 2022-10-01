@@ -1,7 +1,7 @@
-import { IAppThunkAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_NAVIGATION_CONTENT } from "../../../Shared/constants";
 import { INavigationContentDto } from "../../../Api/Models";
-import { GetContent } from "./Services/getContentService";
+import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST_NAVIGATION_CONTENT = "REQUEST_NAVIGATION_CONTENT";
 export const RECEIVE_NAVIGATION_CONTENT = "RECEIVE_NAVIGATION_CONTENT";
@@ -11,16 +11,19 @@ export type TKnownActions = IRequestNavigationContent | IReceiveNavigationConten
 
 export const ContentNavigationAction =
 {
-    get: (): IAppThunkAction<TKnownActions> => (dispatch, getState) =>
+    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
-        const isLanguageChanged = getState().applicationLanguage.id !== getState().contentNavigation.content.language;
+        const content = getState().contentNavigation.content;
+        const languageId = getState().applicationLanguage.id;
+        const isContentChanged = content !== ApplicationDefault.contentNavigation.content;
+        const isLanguageChanged = languageId !== content.language;
 
-        if (getState().contentNavigation.content !== ApplicationDefaults.contentNavigation.content && !isLanguageChanged)
+        if (isContentChanged && !isLanguageChanged)
         {
             return;
         }
 
-        GetContent(
+        GetContentService(
         { 
             dispatch: dispatch, 
             state: getState, 

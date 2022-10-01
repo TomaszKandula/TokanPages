@@ -4,7 +4,7 @@ import * as Redux from "react-redux";
 import * as Router from "react-router";
 import { shallow } from "enzyme";
 import { ResetPassword } from "./resetPassword";
-import { ApplicationDefaults } from "../../../Store/Configuration";
+import { ApplicationDefault } from "../../../Store/Configuration";
 
 jest.mock("react-router", () => 
 ({
@@ -35,7 +35,7 @@ describe("Test account group component: resetPassword.", () =>
     it("Renders correctly '<ResetPassword />' when content is loaded.", () => 
     {
         useDispatchMock.mockReturnValue(jest.fn());
-        useSelectorMock.mockReturnValue(ApplicationDefaults);
+        useSelectorMock.mockReturnValue(ApplicationDefault);
     
         expect(useDispatchMock).toBeCalledTimes(1);
         expect(wrapper).toMatchSnapshot();

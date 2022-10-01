@@ -1,5 +1,6 @@
-export type { IAppThunkAction } from "./appThunkAction";
+export type { IApplicationAction } from "./applicationAction";
 export type { IApplicationState } from "./applicationState";
-export { ApplicationDefaults } from "./applicationDefaults";
-export { ApplicationReducers } from "./applicationReducers";
+
+export { ApplicationDefault } from "./applicationDefault";
+export { ApplicationReducer } from "./applicationReducer";
 export { ConfigureStore } from "./configureStore"; 
