@@ -11,7 +11,7 @@ export const GetArticleFeaturesContentReducer:
     Reducer<IGetArticleFeaturesContent> = (state: IGetArticleFeaturesContent | undefined, incomingAction: Action): 
     IGetArticleFeaturesContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getArticleFeaturesContent;
+    if (state === undefined) return ApplicationDefaults.contentArticleFeatures;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

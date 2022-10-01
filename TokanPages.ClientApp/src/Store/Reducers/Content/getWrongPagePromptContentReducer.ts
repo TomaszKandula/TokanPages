@@ -11,7 +11,7 @@ export const GetWrongPagePromptContentReducer:
     Reducer<IGetWrongPagePromptContent> = (state: IGetWrongPagePromptContent | undefined, incomingAction: Action): 
     IGetWrongPagePromptContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getWrongPagePromptContent;
+    if (state === undefined) return ApplicationDefaults.contentWrongPagePrompt;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

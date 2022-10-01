@@ -11,7 +11,7 @@ export const GetTermsContentReducer:
     Reducer<IGetTermsContent> = (state: IGetTermsContent | undefined, incomingAction: Action): 
     IGetTermsContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getTermsContent;
+    if (state === undefined) return ApplicationDefaults.contentTerms;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

@@ -13,7 +13,7 @@ export const ResetUserPasswordReducer:
     Reducer<IResetUserPassword> = (state: IResetUserPassword | undefined, incomingAction: Action): 
     IResetUserPassword => 
 {
-    if (state === undefined) return ApplicationDefaults.resetUserPassword;
+    if (state === undefined) return ApplicationDefaults.userPasswordReset;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 

@@ -11,7 +11,7 @@ export const GetUserSigninContentReducer:
     Reducer<IGetUserSigninContent> = (state: IGetUserSigninContent | undefined, incomingAction: Action): 
     IGetUserSigninContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getUserSigninContent;
+    if (state === undefined) return ApplicationDefaults.contentUserSignin;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

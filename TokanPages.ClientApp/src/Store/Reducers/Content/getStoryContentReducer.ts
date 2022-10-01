@@ -11,7 +11,7 @@ export const GetStoryContentReducer:
     Reducer<IGetStoryContent> = (state: IGetStoryContent | undefined, incomingAction: Action): 
     IGetStoryContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getStoryContent;
+    if (state === undefined) return ApplicationDefaults.contentStory;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

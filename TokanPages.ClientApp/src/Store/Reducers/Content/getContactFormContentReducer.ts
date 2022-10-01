@@ -11,7 +11,7 @@ export const GetContactFormContentReducer:
     Reducer<IGetContactFormContent> = (state: IGetContactFormContent | undefined, incomingAction: Action): 
     IGetContactFormContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getContactFormContent;
+    if (state === undefined) return ApplicationDefaults.contentContactForm;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

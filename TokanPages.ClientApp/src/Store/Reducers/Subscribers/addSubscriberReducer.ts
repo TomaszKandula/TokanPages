@@ -13,13 +13,13 @@ export const AddSubscriberReducer:
     Reducer<IAddSubscriber> = (state: IAddSubscriber | undefined, incomingAction: Action): 
     IAddSubscriber => 
 {
-    if (state === undefined) return ApplicationDefaults.addSubscriber;
+    if (state === undefined) return ApplicationDefaults.subscriberAdd;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
         case ADD_SUBSCRIBER_CLEAR:
-            return ApplicationDefaults.addSubscriber;
+            return ApplicationDefaults.subscriberAdd;
 
         case ADD_SUBSCRIBER:
             return { 

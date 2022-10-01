@@ -11,7 +11,7 @@ export const GetNavigationContentReducer:
     Reducer<IGetNavigationContent> = (state: IGetNavigationContent | undefined, incomingAction: Action): 
     IGetNavigationContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getNavigationContent;
+    if (state === undefined) return ApplicationDefaults.contentNavigation;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

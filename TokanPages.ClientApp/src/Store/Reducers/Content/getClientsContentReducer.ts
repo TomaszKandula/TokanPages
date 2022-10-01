@@ -11,7 +11,7 @@ export const GetClientsContentReducer:
     Reducer<IGetClientsContent> = (state: IGetClientsContent | undefined, incomingAction: Action): 
     IGetClientsContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getClientsContent;
+    if (state === undefined) return ApplicationDefaults.contentClients;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

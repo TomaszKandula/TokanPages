@@ -13,7 +13,7 @@ export const SigninUserReducer:
     Reducer<ISigninUser> = (state: ISigninUser | undefined, incomingAction: Action): 
     ISigninUser => 
 {
-    if (state === undefined) return ApplicationDefaults.signinUser;
+    if (state === undefined) return ApplicationDefaults.userSignin;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 

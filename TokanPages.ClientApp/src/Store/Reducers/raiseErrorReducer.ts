@@ -9,7 +9,7 @@ export const RaiseErrorReducer:
     Reducer<IRaiseError> = (state: IRaiseError | undefined, incomingAction: Action): 
     IRaiseError =>
 {
-    if (state === undefined) return ApplicationDefaults.raiseError;
+    if (state === undefined) return ApplicationDefaults.applicationError;
 
     const action = incomingAction as TErrorActions;
     switch(action.type)

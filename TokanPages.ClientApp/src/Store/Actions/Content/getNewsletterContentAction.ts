@@ -14,9 +14,9 @@ export const ActionCreators =
 {
     get: (): AppThunkAction<TKnownActions> => (dispatch, getState) =>
     {
-        const isLanguageChanged = getState().userLanguage.id !== getState().getNewsletterContent.content.language;
+        const isLanguageChanged = getState().applicationLanguage.id !== getState().contentNewsletter.content.language;
 
-        if (getState().getNewsletterContent.content !== ApplicationDefaults.getNewsletterContent.content && !isLanguageChanged) 
+        if (getState().contentNewsletter.content !== ApplicationDefaults.contentNewsletter.content && !isLanguageChanged) 
         {
             return;
         }

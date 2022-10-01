@@ -11,7 +11,7 @@ export const GetAccountContentReducer:
     Reducer<IGetAccountContent> = (state: IGetAccountContent | undefined, incomingAction: Action): 
     IGetAccountContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getAccountContent;
+    if (state === undefined) return ApplicationDefaults.contentAccount;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

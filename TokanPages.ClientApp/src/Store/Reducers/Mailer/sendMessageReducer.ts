@@ -13,13 +13,13 @@ export const SendMessageReducer:
     Reducer<ISendMessage> = (state: ISendMessage | undefined, incomingAction: Action): 
     ISendMessage => 
 {
-    if (state === undefined) return ApplicationDefaults.sendMessage;
+    if (state === undefined) return ApplicationDefaults.applicationMessage;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
         case API_SEND_MESSAGE_CLEAR:
-            return ApplicationDefaults.sendMessage;
+            return ApplicationDefaults.applicationMessage;
             
         case API_SEND_MESSAGE:
             return { 

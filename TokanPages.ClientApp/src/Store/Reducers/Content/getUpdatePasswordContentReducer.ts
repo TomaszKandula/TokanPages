@@ -11,7 +11,7 @@ export const GetUpdatePasswordContentReducer:
     Reducer<IGetUpdatePasswordContent> = (state: IGetUpdatePasswordContent | undefined, incomingAction: Action): 
     IGetUpdatePasswordContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getUpdatePasswordContent;
+    if (state === undefined) return ApplicationDefaults.contentUpdatePassword;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

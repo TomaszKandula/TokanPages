@@ -7,7 +7,7 @@ export const UserLanguageReducer:
     Reducer<IUserLanguage> = (state: IUserLanguage | undefined, incomingAction: Action): 
     IUserLanguage =>
 {
-    if (state === undefined) return ApplicationDefaults.userLanguage;
+    if (state === undefined) return ApplicationDefaults.applicationLanguage;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

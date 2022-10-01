@@ -13,7 +13,7 @@ export const ActivateAccountReducer:
     Reducer<IActivateAccount> = (state: IActivateAccount | undefined, incomingAction: Action): 
     IActivateAccount => 
 {
-    if (state === undefined) return ApplicationDefaults.activateAccount;
+    if (state === undefined) return ApplicationDefaults.userActivate;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 

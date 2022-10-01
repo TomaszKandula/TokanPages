@@ -14,7 +14,7 @@ export const StoreUserDataReducer:
     Reducer<IStoreUserData> = (state: IStoreUserData | undefined, incomingAction: Action): 
     IStoreUserData => 
 {
-    if (state === undefined) return ApplicationDefaults.storeUserData;
+    if (state === undefined) return ApplicationDefaults.userDataStore;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 
@@ -27,7 +27,7 @@ export const StoreUserDataReducer:
 
         case CLEAR_USERDATA:
             DelDataFromStorage({ key: USER_DATA });
-            return ApplicationDefaults.storeUserData;
+            return ApplicationDefaults.userDataStore;
 
         case UPDATE_USERDATA:
             SetDataInStorage({ key: USER_DATA, selection: action.payload }); 

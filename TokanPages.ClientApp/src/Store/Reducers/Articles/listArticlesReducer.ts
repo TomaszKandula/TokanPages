@@ -9,7 +9,7 @@ import {
 
 export const ListArticlesReducer: Reducer<IArticles> = (state: IArticles | undefined, incomingAction: Action): IArticles => 
 {
-    if (state === undefined) return ApplicationDefaults.listArticles;
+    if (state === undefined) return ApplicationDefaults.articleListing;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

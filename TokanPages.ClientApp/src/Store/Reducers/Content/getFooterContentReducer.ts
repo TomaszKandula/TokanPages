@@ -11,7 +11,7 @@ export const GetFooterContentReducer:
     Reducer<IGetFooterContent> = (state: IGetFooterContent | undefined, incomingAction: Action): 
     IGetFooterContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getFooterContent;
+    if (state === undefined) return ApplicationDefaults.contentFooter;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

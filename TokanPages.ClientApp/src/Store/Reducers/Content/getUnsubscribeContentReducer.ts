@@ -11,7 +11,7 @@ export const GetUnsubscribeContentReducer:
     Reducer<IGetUnsubscribeContent> = (state: IGetUnsubscribeContent | undefined, incomingAction: Action): 
     IGetUnsubscribeContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getUnsubscribeContent;
+    if (state === undefined) return ApplicationDefaults.contentUnsubscribe;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

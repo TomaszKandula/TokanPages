@@ -11,7 +11,7 @@ export const GetUserSignupContentReducer:
     Reducer<IGetUserSignupContent> = (state: IGetUserSignupContent | undefined, incomingAction: Action): 
     IGetUserSignupContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getUserSignupContent;
+    if (state === undefined) return ApplicationDefaults.contentUserSignup;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

@@ -11,7 +11,7 @@ import {
 
 export const SignupUserReducer: Reducer<ISignupUser> = (state: ISignupUser | undefined, incomingAction: Action): ISignupUser => 
 {
-    if (state === undefined) return ApplicationDefaults.signupUser;
+    if (state === undefined) return ApplicationDefaults.userSignup;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 

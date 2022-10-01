@@ -11,7 +11,7 @@ export const GetTestimonialsContentReducer:
     Reducer<IGetTestimonialsContent> = (state: IGetTestimonialsContent | undefined, incomingAction: Action): 
     IGetTestimonialsContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getTestimonialsContent;
+    if (state === undefined) return ApplicationDefaults.contentTestimonials;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

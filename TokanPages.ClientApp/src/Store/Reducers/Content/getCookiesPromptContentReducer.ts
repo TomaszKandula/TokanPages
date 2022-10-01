@@ -11,7 +11,7 @@ export const GetCookiesPromptContentReducer:
     Reducer<IGetCookiesPromptContent> = (state: IGetCookiesPromptContent | undefined, incomingAction: Action): 
     IGetCookiesPromptContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getCookiesPromptContent;
+    if (state === undefined) return ApplicationDefaults.contentCookiesPrompt;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

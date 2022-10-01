@@ -11,7 +11,7 @@ export const GetPolicyContentReducer:
     Reducer<IGetPolicyContent> = (state: IGetPolicyContent | undefined, incomingAction: Action): 
     IGetPolicyContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getPolicyContent;
+    if (state === undefined) return ApplicationDefaults.contentPolicy;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

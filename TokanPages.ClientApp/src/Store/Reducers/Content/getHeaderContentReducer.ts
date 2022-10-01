@@ -11,7 +11,7 @@ export const GetHeaderContentReducer:
     Reducer<IGetHeaderContent> = (state: IGetHeaderContent | undefined, incomingAction: Action): 
     IGetHeaderContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getHeaderContent;
+    if (state === undefined) return ApplicationDefaults.contentHeader;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

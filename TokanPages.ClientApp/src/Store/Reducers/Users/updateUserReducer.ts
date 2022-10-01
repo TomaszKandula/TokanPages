@@ -13,7 +13,7 @@ export const UpdateUserReducer:
     Reducer<IUpdateUser> = (state: IUpdateUser | undefined, incomingAction: Action): 
     IUpdateUser => 
 {
-    if (state === undefined) return ApplicationDefaults.updateUser;
+    if (state === undefined) return ApplicationDefaults.userUpdate;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 

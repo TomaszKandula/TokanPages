@@ -11,7 +11,7 @@ export const GetNewsletterContentReducer:
     Reducer<IGetNewsletterContent> = (state: IGetNewsletterContent | undefined, incomingAction: Action): 
     IGetNewsletterContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getNewsletterContent;
+    if (state === undefined) return ApplicationDefaults.contentNewsletter;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

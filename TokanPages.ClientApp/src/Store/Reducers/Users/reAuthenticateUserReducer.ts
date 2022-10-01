@@ -13,7 +13,7 @@ export const ReAuthenticateUserReducer:
     Reducer<IReAuthenticateUser> = (state: IReAuthenticateUser | undefined, incomingAction: Action): 
     IReAuthenticateUser => 
 {
-    if (state === undefined) return ApplicationDefaults.signinUser;
+    if (state === undefined) return ApplicationDefaults.userReAuthenticate;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 

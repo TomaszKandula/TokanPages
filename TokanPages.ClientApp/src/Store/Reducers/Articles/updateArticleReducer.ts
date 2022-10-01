@@ -13,13 +13,13 @@ export const UpdateArticleReducer:
     Reducer<IUpdateArticle> = (state: IUpdateArticle | undefined, incomingAction: Action): 
     IUpdateArticle => 
 {
-    if (state === undefined) return ApplicationDefaults.updateArticle;
+    if (state === undefined) return ApplicationDefaults.articleUpdated;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
         case UPDATE_ARTICLE_CLEAR:
-            return ApplicationDefaults.updateArticle;
+            return ApplicationDefaults.articleUpdated;
         
         case UPDATE_ARTICLE:
             return { 

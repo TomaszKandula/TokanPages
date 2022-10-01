@@ -11,7 +11,7 @@ export const GetUpdateSubscriberContentReducer:
     Reducer<IGetUpdateSubscriberContent> = (state: IGetUpdateSubscriberContent | undefined, incomingAction: Action): 
     IGetUpdateSubscriberContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getUpdateSubscriberContent;
+    if (state === undefined) return ApplicationDefaults.contentUpdateSubscriber;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

@@ -8,7 +8,7 @@ export const RaiseDialogReducer:
     Reducer<IRaiseDialog> = (state: IRaiseDialog | undefined, incomingAction: Action): 
     IRaiseDialog =>
 {
-    if (state === undefined) return ApplicationDefaults.raiseDialog;
+    if (state === undefined) return ApplicationDefaults.applicationDialog;
 
     const action = incomingAction as TDialogActions;
     switch(action.type)

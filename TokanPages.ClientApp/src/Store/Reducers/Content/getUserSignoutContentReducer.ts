@@ -11,7 +11,7 @@ export const GetUserSignoutContentReducer:
     Reducer<IGetUserSignoutContent> = (state: IGetUserSignoutContent | undefined, incomingAction: Action): 
     IGetUserSignoutContent => 
 {
-    if (state === undefined) return ApplicationDefaults.getUserSignoutContent;
+    if (state === undefined) return ApplicationDefaults.contentUserSignout;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

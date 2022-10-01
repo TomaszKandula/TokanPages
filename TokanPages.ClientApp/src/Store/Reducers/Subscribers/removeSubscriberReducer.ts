@@ -12,7 +12,7 @@ export const RemoveSubscriberReducer:
     Reducer<IRemoveSubscriber> = (state: IRemoveSubscriber | undefined, incomingAction: Action): 
     IRemoveSubscriber => 
 {
-    if (state === undefined) return ApplicationDefaults.removeSubscriber;
+    if (state === undefined) return ApplicationDefaults.subscriberRemove;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 

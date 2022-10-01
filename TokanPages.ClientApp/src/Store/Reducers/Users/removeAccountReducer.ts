@@ -13,7 +13,7 @@ export const RemoveAccountReducer:
     Reducer<IRemoveAccount> = (state: IRemoveAccount | undefined, incomingAction: Action): 
     IRemoveAccount => 
 {
-    if (state === undefined) return ApplicationDefaults.removeAccount;
+    if (state === undefined) return ApplicationDefaults.userRemove;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 

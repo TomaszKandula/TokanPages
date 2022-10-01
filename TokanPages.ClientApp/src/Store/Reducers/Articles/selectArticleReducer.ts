@@ -12,13 +12,13 @@ export const SelectArticleReducer:
     Reducer<IArticle> = (state: IArticle | undefined, incomingAction: Action): 
     IArticle => 
 {
-    if (state === undefined) return ApplicationDefaults.selectArticle;
+    if (state === undefined) return ApplicationDefaults.articleSelection;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
         case RESET_SELECTION:
-            return ApplicationDefaults.selectArticle;
+            return ApplicationDefaults.articleSelection;
 
         case REQUEST_ARTICLE:
             return { 
