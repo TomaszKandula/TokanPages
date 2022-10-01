@@ -36,12 +36,12 @@ export const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
     const queryParam = useQuery();
     const dispatch = useDispatch();
     
-    const userDataState = useSelector((state: IApplicationState) => state.storeUserData);
-    const updateUserPasswordState = useSelector((state: IApplicationState) => state.updateUserPassword);
-    const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
+    const data = useSelector((state: IApplicationState) => state.userDataStore);
+    const password = useSelector((state: IApplicationState) => state.userPasswordUpdate);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
     
     const resetId = queryParam.get("id");
-    const userId = userDataState?.userData.userId;
+    const userId = data?.userData.userId;
     const disableForm = Validate.isEmpty(resetId) && Validate.isEmpty(userId);
 
     const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(SuccessMessage(UPDATE_FORM, text))), [ dispatch ]);
@@ -50,29 +50,29 @@ export const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
     const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
-    const updateAction = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(UserUpdatePasswordAction.update(payload)), [ dispatch ]);
-    const clearAction = React.useCallback(() => dispatch(UserUpdatePasswordAction.clear()), [ dispatch ]);
+    const update = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(UserUpdatePasswordAction.update(payload)), [ dispatch ]);
+    const clear = React.useCallback(() => dispatch(UserUpdatePasswordAction.clear()), [ dispatch ]);
     
     const clearForm = React.useCallback(() => 
     {
         if (!progress) return;
         setProgress(false);
-        clearAction();
+        clear();
     }, 
-    [ progress, clearAction ]);
+    [ progress, clear ]);
 
     React.useEffect(() => 
     {
-        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clearForm();
             return;
         }
 
-        switch(updateUserPasswordState?.operationStatus)
+        switch(password?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (progress) updateAction(
+                if (progress) update(
                 {
                     id: userId,
                     resetId: resetId as string,
@@ -87,7 +87,7 @@ export const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
             break;
         }
     }, 
-    [ progress, raiseErrorState?.defaultErrorMessage, updateUserPasswordState?.operationStatus, 
+    [ progress, error?.defaultErrorMessage, password?.operationStatus, 
         OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 

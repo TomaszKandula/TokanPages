@@ -32,37 +32,37 @@ const formDefaultValues: IValidateContactForm =
 export const ContactForm = (props: IGetContactFormContent): JSX.Element =>
 {
     const dispatch = useDispatch();
-    const sendMessageState = useSelector((state: IApplicationState) => state.sendMessage);
-    const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
+    const state = useSelector((state: IApplicationState) => state.applicationMessage);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
 
     const [form, setForm] = React.useState(formDefaultValues);   
     const [progress, setProgress] = React.useState(false);
 
     const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(SuccessMessage(CONTACT_FORM, text))), [ dispatch ]);
     const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialog.raise(WarningMessage(CONTACT_FORM, text))), [ dispatch ]);
-    const sendMessage = React.useCallback((payload: ISendMessageDto) => dispatch(SendMessageAction.send(payload)), [ dispatch ]);
-    const sendMessageClear = React.useCallback(() => dispatch(SendMessageAction.clear()), [ dispatch ]);
+    const message = React.useCallback((payload: ISendMessageDto) => dispatch(SendMessageAction.send(payload)), [ dispatch ]);
+    const clear = React.useCallback(() => dispatch(SendMessageAction.clear()), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 
     {
         if (!progress) return;
         setProgress(false);
-        sendMessageClear();
+        clear();
     }, 
-    [ progress, sendMessageClear ]);
+    [ progress, clear ]);
 
     React.useEffect(() => 
     {
-        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clearForm();
             return;
         }
 
-        switch(sendMessageState?.operationStatus)
+        switch(state?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (progress) sendMessage(
+                if (progress) message(
                 {
                     firstName: form.firstName,
                     lastName: form.lastName,
@@ -81,7 +81,7 @@ export const ContactForm = (props: IGetContactFormContent): JSX.Element =>
             break;
         }
     }, 
-    [ progress, raiseErrorState?.defaultErrorMessage, sendMessageState?.operationStatus, 
+    [ progress, error?.defaultErrorMessage, state?.operationStatus, 
         OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 

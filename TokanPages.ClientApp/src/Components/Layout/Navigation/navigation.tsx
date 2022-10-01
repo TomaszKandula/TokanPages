@@ -11,8 +11,8 @@ import Validate from "validate.js";
 export const Navigation = (props: IGetNavigationContent): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const user = useSelector((state: IApplicationState) => state.storeUserData);
-    const languages = useSelector((state: IApplicationState) => state.userLanguage);
+    const user = useSelector((state: IApplicationState) => state.userDataStore);
+    const languages = useSelector((state: IApplicationState) => state.applicationLanguage);
 
     const isAnonymous = Validate.isEmpty(user?.userData?.userId);
     const [drawer, setDrawer] = React.useState({ open: false});

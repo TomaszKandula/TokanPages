@@ -23,35 +23,36 @@ export const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
 {
     const dispatch = useDispatch();
     const history = useHistory();
-    const signinUserState = useSelector((state: IApplicationState) => state.signinUser);
-    const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
+    const state = useSelector((state: IApplicationState) => state.userSignin);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
     const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(WarningMessage(SIGNIN_FORM, text))), [ dispatch ]);
-    const signinUser = React.useCallback((payload: IAuthenticateUserDto) => dispatch(UserSigninAction.signin(payload)), [ dispatch ]);
-    const clearUser = React.useCallback(() => dispatch(UserSigninAction.clear()), [ dispatch ]);
+    const signin = React.useCallback((payload: IAuthenticateUserDto) => dispatch(UserSigninAction.signin(payload)), [ dispatch ]);
+    const clear = React.useCallback(() => dispatch(UserSigninAction.clear()), [ dispatch ]);
+
     const clearForm = React.useCallback(() => 
     {
         if (!progress) return;
         setProgress(false);
-        clearUser();
+        clear();
     }, 
-    [ progress, clearUser ]);
+    [ progress, clear ]);
 
     React.useEffect(() => 
     {
-        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clearForm();
             return;
         }
 
-        switch(signinUserState?.operationStatus)
+        switch(state?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (progress) signinUser(
+                if (progress) signin(
                 {
                     emailAddress: form.email,
                     password: form.password
@@ -64,7 +65,7 @@ export const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
             break;
         }
     }, 
-    [ progress, raiseErrorState?.defaultErrorMessage, signinUserState?.operationStatus, 
+    [ progress, error?.defaultErrorMessage, state?.operationStatus, 
         OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});

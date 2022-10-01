@@ -9,7 +9,7 @@ import { UserSignoutView } from "./View/userSignoutView";
 export const UserSignout = (props: IGetUserSignoutContent): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const data = useSelector((state: IApplicationState) => state.storeUserData);
+    const data = useSelector((state: IApplicationState) => state.userDataStore);
     const [progress, setProgress] = React.useState(true);
 
     React.useEffect(() => 
@@ -23,7 +23,7 @@ export const UserSignout = (props: IGetUserSignoutContent): JSX.Element =>
     React.useEffect(() => 
     {
         const isUserTokenRemoved = (): boolean => localStorage.getItem(USER_DATA) === null; 
-        const isUserDataEmpty = (): boolean => data.userData === ApplicationDefaults.storeUserData.userData;
+        const isUserDataEmpty = (): boolean => data.userData === ApplicationDefaults.userDataStore.userData;
 
         if (isUserTokenRemoved() && isUserDataEmpty() && progress) 
         {

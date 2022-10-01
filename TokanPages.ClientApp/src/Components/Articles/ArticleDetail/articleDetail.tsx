@@ -21,8 +21,8 @@ export interface IArticleDetail
 export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
 {
     const dispatch = useDispatch();
-    const selection = useSelector((state: IApplicationState) => state.selectArticle);
-    const user = useSelector((state: IApplicationState) => state.storeUserData);
+    const selection = useSelector((state: IApplicationState) => state.articleSelection);
+    const user = useSelector((state: IApplicationState) => state.userDataStore);
 
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
         dispatch(ArticleAction.select(props.id));

@@ -28,8 +28,8 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
 {
     const buttonDefaultState = props.id === null ? false : true;
     const dispatch = useDispatch();
-    const updateSubscriberState = useSelector((state: IApplicationState) => state.updateSubscriber);
-    const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
+    const state = useSelector((state: IApplicationState) => state.subscriberUpdate);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
 
     const [form, setForm] = React.useState({email: ""});
     const [buttonState, setButtonState] = React.useState(buttonDefaultState);
@@ -37,7 +37,7 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
 
     const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialog.raise(SuccessMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
     const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialog.raise(WarningMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
-    const updateSubscriber = React.useCallback((payload: IUpdateSubscriberDto) => dispatch(SubscriberUpdateAction.update(payload)), [ dispatch ]);
+    const subscriber = React.useCallback((payload: IUpdateSubscriberDto) => dispatch(SubscriberUpdateAction.update(payload)), [ dispatch ]);
 
     const clearForm = React.useCallback(() => 
     { 
@@ -49,16 +49,16 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
 
     React.useEffect(() => 
     {
-        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clearForm();
             return;
         }
 
-        switch(updateSubscriberState?.operationStatus)
+        switch(state?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (progress) updateSubscriber(
+                if (progress) subscriber(
                 { 
                     id: props.id, 
                     email: form.email, 
@@ -74,7 +74,7 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
             break;
         }           
     }, 
-    [ progress, raiseErrorState?.defaultErrorMessage, updateSubscriberState?.operationStatus, 
+    [ progress, error?.defaultErrorMessage, state?.operationStatus, 
         OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
