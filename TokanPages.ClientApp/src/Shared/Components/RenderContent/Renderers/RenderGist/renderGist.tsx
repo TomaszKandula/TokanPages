@@ -4,7 +4,7 @@ import { Card } from "@material-ui/core";
 import { ITextItem } from "../../Models/TextModel";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/dist/cjs/styles/hljs";
-import { RAISE_ERROR } from "../../../../../Redux/Actions/raiseErrorAction";
+import { RAISE_ERROR } from "../../../../../Store/Actions/Application/applicationError";
 import { GetErrorMessage } from "../../../../Services/ErrorServices";
 import { ApiCall } from "../../../../../Api/Request";
 import { RenderGistStyle } from "./renderGistStyle";

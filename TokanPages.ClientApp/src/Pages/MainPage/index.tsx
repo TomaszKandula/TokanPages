@@ -1,10 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../Redux/applicationState";
-import { Navigation } from "../../Components/Layout";
-import { Header } from "../../Components/Layout";
+import { IApplicationState } from "../../Store/Configuration";
 import { Clients } from "../../Components/Clients";
-import { Footer } from "../../Components/Layout";
 import { Technologies } from "../../Components/Technologies";
 import { Featured } from "../../Components/Featured";
 import { Testimonials } from "../../Components/Testimonials";
@@ -13,51 +10,59 @@ import { ContactForm } from "../../Components/Contact";
 import { Cookies } from "../../Components/Cookies";
 import { Features } from "../../Components/Features";
 
-import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
-import { ActionCreators as HeaderContent } from "../../Redux/Actions/Content/getHeaderContentAction";
-import { ActionCreators as ActivateAccountContent } from "../../Redux/Actions/Content/getActivateAccountContentAction";
-import { ActionCreators as ArticleFeaturesContent } from "../../Redux/Actions/Content/getArticleFeaturesContentAction";
-import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
-import { ActionCreators as ClientsContent } from "../../Redux/Actions/Content/getClientsContentAction";
-import { ActionCreators as FeaturedContent } from "../../Redux/Actions/Content/getFeaturedContentAction";
-import { ActionCreators as FeaturesContent } from "../../Redux/Actions/Content/getFeaturesContentAction";
-import { ActionCreators as NewsletterContent } from "../../Redux/Actions/Content/getNewsletterContentAction";
-import { ActionCreators as ContactFormContent } from "../../Redux/Actions/Content/getContactFormContentAction";
-import { ActionCreators as CookiesContent } from "../../Redux/Actions/Content/getCookiesPromptContentAction";
-import { ActionCreators as TestimonialsContent } from "../../Redux/Actions/Content/getTestimonialsContentAction";
+import { 
+    Navigation, 
+    Header, 
+    Footer 
+} from "../../Components/Layout";
+
+import { 
+    ContentNavigationAction,
+    ContentHeaderAction,
+    ContentActivateAccountAction,
+    ContentArticleFeaturesAction,
+    ContentFooterAction,
+    ContentClientsAction,
+    ContentFeaturedAction,
+    ContentFeaturesAction,
+    ContentNewsletterAction,
+    ContentContactFormAction,
+    ContentCookiesPromptAction,
+    ContentTestimonialsAction    
+} from "../../Store/Actions";
 
 export const MainPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
 
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
 
-    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
-    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const header = useSelector((state: IApplicationState) => state.getHeaderContent);
-    const clients = useSelector((state: IApplicationState) => state.getClientsContent);
-    const features = useSelector((state: IApplicationState) => state.getFeaturesContent);
-    const articles = useSelector((state: IApplicationState) => state.getArticleFeaturesContent);
-    const featured = useSelector((state: IApplicationState) => state.getFeaturedContent);
-    const testimonials = useSelector((state: IApplicationState) => state.getTestimonialsContent);
-    const newsletter = useSelector((state: IApplicationState) => state.getNewsletterContent);
-    const contactForm = useSelector((state: IApplicationState) => state.getContactFormContent);
-    const cookiesPrompt = useSelector((state: IApplicationState) => state.getCookiesPromptContent);
-    
+    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: IApplicationState) => state.contentFooter);
+    const header = useSelector((state: IApplicationState) => state.contentHeader);
+    const clients = useSelector((state: IApplicationState) => state.contentClients);
+    const features = useSelector((state: IApplicationState) => state.contentFeatures);
+    const articles = useSelector((state: IApplicationState) => state.contentArticleFeatures);
+    const featured = useSelector((state: IApplicationState) => state.contentFeatured);
+    const testimonials = useSelector((state: IApplicationState) => state.contentTestimonials);
+    const newsletter = useSelector((state: IApplicationState) => state.contentNewsletter);
+    const contactForm = useSelector((state: IApplicationState) => state.contentContactForm);
+    const cookiesPrompt = useSelector((state: IApplicationState) => state.contentCookiesPrompt);
+
     React.useEffect(() => 
     { 
-        dispatch(NavigationContent.getNavigationContent());
-        dispatch(HeaderContent.getHeaderContent());
-        dispatch(ClientsContent.getClientsContent());
-        dispatch(ActivateAccountContent.getActivateAccountContent());
-        dispatch(FeaturesContent.getFeaturesContent());
-        dispatch(ArticleFeaturesContent.getArticleFeaturesContent());
-        dispatch(FeaturedContent.getFeaturedContent());
-        dispatch(TestimonialsContent.getTestimonialsContent());
-        dispatch(NewsletterContent.getNewsletterContent());
-        dispatch(ContactFormContent.getContactFormContent());
-        dispatch(FooterContent.getFooterContent());
-        dispatch(CookiesContent.getCookiesPromptContent());    
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentHeaderAction.get());
+        dispatch(ContentActivateAccountAction.get());
+        dispatch(ContentArticleFeaturesAction.get());
+        dispatch(ContentFooterAction.get());
+        dispatch(ContentClientsAction.get());
+        dispatch(ContentFeaturedAction.get());
+        dispatch(ContentFeaturesAction.get());
+        dispatch(ContentNewsletterAction.get());
+        dispatch(ContentContactFormAction.get());
+        dispatch(ContentCookiesPromptAction.get());    
+        dispatch(ContentTestimonialsAction.get());
     }, 
     [ dispatch, language?.id ]);
 

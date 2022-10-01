@@ -1,10 +1,10 @@
 import * as React from "react";
-import { IGetCookiesPromptContent } from "../../Redux/States/Content/getCookiesPromptContentState";
+import { IContentCookiesPrompt } from "../../Store/States";
 import { SetCookie, GetCookie } from "../../Shared/Services/CookieServices";
 import { CookiesView } from "./View/cookiesView";
 import Validate from "validate.js";
 
-export const Cookies = (props: IGetCookiesPromptContent): JSX.Element => 
+export const Cookies = (props: IContentCookiesPrompt): JSX.Element => 
 {
     const [modalClose, setModalClose] = React.useState(false);
     const currentCookie = GetCookie({cookieName: "cookieConsent"});

@@ -28,18 +28,30 @@ it("renders without crashing", () =>
     });
     
     const store = storeFake({ }) as any;
-    const dto: IGetContentManifestDto = 
+    const manifest: IGetContentManifestDto = 
     {
-        version: "",
-        created: "",
-        updated: "",
-        languages: []
+        version: "0.1",
+        created: "2022-09-09",
+        updated: "2022-09-09",
+        languages: 
+        [
+            {
+                id: "eng",
+                isDefault: true,
+                name: "English"
+            },
+            {
+                id: "pol",
+                isDefault: false,
+                name: "Polski"
+            }
+        ]
     }
 
     ReactDOM.render(
         <Provider store={store}>
             <MemoryRouter>
-                <App manifest={dto} />
+                <App manifest={manifest} />
             </MemoryRouter>
         </Provider>, document.createElement("div")
     );

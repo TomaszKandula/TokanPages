@@ -2,32 +2,38 @@ import * as React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"; 
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import { MainPage } from "./Pages";
-import { StoryPage } from "./Pages"; 
-import { ArticlesPage } from "./Pages";
-import { TermsPage } from "./Pages";
-import { PolicyPage } from "./Pages";
-import { ContactPage } from "./Pages";
-import { SigninPage } from "./Pages";
-import { SignupPage } from "./Pages";
-import { SignoutPage } from "./Pages";
-import { AccountPage } from "./Pages";
-import { ResetPasswordPage } from "./Pages";
-import { UpdatePasswordPage } from "./Pages";
-import { UnsubscribePage } from "./Pages";
-import { UpdateSubscriberPage } from "./Pages";
-import { ActivationPage } from "./Pages";
-import { WrongPage } from "./Pages";
 import { IGetContentManifestDto } from "./Api/Models";
 import { ScrollToTop } from "./Shared/Components/Scroll";
-import { ApplicationToast } from "./Shared/Components";
-import { ApplicationDialogBox } from "./Shared/Components";
-import { ApplicationUserInfo } from "./Shared/Components";
 import { UpdateUserData } from "./Shared/Services/updateUserDataService";
 import { UpdateUserLanguage } from "./Shared/Services/updateUserLanguageService";
 import { AppStyle } from "./app.style";
 import AOS from "aos";
 import "aos/dist/aos.css";
+
+import { 
+    MainPage, 
+    StoryPage,
+    ArticlesPage,
+    TermsPage,
+    PolicyPage,
+    ContactPage,
+    SigninPage,
+    SignupPage,
+    SignoutPage,
+    AccountPage,
+    ResetPasswordPage,
+    UpdatePasswordPage,
+    UnsubscribePage,
+    UpdateSubscriberPage,
+    ActivationPage,
+    WrongPage
+} from "./Pages";
+
+import { 
+    ApplicationToast, 
+    ApplicationDialogBox, 
+    ApplicationUserInfo 
+} from "./Shared/Components";
 
 interface IApp 
 {

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Box, Button, Container, Typography } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
-import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators } from "../../Redux/Actions/Content/getWrongPagePromptContentAction";
+import { IApplicationState } from "../../Store/Configuration";
+import { ContentWrongPagePromptAction } from "../../Store/Actions";
 import { Style } from "./style";
 
 export const WrongPage = (): JSX.Element =>
@@ -16,18 +16,18 @@ export const WrongPage = (): JSX.Element =>
     {
         return(
             <Link to="/" className={classes.link}>
-s                <Button variant="contained" className={classes.button}>
+                <Button variant="contained" className={classes.button}>
                     {wrongPagePrompt?.content.button}
                 </Button>
             </Link>
         );
     }
 
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
-    const wrongPagePrompt = useSelector((state: IApplicationState) => state.getWrongPagePromptContent);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const wrongPagePrompt = useSelector((state: IApplicationState) => state.contentWrongPagePrompt);
     React.useEffect(() => 
     { 
-        dispatch(ActionCreators.getWrongPagePromptContent()) 
+        dispatch(ContentWrongPagePromptAction.get()) 
     }, 
     [ dispatch, language?.id ]);
 

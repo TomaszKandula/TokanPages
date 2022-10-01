@@ -1,5 +1,5 @@
 import { UNEXPECTED_ERROR } from "../../../../Shared/constants";
-import { RAISE_ERROR } from "../../../../Redux/Actions/raiseErrorAction";
+import { RAISE_ERROR } from "../../../../Store/Actions/Application/applicationError";
 import { GetErrorMessage } from "../GetErrorMessage/getErrorMessage";
 import { IRaiseError } from "./interface";
 

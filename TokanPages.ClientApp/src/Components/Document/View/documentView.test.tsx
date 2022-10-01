@@ -1,13 +1,11 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { IGetPolicyContent } from "../../../Redux/States/Content/getPolicyContentState";
-import { IGetTermsContent } from "../../../Redux/States/Content/getTermsContentState";
-import { IGetStoryContent } from "../../../Redux/States/Content/getStoryContentState";
+import { IContentPolicy, IContentTerms, IContentStory } from "../../../Store/States";
 import { ITextItem } from "../../../Api/Models";
 import { DocumentView } from "./documentView";
 
-describe("Test component: staticContentView.", () => 
+describe("Test component: documentView.", () => 
 {
     it("Renders correctly '<DocumentView />' when policy content is loaded.", () => 
     {
@@ -20,7 +18,7 @@ describe("Test component: staticContentView.", () =>
             text: ""
         };
 
-        const policyContent: IGetPolicyContent = 
+        const policyContent: IContentPolicy = 
         {
             isLoading: false,
             content: 
@@ -48,7 +46,7 @@ describe("Test component: staticContentView.", () =>
             text: ""
         };
 
-        const termsContent: IGetTermsContent = 
+        const termsContent: IContentTerms = 
         {
             isLoading: false,
             content: 
@@ -76,7 +74,7 @@ describe("Test component: staticContentView.", () =>
             text: ""
         };
 
-        const storyContent: IGetStoryContent = 
+        const storyContent: IContentStory = 
         {
             isLoading: false,
             content: 

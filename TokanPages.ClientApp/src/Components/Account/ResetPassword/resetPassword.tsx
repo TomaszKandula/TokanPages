@@ -1,58 +1,64 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IGetResetPasswordContent } from "../../../Redux/States/Content/getResetPasswordContentState";
-import { ActionCreators as DialogAction } from "../../../Redux/Actions/raiseDialogAction";
-import { IApplicationState } from "../../../Redux/applicationState";
-import { ActionCreators } from "../../../Redux/Actions/Users/resetUserPasswordAction";
+import { IApplicationState } from "../../../Store/Configuration";
+import { IContentResetPassword } from "../../../Store/States";
+import { ApplicationDialogAction, UserPasswordResetAction } from "../../../Store/Actions";
 import { IResetUserPasswordDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { IValidateResetForm, ValidateResetForm } from "../../../Shared/Services/FormValidation";
 import { GetTextWarning } from "../../../Shared/Services/Utilities";
 import { OperationStatus } from "../../../Shared/enums";
-import { RECEIVED_ERROR_MESSAGE, RESET_FORM, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_WARNING } from "../../../Shared/constants";
 import { ResetPasswordView } from "./View/resetPasswordView";
 import Validate from "validate.js";
+
+import { 
+    RECEIVED_ERROR_MESSAGE, 
+    RESET_FORM, 
+    RESET_PASSWORD_SUCCESS, 
+    RESET_PASSWORD_WARNING 
+} from "../../../Shared/constants";
 
 const formDefaultValues: IValidateResetForm =
 {
     email: ""
 };
 
-export const ResetPassword = (props: IGetResetPasswordContent): JSX.Element =>
+export const ResetPassword = (props: IContentResetPassword): JSX.Element =>
 {
     const dispatch = useDispatch();
-    const resetUserPasswordState = useSelector((state: IApplicationState) => state.resetUserPassword);
-    const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
+    const state = useSelector((state: IApplicationState) => state.userPasswordReset);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
     
-    const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(RESET_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(WarningMessage(RESET_FORM, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(RESET_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(RESET_FORM, text))), [ dispatch ]);
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
-    const resetAction = React.useCallback((payload: IResetUserPasswordDto) => dispatch(ActionCreators.reset(payload)), [ dispatch ]);
-    const clearAction = React.useCallback(() => dispatch(ActionCreators.clear()), [ dispatch ]);
+    const reset = React.useCallback((payload: IResetUserPasswordDto) => dispatch(UserPasswordResetAction.reset(payload)), [ dispatch ]);
+    const clear = React.useCallback(() => dispatch(UserPasswordResetAction.clear()), [ dispatch ]);
+
     const clearForm = React.useCallback(() => 
     {
         if (!progress) return;
         setProgress(false);
-        clearAction();
+        clear();
     }, 
-    [ progress, clearAction ]);
+    [ progress, clear ]);
 
     React.useEffect(() => 
     {
-        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clearForm();
             return;
         }
 
-        switch(resetUserPasswordState?.operationStatus)
+        switch(state?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (progress) resetAction(
+                if (progress) reset(
                 {
                     emailAddress: form.email
                 });
@@ -65,7 +71,7 @@ export const ResetPassword = (props: IGetResetPasswordContent): JSX.Element =>
             break;
         }
     }, 
-    [ progress, raiseErrorState?.defaultErrorMessage, resetUserPasswordState?.operationStatus, 
+    [ progress, error?.defaultErrorMessage, state?.operationStatus, 
         OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 

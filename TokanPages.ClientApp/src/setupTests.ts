@@ -15,6 +15,12 @@ jest.mock("react-redux", () => (
     useDispatch: jest.fn()
 }));
 
+jest.mock("connected-react-router", () => (
+{
+    connectRouter: jest.fn(),
+    routerMiddleware: jest.fn()
+}));
+
 Enzyme.configure({ adapter: new Adapter(), disableLifecycleMethods: false });
 
 // environmental variables used during all tests
