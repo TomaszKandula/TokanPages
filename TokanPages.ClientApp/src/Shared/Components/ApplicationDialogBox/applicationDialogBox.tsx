@@ -2,12 +2,12 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
 import { ApplicationDialog } from "../../../Store/Actions";
-import { IRaiseDialog } from "../../../Store/States";
+import { IApplicationDialog } from "../../../Store/States";
 import { IconType } from "../../enums";
 import { ApplicationDialogBoxView } from "./View/applicationDialogBoxView";
 import Validate from "validate.js";
 
-interface IDialogState extends IRaiseDialog
+interface IDialogState extends IApplicationDialog
 {
     state: boolean;
 }

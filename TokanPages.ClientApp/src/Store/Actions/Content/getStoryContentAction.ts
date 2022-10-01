@@ -1,6 +1,6 @@
 import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { STORY_URL } from "../../../Shared/constants";
-import { TErrorActions } from "../raiseErrorAction";
+import { TErrorActions } from "../applicationError";
 import { IDocumentContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
 

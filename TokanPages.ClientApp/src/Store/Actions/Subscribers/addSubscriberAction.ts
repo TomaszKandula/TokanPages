@@ -4,7 +4,7 @@ import { IAddSubscriberDto } from "../../../Api/Models";
 import { API_COMMAND_ADD_SUBSCRIBER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { TErrorActions } from "../raiseErrorAction";
+import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const ADD_SUBSCRIBER = "ADD_SUBSCRIBER";

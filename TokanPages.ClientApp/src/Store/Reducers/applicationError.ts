@@ -1,13 +1,13 @@
 import { Action, Reducer } from "redux";
-import { IRaiseError } from "../States";
+import { IApplicationError } from "../States";
 import { ApplicationDefaults } from "../Configuration";
-import { CLEAR_ERROR, RAISE_ERROR, TErrorActions } from "../Actions/raiseErrorAction";
+import { CLEAR_ERROR, RAISE_ERROR, TErrorActions } from "../Actions/applicationError";
 import { DialogType } from "../../Shared/enums";
 import { NO_ERRORS, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 
-export const RaiseErrorReducer: 
-    Reducer<IRaiseError> = (state: IRaiseError | undefined, incomingAction: Action): 
-    IRaiseError =>
+export const ApplicationError: 
+    Reducer<IApplicationError> = (state: IApplicationError | undefined, incomingAction: Action): 
+    IApplicationError =>
 {
     if (state === undefined) return ApplicationDefaults.applicationError;
 

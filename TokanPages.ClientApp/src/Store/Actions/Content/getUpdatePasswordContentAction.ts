@@ -1,6 +1,6 @@
 import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_UPDATE_PASSWORD_CONTENT } from "../../../Shared/constants";
-import { TErrorActions } from "../raiseErrorAction";
+import { TErrorActions } from "../applicationError";
 import { IUpdatePasswordContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
 

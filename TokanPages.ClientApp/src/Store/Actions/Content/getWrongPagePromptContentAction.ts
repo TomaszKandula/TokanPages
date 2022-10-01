@@ -1,6 +1,6 @@
 import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_WRONG_PAGE_PROMPT_CONTENT } from "../../../Shared/constants";
-import { TErrorActions } from "../raiseErrorAction";
+import { TErrorActions } from "../applicationError";
 import { IWrongPagePromptContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
 

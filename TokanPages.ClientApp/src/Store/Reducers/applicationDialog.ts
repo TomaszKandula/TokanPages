@@ -1,12 +1,12 @@
 import { Action, Reducer } from "redux";
-import { IRaiseDialog } from "../States";
+import { IApplicationDialog } from "../States";
 import { ApplicationDefaults } from "../Configuration";
-import { CLEAR_DIALOG, RAISE_DIALOG, TDialogActions } from "../Actions/raiseDialogAction";
+import { CLEAR_DIALOG, RAISE_DIALOG, TDialogActions } from "../Actions/applicationDialog";
 import { IconType } from "../../Shared/enums";
 
-export const RaiseDialogReducer: 
-    Reducer<IRaiseDialog> = (state: IRaiseDialog | undefined, incomingAction: Action): 
-    IRaiseDialog =>
+export const ApplicationDialog: 
+    Reducer<IApplicationDialog> = (state: IApplicationDialog | undefined, incomingAction: Action): 
+    IApplicationDialog =>
 {
     if (state === undefined) return ApplicationDefaults.applicationDialog;
 

@@ -5,7 +5,7 @@ import { API_COMMAND_AUTHENTICATE, NULL_RESPONSE_ERROR } from "../../../Shared/c
 import { UPDATE_USERDATA, TKnownActions as TUpdateActions } from "./storeUserDataAction";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { TErrorActions } from "../raiseErrorAction";
+import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const SIGNIN_USER = "SIGNIN_USER";

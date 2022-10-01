@@ -1,6 +1,6 @@
-export type { IRaiseDialog } from "./raiseDialogState";
-export type { IRaiseError } from "./raiseErrorState";
-export type { IUserLanguage } from "./userLanguageState";
+export type { IApplicationDialog } from "./applicationDialog";
+export type { IApplicationError } from "./applicationError";
+export type { IApplicationLanguage } from "./applicationLanguage";
 
 export type { IArticles } from "./Articles/listArticlesState";
 export type { IArticle } from "./Articles/selectArticleState";

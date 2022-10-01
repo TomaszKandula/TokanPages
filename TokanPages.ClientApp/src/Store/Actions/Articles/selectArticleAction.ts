@@ -2,7 +2,7 @@ import axios from "axios";
 import { AppThunkAction } from "../../Configuration";
 import { IArticleItem } from "../../../Shared/Components/RenderContent/Models";
 import { API_QUERY_GET_ARTICLE, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
-import { TErrorActions } from "../raiseErrorAction";
+import { TErrorActions } from "../applicationError";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { EnrichConfiguration } from "../../../Api/Request";

@@ -24,8 +24,8 @@ import {
     IGetUserSignoutContent,
     IGetUserSignupContent,
     IGetWrongPagePromptContent,
-    IRaiseDialog,
-    IRaiseError,
+    IApplicationDialog,
+    IApplicationError,
     IReAuthenticateUser,
     IRemoveAccount,
     IRemoveSubscriber,
@@ -38,7 +38,7 @@ import {
     IUpdateSubscriber,
     IUpdateUser,
     IUpdateUserPassword,
-    IUserLanguage,
+    IApplicationLanguage,
     IGetPolicyContent,
     IGetTermsContent,
     IGetStoryContent
@@ -46,9 +46,9 @@ import {
 
 export interface IApplicationState 
 {
-    applicationDialog: IRaiseDialog;
-    applicationError: IRaiseError;
-    applicationLanguage: IUserLanguage;
+    applicationDialog: IApplicationDialog;
+    applicationError: IApplicationError;
+    applicationLanguage: IApplicationLanguage;
     applicationMessage: ISendMessage;
     articleListing: IArticles;
     articleSelection: IArticle;

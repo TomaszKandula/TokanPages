@@ -4,7 +4,7 @@ import { IUpdateUserDto } from "../../../Api/Models";
 import { API_COMMAND_UPDATE_USER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { TErrorActions } from "../raiseErrorAction";
+import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const UPDATE_USER = "UPDATE_USER";

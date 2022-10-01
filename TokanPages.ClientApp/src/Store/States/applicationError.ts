@@ -1,6 +1,6 @@
 import { DialogType } from "../../Shared/enums";
 
-export interface IRaiseError 
+export interface IApplicationError 
 {
     defaultErrorMessage: string;
     attachedErrorObject: any;

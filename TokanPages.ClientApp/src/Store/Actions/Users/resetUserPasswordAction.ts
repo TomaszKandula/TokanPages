@@ -5,7 +5,7 @@ import { API_COMMAND_RESET_USER_PASSWORD, NULL_RESPONSE_ERROR } from "../../../S
 import { TKnownActions as TUpdateActions } from "./storeUserDataAction";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { TErrorActions } from "../raiseErrorAction";
+import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const RESET_USER_PASSWORD = "RESET_USER_PASSWORD";

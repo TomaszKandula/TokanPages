@@ -1,6 +1,6 @@
 import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_NEWSLETTER_CONTENT } from "../../../Shared/constants";
-import { TErrorActions } from "../raiseErrorAction";
+import { TErrorActions } from "../applicationError";
 import { INewsletterContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
 

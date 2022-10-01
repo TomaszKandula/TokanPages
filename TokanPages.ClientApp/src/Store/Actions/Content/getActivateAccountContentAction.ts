@@ -1,6 +1,6 @@
 import { AppThunkAction, ApplicationDefaults } from "../../Configuration";
 import { GET_ACTIVATE_ACCOUNT_CONTENT } from "../../../Shared/constants";
-import { TErrorActions } from "../raiseErrorAction";
+import { TErrorActions } from "../applicationError";
 import { IActivateAccountContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
 

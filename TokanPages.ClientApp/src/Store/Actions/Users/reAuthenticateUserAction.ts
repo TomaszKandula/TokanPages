@@ -6,7 +6,7 @@ import { UPDATE_USERDATA, TKnownActions as TUpdateActions } from "./storeUserDat
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { GetDataFromStorage } from "../../../Shared/Services/StorageServices";
-import { TErrorActions } from "../raiseErrorAction";
+import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const REAUTHENTICATE_USER = "REAUTHENTICATE_USER";

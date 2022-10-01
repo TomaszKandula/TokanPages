@@ -5,7 +5,7 @@ import { API_COMMAND_ACTIVATE_USER, NULL_RESPONSE_ERROR } from "../../../Shared/
 import { TKnownActions as TUpdateActions } from "./storeUserDataAction";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { TErrorActions } from "../raiseErrorAction";
+import { TErrorActions } from "../applicationError";
 import { EnrichConfiguration } from "../../../Api/Request";
 
 export const ACTIVATE_ACCOUNT = "ACTIVATE_ACCOUNT";

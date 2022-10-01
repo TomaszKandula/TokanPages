@@ -6,7 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 import MenuIcon from '@material-ui/icons/Menu';
 import { FormControl, Grid, MenuItem, Select, Typography, Box } from "@material-ui/core";
 import { ILanguageItem } from "../../../../Api/Models/";
-import { IUserLanguage } from "../../../../Store/States/userLanguageState";
+import { IApplicationLanguage } from "../../../../Store/States/applicationLanguage";
 import { HideOnScroll } from "../../../../Shared/Components/Scroll";
 import { IItem } from "../../../../Shared/Components/ListRender/Models";
 import { AVATARS_PATH } from "../../../../Shared/constants";
@@ -30,7 +30,7 @@ interface IProperties
     logo: string;
     avatarName: string;
     userAliasText: string;
-    languages: IUserLanguage;
+    languages: IApplicationLanguage;
     languageId: string;
     languageHandler: any;
     menu: { image: string, items: IItem[] };
