@@ -18,7 +18,7 @@ export const GetContent = (props: IGetContentAction) =>
 {
     props.dispatch({ type: props.request });
 
-    const id = props.state().userLanguage.id as string;
+    const id = props.state().applicationLanguage.id as string;
     const queryParam = Validate.isEmpty(id) ? "" : `&language=${id}`;
 
     axios(EnrichConfiguration(
